@@ -28,44 +28,44 @@ public class PipActivityController {
         this.handler = pipActivityHandler;
         pipActivityHandler.addPipListener(new IPipActivityListener() {
             @Override
-            public void onCompleteEnterToPip() {
-                Log.d("PIP_DEBUG", "onCompleteEnterToPip");
-            }
-
-            @Override
-            public void onCompleteExitFromPip(boolean z) {
-                Log.d("PIP_DEBUG", "onCompleteExitFromPip: byActivityStop=" + z);
-            }
-
-            @Override
             public void onStartEnterToPip() {
                 Log.d("PIP_DEBUG", "onStartEnterToPip");
+            }
+
+            @Override
+            public void onCompleteEnterToPip() {
+                Log.d("PIP_DEBUG", "onCompleteEnterToPip");
             }
 
             @Override
             public void onStartExitFromPip(boolean z) {
                 Log.d("PIP_DEBUG", "onStartExitFromPip: byActivityStop=" + z);
             }
+
+            @Override
+            public void onCompleteExitFromPip(boolean z) {
+                Log.d("PIP_DEBUG", "onCompleteExitFromPip: byActivityStop=" + z);
+            }
         });
         pipActivityHandler.addAnimationListener(new IPipActivityAnimationListener() {
-            @Override
-            public void onEnterAnimationEnd(long j) {
-                Log.d("PIP_DEBUG", "onEnterAnimationEnd: duration=" + j);
-            }
-
             @Override
             public void onEnterAnimationStart(long j) {
                 Log.d("PIP_DEBUG", "onEnterAnimationStart: estimatedDuration=" + j);
             }
 
             @Override
-            public void onLeaveAnimationEnd(long j) {
-                Log.d("PIP_DEBUG", "onLeaveAnimationEnd: duration=" + j);
+            public void onEnterAnimationEnd(long j) {
+                Log.d("PIP_DEBUG", "onEnterAnimationEnd: duration=" + j);
             }
 
             @Override
             public void onLeaveAnimationStart(long j) {
                 Log.d("PIP_DEBUG", "onLeaveAnimationStart: estimatedDuration=" + j);
+            }
+
+            @Override
+            public void onLeaveAnimationEnd(long j) {
+                Log.d("PIP_DEBUG", "onLeaveAnimationEnd: duration=" + j);
             }
 
             @Override
@@ -78,6 +78,33 @@ public class PipActivityController {
                 Log.d("PIP_DEBUG", "onTransitionAnimationProgress: estimatedProgress=" + f);
             }
         });
+    }
+
+    public IPipActivityHandler getHandler() {
+        return this.handler;
+    }
+
+    public ViewGroup getPipContentView() {
+        if (this.pipContentView == null) {
+            this.pipContentView = new PipActivityContentLayout(this.activity);
+        }
+        return this.pipContentView;
+    }
+
+    private void updateSources() {
+        PipSource pipSource = this.maxPrioritySource;
+        PipSource pipSource2 = null;
+        for (PipSource pipSource3 : this.sources.values()) {
+            if (pipSource3.isAvailable() || pipSource3.state2.isAttachedToPip()) {
+                if (pipSource2 == null || pipSource3.priority > pipSource2.priority) {
+                    pipSource2 = pipSource3;
+                }
+            }
+        }
+        if (pipSource != pipSource2) {
+            this.maxPrioritySource = pipSource2;
+            onMaxPrioritySourceChanged(pipSource, pipSource2);
+        }
     }
 
     private void onMaxPrioritySourceChanged(PipSource pipSource, PipSource pipSource2) {
@@ -122,32 +149,15 @@ public class PipActivityController {
         this.pipContentView.invalidate();
     }
 
-    private void updateSources() {
-        PipSource pipSource = this.maxPrioritySource;
-        PipSource pipSource2 = null;
-        for (PipSource pipSource3 : this.sources.values()) {
-            if (pipSource3.isAvailable() || pipSource3.state2.isAttachedToPip()) {
-                if (pipSource2 == null || pipSource3.priority > pipSource2.priority) {
-                    pipSource2 = pipSource3;
-                }
-            }
+    public void dispatchSourceRegister(PipSource pipSource) {
+        this.sources.put(pipSource.tag, pipSource);
+        updateSources();
+    }
+
+    public void dispatchSourceUnregister(PipSource pipSource) {
+        if (this.sources.remove(pipSource.tag) != null) {
+            updateSources();
         }
-        if (pipSource != pipSource2) {
-            this.maxPrioritySource = pipSource2;
-            onMaxPrioritySourceChanged(pipSource, pipSource2);
-        }
-    }
-
-    public void addActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
-        this.handler.addActionListener(str, iPipActivityActionListener);
-    }
-
-    public void addAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
-        this.handler.addAnimationListener(iPipActivityAnimationListener);
-    }
-
-    public void addPipListener(IPipActivityListener iPipActivityListener) {
-        this.handler.addPipListener(iPipActivityListener);
     }
 
     public void dispatchSourceAvailabilityChanged(PipSource pipSource) {
@@ -166,41 +176,31 @@ public class PipActivityController {
         this.pipContentView.invalidate();
     }
 
-    public void dispatchSourceRegister(PipSource pipSource) {
-        this.sources.put(pipSource.tag, pipSource);
-        updateSources();
-    }
-
-    public void dispatchSourceUnregister(PipSource pipSource) {
-        if (this.sources.remove(pipSource.tag) != null) {
-            updateSources();
-        }
-    }
-
-    public IPipActivityHandler getHandler() {
-        return this.handler;
-    }
-
-    public ViewGroup getPipContentView() {
-        if (this.pipContentView == null) {
-            this.pipContentView = new PipActivityContentLayout(this.activity);
-        }
-        return this.pipContentView;
-    }
-
     public boolean hasContentForPictureInPictureMode() {
         return this.maxPrioritySource != null;
     }
 
-    public void removeActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
-        this.handler.removeActionListener(str, iPipActivityActionListener);
+    public void addPipListener(IPipActivityListener iPipActivityListener) {
+        this.handler.addPipListener(iPipActivityListener);
+    }
+
+    public void removePipListener(IPipActivityListener iPipActivityListener) {
+        this.handler.removePipListener(iPipActivityListener);
+    }
+
+    public void addAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
+        this.handler.addAnimationListener(iPipActivityAnimationListener);
     }
 
     public void removeAnimationListener(IPipActivityAnimationListener iPipActivityAnimationListener) {
         this.handler.removeAnimationListener(iPipActivityAnimationListener);
     }
 
-    public void removePipListener(IPipActivityListener iPipActivityListener) {
-        this.handler.removePipListener(iPipActivityListener);
+    public void addActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
+        this.handler.addActionListener(str, iPipActivityActionListener);
+    }
+
+    public void removeActionListener(String str, IPipActivityActionListener iPipActivityActionListener) {
+        this.handler.removeActionListener(str, iPipActivityActionListener);
     }
 }

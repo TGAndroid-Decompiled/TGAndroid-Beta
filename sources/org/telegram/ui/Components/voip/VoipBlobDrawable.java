@@ -14,10 +14,7 @@ public class VoipBlobDrawable extends BlobDrawable {
         float f4 = this.minRadius;
         fArr[i] = f4 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f3 - f4) * f);
         fArr2[i] = ((360.0f / this.N) * i) + ((((this.random.nextInt() * f) % 100.0f) / 100.0f) * f2);
-        float[] fArr3 = this.speed;
-        double abs = Math.abs(this.random.nextInt() % 100.0f) / 100.0f;
-        Double.isNaN(abs);
-        fArr3[i] = (float) ((abs * 0.003d) + 0.017d);
+        this.speed[i] = (float) (((Math.abs(this.random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
     }
 
     public void update(float f, float f2, float f3) {

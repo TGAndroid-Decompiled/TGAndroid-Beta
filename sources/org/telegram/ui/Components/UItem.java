@@ -58,55 +58,10 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public View view;
     public boolean withUsername;
 
-    public static abstract class UItemFactory {
-        private ArrayList cache;
-        public final int viewType = UItem.access$208();
-
-        public static void setup(UItemFactory uItemFactory) {
-            if (UItem.factoryInstances == null) {
-                HashMap unused = UItem.factoryInstances = new HashMap();
-            }
-            if (UItem.factories == null) {
-                LongSparseArray unused2 = UItem.factories = new LongSparseArray();
-            }
-            Class<?> cls = uItemFactory.getClass();
-            if (UItem.factoryInstances.containsKey(cls)) {
-                return;
-            }
-            UItem.factoryInstances.put(cls, uItemFactory);
-            UItem.factories.put(uItemFactory.viewType, uItemFactory);
-        }
-
-        public void attachedView(View view, UItem uItem) {
-        }
-
-        public abstract void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView);
-
-        public boolean contentsEquals(UItem uItem, UItem uItem2) {
-            return uItem.itemContentEquals(uItem2);
-        }
-
-        public abstract View createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider);
-
-        public boolean equals(UItem uItem, UItem uItem2) {
-            return uItem.itemEquals(uItem2);
-        }
-
-        public View getCached() {
-            ArrayList arrayList = this.cache;
-            if (arrayList == null || arrayList.isEmpty()) {
-                return null;
-            }
-            return (View) this.cache.remove(0);
-        }
-
-        public boolean isClickable() {
-            return true;
-        }
-
-        public boolean isShadow() {
-            return false;
-        }
+    static int access$208() {
+        int i = factoryViewType;
+        factoryViewType = i + 1;
+        return i;
     }
 
     public UItem(int i, boolean z) {
@@ -116,15 +71,35 @@ public class UItem extends AdapterWithDiffUtils.Item {
         this.withUsername = true;
     }
 
-    static int access$208() {
-        int i = factoryViewType;
-        factoryViewType = i + 1;
-        return i;
+    public static UItem asCustom(int i, View view) {
+        UItem uItem = new UItem(-1, false);
+        uItem.id = i;
+        uItem.view = view;
+        return uItem;
     }
 
-    public static UItem asAddChat(Long l) {
-        UItem uItem = new UItem(13, false);
-        uItem.dialogId = l.longValue();
+    public static UItem asCustom(View view) {
+        UItem uItem = new UItem(-1, false);
+        uItem.view = view;
+        return uItem;
+    }
+
+    public static UItem asFullyCustom(View view) {
+        UItem uItem = new UItem(-2, false);
+        uItem.view = view;
+        return uItem;
+    }
+
+    public static UItem asFullscreenCustom(View view, int i) {
+        UItem uItem = new UItem(-3, false);
+        uItem.view = view;
+        uItem.intValue = i;
+        return uItem;
+    }
+
+    public static UItem asHeader(CharSequence charSequence) {
+        UItem uItem = new UItem(0, false);
+        uItem.text = charSequence;
         return uItem;
     }
 
@@ -141,9 +116,25 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asBusinessChatLink(BusinessLinksActivity.BusinessLinkWrapper businessLinkWrapper) {
-        UItem uItem = new UItem(29, false);
-        uItem.object = businessLinkWrapper;
+    public static UItem asTopView(CharSequence charSequence, String str, String str2) {
+        UItem uItem = new UItem(2, false);
+        uItem.text = charSequence;
+        uItem.subtext = str;
+        uItem.textValue = str2;
+        return uItem;
+    }
+
+    public static UItem asTopView(CharSequence charSequence, int i) {
+        UItem uItem = new UItem(2, false);
+        uItem.text = charSequence;
+        uItem.iconResId = i;
+        return uItem;
+    }
+
+    public static UItem asButton(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.text = charSequence;
         return uItem;
     }
 
@@ -152,6 +143,22 @@ public class UItem extends AdapterWithDiffUtils.Item {
         uItem.id = i;
         uItem.iconResId = i2;
         uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asButton(int i, Drawable drawable, CharSequence charSequence) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.object = drawable;
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asButton(int i, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.textValue = charSequence2;
         return uItem;
     }
 
@@ -164,23 +171,45 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asButton(int i, Drawable drawable, CharSequence charSequence) {
+    public static UItem asStickerButton(int i, CharSequence charSequence, TLRPC.Document document) {
         UItem uItem = new UItem(3, false);
         uItem.id = i;
-        uItem.object = drawable;
+        uItem.text = charSequence;
+        uItem.object = document;
+        return uItem;
+    }
+
+    public static UItem asStickerButton(int i, CharSequence charSequence, String str) {
+        UItem uItem = new UItem(3, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.object = str;
+        return uItem;
+    }
+
+    public static UItem asRippleCheck(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(9, false);
+        uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
-    public static UItem asButton(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(3, false);
+    public static UItem asCheck(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(4, false);
         uItem.id = i;
         uItem.text = charSequence;
         return uItem;
     }
 
-    public static UItem asButton(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(3, false);
+    public static UItem asRadio(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(10, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asRadio(int i, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(10, false);
         uItem.id = i;
         uItem.text = charSequence;
         uItem.textValue = charSequence2;
@@ -195,6 +224,18 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asShadow(CharSequence charSequence) {
+        UItem uItem = new UItem(7, false);
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asLargeShadow(CharSequence charSequence) {
+        UItem uItem = new UItem(8, false);
+        uItem.text = charSequence;
+        return uItem;
+    }
+
     public static UItem asCenterShadow(CharSequence charSequence) {
         UItem uItem = new UItem(7, false);
         uItem.text = charSequence;
@@ -202,38 +243,16 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asChart(int i, int i2, StatisticActivity.ChartViewData chartViewData) {
-        UItem uItem = new UItem(i + 18, false);
-        uItem.intValue = i2;
-        uItem.object = chartViewData;
+    public static UItem asProceedOverview(ChannelMonetizationLayout.ProceedOverview proceedOverview) {
+        UItem uItem = new UItem(24, false);
+        uItem.object = proceedOverview;
         return uItem;
     }
 
-    public static UItem asCheck(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(4, false);
+    public static UItem asShadow(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(7, false);
         uItem.id = i;
         uItem.text = charSequence;
-        return uItem;
-    }
-
-    public static UItem asCustom(int i, View view) {
-        UItem uItem = new UItem(-1, false);
-        uItem.id = i;
-        uItem.view = view;
-        return uItem;
-    }
-
-    public static UItem asCustom(View view) {
-        UItem uItem = new UItem(-1, false);
-        uItem.view = view;
-        return uItem;
-    }
-
-    public static UItem asExpandableSwitch(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(40, false);
-        uItem.id = i;
-        uItem.text = charSequence;
-        uItem.animatedText = charSequence2;
         return uItem;
     }
 
@@ -253,49 +272,18 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asFlicker(int i) {
-        UItem uItem = new UItem(34, false);
+    public static UItem asAddChat(Long l) {
+        UItem uItem = new UItem(13, false);
+        uItem.dialogId = l.longValue();
+        return uItem;
+    }
+
+    public static UItem asSlideView(String[] strArr, int i, Utilities.Callback callback) {
+        UItem uItem = new UItem(14, false);
+        uItem.texts = strArr;
         uItem.intValue = i;
-        return uItem;
-    }
-
-    public static UItem asFlicker(int i, int i2) {
-        UItem uItem = new UItem(34, false);
-        uItem.id = i;
-        uItem.intValue = i2;
-        return uItem;
-    }
-
-    public static UItem asFullscreenCustom(View view, int i) {
-        UItem uItem = new UItem(-3, false);
-        uItem.view = view;
-        uItem.intValue = i;
-        return uItem;
-    }
-
-    public static UItem asFullyCustom(View view) {
-        UItem uItem = new UItem(-2, false);
-        uItem.view = view;
-        return uItem;
-    }
-
-    public static UItem asGraySection(CharSequence charSequence) {
-        UItem uItem = new UItem(31, false);
-        uItem.text = charSequence;
-        return uItem;
-    }
-
-    public static UItem asGraySection(CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
-        UItem uItem = new UItem(31, false);
-        uItem.text = charSequence;
-        uItem.subtext = charSequence2;
-        uItem.clickCallback = onClickListener;
-        return uItem;
-    }
-
-    public static UItem asHeader(CharSequence charSequence) {
-        UItem uItem = new UItem(0, false);
-        uItem.text = charSequence;
+        uItem.intCallback = callback;
+        uItem.longValue = -1L;
         return uItem;
     }
 
@@ -308,28 +296,9 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asLargeQuickReply(QuickRepliesController.QuickReply quickReply) {
-        UItem uItem = new UItem(17, false);
-        uItem.object = quickReply;
-        return uItem;
-    }
-
-    public static UItem asLargeShadow(CharSequence charSequence) {
-        UItem uItem = new UItem(8, false);
-        uItem.text = charSequence;
-        return uItem;
-    }
-
-    public static UItem asProceedOverview(ChannelMonetizationLayout.ProceedOverview proceedOverview) {
-        UItem uItem = new UItem(24, false);
-        uItem.object = proceedOverview;
-        return uItem;
-    }
-
-    public static UItem asProfileCell(TLObject tLObject) {
-        UItem uItem = new UItem(32, false);
-        uItem.object = tLObject;
-        return uItem;
+    public UItem setMinSliderValue(int i) {
+        this.longValue = i;
+        return this;
     }
 
     public static UItem asQuickReply(QuickRepliesController.QuickReply quickReply) {
@@ -338,25 +307,28 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asRadio(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(10, false);
-        uItem.id = i;
-        uItem.text = charSequence;
+    public static UItem asLargeQuickReply(QuickRepliesController.QuickReply quickReply) {
+        UItem uItem = new UItem(17, false);
+        uItem.object = quickReply;
         return uItem;
     }
 
-    public static UItem asRadio(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(10, false);
-        uItem.id = i;
-        uItem.text = charSequence;
-        uItem.textValue = charSequence2;
+    public static UItem asBusinessChatLink(BusinessLinksActivity.BusinessLinkWrapper businessLinkWrapper) {
+        UItem uItem = new UItem(29, false);
+        uItem.object = businessLinkWrapper;
         return uItem;
     }
 
-    public static UItem asRippleCheck(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(9, false);
-        uItem.id = i;
-        uItem.text = charSequence;
+    public static UItem asChart(int i, int i2, StatisticActivity.ChartViewData chartViewData) {
+        UItem uItem = new UItem(i + 18, false);
+        uItem.intValue = i2;
+        uItem.object = chartViewData;
+        return uItem;
+    }
+
+    public static UItem asSpace(int i) {
+        UItem uItem = new UItem(28, false);
+        uItem.intValue = i;
         return uItem;
     }
 
@@ -375,89 +347,11 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asSearchMessage(int i, MessageObject messageObject) {
-        UItem uItem = new UItem(33, false);
-        uItem.id = i;
-        uItem.object = messageObject;
-        return uItem;
-    }
-
-    public static UItem asSearchMessage(MessageObject messageObject) {
-        UItem uItem = new UItem(33, false);
-        uItem.object = messageObject;
-        return uItem;
-    }
-
-    public static UItem asShadow(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(7, false);
+    public static UItem asUserGroupCheckbox(int i, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(36, false);
         uItem.id = i;
         uItem.text = charSequence;
-        return uItem;
-    }
-
-    public static UItem asShadow(CharSequence charSequence) {
-        UItem uItem = new UItem(7, false);
-        uItem.text = charSequence;
-        return uItem;
-    }
-
-    public static UItem asShadowCollapseButton(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(38, false);
-        uItem.id = i;
-        uItem.animatedText = charSequence;
-        return uItem;
-    }
-
-    public static UItem asSlideView(String[] strArr, int i, Utilities.Callback callback) {
-        UItem uItem = new UItem(14, false);
-        uItem.texts = strArr;
-        uItem.intValue = i;
-        uItem.intCallback = callback;
-        uItem.longValue = -1L;
-        return uItem;
-    }
-
-    public static UItem asSpace(int i) {
-        UItem uItem = new UItem(28, false);
-        uItem.intValue = i;
-        return uItem;
-    }
-
-    public static UItem asStickerButton(int i, CharSequence charSequence, String str) {
-        UItem uItem = new UItem(3, false);
-        uItem.id = i;
-        uItem.text = charSequence;
-        uItem.object = str;
-        return uItem;
-    }
-
-    public static UItem asStickerButton(int i, CharSequence charSequence, TLRPC.Document document) {
-        UItem uItem = new UItem(3, false);
-        uItem.id = i;
-        uItem.text = charSequence;
-        uItem.object = document;
-        return uItem;
-    }
-
-    public static UItem asSwitch(int i, CharSequence charSequence) {
-        UItem uItem = new UItem(39, false);
-        uItem.id = i;
-        uItem.text = charSequence;
-        return uItem;
-    }
-
-    public static UItem asTopView(CharSequence charSequence, int i) {
-        UItem uItem = new UItem(2, false);
-        uItem.text = charSequence;
-        uItem.iconResId = i;
-        return uItem;
-    }
-
-    public static UItem asTopView(CharSequence charSequence, String str, String str2) {
-        UItem uItem = new UItem(2, false);
-        uItem.text = charSequence;
-        uItem.subtext = str;
-        uItem.textValue = str2;
+        uItem.animatedText = charSequence2;
         return uItem;
     }
 
@@ -468,43 +362,177 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
-    public static UItem asUserGroupCheckbox(int i, CharSequence charSequence, CharSequence charSequence2) {
-        UItem uItem = new UItem(36, false);
+    public static UItem asShadowCollapseButton(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(38, false);
+        uItem.id = i;
+        uItem.animatedText = charSequence;
+        return uItem;
+    }
+
+    public static UItem asSwitch(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(39, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asExpandableSwitch(int i, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(40, false);
         uItem.id = i;
         uItem.text = charSequence;
         uItem.animatedText = charSequence2;
         return uItem;
     }
 
-    public static UItemFactory findFactory(int i) {
-        LongSparseArray longSparseArray = factories;
-        if (longSparseArray == null) {
-            return null;
-        }
-        return (UItemFactory) longSparseArray.get(i);
+    public static UItem asGraySection(CharSequence charSequence) {
+        UItem uItem = new UItem(31, false);
+        uItem.text = charSequence;
+        return uItem;
     }
 
-    public static UItemFactory getFactory(Class cls) {
-        if (factoryInstances == null) {
-            factoryInstances = new HashMap();
-        }
-        if (factories == null) {
-            factories = new LongSparseArray();
-        }
-        UItemFactory uItemFactory = (UItemFactory) factoryInstances.get(cls);
-        if (uItemFactory != null) {
-            return uItemFactory;
-        }
-        throw new RuntimeException("UItemFactory was not setuped: " + cls);
+    public static UItem asGraySection(CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
+        UItem uItem = new UItem(31, false);
+        uItem.text = charSequence;
+        uItem.subtext = charSequence2;
+        uItem.clickCallback = onClickListener;
+        return uItem;
     }
 
-    public static UItem ofFactory(Class cls) {
-        return new UItem(getFactory(cls).viewType, false);
+    public static UItem asProfileCell(TLObject tLObject) {
+        UItem uItem = new UItem(32, false);
+        uItem.object = tLObject;
+        return uItem;
+    }
+
+    public UItem withOpenButton(Utilities.Callback callback) {
+        this.checked = true;
+        this.object2 = callback;
+        return this;
+    }
+
+    public static UItem asSearchMessage(MessageObject messageObject) {
+        UItem uItem = new UItem(33, false);
+        uItem.object = messageObject;
+        return uItem;
+    }
+
+    public static UItem asSearchMessage(int i, MessageObject messageObject) {
+        UItem uItem = new UItem(33, false);
+        uItem.id = i;
+        uItem.object = messageObject;
+        return uItem;
+    }
+
+    public static UItem asFlicker(int i) {
+        UItem uItem = new UItem(34, false);
+        uItem.intValue = i;
+        return uItem;
+    }
+
+    public static UItem asFlicker(int i, int i2) {
+        UItem uItem = new UItem(34, false);
+        uItem.id = i;
+        uItem.intValue = i2;
+        return uItem;
+    }
+
+    public UItem withUsername(boolean z) {
+        this.withUsername = z;
+        return this;
+    }
+
+    public UItem setCloseIcon(View.OnClickListener onClickListener) {
+        this.clickCallback = onClickListener;
+        return this;
+    }
+
+    public UItem setClickCallback(View.OnClickListener onClickListener) {
+        this.clickCallback = onClickListener;
+        return this;
+    }
+
+    public UItem setChecked(boolean z) {
+        this.checked = z;
+        if (this.viewType == 11) {
+            this.viewType = 12;
+        }
+        return this;
+    }
+
+    public UItem setCollapsed(boolean z) {
+        this.collapsed = z;
+        return this;
+    }
+
+    public UItem setPad(int i) {
+        this.pad = i;
+        return this;
+    }
+
+    public UItem pad() {
+        this.pad = 1;
+        return this;
+    }
+
+    public UItem setEnabled(boolean z) {
+        this.enabled = z;
+        return this;
+    }
+
+    public UItem setLocked(boolean z) {
+        this.locked = z;
+        return this;
+    }
+
+    public UItem red() {
+        this.red = true;
+        return this;
     }
 
     public UItem accent() {
         this.accent = true;
         return this;
+    }
+
+    public UItem setSpanCount(int i) {
+        this.spanCount = i;
+        return this;
+    }
+
+    public UItem setReordering(boolean z) {
+        this.reordering = z;
+        return this;
+    }
+
+    public boolean instanceOf(Class cls) {
+        HashMap hashMap;
+        UItemFactory uItemFactory;
+        return this.viewType >= factoryViewTypeStartsWith && (hashMap = factoryInstances) != null && (uItemFactory = (UItemFactory) hashMap.get(cls)) != null && uItemFactory.viewType == this.viewType;
+    }
+
+    public boolean equals(Object obj) {
+        UItemFactory findFactory;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        UItem uItem = (UItem) obj;
+        int i = this.viewType;
+        if (i != uItem.viewType) {
+            return false;
+        }
+        if (i == 36 || i == 35) {
+            return this.id == uItem.id;
+        }
+        if (i == 31) {
+            return TextUtils.equals(this.text, uItem.text);
+        }
+        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+            return findFactory.equals(this, uItem);
+        }
+        return itemEquals(uItem);
     }
 
     @Override
@@ -521,110 +549,100 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (i != uItem.viewType) {
             return false;
         }
-        return i == 31 ? TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) : (i == 35 || i == 37) ? this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked : (i < factoryViewTypeStartsWith || (findFactory = findFactory(i)) == null) ? itemContentEquals(uItem) : findFactory.contentsEquals(this, uItem);
-    }
-
-    public boolean equals(Object obj) {
-        UItemFactory findFactory;
-        if (this == obj) {
-            return true;
+        if (i == 31) {
+            return TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext);
         }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
+        if (i == 35 || i == 37) {
+            return this.id == uItem.id && TextUtils.equals(this.text, uItem.text) && this.checked == uItem.checked;
         }
-        UItem uItem = (UItem) obj;
-        int i = this.viewType;
-        if (i != uItem.viewType) {
-            return false;
+        if (i >= factoryViewTypeStartsWith && (findFactory = findFactory(i)) != null) {
+            return findFactory.contentsEquals(this, uItem);
         }
-        return (i == 36 || i == 35) ? this.id == uItem.id : i == 31 ? TextUtils.equals(this.text, uItem.text) : (i < factoryViewTypeStartsWith || (findFactory = findFactory(i)) == null) ? itemEquals(uItem) : findFactory.equals(this, uItem);
-    }
-
-    public boolean instanceOf(Class cls) {
-        HashMap hashMap;
-        UItemFactory uItemFactory;
-        return this.viewType >= factoryViewTypeStartsWith && (hashMap = factoryInstances) != null && (uItemFactory = (UItemFactory) hashMap.get(cls)) != null && uItemFactory.viewType == this.viewType;
-    }
-
-    public boolean itemContentEquals(UItem uItem) {
-        return super.contentsEquals(uItem);
+        return itemContentEquals(uItem);
     }
 
     public boolean itemEquals(UItem uItem) {
         return this.id == uItem.id && this.pad == uItem.pad && this.dialogId == uItem.dialogId && this.iconResId == uItem.iconResId && this.hideDivider == uItem.hideDivider && this.transparent == uItem.transparent && this.red == uItem.red && this.locked == uItem.locked && this.accent == uItem.accent && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.subtext, uItem.subtext) && TextUtils.equals(this.textValue, uItem.textValue) && this.view == uItem.view && this.intValue == uItem.intValue && Math.abs(this.floatValue - uItem.floatValue) < 0.01f && this.longValue == uItem.longValue && Objects.equals(this.object, uItem.object) && Objects.equals(this.object2, uItem.object2);
     }
 
-    public UItem pad() {
-        this.pad = 1;
-        return this;
+    public boolean itemContentEquals(UItem uItem) {
+        return super.contentsEquals(uItem);
     }
 
-    public UItem red() {
-        this.red = true;
-        return this;
-    }
+    public static abstract class UItemFactory {
+        private ArrayList cache;
+        public final int viewType = UItem.access$208();
 
-    public UItem setChecked(boolean z) {
-        this.checked = z;
-        if (this.viewType == 11) {
-            this.viewType = 12;
+        public void attachedView(View view, UItem uItem) {
         }
-        return this;
+
+        public abstract void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView);
+
+        public abstract View createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider);
+
+        public boolean isClickable() {
+            return true;
+        }
+
+        public boolean isShadow() {
+            return false;
+        }
+
+        public static void setup(UItemFactory uItemFactory) {
+            if (UItem.factoryInstances == null) {
+                HashMap unused = UItem.factoryInstances = new HashMap();
+            }
+            if (UItem.factories == null) {
+                LongSparseArray unused2 = UItem.factories = new LongSparseArray();
+            }
+            Class<?> cls = uItemFactory.getClass();
+            if (UItem.factoryInstances.containsKey(cls)) {
+                return;
+            }
+            UItem.factoryInstances.put(cls, uItemFactory);
+            UItem.factories.put(uItemFactory.viewType, uItemFactory);
+        }
+
+        public View getCached() {
+            ArrayList arrayList = this.cache;
+            if (arrayList == null || arrayList.isEmpty()) {
+                return null;
+            }
+            return (View) this.cache.remove(0);
+        }
+
+        public boolean equals(UItem uItem, UItem uItem2) {
+            return uItem.itemEquals(uItem2);
+        }
+
+        public boolean contentsEquals(UItem uItem, UItem uItem2) {
+            return uItem.itemContentEquals(uItem2);
+        }
     }
 
-    public UItem setClickCallback(View.OnClickListener onClickListener) {
-        this.clickCallback = onClickListener;
-        return this;
+    public static UItemFactory findFactory(int i) {
+        LongSparseArray longSparseArray = factories;
+        if (longSparseArray == null) {
+            return null;
+        }
+        return (UItemFactory) longSparseArray.get(i);
     }
 
-    public UItem setCloseIcon(View.OnClickListener onClickListener) {
-        this.clickCallback = onClickListener;
-        return this;
+    public static UItem ofFactory(Class cls) {
+        return new UItem(getFactory(cls).viewType, false);
     }
 
-    public UItem setCollapsed(boolean z) {
-        this.collapsed = z;
-        return this;
-    }
-
-    public UItem setEnabled(boolean z) {
-        this.enabled = z;
-        return this;
-    }
-
-    public UItem setLocked(boolean z) {
-        this.locked = z;
-        return this;
-    }
-
-    public UItem setMinSliderValue(int i) {
-        this.longValue = i;
-        return this;
-    }
-
-    public UItem setPad(int i) {
-        this.pad = i;
-        return this;
-    }
-
-    public UItem setReordering(boolean z) {
-        this.reordering = z;
-        return this;
-    }
-
-    public UItem setSpanCount(int i) {
-        this.spanCount = i;
-        return this;
-    }
-
-    public UItem withOpenButton(Utilities.Callback callback) {
-        this.checked = true;
-        this.object2 = callback;
-        return this;
-    }
-
-    public UItem withUsername(boolean z) {
-        this.withUsername = z;
-        return this;
+    public static UItemFactory getFactory(Class cls) {
+        if (factoryInstances == null) {
+            factoryInstances = new HashMap();
+        }
+        if (factories == null) {
+            factories = new LongSparseArray();
+        }
+        UItemFactory uItemFactory = (UItemFactory) factoryInstances.get(cls);
+        if (uItemFactory != null) {
+            return uItemFactory;
+        }
+        throw new RuntimeException("UItemFactory was not setuped: " + cls);
     }
 }

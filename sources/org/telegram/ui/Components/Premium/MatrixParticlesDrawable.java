@@ -21,69 +21,6 @@ public class MatrixParticlesDrawable {
     Rect drawingRect = new Rect();
     Paint paint = new Paint();
 
-    private class MatrixTextParticle {
-        int index;
-        long lastUpdateTime;
-        int nextIndex;
-        long nextUpdateTime;
-
-        private MatrixTextParticle() {
-        }
-
-        public void draw(Canvas canvas, float f, float f2, long j, float f3) {
-            long j2 = this.nextUpdateTime - j;
-            if (j2 >= 150) {
-                MatrixParticlesDrawable.this.paint.setAlpha((int) (f3 * 255.0f));
-                MatrixParticlesDrawable matrixParticlesDrawable = MatrixParticlesDrawable.this;
-                canvas.drawBitmap(matrixParticlesDrawable.bitmaps[this.index], f, f2, matrixParticlesDrawable.paint);
-                return;
-            }
-            float clamp = Utilities.clamp(1.0f - (((float) j2) / 150.0f), 1.0f, 0.0f);
-            MatrixParticlesDrawable.this.paint.setAlpha((int) ((1.0f - clamp) * f3 * 255.0f));
-            MatrixParticlesDrawable matrixParticlesDrawable2 = MatrixParticlesDrawable.this;
-            canvas.drawBitmap(matrixParticlesDrawable2.bitmaps[this.index], f, f2, matrixParticlesDrawable2.paint);
-            MatrixParticlesDrawable.this.paint.setAlpha((int) (f3 * clamp * 255.0f));
-            MatrixParticlesDrawable matrixParticlesDrawable3 = MatrixParticlesDrawable.this;
-            canvas.drawBitmap(matrixParticlesDrawable3.bitmaps[this.nextIndex], f, f2, matrixParticlesDrawable3.paint);
-            MatrixParticlesDrawable.this.paint.setAlpha(255);
-            if (clamp >= 1.0f) {
-                this.index = this.nextIndex;
-                this.lastUpdateTime = j;
-                this.nextIndex = Math.abs(Utilities.fastRandom.nextInt() % 16);
-                this.nextUpdateTime = j + Math.abs(Utilities.fastRandom.nextInt() % 300) + 150;
-            }
-        }
-
-        public void init(long j) {
-            this.index = Math.abs(Utilities.fastRandom.nextInt() % 16);
-            this.nextIndex = Math.abs(Utilities.fastRandom.nextInt() % 16);
-            this.lastUpdateTime = j;
-            this.nextUpdateTime = j + Math.abs(Utilities.fastRandom.nextInt() % 300) + 150;
-        }
-    }
-
-    private class Particle {
-        int len;
-        long time;
-        int y;
-
-        private Particle() {
-            this.len = 5;
-        }
-
-        public void init(int i, long j) {
-            this.y = Math.abs(Utilities.fastRandom.nextInt() % i);
-            this.time = j;
-            this.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
-        }
-
-        public void reset(long j) {
-            this.y = 0;
-            this.time = j;
-            this.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
-        }
-    }
-
     public void init() {
         this.size = AndroidUtilities.dp(16.0f);
         TextPaint textPaint = new TextPaint(65);
@@ -186,6 +123,70 @@ public class MatrixParticlesDrawable {
             }
             i6++;
             anonymousClass1 = null;
+        }
+    }
+
+    private class Particle {
+        int len;
+        long time;
+        int y;
+
+        private Particle() {
+            this.len = 5;
+        }
+
+        public void init(int i, long j) {
+            this.y = Math.abs(Utilities.fastRandom.nextInt() % i);
+            this.time = j;
+            this.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+        }
+
+        public void reset(long j) {
+            this.y = 0;
+            this.time = j;
+            this.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
+        }
+    }
+
+    private class MatrixTextParticle {
+        int index;
+        long lastUpdateTime;
+        int nextIndex;
+        long nextUpdateTime;
+
+        private MatrixTextParticle() {
+        }
+
+        public void init(long j) {
+            this.index = Math.abs(Utilities.fastRandom.nextInt() % 16);
+            this.nextIndex = Math.abs(Utilities.fastRandom.nextInt() % 16);
+            this.lastUpdateTime = j;
+            this.nextUpdateTime = j + Math.abs(Utilities.fastRandom.nextInt() % 300) + 150;
+        }
+
+        public void draw(Canvas canvas, float f, float f2, long j, float f3) {
+            long j2 = this.nextUpdateTime - j;
+            if (j2 < 150) {
+                float clamp = Utilities.clamp(1.0f - (((float) j2) / 150.0f), 1.0f, 0.0f);
+                MatrixParticlesDrawable.this.paint.setAlpha((int) ((1.0f - clamp) * f3 * 255.0f));
+                MatrixParticlesDrawable matrixParticlesDrawable = MatrixParticlesDrawable.this;
+                canvas.drawBitmap(matrixParticlesDrawable.bitmaps[this.index], f, f2, matrixParticlesDrawable.paint);
+                MatrixParticlesDrawable.this.paint.setAlpha((int) (f3 * clamp * 255.0f));
+                MatrixParticlesDrawable matrixParticlesDrawable2 = MatrixParticlesDrawable.this;
+                canvas.drawBitmap(matrixParticlesDrawable2.bitmaps[this.nextIndex], f, f2, matrixParticlesDrawable2.paint);
+                MatrixParticlesDrawable.this.paint.setAlpha(255);
+                if (clamp >= 1.0f) {
+                    this.index = this.nextIndex;
+                    this.lastUpdateTime = j;
+                    this.nextIndex = Math.abs(Utilities.fastRandom.nextInt() % 16);
+                    this.nextUpdateTime = j + Math.abs(Utilities.fastRandom.nextInt() % 300) + 150;
+                    return;
+                }
+                return;
+            }
+            MatrixParticlesDrawable.this.paint.setAlpha((int) (f3 * 255.0f));
+            MatrixParticlesDrawable matrixParticlesDrawable3 = MatrixParticlesDrawable.this;
+            canvas.drawBitmap(matrixParticlesDrawable3.bitmaps[this.index], f, f2, matrixParticlesDrawable3.paint);
         }
     }
 }

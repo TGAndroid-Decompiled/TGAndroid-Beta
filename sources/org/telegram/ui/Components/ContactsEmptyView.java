@@ -74,16 +74,6 @@ public class ContactsEmptyView extends LinearLayout {
         addView(this.buttonTextView, LayoutHelper.createLinear(-2, -2, 49, 0, 0, 0, 14));
     }
 
-    private void setSticker() {
-        this.stickerView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        setSticker();
-    }
-
     public void lambda$new$0() {
         Activity findActivity = AndroidUtilities.findActivity(getContext());
         if (findActivity == null || findActivity.isFinishing()) {
@@ -94,5 +84,15 @@ public class ContactsEmptyView extends LinearLayout {
         String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
         intent.putExtra("android.intent.extra.TEXT", inviteText);
         findActivity.startActivityForResult(Intent.createChooser(intent, inviteText), 500);
+    }
+
+    private void setSticker() {
+        this.stickerView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        setSticker();
     }
 }

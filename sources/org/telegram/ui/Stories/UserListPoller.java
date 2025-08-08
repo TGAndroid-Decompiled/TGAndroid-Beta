@@ -28,49 +28,20 @@ public class UserListPoller {
     ArrayList runningRequests = new ArrayList();
     Runnable requestCollectedRunnables = new AnonymousClass1();
 
+    private UserListPoller(int i) {
+        this.currentAccount = i;
+    }
+
+    public static UserListPoller getInstance(int i) {
+        UserListPoller[] userListPollerArr = istances;
+        if (userListPollerArr[i] == null) {
+            userListPollerArr[i] = new UserListPoller(i);
+        }
+        return istances[i];
+    }
+
     public class AnonymousClass1 implements Runnable {
         AnonymousClass1() {
-        }
-
-        public void lambda$run$0(TLObject tLObject, ArrayList arrayList) {
-            if (tLObject instanceof Vector) {
-                Vector vector = (Vector) tLObject;
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                for (int i = 0; i < vector.objects.size(); i++) {
-                    long longValue = ((Long) arrayList.get(i)).longValue();
-                    MessagesController messagesController = MessagesController.getInstance(UserListPoller.this.currentAccount);
-                    Long l = (Long) arrayList.get(i);
-                    if (longValue > 0) {
-                        TLRPC.User user = messagesController.getUser(l);
-                        if (user != null) {
-                            int i2 = ((Vector.Int) vector.objects.get(i)).value;
-                            user.stories_max_id = i2;
-                            user.flags2 = i2 != 0 ? user.flags2 | 32 : user.flags2 & (-33);
-                            arrayList2.add(user);
-                        }
-                    } else {
-                        TLRPC.Chat chat = messagesController.getChat(l);
-                        if (chat != null) {
-                            int i3 = ((Vector.Int) vector.objects.get(i)).value;
-                            chat.stories_max_id = i3;
-                            chat.flags2 = i3 != 0 ? chat.flags2 | 16 : chat.flags2 & (-17);
-                            arrayList3.add(chat);
-                        }
-                    }
-                }
-                MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, arrayList3, true, true);
-                NotificationCenter.getInstance(UserListPoller.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
-            }
-        }
-
-        public void lambda$run$1(final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    UserListPoller.AnonymousClass1.this.lambda$run$0(tLObject, arrayList);
-                }
-            });
         }
 
         @Override
@@ -91,54 +62,77 @@ public class UserListPoller {
                 }
             });
         }
-    }
 
-    private UserListPoller(int i) {
-        this.currentAccount = i;
-    }
-
-    public static UserListPoller getInstance(int i) {
-        UserListPoller[] userListPollerArr = istances;
-        if (userListPollerArr[i] == null) {
-            userListPollerArr[i] = new UserListPoller(i);
+        public void lambda$run$1(final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserListPoller.AnonymousClass1.this.lambda$run$0(tLObject, arrayList);
+                }
+            });
         }
-        return istances[i];
+
+        public void lambda$run$0(TLObject tLObject, ArrayList arrayList) {
+            if (tLObject instanceof Vector) {
+                Vector vector = (Vector) tLObject;
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                for (int i = 0; i < vector.objects.size(); i++) {
+                    if (((Long) arrayList.get(i)).longValue() > 0) {
+                        TLRPC.User user = MessagesController.getInstance(UserListPoller.this.currentAccount).getUser((Long) arrayList.get(i));
+                        if (user != null) {
+                            int i2 = ((Vector.Int) vector.objects.get(i)).value;
+                            user.stories_max_id = i2;
+                            if (i2 != 0) {
+                                user.flags2 |= 32;
+                            } else {
+                                user.flags2 &= -33;
+                            }
+                            arrayList2.add(user);
+                        }
+                    } else {
+                        TLRPC.Chat chat = MessagesController.getInstance(UserListPoller.this.currentAccount).getChat((Long) arrayList.get(i));
+                        if (chat != null) {
+                            int i3 = ((Vector.Int) vector.objects.get(i)).value;
+                            chat.stories_max_id = i3;
+                            if (i3 != 0) {
+                                chat.flags2 |= 16;
+                            } else {
+                                chat.flags2 &= -17;
+                            }
+                            arrayList3.add(chat);
+                        }
+                    }
+                }
+                MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, arrayList3, true, true);
+                NotificationCenter.getInstance(UserListPoller.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
+            }
+        }
     }
 
     public void checkList(RecyclerListView recyclerListView) {
+        long dialogId;
+        TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
         this.dialogIds.clear();
         for (int i = 0; i < recyclerListView.getChildCount(); i++) {
             View childAt = recyclerListView.getChildAt(i);
-            long dialogId = childAt instanceof DialogCell ? ((DialogCell) childAt).getDialogId() : childAt instanceof UserCell ? ((UserCell) childAt).getDialogId() : 0L;
+            if (childAt instanceof DialogCell) {
+                dialogId = ((DialogCell) childAt).getDialogId();
+            } else {
+                dialogId = childAt instanceof UserCell ? ((UserCell) childAt).getDialogId() : 0L;
+            }
             if (dialogId > 0) {
                 TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));
-                if (user != null) {
-                    if (!user.bot) {
-                        if (!user.self) {
-                            if (!user.contact) {
-                                TLRPC.UserStatus userStatus = user.status;
-                                if (userStatus != null) {
-                                    if (!(userStatus instanceof TLRPC.TL_userStatusEmpty)) {
-                                        if (currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000) {
-                                        }
-                                        this.userPollLastTime.put(dialogId, currentTimeMillis);
-                                        this.dialogIds.add(Long.valueOf(dialogId));
-                                    }
-                                }
-                            }
-                        }
-                    }
+                if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+                    this.userPollLastTime.put(dialogId, currentTimeMillis);
+                    this.dialogIds.add(Long.valueOf(dialogId));
                 }
             } else {
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId));
-                if (ChatObject.isChannel(chat)) {
-                    if (!ChatObject.isMonoForum(chat)) {
-                        if (currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) <= 3600000) {
-                        }
-                        this.userPollLastTime.put(dialogId, currentTimeMillis);
-                        this.dialogIds.add(Long.valueOf(dialogId));
-                    }
+                if (ChatObject.isChannel(chat) && !ChatObject.isMonoForum(chat) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+                    this.userPollLastTime.put(dialogId, currentTimeMillis);
+                    this.dialogIds.add(Long.valueOf(dialogId));
                 }
             }
         }

@@ -10,25 +10,12 @@ public class MP4Atom extends MP4Box {
         super(rangeInputStream, mP4Box, str);
     }
 
-    private StringBuffer appendPath(StringBuffer stringBuffer, MP4Box mP4Box) {
-        if (mP4Box.getParent() != null) {
-            appendPath(stringBuffer, mP4Box.getParent());
-            stringBuffer.append("/");
-        }
-        stringBuffer.append(mP4Box.getType());
-        return stringBuffer;
-    }
-
     public long getLength() {
         return ((RangeInputStream) getInput()).getPosition() + ((RangeInputStream) getInput()).getRemainingLength();
     }
 
     public long getOffset() {
         return getParent().getPosition() - getPosition();
-    }
-
-    public String getPath() {
-        return appendPath(new StringBuffer(), this).toString();
     }
 
     public long getRemaining() {
@@ -57,8 +44,16 @@ public class MP4Atom extends MP4Box {
         return this.data.readByte();
     }
 
-    public byte[] readBytes() {
-        return readBytes((int) getRemaining());
+    public short readShort() {
+        return this.data.readShort();
+    }
+
+    public int readInt() {
+        return this.data.readInt();
+    }
+
+    public long readLong() {
+        return this.data.readLong();
     }
 
     public byte[] readBytes(int i) {
@@ -67,24 +62,16 @@ public class MP4Atom extends MP4Box {
         return bArr;
     }
 
-    public int readInt() {
-        return this.data.readInt();
-    }
-
-    public BigDecimal readIntegerFixedPoint() {
-        return new BigDecimal(String.valueOf((int) this.data.readShort()) + "" + String.valueOf(this.data.readUnsignedShort()));
-    }
-
-    public long readLong() {
-        return this.data.readLong();
-    }
-
-    public short readShort() {
-        return this.data.readShort();
+    public byte[] readBytes() {
+        return readBytes((int) getRemaining());
     }
 
     public BigDecimal readShortFixedPoint() {
         return new BigDecimal(String.valueOf((int) this.data.readByte()) + "" + String.valueOf(this.data.readUnsignedByte()));
+    }
+
+    public BigDecimal readIntegerFixedPoint() {
+        return new BigDecimal(String.valueOf((int) this.data.readShort()) + "" + String.valueOf(this.data.readUnsignedShort()));
     }
 
     public String readString(int i, String str) {
@@ -97,14 +84,6 @@ public class MP4Atom extends MP4Box {
         return readString((int) getRemaining(), str);
     }
 
-    public void skip() {
-        while (getRemaining() > 0) {
-            if (((RangeInputStream) getInput()).skip(getRemaining()) == 0) {
-                throw new EOFException("Cannot skip atom");
-            }
-        }
-    }
-
     public void skip(int i) {
         int i2 = 0;
         while (i2 < i) {
@@ -114,6 +93,27 @@ public class MP4Atom extends MP4Box {
             }
             i2 += skipBytes;
         }
+    }
+
+    public void skip() {
+        while (getRemaining() > 0) {
+            if (((RangeInputStream) getInput()).skip(getRemaining()) == 0) {
+                throw new EOFException("Cannot skip atom");
+            }
+        }
+    }
+
+    private StringBuffer appendPath(StringBuffer stringBuffer, MP4Box mP4Box) {
+        if (mP4Box.getParent() != null) {
+            appendPath(stringBuffer, mP4Box.getParent());
+            stringBuffer.append("/");
+        }
+        stringBuffer.append(mP4Box.getType());
+        return stringBuffer;
+    }
+
+    public String getPath() {
+        return appendPath(new StringBuffer(), this).toString();
     }
 
     public String toString() {

@@ -43,6 +43,24 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
         this.additionalHeight = i2;
     }
 
+    public void setAdditionalHeight(int i) {
+        this.additionalHeight = i;
+        calcLastItemHeight();
+    }
+
+    public void setSkipFirstItem() {
+        this.skipFirstItem = true;
+    }
+
+    public void setBind(boolean z) {
+        this.bind = z;
+    }
+
+    @Override
+    public boolean canScrollVertically() {
+        return this.canScrollVertically;
+    }
+
     private void calcLastItemHeight() {
         RecyclerView.Adapter adapter;
         if (this.listHeight > 0 && (adapter = this.listView.getAdapter()) != null) {
@@ -78,25 +96,24 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
                     }
                 }
             }
-            this.lastItemHeight = this.fixedLastItemHeight ? Math.max(this.minimumHeight, i2 + (((this.listHeight - i) - this.additionalHeight) - this.listView.getPaddingBottom())) : Math.max(this.minimumHeight, ((this.listHeight - i) - this.additionalHeight) - this.listView.getPaddingBottom());
+            if (this.fixedLastItemHeight) {
+                this.lastItemHeight = Math.max(this.minimumHeight, i2 + (((this.listHeight - i) - this.additionalHeight) - this.listView.getPaddingBottom()));
+            } else {
+                this.lastItemHeight = Math.max(this.minimumHeight, ((this.listHeight - i) - this.additionalHeight) - this.listView.getPaddingBottom());
+            }
         }
     }
 
     @Override
-    public boolean canScrollVertically() {
-        return this.canScrollVertically;
-    }
-
-    public int getLastItemHeight() {
-        return this.lastItemHeight;
-    }
-
-    @Override
-    public void measureChildWithMargins(View view, int i, int i2) {
-        if (this.setMeassuredHeightToLastItem && this.listView.findContainingViewHolder(view).getAdapterPosition() == getItemCount() - 1) {
-            ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) view.getLayoutParams())).height = Math.max(this.lastItemHeight, 0);
+    public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int i, int i2) {
+        int i3 = this.listHeight;
+        this.listWidth = View.MeasureSpec.getSize(i);
+        int size = View.MeasureSpec.getSize(i2);
+        this.listHeight = size;
+        if (i3 != size) {
+            calcLastItemHeight();
         }
-        super.measureChildWithMargins(view, 0, 0);
+        super.onMeasure(recycler, state, i, i2);
     }
 
     @Override
@@ -107,12 +124,6 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
     }
 
     @Override
-    public void onItemsAdded(RecyclerView recyclerView, int i, int i2) {
-        super.onItemsAdded(recyclerView, i, i2);
-        calcLastItemHeight();
-    }
-
-    @Override
     public void onItemsChanged(RecyclerView recyclerView) {
         this.heights.clear();
         calcLastItemHeight();
@@ -120,14 +131,20 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
     }
 
     @Override
-    public void onItemsMoved(RecyclerView recyclerView, int i, int i2, int i3) {
-        super.onItemsMoved(recyclerView, i, i2, i3);
+    public void onItemsAdded(RecyclerView recyclerView, int i, int i2) {
+        super.onItemsAdded(recyclerView, i, i2);
         calcLastItemHeight();
     }
 
     @Override
     public void onItemsRemoved(RecyclerView recyclerView, int i, int i2) {
         super.onItemsRemoved(recyclerView, i, i2);
+        calcLastItemHeight();
+    }
+
+    @Override
+    public void onItemsMoved(RecyclerView recyclerView, int i, int i2, int i3) {
+        super.onItemsMoved(recyclerView, i, i2, i3);
         calcLastItemHeight();
     }
 
@@ -144,24 +161,11 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
     }
 
     @Override
-    public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int i, int i2) {
-        int i3 = this.listHeight;
-        this.listWidth = View.MeasureSpec.getSize(i);
-        int size = View.MeasureSpec.getSize(i2);
-        this.listHeight = size;
-        if (i3 != size) {
-            calcLastItemHeight();
+    public void measureChildWithMargins(View view, int i, int i2) {
+        if (this.setMeassuredHeightToLastItem && this.listView.findContainingViewHolder(view).getAdapterPosition() == getItemCount() - 1) {
+            ((ViewGroup.MarginLayoutParams) ((RecyclerView.LayoutParams) view.getLayoutParams())).height = Math.max(this.lastItemHeight, 0);
         }
-        super.onMeasure(recycler, state, i, i2);
-    }
-
-    public void setAdditionalHeight(int i) {
-        this.additionalHeight = i;
-        calcLastItemHeight();
-    }
-
-    public void setBind(boolean z) {
-        this.bind = z;
+        super.measureChildWithMargins(view, 0, 0);
     }
 
     public void setFixedLastItemHeight() {
@@ -172,7 +176,7 @@ public class FillLastLinearLayoutManager extends LinearLayoutManager {
         this.minimumHeight = i;
     }
 
-    public void setSkipFirstItem() {
-        this.skipFirstItem = true;
+    public int getLastItemHeight() {
+        return this.lastItemHeight;
     }
 }

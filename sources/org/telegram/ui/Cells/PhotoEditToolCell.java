@@ -70,86 +70,6 @@ public class PhotoEditToolCell extends FrameLayout {
         addView(photoEditorSeekBar, LayoutHelper.createFrame(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public void lambda$setSeekBarDelegate$0(PhotoEditorSeekBar.PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate, int i, int i2) {
-        StringBuilder sb;
-        String str;
-        photoEditorSeekBarDelegate.onProgressChanged(i, i2);
-        TextView textView = this.valueTextView;
-        if (i2 > 0) {
-            sb = new StringBuilder();
-            str = "+";
-        } else {
-            sb = new StringBuilder();
-            str = "";
-        }
-        sb.append(str);
-        sb.append(i2);
-        textView.setText(sb.toString());
-        if (this.valueTextView.getTag() != null) {
-            AndroidUtilities.cancelRunOnUIThread(this.hideValueRunnable);
-            AndroidUtilities.runOnUIThread(this.hideValueRunnable, 1000L);
-            return;
-        }
-        AnimatorSet animatorSet = this.valueAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.valueTextView.setTag(1);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.valueAnimation = animatorSet2;
-        TextView textView2 = this.valueTextView;
-        Property property = View.ALPHA;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.nameTextView, (Property<TextView, Float>) property, 0.0f));
-        this.valueAnimation.setDuration(250L);
-        this.valueAnimation.setInterpolator(new DecelerateInterpolator());
-        this.valueAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                AndroidUtilities.runOnUIThread(PhotoEditToolCell.this.hideValueRunnable, 1000L);
-            }
-        });
-        this.valueAnimation.start();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
-    }
-
-    public void setIconAndTextAndValue(String str, float f, int i, int i2) {
-        TextView textView;
-        StringBuilder sb;
-        String str2;
-        AnimatorSet animatorSet = this.valueAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.valueAnimation = null;
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.hideValueRunnable);
-        this.valueTextView.setTag(null);
-        this.nameTextView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
-        if (f > 0.0f) {
-            textView = this.valueTextView;
-            sb = new StringBuilder();
-            str2 = "+";
-        } else {
-            textView = this.valueTextView;
-            sb = new StringBuilder();
-            str2 = "";
-        }
-        sb.append(str2);
-        sb.append((int) f);
-        textView.setText(sb.toString());
-        this.valueTextView.setAlpha(0.0f);
-        this.nameTextView.setAlpha(1.0f);
-        this.seekBar.setMinMax(i, i2);
-        this.seekBar.setProgress((int) f, false);
-    }
-
     public void setSeekBarDelegate(final PhotoEditorSeekBar.PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate) {
         this.seekBar.setDelegate(new PhotoEditorSeekBar.PhotoEditorSeekBarDelegate() {
             @Override
@@ -159,9 +79,71 @@ public class PhotoEditToolCell extends FrameLayout {
         });
     }
 
+    public void lambda$setSeekBarDelegate$0(PhotoEditorSeekBar.PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate, int i, int i2) {
+        photoEditorSeekBarDelegate.onProgressChanged(i, i2);
+        if (i2 > 0) {
+            this.valueTextView.setText("+" + i2);
+        } else {
+            this.valueTextView.setText("" + i2);
+        }
+        if (this.valueTextView.getTag() == null) {
+            AnimatorSet animatorSet = this.valueAnimation;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            this.valueTextView.setTag(1);
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.valueAnimation = animatorSet2;
+            TextView textView = this.valueTextView;
+            Property property = View.ALPHA;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.nameTextView, (Property<TextView, Float>) property, 0.0f));
+            this.valueAnimation.setDuration(250L);
+            this.valueAnimation.setInterpolator(new DecelerateInterpolator());
+            this.valueAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    AndroidUtilities.runOnUIThread(PhotoEditToolCell.this.hideValueRunnable, 1000L);
+                }
+            });
+            this.valueAnimation.start();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.hideValueRunnable);
+        AndroidUtilities.runOnUIThread(this.hideValueRunnable, 1000L);
+    }
+
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
         this.seekBar.setTag(obj);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+    }
+
+    public void setIconAndTextAndValue(String str, float f, int i, int i2) {
+        AnimatorSet animatorSet = this.valueAnimation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.valueAnimation = null;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.hideValueRunnable);
+        this.valueTextView.setTag(null);
+        this.nameTextView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        if (f > 0.0f) {
+            this.valueTextView.setText("+" + ((int) f));
+        } else {
+            this.valueTextView.setText("" + ((int) f));
+        }
+        this.valueTextView.setAlpha(0.0f);
+        this.nameTextView.setAlpha(1.0f);
+        this.seekBar.setMinMax(i, i2);
+        this.seekBar.setProgress((int) f, false);
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

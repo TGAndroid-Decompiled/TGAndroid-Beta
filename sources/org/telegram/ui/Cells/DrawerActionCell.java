@@ -52,25 +52,6 @@ public class DrawerActionCell extends FrameLayout {
         setWillNotDraw(false);
     }
 
-    public static CharSequence applyNewSpan(String str) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        spannableStringBuilder.append((CharSequence) "  d");
-        FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(10.0f);
-        newSpan.setColor(Theme.getColor(Theme.key_premiumGradient1));
-        spannableStringBuilder.setSpan(newSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
-        return spannableStringBuilder;
-    }
-
-    public BackupImageView getImageView() {
-        return this.imageView;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         boolean z;
@@ -97,50 +78,14 @@ public class DrawerActionCell extends FrameLayout {
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-        accessibilityNodeInfo.addAction(16);
-        accessibilityNodeInfo.addAction(32);
-        accessibilityNodeInfo.setText(this.textView.getText());
-        accessibilityNodeInfo.setClassName(TextView.class.getName());
-    }
-
-    @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public void setBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
-        TextView textView;
-        CharSequence charSequence;
-        this.currentId = (int) tL_attachMenuBot.bot_id;
-        try {
-            if (tL_attachMenuBot.side_menu_disclaimer_needed) {
-                textView = this.textView;
-                charSequence = applyNewSpan(tL_attachMenuBot.short_name);
-            } else {
-                textView = this.textView;
-                charSequence = tL_attachMenuBot.short_name;
-            }
-            textView.setText(charSequence);
-            TLRPC.TL_attachMenuBotIcon sideAttachMenuBotIcon = MediaDataController.getSideAttachMenuBotIcon(tL_attachMenuBot);
-            if (sideAttachMenuBotIcon == null) {
-                this.imageView.setImageResource(R.drawable.msg_bot);
-                return;
-            }
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(sideAttachMenuBotIcon.icon.thumbs, 72);
-            Drawable svgThumb = DocumentObject.getSvgThumb(sideAttachMenuBotIcon.icon.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
-            BackupImageView backupImageView = this.imageView;
-            ImageLocation forDocument = ImageLocation.getForDocument(sideAttachMenuBotIcon.icon);
-            ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, sideAttachMenuBotIcon.icon);
-            if (svgThumb == null) {
-                svgThumb = getContext().getResources().getDrawable(R.drawable.msg_bot).mutate();
-            }
-            backupImageView.setImage(forDocument, "24_24", forDocument2, "24_24", svgThumb, tL_attachMenuBot);
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
     }
 
     public void setError(boolean z) {
@@ -165,5 +110,55 @@ public class DrawerActionCell extends FrameLayout {
         } catch (Throwable th) {
             FileLog.e(th);
         }
+    }
+
+    public BackupImageView getImageView() {
+        return this.imageView;
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+        accessibilityNodeInfo.addAction(16);
+        accessibilityNodeInfo.addAction(32);
+        accessibilityNodeInfo.setText(this.textView.getText());
+        accessibilityNodeInfo.setClassName(TextView.class.getName());
+    }
+
+    public void setBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        this.currentId = (int) tL_attachMenuBot.bot_id;
+        try {
+            if (tL_attachMenuBot.side_menu_disclaimer_needed) {
+                this.textView.setText(applyNewSpan(tL_attachMenuBot.short_name));
+            } else {
+                this.textView.setText(tL_attachMenuBot.short_name);
+            }
+            TLRPC.TL_attachMenuBotIcon sideAttachMenuBotIcon = MediaDataController.getSideAttachMenuBotIcon(tL_attachMenuBot);
+            if (sideAttachMenuBotIcon != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(sideAttachMenuBotIcon.icon.thumbs, 72);
+                Drawable svgThumb = DocumentObject.getSvgThumb(sideAttachMenuBotIcon.icon.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
+                BackupImageView backupImageView = this.imageView;
+                ImageLocation forDocument = ImageLocation.getForDocument(sideAttachMenuBotIcon.icon);
+                ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, sideAttachMenuBotIcon.icon);
+                if (svgThumb == null) {
+                    svgThumb = getContext().getResources().getDrawable(R.drawable.msg_bot).mutate();
+                }
+                backupImageView.setImage(forDocument, "24_24", forDocument2, "24_24", svgThumb, tL_attachMenuBot);
+                return;
+            }
+            this.imageView.setImageResource(R.drawable.msg_bot);
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    public static CharSequence applyNewSpan(String str) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        spannableStringBuilder.append((CharSequence) "  d");
+        FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(10.0f);
+        newSpan.setColor(Theme.getColor(Theme.key_premiumGradient1));
+        spannableStringBuilder.setSpan(newSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        return spannableStringBuilder;
     }
 }

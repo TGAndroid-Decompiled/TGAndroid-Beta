@@ -12,12 +12,12 @@ public final class TimeoutCoroutine extends ScopeCoroutine implements Runnable {
     }
 
     @Override
-    public String nameString$kotlinx_coroutines_core() {
-        return super.nameString$kotlinx_coroutines_core() + "(timeMillis=" + this.time + ')';
+    public void run() {
+        cancelCoroutine(TimeoutKt.TimeoutCancellationException(this.time, DelayKt.getDelay(getContext()), this));
     }
 
     @Override
-    public void run() {
-        cancelCoroutine(TimeoutKt.TimeoutCancellationException(this.time, DelayKt.getDelay(getContext()), this));
+    public String nameString$kotlinx_coroutines_core() {
+        return super.nameString$kotlinx_coroutines_core() + "(timeMillis=" + this.time + ')';
     }
 }

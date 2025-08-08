@@ -20,12 +20,8 @@ public abstract class MP4Box {
         this.data = new DataInputStream(positionInputStream);
     }
 
-    public MP4Atom getChild() {
-        return this.child;
-    }
-
-    public PositionInputStream getInput() {
-        return this.input;
+    public String getType() {
+        return this.type;
     }
 
     public MP4Box getParent() {
@@ -36,11 +32,16 @@ public abstract class MP4Box {
         return this.input.getPosition();
     }
 
-    public String getType() {
-        return this.type;
+    public PositionInputStream getInput() {
+        return this.input;
+    }
+
+    public MP4Atom getChild() {
+        return this.child;
     }
 
     public MP4Atom nextChild() {
+        RangeInputStream rangeInputStream;
         MP4Atom mP4Atom = this.child;
         if (mP4Atom != null) {
             mP4Atom.skip();
@@ -48,7 +49,13 @@ public abstract class MP4Box {
         int readInt = this.data.readInt();
         byte[] bArr = new byte[4];
         this.data.readFully(bArr);
-        MP4Atom mP4Atom2 = new MP4Atom(readInt == 1 ? new RangeInputStream(this.input, 16L, this.data.readLong() - 16) : new RangeInputStream(this.input, 8L, readInt - 8), this, new String(bArr, "ISO8859_1"));
+        String str = new String(bArr, "ISO8859_1");
+        if (readInt == 1) {
+            rangeInputStream = new RangeInputStream(this.input, 16L, this.data.readLong() - 16);
+        } else {
+            rangeInputStream = new RangeInputStream(this.input, 8L, readInt - 8);
+        }
+        MP4Atom mP4Atom2 = new MP4Atom(rangeInputStream, this, str);
         this.child = mP4Atom2;
         return mP4Atom2;
     }

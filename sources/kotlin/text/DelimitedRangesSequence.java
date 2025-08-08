@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.IntRange;
-import kotlin.ranges.RangesKt___RangesKt;
+import kotlin.ranges.RangesKt;
 import kotlin.sequences.Sequence;
 
 public final class DelimitedRangesSequence implements Sequence {
@@ -32,27 +32,23 @@ public final class DelimitedRangesSequence implements Sequence {
             private int nextSearchIndex;
             private int nextState = -1;
 
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            }
+
             {
                 int i;
                 CharSequence charSequence;
-                int coerceIn;
                 i = DelimitedRangesSequence.this.startIndex;
                 charSequence = DelimitedRangesSequence.this.input;
-                coerceIn = RangesKt___RangesKt.coerceIn(i, 0, charSequence.length());
+                int coerceIn = RangesKt.coerceIn(i, 0, charSequence.length());
                 this.currentStartIndex = coerceIn;
                 this.nextSearchIndex = coerceIn;
             }
 
             private final void calcNext() {
                 throw new UnsupportedOperationException("Method not decompiled: kotlin.text.DelimitedRangesSequence$iterator$1.calcNext():void");
-            }
-
-            @Override
-            public boolean hasNext() {
-                if (this.nextState == -1) {
-                    calcNext();
-                }
-                return this.nextState == 1;
             }
 
             @Override
@@ -71,8 +67,11 @@ public final class DelimitedRangesSequence implements Sequence {
             }
 
             @Override
-            public void remove() {
-                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            public boolean hasNext() {
+                if (this.nextState == -1) {
+                    calcNext();
+                }
+                return this.nextState == 1;
             }
         };
     }

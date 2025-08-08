@@ -10,12 +10,82 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
     Theme.ResourcesProvider resourcesProvider;
     public SparseIntArray sparseIntArray = new SparseIntArray();
 
+    public void appendColors() {
+    }
+
+    @Override
+    public boolean isDark() {
+        boolean isCurrentThemeDark;
+        isCurrentThemeDark = Theme.isCurrentThemeDark();
+        return isCurrentThemeDark;
+    }
+
     public WrappedResourceProvider(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         appendColors();
     }
 
-    public void appendColors() {
+    @Override
+    public int getColor(int i) {
+        int indexOfKey = this.sparseIntArray.indexOfKey(i);
+        if (indexOfKey >= 0) {
+            return this.sparseIntArray.valueAt(indexOfKey);
+        }
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider == null) {
+            return Theme.getColor(i);
+        }
+        return resourcesProvider.getColor(i);
+    }
+
+    @Override
+    public int getColorOrDefault(int i) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider == null) {
+            return Theme.getColor(i);
+        }
+        return resourcesProvider.getColorOrDefault(i);
+    }
+
+    @Override
+    public int getCurrentColor(int i) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        return resourcesProvider == null ? Theme.getColor(i) : resourcesProvider.getCurrentColor(i);
+    }
+
+    @Override
+    public void setAnimatedColor(int i, int i2) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider != null) {
+            resourcesProvider.setAnimatedColor(i, i2);
+        }
+    }
+
+    @Override
+    public Drawable getDrawable(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider == null) {
+            return Theme.getThemeDrawable(str);
+        }
+        return resourcesProvider.getDrawable(str);
+    }
+
+    @Override
+    public Paint getPaint(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider == null) {
+            return Theme.getThemePaint(str);
+        }
+        return resourcesProvider.getPaint(str);
+    }
+
+    @Override
+    public boolean hasGradientService() {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider == null) {
+            return Theme.hasGradientService();
+        }
+        return resourcesProvider.hasGradientService();
     }
 
     @Override
@@ -31,61 +101,9 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
     @Override
     public ColorFilter getAnimatedEmojiColorFilter() {
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.getAnimatedEmojiColorFilter(null) : resourcesProvider.getAnimatedEmojiColorFilter();
-    }
-
-    @Override
-    public int getColor(int i) {
-        int indexOfKey = this.sparseIntArray.indexOfKey(i);
-        if (indexOfKey >= 0) {
-            return this.sparseIntArray.valueAt(indexOfKey);
+        if (resourcesProvider == null) {
+            return Theme.getAnimatedEmojiColorFilter(null);
         }
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.getColor(i) : resourcesProvider.getColor(i);
-    }
-
-    @Override
-    public int getColorOrDefault(int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.getColor(i) : resourcesProvider.getColorOrDefault(i);
-    }
-
-    @Override
-    public int getCurrentColor(int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.getColor(i) : resourcesProvider.getCurrentColor(i);
-    }
-
-    @Override
-    public Drawable getDrawable(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.getThemeDrawable(str) : resourcesProvider.getDrawable(str);
-    }
-
-    @Override
-    public Paint getPaint(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.getThemePaint(str) : resourcesProvider.getPaint(str);
-    }
-
-    @Override
-    public boolean hasGradientService() {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider == null ? Theme.hasGradientService() : resourcesProvider.hasGradientService();
-    }
-
-    @Override
-    public boolean isDark() {
-        boolean isCurrentThemeDark;
-        isCurrentThemeDark = Theme.isCurrentThemeDark();
-        return isCurrentThemeDark;
-    }
-
-    @Override
-    public void setAnimatedColor(int i, int i2) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null) {
-            resourcesProvider.setAnimatedColor(i, i2);
-        }
+        return resourcesProvider.getAnimatedEmojiColorFilter();
     }
 }

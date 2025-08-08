@@ -8,15 +8,15 @@ final class NoOpContinuation implements Continuation {
     public static final NoOpContinuation INSTANCE = new NoOpContinuation();
     private static final CoroutineContext context = EmptyCoroutineContext.INSTANCE;
 
+    @Override
+    public void resumeWith(Object obj) {
+    }
+
     private NoOpContinuation() {
     }
 
     @Override
     public CoroutineContext getContext() {
         return context;
-    }
-
-    @Override
-    public void resumeWith(Object obj) {
     }
 }

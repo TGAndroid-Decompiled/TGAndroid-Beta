@@ -23,6 +23,16 @@ public final class ContactsLoadingObserver {
         void onResult(boolean z);
     }
 
+    public static void observe(Callback callback, long j) {
+        new ContactsLoadingObserver(callback).start(j);
+    }
+
+    public void lambda$new$0(int i, int i2, Object[] objArr) {
+        if (i == NotificationCenter.contactsDidLoad) {
+            onContactsLoadingStateUpdated(i2, false);
+        }
+    }
+
     private ContactsLoadingObserver(Callback callback) {
         this.callback = callback;
         int i = UserConfig.selectedAccount;
@@ -38,31 +48,16 @@ public final class ContactsLoadingObserver {
         this.handler = new Handler(Looper.myLooper());
     }
 
-    public void lambda$new$0(int i, int i2, Object[] objArr) {
-        if (i == NotificationCenter.contactsDidLoad) {
-            onContactsLoadingStateUpdated(i2, false);
-        }
-    }
-
     public void lambda$new$1() {
         onContactsLoadingStateUpdated(this.currentAccount, true);
     }
 
-    public static void observe(Callback callback, long j) {
-        new ContactsLoadingObserver(callback).start(j);
-    }
-
-    private boolean onContactsLoadingStateUpdated(int i, boolean z) {
-        if (this.released) {
-            return false;
+    public void start(long j) {
+        if (onContactsLoadingStateUpdated(this.currentAccount, false)) {
+            return;
         }
-        boolean z2 = this.contactsController.contactsLoaded;
-        if (!z2 && !z) {
-            return false;
-        }
-        release();
-        this.callback.onResult(z2);
-        return true;
+        this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
+        this.handler.postDelayed(this.releaseRunnable, j);
     }
 
     public void release() {
@@ -80,11 +75,16 @@ public final class ContactsLoadingObserver {
         this.released = true;
     }
 
-    public void start(long j) {
-        if (onContactsLoadingStateUpdated(this.currentAccount, false)) {
-            return;
+    private boolean onContactsLoadingStateUpdated(int i, boolean z) {
+        if (this.released) {
+            return false;
         }
-        this.notificationCenter.addObserver(this.observer, NotificationCenter.contactsDidLoad);
-        this.handler.postDelayed(this.releaseRunnable, j);
+        boolean z2 = this.contactsController.contactsLoaded;
+        if (!z2 && !z) {
+            return false;
+        }
+        release();
+        this.callback.onResult(z2);
+        return true;
     }
 }

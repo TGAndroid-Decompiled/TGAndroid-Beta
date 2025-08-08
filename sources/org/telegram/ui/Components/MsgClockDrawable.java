@@ -16,6 +16,15 @@ public class MsgClockDrawable extends Drawable {
     private Paint paint;
     private long startTime;
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
     public MsgClockDrawable() {
         Paint paint = new Paint(1);
         this.paint = paint;
@@ -42,6 +51,33 @@ public class MsgClockDrawable extends Drawable {
         canvas.restore();
     }
 
+    public void setColor(int i) {
+        if (i != this.color) {
+            int alpha = Color.alpha(i);
+            this.colorAlpha = alpha;
+            this.paint.setColor(ColorUtils.setAlphaComponent(i, (int) (this.alpha * (alpha / 255.0f))));
+        }
+        this.color = i;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(12.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(12.0f);
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        if (this.alpha != i) {
+            this.alpha = i;
+            this.paint.setAlpha((int) (i * (this.colorAlpha / 255.0f)));
+        }
+    }
+
     @Override
     public Drawable.ConstantState getConstantState() {
         if (this.constantState == null) {
@@ -58,41 +94,5 @@ public class MsgClockDrawable extends Drawable {
             };
         }
         return this.constantState;
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        if (this.alpha != i) {
-            this.alpha = i;
-            this.paint.setAlpha((int) (i * (this.colorAlpha / 255.0f)));
-        }
-    }
-
-    public void setColor(int i) {
-        if (i != this.color) {
-            int alpha = Color.alpha(i);
-            this.colorAlpha = alpha;
-            this.paint.setColor(ColorUtils.setAlphaComponent(i, (int) (this.alpha * (alpha / 255.0f))));
-        }
-        this.color = i;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

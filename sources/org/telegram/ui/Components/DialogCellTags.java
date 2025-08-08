@@ -19,6 +19,10 @@ public class DialogCellTags {
     private final ArrayList tags = new ArrayList();
     private Tag moreTags = null;
 
+    public DialogCellTags(View view) {
+        this.parentView = view;
+    }
+
     public static class Tag {
         int color;
         public int colorId;
@@ -69,66 +73,10 @@ public class DialogCellTags {
         }
     }
 
-    public DialogCellTags(View view) {
-        this.parentView = view;
-    }
-
-    public void draw(Canvas canvas, int i) {
-        int dp;
-        int dp2;
-        int i2 = 0;
-        canvas.clipRect(0, 0, i, AndroidUtilities.dp(14.66f));
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f = i;
-        rectF.set(0.0f, 0.0f, f, AndroidUtilities.dp(14.66f));
-        canvas.saveLayerAlpha(rectF, 255, 31);
-        if (LocaleController.isRTL) {
-            canvas.translate(f, 0.0f);
-        }
-        int dp3 = i - AndroidUtilities.dp(25.0f);
-        while (i2 < this.tags.size()) {
-            Tag tag = (Tag) this.tags.get(i2);
-            dp3 -= tag.width + AndroidUtilities.dp(4.0f);
-            if (dp3 < 0) {
-                break;
-            }
-            if (LocaleController.isRTL) {
-                canvas.translate(-tag.width, 0.0f);
-                tag.draw(canvas);
-                dp2 = -AndroidUtilities.dp(4.0f);
-            } else {
-                tag.draw(canvas);
-                dp2 = tag.width + AndroidUtilities.dp(4.0f);
-            }
-            canvas.translate(dp2, 0.0f);
-            i2++;
-        }
-        if (i2 < this.tags.size()) {
-            int size = this.tags.size() - i2;
-            Tag tag2 = this.moreTags;
-            if (tag2 == null || tag2.filterId != size) {
-                this.moreTags = Tag.asMore(this.parentView, size);
-            }
-            if (LocaleController.isRTL) {
-                canvas.translate(-this.moreTags.width, 0.0f);
-                this.moreTags.draw(canvas);
-                dp = -AndroidUtilities.dp(4.0f);
-            } else {
-                this.moreTags.draw(canvas);
-                dp = this.moreTags.width + AndroidUtilities.dp(4.0f);
-            }
-            canvas.translate(dp, 0.0f);
-        }
-        canvas.restore();
-    }
-
-    public boolean isEmpty() {
-        return this.tags.isEmpty();
-    }
-
     public boolean update(int i, int i2, long j) {
-        Tag tag;
         MessagesController.DialogFilter dialogFilter;
+        Tag tag;
+        MessagesController.DialogFilter dialogFilter2;
         String str;
         AccountInstance accountInstance = AccountInstance.getInstance(i);
         MessagesController messagesController = MessagesController.getInstance(i);
@@ -138,12 +86,16 @@ public class DialogCellTags {
             return !isEmpty;
         }
         ArrayList<MessagesController.DialogFilter> arrayList = messagesController.dialogFilters;
-        MessagesController.DialogFilter dialogFilter2 = i2 == 7 ? messagesController.selectedDialogFilter[0] : i2 == 8 ? messagesController.selectedDialogFilter[1] : null;
+        if (i2 == 7) {
+            dialogFilter = messagesController.selectedDialogFilter[0];
+        } else {
+            dialogFilter = i2 == 8 ? messagesController.selectedDialogFilter[1] : null;
+        }
         this.filters.clear();
         if (i2 == 0 || i2 == 7 || i2 == 8) {
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 MessagesController.DialogFilter dialogFilter3 = arrayList.get(i3);
-                if (dialogFilter3 != null && dialogFilter3 != dialogFilter2 && dialogFilter3.color >= 0 && dialogFilter3.includesDialog(accountInstance, j)) {
+                if (dialogFilter3 != null && dialogFilter3 != dialogFilter && dialogFilter3.color >= 0 && dialogFilter3.includesDialog(accountInstance, j)) {
                     this.filters.add(dialogFilter3);
                 }
             }
@@ -155,21 +107,21 @@ public class DialogCellTags {
             int i5 = 0;
             while (true) {
                 if (i5 >= this.filters.size()) {
-                    dialogFilter = null;
+                    dialogFilter2 = null;
                     break;
                 }
                 if (((MessagesController.DialogFilter) this.filters.get(i5)).id == tag2.filterId) {
-                    dialogFilter = (MessagesController.DialogFilter) this.filters.get(i5);
+                    dialogFilter2 = (MessagesController.DialogFilter) this.filters.get(i5);
                     break;
                 }
                 i5++;
             }
-            if (dialogFilter == null) {
+            if (dialogFilter2 == null) {
                 this.tags.remove(i4);
                 i4--;
             } else {
-                if (dialogFilter.color != tag2.colorId || ((str = dialogFilter.name) != null && tag2.text != null && str.length() != tag2.text.getText().length())) {
-                    this.tags.set(i4, Tag.fromFilter(this.parentView, i, dialogFilter));
+                if (dialogFilter2.color != tag2.colorId || ((str = dialogFilter2.name) != null && tag2.text != null && str.length() != tag2.text.getText().length())) {
+                    this.tags.set(i4, Tag.fromFilter(this.parentView, i, dialogFilter2));
                 }
                 i4++;
             }
@@ -197,5 +149,54 @@ public class DialogCellTags {
         }
         this.filters.clear();
         return z;
+    }
+
+    public boolean isEmpty() {
+        return this.tags.isEmpty();
+    }
+
+    public void draw(Canvas canvas, int i) {
+        int i2 = 0;
+        canvas.clipRect(0, 0, i, AndroidUtilities.dp(14.66f));
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f = i;
+        rectF.set(0.0f, 0.0f, f, AndroidUtilities.dp(14.66f));
+        canvas.saveLayerAlpha(rectF, 255, 31);
+        if (LocaleController.isRTL) {
+            canvas.translate(f, 0.0f);
+        }
+        int dp = i - AndroidUtilities.dp(25.0f);
+        while (i2 < this.tags.size()) {
+            Tag tag = (Tag) this.tags.get(i2);
+            dp -= tag.width + AndroidUtilities.dp(4.0f);
+            if (dp < 0) {
+                break;
+            }
+            if (LocaleController.isRTL) {
+                canvas.translate(-tag.width, 0.0f);
+                tag.draw(canvas);
+                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+            } else {
+                tag.draw(canvas);
+                canvas.translate(tag.width + AndroidUtilities.dp(4.0f), 0.0f);
+            }
+            i2++;
+        }
+        if (i2 < this.tags.size()) {
+            int size = this.tags.size() - i2;
+            Tag tag2 = this.moreTags;
+            if (tag2 == null || tag2.filterId != size) {
+                this.moreTags = Tag.asMore(this.parentView, size);
+            }
+            if (LocaleController.isRTL) {
+                canvas.translate(-this.moreTags.width, 0.0f);
+                this.moreTags.draw(canvas);
+                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+            } else {
+                this.moreTags.draw(canvas);
+                canvas.translate(this.moreTags.width + AndroidUtilities.dp(4.0f), 0.0f);
+            }
+        }
+        canvas.restore();
     }
 }

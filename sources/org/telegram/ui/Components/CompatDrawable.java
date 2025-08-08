@@ -8,6 +8,17 @@ import android.view.View;
 public abstract class CompatDrawable extends Drawable {
     public final Paint paint = new Paint(1);
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    public void onAttachedToWindow() {
+    }
+
+    public void onDetachedToWindow() {
+    }
+
     public CompatDrawable(View view) {
         if (view != null) {
             view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
@@ -30,17 +41,6 @@ public abstract class CompatDrawable extends Drawable {
                 });
             }
         }
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    public void onAttachedToWindow() {
-    }
-
-    public void onDetachedToWindow() {
     }
 
     @Override

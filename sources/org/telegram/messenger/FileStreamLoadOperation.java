@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.net.Uri;
 import com.google.android.exoplayer2.upstream.BaseDataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.concurrent.ConcurrentMap$EL;
@@ -31,6 +32,13 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     private long requestedLength;
     private Uri uri;
 
+    @Override
+    public Map getResponseHeaders() {
+        Map emptyMap;
+        emptyMap = Collections.emptyMap();
+        return emptyMap;
+    }
+
     public FileStreamLoadOperation() {
         super(true);
     }
@@ -43,6 +51,77 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         }
     }
 
+    public static int getStreamPrioriy(TLRPC.Document document) {
+        Integer num;
+        if (document == null || (num = priorityMap.get(Long.valueOf(document.id))) == null) {
+            return 3;
+        }
+        return num.intValue();
+    }
+
+    @Override
+    public long open(DataSpec dataSpec) {
+        this.uri = dataSpec.uri;
+        transferInitializing(dataSpec);
+        int intValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
+        this.currentAccount = intValue;
+        this.parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) this.uri.getQueryParameter("rid")).intValue());
+        TLRPC.TL_document tL_document = new TLRPC.TL_document();
+        this.document = tL_document;
+        tL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
+        this.document.id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
+        this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
+        this.document.mime_type = this.uri.getQueryParameter("mime");
+        this.document.file_reference = Utilities.hexToBytes(this.uri.getQueryParameter("reference"));
+        TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+        tL_documentAttributeFilename.file_name = this.uri.getQueryParameter("name");
+        this.document.attributes.add(tL_documentAttributeFilename);
+        if (this.document.mime_type.startsWith("video")) {
+            this.document.attributes.add(new TLRPC.TL_documentAttributeVideo());
+        } else if (this.document.mime_type.startsWith("audio")) {
+            this.document.attributes.add(new TLRPC.TL_documentAttributeAudio());
+        }
+        allStreams.put(Long.valueOf(this.document.id), this);
+        this.currentOffset = dataSpec.position;
+        this.requestedLength = dataSpec.length;
+        this.loadOperation = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
+        this.bytesTransferred = 0L;
+        long j = this.document.size - dataSpec.position;
+        this.bytesRemaining = j;
+        long j2 = this.requestedLength;
+        if (j2 != -1) {
+            this.bytesRemaining = Math.min(j, j2);
+        }
+        this.opened = true;
+        transferStarted(dataSpec);
+        FileLoadOperation fileLoadOperation = this.loadOperation;
+        if (fileLoadOperation != null) {
+            File currentFile = fileLoadOperation.getCurrentFile();
+            this.currentFile = currentFile;
+            if (currentFile != null) {
+                try {
+                    RandomAccessFile randomAccessFile = new RandomAccessFile(this.currentFile, "r");
+                    this.file = randomAccessFile;
+                    randomAccessFile.seek(this.currentOffset);
+                    if (this.loadOperation.isFinished()) {
+                        this.isNetwork = false;
+                        long length = this.currentFile.length() - this.currentOffset;
+                        this.bytesRemaining = length;
+                        long j3 = this.requestedLength;
+                        if (j3 != -1) {
+                            this.bytesRemaining = Math.min(length, j3 - this.bytesTransferred);
+                        }
+                    }
+                } catch (Throwable unused) {
+                }
+            }
+        }
+        FileLog.e("FileStreamLoadOperation " + this.document.id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
+        return this.bytesRemaining;
+    }
+
     private int getCurrentPriority() {
         Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.id), null);
         if (num != null) {
@@ -51,12 +130,58 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         return 3;
     }
 
-    public static int getStreamPrioriy(TLRPC.Document document) {
-        Integer num;
-        if (document == null || (num = priorityMap.get(Long.valueOf(document.id))) == null) {
-            return 3;
+    @Override
+    public int read(byte[] r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
+    }
+
+    @Override
+    public Uri getUri() {
+        return this.uri;
+    }
+
+    @Override
+    public void close() {
+        FileLog.e("FileStreamLoadOperation " + this.document.id + " close me=" + this);
+        FileLoadOperation fileLoadOperation = this.loadOperation;
+        if (fileLoadOperation != null) {
+            fileLoadOperation.removeStreamListener(this);
         }
-        return num.intValue();
+        RandomAccessFile randomAccessFile = this.file;
+        if (randomAccessFile != null) {
+            try {
+                randomAccessFile.close();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            this.file = null;
+        }
+        this.uri = null;
+        allStreams.remove(Long.valueOf(this.document.id));
+        if (this.opened) {
+            this.opened = false;
+            transferEnded();
+        }
+        CountDownLatch countDownLatch = this.countDownLatch;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+            this.countDownLatch = null;
+        }
+    }
+
+    @Override
+    public void newDataAvailable() {
+        CountDownLatch countDownLatch = this.countDownLatch;
+        this.countDownLatch = null;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+        }
+    }
+
+    public static void setPriorityForDocument(TLRPC.Document document, int i) {
+        if (document != null) {
+            priorityMap.put(Long.valueOf(document.id), Integer.valueOf(i));
+        }
     }
 
     public static Uri prepareUri(int i, TLRPC.Document document, Object obj) {
@@ -94,71 +219,5 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
             FileLog.e(e);
             return null;
         }
-    }
-
-    public static void setPriorityForDocument(TLRPC.Document document, int i) {
-        if (document != null) {
-            priorityMap.put(Long.valueOf(document.id), Integer.valueOf(i));
-        }
-    }
-
-    @Override
-    public void close() {
-        FileLog.e("FileStreamLoadOperation " + this.document.id + " close me=" + this);
-        FileLoadOperation fileLoadOperation = this.loadOperation;
-        if (fileLoadOperation != null) {
-            fileLoadOperation.removeStreamListener(this);
-        }
-        RandomAccessFile randomAccessFile = this.file;
-        if (randomAccessFile != null) {
-            try {
-                randomAccessFile.close();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            this.file = null;
-        }
-        this.uri = null;
-        allStreams.remove(Long.valueOf(this.document.id));
-        if (this.opened) {
-            this.opened = false;
-            transferEnded();
-        }
-        CountDownLatch countDownLatch = this.countDownLatch;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-            this.countDownLatch = null;
-        }
-    }
-
-    @Override
-    public Map getResponseHeaders() {
-        Map emptyMap;
-        emptyMap = Collections.emptyMap();
-        return emptyMap;
-    }
-
-    @Override
-    public Uri getUri() {
-        return this.uri;
-    }
-
-    @Override
-    public void newDataAvailable() {
-        CountDownLatch countDownLatch = this.countDownLatch;
-        this.countDownLatch = null;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-        }
-    }
-
-    @Override
-    public long open(com.google.android.exoplayer2.upstream.DataSpec r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.open(com.google.android.exoplayer2.upstream.DataSpec):long");
-    }
-
-    @Override
-    public int read(byte[] r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 }

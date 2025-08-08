@@ -33,74 +33,6 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
     private FrameLayout buttonContainer;
     private LinearLayout headerView;
 
-    public static class FeatureCell extends LinearLayout {
-        public final ImageView imageView;
-        public final LinkSpanDrawable.LinksTextView subtitleView;
-        public final LinearLayout textLayout;
-        public final TextView titleView;
-
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            public static UItem of(int i, CharSequence charSequence, CharSequence charSequence2) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.selectable = false;
-                ofFactory.intValue = i;
-                ofFactory.text = charSequence;
-                ofFactory.subtext = charSequence2;
-                return ofFactory;
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((FeatureCell) view).set(uItem.intValue, uItem.text, uItem.subtext);
-            }
-
-            @Override
-            public FeatureCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new FeatureCell(context, 0);
-            }
-        }
-
-        public FeatureCell(Context context, int i) {
-            super(context);
-            setOrientation(0);
-            setPadding(AndroidUtilities.dp(i == 1 ? 11.0f : 32.0f), 0, AndroidUtilities.dp(i == 1 ? 11.0f : 32.0f), AndroidUtilities.dp(i == 1 ? 8.0f : 12.0f));
-            ImageView imageView = new ImageView(context);
-            this.imageView = imageView;
-            int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.SRC_IN));
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(imageView, LayoutHelper.createLinear(24, 24, 51, 0, 6, 16, 0));
-            LinearLayout linearLayout = new LinearLayout(context);
-            this.textLayout = linearLayout;
-            linearLayout.setOrientation(1);
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-            this.titleView = linksTextView;
-            linksTextView.setTypeface(AndroidUtilities.bold());
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTextColor(Theme.getColor(i2));
-            int i3 = Theme.key_chat_messageLinkIn;
-            linksTextView.setLinkTextColor(Theme.getColor(i3));
-            linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 3));
-            LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
-            this.subtitleView = linksTextView2;
-            linksTextView2.setTextSize(1, 14.0f);
-            linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
-            linksTextView2.setLinkTextColor(Theme.getColor(i3));
-            linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 7));
-            addView(linearLayout, LayoutHelper.createLinear(-1, -2, 1.0f, 55, 0, 0, 0, 0));
-        }
-
-        public void set(int i, CharSequence charSequence, CharSequence charSequence2) {
-            this.imageView.setImageResource(i);
-            this.titleView.setText(charSequence);
-            this.subtitleView.setText(charSequence2);
-        }
-    }
-
     public ExplainStarsSheet(Context context) {
         super(context, null, false, false, false, null);
         this.topPadding = 0.1f;
@@ -157,12 +89,13 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public void lambda$fillItems$1() {
-        new StarAppsSheet(getContext()).show();
-    }
-
     public void lambda$new$0(View view) {
         lambda$new$0();
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.ExplainStarsTitle);
     }
 
     @Override
@@ -196,8 +129,75 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
     }
 
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.ExplainStarsTitle);
+    public void lambda$fillItems$1() {
+        new StarAppsSheet(getContext()).show();
+    }
+
+    public static class FeatureCell extends LinearLayout {
+        public final ImageView imageView;
+        public final LinkSpanDrawable.LinksTextView subtitleView;
+        public final LinearLayout textLayout;
+        public final TextView titleView;
+
+        public FeatureCell(Context context, int i) {
+            super(context);
+            setOrientation(0);
+            setPadding(AndroidUtilities.dp(i == 1 ? 11.0f : 32.0f), 0, AndroidUtilities.dp(i == 1 ? 11.0f : 32.0f), AndroidUtilities.dp(i == 1 ? 8.0f : 12.0f));
+            ImageView imageView = new ImageView(context);
+            this.imageView = imageView;
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.SRC_IN));
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(imageView, LayoutHelper.createLinear(24, 24, 51, 0, 6, 16, 0));
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.textLayout = linearLayout;
+            linearLayout.setOrientation(1);
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.titleView = linksTextView;
+            linksTextView.setTypeface(AndroidUtilities.bold());
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setTextColor(Theme.getColor(i2));
+            int i3 = Theme.key_chat_messageLinkIn;
+            linksTextView.setLinkTextColor(Theme.getColor(i3));
+            linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 3));
+            LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
+            this.subtitleView = linksTextView2;
+            linksTextView2.setTextSize(1, 14.0f);
+            linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
+            linksTextView2.setLinkTextColor(Theme.getColor(i3));
+            linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 7));
+            addView(linearLayout, LayoutHelper.createLinear(-1, -2, 1.0f, 55, 0, 0, 0, 0));
+        }
+
+        public void set(int i, CharSequence charSequence, CharSequence charSequence2) {
+            this.imageView.setImageResource(i);
+            this.titleView.setText(charSequence);
+            this.subtitleView.setText(charSequence2);
+        }
+
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public FeatureCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new FeatureCell(context, 0);
+            }
+
+            @Override
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                ((FeatureCell) view).set(uItem.intValue, uItem.text, uItem.subtext);
+            }
+
+            public static UItem of(int i, CharSequence charSequence, CharSequence charSequence2) {
+                UItem ofFactory = UItem.ofFactory(Factory.class);
+                ofFactory.selectable = false;
+                ofFactory.intValue = i;
+                ofFactory.text = charSequence;
+                ofFactory.subtext = charSequence2;
+                return ofFactory;
+            }
+        }
     }
 }

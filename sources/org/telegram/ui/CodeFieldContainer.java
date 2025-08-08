@@ -24,6 +24,8 @@ public abstract class CodeFieldContainer extends LinearLayout {
     Paint paint;
     float strokeWidth;
 
+    protected abstract void processNextPressed();
+
     public CodeFieldContainer(Context context) {
         super(context);
         this.paint = new Paint(1);
@@ -32,12 +34,13 @@ public abstract class CodeFieldContainer extends LinearLayout {
         setOrientation(0);
     }
 
-    public boolean lambda$setNumbersCount$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        processNextPressed();
-        return true;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        Paint paint = this.paint;
+        float dp = AndroidUtilities.dp(1.5f);
+        this.strokeWidth = dp;
+        paint.setStrokeWidth(dp);
     }
 
     @Override
@@ -71,70 +74,39 @@ public abstract class CodeFieldContainer extends LinearLayout {
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (!(view instanceof CodeNumberField)) {
-            return super.drawChild(canvas, view, j);
-        }
-        CodeNumberField codeNumberField = (CodeNumberField) view;
-        canvas.save();
-        float f = codeNumberField.enterAnimation;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
-        float f2 = this.strokeWidth;
-        rectF.inset(f2, f2);
-        canvas.clipRect(rectF);
-        if (codeNumberField.replaceAnimation) {
-            float f3 = (f * 0.5f) + 0.5f;
-            view.setAlpha(f);
-            canvas.scale(f3, f3, codeNumberField.getX() + (codeNumberField.getMeasuredWidth() / 2.0f), codeNumberField.getY() + (codeNumberField.getMeasuredHeight() / 2.0f));
-        } else {
-            view.setAlpha(1.0f);
-            canvas.translate(0.0f, view.getMeasuredHeight() * (1.0f - f));
-        }
-        super.drawChild(canvas, view, j);
-        canvas.restore();
-        float f4 = codeNumberField.exitAnimation;
-        if (f4 >= 1.0f) {
+        if (view instanceof CodeNumberField) {
+            CodeNumberField codeNumberField = (CodeNumberField) view;
+            canvas.save();
+            float f = codeNumberField.enterAnimation;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
+            float f2 = this.strokeWidth;
+            rectF.inset(f2, f2);
+            canvas.clipRect(rectF);
+            if (codeNumberField.replaceAnimation) {
+                float f3 = (f * 0.5f) + 0.5f;
+                view.setAlpha(f);
+                canvas.scale(f3, f3, codeNumberField.getX() + (codeNumberField.getMeasuredWidth() / 2.0f), codeNumberField.getY() + (codeNumberField.getMeasuredHeight() / 2.0f));
+            } else {
+                view.setAlpha(1.0f);
+                canvas.translate(0.0f, view.getMeasuredHeight() * (1.0f - f));
+            }
+            super.drawChild(canvas, view, j);
+            canvas.restore();
+            float f4 = codeNumberField.exitAnimation;
+            if (f4 >= 1.0f) {
+                return true;
+            }
+            canvas.save();
+            float f5 = 1.0f - f4;
+            float f6 = (f5 * 0.5f) + 0.5f;
+            canvas.scale(f6, f6, codeNumberField.getX() + (codeNumberField.getMeasuredWidth() / 2.0f), codeNumberField.getY() + (codeNumberField.getMeasuredHeight() / 2.0f));
+            this.bitmapPaint.setAlpha((int) (f5 * 255.0f));
+            canvas.drawBitmap(codeNumberField.exitBitmap, codeNumberField.getX(), codeNumberField.getY(), this.bitmapPaint);
+            canvas.restore();
             return true;
         }
-        canvas.save();
-        float f5 = 1.0f - f4;
-        float f6 = (f5 * 0.5f) + 0.5f;
-        canvas.scale(f6, f6, codeNumberField.getX() + (codeNumberField.getMeasuredWidth() / 2.0f), codeNumberField.getY() + (codeNumberField.getMeasuredHeight() / 2.0f));
-        this.bitmapPaint.setAlpha((int) (f5 * 255.0f));
-        canvas.drawBitmap(codeNumberField.exitBitmap, codeNumberField.getX(), codeNumberField.getY(), this.bitmapPaint);
-        canvas.restore();
-        return true;
-    }
-
-    public String getCode() {
-        if (this.codeField == null) {
-            return "";
-        }
-        StringBuilder sb = new StringBuilder();
-        int i = 0;
-        while (true) {
-            CodeNumberField[] codeNumberFieldArr = this.codeField;
-            if (i >= codeNumberFieldArr.length) {
-                return sb.toString();
-            }
-            sb.append(PhoneFormat.stripExceptNumbers(codeNumberFieldArr[i].getText().toString()));
-            i++;
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        Paint paint = this.paint;
-        float dp = AndroidUtilities.dp(1.5f);
-        this.strokeWidth = dp;
-        paint.setStrokeWidth(dp);
-    }
-
-    protected abstract void processNextPressed();
-
-    public void setCode(String str) {
-        this.codeField[0].setText(str);
+        return super.drawChild(canvas, view, j);
     }
 
     public void setNumbersCount(final int i, int i2) {
@@ -155,9 +127,7 @@ public abstract class CodeFieldContainer extends LinearLayout {
                     @Override
                     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
                         int i7;
-                        int i8;
-                        CodeNumberField codeNumberField2;
-                        int i9 = 0;
+                        int i8 = 0;
                         if (keyEvent.getKeyCode() == 4) {
                             return false;
                         }
@@ -165,22 +135,21 @@ public abstract class CodeFieldContainer extends LinearLayout {
                         if (i6 >= CodeFieldContainer.this.codeField.length) {
                             return false;
                         }
-                        if (keyEvent.getAction() != 1) {
-                            return isFocused();
-                        }
-                        if (keyCode == 67 && CodeFieldContainer.this.codeField[i6].length() == 1) {
-                            CodeFieldContainer.this.codeField[i6].startExitAnimation();
-                            codeNumberField2 = CodeFieldContainer.this.codeField[i6];
-                        } else {
+                        if (keyEvent.getAction() == 1) {
+                            if (keyCode == 67 && CodeFieldContainer.this.codeField[i6].length() == 1) {
+                                CodeFieldContainer.this.codeField[i6].startExitAnimation();
+                                CodeFieldContainer.this.codeField[i6].setText("");
+                                return true;
+                            }
                             if (keyCode != 67 || CodeFieldContainer.this.codeField[i6].length() != 0 || (i7 = i6) <= 0) {
                                 if (keyCode >= 7 && keyCode <= 16) {
                                     String num = Integer.toString(keyCode - 7);
                                     if (CodeFieldContainer.this.codeField[i6].getText() != null && num.equals(CodeFieldContainer.this.codeField[i6].getText().toString())) {
-                                        int i10 = i6;
-                                        if (i10 >= i - 1) {
+                                        int i9 = i6;
+                                        if (i9 >= i - 1) {
                                             CodeFieldContainer.this.processNextPressed();
                                         } else {
-                                            CodeFieldContainer.this.codeField[i10 + 1].requestFocus();
+                                            CodeFieldContainer.this.codeField[i9 + 1].requestFocus();
                                         }
                                         return true;
                                     }
@@ -191,26 +160,26 @@ public abstract class CodeFieldContainer extends LinearLayout {
                                 }
                                 return true;
                             }
-                            CodeNumberField codeNumberField3 = CodeFieldContainer.this.codeField[i7 - 1];
-                            codeNumberField3.setSelection(codeNumberField3.length());
+                            CodeNumberField codeNumberField2 = CodeFieldContainer.this.codeField[i7 - 1];
+                            codeNumberField2.setSelection(codeNumberField2.length());
                             while (true) {
-                                i8 = i6;
-                                if (i9 >= i8) {
-                                    break;
+                                int i10 = i6;
+                                if (i8 >= i10) {
+                                    CodeFieldContainer.this.codeField[i10 - 1].startExitAnimation();
+                                    CodeFieldContainer.this.codeField[i6 - 1].setText("");
+                                    return true;
                                 }
-                                int i11 = i8 - 1;
-                                if (i9 == i11) {
+                                int i11 = i10 - 1;
+                                if (i8 == i11) {
                                     CodeFieldContainer.this.codeField[i11].requestFocus();
                                 } else {
-                                    CodeFieldContainer.this.codeField[i9].clearFocus();
+                                    CodeFieldContainer.this.codeField[i8].clearFocus();
                                 }
-                                i9++;
+                                i8++;
                             }
-                            CodeFieldContainer.this.codeField[i8 - 1].startExitAnimation();
-                            codeNumberField2 = CodeFieldContainer.this.codeField[i6 - 1];
+                        } else {
+                            return isFocused();
                         }
-                        codeNumberField2.setText("");
-                        return true;
                     }
                 };
                 this.codeField[i6].setImeOptions(268435461);
@@ -241,6 +210,14 @@ public abstract class CodeFieldContainer extends LinearLayout {
                 }
                 addView(this.codeField[i6], LayoutHelper.createLinear(i3, i4, 1, 0, 0, i6 != i + (-1) ? i7 : 0, 0));
                 this.codeField[i6].addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+                    }
+
                     @Override
                     public void afterTextChanged(Editable editable) {
                         int length;
@@ -278,14 +255,6 @@ public abstract class CodeFieldContainer extends LinearLayout {
                             }
                         }
                     }
-
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
-                    }
                 });
                 this.codeField[i6].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
@@ -307,6 +276,35 @@ public abstract class CodeFieldContainer extends LinearLayout {
             codeNumberFieldArr2[i5].setText("");
             i5++;
         }
+    }
+
+    public boolean lambda$setNumbersCount$0(TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
+        }
+        processNextPressed();
+        return true;
+    }
+
+    public String getCode() {
+        if (this.codeField == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        while (true) {
+            CodeNumberField[] codeNumberFieldArr = this.codeField;
+            if (i < codeNumberFieldArr.length) {
+                sb.append(PhoneFormat.stripExceptNumbers(codeNumberFieldArr[i].getText().toString()));
+                i++;
+            } else {
+                return sb.toString();
+            }
+        }
+    }
+
+    public void setCode(String str) {
+        this.codeField[0].setText(str);
     }
 
     public void setText(String str) {

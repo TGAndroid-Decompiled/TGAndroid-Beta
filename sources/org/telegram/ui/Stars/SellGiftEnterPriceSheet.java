@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AppGlobalConfig;
+import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -153,6 +154,14 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         setCustomView(linearLayout);
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
+            public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+            }
+
+            @Override
             public void afterTextChanged(Editable editable) {
                 String obj;
                 int indexOf;
@@ -163,57 +172,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
                 SellGiftEnterPriceSheet.this.setAmount(!z ? AmountUtils$Amount.fromDecimal(editable.toString(), SellGiftEnterPriceSheet.this.inputAmount.currency) : AmountUtils$Amount.fromNano(0L, SellGiftEnterPriceSheet.this.inputAmount.currency), false, false, true);
                 SellGiftEnterPriceSheet.this.starsCountEditOutline.animateSelection(SellGiftEnterPriceSheet.this.starsCountEditField.isFocused(), true ^ TextUtils.isEmpty(SellGiftEnterPriceSheet.this.starsCountEditField.getText()));
             }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
-            }
         });
-    }
-
-    private void checkAmountInputText(boolean z) {
-        OutlineTextContainerView outlineTextContainerView;
-        String formatString;
-        int i = this.inputAmountError;
-        if ((i & 4) != 0) {
-            outlineTextContainerView = this.starsCountEditOutline;
-            formatString = LocaleController.formatString(R.string.ResellGiftPriceTooMuch, getInputAmountMax().formatAsDecimalSpaced());
-        } else if ((i & 2) == 0) {
-            this.starsCountEditOutline.setText(LocaleController.getString(this.inputAmount.currency == AmountUtils$Currency.STARS ? R.string.ResellGiftPriceTitle : R.string.ResellGiftPriceTitleTON));
-            return;
-        } else {
-            outlineTextContainerView = this.starsCountEditOutline;
-            formatString = LocaleController.formatString(R.string.ResellGiftPriceTooSmall, getInputAmountMin().formatAsDecimalSpaced());
-        }
-        outlineTextContainerView.setText(formatString);
-    }
-
-    private void checkButtonEnabled(boolean z) {
-        boolean z2 = this.inputAmountError == 0 && this.inputAmount.asNano() > 0;
-        if (this.buttonView.isEnabled() != z2) {
-            this.buttonView.setEnabled(z2);
-            this.buttonView.setClickable(z2);
-            if (z) {
-                this.buttonView.animate().alpha(z2 ? 1.0f : 0.6f).setDuration(180L).start();
-            } else {
-                this.buttonView.setAlpha(z2 ? 1.0f : 0.6f);
-            }
-        }
-    }
-
-    private void checkRateText(boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.SellGiftEnterPriceSheet.checkRateText(boolean):void");
-    }
-
-    private AmountUtils$Amount getInputAmountMax() {
-        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMaxTON : this.inputAmountMaxStars;
-    }
-
-    private AmountUtils$Amount getInputAmountMin() {
-        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMinTON : this.inputAmountMinStars;
     }
 
     public void lambda$new$0(View view, boolean z) {
@@ -236,35 +195,6 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         }
         this.buttonView.setLoading(true);
         callback.run(this.inputAmount);
-    }
-
-    public void lambda$show$3() {
-        AndroidUtilities.showKeyboard(this.starsCountEditField);
-    }
-
-    private void onCurrencyChanged(boolean z) {
-        AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
-        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
-        if (amountUtils$Currency == amountUtils$Currency2) {
-            this.titleView.setText(LocaleController.getString(R.string.ResellGiftTitle), z);
-            this.starsCountEditField.setInputType(2);
-            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length())});
-        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
-            this.titleView.setText(LocaleController.getString(R.string.ResellGiftTitleTON), z);
-            this.starsCountEditField.setInputType(8194);
-            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length() + 3)});
-        }
-        CheckBox2 checkBox2 = this.radioButtonCell.checkbox;
-        AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
-        AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
-        checkBox2.setChecked(amountUtils$Currency3 == amountUtils$Currency4, z);
-        if (z) {
-            this.iconStars.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
-            this.iconTon.animate().alpha(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
-        } else {
-            this.iconStars.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
-            this.iconTon.setAlpha(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f);
-        }
     }
 
     public void setAmount(AmountUtils$Amount amountUtils$Amount, boolean z, boolean z2, boolean z3) {
@@ -308,6 +238,92 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         }
     }
 
+    private void onCurrencyChanged(boolean z) {
+        AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
+        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
+        if (amountUtils$Currency == amountUtils$Currency2) {
+            this.titleView.setText(LocaleController.getString(R.string.ResellGiftTitle), z);
+            this.starsCountEditField.setInputType(2);
+            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length())});
+        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
+            this.titleView.setText(LocaleController.getString(R.string.ResellGiftTitleTON), z);
+            this.starsCountEditField.setInputType(8194);
+            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length() + 3)});
+        }
+        CheckBox2 checkBox2 = this.radioButtonCell.checkbox;
+        AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
+        AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
+        checkBox2.setChecked(amountUtils$Currency3 == amountUtils$Currency4, z);
+        if (z) {
+            this.iconStars.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
+            this.iconTon.animate().alpha(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
+        } else {
+            this.iconStars.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
+            this.iconTon.setAlpha(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f);
+        }
+    }
+
+    private void checkButtonEnabled(boolean z) {
+        boolean z2 = this.inputAmountError == 0 && this.inputAmount.asNano() > 0;
+        if (this.buttonView.isEnabled() != z2) {
+            this.buttonView.setEnabled(z2);
+            this.buttonView.setClickable(z2);
+            if (z) {
+                this.buttonView.animate().alpha(z2 ? 1.0f : 0.6f).setDuration(180L).start();
+            } else {
+                this.buttonView.setAlpha(z2 ? 1.0f : 0.6f);
+            }
+        }
+    }
+
+    private void checkAmountInputText(boolean z) {
+        int i;
+        int i2 = this.inputAmountError;
+        if ((i2 & 4) != 0) {
+            this.starsCountEditOutline.setText(LocaleController.formatString(R.string.ResellGiftPriceTooMuch, getInputAmountMax().formatAsDecimalSpaced()));
+            return;
+        }
+        if ((i2 & 2) != 0) {
+            this.starsCountEditOutline.setText(LocaleController.formatString(R.string.ResellGiftPriceTooSmall, getInputAmountMin().formatAsDecimalSpaced()));
+            return;
+        }
+        if (this.inputAmount.currency == AmountUtils$Currency.STARS) {
+            i = R.string.ResellGiftPriceTitle;
+        } else {
+            i = R.string.ResellGiftPriceTitleTON;
+        }
+        this.starsCountEditOutline.setText(LocaleController.getString(i));
+    }
+
+    private void checkRateText(boolean z) {
+        double d;
+        AppGlobalConfig appGlobalConfig = MessagesController.getInstance(this.currentAccount).config;
+        AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+        AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
+        if (amountUtils$Currency == AmountUtils$Currency.STARS) {
+            this.starsCountEditHint.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("ResellGiftInfo", (int) amountUtils$Amount.applyPerMille(appGlobalConfig.starsStarGiftResaleCommissionPermille.get()).asDecimal(), new Object[0])));
+        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
+            this.starsCountEditHint.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.ResellGiftInfoTON, amountUtils$Amount.applyPerMille(appGlobalConfig.tonStarGiftResaleCommissionPermille.get()).asDecimalString())));
+        }
+        StringBuilder sb = new StringBuilder(10);
+        sb.append('~');
+        if (this.inputAmount.currency == AmountUtils$Currency.TON) {
+            d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
+        } else {
+            d = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000 * 1.0E-5d;
+        }
+        sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
+        this.dollarsEqView.setText(sb, z);
+    }
+
+    private AmountUtils$Amount getInputAmountMin() {
+        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMinTON : this.inputAmountMinStars;
+    }
+
+    private AmountUtils$Amount getInputAmountMax() {
+        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMaxTON : this.inputAmountMaxStars;
+    }
+
     @Override
     public void show() {
         super.show();
@@ -317,5 +333,9 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
                 SellGiftEnterPriceSheet.this.lambda$show$3();
             }
         }, 50L);
+    }
+
+    public void lambda$show$3() {
+        AndroidUtilities.showKeyboard(this.starsCountEditField);
     }
 }

@@ -42,14 +42,14 @@ public class WallpaperCheckBoxView extends View {
         this.colors = new int[4];
         this.PROGRESS_PROPERTY = new AnimationProperties.FloatProperty("progress") {
             @Override
-            public Float get(WallpaperCheckBoxView wallpaperCheckBoxView) {
-                return Float.valueOf(WallpaperCheckBoxView.this.progress);
-            }
-
-            @Override
             public void setValue(WallpaperCheckBoxView wallpaperCheckBoxView, float f) {
                 WallpaperCheckBoxView.this.progress = f;
                 WallpaperCheckBoxView.this.invalidate();
+            }
+
+            @Override
+            public Float get(WallpaperCheckBoxView wallpaperCheckBoxView) {
+                return Float.valueOf(WallpaperCheckBoxView.this.progress);
             }
         };
         this.dimPaint = new Paint(1);
@@ -80,31 +80,17 @@ public class WallpaperCheckBoxView extends View {
         this.backgroundPaint = new Paint(1);
     }
 
-    private void animateToCheckedState(boolean z) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, (Property<WallpaperCheckBoxView, Float>) this.PROGRESS_PROPERTY, z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(300L);
-        this.checkAnimator.start();
+    public void setText(String str, int i, int i2) {
+        this.currentText = str;
+        this.currentTextSize = i;
+        this.maxTextSize = i2;
     }
 
-    private void cancelCheckAnimator() {
-        ObjectAnimator objectAnimator = this.checkAnimator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
+    public void setColor(int i, int i2) {
+        if (this.colors == null) {
+            this.colors = new int[4];
         }
-    }
-
-    private Paint getThemedPaint(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
-        return paint != null ? paint : Theme.getThemePaint(str);
-    }
-
-    private void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
+        this.colors[i] = i2;
         invalidate();
     }
 
@@ -112,8 +98,15 @@ public class WallpaperCheckBoxView extends View {
         return this.textPaint;
     }
 
-    public boolean isChecked() {
-        return this.isChecked;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.maxTextSize + AndroidUtilities.dp(56.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+    }
+
+    public void setDimAmount(float f) {
+        this.dimAmount = f;
+        this.dimPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f * 255.0f)));
+        invalidate();
     }
 
     @Override
@@ -196,14 +189,31 @@ public class WallpaperCheckBoxView extends View {
         canvas.restore();
     }
 
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
+    private void setProgress(float f) {
+        if (this.progress == f) {
+            return;
+        }
+        this.progress = f;
+        invalidate();
+    }
+
+    private void cancelCheckAnimator() {
+        ObjectAnimator objectAnimator = this.checkAnimator;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+        }
+    }
+
+    private void animateToCheckedState(boolean z) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, (Property<WallpaperCheckBoxView, Float>) this.PROGRESS_PROPERTY, z ? 1.0f : 0.0f);
+        this.checkAnimator = ofFloat;
+        ofFloat.setDuration(300L);
+        this.checkAnimator.start();
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.maxTextSize + AndroidUtilities.dp(56.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
     }
 
     public void setChecked(boolean z, boolean z2) {
@@ -220,23 +230,13 @@ public class WallpaperCheckBoxView extends View {
         invalidate();
     }
 
-    public void setColor(int i, int i2) {
-        if (this.colors == null) {
-            this.colors = new int[4];
-        }
-        this.colors[i] = i2;
-        invalidate();
+    public boolean isChecked() {
+        return this.isChecked;
     }
 
-    public void setDimAmount(float f) {
-        this.dimAmount = f;
-        this.dimPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f * 255.0f)));
-        invalidate();
-    }
-
-    public void setText(String str, int i, int i2) {
-        this.currentText = str;
-        this.currentTextSize = i;
-        this.maxTextSize = i2;
+    private Paint getThemedPaint(String str) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
+        return paint != null ? paint : Theme.getThemePaint(str);
     }
 }

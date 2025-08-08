@@ -47,65 +47,14 @@ public class WebMetadataCache {
     private boolean loading;
     private boolean saving;
 
-    public static final class MetadataFile extends TLObject {
-        public final ArrayList array;
-
-        private MetadataFile() {
-            this.array = new ArrayList();
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            for (int i = 0; i < readInt32; i++) {
-                WebMetadata webMetadata = new WebMetadata();
-                webMetadata.readParams(inputSerializedData, z);
-                if (TextUtils.isEmpty(webMetadata.domain)) {
-                    return;
-                }
-                this.array.add(webMetadata);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(this.array.size());
-            for (int i = 0; i < this.array.size(); i++) {
-                ((WebMetadata) this.array.get(i)).serializeToStream(outputSerializedData);
-            }
-        }
+    public static void lambda$retrieveFaviconAndSitename$5(String str) {
     }
 
-    public static class SitenameProxy {
-        private final Utilities.Callback whenReceived;
-
-        public SitenameProxy(Utilities.Callback callback) {
-            this.whenReceived = callback;
+    public static WebMetadataCache getInstance() {
+        if (instance == null) {
+            instance = new WebMetadataCache();
         }
-
-        public void lambda$post$0(String str, String str2) {
-            Utilities.Callback callback;
-            str.hashCode();
-            if (str.equals("siteNameEmpty")) {
-                callback = this.whenReceived;
-                str2 = null;
-            } else if (!str.equals("siteName")) {
-                return;
-            } else {
-                callback = this.whenReceived;
-            }
-            callback.run(str2);
-        }
-
-        @JavascriptInterface
-        public void post(final String str, final String str2) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    WebMetadataCache.SitenameProxy.this.lambda$post$0(str, str2);
-                }
-            });
-        }
+        return instance;
     }
 
     public static class WebMetadata extends TLObject {
@@ -142,26 +91,7 @@ public class WebMetadataCache {
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            Bitmap decodeStream;
-            this.time = inputSerializedData.readInt64(z);
-            this.domain = inputSerializedData.readString(z);
-            this.title = inputSerializedData.readString(z);
-            this.sitename = inputSerializedData.readString(z);
-            this.actionBarColor = inputSerializedData.readInt32(z);
-            this.backgroundColor = inputSerializedData.readInt32(z);
-            if (inputSerializedData.readInt32(z) == 1450380236) {
-                decodeStream = null;
-            } else {
-                this.faviconBytes = inputSerializedData.readByteArray(z);
-                decodeStream = BitmapFactory.decodeStream(new ByteArrayInputStream(this.faviconBytes));
-            }
-            this.favicon = decodeStream;
-        }
-
-        @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            Bitmap bitmap;
             Bitmap.CompressFormat compressFormat;
             outputSerializedData.writeInt64(this.time);
             String str = this.domain;
@@ -190,13 +120,12 @@ public class WebMetadataCache {
             }
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             if (Build.VERSION.SDK_INT >= 30) {
-                bitmap = this.favicon;
+                Bitmap bitmap = this.favicon;
                 compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
+                bitmap.compress(compressFormat, 80, byteArrayOutputStream);
             } else {
-                bitmap = this.favicon;
-                compressFormat = Bitmap.CompressFormat.WEBP;
+                this.favicon.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
             }
-            bitmap.compress(compressFormat, 80, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             this.faviconBytes = byteArray;
             outputSerializedData.writeByteArray(byteArray);
@@ -206,22 +135,97 @@ public class WebMetadataCache {
                 FileLog.e(e);
             }
         }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.time = inputSerializedData.readInt64(z);
+            this.domain = inputSerializedData.readString(z);
+            this.title = inputSerializedData.readString(z);
+            this.sitename = inputSerializedData.readString(z);
+            this.actionBarColor = inputSerializedData.readInt32(z);
+            this.backgroundColor = inputSerializedData.readInt32(z);
+            if (inputSerializedData.readInt32(z) == 1450380236) {
+                this.favicon = null;
+            } else {
+                this.faviconBytes = inputSerializedData.readByteArray(z);
+                this.favicon = BitmapFactory.decodeStream(new ByteArrayInputStream(this.faviconBytes));
+            }
+        }
     }
 
-    public static WebMetadataCache getInstance() {
-        if (instance == null) {
-            instance = new WebMetadataCache();
+    public static final class MetadataFile extends TLObject {
+        public final ArrayList array;
+
+        private MetadataFile() {
+            this.array = new ArrayList();
         }
-        return instance;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(this.array.size());
+            for (int i = 0; i < this.array.size(); i++) {
+                ((WebMetadata) this.array.get(i)).serializeToStream(outputSerializedData);
+            }
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            for (int i = 0; i < readInt32; i++) {
+                WebMetadata webMetadata = new WebMetadata();
+                webMetadata.readParams(inputSerializedData, z);
+                if (TextUtils.isEmpty(webMetadata.domain)) {
+                    return;
+                }
+                this.array.add(webMetadata);
+            }
+        }
     }
 
-    public void lambda$load$0(ArrayList arrayList) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            WebMetadata webMetadata = (WebMetadata) arrayList.get(i);
-            this.cache.put(webMetadata.domain, webMetadata);
+    public File getCacheFile() {
+        return new File(FileLoader.getDirectory(4), "webmetacache.dat");
+    }
+
+    public WebMetadata get(String str) {
+        load();
+        WebMetadata webMetadata = (WebMetadata) this.cache.get(str);
+        if (webMetadata == null) {
+            return null;
         }
-        this.loaded = true;
-        this.loading = false;
+        webMetadata.time = Math.max(webMetadata.time, System.currentTimeMillis());
+        scheduleSave();
+        return webMetadata;
+    }
+
+    public void save(WebMetadata webMetadata) {
+        if (webMetadata == null) {
+            return;
+        }
+        if (this.cache == null) {
+            this.cache = new HashMap();
+        }
+        if (TextUtils.isEmpty(webMetadata.domain)) {
+            return;
+        }
+        this.cache.put(webMetadata.domain, webMetadata);
+        load();
+        scheduleSave();
+    }
+
+    public void load() {
+        if (this.loaded || this.loading) {
+            return;
+        }
+        this.loading = true;
+        if (this.cache == null) {
+            this.cache = new HashMap();
+        }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                WebMetadataCache.this.lambda$load$1();
+            }
+        });
     }
 
     public void lambda$load$1() {
@@ -247,52 +251,54 @@ public class WebMetadataCache {
         });
     }
 
-    public static void lambda$retrieveFaviconAndSitename$4(boolean[] zArr, String[] strArr, Bitmap[] bitmapArr, String str, WebView webView, FrameLayout frameLayout, Utilities.Callback2 callback2, Boolean bool) {
-        Bitmap bitmap;
-        if (zArr[0]) {
-            return;
+    public void lambda$load$0(ArrayList arrayList) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            WebMetadata webMetadata = (WebMetadata) arrayList.get(i);
+            this.cache.put(webMetadata.domain, webMetadata);
         }
-        if (bool.booleanValue() || (!TextUtils.isEmpty(strArr[0]) && (bitmap = bitmapArr[0]) != null && bitmap.getWidth() > AndroidUtilities.dp(28.0f) && bitmapArr[0].getHeight() > AndroidUtilities.dp(28.0f))) {
-            zArr[0] = true;
-            WebMetadata webMetadata = new WebMetadata();
-            webMetadata.domain = AndroidUtilities.getHostAuthority(str, true);
-            webMetadata.sitename = strArr[0];
-            Bitmap bitmap2 = bitmapArr[0];
-            if (bitmap2 != null) {
-                webMetadata.favicon = Bitmap.createBitmap(bitmap2);
-            }
-            getInstance().save(webMetadata);
-            webView.destroy();
-            AndroidUtilities.removeFromParent(webView);
-            AndroidUtilities.removeFromParent(frameLayout);
-            callback2.run(strArr[0], bitmapArr[0]);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.webViewResolved, str);
-        }
+        this.loaded = true;
+        this.loading = false;
     }
 
-    public static void lambda$retrieveFaviconAndSitename$5(String str) {
-    }
-
-    public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
-        webView.evaluateJavascript(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
+    public void scheduleSave() {
+        AndroidUtilities.cancelRunOnUIThread(new Runnable() {
             @Override
-            public final void onReceiveValue(Object obj) {
-                WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);
+            public final void run() {
+                WebMetadataCache.this.save();
             }
         });
+        if (this.saving) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                WebMetadataCache.this.save();
+            }
+        }, BuildVars.DEBUG_PRIVATE_VERSION ? 1L : 1000L);
     }
 
-    public static void lambda$retrieveFaviconAndSitename$7(String[] strArr, Utilities.Callback callback, String str) {
-        strArr[0] = str;
-        callback.run(Boolean.FALSE);
-    }
-
-    public static void lambda$retrieveFaviconAndSitename$8(Utilities.Callback callback) {
-        callback.run(Boolean.TRUE);
-    }
-
-    public void lambda$save$2() {
-        this.saving = false;
+    public void save() {
+        if (this.saving) {
+            return;
+        }
+        this.saving = true;
+        long currentTimeMillis = System.currentTimeMillis();
+        final ArrayList arrayList = new ArrayList();
+        for (WebMetadata webMetadata : this.cache.values()) {
+            if (!TextUtils.isEmpty(webMetadata.domain) && currentTimeMillis - webMetadata.time <= 604800000) {
+                arrayList.add(0, webMetadata);
+                if (arrayList.size() >= 100) {
+                    break;
+                }
+            }
+        }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                WebMetadataCache.this.lambda$save$3(arrayList);
+            }
+        });
     }
 
     public void lambda$save$3(ArrayList arrayList) {
@@ -325,6 +331,49 @@ public class WebMetadataCache {
         });
     }
 
+    public void lambda$save$2() {
+        this.saving = false;
+    }
+
+    public void clear() {
+        HashMap hashMap = this.cache;
+        if (hashMap == null) {
+            this.loading = false;
+            this.loaded = true;
+            this.cache = new HashMap();
+        } else {
+            hashMap.clear();
+        }
+        scheduleSave();
+    }
+
+    public static class SitenameProxy {
+        private final Utilities.Callback whenReceived;
+
+        public SitenameProxy(Utilities.Callback callback) {
+            this.whenReceived = callback;
+        }
+
+        @JavascriptInterface
+        public void post(final String str, final String str2) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    WebMetadataCache.SitenameProxy.this.lambda$post$0(str, str2);
+                }
+            });
+        }
+
+        public void lambda$post$0(String str, String str2) {
+            str.hashCode();
+            if (str.equals("siteNameEmpty")) {
+                this.whenReceived.run(null);
+            } else if (str.equals("siteName")) {
+                this.whenReceived.run(str2);
+            }
+        }
+    }
+
     public static void retrieveFaviconAndSitename(final String str, final Utilities.Callback2 callback2) {
         if (callback2 == null) {
             return;
@@ -355,13 +404,13 @@ public class WebMetadataCache {
             }
 
             @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824));
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                return false;
             }
 
             @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                return false;
+            protected void onMeasure(int i, int i2) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824));
             }
         };
         ((ViewGroup) rootView).addView(frameLayout);
@@ -435,102 +484,44 @@ public class WebMetadataCache {
         }, 10000L);
     }
 
-    public void clear() {
-        HashMap hashMap = this.cache;
-        if (hashMap == null) {
-            this.loading = false;
-            this.loaded = true;
-            this.cache = new HashMap();
-        } else {
-            hashMap.clear();
-        }
-        scheduleSave();
-    }
-
-    public WebMetadata get(String str) {
-        load();
-        WebMetadata webMetadata = (WebMetadata) this.cache.get(str);
-        if (webMetadata == null) {
-            return null;
-        }
-        webMetadata.time = Math.max(webMetadata.time, System.currentTimeMillis());
-        scheduleSave();
-        return webMetadata;
-    }
-
-    public File getCacheFile() {
-        return new File(FileLoader.getDirectory(4), "webmetacache.dat");
-    }
-
-    public void load() {
-        if (this.loaded || this.loading) {
+    public static void lambda$retrieveFaviconAndSitename$4(boolean[] zArr, String[] strArr, Bitmap[] bitmapArr, String str, WebView webView, FrameLayout frameLayout, Utilities.Callback2 callback2, Boolean bool) {
+        Bitmap bitmap;
+        if (zArr[0]) {
             return;
         }
-        this.loading = true;
-        if (this.cache == null) {
-            this.cache = new HashMap();
+        if (bool.booleanValue() || (!TextUtils.isEmpty(strArr[0]) && (bitmap = bitmapArr[0]) != null && bitmap.getWidth() > AndroidUtilities.dp(28.0f) && bitmapArr[0].getHeight() > AndroidUtilities.dp(28.0f))) {
+            zArr[0] = true;
+            WebMetadata webMetadata = new WebMetadata();
+            webMetadata.domain = AndroidUtilities.getHostAuthority(str, true);
+            webMetadata.sitename = strArr[0];
+            Bitmap bitmap2 = bitmapArr[0];
+            if (bitmap2 != null) {
+                webMetadata.favicon = Bitmap.createBitmap(bitmap2);
+            }
+            getInstance().save(webMetadata);
+            webView.destroy();
+            AndroidUtilities.removeFromParent(webView);
+            AndroidUtilities.removeFromParent(frameLayout);
+            callback2.run(strArr[0], bitmapArr[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.webViewResolved, str);
         }
-        Utilities.globalQueue.postRunnable(new Runnable() {
+    }
+
+    public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
+        webView.evaluateJavascript(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
             @Override
-            public final void run() {
-                WebMetadataCache.this.lambda$load$1();
+            public final void onReceiveValue(Object obj) {
+                WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);
             }
         });
     }
 
-    public void save() {
-        if (this.saving) {
-            return;
-        }
-        this.saving = true;
-        long currentTimeMillis = System.currentTimeMillis();
-        final ArrayList arrayList = new ArrayList();
-        for (WebMetadata webMetadata : this.cache.values()) {
-            if (!TextUtils.isEmpty(webMetadata.domain) && currentTimeMillis - webMetadata.time <= 604800000) {
-                arrayList.add(0, webMetadata);
-                if (arrayList.size() >= 100) {
-                    break;
-                }
-            }
-        }
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                WebMetadataCache.this.lambda$save$3(arrayList);
-            }
-        });
+    public static void lambda$retrieveFaviconAndSitename$7(String[] strArr, Utilities.Callback callback, String str) {
+        strArr[0] = str;
+        callback.run(Boolean.FALSE);
     }
 
-    public void save(WebMetadata webMetadata) {
-        if (webMetadata == null) {
-            return;
-        }
-        if (this.cache == null) {
-            this.cache = new HashMap();
-        }
-        if (TextUtils.isEmpty(webMetadata.domain)) {
-            return;
-        }
-        this.cache.put(webMetadata.domain, webMetadata);
-        load();
-        scheduleSave();
-    }
-
-    public void scheduleSave() {
-        AndroidUtilities.cancelRunOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                WebMetadataCache.this.save();
-            }
-        });
-        if (this.saving) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                WebMetadataCache.this.save();
-            }
-        }, BuildVars.DEBUG_PRIVATE_VERSION ? 1L : 1000L);
+    public static void lambda$retrieveFaviconAndSitename$8(Utilities.Callback callback) {
+        callback.run(Boolean.TRUE);
     }
 }

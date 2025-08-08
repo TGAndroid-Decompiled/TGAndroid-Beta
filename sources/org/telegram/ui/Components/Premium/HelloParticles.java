@@ -35,6 +35,61 @@ public abstract class HelloParticles {
         public long minLifeTime = 2000;
         private final float dt = 1000.0f / AndroidUtilities.screenRefreshRate;
 
+        public Drawable(int i) {
+            this.bitmapScale = 1.0f;
+            this.count = i;
+            this.textPaint.setTypeface(AndroidUtilities.bold());
+            this.textPaint.setColor(-1);
+            int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+            if (devicePerformanceClass == 0) {
+                this.bitmapScale = 0.25f;
+            } else if (devicePerformanceClass == 1) {
+                this.bitmapScale = 0.5f;
+            } else {
+                this.bitmapScale = 0.75f;
+            }
+            this.textPaint.setTextSize(AndroidUtilities.dp(this.bitmapScale * 24.0f));
+            this.paint.setColor(-1);
+        }
+
+        public void init() {
+            if (this.particles.isEmpty()) {
+                for (int i = 0; i < this.count; i++) {
+                    this.particles.add(new Particle());
+                }
+            }
+        }
+
+        public void resetPositions() {
+            long currentTimeMillis = System.currentTimeMillis();
+            for (int i = 0; i < this.particles.size(); i++) {
+                ((Particle) this.particles.get(i)).genPosition(currentTimeMillis, i, true);
+            }
+        }
+
+        public void onDraw(Canvas canvas) {
+            long currentTimeMillis = System.currentTimeMillis();
+            for (int i = 0; i < this.particles.size(); i++) {
+                Particle particle = (Particle) this.particles.get(i);
+                if (this.paused) {
+                    particle.draw(canvas, i, this.pausedTime);
+                } else {
+                    particle.draw(canvas, i, currentTimeMillis);
+                }
+                if (particle.inProgress >= 1.0f) {
+                    particle.genPosition(currentTimeMillis, i, false);
+                }
+            }
+        }
+
+        public void recycle() {
+            Iterator it = this.bitmaps.values().iterator();
+            while (it.hasNext()) {
+                ((Bitmap) it.next()).recycle();
+            }
+            this.bitmaps.clear();
+        }
+
         private class Particle {
             private int alpha;
             private Bitmap bitmap;
@@ -111,23 +166,21 @@ public abstract class HelloParticles {
                 float f = this.w / 4.0f;
                 float f2 = rectF.left + f;
                 float f3 = rectF.right - f;
-                int i2 = i % 2;
-                float centerX = rectF.centerX();
-                if (i2 == 0) {
-                    f3 = centerX - (this.w / 2.0f);
+                if (i % 2 == 0) {
+                    f3 = rectF.centerX() - (this.w / 2.0f);
                 } else {
-                    f2 = (this.w / 2.0f) + centerX;
+                    f2 = (this.w / 2.0f) + rectF.centerX();
                 }
                 float f4 = f3 - f2;
                 float abs = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
                 float abs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
                 float f5 = 0.0f;
-                for (int i3 = 0; i3 < 10; i3++) {
+                for (int i2 = 0; i2 < 10; i2++) {
                     float abs3 = Math.abs(Utilities.fastRandom.nextInt() % f4) + f2;
                     float abs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
                     float f6 = 2.1474836E9f;
-                    for (int i4 = 0; i4 < Drawable.this.particles.size(); i4++) {
-                        Particle particle = (Particle) Drawable.this.particles.get(i4);
+                    for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
+                        Particle particle = (Particle) Drawable.this.particles.get(i3);
                         if (particle.set) {
                             float min = Math.min(Math.abs((particle.x + ((particle.w * (this.scale / Drawable.this.bitmapScale)) * 1.1f)) - abs3), Math.abs(particle.x - abs3));
                             float f7 = particle.y - abs4;
@@ -151,55 +204,6 @@ public abstract class HelloParticles {
                 this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
                 this.inProgress = z ? Math.abs((Utilities.fastRandom.nextFloat() % 1.0f) * 0.9f) : 0.0f;
                 this.set = true;
-            }
-        }
-
-        public Drawable(int i) {
-            this.bitmapScale = 1.0f;
-            this.count = i;
-            this.textPaint.setTypeface(AndroidUtilities.bold());
-            this.textPaint.setColor(-1);
-            int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-            this.bitmapScale = devicePerformanceClass != 0 ? devicePerformanceClass != 1 ? 0.75f : 0.5f : 0.25f;
-            this.textPaint.setTextSize(AndroidUtilities.dp(this.bitmapScale * 24.0f));
-            this.paint.setColor(-1);
-        }
-
-        public void init() {
-            if (this.particles.isEmpty()) {
-                for (int i = 0; i < this.count; i++) {
-                    this.particles.add(new Particle());
-                }
-            }
-        }
-
-        public void onDraw(Canvas canvas) {
-            long currentTimeMillis = System.currentTimeMillis();
-            for (int i = 0; i < this.particles.size(); i++) {
-                Particle particle = (Particle) this.particles.get(i);
-                if (this.paused) {
-                    particle.draw(canvas, i, this.pausedTime);
-                } else {
-                    particle.draw(canvas, i, currentTimeMillis);
-                }
-                if (particle.inProgress >= 1.0f) {
-                    particle.genPosition(currentTimeMillis, i, false);
-                }
-            }
-        }
-
-        public void recycle() {
-            Iterator it = this.bitmaps.values().iterator();
-            while (it.hasNext()) {
-                ((Bitmap) it.next()).recycle();
-            }
-            this.bitmaps.clear();
-        }
-
-        public void resetPositions() {
-            long currentTimeMillis = System.currentTimeMillis();
-            for (int i = 0; i < this.particles.size(); i++) {
-                ((Particle) this.particles.get(i)).genPosition(currentTimeMillis, i, true);
             }
         }
     }

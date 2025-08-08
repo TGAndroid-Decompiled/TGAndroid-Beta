@@ -37,6 +37,34 @@ public class FireworksOverlay extends View {
     private boolean startedFall;
     private boolean withStars;
 
+    public void onStop() {
+    }
+
+    static int access$508(FireworksOverlay fireworksOverlay) {
+        int i = fireworksOverlay.fallingDownCount;
+        fireworksOverlay.fallingDownCount = i + 1;
+        return i;
+    }
+
+    static {
+        particlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 50 : 60;
+        fallParticlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 20 : 30;
+        colors = new int[]{-13845272, -6421296, -79102, -187561, -14185218, -10897300};
+        heartColors = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
+        starsColors = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
+        paint = new Paint[6];
+        int i = 0;
+        while (true) {
+            Paint[] paintArr = paint;
+            if (i >= paintArr.length) {
+                return;
+            }
+            paintArr[i] = new Paint(1);
+            paint[i].setColor(colors[i]);
+            i++;
+        }
+    }
+
     public class Particle {
         byte colorType;
         byte finishedStart;
@@ -64,52 +92,88 @@ public class FireworksOverlay extends View {
                 canvas.save();
                 canvas.rotate(this.rotation, FireworksOverlay.this.rect.centerX(), FireworksOverlay.this.rect.centerY());
                 canvas.drawRoundRect(FireworksOverlay.this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), FireworksOverlay.paint[this.colorType]);
-            } else {
-                if (b != 2) {
-                    return;
-                }
+                canvas.restore();
+                return;
+            }
+            if (b == 2) {
                 Drawable drawable = FireworksOverlay.starsDrawable != null ? FireworksOverlay.starsDrawable[this.colorType] : null;
                 if (FireworksOverlay.heartDrawable != null) {
                     drawable = FireworksOverlay.heartDrawable[this.colorType];
                 }
-                if (drawable == null) {
-                    return;
+                if (drawable != null) {
+                    int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
+                    int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
+                    int i = (int) this.x;
+                    int i2 = (int) this.y;
+                    drawable.setBounds(i - intrinsicWidth, i2 - intrinsicHeight, i + intrinsicWidth, i2 + intrinsicHeight);
+                    canvas.save();
+                    canvas.rotate(this.rotation, this.x, this.y);
+                    float f = this.typeSize / 6.0f;
+                    canvas.scale(f, f, this.x, this.y);
+                    drawable.draw(canvas);
+                    canvas.restore();
                 }
-                int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
-                int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                int i = (int) this.x;
-                int i2 = (int) this.y;
-                drawable.setBounds(i - intrinsicWidth, i2 - intrinsicHeight, i + intrinsicWidth, i2 + intrinsicHeight);
-                canvas.save();
-                canvas.rotate(this.rotation, this.x, this.y);
-                float f = this.typeSize / 6.0f;
-                canvas.scale(f, f, this.x, this.y);
-                drawable.draw(canvas);
             }
-            canvas.restore();
         }
 
-        public boolean update(int r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FireworksOverlay.Particle.update(int):boolean");
-        }
-    }
-
-    static {
-        particlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 50 : 60;
-        fallParticlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 20 : 30;
-        colors = new int[]{-13845272, -6421296, -79102, -187561, -14185218, -10897300};
-        heartColors = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
-        starsColors = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
-        paint = new Paint[6];
-        int i = 0;
-        while (true) {
-            Paint[] paintArr = paint;
-            if (i >= paintArr.length) {
-                return;
+        public boolean update(int i) {
+            float f = i / 16.0f;
+            float f2 = this.x;
+            float f3 = this.moveX;
+            this.x = f2 + (f3 * f);
+            this.y += this.moveY * f;
+            if (this.xFinished != 0) {
+                float dp = AndroidUtilities.dp(1.0f) * 0.5f;
+                if (this.xFinished == 1) {
+                    float f4 = this.moveX + (dp * f * 0.05f);
+                    this.moveX = f4;
+                    if (f4 >= dp) {
+                        this.xFinished = (byte) 2;
+                    }
+                } else {
+                    float f5 = this.moveX - ((dp * f) * 0.05f);
+                    this.moveX = f5;
+                    if (f5 <= (-dp)) {
+                        this.xFinished = (byte) 1;
+                    }
+                }
+            } else if (this.side == 0) {
+                if (f3 > 0.0f) {
+                    float f6 = f3 - (0.05f * f);
+                    this.moveX = f6;
+                    if (f6 <= 0.0f) {
+                        this.moveX = 0.0f;
+                        this.xFinished = this.finishedStart;
+                    }
+                }
+            } else if (f3 < 0.0f) {
+                float f7 = f3 + (0.05f * f);
+                this.moveX = f7;
+                if (f7 >= 0.0f) {
+                    this.moveX = 0.0f;
+                    this.xFinished = this.finishedStart;
+                }
             }
-            paintArr[i] = new Paint(1);
-            paint[i].setColor(colors[i]);
-            i++;
+            float f8 = (-AndroidUtilities.dp(1.0f)) / 2.0f;
+            float f9 = this.moveY;
+            boolean z = f9 < f8;
+            if (f9 > f8) {
+                this.moveY = f9 + ((AndroidUtilities.dp(1.0f) / 3.0f) * f * FireworksOverlay.this.speedCoef);
+            } else {
+                this.moveY = f9 + ((AndroidUtilities.dp(1.0f) / 3.0f) * f);
+            }
+            if (z && this.moveY > f8) {
+                FireworksOverlay.access$508(FireworksOverlay.this);
+            }
+            byte b = this.type;
+            if (b == 1 || b == 2) {
+                short s = (short) (this.rotation + (f * 10.0f));
+                this.rotation = s;
+                if (s > 360) {
+                    this.rotation = (short) (s - 360);
+                }
+            }
+            return this.y >= ((float) FireworksOverlay.this.getHeightForAnimation());
         }
     }
 
@@ -118,31 +182,6 @@ public class FireworksOverlay extends View {
         this.rect = new RectF();
         this.speedCoef = 1.0f;
         this.particles = new ArrayList(particlesCount + fallParticlesCount);
-    }
-
-    static int access$508(FireworksOverlay fireworksOverlay) {
-        int i = fireworksOverlay.fallingDownCount;
-        fireworksOverlay.fallingDownCount = i + 1;
-        return i;
-    }
-
-    private org.telegram.ui.Components.FireworksOverlay.Particle createParticle(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FireworksOverlay.createParticle(boolean):org.telegram.ui.Components.FireworksOverlay$Particle");
-    }
-
-    public int getHeightForAnimation() {
-        return getMeasuredHeight() == 0 ? ((View) getParent()).getHeight() : getMeasuredHeight();
-    }
-
-    private int getWidthForAnimation() {
-        return getMeasuredWidth() == 0 ? ((View) getParent()).getWidth() : getMeasuredWidth();
-    }
-
-    public void lambda$onDraw$0() {
-        if (this.started) {
-            return;
-        }
-        setLayerType(0, null);
     }
 
     private void loadHeartDrawables() {
@@ -179,6 +218,60 @@ public class FireworksOverlay extends View {
         }
     }
 
+    public int getHeightForAnimation() {
+        if (getMeasuredHeight() == 0) {
+            return ((View) getParent()).getHeight();
+        }
+        return getMeasuredHeight();
+    }
+
+    private int getWidthForAnimation() {
+        if (getMeasuredWidth() == 0) {
+            return ((View) getParent()).getWidth();
+        }
+        return getMeasuredWidth();
+    }
+
+    private org.telegram.ui.Components.FireworksOverlay.Particle createParticle(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FireworksOverlay.createParticle(boolean):org.telegram.ui.Components.FireworksOverlay$Particle");
+    }
+
+    public boolean isStarted() {
+        return this.started;
+    }
+
+    public void start(boolean z) {
+        this.withStars = z;
+        setLayerType(2, null);
+        boolean z2 = true;
+        this.started = true;
+        this.startedFall = false;
+        this.fallingDownCount = 0;
+        this.speedCoef = 1.0f;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int i = calendar.get(5);
+        if (calendar.get(2) != 1 || (!BuildVars.DEBUG_PRIVATE_VERSION && i != 14)) {
+            z2 = false;
+        }
+        this.isFebruary14 = z2;
+        if (z2) {
+            loadHeartDrawables();
+        } else if (z) {
+            loadStarsDrawables();
+        }
+        int i2 = particlesCount;
+        int clamp = Utilities.clamp(i2 - this.particles.size(), i2, i2 / 3);
+        for (int i3 = 0; i3 < clamp; i3++) {
+            this.particles.add(createParticle(false));
+        }
+        invalidate();
+    }
+
+    public void start() {
+        start(false);
+    }
+
     private void startFall() {
         if (this.startedFall) {
             return;
@@ -187,10 +280,6 @@ public class FireworksOverlay extends View {
         for (int i = 0; i < fallParticlesCount; i++) {
             this.particles.add(createParticle(true));
         }
-    }
-
-    public boolean isStarted() {
-        return this.started;
     }
 
     @Override
@@ -235,38 +324,10 @@ public class FireworksOverlay extends View {
         onStop();
     }
 
-    public void onStop() {
-    }
-
-    public void start() {
-        start(false);
-    }
-
-    public void start(boolean z) {
-        this.withStars = z;
-        setLayerType(2, null);
-        boolean z2 = true;
-        this.started = true;
-        this.startedFall = false;
-        this.fallingDownCount = 0;
-        this.speedCoef = 1.0f;
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        int i = calendar.get(5);
-        if (calendar.get(2) != 1 || (!BuildVars.DEBUG_PRIVATE_VERSION && i != 14)) {
-            z2 = false;
+    public void lambda$onDraw$0() {
+        if (this.started) {
+            return;
         }
-        this.isFebruary14 = z2;
-        if (z2) {
-            loadHeartDrawables();
-        } else if (z) {
-            loadStarsDrawables();
-        }
-        int i2 = particlesCount;
-        int clamp = Utilities.clamp(i2 - this.particles.size(), i2, i2 / 3);
-        for (int i3 = 0; i3 < clamp; i3++) {
-            this.particles.add(createParticle(false));
-        }
-        invalidate();
+        setLayerType(0, null);
     }
 }

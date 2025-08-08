@@ -85,13 +85,80 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private ActionBarMenuSubItem zoomInItem;
     private ActionBarMenuSubItem zoomOutItem;
 
+    public MediaActivity(Bundle bundle, SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader) {
+        super(bundle);
+        this.titles = new FrameLayout[2];
+        this.nameTextView = new SimpleTextView[2];
+        this.subtitleTextView = new AnimatedTextView[2];
+        this.filterPhotos = true;
+        this.filterVideos = true;
+        this.shiftDp = -12;
+        this.subtitleShown = new boolean[2];
+        this.subtitleT = new float[2];
+        this.firstSubtitleCheck = new boolean[]{true, true};
+        this.subtitleAnimator = new ValueAnimator[2];
+        this.sharedMediaPreloader = sharedMediaPreloader;
+    }
+
+    @Override
+    public boolean onFragmentCreate() {
+        this.type = getArguments().getInt("type", 0);
+        this.dialogId = getArguments().getLong("dialog_id");
+        this.topicId = getArguments().getLong("topic_id", 0L);
+        this.hashtag = getArguments().getString("hashtag", "");
+        this.username = getArguments().getString("username", "");
+        this.storiesCount = getArguments().getInt("storiesCount", -1);
+        int i = this.type;
+        this.initialTab = getArguments().getInt("start_from", i == 2 ? 9 : i == 1 ? 8 : 0);
+        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
+        getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        getNotificationCenter().addObserver(this, NotificationCenter.storiesEnabledUpdate);
+        if (DialogObject.isUserDialog(this.dialogId) && this.topicId == 0) {
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.dialogId));
+            if (UserObject.isUserSelf(user)) {
+                getMessagesController().loadUserInfo(user, false, this.classGuid);
+                this.currentUserInfo = getMessagesController().getUserFull(this.dialogId);
+            }
+        }
+        if (this.sharedMediaPreloader == null) {
+            this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(this);
+        }
+        this.sharedMediaPreloader.addDelegate(this);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
+        getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        getNotificationCenter().removeObserver(this, NotificationCenter.storiesEnabledUpdate);
+        Runnable runnable = this.applyBulletin;
+        if (runnable != null) {
+            this.applyBulletin = null;
+            AndroidUtilities.runOnUIThread(runnable);
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.userInfoDidLoad && ((Long) objArr[0]).longValue() == this.dialogId) {
+            TLRPC.UserFull userFull = (TLRPC.UserFull) objArr[1];
+            this.currentUserInfo = userFull;
+            SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
+            if (sharedMediaLayout != null) {
+                sharedMediaLayout.setUserInfo(userFull);
+            }
+        }
+    }
+
+    @Override
+    public android.view.View createView(android.content.Context r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
+    }
+
     public class AnonymousClass1 extends ActionBar.ActionBarMenuOnItemClick {
         AnonymousClass1() {
-        }
-
-        public void lambda$onItemClick$0(ArrayList arrayList, AlertDialog alertDialog, int i) {
-            MediaActivity.this.getMessagesController().getStoriesController().deleteStories(MediaActivity.this.dialogId, arrayList);
-            MediaActivity.this.sharedMediaLayout.closeActionMode(false);
         }
 
         @Override
@@ -148,40 +215,81 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 create.redPositive();
             }
         }
-    }
 
-    private class StoriesTabsView extends BottomPagerTabs {
-        public StoriesTabsView(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, resourcesProvider);
+        public void lambda$onItemClick$0(ArrayList arrayList, AlertDialog alertDialog, int i) {
+            MediaActivity.this.getMessagesController().getStoriesController().deleteStories(MediaActivity.this.dialogId, arrayList);
+            MediaActivity.this.sharedMediaLayout.closeActionMode(false);
         }
-
-        @Override
-        public BottomPagerTabs.Tab[] createTabs() {
-            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
-        }
-    }
-
-    public MediaActivity(Bundle bundle, SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader) {
-        super(bundle);
-        this.titles = new FrameLayout[2];
-        this.nameTextView = new SimpleTextView[2];
-        this.subtitleTextView = new AnimatedTextView[2];
-        this.filterPhotos = true;
-        this.filterVideos = true;
-        this.shiftDp = -12;
-        this.subtitleShown = new boolean[2];
-        this.subtitleT = new float[2];
-        this.firstSubtitleCheck = new boolean[]{true, true};
-        this.subtitleAnimator = new ValueAnimator[2];
-        this.sharedMediaPreloader = sharedMediaPreloader;
     }
 
     public void lambda$createView$1(View view) {
         this.optionsItem.toggleSubMenu();
     }
 
+    public void lambda$createView$2(View view) {
+        Boolean zoomIn = this.sharedMediaLayout.zoomIn();
+        if (zoomIn == null) {
+            return;
+        }
+        boolean booleanValue = zoomIn.booleanValue();
+        this.zoomOutItem.setEnabled(true);
+        this.zoomOutItem.animate().alpha(this.zoomOutItem.isEnabled() ? 1.0f : 0.5f).start();
+        this.zoomInItem.setEnabled(booleanValue);
+        this.zoomInItem.animate().alpha(this.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
+    }
+
+    public void lambda$createView$3(View view) {
+        Boolean zoomOut = this.sharedMediaLayout.zoomOut();
+        if (zoomOut == null) {
+            return;
+        }
+        this.zoomOutItem.setEnabled(zoomOut.booleanValue());
+        this.zoomOutItem.animate().alpha(this.zoomOutItem.isEnabled() ? 1.0f : 0.5f).start();
+        this.zoomInItem.setEnabled(true);
+        this.zoomInItem.animate().alpha(this.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
+    }
+
+    public void lambda$createView$4(View view) {
+        boolean z = this.filterPhotos;
+        if (z && !this.filterVideos) {
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+            ActionBarMenuSubItem actionBarMenuSubItem = this.showPhotosItem;
+            int i = -this.shiftDp;
+            this.shiftDp = i;
+            AndroidUtilities.shakeViewSpring(actionBarMenuSubItem, i);
+            return;
+        }
+        ActionBarMenuSubItem actionBarMenuSubItem2 = this.showPhotosItem;
+        boolean z2 = !z;
+        this.filterPhotos = z2;
+        actionBarMenuSubItem2.setChecked(z2);
+        this.sharedMediaLayout.setStoriesFilter(this.filterPhotos, this.filterVideos);
+    }
+
+    public void lambda$createView$5(View view) {
+        boolean z = this.filterVideos;
+        if (z && !this.filterPhotos) {
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+            ActionBarMenuSubItem actionBarMenuSubItem = this.showVideosItem;
+            int i = -this.shiftDp;
+            this.shiftDp = i;
+            AndroidUtilities.shakeViewSpring(actionBarMenuSubItem, i);
+            return;
+        }
+        ActionBarMenuSubItem actionBarMenuSubItem2 = this.showVideosItem;
+        boolean z2 = !z;
+        this.filterVideos = z2;
+        actionBarMenuSubItem2.setChecked(z2);
+        this.sharedMediaLayout.setStoriesFilter(this.filterPhotos, this.filterVideos);
+    }
+
+    public void lambda$createView$6(Integer num) {
+        this.sharedMediaLayout.scrollToPage(num.intValue() + 8);
+    }
+
     public void lambda$createView$10(View view) {
         int i;
+        Bulletin show;
         Runnable runnable = this.applyBulletin;
         if (runnable != null) {
             runnable.run();
@@ -229,74 +337,17 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 MediaActivity.this.lambda$createView$8(zArr2, arrayList, zArr);
             }
         };
-        BulletinFactory of = BulletinFactory.of(this);
-        (z ? of.createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySavedTitle", i, new Object[0]), LocaleController.getString("StorySavedSubtitle"), LocaleController.getString("Undo"), runnable2) : of.createSimpleBulletin(R.raw.chats_archived, LocaleController.formatPluralString("StoryArchived", i, new Object[0]), LocaleController.getString("Undo"), 5000, runnable2)).show().setOnHideListener(new Runnable() {
+        if (z) {
+            show = BulletinFactory.of(this).createSimpleBulletin(R.raw.contact_check, LocaleController.formatPluralString("StorySavedTitle", i, new Object[0]), LocaleController.getString("StorySavedSubtitle"), LocaleController.getString("Undo"), runnable2).show();
+        } else {
+            show = BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_archived, LocaleController.formatPluralString("StoryArchived", i, new Object[0]), LocaleController.getString("Undo"), 5000, runnable2).show();
+        }
+        show.setOnHideListener(new Runnable() {
             @Override
             public final void run() {
                 MediaActivity.this.lambda$createView$9(zArr2);
             }
         });
-    }
-
-    public void lambda$createView$2(View view) {
-        Boolean zoomIn = this.sharedMediaLayout.zoomIn();
-        if (zoomIn == null) {
-            return;
-        }
-        boolean booleanValue = zoomIn.booleanValue();
-        this.zoomOutItem.setEnabled(true);
-        this.zoomOutItem.animate().alpha(this.zoomOutItem.isEnabled() ? 1.0f : 0.5f).start();
-        this.zoomInItem.setEnabled(booleanValue);
-        this.zoomInItem.animate().alpha(this.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
-    }
-
-    public void lambda$createView$3(View view) {
-        Boolean zoomOut = this.sharedMediaLayout.zoomOut();
-        if (zoomOut == null) {
-            return;
-        }
-        this.zoomOutItem.setEnabled(zoomOut.booleanValue());
-        this.zoomOutItem.animate().alpha(this.zoomOutItem.isEnabled() ? 1.0f : 0.5f).start();
-        this.zoomInItem.setEnabled(true);
-        this.zoomInItem.animate().alpha(this.zoomInItem.isEnabled() ? 1.0f : 0.5f).start();
-    }
-
-    public void lambda$createView$4(View view) {
-        boolean z = this.filterPhotos;
-        if (!z || this.filterVideos) {
-            ActionBarMenuSubItem actionBarMenuSubItem = this.showPhotosItem;
-            boolean z2 = !z;
-            this.filterPhotos = z2;
-            actionBarMenuSubItem.setChecked(z2);
-            this.sharedMediaLayout.setStoriesFilter(this.filterPhotos, this.filterVideos);
-            return;
-        }
-        BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        ActionBarMenuSubItem actionBarMenuSubItem2 = this.showPhotosItem;
-        int i = -this.shiftDp;
-        this.shiftDp = i;
-        AndroidUtilities.shakeViewSpring(actionBarMenuSubItem2, i);
-    }
-
-    public void lambda$createView$5(View view) {
-        boolean z = this.filterVideos;
-        if (!z || this.filterPhotos) {
-            ActionBarMenuSubItem actionBarMenuSubItem = this.showVideosItem;
-            boolean z2 = !z;
-            this.filterVideos = z2;
-            actionBarMenuSubItem.setChecked(z2);
-            this.sharedMediaLayout.setStoriesFilter(this.filterPhotos, this.filterVideos);
-            return;
-        }
-        BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        ActionBarMenuSubItem actionBarMenuSubItem2 = this.showVideosItem;
-        int i = -this.shiftDp;
-        this.shiftDp = i;
-        AndroidUtilities.shakeViewSpring(actionBarMenuSubItem2, i);
-    }
-
-    public void lambda$createView$6(Integer num) {
-        this.sharedMediaLayout.scrollToPage(num.intValue() + 8);
     }
 
     public void lambda$createView$7(ArrayList arrayList, boolean z) {
@@ -320,22 +371,178 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.applyBulletin = null;
     }
 
-    public void lambda$onGetDebugItems$13() {
-        ShapeDetector.setLearning(getContext(), !ShapeDetector.isLearning(getContext()));
+    @Override
+    public boolean onBackPressed() {
+        if (closeSheet()) {
+            return false;
+        }
+        if (this.sharedMediaLayout.isActionModeShown()) {
+            this.sharedMediaLayout.closeActionMode(false);
+            return false;
+        }
+        return super.onBackPressed();
     }
 
-    public void lambda$showSubtitle$12(int i, ValueAnimator valueAnimator) {
-        this.subtitleT[i] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.nameTextView[i].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, this.subtitleT[i]));
-        this.nameTextView[i].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, this.subtitleT[i]));
-        this.nameTextView[i].setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), 0, this.subtitleT[i]));
-        this.subtitleTextView[i].setAlpha(this.subtitleT[i]);
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        if (this.sharedMediaLayout.isSwipeBackEnabled()) {
+            return this.sharedMediaLayout.isCurrentTabFirst();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canBeginSlide() {
+        if (this.sharedMediaLayout.isSwipeBackEnabled()) {
+            return super.canBeginSlide();
+        }
+        return false;
+    }
+
+    public void updateMediaCount() {
+        SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
+        if (sharedMediaLayout != null) {
+            if (this.subtitleTextView[0] == null) {
+                return;
+            }
+            int closestTab = sharedMediaLayout.getClosestTab();
+            if (this.type != 3 || closestTab == 8) {
+                int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
+                boolean z = LocaleController.isRTL;
+                boolean z2 = !z;
+                int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
+                if (closestTab == 8 || closestTab == 9) {
+                    ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
+                    if (actionBarMenuSubItem != null) {
+                        actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
+                        ActionBarMenuSubItem actionBarMenuSubItem2 = this.zoomOutItem;
+                        actionBarMenuSubItem2.setAlpha(actionBarMenuSubItem2.isEnabled() ? 1.0f : 0.5f);
+                    }
+                    ActionBarMenuSubItem actionBarMenuSubItem3 = this.zoomInItem;
+                    if (actionBarMenuSubItem3 != null) {
+                        actionBarMenuSubItem3.setEnabled(this.sharedMediaLayout.canZoomIn());
+                        ActionBarMenuSubItem actionBarMenuSubItem4 = this.zoomInItem;
+                        actionBarMenuSubItem4.setAlpha(actionBarMenuSubItem4.isEnabled() ? 1.0f : 0.5f);
+                    }
+                    int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
+                    if (storiesCount > 0) {
+                        if (this.type == 3) {
+                            if (TextUtils.isEmpty(this.subtitleTextView[0].getText())) {
+                                showSubtitle(0, true, true);
+                                this.subtitleTextView[0].setText(LocaleController.formatPluralStringSpaced("FoundStories", storiesCount), z2);
+                            }
+                        } else {
+                            showSubtitle(0, true, true);
+                            this.subtitleTextView[0].setText(LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]), z2);
+                        }
+                    } else {
+                        showSubtitle(0, false, true);
+                    }
+                    if (this.type == 1) {
+                        int storiesCount2 = this.sharedMediaLayout.getStoriesCount(9);
+                        if (storiesCount2 > 0) {
+                            showSubtitle(1, true, true);
+                            this.subtitleTextView[1].setText(LocaleController.formatPluralString("ProfileStoriesArchiveCount", storiesCount2, new Object[0]), z2);
+                        } else {
+                            showSubtitle(1, false, true);
+                        }
+                    }
+                    if (this.optionsItem != null) {
+                        SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
+                        final boolean z3 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
+                        if (!z3) {
+                            this.optionsItem.setVisibility(0);
+                        }
+                        this.optionsItem.animate().alpha(z3 ? 0.0f : 1.0f).withEndAction(new Runnable() {
+                            @Override
+                            public final void run() {
+                                MediaActivity.this.lambda$updateMediaCount$11(z3);
+                            }
+                        }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                    }
+                    ButtonWithCounterView buttonWithCounterView = this.button;
+                    if (buttonWithCounterView != null) {
+                        boolean z4 = !z && this.lastTab == closestTab;
+                        if (closestTab == 8) {
+                            SparseArray sparseArray = this.actionModeMessageObjects;
+                            buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z4);
+                        } else {
+                            buttonWithCounterView.setText(LocaleController.getString(R.string.SaveToProfile), z4);
+                        }
+                        this.lastTab = closestTab;
+                    }
+                    if (this.calendarItem != null) {
+                        boolean z5 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
+                        this.calendarItem.setEnabled(z5);
+                        this.calendarItem.setAlpha(z5 ? 1.0f : 0.5f);
+                        return;
+                    }
+                    return;
+                }
+                if (closestTab == 11) {
+                    showSubtitle(i, true, true);
+                    this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z2);
+                    return;
+                }
+                if (closestTab >= 0) {
+                    if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
+                        if (closestTab == 0) {
+                            showSubtitle(i, true, true);
+                            if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
+                                this.subtitleTextView[i].setText(LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]), z2);
+                                return;
+                            } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
+                                this.subtitleTextView[i].setText(LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]), z2);
+                                return;
+                            } else {
+                                this.subtitleTextView[i].setText(LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]), z2);
+                                return;
+                            }
+                        }
+                        if (closestTab == 1) {
+                            showSubtitle(i, true, true);
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]), z2);
+                            return;
+                        }
+                        if (closestTab == 2) {
+                            showSubtitle(i, true, true);
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]), z2);
+                            return;
+                        }
+                        if (closestTab == 3) {
+                            showSubtitle(i, true, true);
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]), z2);
+                            return;
+                        }
+                        if (closestTab == 4) {
+                            showSubtitle(i, true, true);
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]), z2);
+                        } else if (closestTab == 5) {
+                            showSubtitle(i, true, true);
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]), z2);
+                        } else if (closestTab == 10) {
+                            showSubtitle(i, true, true);
+                            MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
+                            this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z2);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void lambda$updateMediaCount$11(boolean z) {
         if (z) {
             this.optionsItem.setVisibility(8);
         }
+    }
+
+    public void setChatInfo(TLRPC.ChatFull chatFull) {
+        this.currentChatInfo = chatFull;
+    }
+
+    public long getDialogId() {
+        return this.dialogId;
     }
 
     private void showSubtitle(final int i, final boolean z, boolean z2) {
@@ -357,41 +564,59 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 valueAnimator.cancel();
                 this.subtitleAnimator[i] = null;
             }
-            if (!z3) {
-                this.subtitleT[i] = z ? 1.0f : 0.0f;
-                this.nameTextView[i].setScaleX(z ? 1.0f : 1.111f);
-                this.nameTextView[i].setScaleY(z ? 1.0f : 1.111f);
-                this.nameTextView[i].setTranslationY(z ? 0.0f : AndroidUtilities.dp(8.0f));
-                this.subtitleTextView[i].setAlpha(z ? 1.0f : 0.0f);
-                this.subtitleTextView[i].setVisibility(z ? 0 : 8);
+            if (z3) {
+                this.subtitleTextView[i].setVisibility(0);
+                this.subtitleAnimator[i] = ValueAnimator.ofFloat(this.subtitleT[i], z ? 1.0f : 0.0f);
+                this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator2);
+                    }
+                });
+                this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        MediaActivity.this.subtitleT[i] = z ? 1.0f : 0.0f;
+                        MediaActivity.this.nameTextView[i].setScaleX(z ? 1.0f : 1.111f);
+                        MediaActivity.this.nameTextView[i].setScaleY(z ? 1.0f : 1.111f);
+                        MediaActivity.this.nameTextView[i].setTranslationY(z ? 0.0f : AndroidUtilities.dp(8.0f));
+                        MediaActivity.this.subtitleTextView[i].setAlpha(z ? 1.0f : 0.0f);
+                        if (z) {
+                            return;
+                        }
+                        MediaActivity.this.subtitleTextView[i].setVisibility(8);
+                    }
+                });
+                this.subtitleAnimator[i].setDuration(320L);
+                this.subtitleAnimator[i].setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.subtitleAnimator[i].start();
                 return;
             }
-            this.subtitleTextView[i].setVisibility(0);
-            this.subtitleAnimator[i] = ValueAnimator.ofFloat(this.subtitleT[i], z ? 1.0f : 0.0f);
-            this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator2);
-                }
-            });
-            this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    MediaActivity.this.subtitleT[i] = z ? 1.0f : 0.0f;
-                    MediaActivity.this.nameTextView[i].setScaleX(z ? 1.0f : 1.111f);
-                    MediaActivity.this.nameTextView[i].setScaleY(z ? 1.0f : 1.111f);
-                    MediaActivity.this.nameTextView[i].setTranslationY(z ? 0.0f : AndroidUtilities.dp(8.0f));
-                    MediaActivity.this.subtitleTextView[i].setAlpha(z ? 1.0f : 0.0f);
-                    if (z) {
-                        return;
-                    }
-                    MediaActivity.this.subtitleTextView[i].setVisibility(8);
-                }
-            });
-            this.subtitleAnimator[i].setDuration(320L);
-            this.subtitleAnimator[i].setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.subtitleAnimator[i].start();
+            this.subtitleT[i] = z ? 1.0f : 0.0f;
+            this.nameTextView[i].setScaleX(z ? 1.0f : 1.111f);
+            this.nameTextView[i].setScaleY(z ? 1.0f : 1.111f);
+            this.nameTextView[i].setTranslationY(z ? 0.0f : AndroidUtilities.dp(8.0f));
+            this.subtitleTextView[i].setAlpha(z ? 1.0f : 0.0f);
+            this.subtitleTextView[i].setVisibility(z ? 0 : 8);
         }
+    }
+
+    public void lambda$showSubtitle$12(int i, ValueAnimator valueAnimator) {
+        this.subtitleT[i] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.nameTextView[i].setScaleX(AndroidUtilities.lerp(1.111f, 1.0f, this.subtitleT[i]));
+        this.nameTextView[i].setScaleY(AndroidUtilities.lerp(1.111f, 1.0f, this.subtitleT[i]));
+        this.nameTextView[i].setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), 0, this.subtitleT[i]));
+        this.subtitleTextView[i].setAlpha(this.subtitleT[i]);
+    }
+
+    @Override
+    public void mediaCountUpdated() {
+        SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
+        SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
+        if (sharedMediaLayout != null && (sharedMediaPreloader = this.sharedMediaPreloader) != null) {
+            sharedMediaLayout.setNewMediaCounts(sharedMediaPreloader.getLastMediaCount());
+        }
+        updateMediaCount();
     }
 
     public void updateColors() {
@@ -413,184 +638,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         if (simpleTextView2 != null) {
             simpleTextView2.setTextColor(Theme.getColor(i));
         }
-    }
-
-    public void updateMediaCount() {
-        String string;
-        AnimatedTextView animatedTextView;
-        String formatPluralString;
-        AnimatedTextView animatedTextView2;
-        String formatPluralString2;
-        SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
-        if (sharedMediaLayout != null) {
-            if (this.subtitleTextView[0] == null) {
-                return;
-            }
-            int closestTab = sharedMediaLayout.getClosestTab();
-            if (this.type != 3 || closestTab == 8) {
-                int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
-                boolean z = !LocaleController.isRTL;
-                int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
-                if (closestTab != 8 && closestTab != 9) {
-                    if (closestTab == 11) {
-                        showSubtitle(i, true, true);
-                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
-                        return;
-                    }
-                    if (closestTab >= 0) {
-                        if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
-                            if (closestTab == 0) {
-                                showSubtitle(i, true, true);
-                                if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
-                                    animatedTextView2 = this.subtitleTextView[i];
-                                    formatPluralString2 = LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]);
-                                } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
-                                    animatedTextView2 = this.subtitleTextView[i];
-                                    formatPluralString2 = LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]);
-                                } else {
-                                    animatedTextView2 = this.subtitleTextView[i];
-                                    formatPluralString2 = LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]);
-                                }
-                            } else if (closestTab == 1) {
-                                showSubtitle(i, true, true);
-                                animatedTextView2 = this.subtitleTextView[i];
-                                formatPluralString2 = LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]);
-                            } else if (closestTab == 2) {
-                                showSubtitle(i, true, true);
-                                animatedTextView2 = this.subtitleTextView[i];
-                                formatPluralString2 = LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]);
-                            } else if (closestTab == 3) {
-                                showSubtitle(i, true, true);
-                                animatedTextView2 = this.subtitleTextView[i];
-                                formatPluralString2 = LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]);
-                            } else if (closestTab == 4) {
-                                showSubtitle(i, true, true);
-                                animatedTextView2 = this.subtitleTextView[i];
-                                formatPluralString2 = LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]);
-                            } else {
-                                if (closestTab != 5) {
-                                    if (closestTab == 10) {
-                                        showSubtitle(i, true, true);
-                                        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
-                                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                showSubtitle(i, true, true);
-                                animatedTextView2 = this.subtitleTextView[i];
-                                formatPluralString2 = LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]);
-                            }
-                            animatedTextView2.setText(formatPluralString2, z);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
-                if (actionBarMenuSubItem != null) {
-                    actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
-                    ActionBarMenuSubItem actionBarMenuSubItem2 = this.zoomOutItem;
-                    actionBarMenuSubItem2.setAlpha(actionBarMenuSubItem2.isEnabled() ? 1.0f : 0.5f);
-                }
-                ActionBarMenuSubItem actionBarMenuSubItem3 = this.zoomInItem;
-                if (actionBarMenuSubItem3 != null) {
-                    actionBarMenuSubItem3.setEnabled(this.sharedMediaLayout.canZoomIn());
-                    ActionBarMenuSubItem actionBarMenuSubItem4 = this.zoomInItem;
-                    actionBarMenuSubItem4.setAlpha(actionBarMenuSubItem4.isEnabled() ? 1.0f : 0.5f);
-                }
-                int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
-                if (storiesCount > 0) {
-                    if (this.type != 3) {
-                        showSubtitle(0, true, true);
-                        animatedTextView = this.subtitleTextView[0];
-                        formatPluralString = LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]);
-                    } else if (TextUtils.isEmpty(this.subtitleTextView[0].getText())) {
-                        showSubtitle(0, true, true);
-                        animatedTextView = this.subtitleTextView[0];
-                        formatPluralString = LocaleController.formatPluralStringSpaced("FoundStories", storiesCount);
-                    }
-                    animatedTextView.setText(formatPluralString, z);
-                } else {
-                    showSubtitle(0, false, true);
-                }
-                if (this.type == 1) {
-                    int storiesCount2 = this.sharedMediaLayout.getStoriesCount(9);
-                    if (storiesCount2 > 0) {
-                        showSubtitle(1, true, true);
-                        this.subtitleTextView[1].setText(LocaleController.formatPluralString("ProfileStoriesArchiveCount", storiesCount2, new Object[0]), z);
-                    } else {
-                        showSubtitle(1, false, true);
-                    }
-                }
-                if (this.optionsItem != null) {
-                    SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
-                    final boolean z2 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
-                    if (!z2) {
-                        this.optionsItem.setVisibility(0);
-                    }
-                    this.optionsItem.animate().alpha(z2 ? 0.0f : 1.0f).withEndAction(new Runnable() {
-                        @Override
-                        public final void run() {
-                            MediaActivity.this.lambda$updateMediaCount$11(z2);
-                        }
-                    }).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-                }
-                ButtonWithCounterView buttonWithCounterView = this.button;
-                if (buttonWithCounterView != null) {
-                    boolean z3 = z && this.lastTab == closestTab;
-                    if (closestTab == 8) {
-                        SparseArray sparseArray = this.actionModeMessageObjects;
-                        string = LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]);
-                    } else {
-                        string = LocaleController.getString(R.string.SaveToProfile);
-                    }
-                    buttonWithCounterView.setText(string, z3);
-                    this.lastTab = closestTab;
-                }
-                if (this.calendarItem != null) {
-                    boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
-                    this.calendarItem.setEnabled(z4);
-                    this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
-                }
-            }
-        }
-    }
-
-    @Override
-    public boolean canBeginSlide() {
-        if (this.sharedMediaLayout.isSwipeBackEnabled()) {
-            return super.canBeginSlide();
-        }
-        return false;
-    }
-
-    @Override
-    public android.view.View createView(android.content.Context r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.userInfoDidLoad && ((Long) objArr[0]).longValue() == this.dialogId) {
-            TLRPC.UserFull userFull = (TLRPC.UserFull) objArr[1];
-            this.currentUserInfo = userFull;
-            SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
-            if (sharedMediaLayout != null) {
-                sharedMediaLayout.setUserInfo(userFull);
-            }
-        }
-    }
-
-    public long getDialogId() {
-        return this.dialogId;
-    }
-
-    @Override
-    public int getNavigationBarColor() {
-        int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
-        return (getLastStoryViewer() == null || !getLastStoryViewer().attachedToParent()) ? themedColor : getLastStoryViewer().getNavigationBarColor(themedColor);
     }
 
     @Override
@@ -627,76 +674,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     @Override
-    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        if (this.sharedMediaLayout.isSwipeBackEnabled()) {
-            return this.sharedMediaLayout.isCurrentTabFirst();
-        }
-        return false;
-    }
-
-    @Override
-    public void mediaCountUpdated() {
-        SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
-        SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
-        if (sharedMediaLayout != null && (sharedMediaPreloader = this.sharedMediaPreloader) != null) {
-            sharedMediaLayout.setNewMediaCounts(sharedMediaPreloader.getLastMediaCount());
-        }
-        updateMediaCount();
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        if (closeSheet()) {
-            return false;
-        }
-        if (!this.sharedMediaLayout.isActionModeShown()) {
-            return super.onBackPressed();
-        }
-        this.sharedMediaLayout.closeActionMode(false);
-        return false;
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        this.type = getArguments().getInt("type", 0);
-        this.dialogId = getArguments().getLong("dialog_id");
-        this.topicId = getArguments().getLong("topic_id", 0L);
-        this.hashtag = getArguments().getString("hashtag", "");
-        this.username = getArguments().getString("username", "");
-        this.storiesCount = getArguments().getInt("storiesCount", -1);
-        int i = this.type;
-        this.initialTab = getArguments().getInt("start_from", i == 2 ? 9 : i == 1 ? 8 : 0);
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        getNotificationCenter().addObserver(this, NotificationCenter.storiesEnabledUpdate);
-        if (DialogObject.isUserDialog(this.dialogId) && this.topicId == 0) {
-            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.dialogId));
-            if (UserObject.isUserSelf(user)) {
-                getMessagesController().loadUserInfo(user, false, this.classGuid);
-                this.currentUserInfo = getMessagesController().getUserFull(this.dialogId);
-            }
-        }
-        if (this.sharedMediaPreloader == null) {
-            this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(this);
-        }
-        this.sharedMediaPreloader.addDelegate(this);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        getNotificationCenter().removeObserver(this, NotificationCenter.storiesEnabledUpdate);
-        Runnable runnable = this.applyBulletin;
-        if (runnable != null) {
-            this.applyBulletin = null;
-            AndroidUtilities.runOnUIThread(runnable);
-        }
-    }
-
-    @Override
     public List onGetDebugItems() {
         StringBuilder sb = new StringBuilder();
         sb.append(ShapeDetector.isLearning(getContext()) ? "Disable" : "Enable");
@@ -709,7 +686,24 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }));
     }
 
-    public void setChatInfo(TLRPC.ChatFull chatFull) {
-        this.currentChatInfo = chatFull;
+    public void lambda$onGetDebugItems$13() {
+        ShapeDetector.setLearning(getContext(), !ShapeDetector.isLearning(getContext()));
+    }
+
+    private class StoriesTabsView extends BottomPagerTabs {
+        public StoriesTabsView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+        }
+
+        @Override
+        public BottomPagerTabs.Tab[] createTabs() {
+            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
+        }
+    }
+
+    @Override
+    public int getNavigationBarColor() {
+        int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
+        return (getLastStoryViewer() == null || !getLastStoryViewer().attachedToParent()) ? themedColor : getLastStoryViewer().getNavigationBarColor(themedColor);
     }
 }

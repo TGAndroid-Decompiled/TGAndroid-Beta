@@ -17,6 +17,13 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     private boolean opened;
     private Uri uri;
 
+    @Override
+    public Map getResponseHeaders() {
+        Map emptyMap;
+        emptyMap = Collections.emptyMap();
+        return emptyMap;
+    }
+
     public static class EncryptedFileDataSourceException extends IOException {
         public EncryptedFileDataSourceException(Throwable th) {
             super(th);
@@ -33,33 +40,6 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         if (transferListener != null) {
             addTransferListener(transferListener);
         }
-    }
-
-    @Override
-    public void close() {
-        try {
-            this.fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (this.opened) {
-            this.opened = false;
-            transferEnded();
-        }
-        this.fileInputStream = null;
-        this.uri = null;
-    }
-
-    @Override
-    public Map getResponseHeaders() {
-        Map emptyMap;
-        emptyMap = Collections.emptyMap();
-        return emptyMap;
-    }
-
-    @Override
-    public Uri getUri() {
-        return this.uri;
     }
 
     @Override
@@ -107,5 +87,25 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         this.bytesRemaining -= min;
         bytesTransferred(min);
         return min;
+    }
+
+    @Override
+    public Uri getUri() {
+        return this.uri;
+    }
+
+    @Override
+    public void close() {
+        try {
+            this.fileInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (this.opened) {
+            this.opened = false;
+            transferEnded();
+        }
+        this.fileInputStream = null;
+        this.uri = null;
     }
 }

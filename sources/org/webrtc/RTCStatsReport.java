@@ -11,16 +11,12 @@ public class RTCStatsReport {
         this.stats = map;
     }
 
-    private static RTCStatsReport create(long j, Map map) {
-        return new RTCStatsReport(j, map);
+    public double getTimestampUs() {
+        return this.timestampUs;
     }
 
     public Map<String, RTCStats> getStatsMap() {
         return this.stats;
-    }
-
-    public double getTimestampUs() {
-        return this.timestampUs;
     }
 
     public String toString() {
@@ -38,5 +34,9 @@ public class RTCStatsReport {
         }
         sb.append(" ] }");
         return sb.toString();
+    }
+
+    private static RTCStatsReport create(long j, Map map) {
+        return new RTCStatsReport(j, map);
     }
 }

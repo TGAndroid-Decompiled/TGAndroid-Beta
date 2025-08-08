@@ -10,7 +10,6 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
@@ -43,66 +42,16 @@ public class UpdateLayout extends IUpdateLayout {
         this.sideMenuContainer = viewGroup2;
     }
 
-    public void lambda$createUpdateUI$0(int i, View view) {
-        if (this.updateLayoutIcon.getIcon() == 2) {
-            ApplicationLoader.applicationLoaderInstance.downloadUpdate();
-        } else {
-            if (this.updateLayoutIcon.getIcon() != 3) {
-                File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
-                if (downloadedUpdateFile != null) {
-                    AndroidUtilities.openForView(downloadedUpdateFile, "Telegram.apk", "application/vnd.android.package-archive", this.activity, null, false);
-                    return;
-                }
-                return;
-            }
-            ApplicationLoader.applicationLoaderInstance.cancelDownloadingUpdate();
-        }
-        updateAppUpdateViews(i, true);
-    }
-
-    private void setUpdateText(String str, boolean z) {
-        if (TextUtils.equals(this.updateTextViews[0].getText(), str)) {
+    @Override
+    public void updateFileProgress(Object[] objArr) {
+        SimpleTextView[] simpleTextViewArr;
+        if (this.updateLayout == null || (simpleTextViewArr = this.updateTextViews) == null || simpleTextViewArr[0] == null || !ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
             return;
         }
-        AnimatorSet animatorSet = this.updateTextAnimator;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.updateTextAnimator = null;
-        }
-        if (!z) {
-            this.updateTextViews[0].setText(str);
-            this.updateTextViews[0].setAlpha(1.0f);
-            this.updateTextViews[0].setVisibility(0);
-            this.updateTextViews[1].setVisibility(8);
-            return;
-        }
-        SimpleTextView[] simpleTextViewArr = this.updateTextViews;
-        simpleTextViewArr[1].setText(simpleTextViewArr[0].getText());
-        this.updateTextViews[0].setText(str);
-        this.updateTextViews[0].setAlpha(0.0f);
-        this.updateTextViews[1].setAlpha(1.0f);
-        this.updateTextViews[0].setVisibility(0);
-        this.updateTextViews[1].setVisibility(0);
-        ArrayList arrayList = new ArrayList();
-        SimpleTextView simpleTextView = this.updateTextViews[1];
-        Property property = View.ALPHA;
-        arrayList.add(ObjectAnimator.ofFloat(simpleTextView, (Property<SimpleTextView, Float>) property, 0.0f));
-        arrayList.add(ObjectAnimator.ofFloat(this.updateTextViews[0], (Property<SimpleTextView, Float>) property, 1.0f));
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.updateTextAnimator = animatorSet2;
-        animatorSet2.playTogether(arrayList);
-        this.updateTextAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (UpdateLayout.this.updateTextAnimator == animator) {
-                    UpdateLayout.this.updateTextViews[1].setVisibility(8);
-                    UpdateLayout.this.updateTextAnimator = null;
-                }
-            }
-        });
-        this.updateTextAnimator.setDuration(320L);
-        this.updateTextAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.updateTextAnimator.start();
+        float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
+        this.updateLayoutIcon.setProgress(downloadingUpdateProgress, true);
+        this.updateTextViews[0].setText(LocaleController.formatString(2131690078, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
+        this.updateLayout.invalidate();
     }
 
     public void createUpdateUI(final int i) {
@@ -142,9 +91,7 @@ public class UpdateLayout extends IUpdateLayout {
         frameLayout.setWillNotDraw(false);
         this.updateLayout.setVisibility(4);
         this.updateLayout.setTranslationY(AndroidUtilities.dp(44.0f));
-        if (Build.VERSION.SDK_INT >= 21) {
-            this.updateLayout.setBackground(Theme.getSelectorDrawable(1090519039, false));
-        }
+        this.updateLayout.setBackground(Theme.getSelectorDrawable(1090519039, false));
         this.sideMenuContainer.addView(this.updateLayout, LayoutHelper.createFrame(-1, 44, 83));
         this.updateLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,20 +126,127 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateLayout.addView(this.updateSizeTextView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 17.0f, 0.0f));
     }
 
-    @Override
-    public void updateAppUpdateViews(int r9, boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UpdateLayout.updateAppUpdateViews(int, boolean):void");
+    public void lambda$createUpdateUI$0(int i, View view) {
+        if (this.updateLayoutIcon.getIcon() == 2) {
+            ApplicationLoader.applicationLoaderInstance.downloadUpdate();
+            updateAppUpdateViews(i, true);
+        } else if (this.updateLayoutIcon.getIcon() == 3) {
+            ApplicationLoader.applicationLoaderInstance.cancelDownloadingUpdate();
+            updateAppUpdateViews(i, true);
+        } else {
+            File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
+            if (downloadedUpdateFile != null) {
+                AndroidUtilities.openForView(downloadedUpdateFile, "Telegram.apk", "application/vnd.android.package-archive", this.activity, null, false);
+            }
+        }
     }
 
     @Override
-    public void updateFileProgress(Object[] objArr) {
-        SimpleTextView[] simpleTextViewArr;
-        if (this.updateLayout == null || (simpleTextViewArr = this.updateTextViews) == null || simpleTextViewArr[0] == null || !ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+    public void updateAppUpdateViews(int i, boolean z) {
+        if (this.sideMenuContainer == null) {
             return;
         }
-        float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
-        this.updateLayoutIcon.setProgress(downloadingUpdateProgress, true);
-        this.updateTextViews[0].setText(LocaleController.formatString(2131690078, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
-        this.updateLayout.invalidate();
+        if (ApplicationLoader.applicationLoaderInstance.getUpdate() != null) {
+            createUpdateUI(i);
+            this.updateSizeTextView.setText("");
+            File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
+            if (downloadedUpdateFile != null && downloadedUpdateFile.exists()) {
+                this.updateLayoutIcon.setIcon(15, true, z);
+                setUpdateText(LocaleController.getString(2131690079), z);
+            } else if (ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
+                this.updateLayoutIcon.setIcon(3, true, z);
+                this.updateLayoutIcon.setProgress(ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress(), true);
+                setUpdateText(LocaleController.formatString(2131690078, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z);
+            } else {
+                this.updateLayoutIcon.setIcon(2, true, z);
+                setUpdateText(LocaleController.getString(2131690075), z);
+            }
+            if (this.updateSizeTextView.getTag() == null) {
+                if (z) {
+                    this.updateSizeTextView.setTag(1);
+                    this.updateSizeTextView.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
+                } else {
+                    this.updateSizeTextView.setAlpha(0.0f);
+                    this.updateSizeTextView.setScaleX(0.0f);
+                    this.updateSizeTextView.setScaleY(0.0f);
+                }
+            }
+            if (this.updateLayout.getTag() != null) {
+                return;
+            }
+            this.updateLayout.setVisibility(0);
+            this.updateLayout.setTag(1);
+            if (z) {
+                this.updateLayout.animate().translationY(0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT).setListener(null).setDuration(180L).start();
+            } else {
+                this.updateLayout.setTranslationY(0.0f);
+            }
+            this.sideMenu.setPadding(0, 0, 0, AndroidUtilities.dp(44.0f));
+            return;
+        }
+        FrameLayout frameLayout = this.updateLayout;
+        if (frameLayout == null || frameLayout.getTag() == null) {
+            return;
+        }
+        this.updateLayout.setTag(null);
+        if (z) {
+            this.updateLayout.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(CubicBezierInterpolator.EASE_OUT).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (UpdateLayout.this.updateLayout.getTag() == null) {
+                        UpdateLayout.this.updateLayout.setVisibility(4);
+                    }
+                }
+            }).setDuration(180L).start();
+        } else {
+            this.updateLayout.setTranslationY(AndroidUtilities.dp(44.0f));
+            this.updateLayout.setVisibility(4);
+        }
+        this.sideMenu.setPadding(0, 0, 0, 0);
+    }
+
+    private void setUpdateText(String str, boolean z) {
+        if (TextUtils.equals(this.updateTextViews[0].getText(), str)) {
+            return;
+        }
+        AnimatorSet animatorSet = this.updateTextAnimator;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.updateTextAnimator = null;
+        }
+        if (z) {
+            SimpleTextView[] simpleTextViewArr = this.updateTextViews;
+            simpleTextViewArr[1].setText(simpleTextViewArr[0].getText());
+            this.updateTextViews[0].setText(str);
+            this.updateTextViews[0].setAlpha(0.0f);
+            this.updateTextViews[1].setAlpha(1.0f);
+            this.updateTextViews[0].setVisibility(0);
+            this.updateTextViews[1].setVisibility(0);
+            ArrayList arrayList = new ArrayList();
+            SimpleTextView simpleTextView = this.updateTextViews[1];
+            Property property = View.ALPHA;
+            arrayList.add(ObjectAnimator.ofFloat(simpleTextView, (Property<SimpleTextView, Float>) property, 0.0f));
+            arrayList.add(ObjectAnimator.ofFloat(this.updateTextViews[0], (Property<SimpleTextView, Float>) property, 1.0f));
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.updateTextAnimator = animatorSet2;
+            animatorSet2.playTogether(arrayList);
+            this.updateTextAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (UpdateLayout.this.updateTextAnimator == animator) {
+                        UpdateLayout.this.updateTextViews[1].setVisibility(8);
+                        UpdateLayout.this.updateTextAnimator = null;
+                    }
+                }
+            });
+            this.updateTextAnimator.setDuration(320L);
+            this.updateTextAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.updateTextAnimator.start();
+            return;
+        }
+        this.updateTextViews[0].setText(str);
+        this.updateTextViews[0].setAlpha(1.0f);
+        this.updateTextViews[0].setVisibility(0);
+        this.updateTextViews[1].setVisibility(8);
     }
 }

@@ -3,13 +3,13 @@ package kotlinx.coroutines;
 public final class Empty implements Incomplete {
     private final boolean isActive;
 
-    public Empty(boolean z) {
-        this.isActive = z;
-    }
-
     @Override
     public NodeList getList() {
         return null;
+    }
+
+    public Empty(boolean z) {
+        this.isActive = z;
     }
 
     @Override

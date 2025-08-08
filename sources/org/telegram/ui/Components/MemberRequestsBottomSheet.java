@@ -62,19 +62,13 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         memberRequestsDelegate.lambda$new$8();
     }
 
-    public void lambda$onSearchViewTouched$1(final EditTextBoldCursor editTextBoldCursor) {
-        setFocusable(true);
-        editTextBoldCursor.requestFocus();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
-            }
-        });
-    }
-
-    public boolean isNeedRestoreDialog() {
-        return this.delegate.isNeedRestoreList;
+    @Override
+    public void show() {
+        if (this.delegate.isNeedRestoreList && this.scrollOffsetY == 0) {
+            this.scrollOffsetY = AndroidUtilities.dp(8.0f);
+        }
+        super.show();
+        this.delegate.isNeedRestoreList = false;
     }
 
     @Override
@@ -82,6 +76,39 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         if (this.delegate.onBackPressed()) {
             super.onBackPressed();
         }
+    }
+
+    public boolean isNeedRestoreDialog() {
+        return this.delegate.isNeedRestoreList;
+    }
+
+    @Override
+    public void setTranslationY(int i) {
+        super.setTranslationY(i);
+        this.currentLoadingView.setTranslationY(this.frameLayout.getMeasuredHeight() + i);
+        float f = i;
+        this.membersEmptyView.setTranslationY(f);
+        this.membersSearchEmptyView.setTranslationY(f);
+    }
+
+    @Override
+    public void updateLayout() {
+        if (this.listView.getChildCount() <= 0) {
+            int paddingTop = this.listView.getVisibility() == 0 ? this.listView.getPaddingTop() - AndroidUtilities.dp(8.0f) : 0;
+            if (this.scrollOffsetY != paddingTop) {
+                this.scrollOffsetY = paddingTop;
+                setTranslationY(paddingTop);
+                return;
+            }
+            return;
+        }
+        super.updateLayout();
+    }
+
+    @Override
+    public void search(String str) {
+        super.search(str);
+        this.delegate.setQuery(str);
     }
 
     @Override
@@ -124,40 +151,14 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         }
     }
 
-    @Override
-    public void search(String str) {
-        super.search(str);
-        this.delegate.setQuery(str);
-    }
-
-    @Override
-    public void setTranslationY(int i) {
-        super.setTranslationY(i);
-        this.currentLoadingView.setTranslationY(this.frameLayout.getMeasuredHeight() + i);
-        float f = i;
-        this.membersEmptyView.setTranslationY(f);
-        this.membersSearchEmptyView.setTranslationY(f);
-    }
-
-    @Override
-    public void show() {
-        if (this.delegate.isNeedRestoreList && this.scrollOffsetY == 0) {
-            this.scrollOffsetY = AndroidUtilities.dp(8.0f);
-        }
-        super.show();
-        this.delegate.isNeedRestoreList = false;
-    }
-
-    @Override
-    public void updateLayout() {
-        if (this.listView.getChildCount() > 0) {
-            super.updateLayout();
-            return;
-        }
-        int paddingTop = this.listView.getVisibility() == 0 ? this.listView.getPaddingTop() - AndroidUtilities.dp(8.0f) : 0;
-        if (this.scrollOffsetY != paddingTop) {
-            this.scrollOffsetY = paddingTop;
-            setTranslationY(paddingTop);
-        }
+    public void lambda$onSearchViewTouched$1(final EditTextBoldCursor editTextBoldCursor) {
+        setFocusable(true);
+        editTextBoldCursor.requestFocus();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                AndroidUtilities.showKeyboard(EditTextBoldCursor.this);
+            }
+        });
     }
 }

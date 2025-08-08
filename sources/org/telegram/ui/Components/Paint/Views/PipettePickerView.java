@@ -33,6 +33,10 @@ public abstract class PipettePickerView extends View {
     private float positionY;
     private Rect srcRect;
 
+    protected abstract void onStartPipette();
+
+    protected abstract void onStopPipette();
+
     public PipettePickerView(Context context, Bitmap bitmap) {
         super(context);
         this.outlinePaint = new Paint(1);
@@ -56,19 +60,25 @@ public abstract class PipettePickerView extends View {
         this.colorPaint.setStrokeWidth(AndroidUtilities.dp(12.0f));
     }
 
-    public void lambda$animateDisappear$1(ValueAnimator valueAnimator) {
-        this.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
+    public void setColorListener(Consumer consumer) {
+        this.colorListener = consumer;
+    }
+
+    public void animateShow() {
+        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                PipettePickerView.this.lambda$animateShow$0(valueAnimator);
+            }
+        });
+        duration.start();
+        onStartPipette();
     }
 
     public void lambda$animateShow$0(ValueAnimator valueAnimator) {
         this.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    private void updatePosition(MotionEvent motionEvent) {
-        this.positionX = motionEvent.getX() / getWidth();
-        this.positionY = motionEvent.getY() / getHeight();
         invalidate();
     }
 
@@ -100,17 +110,9 @@ public abstract class PipettePickerView extends View {
         duration.start();
     }
 
-    public void animateShow() {
-        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PipettePickerView.this.lambda$animateShow$0(valueAnimator);
-            }
-        });
-        duration.start();
-        onStartPipette();
+    public void lambda$animateDisappear$1(ValueAnimator valueAnimator) {
+        this.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
     }
 
     @Override
@@ -119,6 +121,38 @@ public abstract class PipettePickerView extends View {
         onStopPipette();
         this.bitmap.recycle();
         this.bitmap = null;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            updatePosition(motionEvent);
+            getParent().requestDisallowInterceptTouchEvent(true);
+        } else if (actionMasked == 1) {
+            animateDisappear(true);
+        } else if (actionMasked == 2) {
+            updatePosition(motionEvent);
+        } else if (actionMasked == 3) {
+            animateDisappear(false);
+        }
+        return true;
+    }
+
+    private void updatePosition(MotionEvent motionEvent) {
+        this.positionX = motionEvent.getX() / getWidth();
+        this.positionY = motionEvent.getY() / getHeight();
+        invalidate();
+    }
+
+    @Override
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        if (i == 0 || i2 == 0 || i3 == 0 || i4 == 0 || !isLaidOut()) {
+            return;
+        }
+        this.positionX = (i3 * this.positionX) / i;
+        this.positionY = (i4 * this.positionY) / i2;
     }
 
     @Override
@@ -134,12 +168,12 @@ public abstract class PipettePickerView extends View {
         this.mColor = pixel;
         this.colorPaint.setColor(pixel);
         float f = this.appearProgress;
-        if (f == 0.0f || f == 1.0f) {
-            canvas.save();
-        } else {
+        if (f != 0.0f && f != 1.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(width - min, height - min, width + min, height + min);
             canvas.saveLayerAlpha(rectF, (int) (this.appearProgress * 255.0f), 31);
+        } else {
+            canvas.save();
         }
         float f2 = (this.appearProgress * 0.5f) + 0.5f;
         canvas.scale(f2, f2, width, height);
@@ -177,39 +211,5 @@ public abstract class PipettePickerView extends View {
         this.dstRect.set(width - f8, height - f8, width + f8, height + f8);
         canvas.drawRoundRect(this.dstRect, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), this.outlinePaint);
         canvas.restore();
-    }
-
-    @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        if (i == 0 || i2 == 0 || i3 == 0 || i4 == 0 || !isLaidOut()) {
-            return;
-        }
-        this.positionX = (i3 * this.positionX) / i;
-        this.positionY = (i4 * this.positionY) / i2;
-    }
-
-    protected abstract void onStartPipette();
-
-    protected abstract void onStopPipette();
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            updatePosition(motionEvent);
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else if (actionMasked == 1) {
-            animateDisappear(true);
-        } else if (actionMasked == 2) {
-            updatePosition(motionEvent);
-        } else if (actionMasked == 3) {
-            animateDisappear(false);
-        }
-        return true;
-    }
-
-    public void setColorListener(Consumer consumer) {
-        this.colorListener = consumer;
     }
 }

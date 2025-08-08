@@ -20,154 +20,6 @@ public class MHTML {
     private final long[] filePos;
     public final HashMap headers;
 
-    public static class BoundedInputStream extends FileInputStream {
-        private long bytesRead;
-        private final long endOffset;
-
-        public BoundedInputStream(File file, long j, long j2) {
-            super(file);
-            this.bytesRead = 0L;
-            this.endOffset = j2;
-            if (j > 0 && skip(j) != j) {
-                throw new RuntimeException("BoundedInputStream failed to skip");
-            }
-        }
-
-        @Override
-        public int read() {
-            if (getChannel().position() >= this.endOffset) {
-                return -1;
-            }
-            return super.read();
-        }
-
-        @Override
-        public int read(byte[] bArr, int i, int i2) {
-            long position = getChannel().position();
-            long j = this.endOffset;
-            if (position >= j) {
-                return -1;
-            }
-            long position2 = j - getChannel().position();
-            if (i2 > position2) {
-                i2 = (int) position2;
-            }
-            return super.read(bArr, i, i2);
-        }
-    }
-
-    public static class Entry {
-        public long end;
-        public File file;
-        public final HashMap headers;
-        public long start;
-
-        private Entry() {
-            this.headers = new HashMap();
-        }
-
-        public InputStream getInputStream() {
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(getRawInputStream());
-            return "base64".equals(getTransferEncoding()) ? new Base64InputStream(bufferedInputStream, 0) : "quoted-printable".equalsIgnoreCase(getTransferEncoding()) ? new QuotedPrintableInputStream(bufferedInputStream) : bufferedInputStream;
-        }
-
-        public String getLocation() {
-            return HeaderValue.getValue((HeaderValue) this.headers.get("content-location"));
-        }
-
-        public InputStream getRawInputStream() {
-            return new BoundedInputStream(this.file, this.start, this.end);
-        }
-
-        public String getTransferEncoding() {
-            return HeaderValue.getValue((HeaderValue) this.headers.get("content-transfer-encoding"));
-        }
-
-        public String getType() {
-            return HeaderValue.getValue((HeaderValue) this.headers.get("content-type"));
-        }
-    }
-
-    public static class HeaderValue {
-        public final HashMap props;
-        public String value;
-
-        private HeaderValue() {
-            this.props = new HashMap();
-        }
-
-        public static String getProp(HeaderValue headerValue, String str) {
-            if (headerValue == null) {
-                return null;
-            }
-            return (String) headerValue.props.get(str);
-        }
-
-        public static String getValue(HeaderValue headerValue) {
-            if (headerValue == null) {
-                return null;
-            }
-            return headerValue.value;
-        }
-    }
-
-    public static class QuotedPrintableInputStream extends FilterInputStream {
-        public QuotedPrintableInputStream(InputStream inputStream) {
-            super(inputStream);
-        }
-
-        private int hexDigitToInt(int i) {
-            if (i >= 48 && i <= 57) {
-                return i - 48;
-            }
-            if (i >= 65 && i <= 70) {
-                return i - 55;
-            }
-            if (i < 97 || i > 102) {
-                throw new IllegalArgumentException("Invalid hexadecimal digit");
-            }
-            return i - 87;
-        }
-
-        private int hexToByte(int i, int i2) {
-            return (hexDigitToInt(i) << 4) | hexDigitToInt(i2);
-        }
-
-        @Override
-        public int read() {
-            int read = ((FilterInputStream) this).in.read();
-            if (read != 61) {
-                return read;
-            }
-            int read2 = ((FilterInputStream) this).in.read();
-            int read3 = ((FilterInputStream) this).in.read();
-            if (read2 == -1 || read3 == -1) {
-                throw new IOException("Invalid quoted-printable encoding");
-            }
-            return (read2 == 13 && read3 == 10) ? read() : (read2 == 10 || read3 == 10) ? read3 : hexToByte(read2, read3);
-        }
-
-        @Override
-        public int read(byte[] bArr, int i, int i2) {
-            int i3 = 0;
-            int i4 = 0;
-            while (true) {
-                if (i3 >= i2) {
-                    break;
-                }
-                int read = read();
-                if (read != -1) {
-                    bArr[i + i3] = (byte) read;
-                    i4++;
-                    i3++;
-                } else if (i4 == 0) {
-                    return -1;
-                }
-            }
-            return i4;
-        }
-    }
-
     public MHTML(File file) {
         HashMap hashMap = new HashMap();
         this.headers = hashMap;
@@ -184,28 +36,6 @@ public class MHTML {
             parseEntries(bufferedReader, fileInputStream);
         }
         bufferedReader.close();
-    }
-
-    private static void appendHeader(String str, String str2, HashMap hashMap) {
-        HeaderValue headerValue = new HeaderValue();
-        String[] split = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-        for (int i = 0; i < split.length; i++) {
-            String trim = split[i].trim();
-            if (!trim.isEmpty()) {
-                int indexOf = trim.indexOf(61);
-                if (i == 0 || indexOf < 0) {
-                    headerValue.value = trim;
-                } else {
-                    String trim2 = trim.substring(0, indexOf).trim();
-                    String trim3 = trim.substring(indexOf + 1).trim();
-                    if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
-                        trim3 = trim3.substring(1, trim3.length() - 1);
-                    }
-                    headerValue.props.put(trim2, trim3);
-                }
-            }
-        }
-        hashMap.put(str.trim().toLowerCase(), headerValue);
     }
 
     private void parseEntries(BufferedReader bufferedReader, FileInputStream fileInputStream) {
@@ -255,7 +85,12 @@ public class MHTML {
                 if (trim.isEmpty()) {
                     break loop0;
                 }
-                if (str == null || sb == null) {
+                if (str != null && sb != null) {
+                    sb.append(trim);
+                    if (!trim.endsWith(";")) {
+                        break;
+                    }
+                } else {
                     int indexOf = trim.indexOf(58);
                     if (indexOf >= 0) {
                         String trim2 = trim.substring(0, indexOf).trim();
@@ -268,11 +103,6 @@ public class MHTML {
                             appendHeader(trim2, trim3, hashMap);
                         }
                     }
-                } else {
-                    sb.append(trim);
-                    if (!trim.endsWith(";")) {
-                        break;
-                    }
                 }
             }
             appendHeader(str, sb.toString(), hashMap);
@@ -281,5 +111,181 @@ public class MHTML {
             appendHeader(str, sb.toString(), hashMap);
         }
         return hashMap;
+    }
+
+    private static void appendHeader(String str, String str2, HashMap hashMap) {
+        HeaderValue headerValue = new HeaderValue();
+        String[] split = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+        for (int i = 0; i < split.length; i++) {
+            String trim = split[i].trim();
+            if (!trim.isEmpty()) {
+                int indexOf = trim.indexOf(61);
+                if (i == 0 || indexOf < 0) {
+                    headerValue.value = trim;
+                } else {
+                    String trim2 = trim.substring(0, indexOf).trim();
+                    String trim3 = trim.substring(indexOf + 1).trim();
+                    if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
+                        trim3 = trim3.substring(1, trim3.length() - 1);
+                    }
+                    headerValue.props.put(trim2, trim3);
+                }
+            }
+        }
+        hashMap.put(str.trim().toLowerCase(), headerValue);
+    }
+
+    public static class Entry {
+        public long end;
+        public File file;
+        public final HashMap headers;
+        public long start;
+
+        private Entry() {
+            this.headers = new HashMap();
+        }
+
+        public String getType() {
+            return HeaderValue.getValue((HeaderValue) this.headers.get("content-type"));
+        }
+
+        public String getLocation() {
+            return HeaderValue.getValue((HeaderValue) this.headers.get("content-location"));
+        }
+
+        public String getTransferEncoding() {
+            return HeaderValue.getValue((HeaderValue) this.headers.get("content-transfer-encoding"));
+        }
+
+        public InputStream getRawInputStream() {
+            return new BoundedInputStream(this.file, this.start, this.end);
+        }
+
+        public InputStream getInputStream() {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(getRawInputStream());
+            if ("base64".equals(getTransferEncoding())) {
+                return new Base64InputStream(bufferedInputStream, 0);
+            }
+            return "quoted-printable".equalsIgnoreCase(getTransferEncoding()) ? new QuotedPrintableInputStream(bufferedInputStream) : bufferedInputStream;
+        }
+    }
+
+    public static class HeaderValue {
+        public final HashMap props;
+        public String value;
+
+        private HeaderValue() {
+            this.props = new HashMap();
+        }
+
+        public static String getValue(HeaderValue headerValue) {
+            if (headerValue == null) {
+                return null;
+            }
+            return headerValue.value;
+        }
+
+        public static String getProp(HeaderValue headerValue, String str) {
+            if (headerValue == null) {
+                return null;
+            }
+            return (String) headerValue.props.get(str);
+        }
+    }
+
+    public static class QuotedPrintableInputStream extends FilterInputStream {
+        public QuotedPrintableInputStream(InputStream inputStream) {
+            super(inputStream);
+        }
+
+        @Override
+        public int read() {
+            int read = ((FilterInputStream) this).in.read();
+            if (read != 61) {
+                return read;
+            }
+            int read2 = ((FilterInputStream) this).in.read();
+            int read3 = ((FilterInputStream) this).in.read();
+            if (read2 == -1 || read3 == -1) {
+                throw new IOException("Invalid quoted-printable encoding");
+            }
+            if (read2 == 13 && read3 == 10) {
+                return read();
+            }
+            return (read2 == 10 || read3 == 10) ? read3 : hexToByte(read2, read3);
+        }
+
+        @Override
+        public int read(byte[] bArr, int i, int i2) {
+            int i3 = 0;
+            int i4 = 0;
+            while (true) {
+                if (i3 >= i2) {
+                    break;
+                }
+                int read = read();
+                if (read != -1) {
+                    bArr[i + i3] = (byte) read;
+                    i4++;
+                    i3++;
+                } else if (i4 == 0) {
+                    return -1;
+                }
+            }
+            return i4;
+        }
+
+        private int hexToByte(int i, int i2) {
+            return (hexDigitToInt(i) << 4) | hexDigitToInt(i2);
+        }
+
+        private int hexDigitToInt(int i) {
+            if (i >= 48 && i <= 57) {
+                return i - 48;
+            }
+            if (i >= 65 && i <= 70) {
+                return i - 55;
+            }
+            if (i < 97 || i > 102) {
+                throw new IllegalArgumentException("Invalid hexadecimal digit");
+            }
+            return i - 87;
+        }
+    }
+
+    public static class BoundedInputStream extends FileInputStream {
+        private long bytesRead;
+        private final long endOffset;
+
+        public BoundedInputStream(File file, long j, long j2) {
+            super(file);
+            this.bytesRead = 0L;
+            this.endOffset = j2;
+            if (j > 0 && skip(j) != j) {
+                throw new RuntimeException("BoundedInputStream failed to skip");
+            }
+        }
+
+        @Override
+        public int read() {
+            if (getChannel().position() >= this.endOffset) {
+                return -1;
+            }
+            return super.read();
+        }
+
+        @Override
+        public int read(byte[] bArr, int i, int i2) {
+            long position = getChannel().position();
+            long j = this.endOffset;
+            if (position >= j) {
+                return -1;
+            }
+            long position2 = j - getChannel().position();
+            if (i2 > position2) {
+                i2 = (int) position2;
+            }
+            return super.read(bArr, i, i2);
+        }
     }
 }

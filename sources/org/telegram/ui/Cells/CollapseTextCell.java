@@ -43,24 +43,6 @@ public class CollapseTextCell extends FrameLayout {
         addView(this.collapsedArrow, LayoutHelper.createFrameRelatively(14.0f, 14.0f, 8388627, 21.0f, 1.0f, 0.0f, 3.0f));
     }
 
-    public void updateCollapseArrowTranslation() {
-        View view;
-        float currentWidth = this.textView.getDrawable().getCurrentWidth() + AndroidUtilities.dp(1.0f);
-        if (LocaleController.isRTL) {
-            view = this.collapsedArrow;
-            currentWidth = -currentWidth;
-        } else {
-            view = this.collapsedArrow;
-        }
-        view.setTranslationX(currentWidth);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(46.0f), 1073741824));
-        updateCollapseArrowTranslation();
-    }
-
     public void set(CharSequence charSequence, boolean z) {
         this.textView.setText(charSequence);
         this.collapsedArrow.animate().cancel();
@@ -71,5 +53,20 @@ public class CollapseTextCell extends FrameLayout {
         int color = Theme.getColor(i, this.resourcesProvider);
         this.textView.setTextColor(color);
         this.collapsedArrow.getBackground().setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(46.0f), 1073741824));
+        updateCollapseArrowTranslation();
+    }
+
+    public void updateCollapseArrowTranslation() {
+        float currentWidth = this.textView.getDrawable().getCurrentWidth() + AndroidUtilities.dp(1.0f);
+        if (LocaleController.isRTL) {
+            this.collapsedArrow.setTranslationX(-currentWidth);
+        } else {
+            this.collapsedArrow.setTranslationX(currentWidth);
+        }
     }
 }

@@ -7,15 +7,22 @@ import android.os.IInterface;
 import android.os.Parcel;
 
 public interface ICustomTabsCallback extends IInterface {
+    void extraCallback(String str, Bundle bundle);
+
+    void onMessageChannelReady(Bundle bundle);
+
+    void onNavigationEvent(int i, Bundle bundle);
+
+    void onPostMessage(String str, Bundle bundle);
 
     public static abstract class Stub extends Binder implements ICustomTabsCallback {
-        public Stub() {
-            attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
-        }
-
         @Override
         public IBinder asBinder() {
             return this;
+        }
+
+        public Stub() {
+            attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
         }
 
         @Override
@@ -27,29 +34,28 @@ public interface ICustomTabsCallback extends IInterface {
             if (i == 2) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 onNavigationEvent(parcel.readInt(), parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-            } else if (i == 3) {
+                parcel2.writeNoException();
+                return true;
+            }
+            if (i == 3) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 extraCallback(parcel.readString(), parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-            } else if (i == 4) {
+                parcel2.writeNoException();
+                return true;
+            }
+            if (i == 4) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 onMessageChannelReady(parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
-            } else {
-                if (i != 5) {
-                    return super.onTransact(i, parcel, parcel2, i2);
-                }
+                parcel2.writeNoException();
+                return true;
+            }
+            if (i == 5) {
                 parcel.enforceInterface("android.support.customtabs.ICustomTabsCallback");
                 onPostMessage(parcel.readString(), parcel.readInt() != 0 ? (Bundle) Bundle.CREATOR.createFromParcel(parcel) : null);
+                parcel2.writeNoException();
+                return true;
             }
-            parcel2.writeNoException();
-            return true;
+            return super.onTransact(i, parcel, parcel2, i2);
         }
     }
-
-    void extraCallback(String str, Bundle bundle);
-
-    void onMessageChannelReady(Bundle bundle);
-
-    void onNavigationEvent(int i, Bundle bundle);
-
-    void onPostMessage(String str, Bundle bundle);
 }

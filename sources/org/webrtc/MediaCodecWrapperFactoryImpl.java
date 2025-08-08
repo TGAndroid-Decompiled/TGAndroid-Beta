@@ -23,18 +23,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public Surface createInputSurface() {
-            return this.mediaCodec.createInputSurface();
-        }
-
-        @Override
-        public int dequeueInputBuffer(long j) {
-            return this.mediaCodec.dequeueInputBuffer(j);
-        }
-
-        @Override
-        public int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j) {
-            return this.mediaCodec.dequeueOutputBuffer(bufferInfo, j);
+        public void start() {
+            this.mediaCodec.start();
         }
 
         @Override
@@ -43,29 +33,38 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public MediaCodecInfo getCodecInfo() {
-            return this.mediaCodec.getCodecInfo();
+        public void stop() {
+            this.mediaCodec.stop();
         }
 
         @Override
-        public ByteBuffer getInputBuffer(int i) {
-            ByteBuffer inputBuffer;
-            inputBuffer = this.mediaCodec.getInputBuffer(i);
-            return inputBuffer;
+        public void release() {
+            this.mediaCodec.release();
+        }
+
+        @Override
+        public int dequeueInputBuffer(long j) {
+            return this.mediaCodec.dequeueInputBuffer(j);
+        }
+
+        @Override
+        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) {
+            this.mediaCodec.queueInputBuffer(i, i2, i3, j, i4);
+        }
+
+        @Override
+        public int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j) {
+            return this.mediaCodec.dequeueOutputBuffer(bufferInfo, j);
+        }
+
+        @Override
+        public void releaseOutputBuffer(int i, boolean z) {
+            this.mediaCodec.releaseOutputBuffer(i, z);
         }
 
         @Override
         public MediaFormat getInputFormat() {
-            MediaFormat inputFormat;
-            inputFormat = this.mediaCodec.getInputFormat();
-            return inputFormat;
-        }
-
-        @Override
-        public ByteBuffer getOutputBuffer(int i) {
-            ByteBuffer outputBuffer;
-            outputBuffer = this.mediaCodec.getOutputBuffer(i);
-            return outputBuffer;
+            return this.mediaCodec.getInputFormat();
         }
 
         @Override
@@ -75,24 +74,22 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
 
         @Override
         public MediaFormat getOutputFormat(int i) {
-            MediaFormat outputFormat;
-            outputFormat = this.mediaCodec.getOutputFormat(i);
-            return outputFormat;
+            return this.mediaCodec.getOutputFormat(i);
         }
 
         @Override
-        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) {
-            this.mediaCodec.queueInputBuffer(i, i2, i3, j, i4);
+        public ByteBuffer getInputBuffer(int i) {
+            return this.mediaCodec.getInputBuffer(i);
         }
 
         @Override
-        public void release() {
-            this.mediaCodec.release();
+        public ByteBuffer getOutputBuffer(int i) {
+            return this.mediaCodec.getOutputBuffer(i);
         }
 
         @Override
-        public void releaseOutputBuffer(int i, boolean z) {
-            this.mediaCodec.releaseOutputBuffer(i, z);
+        public Surface createInputSurface() {
+            return this.mediaCodec.createInputSurface();
         }
 
         @Override
@@ -101,13 +98,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void start() {
-            this.mediaCodec.start();
-        }
-
-        @Override
-        public void stop() {
-            this.mediaCodec.stop();
+        public MediaCodecInfo getCodecInfo() {
+            return this.mediaCodec.getCodecInfo();
         }
     }
 

@@ -20,90 +20,6 @@ public class PushListenerController {
     public static final int PUSH_TYPE_HUAWEI = 13;
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    public static final class GooglePushListenerServiceProvider implements IPushListenerServiceProvider {
-        public static final GooglePushListenerServiceProvider INSTANCE = new GooglePushListenerServiceProvider();
-        private Boolean hasServices;
-
-        private GooglePushListenerServiceProvider() {
-        }
-
-        public void lambda$onRequestPushToken$0(Task task) {
-            SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
-            if (task.isSuccessful()) {
-                String str = (String) task.getResult();
-                if (TextUtils.isEmpty(str)) {
-                    return;
-                }
-                PushListenerController.sendRegistrationToServer(getPushType(), str);
-                return;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("Failed to get regid");
-            }
-            SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
-            PushListenerController.sendRegistrationToServer(getPushType(), null);
-        }
-
-        public void lambda$onRequestPushToken$1() {
-            try {
-                SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
-                FirebaseApp.initializeApp(ApplicationLoader.applicationContext);
-                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public final void onComplete(Task task) {
-                        PushListenerController.GooglePushListenerServiceProvider.this.lambda$onRequestPushToken$0(task);
-                    }
-                });
-            } catch (Throwable th) {
-                FileLog.e(th);
-            }
-        }
-
-        @Override
-        public String getLogTitle() {
-            return "Google Play Services";
-        }
-
-        @Override
-        public int getPushType() {
-            return 2;
-        }
-
-        @Override
-        public boolean hasServices() {
-            if (this.hasServices == null) {
-                try {
-                    this.hasServices = Boolean.valueOf(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(ApplicationLoader.applicationContext) == 0);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    this.hasServices = Boolean.FALSE;
-                }
-            }
-            return this.hasServices.booleanValue();
-        }
-
-        @Override
-        public void onRequestPushToken() {
-            String str;
-            String str2 = SharedConfig.pushString;
-            if (TextUtils.isEmpty(str2)) {
-                if (BuildVars.LOGS_ENABLED) {
-                    str = "FCM Registration not found.";
-                    FileLog.d(str);
-                }
-            } else if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                str = "FCM regId = " + str2;
-                FileLog.d(str);
-            }
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    PushListenerController.GooglePushListenerServiceProvider.this.lambda$onRequestPushToken$1();
-                }
-            });
-        }
-    }
-
     public interface IPushListenerServiceProvider {
         String getLogTitle();
 
@@ -118,8 +34,129 @@ public class PushListenerController {
     public @interface PushType {
     }
 
+    public static void sendRegistrationToServer(final int i, final String str) {
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                PushListenerController.lambda$sendRegistrationToServer$1(str, i);
+            }
+        });
+    }
+
+    public static void lambda$sendRegistrationToServer$1(final String str, final int i) {
+        boolean z;
+        ConnectionsManager.setRegId(str, i, SharedConfig.pushStringStatus);
+        if (str == null) {
+            return;
+        }
+        if (SharedConfig.pushStringGetTimeStart == 0 || SharedConfig.pushStringGetTimeEnd == 0 || (SharedConfig.pushStatSent && TextUtils.equals(SharedConfig.pushString, str))) {
+            z = false;
+        } else {
+            SharedConfig.pushStatSent = false;
+            z = true;
+        }
+        SharedConfig.pushString = str;
+        SharedConfig.pushType = i;
+        for (final int i2 = 0; i2 < 4; i2++) {
+            UserConfig userConfig = UserConfig.getInstance(i2);
+            userConfig.registeredForPush = false;
+            userConfig.saveConfig(false);
+            if (userConfig.getClientUserId() != 0) {
+                if (z) {
+                    String str2 = i == 2 ? "fcm" : "hcm";
+                    TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
+                    TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
+                    tL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
+                    tL_inputAppEvent.type = str2 + "_token_request";
+                    tL_inputAppEvent.peer = 0L;
+                    tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
+                    tL_help_saveAppLog.events.add(tL_inputAppEvent);
+                    TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
+                    tL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
+                    tL_inputAppEvent2.type = str2 + "_token_response";
+                    tL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
+                    tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
+                    tL_help_saveAppLog.events.add(tL_inputAppEvent2);
+                    SharedConfig.pushStatSent = true;
+                    SharedConfig.saveConfig();
+                    ConnectionsManager.getInstance(i2).sendRequest(tL_help_saveAppLog, null);
+                    z = false;
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        PushListenerController.lambda$sendRegistrationToServer$0(i2, i, str);
+                    }
+                });
+            }
+        }
+    }
+
+    public static void lambda$sendRegistrationToServer$0(int i, int i2, String str) {
+        MessagesController.getInstance(i).registerForPush(i2, str);
+    }
+
+    public static void processRemoteMessage(int i, final String str, final long j) {
+        final String str2 = i == 2 ? "FCM" : "HCM";
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d(str2 + " PRE START PROCESSING");
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PushListenerController.lambda$processRemoteMessage$7(str2, str, j);
+            }
+        });
+        try {
+            countDownLatch.await();
+        } catch (Throwable unused) {
+        }
+        if (BuildVars.DEBUG_VERSION) {
+            FileLog.d("finished " + str2 + " service, time = " + (SystemClock.elapsedRealtime() - elapsedRealtime));
+        }
+    }
+
+    public static void lambda$processRemoteMessage$7(final String str, final String str2, final long j) {
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d(str + " PRE INIT APP");
+        }
+        ApplicationLoader.postInitApplication();
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d(str + " POST INIT APP");
+        }
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                PushListenerController.lambda$processRemoteMessage$6(str, str2, j);
+            }
+        });
+    }
+
+    public static void lambda$processRemoteMessage$6(java.lang.String r63, java.lang.String r64, long r65) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
+    }
+
+    public static void lambda$processRemoteMessage$2(int i, TLRPC.TL_updates tL_updates) {
+        MessagesController.getInstance(i).processUpdates(tL_updates, false);
+    }
+
+    public static void lambda$processRemoteMessage$3(int i) {
+        if (UserConfig.getInstance(i).getClientUserId() != 0) {
+            UserConfig.getInstance(i).clearConfig();
+            MessagesController.getInstance(i).performLogout(0);
+        }
+    }
+
+    public static void lambda$processRemoteMessage$4(int i) {
+        LocationController.getInstance(i).setNewLocationEndWatchTime();
+    }
+
+    public static void lambda$processRemoteMessage$5(int i, long j, int i2) {
+        MessagesController.getInstance(i).reportMessageDelivery(j, i2, true);
+    }
+
     private static String getReactedText(String str, Object[] objArr) {
-        int i;
         str.hashCode();
         char c = 65535;
         switch (str.hashCode()) {
@@ -360,216 +397,85 @@ public class PushListenerController {
         }
         switch (c) {
             case 0:
-                i = R.string.PushChatReactContact;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactContact, objArr);
             case 1:
-                i = R.string.PushReactGeoLocation;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactGeoLocation, objArr);
             case 2:
-                i = R.string.PushReactStoryHidden;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactStoryHidden, objArr);
             case 3:
-                i = R.string.PushReactHidden;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactHidden, objArr);
             case 4:
-                i = R.string.PushChatReactNotext;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactNotext, objArr);
             case 5:
-                i = R.string.PushReactNoText;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactNoText, objArr);
             case 6:
-                i = R.string.PushChatReactInvoice;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactInvoice, objArr);
             case 7:
-                i = R.string.PushReactContect;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactContect, objArr);
             case '\b':
-                i = R.string.PushChatReactSticker;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactSticker, objArr);
             case '\t':
-                i = R.string.PushReactGame;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactGame, objArr);
             case '\n':
-                i = R.string.PushReactPoll;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactPoll, objArr);
             case 11:
-                i = R.string.PushReactQuiz;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactQuiz, objArr);
             case '\f':
-                i = R.string.PushReactText;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactText, objArr);
             case '\r':
-                i = R.string.PushReactTodo;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactTodo, objArr);
             case 14:
-                i = R.string.PushReactInvoice;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactInvoice, objArr);
             case 15:
-                i = R.string.PushChatReactDoc;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactDoc, objArr);
             case 16:
-                i = R.string.PushChatReactGeo;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactGeo, objArr);
             case 17:
-                i = R.string.PushChatReactGif;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactGif, objArr);
             case 18:
-                i = R.string.PushReactSticker;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactSticker, objArr);
             case 19:
-                i = R.string.PushChatReactAudio;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactAudio, objArr);
             case 20:
-                i = R.string.PushChatReactPhoto;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactPhoto, objArr);
             case 21:
-                i = R.string.PushChatReactRound;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactRound, objArr);
             case 22:
-                i = R.string.PushChatReactVideo;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactVideo, objArr);
             case 23:
-                i = R.string.NotificationChatReactGiveaway;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.NotificationChatReactGiveaway, objArr);
             case 24:
-                i = R.string.NotificationReactGiveaway;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.NotificationReactGiveaway, objArr);
             case 25:
-                i = R.string.PushChatReactGeoLive;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactGeoLive, objArr);
             case 26:
-                i = R.string.PushReactAudio;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactAudio, objArr);
             case 27:
-                i = R.string.PushReactPhoto;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactPhoto, objArr);
             case 28:
-                i = R.string.PushReactRound;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactRound, objArr);
             case 29:
-                i = R.string.PushReactStory;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactStory, objArr);
             case 30:
-                i = R.string.PushReactVideo;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactVideo, objArr);
             case 31:
-                i = R.string.PushReactDoc;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactDoc, objArr);
             case ' ':
-                i = R.string.PushReactGeo;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactGeo, objArr);
             case '!':
-                i = R.string.PushReactGif;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushReactGif, objArr);
             case '\"':
-                i = R.string.PushChatReactGame;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactGame, objArr);
             case '#':
-                i = R.string.PushChatReactPoll;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactPoll, objArr);
             case '$':
-                i = R.string.PushChatReactQuiz;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactQuiz, objArr);
             case '%':
-                i = R.string.PushChatReactText;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactText, objArr);
             case '&':
-                i = R.string.PushChatReactTodo;
-                return LocaleController.formatString(i, objArr);
+                return LocaleController.formatString(R.string.PushChatReactTodo, objArr);
             default:
                 return null;
-        }
-    }
-
-    public static void lambda$processRemoteMessage$2(int i, TLRPC.TL_updates tL_updates) {
-        MessagesController.getInstance(i).processUpdates(tL_updates, false);
-    }
-
-    public static void lambda$processRemoteMessage$3(int i) {
-        if (UserConfig.getInstance(i).getClientUserId() != 0) {
-            UserConfig.getInstance(i).clearConfig();
-            MessagesController.getInstance(i).performLogout(0);
-        }
-    }
-
-    public static void lambda$processRemoteMessage$4(int i) {
-        LocationController.getInstance(i).setNewLocationEndWatchTime();
-    }
-
-    public static void lambda$processRemoteMessage$5(int i, long j, int i2) {
-        MessagesController.getInstance(i).reportMessageDelivery(j, i2, true);
-    }
-
-    public static void lambda$processRemoteMessage$6(java.lang.String r62, java.lang.String r63, long r64) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
-    }
-
-    public static void lambda$processRemoteMessage$7(final String str, final String str2, final long j) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str + " PRE INIT APP");
-        }
-        ApplicationLoader.postInitApplication();
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str + " POST INIT APP");
-        }
-        Utilities.stageQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                PushListenerController.lambda$processRemoteMessage$6(str, str2, j);
-            }
-        });
-    }
-
-    public static void lambda$sendRegistrationToServer$0(int i, int i2, String str) {
-        MessagesController.getInstance(i).registerForPush(i2, str);
-    }
-
-    public static void lambda$sendRegistrationToServer$1(final String str, final int i) {
-        boolean z;
-        ConnectionsManager.setRegId(str, i, SharedConfig.pushStringStatus);
-        if (str == null) {
-            return;
-        }
-        if (SharedConfig.pushStringGetTimeStart == 0 || SharedConfig.pushStringGetTimeEnd == 0 || (SharedConfig.pushStatSent && TextUtils.equals(SharedConfig.pushString, str))) {
-            z = false;
-        } else {
-            SharedConfig.pushStatSent = false;
-            z = true;
-        }
-        SharedConfig.pushString = str;
-        SharedConfig.pushType = i;
-        for (final int i2 = 0; i2 < 4; i2++) {
-            UserConfig userConfig = UserConfig.getInstance(i2);
-            userConfig.registeredForPush = false;
-            userConfig.saveConfig(false);
-            if (userConfig.getClientUserId() != 0) {
-                if (z) {
-                    String str2 = i == 2 ? "fcm" : "hcm";
-                    TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
-                    TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                    tL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
-                    tL_inputAppEvent.type = str2 + "_token_request";
-                    tL_inputAppEvent.peer = 0L;
-                    tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
-                    tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                    TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
-                    tL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
-                    tL_inputAppEvent2.type = str2 + "_token_response";
-                    tL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
-                    tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
-                    tL_help_saveAppLog.events.add(tL_inputAppEvent2);
-                    SharedConfig.pushStatSent = true;
-                    SharedConfig.saveConfig();
-                    ConnectionsManager.getInstance(i2).sendRequest(tL_help_saveAppLog, null);
-                    z = false;
-                }
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        PushListenerController.lambda$sendRegistrationToServer$0(i2, i, str);
-                    }
-                });
-            }
         }
     }
 
@@ -583,33 +489,84 @@ public class PushListenerController {
         countDownLatch.countDown();
     }
 
-    public static void processRemoteMessage(int i, final String str, final long j) {
-        final String str2 = i == 2 ? "FCM" : "HCM";
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str2 + " PRE START PROCESSING");
-        }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PushListenerController.lambda$processRemoteMessage$7(str2, str, j);
-            }
-        });
-        try {
-            countDownLatch.await();
-        } catch (Throwable unused) {
-        }
-        if (BuildVars.DEBUG_VERSION) {
-            FileLog.d("finished " + str2 + " service, time = " + (SystemClock.elapsedRealtime() - elapsedRealtime));
-        }
-    }
+    public static final class GooglePushListenerServiceProvider implements IPushListenerServiceProvider {
+        public static final GooglePushListenerServiceProvider INSTANCE = new GooglePushListenerServiceProvider();
+        private Boolean hasServices;
 
-    public static void sendRegistrationToServer(final int i, final String str) {
-        Utilities.stageQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                PushListenerController.lambda$sendRegistrationToServer$1(str, i);
+        @Override
+        public int getPushType() {
+            return 2;
+        }
+
+        private GooglePushListenerServiceProvider() {
+        }
+
+        @Override
+        public String getLogTitle() {
+            return "Google Play Services";
+        }
+
+        @Override
+        public void onRequestPushToken() {
+            String str = SharedConfig.pushString;
+            if (!TextUtils.isEmpty(str)) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
+                    FileLog.d("FCM regId = " + str);
+                }
+            } else if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("FCM Registration not found.");
             }
-        });
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    PushListenerController.GooglePushListenerServiceProvider.this.lambda$onRequestPushToken$1();
+                }
+            });
+        }
+
+        public void lambda$onRequestPushToken$1() {
+            try {
+                SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
+                FirebaseApp.initializeApp(ApplicationLoader.applicationContext);
+                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public final void onComplete(Task task) {
+                        PushListenerController.GooglePushListenerServiceProvider.this.lambda$onRequestPushToken$0(task);
+                    }
+                });
+            } catch (Throwable th) {
+                FileLog.e(th);
+            }
+        }
+
+        public void lambda$onRequestPushToken$0(Task task) {
+            SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
+            if (!task.isSuccessful()) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("Failed to get regid");
+                }
+                SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
+                PushListenerController.sendRegistrationToServer(getPushType(), null);
+                return;
+            }
+            String str = (String) task.getResult();
+            if (TextUtils.isEmpty(str)) {
+                return;
+            }
+            PushListenerController.sendRegistrationToServer(getPushType(), str);
+        }
+
+        @Override
+        public boolean hasServices() {
+            if (this.hasServices == null) {
+                try {
+                    this.hasServices = Boolean.valueOf(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(ApplicationLoader.applicationContext) == 0);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    this.hasServices = Boolean.FALSE;
+                }
+            }
+            return this.hasServices.booleanValue();
+        }
     }
 }

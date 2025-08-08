@@ -21,6 +21,11 @@ public class BatteryDrawable extends Drawable {
     private Paint strokePaint;
     private float translateY;
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
     public BatteryDrawable() {
         this.strokePaint = new Paint(1);
         this.connectorPaint = new Paint(1);
@@ -37,6 +42,53 @@ public class BatteryDrawable extends Drawable {
         setFillValue(f, false);
         setColor(i, i2);
         setScale(f2);
+    }
+
+    public void setScale(float f) {
+        this.scale = f;
+        invalidateSelf();
+    }
+
+    public void setColor(int i) {
+        setColor(i, i);
+    }
+
+    public void setColor(int i, int i2) {
+        this.strokePaint.setColor(i);
+        this.connectorPaint.setColor(i);
+        this.fillPaint.setColor(i2);
+    }
+
+    public void setFillValue(float f, boolean z) {
+        final float max = Math.max(Math.min(f, 1.0f), 0.0f);
+        ValueAnimator valueAnimator = this.fillValueAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.fillValueAnimator = null;
+        }
+        if (!z) {
+            this.fillValue = max;
+            invalidateSelf();
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.fillValue, max);
+        this.fillValueAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                BatteryDrawable.this.lambda$setFillValue$0(valueAnimator2);
+            }
+        });
+        this.fillValueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                BatteryDrawable.this.fillValue = max;
+                BatteryDrawable.this.invalidateSelf();
+            }
+        });
+        this.fillValueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.fillValueAnimator.setDuration(200L);
+        this.fillValueAnimator.start();
     }
 
     public void lambda$setFillValue$0(ValueAnimator valueAnimator) {
@@ -85,19 +137,8 @@ public class BatteryDrawable extends Drawable {
         }
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(this.scale * 24.0f);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(this.scale * 24.0f);
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
+    public void setTranslationY(float f) {
+        this.translateY = f;
     }
 
     @Override
@@ -107,16 +148,6 @@ public class BatteryDrawable extends Drawable {
         this.fillPaint.setAlpha(i);
     }
 
-    public void setColor(int i) {
-        setColor(i, i);
-    }
-
-    public void setColor(int i, int i2) {
-        this.strokePaint.setColor(i);
-        this.connectorPaint.setColor(i);
-        this.fillPaint.setColor(i2);
-    }
-
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
         this.strokePaint.setColorFilter(colorFilter);
@@ -124,44 +155,13 @@ public class BatteryDrawable extends Drawable {
         this.fillPaint.setColorFilter(colorFilter);
     }
 
-    public void setFillValue(float f, boolean z) {
-        final float max = Math.max(Math.min(f, 1.0f), 0.0f);
-        ValueAnimator valueAnimator = this.fillValueAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.fillValueAnimator = null;
-        }
-        if (!z) {
-            this.fillValue = max;
-            invalidateSelf();
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.fillValue, max);
-        this.fillValueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                BatteryDrawable.this.lambda$setFillValue$0(valueAnimator2);
-            }
-        });
-        this.fillValueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                BatteryDrawable.this.fillValue = max;
-                BatteryDrawable.this.invalidateSelf();
-            }
-        });
-        this.fillValueAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.fillValueAnimator.setDuration(200L);
-        this.fillValueAnimator.start();
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(this.scale * 24.0f);
     }
 
-    public void setScale(float f) {
-        this.scale = f;
-        invalidateSelf();
-    }
-
-    public void setTranslationY(float f) {
-        this.translateY = f;
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(this.scale * 24.0f);
     }
 }

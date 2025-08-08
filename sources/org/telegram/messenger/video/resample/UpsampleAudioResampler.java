@@ -3,10 +3,6 @@ package org.telegram.messenger.video.resample;
 import java.nio.ShortBuffer;
 
 public class UpsampleAudioResampler implements AudioResampler {
-    private static short fakeSample(ShortBuffer shortBuffer, ShortBuffer shortBuffer2, int i, int i2) {
-        return shortBuffer.get(shortBuffer.position() - i2);
-    }
-
     private static float ratio(int i, int i2) {
         return i / i2;
     }
@@ -20,13 +16,7 @@ public class UpsampleAudioResampler implements AudioResampler {
             throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler. Channels:" + i3);
         }
         int remaining = shortBuffer.remaining() / i3;
-        double d = remaining;
-        double d2 = i2;
-        double d3 = i;
-        Double.isNaN(d2);
-        Double.isNaN(d3);
-        Double.isNaN(d);
-        int ceil = ((int) Math.ceil(d * (d2 / d3))) - remaining;
+        int ceil = ((int) Math.ceil(remaining * (i2 / i))) - remaining;
         float ratio = ratio(remaining, remaining);
         float ratio2 = ratio(ceil, ceil);
         int i4 = ceil;
@@ -48,5 +38,9 @@ public class UpsampleAudioResampler implements AudioResampler {
                 ratio2 = ratio(i4, ceil);
             }
         }
+    }
+
+    private static short fakeSample(ShortBuffer shortBuffer, ShortBuffer shortBuffer2, int i, int i2) {
+        return shortBuffer.get(shortBuffer.position() - i2);
     }
 }

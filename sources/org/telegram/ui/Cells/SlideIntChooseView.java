@@ -36,81 +36,6 @@ public class SlideIntChooseView extends FrameLayout {
     private final AnimatedTextView valueText;
     private Utilities.Callback whenChanged;
 
-    public static class Options {
-        private int max;
-        private int min;
-        public int style;
-        public Utilities.Callback2Return toString;
-        public int[] steps = null;
-        public int betweenSteps = 1;
-
-        public static CharSequence lambda$make$0(Utilities.CallbackReturn callbackReturn, Integer num, Integer num2) {
-            return (CharSequence) callbackReturn.run(num2);
-        }
-
-        public static CharSequence lambda$make$1(String str, Integer num, Integer num2) {
-            if (num.intValue() == 0) {
-                return LocaleController.formatPluralString(str, num2.intValue(), new Object[0]);
-            }
-            return "" + num2;
-        }
-
-        public static Options make(int i, int i2, int i3, final Utilities.CallbackReturn callbackReturn) {
-            Options options = new Options();
-            options.style = i;
-            options.min = i2;
-            options.max = i3;
-            options.toString = new Utilities.Callback2Return() {
-                @Override
-                public final Object run(Object obj, Object obj2) {
-                    CharSequence lambda$make$0;
-                    lambda$make$0 = SlideIntChooseView.Options.lambda$make$0(Utilities.CallbackReturn.this, (Integer) obj, (Integer) obj2);
-                    return lambda$make$0;
-                }
-            };
-            return options;
-        }
-
-        public static Options make(int i, final String str, int i2, int i3) {
-            Options options = new Options();
-            options.style = i;
-            options.min = i2;
-            options.max = i3;
-            options.toString = new Utilities.Callback2Return() {
-                @Override
-                public final Object run(Object obj, Object obj2) {
-                    CharSequence lambda$make$1;
-                    lambda$make$1 = SlideIntChooseView.Options.lambda$make$1(str, (Integer) obj, (Integer) obj2);
-                    return lambda$make$1;
-                }
-            };
-            return options;
-        }
-
-        public static Options make(int i, int[] iArr, int i2, Utilities.Callback2Return callback2Return) {
-            Options options = new Options();
-            options.style = i;
-            options.steps = iArr;
-            options.betweenSteps = i2;
-            options.toString = callback2Return;
-            return options;
-        }
-
-        public int getMax() {
-            int[] iArr = this.steps;
-            return iArr != null ? iArr[iArr.length - 1] : this.max;
-        }
-
-        public int getMin() {
-            int[] iArr = this.steps;
-            return iArr != null ? iArr[0] : this.min;
-        }
-
-        public int getStepsCount() {
-            return this.steps != null ? (r0.length - 1) * this.betweenSteps : getMax() - getMin();
-        }
-    }
-
     public SlideIntChooseView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.minValueAllowed = Integer.MIN_VALUE;
@@ -163,13 +88,13 @@ public class SlideIntChooseView extends FrameLayout {
             }
 
             @Override
-            public int getStepsCount() {
-                return SlideIntChooseView.this.options.getStepsCount();
+            public boolean needVisuallyDivideSteps() {
+                return false;
             }
 
             @Override
-            public boolean needVisuallyDivideSteps() {
-                return false;
+            public void onSeekBarPressed(boolean z) {
+                SeekBarView.SeekBarViewDelegate.CC.$default$onSeekBarPressed(this, z);
             }
 
             @Override
@@ -196,53 +121,90 @@ public class SlideIntChooseView extends FrameLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
-                SeekBarView.SeekBarViewDelegate.CC.$default$onSeekBarPressed(this, z);
+            public int getStepsCount() {
+                return SlideIntChooseView.this.options.getStepsCount();
             }
         });
         addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 55, 6.0f, 30.0f, 6.0f, 0.0f));
     }
 
-    public static int[] cut(int[] iArr, int i) {
-        boolean z = false;
-        int i2 = 0;
-        for (int i3 : iArr) {
-            if (i3 <= i) {
-                i2++;
-                if (i3 == i) {
-                    z = true;
-                }
-            }
-        }
-        if (!z) {
-            i2++;
-        }
-        if (i2 == iArr.length) {
-            return iArr;
-        }
-        int[] iArr2 = new int[i2];
-        int i4 = 0;
-        for (int i5 : iArr) {
-            if (i5 <= i) {
-                iArr2[i4] = i5;
-                i4++;
-            }
-        }
-        if (!z) {
-            iArr2[i4] = i;
-        }
-        return iArr2;
+    public void set(int i, Options options, Utilities.Callback callback) {
+        this.value = i;
+        this.options = options;
+        this.whenChanged = callback;
+        this.seekBarView.setProgress(getProgress(i), false);
+        updateTexts(i, false);
     }
 
-    public void lambda$setMaxTextEmojiSaturation$0(ValueAnimator valueAnimator) {
-        ColorMatrix colorMatrix = new ColorMatrix();
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.maxTextEmojiSaturation = floatValue;
-        colorMatrix.setSaturation(floatValue);
-        if (Theme.isCurrentThemeDark()) {
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - this.maxTextEmojiSaturation) * (-0.3f));
+    public float getProgress(int i) {
+        if (this.options.steps != null) {
+            int i2 = 1;
+            while (true) {
+                int[] iArr = this.options.steps;
+                if (i2 >= iArr.length) {
+                    break;
+                }
+                int i3 = iArr[i2 - 1];
+                int i4 = iArr[i2];
+                if (i >= i3 && i <= i4) {
+                    return (1.0f / (iArr.length - 1)) * (r4 + (Math.round(((i - i3) / (i4 - i3)) * r2.betweenSteps) / this.options.betweenSteps));
+                }
+                i2++;
+            }
         }
-        this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        return Utilities.clamp01((i - this.options.getMin()) / (this.options.getMax() - this.options.getMin()));
+    }
+
+    public int getValue(float f) {
+        if (this.options.steps != null) {
+            double length = f * (r1.length - 1);
+            int clamp = Utilities.clamp((int) Math.floor(length), this.options.steps.length - 1, 0);
+            int clamp2 = Utilities.clamp((int) Math.ceil(length), this.options.steps.length - 1, 0);
+            int[] iArr = this.options.steps;
+            return Math.round(AndroidUtilities.lerp(iArr[clamp], iArr[clamp2], Math.round(((float) (length - Math.floor(length))) * this.options.betweenSteps) / this.options.betweenSteps));
+        }
+        return Math.round(r0.getMin() + ((this.options.getMax() - this.options.getMin()) * f));
+    }
+
+    public int getStep(int i) {
+        if (this.options.steps != null) {
+            int i2 = 1;
+            while (true) {
+                int[] iArr = this.options.steps;
+                if (i2 >= iArr.length) {
+                    break;
+                }
+                int i3 = i2 - 1;
+                int i4 = iArr[i3];
+                int i5 = iArr[i2];
+                if (i >= i4 && i <= i5) {
+                    return i3;
+                }
+                i2++;
+            }
+        }
+        return i;
+    }
+
+    public void setMinValueAllowed(int i) {
+        this.minValueAllowed = i;
+        if (this.value < i) {
+            this.value = i;
+        }
+        this.seekBarView.setMinProgress(getProgress(i));
+        updateTexts(this.value, false);
+        invalidate();
+    }
+
+    public void updateTexts(int i, boolean z) {
+        this.minText.cancelAnimation();
+        this.maxText.cancelAnimation();
+        this.valueText.cancelAnimation();
+        this.valueText.setText((CharSequence) this.options.toString.run(0, Integer.valueOf(i)), z);
+        this.minText.setText((CharSequence) this.options.toString.run(-1, Integer.valueOf(this.options.getMin())), z);
+        this.maxText.setText((CharSequence) this.options.toString.run(1, Integer.valueOf(this.options.getMax())), z);
+        this.maxText.setTextColor(Theme.getColor(i >= this.options.getMax() ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
+        setMaxTextEmojiSaturation(i >= this.options.getMax() ? 1.0f : 0.0f, z);
     }
 
     private void setMaxTextEmojiSaturation(final float f, boolean z) {
@@ -288,58 +250,15 @@ public class SlideIntChooseView extends FrameLayout {
         this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
     }
 
-    public float getProgress(int i) {
-        if (this.options.steps != null) {
-            int i2 = 1;
-            while (true) {
-                int[] iArr = this.options.steps;
-                if (i2 >= iArr.length) {
-                    break;
-                }
-                int i3 = iArr[i2 - 1];
-                int i4 = iArr[i2];
-                if (i >= i3 && i <= i4) {
-                    return (1.0f / (iArr.length - 1)) * (r4 + (Math.round(((i - i3) / (i4 - i3)) * r2.betweenSteps) / this.options.betweenSteps));
-                }
-                i2++;
-            }
+    public void lambda$setMaxTextEmojiSaturation$0(ValueAnimator valueAnimator) {
+        ColorMatrix colorMatrix = new ColorMatrix();
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.maxTextEmojiSaturation = floatValue;
+        colorMatrix.setSaturation(floatValue);
+        if (Theme.isCurrentThemeDark()) {
+            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - this.maxTextEmojiSaturation) * (-0.3f));
         }
-        return Utilities.clamp01((i - this.options.getMin()) / (this.options.getMax() - this.options.getMin()));
-    }
-
-    public int getStep(int i) {
-        if (this.options.steps != null) {
-            int i2 = 1;
-            while (true) {
-                int[] iArr = this.options.steps;
-                if (i2 >= iArr.length) {
-                    break;
-                }
-                int i3 = i2 - 1;
-                int i4 = iArr[i3];
-                int i5 = iArr[i2];
-                if (i >= i4 && i <= i5) {
-                    return i3;
-                }
-                i2++;
-            }
-        }
-        return i;
-    }
-
-    public int getValue(float f) {
-        if (this.options.steps == null) {
-            return Math.round(r0.getMin() + ((this.options.getMax() - this.options.getMin()) * f));
-        }
-        double length = f * (r1.length - 1);
-        int clamp = Utilities.clamp((int) Math.floor(length), this.options.steps.length - 1, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(length), this.options.steps.length - 1, 0);
-        int[] iArr = this.options.steps;
-        int i = iArr[clamp];
-        int i2 = iArr[clamp2];
-        double floor = Math.floor(length);
-        Double.isNaN(length);
-        return Math.round(AndroidUtilities.lerp(i, i2, Math.round(((float) (length - floor)) * this.options.betweenSteps) / this.options.betweenSteps));
+        this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
     }
 
     @Override
@@ -350,32 +269,112 @@ public class SlideIntChooseView extends FrameLayout {
         }
     }
 
-    public void set(int i, Options options, Utilities.Callback callback) {
-        this.value = i;
-        this.options = options;
-        this.whenChanged = callback;
-        this.seekBarView.setProgress(getProgress(i), false);
-        updateTexts(i, false);
-    }
-
-    public void setMinValueAllowed(int i) {
-        this.minValueAllowed = i;
-        if (this.value < i) {
-            this.value = i;
+    public static int[] cut(int[] iArr, int i) {
+        boolean z = false;
+        int i2 = 0;
+        for (int i3 : iArr) {
+            if (i3 <= i) {
+                i2++;
+                if (i3 == i) {
+                    z = true;
+                }
+            }
         }
-        this.seekBarView.setMinProgress(getProgress(i));
-        updateTexts(this.value, false);
-        invalidate();
+        if (!z) {
+            i2++;
+        }
+        if (i2 == iArr.length) {
+            return iArr;
+        }
+        int[] iArr2 = new int[i2];
+        int i4 = 0;
+        for (int i5 : iArr) {
+            if (i5 <= i) {
+                iArr2[i4] = i5;
+                i4++;
+            }
+        }
+        if (!z) {
+            iArr2[i4] = i;
+        }
+        return iArr2;
     }
 
-    public void updateTexts(int i, boolean z) {
-        this.minText.cancelAnimation();
-        this.maxText.cancelAnimation();
-        this.valueText.cancelAnimation();
-        this.valueText.setText((CharSequence) this.options.toString.run(0, Integer.valueOf(i)), z);
-        this.minText.setText((CharSequence) this.options.toString.run(-1, Integer.valueOf(this.options.getMin())), z);
-        this.maxText.setText((CharSequence) this.options.toString.run(1, Integer.valueOf(this.options.getMax())), z);
-        this.maxText.setTextColor(Theme.getColor(i >= this.options.getMax() ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
-        setMaxTextEmojiSaturation(i >= this.options.getMax() ? 1.0f : 0.0f, z);
+    public static class Options {
+        private int max;
+        private int min;
+        public int style;
+        public Utilities.Callback2Return toString;
+        public int[] steps = null;
+        public int betweenSteps = 1;
+
+        public static Options make(int i, int i2, int i3, final Utilities.CallbackReturn callbackReturn) {
+            Options options = new Options();
+            options.style = i;
+            options.min = i2;
+            options.max = i3;
+            options.toString = new Utilities.Callback2Return() {
+                @Override
+                public final Object run(Object obj, Object obj2) {
+                    CharSequence lambda$make$0;
+                    lambda$make$0 = SlideIntChooseView.Options.lambda$make$0(Utilities.CallbackReturn.this, (Integer) obj, (Integer) obj2);
+                    return lambda$make$0;
+                }
+            };
+            return options;
+        }
+
+        public static CharSequence lambda$make$0(Utilities.CallbackReturn callbackReturn, Integer num, Integer num2) {
+            return (CharSequence) callbackReturn.run(num2);
+        }
+
+        public static Options make(int i, int[] iArr, int i2, Utilities.Callback2Return callback2Return) {
+            Options options = new Options();
+            options.style = i;
+            options.steps = iArr;
+            options.betweenSteps = i2;
+            options.toString = callback2Return;
+            return options;
+        }
+
+        public static Options make(int i, final String str, int i2, int i3) {
+            Options options = new Options();
+            options.style = i;
+            options.min = i2;
+            options.max = i3;
+            options.toString = new Utilities.Callback2Return() {
+                @Override
+                public final Object run(Object obj, Object obj2) {
+                    CharSequence lambda$make$1;
+                    lambda$make$1 = SlideIntChooseView.Options.lambda$make$1(str, (Integer) obj, (Integer) obj2);
+                    return lambda$make$1;
+                }
+            };
+            return options;
+        }
+
+        public static CharSequence lambda$make$1(String str, Integer num, Integer num2) {
+            if (num.intValue() == 0) {
+                return LocaleController.formatPluralString(str, num2.intValue(), new Object[0]);
+            }
+            return "" + num2;
+        }
+
+        public int getMin() {
+            int[] iArr = this.steps;
+            return iArr != null ? iArr[0] : this.min;
+        }
+
+        public int getMax() {
+            int[] iArr = this.steps;
+            return iArr != null ? iArr[iArr.length - 1] : this.max;
+        }
+
+        public int getStepsCount() {
+            if (this.steps != null) {
+                return (r0.length - 1) * this.betweenSteps;
+            }
+            return getMax() - getMin();
+        }
     }
 }

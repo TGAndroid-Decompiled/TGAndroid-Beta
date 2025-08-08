@@ -16,6 +16,17 @@ public final class UndispatchedCoroutine extends ScopeCoroutine {
         throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.UndispatchedCoroutine.<init>(kotlin.coroutines.CoroutineContext, kotlin.coroutines.Continuation):void");
     }
 
+    public final void saveThreadContext(CoroutineContext coroutineContext, Object obj) {
+        this.threadLocalIsSet = true;
+        this.threadStateToRecover.set(TuplesKt.to(coroutineContext, obj));
+    }
+
+    public final boolean clearThreadContext() {
+        boolean z = this.threadLocalIsSet && this.threadStateToRecover.get() == null;
+        this.threadStateToRecover.remove();
+        return !z;
+    }
+
     @Override
     protected void afterResume(Object obj) {
         if (this.threadLocalIsSet) {
@@ -38,16 +49,5 @@ public final class UndispatchedCoroutine extends ScopeCoroutine {
                 ThreadContextKt.restoreThreadContext(context, updateThreadContext);
             }
         }
-    }
-
-    public final boolean clearThreadContext() {
-        boolean z = this.threadLocalIsSet && this.threadStateToRecover.get() == null;
-        this.threadStateToRecover.remove();
-        return !z;
-    }
-
-    public final void saveThreadContext(CoroutineContext coroutineContext, Object obj) {
-        this.threadLocalIsSet = true;
-        this.threadStateToRecover.set(TuplesKt.to(coroutineContext, obj));
     }
 }

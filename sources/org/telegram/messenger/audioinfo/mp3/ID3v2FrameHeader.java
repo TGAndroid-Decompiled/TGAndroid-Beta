@@ -12,13 +12,22 @@ public class ID3v2FrameHeader {
     public ID3v2FrameHeader(ID3v2TagBody iD3v2TagBody) {
         byte b;
         byte b2;
-        int i;
         long position = iD3v2TagBody.getPosition();
         ID3v2DataInput data = iD3v2TagBody.getData();
         byte b3 = 2;
-        this.frameId = iD3v2TagBody.getTagHeader().getVersion() == 2 ? new String(data.readFully(3), "ISO-8859-1") : new String(data.readFully(4), "ISO-8859-1");
+        if (iD3v2TagBody.getTagHeader().getVersion() == 2) {
+            this.frameId = new String(data.readFully(3), "ISO-8859-1");
+        } else {
+            this.frameId = new String(data.readFully(4), "ISO-8859-1");
+        }
         byte b4 = 8;
-        this.bodySize = iD3v2TagBody.getTagHeader().getVersion() == 2 ? ((data.readByte() & 255) << 16) | ((data.readByte() & 255) << 8) | (data.readByte() & 255) : iD3v2TagBody.getTagHeader().getVersion() == 3 ? data.readInt() : data.readSyncsafeInt();
+        if (iD3v2TagBody.getTagHeader().getVersion() == 2) {
+            this.bodySize = ((data.readByte() & 255) << 16) | ((data.readByte() & 255) << 8) | (data.readByte() & 255);
+        } else if (iD3v2TagBody.getTagHeader().getVersion() == 3) {
+            this.bodySize = data.readInt();
+        } else {
+            this.bodySize = data.readSyncsafeInt();
+        }
         if (iD3v2TagBody.getTagHeader().getVersion() > 2) {
             data.readByte();
             byte readByte = data.readByte();
@@ -47,8 +56,7 @@ public class ID3v2FrameHeader {
                 }
                 if ((readByte & b) != 0) {
                     data.readByte();
-                    i = this.bodySize - 1;
-                    this.bodySize = i;
+                    this.bodySize--;
                 }
             } else {
                 if ((readByte & b) != 0) {
@@ -61,20 +69,11 @@ public class ID3v2FrameHeader {
                 }
                 if ((readByte & b2) != 0) {
                     this.dataLengthIndicator = data.readSyncsafeInt();
-                    i = this.bodySize - 4;
-                    this.bodySize = i;
+                    this.bodySize -= 4;
                 }
             }
         }
         this.headerSize = (int) (iD3v2TagBody.getPosition() - position);
-    }
-
-    public int getBodySize() {
-        return this.bodySize;
-    }
-
-    public int getDataLengthIndicator() {
-        return this.dataLengthIndicator;
     }
 
     public String getFrameId() {
@@ -85,6 +84,10 @@ public class ID3v2FrameHeader {
         return this.headerSize;
     }
 
+    public int getBodySize() {
+        return this.bodySize;
+    }
+
     public boolean isCompression() {
         return this.compression;
     }
@@ -93,17 +96,12 @@ public class ID3v2FrameHeader {
         return this.encryption;
     }
 
-    public boolean isPadding() {
-        for (int i = 0; i < this.frameId.length(); i++) {
-            if (this.frameId.charAt(0) != 0) {
-                return false;
-            }
-        }
-        return this.bodySize == 0;
-    }
-
     public boolean isUnsynchronization() {
         return this.unsynchronization;
+    }
+
+    public int getDataLengthIndicator() {
+        return this.dataLengthIndicator;
     }
 
     public boolean isValid() {
@@ -113,6 +111,15 @@ public class ID3v2FrameHeader {
             }
         }
         return this.bodySize > 0;
+    }
+
+    public boolean isPadding() {
+        for (int i = 0; i < this.frameId.length(); i++) {
+            if (this.frameId.charAt(0) != 0) {
+                return false;
+            }
+        }
+        return this.bodySize == 0;
     }
 
     public String toString() {

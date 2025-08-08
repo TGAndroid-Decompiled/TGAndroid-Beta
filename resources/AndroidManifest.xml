@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="61109"
+    android:versionCode="61139"
     android:versionName="11.14.2"
     android:installLocation="auto"
-    android:compileSdkVersion="34"
-    android:compileSdkVersionCodename="14"
+    android:compileSdkVersion="35"
+    android:compileSdkVersionCodename="15"
     package="org.telegram.messenger.beta"
-    platformBuildVersionCode="34"
-    platformBuildVersionName="14">
+    platformBuildVersionCode="35"
+    platformBuildVersionName="15">
     <uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="34"/>
+        android:minSdkVersion="21"
+        android:targetSdkVersion="35"/>
     <uses-feature
         android:name="android.hardware.location.gps"
         android:required="false"/>
@@ -135,6 +135,9 @@
         <package android:name="com.google.android.gms.policy_cast_dynamite"/>
         <intent>
             <action android:name="com.android.vending.billing.InAppBillingService.BIND"/>
+        </intent>
+        <intent>
+            <action android:name="com.google.android.apps.play.billingtestcompanion.BillingOverrideService.BIND"/>
         </intent>
     </queries>
     <permission
@@ -834,18 +837,34 @@
             android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
             android:exported="true"
             android:visibleToInstantApps="true"/>
+        <meta-data
+            android:name="com.google.android.play.billingclient.version"
+            android:value="7.1.1"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.android.billingclient.api.ProxyBillingActivity"
+            android:exported="false"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.android.billingclient.api.ProxyBillingActivityV2"
+            android:exported="false"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
         <service
             android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
             android:exported="false"
             android:directBootAware="true">
             <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.LanguageIdRegistrar"
+                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data
                 android:name="com.google.firebase.components:com.google.mlkit.vision.segmentation.subject.internal.SubjectSegmentationRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data
                 android:name="com.google.firebase.components:com.google.mlkit.vision.label.defaults.thin.ThinLabelRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.internal.LanguageIdRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data
                 android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
@@ -917,6 +936,15 @@
                 android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
         </service>
+        <provider
+            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+            android:exported="false"
+            android:authorities="org.telegram.messenger.beta.mlkitinitprovider"
+            android:initOrder="99"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"/>
         <service
             android:name="com.google.firebase.sessions.SessionLifecycleService"
             android:enabled="true"
@@ -927,15 +955,6 @@
             android:authorities="org.telegram.messenger.beta.firebaseinitprovider"
             android:initOrder="100"
             android:directBootAware="true"/>
-        <provider
-            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
-            android:exported="false"
-            android:authorities="org.telegram.messenger.beta.mlkitinitprovider"
-            android:initOrder="99"/>
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-            android:exported="false"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
@@ -958,14 +977,6 @@
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 android:value="androidx.startup"/>
         </provider>
-        <meta-data
-            android:name="com.google.android.play.billingclient.version"
-            android:value="6.0.1"/>
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.android.billingclient.api.ProxyBillingActivity"
-            android:exported="false"
-            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
         <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
             android:exported="false">

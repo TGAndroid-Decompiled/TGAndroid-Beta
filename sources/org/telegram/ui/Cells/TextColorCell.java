@@ -45,6 +45,32 @@ public class TextColorCell extends FrameLayout {
     }
 
     @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    }
+
+    public void setTextAndColor(String str, int i, boolean z) {
+        this.textView.setText(str);
+        this.needDivider = z;
+        this.currentColor = i;
+        setWillNotDraw(!z && i == 0);
+        invalidate();
+    }
+
+    public void setEnabled(boolean z, ArrayList arrayList) {
+        super.setEnabled(z);
+        if (arrayList != null) {
+            TextView textView = this.textView;
+            Property property = View.ALPHA;
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this, (Property<TextColorCell, Float>) property, z ? 1.0f : 0.5f));
+            return;
+        }
+        this.textView.setAlpha(z ? 1.0f : 0.5f);
+        setAlpha(z ? 1.0f : 0.5f);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
@@ -54,31 +80,5 @@ public class TextColorCell extends FrameLayout {
             colorPaint.setColor(i);
             canvas.drawCircle(LocaleController.isRTL ? AndroidUtilities.dp(33.0f) : getMeasuredWidth() - AndroidUtilities.dp(33.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), colorPaint);
         }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
-    }
-
-    public void setEnabled(boolean z, ArrayList arrayList) {
-        super.setEnabled(z);
-        if (arrayList == null) {
-            this.textView.setAlpha(z ? 1.0f : 0.5f);
-            setAlpha(z ? 1.0f : 0.5f);
-        } else {
-            TextView textView = this.textView;
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
-            arrayList.add(ObjectAnimator.ofFloat(this, (Property<TextColorCell, Float>) property, z ? 1.0f : 0.5f));
-        }
-    }
-
-    public void setTextAndColor(String str, int i, boolean z) {
-        this.textView.setText(str);
-        this.needDivider = z;
-        this.currentColor = i;
-        setWillNotDraw(!z && i == 0);
-        invalidate();
     }
 }

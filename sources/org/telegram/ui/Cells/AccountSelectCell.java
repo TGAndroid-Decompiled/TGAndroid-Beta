@@ -31,14 +31,6 @@ public class AccountSelectCell extends FrameLayout {
 
     public AccountSelectCell(Context context, boolean z) {
         super(context);
-        float f;
-        float f2;
-        View view;
-        float f3;
-        int i;
-        float f4;
-        int i2;
-        float f5;
         setMinimumWidth(AndroidUtilities.dp(196.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         this.avatarDrawable = avatarDrawable;
@@ -68,32 +60,17 @@ public class AccountSelectCell extends FrameLayout {
             this.infoTextView.setMaxWidth(AndroidUtilities.dp(320.0f));
             this.infoTextView.setGravity(51);
             this.infoTextView.setEllipsize(TextUtils.TruncateAt.END);
-            view = this.infoTextView;
-            f3 = 8.0f;
-            f = 0.0f;
-            i = -2;
-            f4 = -2.0f;
-            i2 = 51;
-            f5 = 61.0f;
-            f2 = 27.0f;
-        } else {
-            f = 0.0f;
-            f2 = 0.0f;
-            addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 61.0f, 0.0f, 52.0f, 0.0f));
-            this.textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
-            ImageView imageView = new ImageView(context);
-            this.checkImageView = imageView;
-            imageView.setImageResource(R.drawable.account_check);
-            this.checkImageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.checkImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemCheck), PorterDuff.Mode.MULTIPLY));
-            view = this.checkImageView;
-            f3 = 6.0f;
-            i = 40;
-            f4 = -1.0f;
-            i2 = 53;
-            f5 = 0.0f;
+            addView(this.infoTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 61.0f, 27.0f, 8.0f, 0.0f));
+            return;
         }
-        addView(view, LayoutHelper.createFrame(i, f4, i2, f5, f2, f3, f));
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 61.0f, 0.0f, 52.0f, 0.0f));
+        this.textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
+        ImageView imageView = new ImageView(context);
+        this.checkImageView = imageView;
+        imageView.setImageResource(R.drawable.account_check);
+        this.checkImageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.checkImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemCheck), PorterDuff.Mode.MULTIPLY));
+        addView(this.checkImageView, LayoutHelper.createFrame(40, -1.0f, 53, 0.0f, 0.0f, 6.0f, 0.0f));
     }
 
     private int width() {
@@ -104,8 +81,15 @@ public class AccountSelectCell extends FrameLayout {
         return (int) Math.max(dp, dp2 + Math.max(measureText, textView != null ? textView.getPaint().measureText(this.infoTextView.getText().toString()) : 0.0f));
     }
 
-    public int getAccountNumber() {
-        return this.accountNumber;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        if (this.checkImageView != null || (this.infoTextView != null && getLayoutParams().width != -2)) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        } else if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(width(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        } else {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        }
     }
 
     @Override
@@ -116,14 +100,18 @@ public class AccountSelectCell extends FrameLayout {
         }
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.checkImageView != null || (this.infoTextView != null && getLayoutParams().width != -2)) {
-            i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        } else if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-            i = View.MeasureSpec.makeMeasureSpec(width(), Integer.MIN_VALUE);
+    public void setObject(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            this.avatarDrawable.setInfo(user);
+            this.infoTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
+            this.imageView.setForUserOrChat(user, this.avatarDrawable);
+            return;
         }
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+        this.avatarDrawable.setInfo(chat);
+        this.infoTextView.setText(chat == null ? "" : chat.title);
+        this.imageView.setForUserOrChat(chat, this.avatarDrawable);
     }
 
     public void setAccount(int i, boolean z) {
@@ -136,29 +124,7 @@ public class AccountSelectCell extends FrameLayout {
         this.checkImageView.setVisibility((z && i == UserConfig.selectedAccount) ? 0 : 4);
     }
 
-    public void setObject(TLObject tLObject) {
-        TextView textView;
-        String str;
-        TLRPC.Chat chat;
-        if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            this.avatarDrawable.setInfo(user);
-            textView = this.infoTextView;
-            str = ContactsController.formatName(user.first_name, user.last_name);
-            chat = user;
-        } else {
-            TLRPC.Chat chat2 = (TLRPC.Chat) tLObject;
-            this.avatarDrawable.setInfo(chat2);
-            textView = this.infoTextView;
-            if (chat2 == null) {
-                str = "";
-                chat = chat2;
-            } else {
-                str = chat2.title;
-                chat = chat2;
-            }
-        }
-        textView.setText(str);
-        this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+    public int getAccountNumber() {
+        return this.accountNumber;
     }
 }

@@ -38,24 +38,36 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         this.mSurface = new Surface(this.mSurfaceTexture);
     }
 
-    private void checkEglError(String str) {
-        if (EGL14.eglGetError() == 12288) {
-            return;
+    public void release() {
+        TextureRenderer textureRenderer = this.mTextureRender;
+        if (textureRenderer != null) {
+            textureRenderer.release();
         }
-        throw new RuntimeException("EGL error encountered (see log) at: " + str);
+        this.mSurface.release();
+        this.mEGLDisplay = null;
+        this.mEGLContext = null;
+        this.mEGLSurface = null;
+        this.mEGL = null;
+        this.mTextureRender = null;
+        this.mSurface = null;
+        this.mSurfaceTexture = null;
+    }
+
+    public Surface getSurface() {
+        return this.mSurface;
     }
 
     public void awaitNewImage() {
         synchronized (this.mFrameSyncObject) {
             do {
-                if (this.mFrameAvailable) {
-                    this.mFrameAvailable = false;
-                } else {
+                if (!this.mFrameAvailable) {
                     try {
                         this.mFrameSyncObject.wait(2500L);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
+                } else {
+                    this.mFrameAvailable = false;
                 }
             } while (this.mFrameAvailable);
             throw new RuntimeException("Surface frame wait timed out");
@@ -63,16 +75,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         this.mSurfaceTexture.updateTexImage();
     }
 
-    public void changeFragmentShader(String str, String str2, boolean z) {
-        this.mTextureRender.changeFragmentShader(str, str2, z);
-    }
-
     public void drawImage(long j) {
         this.mTextureRender.drawFrame(this.mSurfaceTexture, j);
-    }
-
-    public Surface getSurface() {
-        return this.mSurface;
     }
 
     @Override
@@ -90,19 +94,15 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         }
     }
 
-    public void release() {
-        TextureRenderer textureRenderer = this.mTextureRender;
-        if (textureRenderer != null) {
-            textureRenderer.release();
+    private void checkEglError(String str) {
+        if (EGL14.eglGetError() == 12288) {
+            return;
         }
-        this.mSurface.release();
-        this.mEGLDisplay = null;
-        this.mEGLContext = null;
-        this.mEGLSurface = null;
-        this.mEGL = null;
-        this.mTextureRender = null;
-        this.mSurface = null;
-        this.mSurfaceTexture = null;
+        throw new RuntimeException("EGL error encountered (see log) at: " + str);
+    }
+
+    public void changeFragmentShader(String str, String str2, boolean z) {
+        this.mTextureRender.changeFragmentShader(str, str2, z);
     }
 
     public boolean supportsEXTYUV() {

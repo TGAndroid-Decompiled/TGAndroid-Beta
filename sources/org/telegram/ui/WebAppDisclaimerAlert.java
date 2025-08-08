@@ -2,7 +2,6 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,32 +21,6 @@ public class WebAppDisclaimerAlert {
     private CheckBoxCell cell;
     private TextView positiveButton;
 
-    public static void lambda$show$0(Context context) {
-        Browser.openUrl(context, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-    }
-
-    public static void lambda$show$1(Consumer consumer, boolean[] zArr, AlertDialog alertDialog, int i) {
-        consumer.accept(Boolean.TRUE);
-        zArr[0] = true;
-        alertDialog.dismiss();
-    }
-
-    public static void lambda$show$3(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
-        webAppDisclaimerAlert.cell.setChecked(!r3.isChecked(), true);
-        webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());
-        webAppDisclaimerAlert.positiveButton.animate().alpha(webAppDisclaimerAlert.cell.isChecked() ? 1.0f : 0.5f).start();
-    }
-
-    public static void lambda$show$4(boolean[] zArr, Runnable runnable, DialogInterface dialogInterface) {
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
     public static void show(final Context context, final Consumer consumer, TLRPC.User user, final Runnable runnable) {
         final WebAppDisclaimerAlert webAppDisclaimerAlert = new WebAppDisclaimerAlert();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -55,9 +28,7 @@ public class WebAppDisclaimerAlert {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        if (Build.VERSION.SDK_INT >= 21) {
-            textView.setLetterSpacing(0.025f);
-        }
+        textView.setLetterSpacing(0.025f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setTextSize(1, 14.0f);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0, 24, 0, 24, 0));
@@ -107,5 +78,31 @@ public class WebAppDisclaimerAlert {
                 WebAppDisclaimerAlert.lambda$show$4(zArr, runnable, dialogInterface);
             }
         });
+    }
+
+    public static void lambda$show$0(Context context) {
+        Browser.openUrl(context, LocaleController.getString(R.string.WebAppDisclaimerUrl));
+    }
+
+    public static void lambda$show$1(Consumer consumer, boolean[] zArr, AlertDialog alertDialog, int i) {
+        consumer.accept(Boolean.TRUE);
+        zArr[0] = true;
+        alertDialog.dismiss();
+    }
+
+    public static void lambda$show$3(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
+        webAppDisclaimerAlert.cell.setChecked(!r3.isChecked(), true);
+        webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());
+        webAppDisclaimerAlert.positiveButton.animate().alpha(webAppDisclaimerAlert.cell.isChecked() ? 1.0f : 0.5f).start();
+    }
+
+    public static void lambda$show$4(boolean[] zArr, Runnable runnable, DialogInterface dialogInterface) {
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 }

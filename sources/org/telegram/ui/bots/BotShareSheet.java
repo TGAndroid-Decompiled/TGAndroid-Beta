@@ -73,6 +73,93 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
     private boolean sent;
     private final Utilities.Callback2 whenDone;
 
+    public static void share(final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
+        TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
+        tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i).getInputUser(j);
+        tL_messages_getPreparedInlineMessage.id = str;
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getPreparedInlineMessage, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                BotShareSheet.lambda$share$4(context, i, j, str, resourcesProvider, runnable, callback2, tLObject, tL_error);
+            }
+        });
+    }
+
+    public static void lambda$share$4(final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BotShareSheet.lambda$share$3(TLObject.this, context, i, j, str, resourcesProvider, runnable, callback2);
+            }
+        });
+    }
+
+    public static void lambda$share$3(TLObject tLObject, final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
+        TLRPC.WebDocument webDocument;
+        String str2;
+        if (!(tLObject instanceof TLRPC.TL_messages_preparedInlineMessage)) {
+            if (callback2 != null) {
+                callback2.run("MESSAGE_EXPIRED", null);
+                return;
+            }
+            return;
+        }
+        final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject;
+        final File[] fileArr = new File[1];
+        final Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                BotShareSheet.lambda$share$0(context, i, j, str, tL_messages_preparedInlineMessage, fileArr, resourcesProvider, runnable, callback2);
+            }
+        };
+        if (tL_messages_preparedInlineMessage != null && (webDocument = tL_messages_preparedInlineMessage.result.content) != null && !TextUtils.isEmpty(webDocument.url)) {
+            TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
+            if (botInlineResult.send_message instanceof TLRPC.TL_botInlineMessageMediaAuto) {
+                String str3 = botInlineResult.content.url;
+                String httpUrlExtension = ImageLoader.getHttpUrlExtension(str3, null);
+                if (TextUtils.isEmpty(httpUrlExtension)) {
+                    str2 = FileLoader.getExtensionByMimeType(tL_messages_preparedInlineMessage.result.content.mime_type);
+                } else {
+                    str2 = "." + httpUrlExtension;
+                }
+                File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str3) + str2);
+                if (!file.exists()) {
+                    final AlertDialog alertDialog = new AlertDialog(context, 3);
+                    final HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            BotShareSheet.lambda$share$1(fileArr, alertDialog, runnable2, (File) obj);
+                        }
+                    }, null);
+                    httpGetFileTask.setDestFile(file);
+                    httpGetFileTask.setMaxSize(8388608L);
+                    httpGetFileTask.execute(str3);
+                    alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            HttpGetFileTask.this.cancel(true);
+                        }
+                    });
+                    alertDialog.showDelayed(180L);
+                    return;
+                }
+                runnable2.run();
+                return;
+            }
+        }
+        runnable2.run();
+    }
+
+    public static void lambda$share$0(Context context, int i, long j, String str, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, Theme.ResourcesProvider resourcesProvider, Runnable runnable, Utilities.Callback2 callback2) {
+        new BotShareSheet(context, i, j, str, tL_messages_preparedInlineMessage, fileArr[0], resourcesProvider, runnable, callback2).show();
+    }
+
+    public static void lambda$share$1(File[] fileArr, AlertDialog alertDialog, Runnable runnable, File file) {
+        fileArr[0] = file;
+        alertDialog.dismiss();
+        runnable.run();
+    }
+
     public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
         super(context, null, false, false, false, resourcesProvider);
         this.openedDialogsActivity = false;
@@ -602,160 +689,6 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public static org.telegram.messenger.MessageObject convert(int r17, long r18, org.telegram.tgnet.TLRPC.BotInlineResult r20, java.io.File r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotShareSheet.convert(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, java.io.File):org.telegram.messenger.MessageObject");
-    }
-
-    public static MessageObject convert(int i, long j, TLRPC.BotInlineResult botInlineResult, TLRPC.Photo photo, TLRPC.Document document) {
-        TLRPC.MessageMedia tL_messageMediaDocument;
-        TLRPC.BotInlineMessage botInlineMessage;
-        TLRPC.ReplyMarkup replyMarkup;
-        TLRPC.MessageMedia tL_messageMediaWebPage;
-        TLRPC.BotInlineMessage botInlineMessage2;
-        if (photo == null) {
-            photo = botInlineResult.photo;
-        }
-        if (document == null) {
-            document = botInlineResult.document;
-        }
-        TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.out = false;
-        tL_message.flags |= 2048;
-        tL_message.via_bot_id = j;
-        tL_message.date = ConnectionsManager.getInstance(i).getCurrentTime();
-        tL_message.peer_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
-        tL_message.from_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
-        TLRPC.BotInlineMessage botInlineMessage3 = botInlineResult.send_message;
-        if (botInlineMessage3 != null) {
-            if (botInlineMessage3 instanceof TLRPC.TL_botInlineMessageText) {
-                botInlineMessage2 = (TLRPC.TL_botInlineMessageText) botInlineMessage3;
-            } else {
-                if (botInlineMessage3 instanceof TLRPC.TL_botInlineMessageMediaContact) {
-                    TLRPC.TL_botInlineMessageMediaContact tL_botInlineMessageMediaContact = (TLRPC.TL_botInlineMessageMediaContact) botInlineMessage3;
-                    tL_messageMediaWebPage = new TLRPC.TL_messageMediaContact();
-                    tL_messageMediaWebPage.phone_number = tL_botInlineMessageMediaContact.phone_number;
-                    tL_messageMediaWebPage.first_name = tL_botInlineMessageMediaContact.first_name;
-                    tL_messageMediaWebPage.last_name = tL_botInlineMessageMediaContact.last_name;
-                    tL_messageMediaWebPage.vcard = tL_botInlineMessageMediaContact.vcard;
-                } else if (botInlineMessage3 instanceof TLRPC.TL_botInlineMessageMediaGeo) {
-                    tL_messageMediaWebPage = new TLRPC.TL_messageMediaGeo();
-                    tL_messageMediaWebPage.geo = ((TLRPC.TL_botInlineMessageMediaGeo) botInlineMessage3).geo;
-                } else if (botInlineMessage3 instanceof TLRPC.TL_botInlineMessageMediaVenue) {
-                    TLRPC.TL_botInlineMessageMediaVenue tL_botInlineMessageMediaVenue = (TLRPC.TL_botInlineMessageMediaVenue) botInlineMessage3;
-                    tL_messageMediaWebPage = new TLRPC.TL_messageMediaVenue();
-                    tL_messageMediaWebPage.geo = tL_botInlineMessageMediaVenue.geo;
-                    tL_messageMediaWebPage.title = tL_botInlineMessageMediaVenue.title;
-                    tL_messageMediaWebPage.address = tL_botInlineMessageMediaVenue.address;
-                    tL_messageMediaWebPage.venue_id = tL_botInlineMessageMediaVenue.venue_id;
-                    tL_messageMediaWebPage.provider = tL_botInlineMessageMediaVenue.venue_type;
-                } else if (botInlineMessage3 instanceof TLRPC.TL_botInlineMessageMediaAuto) {
-                    botInlineMessage2 = (TLRPC.TL_botInlineMessageMediaAuto) botInlineMessage3;
-                } else if (!(botInlineMessage3 instanceof TLRPC.TL_botInlineMessageMediaInvoice) && (botInlineMessage3 instanceof TLRPC.TL_botInlineMessageMediaWebPage)) {
-                    TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage3;
-                    tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
-                    tL_messageMediaWebPage.force_large_media = tL_botInlineMessageMediaWebPage.force_large_media;
-                    tL_messageMediaWebPage.force_small_media = tL_botInlineMessageMediaWebPage.force_small_media;
-                    tL_messageMediaWebPage.manual = tL_botInlineMessageMediaWebPage.manual;
-                    tL_messageMediaWebPage.safe = tL_botInlineMessageMediaWebPage.safe;
-                    tL_messageMediaWebPage.webpage = new TLRPC.TL_webPageEmpty();
-                }
-                tL_message.flags |= 512;
-                tL_message.media = tL_messageMediaWebPage;
-            }
-            tL_message.message = botInlineMessage2.message;
-            tL_message.entities = botInlineMessage2.entities;
-        }
-        boolean z = true;
-        if (photo == null) {
-            if (document != null) {
-                tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                tL_messageMediaDocument.flags |= 1;
-                tL_messageMediaDocument.voice = "voice".equalsIgnoreCase(botInlineResult.type);
-                tL_messageMediaDocument.round = "round".equalsIgnoreCase(botInlineResult.type);
-                tL_messageMediaDocument.document = document;
-            }
-            botInlineMessage = botInlineResult.send_message;
-            if (botInlineMessage != null && (replyMarkup = botInlineMessage.reply_markup) != null) {
-                tL_message.flags |= 64;
-                tL_message.reply_markup = replyMarkup;
-            }
-            return new MessageObject(i, tL_message, z, z) {
-                @Override
-                public boolean isOut() {
-                    return false;
-                }
-
-                @Override
-                public boolean isOutOwner() {
-                    return false;
-                }
-            };
-        }
-        tL_messageMediaDocument = new TLRPC.TL_messageMediaPhoto();
-        tL_messageMediaDocument.photo = photo;
-        tL_message.flags |= 512;
-        tL_message.media = tL_messageMediaDocument;
-        botInlineMessage = botInlineResult.send_message;
-        if (botInlineMessage != null) {
-            tL_message.flags |= 64;
-            tL_message.reply_markup = replyMarkup;
-        }
-        return new MessageObject(i, tL_message, z, z) {
-            @Override
-            public boolean isOut() {
-                return false;
-            }
-
-            @Override
-            public boolean isOutOwner() {
-                return false;
-            }
-        };
-    }
-
-    public boolean lambda$new$5(int i, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, long j, BaseFragment baseFragment, Utilities.Callback2 callback2, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
-        TLRPC.TL_forumTopic findTopic;
-        ArrayList arrayList2 = new ArrayList();
-        Iterator it = arrayList.iterator();
-        while (true) {
-            MessageObject messageObject = null;
-            if (!it.hasNext()) {
-                break;
-            }
-            MessagesStorage.TopicKey topicKey = (MessagesStorage.TopicKey) it.next();
-            long j2 = topicKey.dialogId;
-            long j3 = topicKey.topicId;
-            if (!DialogObject.isEncryptedDialog(j2)) {
-                if (j3 != 0 && (findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(-j2, j3)) != null && findTopic.topicStartMessage != null) {
-                    messageObject = new MessageObject(i, findTopic.topicStartMessage, false, false);
-                    messageObject.isTopicMainMessage = true;
-                }
-                HashMap hashMap = new HashMap();
-                hashMap.put("query_id", "" + tL_messages_preparedInlineMessage.query_id);
-                hashMap.put("id", "" + tL_messages_preparedInlineMessage.result.id);
-                hashMap.put("bot", "" + j);
-                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, null, 0, 0L);
-                if (charSequence != null) {
-                    SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, messageObject, messageObject, null, true, null, null, null, true, 0, null, false));
-                }
-                arrayList2.add(Long.valueOf(j2));
-            }
-        }
-        if (!this.sent) {
-            this.sent = true;
-            if (callback2 != null) {
-                callback2.run(arrayList2.size() <= 0 ? "USER_DECLINED" : null, arrayList2);
-            }
-        }
-        if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$355();
-            dialogsActivity.removeSelfFromStack();
-        } else {
-            dialogsActivity.lambda$onBackPressed$355();
-        }
-        return true;
-    }
-
     public void lambda$new$6(final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, final Utilities.Callback2 callback2, final int i, final long j, Runnable runnable, View view) {
         final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -833,101 +766,53 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void lambda$share$0(Context context, int i, long j, String str, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, Theme.ResourcesProvider resourcesProvider, Runnable runnable, Utilities.Callback2 callback2) {
-        new BotShareSheet(context, i, j, str, tL_messages_preparedInlineMessage, fileArr[0], resourcesProvider, runnable, callback2).show();
-    }
-
-    public static void lambda$share$1(File[] fileArr, AlertDialog alertDialog, Runnable runnable, File file) {
-        fileArr[0] = file;
-        alertDialog.dismiss();
-        runnable.run();
-    }
-
-    public static void lambda$share$3(TLObject tLObject, final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
-        TLRPC.WebDocument webDocument;
-        String str2;
-        if (!(tLObject instanceof TLRPC.TL_messages_preparedInlineMessage)) {
+    public boolean lambda$new$5(int i, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, long j, BaseFragment baseFragment, Utilities.Callback2 callback2, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+        TLRPC.TL_forumTopic findTopic;
+        ArrayList arrayList2 = new ArrayList();
+        Iterator it = arrayList.iterator();
+        while (true) {
+            MessageObject messageObject = null;
+            if (!it.hasNext()) {
+                break;
+            }
+            MessagesStorage.TopicKey topicKey = (MessagesStorage.TopicKey) it.next();
+            long j2 = topicKey.dialogId;
+            long j3 = topicKey.topicId;
+            if (!DialogObject.isEncryptedDialog(j2)) {
+                if (j3 != 0 && (findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(-j2, j3)) != null && findTopic.topicStartMessage != null) {
+                    messageObject = new MessageObject(i, findTopic.topicStartMessage, false, false);
+                    messageObject.isTopicMainMessage = true;
+                }
+                HashMap hashMap = new HashMap();
+                hashMap.put("query_id", "" + tL_messages_preparedInlineMessage.query_id);
+                hashMap.put("id", "" + tL_messages_preparedInlineMessage.result.id);
+                hashMap.put("bot", "" + j);
+                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, null, 0, 0L);
+                if (charSequence != null) {
+                    SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, messageObject, messageObject, null, true, null, null, null, true, 0, null, false));
+                }
+                arrayList2.add(Long.valueOf(j2));
+            }
+        }
+        if (!this.sent) {
+            this.sent = true;
             if (callback2 != null) {
-                callback2.run("MESSAGE_EXPIRED", null);
-                return;
-            }
-            return;
-        }
-        final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject;
-        final File[] fileArr = new File[1];
-        final Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                BotShareSheet.lambda$share$0(context, i, j, str, tL_messages_preparedInlineMessage, fileArr, resourcesProvider, runnable, callback2);
-            }
-        };
-        if (tL_messages_preparedInlineMessage != null && (webDocument = tL_messages_preparedInlineMessage.result.content) != null && !TextUtils.isEmpty(webDocument.url)) {
-            TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
-            if (botInlineResult.send_message instanceof TLRPC.TL_botInlineMessageMediaAuto) {
-                String str3 = botInlineResult.content.url;
-                String httpUrlExtension = ImageLoader.getHttpUrlExtension(str3, null);
-                if (TextUtils.isEmpty(httpUrlExtension)) {
-                    str2 = FileLoader.getExtensionByMimeType(tL_messages_preparedInlineMessage.result.content.mime_type);
-                } else {
-                    str2 = "." + httpUrlExtension;
-                }
-                File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str3) + str2);
-                if (!file.exists()) {
-                    final AlertDialog alertDialog = new AlertDialog(context, 3);
-                    final HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            BotShareSheet.lambda$share$1(fileArr, alertDialog, runnable2, (File) obj);
-                        }
-                    }, null);
-                    httpGetFileTask.setDestFile(file);
-                    httpGetFileTask.setMaxSize(8388608L);
-                    httpGetFileTask.execute(str3);
-                    alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            HttpGetFileTask.this.cancel(true);
-                        }
-                    });
-                    alertDialog.showDelayed(180L);
-                    return;
-                }
+                callback2.run(arrayList2.size() <= 0 ? "USER_DECLINED" : null, arrayList2);
             }
         }
-        runnable2.run();
-    }
-
-    public static void lambda$share$4(final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BotShareSheet.lambda$share$3(TLObject.this, context, i, j, str, resourcesProvider, runnable, callback2);
-            }
-        });
-    }
-
-    public static void share(final Context context, final int i, final long j, final String str, final Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
-        TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
-        tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i).getInputUser(j);
-        tL_messages_getPreparedInlineMessage.id = str;
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getPreparedInlineMessage, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                BotShareSheet.lambda$share$4(context, i, j, str, resourcesProvider, runnable, callback2, tLObject, tL_error);
-            }
-        });
+        if (topicsFragment != null) {
+            topicsFragment.lambda$onBackPressed$355();
+            dialogsActivity.removeSelfFromStack();
+        } else {
+            dialogsActivity.lambda$onBackPressed$355();
+        }
+        return true;
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                BotShareSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider);
-        this.adapter = universalAdapter;
-        return universalAdapter;
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        this.recyclerListView.scrollToPosition(Math.max((this.recyclerListView.getAdapter() == null ? 0 : this.recyclerListView.getAdapter().getItemCount()) - 1, 0));
     }
 
     @Override
@@ -943,19 +828,123 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asCustom(-1, this.chatView));
-        arrayList.add(UItem.asShadow(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotShareMessageInfo, this.botName))));
-    }
-
     @Override
     protected CharSequence getTitle() {
         return LocaleController.getString(R.string.BotShareMessage);
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        this.recyclerListView.scrollToPosition(Math.max((this.recyclerListView.getAdapter() == null ? 0 : this.recyclerListView.getAdapter().getItemCount()) - 1, 0));
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                BotShareSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, this.resourcesProvider);
+        this.adapter = universalAdapter;
+        return universalAdapter;
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        arrayList.add(UItem.asCustom(-1, this.chatView));
+        arrayList.add(UItem.asShadow(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotShareMessageInfo, this.botName))));
+    }
+
+    public static org.telegram.messenger.MessageObject convert(int r19, long r20, org.telegram.tgnet.TLRPC.BotInlineResult r22, java.io.File r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotShareSheet.convert(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, java.io.File):org.telegram.messenger.MessageObject");
+    }
+
+    public static MessageObject convert(int i, long j, TLRPC.BotInlineResult botInlineResult, TLRPC.Photo photo, TLRPC.Document document) {
+        TLRPC.ReplyMarkup replyMarkup;
+        if (photo == null) {
+            photo = botInlineResult.photo;
+        }
+        if (document == null) {
+            document = botInlineResult.document;
+        }
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+        tL_message.out = false;
+        tL_message.flags |= 2048;
+        tL_message.via_bot_id = j;
+        tL_message.date = ConnectionsManager.getInstance(i).getCurrentTime();
+        tL_message.peer_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
+        tL_message.from_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
+        TLRPC.BotInlineMessage botInlineMessage = botInlineResult.send_message;
+        if (botInlineMessage != null) {
+            if (botInlineMessage instanceof TLRPC.TL_botInlineMessageText) {
+                TLRPC.TL_botInlineMessageText tL_botInlineMessageText = (TLRPC.TL_botInlineMessageText) botInlineMessage;
+                tL_message.message = tL_botInlineMessageText.message;
+                tL_message.entities = tL_botInlineMessageText.entities;
+            } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaContact) {
+                TLRPC.TL_botInlineMessageMediaContact tL_botInlineMessageMediaContact = (TLRPC.TL_botInlineMessageMediaContact) botInlineMessage;
+                TLRPC.TL_messageMediaContact tL_messageMediaContact = new TLRPC.TL_messageMediaContact();
+                tL_messageMediaContact.phone_number = tL_botInlineMessageMediaContact.phone_number;
+                tL_messageMediaContact.first_name = tL_botInlineMessageMediaContact.first_name;
+                tL_messageMediaContact.last_name = tL_botInlineMessageMediaContact.last_name;
+                tL_messageMediaContact.vcard = tL_botInlineMessageMediaContact.vcard;
+                tL_message.flags |= 512;
+                tL_message.media = tL_messageMediaContact;
+            } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaGeo) {
+                TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
+                tL_messageMediaGeo.geo = ((TLRPC.TL_botInlineMessageMediaGeo) botInlineMessage).geo;
+                tL_message.flags |= 512;
+                tL_message.media = tL_messageMediaGeo;
+            } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaVenue) {
+                TLRPC.TL_botInlineMessageMediaVenue tL_botInlineMessageMediaVenue = (TLRPC.TL_botInlineMessageMediaVenue) botInlineMessage;
+                TLRPC.TL_messageMediaVenue tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                tL_messageMediaVenue.geo = tL_botInlineMessageMediaVenue.geo;
+                tL_messageMediaVenue.title = tL_botInlineMessageMediaVenue.title;
+                tL_messageMediaVenue.address = tL_botInlineMessageMediaVenue.address;
+                tL_messageMediaVenue.venue_id = tL_botInlineMessageMediaVenue.venue_id;
+                tL_messageMediaVenue.provider = tL_botInlineMessageMediaVenue.venue_type;
+                tL_message.flags |= 512;
+                tL_message.media = tL_messageMediaVenue;
+            } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaAuto) {
+                TLRPC.TL_botInlineMessageMediaAuto tL_botInlineMessageMediaAuto = (TLRPC.TL_botInlineMessageMediaAuto) botInlineMessage;
+                tL_message.message = tL_botInlineMessageMediaAuto.message;
+                tL_message.entities = tL_botInlineMessageMediaAuto.entities;
+            } else if (!(botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaInvoice) && (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage)) {
+                TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
+                TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
+                tL_messageMediaWebPage.force_large_media = tL_botInlineMessageMediaWebPage.force_large_media;
+                tL_messageMediaWebPage.force_small_media = tL_botInlineMessageMediaWebPage.force_small_media;
+                tL_messageMediaWebPage.manual = tL_botInlineMessageMediaWebPage.manual;
+                tL_messageMediaWebPage.safe = tL_botInlineMessageMediaWebPage.safe;
+                tL_messageMediaWebPage.webpage = new TLRPC.TL_webPageEmpty();
+                tL_message.flags |= 512;
+                tL_message.media = tL_messageMediaWebPage;
+            }
+        }
+        boolean z = true;
+        if (photo != null) {
+            TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = new TLRPC.TL_messageMediaPhoto();
+            tL_messageMediaPhoto.photo = photo;
+            tL_message.flags |= 512;
+            tL_message.media = tL_messageMediaPhoto;
+        } else if (document != null) {
+            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+            tL_messageMediaDocument.flags |= 1;
+            tL_messageMediaDocument.voice = "voice".equalsIgnoreCase(botInlineResult.type);
+            tL_messageMediaDocument.round = "round".equalsIgnoreCase(botInlineResult.type);
+            tL_messageMediaDocument.document = document;
+            tL_message.flags |= 512;
+            tL_message.media = tL_messageMediaDocument;
+        }
+        TLRPC.BotInlineMessage botInlineMessage2 = botInlineResult.send_message;
+        if (botInlineMessage2 != null && (replyMarkup = botInlineMessage2.reply_markup) != null) {
+            tL_message.flags |= 64;
+            tL_message.reply_markup = replyMarkup;
+        }
+        return new MessageObject(i, tL_message, z, z) {
+            @Override
+            public boolean isOut() {
+                return false;
+            }
+
+            @Override
+            public boolean isOutOwner() {
+                return false;
+            }
+        };
     }
 }

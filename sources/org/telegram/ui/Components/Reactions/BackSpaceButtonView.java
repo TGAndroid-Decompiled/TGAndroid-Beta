@@ -3,8 +3,6 @@ package org.telegram.ui.Components.Reactions;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,7 +12,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.RoundRectOutlineProvider;
 
@@ -24,6 +21,9 @@ public class BackSpaceButtonView extends FrameLayout {
     private boolean backspacePressed;
     private Utilities.Callback onBackspace;
     private final Theme.ResourcesProvider resourcesProvider;
+
+    public static void lambda$new$0(View view) {
+    }
 
     public BackSpaceButtonView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -58,9 +58,7 @@ public class BackSpaceButtonView extends FrameLayout {
         this.backspaceButton = imageView;
         imageView.setHapticFeedbackEnabled(true);
         imageView.setImageResource(R.drawable.smiles_tab_clear);
-        int themedColor = getThemedColor(Theme.key_chat_emojiPanelBackspace);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        imageView.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
+        imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_emojiPanelBackspace), PorterDuff.Mode.MULTIPLY));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
         imageView.setFocusable(true);
@@ -71,28 +69,29 @@ public class BackSpaceButtonView extends FrameLayout {
             }
         });
         addView(imageView, LayoutHelper.createFrame(36, 36, 17));
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(36.0f), getThemedColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_listSelector));
-        if (Build.VERSION.SDK_INT >= 21) {
-            imageView.setBackground(createSimpleSelectorCircleDrawable);
-            imageView.setOutlineProvider(new RoundRectOutlineProvider(18));
-            imageView.setElevation(AndroidUtilities.dp(1.0f));
-            imageView.setClipToOutline(true);
-        } else {
-            Drawable mutate = context.getResources().getDrawable(R.drawable.floating_shadow).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-            CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
-            combinedDrawable.setIconSize(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
-            imageView.setBackground(combinedDrawable);
-        }
+        imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(36.0f), getThemedColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_listSelector)));
+        imageView.setOutlineProvider(new RoundRectOutlineProvider(18));
+        imageView.setElevation(AndroidUtilities.dp(1.0f));
+        imageView.setClipToOutline(true);
         setClickable(true);
     }
 
-    private int getThemedColor(int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        return resourcesProvider != null ? resourcesProvider.getColor(i) : Theme.getColor(i);
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
     }
 
-    public static void lambda$new$0(View view) {
+    public void setOnBackspace(Utilities.Callback<Boolean> callback) {
+        this.onBackspace = callback;
+    }
+
+    public void postBackspaceRunnable(final int i) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BackSpaceButtonView.this.lambda$postBackspaceRunnable$1(i);
+            }
+        }, i);
     }
 
     public void lambda$postBackspaceRunnable$1(int i) {
@@ -110,21 +109,11 @@ public class BackSpaceButtonView extends FrameLayout {
         }
     }
 
-    public void postBackspaceRunnable(final int i) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BackSpaceButtonView.this.lambda$postBackspaceRunnable$1(i);
-            }
-        }, i);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
-    }
-
-    public void setOnBackspace(Utilities.Callback<Boolean> callback) {
-        this.onBackspace = callback;
+    private int getThemedColor(int i) {
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (resourcesProvider != null) {
+            return resourcesProvider.getColor(i);
+        }
+        return Theme.getColor(i);
     }
 }

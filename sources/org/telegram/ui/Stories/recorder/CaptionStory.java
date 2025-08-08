@@ -6,15 +6,14 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -91,115 +90,20 @@ public abstract class CaptionStory extends CaptionContainerView {
     private final BlobDrawable tinyWaveDrawable;
     private final Paint whitePaint;
 
-    public class RecordDot extends Drawable {
-        private float alpha;
-        boolean attachedToWindow;
-        RLottieDrawable drawable;
-        private boolean enterAnimation;
-        private boolean isIncr;
-        private long lastUpdateTime;
-        private final View parent;
-        boolean playing;
-        private final Paint redDotPaint = new Paint(1);
-        private float alpha2 = 1.0f;
-
-        public RecordDot(View view) {
-            this.parent = view;
-            int i = R.raw.chat_audio_record_delete_3;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
-            this.drawable = rLottieDrawable;
-            rLottieDrawable.setInvalidateOnProgressSet(true);
-            updateColors();
-        }
-
-        public void attach() {
-            this.attachedToWindow = true;
-            if (this.playing) {
-                this.drawable.start();
-            }
-            this.drawable.setMasterParent(this.parent);
-        }
-
-        public void detach() {
-            this.attachedToWindow = false;
-            this.drawable.stop();
-            this.drawable.setMasterParent(null);
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            boolean z;
-            if (this.playing) {
-                this.drawable.setAlpha((int) (this.alpha * 255.0f * this.alpha2));
-            }
-            this.redDotPaint.setAlpha((int) (this.alpha * 255.0f * this.alpha2));
-            long currentTimeMillis = System.currentTimeMillis() - this.lastUpdateTime;
-            if (this.enterAnimation) {
-                this.alpha = 1.0f;
-            } else if (this.isIncr || this.playing) {
-                float f = this.alpha + (((float) currentTimeMillis) / 600.0f);
-                this.alpha = f;
-                if (f >= 1.0f) {
-                    this.alpha = 1.0f;
-                    z = false;
-                    this.isIncr = z;
-                }
-            } else {
-                float f2 = this.alpha - (((float) currentTimeMillis) / 600.0f);
-                this.alpha = f2;
-                if (f2 <= 0.0f) {
-                    this.alpha = 0.0f;
-                    z = true;
-                    this.isIncr = z;
-                }
-            }
-            this.lastUpdateTime = System.currentTimeMillis();
-            this.drawable.setBounds(getBounds());
-            if (this.playing) {
-                this.drawable.draw(canvas);
-            }
-            if (!this.playing || !this.drawable.hasBitmap()) {
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), this.redDotPaint);
-            }
-            CaptionStory.this.invalidate();
-        }
-
-        @Override
-        public int getOpacity() {
-            return -2;
-        }
-
-        public void playDeleteAnimation() {
-            this.playing = true;
-            this.drawable.setProgress(0.0f);
-            if (this.attachedToWindow) {
-                this.drawable.start();
-            }
-        }
-
-        public void reset() {
-            this.playing = false;
-            this.drawable.stop();
-            this.drawable.setProgress(0.0f);
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.alpha2 = i / 255.0f;
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-        }
-
-        public void updateColors() {
-            this.redDotPaint.setColor(-2406842);
-            this.drawable.beginApplyLayerColors();
-            this.drawable.setLayerColor("Cup Red.**", -2406842);
-            this.drawable.setLayerColor("Box.**", -2406842);
-            this.drawable.commitApplyLayerColors();
-        }
+    @Override
+    public int additionalRightMargin() {
+        return 36;
     }
+
+    public abstract boolean canRecord();
+
+    public int getTimelineHeight() {
+        return 0;
+    }
+
+    public abstract void putRecorder(RoundVideoRecorder roundVideoRecorder);
+
+    public abstract void removeRound();
 
     public CaptionStory(Context context, final FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, final Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager) {
         super(context, frameLayout, sizeNotifierFrameLayout, frameLayout2, resourcesProvider, blurManager);
@@ -309,80 +213,64 @@ public abstract class CaptionStory extends CaptionContainerView {
         });
     }
 
-    private void checkFlipButton() {
-        if (this.flipButton != null) {
-            return;
-        }
-        this.flipButton = Build.VERSION.SDK_INT >= 21 ? AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(ContextCompat.getDrawable(getContext(), R.drawable.avd_flip)) : getContext().getResources().getDrawable(R.drawable.vd_flip).mutate();
-    }
-
-    private void drawLock(Canvas canvas, RectF rectF, float f) {
-        RectF rectF2;
-        Paint paint;
-        float f2 = this.cancel2T.get();
-        float f3 = this.lock2T.get();
-        float lerp = AndroidUtilities.lerp(this.lockCancelledT.set(this.slideProgress < 0.4f), 0.0f, f3) * (1.0f - f2) * f;
-        float dp = rectF.right - AndroidUtilities.dp(20.0f);
-        float lerp2 = (AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(36.0f), f3) * lerp) / 2.0f;
-        float f4 = 1.0f - f3;
-        float lerp3 = AndroidUtilities.lerp(((rectF.bottom - AndroidUtilities.dp(80.0f)) - lerp2) - ((AndroidUtilities.dp(120.0f) * this.lockProgress) * f4), rectF.bottom - AndroidUtilities.dp(20.0f), 1.0f - lerp);
-        float dp2 = (AndroidUtilities.dp(36.0f) * lerp) / 2.0f;
-        this.lockBounds.set(dp - dp2, lerp3 - lerp2, dp2 + dp, lerp2 + lerp3);
-        float lerp4 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), f3);
-        this.lockShadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(536870912, lerp));
-        this.lockShadowPaint.setColor(0);
-        canvas.drawRoundRect(this.lockBounds, lerp4, lerp4, this.lockShadowPaint);
-        Paint paint2 = this.backgroundBlur.getPaint(lerp);
-        if (paint2 == null) {
-            this.lockBackgroundPaint.setColor(1073741824);
-            this.lockBackgroundPaint.setAlpha((int) (64.0f * lerp));
-            rectF2 = this.lockBounds;
-            paint = this.lockBackgroundPaint;
-        } else {
-            canvas.drawRoundRect(this.lockBounds, lerp4, lerp4, paint2);
-            this.backgroundPaint.setAlpha((int) (51.0f * lerp));
-            rectF2 = this.lockBounds;
-            paint = this.backgroundPaint;
-        }
-        canvas.drawRoundRect(rectF2, lerp4, lerp4, paint);
-        canvas.save();
-        canvas.scale(lerp, lerp, dp, lerp3);
-        this.lockPaint.setColor(Theme.multAlpha(-1, lerp));
-        this.lockHandlePaint.setColor(Theme.multAlpha(-1, lerp * f4));
-        float lerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(15.33f), AndroidUtilities.dp(13.0f), f3);
-        float lerp6 = AndroidUtilities.lerp(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(13.0f), f3);
-        float dp3 = lerp3 + (AndroidUtilities.dp(4.0f) * f4);
-        canvas.rotate(this.lockProgress * 12.0f * f4, dp, dp3);
-        float f5 = lerp5 / 2.0f;
-        float f6 = lerp6 / 2.0f;
-        float f7 = dp3 - f6;
-        this.lockRect.set(dp - f5, f7, f5 + dp, dp3 + f6);
-        canvas.drawRoundRect(this.lockRect, AndroidUtilities.dp(3.66f), AndroidUtilities.dp(3.66f), this.lockPaint);
-        if (f3 < 1.0f) {
-            canvas.save();
-            canvas.rotate(this.lockProgress * 12.0f * f4, dp, f7);
-            canvas.translate(0.0f, f6 * f3);
-            canvas.scale(f4, f4, dp, f7);
-            this.lockHandle.rewind();
-            float dp4 = AndroidUtilities.dp(4.33f);
-            float dp5 = f7 - AndroidUtilities.dp(3.66f);
-            float f8 = dp + dp4;
-            this.lockHandle.moveTo(f8, AndroidUtilities.dp(3.66f) + dp5);
-            this.lockHandle.lineTo(f8, dp5);
-            RectF rectF3 = AndroidUtilities.rectTmp;
-            float f9 = dp - dp4;
-            rectF3.set(f9, dp5 - dp4, f8, dp4 + dp5);
-            this.lockHandle.arcTo(rectF3, 0.0f, -180.0f, false);
-            this.lockHandle.lineTo(f9, dp5 + (AndroidUtilities.dp(3.66f) * AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f3)));
-            this.lockHandlePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            canvas.drawPath(this.lockHandle, this.lockHandlePaint);
-            canvas.restore();
-        }
-        canvas.restore();
-    }
-
     public void lambda$new$0(View view) {
         showRemoveRoundAlert();
+    }
+
+    public void lambda$new$5(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
+        String formatPluralString;
+        ItemOptions itemOptions = this.periodPopup;
+        if (itemOptions != null && itemOptions.isShown()) {
+            return;
+        }
+        final Utilities.Callback callback = new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                CaptionStory.this.lambda$new$1((Integer) obj);
+            }
+        };
+        boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
+        final Utilities.Callback callback2 = isPremium ? null : new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                CaptionStory.this.lambda$new$2((Integer) obj);
+            }
+        };
+        ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, resourcesProvider, this.periodButton);
+        this.periodPopup = makeOptions;
+        makeOptions.addText(LocaleController.getString("StoryPeriodHint"), 13, AndroidUtilities.dp(200.0f));
+        this.periodPopup.addGap();
+        int i = 0;
+        while (true) {
+            int[] iArr = periods;
+            if (i < iArr.length) {
+                final int i2 = iArr[i];
+                ItemOptions itemOptions2 = this.periodPopup;
+                if (i2 == Integer.MAX_VALUE) {
+                    formatPluralString = LocaleController.getString("StoryPeriodKeep");
+                } else {
+                    formatPluralString = LocaleController.formatPluralString("Hours", i2 / 3600, new Object[0]);
+                }
+                itemOptions2.add(0, formatPluralString, Theme.key_actionBarDefaultSubmenuItem, new Runnable() {
+                    @Override
+                    public final void run() {
+                        CaptionStory.lambda$new$3(Utilities.Callback.this, i2);
+                    }
+                }).putPremiumLock((isPremium || i2 == 86400 || i2 == Integer.MAX_VALUE) ? null : new Runnable() {
+                    @Override
+                    public final void run() {
+                        CaptionStory.lambda$new$4(Utilities.Callback.this, i2);
+                    }
+                });
+                if (this.periodIndex == i) {
+                    this.periodPopup.putCheck();
+                }
+                i++;
+            } else {
+                this.periodPopup.setDimAlpha(0).show();
+                return;
+            }
+        }
     }
 
     public void lambda$new$1(Integer num) {
@@ -408,235 +296,16 @@ public abstract class CaptionStory extends CaptionContainerView {
         callback.run(Integer.valueOf(i));
     }
 
-    public void lambda$new$5(FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
-        ItemOptions itemOptions = this.periodPopup;
-        if (itemOptions != null && itemOptions.isShown()) {
+    private void checkFlipButton() {
+        if (this.flipButton != null) {
             return;
         }
-        final Utilities.Callback callback = new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                CaptionStory.this.lambda$new$1((Integer) obj);
-            }
-        };
-        boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
-        final Utilities.Callback callback2 = isPremium ? null : new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                CaptionStory.this.lambda$new$2((Integer) obj);
-            }
-        };
-        ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, resourcesProvider, this.periodButton);
-        this.periodPopup = makeOptions;
-        makeOptions.addText(LocaleController.getString("StoryPeriodHint"), 13, AndroidUtilities.dp(200.0f));
-        this.periodPopup.addGap();
-        int i = 0;
-        while (true) {
-            int[] iArr = periods;
-            if (i >= iArr.length) {
-                this.periodPopup.setDimAlpha(0).show();
-                return;
-            }
-            final int i2 = iArr[i];
-            this.periodPopup.add(0, i2 == Integer.MAX_VALUE ? LocaleController.getString("StoryPeriodKeep") : LocaleController.formatPluralString("Hours", i2 / 3600, new Object[0]), Theme.key_actionBarDefaultSubmenuItem, new Runnable() {
-                @Override
-                public final void run() {
-                    CaptionStory.lambda$new$3(Utilities.Callback.this, i2);
-                }
-            }).putPremiumLock((isPremium || i2 == 86400 || i2 == Integer.MAX_VALUE) ? null : new Runnable() {
-                @Override
-                public final void run() {
-                    CaptionStory.lambda$new$4(Utilities.Callback.this, i2);
-                }
-            });
-            if (this.periodIndex == i) {
-                this.periodPopup.putCheck();
-            }
-            i++;
-        }
+        this.flipButton = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(), R.drawable.avd_flip);
     }
 
-    public void lambda$new$6() {
-        setCollapsed(false, Integer.MIN_VALUE);
-        this.roundButton.setVisibility(0);
-        this.periodButton.setVisibility(0);
-    }
-
-    public void lambda$showRemoveRoundAlert$7(AlertDialog alertDialog, int i) {
-        removeRound();
-    }
-
-    public void releaseRecord(boolean z, boolean z2) {
-        AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
-        this.stopping = true;
-        this.recording = false;
-        setCollapsed(false, (int) ((getBounds().right - AndroidUtilities.dp(20.0f)) - ((getWidth() * 0.35f) * this.slideProgress)));
-        RoundVideoRecorder roundVideoRecorder = this.currentRecorder;
-        if (roundVideoRecorder != null) {
-            if (!z) {
-                if (z2) {
-                    roundVideoRecorder.cancel();
-                } else {
-                    roundVideoRecorder.stop();
-                }
-            }
-            this.currentRecorder = null;
-        }
-        invalidateDrawOver2();
-    }
-
-    private boolean roundButtonTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            if (stopRecording()) {
-                return true;
-            }
-            this.recordTouch = true;
-            if (getParent() != null) {
-                getParent().requestDisallowInterceptTouchEvent(true);
-            }
-            if (!canRecord()) {
-                return true;
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
-            this.fromX = motionEvent.getX();
-            this.fromY = motionEvent.getY();
-            this.amplitude = 0.0f;
-            this.slideProgress = 0.0f;
-            this.cancelT.set(0.0f, true);
-            this.cancel2T.set(0.0f, true);
-            this.cancelling = false;
-            this.stopping = false;
-            this.locked = false;
-            this.recordPaint.reset();
-            this.recording = true;
-            this.startTime = System.currentTimeMillis();
-            setCollapsed(true, Integer.MAX_VALUE);
-            invalidateDrawOver2();
-            RoundVideoRecorder roundVideoRecorder = new RoundVideoRecorder(getContext()) {
-                @Override
-                protected void receivedAmplitude(double d) {
-                    CaptionStory.this.setAmplitude(d);
-                }
-
-                @Override
-                public void stop() {
-                    super.stop();
-                    if (CaptionStory.this.recording) {
-                        CaptionStory.this.releaseRecord(true, false);
-                    }
-                }
-            };
-            this.currentRecorder = roundVideoRecorder;
-            putRecorder(roundVideoRecorder);
-            return true;
-        }
-        if (motionEvent.getAction() == 2) {
-            if (!this.cancelling) {
-                this.slideProgress = Utilities.clamp((this.fromX - motionEvent.getX()) / (getWidth() * 0.35f), 1.0f, 0.0f);
-                float clamp = Utilities.clamp((this.fromY - motionEvent.getY()) / (getWidth() * 0.3f), 1.0f, 0.0f);
-                this.lockProgress = clamp;
-                boolean z = this.locked;
-                if (!z && !this.cancelling && this.slideProgress >= 1.0f) {
-                    this.cancelling = true;
-                    this.recording = false;
-                    this.roundButton.setVisibility(4);
-                    this.periodButton.setVisibility(4);
-                    this.recordPaint.playDeleteAnimation();
-                    RoundVideoRecorder roundVideoRecorder2 = this.currentRecorder;
-                    if (roundVideoRecorder2 != null) {
-                        roundVideoRecorder2.cancel();
-                    }
-                    AndroidUtilities.runOnUIThread(this.doneCancel, 800L);
-                } else if (!z && !this.cancelling && clamp >= 1.0f && this.slideProgress < 0.4f) {
-                    this.locked = true;
-                    try {
-                        performHapticFeedback(3, 1);
-                    } catch (Exception unused) {
-                    }
-                }
-                invalidate();
-                invalidateDrawOver2();
-            }
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (!this.cancelling && !this.locked) {
-                releaseRecord(false, false);
-            }
-            this.recordTouch = false;
-        }
-        return this.recordTouch;
-    }
-
-    @Override
-    public int additionalRightMargin() {
-        return 36;
-    }
-
-    @Override
-    protected void afterUpdateShownKeyboard(boolean z) {
-        this.periodButton.setVisibility((z || !this.periodVisible) ? 8 : 0);
-        this.roundButton.setVisibility(z ? 8 : 0);
-        if (z) {
-            this.periodButton.setVisibility(8);
-        }
-    }
-
-    @Override
-    protected void beforeUpdateShownKeyboard(boolean z) {
-        if (z) {
-            return;
-        }
-        this.periodButton.setVisibility(this.periodVisible ? 0 : 8);
-        this.roundButton.setVisibility(0);
-    }
-
-    public abstract boolean canRecord();
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        RoundVideoRecorder roundVideoRecorder;
-        Drawable drawable;
-        if (this.recording && (roundVideoRecorder = this.currentRecorder) != null && roundVideoRecorder.cameraView != null && (drawable = this.flipButton) != null) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(drawable.getBounds());
-            rectF.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
-            int i = 0;
-            while (true) {
-                if (i >= motionEvent.getPointerCount()) {
-                    break;
-                }
-                if (AndroidUtilities.rectTmp.contains(motionEvent.getX(i), motionEvent.getY(i))) {
-                    if (motionEvent.getAction() == 0 || motionEvent.getActionMasked() == 5) {
-                        this.currentRecorder.cameraView.switchCamera();
-                        if (Build.VERSION.SDK_INT >= 21) {
-                            Drawable drawable2 = this.flipButton;
-                            if (CaptionStory$$ExternalSyntheticApiModelOutline0.m(drawable2)) {
-                                AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(drawable2).start();
-                            }
-                        }
-                    }
-                    if (!this.recordTouch) {
-                        return true;
-                    }
-                } else {
-                    i++;
-                }
-            }
-        }
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(this.roundButton.getX(), this.roundButton.getY(), this.roundButton.getX() + this.roundButton.getMeasuredWidth(), this.roundButton.getY() + this.roundButton.getMeasuredHeight());
-        if (this.recordTouch || !(this.hasRoundVideo || this.keyboardShown || !rectF2.contains(motionEvent.getX(), motionEvent.getY()))) {
-            return roundButtonTouchEvent(motionEvent);
-        }
-        if (this.recording && this.locked && this.cancelBounds.contains(motionEvent.getX(), motionEvent.getY())) {
-            releaseRecord(false, true);
-        } else {
-            if (!this.recording || (!this.lockBounds.contains(motionEvent.getX(), motionEvent.getY()) && !getBounds().contains(motionEvent.getX(), motionEvent.getY()))) {
-                return super.dispatchTouchEvent(motionEvent);
-            }
-            releaseRecord(false, false);
-        }
-        this.recordTouch = false;
-        return true;
+    public void setHasRoundVideo(boolean z) {
+        this.roundButton.setImageResource(z ? R.drawable.input_video_story_remove : R.drawable.input_video_story);
+        this.hasRoundVideo = z;
     }
 
     @Override
@@ -652,9 +321,7 @@ public abstract class CaptionStory extends CaptionContainerView {
             if (this.startTime <= 0) {
                 this.startTime = System.currentTimeMillis();
             }
-            double currentTimeMillis = ((float) (System.currentTimeMillis() - this.startTime)) / 900.0f;
-            Double.isNaN(currentTimeMillis);
-            float sin = (((float) Math.sin(currentTimeMillis * 3.141592653589793d)) + 1.0f) / 2.0f;
+            float sin = (((float) Math.sin((((float) (System.currentTimeMillis() - this.startTime)) / 900.0f) * 3.141592653589793d)) + 1.0f) / 2.0f;
             float dp = rectF.left + AndroidUtilities.dp(21.0f);
             float dp2 = rectF.bottom - AndroidUtilities.dp(20.0f);
             this.recordPaint.setBounds((int) (dp - AndroidUtilities.dp(12.0f)), (int) (dp2 - AndroidUtilities.dp(12.0f)), (int) (dp + AndroidUtilities.dp(12.0f)), (int) (dp2 + AndroidUtilities.dp(12.0f)));
@@ -723,6 +390,11 @@ public abstract class CaptionStory extends CaptionContainerView {
             }
             invalidate();
         }
+    }
+
+    public void setAmplitude(double d) {
+        this.amplitude = (float) (Math.min(1800.0d, d) / 1800.0d);
+        invalidate();
     }
 
     @Override
@@ -806,75 +478,73 @@ public abstract class CaptionStory extends CaptionContainerView {
         this.flipButton.draw(canvas);
     }
 
-    @Override
-    protected int getCaptionDefaultLimit() {
-        return MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitDefault;
-    }
-
-    @Override
-    protected int getCaptionPremiumLimit() {
-        return MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitPremium;
-    }
-
-    public int getTimelineHeight() {
-        return 0;
-    }
-
-    public void hidePeriodPopup() {
-        ItemOptions itemOptions = this.periodPopup;
-        if (itemOptions != null) {
-            itemOptions.dismiss();
-            this.periodPopup = null;
+    private void drawLock(Canvas canvas, RectF rectF, float f) {
+        float f2 = this.cancel2T.get();
+        float f3 = this.lock2T.get();
+        float lerp = AndroidUtilities.lerp(this.lockCancelledT.set(this.slideProgress < 0.4f), 0.0f, f3) * (1.0f - f2) * f;
+        float dp = rectF.right - AndroidUtilities.dp(20.0f);
+        float lerp2 = (AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(36.0f), f3) * lerp) / 2.0f;
+        float f4 = 1.0f - f3;
+        float lerp3 = AndroidUtilities.lerp(((rectF.bottom - AndroidUtilities.dp(80.0f)) - lerp2) - ((AndroidUtilities.dp(120.0f) * this.lockProgress) * f4), rectF.bottom - AndroidUtilities.dp(20.0f), 1.0f - lerp);
+        float dp2 = (AndroidUtilities.dp(36.0f) * lerp) / 2.0f;
+        this.lockBounds.set(dp - dp2, lerp3 - lerp2, dp2 + dp, lerp2 + lerp3);
+        float lerp4 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), f3);
+        this.lockShadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(536870912, lerp));
+        this.lockShadowPaint.setColor(0);
+        canvas.drawRoundRect(this.lockBounds, lerp4, lerp4, this.lockShadowPaint);
+        Paint paint = this.backgroundBlur.getPaint(lerp);
+        if (paint == null) {
+            this.lockBackgroundPaint.setColor(1073741824);
+            this.lockBackgroundPaint.setAlpha((int) (64.0f * lerp));
+            canvas.drawRoundRect(this.lockBounds, lerp4, lerp4, this.lockBackgroundPaint);
+        } else {
+            canvas.drawRoundRect(this.lockBounds, lerp4, lerp4, paint);
+            this.backgroundPaint.setAlpha((int) (51.0f * lerp));
+            canvas.drawRoundRect(this.lockBounds, lerp4, lerp4, this.backgroundPaint);
         }
-    }
-
-    public boolean isRecording() {
-        return this.recording;
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.recordPaint.attach();
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.recordPaint.detach();
-    }
-
-    @Override
-    protected void onUpdateShowKeyboard(float f) {
-        float f2 = 1.0f - f;
-        this.periodButton.setAlpha(f2);
-        this.roundButton.setAlpha(f2);
-    }
-
-    public abstract void putRecorder(RoundVideoRecorder roundVideoRecorder);
-
-    public abstract void removeRound();
-
-    public void setAmplitude(double d) {
-        this.amplitude = (float) (Math.min(1800.0d, d) / 1800.0d);
-        invalidate();
-    }
-
-    public void setHasRoundVideo(boolean z) {
-        this.roundButton.setImageResource(z ? R.drawable.input_video_story_remove : R.drawable.input_video_story);
-        this.hasRoundVideo = z;
-    }
-
-    public void setOnPeriodUpdate(Utilities.Callback<Integer> callback) {
-        this.onPeriodUpdate = callback;
-    }
-
-    public void setOnPremiumHint(Utilities.Callback<Integer> callback) {
-        this.onPremiumHintShow = callback;
+        canvas.save();
+        canvas.scale(lerp, lerp, dp, lerp3);
+        this.lockPaint.setColor(Theme.multAlpha(-1, lerp));
+        this.lockHandlePaint.setColor(Theme.multAlpha(-1, lerp * f4));
+        float lerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(15.33f), AndroidUtilities.dp(13.0f), f3);
+        float lerp6 = AndroidUtilities.lerp(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(13.0f), f3);
+        float dp3 = lerp3 + (AndroidUtilities.dp(4.0f) * f4);
+        canvas.rotate(this.lockProgress * 12.0f * f4, dp, dp3);
+        float f5 = lerp5 / 2.0f;
+        float f6 = lerp6 / 2.0f;
+        float f7 = dp3 - f6;
+        this.lockRect.set(dp - f5, f7, f5 + dp, dp3 + f6);
+        canvas.drawRoundRect(this.lockRect, AndroidUtilities.dp(3.66f), AndroidUtilities.dp(3.66f), this.lockPaint);
+        if (f3 < 1.0f) {
+            canvas.save();
+            canvas.rotate(this.lockProgress * 12.0f * f4, dp, f7);
+            canvas.translate(0.0f, f6 * f3);
+            canvas.scale(f4, f4, dp, f7);
+            this.lockHandle.rewind();
+            float dp4 = AndroidUtilities.dp(4.33f);
+            float dp5 = f7 - AndroidUtilities.dp(3.66f);
+            float f8 = dp + dp4;
+            this.lockHandle.moveTo(f8, AndroidUtilities.dp(3.66f) + dp5);
+            this.lockHandle.lineTo(f8, dp5);
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            float f9 = dp - dp4;
+            rectF2.set(f9, dp5 - dp4, f8, dp4 + dp5);
+            this.lockHandle.arcTo(rectF2, 0.0f, -180.0f, false);
+            this.lockHandle.lineTo(f9, dp5 + (AndroidUtilities.dp(3.66f) * AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f3)));
+            this.lockHandlePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            canvas.drawPath(this.lockHandle, this.lockHandlePaint);
+            canvas.restore();
+        }
+        canvas.restore();
     }
 
     public void setPeriod(int i) {
         setPeriod(i, true);
+    }
+
+    public void setPeriodVisible(boolean z) {
+        this.periodVisible = z;
+        this.periodButton.setVisibility((!z || this.keyboardShown) ? 8 : 0);
     }
 
     public void setPeriod(int i, boolean z) {
@@ -897,9 +567,221 @@ public abstract class CaptionStory extends CaptionContainerView {
         this.periodDrawable.setValue(i / 3600, false, z);
     }
 
-    public void setPeriodVisible(boolean z) {
-        this.periodVisible = z;
-        this.periodButton.setVisibility((!z || this.keyboardShown) ? 8 : 0);
+    public void hidePeriodPopup() {
+        ItemOptions itemOptions = this.periodPopup;
+        if (itemOptions != null) {
+            itemOptions.dismiss();
+            this.periodPopup = null;
+        }
+    }
+
+    public void setOnPeriodUpdate(Utilities.Callback<Integer> callback) {
+        this.onPeriodUpdate = callback;
+    }
+
+    public void setOnPremiumHint(Utilities.Callback<Integer> callback) {
+        this.onPremiumHintShow = callback;
+    }
+
+    @Override
+    protected void beforeUpdateShownKeyboard(boolean z) {
+        if (z) {
+            return;
+        }
+        this.periodButton.setVisibility(this.periodVisible ? 0 : 8);
+        this.roundButton.setVisibility(0);
+    }
+
+    @Override
+    protected void onUpdateShowKeyboard(float f) {
+        float f2 = 1.0f - f;
+        this.periodButton.setAlpha(f2);
+        this.roundButton.setAlpha(f2);
+    }
+
+    @Override
+    protected void afterUpdateShownKeyboard(boolean z) {
+        this.periodButton.setVisibility((z || !this.periodVisible) ? 8 : 0);
+        this.roundButton.setVisibility(z ? 8 : 0);
+        if (z) {
+            this.periodButton.setVisibility(8);
+        }
+    }
+
+    @Override
+    protected int getCaptionPremiumLimit() {
+        return MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitPremium;
+    }
+
+    @Override
+    protected int getCaptionDefaultLimit() {
+        return MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitDefault;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        RoundVideoRecorder roundVideoRecorder;
+        Drawable drawable;
+        if (this.recording && (roundVideoRecorder = this.currentRecorder) != null && roundVideoRecorder.cameraView != null && (drawable = this.flipButton) != null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(drawable.getBounds());
+            rectF.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
+            int i = 0;
+            while (true) {
+                if (i >= motionEvent.getPointerCount()) {
+                    break;
+                }
+                if (AndroidUtilities.rectTmp.contains(motionEvent.getX(i), motionEvent.getY(i))) {
+                    if (motionEvent.getAction() == 0 || motionEvent.getActionMasked() == 5) {
+                        this.currentRecorder.cameraView.switchCamera();
+                        Drawable drawable2 = this.flipButton;
+                        if (drawable2 instanceof AnimatedVectorDrawable) {
+                            ((AnimatedVectorDrawable) drawable2).start();
+                        }
+                    }
+                    if (!this.recordTouch) {
+                        return true;
+                    }
+                } else {
+                    i++;
+                }
+            }
+        }
+        RectF rectF2 = AndroidUtilities.rectTmp;
+        rectF2.set(this.roundButton.getX(), this.roundButton.getY(), this.roundButton.getX() + this.roundButton.getMeasuredWidth(), this.roundButton.getY() + this.roundButton.getMeasuredHeight());
+        if (this.recordTouch || (!this.hasRoundVideo && !this.keyboardShown && rectF2.contains(motionEvent.getX(), motionEvent.getY()))) {
+            return roundButtonTouchEvent(motionEvent);
+        }
+        if (this.recording && this.locked && this.cancelBounds.contains(motionEvent.getX(), motionEvent.getY())) {
+            releaseRecord(false, true);
+            this.recordTouch = false;
+            return true;
+        }
+        if (this.recording && (this.lockBounds.contains(motionEvent.getX(), motionEvent.getY()) || getBounds().contains(motionEvent.getX(), motionEvent.getY()))) {
+            releaseRecord(false, false);
+            this.recordTouch = false;
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public void lambda$new$6() {
+        setCollapsed(false, Integer.MIN_VALUE);
+        this.roundButton.setVisibility(0);
+        this.periodButton.setVisibility(0);
+    }
+
+    private boolean roundButtonTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            if (stopRecording()) {
+                return true;
+            }
+            this.recordTouch = true;
+            if (getParent() != null) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+            }
+            if (!canRecord()) {
+                return true;
+            }
+            AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
+            this.fromX = motionEvent.getX();
+            this.fromY = motionEvent.getY();
+            this.amplitude = 0.0f;
+            this.slideProgress = 0.0f;
+            this.cancelT.set(0.0f, true);
+            this.cancel2T.set(0.0f, true);
+            this.cancelling = false;
+            this.stopping = false;
+            this.locked = false;
+            this.recordPaint.reset();
+            this.recording = true;
+            this.startTime = System.currentTimeMillis();
+            setCollapsed(true, Integer.MAX_VALUE);
+            invalidateDrawOver2();
+            RoundVideoRecorder roundVideoRecorder = new RoundVideoRecorder(getContext()) {
+                @Override
+                protected void receivedAmplitude(double d) {
+                    CaptionStory.this.setAmplitude(d);
+                }
+
+                @Override
+                public void stop() {
+                    super.stop();
+                    if (CaptionStory.this.recording) {
+                        CaptionStory.this.releaseRecord(true, false);
+                    }
+                }
+            };
+            this.currentRecorder = roundVideoRecorder;
+            putRecorder(roundVideoRecorder);
+            return true;
+        }
+        if (motionEvent.getAction() == 2) {
+            if (!this.cancelling) {
+                this.slideProgress = Utilities.clamp((this.fromX - motionEvent.getX()) / (getWidth() * 0.35f), 1.0f, 0.0f);
+                float clamp = Utilities.clamp((this.fromY - motionEvent.getY()) / (getWidth() * 0.3f), 1.0f, 0.0f);
+                this.lockProgress = clamp;
+                boolean z = this.locked;
+                if (!z && !this.cancelling && this.slideProgress >= 1.0f) {
+                    this.cancelling = true;
+                    this.recording = false;
+                    this.roundButton.setVisibility(4);
+                    this.periodButton.setVisibility(4);
+                    this.recordPaint.playDeleteAnimation();
+                    RoundVideoRecorder roundVideoRecorder2 = this.currentRecorder;
+                    if (roundVideoRecorder2 != null) {
+                        roundVideoRecorder2.cancel();
+                    }
+                    AndroidUtilities.runOnUIThread(this.doneCancel, 800L);
+                } else if (!z && !this.cancelling && clamp >= 1.0f && this.slideProgress < 0.4f) {
+                    this.locked = true;
+                    try {
+                        performHapticFeedback(3, 1);
+                    } catch (Exception unused) {
+                    }
+                }
+                invalidate();
+                invalidateDrawOver2();
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (!this.cancelling && !this.locked) {
+                releaseRecord(false, false);
+            }
+            this.recordTouch = false;
+        }
+        return this.recordTouch;
+    }
+
+    public void releaseRecord(boolean z, boolean z2) {
+        AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
+        this.stopping = true;
+        this.recording = false;
+        setCollapsed(false, (int) ((getBounds().right - AndroidUtilities.dp(20.0f)) - ((getWidth() * 0.35f) * this.slideProgress)));
+        RoundVideoRecorder roundVideoRecorder = this.currentRecorder;
+        if (roundVideoRecorder != null) {
+            if (!z) {
+                if (z2) {
+                    roundVideoRecorder.cancel();
+                } else {
+                    roundVideoRecorder.stop();
+                }
+            }
+            this.currentRecorder = null;
+        }
+        invalidateDrawOver2();
+    }
+
+    public boolean isRecording() {
+        return this.recording;
+    }
+
+    public boolean stopRecording() {
+        if (!this.recording) {
+            return false;
+        }
+        this.recordTouch = false;
+        releaseRecord(false, false);
+        return true;
     }
 
     public void showRemoveRoundAlert() {
@@ -914,12 +796,126 @@ public abstract class CaptionStory extends CaptionContainerView {
         }
     }
 
-    public boolean stopRecording() {
-        if (!this.recording) {
-            return false;
+    public void lambda$showRemoveRoundAlert$7(AlertDialog alertDialog, int i) {
+        removeRound();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.recordPaint.attach();
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.recordPaint.detach();
+    }
+
+    public class RecordDot extends Drawable {
+        private float alpha;
+        boolean attachedToWindow;
+        RLottieDrawable drawable;
+        private boolean enterAnimation;
+        private boolean isIncr;
+        private long lastUpdateTime;
+        private final View parent;
+        boolean playing;
+        private final Paint redDotPaint = new Paint(1);
+        private float alpha2 = 1.0f;
+
+        @Override
+        public int getOpacity() {
+            return -2;
         }
-        this.recordTouch = false;
-        releaseRecord(false, false);
-        return true;
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public void attach() {
+            this.attachedToWindow = true;
+            if (this.playing) {
+                this.drawable.start();
+            }
+            this.drawable.setMasterParent(this.parent);
+        }
+
+        public void detach() {
+            this.attachedToWindow = false;
+            this.drawable.stop();
+            this.drawable.setMasterParent(null);
+        }
+
+        public RecordDot(View view) {
+            this.parent = view;
+            int i = R.raw.chat_audio_record_delete_3;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+            this.drawable = rLottieDrawable;
+            rLottieDrawable.setInvalidateOnProgressSet(true);
+            updateColors();
+        }
+
+        public void updateColors() {
+            this.redDotPaint.setColor(-2406842);
+            this.drawable.beginApplyLayerColors();
+            this.drawable.setLayerColor("Cup Red.**", -2406842);
+            this.drawable.setLayerColor("Box.**", -2406842);
+            this.drawable.commitApplyLayerColors();
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            if (this.playing) {
+                this.drawable.setAlpha((int) (this.alpha * 255.0f * this.alpha2));
+            }
+            this.redDotPaint.setAlpha((int) (this.alpha * 255.0f * this.alpha2));
+            long currentTimeMillis = System.currentTimeMillis() - this.lastUpdateTime;
+            if (this.enterAnimation) {
+                this.alpha = 1.0f;
+            } else if (!this.isIncr && !this.playing) {
+                float f = this.alpha - (((float) currentTimeMillis) / 600.0f);
+                this.alpha = f;
+                if (f <= 0.0f) {
+                    this.alpha = 0.0f;
+                    this.isIncr = true;
+                }
+            } else {
+                float f2 = this.alpha + (((float) currentTimeMillis) / 600.0f);
+                this.alpha = f2;
+                if (f2 >= 1.0f) {
+                    this.alpha = 1.0f;
+                    this.isIncr = false;
+                }
+            }
+            this.lastUpdateTime = System.currentTimeMillis();
+            this.drawable.setBounds(getBounds());
+            if (this.playing) {
+                this.drawable.draw(canvas);
+            }
+            if (!this.playing || !this.drawable.hasBitmap()) {
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), this.redDotPaint);
+            }
+            CaptionStory.this.invalidate();
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.alpha2 = i / 255.0f;
+        }
+
+        public void playDeleteAnimation() {
+            this.playing = true;
+            this.drawable.setProgress(0.0f);
+            if (this.attachedToWindow) {
+                this.drawable.start();
+            }
+        }
+
+        public void reset() {
+            this.playing = false;
+            this.drawable.stop();
+            this.drawable.setProgress(0.0f);
+        }
     }
 }

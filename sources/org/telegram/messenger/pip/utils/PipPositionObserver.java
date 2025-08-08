@@ -27,6 +27,14 @@ public class PipPositionObserver {
         this.listener = onGlobalLayoutListener;
     }
 
+    public void start(View view) {
+        setViewInternal(view);
+    }
+
+    public void stop() {
+        setViewInternal(null);
+    }
+
     private void setViewInternal(View view) {
         if (this.mView == view) {
             return;
@@ -57,13 +65,5 @@ public class PipPositionObserver {
             viewTreeObserver.addOnGlobalLayoutListener(this.listener);
         }
         this.mViewTreeObserver = viewTreeObserver;
-    }
-
-    public void start(View view) {
-        setViewInternal(view);
-    }
-
-    public void stop() {
-        setViewInternal(null);
     }
 }

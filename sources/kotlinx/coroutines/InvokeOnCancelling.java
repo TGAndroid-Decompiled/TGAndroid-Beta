@@ -9,14 +9,14 @@ final class InvokeOnCancelling extends JobCancellingNode {
     private volatile int _invoked;
     private final Function1 handler;
 
-    public InvokeOnCancelling(Function1 function1) {
-        this.handler = function1;
-    }
-
     @Override
     public Object invoke(Object obj) {
         invoke((Throwable) obj);
         return Unit.INSTANCE;
+    }
+
+    public InvokeOnCancelling(Function1 function1) {
+        this.handler = function1;
     }
 
     @Override

@@ -27,34 +27,19 @@ public class PasscodeViewDialog extends Dialog {
         this.context = context;
         FrameLayout frameLayout = new FrameLayout(context);
         this.windowView = frameLayout;
-        if (Build.VERSION.SDK_INT >= 21) {
-            frameLayout.setFitsSystemWindows(true);
-            frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    WindowInsets consumeSystemWindowInsets;
-                    WindowInsets windowInsets2;
-                    if (Build.VERSION.SDK_INT >= 30) {
-                        windowInsets2 = WindowInsets.CONSUMED;
-                        return windowInsets2;
-                    }
-                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
-                    return consumeSystemWindowInsets;
-                }
-            });
-        }
-        PasscodeView passcodeView = new PasscodeView(context) {
+        frameLayout.setFitsSystemWindows(true);
+        frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
-            protected void onAnimationUpdate(float f) {
-                LaunchActivity launchActivity = LaunchActivity.instance;
-                if (launchActivity == null) {
-                    return;
+            public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                WindowInsets windowInsets2;
+                if (Build.VERSION.SDK_INT >= 30) {
+                    windowInsets2 = WindowInsets.CONSUMED;
+                    return windowInsets2;
                 }
-                DrawerLayoutContainer drawerLayoutContainer = launchActivity.drawerLayoutContainer;
-                drawerLayoutContainer.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f));
-                drawerLayoutContainer.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f));
+                return windowInsets.consumeSystemWindowInsets();
             }
-
+        });
+        PasscodeView passcodeView = new PasscodeView(context) {
             @Override
             protected void onHidden() {
                 PasscodeViewDialog.super.dismiss();
@@ -66,39 +51,20 @@ public class PasscodeViewDialog extends Dialog {
                 drawerLayoutContainer.setScaleX(1.0f);
                 drawerLayoutContainer.setScaleY(1.0f);
             }
+
+            @Override
+            protected void onAnimationUpdate(float f) {
+                LaunchActivity launchActivity = LaunchActivity.instance;
+                if (launchActivity == null) {
+                    return;
+                }
+                DrawerLayoutContainer drawerLayoutContainer = launchActivity.drawerLayoutContainer;
+                drawerLayoutContainer.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f));
+                drawerLayoutContainer.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f));
+            }
         };
         this.passcodeView = passcodeView;
         frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1, -1, 119));
-    }
-
-    @Override
-    public void dismiss() {
-        LaunchActivity launchActivity;
-        if (!this.passcodeView.onBackPressed() || (launchActivity = LaunchActivity.instance) == null) {
-            return;
-        }
-        launchActivity.moveTaskToBack(true);
-    }
-
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        LaunchActivity launchActivity;
-        if (keyEvent.getKeyCode() != 4 || keyEvent.getRepeatCount() != 0) {
-            return super.dispatchKeyEvent(keyEvent);
-        }
-        if (this.passcodeView.onBackPressed() && (launchActivity = LaunchActivity.instance) != null) {
-            launchActivity.moveTaskToBack(true);
-        }
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        LaunchActivity launchActivity;
-        if (!this.passcodeView.onBackPressed() || (launchActivity = LaunchActivity.instance) == null) {
-            return;
-        }
-        launchActivity.moveTaskToBack(true);
     }
 
     @Override
@@ -120,15 +86,42 @@ public class PasscodeViewDialog extends Dialog {
             AndroidUtilities.logFlagSecure();
         }
         int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 21) {
-            attributes.flags |= -2013200128;
-        }
-        attributes.flags |= 1152;
+        attributes.flags |= -2013198976;
         if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
         this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar(window, false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        LaunchActivity launchActivity;
+        if (!this.passcodeView.onBackPressed() || (launchActivity = LaunchActivity.instance) == null) {
+            return;
+        }
+        launchActivity.moveTaskToBack(true);
+    }
+
+    @Override
+    public void dismiss() {
+        LaunchActivity launchActivity;
+        if (!this.passcodeView.onBackPressed() || (launchActivity = LaunchActivity.instance) == null) {
+            return;
+        }
+        launchActivity.moveTaskToBack(true);
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        LaunchActivity launchActivity;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            if (this.passcodeView.onBackPressed() && (launchActivity = LaunchActivity.instance) != null) {
+                launchActivity.moveTaskToBack(true);
+            }
+            return true;
+        }
+        return super.dispatchKeyEvent(keyEvent);
     }
 }

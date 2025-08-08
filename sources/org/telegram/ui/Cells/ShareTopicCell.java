@@ -58,26 +58,12 @@ public class ShareTopicCell extends FrameLayout {
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public long getCurrentDialog() {
-        return this.currentDialog;
-    }
-
-    public long getCurrentTopic() {
-        return this.currentTopic;
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(103.0f), 1073741824));
     }
 
     public void setTopic(TLRPC.Dialog dialog, TLRPC.TL_forumTopic tL_forumTopic, boolean z, CharSequence charSequence) {
-        TextView textView;
-        String str;
         if (dialog == null) {
             return;
         }
@@ -86,13 +72,10 @@ public class ShareTopicCell extends FrameLayout {
             this.nameTextView.setText(charSequence);
         } else if (chat != null) {
             if (chat.monoforum) {
-                textView = this.nameTextView;
-                str = MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id));
+                this.nameTextView.setText(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id)));
             } else {
-                textView = this.nameTextView;
-                str = tL_forumTopic.title;
+                this.nameTextView.setText(tL_forumTopic.title);
             }
-            textView.setText(str);
         } else {
             this.nameTextView.setText("");
         }
@@ -106,8 +89,10 @@ public class ShareTopicCell extends FrameLayout {
                 this.avatarDrawable.setInfo(this.currentAccount, user);
                 if (charSequence != null) {
                     this.nameTextView.setText(charSequence);
+                } else if (user != null) {
+                    this.nameTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
                 } else {
-                    this.nameTextView.setText(user != null ? ContactsController.formatName(user.first_name, user.last_name) : "");
+                    this.nameTextView.setText("");
                 }
                 this.imageView.setForUserOrChat(user, this.avatarDrawable);
                 this.imageView.setRoundRadius(AndroidUtilities.dp(28.0f));
@@ -115,8 +100,10 @@ public class ShareTopicCell extends FrameLayout {
                 TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(peerDialogId));
                 if (charSequence != null) {
                     this.nameTextView.setText(charSequence);
+                } else if (chat2 != null) {
+                    this.nameTextView.setText(chat2.title);
                 } else {
-                    this.nameTextView.setText(chat2 != null ? chat2.title : "");
+                    this.nameTextView.setText("");
                 }
                 this.avatarDrawable.setInfo(this.currentAccount, chat2);
                 this.imageView.setForUserOrChat(chat, this.avatarDrawable);
@@ -138,5 +125,17 @@ public class ShareTopicCell extends FrameLayout {
         this.imageView.setRoundRadius((chat == null || !chat.forum || z) ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(16.0f));
         this.currentDialog = dialog.id;
         this.currentTopic = tL_forumTopic.id;
+    }
+
+    public long getCurrentDialog() {
+        return this.currentDialog;
+    }
+
+    public long getCurrentTopic() {
+        return this.currentTopic;
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

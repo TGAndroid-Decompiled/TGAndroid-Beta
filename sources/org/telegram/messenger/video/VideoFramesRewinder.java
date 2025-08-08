@@ -53,6 +53,49 @@ public class VideoFramesRewinder {
         }
     };
 
+    public VideoFramesRewinder() {
+        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+        if (devicePerformanceClass == 1) {
+            this.maxFramesCount = 200;
+            this.maxFrameSide = 580;
+        } else if (devicePerformanceClass == 2) {
+            this.maxFramesCount = 400;
+            this.maxFrameSide = 720;
+        } else {
+            this.maxFramesCount = 100;
+            this.maxFrameSide = 480;
+        }
+    }
+
+    public void draw(Canvas canvas, int i, int i2) {
+        this.w = i;
+        this.h = i2;
+        if (this.ptr == 0 || this.currentFrame == null) {
+            return;
+        }
+        canvas.save();
+        canvas.scale(i / this.currentFrame.bitmap.getWidth(), i2 / this.currentFrame.bitmap.getHeight());
+        canvas.drawBitmap(this.currentFrame.bitmap, 0.0f, 0.0f, this.paint);
+        canvas.restore();
+    }
+
+    public boolean isReady() {
+        return this.ptr != 0;
+    }
+
+    public void setup(File file) {
+        if (file == null) {
+            release();
+        } else {
+            this.stop.set(false);
+            this.ptr = AnimatedFileDrawable.createDecoder(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
+        }
+    }
+
+    public static int lambda$new$0(Frame frame, Frame frame2) {
+        return (int) (frame.position - frame2.position);
+    }
+
     public class Frame {
         Bitmap bitmap;
         long position;
@@ -61,31 +104,83 @@ public class VideoFramesRewinder {
         }
     }
 
-    public VideoFramesRewinder() {
+    public void lambda$new$2() {
+        Frame frame;
         int i;
-        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-        if (devicePerformanceClass == 1) {
-            this.maxFramesCount = 200;
-            i = 580;
-        } else if (devicePerformanceClass != 2) {
-            this.maxFramesCount = 100;
-            i = 480;
-        } else {
-            this.maxFramesCount = 400;
-            i = 720;
+        int i2;
+        int i3;
+        final ArrayList arrayList = new ArrayList();
+        final long currentTimeMillis = System.currentTimeMillis();
+        int[] iArr = this.meta;
+        int i4 = iArr[4];
+        int i5 = 0;
+        int min = Math.min(this.w / 4, iArr[0]);
+        int min2 = Math.min(this.h / 4, this.meta[1]);
+        int i6 = this.maxFrameSide;
+        if (min > i6 || min2 > i6) {
+            float max = i6 / Math.max(min, min2);
+            min = (int) (min * max);
+            min2 = (int) (min2 * max);
         }
-        this.maxFrameSide = i;
-    }
-
-    private void invalidate() {
-        View view = this.parentView;
-        if (view != null) {
-            view.invalidate();
+        AnimatedFileDrawable.seekToMs(this.ptr, this.prepareToMs - (this.prepareWithSpeed * 350.0f), this.meta, false);
+        long j = this.meta[3];
+        int i7 = 0;
+        int i8 = 0;
+        for (char c = 3; this.meta[c] <= this.until.get() && i7 < this.maxFramesCount && !this.stop.get(); c = 3) {
+            float f = 1000.0f / i4;
+            long j2 = j;
+            long j3 = ((float) j) + (this.prepareWithSpeed * f);
+            if (!this.freeFrames.isEmpty()) {
+                frame = this.freeFrames.remove(i5);
+            } else {
+                frame = new Frame();
+            }
+            Bitmap bitmap = frame.bitmap;
+            if (bitmap == null || bitmap.getWidth() != min || frame.bitmap.getHeight() != min2) {
+                AndroidUtilities.recycleBitmap(frame.bitmap);
+                try {
+                    frame.bitmap = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
+                } catch (OutOfMemoryError unused) {
+                    FileLog.d("[VideoFramesRewinder] failed to create bitmap: out of memory");
+                }
+            }
+            while (true) {
+                i = i7;
+                i2 = i4;
+                i3 = min2;
+                if (this.meta[3] + ((long) Math.ceil(f)) >= j3) {
+                    break;
+                }
+                AnimatedFileDrawable.getVideoFrame(this.ptr, null, this.meta, 0, true, 0.0f, r8[4], false);
+                i4 = i2;
+                i7 = i;
+                min2 = i3;
+            }
+            long j4 = this.ptr;
+            Bitmap bitmap2 = frame.bitmap;
+            if (AnimatedFileDrawable.getVideoFrame(j4, bitmap2, this.meta, bitmap2.getRowBytes(), true, 0.0f, this.meta[4], false) == 0) {
+                i8++;
+                if (i8 > 6) {
+                    break;
+                }
+            } else {
+                long j5 = this.meta[3];
+                frame.position = j5;
+                arrayList.add(frame);
+                j2 = j5;
+            }
+            i7 = i + 1;
+            i4 = i2;
+            j = j2;
+            min2 = i3;
+            i5 = 0;
         }
-    }
-
-    public static int lambda$new$0(Frame frame, Frame frame2) {
-        return (int) (frame.position - frame2.position);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoFramesRewinder.this.lambda$new$1(arrayList, currentTimeMillis);
+            }
+        });
     }
 
     public void lambda$new$1(ArrayList arrayList, long j) {
@@ -118,80 +213,6 @@ public class VideoFramesRewinder {
         }
     }
 
-    public void lambda$new$2() {
-        int i;
-        int i2;
-        int i3;
-        final ArrayList arrayList = new ArrayList();
-        final long currentTimeMillis = System.currentTimeMillis();
-        int[] iArr = this.meta;
-        int i4 = iArr[4];
-        int i5 = 0;
-        int min = Math.min(this.w / 4, iArr[0]);
-        int min2 = Math.min(this.h / 4, this.meta[1]);
-        int i6 = this.maxFrameSide;
-        if (min > i6 || min2 > i6) {
-            float max = i6 / Math.max(min, min2);
-            min = (int) (min * max);
-            min2 = (int) (min2 * max);
-        }
-        AnimatedFileDrawable.seekToMs(this.ptr, this.prepareToMs - (this.prepareWithSpeed * 350.0f), this.meta, false);
-        long j = this.meta[3];
-        int i7 = 0;
-        int i8 = 0;
-        for (char c = 3; this.meta[c] <= this.until.get() && i7 < this.maxFramesCount && !this.stop.get(); c = 3) {
-            float f = 1000.0f / i4;
-            long j2 = j;
-            long j3 = ((float) j) + (this.prepareWithSpeed * f);
-            Frame remove = !this.freeFrames.isEmpty() ? this.freeFrames.remove(i5) : new Frame();
-            Bitmap bitmap = remove.bitmap;
-            if (bitmap == null || bitmap.getWidth() != min || remove.bitmap.getHeight() != min2) {
-                AndroidUtilities.recycleBitmap(remove.bitmap);
-                try {
-                    remove.bitmap = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
-                } catch (OutOfMemoryError unused) {
-                    FileLog.d("[VideoFramesRewinder] failed to create bitmap: out of memory");
-                }
-            }
-            while (true) {
-                i = i7;
-                i2 = i4;
-                i3 = min2;
-                if (this.meta[3] + ((long) Math.ceil(f)) >= j3) {
-                    break;
-                }
-                AnimatedFileDrawable.getVideoFrame(this.ptr, null, this.meta, 0, true, 0.0f, r8[4], false);
-                i4 = i2;
-                i7 = i;
-                min2 = i3;
-            }
-            long j4 = this.ptr;
-            Bitmap bitmap2 = remove.bitmap;
-            if (AnimatedFileDrawable.getVideoFrame(j4, bitmap2, this.meta, bitmap2.getRowBytes(), true, 0.0f, this.meta[4], false) == 0) {
-                i8++;
-                if (i8 > 6) {
-                    break;
-                }
-            } else {
-                long j5 = this.meta[3];
-                remove.position = j5;
-                arrayList.add(remove);
-                j2 = j5;
-            }
-            i7 = i + 1;
-            i4 = i2;
-            j = j2;
-            min2 = i3;
-            i5 = 0;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VideoFramesRewinder.this.lambda$new$1(arrayList, currentTimeMillis);
-            }
-        });
-    }
-
     private void prepare(long j) {
         if (this.isPreparing) {
             return;
@@ -203,52 +224,6 @@ public class VideoFramesRewinder {
         Utilities.themeQueue.postRunnable(this.prepareRunnable);
     }
 
-    public void clearCurrent() {
-        if (this.currentFrame != null) {
-            this.currentFrame = null;
-            invalidate();
-        }
-    }
-
-    public void draw(Canvas canvas, int i, int i2) {
-        this.w = i;
-        this.h = i2;
-        if (this.ptr == 0 || this.currentFrame == null) {
-            return;
-        }
-        canvas.save();
-        canvas.scale(i / this.currentFrame.bitmap.getWidth(), i2 / this.currentFrame.bitmap.getHeight());
-        canvas.drawBitmap(this.currentFrame.bitmap, 0.0f, 0.0f, this.paint);
-        canvas.restore();
-    }
-
-    public boolean isReady() {
-        return this.ptr != 0;
-    }
-
-    public void release() {
-        if (this.isPreparing) {
-            this.stop.set(true);
-            this.destroyAfterPrepare = true;
-            return;
-        }
-        AnimatedFileDrawable.destroyDecoder(this.ptr);
-        this.ptr = 0L;
-        this.destroyAfterPrepare = false;
-        clearCurrent();
-        this.until.set(0L);
-        Iterator<Frame> it = this.frames.iterator();
-        while (it.hasNext()) {
-            AndroidUtilities.recycleBitmap(it.next().bitmap);
-        }
-        this.frames.clear();
-        Iterator<Frame> it2 = this.freeFrames.iterator();
-        while (it2.hasNext()) {
-            AndroidUtilities.recycleBitmap(it2.next().bitmap);
-        }
-        this.freeFrames.clear();
-    }
-
     public void seek(long j, float f) {
         if (this.ptr == 0) {
             return;
@@ -258,11 +233,7 @@ public class VideoFramesRewinder {
         this.until.set(j);
         Iterator<Frame> it = this.frames.iterator();
         ArrayList arrayList = new ArrayList();
-        while (true) {
-            if (!it.hasNext()) {
-                FileLog.d("[VideoFramesRewinder] didn't find a frame, wanting to prepare " + j + "ms");
-                break;
-            }
+        while (it.hasNext()) {
             Frame next = it.next();
             arrayList.add(Long.valueOf(next.position));
             float f2 = 25.0f * f;
@@ -289,22 +260,52 @@ public class VideoFramesRewinder {
                         return;
                     }
                 }
-                j = this.frames.first().position - 20;
+                prepare(Math.max(0L, this.frames.first().position - 20));
+                return;
             }
         }
+        FileLog.d("[VideoFramesRewinder] didn't find a frame, wanting to prepare " + j + "ms");
         prepare(Math.max(0L, j));
+    }
+
+    public void clearCurrent() {
+        if (this.currentFrame != null) {
+            this.currentFrame = null;
+            invalidate();
+        }
+    }
+
+    public void release() {
+        if (this.isPreparing) {
+            this.stop.set(true);
+            this.destroyAfterPrepare = true;
+            return;
+        }
+        AnimatedFileDrawable.destroyDecoder(this.ptr);
+        this.ptr = 0L;
+        this.destroyAfterPrepare = false;
+        clearCurrent();
+        this.until.set(0L);
+        Iterator<Frame> it = this.frames.iterator();
+        while (it.hasNext()) {
+            AndroidUtilities.recycleBitmap(it.next().bitmap);
+        }
+        this.frames.clear();
+        Iterator<Frame> it2 = this.freeFrames.iterator();
+        while (it2.hasNext()) {
+            AndroidUtilities.recycleBitmap(it2.next().bitmap);
+        }
+        this.freeFrames.clear();
     }
 
     public void setParentView(View view) {
         this.parentView = view;
     }
 
-    public void setup(File file) {
-        if (file == null) {
-            release();
-        } else {
-            this.stop.set(false);
-            this.ptr = AnimatedFileDrawable.createDecoder(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
+    private void invalidate() {
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
         }
     }
 }

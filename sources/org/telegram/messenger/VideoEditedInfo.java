@@ -227,7 +227,11 @@ public class VideoEditedInfo {
             this.textViewY = abstractSerializedData.readFloat(z2);
             if (z) {
                 int readInt322 = abstractSerializedData.readInt32(z2);
-                this.document = readInt322 == 1450380236 ? null : TLRPC.Document.TLdeserialize(abstractSerializedData, readInt322, z2);
+                if (readInt322 == 1450380236) {
+                    this.document = null;
+                } else {
+                    this.document = TLRPC.Document.TLdeserialize(abstractSerializedData, readInt322, z2);
+                }
             }
             byte b = this.type;
             if (b == 3) {
@@ -262,74 +266,19 @@ public class VideoEditedInfo {
                 this.roundDuration = abstractSerializedData.readInt64(z2);
                 return;
             }
-            if (b != 2) {
-                if (b == 8 && abstractSerializedData.readInt32(z2) == 132805945) {
-                    this.weather = Weather.State.TLdeserialize(abstractSerializedData);
+            if (b == 2) {
+                this.segmentedPath = abstractSerializedData.readString(z2);
+                if (abstractSerializedData.readInt32(z2) == 1151577037) {
+                    MediaController.CropState cropState = new MediaController.CropState();
+                    this.crop = cropState;
+                    cropState.readParams(abstractSerializedData, z2);
                     return;
                 }
                 return;
             }
-            this.segmentedPath = abstractSerializedData.readString(z2);
-            if (abstractSerializedData.readInt32(z2) == 1151577037) {
-                MediaController.CropState cropState = new MediaController.CropState();
-                this.crop = cropState;
-                cropState.readParams(abstractSerializedData, z2);
+            if (b == 8 && abstractSerializedData.readInt32(z2) == 132805945) {
+                this.weather = Weather.State.TLdeserialize(abstractSerializedData);
             }
-        }
-
-        public MediaEntity copy() {
-            MediaEntity mediaEntity = new MediaEntity();
-            mediaEntity.type = this.type;
-            mediaEntity.subType = this.subType;
-            mediaEntity.x = this.x;
-            mediaEntity.y = this.y;
-            mediaEntity.rotation = this.rotation;
-            mediaEntity.width = this.width;
-            mediaEntity.height = this.height;
-            mediaEntity.additionalHeight = this.additionalHeight;
-            mediaEntity.text = this.text;
-            if (this.entities != null) {
-                ArrayList<EmojiEntity> arrayList = new ArrayList<>();
-                mediaEntity.entities = arrayList;
-                arrayList.addAll(this.entities);
-            }
-            mediaEntity.color = this.color;
-            mediaEntity.fontSize = this.fontSize;
-            mediaEntity.textTypeface = this.textTypeface;
-            mediaEntity.textTypefaceKey = this.textTypefaceKey;
-            mediaEntity.textAlign = this.textAlign;
-            mediaEntity.viewWidth = this.viewWidth;
-            mediaEntity.viewHeight = this.viewHeight;
-            mediaEntity.roundRadius = this.roundRadius;
-            mediaEntity.scale = this.scale;
-            mediaEntity.textViewWidth = this.textViewWidth;
-            mediaEntity.textViewHeight = this.textViewHeight;
-            mediaEntity.textViewX = this.textViewX;
-            mediaEntity.textViewY = this.textViewY;
-            mediaEntity.document = this.document;
-            mediaEntity.parentObject = this.parentObject;
-            mediaEntity.metadata = this.metadata;
-            mediaEntity.ptr = this.ptr;
-            mediaEntity.currentFrame = this.currentFrame;
-            mediaEntity.framesPerDraw = this.framesPerDraw;
-            mediaEntity.bitmap = this.bitmap;
-            mediaEntity.view = this.view;
-            mediaEntity.canvas = this.canvas;
-            mediaEntity.animatedFileDrawable = this.animatedFileDrawable;
-            mediaEntity.roundRadiusCanvas = this.roundRadiusCanvas;
-            mediaEntity.mediaArea = this.mediaArea;
-            mediaEntity.media = this.media;
-            mediaEntity.density = this.density;
-            mediaEntity.W = this.W;
-            mediaEntity.H = this.H;
-            mediaEntity.visibleReaction = this.visibleReaction;
-            mediaEntity.roundOffset = this.roundOffset;
-            mediaEntity.roundDuration = this.roundDuration;
-            mediaEntity.roundLeft = this.roundLeft;
-            mediaEntity.roundRight = this.roundRight;
-            mediaEntity.linkSettings = this.linkSettings;
-            mediaEntity.weather = this.weather;
-            return mediaEntity;
         }
 
         public void serializeTo(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -394,47 +343,403 @@ public class VideoEditedInfo {
                     abstractSerializedData.writeInt32(-559038737);
                     abstractSerializedData.writeString(((TLRPC.TL_messageMediaVenue) this.media).emoji);
                     return;
-                }
-            } else {
-                if (b == 7) {
-                    abstractSerializedData.writeFloat(this.density);
-                    this.mediaArea.serializeToStream(abstractSerializedData);
-                    this.linkSettings.serializeToStream(abstractSerializedData);
+                } else {
+                    abstractSerializedData.writeInt32(1450380236);
                     return;
                 }
-                if (b == 4) {
-                    this.mediaArea.serializeToStream(abstractSerializedData);
-                    return;
-                }
-                if (b == 5) {
-                    abstractSerializedData.writeInt64(this.roundOffset);
-                    abstractSerializedData.writeInt64(this.roundLeft);
-                    abstractSerializedData.writeInt64(this.roundRight);
-                    abstractSerializedData.writeInt64(this.roundDuration);
-                    return;
-                }
-                if (b != 2) {
-                    if (b == 8) {
-                        if (this.weather == null) {
-                            abstractSerializedData.writeInt32(-559038737);
-                            return;
-                        } else {
-                            abstractSerializedData.writeInt32(132805945);
-                            this.weather.serializeToStream(abstractSerializedData);
-                            return;
-                        }
-                    }
-                    return;
-                }
+            }
+            if (b == 7) {
+                abstractSerializedData.writeFloat(this.density);
+                this.mediaArea.serializeToStream(abstractSerializedData);
+                this.linkSettings.serializeToStream(abstractSerializedData);
+                return;
+            }
+            if (b == 4) {
+                this.mediaArea.serializeToStream(abstractSerializedData);
+                return;
+            }
+            if (b == 5) {
+                abstractSerializedData.writeInt64(this.roundOffset);
+                abstractSerializedData.writeInt64(this.roundLeft);
+                abstractSerializedData.writeInt64(this.roundRight);
+                abstractSerializedData.writeInt64(this.roundDuration);
+                return;
+            }
+            if (b == 2) {
                 abstractSerializedData.writeString(this.segmentedPath);
                 MediaController.CropState cropState = this.crop;
                 if (cropState != null) {
                     cropState.serializeToStream(abstractSerializedData);
                     return;
+                } else {
+                    abstractSerializedData.writeInt32(1450380236);
+                    return;
                 }
             }
-            abstractSerializedData.writeInt32(1450380236);
+            if (b == 8) {
+                if (this.weather == null) {
+                    abstractSerializedData.writeInt32(-559038737);
+                } else {
+                    abstractSerializedData.writeInt32(132805945);
+                    this.weather.serializeToStream(abstractSerializedData);
+                }
+            }
         }
+
+        public MediaEntity copy() {
+            MediaEntity mediaEntity = new MediaEntity();
+            mediaEntity.type = this.type;
+            mediaEntity.subType = this.subType;
+            mediaEntity.x = this.x;
+            mediaEntity.y = this.y;
+            mediaEntity.rotation = this.rotation;
+            mediaEntity.width = this.width;
+            mediaEntity.height = this.height;
+            mediaEntity.additionalHeight = this.additionalHeight;
+            mediaEntity.text = this.text;
+            if (this.entities != null) {
+                ArrayList<EmojiEntity> arrayList = new ArrayList<>();
+                mediaEntity.entities = arrayList;
+                arrayList.addAll(this.entities);
+            }
+            mediaEntity.color = this.color;
+            mediaEntity.fontSize = this.fontSize;
+            mediaEntity.textTypeface = this.textTypeface;
+            mediaEntity.textTypefaceKey = this.textTypefaceKey;
+            mediaEntity.textAlign = this.textAlign;
+            mediaEntity.viewWidth = this.viewWidth;
+            mediaEntity.viewHeight = this.viewHeight;
+            mediaEntity.roundRadius = this.roundRadius;
+            mediaEntity.scale = this.scale;
+            mediaEntity.textViewWidth = this.textViewWidth;
+            mediaEntity.textViewHeight = this.textViewHeight;
+            mediaEntity.textViewX = this.textViewX;
+            mediaEntity.textViewY = this.textViewY;
+            mediaEntity.document = this.document;
+            mediaEntity.parentObject = this.parentObject;
+            mediaEntity.metadata = this.metadata;
+            mediaEntity.ptr = this.ptr;
+            mediaEntity.currentFrame = this.currentFrame;
+            mediaEntity.framesPerDraw = this.framesPerDraw;
+            mediaEntity.bitmap = this.bitmap;
+            mediaEntity.view = this.view;
+            mediaEntity.canvas = this.canvas;
+            mediaEntity.animatedFileDrawable = this.animatedFileDrawable;
+            mediaEntity.roundRadiusCanvas = this.roundRadiusCanvas;
+            mediaEntity.mediaArea = this.mediaArea;
+            mediaEntity.media = this.media;
+            mediaEntity.density = this.density;
+            mediaEntity.W = this.W;
+            mediaEntity.H = this.H;
+            mediaEntity.visibleReaction = this.visibleReaction;
+            mediaEntity.roundOffset = this.roundOffset;
+            mediaEntity.roundDuration = this.roundDuration;
+            mediaEntity.roundLeft = this.roundLeft;
+            mediaEntity.roundRight = this.roundRight;
+            mediaEntity.linkSettings = this.linkSettings;
+            mediaEntity.weather = this.weather;
+            return mediaEntity;
+        }
+    }
+
+    public String getString() {
+        byte[] bArr;
+        String bytesToHex;
+        PhotoFilterView.CurvesValue curvesValue;
+        ArrayList<MediaEntity> arrayList;
+        if (this.avatarStartTime != -1 || this.filterState != null || this.paintPath != null || this.blurPath != null || (((arrayList = this.mediaEntities) != null && !arrayList.isEmpty()) || this.cropState != null)) {
+            int i = this.filterState != null ? 170 : 10;
+            String str = this.paintPath;
+            byte[] bArr2 = null;
+            if (str != null) {
+                bArr = str.getBytes();
+                i += bArr.length;
+            } else {
+                bArr = null;
+            }
+            String str2 = this.blurPath;
+            if (str2 != null) {
+                bArr2 = str2.getBytes();
+                i += bArr2.length;
+            }
+            SerializedData serializedData = new SerializedData(i);
+            serializedData.writeInt32(11);
+            serializedData.writeInt64(this.avatarStartTime);
+            serializedData.writeInt32(this.originalBitrate);
+            if (this.filterState != null) {
+                serializedData.writeByte(1);
+                serializedData.writeFloat(this.filterState.enhanceValue);
+                serializedData.writeFloat(this.filterState.softenSkinValue);
+                serializedData.writeFloat(this.filterState.exposureValue);
+                serializedData.writeFloat(this.filterState.contrastValue);
+                serializedData.writeFloat(this.filterState.warmthValue);
+                serializedData.writeFloat(this.filterState.saturationValue);
+                serializedData.writeFloat(this.filterState.fadeValue);
+                serializedData.writeInt32(this.filterState.tintShadowsColor);
+                serializedData.writeInt32(this.filterState.tintHighlightsColor);
+                serializedData.writeFloat(this.filterState.highlightsValue);
+                serializedData.writeFloat(this.filterState.shadowsValue);
+                serializedData.writeFloat(this.filterState.vignetteValue);
+                serializedData.writeFloat(this.filterState.grainValue);
+                serializedData.writeInt32(this.filterState.blurType);
+                serializedData.writeFloat(this.filterState.sharpenValue);
+                serializedData.writeFloat(this.filterState.blurExcludeSize);
+                Point point = this.filterState.blurExcludePoint;
+                if (point != null) {
+                    serializedData.writeFloat(point.x);
+                    serializedData.writeFloat(this.filterState.blurExcludePoint.y);
+                } else {
+                    serializedData.writeFloat(0.0f);
+                    serializedData.writeFloat(0.0f);
+                }
+                serializedData.writeFloat(this.filterState.blurExcludeBlurSize);
+                serializedData.writeFloat(this.filterState.blurAngle);
+                for (int i2 = 0; i2 < 4; i2++) {
+                    if (i2 == 0) {
+                        curvesValue = this.filterState.curvesToolValue.luminanceCurve;
+                    } else if (i2 == 1) {
+                        curvesValue = this.filterState.curvesToolValue.redCurve;
+                    } else if (i2 == 2) {
+                        curvesValue = this.filterState.curvesToolValue.greenCurve;
+                    } else {
+                        curvesValue = this.filterState.curvesToolValue.blueCurve;
+                    }
+                    serializedData.writeFloat(curvesValue.blacksLevel);
+                    serializedData.writeFloat(curvesValue.shadowsLevel);
+                    serializedData.writeFloat(curvesValue.midtonesLevel);
+                    serializedData.writeFloat(curvesValue.highlightsLevel);
+                    serializedData.writeFloat(curvesValue.whitesLevel);
+                }
+            } else {
+                serializedData.writeByte(0);
+            }
+            if (bArr != null) {
+                serializedData.writeByte(1);
+                serializedData.writeByteArray(bArr);
+            } else {
+                serializedData.writeByte(0);
+            }
+            ArrayList<MediaEntity> arrayList2 = this.mediaEntities;
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                serializedData.writeByte(1);
+                serializedData.writeInt32(this.mediaEntities.size());
+                int size = this.mediaEntities.size();
+                for (int i3 = 0; i3 < size; i3++) {
+                    this.mediaEntities.get(i3).serializeTo(serializedData, false);
+                }
+                serializedData.writeByte(this.isPhoto ? 1 : 0);
+            } else {
+                serializedData.writeByte(0);
+            }
+            if (this.cropState != null) {
+                serializedData.writeByte(1);
+                serializedData.writeFloat(this.cropState.cropPx);
+                serializedData.writeFloat(this.cropState.cropPy);
+                serializedData.writeFloat(this.cropState.cropPw);
+                serializedData.writeFloat(this.cropState.cropPh);
+                serializedData.writeFloat(this.cropState.cropScale);
+                serializedData.writeFloat(this.cropState.cropRotate);
+                serializedData.writeInt32(this.cropState.transformWidth);
+                serializedData.writeInt32(this.cropState.transformHeight);
+                serializedData.writeInt32(this.cropState.transformRotation);
+                serializedData.writeBool(this.cropState.mirrored);
+            } else {
+                serializedData.writeByte(0);
+            }
+            serializedData.writeInt32(0);
+            serializedData.writeBool(this.isStory);
+            serializedData.writeBool(this.fromCamera);
+            if (bArr2 != null) {
+                serializedData.writeByte(1);
+                serializedData.writeByteArray(bArr2);
+            } else {
+                serializedData.writeByte(0);
+            }
+            serializedData.writeFloat(this.volume);
+            serializedData.writeBool(this.isSticker);
+            CollageLayout collageLayout = this.collage;
+            if (collageLayout != null && this.collageParts != null && collageLayout.parts.size() > 1 && !this.collageParts.isEmpty()) {
+                serializedData.writeInt32(-559038737);
+                serializedData.writeString(this.collage.toString());
+                for (int i4 = 0; i4 < this.collageParts.size(); i4++) {
+                    this.collageParts.get(i4).serializeToStream(serializedData);
+                }
+            } else {
+                serializedData.writeInt32(1450380236);
+            }
+            bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
+            serializedData.cleanup();
+        } else {
+            bytesToHex = "";
+        }
+        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), bytesToHex, this.originalPath);
+    }
+
+    public boolean parseString(String str) {
+        PhotoFilterView.CurvesValue curvesValue;
+        if (str.length() < 6) {
+            return false;
+        }
+        try {
+            String[] split = str.split("_");
+            int i = 11;
+            if (split.length >= 11) {
+                this.startTime = Long.parseLong(split[1]);
+                this.endTime = Long.parseLong(split[2]);
+                this.rotationValue = Integer.parseInt(split[3]);
+                this.originalWidth = Integer.parseInt(split[4]);
+                this.originalHeight = Integer.parseInt(split[5]);
+                this.bitrate = Integer.parseInt(split[6]);
+                this.resultWidth = Integer.parseInt(split[7]);
+                this.resultHeight = Integer.parseInt(split[8]);
+                this.originalDuration = Long.parseLong(split[9]);
+                this.framerate = Integer.parseInt(split[10]);
+                this.muted = this.bitrate == -1;
+                if (split[11].startsWith("-")) {
+                    String substring = split[11].substring(1);
+                    if (substring.length() > 0) {
+                        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(substring));
+                        int readInt32 = serializedData.readInt32(false);
+                        if (readInt32 >= 3) {
+                            this.avatarStartTime = serializedData.readInt64(false);
+                            this.originalBitrate = serializedData.readInt32(false);
+                        }
+                        if (serializedData.readByte(false) != 0) {
+                            MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
+                            this.filterState = savedFilterState;
+                            savedFilterState.enhanceValue = serializedData.readFloat(false);
+                            if (readInt32 >= 5) {
+                                this.filterState.softenSkinValue = serializedData.readFloat(false);
+                            }
+                            this.filterState.exposureValue = serializedData.readFloat(false);
+                            this.filterState.contrastValue = serializedData.readFloat(false);
+                            this.filterState.warmthValue = serializedData.readFloat(false);
+                            this.filterState.saturationValue = serializedData.readFloat(false);
+                            this.filterState.fadeValue = serializedData.readFloat(false);
+                            this.filterState.tintShadowsColor = serializedData.readInt32(false);
+                            this.filterState.tintHighlightsColor = serializedData.readInt32(false);
+                            this.filterState.highlightsValue = serializedData.readFloat(false);
+                            this.filterState.shadowsValue = serializedData.readFloat(false);
+                            this.filterState.vignetteValue = serializedData.readFloat(false);
+                            this.filterState.grainValue = serializedData.readFloat(false);
+                            this.filterState.blurType = serializedData.readInt32(false);
+                            this.filterState.sharpenValue = serializedData.readFloat(false);
+                            this.filterState.blurExcludeSize = serializedData.readFloat(false);
+                            this.filterState.blurExcludePoint = new Point(serializedData.readFloat(false), serializedData.readFloat(false));
+                            this.filterState.blurExcludeBlurSize = serializedData.readFloat(false);
+                            this.filterState.blurAngle = serializedData.readFloat(false);
+                            for (int i2 = 0; i2 < 4; i2++) {
+                                if (i2 == 0) {
+                                    curvesValue = this.filterState.curvesToolValue.luminanceCurve;
+                                } else if (i2 == 1) {
+                                    curvesValue = this.filterState.curvesToolValue.redCurve;
+                                } else if (i2 == 2) {
+                                    curvesValue = this.filterState.curvesToolValue.greenCurve;
+                                } else {
+                                    curvesValue = this.filterState.curvesToolValue.blueCurve;
+                                }
+                                curvesValue.blacksLevel = serializedData.readFloat(false);
+                                curvesValue.shadowsLevel = serializedData.readFloat(false);
+                                curvesValue.midtonesLevel = serializedData.readFloat(false);
+                                curvesValue.highlightsLevel = serializedData.readFloat(false);
+                                curvesValue.whitesLevel = serializedData.readFloat(false);
+                            }
+                        }
+                        if (serializedData.readByte(false) != 0) {
+                            this.paintPath = new String(serializedData.readByteArray(false));
+                        }
+                        if (serializedData.readByte(false) != 0) {
+                            int readInt322 = serializedData.readInt32(false);
+                            this.mediaEntities = new ArrayList<>(readInt322);
+                            for (int i3 = 0; i3 < readInt322; i3++) {
+                                this.mediaEntities.add(new MediaEntity(serializedData, false));
+                            }
+                            this.isPhoto = serializedData.readByte(false) == 1;
+                        }
+                        if (readInt32 >= 2 && serializedData.readByte(false) != 0) {
+                            MediaController.CropState cropState = new MediaController.CropState();
+                            this.cropState = cropState;
+                            cropState.cropPx = serializedData.readFloat(false);
+                            this.cropState.cropPy = serializedData.readFloat(false);
+                            this.cropState.cropPw = serializedData.readFloat(false);
+                            this.cropState.cropPh = serializedData.readFloat(false);
+                            this.cropState.cropScale = serializedData.readFloat(false);
+                            this.cropState.cropRotate = serializedData.readFloat(false);
+                            this.cropState.transformWidth = serializedData.readInt32(false);
+                            this.cropState.transformHeight = serializedData.readInt32(false);
+                            this.cropState.transformRotation = serializedData.readInt32(false);
+                            if (readInt32 >= 4) {
+                                this.cropState.mirrored = serializedData.readBool(false);
+                            }
+                        }
+                        if (readInt32 >= 6) {
+                            serializedData.readInt32(false);
+                        }
+                        if (readInt32 >= 7) {
+                            this.isStory = serializedData.readBool(false);
+                            this.fromCamera = serializedData.readBool(false);
+                        }
+                        if (readInt32 >= 8 && serializedData.readByte(false) != 0) {
+                            this.blurPath = new String(serializedData.readByteArray(false));
+                        }
+                        if (readInt32 >= 9) {
+                            this.volume = serializedData.readFloat(false);
+                        }
+                        if (readInt32 >= 10) {
+                            this.isSticker = serializedData.readBool(false);
+                        }
+                        if (readInt32 >= 11 && serializedData.readInt32(false) == -559038737) {
+                            this.collage = new CollageLayout(serializedData.readString(false));
+                            this.collageParts = new ArrayList<>();
+                            for (int i4 = 0; i4 < this.collage.parts.size(); i4++) {
+                                Part part = new Part();
+                                part.part = (CollageLayout.Part) this.collage.parts.get(i4);
+                                part.readParams(serializedData, false);
+                                this.collageParts.add(part);
+                            }
+                        }
+                        serializedData.cleanup();
+                    }
+                    i = 12;
+                }
+                while (i < split.length) {
+                    if (this.originalPath == null) {
+                        this.originalPath = split[i];
+                    } else {
+                        this.originalPath += "_" + split[i];
+                    }
+                    i++;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    public boolean needConvert() {
+        MediaController.CropState cropState;
+        if (this.isStory) {
+            if (this.fromCamera && this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && (((cropState = this.cropState) == null || cropState.isEmpty()) && this.startTime <= 0)) {
+                long j = this.endTime;
+                if ((j == -1 || j == this.estimatedDuration) && this.originalHeight == this.resultHeight && this.originalWidth == this.resultWidth) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        if (this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && this.cropState == null && this.roundVideo && this.startTime <= 0) {
+            long j2 = this.endTime;
+            if (j2 == -1 || j2 == this.estimatedDuration) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean canAutoPlaySourceVideo() {
+        return this.roundVideo;
     }
 
     public static class Part extends TLObject {
@@ -555,296 +860,6 @@ public class VideoEditedInfo {
             outputSerializedData.writeInt32(this.width);
             outputSerializedData.writeInt32(this.height);
             outputSerializedData.writeInt64(this.duration);
-        }
-    }
-
-    public boolean canAutoPlaySourceVideo() {
-        return this.roundVideo;
-    }
-
-    public String getString() {
-        byte[] bArr;
-        String bytesToHex;
-        float f;
-        PhotoFilterView.CurvesValue curvesValue;
-        ArrayList<MediaEntity> arrayList;
-        if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && this.blurPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            bytesToHex = "";
-        } else {
-            int i = this.filterState != null ? 170 : 10;
-            String str = this.paintPath;
-            byte[] bArr2 = null;
-            if (str != null) {
-                bArr = str.getBytes();
-                i += bArr.length;
-            } else {
-                bArr = null;
-            }
-            String str2 = this.blurPath;
-            if (str2 != null) {
-                bArr2 = str2.getBytes();
-                i += bArr2.length;
-            }
-            SerializedData serializedData = new SerializedData(i);
-            serializedData.writeInt32(11);
-            serializedData.writeInt64(this.avatarStartTime);
-            serializedData.writeInt32(this.originalBitrate);
-            if (this.filterState != null) {
-                serializedData.writeByte(1);
-                serializedData.writeFloat(this.filterState.enhanceValue);
-                serializedData.writeFloat(this.filterState.softenSkinValue);
-                serializedData.writeFloat(this.filterState.exposureValue);
-                serializedData.writeFloat(this.filterState.contrastValue);
-                serializedData.writeFloat(this.filterState.warmthValue);
-                serializedData.writeFloat(this.filterState.saturationValue);
-                serializedData.writeFloat(this.filterState.fadeValue);
-                serializedData.writeInt32(this.filterState.tintShadowsColor);
-                serializedData.writeInt32(this.filterState.tintHighlightsColor);
-                serializedData.writeFloat(this.filterState.highlightsValue);
-                serializedData.writeFloat(this.filterState.shadowsValue);
-                serializedData.writeFloat(this.filterState.vignetteValue);
-                serializedData.writeFloat(this.filterState.grainValue);
-                serializedData.writeInt32(this.filterState.blurType);
-                serializedData.writeFloat(this.filterState.sharpenValue);
-                serializedData.writeFloat(this.filterState.blurExcludeSize);
-                Point point = this.filterState.blurExcludePoint;
-                if (point != null) {
-                    serializedData.writeFloat(point.x);
-                    f = this.filterState.blurExcludePoint.y;
-                } else {
-                    f = 0.0f;
-                    serializedData.writeFloat(0.0f);
-                }
-                serializedData.writeFloat(f);
-                serializedData.writeFloat(this.filterState.blurExcludeBlurSize);
-                serializedData.writeFloat(this.filterState.blurAngle);
-                int i2 = 0;
-                while (i2 < 4) {
-                    if (i2 == 0) {
-                        curvesValue = this.filterState.curvesToolValue.luminanceCurve;
-                    } else {
-                        PhotoFilterView.CurvesToolValue curvesToolValue = this.filterState.curvesToolValue;
-                        curvesValue = i2 == 1 ? curvesToolValue.redCurve : i2 == 2 ? curvesToolValue.greenCurve : curvesToolValue.blueCurve;
-                    }
-                    serializedData.writeFloat(curvesValue.blacksLevel);
-                    serializedData.writeFloat(curvesValue.shadowsLevel);
-                    serializedData.writeFloat(curvesValue.midtonesLevel);
-                    serializedData.writeFloat(curvesValue.highlightsLevel);
-                    serializedData.writeFloat(curvesValue.whitesLevel);
-                    i2++;
-                }
-            } else {
-                serializedData.writeByte(0);
-            }
-            if (bArr != null) {
-                serializedData.writeByte(1);
-                serializedData.writeByteArray(bArr);
-            } else {
-                serializedData.writeByte(0);
-            }
-            ArrayList<MediaEntity> arrayList2 = this.mediaEntities;
-            if (arrayList2 == null || arrayList2.isEmpty()) {
-                serializedData.writeByte(0);
-            } else {
-                serializedData.writeByte(1);
-                serializedData.writeInt32(this.mediaEntities.size());
-                int size = this.mediaEntities.size();
-                for (int i3 = 0; i3 < size; i3++) {
-                    this.mediaEntities.get(i3).serializeTo(serializedData, false);
-                }
-                serializedData.writeByte(this.isPhoto ? 1 : 0);
-            }
-            if (this.cropState != null) {
-                serializedData.writeByte(1);
-                serializedData.writeFloat(this.cropState.cropPx);
-                serializedData.writeFloat(this.cropState.cropPy);
-                serializedData.writeFloat(this.cropState.cropPw);
-                serializedData.writeFloat(this.cropState.cropPh);
-                serializedData.writeFloat(this.cropState.cropScale);
-                serializedData.writeFloat(this.cropState.cropRotate);
-                serializedData.writeInt32(this.cropState.transformWidth);
-                serializedData.writeInt32(this.cropState.transformHeight);
-                serializedData.writeInt32(this.cropState.transformRotation);
-                serializedData.writeBool(this.cropState.mirrored);
-            } else {
-                serializedData.writeByte(0);
-            }
-            serializedData.writeInt32(0);
-            serializedData.writeBool(this.isStory);
-            serializedData.writeBool(this.fromCamera);
-            if (bArr2 != null) {
-                serializedData.writeByte(1);
-                serializedData.writeByteArray(bArr2);
-            } else {
-                serializedData.writeByte(0);
-            }
-            serializedData.writeFloat(this.volume);
-            serializedData.writeBool(this.isSticker);
-            CollageLayout collageLayout = this.collage;
-            if (collageLayout == null || this.collageParts == null || collageLayout.parts.size() <= 1 || this.collageParts.isEmpty()) {
-                serializedData.writeInt32(1450380236);
-            } else {
-                serializedData.writeInt32(-559038737);
-                serializedData.writeString(this.collage.toString());
-                for (int i4 = 0; i4 < this.collageParts.size(); i4++) {
-                    this.collageParts.get(i4).serializeToStream(serializedData);
-                }
-            }
-            bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
-            serializedData.cleanup();
-        }
-        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), bytesToHex, this.originalPath);
-    }
-
-    public boolean needConvert() {
-        MediaController.CropState cropState;
-        if (!this.isStory) {
-            if (this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && this.cropState == null && this.roundVideo && this.startTime <= 0) {
-                long j = this.endTime;
-                if (j == -1 || j == this.estimatedDuration) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        if (this.fromCamera && this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && (((cropState = this.cropState) == null || cropState.isEmpty()) && this.startTime <= 0)) {
-            long j2 = this.endTime;
-            if ((j2 == -1 || j2 == this.estimatedDuration) && this.originalHeight == this.resultHeight && this.originalWidth == this.resultWidth) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean parseString(String str) {
-        if (str.length() < 6) {
-            return false;
-        }
-        try {
-            String[] split = str.split("_");
-            int i = 11;
-            if (split.length >= 11) {
-                this.startTime = Long.parseLong(split[1]);
-                this.endTime = Long.parseLong(split[2]);
-                this.rotationValue = Integer.parseInt(split[3]);
-                this.originalWidth = Integer.parseInt(split[4]);
-                this.originalHeight = Integer.parseInt(split[5]);
-                this.bitrate = Integer.parseInt(split[6]);
-                this.resultWidth = Integer.parseInt(split[7]);
-                this.resultHeight = Integer.parseInt(split[8]);
-                this.originalDuration = Long.parseLong(split[9]);
-                this.framerate = Integer.parseInt(split[10]);
-                this.muted = this.bitrate == -1;
-                if (split[11].startsWith("-")) {
-                    String substring = split[11].substring(1);
-                    if (substring.length() > 0) {
-                        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(substring));
-                        int readInt32 = serializedData.readInt32(false);
-                        if (readInt32 >= 3) {
-                            this.avatarStartTime = serializedData.readInt64(false);
-                            this.originalBitrate = serializedData.readInt32(false);
-                        }
-                        if (serializedData.readByte(false) != 0) {
-                            MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
-                            this.filterState = savedFilterState;
-                            savedFilterState.enhanceValue = serializedData.readFloat(false);
-                            if (readInt32 >= 5) {
-                                this.filterState.softenSkinValue = serializedData.readFloat(false);
-                            }
-                            this.filterState.exposureValue = serializedData.readFloat(false);
-                            this.filterState.contrastValue = serializedData.readFloat(false);
-                            this.filterState.warmthValue = serializedData.readFloat(false);
-                            this.filterState.saturationValue = serializedData.readFloat(false);
-                            this.filterState.fadeValue = serializedData.readFloat(false);
-                            this.filterState.tintShadowsColor = serializedData.readInt32(false);
-                            this.filterState.tintHighlightsColor = serializedData.readInt32(false);
-                            this.filterState.highlightsValue = serializedData.readFloat(false);
-                            this.filterState.shadowsValue = serializedData.readFloat(false);
-                            this.filterState.vignetteValue = serializedData.readFloat(false);
-                            this.filterState.grainValue = serializedData.readFloat(false);
-                            this.filterState.blurType = serializedData.readInt32(false);
-                            this.filterState.sharpenValue = serializedData.readFloat(false);
-                            this.filterState.blurExcludeSize = serializedData.readFloat(false);
-                            this.filterState.blurExcludePoint = new Point(serializedData.readFloat(false), serializedData.readFloat(false));
-                            this.filterState.blurExcludeBlurSize = serializedData.readFloat(false);
-                            this.filterState.blurAngle = serializedData.readFloat(false);
-                            int i2 = 0;
-                            while (i2 < 4) {
-                                PhotoFilterView.CurvesValue curvesValue = i2 == 0 ? this.filterState.curvesToolValue.luminanceCurve : i2 == 1 ? this.filterState.curvesToolValue.redCurve : i2 == 2 ? this.filterState.curvesToolValue.greenCurve : this.filterState.curvesToolValue.blueCurve;
-                                curvesValue.blacksLevel = serializedData.readFloat(false);
-                                curvesValue.shadowsLevel = serializedData.readFloat(false);
-                                curvesValue.midtonesLevel = serializedData.readFloat(false);
-                                curvesValue.highlightsLevel = serializedData.readFloat(false);
-                                curvesValue.whitesLevel = serializedData.readFloat(false);
-                                i2++;
-                            }
-                        }
-                        if (serializedData.readByte(false) != 0) {
-                            this.paintPath = new String(serializedData.readByteArray(false));
-                        }
-                        if (serializedData.readByte(false) != 0) {
-                            int readInt322 = serializedData.readInt32(false);
-                            this.mediaEntities = new ArrayList<>(readInt322);
-                            for (int i3 = 0; i3 < readInt322; i3++) {
-                                this.mediaEntities.add(new MediaEntity(serializedData, false));
-                            }
-                            this.isPhoto = serializedData.readByte(false) == 1;
-                        }
-                        if (readInt32 >= 2 && serializedData.readByte(false) != 0) {
-                            MediaController.CropState cropState = new MediaController.CropState();
-                            this.cropState = cropState;
-                            cropState.cropPx = serializedData.readFloat(false);
-                            this.cropState.cropPy = serializedData.readFloat(false);
-                            this.cropState.cropPw = serializedData.readFloat(false);
-                            this.cropState.cropPh = serializedData.readFloat(false);
-                            this.cropState.cropScale = serializedData.readFloat(false);
-                            this.cropState.cropRotate = serializedData.readFloat(false);
-                            this.cropState.transformWidth = serializedData.readInt32(false);
-                            this.cropState.transformHeight = serializedData.readInt32(false);
-                            this.cropState.transformRotation = serializedData.readInt32(false);
-                            if (readInt32 >= 4) {
-                                this.cropState.mirrored = serializedData.readBool(false);
-                            }
-                        }
-                        if (readInt32 >= 6) {
-                            serializedData.readInt32(false);
-                        }
-                        if (readInt32 >= 7) {
-                            this.isStory = serializedData.readBool(false);
-                            this.fromCamera = serializedData.readBool(false);
-                        }
-                        if (readInt32 >= 8 && serializedData.readByte(false) != 0) {
-                            this.blurPath = new String(serializedData.readByteArray(false));
-                        }
-                        if (readInt32 >= 9) {
-                            this.volume = serializedData.readFloat(false);
-                        }
-                        if (readInt32 >= 10) {
-                            this.isSticker = serializedData.readBool(false);
-                        }
-                        if (readInt32 >= 11 && serializedData.readInt32(false) == -559038737) {
-                            this.collage = new CollageLayout(serializedData.readString(false));
-                            this.collageParts = new ArrayList<>();
-                            for (int i4 = 0; i4 < this.collage.parts.size(); i4++) {
-                                Part part = new Part();
-                                part.part = (CollageLayout.Part) this.collage.parts.get(i4);
-                                part.readParams(serializedData, false);
-                                this.collageParts.add(part);
-                            }
-                        }
-                        serializedData.cleanup();
-                    }
-                    i = 12;
-                }
-                while (i < split.length) {
-                    this.originalPath = this.originalPath == null ? split[i] : this.originalPath + "_" + split[i];
-                    i++;
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
         }
     }
 }

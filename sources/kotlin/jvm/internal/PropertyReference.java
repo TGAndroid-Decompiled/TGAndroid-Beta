@@ -12,6 +12,14 @@ public abstract class PropertyReference extends CallableReference implements KPr
     }
 
     @Override
+    public KProperty getReflected() {
+        if (this.syntheticJavaProperty) {
+            throw new UnsupportedOperationException("Kotlin reflection is not yet supported for synthetic Java properties");
+        }
+        return (KProperty) super.getReflected();
+    }
+
+    @Override
     public KCallable compute() {
         return this.syntheticJavaProperty ? this : super.compute();
     }
@@ -28,14 +36,6 @@ public abstract class PropertyReference extends CallableReference implements KPr
             return obj.equals(compute());
         }
         return false;
-    }
-
-    @Override
-    public KProperty getReflected() {
-        if (this.syntheticJavaProperty) {
-            throw new UnsupportedOperationException("Kotlin reflection is not yet supported for synthetic Java properties");
-        }
-        return (KProperty) super.getReflected();
     }
 
     public int hashCode() {

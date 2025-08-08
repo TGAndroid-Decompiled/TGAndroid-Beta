@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
@@ -44,17 +43,18 @@ public class AnimatedAvatarContainer extends FrameLayout {
         setClipChildren(false);
     }
 
-    public AnimatedTextView getSubtitleTextView() {
-        return this.subtitleTextView;
-    }
-
-    public AnimatedTextView getTitle() {
-        return this.titleTextView;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i) + this.titleTextView.getPaddingRight();
+        int dp = size - AndroidUtilities.dp(16.0f);
+        this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f) + this.titleTextView.getPaddingRight(), Integer.MIN_VALUE));
+        this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
+        setMeasuredDimension(size, View.MeasureSpec.getSize(i2));
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int currentActionBarHeight = ((ActionBar.getCurrentActionBarHeight() - AndroidUtilities.dp(42.0f)) / 2) + ((Build.VERSION.SDK_INT < 21 || !this.occupyStatusBar) ? 0 : AndroidUtilities.statusBarHeight);
+        int currentActionBarHeight = ((ActionBar.getCurrentActionBarHeight() - AndroidUtilities.dp(42.0f)) / 2) + (this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0);
         int i5 = this.leftPadding;
         if (this.subtitleTextView.getVisibility() != 8) {
             this.titleTextView.layout(i5, (AndroidUtilities.dp(1.0f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + i5, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.dp(1.3f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
@@ -64,12 +64,11 @@ public class AnimatedAvatarContainer extends FrameLayout {
         this.subtitleTextView.layout(i5, AndroidUtilities.dp(20.0f) + currentActionBarHeight, this.subtitleTextView.getMeasuredWidth() + i5, currentActionBarHeight + this.subtitleTextView.getTextHeight() + AndroidUtilities.dp(24.0f));
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i) + this.titleTextView.getPaddingRight();
-        int dp = size - AndroidUtilities.dp(16.0f);
-        this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f) + this.titleTextView.getPaddingRight(), Integer.MIN_VALUE));
-        this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(size, View.MeasureSpec.getSize(i2));
+    public AnimatedTextView getTitle() {
+        return this.titleTextView;
+    }
+
+    public AnimatedTextView getSubtitleTextView() {
+        return this.subtitleTextView;
     }
 }

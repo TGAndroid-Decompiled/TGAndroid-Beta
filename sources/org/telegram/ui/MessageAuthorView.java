@@ -28,6 +28,8 @@ public abstract class MessageAuthorView extends FrameLayout {
     LinkSpanDrawable.LinksTextView titleView;
     public TLRPC.User user;
 
+    public abstract void lambda$updateView$2(long j);
+
     public MessageAuthorView(Context context, final int i, MessageObject messageObject, TLRPC.Chat chat) {
         super(context);
         this.user = null;
@@ -64,14 +66,6 @@ public abstract class MessageAuthorView extends FrameLayout {
         setEnabled(false);
     }
 
-    public void lambda$new$0(TLObject tLObject, int i) {
-        if (tLObject instanceof TLRPC.User) {
-            this.user = (TLRPC.User) tLObject;
-            MessagesController.getInstance(i).putUser(this.user, false);
-        }
-        updateView();
-    }
-
     public void lambda$new$1(final int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -81,20 +75,20 @@ public abstract class MessageAuthorView extends FrameLayout {
         });
     }
 
-    private void updateView() {
-        setEnabled(this.user != null);
-        TLRPC.User user = this.user;
-        if (user != null) {
-            final long j = user.id;
-            this.titleView.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.MessageAuthorSentBy, UserObject.getUserName(user)), new Runnable() {
-                @Override
-                public final void run() {
-                    MessageAuthorView.this.lambda$updateView$2(j);
-                }
-            }));
+    public void lambda$new$0(TLObject tLObject, int i) {
+        if (tLObject instanceof TLRPC.User) {
+            this.user = (TLRPC.User) tLObject;
+            MessagesController.getInstance(i).putUser(this.user, false);
         }
-        this.titleView.animate().alpha(1.0f).setDuration(220L).start();
-        this.flickerLoadingView.animate().alpha(0.0f).setDuration(220L).setListener(new HideViewAfterAnimation(this.flickerLoadingView)).start();
+        updateView();
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.ignoreLayout) {
+            return;
+        }
+        super.requestLayout();
     }
 
     @Override
@@ -121,13 +115,19 @@ public abstract class MessageAuthorView extends FrameLayout {
         super.onMeasure(i, makeMeasureSpec);
     }
 
-    public abstract void lambda$updateView$2(long j);
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
+    private void updateView() {
+        setEnabled(this.user != null);
+        TLRPC.User user = this.user;
+        if (user != null) {
+            final long j = user.id;
+            this.titleView.setText(AndroidUtilities.premiumText(LocaleController.formatString(R.string.MessageAuthorSentBy, UserObject.getUserName(user)), new Runnable() {
+                @Override
+                public final void run() {
+                    MessageAuthorView.this.lambda$updateView$2(j);
+                }
+            }));
         }
-        super.requestLayout();
+        this.titleView.animate().alpha(1.0f).setDuration(220L).start();
+        this.flickerLoadingView.animate().alpha(0.0f).setDuration(220L).setListener(new HideViewAfterAnimation(this.flickerLoadingView)).start();
     }
 }

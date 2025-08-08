@@ -19,71 +19,14 @@ public class BoostTypeCell extends BaseCell {
     public static int TYPE_STARS = 3;
     private int selectedType;
 
-    public BoostTypeCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider);
-        this.titleTextView.setTypeface(AndroidUtilities.bold());
-    }
-
-    public int getSelectedType() {
-        return this.selectedType;
-    }
-
     @Override
     protected boolean needCheck() {
         return true;
     }
 
-    public void setType(int i, int i2, TLRPC.User user, boolean z) {
-        Context context;
-        int i3;
-        boolean z2 = this.selectedType == i;
-        this.selectedType = i;
-        if (i != TYPE_GIVEAWAY) {
-            if (i == TYPE_SPECIFIC_USERS) {
-                this.titleTextView.setText(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
-                setSubtitle(withArrow((i2 != 1 || user == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingSelectRecipients) : Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
-                this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
-                this.avatarDrawable.setAvatarType(6);
-                this.avatarDrawable.setColor(-3905294, -6923014);
-            } else {
-                if (i != TYPE_PREMIUM) {
-                    if (i == TYPE_STARS) {
-                        this.titleTextView.setText(TextCell.applyNewSpan(LocaleController.getString(R.string.BoostingStars)));
-                        setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
-                        this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-                        this.avatarDrawable.setAvatarType(26);
-                        this.avatarDrawable.setColor(-146917, -625593);
-                    }
-                    this.radioButton.setChecked(z, z2);
-                    this.imageView.setImageDrawable(this.avatarDrawable);
-                    this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-                }
-                this.titleTextView.setText(LocaleController.getString(R.string.BoostingPremium));
-                setSubtitle(withArrow((i2 != 1 || user == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingWinnersRandomly) : Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
-                this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
-                this.avatarDrawable.setAvatarType(25);
-                this.avatarDrawable.setColor(-3905294, -6923014);
-            }
-            setDivider(false);
-            context = getContext();
-            i3 = R.drawable.greydivider_top;
-            setBackground(Theme.getThemedDrawableByKey(context, i3, Theme.key_windowBackgroundGrayShadow));
-            this.radioButton.setChecked(z, z2);
-            this.imageView.setImageDrawable(this.avatarDrawable);
-            this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        }
-        this.titleTextView.setText(LocaleController.getString(R.string.BoostingCreateGiveaway));
-        setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
-        this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        this.avatarDrawable.setAvatarType(16);
-        this.avatarDrawable.setColor(-15292942, -15630089);
-        setDivider(true);
-        context = getContext();
-        i3 = R.drawable.greydivider_bottom;
-        setBackground(Theme.getThemedDrawableByKey(context, i3, Theme.key_windowBackgroundGrayShadow));
-        this.radioButton.setChecked(z, z2);
-        this.imageView.setImageDrawable(this.avatarDrawable);
-        this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
+    public BoostTypeCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context, resourcesProvider);
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
     }
 
     @Override
@@ -96,5 +39,62 @@ public class BoostTypeCell extends BaseCell {
         boolean z2 = LocaleController.isRTL;
         simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 16, z2 ? 20.0f : 109.0f, 0.0f, z2 ? 109.0f : 20.0f, 0.0f));
         this.radioButton.setLayoutParams(LayoutHelper.createFrame(22, 22.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+    }
+
+    public int getSelectedType() {
+        return this.selectedType;
+    }
+
+    public void setType(int i, int i2, TLRPC.User user, boolean z) {
+        boolean z2 = this.selectedType == i;
+        this.selectedType = i;
+        if (i == TYPE_GIVEAWAY) {
+            this.titleTextView.setText(LocaleController.getString(R.string.BoostingCreateGiveaway));
+            setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
+            this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
+            this.avatarDrawable.setAvatarType(16);
+            this.avatarDrawable.setColor(-15292942, -15630089);
+            setDivider(true);
+            setBackground(Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        } else if (i == TYPE_SPECIFIC_USERS) {
+            this.titleTextView.setText(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
+            if (i2 == 1 && user != null) {
+                setSubtitle(withArrow(Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
+            } else if (i2 > 0) {
+                setSubtitle(withArrow(LocaleController.formatPluralString("Recipient", i2, new Object[0])));
+            } else {
+                setSubtitle(withArrow(LocaleController.getString(R.string.BoostingSelectRecipients)));
+            }
+            this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
+            this.avatarDrawable.setAvatarType(6);
+            this.avatarDrawable.setColor(-3905294, -6923014);
+            setDivider(false);
+            setBackground(Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+        } else if (i == TYPE_PREMIUM) {
+            this.titleTextView.setText(LocaleController.getString(R.string.BoostingPremium));
+            if (i2 == 1 && user != null) {
+                setSubtitle(withArrow(Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
+            } else if (i2 > 0) {
+                setSubtitle(withArrow(LocaleController.formatPluralString("Recipient", i2, new Object[0])));
+            } else {
+                setSubtitle(withArrow(LocaleController.getString(R.string.BoostingWinnersRandomly)));
+            }
+            this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
+            this.avatarDrawable.setAvatarType(25);
+            this.avatarDrawable.setColor(-3905294, -6923014);
+            setDivider(true);
+            setBackground(Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        } else if (i == TYPE_STARS) {
+            this.titleTextView.setText(TextCell.applyNewSpan(LocaleController.getString(R.string.BoostingStars)));
+            setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
+            this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
+            this.avatarDrawable.setAvatarType(26);
+            this.avatarDrawable.setColor(-146917, -625593);
+            setDivider(false);
+            setBackground(Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+        }
+        this.radioButton.setChecked(z, z2);
+        this.imageView.setImageDrawable(this.avatarDrawable);
+        this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
     }
 }

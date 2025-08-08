@@ -7,15 +7,19 @@ import org.telegram.ui.Charts.view_data.BarViewData;
 import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 
 public class BarChartView extends BaseChartView {
+    @Override
+    public void drawSelection(Canvas canvas) {
+    }
+
+    @Override
+    protected float getMinDistance() {
+        return 0.1f;
+    }
+
     public BarChartView(Context context) {
         super(context);
         this.superDraw = true;
         this.useAlphaSignature = true;
-    }
-
-    @Override
-    public BarViewData createLineViewData(ChartData.Line line) {
-        return new BarViewData(line, this.resourcesProvider);
     }
 
     @Override
@@ -93,12 +97,8 @@ public class BarChartView extends BaseChartView {
     }
 
     @Override
-    public void drawSelection(Canvas canvas) {
-    }
-
-    @Override
-    protected float getMinDistance() {
-        return 0.1f;
+    public BarViewData createLineViewData(ChartData.Line line) {
+        return new BarViewData(line, this.resourcesProvider);
     }
 
     @Override
@@ -111,16 +111,17 @@ public class BarChartView extends BaseChartView {
         while (true) {
             this.tmpI = i;
             int i2 = this.tmpI;
-            if (i2 >= this.tmpN) {
+            if (i2 < this.tmpN) {
+                drawHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(i2));
+                drawSignaturesToHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(this.tmpI));
+                i = this.tmpI + 1;
+            } else {
                 drawBottomSignature(canvas);
                 drawPicker(canvas);
                 drawSelection(canvas);
                 super.onDraw(canvas);
                 return;
             }
-            drawHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(i2));
-            drawSignaturesToHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(this.tmpI));
-            i = this.tmpI + 1;
         }
     }
 }

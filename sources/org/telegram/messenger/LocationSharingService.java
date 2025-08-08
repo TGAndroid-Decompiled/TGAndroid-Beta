@@ -18,95 +18,13 @@ public class LocationSharingService extends Service implements NotificationCente
     private Handler handler;
     private Runnable runnable;
 
-    public LocationSharingService() {
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.liveLocationsChanged);
-    }
-
-    private ArrayList<LocationController.SharingLocationInfo> getInfos() {
-        ArrayList<LocationController.SharingLocationInfo> arrayList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i).sharingLocationsUI;
-            if (!arrayList2.isEmpty()) {
-                arrayList.addAll(arrayList2);
-            }
-        }
-        return arrayList;
-    }
-
-    public void lambda$didReceivedNotification$2() {
-        if (getInfos().isEmpty()) {
-            stopSelf();
-        } else {
-            updateNotification(true);
-        }
-    }
-
-    public static void lambda$onCreate$0() {
-        for (int i = 0; i < 4; i++) {
-            LocationController.getInstance(i).update();
-        }
-    }
-
-    public void lambda$onCreate$1() {
-        this.handler.postDelayed(this.runnable, 1000L);
-        Utilities.stageQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                LocationSharingService.lambda$onCreate$0();
-            }
-        });
-    }
-
-    private void updateNotification(boolean z) {
-        String formatPluralString;
-        int i;
-        if (this.builder == null) {
-            return;
-        }
-        ArrayList<LocationController.SharingLocationInfo> infos = getInfos();
-        if (infos.size() == 1) {
-            LocationController.SharingLocationInfo sharingLocationInfo = infos.get(0);
-            long dialogId = sharingLocationInfo.messageObject.getDialogId();
-            int i2 = sharingLocationInfo.messageObject.currentAccount;
-            boolean isUserDialog = DialogObject.isUserDialog(dialogId);
-            MessagesController messagesController = MessagesController.getInstance(i2);
-            if (isUserDialog) {
-                formatPluralString = UserObject.getFirstName(messagesController.getUser(Long.valueOf(dialogId)));
-                i = R.string.AttachLiveLocationIsSharing;
-            } else {
-                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-dialogId));
-                formatPluralString = chat != null ? chat.title : "";
-                i = R.string.AttachLiveLocationIsSharingChat;
-            }
-        } else {
-            formatPluralString = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
-            i = R.string.AttachLiveLocationIsSharingChats;
-        }
-        String format = String.format(LocaleController.getString(i), LocaleController.getString(R.string.AttachLiveLocation), formatPluralString);
-        this.builder.setTicker(format);
-        this.builder.setContentText(format);
-        if (z) {
-            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(6, this.builder.build());
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        Handler handler;
-        if (i != NotificationCenter.liveLocationsChanged || (handler = this.handler) == null) {
-            return;
-        }
-        handler.post(new Runnable() {
-            @Override
-            public final void run() {
-                LocationSharingService.this.lambda$didReceivedNotification$2();
-            }
-        });
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public LocationSharingService() {
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.liveLocationsChanged);
     }
 
     @Override
@@ -123,6 +41,22 @@ public class LocationSharingService extends Service implements NotificationCente
         this.handler.postDelayed(runnable, 1000L);
     }
 
+    public void lambda$onCreate$1() {
+        this.handler.postDelayed(this.runnable, 1000L);
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                LocationSharingService.lambda$onCreate$0();
+            }
+        });
+    }
+
+    public static void lambda$onCreate$0() {
+        for (int i = 0; i < 4; i++) {
+            LocationController.getInstance(i).update();
+        }
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -133,6 +67,74 @@ public class LocationSharingService extends Service implements NotificationCente
         stopForeground(true);
         NotificationManagerCompat.from(ApplicationLoader.applicationContext).cancel(6);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        Handler handler;
+        if (i != NotificationCenter.liveLocationsChanged || (handler = this.handler) == null) {
+            return;
+        }
+        handler.post(new Runnable() {
+            @Override
+            public final void run() {
+                LocationSharingService.this.lambda$didReceivedNotification$2();
+            }
+        });
+    }
+
+    public void lambda$didReceivedNotification$2() {
+        if (getInfos().isEmpty()) {
+            stopSelf();
+        } else {
+            updateNotification(true);
+        }
+    }
+
+    private ArrayList<LocationController.SharingLocationInfo> getInfos() {
+        ArrayList<LocationController.SharingLocationInfo> arrayList = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i).sharingLocationsUI;
+            if (!arrayList2.isEmpty()) {
+                arrayList.addAll(arrayList2);
+            }
+        }
+        return arrayList;
+    }
+
+    private void updateNotification(boolean z) {
+        String formatPluralString;
+        String string;
+        if (this.builder == null) {
+            return;
+        }
+        ArrayList<LocationController.SharingLocationInfo> infos = getInfos();
+        if (infos.size() == 1) {
+            LocationController.SharingLocationInfo sharingLocationInfo = infos.get(0);
+            long dialogId = sharingLocationInfo.messageObject.getDialogId();
+            int i = sharingLocationInfo.messageObject.currentAccount;
+            if (DialogObject.isUserDialog(dialogId)) {
+                formatPluralString = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(dialogId)));
+                string = LocaleController.getString(R.string.AttachLiveLocationIsSharing);
+            } else {
+                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-dialogId));
+                if (chat != null) {
+                    formatPluralString = chat.title;
+                } else {
+                    formatPluralString = "";
+                }
+                string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChat);
+            }
+        } else {
+            formatPluralString = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
+            string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChats);
+        }
+        String format = String.format(string, LocaleController.getString(R.string.AttachLiveLocation), formatPluralString);
+        this.builder.setTicker(format);
+        this.builder.setContentText(format);
+        if (z) {
+            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(6, this.builder.build());
+        }
     }
 
     @Override

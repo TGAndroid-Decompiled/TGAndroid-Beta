@@ -122,30 +122,21 @@ public class BusinessBotButton extends FrameLayout {
     }
 
     public void lambda$new$0(View view) {
-        boolean z = !this.paused;
-        this.paused = z;
-        this.pauseButton.setText(LocaleController.getString(z ? R.string.BizBotStart : R.string.BizBotStop), true);
+        boolean z = this.paused;
+        this.paused = !z;
+        this.pauseButton.setText(LocaleController.getString(!z ? R.string.BizBotStart : R.string.BizBotStop), true);
         this.subtitleView.cancelAnimation();
         this.subtitleView.setText(LocaleController.getString(this.paused ? R.string.BizBotStatusStopped : R.string.BizBotStatusManages), true);
-        this.flags = this.paused ? this.flags | 1 : this.flags & (-2);
+        if (this.paused) {
+            this.flags |= 1;
+        } else {
+            this.flags &= -2;
+        }
         MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("dialog_botflags" + this.dialogId, this.flags).apply();
         TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
         toggleconnectedbotpaused.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
         toggleconnectedbotpaused.paused = this.paused;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(toggleconnectedbotpaused, null);
-    }
-
-    public void lambda$new$1() {
-        TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
-        disablepeerconnectedbot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(disablepeerconnectedbot, null);
-        MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("dialog_botid" + this.dialogId).remove("dialog_boturl" + this.dialogId).remove("dialog_botflags" + this.dialogId).apply();
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(this.dialogId));
-        BusinessChatbotController.getInstance(this.currentAccount).invalidate(false);
-    }
-
-    public void lambda$new$2() {
-        Browser.openUrl(getContext(), this.manageUrl);
     }
 
     public void lambda$new$3(ChatActivity chatActivity, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -169,6 +160,26 @@ public class BusinessBotButton extends FrameLayout {
         makeOptions.show();
     }
 
+    public void lambda$new$1() {
+        TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
+        disablepeerconnectedbot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(disablepeerconnectedbot, null);
+        MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("dialog_botid" + this.dialogId).remove("dialog_boturl" + this.dialogId).remove("dialog_botflags" + this.dialogId).apply();
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(this.dialogId));
+        BusinessChatbotController.getInstance(this.currentAccount).invalidate(false);
+    }
+
+    public void lambda$new$2() {
+        Browser.openUrl(getContext(), this.manageUrl);
+    }
+
+    public void setLeftMargin(float f) {
+        this.leftMargin = f;
+        this.avatarView.setTranslationX(f);
+        this.textLayout.setTranslationX(f);
+        updateTextRightPadding();
+    }
+
     public void updateTextRightPadding() {
         float paddingLeft = this.leftMargin + this.pauseButton.getPaddingLeft() + this.pauseButton.getDrawable().getCurrentWidth() + this.pauseButton.getPaddingRight() + AndroidUtilities.dp(12.0f);
         this.titleView.setRightPadding(paddingLeft);
@@ -187,12 +198,5 @@ public class BusinessBotButton extends FrameLayout {
         this.titleView.setText(UserObject.getUserName(user));
         this.subtitleView.setText(LocaleController.getString(this.paused ? R.string.BizBotStatusStopped : R.string.BizBotStatusManages));
         this.pauseButton.setText(LocaleController.getString(this.paused ? R.string.BizBotStart : R.string.BizBotStop));
-    }
-
-    public void setLeftMargin(float f) {
-        this.leftMargin = f;
-        this.avatarView.setTranslationX(f);
-        this.textLayout.setTranslationX(f);
-        updateTextRightPadding();
     }
 }

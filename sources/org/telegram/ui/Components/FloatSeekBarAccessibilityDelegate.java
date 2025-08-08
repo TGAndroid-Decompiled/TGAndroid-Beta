@@ -8,33 +8,6 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 public abstract class FloatSeekBarAccessibilityDelegate extends SeekBarAccessibilityDelegate {
     private final boolean setPercentsEnabled;
 
-    public FloatSeekBarAccessibilityDelegate() {
-        this(false);
-    }
-
-    public FloatSeekBarAccessibilityDelegate(boolean z) {
-        this.setPercentsEnabled = z;
-    }
-
-    @Override
-    protected boolean canScrollBackward(View view) {
-        return getProgress() > getMinValue();
-    }
-
-    @Override
-    protected boolean canScrollForward(View view) {
-        return getProgress() < getMaxValue();
-    }
-
-    @Override
-    protected void doScroll(View view, boolean z) {
-        float delta = getDelta();
-        if (z) {
-            delta *= -1.0f;
-        }
-        setProgress(Math.min(getMaxValue(), Math.max(getMinValue(), getProgress() + delta)));
-    }
-
     public float getDelta() {
         return 0.05f;
     }
@@ -48,6 +21,16 @@ public abstract class FloatSeekBarAccessibilityDelegate extends SeekBarAccessibi
     }
 
     protected abstract float getProgress();
+
+    protected abstract void setProgress(float f);
+
+    public FloatSeekBarAccessibilityDelegate() {
+        this(false);
+    }
+
+    public FloatSeekBarAccessibilityDelegate(boolean z) {
+        this.setPercentsEnabled = z;
+    }
 
     @Override
     public void onInitializeAccessibilityNodeInfoInternal(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
@@ -71,5 +54,22 @@ public abstract class FloatSeekBarAccessibilityDelegate extends SeekBarAccessibi
         return true;
     }
 
-    protected abstract void setProgress(float f);
+    @Override
+    protected void doScroll(View view, boolean z) {
+        float delta = getDelta();
+        if (z) {
+            delta *= -1.0f;
+        }
+        setProgress(Math.min(getMaxValue(), Math.max(getMinValue(), getProgress() + delta)));
+    }
+
+    @Override
+    protected boolean canScrollBackward(View view) {
+        return getProgress() > getMinValue();
+    }
+
+    @Override
+    protected boolean canScrollForward(View view) {
+        return getProgress() < getMaxValue();
+    }
 }

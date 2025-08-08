@@ -165,116 +165,6 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(76.0f));
     }
 
-    private void createCall(final boolean z) {
-        if (this.creatingCall) {
-            return;
-        }
-        this.creatingCall = true;
-        final ButtonWithCounterView buttonWithCounterView = z ? this.videoButton : this.voiceButton;
-        buttonWithCounterView.setLoading(true);
-        final HashSet hashSet = new HashSet();
-        hashSet.addAll(this.selectedParticipants);
-        TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-        createconferencecall.random_id = Utilities.random.nextInt();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateGroupCallSheet.this.lambda$createCall$6(buttonWithCounterView, z, hashSet, tLObject, tL_error);
-            }
-        });
-    }
-
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asCustom(this.topView));
-        arrayList.add(UItem.asShadow(null));
-        ArrayList arrayList2 = this.participants;
-        if (arrayList2 == null || arrayList2.isEmpty()) {
-            return;
-        }
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.GroupCallCreateAddMembers)));
-        for (int i = 0; i < this.participants.size(); i++) {
-            Long l = (Long) this.participants.get(i);
-            l.longValue();
-            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(l);
-            if (user == null) {
-                return;
-            }
-            arrayList.add(SelectorUserCell.Factory.make(user).setChecked(this.selectedParticipants.contains(l)));
-        }
-    }
-
-    public void lambda$createCall$4(TLRPC.Updates updates) {
-        MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
-    }
-
-    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
-        TLRPC.TL_inputGroupCall tL_inputGroupCall;
-        LaunchActivity launchActivity;
-        int i;
-        TLRPC.GroupCall groupCall;
-        if (tLObject instanceof TLRPC.Updates) {
-            final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
-            Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCall.class).iterator();
-            groupCall = null;
-            while (it.hasNext()) {
-                groupCall = ((TLRPC.TL_updateGroupCall) it.next()).call;
-            }
-            Utilities.stageQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    CreateGroupCallSheet.this.lambda$createCall$4(updates);
-                }
-            });
-            if (groupCall != null && LaunchActivity.instance != null) {
-                tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.id = groupCall.id;
-                tL_inputGroupCall.access_hash = groupCall.access_hash;
-                lambda$new$0();
-                launchActivity = LaunchActivity.instance;
-                i = this.currentAccount;
-                VoIPHelper.joinConference(launchActivity, i, tL_inputGroupCall, z, groupCall, hashSet);
-                return;
-            }
-            this.creatingCall = false;
-            buttonWithCounterView.setLoading(false);
-        }
-        if (!(tLObject instanceof TL_phone.groupCall)) {
-            if (tL_error != null) {
-                BulletinFactory.of(this.topBulletinContainer, this.resourcesProvider).showForError(tL_error);
-                return;
-            }
-            return;
-        }
-        TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-        MessagesController.getInstance(this.currentAccount).putUsers(groupcall.users, false);
-        MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
-        if (LaunchActivity.instance != null) {
-            tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-            TLRPC.GroupCall groupCall2 = groupcall.call;
-            tL_inputGroupCall.id = groupCall2.id;
-            tL_inputGroupCall.access_hash = groupCall2.access_hash;
-            lambda$new$0();
-            launchActivity = LaunchActivity.instance;
-            i = this.currentAccount;
-            groupCall = groupcall.call;
-            VoIPHelper.joinConference(launchActivity, i, tL_inputGroupCall, z, groupCall, hashSet);
-            return;
-        }
-        this.creatingCall = false;
-        buttonWithCounterView.setLoading(false);
-    }
-
-    public void lambda$createCall$6(final ButtonWithCounterView buttonWithCounterView, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                CreateGroupCallSheet.this.lambda$createCall$5(tLObject, buttonWithCounterView, z, hashSet, tL_error);
-            }
-        });
-    }
-
     public void lambda$new$0(View view) {
         lambda$new$0();
     }
@@ -311,6 +201,94 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         createCall(true);
     }
 
+    private void createCall(final boolean z) {
+        if (this.creatingCall) {
+            return;
+        }
+        this.creatingCall = true;
+        final ButtonWithCounterView buttonWithCounterView = z ? this.videoButton : this.voiceButton;
+        buttonWithCounterView.setLoading(true);
+        final HashSet hashSet = new HashSet();
+        hashSet.addAll(this.selectedParticipants);
+        TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
+        createconferencecall.random_id = Utilities.random.nextInt();
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                CreateGroupCallSheet.this.lambda$createCall$6(buttonWithCounterView, z, hashSet, tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$createCall$6(final ButtonWithCounterView buttonWithCounterView, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CreateGroupCallSheet.this.lambda$createCall$5(tLObject, buttonWithCounterView, z, hashSet, tL_error);
+            }
+        });
+    }
+
+    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Updates) {
+            final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
+            Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCall.class).iterator();
+            TLRPC.GroupCall groupCall = null;
+            while (it.hasNext()) {
+                groupCall = ((TLRPC.TL_updateGroupCall) it.next()).call;
+            }
+            Utilities.stageQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    CreateGroupCallSheet.this.lambda$createCall$4(updates);
+                }
+            });
+            if (groupCall == null || LaunchActivity.instance == null) {
+                this.creatingCall = false;
+                buttonWithCounterView.setLoading(false);
+                return;
+            }
+            TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
+            tL_inputGroupCall.id = groupCall.id;
+            tL_inputGroupCall.access_hash = groupCall.access_hash;
+            lambda$new$0();
+            VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall, z, groupCall, hashSet);
+            return;
+        }
+        if (!(tLObject instanceof TL_phone.groupCall)) {
+            if (tL_error != null) {
+                BulletinFactory.of(this.topBulletinContainer, this.resourcesProvider).showForError(tL_error);
+                return;
+            }
+            return;
+        }
+        TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
+        MessagesController.getInstance(this.currentAccount).putUsers(groupcall.users, false);
+        MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
+        if (LaunchActivity.instance == null) {
+            this.creatingCall = false;
+            buttonWithCounterView.setLoading(false);
+            return;
+        }
+        TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
+        TLRPC.GroupCall groupCall2 = groupcall.call;
+        tL_inputGroupCall2.id = groupCall2.id;
+        tL_inputGroupCall2.access_hash = groupCall2.access_hash;
+        lambda$new$0();
+        VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall2, z, groupcall.call, hashSet);
+    }
+
+    public void lambda$createCall$4(TLRPC.Updates updates) {
+        MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.GroupCallCreateTitle);
+    }
+
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
@@ -323,8 +301,22 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         return universalAdapter;
     }
 
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.GroupCallCreateTitle);
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        arrayList.add(UItem.asCustom(this.topView));
+        arrayList.add(UItem.asShadow(null));
+        ArrayList arrayList2 = this.participants;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            return;
+        }
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.GroupCallCreateAddMembers)));
+        for (int i = 0; i < this.participants.size(); i++) {
+            Long l = (Long) this.participants.get(i);
+            l.longValue();
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(l);
+            if (user == null) {
+                return;
+            }
+            arrayList.add(SelectorUserCell.Factory.make(user).setChecked(this.selectedParticipants.contains(l)));
+        }
     }
 }

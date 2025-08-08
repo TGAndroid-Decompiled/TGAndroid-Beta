@@ -1,7 +1,7 @@
 package kotlinx.coroutines.internal;
 
 import java.util.Iterator;
-import kotlin.ExceptionsKt__ExceptionsKt;
+import kotlin.ExceptionsKt;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CoroutineExceptionHandler;
 import kotlinx.coroutines.CoroutineExceptionHandlerKt;
@@ -17,7 +17,7 @@ public abstract class CoroutineExceptionHandlerImpl_commonKt {
             }
         }
         try {
-            ExceptionsKt__ExceptionsKt.addSuppressed(th, new DiagnosticCoroutineContextException(coroutineContext));
+            ExceptionsKt.addSuppressed(th, new DiagnosticCoroutineContextException(coroutineContext));
         } catch (Throwable unused) {
         }
         CoroutineExceptionHandlerImplKt.propagateExceptionFinalResort(th);

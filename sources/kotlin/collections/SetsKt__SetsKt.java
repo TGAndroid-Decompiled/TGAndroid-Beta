@@ -11,6 +11,9 @@ public abstract class SetsKt__SetsKt extends SetsKt__SetsJVMKt {
     public static final Set optimizeReadOnlySet(Set set) {
         Intrinsics.checkNotNullParameter(set, "<this>");
         int size = set.size();
-        return size != 0 ? size != 1 ? set : SetsKt__SetsJVMKt.setOf(set.iterator().next()) : emptySet();
+        if (size != 0) {
+            return size != 1 ? set : SetsKt__SetsJVMKt.setOf(set.iterator().next());
+        }
+        return emptySet();
     }
 }

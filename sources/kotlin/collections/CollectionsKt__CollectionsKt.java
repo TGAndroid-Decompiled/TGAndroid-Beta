@@ -15,21 +15,9 @@ public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__Collec
         return EmptyList.INSTANCE;
     }
 
-    public static int getLastIndex(List list) {
-        Intrinsics.checkNotNullParameter(list, "<this>");
-        return list.size() - 1;
-    }
-
     public static List listOf(Object... elements) {
-        List emptyList;
-        List asList;
         Intrinsics.checkNotNullParameter(elements, "elements");
-        if (elements.length > 0) {
-            asList = ArraysKt___ArraysJvmKt.asList(elements);
-            return asList;
-        }
-        emptyList = emptyList();
-        return emptyList;
+        return elements.length > 0 ? ArraysKt.asList(elements) : CollectionsKt.emptyList();
     }
 
     public static List mutableListOf(Object... elements) {
@@ -37,20 +25,18 @@ public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__Collec
         return elements.length == 0 ? new ArrayList() : new ArrayList(new ArrayAsCollection(elements, true));
     }
 
+    public static int getLastIndex(List list) {
+        Intrinsics.checkNotNullParameter(list, "<this>");
+        return list.size() - 1;
+    }
+
     public static List optimizeReadOnlyList(List list) {
-        List emptyList;
-        List listOf;
         Intrinsics.checkNotNullParameter(list, "<this>");
         int size = list.size();
-        if (size == 0) {
-            emptyList = emptyList();
-            return emptyList;
+        if (size != 0) {
+            return size != 1 ? list : CollectionsKt.listOf(list.get(0));
         }
-        if (size != 1) {
-            return list;
-        }
-        listOf = CollectionsKt__CollectionsJVMKt.listOf(list.get(0));
-        return listOf;
+        return CollectionsKt.emptyList();
     }
 
     public static void throwIndexOverflow() {

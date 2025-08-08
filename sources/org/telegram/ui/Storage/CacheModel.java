@@ -37,29 +37,88 @@ public class CacheModel {
     public HashSet selectedFiles = new HashSet();
     public HashSet selectedDialogs = new HashSet();
 
-    public static class FileInfo {
-        public long dialogId;
-        public final File file;
-        public int messageId;
-        public MessageObject messageObject;
-        public int messageType;
-        public FileMetadata metadata;
-        public long size;
-        public int type;
+    public CacheModel(boolean z) {
+        this.isDialog = z;
+    }
 
-        public static class FileMetadata {
-            public String author;
-            public boolean loading;
-            public String title;
+    public void add(int i, FileInfo fileInfo) {
+        getListByType(i).add(fileInfo);
+    }
+
+    private ArrayList getListByType(int i) {
+        if (i == 0) {
+            return this.media;
         }
+        if (i == 1) {
+            return this.media;
+        }
+        if (i == 2) {
+            return this.documents;
+        }
+        if (i == 3) {
+            return this.music;
+        }
+        if (i == 4) {
+            return this.voice;
+        }
+        if (i == 7) {
+            return this.stories;
+        }
+        return null;
+    }
 
-        public FileInfo(File file) {
-            this.file = file;
+    private void remove(int i, FileInfo fileInfo) {
+        ArrayList listByType = getListByType(i);
+        if (listByType != null) {
+            listByType.remove(fileInfo);
         }
     }
 
-    public CacheModel(boolean z) {
-        this.isDialog = z;
+    public void remove(CacheControlActivity.DialogFileEntities dialogFileEntities) {
+        this.entities.remove(dialogFileEntities);
+    }
+
+    public void sortBySize() {
+        sort(this.media);
+        sort(this.documents);
+        sort(this.music);
+        sort(this.voice);
+        sort(this.stories);
+    }
+
+    private void sort(ArrayList arrayList) {
+        Collections.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$sort$0;
+                lambda$sort$0 = CacheModel.lambda$sort$0((CacheModel.FileInfo) obj, (CacheModel.FileInfo) obj2);
+                return lambda$sort$0;
+            }
+        });
+    }
+
+    public static int lambda$sort$0(FileInfo fileInfo, FileInfo fileInfo2) {
+        long j = fileInfo2.size;
+        long j2 = fileInfo.size;
+        if (j > j2) {
+            return 1;
+        }
+        return j < j2 ? -1 : 0;
+    }
+
+    public void toggleSelect(FileInfo fileInfo) {
+        if (this.selectedFiles.contains(fileInfo)) {
+            this.selectedFiles.remove(fileInfo);
+            incSize(fileInfo, false);
+            this.selectedSize -= fileInfo.size;
+            checkAllFilesSelected(fileInfo.type, false);
+        } else {
+            this.selectedFiles.add(fileInfo);
+            incSize(fileInfo, true);
+            this.selectedSize += fileInfo.size;
+            checkAllFilesSelected(fileInfo.type, true);
+        }
+        checkSelectedDialogs();
     }
 
     private void checkAllFilesSelected(int i, boolean z) {
@@ -122,6 +181,34 @@ public class CacheModel {
         return true;
     }
 
+    public void toggleSelect(CacheControlActivity.DialogFileEntities dialogFileEntities) {
+        int i = 0;
+        if (!this.selectedDialogs.contains(Long.valueOf(dialogFileEntities.dialogId))) {
+            while (i < dialogFileEntities.entitiesByType.size()) {
+                Iterator it = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
+                while (it.hasNext()) {
+                    FileInfo fileInfo = (FileInfo) it.next();
+                    if (this.selectedFiles.add(fileInfo)) {
+                        this.selectedSize += fileInfo.size;
+                    }
+                }
+                i++;
+            }
+        } else {
+            while (i < dialogFileEntities.entitiesByType.size()) {
+                Iterator it2 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
+                while (it2.hasNext()) {
+                    FileInfo fileInfo2 = (FileInfo) it2.next();
+                    if (this.selectedFiles.remove(fileInfo2)) {
+                        this.selectedSize -= fileInfo2.size;
+                    }
+                }
+                i++;
+            }
+        }
+        checkSelectedDialogs();
+    }
+
     private void checkSelectedDialogs() {
         if (this.isDialog) {
             return;
@@ -141,138 +228,29 @@ public class CacheModel {
             if (dialogFileEntities != null) {
                 int i = 0;
                 while (true) {
-                    if (i >= dialogFileEntities.entitiesByType.size()) {
+                    if (i < dialogFileEntities.entitiesByType.size()) {
+                        Iterator it3 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
+                        while (it3.hasNext()) {
+                            if (!this.selectedFiles.contains((FileInfo) it3.next())) {
+                                break;
+                            }
+                        }
+                        i++;
+                    } else {
                         this.selectedDialogs.add(Long.valueOf(dialogFileEntities.dialogId));
                         break;
                     }
-                    Iterator it3 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
-                    while (it3.hasNext()) {
-                        if (!this.selectedFiles.contains((FileInfo) it3.next())) {
-                            break;
-                        }
-                    }
-                    i++;
                 }
             }
         }
     }
 
-    private ArrayList getListByType(int i) {
-        if (i != 0 && i != 1) {
-            if (i == 2) {
-                return this.documents;
-            }
-            if (i == 3) {
-                return this.music;
-            }
-            if (i == 4) {
-                return this.voice;
-            }
-            if (i == 7) {
-                return this.stories;
-            }
-            return null;
-        }
-        return this.media;
+    public boolean isSelected(FileInfo fileInfo) {
+        return this.selectedFiles.contains(fileInfo);
     }
 
-    private void incSize(FileInfo fileInfo, boolean z) {
-        long j = fileInfo.size;
-        if (!z) {
-            j = -j;
-        }
-        int i = fileInfo.type;
-        if (i == 0) {
-            this.photosSelectedSize += j;
-            return;
-        }
-        if (i == 1) {
-            this.videosSelectedSize += j;
-            return;
-        }
-        if (i == 2) {
-            this.documentsSelectedSize += j;
-            return;
-        }
-        if (i == 3) {
-            this.musicSelectedSize += j;
-        } else if (i == 4) {
-            this.voiceSelectedSize += j;
-        } else if (i == 7) {
-            this.storiesSelectedSize += j;
-        }
-    }
-
-    public static int lambda$sort$0(FileInfo fileInfo, FileInfo fileInfo2) {
-        long j = fileInfo2.size;
-        long j2 = fileInfo.size;
-        if (j > j2) {
-            return 1;
-        }
-        return j < j2 ? -1 : 0;
-    }
-
-    private void remove(int i, FileInfo fileInfo) {
-        ArrayList listByType = getListByType(i);
-        if (listByType != null) {
-            listByType.remove(fileInfo);
-        }
-    }
-
-    private void sort(ArrayList arrayList) {
-        Collections.sort(arrayList, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$sort$0;
-                lambda$sort$0 = CacheModel.lambda$sort$0((CacheModel.FileInfo) obj, (CacheModel.FileInfo) obj2);
-                return lambda$sort$0;
-            }
-        });
-    }
-
-    public void add(int i, FileInfo fileInfo) {
-        getListByType(i).add(fileInfo);
-    }
-
-    public void allFilesSelcetedByType(int i, boolean z) {
-        ArrayList arrayList;
-        if (i == 0) {
-            arrayList = this.media;
-            this.allPhotosSelected = z;
-        } else if (i == 1) {
-            arrayList = this.media;
-            this.allVideosSelected = z;
-        } else if (i == 2) {
-            arrayList = this.documents;
-            this.allDocumentsSelected = z;
-        } else if (i == 3) {
-            arrayList = this.music;
-            this.allMusicSelected = z;
-        } else if (i == 4) {
-            arrayList = this.voice;
-            this.allVoiceSelected = z;
-        } else if (i == 7) {
-            arrayList = this.stories;
-            this.allStoriesSelected = z;
-        } else {
-            arrayList = null;
-        }
-        if (arrayList != null) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (((FileInfo) arrayList.get(i2)).type == i) {
-                    boolean contains = this.selectedFiles.contains(arrayList.get(i2));
-                    if (z) {
-                        if (!contains) {
-                            this.selectedFiles.add((FileInfo) arrayList.get(i2));
-                            incSize((FileInfo) arrayList.get(i2), true);
-                        }
-                    } else if (contains) {
-                        this.selectedFiles.remove(arrayList.get(i2));
-                        incSize((FileInfo) arrayList.get(i2), false);
-                    }
-                }
-            }
-        }
+    public int getSelectedFiles() {
+        return this.selectedFiles.size();
     }
 
     public void clearSelection() {
@@ -281,8 +259,37 @@ public class CacheModel {
         this.selectedDialogs.clear();
     }
 
-    public int getSelectedFiles() {
-        return this.selectedFiles.size();
+    public void setEntities(ArrayList arrayList) {
+        this.entities = arrayList;
+        this.entitiesByDialogId.clear();
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            CacheControlActivity.DialogFileEntities dialogFileEntities = (CacheControlActivity.DialogFileEntities) it.next();
+            this.entitiesByDialogId.put(dialogFileEntities.dialogId, dialogFileEntities);
+        }
+    }
+
+    public boolean isSelected(long j) {
+        return this.selectedDialogs.contains(Long.valueOf(j));
+    }
+
+    public CacheControlActivity.DialogFileEntities removeSelectedFiles() {
+        CacheControlActivity.DialogFileEntities dialogFileEntities = new CacheControlActivity.DialogFileEntities(0L);
+        Iterator it = this.selectedFiles.iterator();
+        while (it.hasNext()) {
+            FileInfo fileInfo = (FileInfo) it.next();
+            dialogFileEntities.addFile(fileInfo, fileInfo.type);
+            CacheControlActivity.DialogFileEntities dialogFileEntities2 = (CacheControlActivity.DialogFileEntities) this.entitiesByDialogId.get(fileInfo.dialogId);
+            if (dialogFileEntities2 != null) {
+                dialogFileEntities2.removeFile(fileInfo);
+                if (dialogFileEntities2.isEmpty()) {
+                    this.entitiesByDialogId.remove(fileInfo.dialogId);
+                    this.entities.remove(dialogFileEntities2);
+                }
+                remove(fileInfo.type, fileInfo);
+            }
+        }
+        return dialogFileEntities;
     }
 
     public long getSelectedFilesSize() {
@@ -306,48 +313,6 @@ public class CacheModel {
             return this.voiceSelectedSize;
         }
         return -1L;
-    }
-
-    public boolean isEmpty() {
-        return this.media.isEmpty() && this.documents.isEmpty() && this.music.isEmpty() && (this.isDialog || this.entities.isEmpty());
-    }
-
-    public boolean isSelected(long j) {
-        return this.selectedDialogs.contains(Long.valueOf(j));
-    }
-
-    public boolean isSelected(FileInfo fileInfo) {
-        return this.selectedFiles.contains(fileInfo);
-    }
-
-    public void onFileDeleted(FileInfo fileInfo) {
-        if (this.selectedFiles.remove(fileInfo)) {
-            this.selectedSize -= fileInfo.size;
-        }
-        remove(fileInfo.type, fileInfo);
-    }
-
-    public void remove(CacheControlActivity.DialogFileEntities dialogFileEntities) {
-        this.entities.remove(dialogFileEntities);
-    }
-
-    public CacheControlActivity.DialogFileEntities removeSelectedFiles() {
-        CacheControlActivity.DialogFileEntities dialogFileEntities = new CacheControlActivity.DialogFileEntities(0L);
-        Iterator it = this.selectedFiles.iterator();
-        while (it.hasNext()) {
-            FileInfo fileInfo = (FileInfo) it.next();
-            dialogFileEntities.addFile(fileInfo, fileInfo.type);
-            CacheControlActivity.DialogFileEntities dialogFileEntities2 = (CacheControlActivity.DialogFileEntities) this.entitiesByDialogId.get(fileInfo.dialogId);
-            if (dialogFileEntities2 != null) {
-                dialogFileEntities2.removeFile(fileInfo);
-                if (dialogFileEntities2.isEmpty()) {
-                    this.entitiesByDialogId.remove(fileInfo.dialogId);
-                    this.entities.remove(dialogFileEntities2);
-                }
-                remove(fileInfo.type, fileInfo);
-            }
-        }
-        return dialogFileEntities;
     }
 
     public void selectAllFiles() {
@@ -378,68 +343,99 @@ public class CacheModel {
         this.allVoiceSelected = true;
     }
 
-    public void setEntities(ArrayList arrayList) {
-        this.entities = arrayList;
-        this.entitiesByDialogId.clear();
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            CacheControlActivity.DialogFileEntities dialogFileEntities = (CacheControlActivity.DialogFileEntities) it.next();
-            this.entitiesByDialogId.put(dialogFileEntities.dialogId, dialogFileEntities);
+    public void allFilesSelcetedByType(int i, boolean z) {
+        ArrayList arrayList;
+        if (i == 0) {
+            arrayList = this.media;
+            this.allPhotosSelected = z;
+        } else if (i == 1) {
+            arrayList = this.media;
+            this.allVideosSelected = z;
+        } else if (i == 2) {
+            arrayList = this.documents;
+            this.allDocumentsSelected = z;
+        } else if (i == 3) {
+            arrayList = this.music;
+            this.allMusicSelected = z;
+        } else if (i == 4) {
+            arrayList = this.voice;
+            this.allVoiceSelected = z;
+        } else if (i == 7) {
+            arrayList = this.stories;
+            this.allStoriesSelected = z;
+        } else {
+            arrayList = null;
         }
-    }
-
-    public void sortBySize() {
-        sort(this.media);
-        sort(this.documents);
-        sort(this.music);
-        sort(this.voice);
-        sort(this.stories);
-    }
-
-    public void toggleSelect(CacheControlActivity.DialogFileEntities dialogFileEntities) {
-        int i = 0;
-        if (this.selectedDialogs.contains(Long.valueOf(dialogFileEntities.dialogId))) {
-            while (i < dialogFileEntities.entitiesByType.size()) {
-                Iterator it = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
-                while (it.hasNext()) {
-                    FileInfo fileInfo = (FileInfo) it.next();
-                    if (this.selectedFiles.remove(fileInfo)) {
-                        this.selectedSize -= fileInfo.size;
+        if (arrayList != null) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                if (((FileInfo) arrayList.get(i2)).type == i) {
+                    if (z) {
+                        if (!this.selectedFiles.contains(arrayList.get(i2))) {
+                            this.selectedFiles.add((FileInfo) arrayList.get(i2));
+                            incSize((FileInfo) arrayList.get(i2), true);
+                        }
+                    } else if (this.selectedFiles.contains(arrayList.get(i2))) {
+                        this.selectedFiles.remove(arrayList.get(i2));
+                        incSize((FileInfo) arrayList.get(i2), false);
                     }
                 }
-                i++;
-            }
-        } else {
-            while (i < dialogFileEntities.entitiesByType.size()) {
-                Iterator it2 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
-                while (it2.hasNext()) {
-                    FileInfo fileInfo2 = (FileInfo) it2.next();
-                    if (this.selectedFiles.add(fileInfo2)) {
-                        this.selectedSize += fileInfo2.size;
-                    }
-                }
-                i++;
             }
         }
-        checkSelectedDialogs();
     }
 
-    public void toggleSelect(FileInfo fileInfo) {
-        boolean z;
-        long j;
-        if (this.selectedFiles.contains(fileInfo)) {
-            this.selectedFiles.remove(fileInfo);
-            z = false;
-            incSize(fileInfo, false);
-            j = this.selectedSize - fileInfo.size;
-        } else {
-            this.selectedFiles.add(fileInfo);
-            z = true;
-            incSize(fileInfo, true);
-            j = this.selectedSize + fileInfo.size;
+    private void incSize(FileInfo fileInfo, boolean z) {
+        long j = z ? fileInfo.size : -fileInfo.size;
+        int i = fileInfo.type;
+        if (i == 0) {
+            this.photosSelectedSize += j;
+            return;
         }
-        this.selectedSize = j;
-        checkAllFilesSelected(fileInfo.type, z);
-        checkSelectedDialogs();
+        if (i == 1) {
+            this.videosSelectedSize += j;
+            return;
+        }
+        if (i == 2) {
+            this.documentsSelectedSize += j;
+            return;
+        }
+        if (i == 3) {
+            this.musicSelectedSize += j;
+        } else if (i == 4) {
+            this.voiceSelectedSize += j;
+        } else if (i == 7) {
+            this.storiesSelectedSize += j;
+        }
+    }
+
+    public boolean isEmpty() {
+        return this.media.isEmpty() && this.documents.isEmpty() && this.music.isEmpty() && (this.isDialog || this.entities.isEmpty());
+    }
+
+    public void onFileDeleted(FileInfo fileInfo) {
+        if (this.selectedFiles.remove(fileInfo)) {
+            this.selectedSize -= fileInfo.size;
+        }
+        remove(fileInfo.type, fileInfo);
+    }
+
+    public static class FileInfo {
+        public long dialogId;
+        public final File file;
+        public int messageId;
+        public MessageObject messageObject;
+        public int messageType;
+        public FileMetadata metadata;
+        public long size;
+        public int type;
+
+        public static class FileMetadata {
+            public String author;
+            public boolean loading;
+            public String title;
+        }
+
+        public FileInfo(File file) {
+            this.file = file;
+        }
     }
 }

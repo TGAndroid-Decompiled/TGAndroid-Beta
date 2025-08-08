@@ -5,16 +5,6 @@ class BaseBitrateAdjuster implements BitrateAdjuster {
     protected double targetFramerateFps;
 
     @Override
-    public int getAdjustedBitrateBps() {
-        return this.targetBitrateBps;
-    }
-
-    @Override
-    public double getAdjustedFramerateFps() {
-        return this.targetFramerateFps;
-    }
-
-    @Override
     public void reportEncodedFrame(int i) {
     }
 
@@ -22,5 +12,15 @@ class BaseBitrateAdjuster implements BitrateAdjuster {
     public void setTargets(int i, double d) {
         this.targetBitrateBps = i;
         this.targetFramerateFps = d;
+    }
+
+    @Override
+    public int getAdjustedBitrateBps() {
+        return this.targetBitrateBps;
+    }
+
+    @Override
+    public double getAdjustedFramerateFps() {
+        return this.targetFramerateFps;
     }
 }

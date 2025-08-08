@@ -8,40 +8,9 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
-    private static final Function1 getIndentFunction$StringsKt__IndentKt(final String str) {
-        return str.length() == 0 ? new Function1() {
-            @Override
-            public final String invoke(String line) {
-                Intrinsics.checkNotNullParameter(line, "line");
-                return line;
-            }
-        } : new Function1() {
-            {
-                super(1);
-            }
-
-            @Override
-            public final String invoke(String line) {
-                Intrinsics.checkNotNullParameter(line, "line");
-                return str + line;
-            }
-        };
-    }
-
-    private static final int indentWidth$StringsKt__IndentKt(String str) {
-        int length = str.length();
-        int i = 0;
-        while (true) {
-            if (i >= length) {
-                i = -1;
-                break;
-            }
-            if (!CharsKt__CharJVMKt.isWhitespace(str.charAt(i))) {
-                break;
-            }
-            i++;
-        }
-        return i == -1 ? str.length() : i;
+    public static String trimIndent(String str) {
+        Intrinsics.checkNotNullParameter(str, "<this>");
+        return replaceIndent(str, "");
     }
 
     public static final String replaceIndent(String str, String newIndent) {
@@ -91,8 +60,39 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
         return sb;
     }
 
-    public static String trimIndent(String str) {
-        Intrinsics.checkNotNullParameter(str, "<this>");
-        return replaceIndent(str, "");
+    private static final Function1 getIndentFunction$StringsKt__IndentKt(final String str) {
+        return str.length() == 0 ? new Function1() {
+            @Override
+            public final String invoke(String line) {
+                Intrinsics.checkNotNullParameter(line, "line");
+                return line;
+            }
+        } : new Function1() {
+            {
+                super(1);
+            }
+
+            @Override
+            public final String invoke(String line) {
+                Intrinsics.checkNotNullParameter(line, "line");
+                return str + line;
+            }
+        };
+    }
+
+    private static final int indentWidth$StringsKt__IndentKt(String str) {
+        int length = str.length();
+        int i = 0;
+        while (true) {
+            if (i >= length) {
+                i = -1;
+                break;
+            }
+            if (!CharsKt__CharJVMKt.isWhitespace(str.charAt(i))) {
+                break;
+            }
+            i++;
+        }
+        return i == -1 ? str.length() : i;
     }
 }

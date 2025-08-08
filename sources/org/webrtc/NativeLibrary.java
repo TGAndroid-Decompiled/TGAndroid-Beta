@@ -5,6 +5,9 @@ class NativeLibrary {
     private static boolean libraryLoaded;
     private static Object lock = new Object();
 
+    NativeLibrary() {
+    }
+
     static class DefaultLoader implements NativeLibraryLoader {
         @Override
         public boolean load(String str) {
@@ -12,9 +15,6 @@ class NativeLibrary {
             System.loadLibrary(str);
             return true;
         }
-    }
-
-    NativeLibrary() {
     }
 
     public static void initialize(NativeLibraryLoader nativeLibraryLoader, String str) {

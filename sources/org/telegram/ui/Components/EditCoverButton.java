@@ -38,13 +38,52 @@ public class EditCoverButton extends View {
         imageReceiver.setRoundRadius(AndroidUtilities.dp(22.66f));
         this.text = new Text(charSequence, 14.0f, AndroidUtilities.bold());
         this.blur = new PhotoViewerBlurDrawable(photoViewer, photoViewer.blurManager, this).setApplyBounds(false);
-        if (!z) {
-            this.arrowDrawable = null;
+        if (z) {
+            Drawable mutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
+            this.arrowDrawable = mutate;
+            mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
             return;
         }
-        Drawable mutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
-        this.arrowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+        this.arrowDrawable = null;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.imageReceiver.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.imageReceiver.onDetachedFromWindow();
+    }
+
+    public void lambda$setImage$0(Bitmap bitmap) {
+        this.imageReceiver.setImageBitmap(bitmap);
+        invalidate();
+    }
+
+    public void setImage(TLRPC.Photo photo, Object obj) {
+        if (photo == null) {
+            lambda$setImage$0((Bitmap) null);
+            return;
+        }
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
+        this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(24.0f), false, closestPhotoSizeWithSize, false), photo), "24_24", 0L, null, obj, 0);
+    }
+
+    public void setImage(final String str) {
+        if (str == null) {
+            lambda$setImage$0((Bitmap) null);
+        } else {
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    EditCoverButton.this.lambda$setImage$1(str);
+                }
+            });
+        }
     }
 
     public void lambda$setImage$1(String str) {
@@ -61,18 +100,6 @@ public class EditCoverButton extends View {
                 EditCoverButton.this.lambda$setImage$0(decodeFile);
             }
         });
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.imageReceiver.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.imageReceiver.onDetachedFromWindow();
     }
 
     @Override
@@ -101,6 +128,11 @@ public class EditCoverButton extends View {
     }
 
     @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.listener = onClickListener;
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean contains = this.blur.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
         if (motionEvent.getAction() == 0) {
@@ -123,37 +155,5 @@ public class EditCoverButton extends View {
             return true;
         }
         return this.bounce.isPressed();
-    }
-
-    public void lambda$setImage$0(Bitmap bitmap) {
-        this.imageReceiver.setImageBitmap(bitmap);
-        invalidate();
-    }
-
-    public void setImage(final String str) {
-        if (str == null) {
-            lambda$setImage$0((Bitmap) null);
-        } else {
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    EditCoverButton.this.lambda$setImage$1(str);
-                }
-            });
-        }
-    }
-
-    public void setImage(TLRPC.Photo photo, Object obj) {
-        if (photo == null) {
-            lambda$setImage$0((Bitmap) null);
-            return;
-        }
-        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
-        this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(24.0f), false, closestPhotoSizeWithSize, false), photo), "24_24", 0L, null, obj, 0);
-    }
-
-    @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.listener = onClickListener;
     }
 }

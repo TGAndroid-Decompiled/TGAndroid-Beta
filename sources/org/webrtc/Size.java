@@ -9,6 +9,10 @@ public class Size {
         this.height = i2;
     }
 
+    public String toString() {
+        return this.width + "x" + this.height;
+    }
+
     public boolean equals(Object obj) {
         if (!(obj instanceof Size)) {
             return false;
@@ -19,9 +23,5 @@ public class Size {
 
     public int hashCode() {
         return (this.width * 65537) + 1 + this.height;
-    }
-
-    public String toString() {
-        return this.width + "x" + this.height;
     }
 }

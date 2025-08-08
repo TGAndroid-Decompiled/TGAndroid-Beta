@@ -73,9 +73,12 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int i3) {
-                UItem item;
                 int i4;
-                return (SelectStoriesBottomSheet.this.adapter == null || (item = SelectStoriesBottomSheet.this.adapter.getItem(i3 + (-1))) == null || (i4 = item.spanCount) == -1) ? SelectStoriesBottomSheet.this.layoutManager.getSpanCount() : i4;
+                if (SelectStoriesBottomSheet.this.adapter == null) {
+                    return SelectStoriesBottomSheet.this.layoutManager.getSpanCount();
+                }
+                UItem item = SelectStoriesBottomSheet.this.adapter.getItem(i3 - 1);
+                return (item == null || (i4 = item.spanCount) == -1) ? SelectStoriesBottomSheet.this.layoutManager.getSpanCount() : i4;
             }
         });
         RecyclerListView recyclerListView = this.recyclerListView;
@@ -107,20 +110,69 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         this.adapter.update(true);
     }
 
-    public void checkLoadMoreScroll() {
-        int findFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
-        int abs = findFirstVisibleItemPosition == -1 ? 0 : Math.abs(this.layoutManager.findLastVisibleItemPosition() - findFirstVisibleItemPosition) + 1;
-        StoriesController.StoriesList storiesList = this.storiesList;
-        if (storiesList != null) {
-            int i = findFirstVisibleItemPosition + abs;
-            int loadedCount = storiesList.getLoadedCount();
-            int i2 = this.columnsCount;
-            if (i > loadedCount - i2) {
-                int max = Math.max(1, i2 / 2);
-                int i3 = this.columnsCount;
-                this.storiesList.load(false, Math.min(100, max * i3 * i3));
-            }
+    public void lambda$new$0(Utilities.Callback callback, View view) {
+        if (this.storiesList.getCount() == 0) {
+            return;
         }
+        callback.run(new ArrayList(this.selectedStoriesIds.values()));
+        lambda$new$0();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.id = this.storiesList.link();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.storiesList.unlink(this.id);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    public boolean onItemClick(View view, int i) {
+        UItem item;
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter == null || i == 0 || (item = universalAdapter.getItem(i - 1)) == null) {
+            return false;
+        }
+        Object obj = item.object;
+        if (obj instanceof MessageObject) {
+            MessageObject messageObject = (MessageObject) obj;
+            int id = messageObject.getId();
+            if (this.selectedStoriesIds.containsKey(Integer.valueOf(id))) {
+                this.selectedStoriesIds.remove(Integer.valueOf(id));
+                item.checked = false;
+                ((SharedPhotoVideoCell2) view).setChecked(false, true);
+            } else {
+                this.selectedStoriesIds.put(Integer.valueOf(id), messageObject.storyItem);
+                item.checked = true;
+                ((SharedPhotoVideoCell2) view).setChecked(true, true);
+            }
+            this.button.setEnabled(!this.selectedStoriesIds.isEmpty());
+            this.button.setCount(this.selectedStoriesIds.size(), true);
+        }
+        return true;
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                SelectStoriesBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, this.resourcesProvider);
+        this.adapter = universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -155,52 +207,6 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         arrayList.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
     }
 
-    public void lambda$new$0(Utilities.Callback callback, View view) {
-        if (this.storiesList.getCount() == 0) {
-            return;
-        }
-        callback.run(new ArrayList(this.selectedStoriesIds.values()));
-        lambda$new$0();
-    }
-
-    public boolean onItemClick(View view, int i) {
-        UItem item;
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter == null || i == 0 || (item = universalAdapter.getItem(i - 1)) == null) {
-            return false;
-        }
-        Object obj = item.object;
-        if (obj instanceof MessageObject) {
-            MessageObject messageObject = (MessageObject) obj;
-            int id = messageObject.getId();
-            if (this.selectedStoriesIds.containsKey(Integer.valueOf(id))) {
-                this.selectedStoriesIds.remove(Integer.valueOf(id));
-                item.checked = false;
-                ((SharedPhotoVideoCell2) view).setChecked(false, true);
-            } else {
-                this.selectedStoriesIds.put(Integer.valueOf(id), messageObject.storyItem);
-                item.checked = true;
-                ((SharedPhotoVideoCell2) view).setChecked(true, true);
-            }
-            this.button.setEnabled(!this.selectedStoriesIds.isEmpty());
-            this.button.setCount(this.selectedStoriesIds.size(), true);
-        }
-        return true;
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                SelectStoriesBottomSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider);
-        this.adapter = universalAdapter;
-        universalAdapter.setApplyBackground(false);
-        return this.adapter;
-    }
-
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.storiesListUpdated && ((StoriesController.StoriesList) objArr[0]) == this.storiesList) {
@@ -209,22 +215,19 @@ public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.id = this.storiesList.link();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.storiesList.unlink(this.id);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    public void checkLoadMoreScroll() {
+        int findFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
+        int abs = findFirstVisibleItemPosition == -1 ? 0 : Math.abs(this.layoutManager.findLastVisibleItemPosition() - findFirstVisibleItemPosition) + 1;
+        StoriesController.StoriesList storiesList = this.storiesList;
+        if (storiesList != null) {
+            int i = findFirstVisibleItemPosition + abs;
+            int loadedCount = storiesList.getLoadedCount();
+            int i2 = this.columnsCount;
+            if (i > loadedCount - i2) {
+                int max = Math.max(1, i2 / 2);
+                int i3 = this.columnsCount;
+                this.storiesList.load(false, Math.min(100, max * i3 * i3));
+            }
+        }
     }
 }

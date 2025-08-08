@@ -12,48 +12,6 @@ public class RtpParameters {
     private final Rtcp rtcp;
     public final String transactionId;
 
-    public static class Codec {
-        public Integer clockRate;
-        MediaStreamTrack.MediaType kind;
-        public String name;
-        public Integer numChannels;
-        public Map<String, String> parameters;
-        public int payloadType;
-
-        Codec(int i, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, Map<String, String> map) {
-            this.payloadType = i;
-            this.name = str;
-            this.kind = mediaType;
-            this.clockRate = num;
-            this.numChannels = num2;
-            this.parameters = map;
-        }
-
-        Integer getClockRate() {
-            return this.clockRate;
-        }
-
-        MediaStreamTrack.MediaType getKind() {
-            return this.kind;
-        }
-
-        String getName() {
-            return this.name;
-        }
-
-        Integer getNumChannels() {
-            return this.numChannels;
-        }
-
-        Map getParameters() {
-            return this.parameters;
-        }
-
-        int getPayloadType() {
-            return this.payloadType;
-        }
-    }
-
     public enum DegradationPreference {
         DISABLED,
         MAINTAIN_FRAMERATE,
@@ -78,6 +36,14 @@ public class RtpParameters {
         public Double scaleResolutionDownBy;
         public Long ssrc;
 
+        public Encoding(String str, boolean z, Double d) {
+            this.bitratePriority = 1.0d;
+            this.networkPriority = 0;
+            this.rid = str;
+            this.active = z;
+            this.scaleResolutionDownBy = d;
+        }
+
         Encoding(String str, boolean z, double d, int i, Integer num, Integer num2, Integer num3, Integer num4, Double d2, Long l, boolean z2) {
             this.rid = str;
             this.active = z;
@@ -92,48 +58,36 @@ public class RtpParameters {
             this.adaptiveAudioPacketTime = z2;
         }
 
-        public Encoding(String str, boolean z, Double d) {
-            this.bitratePriority = 1.0d;
-            this.networkPriority = 0;
-            this.rid = str;
-            this.active = z;
-            this.scaleResolutionDownBy = d;
+        String getRid() {
+            return this.rid;
         }
 
         boolean getActive() {
             return this.active;
         }
 
-        boolean getAdaptivePTime() {
-            return this.adaptiveAudioPacketTime;
-        }
-
         double getBitratePriority() {
             return this.bitratePriority;
-        }
-
-        Integer getMaxBitrateBps() {
-            return this.maxBitrateBps;
-        }
-
-        Integer getMaxFramerate() {
-            return this.maxFramerate;
-        }
-
-        Integer getMinBitrateBps() {
-            return this.minBitrateBps;
         }
 
         int getNetworkPriority() {
             return this.networkPriority;
         }
 
-        Integer getNumTemporalLayers() {
-            return this.numTemporalLayers;
+        Integer getMaxBitrateBps() {
+            return this.maxBitrateBps;
         }
 
-        String getRid() {
-            return this.rid;
+        Integer getMinBitrateBps() {
+            return this.minBitrateBps;
+        }
+
+        Integer getMaxFramerate() {
+            return this.maxFramerate;
+        }
+
+        Integer getNumTemporalLayers() {
+            return this.numTemporalLayers;
         }
 
         Double getScaleResolutionDownBy() {
@@ -143,29 +97,51 @@ public class RtpParameters {
         Long getSsrc() {
             return this.ssrc;
         }
+
+        boolean getAdaptivePTime() {
+            return this.adaptiveAudioPacketTime;
+        }
     }
 
-    public static class HeaderExtension {
-        private final boolean encrypted;
-        private final int id;
-        private final String uri;
+    public static class Codec {
+        public Integer clockRate;
+        MediaStreamTrack.MediaType kind;
+        public String name;
+        public Integer numChannels;
+        public Map<String, String> parameters;
+        public int payloadType;
 
-        HeaderExtension(String str, int i, boolean z) {
-            this.uri = str;
-            this.id = i;
-            this.encrypted = z;
+        Codec(int i, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, Map<String, String> map) {
+            this.payloadType = i;
+            this.name = str;
+            this.kind = mediaType;
+            this.clockRate = num;
+            this.numChannels = num2;
+            this.parameters = map;
         }
 
-        public boolean getEncrypted() {
-            return this.encrypted;
+        int getPayloadType() {
+            return this.payloadType;
         }
 
-        public int getId() {
-            return this.id;
+        String getName() {
+            return this.name;
         }
 
-        public String getUri() {
-            return this.uri;
+        MediaStreamTrack.MediaType getKind() {
+            return this.kind;
+        }
+
+        Integer getClockRate() {
+            return this.clockRate;
+        }
+
+        Integer getNumChannels() {
+            return this.numChannels;
+        }
+
+        Map getParameters() {
+            return this.parameters;
         }
     }
 
@@ -187,6 +163,30 @@ public class RtpParameters {
         }
     }
 
+    public static class HeaderExtension {
+        private final boolean encrypted;
+        private final int id;
+        private final String uri;
+
+        HeaderExtension(String str, int i, boolean z) {
+            this.uri = str;
+            this.id = i;
+            this.encrypted = z;
+        }
+
+        public String getUri() {
+            return this.uri;
+        }
+
+        public int getId() {
+            return this.id;
+        }
+
+        public boolean getEncrypted() {
+            return this.encrypted;
+        }
+    }
+
     RtpParameters(String str, DegradationPreference degradationPreference, Rtcp rtcp, List<HeaderExtension> list, List<Encoding> list2, List<Codec> list3) {
         this.transactionId = str;
         this.degradationPreference = degradationPreference;
@@ -196,27 +196,27 @@ public class RtpParameters {
         this.codecs = list3;
     }
 
-    List<Codec> getCodecs() {
-        return this.codecs;
+    String getTransactionId() {
+        return this.transactionId;
     }
 
     DegradationPreference getDegradationPreference() {
         return this.degradationPreference;
     }
 
-    List<Encoding> getEncodings() {
-        return this.encodings;
+    public Rtcp getRtcp() {
+        return this.rtcp;
     }
 
     public List<HeaderExtension> getHeaderExtensions() {
         return this.headerExtensions;
     }
 
-    public Rtcp getRtcp() {
-        return this.rtcp;
+    List<Encoding> getEncodings() {
+        return this.encodings;
     }
 
-    String getTransactionId() {
-        return this.transactionId;
+    List<Codec> getCodecs() {
+        return this.codecs;
     }
 }

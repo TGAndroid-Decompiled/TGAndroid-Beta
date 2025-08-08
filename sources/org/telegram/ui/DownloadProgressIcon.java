@@ -35,40 +35,6 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     boolean showCompletedIcon;
     private boolean wasDrawn;
 
-    public class ProgressObserver implements DownloadController.FileDownloadProgressListener {
-        long downloaded;
-        private final String fileName;
-        long total;
-
-        private ProgressObserver(String str) {
-            this.fileName = str;
-        }
-
-        @Override
-        public int getObserverTag() {
-            return 0;
-        }
-
-        @Override
-        public void onFailedDownload(String str, boolean z) {
-        }
-
-        @Override
-        public void onProgressDownload(String str, long j, long j2) {
-            this.downloaded = j;
-            this.total = j2;
-            DownloadProgressIcon.this.updateProgress();
-        }
-
-        @Override
-        public void onProgressUpload(String str, long j, long j2, boolean z) {
-        }
-
-        @Override
-        public void onSuccessDownload(String str) {
-        }
-    }
-
     public DownloadProgressIcon(int i, Context context) {
         super(context);
         this.paint = new Paint(1);
@@ -96,11 +62,97 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         this.downloadDrawable.start();
     }
 
-    private void detachCurrentListeners() {
-        for (int i = 0; i < this.currentListeners.size(); i++) {
-            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) this.currentListeners.get(i));
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+        int dp = AndroidUtilities.dp(15.0f);
+        float f = dp;
+        int i3 = dp * 2;
+        this.downloadImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
+        this.downloadCompleteImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (getAlpha() == 0.0f) {
+            return;
         }
-        this.currentListeners.clear();
+        int i = this.currentColor;
+        int i2 = Theme.key_actionBarDefaultIcon;
+        if (i != Theme.getColor(i2)) {
+            this.currentColor = Theme.getColor(i2);
+            this.paint.setColor(Theme.getColor(i2));
+            this.paint2.setColor(Theme.getColor(i2));
+            ImageReceiver imageReceiver = this.downloadImageReceiver;
+            int color = Theme.getColor(i2);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            imageReceiver.setColorFilter(new PorterDuffColorFilter(color, mode));
+            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
+            this.paint2.setAlpha(100);
+        }
+        float f = this.currentProgress;
+        float f2 = this.progress;
+        if (f != f2) {
+            float f3 = this.progressDt;
+            float f4 = f + f3;
+            this.currentProgress = f4;
+            if (f3 > 0.0f && f4 > f2) {
+                this.currentProgress = f2;
+            } else if (f3 < 0.0f && f4 < f2) {
+                this.currentProgress = f2;
+            } else {
+                invalidate();
+            }
+        }
+        int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(8.0f);
+        float dp = AndroidUtilities.dp(1.0f);
+        float dp2 = AndroidUtilities.dp(16.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f5 = measuredHeight;
+        float f6 = f5 - dp;
+        float f7 = f5 + dp;
+        rectF.set(dp2, f6, getMeasuredWidth() - dp2, f7);
+        canvas.drawRoundRect(rectF, dp, dp, this.paint2);
+        rectF.set(dp2, f6, ((getMeasuredWidth() - (2.0f * dp2)) * this.currentProgress) + dp2, f7);
+        canvas.drawRoundRect(rectF, dp, dp, this.paint);
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f6);
+        if (this.progress != 1.0f) {
+            this.showCompletedIcon = false;
+        }
+        if (this.showCompletedIcon) {
+            this.downloadCompleteImageReceiver.draw(canvas);
+        } else {
+            this.downloadImageReceiver.draw(canvas);
+        }
+        if (this.progress == 1.0f && !this.showCompletedIcon && this.downloadDrawable.getCurrentFrame() == 0) {
+            this.downloadCompleteDrawable.setCurrentFrame(0, false);
+            this.downloadCompleteDrawable.start();
+            this.showCompletedIcon = true;
+        }
+        canvas.restore();
+        if (getAlpha() != 0.0f) {
+            this.wasDrawn = true;
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        updateDownloadingListeners();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
+        this.downloadImageReceiver.onAttachedToWindow();
+        this.downloadCompleteImageReceiver.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        detachCurrentListeners();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.onDownloadingFilesChanged);
+        this.downloadImageReceiver.onDetachedFromWindow();
+        this.downloadCompleteImageReceiver.onDetachedFromWindow();
     }
 
     private void updateDownloadingListeners() {
@@ -136,117 +188,6 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         }
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.onDownloadingFilesChanged) {
-            updateDownloadingListeners();
-            updateProgress();
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        updateDownloadingListeners();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.onDownloadingFilesChanged);
-        this.downloadImageReceiver.onAttachedToWindow();
-        this.downloadCompleteImageReceiver.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        detachCurrentListeners();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.onDownloadingFilesChanged);
-        this.downloadImageReceiver.onDetachedFromWindow();
-        this.downloadCompleteImageReceiver.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (getAlpha() == 0.0f) {
-            return;
-        }
-        int i = this.currentColor;
-        int i2 = Theme.key_actionBarDefaultIcon;
-        if (i != Theme.getColor(i2)) {
-            this.currentColor = Theme.getColor(i2);
-            this.paint.setColor(Theme.getColor(i2));
-            this.paint2.setColor(Theme.getColor(i2));
-            ImageReceiver imageReceiver = this.downloadImageReceiver;
-            int color = Theme.getColor(i2);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            imageReceiver.setColorFilter(new PorterDuffColorFilter(color, mode));
-            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
-            this.paint2.setAlpha(100);
-        }
-        float f = this.currentProgress;
-        float f2 = this.progress;
-        if (f != f2) {
-            float f3 = this.progressDt;
-            float f4 = f + f3;
-            this.currentProgress = f4;
-            if ((f3 <= 0.0f || f4 <= f2) && (f3 >= 0.0f || f4 >= f2)) {
-                invalidate();
-            } else {
-                this.currentProgress = f2;
-            }
-        }
-        int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(8.0f);
-        float dp = AndroidUtilities.dp(1.0f);
-        float dp2 = AndroidUtilities.dp(16.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f5 = measuredHeight;
-        float f6 = f5 - dp;
-        float f7 = f5 + dp;
-        rectF.set(dp2, f6, getMeasuredWidth() - dp2, f7);
-        canvas.drawRoundRect(rectF, dp, dp, this.paint2);
-        rectF.set(dp2, f6, ((getMeasuredWidth() - (2.0f * dp2)) * this.currentProgress) + dp2, f7);
-        canvas.drawRoundRect(rectF, dp, dp, this.paint);
-        canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f6);
-        if (this.progress != 1.0f) {
-            this.showCompletedIcon = false;
-        }
-        (this.showCompletedIcon ? this.downloadCompleteImageReceiver : this.downloadImageReceiver).draw(canvas);
-        if (this.progress == 1.0f && !this.showCompletedIcon && this.downloadDrawable.getCurrentFrame() == 0) {
-            this.downloadCompleteDrawable.setCurrentFrame(0, false);
-            this.downloadCompleteDrawable.start();
-            this.showCompletedIcon = true;
-        }
-        canvas.restore();
-        if (getAlpha() != 0.0f) {
-            this.wasDrawn = true;
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
-        int dp = AndroidUtilities.dp(15.0f);
-        float f = dp;
-        int i3 = dp * 2;
-        this.downloadImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
-        this.downloadCompleteImageReceiver.setImageCoords(f, f, getMeasuredWidth() - i3, getMeasuredHeight() - i3);
-    }
-
-    @Override
-    public void setAlpha(float f) {
-        if (f == 0.0f) {
-            this.wasDrawn = false;
-        }
-        super.setAlpha(f);
-    }
-
-    @Override
-    public void setVisibility(int i) {
-        if (i != 0) {
-            this.wasDrawn = false;
-        }
-        super.setVisibility(i);
-    }
-
     public void updateProgress() {
         MessagesStorage.getInstance(this.currentAccount);
         long j = 0;
@@ -268,5 +209,70 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         }
         this.progressDt = ((this.progress - this.currentProgress) * 16.0f) / 150.0f;
         invalidate();
+    }
+
+    private void detachCurrentListeners() {
+        for (int i = 0; i < this.currentListeners.size(); i++) {
+            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver((DownloadController.FileDownloadProgressListener) this.currentListeners.get(i));
+        }
+        this.currentListeners.clear();
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.onDownloadingFilesChanged) {
+            updateDownloadingListeners();
+            updateProgress();
+        }
+    }
+
+    public class ProgressObserver implements DownloadController.FileDownloadProgressListener {
+        long downloaded;
+        private final String fileName;
+        long total;
+
+        @Override
+        public int getObserverTag() {
+            return 0;
+        }
+
+        @Override
+        public void onFailedDownload(String str, boolean z) {
+        }
+
+        @Override
+        public void onProgressUpload(String str, long j, long j2, boolean z) {
+        }
+
+        @Override
+        public void onSuccessDownload(String str) {
+        }
+
+        private ProgressObserver(String str) {
+            this.fileName = str;
+        }
+
+        @Override
+        public void onProgressDownload(String str, long j, long j2) {
+            this.downloaded = j;
+            this.total = j2;
+            DownloadProgressIcon.this.updateProgress();
+        }
+    }
+
+    @Override
+    public void setAlpha(float f) {
+        if (f == 0.0f) {
+            this.wasDrawn = false;
+        }
+        super.setAlpha(f);
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        if (i != 0) {
+            this.wasDrawn = false;
+        }
+        super.setVisibility(i);
     }
 }

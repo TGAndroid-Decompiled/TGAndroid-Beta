@@ -34,12 +34,12 @@ public class ColoredImageSpan extends ReplacementSpan {
         this(i, 0);
     }
 
-    public ColoredImageSpan(int i, int i2) {
-        this(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate(), i2);
-    }
-
     public ColoredImageSpan(Drawable drawable) {
         this(drawable, 0);
+    }
+
+    public ColoredImageSpan(int i, int i2) {
+        this(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate(), i2);
     }
 
     public ColoredImageSpan(Drawable drawable, int i) {
@@ -58,9 +58,41 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.verticalAlignment = i;
     }
 
-    @Override
-    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ColoredImageSpan.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
+        }
+    }
+
+    public void setSize(int i) {
+        this.size = i;
+        this.drawable.setBounds(0, 0, i, i);
+    }
+
+    public void setTranslateX(float f) {
+        this.translateX = f;
+    }
+
+    public void setTranslateY(float f) {
+        this.translateY = f;
+    }
+
+    public void translate(float f, float f2) {
+        this.translateX = f;
+        this.translateY = f2;
+    }
+
+    public void rotate(float f) {
+        this.rotate = f;
+    }
+
+    public void setWidth(int i) {
+        this.sizeWidth = i;
     }
 
     @Override
@@ -91,12 +123,9 @@ public class ColoredImageSpan extends ReplacementSpan {
         return (int) (abs * i3);
     }
 
-    public void rotate(float f) {
-        this.rotate = f;
-    }
-
-    public void setAlpha(float f) {
-        this.alpha = f;
+    @Override
+    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ColoredImageSpan.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
     }
 
     public void setColorKey(int i) {
@@ -104,19 +133,8 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.usePaintColor = i < 0;
     }
 
-    public void setOverrideColor(int i) {
-        this.overrideColor = i;
-    }
-
-    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
-        this.isRelativeSize = true;
-        this.fontMetrics = fontMetricsInt;
-        if (fontMetricsInt != null) {
-            setSize(Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent));
-            if (this.size == 0) {
-                setSize(AndroidUtilities.dp(20.0f));
-            }
-        }
+    public void setTopOffset(int i) {
+        this.topOffset = i;
     }
 
     public void setScale(float f) {
@@ -128,29 +146,11 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.scaleY = f2;
     }
 
-    public void setSize(int i) {
-        this.size = i;
-        this.drawable.setBounds(0, 0, i, i);
+    public void setOverrideColor(int i) {
+        this.overrideColor = i;
     }
 
-    public void setTopOffset(int i) {
-        this.topOffset = i;
-    }
-
-    public void setTranslateX(float f) {
-        this.translateX = f;
-    }
-
-    public void setTranslateY(float f) {
-        this.translateY = f;
-    }
-
-    public void setWidth(int i) {
-        this.sizeWidth = i;
-    }
-
-    public void translate(float f, float f2) {
-        this.translateX = f;
-        this.translateY = f2;
+    public void setAlpha(float f) {
+        this.alpha = f;
     }
 }

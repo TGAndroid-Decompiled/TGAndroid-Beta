@@ -16,6 +16,17 @@ public class Tooltip extends TextView {
     Runnable dismissRunnable;
     private boolean showing;
 
+    public void lambda$new$0() {
+        ViewPropertyAnimator duration = animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                Tooltip.this.setVisibility(8);
+            }
+        }).setDuration(300L);
+        this.animator = duration;
+        duration.start();
+    }
+
     public Tooltip(Context context, ViewGroup viewGroup, int i, int i2) {
         super(context);
         this.dismissRunnable = new Runnable() {
@@ -33,15 +44,10 @@ public class Tooltip extends TextView {
         setVisibility(8);
     }
 
-    public void lambda$new$0() {
-        ViewPropertyAnimator duration = animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                Tooltip.this.setVisibility(8);
-            }
-        }).setDuration(300L);
-        this.animator = duration;
-        duration.start();
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updateTooltipPosition();
     }
 
     private void updateTooltipPosition() {
@@ -51,33 +57,17 @@ public class Tooltip extends TextView {
         View view = (View) getParent();
         int i = 0;
         int i2 = 0;
+        int i3 = 0;
         for (View view2 = this.anchor; view2 != view; view2 = (View) view2.getParent()) {
-            i2 += view2.getTop();
-            i += view2.getLeft();
+            i3 += view2.getTop();
+            i2 += view2.getLeft();
         }
-        int width = (i + (this.anchor.getWidth() / 2)) - (getMeasuredWidth() / 2);
-        setTranslationX(width >= 0 ? getMeasuredWidth() + width > view.getMeasuredWidth() ? (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f) : width : 0);
-        setTranslationY(i2 - getMeasuredHeight());
-    }
-
-    public void hide() {
-        if (this.showing) {
-            ViewPropertyAnimator viewPropertyAnimator = this.animator;
-            if (viewPropertyAnimator != null) {
-                viewPropertyAnimator.setListener(null);
-                this.animator.cancel();
-                this.animator = null;
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.dismissRunnable);
-            this.dismissRunnable.run();
+        int width = (i2 + (this.anchor.getWidth() / 2)) - (getMeasuredWidth() / 2);
+        if (width >= 0) {
+            i = getMeasuredWidth() + width > view.getMeasuredWidth() ? (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f) : width;
         }
-        this.showing = false;
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updateTooltipPosition();
+        setTranslationX(i);
+        setTranslationY(i3 - getMeasuredHeight());
     }
 
     public void show(View view) {
@@ -102,5 +92,19 @@ public class Tooltip extends TextView {
             this.animator = listener;
             listener.start();
         }
+    }
+
+    public void hide() {
+        if (this.showing) {
+            ViewPropertyAnimator viewPropertyAnimator = this.animator;
+            if (viewPropertyAnimator != null) {
+                viewPropertyAnimator.setListener(null);
+                this.animator.cancel();
+                this.animator = null;
+            }
+            AndroidUtilities.cancelRunOnUIThread(this.dismissRunnable);
+            this.dismissRunnable.run();
+        }
+        this.showing = false;
     }
 }

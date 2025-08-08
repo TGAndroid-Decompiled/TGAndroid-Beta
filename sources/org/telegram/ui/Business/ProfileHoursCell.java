@@ -37,6 +37,8 @@ public abstract class ProfileHoursCell extends LinearLayout {
     private FrameLayout todayTimeTextContainer;
     private LinearLayout todayTimeTextContainer2;
 
+    protected abstract int processColor(int i);
+
     public ProfileHoursCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.labelTimeText = new TextView[2];
@@ -148,9 +150,23 @@ public abstract class ProfileHoursCell extends LinearLayout {
         setWillNotDraw(false);
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return super.dispatchTouchEvent(motionEvent);
+    public void updateColors() {
+        ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
+        int dp = AndroidUtilities.dp(8.0f);
+        int i = Theme.key_windowBackgroundWhiteBlueText2;
+        clickableAnimatedTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.22f)));
+        this.switchText.setTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
+    }
+
+    public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
+        ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
+        if (clickableAnimatedTextView != null) {
+            clickableAnimatedTextView.setOnClickListener(onClickListener);
+        }
+    }
+
+    public void set(org.telegram.tgnet.tl.TL_account.TL_businessWorkHours r22, boolean r23, boolean r24, boolean r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ProfileHoursCell.set(org.telegram.tgnet.tl.TL_account$TL_businessWorkHours, boolean, boolean, boolean):void");
     }
 
     @Override
@@ -184,30 +200,14 @@ public abstract class ProfileHoursCell extends LinearLayout {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
-        if (clickableAnimatedTextView == null || clickableAnimatedTextView.getVisibility() != 0) {
-            return super.onTouchEvent(motionEvent);
+        if (clickableAnimatedTextView != null && clickableAnimatedTextView.getVisibility() == 0) {
+            return this.switchText.getClickBounds().contains((int) ((((motionEvent.getX() - this.lines[0].getX()) - this.todayTimeContainer.getX()) - this.todayTimeTextContainer.getX()) - this.switchText.getX()), (int) ((((motionEvent.getY() - this.lines[0].getY()) - this.todayTimeContainer.getY()) - this.todayTimeTextContainer.getY()) - this.switchText.getY()));
         }
-        return this.switchText.getClickBounds().contains((int) ((((motionEvent.getX() - this.lines[0].getX()) - this.todayTimeContainer.getX()) - this.todayTimeTextContainer.getX()) - this.switchText.getX()), (int) ((((motionEvent.getY() - this.lines[0].getY()) - this.todayTimeContainer.getY()) - this.todayTimeTextContainer.getY()) - this.switchText.getY()));
+        return super.onTouchEvent(motionEvent);
     }
 
-    protected abstract int processColor(int i);
-
-    public void set(org.telegram.tgnet.tl.TL_account.TL_businessWorkHours r22, boolean r23, boolean r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ProfileHoursCell.set(org.telegram.tgnet.tl.TL_account$TL_businessWorkHours, boolean, boolean, boolean):void");
-    }
-
-    public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
-        ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
-        if (clickableAnimatedTextView != null) {
-            clickableAnimatedTextView.setOnClickListener(onClickListener);
-        }
-    }
-
-    public void updateColors() {
-        ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
-        int dp = AndroidUtilities.dp(8.0f);
-        int i = Theme.key_windowBackgroundWhiteBlueText2;
-        clickableAnimatedTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.22f)));
-        this.switchText.setTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

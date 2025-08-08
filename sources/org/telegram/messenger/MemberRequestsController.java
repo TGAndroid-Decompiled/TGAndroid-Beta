@@ -10,11 +10,6 @@ public class MemberRequestsController extends BaseController {
     private static final MemberRequestsController[] instances = new MemberRequestsController[4];
     private final LongSparseArray<TLRPC.TL_messages_chatInviteImporters> firstImportersCache;
 
-    public MemberRequestsController(int i) {
-        super(i);
-        this.firstImportersCache = new LongSparseArray<>();
-    }
-
     public static MemberRequestsController getInstance(int i) {
         MemberRequestsController[] memberRequestsControllerArr = instances;
         MemberRequestsController memberRequestsController = memberRequestsControllerArr[i];
@@ -33,23 +28,9 @@ public class MemberRequestsController extends BaseController {
         return memberRequestsController;
     }
 
-    public void lambda$getImporters$0(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, long j, RequestDelegate requestDelegate) {
-        if (tL_error == null) {
-            TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
-            if (tL_chatInviteImporter == null && z) {
-                this.firstImportersCache.put(j, tL_messages_chatInviteImporters);
-            }
-        }
-        requestDelegate.run(tLObject, tL_error);
-    }
-
-    public void lambda$getImporters$1(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final long j, final RequestDelegate requestDelegate, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MemberRequestsController.this.lambda$getImporters$0(tL_error, tLObject, tL_chatInviteImporter, z, j, requestDelegate);
-            }
-        });
+    public MemberRequestsController(int i) {
+        super(i);
+        this.firstImportersCache = new LongSparseArray<>();
     }
 
     public TLRPC.TL_messages_chatInviteImporters getCachedImporters(long j) {
@@ -78,6 +59,25 @@ public class MemberRequestsController extends BaseController {
                 MemberRequestsController.this.lambda$getImporters$1(tL_chatInviteImporter, isEmpty, j, requestDelegate, tLObject, tL_error);
             }
         });
+    }
+
+    public void lambda$getImporters$1(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final long j, final RequestDelegate requestDelegate, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MemberRequestsController.this.lambda$getImporters$0(tL_error, tLObject, tL_chatInviteImporter, z, j, requestDelegate);
+            }
+        });
+    }
+
+    public void lambda$getImporters$0(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, long j, RequestDelegate requestDelegate) {
+        if (tL_error == null) {
+            TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
+            if (tL_chatInviteImporter == null && z) {
+                this.firstImportersCache.put(j, tL_messages_chatInviteImporters);
+            }
+        }
+        requestDelegate.run(tLObject, tL_error);
     }
 
     public void onPendingRequestsUpdated(TLRPC.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {

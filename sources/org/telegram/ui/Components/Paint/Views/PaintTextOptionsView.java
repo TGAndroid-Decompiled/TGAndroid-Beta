@@ -42,20 +42,6 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
     private PaintTypefaceListView typefaceListView;
     private int x;
 
-    public static final class AlignFramePair {
-        private final int fromAlign;
-        private final int fromFrame;
-        private final int toAlign;
-        private final int toFrame;
-
-        private AlignFramePair(int i, int i2, int i3, int i4) {
-            this.fromAlign = i;
-            this.toAlign = i2;
-            this.fromFrame = i3;
-            this.toFrame = i4;
-        }
-    }
-
     public interface Delegate {
         void onColorPickerSelected();
 
@@ -66,61 +52,6 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         void onTextOutlineSelected(View view);
 
         void onTypefaceButtonClicked();
-    }
-
-    public static final class TypefaceCell extends TextView {
-        private Drawable expandDrawable;
-        private boolean isCurrent;
-
-        public TypefaceCell(Context context) {
-            super(context);
-            setTextColor(-1);
-            setTextSize(1, 14.0f);
-            setCurrent(false);
-            setEllipsize(TextUtils.TruncateAt.END);
-            setSingleLine();
-        }
-
-        public void bind(PaintTypeface paintTypeface) {
-            setTypeface(paintTypeface.getTypeface());
-            setText(paintTypeface.getName());
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            canvas.save();
-            canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
-            super.onDraw(canvas);
-            canvas.restore();
-            if (this.isCurrent) {
-                int height = (getHeight() - AndroidUtilities.dp(16.0f)) / 2;
-                if (LocaleController.isRTL) {
-                    this.expandDrawable.setBounds(AndroidUtilities.dp(7.0f), height, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + height);
-                } else {
-                    this.expandDrawable.setBounds(getWidth() - AndroidUtilities.dp(23.0f), height, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + height);
-                }
-                this.expandDrawable.draw(canvas);
-            }
-        }
-
-        public void setCurrent(boolean z) {
-            Drawable rect;
-            this.isCurrent = z;
-            if (z) {
-                setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 27.0f : 12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 27.0f), AndroidUtilities.dp(6.0f));
-                rect = Theme.AdaptiveRipple.rect(1090519039, AndroidUtilities.dp(32.0f));
-            } else {
-                setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
-                rect = Theme.AdaptiveRipple.rect(-14145495);
-            }
-            setBackground(rect);
-            if (this.isCurrent && this.expandDrawable == null) {
-                Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.photo_expand);
-                this.expandDrawable = drawable;
-                drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            }
-            invalidate();
-        }
     }
 
     static {
@@ -218,65 +149,6 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         this.delegate.onTypefaceButtonClicked();
     }
 
-    private void layoutChild(View view) {
-        if (view.getVisibility() != 8) {
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-            int i = this.x + layoutParams.leftMargin;
-            this.x = i;
-            view.layout(i, (getMeasuredHeight() - layoutParams.height) / 2, this.x + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
-            this.x += layoutParams.width + layoutParams.rightMargin;
-        }
-    }
-
-    public void animatePlusToIcon(int i) {
-        if (i == 0) {
-            i = R.drawable.msg_add;
-        }
-        if (this.plusIcon != i) {
-            ImageView imageView = this.plusView;
-            this.plusIcon = i;
-            AndroidUtilities.updateImageViewImageAnimated(imageView, i);
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        String str;
-        if (i != NotificationCenter.customTypefacesLoaded || (str = this.lastTypefaceKey) == null) {
-            return;
-        }
-        setTypeface(str);
-        this.lastTypefaceKey = null;
-    }
-
-    public View getColorClickableView() {
-        return this.colorClickableView;
-    }
-
-    public ChatActivityEnterViewAnimatedIconView getEmojiButton() {
-        return this.emojiButton;
-    }
-
-    public TypefaceCell getTypefaceCell() {
-        return this.typefaceCell;
-    }
-
-    public void getTypefaceCellBounds(RectF rectF) {
-        rectF.set(this.typefaceCell.getLeft() + AndroidUtilities.dp(8.0f), this.typefaceCell.getTop(), this.typefaceCell.getRight() + AndroidUtilities.dp(8.0f), this.typefaceCell.getBottom());
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         this.x = getPaddingLeft();
@@ -285,6 +157,16 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         layoutChild(this.outlineView);
         layoutChild(this.plusView);
         this.typefaceCell.layout((getMeasuredWidth() - getPaddingRight()) - this.typefaceCell.getMeasuredWidth(), (getMeasuredHeight() - this.typefaceCell.getMeasuredHeight()) / 2, getMeasuredWidth() - getPaddingRight(), (getMeasuredHeight() + this.typefaceCell.getMeasuredHeight()) / 2);
+    }
+
+    private void layoutChild(View view) {
+        if (view.getVisibility() != 8) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+            int i = this.x + layoutParams.leftMargin;
+            this.x = i;
+            view.layout(i, (getMeasuredHeight() - layoutParams.height) / 2, this.x + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
+            this.x += layoutParams.width + layoutParams.rightMargin;
+        }
     }
 
     @Override
@@ -304,6 +186,80 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
             }
         }
         setMeasuredDimension(size, size2);
+    }
+
+    public TypefaceCell getTypefaceCell() {
+        return this.typefaceCell;
+    }
+
+    public void setTypefaceListView(PaintTypefaceListView paintTypefaceListView) {
+        this.typefaceListView = paintTypefaceListView;
+    }
+
+    public View getColorClickableView() {
+        return this.colorClickableView;
+    }
+
+    public void getTypefaceCellBounds(RectF rectF) {
+        rectF.set(this.typefaceCell.getLeft() + AndroidUtilities.dp(8.0f), this.typefaceCell.getTop(), this.typefaceCell.getRight() + AndroidUtilities.dp(8.0f), this.typefaceCell.getBottom());
+    }
+
+    public void animatePlusToIcon(int i) {
+        if (i == 0) {
+            i = R.drawable.msg_add;
+        }
+        if (this.plusIcon != i) {
+            ImageView imageView = this.plusView;
+            this.plusIcon = i;
+            AndroidUtilities.updateImageViewImageAnimated(imageView, i);
+        }
+    }
+
+    public ChatActivityEnterViewAnimatedIconView getEmojiButton() {
+        return this.emojiButton;
+    }
+
+    public void setOutlineType(int i) {
+        setOutlineType(i, false);
+    }
+
+    public void setOutlineType(int i, boolean z) {
+        int i2;
+        if (this.outlineType == i) {
+            return;
+        }
+        this.outlineType = i;
+        if (i == 1) {
+            i2 = R.drawable.msg_photo_text_framed2;
+        } else if (i == 2) {
+            i2 = R.drawable.msg_photo_text_framed3;
+        } else if (i != 3) {
+            i2 = R.drawable.msg_photo_text_framed;
+        } else {
+            i2 = R.drawable.msg_photo_text_regular;
+        }
+        if (z) {
+            AndroidUtilities.updateImageViewImageAnimated(this.outlineView, i2);
+        } else {
+            this.outlineView.setImageResource(i2);
+        }
+    }
+
+    public void setTypeface(String str) {
+        this.lastTypefaceKey = str;
+        if (this.typefaceCell == null) {
+            return;
+        }
+        for (PaintTypeface paintTypeface : PaintTypeface.get()) {
+            if (paintTypeface.getKey().equals(str)) {
+                this.typefaceCell.bind(paintTypeface);
+                return;
+            }
+        }
+    }
+
+    public void setDelegate(Delegate delegate) {
+        this.delegate = delegate;
     }
 
     public void setAlignment(int i) {
@@ -358,41 +314,92 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         }
     }
 
-    public void setDelegate(Delegate delegate) {
-        this.delegate = delegate;
-    }
+    public static final class TypefaceCell extends TextView {
+        private Drawable expandDrawable;
+        private boolean isCurrent;
 
-    public void setOutlineType(int i) {
-        setOutlineType(i, false);
-    }
+        public TypefaceCell(Context context) {
+            super(context);
+            setTextColor(-1);
+            setTextSize(1, 14.0f);
+            setCurrent(false);
+            setEllipsize(TextUtils.TruncateAt.END);
+            setSingleLine();
+        }
 
-    public void setOutlineType(int i, boolean z) {
-        if (this.outlineType == i) {
-            return;
-        }
-        this.outlineType = i;
-        int i2 = i != 1 ? i != 2 ? i != 3 ? R.drawable.msg_photo_text_framed : R.drawable.msg_photo_text_regular : R.drawable.msg_photo_text_framed3 : R.drawable.msg_photo_text_framed2;
-        if (z) {
-            AndroidUtilities.updateImageViewImageAnimated(this.outlineView, i2);
-        } else {
-            this.outlineView.setImageResource(i2);
-        }
-    }
-
-    public void setTypeface(String str) {
-        this.lastTypefaceKey = str;
-        if (this.typefaceCell == null) {
-            return;
-        }
-        for (PaintTypeface paintTypeface : PaintTypeface.get()) {
-            if (paintTypeface.getKey().equals(str)) {
-                this.typefaceCell.bind(paintTypeface);
-                return;
+        @Override
+        protected void onDraw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
+            super.onDraw(canvas);
+            canvas.restore();
+            if (this.isCurrent) {
+                int height = (getHeight() - AndroidUtilities.dp(16.0f)) / 2;
+                if (LocaleController.isRTL) {
+                    this.expandDrawable.setBounds(AndroidUtilities.dp(7.0f), height, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + height);
+                } else {
+                    this.expandDrawable.setBounds(getWidth() - AndroidUtilities.dp(23.0f), height, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + height);
+                }
+                this.expandDrawable.draw(canvas);
             }
         }
+
+        public void setCurrent(boolean z) {
+            this.isCurrent = z;
+            if (z) {
+                setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 27.0f : 12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 27.0f), AndroidUtilities.dp(6.0f));
+                setBackground(Theme.AdaptiveRipple.rect(1090519039, AndroidUtilities.dp(32.0f)));
+            } else {
+                setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
+                setBackground(Theme.AdaptiveRipple.rect(-14145495));
+            }
+            if (this.isCurrent && this.expandDrawable == null) {
+                Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.photo_expand);
+                this.expandDrawable = drawable;
+                drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            }
+            invalidate();
+        }
+
+        public void bind(PaintTypeface paintTypeface) {
+            setTypeface(paintTypeface.getTypeface());
+            setText(paintTypeface.getName());
+        }
     }
 
-    public void setTypefaceListView(PaintTypefaceListView paintTypefaceListView) {
-        this.typefaceListView = paintTypefaceListView;
+    public static final class AlignFramePair {
+        private final int fromAlign;
+        private final int fromFrame;
+        private final int toAlign;
+        private final int toFrame;
+
+        private AlignFramePair(int i, int i2, int i3, int i4) {
+            this.fromAlign = i;
+            this.toAlign = i2;
+            this.fromFrame = i3;
+            this.toFrame = i4;
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        String str;
+        if (i != NotificationCenter.customTypefacesLoaded || (str = this.lastTypefaceKey) == null) {
+            return;
+        }
+        setTypeface(str);
+        this.lastTypefaceKey = null;
     }
 }

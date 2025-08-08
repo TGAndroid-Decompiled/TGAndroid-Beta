@@ -23,33 +23,8 @@ public class ChartHorizontalLinesData {
     public CharSequence[] valuesStr;
     public CharSequence[] valuesStr2;
 
-    public ChartHorizontalLinesData(long r26, long r28, boolean r30, float r31, int r32, android.text.TextPaint r33, android.text.TextPaint r34) {
+    public ChartHorizontalLinesData(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.view_data.ChartHorizontalLinesData.<init>(long, long, boolean, float, int, android.text.TextPaint, android.text.TextPaint):void");
-    }
-
-    public static long lookupHeight(long j) {
-        if (j > 100) {
-            j = round(j);
-        }
-        return ((long) Math.ceil(((float) j) / 5.0f)) * 5;
-    }
-
-    private static long round(long j) {
-        return ((float) (j / 5)) % 10.0f == 0.0f ? j : ((j / 10) + 1) * 10;
-    }
-
-    public void drawText(Canvas canvas, int i, int i2, float f, float f2, TextPaint textPaint) {
-        StaticLayout staticLayout = (i == 0 ? this.layouts : this.layouts2)[i2];
-        if (staticLayout == null) {
-            CharSequence charSequence = (i == 0 ? this.valuesStr : this.valuesStr2)[i2];
-            StaticLayout[] staticLayoutArr = i == 0 ? this.layouts : this.layouts2;
-            staticLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            staticLayoutArr[i2] = staticLayout;
-        }
-        canvas.save();
-        canvas.translate(f, f2 + textPaint.ascent());
-        staticLayout.draw(canvas);
-        canvas.restore();
     }
 
     public CharSequence format(int i, TextPaint textPaint, long j, int i2) {
@@ -75,12 +50,31 @@ public class ChartHorizontalLinesData {
             this.formatterTON.setGroupingUsed(false);
         }
         this.formatterTON.setMaximumFractionDigits(j <= 1000000000 ? 6 : 2);
-        StringBuilder sb = new StringBuilder();
-        sb.append("TON ");
-        DecimalFormat decimalFormat2 = this.formatterTON;
-        double d = j;
-        Double.isNaN(d);
-        sb.append(decimalFormat2.format(d / 1.0E9d));
-        return ChannelMonetizationLayout.replaceTON(sb.toString(), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+        return ChannelMonetizationLayout.replaceTON("TON " + this.formatterTON.format(j / 1.0E9d), textPaint, 0.8f, -AndroidUtilities.dp(0.66f), false);
+    }
+
+    public static long lookupHeight(long j) {
+        if (j > 100) {
+            j = round(j);
+        }
+        return ((long) Math.ceil(((float) j) / 5.0f)) * 5;
+    }
+
+    private static long round(long j) {
+        return ((float) (j / 5)) % 10.0f == 0.0f ? j : ((j / 10) + 1) * 10;
+    }
+
+    public void drawText(Canvas canvas, int i, int i2, float f, float f2, TextPaint textPaint) {
+        StaticLayout staticLayout = (i == 0 ? this.layouts : this.layouts2)[i2];
+        if (staticLayout == null) {
+            CharSequence charSequence = (i == 0 ? this.valuesStr : this.valuesStr2)[i2];
+            StaticLayout[] staticLayoutArr = i == 0 ? this.layouts : this.layouts2;
+            staticLayout = new StaticLayout(charSequence, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            staticLayoutArr[i2] = staticLayout;
+        }
+        canvas.save();
+        canvas.translate(f, f2 + textPaint.ascent());
+        staticLayout.draw(canvas);
+        canvas.restore();
     }
 }

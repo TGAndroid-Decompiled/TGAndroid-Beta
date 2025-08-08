@@ -70,8 +70,18 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     private final TextView starsCountEditHint;
     private final OutlineTextContainerView starsCountEditOutline;
 
+    @Override
+    public boolean isTouchOutside(float f, float f2) {
+        BalanceCloud balanceCloud;
+        if (!this.balanceCloudVisible || (balanceCloud = this.balanceCloud) == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
+            return super.isTouchOutside(f, f2);
+        }
+        return false;
+    }
+
     public MessageSuggestionOfferSheet(final Context context, final int i, final long j, MessageSuggestionParams messageSuggestionParams, final ChatActivity chatActivity, final Theme.ResourcesProvider resourcesProvider, int i2, final Utilities.Callback callback) {
         super(context, true, resourcesProvider);
+        int i3;
         boolean z;
         this.selectedTime = -1L;
         this.spanRefStars = new ColoredImageSpan[1];
@@ -91,9 +101,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
         this.inputAmountMinStars = AmountUtils$Amount.fromDecimal(j3, amountUtils$Currency2);
         this.inputAmountMaxStars = AmountUtils$Amount.fromDecimal(appGlobalConfig.starsSuggestedPostAmountMax.get(), amountUtils$Currency2);
-        if (canManageMonoForum) {
-            this.balanceCloud = null;
-        } else {
+        if (!canManageMonoForum) {
             BalanceCloud balanceCloud = new BalanceCloud(context, i, resourcesProvider);
             this.balanceCloud = balanceCloud;
             balanceCloud.setScaleX(0.6f);
@@ -109,6 +117,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
                     MessageSuggestionOfferSheet.this.lambda$new$0(context, resourcesProvider, view);
                 }
             });
+        } else {
+            this.balanceCloud = null;
         }
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -117,19 +127,24 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         linearLayout2.setOrientation(0);
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, 56, 55, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i3));
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i4));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(8388627);
-        textView.setText(LocaleController.getString(i2 == 0 ? R.string.PostSuggestionsOfferTitle : R.string.PostSuggestionsOfferChangeTitle));
+        if (i2 == 0) {
+            i3 = R.string.PostSuggestionsOfferTitle;
+        } else {
+            i3 = R.string.PostSuggestionsOfferChangeTitle;
+        }
+        textView.setText(LocaleController.getString(i3));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setEllipsize(TextUtils.TruncateAt.END);
         linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -1, 1.0f, 119, 22, 0, 22, 0));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_close_white);
-        int i4 = Theme.key_dialogEmptyImage;
-        int color = Theme.getColor(i4, resourcesProvider);
+        int i5 = Theme.key_dialogEmptyImage;
+        int color = Theme.getColor(i5, resourcesProvider);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
         ScaleStateListAnimator.apply(imageView);
@@ -150,8 +165,8 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferTON));
             horizontalRoundTabsLayout.setTabs(arrayList, new MessagesStorage.IntCallback() {
                 @Override
-                public final void run(int i5) {
-                    MessageSuggestionOfferSheet.this.lambda$new$2(i5);
+                public final void run(int i6) {
+                    MessageSuggestionOfferSheet.this.lambda$new$2(i6);
                 }
             });
             linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 12.0f));
@@ -170,7 +185,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         editTextBoldCursor.setMaxLines(1);
         editTextBoldCursor.setBackground(null);
         editTextBoldCursor.setPadding(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        editTextBoldCursor.setTextColor(Theme.getColor(i3));
+        editTextBoldCursor.setTextColor(Theme.getColor(i4));
         editTextBoldCursor.requestFocus();
         outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(28.0f));
         outlineTextContainerView.attachEditText(editTextBoldCursor);
@@ -196,14 +211,14 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         outlineTextContainerView.addView(imageView3, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.dollarsEqView = animatedTextView;
-        int i5 = Theme.key_windowBackgroundWhiteGrayText;
-        animatedTextView.setTextColor(Theme.getColor(i5));
+        int i6 = Theme.key_windowBackgroundWhiteGrayText;
+        animatedTextView.setTextColor(Theme.getColor(i6));
         animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
         animatedTextView.setGravity(5);
         outlineTextContainerView.addView(animatedTextView, LayoutHelper.createFrame(-2, -1.0f, 21, 0.0f, 0.0f, 16.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.starsCountEditHint = textView2;
-        textView2.setTextColor(Theme.getColor(i5));
+        textView2.setTextColor(Theme.getColor(i6));
         textView2.setTextSize(1, 13.0f);
         linearLayout3.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 33, 4, 33, 0));
         EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context) {
@@ -219,7 +234,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         editTextBoldCursor2.setMaxLines(1);
         editTextBoldCursor2.setBackground(null);
         editTextBoldCursor2.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        editTextBoldCursor2.setTextColor(Theme.getColor(i3));
+        editTextBoldCursor2.setTextColor(Theme.getColor(i4));
         editTextBoldCursor2.setFocusable(false);
         editTextBoldCursor2.setClickable(false);
         editTextBoldCursor2.setEnabled(false);
@@ -237,10 +252,10 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         linearLayout3.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 24.0f, 18.0f, 0.0f));
         ImageView imageView4 = new ImageView(context);
         imageView4.setImageResource(R.drawable.arrow_more);
-        imageView4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), mode));
+        imageView4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5, resourcesProvider), mode));
         outlineTextContainerView2.addView(imageView4, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         TextView textView3 = new TextView(context);
-        textView3.setTextColor(Theme.getColor(i5));
+        textView3.setTextColor(Theme.getColor(i6));
         textView3.setTextSize(1, 13.0f);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.PostSuggestionsAddTimeHint)));
@@ -275,6 +290,14 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         setCustomView(linearLayout);
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
+            public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
+            }
+
+            @Override
             public void afterTextChanged(Editable editable) {
                 String obj;
                 int indexOf;
@@ -285,111 +308,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
                 MessageSuggestionOfferSheet.this.setAmount(!z3 ? AmountUtils$Amount.fromDecimal(editable.toString(), MessageSuggestionOfferSheet.this.inputAmount.currency) : AmountUtils$Amount.fromNano(0L, MessageSuggestionOfferSheet.this.inputAmount.currency), false, false, true);
                 MessageSuggestionOfferSheet.this.starsCountEditOutline.animateSelection(MessageSuggestionOfferSheet.this.starsCountEditField.isFocused(), true ^ TextUtils.isEmpty(MessageSuggestionOfferSheet.this.starsCountEditField.getText()));
             }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
-            }
         });
-    }
-
-    private void checkAmountInputText(boolean z) {
-        OutlineTextContainerView outlineTextContainerView;
-        String formatString;
-        int i = this.inputAmountError;
-        if ((i & 4) != 0) {
-            outlineTextContainerView = this.starsCountEditOutline;
-            formatString = LocaleController.formatString(R.string.SuggestAPostTooMuch, getInputAmountMax().formatAsDecimalSpaced());
-        } else if ((i & 2) == 0) {
-            this.starsCountEditOutline.setText(LocaleController.getString(this.inputAmount.currency == AmountUtils$Currency.STARS ? R.string.PostSuggestionsOfferTitlePriceStars : R.string.PostSuggestionsOfferTitlePriceTON));
-            return;
-        } else {
-            outlineTextContainerView = this.starsCountEditOutline;
-            formatString = LocaleController.formatString(R.string.SuggestAPostTooSmall, getInputAmountMin().formatAsDecimalSpaced());
-        }
-        outlineTextContainerView.setText(formatString);
-    }
-
-    private void checkBalanceCloudVisibility() {
-        boolean z = (this.isFullyVisible && !isDismissed() && this.balanceCloud != null && this.containerView.getY() > ((float) AndroidUtilities.dp(32.0f))) || this.currencyTabsView == null;
-        if (this.balanceCloudVisible != z) {
-            this.balanceCloudVisible = z;
-            BalanceCloud balanceCloud = this.balanceCloud;
-            if (balanceCloud != null) {
-                balanceCloud.setEnabled(z);
-                this.balanceCloud.setClickable(z);
-                this.balanceCloud.animate().scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f).alpha(z ? 1.0f : 0.0f).setDuration(180L).start();
-            }
-        }
-    }
-
-    private void checkButtonEnabled(boolean z) {
-        boolean z2 = this.inputAmountError == 0 && (this.inputAmount.asNano() >= 0 || this.selectedTime > 0);
-        if (this.buttonView.isEnabled() != z2) {
-            this.buttonView.setEnabled(z2);
-            this.buttonView.setClickable(z2);
-            if (z) {
-                this.buttonView.animate().alpha(z2 ? 1.0f : 0.6f).setDuration(180L).start();
-            } else {
-                this.buttonView.setAlpha(z2 ? 1.0f : 0.6f);
-            }
-        }
-    }
-
-    private void checkButtonOfferText(boolean z) {
-        ButtonWithCounterView buttonWithCounterView;
-        int i;
-        if (this.mode != 0) {
-            buttonWithCounterView = this.buttonView;
-            i = R.string.PostSuggestionsOfferChangeUpdateTerms;
-        } else {
-            if (!this.inputAmount.isZero()) {
-                AmountUtils$Amount amountUtils$Amount = this.inputAmount;
-                boolean z2 = amountUtils$Amount.currency == AmountUtils$Currency.TON;
-                this.buttonView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(R.string.PostSuggestionsOfferStars, z2 ? amountUtils$Amount.asDecimalString() : LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',')), z2 ? this.spanRefTon : this.spanRefStars), z);
-                return;
-            }
-            buttonWithCounterView = this.buttonView;
-            i = R.string.PostSuggestionsOfferForFree;
-        }
-        buttonWithCounterView.setText(LocaleController.getString(i), z);
-    }
-
-    private void checkRateText(boolean z) {
-        double d;
-        StringBuilder sb = new StringBuilder(10);
-        sb.append('~');
-        if (this.inputAmount.currency == AmountUtils$Currency.TON) {
-            d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
-        } else {
-            double d2 = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000;
-            Double.isNaN(d2);
-            d = d2 * 1.0E-5d;
-        }
-        sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
-        this.dollarsEqView.setText(sb, z);
-    }
-
-    public static String formatDateTime(long j) {
-        if (j <= 0) {
-            return LocaleController.getString(R.string.PostSuggestionsAnytime);
-        }
-        String formatDateTime = LocaleController.formatDateTime(j, true);
-        if (formatDateTime.isEmpty()) {
-            return formatDateTime;
-        }
-        return Character.toUpperCase(formatDateTime.charAt(0)) + formatDateTime.substring(1);
-    }
-
-    private AmountUtils$Amount getInputAmountMax() {
-        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMaxTON : this.inputAmountMaxStars;
-    }
-
-    private AmountUtils$Amount getInputAmountMin() {
-        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMinTON : this.inputAmountMinStars;
     }
 
     public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -403,18 +322,18 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
     }
 
     public void lambda$new$2(int i) {
-        setAmount(AmountUtils$Amount.fromNano(0L, i == 0 ? AmountUtils$Currency.STARS : AmountUtils$Currency.TON), true, false, true);
+        AmountUtils$Currency amountUtils$Currency;
+        if (i == 0) {
+            amountUtils$Currency = AmountUtils$Currency.STARS;
+        } else {
+            amountUtils$Currency = AmountUtils$Currency.TON;
+        }
+        setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), true, false, true);
         this.starsCountEditField.setText("");
     }
 
     public void lambda$new$3(View view, boolean z) {
         this.starsCountEditOutline.animateSelection(z, !TextUtils.isEmpty(this.starsCountEditField.getText()));
-    }
-
-    public void lambda$new$4(boolean z, int i) {
-        if (z) {
-            setSelectedTime(i, true);
-        }
     }
 
     public void lambda$new$5(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -424,6 +343,12 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
                 MessageSuggestionOfferSheet.this.lambda$new$4(z, i);
             }
         }, resourcesProvider, 0).show();
+    }
+
+    public void lambda$new$4(boolean z, int i) {
+        if (z) {
+            setSelectedTime(i, true);
+        }
     }
 
     public void lambda$new$6(ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, Utilities.Callback callback, View view) {
@@ -436,55 +361,30 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         }
         StarsController starsController = StarsController.getInstance(i, this.inputAmount.currency);
         AmountUtils$Amount of = starsController.balanceAvailable() ? AmountUtils$Amount.of(starsController.getBalance()) : null;
-        if (this.isMonoForumAdmin || (of != null && of.asNano() >= this.inputAmount.asNano())) {
-            callback.run(MessageSuggestionParams.of(this.inputAmount, this.selectedTime));
-            lambda$new$0();
-            return;
+        if (!this.isMonoForumAdmin && (of == null || of.asNano() < this.inputAmount.asNano())) {
+            AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+            AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
+            if (amountUtils$Currency == AmountUtils$Currency.STARS) {
+                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(i, j, true), null).show();
+                return;
+            } else {
+                if (amountUtils$Currency == AmountUtils$Currency.TON) {
+                    new TONIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount, true, null).show();
+                    return;
+                }
+                return;
+            }
         }
-        AmountUtils$Amount amountUtils$Amount = this.inputAmount;
-        AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
-        if (amountUtils$Currency == AmountUtils$Currency.STARS) {
-            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(i, j, true), null).show();
-        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
-            new TONIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount, true, null).show();
-        }
+        callback.run(MessageSuggestionParams.of(this.inputAmount, this.selectedTime));
+        lambda$new$0();
     }
 
-    public void lambda$show$7() {
-        AndroidUtilities.showKeyboard(this.starsCountEditField);
-    }
-
-    private void onCurrencyChanged(boolean z) {
-        HorizontalRoundTabsLayout horizontalRoundTabsLayout = this.currencyTabsView;
-        if (horizontalRoundTabsLayout != null) {
-            horizontalRoundTabsLayout.setSelectedIndex(this.inputAmount.currency == AmountUtils$Currency.STARS ? 0 : 1, z);
+    private void setSelectedTime(long j, boolean z) {
+        if (this.selectedTime != j) {
+            this.selectedTime = j;
+            this.publishingTimeField.setText(formatDateTime(j));
         }
-        AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
-        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
-        if (amountUtils$Currency == amountUtils$Currency2) {
-            this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleStars));
-            this.starsCountEditField.setInputType(2);
-            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length())});
-        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
-            this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleTON));
-            this.starsCountEditField.setInputType(8194);
-            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length() + 3)});
-        }
-        ImageView imageView = this.iconStars;
-        if (z) {
-            imageView.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
-            ViewPropertyAnimator animate = this.iconTon.animate();
-            AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
-            AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
-            animate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
-        } else {
-            imageView.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
-            this.iconTon.setAlpha(this.inputAmount.currency == AmountUtils$Currency.TON ? 1.0f : 0.0f);
-        }
-        BalanceCloud balanceCloud = this.balanceCloud;
-        if (balanceCloud != null) {
-            balanceCloud.setCurrency(this.inputAmount.currency, z);
-        }
+        checkButtonEnabled(z);
     }
 
     public void setAmount(AmountUtils$Amount amountUtils$Amount, boolean z, boolean z2, boolean z3) {
@@ -529,21 +429,43 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         }
     }
 
-    private void setSelectedTime(long j, boolean z) {
-        if (this.selectedTime != j) {
-            this.selectedTime = j;
-            this.publishingTimeField.setText(formatDateTime(j));
+    private void onCurrencyChanged(boolean z) {
+        HorizontalRoundTabsLayout horizontalRoundTabsLayout = this.currencyTabsView;
+        if (horizontalRoundTabsLayout != null) {
+            horizontalRoundTabsLayout.setSelectedIndex(this.inputAmount.currency == AmountUtils$Currency.STARS ? 0 : 1, z);
         }
-        checkButtonEnabled(z);
+        AmountUtils$Currency amountUtils$Currency = this.inputAmount.currency;
+        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.STARS;
+        if (amountUtils$Currency == amountUtils$Currency2) {
+            this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleStars));
+            this.starsCountEditField.setInputType(2);
+            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length())});
+        } else if (amountUtils$Currency == AmountUtils$Currency.TON) {
+            this.starsCountEditHint.setText(LocaleController.getString(R.string.PostSuggestionsOfferSubtitleTON));
+            this.starsCountEditField.setInputType(8194);
+            this.starsCountEditField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(getInputAmountMax().asDecimal()).length() + 3)});
+        }
+        if (z) {
+            this.iconStars.animate().alpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f).setDuration(180L).start();
+            ViewPropertyAnimator animate = this.iconTon.animate();
+            AmountUtils$Currency amountUtils$Currency3 = this.inputAmount.currency;
+            AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.TON;
+            animate.alpha(amountUtils$Currency3 == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
+        } else {
+            this.iconStars.setAlpha(this.inputAmount.currency == amountUtils$Currency2 ? 1.0f : 0.0f);
+            this.iconTon.setAlpha(this.inputAmount.currency == AmountUtils$Currency.TON ? 1.0f : 0.0f);
+        }
+        BalanceCloud balanceCloud = this.balanceCloud;
+        if (balanceCloud != null) {
+            balanceCloud.setCurrency(this.inputAmount.currency, z);
+        }
     }
 
     @Override
-    public boolean isTouchOutside(float f, float f2) {
-        BalanceCloud balanceCloud;
-        if (!this.balanceCloudVisible || (balanceCloud = this.balanceCloud) == null || f < balanceCloud.getX() || f > this.balanceCloud.getX() + this.balanceCloud.getWidth() || f2 < this.balanceCloud.getY() || f2 > this.balanceCloud.getY() + this.balanceCloud.getHeight()) {
-            return super.isTouchOutside(f, f2);
-        }
-        return false;
+    public void onOpenAnimationEnd() {
+        super.onOpenAnimationEnd();
+        this.isFullyVisible = true;
+        checkBalanceCloudVisibility();
     }
 
     @Override
@@ -552,11 +474,92 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         checkBalanceCloudVisibility();
     }
 
-    @Override
-    public void onOpenAnimationEnd() {
-        super.onOpenAnimationEnd();
-        this.isFullyVisible = true;
-        checkBalanceCloudVisibility();
+    private void checkBalanceCloudVisibility() {
+        boolean z = (this.isFullyVisible && !isDismissed() && this.balanceCloud != null && this.containerView.getY() > ((float) AndroidUtilities.dp(32.0f))) || this.currencyTabsView == null;
+        if (this.balanceCloudVisible != z) {
+            this.balanceCloudVisible = z;
+            BalanceCloud balanceCloud = this.balanceCloud;
+            if (balanceCloud != null) {
+                balanceCloud.setEnabled(z);
+                this.balanceCloud.setClickable(z);
+                this.balanceCloud.animate().scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f).alpha(z ? 1.0f : 0.0f).setDuration(180L).start();
+            }
+        }
+    }
+
+    private void checkButtonOfferText(boolean z) {
+        String formatNumber;
+        if (this.mode == 0) {
+            if (!this.inputAmount.isZero()) {
+                AmountUtils$Amount amountUtils$Amount = this.inputAmount;
+                boolean z2 = amountUtils$Amount.currency == AmountUtils$Currency.TON;
+                ButtonWithCounterView buttonWithCounterView = this.buttonView;
+                int i = R.string.PostSuggestionsOfferStars;
+                if (z2) {
+                    formatNumber = amountUtils$Amount.asDecimalString();
+                } else {
+                    formatNumber = LocaleController.formatNumber(amountUtils$Amount.asDecimal(), ',');
+                }
+                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(i, formatNumber), z2 ? this.spanRefTon : this.spanRefStars), z);
+                return;
+            }
+            this.buttonView.setText(LocaleController.getString(R.string.PostSuggestionsOfferForFree), z);
+            return;
+        }
+        this.buttonView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), z);
+    }
+
+    private void checkButtonEnabled(boolean z) {
+        boolean z2 = this.inputAmountError == 0 && (this.inputAmount.asNano() >= 0 || this.selectedTime > 0);
+        if (this.buttonView.isEnabled() != z2) {
+            this.buttonView.setEnabled(z2);
+            this.buttonView.setClickable(z2);
+            if (z) {
+                this.buttonView.animate().alpha(z2 ? 1.0f : 0.6f).setDuration(180L).start();
+            } else {
+                this.buttonView.setAlpha(z2 ? 1.0f : 0.6f);
+            }
+        }
+    }
+
+    private void checkAmountInputText(boolean z) {
+        int i;
+        int i2 = this.inputAmountError;
+        if ((i2 & 4) != 0) {
+            this.starsCountEditOutline.setText(LocaleController.formatString(R.string.SuggestAPostTooMuch, getInputAmountMax().formatAsDecimalSpaced()));
+            return;
+        }
+        if ((i2 & 2) != 0) {
+            this.starsCountEditOutline.setText(LocaleController.formatString(R.string.SuggestAPostTooSmall, getInputAmountMin().formatAsDecimalSpaced()));
+            return;
+        }
+        if (this.inputAmount.currency == AmountUtils$Currency.STARS) {
+            i = R.string.PostSuggestionsOfferTitlePriceStars;
+        } else {
+            i = R.string.PostSuggestionsOfferTitlePriceTON;
+        }
+        this.starsCountEditOutline.setText(LocaleController.getString(i));
+    }
+
+    private void checkRateText(boolean z) {
+        double d;
+        StringBuilder sb = new StringBuilder(10);
+        sb.append('~');
+        if (this.inputAmount.currency == AmountUtils$Currency.TON) {
+            d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
+        } else {
+            d = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000 * 1.0E-5d;
+        }
+        sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
+        this.dollarsEqView.setText(sb, z);
+    }
+
+    private AmountUtils$Amount getInputAmountMin() {
+        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMinTON : this.inputAmountMinStars;
+    }
+
+    private AmountUtils$Amount getInputAmountMax() {
+        return this.inputAmount.currency == AmountUtils$Currency.TON ? this.inputAmountMaxTON : this.inputAmountMaxStars;
     }
 
     @Override
@@ -568,5 +571,20 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
                 MessageSuggestionOfferSheet.this.lambda$show$7();
             }
         }, 50L);
+    }
+
+    public void lambda$show$7() {
+        AndroidUtilities.showKeyboard(this.starsCountEditField);
+    }
+
+    public static String formatDateTime(long j) {
+        if (j <= 0) {
+            return LocaleController.getString(R.string.PostSuggestionsAnytime);
+        }
+        String formatDateTime = LocaleController.formatDateTime(j, true);
+        if (formatDateTime.isEmpty()) {
+            return formatDateTime;
+        }
+        return Character.toUpperCase(formatDateTime.charAt(0)) + formatDateTime.substring(1);
     }
 }

@@ -24,23 +24,18 @@ public abstract class AbstractIterator implements Iterator {
         }
     }
 
-    private final boolean tryToComputeNext() {
-        this.state = State.Failed;
-        computeNext();
-        return this.state == State.Ready;
-    }
-
     protected abstract void computeNext();
 
-    public final void done() {
-        this.state = State.Done;
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
     public boolean hasNext() {
         State state = this.state;
         if (state == State.Failed) {
-            throw new IllegalArgumentException("Failed requirement.".toString());
+            throw new IllegalArgumentException("Failed requirement.");
         }
         int i = WhenMappings.$EnumSwitchMapping$0[state.ordinal()];
         if (i == 1) {
@@ -61,13 +56,18 @@ public abstract class AbstractIterator implements Iterator {
         return this.nextValue;
     }
 
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    private final boolean tryToComputeNext() {
+        this.state = State.Failed;
+        computeNext();
+        return this.state == State.Ready;
     }
 
     public final void setNext(Object obj) {
         this.nextValue = obj;
         this.state = State.Ready;
+    }
+
+    public final void done() {
+        this.state = State.Done;
     }
 }

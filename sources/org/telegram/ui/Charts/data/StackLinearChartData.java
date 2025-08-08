@@ -33,11 +33,7 @@ public class StackLinearChartData extends ChartData {
             }
             ArrayList arrayList = new ArrayList();
             for (int i3 = 0; i3 < this.lines.size(); i3++) {
-                double d = jArr[i3];
-                double d2 = j;
-                Double.isNaN(d);
-                Double.isNaN(d2);
-                if (d / d2 < 0.01d && iArr[i3] > this.x.length / 2.0f) {
+                if (jArr[i3] / j < 0.01d && iArr[i3] > this.x.length / 2.0f) {
                     arrayList.add((ChartData.Line) this.lines.get(i3));
                 }
             }

@@ -23,11 +23,6 @@ public abstract class AbstractCoroutineContextElement implements CoroutineContex
     }
 
     @Override
-    public CoroutineContext.Key getKey() {
-        return this.key;
-    }
-
-    @Override
     public CoroutineContext minusKey(CoroutineContext.Key key) {
         return CoroutineContext.Element.DefaultImpls.minusKey(this, key);
     }
@@ -35,5 +30,10 @@ public abstract class AbstractCoroutineContextElement implements CoroutineContex
     @Override
     public CoroutineContext plus(CoroutineContext coroutineContext) {
         return CoroutineContext.Element.DefaultImpls.plus(this, coroutineContext);
+    }
+
+    @Override
+    public CoroutineContext.Key getKey() {
+        return this.key;
     }
 }

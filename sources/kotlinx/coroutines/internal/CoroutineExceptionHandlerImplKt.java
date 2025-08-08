@@ -1,23 +1,12 @@
 package kotlinx.coroutines.internal;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.ServiceLoader;
-import kotlin.sequences.Sequence;
-import kotlin.sequences.SequencesKt__SequencesKt;
-import kotlin.sequences.SequencesKt___SequencesKt;
+import kotlin.sequences.SequencesKt;
 import kotlinx.coroutines.CoroutineExceptionHandler;
 
 public abstract class CoroutineExceptionHandlerImplKt {
-    private static final Collection platformExceptionHandlers;
-
-    static {
-        Sequence asSequence;
-        List list;
-        asSequence = SequencesKt__SequencesKt.asSequence(ServiceLoader.load(CoroutineExceptionHandler.class, CoroutineExceptionHandler.class.getClassLoader()).iterator());
-        list = SequencesKt___SequencesKt.toList(asSequence);
-        platformExceptionHandlers = list;
-    }
+    private static final Collection platformExceptionHandlers = SequencesKt.toList(SequencesKt.asSequence(ServiceLoader.load(CoroutineExceptionHandler.class, CoroutineExceptionHandler.class.getClassLoader()).iterator()));
 
     public static final Collection getPlatformExceptionHandlers() {
         return platformExceptionHandlers;

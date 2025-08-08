@@ -24,20 +24,34 @@ public class ConflatedBufferedChannel extends BufferedChannel {
         throw new IllegalArgumentException(("Buffered channel capacity must be at least 1, but " + i + " was specified").toString());
     }
 
-    private final Object m258trySendDropLatestMj0NB7M(Object obj, boolean z) {
-        Function1 function1;
-        UndeliveredElementException callUndeliveredElementCatchingException$default;
-        Object mo249trySendJP2dKIU = super.mo249trySendJP2dKIU(obj);
-        if (ChannelResult.m254isSuccessimpl(mo249trySendJP2dKIU) || ChannelResult.m253isClosedimpl(mo249trySendJP2dKIU)) {
-            return mo249trySendJP2dKIU;
-        }
-        if (!z || (function1 = this.onUndeliveredElement) == null || (callUndeliveredElementCatchingException$default = OnUndeliveredElementKt.callUndeliveredElementCatchingException$default(function1, obj, null, 2, null)) == null) {
-            return ChannelResult.Companion.m257successJP2dKIU(Unit.INSTANCE);
-        }
-        throw callUndeliveredElementCatchingException$default;
+    @Override
+    protected boolean isConflatedDropOldest() {
+        return this.onBufferOverflow == BufferOverflow.DROP_OLDEST;
     }
 
-    private final Object m259trySendDropOldestJP2dKIU(Object obj) {
+    @Override
+    public Object mo256trySendJP2dKIU(Object obj) {
+        return m267trySendImplMj0NB7M(obj, false);
+    }
+
+    private final Object m267trySendImplMj0NB7M(Object obj, boolean z) {
+        return this.onBufferOverflow == BufferOverflow.DROP_LATEST ? m265trySendDropLatestMj0NB7M(obj, z) : m266trySendDropOldestJP2dKIU(obj);
+    }
+
+    private final Object m265trySendDropLatestMj0NB7M(Object obj, boolean z) {
+        Function1 function1;
+        UndeliveredElementException callUndeliveredElementCatchingException$default;
+        Object mo256trySendJP2dKIU = super.mo256trySendJP2dKIU(obj);
+        if (ChannelResult.m261isSuccessimpl(mo256trySendJP2dKIU) || ChannelResult.m260isClosedimpl(mo256trySendJP2dKIU)) {
+            return mo256trySendJP2dKIU;
+        }
+        if (z && (function1 = this.onUndeliveredElement) != null && (callUndeliveredElementCatchingException$default = OnUndeliveredElementKt.callUndeliveredElementCatchingException$default(function1, obj, null, 2, null)) != null) {
+            throw callUndeliveredElementCatchingException$default;
+        }
+        return ChannelResult.Companion.m264successJP2dKIU(Unit.INSTANCE);
+    }
+
+    private final Object m266trySendDropOldestJP2dKIU(Object obj) {
         ChannelSegment channelSegment;
         Object obj2 = BufferedChannelKt.BUFFERED;
         ChannelSegment channelSegment2 = (ChannelSegment) BufferedChannel.sendSegment$FU.get(this);
@@ -53,7 +67,7 @@ public class ConflatedBufferedChannel extends BufferedChannel {
                 if (findSegmentSend != null) {
                     channelSegment = findSegmentSend;
                 } else if (isClosedForSend0) {
-                    return ChannelResult.Companion.m255closedJP2dKIU(getSendException());
+                    return ChannelResult.Companion.m262closedJP2dKIU(getSendException());
                 }
             } else {
                 channelSegment = channelSegment2;
@@ -61,50 +75,36 @@ public class ConflatedBufferedChannel extends BufferedChannel {
             int updateCellSend = updateCellSend(channelSegment, i2, obj, j, obj2, isClosedForSend0);
             if (updateCellSend == 0) {
                 channelSegment.cleanPrev();
-                return ChannelResult.Companion.m257successJP2dKIU(Unit.INSTANCE);
+                return ChannelResult.Companion.m264successJP2dKIU(Unit.INSTANCE);
             }
             if (updateCellSend == 1) {
-                return ChannelResult.Companion.m257successJP2dKIU(Unit.INSTANCE);
+                return ChannelResult.Companion.m264successJP2dKIU(Unit.INSTANCE);
             }
             if (updateCellSend == 2) {
                 if (isClosedForSend0) {
                     channelSegment.onSlotCleaned();
-                    return ChannelResult.Companion.m255closedJP2dKIU(getSendException());
+                    return ChannelResult.Companion.m262closedJP2dKIU(getSendException());
                 }
                 Waiter waiter = obj2 instanceof Waiter ? (Waiter) obj2 : null;
                 if (waiter != null) {
                     prepareSenderForSuspension(waiter, channelSegment, i2);
                 }
                 dropFirstElementUntilTheSpecifiedCellIsInTheBuffer((channelSegment.id * i) + i2);
-                return ChannelResult.Companion.m257successJP2dKIU(Unit.INSTANCE);
+                return ChannelResult.Companion.m264successJP2dKIU(Unit.INSTANCE);
             }
             if (updateCellSend == 3) {
-                throw new IllegalStateException("unexpected".toString());
+                throw new IllegalStateException("unexpected");
             }
             if (updateCellSend == 4) {
                 if (j < getReceiversCounter$kotlinx_coroutines_core()) {
                     channelSegment.cleanPrev();
                 }
-                return ChannelResult.Companion.m255closedJP2dKIU(getSendException());
+                return ChannelResult.Companion.m262closedJP2dKIU(getSendException());
             }
             if (updateCellSend == 5) {
                 channelSegment.cleanPrev();
             }
             channelSegment2 = channelSegment;
         }
-    }
-
-    private final Object m260trySendImplMj0NB7M(Object obj, boolean z) {
-        return this.onBufferOverflow == BufferOverflow.DROP_LATEST ? m258trySendDropLatestMj0NB7M(obj, z) : m259trySendDropOldestJP2dKIU(obj);
-    }
-
-    @Override
-    protected boolean isConflatedDropOldest() {
-        return this.onBufferOverflow == BufferOverflow.DROP_OLDEST;
-    }
-
-    @Override
-    public Object mo249trySendJP2dKIU(Object obj) {
-        return m260trySendImplMj0NB7M(obj, false);
     }
 }

@@ -35,6 +35,17 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
     private float rotation;
     public final AnimatedTextView.AnimatedTextDrawable topText;
 
+    public void setCasting(boolean z, boolean z2) {
+        if (this.cast == z) {
+            return;
+        }
+        this.cast = z;
+        if (!z2) {
+            this.animatedCast.force(z);
+        }
+        invalidateSelf();
+    }
+
     public ChooseQualityLayout$QualityIcon(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         Paint paint = new Paint(1);
         this.bgLinePaint = paint;
@@ -123,7 +134,7 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
         }
         if (dp2 > 0.0f) {
             float f3 = dp3 / 2.0f;
-            this.rect.set(width - dp2, height2 - f3, width, f3 + height2);
+            this.rect.set(width - dp2, height2 - f3, width, height2 + f3);
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.bgLinePaint);
         }
         float f4 = 1.0f - f;
@@ -177,13 +188,13 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return this.base.getIntrinsicHeight() + AndroidUtilities.dp(12.0f);
+    public void setAlpha(int i) {
+        this.base.setAlpha(i);
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        return this.base.getIntrinsicWidth() + AndroidUtilities.dp(12.0f);
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.base.setColorFilter(colorFilter);
     }
 
     @Override
@@ -192,23 +203,12 @@ public class ChooseQualityLayout$QualityIcon extends Drawable {
     }
 
     @Override
-    public void setAlpha(int i) {
-        this.base.setAlpha(i);
-    }
-
-    public void setCasting(boolean z, boolean z2) {
-        if (this.cast == z) {
-            return;
-        }
-        this.cast = z;
-        if (!z2) {
-            this.animatedCast.force(z);
-        }
-        invalidateSelf();
+    public int getIntrinsicWidth() {
+        return this.base.getIntrinsicWidth() + AndroidUtilities.dp(12.0f);
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.base.setColorFilter(colorFilter);
+    public int getIntrinsicHeight() {
+        return this.base.getIntrinsicHeight() + AndroidUtilities.dp(12.0f);
     }
 }

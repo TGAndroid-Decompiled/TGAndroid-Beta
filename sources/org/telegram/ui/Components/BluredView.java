@@ -16,10 +16,6 @@ public abstract class BluredView extends View {
         blurBehindDrawable.show(true);
     }
 
-    public boolean fullyDrawing() {
-        return this.drawable.isFullyDrawing() && getVisibility() == 0;
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         this.drawable.draw(canvas);
@@ -33,5 +29,9 @@ public abstract class BluredView extends View {
 
     public void update() {
         this.drawable.invalidate();
+    }
+
+    public boolean fullyDrawing() {
+        return this.drawable.isFullyDrawing() && getVisibility() == 0;
     }
 }

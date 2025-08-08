@@ -32,6 +32,11 @@ public abstract class HashtagHistoryView extends FrameLayout {
     private UniversalRecyclerView recyclerView;
     private Theme.ResourcesProvider resourcesProvider;
 
+    protected abstract void onClick(String str);
+
+    public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+    }
+
     public HashtagHistoryView(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
         this.currentAccount = i;
@@ -83,6 +88,54 @@ public abstract class HashtagHistoryView extends FrameLayout {
         this.recyclerView.setEmptyView(this.emptyView);
     }
 
+    public void show(final boolean z) {
+        if (z == isShowing()) {
+            return;
+        }
+        AnimatorSet animatorSet = this.animation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.animation = null;
+        }
+        if (z) {
+            setVisibility(0);
+        }
+        setTag(z ? 1 : null);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.animation = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HashtagHistoryView, Float>) View.ALPHA, z ? 1.0f : 0.0f));
+        this.animation.setInterpolator(CubicBezierInterpolator.EASE_IN);
+        this.animation.setDuration(180L);
+        this.animation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (animator.equals(HashtagHistoryView.this.animation)) {
+                    HashtagHistoryView.this.animation = null;
+                    if (z) {
+                        return;
+                    }
+                    HashtagHistoryView.this.setVisibility(8);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                if (animator.equals(HashtagHistoryView.this.animation)) {
+                    HashtagHistoryView.this.animation = null;
+                }
+            }
+        });
+        this.animation.start();
+    }
+
+    public boolean isShowing() {
+        return getTag() != null;
+    }
+
+    public void update() {
+        this.adapter.update(true);
+    }
+
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         ArrayList arrayList2 = new ArrayList(0);
         this.history = arrayList2;
@@ -99,18 +152,13 @@ public abstract class HashtagHistoryView extends FrameLayout {
         arrayList.add(UItem.asButton(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
     }
 
-    public void lambda$onLongClick$0(String str, AlertDialog alertDialog, int i) {
-        HashtagSearchController.getInstance(this.currentAccount).removeHashtagFromHistory(str);
-        update();
-    }
-
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
         int i2 = uItem.id;
-        if (i2 != 0) {
-            onClick((String) this.history.get(i2 - 1));
-        } else {
+        if (i2 == 0) {
             HashtagSearchController.getInstance(this.currentAccount).clearHistory();
             update();
+        } else {
+            onClick((String) this.history.get(i2 - 1));
         }
     }
 
@@ -134,56 +182,8 @@ public abstract class HashtagHistoryView extends FrameLayout {
         return true;
     }
 
-    public boolean isShowing() {
-        return getTag() != null;
-    }
-
-    protected abstract void onClick(String str);
-
-    public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-    }
-
-    public void show(final boolean z) {
-        if (z == isShowing()) {
-            return;
-        }
-        AnimatorSet animatorSet = this.animation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.animation = null;
-        }
-        if (z) {
-            setVisibility(0);
-        }
-        setTag(z ? 1 : null);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.animation = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HashtagHistoryView, Float>) View.ALPHA, z ? 1.0f : 0.0f));
-        this.animation.setInterpolator(CubicBezierInterpolator.EASE_IN);
-        this.animation.setDuration(180L);
-        this.animation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (animator.equals(HashtagHistoryView.this.animation)) {
-                    HashtagHistoryView.this.animation = null;
-                }
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (animator.equals(HashtagHistoryView.this.animation)) {
-                    HashtagHistoryView.this.animation = null;
-                    if (z) {
-                        return;
-                    }
-                    HashtagHistoryView.this.setVisibility(8);
-                }
-            }
-        });
-        this.animation.start();
-    }
-
-    public void update() {
-        this.adapter.update(true);
+    public void lambda$onLongClick$0(String str, AlertDialog alertDialog, int i) {
+        HashtagSearchController.getInstance(this.currentAccount).removeHashtagFromHistory(str);
+        update();
     }
 }

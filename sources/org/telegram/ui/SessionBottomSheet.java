@@ -42,116 +42,16 @@ public class SessionBottomSheet extends BottomSheet {
     BaseFragment parentFragment;
     TLRPC.TL_authorization session;
 
-    public class AnonymousClass8 implements View.OnClickListener {
-        final Callback val$callback;
-        final BaseFragment val$fragment;
-        final TLRPC.TL_authorization val$session;
-
-        AnonymousClass8(Callback callback, TLRPC.TL_authorization tL_authorization, BaseFragment baseFragment) {
-            this.val$callback = callback;
-            this.val$session = tL_authorization;
-            this.val$fragment = baseFragment;
-        }
-
-        public void lambda$onClick$0(Callback callback, TLRPC.TL_authorization tL_authorization, AlertDialog alertDialog, int i) {
-            callback.onSessionTerminated(tL_authorization);
-            SessionBottomSheet.this.lambda$new$0();
-        }
-
-        @Override
-        public void onClick(View view) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(SessionBottomSheet.this.parentFragment.getParentActivity());
-            builder.setMessage(LocaleController.getString(R.string.TerminateSessionText));
-            builder.setTitle(LocaleController.getString(R.string.AreYouSureSessionTitle));
-            String string = LocaleController.getString(R.string.Terminate);
-            final Callback callback = this.val$callback;
-            final TLRPC.TL_authorization tL_authorization = this.val$session;
-            builder.setPositiveButton(string, new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    SessionBottomSheet.AnonymousClass8.this.lambda$onClick$0(callback, tL_authorization, alertDialog, i);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            AlertDialog create = builder.create();
-            this.val$fragment.showDialog(create);
-            TextView textView = (TextView) create.getButton(-1);
-            if (textView != null) {
-                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-            }
-        }
-    }
-
     public interface Callback {
         void onSessionTerminated(TLRPC.TL_authorization tL_authorization);
     }
 
-    private static class ItemView extends FrameLayout {
-        TextView descriptionText;
-        ImageView iconView;
-        boolean needDivider;
-        Switch switchView;
-        TextView valueText;
-
-        public ItemView(Context context, boolean z) {
-            super(context);
-            this.needDivider = false;
-            ImageView imageView = new ImageView(context);
-            this.iconView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.iconView, LayoutHelper.createFrame(32, 32.0f, 0, 12.0f, 4.0f, 0.0f, 0.0f));
-            LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 64.0f, 4.0f, 0.0f, 4.0f));
-            TextView textView = new TextView(context);
-            this.valueText = textView;
-            textView.setTextSize(2, 16.0f);
-            this.valueText.setGravity(3);
-            this.valueText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            linearLayout.addView(this.valueText, LayoutHelper.createLinear(-1, -2, 0, 0, 0, z ? 64 : 0, 0));
-            TextView textView2 = new TextView(context);
-            this.descriptionText = textView2;
-            textView2.setTextSize(2, 13.0f);
-            this.descriptionText.setGravity(3);
-            this.descriptionText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-            linearLayout.addView(this.descriptionText, LayoutHelper.createLinear(-1, -2, 0, 0, 4, z ? 64 : 0, 0));
-            setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-            if (z) {
-                Switch r2 = new Switch(context);
-                this.switchView = r2;
-                r2.setDrawIconType(1);
-                addView(this.switchView, LayoutHelper.createFrame(37, 40.0f, 21, 21.0f, 0.0f, 21.0f, 0.0f));
-            }
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            super.dispatchDraw(canvas);
-            if (this.needDivider) {
-                canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
-            }
-        }
-
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            if (this.switchView != null) {
-                accessibilityNodeInfo.setClassName("android.widget.Switch");
-                accessibilityNodeInfo.setCheckable(true);
-                accessibilityNodeInfo.setChecked(this.switchView.isChecked());
-                StringBuilder sb = new StringBuilder();
-                sb.append((Object) this.valueText.getText());
-                sb.append("\n");
-                sb.append((Object) this.descriptionText.getText());
-                sb.append("\n");
-                sb.append(LocaleController.getString(this.switchView.isChecked() ? R.string.NotificationsOn : R.string.NotificationsOff));
-                accessibilityNodeInfo.setText(sb.toString());
-            }
-        }
+    public static void lambda$uploadSessionSettings$0(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public SessionBottomSheet(BaseFragment baseFragment, final TLRPC.TL_authorization tL_authorization, boolean z, Callback callback) {
         super(baseFragment.getParentActivity(), false);
+        String formatDateTime;
         setOpenNoDelay(true);
         Activity parentActivity = baseFragment.getParentActivity();
         this.session = tL_authorization;
@@ -184,7 +84,12 @@ public class SessionBottomSheet extends BottomSheet {
         textView2.setTextSize(2, 13.0f);
         textView2.setGravity(17);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 21, 4, 21, 21));
-        textView2.setText((tL_authorization.flags & 1) != 0 ? LocaleController.getString(R.string.Online) : LocaleController.formatDateTime(tL_authorization.date_active, true));
+        if ((tL_authorization.flags & 1) != 0) {
+            formatDateTime = LocaleController.getString(R.string.Online);
+        } else {
+            formatDateTime = LocaleController.formatDateTime(tL_authorization.date_active, true);
+        }
+        textView2.setText(formatDateTime);
         StringBuilder sb = new StringBuilder();
         if (tL_authorization.device_model.length() != 0) {
             sb.append(tL_authorization.device_model);
@@ -324,8 +229,68 @@ public class SessionBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
+    public class AnonymousClass8 implements View.OnClickListener {
+        final Callback val$callback;
+        final BaseFragment val$fragment;
+        final TLRPC.TL_authorization val$session;
+
+        AnonymousClass8(Callback callback, TLRPC.TL_authorization tL_authorization, BaseFragment baseFragment) {
+            this.val$callback = callback;
+            this.val$session = tL_authorization;
+            this.val$fragment = baseFragment;
+        }
+
+        @Override
+        public void onClick(View view) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SessionBottomSheet.this.parentFragment.getParentActivity());
+            builder.setMessage(LocaleController.getString(R.string.TerminateSessionText));
+            builder.setTitle(LocaleController.getString(R.string.AreYouSureSessionTitle));
+            String string = LocaleController.getString(R.string.Terminate);
+            final Callback callback = this.val$callback;
+            final TLRPC.TL_authorization tL_authorization = this.val$session;
+            builder.setPositiveButton(string, new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    SessionBottomSheet.AnonymousClass8.this.lambda$onClick$0(callback, tL_authorization, alertDialog, i);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            AlertDialog create = builder.create();
+            this.val$fragment.showDialog(create);
+            TextView textView = (TextView) create.getButton(-1);
+            if (textView != null) {
+                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+            }
+        }
+
+        public void lambda$onClick$0(Callback callback, TLRPC.TL_authorization tL_authorization, AlertDialog alertDialog, int i) {
+            callback.onSessionTerminated(tL_authorization);
+            SessionBottomSheet.this.lambda$new$0();
+        }
+    }
+
     private boolean acceptCallsEnabled(TLRPC.TL_authorization tL_authorization) {
         return tL_authorization.api_id != 22;
+    }
+
+    private boolean secretChatsEnabled(TLRPC.TL_authorization tL_authorization) {
+        int i = tL_authorization.api_id;
+        return (i == 2040 || i == 2496) ? false : true;
+    }
+
+    public void uploadSessionSettings() {
+        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = this.session;
+        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        changeauthorizationsettings.flags = 3;
+        changeauthorizationsettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(changeauthorizationsettings, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tL_error);
+            }
+        });
     }
 
     public void copyText(final String str) {
@@ -344,31 +309,132 @@ public class SessionBottomSheet extends BottomSheet {
         BulletinFactory.of(getContainer(), null).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
     }
 
-    public static void lambda$uploadSessionSettings$0(TLObject tLObject, TLRPC.TL_error tL_error) {
-    }
-
-    private boolean secretChatsEnabled(TLRPC.TL_authorization tL_authorization) {
-        int i = tL_authorization.api_id;
-        return (i == 2040 || i == 2496) ? false : true;
-    }
-
-    private void setAnimation(org.telegram.tgnet.TLRPC.TL_authorization r8, org.telegram.ui.Components.RLottieImageView r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SessionBottomSheet.setAnimation(org.telegram.tgnet.TLRPC$TL_authorization, org.telegram.ui.Components.RLottieImageView):void");
-    }
-
-    public void uploadSessionSettings() {
-        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-        TLRPC.TL_authorization tL_authorization = this.session;
-        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
-        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
-        changeauthorizationsettings.flags = 3;
-        changeauthorizationsettings.hash = tL_authorization.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(changeauthorizationsettings, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tL_error);
+    private void setAnimation(TLRPC.TL_authorization tL_authorization, RLottieImageView rLottieImageView) {
+        int i;
+        int i2;
+        String lowerCase = tL_authorization.platform.toLowerCase();
+        if (lowerCase.isEmpty()) {
+            lowerCase = tL_authorization.system_version.toLowerCase();
+        }
+        String lowerCase2 = tL_authorization.device_model.toLowerCase();
+        boolean z = true;
+        if (lowerCase2.contains("safari")) {
+            i = R.raw.safari_30;
+            i2 = Theme.key_avatar_backgroundPink;
+        } else if (lowerCase2.contains("edge")) {
+            i = R.raw.edge_30;
+            i2 = Theme.key_avatar_backgroundPink;
+        } else if (lowerCase2.contains("chrome")) {
+            i = R.raw.chrome_30;
+            i2 = Theme.key_avatar_backgroundPink;
+        } else if (lowerCase2.contains("firefox")) {
+            i = R.raw.firefox_30;
+            i2 = Theme.key_avatar_backgroundRed;
+        } else if (lowerCase2.contains("opera") || lowerCase2.contains("firefox") || lowerCase2.contains("vivaldi")) {
+            if (lowerCase2.contains("opera")) {
+                i = R.drawable.device_web_opera;
+            } else if (lowerCase2.contains("firefox")) {
+                i = R.drawable.device_web_firefox;
+            } else {
+                i = R.drawable.device_web_other;
             }
-        });
+            i2 = Theme.key_avatar_backgroundPink;
+            z = false;
+        } else if (lowerCase.contains("ubuntu")) {
+            i = R.raw.ubuntu_30;
+            i2 = Theme.key_avatar_backgroundBlue;
+        } else if (lowerCase.contains("linux")) {
+            i = R.raw.linux_30;
+            i2 = Theme.key_avatar_backgroundBlue;
+        } else if (lowerCase.contains("ios")) {
+            i = lowerCase2.contains("ipad") ? R.raw.ipad_30 : R.raw.iphone_30;
+            i2 = Theme.key_avatar_backgroundBlue;
+        } else if (lowerCase.contains("windows")) {
+            i = R.raw.windows_30;
+            i2 = Theme.key_avatar_backgroundCyan;
+        } else if (lowerCase.contains("macos")) {
+            i = R.raw.mac_30;
+            i2 = Theme.key_avatar_backgroundCyan;
+        } else if (lowerCase.contains("android")) {
+            i = R.raw.android_30;
+            i2 = Theme.key_avatar_backgroundGreen;
+        } else if (tL_authorization.app_name.toLowerCase().contains("desktop")) {
+            i = R.raw.windows_30;
+            i2 = Theme.key_avatar_backgroundCyan;
+        } else {
+            i = R.raw.chrome_30;
+            i2 = Theme.key_avatar_backgroundPink;
+        }
+        rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(i2)));
+        if (z) {
+            rLottieImageView.setAnimation(i, 50, 50, new int[]{0, Theme.getColor(i2)});
+        } else {
+            rLottieImageView.setImageDrawable(ContextCompat.getDrawable(getContext(), i));
+        }
+    }
+
+    private static class ItemView extends FrameLayout {
+        TextView descriptionText;
+        ImageView iconView;
+        boolean needDivider;
+        Switch switchView;
+        TextView valueText;
+
+        public ItemView(Context context, boolean z) {
+            super(context);
+            this.needDivider = false;
+            ImageView imageView = new ImageView(context);
+            this.iconView = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(this.iconView, LayoutHelper.createFrame(32, 32.0f, 0, 12.0f, 4.0f, 0.0f, 0.0f));
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 64.0f, 4.0f, 0.0f, 4.0f));
+            TextView textView = new TextView(context);
+            this.valueText = textView;
+            textView.setTextSize(2, 16.0f);
+            this.valueText.setGravity(3);
+            this.valueText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            linearLayout.addView(this.valueText, LayoutHelper.createLinear(-1, -2, 0, 0, 0, z ? 64 : 0, 0));
+            TextView textView2 = new TextView(context);
+            this.descriptionText = textView2;
+            textView2.setTextSize(2, 13.0f);
+            this.descriptionText.setGravity(3);
+            this.descriptionText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+            linearLayout.addView(this.descriptionText, LayoutHelper.createLinear(-1, -2, 0, 0, 4, z ? 64 : 0, 0));
+            setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+            if (z) {
+                Switch r2 = new Switch(context);
+                this.switchView = r2;
+                r2.setDrawIconType(1);
+                addView(this.switchView, LayoutHelper.createFrame(37, 40.0f, 21, 21.0f, 0.0f, 21.0f, 0.0f));
+            }
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            super.dispatchDraw(canvas);
+            if (this.needDivider) {
+                canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+            }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            if (this.switchView != null) {
+                accessibilityNodeInfo.setClassName("android.widget.Switch");
+                accessibilityNodeInfo.setCheckable(true);
+                accessibilityNodeInfo.setChecked(this.switchView.isChecked());
+                StringBuilder sb = new StringBuilder();
+                sb.append((Object) this.valueText.getText());
+                sb.append("\n");
+                sb.append((Object) this.descriptionText.getText());
+                sb.append("\n");
+                sb.append(LocaleController.getString(this.switchView.isChecked() ? R.string.NotificationsOn : R.string.NotificationsOff));
+                accessibilityNodeInfo.setText(sb.toString());
+            }
+        }
     }
 
     @Override

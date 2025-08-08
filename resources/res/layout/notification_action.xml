@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:id="@+id/action_container"
-    android:paddingLeft="4dp"
     android:layout_width="0dp"
     android:layout_height="48dp"
     android:layout_weight="1"
@@ -15,11 +14,9 @@
         android:layout_height="@dimen/notification_action_icon_size"
         android:scaleType="centerInside"/>
     <TextView
-        android:textColor="#ccc"
         android:ellipsize="end"
         android:layout_gravity="start|center_vertical"
         android:id="@+id/action_text"
-        android:paddingLeft="4dp"
         android:clickable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

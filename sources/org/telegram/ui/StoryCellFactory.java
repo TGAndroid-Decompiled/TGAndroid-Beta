@@ -17,20 +17,15 @@ public class StoryCellFactory extends UItem.UItemFactory {
         UItem.UItemFactory.setup(new StoryCellFactory());
     }
 
-    public static UItem asStory(int i, MessageObject messageObject, int i2, boolean z) {
-        TL_stories.StoryItem storyItem;
-        UItem spanCount = UItem.ofFactory(StoryCellFactory.class).setSpanCount(1);
-        spanCount.intValue = i;
-        spanCount.object = messageObject;
-        spanCount.longValue = (messageObject == null || (storyItem = messageObject.storyItem) == null) ? -1L : storyItem.id;
-        spanCount.collapsed = z;
-        spanCount.parentSpanCount = i2;
-        return spanCount;
-    }
-
     @Override
-    public void attachedView(View view, UItem uItem) {
-        ((SharedPhotoVideoCell2) view).setReordering(uItem.reordering, false);
+    public SharedPhotoVideoCell2 createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        if (this.sharedResources == null) {
+            this.sharedResources = new SharedPhotoVideoCell2.SharedResources(context, resourcesProvider);
+        }
+        SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(context, this.sharedResources, i);
+        sharedPhotoVideoCell2.setCheck2();
+        sharedPhotoVideoCell2.isStory = true;
+        return sharedPhotoVideoCell2;
     }
 
     @Override
@@ -42,14 +37,19 @@ public class StoryCellFactory extends UItem.UItemFactory {
     }
 
     @Override
-    public SharedPhotoVideoCell2 createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-        if (this.sharedResources == null) {
-            this.sharedResources = new SharedPhotoVideoCell2.SharedResources(context, resourcesProvider);
-        }
-        SharedPhotoVideoCell2 sharedPhotoVideoCell2 = new SharedPhotoVideoCell2(context, this.sharedResources, i);
-        sharedPhotoVideoCell2.setCheck2();
-        sharedPhotoVideoCell2.isStory = true;
-        return sharedPhotoVideoCell2;
+    public void attachedView(View view, UItem uItem) {
+        ((SharedPhotoVideoCell2) view).setReordering(uItem.reordering, false);
+    }
+
+    public static UItem asStory(int i, MessageObject messageObject, int i2, boolean z) {
+        TL_stories.StoryItem storyItem;
+        UItem spanCount = UItem.ofFactory(StoryCellFactory.class).setSpanCount(1);
+        spanCount.intValue = i;
+        spanCount.object = messageObject;
+        spanCount.longValue = (messageObject == null || (storyItem = messageObject.storyItem) == null) ? -1L : storyItem.id;
+        spanCount.collapsed = z;
+        spanCount.parentSpanCount = i2;
+        return spanCount;
     }
 
     @Override

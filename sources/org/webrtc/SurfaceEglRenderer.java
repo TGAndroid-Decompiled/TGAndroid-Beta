@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda18;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda12;
 import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
 
@@ -21,8 +21,71 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
         this.layoutLock = new Object();
     }
 
-    private void logD(String str) {
-        Logging.d("SurfaceEglRenderer", this.name + ": " + str);
+    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
+        ThreadUtils.checkIsOnMainThread();
+        this.rendererEvents = rendererEvents;
+        synchronized (this.layoutLock) {
+            this.isFirstFrameRendered = false;
+            this.rotatedFrameWidth = 0;
+            this.rotatedFrameHeight = 0;
+            this.frameRotation = 0;
+        }
+        super.init(context, iArr, glDrawer);
+    }
+
+    @Override
+    public void init(EglBase.Context context, int[] iArr, RendererCommon.GlDrawer glDrawer) {
+        init(context, (RendererCommon.RendererEvents) null, iArr, glDrawer);
+    }
+
+    @Override
+    public void setFpsReduction(float f) {
+        synchronized (this.layoutLock) {
+            this.isRenderingPaused = f == 0.0f;
+        }
+        super.setFpsReduction(f);
+    }
+
+    @Override
+    public void disableFpsReduction() {
+        synchronized (this.layoutLock) {
+            this.isRenderingPaused = false;
+        }
+        super.disableFpsReduction();
+    }
+
+    @Override
+    public void pauseVideo() {
+        synchronized (this.layoutLock) {
+            this.isRenderingPaused = true;
+        }
+        super.pauseVideo();
+    }
+
+    @Override
+    public void onFrame(VideoFrame videoFrame) {
+        updateFrameDimensionsAndReportEvents(videoFrame);
+        super.onFrame(videoFrame);
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        ThreadUtils.checkIsOnMainThread();
+        createEglSurface(surfaceHolder.getSurface());
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        ThreadUtils.checkIsOnMainThread();
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        releaseEglSurface(new Theme$$ExternalSyntheticLambda12(countDownLatch), false);
+        ThreadUtils.awaitUninterruptibly(countDownLatch);
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
+        ThreadUtils.checkIsOnMainThread();
+        logD("surfaceChanged: format: " + i + " size: " + i2 + "x" + i3);
     }
 
     private void updateFrameDimensionsAndReportEvents(VideoFrame videoFrame) {
@@ -55,70 +118,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
         }
     }
 
-    @Override
-    public void disableFpsReduction() {
-        synchronized (this.layoutLock) {
-            this.isRenderingPaused = false;
-        }
-        super.disableFpsReduction();
-    }
-
-    public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
-        ThreadUtils.checkIsOnMainThread();
-        this.rendererEvents = rendererEvents;
-        synchronized (this.layoutLock) {
-            this.isFirstFrameRendered = false;
-            this.rotatedFrameWidth = 0;
-            this.rotatedFrameHeight = 0;
-            this.frameRotation = 0;
-        }
-        super.init(context, iArr, glDrawer);
-    }
-
-    @Override
-    public void init(EglBase.Context context, int[] iArr, RendererCommon.GlDrawer glDrawer) {
-        init(context, (RendererCommon.RendererEvents) null, iArr, glDrawer);
-    }
-
-    @Override
-    public void onFrame(VideoFrame videoFrame) {
-        updateFrameDimensionsAndReportEvents(videoFrame);
-        super.onFrame(videoFrame);
-    }
-
-    @Override
-    public void pauseVideo() {
-        synchronized (this.layoutLock) {
-            this.isRenderingPaused = true;
-        }
-        super.pauseVideo();
-    }
-
-    @Override
-    public void setFpsReduction(float f) {
-        synchronized (this.layoutLock) {
-            this.isRenderingPaused = f == 0.0f;
-        }
-        super.setFpsReduction(f);
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
-        ThreadUtils.checkIsOnMainThread();
-        logD("surfaceChanged: format: " + i + " size: " + i2 + "x" + i3);
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        ThreadUtils.checkIsOnMainThread();
-        createEglSurface(surfaceHolder.getSurface());
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        ThreadUtils.checkIsOnMainThread();
-        CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new Theme$$ExternalSyntheticLambda18(countDownLatch), false);
-        ThreadUtils.awaitUninterruptibly(countDownLatch);
+    private void logD(String str) {
+        Logging.d("SurfaceEglRenderer", this.name + ": " + str);
     }
 }

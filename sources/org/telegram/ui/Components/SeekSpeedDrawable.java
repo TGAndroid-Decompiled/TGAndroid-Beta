@@ -42,6 +42,19 @@ public class SeekSpeedDrawable extends Drawable {
     private final AnimatedTextView.AnimatedTextDrawable speedText;
     private float t;
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
     public SeekSpeedDrawable(final Runnable runnable, boolean z, boolean z2) {
         Paint paint = new Paint(1);
         this.arrowPaint = paint;
@@ -107,9 +120,8 @@ public class SeekSpeedDrawable extends Drawable {
         path.close();
     }
 
-    public void lambda$new$0() {
-        this.showHint = false;
-        this.invalidate.run();
+    public boolean isShown() {
+        return this.shown || this.animatedShown.get() > 0.0f;
     }
 
     @Override
@@ -148,14 +160,10 @@ public class SeekSpeedDrawable extends Drawable {
         canvas.save();
         float f7 = -f2;
         canvas.translate(((this.speedRect.centerX() - f4) + AndroidUtilities.dp(9.0f)) - (AndroidUtilities.dp(30.0f) * (1.0f - Math.max(0.0f, f7))), this.speedRect.centerY());
-        double d = this.t;
-        Double.isNaN(d);
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin(d * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin(this.t * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.leftArrow, this.arrowPaint);
         canvas.translate(AndroidUtilities.dp(10.66f), 0.0f);
-        double d2 = this.t + 0.17f;
-        Double.isNaN(d2);
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin(d2 * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin((this.t + 0.17f) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.leftArrow, this.arrowPaint);
         canvas.restore();
         canvas.save();
@@ -165,14 +173,10 @@ public class SeekSpeedDrawable extends Drawable {
         canvas.restore();
         canvas.save();
         canvas.translate(((this.speedRect.centerX() + f4) - AndroidUtilities.dp(30.0f)) + (AndroidUtilities.dp(30.0f) * (1.0f - Math.max(0.0f, f2))), this.speedRect.centerY());
-        double d3 = this.t;
-        Double.isNaN(d3);
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin(d3 * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin(this.t * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.rightArrow, this.arrowPaint);
         canvas.translate(AndroidUtilities.dp(10.66f), 0.0f);
-        double d4 = this.t - 0.17f;
-        Double.isNaN(d4);
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin(d4 * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin((this.t - 0.17f) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.rightArrow, this.arrowPaint);
         canvas.restore();
         canvas.restore();
@@ -185,16 +189,16 @@ public class SeekSpeedDrawable extends Drawable {
                 rLottieDrawable.setAllowDecodeSingleFrame(true);
                 this.hintDrawable.setCallback(new Drawable.Callback() {
                     @Override
-                    public void invalidateDrawable(Drawable drawable) {
-                        SeekSpeedDrawable.this.invalidate.run();
-                    }
-
-                    @Override
                     public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
                     }
 
                     @Override
                     public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                    }
+
+                    @Override
+                    public void invalidateDrawable(Drawable drawable) {
+                        SeekSpeedDrawable.this.invalidate.run();
                     }
                 });
                 this.hintDrawable.setAutoRepeat(1);
@@ -228,23 +232,6 @@ public class SeekSpeedDrawable extends Drawable {
             this.hintText.draw(canvas, AndroidUtilities.dp(39.0f) + this.hintRect.left, this.hintRect.centerY(), -1, f8);
             canvas.restore();
         }
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    public boolean isShown() {
-        return this.shown || this.animatedShown.get() > 0.0f;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
     }
 
     public void setShown(boolean z, boolean z2) {
@@ -282,5 +269,10 @@ public class SeekSpeedDrawable extends Drawable {
         this.hideHintScheduled = true;
         AndroidUtilities.runOnUIThread(this.hideHintRunnable, 2500L);
         MessagesController.getGlobalMainSettings().edit().putBoolean("seekSpeedHintShowed", true).apply();
+    }
+
+    public void lambda$new$0() {
+        this.showHint = false;
+        this.invalidate.run();
     }
 }

@@ -3,7 +3,6 @@ package org.telegram.messenger.video;
 import android.media.MediaCodec;
 import android.media.MediaCrypto;
 import android.media.MediaFormat;
-import android.os.Build;
 import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
@@ -59,30 +58,6 @@ public class AudioRecoder {
         }
     }
 
-    private boolean isInputAvailable() {
-        if (this.encoderInputPresentationTimeUs > this.totalDurationUs) {
-            return false;
-        }
-        return this.mainInput.hasRemaining();
-    }
-
-    private void mix(ShortBuffer shortBuffer) {
-        int remaining = shortBuffer.remaining();
-        for (int i = 0; i < remaining && isInputAvailable(); i++) {
-            boolean z = false;
-            short s = 0;
-            for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
-                if (this.audioInputs.get(i2).hasRemaining()) {
-                    s = (short) (s + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
-                    z = true;
-                }
-            }
-            if (z) {
-                shortBuffer.put(s);
-            }
-        }
-    }
-
     public void release() {
         try {
             this.encoder.stop();
@@ -98,7 +73,7 @@ public class AudioRecoder {
         int dequeueInputBuffer;
         if (!this.encoderInputDone && (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
             if (isInputAvailable()) {
-                ShortBuffer asShortBuffer = (Build.VERSION.SDK_INT >= 21 ? this.encoder.getInputBuffer(dequeueInputBuffer) : this.encoder.getInputBuffers()[dequeueInputBuffer]).asShortBuffer();
+                ShortBuffer asShortBuffer = this.encoder.getInputBuffer(dequeueInputBuffer).asShortBuffer();
                 mix(asShortBuffer);
                 this.encoder.queueInputBuffer(dequeueInputBuffer, 0, asShortBuffer.position() * 2, this.encoderInputPresentationTimeUs, 1);
                 this.encoderInputPresentationTimeUs += AudioConversions.shortsToUs(asShortBuffer.position(), this.sampleRate, this.channelCount);
@@ -133,5 +108,29 @@ public class AudioRecoder {
             this.encoder.releaseOutputBuffer(dequeueOutputBuffer, false);
         }
         return this.encoderDone;
+    }
+
+    private void mix(ShortBuffer shortBuffer) {
+        int remaining = shortBuffer.remaining();
+        for (int i = 0; i < remaining && isInputAvailable(); i++) {
+            boolean z = false;
+            short s = 0;
+            for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
+                if (this.audioInputs.get(i2).hasRemaining()) {
+                    s = (short) (s + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
+                    z = true;
+                }
+            }
+            if (z) {
+                shortBuffer.put(s);
+            }
+        }
+    }
+
+    private boolean isInputAvailable() {
+        if (this.encoderInputPresentationTimeUs > this.totalDurationUs) {
+            return false;
+        }
+        return this.mainInput.hasRemaining();
     }
 }

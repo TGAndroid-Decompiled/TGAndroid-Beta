@@ -20,7 +20,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -121,160 +120,6 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     private ActionBarMenuItem speedItem;
     protected final ViewPagerAdapter viewPagerAdapter;
 
-    public class AnonymousClass1 extends DialogsSearchAdapter {
-        final Context val$context;
-        final DialogsActivity val$fragment;
-
-        AnonymousClass1(Context context, DialogsActivity dialogsActivity, int i, int i2, DefaultItemAnimator defaultItemAnimator, boolean z, Theme.ResourcesProvider resourcesProvider, DialogsActivity dialogsActivity2, Context context2) {
-            super(context, dialogsActivity, i, i2, defaultItemAnimator, z, resourcesProvider);
-            this.val$fragment = dialogsActivity2;
-            this.val$context = context2;
-        }
-
-        public void lambda$openSponsoredOptions$2(DialogsActivity dialogsActivity) {
-            removeAllAds();
-            BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
-        }
-
-        public void lambda$openSponsoredOptions$3(final DialogsActivity dialogsActivity, Context context, ItemOptions itemOptions) {
-            dialogsActivity.showDialog(new SearchAdsInfoBottomSheet(context, dialogsActivity.getResourceProvider(), new Runnable() {
-                @Override
-                public final void run() {
-                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$2(dialogsActivity);
-                }
-            }));
-            itemOptions.dismiss();
-        }
-
-        public void lambda$openSponsoredOptions$4(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
-            removeAd(tL_sponsoredPeer);
-        }
-
-        public void lambda$openSponsoredOptions$5(DialogsActivity dialogsActivity, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer, ItemOptions itemOptions) {
-            ReportBottomSheet.openSponsoredPeer(dialogsActivity, tL_sponsoredPeer.random_id, dialogsActivity.getResourceProvider(), new Runnable() {
-                @Override
-                public final void run() {
-                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$4(tL_sponsoredPeer);
-                }
-            });
-            itemOptions.dismiss();
-        }
-
-        public void lambda$openSponsoredOptions$6(DialogsActivity dialogsActivity, ItemOptions itemOptions) {
-            if (UserConfig.getInstance(SearchViewPager.this.currentAccount).isPremium()) {
-                dialogsActivity.getMessagesController().disableAds(true);
-                removeAllAds();
-                BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
-            } else {
-                new PremiumFeatureBottomSheet(dialogsActivity, 3, true).show();
-            }
-            itemOptions.dismiss();
-        }
-
-        @Override
-        public void notifyDataSetChanged() {
-            RecyclerListView recyclerListView;
-            int currentItemCount = getCurrentItemCount();
-            super.notifyDataSetChanged();
-            if (!SearchViewPager.this.lastSearchScrolledToTop && (recyclerListView = SearchViewPager.this.searchListView) != null) {
-                recyclerListView.scrollToPosition(0);
-                SearchViewPager.this.lastSearchScrolledToTop = true;
-            }
-            if (getItemCount() != 0 || currentItemCount == 0 || isSearching()) {
-                return;
-            }
-            SearchViewPager.this.emptyView.showProgress(false, false);
-        }
-
-        @Override
-        protected void openBotApp(TLRPC.User user) {
-            if (user == null) {
-                return;
-            }
-            BaseFragment baseFragment = SearchViewPager.this.parent;
-            if (baseFragment instanceof DialogsActivity) {
-                ((DialogsActivity) baseFragment).closeSearching();
-            }
-            MessagesController.getInstance(SearchViewPager.this.currentAccount).openApp(user, 0);
-            putRecentSearch(user.id, user);
-        }
-
-        @Override
-        protected void openPublicPosts() {
-            SearchViewPager searchViewPager = SearchViewPager.this;
-            HashtagsSearchAdapter hashtagsSearchAdapter = searchViewPager.hashtagSearchAdapter;
-            DialogsSearchAdapter dialogsSearchAdapter = searchViewPager.dialogsSearchAdapter;
-            hashtagsSearchAdapter.setInitialData(dialogsSearchAdapter.publicPostsHashtag, dialogsSearchAdapter.publicPosts, dialogsSearchAdapter.publicPostsLastRate, dialogsSearchAdapter.publicPostsTotalCount);
-            SearchViewPager searchViewPager2 = SearchViewPager.this;
-            searchViewPager2.expandedPublicPosts = true;
-            searchViewPager2.hashtagSearchLayoutManager.scrollToPositionWithOffset(0, 0);
-            SearchViewPager.this.updateTabs();
-            ViewPagerFixed.TabsView tabsView = SearchViewPager.this.tabsView;
-            if (tabsView != null && tabsView.getCurrentTabId() != 1) {
-                SearchViewPager.this.tabsView.scrollToTab(1, 1);
-            }
-            SearchViewPager searchViewPager3 = SearchViewPager.this;
-            searchViewPager3.hashtagSearchAdapter.search(searchViewPager3.lastSearchString);
-        }
-
-        @Override
-        protected void openSponsoredOptions(ProfileSearchCell profileSearchCell, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
-            AndroidUtilities.hideKeyboard(this.val$fragment.getParentActivity().getCurrentFocus());
-            final ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this.val$fragment, (View) profileSearchCell, true);
-            if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info) || !TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
-                final ItemOptions addGap = makeOptions.makeSwipeback().add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
-                    @Override
-                    public final void run() {
-                        ItemOptions.this.closeSwipeback();
-                    }
-                }).addGap();
-                if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
-                    addGap.addText(tL_sponsoredPeer.sponsor_info, 13);
-                }
-                if (!TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
-                    if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
-                        addGap.addGap();
-                    }
-                    addGap.addText(tL_sponsoredPeer.additional_info, 13);
-                }
-                makeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new Runnable() {
-                    @Override
-                    public final void run() {
-                        ItemOptions.this.openSwipeback(addGap);
-                    }
-                });
-            }
-            int i = R.drawable.msg_info;
-            String string = LocaleController.getString(R.string.AboutRevenueSharingAds);
-            final DialogsActivity dialogsActivity = this.val$fragment;
-            final Context context = this.val$context;
-            ItemOptions add = makeOptions.add(i, string, new Runnable() {
-                @Override
-                public final void run() {
-                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$3(dialogsActivity, context, makeOptions);
-                }
-            });
-            int i2 = R.drawable.msg_block2;
-            String string2 = LocaleController.getString(R.string.ReportAd);
-            final DialogsActivity dialogsActivity2 = this.val$fragment;
-            ItemOptions addGap2 = add.add(i2, string2, new Runnable() {
-                @Override
-                public final void run() {
-                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$5(dialogsActivity2, tL_sponsoredPeer, makeOptions);
-                }
-            }).addGap();
-            int i3 = R.drawable.msg_cancel;
-            String string3 = LocaleController.getString(R.string.RemoveAds);
-            final DialogsActivity dialogsActivity3 = this.val$fragment;
-            addGap2.add(i3, string3, new Runnable() {
-                @Override
-                public final void run() {
-                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$6(dialogsActivity3, makeOptions);
-                }
-            }).setGravity(LocaleController.isRTL ? 3 : 5).setOnTopOfScrim().setDrawScrim(false).show();
-        }
-    }
-
     public interface ChatPreviewDelegate {
         void finish();
 
@@ -283,144 +128,11 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell);
     }
 
-    public class ViewPagerAdapter extends ViewPagerFixed.Adapter {
-        ArrayList items = new ArrayList();
-
-        public class Item {
-            int filterIndex;
-            private final int type;
-
-            private Item(int i) {
-                this.type = i;
-            }
-
-            Item(ViewPagerAdapter viewPagerAdapter, int i, AnonymousClass1 anonymousClass1) {
-                this(i);
-            }
-        }
-
-        public ViewPagerAdapter() {
-            updateItems();
-        }
-
-        @Override
-        public void bindView(View view, int i, int i2) {
-            SearchViewPager searchViewPager = SearchViewPager.this;
-            searchViewPager.search(view, i, searchViewPager.lastSearchString, true);
-        }
-
-        @Override
-        public View createView(int i) {
-            if (i == 1) {
-                return SearchViewPager.this.searchContainer;
-            }
-            if (i == 3) {
-                return SearchViewPager.this.channelsSearchContainer;
-            }
-            if (i == 4) {
-                return SearchViewPager.this.botsSearchContainer;
-            }
-            if (i == 5) {
-                return SearchViewPager.this.hashtagSearchContainer;
-            }
-            if (i == 2) {
-                SearchViewPager searchViewPager = SearchViewPager.this;
-                SearchViewPager searchViewPager2 = SearchViewPager.this;
-                searchViewPager.downloadsContainer = new SearchDownloadsContainer(searchViewPager2.parent, searchViewPager2.currentAccount);
-                SearchViewPager.this.downloadsContainer.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                        super.onScrolled(recyclerView, i2, i3);
-                        SearchViewPager.this.fragmentView.invalidateBlur();
-                    }
-                });
-                SearchViewPager.this.downloadsContainer.setUiCallback(SearchViewPager.this);
-                return SearchViewPager.this.downloadsContainer;
-            }
-            if (i == 6) {
-                return SearchViewPager.this.postsSearchContainer;
-            }
-            FilteredSearchView filteredSearchView = new FilteredSearchView(SearchViewPager.this.parent);
-            filteredSearchView.setChatPreviewDelegate(SearchViewPager.this.chatPreviewDelegate);
-            filteredSearchView.setUiCallback(SearchViewPager.this);
-            filteredSearchView.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                    super.onScrolled(recyclerView, i2, i3);
-                    SearchViewPager.this.fragmentView.invalidateBlur();
-                }
-            });
-            return filteredSearchView;
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.items.size();
-        }
-
-        @Override
-        public CharSequence getItemTitle(int i) {
-            return ((Item) this.items.get(i)).type == 0 ? LocaleController.getString(R.string.SearchAllChatsShort) : ((Item) this.items.get(i)).type == 1 ? LocaleController.getString(R.string.ChannelsTab) : ((Item) this.items.get(i)).type == 4 ? LocaleController.getString(R.string.AppsTab) : ((Item) this.items.get(i)).type == 6 ? SearchViewPager.this.postsAreNew ? PremiumPreviewFragment.applyNewSpan(LocaleController.getString(R.string.SearchPosts)) : LocaleController.getString(R.string.SearchPosts) : ((Item) this.items.get(i)).type == 2 ? LocaleController.getString(R.string.DownloadsTabs) : ((Item) this.items.get(i)).type == 5 ? LocaleController.getString(R.string.PublicPostsTabs) : FiltersView.filters[((Item) this.items.get(i)).filterIndex].getTitle();
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (((Item) this.items.get(i)).type == 0) {
-                return 1;
-            }
-            if (((Item) this.items.get(i)).type == 1) {
-                return 3;
-            }
-            if (((Item) this.items.get(i)).type == 4) {
-                return 4;
-            }
-            if (((Item) this.items.get(i)).type == 2) {
-                return 2;
-            }
-            if (((Item) this.items.get(i)).type == 5) {
-                return 5;
-            }
-            if (((Item) this.items.get(i)).type == 6) {
-                return 6;
-            }
-            return ((Item) this.items.get(i)).type + i;
-        }
-
-        public void updateItems() {
-            this.items.clear();
-            AnonymousClass1 anonymousClass1 = null;
-            this.items.add(new Item(this, 0, anonymousClass1));
-            if (SearchViewPager.this.expandedPublicPosts) {
-                this.items.add(new Item(this, 5, anonymousClass1));
-            }
-            this.items.add(new Item(this, 1, anonymousClass1));
-            this.items.add(new Item(this, 4, anonymousClass1));
-            this.items.add(new Item(this, 6, anonymousClass1));
-            if (SearchViewPager.this.showOnlyDialogsAdapter) {
-                return;
-            }
-            int i = 3;
-            Item item = new Item(this, i, anonymousClass1);
-            item.filterIndex = 0;
-            this.items.add(item);
-            int i2 = 2;
-            if (SearchViewPager.this.includeDownloads()) {
-                this.items.add(new Item(this, i2, anonymousClass1));
-            }
-            Item item2 = new Item(this, i, anonymousClass1);
-            item2.filterIndex = 1;
-            this.items.add(item2);
-            Item item3 = new Item(this, i, anonymousClass1);
-            item3.filterIndex = 2;
-            this.items.add(item3);
-            Item item4 = new Item(this, i, anonymousClass1);
-            item4.filterIndex = 3;
-            this.items.add(item4);
-            Item item5 = new Item(this, i, anonymousClass1);
-            item5.filterIndex = 4;
-            this.items.add(item5);
-        }
+    public static boolean lambda$showActionMode$0(View view, MotionEvent motionEvent) {
+        return true;
     }
+
+    protected abstract boolean includeDownloads();
 
     public SearchViewPager(Context context, final DialogsActivity dialogsActivity, int i, int i2, int i3, ChatPreviewDelegate chatPreviewDelegate) {
         super(context);
@@ -610,11 +322,6 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         RecyclerListView recyclerListView3 = this.channelsSearchListView;
         DialogsChannelsAdapter dialogsChannelsAdapter = new DialogsChannelsAdapter(recyclerListView3, context, this.currentAccount, i3, null) {
             @Override
-            protected void hideKeyboard() {
-                AndroidUtilities.hideKeyboard(dialogsActivity.getParentActivity().getCurrentFocus());
-            }
-
-            @Override
             public void update(boolean z) {
                 ArrayList arrayList2;
                 ArrayList arrayList3;
@@ -622,14 +329,19 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 ArrayList arrayList5;
                 super.update(z);
                 SearchViewPager.this.channelsEmptyView.showProgress(this.loadingMessages || this.loadingChannels || (arrayList2 = this.messages) == null || !arrayList2.isEmpty() || (arrayList3 = this.searchMyChannels) == null || !arrayList3.isEmpty() || (arrayList4 = this.searchChannels) == null || !arrayList4.isEmpty() || (arrayList5 = this.searchRecommendedChannels) == null || !arrayList5.isEmpty(), z);
-                if (!TextUtils.isEmpty(this.query)) {
-                    SearchViewPager.this.channelsEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
-                    SearchViewPager.this.channelsEmptyView.subtitle.setVisibility(8);
-                } else {
+                if (TextUtils.isEmpty(this.query)) {
                     SearchViewPager.this.channelsEmptyView.title.setText(LocaleController.getString(R.string.NoChannelsTitle));
                     SearchViewPager.this.channelsEmptyView.subtitle.setVisibility(0);
                     SearchViewPager.this.channelsEmptyView.subtitle.setText(LocaleController.getString(R.string.NoChannelsMessage));
+                } else {
+                    SearchViewPager.this.channelsEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
+                    SearchViewPager.this.channelsEmptyView.subtitle.setVisibility(8);
                 }
+            }
+
+            @Override
+            protected void hideKeyboard() {
+                AndroidUtilities.hideKeyboard(dialogsActivity.getParentActivity().getCurrentFocus());
             }
         };
         this.channelsSearchAdapter = dialogsChannelsAdapter;
@@ -770,19 +482,19 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         RecyclerListView recyclerListView7 = this.hashtagSearchListView;
         HashtagsSearchAdapter hashtagsSearchAdapter = new HashtagsSearchAdapter(recyclerListView7, context, this.currentAccount, i3, null) {
             @Override
-            protected void scrollToTop(boolean z) {
-                if (z && SearchViewPager.this.hashtagSearchListView.canScrollVertically(-1)) {
-                    return;
-                }
-                SearchViewPager.this.hashtagSearchLayoutManager.scrollToPositionWithOffset(0, 0);
-            }
-
-            @Override
             public void update(boolean z) {
                 super.update(z);
                 SearchViewPager.this.hashtagEmptyView.showProgress(false, z);
                 SearchViewPager.this.hashtagEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
                 SearchViewPager.this.hashtagEmptyView.subtitle.setVisibility(8);
+            }
+
+            @Override
+            protected void scrollToTop(boolean z) {
+                if (z && SearchViewPager.this.hashtagSearchListView.canScrollVertically(-1)) {
+                    return;
+                }
+                SearchViewPager.this.hashtagSearchLayoutManager.scrollToPositionWithOffset(0, 0);
             }
         };
         this.hashtagSearchAdapter = hashtagsSearchAdapter;
@@ -808,75 +520,195 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         setAdapter(viewPagerAdapter);
     }
 
-    private boolean isSpeedItemVisible() {
-        if (!UserConfig.getInstance(this.currentAccount).isPremium() && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
-            for (MessageObject messageObject : this.selectedFiles.values()) {
-                if (messageObject.getDocument() != null && messageObject.getDocument().size >= 157286400) {
-                    return true;
+    public class AnonymousClass1 extends DialogsSearchAdapter {
+        final Context val$context;
+        final DialogsActivity val$fragment;
+
+        AnonymousClass1(Context context, DialogsActivity dialogsActivity, int i, int i2, DefaultItemAnimator defaultItemAnimator, boolean z, Theme.ResourcesProvider resourcesProvider, DialogsActivity dialogsActivity2, Context context2) {
+            super(context, dialogsActivity, i, i2, defaultItemAnimator, z, resourcesProvider);
+            this.val$fragment = dialogsActivity2;
+            this.val$context = context2;
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+            RecyclerListView recyclerListView;
+            int currentItemCount = getCurrentItemCount();
+            super.notifyDataSetChanged();
+            if (!SearchViewPager.this.lastSearchScrolledToTop && (recyclerListView = SearchViewPager.this.searchListView) != null) {
+                recyclerListView.scrollToPosition(0);
+                SearchViewPager.this.lastSearchScrolledToTop = true;
+            }
+            if (getItemCount() != 0 || currentItemCount == 0 || isSearching()) {
+                return;
+            }
+            SearchViewPager.this.emptyView.showProgress(false, false);
+        }
+
+        @Override
+        protected void openPublicPosts() {
+            SearchViewPager searchViewPager = SearchViewPager.this;
+            HashtagsSearchAdapter hashtagsSearchAdapter = searchViewPager.hashtagSearchAdapter;
+            DialogsSearchAdapter dialogsSearchAdapter = searchViewPager.dialogsSearchAdapter;
+            hashtagsSearchAdapter.setInitialData(dialogsSearchAdapter.publicPostsHashtag, dialogsSearchAdapter.publicPosts, dialogsSearchAdapter.publicPostsLastRate, dialogsSearchAdapter.publicPostsTotalCount);
+            SearchViewPager searchViewPager2 = SearchViewPager.this;
+            searchViewPager2.expandedPublicPosts = true;
+            searchViewPager2.hashtagSearchLayoutManager.scrollToPositionWithOffset(0, 0);
+            SearchViewPager.this.updateTabs();
+            ViewPagerFixed.TabsView tabsView = SearchViewPager.this.tabsView;
+            if (tabsView != null && tabsView.getCurrentTabId() != 1) {
+                SearchViewPager.this.tabsView.scrollToTab(1, 1);
+            }
+            SearchViewPager searchViewPager3 = SearchViewPager.this;
+            searchViewPager3.hashtagSearchAdapter.search(searchViewPager3.lastSearchString);
+        }
+
+        @Override
+        protected void openBotApp(TLRPC.User user) {
+            if (user == null) {
+                return;
+            }
+            BaseFragment baseFragment = SearchViewPager.this.parent;
+            if (baseFragment instanceof DialogsActivity) {
+                ((DialogsActivity) baseFragment).closeSearching();
+            }
+            MessagesController.getInstance(SearchViewPager.this.currentAccount).openApp(user, 0);
+            putRecentSearch(user.id, user);
+        }
+
+        @Override
+        protected void openSponsoredOptions(ProfileSearchCell profileSearchCell, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
+            AndroidUtilities.hideKeyboard(this.val$fragment.getParentActivity().getCurrentFocus());
+            final ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this.val$fragment, (View) profileSearchCell, true);
+            if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info) || !TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
+                final ItemOptions addGap = makeOptions.makeSwipeback().add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ItemOptions.this.closeSwipeback();
+                    }
+                }).addGap();
+                if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
+                    addGap.addText(tL_sponsoredPeer.sponsor_info, 13);
                 }
+                if (!TextUtils.isEmpty(tL_sponsoredPeer.additional_info)) {
+                    if (!TextUtils.isEmpty(tL_sponsoredPeer.sponsor_info)) {
+                        addGap.addGap();
+                    }
+                    addGap.addText(tL_sponsoredPeer.additional_info, 13);
+                }
+                makeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ItemOptions.this.openSwipeback(addGap);
+                    }
+                });
+            }
+            int i = R.drawable.msg_info;
+            String string = LocaleController.getString(R.string.AboutRevenueSharingAds);
+            final DialogsActivity dialogsActivity = this.val$fragment;
+            final Context context = this.val$context;
+            ItemOptions add = makeOptions.add(i, string, new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$3(dialogsActivity, context, makeOptions);
+                }
+            });
+            int i2 = R.drawable.msg_block2;
+            String string2 = LocaleController.getString(R.string.ReportAd);
+            final DialogsActivity dialogsActivity2 = this.val$fragment;
+            ItemOptions addGap2 = add.add(i2, string2, new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$5(dialogsActivity2, tL_sponsoredPeer, makeOptions);
+                }
+            }).addGap();
+            int i3 = R.drawable.msg_cancel;
+            String string3 = LocaleController.getString(R.string.RemoveAds);
+            final DialogsActivity dialogsActivity3 = this.val$fragment;
+            addGap2.add(i3, string3, new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$6(dialogsActivity3, makeOptions);
+                }
+            }).setGravity(LocaleController.isRTL ? 3 : 5).setOnTopOfScrim().setDrawScrim(false).show();
+        }
+
+        public void lambda$openSponsoredOptions$3(final DialogsActivity dialogsActivity, Context context, ItemOptions itemOptions) {
+            dialogsActivity.showDialog(new SearchAdsInfoBottomSheet(context, dialogsActivity.getResourceProvider(), new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$2(dialogsActivity);
+                }
+            }));
+            itemOptions.dismiss();
+        }
+
+        public void lambda$openSponsoredOptions$2(DialogsActivity dialogsActivity) {
+            removeAllAds();
+            BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        }
+
+        public void lambda$openSponsoredOptions$5(DialogsActivity dialogsActivity, final TLRPC.TL_sponsoredPeer tL_sponsoredPeer, ItemOptions itemOptions) {
+            ReportBottomSheet.openSponsoredPeer(dialogsActivity, tL_sponsoredPeer.random_id, dialogsActivity.getResourceProvider(), new Runnable() {
+                @Override
+                public final void run() {
+                    SearchViewPager.AnonymousClass1.this.lambda$openSponsoredOptions$4(tL_sponsoredPeer);
+                }
+            });
+            itemOptions.dismiss();
+        }
+
+        public void lambda$openSponsoredOptions$4(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
+            removeAd(tL_sponsoredPeer);
+        }
+
+        public void lambda$openSponsoredOptions$6(DialogsActivity dialogsActivity, ItemOptions itemOptions) {
+            if (UserConfig.getInstance(SearchViewPager.this.currentAccount).isPremium()) {
+                dialogsActivity.getMessagesController().disableAds(true);
+                removeAllAds();
+                BulletinFactory.of(dialogsActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+            } else {
+                new PremiumFeatureBottomSheet(dialogsActivity, 3, true).show();
+            }
+            itemOptions.dismiss();
+        }
+    }
+
+    public ActionBarMenu getActionMode() {
+        return this.actionMode;
+    }
+
+    public ActionBarMenuItem getSpeedItem() {
+        return this.speedItem;
+    }
+
+    public void onTextChanged(String str) {
+        View currentView = getCurrentView();
+        boolean z = TextUtils.isEmpty(this.lastSearchString) ? true : !this.attached;
+        this.lastSearchString = str;
+        search(currentView, getCurrentPosition(), str, z);
+    }
+
+    public void updateTabs() {
+        updateTabs(false);
+    }
+
+    public void updateTabs(boolean z) {
+        this.viewPagerAdapter.updateItems();
+        fillTabs(z);
+        ViewPagerFixed.TabsView tabsView = this.tabsView;
+        if (tabsView != null) {
+            tabsView.finishAddingTabs();
+        }
+    }
+
+    public boolean includeFolder() {
+        for (int i = 0; i < this.currentSearchFilters.size(); i++) {
+            if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).filterType == 7) {
+                return true;
             }
         }
         return false;
-    }
-
-    public void lambda$getThemeDescriptions$4() {
-        NumberTextView numberTextView = this.selectedMessagesCountTextView;
-        if (numberTextView != null) {
-            numberTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
-        }
-    }
-
-    public void lambda$onActionBarItemClick$2(ArrayList arrayList, AlertDialog alertDialog, int i) {
-        alertDialog.dismiss();
-        this.parent.getDownloadController().deleteRecentFiles(arrayList);
-        hideActionMode();
-    }
-
-    public boolean lambda$onActionBarItemClick$3(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
-        String str;
-        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-        Iterator it = this.selectedFiles.keySet().iterator();
-        while (it.hasNext()) {
-            arrayList2.add((MessageObject) this.selectedFiles.get((FilteredSearchView.MessageHashId) it.next()));
-        }
-        this.selectedFiles.clear();
-        showActionMode(false);
-        if (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == AccountInstance.getInstance(this.currentAccount).getUserConfig().getClientUserId() || charSequence != null) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                long j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
-                if (charSequence != null) {
-                    AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
-                }
-                AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
-            }
-            dialogsActivity.lambda$onBackPressed$355();
-        } else {
-            long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("scrollToTopOnResume", true);
-            if (DialogObject.isEncryptedDialog(j2)) {
-                bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j2));
-            } else {
-                if (DialogObject.isUserDialog(j2)) {
-                    str = "user_id";
-                } else {
-                    j2 = -j2;
-                    str = "chat_id";
-                }
-                bundle.putLong(str, j2);
-                if (!AccountInstance.getInstance(this.currentAccount).getMessagesController().checkCanOpenChat(bundle, dialogsActivity)) {
-                    return true;
-                }
-            }
-            ChatActivity chatActivity = new ChatActivity(bundle);
-            dialogsActivity.presentFragment(chatActivity, true);
-            chatActivity.showFieldPanelForForward(true, arrayList2);
-        }
-        return true;
-    }
-
-    public static boolean lambda$showActionMode$0(View view, MotionEvent motionEvent) {
-        return true;
     }
 
     public void search(View view, int i, String str, boolean z) {
@@ -950,68 +782,110 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             this.hashtagEmptyView.setKeyboardHeight(this.keyboardSize, z3);
             return;
         }
-        if (view != this.searchContainer) {
-            if (view instanceof FilteredSearchView) {
-                FilteredSearchView filteredSearchView = (FilteredSearchView) view;
-                filteredSearchView.setUseFromUserAsAvatar(searchForumDialogId != 0);
-                filteredSearchView.setKeyboardHeight(this.keyboardSize, false);
-                filteredSearchView.search(j, j2, j3, FiltersView.filters[((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i)).filterIndex], z4, str, z);
-                return;
+        if (view == this.searchContainer) {
+            if ((j == 0 && j2 == 0 && j3 == 0) || searchForumDialogId != 0) {
+                this.lastSearchScrolledToTop = false;
+                this.dialogsSearchAdapter.searchDialogs(str, z4 ? 1 : 0, true);
+                this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, false);
+                this.noMediaFiltersSearchView.animate().setListener(null).cancel();
+                this.noMediaFiltersSearchView.setDelegate(null, false);
+                if (z) {
+                    this.emptyView.showProgress(true ^ this.dialogsSearchAdapter.isSearching(), false);
+                    this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), false);
+                } else if (!this.dialogsSearchAdapter.hasRecentSearch()) {
+                    this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), true);
+                }
+                if (z) {
+                    this.noMediaFiltersSearchView.setVisibility(8);
+                } else if (this.noMediaFiltersSearchView.getVisibility() != 8) {
+                    this.noMediaFiltersSearchView.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            SearchViewPager.this.noMediaFiltersSearchView.setVisibility(8);
+                        }
+                    }).setDuration(150L).start();
+                }
+                this.noMediaFiltersSearchView.setTag(null);
+            } else {
+                this.noMediaFiltersSearchView.setTag(1);
+                this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
+                this.noMediaFiltersSearchView.animate().setListener(null).cancel();
+                if (z) {
+                    this.noMediaFiltersSearchView.setVisibility(0);
+                    this.noMediaFiltersSearchView.setAlpha(1.0f);
+                    z2 = z;
+                } else {
+                    if (this.noMediaFiltersSearchView.getVisibility() != 0) {
+                        this.noMediaFiltersSearchView.setVisibility(0);
+                        this.noMediaFiltersSearchView.setAlpha(0.0f);
+                    } else {
+                        r3 = z;
+                    }
+                    this.noMediaFiltersSearchView.animate().alpha(1.0f).setDuration(150L).start();
+                    z2 = r3;
+                }
+                this.noMediaFiltersSearchView.search(j, j2, j3, null, z4, str, z2);
+                this.emptyView.setVisibility(8);
             }
-            if (view instanceof SearchDownloadsContainer) {
-                SearchDownloadsContainer searchDownloadsContainer = (SearchDownloadsContainer) view;
-                searchDownloadsContainer.setKeyboardHeight(this.keyboardSize, false);
-                searchDownloadsContainer.search(str);
-                return;
-            }
+            this.emptyView.setKeyboardHeight(this.keyboardSize, false);
+            this.noMediaFiltersSearchView.setKeyboardHeight(this.keyboardSize, false);
             return;
         }
-        if (!(j == 0 && j2 == 0 && j3 == 0) && searchForumDialogId == 0) {
-            this.noMediaFiltersSearchView.setTag(1);
-            this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
-            this.noMediaFiltersSearchView.animate().setListener(null).cancel();
-            if (z) {
-                this.noMediaFiltersSearchView.setVisibility(0);
-                this.noMediaFiltersSearchView.setAlpha(1.0f);
-                z2 = z;
-            } else {
-                if (this.noMediaFiltersSearchView.getVisibility() != 0) {
-                    this.noMediaFiltersSearchView.setVisibility(0);
-                    this.noMediaFiltersSearchView.setAlpha(0.0f);
-                } else {
-                    r3 = z;
-                }
-                this.noMediaFiltersSearchView.animate().alpha(1.0f).setDuration(150L).start();
-                z2 = r3;
-            }
-            this.noMediaFiltersSearchView.search(j, j2, j3, null, z4, str, z2);
-            this.emptyView.setVisibility(8);
-        } else {
-            this.lastSearchScrolledToTop = false;
-            this.dialogsSearchAdapter.searchDialogs(str, z4 ? 1 : 0, true);
-            this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, false);
-            this.noMediaFiltersSearchView.animate().setListener(null).cancel();
-            this.noMediaFiltersSearchView.setDelegate(null, false);
-            if (z) {
-                this.emptyView.showProgress(true ^ this.dialogsSearchAdapter.isSearching(), false);
-                this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), false);
-            } else if (!this.dialogsSearchAdapter.hasRecentSearch()) {
-                this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), true);
-            }
-            if (z) {
-                this.noMediaFiltersSearchView.setVisibility(8);
-            } else if (this.noMediaFiltersSearchView.getVisibility() != 8) {
-                this.noMediaFiltersSearchView.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        SearchViewPager.this.noMediaFiltersSearchView.setVisibility(8);
-                    }
-                }).setDuration(150L).start();
-            }
-            this.noMediaFiltersSearchView.setTag(null);
+        if (view instanceof FilteredSearchView) {
+            FilteredSearchView filteredSearchView = (FilteredSearchView) view;
+            filteredSearchView.setUseFromUserAsAvatar(searchForumDialogId != 0);
+            filteredSearchView.setKeyboardHeight(this.keyboardSize, false);
+            filteredSearchView.search(j, j2, j3, FiltersView.filters[((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i)).filterIndex], z4, str, z);
+            return;
         }
-        this.emptyView.setKeyboardHeight(this.keyboardSize, false);
-        this.noMediaFiltersSearchView.setKeyboardHeight(this.keyboardSize, false);
+        if (view instanceof SearchDownloadsContainer) {
+            SearchDownloadsContainer searchDownloadsContainer = (SearchDownloadsContainer) view;
+            searchDownloadsContainer.setKeyboardHeight(this.keyboardSize, false);
+            searchDownloadsContainer.search(str);
+        }
+    }
+
+    public SearchDownloadsContainer getDownloadsContainer() {
+        return this.downloadsContainer;
+    }
+
+    public void onResume() {
+        DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
+        if (dialogsSearchAdapter != null) {
+            dialogsSearchAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
+        this.currentSearchFilters.remove(mediaFilterData);
+    }
+
+    public ArrayList<FiltersView.MediaFilterData> getCurrentSearchFilters() {
+        return this.currentSearchFilters;
+    }
+
+    public void clear() {
+        this.currentSearchFilters.clear();
+        collapsePublicPosts();
+    }
+
+    public void collapsePublicPosts() {
+        if (this.expandedPublicPosts) {
+            this.expandedPublicPosts = false;
+            updateTabs();
+            ViewPagerFixed.TabsView tabsView = this.tabsView;
+            if (tabsView != null && tabsView.getCurrentTabId() != 0) {
+                this.tabsView.scrollToTab(0, 0);
+            }
+            DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
+            if (dialogsSearchAdapter != null) {
+                dialogsSearchAdapter.searchDialogs(this.lastSearchString, includeFolder() ? 1 : 0, true);
+            }
+        }
+    }
+
+    public void setFilteredSearchViewDelegate(FilteredSearchView.Delegate delegate) {
+        this.filteredSearchViewDelegate = delegate;
     }
 
     private void showActionMode(boolean z) {
@@ -1093,188 +967,15 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         }
     }
 
-    @Override
-    public boolean actionModeShowing() {
-        return this.isActionModeShowed;
-    }
-
-    public void cancelEnterAnimation() {
-        this.itemsEnterAnimator.cancel();
-        this.searchListView.invalidate();
-        this.animateFromCount = 0;
-    }
-
-    public void clear() {
-        this.currentSearchFilters.clear();
-        collapsePublicPosts();
-    }
-
-    public void collapsePublicPosts() {
-        if (this.expandedPublicPosts) {
-            this.expandedPublicPosts = false;
-            updateTabs();
-            ViewPagerFixed.TabsView tabsView = this.tabsView;
-            if (tabsView != null && tabsView.getCurrentTabId() != 0) {
-                this.tabsView.scrollToTab(0, 0);
-            }
-            DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
-            if (dialogsSearchAdapter != null) {
-                dialogsSearchAdapter.searchDialogs(this.lastSearchString, includeFolder() ? 1 : 0, true);
-            }
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        UniversalAdapter universalAdapter;
-        if (i == NotificationCenter.channelRecommendationsLoaded) {
-            this.channelsEmptyView.showProgress(MessagesController.getInstance(this.currentAccount).getChannelRecommendations(0L) != null, true);
-        } else if (i != NotificationCenter.dialogDeleted && i != NotificationCenter.dialogsNeedReload) {
-            if (i == NotificationCenter.reloadWebappsHints) {
-                universalAdapter = this.botsSearchAdapter;
-                universalAdapter.update(true);
-            } else {
-                if (i == NotificationCenter.storiesListUpdated) {
-                    Object obj = objArr[0];
-                    HashtagsSearchAdapter hashtagsSearchAdapter = this.hashtagSearchAdapter;
-                    if (obj == hashtagsSearchAdapter.list) {
-                        hashtagsSearchAdapter.update(true);
-                        return;
-                    }
-                    return;
+    private boolean isSpeedItemVisible() {
+        if (!UserConfig.getInstance(this.currentAccount).isPremium() && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+            for (MessageObject messageObject : this.selectedFiles.values()) {
+                if (messageObject.getDocument() != null && messageObject.getDocument().size >= 157286400) {
+                    return true;
                 }
-                return;
-            }
-        }
-        this.channelsSearchAdapter.updateMyChannels();
-        universalAdapter = this.channelsSearchAdapter;
-        universalAdapter.update(true);
-    }
-
-    public ActionBarMenu getActionMode() {
-        return this.actionMode;
-    }
-
-    public ArrayList<FiltersView.MediaFilterData> getCurrentSearchFilters() {
-        return this.currentSearchFilters;
-    }
-
-    public SearchDownloadsContainer getDownloadsContainer() {
-        return this.downloadsContainer;
-    }
-
-    public int getFolderId() {
-        return this.folderId;
-    }
-
-    public int getPositionForType(int i) {
-        for (int i2 = 0; i2 < this.viewPagerAdapter.items.size(); i2++) {
-            if (((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i2)).type == 3 && ((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i2)).filterIndex == i) {
-                return i2;
-            }
-        }
-        return -1;
-    }
-
-    public ActionBarMenuItem getSpeedItem() {
-        return this.speedItem;
-    }
-
-    public ViewPagerFixed.TabsView getTabsView() {
-        return this.tabsView;
-    }
-
-    public void getThemeDescriptions(ArrayList arrayList) {
-        for (int i = 0; i < this.searchListView.getChildCount(); i++) {
-            View childAt = this.searchListView.getChildAt(i);
-            if ((childAt instanceof ProfileSearchCell) || (childAt instanceof DialogCell) || (childAt instanceof HashtagSearchCell)) {
-                arrayList.add(new ThemeDescription(childAt, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-            }
-        }
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            if (getChildAt(i2) instanceof FilteredSearchView) {
-                arrayList.addAll(((FilteredSearchView) getChildAt(i2)).getThemeDescriptions());
-            }
-        }
-        int size = this.viewsByType.size();
-        for (int i3 = 0; i3 < size; i3++) {
-            View view = (View) this.viewsByType.valueAt(i3);
-            if (view instanceof FilteredSearchView) {
-                arrayList.addAll(((FilteredSearchView) view).getThemeDescriptions());
-            }
-        }
-        FilteredSearchView filteredSearchView = this.noMediaFiltersSearchView;
-        if (filteredSearchView != null) {
-            arrayList.addAll(filteredSearchView.getThemeDescriptions());
-        }
-        arrayList.add(new ThemeDescription(this.emptyView.title, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
-        arrayList.add(new ThemeDescription(this.emptyView.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText));
-        arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
-            @Override
-            public final void didSetColor() {
-                SearchViewPager.this.lambda$getThemeDescriptions$4();
-            }
-
-            @Override
-            public void onAnimationProgress(float f) {
-                ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
-            }
-        }, Theme.key_actionBarActionModeDefaultIcon));
-    }
-
-    @Override
-    public void goToMessage(MessageObject messageObject) {
-        String str;
-        Bundle bundle = new Bundle();
-        long dialogId = messageObject.getDialogId();
-        if (DialogObject.isEncryptedDialog(dialogId)) {
-            bundle.putInt("enc_id", DialogObject.getEncryptedChatId(dialogId));
-        } else {
-            if (DialogObject.isUserDialog(dialogId)) {
-                str = "user_id";
-            } else {
-                TLRPC.Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-dialogId));
-                if (chat != null && chat.migrated_to != null) {
-                    bundle.putLong("migrated_to", dialogId);
-                    dialogId = -chat.migrated_to.channel_id;
-                }
-                dialogId = -dialogId;
-                str = "chat_id";
-            }
-            bundle.putLong(str, dialogId);
-        }
-        bundle.putInt("message_id", messageObject.getId());
-        this.parent.presentFragment(new ChatActivity(bundle));
-        showActionMode(false);
-    }
-
-    public void hideActionMode() {
-        showActionMode(false);
-    }
-
-    protected abstract boolean includeDownloads();
-
-    public boolean includeFolder() {
-        for (int i = 0; i < this.currentSearchFilters.size(); i++) {
-            if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).filterType == 7) {
-                return true;
             }
         }
         return false;
-    }
-
-    @Override
-    protected void invalidateBlur() {
-        this.fragmentView.invalidateBlur();
-    }
-
-    @Override
-    public boolean isSelected(FilteredSearchView.MessageHashId messageHashId) {
-        return this.selectedFiles.containsKey(messageHashId);
-    }
-
-    public void messagesDeleted(long r12, java.util.ArrayList r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SearchViewPager.messagesDeleted(long, java.util.ArrayList):void");
     }
 
     public void onActionBarItemClick(int i) {
@@ -1344,159 +1045,84 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         }
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.channelRecommendationsLoaded);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogDeleted);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.reloadWebappsHints);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-        this.attached = true;
-        DialogsChannelsAdapter dialogsChannelsAdapter = this.channelsSearchAdapter;
-        if (dialogsChannelsAdapter != null) {
-            dialogsChannelsAdapter.update(false);
-        }
-        DialogsBotsAdapter dialogsBotsAdapter = this.botsSearchAdapter;
-        if (dialogsBotsAdapter != null) {
-            dialogsBotsAdapter.update(false);
-        }
+    public void lambda$onActionBarItemClick$2(ArrayList arrayList, AlertDialog alertDialog, int i) {
+        alertDialog.dismiss();
+        this.parent.getDownloadController().deleteRecentFiles(arrayList);
+        hideActionMode();
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attached = false;
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogDeleted);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.reloadWebappsHints);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    @Override
-    protected void onItemSelected(View view, View view2, int i, int i2) {
-        if (i == 0) {
-            if (this.noMediaFiltersSearchView.getVisibility() == 0) {
-                this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
-                this.dialogsSearchAdapter.setFiltersDelegate(null, false);
-            } else {
-                this.noMediaFiltersSearchView.setDelegate(null, false);
-                this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, true);
+    public boolean lambda$onActionBarItemClick$3(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+        Iterator it = this.selectedFiles.keySet().iterator();
+        while (it.hasNext()) {
+            arrayList2.add((MessageObject) this.selectedFiles.get((FilteredSearchView.MessageHashId) it.next()));
+        }
+        this.selectedFiles.clear();
+        showActionMode(false);
+        if (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == AccountInstance.getInstance(this.currentAccount).getUserConfig().getClientUserId() || charSequence != null) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                long j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
+                if (charSequence != null) {
+                    AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
+                }
+                AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
             }
-        } else if (view instanceof FilteredSearchView) {
-            ((FilteredSearchView) view).setDelegate(this.filteredSearchViewDelegate, i2 == 0 && this.noMediaFiltersSearchView.getVisibility() != 0);
-        }
-        if (view2 instanceof FilteredSearchView) {
-            ((FilteredSearchView) view2).setDelegate(null, false);
+            dialogsActivity.lambda$onBackPressed$355();
         } else {
-            this.dialogsSearchAdapter.setFiltersDelegate(null, false);
-            this.noMediaFiltersSearchView.setDelegate(null, false);
-        }
-    }
-
-    public void onResume() {
-        DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
-        if (dialogsSearchAdapter != null) {
-            dialogsSearchAdapter.notifyDataSetChanged();
-        }
-    }
-
-    public void onShown() {
-        DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
-        if (dialogsSearchAdapter != null) {
-            dialogsSearchAdapter.resetFilter();
-        }
-    }
-
-    public void onTextChanged(String str) {
-        View currentView = getCurrentView();
-        boolean z = TextUtils.isEmpty(this.lastSearchString) ? true : !this.attached;
-        this.lastSearchString = str;
-        search(currentView, getCurrentPosition(), str, z);
-    }
-
-    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
-        this.currentSearchFilters.remove(mediaFilterData);
-    }
-
-    public void reset() {
-        setPosition(0);
-        if (this.dialogsSearchAdapter.getItemCount() > 0) {
-            this.searchLayoutManager.scrollToPositionWithOffset(0, 0);
-        }
-        LinearLayoutManager linearLayoutManager = this.channelsSearchLayoutManager;
-        if (linearLayoutManager != null) {
-            linearLayoutManager.scrollToPositionWithOffset(0, 0);
-        }
-        LinearLayoutManager linearLayoutManager2 = this.botsSearchLayoutManager;
-        if (linearLayoutManager2 != null) {
-            linearLayoutManager2.scrollToPositionWithOffset(0, 0);
-        }
-        LinearLayoutManager linearLayoutManager3 = this.hashtagSearchLayoutManager;
-        if (linearLayoutManager3 != null) {
-            linearLayoutManager3.scrollToPositionWithOffset(0, 0);
-        }
-        this.viewsByType.clear();
-    }
-
-    public void runResultsEnterAnimation() {
-        RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = this.itemsEnterAnimator;
-        int i = this.animateFromCount;
-        recyclerItemsEnterAnimator.showItemsAnimated(i > 0 ? i + 1 : 0);
-        this.animateFromCount = this.dialogsSearchAdapter.getItemCount();
-    }
-
-    public void setFilteredSearchViewDelegate(FilteredSearchView.Delegate delegate) {
-        this.filteredSearchViewDelegate = delegate;
-    }
-
-    public void setKeyboardHeight(int i) {
-        FilteredSearchView filteredSearchView;
-        this.keyboardSize = i;
-        boolean z = getVisibility() == 0 && getAlpha() > 0.0f;
-        for (int i2 = 0; i2 < getChildCount(); i2++) {
-            if (getChildAt(i2) instanceof FilteredSearchView) {
-                filteredSearchView = (FilteredSearchView) getChildAt(i2);
-            } else if (getChildAt(i2) == this.searchContainer) {
-                this.emptyView.setKeyboardHeight(i, z);
-                filteredSearchView = this.noMediaFiltersSearchView;
+            long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("scrollToTopOnResume", true);
+            if (DialogObject.isEncryptedDialog(j2)) {
+                bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j2));
             } else {
-                if (getChildAt(i2) instanceof SearchDownloadsContainer) {
-                    ((SearchDownloadsContainer) getChildAt(i2)).setKeyboardHeight(i, z);
-                } else if (getChildAt(i2) == this.channelsSearchContainer) {
-                    this.channelsEmptyView.setKeyboardHeight(i, z);
+                if (DialogObject.isUserDialog(j2)) {
+                    bundle.putLong("user_id", j2);
+                } else {
+                    bundle.putLong("chat_id", -j2);
+                }
+                if (!AccountInstance.getInstance(this.currentAccount).getMessagesController().checkCanOpenChat(bundle, dialogsActivity)) {
+                    return true;
                 }
             }
-            filteredSearchView.setKeyboardHeight(i, z);
+            ChatActivity chatActivity = new ChatActivity(bundle);
+            dialogsActivity.presentFragment(chatActivity, true);
+            chatActivity.showFieldPanelForForward(true, arrayList2);
         }
+        return true;
     }
 
     @Override
-    public void setPosition(int i) {
-        if (i < 0) {
-            return;
+    public void goToMessage(MessageObject messageObject) {
+        Bundle bundle = new Bundle();
+        long dialogId = messageObject.getDialogId();
+        if (DialogObject.isEncryptedDialog(dialogId)) {
+            bundle.putInt("enc_id", DialogObject.getEncryptedChatId(dialogId));
+        } else if (DialogObject.isUserDialog(dialogId)) {
+            bundle.putLong("user_id", dialogId);
+        } else {
+            TLRPC.Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-dialogId));
+            if (chat != null && chat.migrated_to != null) {
+                bundle.putLong("migrated_to", dialogId);
+                dialogId = -chat.migrated_to.channel_id;
+            }
+            bundle.putLong("chat_id", -dialogId);
         }
-        super.setPosition(i);
-        this.viewsByType.clear();
-        ViewPagerFixed.TabsView tabsView = this.tabsView;
-        if (tabsView != null) {
-            tabsView.selectTabWithId(i, 1.0f);
-        }
-        invalidate();
+        bundle.putInt("message_id", messageObject.getId());
+        this.parent.presentFragment(new ChatActivity(bundle));
+        showActionMode(false);
+    }
+
+    public int getFolderId() {
+        return this.folderId;
     }
 
     @Override
-    public void showActionMode() {
-        showActionMode(true);
+    public boolean actionModeShowing() {
+        return this.isActionModeShowed;
     }
 
-    public void showDownloads() {
-        setPosition((this.expandedPublicPosts ? 1 : 0) + 5);
-    }
-
-    public void showOnlyDialogsAdapter(boolean z) {
-        this.showOnlyDialogsAdapter = z;
+    public void hideActionMode() {
+        showActionMode(false);
     }
 
     @Override
@@ -1524,16 +1150,14 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 if (this.speedItem.getVisibility() != i2) {
                     this.speedItem.setVisibility(i2);
                     int i3 = Build.VERSION.SDK_INT;
-                    if (i3 >= 21) {
-                        AnimatedVectorDrawable m = AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(this.speedItem.getIconView().getDrawable());
-                        m.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.SRC_IN));
-                        if (isSpeedItemVisible) {
-                            m.start();
-                        } else if (i3 >= 23) {
-                            m.reset();
-                        } else {
-                            m.setVisible(false, true);
-                        }
+                    AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) this.speedItem.getIconView().getDrawable();
+                    animatedVectorDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.SRC_IN));
+                    if (isSpeedItemVisible) {
+                        animatedVectorDrawable.start();
+                    } else if (i3 >= 23) {
+                        animatedVectorDrawable.reset();
+                    } else {
+                        animatedVectorDrawable.setVisible(false, true);
                     }
                 }
             }
@@ -1571,6 +1195,82 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             ((ContextLinkCell) view).setChecked(this.selectedFiles.containsKey(messageHashId), true);
         } else if (view instanceof DialogCell) {
             ((DialogCell) view).setChecked(this.selectedFiles.containsKey(messageHashId), true);
+        }
+    }
+
+    @Override
+    public boolean isSelected(FilteredSearchView.MessageHashId messageHashId) {
+        return this.selectedFiles.containsKey(messageHashId);
+    }
+
+    @Override
+    public void showActionMode() {
+        showActionMode(true);
+    }
+
+    @Override
+    protected void onItemSelected(View view, View view2, int i, int i2) {
+        if (i == 0) {
+            if (this.noMediaFiltersSearchView.getVisibility() == 0) {
+                this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
+                this.dialogsSearchAdapter.setFiltersDelegate(null, false);
+            } else {
+                this.noMediaFiltersSearchView.setDelegate(null, false);
+                this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, true);
+            }
+        } else if (view instanceof FilteredSearchView) {
+            ((FilteredSearchView) view).setDelegate(this.filteredSearchViewDelegate, i2 == 0 && this.noMediaFiltersSearchView.getVisibility() != 0);
+        }
+        if (view2 instanceof FilteredSearchView) {
+            ((FilteredSearchView) view2).setDelegate(null, false);
+        } else {
+            this.dialogsSearchAdapter.setFiltersDelegate(null, false);
+            this.noMediaFiltersSearchView.setDelegate(null, false);
+        }
+    }
+
+    public void getThemeDescriptions(ArrayList arrayList) {
+        for (int i = 0; i < this.searchListView.getChildCount(); i++) {
+            View childAt = this.searchListView.getChildAt(i);
+            if ((childAt instanceof ProfileSearchCell) || (childAt instanceof DialogCell) || (childAt instanceof HashtagSearchCell)) {
+                arrayList.add(new ThemeDescription(childAt, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+            }
+        }
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            if (getChildAt(i2) instanceof FilteredSearchView) {
+                arrayList.addAll(((FilteredSearchView) getChildAt(i2)).getThemeDescriptions());
+            }
+        }
+        int size = this.viewsByType.size();
+        for (int i3 = 0; i3 < size; i3++) {
+            View view = (View) this.viewsByType.valueAt(i3);
+            if (view instanceof FilteredSearchView) {
+                arrayList.addAll(((FilteredSearchView) view).getThemeDescriptions());
+            }
+        }
+        FilteredSearchView filteredSearchView = this.noMediaFiltersSearchView;
+        if (filteredSearchView != null) {
+            arrayList.addAll(filteredSearchView.getThemeDescriptions());
+        }
+        arrayList.add(new ThemeDescription(this.emptyView.title, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.emptyView.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText));
+        arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
+            @Override
+            public final void didSetColor() {
+                SearchViewPager.this.lambda$getThemeDescriptions$4();
+            }
+
+            @Override
+            public void onAnimationProgress(float f) {
+                ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
+            }
+        }, Theme.key_actionBarActionModeDefaultIcon));
+    }
+
+    public void lambda$getThemeDescriptions$4() {
+        NumberTextView numberTextView = this.selectedMessagesCountTextView;
+        if (numberTextView != null) {
+            numberTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         }
     }
 
@@ -1618,16 +1318,320 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         }
     }
 
-    public void updateTabs() {
-        updateTabs(false);
+    public void reset() {
+        setPosition(0);
+        if (this.dialogsSearchAdapter.getItemCount() > 0) {
+            this.searchLayoutManager.scrollToPositionWithOffset(0, 0);
+        }
+        LinearLayoutManager linearLayoutManager = this.channelsSearchLayoutManager;
+        if (linearLayoutManager != null) {
+            linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        }
+        LinearLayoutManager linearLayoutManager2 = this.botsSearchLayoutManager;
+        if (linearLayoutManager2 != null) {
+            linearLayoutManager2.scrollToPositionWithOffset(0, 0);
+        }
+        LinearLayoutManager linearLayoutManager3 = this.hashtagSearchLayoutManager;
+        if (linearLayoutManager3 != null) {
+            linearLayoutManager3.scrollToPositionWithOffset(0, 0);
+        }
+        this.viewsByType.clear();
     }
 
-    public void updateTabs(boolean z) {
-        this.viewPagerAdapter.updateItems();
-        fillTabs(z);
+    @Override
+    public void setPosition(int i) {
+        if (i < 0) {
+            return;
+        }
+        super.setPosition(i);
+        this.viewsByType.clear();
         ViewPagerFixed.TabsView tabsView = this.tabsView;
         if (tabsView != null) {
-            tabsView.finishAddingTabs();
+            tabsView.selectTabWithId(i, 1.0f);
+        }
+        invalidate();
+    }
+
+    public void setKeyboardHeight(int i) {
+        this.keyboardSize = i;
+        boolean z = getVisibility() == 0 && getAlpha() > 0.0f;
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            if (getChildAt(i2) instanceof FilteredSearchView) {
+                ((FilteredSearchView) getChildAt(i2)).setKeyboardHeight(i, z);
+            } else if (getChildAt(i2) == this.searchContainer) {
+                this.emptyView.setKeyboardHeight(i, z);
+                this.noMediaFiltersSearchView.setKeyboardHeight(i, z);
+            } else if (getChildAt(i2) instanceof SearchDownloadsContainer) {
+                ((SearchDownloadsContainer) getChildAt(i2)).setKeyboardHeight(i, z);
+            } else if (getChildAt(i2) == this.channelsSearchContainer) {
+                this.channelsEmptyView.setKeyboardHeight(i, z);
+            }
+        }
+    }
+
+    public void showOnlyDialogsAdapter(boolean z) {
+        this.showOnlyDialogsAdapter = z;
+    }
+
+    public void messagesDeleted(long r12, java.util.ArrayList r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SearchViewPager.messagesDeleted(long, java.util.ArrayList):void");
+    }
+
+    public void runResultsEnterAnimation() {
+        RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = this.itemsEnterAnimator;
+        int i = this.animateFromCount;
+        recyclerItemsEnterAnimator.showItemsAnimated(i > 0 ? i + 1 : 0);
+        this.animateFromCount = this.dialogsSearchAdapter.getItemCount();
+    }
+
+    public ViewPagerFixed.TabsView getTabsView() {
+        return this.tabsView;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.channelRecommendationsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogDeleted);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.reloadWebappsHints);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+        this.attached = true;
+        DialogsChannelsAdapter dialogsChannelsAdapter = this.channelsSearchAdapter;
+        if (dialogsChannelsAdapter != null) {
+            dialogsChannelsAdapter.update(false);
+        }
+        DialogsBotsAdapter dialogsBotsAdapter = this.botsSearchAdapter;
+        if (dialogsBotsAdapter != null) {
+            dialogsBotsAdapter.update(false);
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attached = false;
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogDeleted);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.reloadWebappsHints);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.channelRecommendationsLoaded) {
+            this.channelsEmptyView.showProgress(MessagesController.getInstance(this.currentAccount).getChannelRecommendations(0L) != null, true);
+            this.channelsSearchAdapter.updateMyChannels();
+            this.channelsSearchAdapter.update(true);
+            return;
+        }
+        if (i == NotificationCenter.dialogDeleted || i == NotificationCenter.dialogsNeedReload) {
+            this.channelsSearchAdapter.updateMyChannels();
+            this.channelsSearchAdapter.update(true);
+        } else {
+            if (i == NotificationCenter.reloadWebappsHints) {
+                this.botsSearchAdapter.update(true);
+                return;
+            }
+            if (i == NotificationCenter.storiesListUpdated) {
+                Object obj = objArr[0];
+                HashtagsSearchAdapter hashtagsSearchAdapter = this.hashtagSearchAdapter;
+                if (obj == hashtagsSearchAdapter.list) {
+                    hashtagsSearchAdapter.update(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void invalidateBlur() {
+        this.fragmentView.invalidateBlur();
+    }
+
+    public void cancelEnterAnimation() {
+        this.itemsEnterAnimator.cancel();
+        this.searchListView.invalidate();
+        this.animateFromCount = 0;
+    }
+
+    public void showDownloads() {
+        setPosition((this.expandedPublicPosts ? 1 : 0) + 5);
+    }
+
+    public int getPositionForType(int i) {
+        for (int i2 = 0; i2 < this.viewPagerAdapter.items.size(); i2++) {
+            if (((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i2)).type == 3 && ((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i2)).filterIndex == i) {
+                return i2;
+            }
+        }
+        return -1;
+    }
+
+    public class ViewPagerAdapter extends ViewPagerFixed.Adapter {
+        ArrayList items = new ArrayList();
+
+        public ViewPagerAdapter() {
+            updateItems();
+        }
+
+        public void updateItems() {
+            this.items.clear();
+            AnonymousClass1 anonymousClass1 = null;
+            this.items.add(new Item(this, 0, anonymousClass1));
+            if (SearchViewPager.this.expandedPublicPosts) {
+                this.items.add(new Item(this, 5, anonymousClass1));
+            }
+            this.items.add(new Item(this, 1, anonymousClass1));
+            this.items.add(new Item(this, 4, anonymousClass1));
+            this.items.add(new Item(this, 6, anonymousClass1));
+            if (SearchViewPager.this.showOnlyDialogsAdapter) {
+                return;
+            }
+            int i = 3;
+            Item item = new Item(this, i, anonymousClass1);
+            item.filterIndex = 0;
+            this.items.add(item);
+            int i2 = 2;
+            if (SearchViewPager.this.includeDownloads()) {
+                this.items.add(new Item(this, i2, anonymousClass1));
+            }
+            Item item2 = new Item(this, i, anonymousClass1);
+            item2.filterIndex = 1;
+            this.items.add(item2);
+            Item item3 = new Item(this, i, anonymousClass1);
+            item3.filterIndex = 2;
+            this.items.add(item3);
+            Item item4 = new Item(this, i, anonymousClass1);
+            item4.filterIndex = 3;
+            this.items.add(item4);
+            Item item5 = new Item(this, i, anonymousClass1);
+            item5.filterIndex = 4;
+            this.items.add(item5);
+        }
+
+        @Override
+        public CharSequence getItemTitle(int i) {
+            if (((Item) this.items.get(i)).type == 0) {
+                return LocaleController.getString(R.string.SearchAllChatsShort);
+            }
+            if (((Item) this.items.get(i)).type == 1) {
+                return LocaleController.getString(R.string.ChannelsTab);
+            }
+            if (((Item) this.items.get(i)).type == 4) {
+                return LocaleController.getString(R.string.AppsTab);
+            }
+            if (((Item) this.items.get(i)).type == 6) {
+                if (SearchViewPager.this.postsAreNew) {
+                    return PremiumPreviewFragment.applyNewSpan(LocaleController.getString(R.string.SearchPosts));
+                }
+                return LocaleController.getString(R.string.SearchPosts);
+            }
+            if (((Item) this.items.get(i)).type == 2) {
+                return LocaleController.getString(R.string.DownloadsTabs);
+            }
+            if (((Item) this.items.get(i)).type == 5) {
+                return LocaleController.getString(R.string.PublicPostsTabs);
+            }
+            return FiltersView.filters[((Item) this.items.get(i)).filterIndex].getTitle();
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.items.size();
+        }
+
+        @Override
+        public View createView(int i) {
+            if (i == 1) {
+                return SearchViewPager.this.searchContainer;
+            }
+            if (i == 3) {
+                return SearchViewPager.this.channelsSearchContainer;
+            }
+            if (i == 4) {
+                return SearchViewPager.this.botsSearchContainer;
+            }
+            if (i == 5) {
+                return SearchViewPager.this.hashtagSearchContainer;
+            }
+            if (i == 2) {
+                SearchViewPager searchViewPager = SearchViewPager.this;
+                SearchViewPager searchViewPager2 = SearchViewPager.this;
+                searchViewPager.downloadsContainer = new SearchDownloadsContainer(searchViewPager2.parent, searchViewPager2.currentAccount);
+                SearchViewPager.this.downloadsContainer.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                        super.onScrolled(recyclerView, i2, i3);
+                        SearchViewPager.this.fragmentView.invalidateBlur();
+                    }
+                });
+                SearchViewPager.this.downloadsContainer.setUiCallback(SearchViewPager.this);
+                return SearchViewPager.this.downloadsContainer;
+            }
+            if (i == 6) {
+                return SearchViewPager.this.postsSearchContainer;
+            }
+            FilteredSearchView filteredSearchView = new FilteredSearchView(SearchViewPager.this.parent);
+            filteredSearchView.setChatPreviewDelegate(SearchViewPager.this.chatPreviewDelegate);
+            filteredSearchView.setUiCallback(SearchViewPager.this);
+            filteredSearchView.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                    super.onScrolled(recyclerView, i2, i3);
+                    SearchViewPager.this.fragmentView.invalidateBlur();
+                }
+            });
+            return filteredSearchView;
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            if (((Item) this.items.get(i)).type == 0) {
+                return 1;
+            }
+            if (((Item) this.items.get(i)).type == 1) {
+                return 3;
+            }
+            if (((Item) this.items.get(i)).type == 4) {
+                return 4;
+            }
+            if (((Item) this.items.get(i)).type == 2) {
+                return 2;
+            }
+            if (((Item) this.items.get(i)).type == 5) {
+                return 5;
+            }
+            if (((Item) this.items.get(i)).type == 6) {
+                return 6;
+            }
+            return ((Item) this.items.get(i)).type + i;
+        }
+
+        @Override
+        public void bindView(View view, int i, int i2) {
+            SearchViewPager searchViewPager = SearchViewPager.this;
+            searchViewPager.search(view, i, searchViewPager.lastSearchString, true);
+        }
+
+        public class Item {
+            int filterIndex;
+            private final int type;
+
+            Item(ViewPagerAdapter viewPagerAdapter, int i, AnonymousClass1 anonymousClass1) {
+                this(i);
+            }
+
+            private Item(int i) {
+                this.type = i;
+            }
+        }
+    }
+
+    public void onShown() {
+        DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
+        if (dialogsSearchAdapter != null) {
+            dialogsSearchAdapter.resetFilter();
         }
     }
 }

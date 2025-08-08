@@ -36,33 +36,6 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
     private final LinearLayout customView;
     private final Paint topIconBgPaint;
 
-    private class FeatureCell extends FrameLayout {
-        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
-            super(context);
-            boolean z = LocaleController.isRTL;
-            ImageView imageView = new ImageView(getContext());
-            Drawable mutate = getContext().getResources().getDrawable(i).mutate();
-            int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            imageView.setImageDrawable(mutate);
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
-            TextView textView = new TextView(getContext());
-            textView.setText(charSequence);
-            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider));
-            textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
-            linksTextView.setText(charSequence2);
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider));
-            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider));
-            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, (z ? 27 : 68) - 4, 18.0f, (z ? 68 : 27) - 4, 0.0f));
-        }
-    }
-
     public SearchAdsInfoBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
         super(context, null, false, false, false, resourcesProvider);
         fixNavigationBar();
@@ -177,6 +150,38 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         lambda$new$0();
     }
 
+    private class FeatureCell extends FrameLayout {
+        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
+            super(context);
+            boolean z = LocaleController.isRTL;
+            ImageView imageView = new ImageView(getContext());
+            Drawable mutate = getContext().getResources().getDrawable(i).mutate();
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            imageView.setImageDrawable(mutate);
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
+            TextView textView = new TextView(getContext());
+            textView.setText(charSequence);
+            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider));
+            textView.setTextSize(1, 14.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
+            linksTextView.setText(charSequence2);
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) SearchAdsInfoBottomSheet.this).resourcesProvider));
+            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+            linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, (z ? 27 : 68) - 4, 18.0f, (z ? 68 : 27) - 4, 0.0f));
+        }
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.AboutRevenueSharingAds);
+    }
+
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
@@ -191,10 +196,5 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asCustom(this.customView));
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.AboutRevenueSharingAds);
     }
 }

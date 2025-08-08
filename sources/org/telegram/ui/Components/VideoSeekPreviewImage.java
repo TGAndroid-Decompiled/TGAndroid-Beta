@@ -26,7 +26,6 @@ import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -81,6 +80,10 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
     private int ytImageY;
     private final Path ytPath;
 
+    public interface VideoSeekPreviewImageDelegate {
+        void onReady();
+    }
+
     public static final class StoryBoardFrame {
         public final int left;
         public final double pts;
@@ -91,10 +94,6 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             this.left = i;
             this.top = i2;
         }
-    }
-
-    public interface VideoSeekPreviewImageDelegate {
-        void onReady();
     }
 
     public VideoSeekPreviewImage(Context context, VideoSeekPreviewImageDelegate videoSeekPreviewImageDelegate) {
@@ -135,57 +134,9 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         });
     }
 
-    public static TLRPC.Document findDocumentById(MessageObject messageObject, long j) {
-        TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
-        if (media == null) {
-            return null;
-        }
-        TLRPC.Document document = media.document;
-        if (document != null && document.id == j) {
-            return document;
-        }
-        Iterator<TLRPC.Document> it = media.alt_documents.iterator();
-        while (it.hasNext()) {
-            TLRPC.Document next = it.next();
-            if (next.id == j) {
-                return next;
-            }
-        }
-        return null;
-    }
-
-    public static TLRPC.Document findDocumentByMimeType(MessageObject messageObject, String str) {
-        TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
-        if (media == null) {
-            return null;
-        }
-        TLRPC.Document document = media.document;
-        if (document != null && str.equalsIgnoreCase(document.mime_type)) {
-            return media.document;
-        }
-        Iterator<TLRPC.Document> it = media.alt_documents.iterator();
-        while (it.hasNext()) {
-            TLRPC.Document next = it.next();
-            if (str.equalsIgnoreCase(next.mime_type)) {
-                return next;
-            }
-        }
-        return null;
-    }
-
-    public void lambda$close$8() {
-        this.pendingProgress = 0.0f;
-        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
-        if (animatedFileDrawable != null) {
-            animatedFileDrawable.recycle();
-            this.fileDrawable = null;
-        }
-    }
-
     public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         StoryBoardFrame storyBoardFrame;
         int i;
-        int i2;
         if (z) {
             if (this.webView == null && this.storyBoardMap == null) {
                 return;
@@ -200,22 +151,22 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                 this.ytImageX = (int) ((min % 5) * bitmapWidth);
                 this.ytImageY = (int) ((min / 5) * bitmapHeight);
                 this.ytImageWidth = (int) bitmapWidth;
-                i = (int) bitmapHeight;
+                this.ytImageHeight = (int) bitmapHeight;
             } else {
-                int i3 = 0;
+                int i2 = 0;
                 while (true) {
-                    if (i3 >= this.storyBoardMap.size()) {
+                    if (i2 >= this.storyBoardMap.size()) {
                         storyBoardFrame = null;
                         break;
                     }
-                    storyBoardFrame = (StoryBoardFrame) this.storyBoardMap.get(i3);
-                    double d = i3 == 0 ? 0.0d : storyBoardFrame.pts;
-                    double d2 = i3 == this.storyBoardMap.size() - 1 ? 9.9999999E7d : ((StoryBoardFrame) this.storyBoardMap.get(i3 + 1)).pts;
+                    storyBoardFrame = (StoryBoardFrame) this.storyBoardMap.get(i2);
+                    double d = i2 == 0 ? 0.0d : storyBoardFrame.pts;
+                    double d2 = i2 == this.storyBoardMap.size() - 1 ? 9.9999999E7d : ((StoryBoardFrame) this.storyBoardMap.get(i2 + 1)).pts;
                     double d3 = this.lastPosition;
                     if (d3 >= d && d3 <= d2) {
                         break;
                     } else {
-                        i3++;
+                        i2++;
                     }
                 }
                 if (storyBoardFrame == null) {
@@ -224,163 +175,75 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                 this.ytImageX = storyBoardFrame.left;
                 this.ytImageY = storyBoardFrame.top;
                 this.ytImageWidth = this.storyBoardFrameWidth;
-                i = this.storyBoardFrameHeight;
+                this.ytImageHeight = this.storyBoardFrameHeight;
             }
-            this.ytImageHeight = i;
             this.drawStoryBoard = true;
             float f = this.ytImageWidth / this.ytImageHeight;
             if (f > 1.0f) {
-                i2 = (int) (dp / f);
+                i = (int) (dp / f);
             } else {
-                int i4 = (int) (dp * f);
-                i2 = dp;
-                dp = i4;
+                int i3 = (int) (dp * f);
+                i = dp;
+                dp = i3;
             }
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() == 0 && layoutParams.width == dp && layoutParams.height == i2) {
+            if (getVisibility() == 0 && layoutParams.width == dp && layoutParams.height == i) {
                 return;
             }
             layoutParams.width = dp;
-            layoutParams.height = i2;
+            layoutParams.height = i;
             setVisibility(0);
             requestLayout();
         }
     }
 
-    public void lambda$open$4() {
-        this.open = true;
-        this.loadRunnable = null;
-        if (this.fileDrawable != null) {
-            this.ready = true;
-            this.delegate.onReady();
-        }
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.storyBoardsReceiver.onAttachedToWindow();
     }
 
-    public void lambda$open$5(VideoPlayer.VideoUri videoUri, MessageObject messageObject) {
-        Object obj;
-        File pathToAttach;
-        if (videoUri.isCached()) {
-            this.fileDrawable = new AnimatedFileDrawable(new File(videoUri.uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
-        } else {
-            int i = UserConfig.selectedAccount;
-            try {
-                i = Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("account")).intValue();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            int i2 = i;
-            try {
-                obj = FileLoader.getInstance(i2).getParentObject(Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("rid")).intValue());
-            } catch (Exception e2) {
-                FileLog.e(e2);
-                obj = null;
-            }
-            Object obj2 = obj;
-            TLRPC.Document document = videoUri.document;
-            if (FileLoader.getInstance(i2).isLoadingFile(FileLoader.getAttachFileName(document))) {
-                pathToAttach = new File(FileLoader.getDirectory(4), document.dc_id + "_" + document.id + ".temp");
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.storyBoardsReceiver.onDetachedFromWindow();
+    }
+
+    public void setProgressForYouTube(PhotoViewerWebView photoViewerWebView, float f, int i) {
+        this.webView = photoViewerWebView;
+        this.isYoutube = true;
+        if (this.storyBoardMapDocId != 0) {
+            this.storyBoardMapDocId = 0L;
+            this.downloadingStoryBoardMapFilename = null;
+            this.downloadingStoryboardMapDocument = null;
+            this.storyBoardMap = null;
+            listen(-1);
+        }
+        if (i != 0) {
+            this.pixelWidth = i;
+            int i2 = ((int) (i * f)) / 5;
+            if (this.currentPixel == i2) {
+                return;
             } else {
-                pathToAttach = FileLoader.getInstance(i2).getPathToAttach(document, false);
+                this.currentPixel = i2;
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(pathToAttach.getAbsolutePath()), true, document.size, 1, document, null, obj2, 0L, i2, true, null);
         }
-        this.duration = this.fileDrawable.getDurationMs();
-        float f = this.pendingProgress;
-        if (f != 0.0f) {
-            setProgress(messageObject, f, this.pixelWidth);
-            this.pendingProgress = 0.0f;
+        this.frameTime = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
+        invalidate();
+        if (this.progressRunnable != null) {
+            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$4();
-            }
-        });
-    }
-
-    public void lambda$open$6() {
-        this.open = true;
-        this.loadRunnable = null;
-        if (this.fileDrawable != null) {
-            this.ready = true;
-            this.delegate.onReady();
+        double videoDuration = (f * photoViewerWebView.getVideoDuration()) / 1000.0d;
+        this.lastPosition = videoDuration;
+        String youtubeStoryboard = photoViewerWebView.getYoutubeStoryboard((int) videoDuration);
+        if (youtubeStoryboard != null) {
+            this.storyBoardsReceiver.setImage(youtubeStoryboard, null, null, null, 0L);
         }
     }
 
-    public void lambda$open$7(Uri uri, MessageObject messageObject) {
-        File pathToAttach;
-        if ("tg".equals(uri.getScheme())) {
-            int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
-            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
-            TLRPC.TL_document tL_document = new TLRPC.TL_document();
-            tL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
-            tL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
-            tL_document.size = Utilities.parseLong(uri.getQueryParameter("size")).longValue();
-            tL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
-            tL_document.mime_type = uri.getQueryParameter("mime");
-            tL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
-            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
-            tL_document.attributes.add(tL_documentAttributeFilename);
-            tL_document.attributes.add(new TLRPC.TL_documentAttributeVideo());
-            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tL_document))) {
-                pathToAttach = new File(FileLoader.getDirectory(4), tL_document.dc_id + "_" + tL_document.id + ".temp");
-            } else {
-                pathToAttach = FileLoader.getInstance(intValue).getPathToAttach(tL_document, false);
-            }
-            this.fileDrawable = new AnimatedFileDrawable(new File(pathToAttach.getAbsolutePath()), true, tL_document.size, 1, tL_document, null, parentObject, 0L, intValue, true, null);
-        } else {
-            this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
-        }
-        this.duration = this.fileDrawable.getDurationMs();
-        float f = this.pendingProgress;
-        if (f != 0.0f) {
-            setProgress(messageObject, f, this.pixelWidth);
-            this.pendingProgress = 0.0f;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$6();
-            }
-        });
-    }
-
-    public void lambda$setProgress$1(Bitmap bitmap) {
-        int i;
-        if (bitmap != null) {
-            if (this.bitmapToDraw != null) {
-                Bitmap bitmap2 = this.bitmapToRecycle;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                this.bitmapToRecycle = this.bitmapToDraw;
-            }
-            this.bitmapToDraw = bitmap;
-            Bitmap bitmap3 = this.bitmapToDraw;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
-            this.bitmapShader = bitmapShader;
-            bitmapShader.setLocalMatrix(this.matrix);
-            this.bitmapPaint.setShader(this.bitmapShader);
-            invalidate();
-            int dp = AndroidUtilities.dp(150.0f);
-            float width = bitmap.getWidth() / bitmap.getHeight();
-            if (width > 1.0f) {
-                i = (int) (dp / width);
-            } else {
-                dp = (int) (dp * width);
-                i = dp;
-            }
-            ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (getVisibility() != 0 || layoutParams.width != dp || layoutParams.height != i) {
-                layoutParams.width = dp;
-                layoutParams.height = i;
-                setVisibility(0);
-                requestLayout();
-            }
-        }
-        this.progressRunnable = null;
+    public void setProgress(org.telegram.messenger.MessageObject r13, final float r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoSeekPreviewImage.setProgress(org.telegram.messenger.MessageObject, float, int):void");
     }
 
     public void lambda$setProgress$2(float f, long j) {
@@ -420,169 +283,41 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         });
     }
 
-    private void listen(int i) {
-        int i2 = this.listeningCurrentAccount;
-        if (i2 == i) {
-            return;
-        }
-        if (i == -1) {
-            NotificationCenter.getInstance(i2).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.listeningCurrentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
-        } else {
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoadFailed);
-        }
-        this.listeningCurrentAccount = i;
-    }
-
-    public void close() {
-        if (this.loadRunnable != null) {
-            Utilities.globalQueue.cancelRunnable(this.loadRunnable);
-            this.loadRunnable = null;
-        }
-        if (this.progressRunnable != null) {
-            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
-            this.progressRunnable = null;
-        }
-        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
-        if (animatedFileDrawable != null) {
-            animatedFileDrawable.resetStream(true);
-        }
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$close$8();
-            }
-        });
-        setVisibility(4);
-        this.bitmapToDraw = null;
-        this.bitmapShader = null;
-        invalidate();
-        this.currentPixel = -1;
-        this.videoUri = null;
-        this.ready = false;
-        this.open = false;
-        if (this.storyBoardMapDocId != 0) {
-            this.storyBoardMapDocId = 0L;
-            this.downloadingStoryBoardMapFilename = null;
-            this.downloadingStoryboardMapDocument = null;
-            this.storyBoardMap = null;
-            listen(-1);
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.fileLoaded) {
-            if (!((String) objArr[0]).equals(this.downloadingStoryBoardMapFilename)) {
-                return;
-            }
-            File pathToAttach = FileLoader.getInstance(i2).getPathToAttach(this.downloadingStoryboardMapDocument);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                parseStoryBoardMap(pathToAttach);
-            }
-        } else if (i != NotificationCenter.fileLoadFailed || !((String) objArr[0]).equals(this.downloadingStoryBoardMapFilename)) {
-            return;
-        }
-        this.downloadingStoryBoardMapFilename = null;
-        this.downloadingStoryboardMapDocument = null;
-        listen(-1);
-    }
-
-    public boolean isReady() {
-        return this.ready;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.storyBoardsReceiver.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.storyBoardsReceiver.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        Bitmap bitmap = this.bitmapToRecycle;
+    public void lambda$setProgress$1(Bitmap bitmap) {
+        int i;
         if (bitmap != null) {
-            bitmap.recycle();
-            this.bitmapToRecycle = null;
-        }
-        if (this.drawStoryBoard) {
-            canvas.save();
-            this.ytPath.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.ytPath.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-            canvas.clipPath(this.ytPath);
-            canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
-            canvas.translate(-this.ytImageX, -this.ytImageY);
-            this.storyBoardsReceiver.setImageCoords(0.0f, 0.0f, r0.getBitmapWidth(), this.storyBoardsReceiver.getBitmapHeight());
-            this.storyBoardsReceiver.draw(canvas);
-            canvas.restore();
-        } else {
-            if (this.bitmapToDraw == null || this.bitmapShader == null) {
-                return;
+            if (this.bitmapToDraw != null) {
+                Bitmap bitmap2 = this.bitmapToRecycle;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                }
+                this.bitmapToRecycle = this.bitmapToDraw;
             }
-            this.matrix.reset();
-            float measuredWidth = getMeasuredWidth() / this.bitmapToDraw.getWidth();
-            this.matrix.preScale(measuredWidth, measuredWidth);
-            this.bitmapRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            canvas.drawRoundRect(this.bitmapRect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.bitmapPaint);
-        }
-        this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        this.frameDrawable.draw(canvas);
-        canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        setPivotY(getMeasuredHeight());
-    }
-
-    public void open(final MessageObject messageObject, final Uri uri) {
-        if (uri == null || uri.equals(this.videoUri)) {
-            return;
-        }
-        if (this.open) {
-            close();
-        }
-        this.isQualities = false;
-        this.videoUri = uri;
-        DispatchQueue dispatchQueue = Utilities.globalQueue;
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$7(uri, messageObject);
+            this.bitmapToDraw = bitmap;
+            Bitmap bitmap3 = this.bitmapToDraw;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
+            this.bitmapShader = bitmapShader;
+            bitmapShader.setLocalMatrix(this.matrix);
+            this.bitmapPaint.setShader(this.bitmapShader);
+            invalidate();
+            int dp = AndroidUtilities.dp(150.0f);
+            float width = bitmap.getWidth() / bitmap.getHeight();
+            if (width > 1.0f) {
+                i = (int) (dp / width);
+            } else {
+                dp = (int) (dp * width);
+                i = dp;
             }
-        };
-        this.loadRunnable = runnable;
-        dispatchQueue.postRunnable(runnable);
-    }
-
-    public void open(final MessageObject messageObject, final VideoPlayer.VideoUri videoUri) {
-        if (videoUri == null || videoUri.uri.equals(this.videoUri)) {
-            return;
-        }
-        if (this.open) {
-            close();
-        }
-        this.isQualities = true;
-        this.videoUri = videoUri.uri;
-        DispatchQueue dispatchQueue = Utilities.globalQueue;
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$5(videoUri, messageObject);
+            ViewGroup.LayoutParams layoutParams = getLayoutParams();
+            if (getVisibility() != 0 || layoutParams.width != dp || layoutParams.height != i) {
+                layoutParams.width = dp;
+                layoutParams.height = i;
+                setVisibility(0);
+                requestLayout();
             }
-        };
-        this.loadRunnable = runnable;
-        dispatchQueue.postRunnable(runnable);
+        }
+        this.progressRunnable = null;
     }
 
     public void open(MessageObject messageObject, VideoPlayer videoPlayer) {
@@ -625,15 +360,15 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (this.storyBoardMapDocId != j) {
             this.storyBoardMapDocId = j;
             this.storyBoardMap = null;
-            if (findDocumentByMimeType == null) {
-                this.downloadingStoryBoardMapFilename = null;
-                this.downloadingStoryboardMapDocument = null;
-                listen(-1);
-                parseStoryBoardMap(null);
-                return;
-            }
-            File pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(findDocumentByMimeType);
-            if (pathToAttach == null || !pathToAttach.exists()) {
+            if (findDocumentByMimeType != null) {
+                File pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(findDocumentByMimeType);
+                if (pathToAttach != null && pathToAttach.exists()) {
+                    this.downloadingStoryBoardMapFilename = null;
+                    this.downloadingStoryboardMapDocument = null;
+                    listen(-1);
+                    parseStoryBoardMap(pathToAttach);
+                    return;
+                }
                 this.downloadingStoryBoardMapFilename = FileLoader.getAttachFileName(findDocumentByMimeType);
                 this.downloadingStoryboardMapDocument = findDocumentByMimeType;
                 listen(messageObject.currentAccount);
@@ -643,7 +378,44 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             this.downloadingStoryBoardMapFilename = null;
             this.downloadingStoryboardMapDocument = null;
             listen(-1);
-            parseStoryBoardMap(pathToAttach);
+            parseStoryBoardMap(null);
+        }
+    }
+
+    private void listen(int i) {
+        int i2 = this.listeningCurrentAccount;
+        if (i2 == i) {
+            return;
+        }
+        if (i == -1) {
+            NotificationCenter.getInstance(i2).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.listeningCurrentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
+        } else {
+            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoadFailed);
+        }
+        this.listeningCurrentAccount = i;
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.fileLoaded) {
+            if (((String) objArr[0]).equals(this.downloadingStoryBoardMapFilename)) {
+                File pathToAttach = FileLoader.getInstance(i2).getPathToAttach(this.downloadingStoryboardMapDocument);
+                if (pathToAttach != null && pathToAttach.exists()) {
+                    parseStoryBoardMap(pathToAttach);
+                }
+                this.downloadingStoryBoardMapFilename = null;
+                this.downloadingStoryboardMapDocument = null;
+                listen(-1);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.fileLoadFailed && ((String) objArr[0]).equals(this.downloadingStoryBoardMapFilename)) {
+            this.downloadingStoryBoardMapFilename = null;
+            this.downloadingStoryboardMapDocument = null;
+            listen(-1);
         }
     }
 
@@ -660,7 +432,20 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             int i2 = 0;
             while (true) {
                 String readLine = randomAccessFile.readLine();
-                if (readLine == null) {
+                if (readLine != null) {
+                    if (readLine.startsWith("file=mtproto:")) {
+                        j = Long.parseLong(readLine.substring(13));
+                    } else if (readLine.startsWith("frame_width=")) {
+                        i2 = Integer.parseInt(readLine.substring(12));
+                    } else if (readLine.startsWith("frame_height=")) {
+                        i = Integer.parseInt(readLine.substring(13));
+                    } else {
+                        String[] split = readLine.split(",");
+                        if (split.length == 3) {
+                            arrayList.add(new StoryBoardFrame(Double.parseDouble(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2])));
+                        }
+                    }
+                } else {
                     Collections.sort(arrayList, Comparator$CC.comparingDouble(new ToDoubleFunction() {
                         @Override
                         public final double applyAsDouble(Object obj) {
@@ -675,18 +460,6 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                     this.storyBoardMap = arrayList;
                     return;
                 }
-                if (readLine.startsWith("file=mtproto:")) {
-                    j = Long.parseLong(readLine.substring(13));
-                } else if (readLine.startsWith("frame_width=")) {
-                    i2 = Integer.parseInt(readLine.substring(12));
-                } else if (readLine.startsWith("frame_height=")) {
-                    i = Integer.parseInt(readLine.substring(13));
-                } else {
-                    String[] split = readLine.split(",");
-                    if (split.length == 3) {
-                        arrayList.add(new StoryBoardFrame(Double.parseDouble(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2])));
-                    }
-                }
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -694,59 +467,257 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         }
     }
 
-    public void setProgress(MessageObject messageObject, final float f, int i) {
-        boolean z;
-        TLRPC.Document findDocumentById;
-        this.webView = null;
-        this.isYoutube = false;
-        if (this.storyBoardMap == null || (findDocumentById = findDocumentById(messageObject, this.storyBoardPictureDocId)) == null) {
-            this.storyBoardsReceiver.setImageBitmap((Drawable) null);
-            z = false;
-        } else {
-            double d = ((float) this.duration) * f;
-            Double.isNaN(d);
-            this.lastPosition = d / 1000.0d;
-            this.storyBoardsReceiver.setImage(ImageLocation.getForDocument(findDocumentById), null, null, null, messageObject, 0);
-            z = true;
-        }
-        this.drawStoryBoard = z;
-        if (i != 0) {
-            this.pixelWidth = i;
-            int i2 = ((int) (i * f)) / 5;
-            if (this.currentPixel == i2) {
-                return;
-            } else {
-                this.currentPixel = i2;
-            }
-        }
-        final long j = ((float) this.duration) * f;
-        this.frameTime = AndroidUtilities.formatShortDuration((int) (j / 1000));
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r15));
-        invalidate();
-        if (this.progressRunnable != null) {
-            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
-        }
-        if (z) {
+    public void open(final MessageObject messageObject, final VideoPlayer.VideoUri videoUri) {
+        if (videoUri == null || videoUri.uri.equals(this.videoUri)) {
             return;
         }
-        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
-        if (animatedFileDrawable != null) {
-            animatedFileDrawable.resetStream(false);
+        if (this.open) {
+            close();
         }
+        this.isQualities = true;
+        this.videoUri = videoUri.uri;
         DispatchQueue dispatchQueue = Utilities.globalQueue;
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$setProgress$2(f, j);
+                VideoSeekPreviewImage.this.lambda$open$5(videoUri, messageObject);
             }
         };
-        this.progressRunnable = runnable;
+        this.loadRunnable = runnable;
         dispatchQueue.postRunnable(runnable);
     }
 
-    public void setProgressForYouTube(PhotoViewerWebView photoViewerWebView, float f, int i) {
-        this.webView = photoViewerWebView;
-        this.isYoutube = true;
+    public void lambda$open$5(VideoPlayer.VideoUri videoUri, MessageObject messageObject) {
+        Object obj;
+        String absolutePath;
+        if (videoUri.isCached()) {
+            this.fileDrawable = new AnimatedFileDrawable(new File(videoUri.uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
+        } else {
+            int i = UserConfig.selectedAccount;
+            try {
+                i = Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("account")).intValue();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            int i2 = i;
+            try {
+                obj = FileLoader.getInstance(i2).getParentObject(Utilities.parseInt((CharSequence) videoUri.uri.getQueryParameter("rid")).intValue());
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                obj = null;
+            }
+            Object obj2 = obj;
+            TLRPC.Document document = videoUri.document;
+            if (FileLoader.getInstance(i2).isLoadingFile(FileLoader.getAttachFileName(document))) {
+                absolutePath = new File(FileLoader.getDirectory(4), document.dc_id + "_" + document.id + ".temp").getAbsolutePath();
+            } else {
+                absolutePath = FileLoader.getInstance(i2).getPathToAttach(document, false).getAbsolutePath();
+            }
+            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, document.size, 1, document, null, obj2, 0L, i2, true, null);
+        }
+        this.duration = this.fileDrawable.getDurationMs();
+        float f = this.pendingProgress;
+        if (f != 0.0f) {
+            setProgress(messageObject, f, this.pixelWidth);
+            this.pendingProgress = 0.0f;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoSeekPreviewImage.this.lambda$open$4();
+            }
+        });
+    }
+
+    public void lambda$open$4() {
+        this.open = true;
+        this.loadRunnable = null;
+        if (this.fileDrawable != null) {
+            this.ready = true;
+            this.delegate.onReady();
+        }
+    }
+
+    public void open(final MessageObject messageObject, final Uri uri) {
+        if (uri == null || uri.equals(this.videoUri)) {
+            return;
+        }
+        if (this.open) {
+            close();
+        }
+        this.isQualities = false;
+        this.videoUri = uri;
+        DispatchQueue dispatchQueue = Utilities.globalQueue;
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                VideoSeekPreviewImage.this.lambda$open$7(uri, messageObject);
+            }
+        };
+        this.loadRunnable = runnable;
+        dispatchQueue.postRunnable(runnable);
+    }
+
+    public void lambda$open$7(Uri uri, MessageObject messageObject) {
+        String absolutePath;
+        if ("tg".equals(uri.getScheme())) {
+            int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
+            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
+            TLRPC.TL_document tL_document = new TLRPC.TL_document();
+            tL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
+            tL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
+            tL_document.size = Utilities.parseLong(uri.getQueryParameter("size")).longValue();
+            tL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
+            tL_document.mime_type = uri.getQueryParameter("mime");
+            tL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
+            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+            tL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
+            tL_document.attributes.add(tL_documentAttributeFilename);
+            tL_document.attributes.add(new TLRPC.TL_documentAttributeVideo());
+            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tL_document))) {
+                absolutePath = new File(FileLoader.getDirectory(4), tL_document.dc_id + "_" + tL_document.id + ".temp").getAbsolutePath();
+            } else {
+                absolutePath = FileLoader.getInstance(intValue).getPathToAttach(tL_document, false).getAbsolutePath();
+            }
+            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tL_document.size, 1, tL_document, null, parentObject, 0L, intValue, true, null);
+        } else {
+            this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
+        }
+        this.duration = this.fileDrawable.getDurationMs();
+        float f = this.pendingProgress;
+        if (f != 0.0f) {
+            setProgress(messageObject, f, this.pixelWidth);
+            this.pendingProgress = 0.0f;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VideoSeekPreviewImage.this.lambda$open$6();
+            }
+        });
+    }
+
+    public void lambda$open$6() {
+        this.open = true;
+        this.loadRunnable = null;
+        if (this.fileDrawable != null) {
+            this.ready = true;
+            this.delegate.onReady();
+        }
+    }
+
+    public static TLRPC.Document findDocumentByMimeType(MessageObject messageObject, String str) {
+        TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
+        if (media == null) {
+            return null;
+        }
+        TLRPC.Document document = media.document;
+        if (document != null && str.equalsIgnoreCase(document.mime_type)) {
+            return media.document;
+        }
+        Iterator<TLRPC.Document> it = media.alt_documents.iterator();
+        while (it.hasNext()) {
+            TLRPC.Document next = it.next();
+            if (str.equalsIgnoreCase(next.mime_type)) {
+                return next;
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC.Document findDocumentById(MessageObject messageObject, long j) {
+        TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
+        if (media == null) {
+            return null;
+        }
+        TLRPC.Document document = media.document;
+        if (document != null && document.id == j) {
+            return document;
+        }
+        Iterator<TLRPC.Document> it = media.alt_documents.iterator();
+        while (it.hasNext()) {
+            TLRPC.Document next = it.next();
+            if (next.id == j) {
+                return next;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        setPivotY(getMeasuredHeight());
+    }
+
+    public boolean isReady() {
+        return this.ready;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Bitmap bitmap = this.bitmapToRecycle;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.bitmapToRecycle = null;
+        }
+        if (this.drawStoryBoard) {
+            canvas.save();
+            this.ytPath.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            this.ytPath.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(this.ytPath);
+            canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
+            canvas.translate(-this.ytImageX, -this.ytImageY);
+            this.storyBoardsReceiver.setImageCoords(0.0f, 0.0f, r0.getBitmapWidth(), this.storyBoardsReceiver.getBitmapHeight());
+            this.storyBoardsReceiver.draw(canvas);
+            canvas.restore();
+            this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.frameDrawable.draw(canvas);
+            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
+            return;
+        }
+        if (this.bitmapToDraw == null || this.bitmapShader == null) {
+            return;
+        }
+        this.matrix.reset();
+        float measuredWidth = getMeasuredWidth() / this.bitmapToDraw.getWidth();
+        this.matrix.preScale(measuredWidth, measuredWidth);
+        this.bitmapRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(this.bitmapRect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.bitmapPaint);
+        this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        this.frameDrawable.draw(canvas);
+        canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
+    }
+
+    public void close() {
+        if (this.loadRunnable != null) {
+            Utilities.globalQueue.cancelRunnable(this.loadRunnable);
+            this.loadRunnable = null;
+        }
+        if (this.progressRunnable != null) {
+            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
+            this.progressRunnable = null;
+        }
+        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
+        if (animatedFileDrawable != null) {
+            animatedFileDrawable.resetStream(true);
+        }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                VideoSeekPreviewImage.this.lambda$close$8();
+            }
+        });
+        setVisibility(4);
+        this.bitmapToDraw = null;
+        this.bitmapShader = null;
+        invalidate();
+        this.currentPixel = -1;
+        this.videoUri = null;
+        this.ready = false;
+        this.open = false;
         if (this.storyBoardMapDocId != 0) {
             this.storyBoardMapDocId = 0L;
             this.downloadingStoryBoardMapFilename = null;
@@ -754,28 +725,14 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             this.storyBoardMap = null;
             listen(-1);
         }
-        if (i != 0) {
-            this.pixelWidth = i;
-            int i2 = ((int) (i * f)) / 5;
-            if (this.currentPixel == i2) {
-                return;
-            } else {
-                this.currentPixel = i2;
-            }
-        }
-        this.frameTime = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
-        invalidate();
-        if (this.progressRunnable != null) {
-            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
-        }
-        double videoDuration = f * photoViewerWebView.getVideoDuration();
-        Double.isNaN(videoDuration);
-        double d = videoDuration / 1000.0d;
-        this.lastPosition = d;
-        String youtubeStoryboard = photoViewerWebView.getYoutubeStoryboard((int) d);
-        if (youtubeStoryboard != null) {
-            this.storyBoardsReceiver.setImage(youtubeStoryboard, null, null, null, 0L);
+    }
+
+    public void lambda$close$8() {
+        this.pendingProgress = 0.0f;
+        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
+        if (animatedFileDrawable != null) {
+            animatedFileDrawable.recycle();
+            this.fileDrawable = null;
         }
     }
 }

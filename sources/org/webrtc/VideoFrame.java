@@ -58,12 +58,17 @@ public class VideoFrame implements RefCounted {
     }
 
     public interface TextureBuffer extends Buffer {
+        TextureBuffer applyTransformMatrix(Matrix matrix, int i, int i2);
 
-        public abstract class CC {
-            public static TextureBuffer $default$applyTransformMatrix(TextureBuffer textureBuffer, Matrix matrix, int i, int i2) {
-                throw new UnsupportedOperationException("Not implemented");
-            }
-        }
+        int getTextureId();
+
+        Matrix getTransformMatrix();
+
+        Type getType();
+
+        int getUnscaledHeight();
+
+        int getUnscaledWidth();
 
         public enum Type {
             OES(36197),
@@ -80,17 +85,11 @@ public class VideoFrame implements RefCounted {
             }
         }
 
-        TextureBuffer applyTransformMatrix(Matrix matrix, int i, int i2);
-
-        int getTextureId();
-
-        Matrix getTransformMatrix();
-
-        Type getType();
-
-        int getUnscaledHeight();
-
-        int getUnscaledWidth();
+        public abstract class CC {
+            public static TextureBuffer $default$applyTransformMatrix(TextureBuffer textureBuffer, Matrix matrix, int i, int i2) {
+                throw new UnsupportedOperationException("Not implemented");
+            }
+        }
     }
 
     public VideoFrame(Buffer buffer, int i, long j) {
@@ -109,14 +108,6 @@ public class VideoFrame implements RefCounted {
         return this.buffer;
     }
 
-    public int getRotatedHeight() {
-        return this.rotation % 180 == 0 ? this.buffer.getHeight() : this.buffer.getWidth();
-    }
-
-    public int getRotatedWidth() {
-        return this.rotation % 180 == 0 ? this.buffer.getWidth() : this.buffer.getHeight();
-    }
-
     public int getRotation() {
         return this.rotation;
     }
@@ -125,13 +116,27 @@ public class VideoFrame implements RefCounted {
         return this.timestampNs;
     }
 
-    @Override
-    public void release() {
-        this.buffer.release();
+    public int getRotatedWidth() {
+        if (this.rotation % 180 == 0) {
+            return this.buffer.getWidth();
+        }
+        return this.buffer.getHeight();
+    }
+
+    public int getRotatedHeight() {
+        if (this.rotation % 180 == 0) {
+            return this.buffer.getHeight();
+        }
+        return this.buffer.getWidth();
     }
 
     @Override
     public void retain() {
         this.buffer.retain();
+    }
+
+    @Override
+    public void release() {
+        this.buffer.release();
     }
 }

@@ -8,6 +8,11 @@ public final class BlockingCoroutine extends AbstractCoroutine {
     private final Thread blockedThread;
     private final EventLoop eventLoop;
 
+    @Override
+    protected boolean isScopedCoroutine() {
+        return true;
+    }
+
     public BlockingCoroutine(CoroutineContext coroutineContext, Thread thread, EventLoop eventLoop) {
         super(coroutineContext, true, true);
         this.blockedThread = thread;
@@ -24,11 +29,6 @@ public final class BlockingCoroutine extends AbstractCoroutine {
         LockSupport.unpark(thread);
     }
 
-    @Override
-    protected boolean isScopedCoroutine() {
-        return true;
-    }
-
     public final Object joinBlocking() {
         AbstractTimeSourceKt.getTimeSource();
         try {
@@ -40,7 +40,10 @@ public final class BlockingCoroutine extends AbstractCoroutine {
                 try {
                     EventLoop eventLoop2 = this.eventLoop;
                     long processNextEvent = eventLoop2 != null ? eventLoop2.processNextEvent() : Long.MAX_VALUE;
-                    if (isCompleted()) {
+                    if (!isCompleted()) {
+                        AbstractTimeSourceKt.getTimeSource();
+                        LockSupport.parkNanos(this, processNextEvent);
+                    } else {
                         EventLoop eventLoop3 = this.eventLoop;
                         if (eventLoop3 != null) {
                             EventLoop.decrementUseCount$default(eventLoop3, false, 1, null);
@@ -53,8 +56,6 @@ public final class BlockingCoroutine extends AbstractCoroutine {
                         }
                         throw completedExceptionally.cause;
                     }
-                    AbstractTimeSourceKt.getTimeSource();
-                    LockSupport.parkNanos(this, processNextEvent);
                 } catch (Throwable th) {
                     EventLoop eventLoop4 = this.eventLoop;
                     if (eventLoop4 != null) {

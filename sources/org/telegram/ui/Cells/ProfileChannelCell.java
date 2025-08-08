@@ -50,232 +50,7 @@ public abstract class ProfileChannelCell extends FrameLayout {
     private boolean set;
     private final AnimatedTextView subscribersView;
 
-    public static class ChannelMessageFetcher {
-        private ArrayList callbacks = new ArrayList();
-        public long channel_id;
-        public final int currentAccount;
-        public boolean error;
-        public boolean loaded;
-        public boolean loading;
-        public MessageObject messageObject;
-        public int message_id;
-        private int searchId;
-
-        public ChannelMessageFetcher(int i) {
-            this.currentAccount = i;
-        }
-
-        private void done(boolean z) {
-            this.loading = false;
-            this.loaded = true;
-            this.error = z;
-            Iterator it = this.callbacks.iterator();
-            while (it.hasNext()) {
-                ((Runnable) it.next()).run();
-            }
-            this.callbacks.clear();
-        }
-
-        public void lambda$fetch$0(TLObject tLObject, MessagesStorage messagesStorage, long j, int i, int i2) {
-            TLRPC.Message message;
-            if (!(tLObject instanceof TLRPC.messages_Messages)) {
-                if (i != this.searchId) {
-                    return;
-                }
-                done(true);
-                return;
-            }
-            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
-            messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-            messagesStorage.putMessages(messages_messages, -j, -1, 0, false, 0, 0L);
-            if (i != this.searchId) {
-                return;
-            }
-            Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    message = null;
-                    break;
-                } else {
-                    message = it.next();
-                    if (message.id == i2) {
-                        break;
-                    }
-                }
-            }
-            if (message != null) {
-                if (message instanceof TLRPC.TL_messageEmpty) {
-                    this.messageObject = null;
-                } else {
-                    this.messageObject = new MessageObject(this.currentAccount, message, true, true);
-                }
-                done(false);
-            }
-        }
-
-        public void lambda$fetch$1(final MessagesStorage messagesStorage, final long j, final int i, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$0(tLObject, messagesStorage, j, i, i2);
-                }
-            });
-        }
-
-        public void lambda$fetch$2(final int i, TLRPC.Message message, final long j, final int i2, final MessagesStorage messagesStorage) {
-            if (i != this.searchId) {
-                return;
-            }
-            MessageObject messageObject = message != null ? new MessageObject(this.currentAccount, message, true, true) : null;
-            if (messageObject != null) {
-                this.messageObject = messageObject;
-                done(false);
-            } else {
-                TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
-                tL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
-                tL_channels_getMessages.id.add(Integer.valueOf(i2));
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tL_error);
-                    }
-                });
-            }
-        }
-
-        public void lambda$fetch$3(final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) {
-            TLRPC.Message message;
-            SQLiteCursor sQLiteCursor;
-            NativeByteBuffer byteBufferValue;
-            ArrayList<TLRPC.User> arrayList = new ArrayList<>();
-            ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
-            SQLiteCursor sQLiteCursor2 = null;
-            r4 = null;
-            r4 = null;
-            final TLRPC.Message message2 = null;
-            sQLiteCursor2 = null;
-            try {
-                try {
-                    sQLiteCursor = i <= 0 ? messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 1", Long.valueOf(-j)) : messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid = ? LIMIT 1", Long.valueOf(-j), Integer.valueOf(i));
-                    try {
-                        try {
-                            ArrayList<Long> arrayList3 = new ArrayList<>();
-                            ArrayList arrayList4 = new ArrayList();
-                            if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
-                                message = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                try {
-                                    message.readAttachPath(byteBufferValue, j2);
-                                    byteBufferValue.reuse();
-                                    message.id = sQLiteCursor.intValue(1);
-                                    message.dialog_id = -j;
-                                    MessagesStorage.addUsersAndChatsFromMessage(message, arrayList3, arrayList4, null);
-                                    message2 = message;
-                                } catch (Exception e) {
-                                    e = e;
-                                    sQLiteCursor2 = sQLiteCursor;
-                                    FileLog.e(e);
-                                    if (sQLiteCursor2 == null) {
-                                        message2 = message;
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
-                                            }
-                                        });
-                                    } else {
-                                        sQLiteCursor = sQLiteCursor2;
-                                        message2 = message;
-                                        sQLiteCursor.dispose();
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
-                                            }
-                                        });
-                                    }
-                                }
-                            }
-                            sQLiteCursor.dispose();
-                            if (message2 != null) {
-                                if (!arrayList3.isEmpty()) {
-                                    messagesStorage.getUsersInternal(arrayList3, arrayList);
-                                }
-                                if (!arrayList4.isEmpty()) {
-                                    messagesStorage.getChatsInternal(TextUtils.join(",", arrayList4), arrayList2);
-                                }
-                            }
-                        } catch (Throwable th) {
-                            th = th;
-                            sQLiteCursor2 = sQLiteCursor;
-                            if (sQLiteCursor2 != null) {
-                                sQLiteCursor2.dispose();
-                            }
-                            throw th;
-                        }
-                    } catch (Exception e2) {
-                        e = e2;
-                        message = message2;
-                    }
-                } catch (Exception e3) {
-                    e = e3;
-                    message = null;
-                }
-                sQLiteCursor.dispose();
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
-                    }
-                });
-            } catch (Throwable th2) {
-                th = th2;
-            }
-        }
-
-        public void fetch(final long j, final int i) {
-            if (this.loaded || this.loading) {
-                if (this.channel_id == j && this.message_id == i) {
-                    return;
-                }
-                this.loaded = false;
-                this.messageObject = null;
-            }
-            final int i2 = this.searchId + 1;
-            this.searchId = i2;
-            this.loading = true;
-            this.channel_id = j;
-            this.message_id = i;
-            final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$3(i, messagesStorage, j, clientUserId, i2);
-                }
-            });
-        }
-
-        public void fetch(TLRPC.UserFull userFull) {
-            if (userFull != null && (userFull.flags2 & 64) != 0) {
-                fetch(userFull.personal_channel_id, userFull.personal_channel_message);
-                return;
-            }
-            this.searchId++;
-            this.loaded = true;
-            this.messageObject = null;
-            done(false);
-        }
-
-        public void subscribe(Runnable runnable) {
-            if (this.loaded) {
-                runnable.run();
-            } else {
-                this.callbacks.add(runnable);
-            }
-        }
-    }
+    public abstract int processColor(int i);
 
     public ProfileChannelCell(final BaseFragment baseFragment) {
         super(baseFragment.getContext());
@@ -321,6 +96,18 @@ public abstract class ProfileChannelCell extends FrameLayout {
             }
 
             @Override
+            public void showChatPreview(DialogCell dialogCell2) {
+            }
+
+            @Override
+            public void openStory(DialogCell dialogCell2, Runnable runnable) {
+                if (baseFragment.getMessagesController().getStoriesController().hasStories(dialogCell2.getDialogId())) {
+                    baseFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
+                    baseFragment.getOrCreateStoryViewer().open(baseFragment.getContext(), dialogCell2.getDialogId(), StoriesListPlaceProvider.of(ProfileChannelCell.this));
+                }
+            }
+
+            @Override
             public void openHiddenStories() {
                 StoriesController storiesController = baseFragment.getMessagesController().getStoriesController();
                 if (storiesController.getHiddenList().isEmpty()) {
@@ -335,18 +122,6 @@ public abstract class ProfileChannelCell extends FrameLayout {
                     }
                 }
                 baseFragment.getOrCreateStoryViewer().open(context, null, arrayList, 0, null, null, StoriesListPlaceProvider.of(ProfileChannelCell.this), false);
-            }
-
-            @Override
-            public void openStory(DialogCell dialogCell2, Runnable runnable) {
-                if (baseFragment.getMessagesController().getStoriesController().hasStories(dialogCell2.getDialogId())) {
-                    baseFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
-                    baseFragment.getOrCreateStoryViewer().open(baseFragment.getContext(), dialogCell2.getDialogId(), StoriesListPlaceProvider.of(ProfileChannelCell.this));
-                }
-            }
-
-            @Override
-            public void showChatPreview(DialogCell dialogCell2) {
             }
         });
         dialogCell.avatarStart = 15;
@@ -382,63 +157,282 @@ public abstract class ProfileChannelCell extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(115.66f), 1073741824));
+    protected boolean verifyDrawable(Drawable drawable) {
+        return this.loadingDrawable == drawable || super.verifyDrawable(drawable);
     }
-
-    public abstract int processColor(int i);
 
     public void set(TLRPC.Chat chat, MessageObject messageObject) {
         String formatShortNumber;
-        DialogCell dialogCell;
-        long j;
-        int i;
-        boolean z;
-        MessageObject messageObject2;
-        boolean z2 = this.set;
-        boolean z3 = chat == null || chat.participants_count > 0;
+        boolean z = this.set;
+        boolean z2 = chat == null || chat.participants_count > 0;
         this.subscribersView.cancelAnimation();
         this.subscribersView.setPivotX(0.0f);
-        AnimatedTextView animatedTextView = this.subscribersView;
-        if (z2) {
-            animatedTextView.animate().alpha(z3 ? 1.0f : 0.0f).scaleX(z3 ? 1.0f : 0.8f).scaleY(z3 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+        if (z) {
+            this.subscribersView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.8f).scaleY(z2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
         } else {
-            animatedTextView.setAlpha(z3 ? 1.0f : 0.0f);
-            this.subscribersView.setScaleX(z3 ? 1.0f : 0.0f);
-            this.subscribersView.setScaleY(z3 ? 1.0f : 0.0f);
+            this.subscribersView.setAlpha(z2 ? 1.0f : 0.0f);
+            this.subscribersView.setScaleX(z2 ? 1.0f : 0.0f);
+            this.subscribersView.setScaleY(z2 ? 1.0f : 0.0f);
         }
         if (chat != null) {
             int[] iArr = new int[1];
             if (AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                int i2 = chat.participants_count;
-                iArr[0] = i2;
-                formatShortNumber = String.valueOf(i2);
+                int i = chat.participants_count;
+                iArr[0] = i;
+                formatShortNumber = String.valueOf(i);
             } else {
                 formatShortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
             }
             this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), formatShortNumber), true);
-            boolean z4 = messageObject == null;
-            this.loading = z4;
-            if (z4) {
-                dialogCell = this.dialogCell;
-                j = -chat.id;
-                i = 0;
-                z = false;
-                messageObject2 = null;
+            boolean z3 = messageObject == null;
+            this.loading = z3;
+            if (z3) {
+                this.dialogCell.setDialog(-chat.id, null, 0, false, z);
             } else {
-                dialogCell = this.dialogCell;
-                j = -chat.id;
-                i = messageObject.messageOwner.date;
-                z = false;
-                messageObject2 = messageObject;
+                this.dialogCell.setDialog(-chat.id, messageObject, messageObject.messageOwner.date, false, z);
             }
-            dialogCell.setDialog(j, messageObject2, i, z, z2);
         }
-        if (!z2) {
+        if (!z) {
             this.loadingAlpha.set(this.loading, true);
         }
         invalidate();
         this.set = true;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(115.66f), 1073741824));
+    }
+
+    public static class ChannelMessageFetcher {
+        private ArrayList callbacks = new ArrayList();
+        public long channel_id;
+        public final int currentAccount;
+        public boolean error;
+        public boolean loaded;
+        public boolean loading;
+        public MessageObject messageObject;
+        public int message_id;
+        private int searchId;
+
+        public ChannelMessageFetcher(int i) {
+            this.currentAccount = i;
+        }
+
+        public void fetch(TLRPC.UserFull userFull) {
+            if (userFull == null || (userFull.flags2 & 64) == 0) {
+                this.searchId++;
+                this.loaded = true;
+                this.messageObject = null;
+                done(false);
+                return;
+            }
+            fetch(userFull.personal_channel_id, userFull.personal_channel_message);
+        }
+
+        public void fetch(final long j, final int i) {
+            if (this.loaded || this.loading) {
+                if (this.channel_id == j && this.message_id == i) {
+                    return;
+                }
+                this.loaded = false;
+                this.messageObject = null;
+            }
+            final int i2 = this.searchId + 1;
+            this.searchId = i2;
+            this.loading = true;
+            this.channel_id = j;
+            this.message_id = i;
+            final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$3(i, messagesStorage, j, clientUserId, i2);
+                }
+            });
+        }
+
+        public void lambda$fetch$3(final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) {
+            TLRPC.Message message;
+            SQLiteCursor sQLiteCursor;
+            NativeByteBuffer byteBufferValue;
+            ArrayList<TLRPC.User> arrayList = new ArrayList<>();
+            ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
+            SQLiteCursor sQLiteCursor2 = null;
+            r4 = null;
+            r4 = null;
+            final TLRPC.Message message2 = null;
+            sQLiteCursor2 = null;
+            try {
+                try {
+                    if (i <= 0) {
+                        sQLiteCursor = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 1", Long.valueOf(-j));
+                    } else {
+                        sQLiteCursor = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid = ? LIMIT 1", Long.valueOf(-j), Integer.valueOf(i));
+                    }
+                    try {
+                        try {
+                            ArrayList<Long> arrayList3 = new ArrayList<>();
+                            ArrayList arrayList4 = new ArrayList();
+                            if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
+                                message = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                                try {
+                                    message.readAttachPath(byteBufferValue, j2);
+                                    byteBufferValue.reuse();
+                                    message.id = sQLiteCursor.intValue(1);
+                                    message.dialog_id = -j;
+                                    MessagesStorage.addUsersAndChatsFromMessage(message, arrayList3, arrayList4, null);
+                                    message2 = message;
+                                } catch (Exception e) {
+                                    e = e;
+                                    sQLiteCursor2 = sQLiteCursor;
+                                    FileLog.e(e);
+                                    if (sQLiteCursor2 != null) {
+                                        sQLiteCursor = sQLiteCursor2;
+                                        message2 = message;
+                                        sQLiteCursor.dispose();
+                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
+                                            }
+                                        });
+                                    }
+                                    message2 = message;
+                                    AndroidUtilities.runOnUIThread(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
+                                        }
+                                    });
+                                }
+                            }
+                            sQLiteCursor.dispose();
+                            if (message2 != null) {
+                                if (!arrayList3.isEmpty()) {
+                                    messagesStorage.getUsersInternal(arrayList3, arrayList);
+                                }
+                                if (!arrayList4.isEmpty()) {
+                                    messagesStorage.getChatsInternal(TextUtils.join(",", arrayList4), arrayList2);
+                                }
+                            }
+                        } catch (Throwable th) {
+                            th = th;
+                            sQLiteCursor2 = sQLiteCursor;
+                            if (sQLiteCursor2 != null) {
+                                sQLiteCursor2.dispose();
+                            }
+                            throw th;
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        message = message2;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    message = null;
+                }
+                sQLiteCursor.dispose();
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$2(i2, message2, j, i, messagesStorage);
+                    }
+                });
+            } catch (Throwable th2) {
+                th = th2;
+            }
+        }
+
+        public void lambda$fetch$2(final int i, TLRPC.Message message, final long j, final int i2, final MessagesStorage messagesStorage) {
+            if (i != this.searchId) {
+                return;
+            }
+            MessageObject messageObject = message != null ? new MessageObject(this.currentAccount, message, true, true) : null;
+            if (messageObject != null) {
+                this.messageObject = messageObject;
+                done(false);
+            } else {
+                TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
+                tL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
+                tL_channels_getMessages.id.add(Integer.valueOf(i2));
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tL_error);
+                    }
+                });
+            }
+        }
+
+        public void lambda$fetch$1(final MessagesStorage messagesStorage, final long j, final int i, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileChannelCell.ChannelMessageFetcher.this.lambda$fetch$0(tLObject, messagesStorage, j, i, i2);
+                }
+            });
+        }
+
+        public void lambda$fetch$0(TLObject tLObject, MessagesStorage messagesStorage, long j, int i, int i2) {
+            TLRPC.Message message;
+            if (tLObject instanceof TLRPC.messages_Messages) {
+                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
+                messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
+                messagesStorage.putMessages(messages_messages, -j, -1, 0, false, 0, 0L);
+                if (i != this.searchId) {
+                    return;
+                }
+                Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        message = null;
+                        break;
+                    } else {
+                        message = it.next();
+                        if (message.id == i2) {
+                            break;
+                        }
+                    }
+                }
+                if (message != null) {
+                    if (message instanceof TLRPC.TL_messageEmpty) {
+                        this.messageObject = null;
+                    } else {
+                        this.messageObject = new MessageObject(this.currentAccount, message, true, true);
+                    }
+                    done(false);
+                    return;
+                }
+                return;
+            }
+            if (i != this.searchId) {
+                return;
+            }
+            done(true);
+        }
+
+        public void subscribe(Runnable runnable) {
+            if (this.loaded) {
+                runnable.run();
+            } else {
+                this.callbacks.add(runnable);
+            }
+        }
+
+        private void done(boolean z) {
+            this.loading = false;
+            this.loaded = true;
+            this.error = z;
+            Iterator it = this.callbacks.iterator();
+            while (it.hasNext()) {
+                ((Runnable) it.next()).run();
+            }
+            this.callbacks.clear();
+        }
     }
 
     public void updateColors() {
@@ -446,10 +440,5 @@ public abstract class ProfileChannelCell extends FrameLayout {
         this.subscribersView.setTextColor(processColor);
         this.subscribersView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(4.5f), AndroidUtilities.dp(4.5f), Theme.multAlpha(processColor, 0.1f)));
         this.headerView.setTextColor(processColor);
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return this.loadingDrawable == drawable || super.verifyDrawable(drawable);
     }
 }

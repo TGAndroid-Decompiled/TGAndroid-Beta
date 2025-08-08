@@ -9,19 +9,28 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
@@ -84,67 +93,8 @@ public class LinkPreview extends View {
     private WebPagePreview webpage;
     private final AnimatedFloat width;
 
-    public static class WebPagePreview extends TLObject {
-        public boolean captionAbove = true;
-        public int flags;
-        public boolean largePhoto;
-        public String name;
-        public int photoSize;
-        public String url;
-        public TLRPC.WebPage webpage;
-
-        public static WebPagePreview TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-625858389 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in WebPagePreview", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            WebPagePreview webPagePreview = new WebPagePreview();
-            webPagePreview.readParams(inputSerializedData, z);
-            return webPagePreview;
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.largePhoto = (readInt32 & 8) != 0;
-            this.captionAbove = (readInt32 & 16) != 0;
-            this.url = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
-                this.webpage = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 2) != 0) {
-                this.name = inputSerializedData.readString(z);
-            }
-            if ((this.flags & 4) != 0) {
-                this.photoSize = inputSerializedData.readInt32(z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-625858389);
-            this.flags = this.webpage != null ? this.flags | 1 : this.flags & (-2);
-            int i = !TextUtils.isEmpty(this.name) ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.largePhoto ? i | 8 : i & (-9);
-            this.flags = i2;
-            int i3 = this.captionAbove ? i2 | 16 : i2 & (-17);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
-            outputSerializedData.writeString(this.url);
-            if ((this.flags & 1) != 0) {
-                this.webpage.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 2) != 0) {
-                outputSerializedData.writeString(this.name);
-            }
-            if ((this.flags & 4) != 0) {
-                outputSerializedData.writeInt32(this.photoSize);
-            }
-        }
+    public static String fromUrl(String str) {
+        return str;
     }
 
     public LinkPreview(Context context, float f) {
@@ -186,8 +136,252 @@ public class LinkPreview extends View {
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
     }
 
-    public static String fromUrl(String str) {
-        return str;
+    public void setMaxWidth(int i) {
+        this.maxWidth = i;
+        this.relayout = true;
+    }
+
+    public void setVideoTexture() {
+        this.video = true;
+    }
+
+    public void setupLayout() {
+        int color1;
+        int i;
+        int i2;
+        int i3;
+        if (!this.relayout || this.webpage == null) {
+            return;
+        }
+        if (withPreview()) {
+            String fromUrl = TextUtils.isEmpty(this.webpage.name) ? fromUrl(this.webpage.url) : this.webpage.name;
+            TLRPC.WebPage webPage = this.webpage.webpage;
+            int i4 = this.maxWidth;
+            int i5 = this.padx;
+            float f = (i4 - i5) - i5;
+            this.h = 0.0f;
+            this.w = 0.0f;
+            this.previewHeight = 0.0f;
+            int colorId = UserObject.getColorId(UserConfig.getInstance(this.currentAccount).getCurrentUser());
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
+            MessagesController.PeerColor color = (peerColors == null || colorId < 7) ? null : peerColors.getColor(colorId);
+            Paint paint = this.previewPaint;
+            if (color == null) {
+                int[] iArr = Theme.keys_avatar_nameInMessage;
+                color1 = Theme.getColor(iArr[colorId % iArr.length]);
+            } else {
+                color1 = color.getColor1();
+            }
+            paint.setColor(color1);
+            this.h += this.density * 7.33f;
+            this.messageAbove = this.webpage.captionAbove;
+            Text maxWidth = new Text(fromUrl, 16.0f).setTextSizePx(this.density * 16.0f).setMaxWidth(f - (this.density * 20.0f));
+            this.messageText = maxWidth;
+            this.w = Math.max(this.w, Math.min(maxWidth.getCurrentWidth() + (this.density * 20.0f), f));
+            this.h = this.h + this.messageText.getHeight() + (this.density * 7.0f);
+            this.hasPhoto = webPage.photo != null || MessageObject.isVideoDocument(webPage.document);
+            WebPagePreview webPagePreview = this.webpage;
+            boolean z = webPagePreview.largePhoto;
+            this.smallPhoto = !z;
+            int i6 = (!this.video || (webPagePreview.flags & 4) == 0) ? ((int) (!z ? 48.0f : (f / this.density) - 40.0f)) * 2 : webPagePreview.photoSize;
+            this.photoImage.setRoundRadius((int) (this.density * 4.0f));
+            TLRPC.Photo photo = webPage.photo;
+            if (photo != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 1, false, null, false);
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, (int) (i6 * this.density), false, closestPhotoSizeWithSize, false);
+                if (closestPhotoSizeWithSize2 != null) {
+                    i = closestPhotoSizeWithSize2.w;
+                    i2 = closestPhotoSizeWithSize2.h;
+                } else {
+                    i = 0;
+                    i2 = 0;
+                }
+                this.photoImage.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize2, webPage.photo), i6 + "_" + i6, this.video ? null : ImageLocation.getForPhoto(closestPhotoSizeWithSize, webPage.photo), this.video ? null : i6 + "_" + i6, 0L, null, null, 0);
+            } else {
+                TLRPC.Document document = webPage.document;
+                if (document != null) {
+                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1, false, null, false);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(webPage.document.thumbs, (int) (i6 * this.density), false, closestPhotoSizeWithSize3, false);
+                    if (closestPhotoSizeWithSize4 != null) {
+                        i = closestPhotoSizeWithSize4.w;
+                        i2 = closestPhotoSizeWithSize4.h;
+                    } else {
+                        i = 0;
+                        i2 = 0;
+                    }
+                    this.photoImage.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, webPage.document), i6 + "_" + i6, this.video ? null : ImageLocation.getForDocument(closestPhotoSizeWithSize3, webPage.document), this.video ? null : i6 + "_" + i6, 0L, null, null, 0);
+                } else {
+                    i = 0;
+                    i2 = 0;
+                }
+            }
+            this.previewHeight += this.density * 5.66f;
+            boolean isEmpty = TextUtils.isEmpty(webPage.site_name);
+            this.hasSiteName = !isEmpty;
+            if (isEmpty) {
+                i3 = 0;
+            } else {
+                Text textSizePx = new Text(webPage.site_name, 14.0f, AndroidUtilities.bold()).setTextSizePx(this.density * 14.0f);
+                float f2 = this.density;
+                Text maxWidth2 = textSizePx.setMaxWidth((int) Math.ceil((f - (f2 * 40.0f)) - ((this.hasPhoto && this.smallPhoto) ? f2 * 60.0f : 0.0f)));
+                this.siteNameText = maxWidth2;
+                float f3 = this.w;
+                float currentWidth = maxWidth2.getCurrentWidth();
+                float f4 = this.density;
+                this.w = Math.max(f3, Math.min(currentWidth + (f4 * 40.0f) + ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f), f));
+                this.previewHeight = this.previewHeight + this.siteNameText.getHeight() + (this.density * 2.66f);
+                i3 = this.siteNameText.getLineCount();
+            }
+            boolean isEmpty2 = TextUtils.isEmpty(webPage.title);
+            this.hasTitle = !isEmpty2;
+            if (!isEmpty2) {
+                Text textSizePx2 = new Text(webPage.title, 14.0f, AndroidUtilities.bold()).setTextSizePx(this.density * 14.0f);
+                float f5 = this.density;
+                Text maxWidth3 = textSizePx2.setMaxWidth((int) Math.ceil((f - (f5 * 40.0f)) - ((this.hasPhoto && this.smallPhoto) ? f5 * 60.0f : 0.0f)));
+                this.titleText = maxWidth3;
+                float f6 = this.w;
+                float currentWidth2 = maxWidth3.getCurrentWidth();
+                float f7 = this.density;
+                this.w = Math.max(f6, Math.min(currentWidth2 + (f7 * 40.0f) + ((this.hasPhoto && this.smallPhoto) ? 60.0f * f7 : 0.0f), f));
+                this.previewHeight = this.previewHeight + this.titleText.getHeight() + (this.density * 2.66f);
+                i3 += this.titleText.getLineCount();
+            }
+            boolean isEmpty3 = TextUtils.isEmpty(webPage.description);
+            this.hasDescription = !isEmpty3;
+            if (!isEmpty3) {
+                this.descriptionPaint.setTextSize(this.density * 14.0f);
+                int i7 = 3 - i3;
+                this.descriptionLayout = ChatMessageCell.generateStaticLayout(webPage.description, this.descriptionPaint, (int) Math.ceil(Math.max(1.0f, f - (this.density * 40.0f))), (int) Math.ceil(Math.max(1.0f, f - ((40 + ((this.hasPhoto && this.smallPhoto) ? 60 : 0)) * this.density))), i7, 4);
+                this.descriptionLayoutWidth = 0.0f;
+                this.descriptionLayoutLeft = Float.MAX_VALUE;
+                int i8 = 0;
+                while (i8 < this.descriptionLayout.getLineCount()) {
+                    this.descriptionLayoutWidth = Math.max(this.descriptionLayoutWidth, this.descriptionLayout.getLineWidth(i8) + (this.hasPhoto && this.smallPhoto && i8 < i7 ? this.density * 48.0f : 0.0f));
+                    this.descriptionLayoutLeft = Math.min(this.descriptionLayoutLeft, this.descriptionLayout.getLineLeft(i8));
+                    i8++;
+                }
+                this.w = Math.max(this.w, Math.min(this.descriptionLayoutWidth + (this.density * 40.0f), f));
+                this.previewHeight = this.previewHeight + this.descriptionLayout.getHeight() + (this.density * 2.66f);
+            }
+            if (this.hasPhoto && !this.smallPhoto) {
+                if (i <= 0 || i2 <= 0) {
+                    this.photoHeight = this.density * 120.0f;
+                } else {
+                    this.photoHeight = Math.min((Math.max(0.0f, this.w - (this.density * 40.0f)) / i) * i2, this.density * 200.0f);
+                }
+                this.previewHeight = this.previewHeight + this.photoHeight + (this.density * 2.66f);
+            }
+            float f8 = this.previewHeight;
+            float f9 = this.density;
+            float f10 = f8 + (f9 * 7.0f);
+            this.previewHeight = f10;
+            this.h = this.h + f10 + (f9 * 11.0f);
+        } else {
+            String upperCase = TextUtils.isEmpty(this.webpage.name) ? fromUrlWithoutSchema(this.webpage.url).toUpperCase() : this.webpage.name;
+            int i9 = this.maxWidth;
+            int i10 = this.padx;
+            float f11 = (i9 - i10) - i10;
+            RectF rectF = this.padding;
+            float f12 = f11 - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
+            this.textScale = 1.0f;
+            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(r10), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f12), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layoutWidth = 0.0f;
+            this.layoutLeft = Float.MAX_VALUE;
+            for (int i11 = 0; i11 < this.layout.getLineCount(); i11++) {
+                this.layoutWidth = Math.max(this.layoutWidth, this.layout.getLineWidth(i11));
+                this.layoutLeft = Math.min(this.layoutLeft, this.layout.getLineLeft(i11));
+            }
+            if (this.layout.getLineCount() > 2) {
+                this.textScale = 0.3f;
+            } else {
+                this.textScale = Math.min(1.0f, f12 / this.layoutWidth);
+            }
+            RectF rectF2 = this.padding;
+            float f13 = rectF2.left + 30.0f + 3.25f + rectF2.right;
+            float f14 = this.density;
+            this.w = (f13 * f14) + (this.layoutWidth * this.textScale);
+            this.h = ((rectF2.top + rectF2.bottom) * f14) + Math.max(f14 * 30.0f, this.layout.getHeight() * this.textScale);
+        }
+        if (!this.animated) {
+            this.captionAbove.set(this.messageAbove, true);
+            this.photoSmallProgress.set(this.smallPhoto, true);
+            this.photoAlphaProgress.set(this.hasPhoto, true);
+            this.previewHeightProgress.set(this.previewHeight, true);
+        } else {
+            invalidate();
+        }
+        this.relayout = false;
+    }
+
+    public void pushPhotoToCache() {
+        if (this.hasPhoto && this.photoImage.hasImageLoaded() && this.photoImage.getBitmap() != null) {
+            ImageLoader.getInstance().putImageToCache(new BitmapDrawable(this.photoImage.getBitmap()), this.photoImage.getImageKey(), false);
+        }
+    }
+
+    public int getPhotoSide() {
+        float f;
+        if (this.smallPhoto) {
+            f = 48.0f;
+        } else {
+            int i = this.maxWidth;
+            int i2 = this.padx;
+            f = (((i - i2) - i2) / this.density) - 40.0f;
+        }
+        return ((int) f) * 2;
+    }
+
+    public boolean withPreview() {
+        WebPagePreview webPagePreview = this.webpage;
+        return (webPagePreview == null || webPagePreview.webpage == null) ? false : true;
+    }
+
+    public void setType(int i, int i2) {
+        if (this.type == 1) {
+            return;
+        }
+        if (i == 0) {
+            this.backgroundColor = i2;
+            int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
+            this.layoutPaint.setColor(i3);
+            this.icon.setColorFilter(new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN));
+        } else if (i == 1) {
+            this.backgroundColor = -16777216;
+            this.layoutPaint.setColor(-1);
+            this.icon.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        } else if (i == 2) {
+            this.backgroundColor = 1275068416;
+            this.layoutPaint.setColor(-1);
+            this.icon.setColorFilter(null);
+        } else {
+            this.backgroundColor = -1;
+            this.layoutPaint.setColor(-13397548);
+            this.icon.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
+        }
+        invalidate();
+    }
+
+    public void setPreviewType(int i) {
+        this.previewType = i;
+        invalidate();
+    }
+
+    public int getPreviewType() {
+        return this.previewType;
+    }
+
+    public void set(int i, WebPagePreview webPagePreview) {
+        set(i, webPagePreview, false);
+    }
+
+    public void set(int i, WebPagePreview webPagePreview, boolean z) {
+        this.currentAccount = i;
+        if (this.webpage != webPagePreview || z) {
+            this.webpage = webPagePreview;
+            this.relayout = true;
+            this.animated = z;
+            requestLayout();
+        }
     }
 
     public static String fromUrlWithoutSchema(String str) {
@@ -197,6 +391,19 @@ public class LinkPreview extends View {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         drawInternal(canvas);
+    }
+
+    public float getRadius() {
+        float f;
+        float f2;
+        if (withPreview()) {
+            f = this.density;
+            f2 = 16.66f;
+        } else {
+            f = this.h;
+            f2 = 0.2f;
+        }
+        return f * f2;
     }
 
     public void drawInternal(Canvas canvas) {
@@ -329,33 +536,10 @@ public class LinkPreview extends View {
         }
     }
 
-    public int getPhotoSide() {
-        float f;
-        if (this.smallPhoto) {
-            f = 48.0f;
-        } else {
-            int i = this.maxWidth;
-            int i2 = this.padx;
-            f = (((i - i2) - i2) / this.density) - 40.0f;
-        }
-        return ((int) f) * 2;
-    }
-
-    public int getPreviewType() {
-        return this.previewType;
-    }
-
-    public float getRadius() {
-        float f;
-        float f2;
-        if (withPreview()) {
-            f = this.density;
-            f2 = 16.66f;
-        } else {
-            f = this.h;
-            f2 = 0.2f;
-        }
-        return f * f2;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        setupLayout();
+        setMeasuredDimension(this.padx + ((int) Math.ceil(this.w)) + this.padx, this.pady + ((int) Math.ceil(this.h)) + this.pady);
     }
 
     @Override
@@ -370,85 +554,66 @@ public class LinkPreview extends View {
         this.photoImage.onDetachedFromWindow();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setupLayout();
-        setMeasuredDimension(this.padx + ((int) Math.ceil(this.w)) + this.padx, this.pady + ((int) Math.ceil(this.h)) + this.pady);
-    }
+    public static class WebPagePreview extends TLObject {
+        public boolean captionAbove = true;
+        public int flags;
+        public boolean largePhoto;
+        public String name;
+        public int photoSize;
+        public String url;
+        public TLRPC.WebPage webpage;
 
-    public void pushPhotoToCache() {
-        if (this.hasPhoto && this.photoImage.hasImageLoaded() && this.photoImage.getBitmap() != null) {
-            ImageLoader.getInstance().putImageToCache(new BitmapDrawable(this.photoImage.getBitmap()), this.photoImage.getImageKey(), false);
-        }
-    }
-
-    public void set(int i, WebPagePreview webPagePreview) {
-        set(i, webPagePreview, false);
-    }
-
-    public void set(int i, WebPagePreview webPagePreview, boolean z) {
-        this.currentAccount = i;
-        if (this.webpage != webPagePreview || z) {
-            this.webpage = webPagePreview;
-            this.relayout = true;
-            this.animated = z;
-            requestLayout();
-        }
-    }
-
-    public void setMaxWidth(int i) {
-        this.maxWidth = i;
-        this.relayout = true;
-    }
-
-    public void setPreviewType(int i) {
-        this.previewType = i;
-        invalidate();
-    }
-
-    public void setType(int i, int i2) {
-        Drawable drawable;
-        PorterDuffColorFilter porterDuffColorFilter;
-        if (this.type == 1) {
-            return;
-        }
-        if (i == 0) {
-            this.backgroundColor = i2;
-            int i3 = AndroidUtilities.computePerceivedBrightness(i2) < 0.721f ? -1 : -16777216;
-            this.layoutPaint.setColor(i3);
-            drawable = this.icon;
-            porterDuffColorFilter = new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN);
-        } else if (i == 1) {
-            this.backgroundColor = -16777216;
-            this.layoutPaint.setColor(-1);
-            drawable = this.icon;
-            porterDuffColorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        } else {
-            if (i != 2) {
-                this.backgroundColor = -1;
-                this.layoutPaint.setColor(-13397548);
-                this.icon.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
-                invalidate();
+        public static WebPagePreview TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-625858389 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in WebPagePreview", Integer.valueOf(i)));
+                }
+                return null;
             }
-            this.backgroundColor = 1275068416;
-            this.layoutPaint.setColor(-1);
-            drawable = this.icon;
-            porterDuffColorFilter = null;
+            WebPagePreview webPagePreview = new WebPagePreview();
+            webPagePreview.readParams(inputSerializedData, z);
+            return webPagePreview;
         }
-        drawable.setColorFilter(porterDuffColorFilter);
-        invalidate();
-    }
 
-    public void setVideoTexture() {
-        this.video = true;
-    }
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-625858389);
+            this.flags = this.webpage != null ? this.flags | 1 : this.flags & (-2);
+            int i = !TextUtils.isEmpty(this.name) ? this.flags | 2 : this.flags & (-3);
+            this.flags = i;
+            int i2 = this.largePhoto ? i | 8 : i & (-9);
+            this.flags = i2;
+            int i3 = this.captionAbove ? i2 | 16 : i2 & (-17);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
+            outputSerializedData.writeString(this.url);
+            if ((this.flags & 1) != 0) {
+                this.webpage.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeString(this.name);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt32(this.photoSize);
+            }
+        }
 
-    public void setupLayout() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.LinkPreview.setupLayout():void");
-    }
-
-    public boolean withPreview() {
-        WebPagePreview webPagePreview = this.webpage;
-        return (webPagePreview == null || webPagePreview.webpage == null) ? false : true;
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.largePhoto = (readInt32 & 8) != 0;
+            this.captionAbove = (readInt32 & 16) != 0;
+            this.url = inputSerializedData.readString(z);
+            if ((this.flags & 1) != 0) {
+                this.webpage = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.name = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.photoSize = inputSerializedData.readInt32(z);
+            }
+        }
     }
 }

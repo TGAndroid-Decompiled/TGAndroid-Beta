@@ -12,16 +12,16 @@ public class TextPaintUrlSpan extends MetricAffectingSpan {
         this.currentUrl = str;
     }
 
-    public TextPaint getTextPaint() {
-        return this.textPaint;
-    }
-
     public String getUrl() {
         return this.currentUrl;
     }
 
+    public TextPaint getTextPaint() {
+        return this.textPaint;
+    }
+
     @Override
-    public void updateDrawState(TextPaint textPaint) {
+    public void updateMeasureState(TextPaint textPaint) {
         TextPaint textPaint2 = this.textPaint;
         if (textPaint2 != null) {
             textPaint.setColor(textPaint2.getColor());
@@ -35,7 +35,7 @@ public class TextPaintUrlSpan extends MetricAffectingSpan {
     }
 
     @Override
-    public void updateMeasureState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         TextPaint textPaint2 = this.textPaint;
         if (textPaint2 != null) {
             textPaint.setColor(textPaint2.getColor());

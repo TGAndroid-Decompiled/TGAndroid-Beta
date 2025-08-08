@@ -55,374 +55,18 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     private int translateSettingsBackgroundHeight;
     private ArrayList unofficialLanguages;
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
-        private int infoPosition1;
-        private int infoPosition2;
-        private int languagesStartsPosition;
-        private Context mContext;
-        private boolean search;
-        private int settingsFromPosition = -1;
-        private int settingsToPosition = -1;
-        private int manualTranslationPosition = -1;
-        private int autoTranslationPosition = -1;
-        private int doNotTranslatePosition = -1;
-
-        public ListAdapter(Context context, boolean z) {
-            this.mContext = context;
-            this.search = z;
-        }
-
-        @Override
-        public int getItemCount() {
-            int i;
-            if (this.search) {
-                if (LanguageSelectActivity.this.searchResult == null) {
-                    return 0;
-                }
-                return LanguageSelectActivity.this.searchResult.size();
-            }
-            if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
-                int i2 = LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() ? 3 : 2;
-                if (LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() && !LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
-                    i2++;
-                }
-                if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
-                    i2++;
-                }
-                i = i2 + 1;
-                if (!"system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) || !"system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
-                    i = i2 + 2;
-                }
-            } else {
-                i = 1;
-            }
-            int size = i + 1 + LanguageSelectActivity.this.sortedLanguages.size();
-            return !LanguageSelectActivity.this.unofficialLanguages.isEmpty() ? size + LanguageSelectActivity.this.unofficialLanguages.size() + 1 : size;
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            int i2;
-            if (this.search) {
-                return 0;
-            }
-            if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
-                this.settingsFromPosition = i - i;
-                int i3 = i - 1;
-                if (i == 0) {
-                    return 3;
-                }
-                if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled()) {
-                    int i4 = i - 2;
-                    if (i3 == 0) {
-                        this.manualTranslationPosition = i;
-                        return 2;
-                    }
-                    i3 = i4;
-                } else {
-                    this.manualTranslationPosition = -1;
-                }
-                if (!LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() || LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
-                    this.autoTranslationPosition = -1;
-                } else {
-                    int i5 = i3 - 1;
-                    if (i3 == 0) {
-                        this.autoTranslationPosition = i;
-                        return 2;
-                    }
-                    i3 = i5;
-                }
-                if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
-                    this.doNotTranslatePosition = i;
-                    int i6 = i3 - 1;
-                    if (i3 == 0) {
-                        return 4;
-                    }
-                    i3 = i6;
-                }
-                this.settingsToPosition = (i - i3) - 1;
-                i2 = i3 - 1;
-                if (i3 == 0) {
-                    this.infoPosition1 = i;
-                    return 6;
-                }
-                if ("system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) && "system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
-                    this.infoPosition2 = -1;
-                } else {
-                    int i7 = i3 - 2;
-                    if (i2 == 0) {
-                        this.infoPosition2 = i;
-                        return 6;
-                    }
-                    i2 = i7;
-                }
-            } else {
-                this.settingsFromPosition = -1;
-                this.settingsToPosition = -1;
-                i2 = i;
-            }
-            int i8 = i2 - 1;
-            if (i2 == 0) {
-                return 3;
-            }
-            if ((!LanguageSelectActivity.this.unofficialLanguages.isEmpty() && (i8 == LanguageSelectActivity.this.unofficialLanguages.size() || i8 == LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size() + 1)) || (LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i8 == LanguageSelectActivity.this.sortedLanguages.size())) {
-                return 1;
-            }
-            this.languagesStartsPosition = i - i8;
-            return 0;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            int itemViewType = viewHolder.getItemViewType();
-            return itemViewType == 0 || itemViewType == 4 || itemViewType == 5 || itemViewType == 2;
-        }
-
-        @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LanguageSelectActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View textRadioCell;
-            if (i != 0) {
-                if (i == 2) {
-                    textRadioCell = new TextCheckCell(this.mContext);
-                    textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                } else if (i == 3) {
-                    textRadioCell = new HeaderCell(this.mContext);
-                } else if (i == 4 || i == 5) {
-                    textRadioCell = new TextSettingsCell(this.mContext);
-                } else {
-                    textRadioCell = i != 6 ? new ShadowSectionCell(this.mContext) : new TextInfoPrivacyCell(this.mContext);
-                }
-                return new RecyclerListView.Holder(textRadioCell);
-            }
-            textRadioCell = new TextRadioCell(this.mContext);
-            textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            return new RecyclerListView.Holder(textRadioCell);
-        }
-
-        @Override
-        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
-            View view = viewHolder.itemView;
-            if (view instanceof TextRadioCell) {
-                ((TextRadioCell) view).updateRTL();
-            }
-        }
+    @Override
+    public boolean onFragmentCreate() {
+        fillLanguages();
+        LocaleController.getInstance().loadRemoteLanguages(this.currentAccount, false);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.suggestedLangpack);
+        return super.onFragmentCreate();
     }
 
-    private void fillLanguages() {
-        final LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
-        Comparator comparator = new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$fillLanguages$8;
-                lambda$fillLanguages$8 = LanguageSelectActivity.lambda$fillLanguages$8(LocaleController.LocaleInfo.this, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
-                return lambda$fillLanguages$8;
-            }
-        };
-        this.sortedLanguages = new ArrayList();
-        this.unofficialLanguages = new ArrayList(LocaleController.getInstance().unofficialLanguages);
-        ArrayList<LocaleController.LocaleInfo> arrayList = LocaleController.getInstance().languages;
-        int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            LocaleController.LocaleInfo localeInfo = arrayList.get(i);
-            (localeInfo.serverIndex != Integer.MAX_VALUE ? this.sortedLanguages : this.unofficialLanguages).add(localeInfo);
-        }
-        Collections.sort(this.sortedLanguages, comparator);
-        Collections.sort(this.unofficialLanguages, comparator);
-    }
-
-    public boolean getChatValue() {
-        return getMessagesController().getTranslateController().isFeatureAvailable();
-    }
-
-    public boolean getContextValue() {
-        return getMessagesController().getTranslateController().isContextTranslateEnabled();
-    }
-
-    public void lambda$createView$0() {
-        this.actionBar.closeSearchField();
-        updateLanguage();
-    }
-
-    public void lambda$createView$1(AlertDialog alertDialog, boolean z) {
-        alertDialog.dismiss();
-        if (z) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LanguageSelectActivity.this.lambda$createView$0();
-            }
-        }, 10L);
-    }
-
-    public void lambda$createView$2(int i, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
-    }
-
-    public static boolean lambda$createView$3(String str, String str2) {
-        return str2 != null && str2.equals(str);
-    }
-
-    public void lambda$createView$4(android.view.View r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LanguageSelectActivity.lambda$createView$4(android.view.View, int):void");
-    }
-
-    public void lambda$createView$5(LocaleController.LocaleInfo localeInfo, AlertDialog alertDialog, int i) {
-        if (LocaleController.getInstance().deleteLanguage(localeInfo, this.currentAccount)) {
-            fillLanguages();
-            ArrayList arrayList = this.searchResult;
-            if (arrayList != null) {
-                arrayList.remove(localeInfo);
-            }
-            ListAdapter listAdapter = this.listAdapter;
-            if (listAdapter != null) {
-                listAdapter.notifyDataSetChanged();
-            }
-            ListAdapter listAdapter2 = this.searchListViewAdapter;
-            if (listAdapter2 != null) {
-                listAdapter2.notifyDataSetChanged();
-            }
-        }
-    }
-
-    public boolean lambda$createView$6(View view, int i) {
-        ArrayList arrayList;
-        try {
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
-            boolean z = this.listView.getAdapter() == this.searchListViewAdapter;
-            if (!z) {
-                i -= this.listAdapter.languagesStartsPosition;
-            }
-            if (z) {
-                arrayList = this.searchResult;
-            } else if (this.unofficialLanguages.isEmpty() || i < 0 || i >= this.unofficialLanguages.size()) {
-                if (!this.unofficialLanguages.isEmpty()) {
-                    i -= this.unofficialLanguages.size() + 1;
-                }
-                arrayList = this.sortedLanguages;
-            } else {
-                arrayList = this.unofficialLanguages;
-            }
-            final LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) arrayList.get(i);
-            if (localeInfo != null && localeInfo.pathToFile != null && (!localeInfo.isRemote() || localeInfo.serverIndex == Integer.MAX_VALUE)) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString(R.string.DeleteLocalizationTitle));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", R.string.DeleteLocalizationText, localeInfo.name)));
-                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i2) {
-                        LanguageSelectActivity.this.lambda$createView$5(localeInfo, alertDialog, i2);
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                AlertDialog create = builder.create();
-                showDialog(create);
-                TextView textView = (TextView) create.getButton(-1);
-                if (textView != null) {
-                    textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void lambda$didReceivedNotification$7() {
-        this.listAdapter.notifyDataSetChanged();
-    }
-
-    public static int lambda$fillLanguages$8(LocaleController.LocaleInfo localeInfo, LocaleController.LocaleInfo localeInfo2, LocaleController.LocaleInfo localeInfo3) {
-        if (localeInfo2 == localeInfo) {
-            return -1;
-        }
-        if (localeInfo3 == localeInfo) {
-            return 1;
-        }
-        int i = localeInfo2.serverIndex;
-        int i2 = localeInfo3.serverIndex;
-        if (i == i2) {
-            return localeInfo2.name.compareTo(localeInfo3.name);
-        }
-        if (i > i2) {
-            return 1;
-        }
-        return i < i2 ? -1 : 0;
-    }
-
-    public void lambda$onBecomeFullyVisible$9() {
-        if (this.isPaused) {
-            return;
-        }
-        updateLanguage();
-    }
-
-    public void lambda$processSearch$10(String str) {
-        if (str.trim().toLowerCase().length() == 0) {
-            updateSearchResults(new ArrayList());
-            return;
-        }
-        System.currentTimeMillis();
-        ArrayList arrayList = new ArrayList();
-        int size = this.unofficialLanguages.size();
-        for (int i = 0; i < size; i++) {
-            LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.unofficialLanguages.get(i);
-            if (localeInfo.name.toLowerCase().startsWith(str) || localeInfo.nameEnglish.toLowerCase().startsWith(str)) {
-                arrayList.add(localeInfo);
-            }
-        }
-        int size2 = this.sortedLanguages.size();
-        for (int i2 = 0; i2 < size2; i2++) {
-            LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) this.sortedLanguages.get(i2);
-            if (localeInfo2.name.toLowerCase().startsWith(str) || localeInfo2.nameEnglish.toLowerCase().startsWith(str)) {
-                arrayList.add(localeInfo2);
-            }
-        }
-        updateSearchResults(arrayList);
-    }
-
-    public void lambda$updateSearchResults$11(ArrayList arrayList) {
-        this.searchResult = arrayList;
-        this.searchListViewAdapter.notifyDataSetChanged();
-    }
-
-    private void processSearch(final String str) {
-        Utilities.searchQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                LanguageSelectActivity.this.lambda$processSearch$10(str);
-            }
-        });
-    }
-
-    private void updateLanguage() {
-        if (this.actionBar != null) {
-            String string = LocaleController.getString(R.string.Language);
-            if (!TextUtils.equals(this.actionBar.getTitle(), string)) {
-                this.actionBar.setTitleAnimated(string, true, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            }
-        }
-        ListAdapter listAdapter = this.listAdapter;
-        if (listAdapter != null) {
-            listAdapter.notifyItemRangeChanged(0, listAdapter.getItemCount());
-        }
-    }
-
-    private void updateSearchResults(final ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LanguageSelectActivity.this.lambda$updateSearchResults$11(arrayList);
-            }
-        });
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.suggestedLangpack);
     }
 
     @Override
@@ -442,6 +86,11 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         });
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
+            public void onSearchExpand() {
+                LanguageSelectActivity.this.searching = true;
+            }
+
+            @Override
             public void onSearchCollapse() {
                 LanguageSelectActivity.this.search(null);
                 LanguageSelectActivity.this.searching = false;
@@ -453,34 +102,23 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
             }
 
             @Override
-            public void onSearchExpand() {
-                LanguageSelectActivity.this.searching = true;
-            }
-
-            @Override
             public void onTextChanged(EditText editText) {
-                RecyclerListView recyclerListView;
-                ListAdapter listAdapter;
                 String obj = editText.getText().toString();
                 LanguageSelectActivity.this.search(obj);
                 if (obj.length() != 0) {
                     LanguageSelectActivity.this.searchWas = true;
-                    if (LanguageSelectActivity.this.listView == null) {
+                    if (LanguageSelectActivity.this.listView != null) {
+                        LanguageSelectActivity.this.listView.setAdapter(LanguageSelectActivity.this.searchListViewAdapter);
                         return;
                     }
-                    recyclerListView = LanguageSelectActivity.this.listView;
-                    listAdapter = LanguageSelectActivity.this.searchListViewAdapter;
-                } else {
-                    LanguageSelectActivity.this.searching = false;
-                    LanguageSelectActivity.this.searchWas = false;
-                    if (LanguageSelectActivity.this.listView == null) {
-                        return;
-                    }
-                    LanguageSelectActivity.this.emptyView.setVisibility(8);
-                    recyclerListView = LanguageSelectActivity.this.listView;
-                    listAdapter = LanguageSelectActivity.this.listAdapter;
+                    return;
                 }
-                recyclerListView.setAdapter(listAdapter);
+                LanguageSelectActivity.this.searching = false;
+                LanguageSelectActivity.this.searchWas = false;
+                if (LanguageSelectActivity.this.listView != null) {
+                    LanguageSelectActivity.this.emptyView.setVisibility(8);
+                    LanguageSelectActivity.this.listView.setAdapter(LanguageSelectActivity.this.listAdapter);
+                }
             }
         });
         this.searchItem = actionBarMenuItemSearchListener;
@@ -552,6 +190,98 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
+    public void lambda$createView$4(android.view.View r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LanguageSelectActivity.lambda$createView$4(android.view.View, int):void");
+    }
+
+    public void lambda$createView$1(AlertDialog alertDialog, boolean z) {
+        alertDialog.dismiss();
+        if (z) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LanguageSelectActivity.this.lambda$createView$0();
+            }
+        }, 10L);
+    }
+
+    public void lambda$createView$0() {
+        this.actionBar.closeSearchField();
+        updateLanguage();
+    }
+
+    public void lambda$createView$2(int i, DialogInterface dialogInterface) {
+        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
+    }
+
+    public static boolean lambda$createView$3(String str, String str2) {
+        return str2 != null && str2.equals(str);
+    }
+
+    public boolean lambda$createView$6(View view, int i) {
+        final LocaleController.LocaleInfo localeInfo;
+        try {
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (getParentActivity() != null && this.parentLayout != null && (view instanceof TextRadioCell)) {
+            boolean z = this.listView.getAdapter() == this.searchListViewAdapter;
+            if (!z) {
+                i -= this.listAdapter.languagesStartsPosition;
+            }
+            if (z) {
+                localeInfo = (LocaleController.LocaleInfo) this.searchResult.get(i);
+            } else if (!this.unofficialLanguages.isEmpty() && i >= 0 && i < this.unofficialLanguages.size()) {
+                localeInfo = (LocaleController.LocaleInfo) this.unofficialLanguages.get(i);
+            } else {
+                if (!this.unofficialLanguages.isEmpty()) {
+                    i -= this.unofficialLanguages.size() + 1;
+                }
+                localeInfo = (LocaleController.LocaleInfo) this.sortedLanguages.get(i);
+            }
+            if (localeInfo != null && localeInfo.pathToFile != null && (!localeInfo.isRemote() || localeInfo.serverIndex == Integer.MAX_VALUE)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+                builder.setTitle(LocaleController.getString(R.string.DeleteLocalizationTitle));
+                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DeleteLocalizationText", R.string.DeleteLocalizationText, localeInfo.name)));
+                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i2) {
+                        LanguageSelectActivity.this.lambda$createView$5(localeInfo, alertDialog, i2);
+                    }
+                });
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                AlertDialog create = builder.create();
+                showDialog(create);
+                TextView textView = (TextView) create.getButton(-1);
+                if (textView != null) {
+                    textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void lambda$createView$5(LocaleController.LocaleInfo localeInfo, AlertDialog alertDialog, int i) {
+        if (LocaleController.getInstance().deleteLanguage(localeInfo, this.currentAccount)) {
+            fillLanguages();
+            ArrayList arrayList = this.searchResult;
+            if (arrayList != null) {
+                arrayList.remove(localeInfo);
+            }
+            ListAdapter listAdapter = this.listAdapter;
+            if (listAdapter != null) {
+                listAdapter.notifyDataSetChanged();
+            }
+            ListAdapter listAdapter2 = this.searchListViewAdapter;
+            if (listAdapter2 != null) {
+                listAdapter2.notifyDataSetChanged();
+            }
+        }
+    }
+
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i != NotificationCenter.suggestedLangpack || this.listAdapter == null) {
@@ -564,6 +294,323 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
                 LanguageSelectActivity.this.lambda$didReceivedNotification$7();
             }
         });
+    }
+
+    public void lambda$didReceivedNotification$7() {
+        this.listAdapter.notifyDataSetChanged();
+    }
+
+    private void fillLanguages() {
+        final LocaleController.LocaleInfo currentLocaleInfo = LocaleController.getInstance().getCurrentLocaleInfo();
+        Comparator comparator = new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$fillLanguages$8;
+                lambda$fillLanguages$8 = LanguageSelectActivity.lambda$fillLanguages$8(LocaleController.LocaleInfo.this, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
+                return lambda$fillLanguages$8;
+            }
+        };
+        this.sortedLanguages = new ArrayList();
+        this.unofficialLanguages = new ArrayList(LocaleController.getInstance().unofficialLanguages);
+        ArrayList<LocaleController.LocaleInfo> arrayList = LocaleController.getInstance().languages;
+        int size = arrayList.size();
+        for (int i = 0; i < size; i++) {
+            LocaleController.LocaleInfo localeInfo = arrayList.get(i);
+            if (localeInfo.serverIndex != Integer.MAX_VALUE) {
+                this.sortedLanguages.add(localeInfo);
+            } else {
+                this.unofficialLanguages.add(localeInfo);
+            }
+        }
+        Collections.sort(this.sortedLanguages, comparator);
+        Collections.sort(this.unofficialLanguages, comparator);
+    }
+
+    public static int lambda$fillLanguages$8(LocaleController.LocaleInfo localeInfo, LocaleController.LocaleInfo localeInfo2, LocaleController.LocaleInfo localeInfo3) {
+        if (localeInfo2 == localeInfo) {
+            return -1;
+        }
+        if (localeInfo3 == localeInfo) {
+            return 1;
+        }
+        int i = localeInfo2.serverIndex;
+        int i2 = localeInfo3.serverIndex;
+        if (i == i2) {
+            return localeInfo2.name.compareTo(localeInfo3.name);
+        }
+        if (i > i2) {
+            return 1;
+        }
+        return i < i2 ? -1 : 0;
+    }
+
+    @Override
+    public void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        LocaleController.getInstance().checkForcePatchLangpack(this.currentAccount, new Runnable() {
+            @Override
+            public final void run() {
+                LanguageSelectActivity.this.lambda$onBecomeFullyVisible$9();
+            }
+        });
+    }
+
+    public void lambda$onBecomeFullyVisible$9() {
+        if (this.isPaused) {
+            return;
+        }
+        updateLanguage();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void search(String str) {
+        if (str == null) {
+            this.searching = false;
+            this.searchResult = null;
+            if (this.listView != null) {
+                this.emptyView.setVisibility(8);
+                this.listView.setAdapter(this.listAdapter);
+                return;
+            }
+            return;
+        }
+        processSearch(str);
+    }
+
+    private void updateLanguage() {
+        if (this.actionBar != null) {
+            String string = LocaleController.getString(R.string.Language);
+            if (!TextUtils.equals(this.actionBar.getTitle(), string)) {
+                this.actionBar.setTitleAnimated(string, true, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            }
+        }
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyItemRangeChanged(0, listAdapter.getItemCount());
+        }
+    }
+
+    private void processSearch(final String str) {
+        Utilities.searchQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                LanguageSelectActivity.this.lambda$processSearch$10(str);
+            }
+        });
+    }
+
+    public void lambda$processSearch$10(String str) {
+        if (str.trim().toLowerCase().length() == 0) {
+            updateSearchResults(new ArrayList());
+            return;
+        }
+        System.currentTimeMillis();
+        ArrayList arrayList = new ArrayList();
+        int size = this.unofficialLanguages.size();
+        for (int i = 0; i < size; i++) {
+            LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.unofficialLanguages.get(i);
+            if (localeInfo.name.toLowerCase().startsWith(str) || localeInfo.nameEnglish.toLowerCase().startsWith(str)) {
+                arrayList.add(localeInfo);
+            }
+        }
+        int size2 = this.sortedLanguages.size();
+        for (int i2 = 0; i2 < size2; i2++) {
+            LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) this.sortedLanguages.get(i2);
+            if (localeInfo2.name.toLowerCase().startsWith(str) || localeInfo2.nameEnglish.toLowerCase().startsWith(str)) {
+                arrayList.add(localeInfo2);
+            }
+        }
+        updateSearchResults(arrayList);
+    }
+
+    private void updateSearchResults(final ArrayList arrayList) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LanguageSelectActivity.this.lambda$updateSearchResults$11(arrayList);
+            }
+        });
+    }
+
+    public void lambda$updateSearchResults$11(ArrayList arrayList) {
+        this.searchResult = arrayList;
+        this.searchListViewAdapter.notifyDataSetChanged();
+    }
+
+    public boolean getContextValue() {
+        return getMessagesController().getTranslateController().isContextTranslateEnabled();
+    }
+
+    public boolean getChatValue() {
+        return getMessagesController().getTranslateController().isFeatureAvailable();
+    }
+
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private int infoPosition1;
+        private int infoPosition2;
+        private int languagesStartsPosition;
+        private Context mContext;
+        private boolean search;
+        private int settingsFromPosition = -1;
+        private int settingsToPosition = -1;
+        private int manualTranslationPosition = -1;
+        private int autoTranslationPosition = -1;
+        private int doNotTranslatePosition = -1;
+
+        public ListAdapter(Context context, boolean z) {
+            this.mContext = context;
+            this.search = z;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            int itemViewType = viewHolder.getItemViewType();
+            return itemViewType == 0 || itemViewType == 4 || itemViewType == 5 || itemViewType == 2;
+        }
+
+        @Override
+        public int getItemCount() {
+            int i;
+            if (this.search) {
+                if (LanguageSelectActivity.this.searchResult == null) {
+                    return 0;
+                }
+                return LanguageSelectActivity.this.searchResult.size();
+            }
+            if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
+                int i2 = LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() ? 3 : 2;
+                if (LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() && !LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
+                    i2++;
+                }
+                if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
+                    i2++;
+                }
+                i = i2 + 1;
+                if (!"system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) || !"system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
+                    i = i2 + 2;
+                }
+            } else {
+                i = 1;
+            }
+            int size = i + 1 + LanguageSelectActivity.this.sortedLanguages.size();
+            return !LanguageSelectActivity.this.unofficialLanguages.isEmpty() ? size + LanguageSelectActivity.this.unofficialLanguages.size() + 1 : size;
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View textRadioCell;
+            if (i == 0) {
+                textRadioCell = new TextRadioCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            } else if (i == 2) {
+                textRadioCell = new TextCheckCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            } else if (i == 3) {
+                textRadioCell = new HeaderCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            } else if (i == 4 || i == 5) {
+                textRadioCell = new TextSettingsCell(this.mContext);
+                textRadioCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            } else if (i == 6) {
+                textRadioCell = new TextInfoPrivacyCell(this.mContext);
+            } else {
+                textRadioCell = new ShadowSectionCell(this.mContext);
+            }
+            return new RecyclerListView.Holder(textRadioCell);
+        }
+
+        @Override
+        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            View view = viewHolder.itemView;
+            if (view instanceof TextRadioCell) {
+                ((TextRadioCell) view).updateRTL();
+            }
+        }
+
+        @Override
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LanguageSelectActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            int i2;
+            if (this.search) {
+                return 0;
+            }
+            if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled() || LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled()) {
+                this.settingsFromPosition = 0;
+                int i3 = i - 1;
+                if (i == 0) {
+                    return 3;
+                }
+                if (LanguageSelectActivity.this.getMessagesController().isTranslationsManualEnabled()) {
+                    int i4 = i - 2;
+                    if (i3 == 0) {
+                        this.manualTranslationPosition = i;
+                        return 2;
+                    }
+                    i3 = i4;
+                } else {
+                    this.manualTranslationPosition = -1;
+                }
+                if (!LanguageSelectActivity.this.getMessagesController().isTranslationsAutoEnabled() || LanguageSelectActivity.this.getMessagesController().premiumFeaturesBlocked()) {
+                    this.autoTranslationPosition = -1;
+                } else {
+                    int i5 = i3 - 1;
+                    if (i3 == 0) {
+                        this.autoTranslationPosition = i;
+                        return 2;
+                    }
+                    i3 = i5;
+                }
+                if (LanguageSelectActivity.this.getChatValue() || LanguageSelectActivity.this.getContextValue()) {
+                    this.doNotTranslatePosition = i;
+                    int i6 = i3 - 1;
+                    if (i3 == 0) {
+                        return 4;
+                    }
+                    i3 = i6;
+                }
+                this.settingsToPosition = (i - i3) - 1;
+                i2 = i3 - 1;
+                if (i3 == 0) {
+                    this.infoPosition1 = i;
+                    return 6;
+                }
+                if ("system".equals(LanguageSelectActivity.this.getMessagesController().translationsManualEnabled) && "system".equals(LanguageSelectActivity.this.getMessagesController().translationsAutoEnabled)) {
+                    this.infoPosition2 = -1;
+                } else {
+                    int i7 = i3 - 2;
+                    if (i2 == 0) {
+                        this.infoPosition2 = i;
+                        return 6;
+                    }
+                    i2 = i7;
+                }
+            } else {
+                this.settingsFromPosition = -1;
+                this.settingsToPosition = -1;
+                i2 = i;
+            }
+            int i8 = i2 - 1;
+            if (i2 == 0) {
+                return 3;
+            }
+            if ((!LanguageSelectActivity.this.unofficialLanguages.isEmpty() && (i8 == LanguageSelectActivity.this.unofficialLanguages.size() || i8 == LanguageSelectActivity.this.unofficialLanguages.size() + LanguageSelectActivity.this.sortedLanguages.size() + 1)) || (LanguageSelectActivity.this.unofficialLanguages.isEmpty() && i8 == LanguageSelectActivity.this.sortedLanguages.size())) {
+                return 1;
+            }
+            this.languagesStartsPosition = i - i8;
+            return 0;
+        }
     }
 
     @Override
@@ -589,52 +636,5 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LanguageCell.class}, new String[]{"textView2"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LanguageCell.class}, new String[]{"checkImage"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_featuredStickers_addedIcon));
         return arrayList;
-    }
-
-    @Override
-    public void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        LocaleController.getInstance().checkForcePatchLangpack(this.currentAccount, new Runnable() {
-            @Override
-            public final void run() {
-                LanguageSelectActivity.this.lambda$onBecomeFullyVisible$9();
-            }
-        });
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        fillLanguages();
-        LocaleController.getInstance().loadRemoteLanguages(this.currentAccount, false);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.suggestedLangpack);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.suggestedLangpack);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ListAdapter listAdapter = this.listAdapter;
-        if (listAdapter != null) {
-            listAdapter.notifyDataSetChanged();
-        }
-    }
-
-    public void search(String str) {
-        if (str != null) {
-            processSearch(str);
-            return;
-        }
-        this.searching = false;
-        this.searchResult = null;
-        if (this.listView != null) {
-            this.emptyView.setVisibility(8);
-            this.listView.setAdapter(this.listAdapter);
-        }
     }
 }

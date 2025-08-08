@@ -3,7 +3,7 @@ package kotlinx.coroutines.flow;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Ref$BooleanRef;
 
-public final class FlowKt__LimitKt$dropWhile$1$1 implements FlowCollector {
+final class FlowKt__LimitKt$dropWhile$1$1 implements FlowCollector {
     final Ref$BooleanRef $matched;
     final Function2 $predicate;
     final FlowCollector $this_unsafeFlow;

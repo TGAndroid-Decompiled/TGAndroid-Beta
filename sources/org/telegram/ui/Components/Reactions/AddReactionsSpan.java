@@ -32,14 +32,19 @@ public class AddReactionsSpan extends ReplacementSpan {
         textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText5, resourcesProvider));
     }
 
-    public void lambda$hide$1(View view, ValueAnimator valueAnimator) {
-        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        view.invalidate();
+    public void makeLayout() {
+        if (this.layout == null) {
+            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.ReactionAddReactionsHint), this.textPaint, AndroidUtilities.displaySize.x, LocaleController.isRTL ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.layout = staticLayout;
+            this.width = staticLayout.getLineWidth(0);
+            this.height = this.layout.getHeight();
+        }
     }
 
-    public void lambda$show$0(View view, ValueAnimator valueAnimator) {
-        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-        view.invalidate();
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        makeLayout();
+        return (int) (AndroidUtilities.dp(8.0f) + this.width);
     }
 
     @Override
@@ -52,10 +57,21 @@ public class AddReactionsSpan extends ReplacementSpan {
         canvas.restore();
     }
 
-    @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        makeLayout();
-        return (int) (AndroidUtilities.dp(8.0f) + this.width);
+    public void show(final View view) {
+        ValueAnimator ofInt = ValueAnimator.ofInt(this.alpha, 255);
+        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                AddReactionsSpan.this.lambda$show$0(view, valueAnimator);
+            }
+        });
+        ofInt.setDuration(200L);
+        ofInt.start();
+    }
+
+    public void lambda$show$0(View view, ValueAnimator valueAnimator) {
+        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        view.invalidate();
     }
 
     public void hide(final View view, final Runnable runnable) {
@@ -76,24 +92,8 @@ public class AddReactionsSpan extends ReplacementSpan {
         ofInt.start();
     }
 
-    public void makeLayout() {
-        if (this.layout == null) {
-            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.ReactionAddReactionsHint), this.textPaint, AndroidUtilities.displaySize.x, LocaleController.isRTL ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.layout = staticLayout;
-            this.width = staticLayout.getLineWidth(0);
-            this.height = this.layout.getHeight();
-        }
-    }
-
-    public void show(final View view) {
-        ValueAnimator ofInt = ValueAnimator.ofInt(this.alpha, 255);
-        ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AddReactionsSpan.this.lambda$show$0(view, valueAnimator);
-            }
-        });
-        ofInt.setDuration(200L);
-        ofInt.start();
+    public void lambda$hide$1(View view, ValueAnimator valueAnimator) {
+        this.alpha = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+        view.invalidate();
     }
 }

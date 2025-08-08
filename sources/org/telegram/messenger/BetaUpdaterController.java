@@ -30,61 +30,6 @@ public class BetaUpdaterController {
         }
     };
 
-    public BetaUpdaterController() {
-        load();
-    }
-
-    private void downloadUpdate(boolean z) {
-        if (this.downloading || !TextUtils.isEmpty(this.path)) {
-            return;
-        }
-        this.downloading = true;
-        this.downloadingProgress = 0.0f;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
-        if (!TextUtils.isEmpty(this.fileUrl)) {
-            HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    BetaUpdaterController.this.lambda$downloadUpdate$5((File) obj);
-                }
-            }, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    BetaUpdaterController.this.lambda$downloadUpdate$6((Float) obj);
-                }
-            }).setOverrideExtension("apk");
-            this.downloadingTask = overrideExtension;
-            overrideExtension.execute(this.fileUrl);
-        } else if (z) {
-            this.downloading = false;
-        } else {
-            checkForUpdate(true, new Runnable() {
-                @Override
-                public final void run() {
-                    BetaUpdaterController.this.lambda$downloadUpdate$3();
-                }
-            });
-        }
-    }
-
-    private String getCurrentVersion() {
-        try {
-            return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionName;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return "";
-        }
-    }
-
-    private int getCurrentVersionCode() {
-        try {
-            return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return 0;
-        }
-    }
-
     public static BetaUpdaterController getInstance() {
         if (instance == null) {
             instance = new BetaUpdaterController();
@@ -92,63 +37,12 @@ public class BetaUpdaterController {
         return instance;
     }
 
+    public BetaUpdaterController() {
+        load();
+    }
+
     private SharedPreferences getSharedPreferences() {
         return ApplicationLoader.applicationContext.getSharedPreferences("beta", 0);
-    }
-
-    public void lambda$checkForUpdate$1(java.lang.String r10, java.lang.Runnable r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.BetaUpdaterController.lambda$checkForUpdate$1(java.lang.String, java.lang.Runnable):void");
-    }
-
-    public void lambda$checkForUpdate$2(final Runnable runnable, final String str) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BetaUpdaterController.this.lambda$checkForUpdate$1(str, runnable);
-            }
-        });
-    }
-
-    public void lambda$downloadUpdate$3() {
-        downloadUpdate(true);
-    }
-
-    public void lambda$downloadUpdate$4(File file) {
-        if (file == null) {
-            this.downloading = false;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
-            return;
-        }
-        if (!TextUtils.isEmpty(this.path)) {
-            try {
-                new File(this.path).delete();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        this.path = file.getAbsolutePath();
-        save();
-        this.downloadingProgress = 1.0f;
-        this.downloading = false;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
-    }
-
-    public void lambda$downloadUpdate$5(final File file) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BetaUpdaterController.this.lambda$downloadUpdate$4(file);
-            }
-        });
-    }
-
-    public void lambda$downloadUpdate$6(Float f) {
-        this.downloadingProgress = f.floatValue();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
-    }
-
-    public void lambda$new$0() {
-        checkForUpdate(false, null);
     }
 
     private void load() {
@@ -200,15 +94,8 @@ public class BetaUpdaterController {
         edit.apply();
     }
 
-    public void cancelDownloadingUpdate() {
-        if (this.downloading) {
-            HttpGetFileTask httpGetFileTask = this.downloadingTask;
-            if (httpGetFileTask != null) {
-                httpGetFileTask.cancel(false);
-            }
-            this.downloading = false;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
-        }
+    public void lambda$new$0() {
+        checkForUpdate(false, null);
     }
 
     public void checkForUpdate(boolean z, final Runnable runnable) {
@@ -237,8 +124,120 @@ public class BetaUpdaterController {
         }).execute("https://telegram.org/dl/android/apk-public-beta.json");
     }
 
+    public void lambda$checkForUpdate$2(final Runnable runnable, final String str) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BetaUpdaterController.this.lambda$checkForUpdate$1(str, runnable);
+            }
+        });
+    }
+
+    public void lambda$checkForUpdate$1(java.lang.String r10, java.lang.Runnable r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.BetaUpdaterController.lambda$checkForUpdate$1(java.lang.String, java.lang.Runnable):void");
+    }
+
+    public BetaUpdate getUpdate() {
+        int i;
+        String str = this.version;
+        if (str == null || (i = this.versionCode) == 0) {
+            return null;
+        }
+        return new BetaUpdate(str, i, this.changelog);
+    }
+
     public void downloadUpdate() {
         downloadUpdate(false);
+    }
+
+    private void downloadUpdate(boolean z) {
+        if (this.downloading || !TextUtils.isEmpty(this.path)) {
+            return;
+        }
+        this.downloading = true;
+        this.downloadingProgress = 0.0f;
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
+        if (!TextUtils.isEmpty(this.fileUrl)) {
+            HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    BetaUpdaterController.this.lambda$downloadUpdate$5((File) obj);
+                }
+            }, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    BetaUpdaterController.this.lambda$downloadUpdate$6((Float) obj);
+                }
+            }).setOverrideExtension("apk");
+            this.downloadingTask = overrideExtension;
+            overrideExtension.execute(this.fileUrl);
+        } else if (!z) {
+            checkForUpdate(true, new Runnable() {
+                @Override
+                public final void run() {
+                    BetaUpdaterController.this.lambda$downloadUpdate$3();
+                }
+            });
+        } else {
+            this.downloading = false;
+        }
+    }
+
+    public void lambda$downloadUpdate$3() {
+        downloadUpdate(true);
+    }
+
+    public void lambda$downloadUpdate$5(final File file) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BetaUpdaterController.this.lambda$downloadUpdate$4(file);
+            }
+        });
+    }
+
+    public void lambda$downloadUpdate$4(File file) {
+        if (file != null) {
+            if (!TextUtils.isEmpty(this.path)) {
+                try {
+                    new File(this.path).delete();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            this.path = file.getAbsolutePath();
+            save();
+            this.downloadingProgress = 1.0f;
+            this.downloading = false;
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+            return;
+        }
+        this.downloading = false;
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+    }
+
+    public void lambda$downloadUpdate$6(Float f) {
+        this.downloadingProgress = f.floatValue();
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
+    }
+
+    public void cancelDownloadingUpdate() {
+        if (this.downloading) {
+            HttpGetFileTask httpGetFileTask = this.downloadingTask;
+            if (httpGetFileTask != null) {
+                httpGetFileTask.cancel(false);
+            }
+            this.downloading = false;
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
+        }
+    }
+
+    public boolean isDownloading() {
+        return this.downloading;
+    }
+
+    public float getDownloadingProgress() {
+        return this.downloadingProgress;
     }
 
     public File getDownloadedFile() {
@@ -254,20 +253,21 @@ public class BetaUpdaterController {
         return null;
     }
 
-    public float getDownloadingProgress() {
-        return this.downloadingProgress;
-    }
-
-    public BetaUpdate getUpdate() {
-        int i;
-        String str = this.version;
-        if (str == null || (i = this.versionCode) == 0) {
-            return null;
+    private String getCurrentVersion() {
+        try {
+            return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionName;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "";
         }
-        return new BetaUpdate(str, i, this.changelog);
     }
 
-    public boolean isDownloading() {
-        return this.downloading;
+    private int getCurrentVersionCode() {
+        try {
+            return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return 0;
+        }
     }
 }

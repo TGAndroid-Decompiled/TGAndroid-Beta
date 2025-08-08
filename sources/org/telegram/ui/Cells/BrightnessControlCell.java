@@ -23,13 +23,14 @@ public abstract class BrightnessControlCell extends FrameLayout {
     private final int size;
     private int type;
 
+    protected abstract void didChangedValue(float f);
+
     public BrightnessControlCell(Context context, int i) {
         this(context, i, null);
     }
 
     public BrightnessControlCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        int i2;
         this.type = i;
         this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
@@ -48,11 +49,6 @@ public abstract class BrightnessControlCell extends FrameLayout {
         seekBarView.setReportChanges(true);
         seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
-            public CharSequence getContentDescription() {
-                return " ";
-            }
-
-            @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
             }
@@ -63,12 +59,17 @@ public abstract class BrightnessControlCell extends FrameLayout {
             }
 
             @Override
+            public void onSeekBarPressed(boolean z) {
+            }
+
+            @Override
             public void onSeekBarDrag(boolean z, float f) {
                 BrightnessControlCell.this.didChangedValue(f);
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
+            public CharSequence getContentDescription() {
+                return " ";
             }
         });
         seekBarView.setImportantForAccessibility(2);
@@ -76,20 +77,16 @@ public abstract class BrightnessControlCell extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.rightImageView = imageView2;
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
-        ImageView imageView3 = this.leftImageView;
         if (i == 0) {
-            imageView3.setImageResource(R.drawable.msg_brightness_low);
+            this.leftImageView.setImageResource(R.drawable.msg_brightness_low);
             this.rightImageView.setImageResource(R.drawable.msg_brightness_high);
-            i2 = 48;
+            this.size = 48;
         } else {
-            imageView3.setImageResource(R.drawable.msg_brightness_high);
+            this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
             this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
-            i2 = 43;
+            this.size = 43;
         }
-        this.size = i2;
     }
-
-    protected abstract void didChangedValue(float f);
 
     @Override
     protected void onAttachedToWindow() {
@@ -103,22 +100,22 @@ public abstract class BrightnessControlCell extends FrameLayout {
     }
 
     @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.size), 1073741824));
+    }
+
+    public void setProgress(float f) {
+        this.seekBarView.setProgress(f);
+    }
+
+    @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         this.seekBarView.getSeekBarAccessibilityDelegate().onInitializeAccessibilityNodeInfoInternal(this, accessibilityNodeInfo);
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.size), 1073741824));
-    }
-
-    @Override
     public boolean performAccessibilityAction(int i, Bundle bundle) {
         return super.performAccessibilityAction(i, bundle) || this.seekBarView.getSeekBarAccessibilityDelegate().performAccessibilityActionInternal(this, i, bundle);
-    }
-
-    public void setProgress(float f) {
-        this.seekBarView.setProgress(f);
     }
 }

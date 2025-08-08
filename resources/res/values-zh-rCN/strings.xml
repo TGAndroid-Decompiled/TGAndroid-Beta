@@ -113,7 +113,7 @@
     <string name="common_google_play_services_wear_update_text">必须使用新版 Google Play 服务。该服务很快就会自行更新。</string>
     <string name="common_open_on_phone">在手机上打开</string>
     <string name="common_signin_button_text">登录</string>
-    <string name="common_signin_button_text_long">使用 Google 帐号登录</string>
+    <string name="common_signin_button_text_long">使用 Google 账号登录</string>
     <string name="confirm_device_credential_password">使用密码</string>
     <string name="default_error_msg">未知错误</string>
     <string name="fingerprint_dialog_touch_sensor">请轻触指纹传感器</string>

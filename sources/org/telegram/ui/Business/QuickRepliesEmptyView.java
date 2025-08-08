@@ -33,10 +33,6 @@ public class QuickRepliesEmptyView extends LinearLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesEmptyView.<init>(android.content.Context, int, long, long, java.lang.String, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
     private void updateColors() {
         TextView textView = this.titleView;
         int i = Theme.key_chat_serviceText;
@@ -46,5 +42,9 @@ public class QuickRepliesEmptyView extends LinearLayout {
         if (textView2 != null) {
             textView2.setTextColor(getThemedColor(i));
         }
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

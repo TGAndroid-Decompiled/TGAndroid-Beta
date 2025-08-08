@@ -17,28 +17,9 @@ public class HttpGetFileTask extends AsyncTask {
         this.progressCallback = callback2;
     }
 
-    public void lambda$doInBackground$0(float f) {
-        this.progressCallback.run(Float.valueOf(f));
-    }
-
-    public void lambda$doInBackground$1() {
-        this.progressCallback.run(Float.valueOf(1.0f));
-    }
-
-    @Override
-    public java.io.File doInBackground(java.lang.String... r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.HttpGetFileTask.doInBackground(java.lang.String[]):java.io.File");
-    }
-
-    @Override
-    public void onPostExecute(File file) {
-        Utilities.Callback callback = this.doneCallback;
-        if (callback != null) {
-            if (this.exception != null) {
-                file = null;
-            }
-            callback.run(file);
-        }
+    public HttpGetFileTask setOverrideExtension(String str) {
+        this.overrideExt = str;
+        return this;
     }
 
     public HttpGetFileTask setDestFile(File file) {
@@ -51,8 +32,28 @@ public class HttpGetFileTask extends AsyncTask {
         return this;
     }
 
-    public HttpGetFileTask setOverrideExtension(String str) {
-        this.overrideExt = str;
-        return this;
+    @Override
+    public java.io.File doInBackground(java.lang.String... r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.HttpGetFileTask.doInBackground(java.lang.String[]):java.io.File");
+    }
+
+    public void lambda$doInBackground$0(float f) {
+        this.progressCallback.run(Float.valueOf(f));
+    }
+
+    public void lambda$doInBackground$1() {
+        this.progressCallback.run(Float.valueOf(1.0f));
+    }
+
+    @Override
+    public void onPostExecute(File file) {
+        Utilities.Callback callback = this.doneCallback;
+        if (callback != null) {
+            if (this.exception == null) {
+                callback.run(file);
+            } else {
+                callback.run(null);
+            }
+        }
     }
 }

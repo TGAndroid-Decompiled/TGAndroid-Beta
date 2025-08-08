@@ -7,18 +7,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class ThreadPoolDispatcherKt__ThreadPoolDispatcherKt {
     public static final ExecutorCoroutineDispatcher newFixedThreadPoolContext(final int i, final String str) {
-        if (i >= 1) {
-            final AtomicInteger atomicInteger = new AtomicInteger();
-            return ExecutorsKt.from((ExecutorService) Executors.newScheduledThreadPool(i, new ThreadFactory() {
-                @Override
-                public final Thread newThread(Runnable runnable) {
-                    Thread newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt;
-                    newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt = ThreadPoolDispatcherKt__ThreadPoolDispatcherKt.newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt(i, str, atomicInteger, runnable);
-                    return newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt;
-                }
-            }));
+        if (i < 1) {
+            throw new IllegalArgumentException(("Expected at least one thread, but " + i + " specified").toString());
         }
-        throw new IllegalArgumentException(("Expected at least one thread, but " + i + " specified").toString());
+        final AtomicInteger atomicInteger = new AtomicInteger();
+        return ExecutorsKt.from((ExecutorService) Executors.newScheduledThreadPool(i, new ThreadFactory() {
+            @Override
+            public final Thread newThread(Runnable runnable) {
+                Thread newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt;
+                newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt = ThreadPoolDispatcherKt__ThreadPoolDispatcherKt.newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt(i, str, atomicInteger, runnable);
+                return newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt;
+            }
+        }));
     }
 
     public static final Thread newFixedThreadPoolContext$lambda$1$ThreadPoolDispatcherKt__ThreadPoolDispatcherKt(int i, String str, AtomicInteger atomicInteger, Runnable runnable) {

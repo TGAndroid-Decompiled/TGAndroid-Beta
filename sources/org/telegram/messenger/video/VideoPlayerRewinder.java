@@ -77,180 +77,8 @@ public class VideoPlayerRewinder {
         }
     };
 
-    public VideoPlayerRewinder(VideoFramesRewinder videoFramesRewinder) {
-        this.framesRewinder = videoFramesRewinder;
-    }
-
-    static long access$522(VideoPlayerRewinder videoPlayerRewinder, long j) {
-        long j2 = videoPlayerRewinder.rewindBackSeekPlayerPosition - j;
-        videoPlayerRewinder.rewindBackSeekPlayerPosition = j2;
-        return j2;
-    }
-
-    public long getCurrentPosition() {
-        if (this.webView != null) {
-            return r0.getCurrentPosition();
-        }
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer == null) {
-            return 0L;
-        }
-        return videoPlayer.getCurrentPosition();
-    }
-
-    public long getDuration() {
-        if (this.webView != null) {
-            return r0.getVideoDuration();
-        }
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer == null) {
-            return 0L;
-        }
-        return videoPlayer.getDuration();
-    }
-
-    private boolean isPlaying() {
-        PhotoViewerWebView photoViewerWebView = this.webView;
-        if (photoViewerWebView != null) {
-            return photoViewerWebView.isPlaying();
-        }
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer == null) {
-            return false;
-        }
-        return videoPlayer.isPlaying();
-    }
-
-    public void lambda$cancelRewind$1() {
-        VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
-        if (videoFramesRewinder != null) {
-            videoFramesRewinder.release();
-        }
-    }
-
-    public void lambda$updateRewindSpeed$0() {
-        VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
-        if (videoFramesRewinder != null) {
-            videoFramesRewinder.clearCurrent();
-        }
-    }
-
-    public void seekTo(long j, boolean z) {
-        PhotoViewerWebView photoViewerWebView = this.webView;
-        if (photoViewerWebView != null) {
-            photoViewerWebView.seekTo(j);
-        } else {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer != null) {
-                videoPlayer.seekTo(j, z);
-            }
-        }
-        this.rewindBackSeekLastPlayerPosition = j;
-    }
-
-    private void setMuted(boolean z) {
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer != null) {
-            videoPlayer.setMute(z);
-        }
-    }
-
-    private void setPaused(boolean z) {
-        PhotoViewerWebView photoViewerWebView = this.webView;
-        if (photoViewerWebView != null) {
-            if (z) {
-                photoViewerWebView.pauseVideo();
-                return;
-            } else {
-                photoViewerWebView.playVideo();
-                return;
-            }
-        }
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer != null) {
-            if (z) {
-                videoPlayer.pause();
-            } else {
-                videoPlayer.play();
-            }
-        }
-    }
-
-    private void setPlaybackSpeed(float f) {
-        PhotoViewerWebView photoViewerWebView = this.webView;
-        if (photoViewerWebView != null) {
-            photoViewerWebView.setPlaybackSpeed(f);
-            return;
-        }
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer == null) {
-            return;
-        }
-        videoPlayer.setPlaybackSpeed(f);
-    }
-
-    public void cancelRewind() {
-        long currentPosition;
-        boolean z;
-        if (this.rewinding) {
-            this.rewinding = false;
-            this.fastSeeking = false;
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer == null && this.webView == null) {
-                z = false;
-            } else {
-                if (!this.rewindByBackSeek) {
-                    currentPosition = getCurrentPosition();
-                } else if (videoPlayer == null || this.framesRewinder == null) {
-                    currentPosition = this.rewindBackSeekPlayerPosition;
-                } else {
-                    videoPlayer.seekTo(this.rewindBackSeekPlayerPosition, false, new Runnable() {
-                        @Override
-                        public final void run() {
-                            VideoPlayerRewinder.this.lambda$cancelRewind$1();
-                        }
-                    });
-                    z = true;
-                    setPlaybackSpeed(this.playSpeed);
-                }
-                seekTo(currentPosition, false);
-                z = false;
-                setPlaybackSpeed(this.playSpeed);
-            }
-            setMuted(this.wasMuted);
-            setPaused(this.wasPaused);
-            AndroidUtilities.cancelRunOnUIThread(this.backSeek);
-            VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
-            if (videoFramesRewinder != null && !z) {
-                videoFramesRewinder.release();
-            }
-            Runnable runnable = this.updateRewindRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.updateRewindRunnable = null;
-            }
-            onRewindCanceled();
-            SeekSpeedDrawable seekSpeedDrawable = this.seekSpeedDrawable;
-            if (seekSpeedDrawable != null) {
-                seekSpeedDrawable.setShown(false, true);
-            }
-        }
-    }
-
-    public float getRewindSpeed() {
-        float f = this.value;
-        if (f < 0.4f) {
-            f -= 1.9f;
-        }
-        return Utilities.clamp(f, 10.0f, -6.0f);
-    }
-
     public float getValueBySpeed(float f) {
         return f < -1.5f ? f + 1.9f : f;
-    }
-
-    public float getVideoProgress() {
-        return ((float) this.rewindBackSeekPlayerPosition) / ((float) getDuration());
     }
 
     protected void onRewindCanceled() {
@@ -259,14 +87,17 @@ public class VideoPlayerRewinder {
     protected void onRewindStart(boolean z) {
     }
 
-    public void setX(float f) {
-        this.value -= (this.x - f) / AndroidUtilities.dp(40.0f);
-        this.x = f;
-        SeekSpeedDrawable seekSpeedDrawable = this.seekSpeedDrawable;
-        if (seekSpeedDrawable != null) {
-            seekSpeedDrawable.setSpeed(getRewindSpeed(), true);
-        }
-        updateRewindSpeed();
+    protected void updateRewindProgressUi(long j, float f, boolean z) {
+    }
+
+    static long access$522(VideoPlayerRewinder videoPlayerRewinder, long j) {
+        long j2 = videoPlayerRewinder.rewindBackSeekPlayerPosition - j;
+        videoPlayerRewinder.rewindBackSeekPlayerPosition = j2;
+        return j2;
+    }
+
+    public VideoPlayerRewinder(VideoFramesRewinder videoFramesRewinder) {
+        this.framesRewinder = videoFramesRewinder;
     }
 
     public void startRewind(PhotoViewerWebView photoViewerWebView, boolean z, float f, float f2, SeekSpeedDrawable seekSpeedDrawable) {
@@ -324,7 +155,12 @@ public class VideoPlayerRewinder {
         updateRewindSpeed();
     }
 
-    protected void updateRewindProgressUi(long j, float f, boolean z) {
+    public float getRewindSpeed() {
+        float f = this.value;
+        if (f < 0.4f) {
+            f -= 1.9f;
+        }
+        return Utilities.clamp(f, 10.0f, -6.0f);
     }
 
     public void updateRewindSpeed() {
@@ -371,5 +207,169 @@ public class VideoPlayerRewinder {
             }
         }
         setPlaybackSpeed(this.playSpeed * rewindSpeed);
+    }
+
+    public void lambda$updateRewindSpeed$0() {
+        VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
+        if (videoFramesRewinder != null) {
+            videoFramesRewinder.clearCurrent();
+        }
+    }
+
+    public void setX(float f) {
+        this.value -= (this.x - f) / AndroidUtilities.dp(40.0f);
+        this.x = f;
+        SeekSpeedDrawable seekSpeedDrawable = this.seekSpeedDrawable;
+        if (seekSpeedDrawable != null) {
+            seekSpeedDrawable.setSpeed(getRewindSpeed(), true);
+        }
+        updateRewindSpeed();
+    }
+
+    public void cancelRewind() {
+        boolean z;
+        if (this.rewinding) {
+            this.rewinding = false;
+            this.fastSeeking = false;
+            VideoPlayer videoPlayer = this.videoPlayer;
+            if (videoPlayer == null && this.webView == null) {
+                z = false;
+            } else {
+                if (this.rewindByBackSeek) {
+                    if (videoPlayer != null && this.framesRewinder != null) {
+                        videoPlayer.seekTo(this.rewindBackSeekPlayerPosition, false, new Runnable() {
+                            @Override
+                            public final void run() {
+                                VideoPlayerRewinder.this.lambda$cancelRewind$1();
+                            }
+                        });
+                        z = true;
+                        setPlaybackSpeed(this.playSpeed);
+                    } else {
+                        seekTo(this.rewindBackSeekPlayerPosition, false);
+                    }
+                } else {
+                    seekTo(getCurrentPosition(), false);
+                }
+                z = false;
+                setPlaybackSpeed(this.playSpeed);
+            }
+            setMuted(this.wasMuted);
+            setPaused(this.wasPaused);
+            AndroidUtilities.cancelRunOnUIThread(this.backSeek);
+            VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
+            if (videoFramesRewinder != null && !z) {
+                videoFramesRewinder.release();
+            }
+            Runnable runnable = this.updateRewindRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.updateRewindRunnable = null;
+            }
+            onRewindCanceled();
+            SeekSpeedDrawable seekSpeedDrawable = this.seekSpeedDrawable;
+            if (seekSpeedDrawable != null) {
+                seekSpeedDrawable.setShown(false, true);
+            }
+        }
+    }
+
+    public void lambda$cancelRewind$1() {
+        VideoFramesRewinder videoFramesRewinder = this.framesRewinder;
+        if (videoFramesRewinder != null) {
+            videoFramesRewinder.release();
+        }
+    }
+
+    public void seekTo(long j, boolean z) {
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            photoViewerWebView.seekTo(j);
+        } else {
+            VideoPlayer videoPlayer = this.videoPlayer;
+            if (videoPlayer != null) {
+                videoPlayer.seekTo(j, z);
+            }
+        }
+        this.rewindBackSeekLastPlayerPosition = j;
+    }
+
+    private void setMuted(boolean z) {
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            videoPlayer.setMute(z);
+        }
+    }
+
+    private void setPaused(boolean z) {
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            if (z) {
+                photoViewerWebView.pauseVideo();
+                return;
+            } else {
+                photoViewerWebView.playVideo();
+                return;
+            }
+        }
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            if (z) {
+                videoPlayer.pause();
+            } else {
+                videoPlayer.play();
+            }
+        }
+    }
+
+    private void setPlaybackSpeed(float f) {
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            photoViewerWebView.setPlaybackSpeed(f);
+            return;
+        }
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null) {
+            return;
+        }
+        videoPlayer.setPlaybackSpeed(f);
+    }
+
+    public long getCurrentPosition() {
+        if (this.webView != null) {
+            return r0.getCurrentPosition();
+        }
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null) {
+            return 0L;
+        }
+        return videoPlayer.getCurrentPosition();
+    }
+
+    public long getDuration() {
+        if (this.webView != null) {
+            return r0.getVideoDuration();
+        }
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null) {
+            return 0L;
+        }
+        return videoPlayer.getDuration();
+    }
+
+    private boolean isPlaying() {
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.isPlaying();
+        }
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null) {
+            return false;
+        }
+        return videoPlayer.isPlaying();
+    }
+
+    public float getVideoProgress() {
+        return ((float) this.rewindBackSeekPlayerPosition) / ((float) getDuration());
     }
 }

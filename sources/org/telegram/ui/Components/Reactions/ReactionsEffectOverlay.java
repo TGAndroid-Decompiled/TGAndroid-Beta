@@ -57,6 +57,16 @@ public class ReactionsEffectOverlay {
     private SelectAnimatedEmojiDialog.ImageViewEmoji holderView2 = null;
     ArrayList avatars = new ArrayList();
 
+    static float access$216(ReactionsEffectOverlay reactionsEffectOverlay, float f) {
+        float f2 = reactionsEffectOverlay.dismissProgress + f;
+        reactionsEffectOverlay.dismissProgress = f2;
+        return f2;
+    }
+
+    public ReactionsEffectOverlay(android.content.Context r37, org.telegram.ui.ActionBar.BaseFragment r38, org.telegram.ui.Components.ReactionsContainerLayout r39, android.view.View r40, android.view.View r41, float r42, float r43, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r44, int r45, int r46, boolean r47) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int, boolean):void");
+    }
+
     public class AnonymousClass1 extends FrameLayout {
         final int val$animationType;
         final View val$cell;
@@ -87,17 +97,17 @@ public class ReactionsEffectOverlay {
             this.val$visibleReaction = visibleReaction;
         }
 
+        @Override
+        protected void dispatchDraw(android.graphics.Canvas r20) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.AnonymousClass1.dispatchDraw(android.graphics.Canvas):void");
+        }
+
         public void lambda$dispatchDraw$0() {
             ReactionsEffectOverlay.this.removeCurrentView();
         }
 
         public void lambda$dispatchDraw$1() {
             ReactionsEffectOverlay.this.removeCurrentView();
-        }
-
-        @Override
-        protected void dispatchDraw(android.graphics.Canvas r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.AnonymousClass1.dispatchDraw(android.graphics.Canvas):void");
         }
 
         @Override
@@ -117,6 +127,93 @@ public class ReactionsEffectOverlay {
         }
     }
 
+    public static String getFilterForAroundAnimation() {
+        return sizeForAroundReaction() + "_" + sizeForAroundReaction() + "_nolimit_pcache";
+    }
+
+    public void removeCurrentView() {
+        try {
+            if (this.useWindow) {
+                this.windowManager.removeView(this.windowView);
+            } else {
+                AndroidUtilities.removeFromParent(this.windowView);
+            }
+        } catch (Exception unused) {
+        }
+    }
+
+    public static void show(org.telegram.ui.ActionBar.BaseFragment r18, org.telegram.ui.Components.ReactionsContainerLayout r19, android.view.View r20, android.view.View r21, float r22, float r23, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r24, int r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.show(org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int):void");
+    }
+
+    public static void startAnimation() {
+        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
+        if (reactionsEffectOverlay != null) {
+            reactionsEffectOverlay.started = true;
+            reactionsEffectOverlay.startTime = System.currentTimeMillis();
+            if (currentOverlay.animationType != 0 || System.currentTimeMillis() - lastHapticTime <= 200) {
+                return;
+            }
+            lastHapticTime = System.currentTimeMillis();
+            currentOverlay.cell.performHapticFeedback(3);
+            return;
+        }
+        startShortAnimation();
+        ReactionsEffectOverlay reactionsEffectOverlay2 = currentShortOverlay;
+        if (reactionsEffectOverlay2 != null) {
+            View view = reactionsEffectOverlay2.cell;
+            if (view instanceof ChatMessageCell) {
+                ((ChatMessageCell) view).reactionsLayoutInBubble.animateReaction(reactionsEffectOverlay2.reaction);
+            } else if (view instanceof ChatActionCell) {
+                ((ChatActionCell) view).reactionsLayoutInBubble.animateReaction(reactionsEffectOverlay2.reaction);
+            }
+        }
+    }
+
+    public static void startShortAnimation() {
+        ReactionsEffectOverlay reactionsEffectOverlay = currentShortOverlay;
+        if (reactionsEffectOverlay == null || reactionsEffectOverlay.started) {
+            return;
+        }
+        reactionsEffectOverlay.started = true;
+        reactionsEffectOverlay.startTime = System.currentTimeMillis();
+        if (currentShortOverlay.animationType != 1 || System.currentTimeMillis() - lastHapticTime <= 200) {
+            return;
+        }
+        lastHapticTime = System.currentTimeMillis();
+        currentShortOverlay.cell.performHapticFeedback(3);
+    }
+
+    public static void removeCurrent(boolean z) {
+        int i = 0;
+        while (i < 2) {
+            ReactionsEffectOverlay reactionsEffectOverlay = i == 0 ? currentOverlay : currentShortOverlay;
+            if (reactionsEffectOverlay != null) {
+                if (z) {
+                    reactionsEffectOverlay.removeCurrentView();
+                } else {
+                    reactionsEffectOverlay.dismissed = true;
+                }
+            }
+            i++;
+        }
+        currentShortOverlay = null;
+        currentOverlay = null;
+    }
+
+    public static boolean isPlaying(int i, long j, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
+        if (reactionsEffectOverlay == null) {
+            return false;
+        }
+        int i2 = reactionsEffectOverlay.animationType;
+        if (i2 != 2 && i2 != 0) {
+            return false;
+        }
+        long j2 = reactionsEffectOverlay.groupId;
+        return ((j2 != 0 && j == j2) || i == reactionsEffectOverlay.messageId) && reactionsEffectOverlay.reaction.equals(visibleReaction);
+    }
+
     private class AnimationView extends BackupImageView {
         AnimatedEmojiDrawable animatedEmojiDrawable;
         boolean attached;
@@ -126,6 +223,37 @@ public class ReactionsEffectOverlay {
         public AnimationView(Context context) {
             super(context);
             getImageReceiver().setFileLoadingPriority(3);
+        }
+
+        @Override
+        public void onDraw(Canvas canvas) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+            if (animatedEmojiDrawable != null) {
+                animatedEmojiDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                this.animatedEmojiDrawable.setAlpha(255);
+                this.animatedEmojiDrawable.draw(canvas);
+                this.wasPlaying = true;
+                return;
+            }
+            AnimatedEmojiEffect animatedEmojiEffect = this.emojiEffect;
+            if (animatedEmojiEffect != null) {
+                animatedEmojiEffect.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                this.emojiEffect.draw(canvas);
+                this.wasPlaying = true;
+                return;
+            }
+            if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().isRunning()) {
+                this.wasPlaying = true;
+            }
+            if (!this.wasPlaying && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().isRunning()) {
+                if (ReactionsEffectOverlay.this.animationType == 2 && !ReactionsEffectOverlay.this.isStories) {
+                    getImageReceiver().getLottieAnimation().setCurrentFrame(getImageReceiver().getLottieAnimation().getFramesCount() - 1, false);
+                } else {
+                    getImageReceiver().getLottieAnimation().setCurrentFrame(0, false);
+                    getImageReceiver().getLottieAnimation().start();
+                }
+            }
+            super.onDraw(canvas);
         }
 
         @Override
@@ -156,40 +284,6 @@ public class ReactionsEffectOverlay {
             }
         }
 
-        @Override
-        public void onDraw(Canvas canvas) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-            if (animatedEmojiDrawable != null) {
-                animatedEmojiDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.animatedEmojiDrawable.setAlpha(255);
-                this.animatedEmojiDrawable.draw(canvas);
-            } else {
-                AnimatedEmojiEffect animatedEmojiEffect = this.emojiEffect;
-                if (animatedEmojiEffect == null) {
-                    if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().isRunning()) {
-                        this.wasPlaying = true;
-                    }
-                    if (!this.wasPlaying && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().isRunning()) {
-                        if (ReactionsEffectOverlay.this.animationType != 2 || ReactionsEffectOverlay.this.isStories) {
-                            getImageReceiver().getLottieAnimation().setCurrentFrame(0, false);
-                            getImageReceiver().getLottieAnimation().start();
-                        } else {
-                            getImageReceiver().getLottieAnimation().setCurrentFrame(getImageReceiver().getLottieAnimation().getFramesCount() - 1, false);
-                        }
-                    }
-                    super.onDraw(canvas);
-                    return;
-                }
-                animatedEmojiEffect.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                this.emojiEffect.draw(canvas);
-            }
-            this.wasPlaying = true;
-        }
-
-        public void setAnimatedEmojiEffect(AnimatedEmojiEffect animatedEmojiEffect) {
-            this.emojiEffect = animatedEmojiEffect;
-        }
-
         public void setAnimatedReactionDrawable(AnimatedEmojiDrawable animatedEmojiDrawable) {
             if (animatedEmojiDrawable != null) {
                 animatedEmojiDrawable.removeView(this);
@@ -199,6 +293,41 @@ public class ReactionsEffectOverlay {
                 return;
             }
             animatedEmojiDrawable.addView(this);
+        }
+
+        public void setAnimatedEmojiEffect(AnimatedEmojiEffect animatedEmojiEffect) {
+            this.emojiEffect = animatedEmojiEffect;
+        }
+    }
+
+    public static void onScrolled(int i) {
+        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
+        if (reactionsEffectOverlay != null) {
+            reactionsEffectOverlay.lastDrawnToY -= i;
+            if (i != 0) {
+                reactionsEffectOverlay.wasScrolled = true;
+            }
+        }
+    }
+
+    public static int sizeForBigReaction() {
+        int dp = AndroidUtilities.dp(350.0f);
+        Point point = AndroidUtilities.displaySize;
+        return (int) (Math.round(Math.min(dp, Math.min(point.x, point.y)) * 0.7f) / AndroidUtilities.density);
+    }
+
+    public static int sizeForAroundReaction() {
+        return (int) ((AndroidUtilities.dp(40.0f) * 2.0f) / AndroidUtilities.density);
+    }
+
+    public static void dismissAll() {
+        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
+        if (reactionsEffectOverlay != null) {
+            reactionsEffectOverlay.dismissed = true;
+        }
+        ReactionsEffectOverlay reactionsEffectOverlay2 = currentShortOverlay;
+        if (reactionsEffectOverlay2 != null) {
+            reactionsEffectOverlay2.dismissed = true;
         }
     }
 
@@ -224,137 +353,5 @@ public class ReactionsEffectOverlay {
         AvatarParticle(ReactionsEffectOverlay reactionsEffectOverlay, AnonymousClass1 anonymousClass1) {
             this();
         }
-    }
-
-    public ReactionsEffectOverlay(android.content.Context r37, org.telegram.ui.ActionBar.BaseFragment r38, org.telegram.ui.Components.ReactionsContainerLayout r39, android.view.View r40, android.view.View r41, float r42, float r43, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r44, int r45, int r46, boolean r47) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int, boolean):void");
-    }
-
-    static float access$216(ReactionsEffectOverlay reactionsEffectOverlay, float f) {
-        float f2 = reactionsEffectOverlay.dismissProgress + f;
-        reactionsEffectOverlay.dismissProgress = f2;
-        return f2;
-    }
-
-    public static void dismissAll() {
-        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
-        if (reactionsEffectOverlay != null) {
-            reactionsEffectOverlay.dismissed = true;
-        }
-        ReactionsEffectOverlay reactionsEffectOverlay2 = currentShortOverlay;
-        if (reactionsEffectOverlay2 != null) {
-            reactionsEffectOverlay2.dismissed = true;
-        }
-    }
-
-    public static String getFilterForAroundAnimation() {
-        return sizeForAroundReaction() + "_" + sizeForAroundReaction() + "_nolimit_pcache";
-    }
-
-    public static boolean isPlaying(int i, long j, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
-        if (reactionsEffectOverlay == null) {
-            return false;
-        }
-        int i2 = reactionsEffectOverlay.animationType;
-        if (i2 != 2 && i2 != 0) {
-            return false;
-        }
-        long j2 = reactionsEffectOverlay.groupId;
-        return ((j2 != 0 && j == j2) || i == reactionsEffectOverlay.messageId) && reactionsEffectOverlay.reaction.equals(visibleReaction);
-    }
-
-    public static void onScrolled(int i) {
-        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
-        if (reactionsEffectOverlay != null) {
-            reactionsEffectOverlay.lastDrawnToY -= i;
-            if (i != 0) {
-                reactionsEffectOverlay.wasScrolled = true;
-            }
-        }
-    }
-
-    public static void removeCurrent(boolean z) {
-        int i = 0;
-        while (i < 2) {
-            ReactionsEffectOverlay reactionsEffectOverlay = i == 0 ? currentOverlay : currentShortOverlay;
-            if (reactionsEffectOverlay != null) {
-                if (z) {
-                    reactionsEffectOverlay.removeCurrentView();
-                } else {
-                    reactionsEffectOverlay.dismissed = true;
-                }
-            }
-            i++;
-        }
-        currentShortOverlay = null;
-        currentOverlay = null;
-    }
-
-    public void removeCurrentView() {
-        try {
-            if (this.useWindow) {
-                this.windowManager.removeView(this.windowView);
-            } else {
-                AndroidUtilities.removeFromParent(this.windowView);
-            }
-        } catch (Exception unused) {
-        }
-    }
-
-    public static void show(org.telegram.ui.ActionBar.BaseFragment r18, org.telegram.ui.Components.ReactionsContainerLayout r19, android.view.View r20, android.view.View r21, float r22, float r23, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r24, int r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.show(org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, android.view.View, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int):void");
-    }
-
-    public static int sizeForAroundReaction() {
-        return (int) ((AndroidUtilities.dp(40.0f) * 2.0f) / AndroidUtilities.density);
-    }
-
-    public static int sizeForBigReaction() {
-        int dp = AndroidUtilities.dp(350.0f);
-        Point point = AndroidUtilities.displaySize;
-        return (int) (Math.round(Math.min(dp, Math.min(point.x, point.y)) * 0.7f) / AndroidUtilities.density);
-    }
-
-    public static void startAnimation() {
-        ReactionsLayoutInBubble reactionsLayoutInBubble;
-        ReactionsEffectOverlay reactionsEffectOverlay = currentOverlay;
-        if (reactionsEffectOverlay != null) {
-            reactionsEffectOverlay.started = true;
-            reactionsEffectOverlay.startTime = System.currentTimeMillis();
-            if (currentOverlay.animationType != 0 || System.currentTimeMillis() - lastHapticTime <= 200) {
-                return;
-            }
-            lastHapticTime = System.currentTimeMillis();
-            currentOverlay.cell.performHapticFeedback(3);
-            return;
-        }
-        startShortAnimation();
-        ReactionsEffectOverlay reactionsEffectOverlay2 = currentShortOverlay;
-        if (reactionsEffectOverlay2 != null) {
-            View view = reactionsEffectOverlay2.cell;
-            if (view instanceof ChatMessageCell) {
-                reactionsLayoutInBubble = ((ChatMessageCell) view).reactionsLayoutInBubble;
-            } else if (!(view instanceof ChatActionCell)) {
-                return;
-            } else {
-                reactionsLayoutInBubble = ((ChatActionCell) view).reactionsLayoutInBubble;
-            }
-            reactionsLayoutInBubble.animateReaction(reactionsEffectOverlay2.reaction);
-        }
-    }
-
-    public static void startShortAnimation() {
-        ReactionsEffectOverlay reactionsEffectOverlay = currentShortOverlay;
-        if (reactionsEffectOverlay == null || reactionsEffectOverlay.started) {
-            return;
-        }
-        reactionsEffectOverlay.started = true;
-        reactionsEffectOverlay.startTime = System.currentTimeMillis();
-        if (currentShortOverlay.animationType != 1 || System.currentTimeMillis() - lastHapticTime <= 200) {
-            return;
-        }
-        lastHapticTime = System.currentTimeMillis();
-        currentShortOverlay.cell.performHapticFeedback(3);
     }
 }

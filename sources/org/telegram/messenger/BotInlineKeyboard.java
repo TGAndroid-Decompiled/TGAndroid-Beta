@@ -14,13 +14,13 @@ public class BotInlineKeyboard {
     public static class ButtonBot extends Button {
         public final TLRPC.KeyboardButton button;
 
-        public ButtonBot(TLRPC.KeyboardButton keyboardButton) {
-            this.button = keyboardButton;
-        }
-
         @Override
         public int getIcon() {
             return 0;
+        }
+
+        public ButtonBot(TLRPC.KeyboardButton keyboardButton) {
+            this.button = keyboardButton;
         }
 
         @Override
@@ -44,59 +44,17 @@ public class BotInlineKeyboard {
         }
 
         @Override
-        public int getIcon() {
-            return this.icon;
-        }
-
-        @Override
         public String getText() {
             return LocaleController.getString(this.text);
         }
-    }
-
-    public static class KeyboardSourceArray implements Source {
-        private final Button[][] buttons;
-        private final int separators;
-
-        private KeyboardSourceArray(Button[][] buttonArr, int i) {
-            this.buttons = buttonArr;
-            this.separators = i;
-        }
 
         @Override
-        public Button getButton(int i, int i2) {
-            return this.buttons[i][i2];
-        }
-
-        @Override
-        public int getColumnsCount(int i) {
-            return this.buttons[i].length;
-        }
-
-        @Override
-        public int getRowsCount() {
-            return this.buttons.length;
-        }
-
-        @Override
-        public boolean hasSeparator(int i) {
-            return ((1 << i) & this.separators) != 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return Source.CC.$default$isEmpty(this);
+        public int getIcon() {
+            return this.icon;
         }
     }
 
     public interface Source {
-
-        public abstract class CC {
-            public static boolean $default$isEmpty(Source source) {
-                return source.getRowsCount() == 0;
-            }
-        }
-
         Button getButton(int i, int i2);
 
         int getColumnsCount(int i);
@@ -106,6 +64,12 @@ public class BotInlineKeyboard {
         boolean hasSeparator(int i);
 
         boolean isEmpty();
+
+        public abstract class CC {
+            public static boolean $default$isEmpty(Source source) {
+                return source.getRowsCount() == 0;
+            }
+        }
     }
 
     public static Source fromBot(TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup, boolean z) {
@@ -138,5 +102,40 @@ public class BotInlineKeyboard {
 
     public static Source fromSuggestion() {
         return new KeyboardSourceArray(new Button[][]{new Button[]{new ButtonCustom(1, R.string.PostSuggestionsInlineDecline, R.drawable.filled_bot_decline_24), new ButtonCustom(2, R.string.PostSuggestionsInlineAccept, R.drawable.filled_bot_approve_24)}, new Button[]{new ButtonCustom(3, R.string.PostSuggestionsInlineEdit, R.drawable.filled_bot_suggest_24)}}, 0);
+    }
+
+    public static class KeyboardSourceArray implements Source {
+        private final Button[][] buttons;
+        private final int separators;
+
+        @Override
+        public boolean isEmpty() {
+            return Source.CC.$default$isEmpty(this);
+        }
+
+        private KeyboardSourceArray(Button[][] buttonArr, int i) {
+            this.buttons = buttonArr;
+            this.separators = i;
+        }
+
+        @Override
+        public int getRowsCount() {
+            return this.buttons.length;
+        }
+
+        @Override
+        public int getColumnsCount(int i) {
+            return this.buttons[i].length;
+        }
+
+        @Override
+        public Button getButton(int i, int i2) {
+            return this.buttons[i][i2];
+        }
+
+        @Override
+        public boolean hasSeparator(int i) {
+            return ((1 << i) & this.separators) != 0;
+        }
     }
 }

@@ -28,6 +28,11 @@ public class PlayPauseButton extends View {
     }
 
     @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.drawable || super.verifyDrawable(drawable);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         this.circlePaint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
         canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(10.0f), this.circlePaint);
@@ -41,10 +46,5 @@ public class PlayPauseButton extends View {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.drawable || super.verifyDrawable(drawable);
     }
 }

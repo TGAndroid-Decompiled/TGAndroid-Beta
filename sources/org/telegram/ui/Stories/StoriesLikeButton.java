@@ -39,37 +39,6 @@ public class StoriesLikeButton extends View {
         this.reactionImageReceiver.ignoreNotifications = true;
     }
 
-    public void animateVisibleReaction() {
-        this.drawAnimateImageReciever = true;
-        if (this.animateReactionImageReceiver.getLottieAnimation() != null) {
-            this.animateReactionImageReceiver.getLottieAnimation().setCurrentFrame(0, false, true);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.reactionImageReceiver.onAttachedToWindow();
-        this.animateReactionImageReceiver.onAttachedToWindow();
-        this.attachedToWindow = true;
-        AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
-        if (animatedEmojiDrawable != null) {
-            animatedEmojiDrawable.addView(this);
-        }
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.reactionImageReceiver.onDetachedFromWindow();
-        this.animateReactionImageReceiver.onDetachedFromWindow();
-        this.attachedToWindow = false;
-        AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
-        if (animatedEmojiDrawable != null) {
-            animatedEmojiDrawable.removeView(this);
-        }
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.isLike) {
@@ -109,31 +78,14 @@ public class StoriesLikeButton extends View {
         }
     }
 
-    public void prepareAnimateReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-        TLRPC.TL_availableReaction tL_availableReaction;
-        if (visibleReaction.documentId != 0 || (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon)) == null) {
-            return;
-        }
-        this.animateReactionImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction, 1);
-        this.animateReactionImageReceiver.setAutoRepeat(0);
-    }
-
-    public void setAllowDrawReaction(boolean z) {
-        if (this.allowDrawReaction == z) {
-            return;
-        }
-        this.allowDrawReaction = z;
-        invalidate();
-    }
-
     public void setReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         String str;
         String str2;
         this.isLike = visibleReaction == null || ((str2 = visibleReaction.emojicon) != null && str2.equals("❤"));
-        if (visibleReaction == null || (str = visibleReaction.emojicon) == null || !str.equals("❤")) {
-            this.liked = false;
-        } else {
+        if (visibleReaction != null && (str = visibleReaction.emojicon) != null && str.equals("❤")) {
             this.liked = true;
+        } else {
+            this.liked = false;
         }
         this.currentReaction = visibleReaction;
         AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
@@ -156,5 +108,53 @@ public class StoriesLikeButton extends View {
             }
         }
         invalidate();
+    }
+
+    public void setAllowDrawReaction(boolean z) {
+        if (this.allowDrawReaction == z) {
+            return;
+        }
+        this.allowDrawReaction = z;
+        invalidate();
+    }
+
+    public void prepareAnimateReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        TLRPC.TL_availableReaction tL_availableReaction;
+        if (visibleReaction.documentId != 0 || (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon)) == null) {
+            return;
+        }
+        this.animateReactionImageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction, 1);
+        this.animateReactionImageReceiver.setAutoRepeat(0);
+    }
+
+    public void animateVisibleReaction() {
+        this.drawAnimateImageReciever = true;
+        if (this.animateReactionImageReceiver.getLottieAnimation() != null) {
+            this.animateReactionImageReceiver.getLottieAnimation().setCurrentFrame(0, false, true);
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.reactionImageReceiver.onAttachedToWindow();
+        this.animateReactionImageReceiver.onAttachedToWindow();
+        this.attachedToWindow = true;
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
+        if (animatedEmojiDrawable != null) {
+            animatedEmojiDrawable.addView(this);
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.reactionImageReceiver.onDetachedFromWindow();
+        this.animateReactionImageReceiver.onDetachedFromWindow();
+        this.attachedToWindow = false;
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
+        if (animatedEmojiDrawable != null) {
+            animatedEmojiDrawable.removeView(this);
+        }
     }
 }

@@ -30,14 +30,6 @@ public abstract class EntitiesContainerView extends FrameLayout {
         this.delegate = entitiesContainerViewDelegate;
     }
 
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (this.drawForThumb && (view instanceof ReactionWidgetEntityView)) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j);
-    }
-
     public int entitiesCount() {
         int i = 0;
         for (int i2 = 0; i2 < getChildCount(); i2++) {
@@ -46,16 +38,6 @@ public abstract class EntitiesContainerView extends FrameLayout {
             }
         }
         return i;
-    }
-
-    @Override
-    protected void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
-        if (!(view instanceof TextPaintView)) {
-            super.measureChildWithMargins(view, i, i2, i3, i4);
-        } else {
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            view.measure(ViewGroup.getChildMeasureSpec(i, getPaddingLeft() + getPaddingRight() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
-        }
     }
 
     @Override
@@ -101,5 +83,23 @@ public abstract class EntitiesContainerView extends FrameLayout {
             invalidate();
         }
         return true;
+    }
+
+    @Override
+    protected void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
+        if (view instanceof TextPaintView) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            view.measure(ViewGroup.getChildMeasureSpec(i, getPaddingLeft() + getPaddingRight() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
+        } else {
+            super.measureChildWithMargins(view, i, i2, i3, i4);
+        }
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        if (this.drawForThumb && (view instanceof ReactionWidgetEntityView)) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j);
     }
 }

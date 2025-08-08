@@ -38,77 +38,7 @@ public class PipSource {
     public final PipSourceHandlerState2 state2;
     public final String tag;
 
-    public static class Builder {
-        private final Activity activity;
-        private View contentView;
-        private int cornerRadius;
-        private final IPipSourceDelegate delegate;
-        private int height;
-        private View placeholderView;
-        private Player player;
-        private String tagPrefix;
-        private int width;
-        private int priority = 0;
-        private boolean needMediaSession = false;
-
-        public Builder(Activity activity, IPipSourceDelegate iPipSourceDelegate) {
-            this.activity = activity;
-            this.delegate = iPipSourceDelegate;
-        }
-
-        static IPipActivityActionListener access$200(Builder builder) {
-            builder.getClass();
-            return null;
-        }
-
-        public PipSource build() {
-            ComponentCallbacks2 componentCallbacks2 = this.activity;
-            if (componentCallbacks2 instanceof IPipActivity) {
-                return new PipSource(((IPipActivity) componentCallbacks2).getPipController(), this);
-            }
-            return null;
-        }
-
-        public Builder setContentRatio(int i, int i2) {
-            this.width = i;
-            this.height = i2;
-            return this;
-        }
-
-        public Builder setContentView(View view) {
-            this.contentView = view;
-            return this;
-        }
-
-        public Builder setCornerRadius(int i) {
-            this.cornerRadius = i;
-            return this;
-        }
-
-        public Builder setNeedMediaSession(boolean z) {
-            this.needMediaSession = z;
-            return this;
-        }
-
-        public Builder setPlaceholderView(View view) {
-            this.placeholderView = view;
-            return this;
-        }
-
-        public Builder setPlayer(Player player) {
-            this.player = player;
-            return this;
-        }
-
-        public Builder setPriority(int i) {
-            this.priority = i;
-            return this;
-        }
-
-        public Builder setTagPrefix(String str) {
-            this.tagPrefix = str;
-            return this;
-        }
+    public void invalidateActions() {
     }
 
     private PipSource(PipActivityController pipActivityController, Builder builder) {
@@ -144,14 +74,34 @@ public class PipSource {
         pipActivityController.dispatchSourceRegister(this);
     }
 
-    private void checkAvailable(boolean z) {
-        boolean z2 = this.params.isValid() && this.delegate.pipIsAvailable();
-        if (this.isAvailable != z2) {
-            this.isAvailable = z2;
-            if (z) {
-                this.controller.dispatchSourceAvailabilityChanged(this);
-            }
+    public void destroy() {
+        this.pipPositionObserver.stop();
+        this.controller.dispatchSourceUnregister(this);
+    }
+
+    public void setContentView(View view) {
+        this.pipPositionObserver.start(view);
+        this.contentView = view;
+        if (view != null) {
+            updateContentPosition(view);
         }
+    }
+
+    public void setPlaceholderView(View view) {
+        this.placeholderView = view;
+    }
+
+    public void setContentRatio(int i, int i2) {
+        if (this.params.setRatio(i, i2)) {
+            checkAvailable(true);
+            this.controller.dispatchSourceParamsChanged(this);
+        }
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+        checkAvailable(true);
+        this.controller.dispatchSourceParamsChanged(this);
     }
 
     private void updateContentPosition(View view) {
@@ -172,6 +122,13 @@ public class PipSource {
         }
     }
 
+    public void invalidatePosition() {
+        View view = this.contentView;
+        if (view != null) {
+            updateContentPosition(view);
+        }
+    }
+
     public PictureInPictureParams buildPictureInPictureParams() {
         PictureInPictureParams build;
         PictureInPictureParams.Builder build2 = this.params.build();
@@ -183,51 +140,94 @@ public class PipSource {
         return build;
     }
 
-    public void destroy() {
-        this.pipPositionObserver.stop();
-        this.controller.dispatchSourceUnregister(this);
-    }
-
-    public void invalidateActions() {
+    private void checkAvailable(boolean z) {
+        boolean z2 = this.params.isValid() && this.delegate.pipIsAvailable();
+        if (this.isAvailable != z2) {
+            this.isAvailable = z2;
+            if (z) {
+                this.controller.dispatchSourceAvailabilityChanged(this);
+            }
+        }
     }
 
     public void invalidateAvailability() {
         checkAvailable(true);
     }
 
-    public void invalidatePosition() {
-        View view = this.contentView;
-        if (view != null) {
-            updateContentPosition(view);
-        }
-    }
-
     public boolean isAvailable() {
         return this.isAvailable;
     }
 
-    public void setContentRatio(int i, int i2) {
-        if (this.params.setRatio(i, i2)) {
-            checkAvailable(true);
-            this.controller.dispatchSourceParamsChanged(this);
+    public static class Builder {
+        private final Activity activity;
+        private View contentView;
+        private int cornerRadius;
+        private final IPipSourceDelegate delegate;
+        private int height;
+        private View placeholderView;
+        private Player player;
+        private String tagPrefix;
+        private int width;
+        private int priority = 0;
+        private boolean needMediaSession = false;
+
+        static IPipActivityActionListener access$200(Builder builder) {
+            builder.getClass();
+            return null;
         }
-    }
 
-    public void setContentView(View view) {
-        this.pipPositionObserver.start(view);
-        this.contentView = view;
-        if (view != null) {
-            updateContentPosition(view);
+        public Builder(Activity activity, IPipSourceDelegate iPipSourceDelegate) {
+            this.activity = activity;
+            this.delegate = iPipSourceDelegate;
         }
-    }
 
-    public void setPlaceholderView(View view) {
-        this.placeholderView = view;
-    }
+        public Builder setTagPrefix(String str) {
+            this.tagPrefix = str;
+            return this;
+        }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-        checkAvailable(true);
-        this.controller.dispatchSourceParamsChanged(this);
+        public Builder setPriority(int i) {
+            this.priority = i;
+            return this;
+        }
+
+        public Builder setPlaceholderView(View view) {
+            this.placeholderView = view;
+            return this;
+        }
+
+        public Builder setCornerRadius(int i) {
+            this.cornerRadius = i;
+            return this;
+        }
+
+        public Builder setNeedMediaSession(boolean z) {
+            this.needMediaSession = z;
+            return this;
+        }
+
+        public Builder setContentView(View view) {
+            this.contentView = view;
+            return this;
+        }
+
+        public Builder setContentRatio(int i, int i2) {
+            this.width = i;
+            this.height = i2;
+            return this;
+        }
+
+        public Builder setPlayer(Player player) {
+            this.player = player;
+            return this;
+        }
+
+        public PipSource build() {
+            ComponentCallbacks2 componentCallbacks2 = this.activity;
+            if (componentCallbacks2 instanceof IPipActivity) {
+                return new PipSource(((IPipActivity) componentCallbacks2).getPipController(), this);
+            }
+            return null;
+        }
     }
 }

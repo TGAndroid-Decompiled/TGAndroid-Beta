@@ -8,10 +8,6 @@ public class NotificationRepeat extends IntentService {
         super("NotificationRepeat");
     }
 
-    public static void lambda$onHandleIntent$0(int i) {
-        NotificationsController.getInstance(i).repeatNotificationMaybe();
-    }
-
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent == null) {
@@ -26,5 +22,9 @@ public class NotificationRepeat extends IntentService {
                 }
             });
         }
+    }
+
+    public static void lambda$onHandleIntent$0(int i) {
+        NotificationsController.getInstance(i).repeatNotificationMaybe();
     }
 }

@@ -40,6 +40,150 @@ public class QRScanner {
     };
     private final String prefix = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix;
 
+    public QRScanner(final Context context, Utilities.Callback callback) {
+        this.listener = callback;
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                QRScanner.this.lambda$new$0(context);
+            }
+        });
+    }
+
+    public void lambda$new$0(Context context) {
+        this.detector.set(new BarcodeDetector.Builder(context).setBarcodeFormats(256).build());
+        attach(this.cameraView);
+    }
+
+    public Detected getDetected() {
+        return this.lastDetected;
+    }
+
+    public void destroy() {
+        this.cameraView = null;
+        Utilities.globalQueue.cancelRunnable(this.process);
+    }
+
+    public void attach(CameraView cameraView) {
+        this.cameraView = cameraView;
+        if (this.detector.get() == null || this.paused.get()) {
+            return;
+        }
+        Utilities.globalQueue.cancelRunnable(this.process);
+        Utilities.globalQueue.postRunnable(this.process, getTimeout());
+    }
+
+    public void setPaused(boolean z) {
+        if (this.paused.getAndSet(z) == z) {
+            return;
+        }
+        if (z) {
+            Utilities.globalQueue.cancelRunnable(this.process);
+            if (this.lastDetected != null) {
+                this.lastDetected = null;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        QRScanner.this.lambda$setPaused$1();
+                    }
+                });
+                return;
+            }
+            return;
+        }
+        Utilities.globalQueue.cancelRunnable(this.process);
+        Utilities.globalQueue.postRunnable(this.process, getTimeout());
+    }
+
+    public void lambda$setPaused$1() {
+        this.listener.run(null);
+    }
+
+    public void lambda$new$3() {
+        if (this.detector.get() == null || this.cameraView == null || this.paused.get()) {
+            return;
+        }
+        TextureView textureView = this.cameraView.getTextureView();
+        if (textureView != null) {
+            int width = textureView.getWidth();
+            int height = textureView.getHeight();
+            if (width > 720 || height > 720) {
+                float f = width;
+                float f2 = height;
+                float min = Math.min(720.0f / f, 720.0f / f2);
+                width = (int) (f * min);
+                height = (int) (f2 * min);
+            }
+            int max = Math.max(1, width);
+            int max2 = Math.max(1, height);
+            Bitmap bitmap = this.cacheBitmap;
+            if (bitmap == null || max != bitmap.getWidth() || max2 != this.cacheBitmap.getHeight()) {
+                this.cacheBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+            }
+            textureView.getBitmap(this.cacheBitmap);
+            final Detected detect = detect(this.cacheBitmap);
+            Detected detected = this.lastDetected;
+            if ((detected != null) != (detect != null) || (detect != null && detected != null && !detect.equals(detected))) {
+                this.lastDetected = detect;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        QRScanner.this.lambda$new$2(detect);
+                    }
+                });
+            }
+        }
+        if (this.paused.get()) {
+            return;
+        }
+        Utilities.globalQueue.cancelRunnable(this.process);
+        Utilities.globalQueue.postRunnable(this.process, getTimeout());
+    }
+
+    public void lambda$new$2(Detected detected) {
+        this.listener.run(detected);
+    }
+
+    private Detected detect(Bitmap bitmap) {
+        BarcodeDetector barcodeDetector;
+        if (bitmap != null && (barcodeDetector = (BarcodeDetector) this.detector.get()) != null && barcodeDetector.isOperational()) {
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            SparseArray detect = barcodeDetector.detect(new Frame.Builder().setBitmap(bitmap).build());
+            for (int i = 0; i < detect.size(); i++) {
+                Barcode barcode = (Barcode) detect.valueAt(i);
+                String str = barcode.rawValue;
+                if (str != null) {
+                    String trim = str.trim();
+                    if (!trim.startsWith(this.prefix)) {
+                        if (!trim.startsWith("https://" + this.prefix)) {
+                            if (!trim.startsWith("http://" + this.prefix)) {
+                            }
+                        }
+                    }
+                    PointF[] pointFArr = new PointF[barcode.cornerPoints.length];
+                    for (int i2 = 0; i2 < barcode.cornerPoints.length; i2++) {
+                        Point point = barcode.cornerPoints[i2];
+                        pointFArr[i2] = new PointF(point.x / width, point.y / height);
+                    }
+                    return new Detected(trim, pointFArr);
+                }
+            }
+        }
+        return null;
+    }
+
+    public long getTimeout() {
+        if (this.lastDetected == null) {
+            return 750L;
+        }
+        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+        if (devicePerformanceClass != 1) {
+            return devicePerformanceClass != 2 ? 800L : 80L;
+        }
+        return 400L;
+    }
+
     public static final class Detected {
         public final float cx;
         public final float cy;
@@ -173,10 +317,6 @@ public class QRScanner {
             canvas.restore();
         }
 
-        public boolean hasNoDraw() {
-            return !this.hasQrResult && this.animatedQr.get() <= 0.0f;
-        }
-
         public void setQrDetected(Detected detected) {
             if (detected != null) {
                 this.qrResult = detected;
@@ -192,148 +332,9 @@ public class QRScanner {
             this.hasQrResult = detected != null;
             this.invalidate.run();
         }
-    }
 
-    public QRScanner(final Context context, Utilities.Callback callback) {
-        this.listener = callback;
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                QRScanner.this.lambda$new$0(context);
-            }
-        });
-    }
-
-    private Detected detect(Bitmap bitmap) {
-        BarcodeDetector barcodeDetector;
-        if (bitmap != null && (barcodeDetector = (BarcodeDetector) this.detector.get()) != null && barcodeDetector.isOperational()) {
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-            SparseArray detect = barcodeDetector.detect(new Frame.Builder().setBitmap(bitmap).build());
-            for (int i = 0; i < detect.size(); i++) {
-                Barcode barcode = (Barcode) detect.valueAt(i);
-                String str = barcode.rawValue;
-                if (str != null) {
-                    String trim = str.trim();
-                    if (!trim.startsWith(this.prefix)) {
-                        if (!trim.startsWith("https://" + this.prefix)) {
-                            if (!trim.startsWith("http://" + this.prefix)) {
-                            }
-                        }
-                    }
-                    PointF[] pointFArr = new PointF[barcode.cornerPoints.length];
-                    for (int i2 = 0; i2 < barcode.cornerPoints.length; i2++) {
-                        Point point = barcode.cornerPoints[i2];
-                        pointFArr[i2] = new PointF(point.x / width, point.y / height);
-                    }
-                    return new Detected(trim, pointFArr);
-                }
-            }
-        }
-        return null;
-    }
-
-    public void lambda$new$0(Context context) {
-        this.detector.set(new BarcodeDetector.Builder(context).setBarcodeFormats(256).build());
-        attach(this.cameraView);
-    }
-
-    public void lambda$new$2(Detected detected) {
-        this.listener.run(detected);
-    }
-
-    public void lambda$new$3() {
-        if (this.detector.get() == null || this.cameraView == null || this.paused.get()) {
-            return;
-        }
-        TextureView textureView = this.cameraView.getTextureView();
-        if (textureView != null) {
-            int width = textureView.getWidth();
-            int height = textureView.getHeight();
-            if (width > 720 || height > 720) {
-                float f = width;
-                float f2 = height;
-                float min = Math.min(720.0f / f, 720.0f / f2);
-                width = (int) (f * min);
-                height = (int) (f2 * min);
-            }
-            int max = Math.max(1, width);
-            int max2 = Math.max(1, height);
-            Bitmap bitmap = this.cacheBitmap;
-            if (bitmap == null || max != bitmap.getWidth() || max2 != this.cacheBitmap.getHeight()) {
-                this.cacheBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
-            }
-            textureView.getBitmap(this.cacheBitmap);
-            final Detected detect = detect(this.cacheBitmap);
-            Detected detected = this.lastDetected;
-            if ((detected != null) != (detect != null) || (detect != null && detected != null && !detect.equals(detected))) {
-                this.lastDetected = detect;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        QRScanner.this.lambda$new$2(detect);
-                    }
-                });
-            }
-        }
-        if (this.paused.get()) {
-            return;
-        }
-        Utilities.globalQueue.cancelRunnable(this.process);
-        Utilities.globalQueue.postRunnable(this.process, getTimeout());
-    }
-
-    public void lambda$setPaused$1() {
-        this.listener.run(null);
-    }
-
-    public void attach(CameraView cameraView) {
-        this.cameraView = cameraView;
-        if (this.detector.get() == null || this.paused.get()) {
-            return;
-        }
-        Utilities.globalQueue.cancelRunnable(this.process);
-        Utilities.globalQueue.postRunnable(this.process, getTimeout());
-    }
-
-    public void destroy() {
-        this.cameraView = null;
-        Utilities.globalQueue.cancelRunnable(this.process);
-    }
-
-    public Detected getDetected() {
-        return this.lastDetected;
-    }
-
-    public long getTimeout() {
-        if (this.lastDetected == null) {
-            return 750L;
-        }
-        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-        if (devicePerformanceClass != 1) {
-            return devicePerformanceClass != 2 ? 800L : 80L;
-        }
-        return 400L;
-    }
-
-    public void setPaused(boolean z) {
-        if (this.paused.getAndSet(z) == z) {
-            return;
-        }
-        if (!z) {
-            Utilities.globalQueue.cancelRunnable(this.process);
-            Utilities.globalQueue.postRunnable(this.process, getTimeout());
-            return;
-        }
-        Utilities.globalQueue.cancelRunnable(this.process);
-        if (this.lastDetected != null) {
-            this.lastDetected = null;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    QRScanner.this.lambda$setPaused$1();
-                }
-            });
+        public boolean hasNoDraw() {
+            return !this.hasQrResult && this.animatedQr.get() <= 0.0f;
         }
     }
 }

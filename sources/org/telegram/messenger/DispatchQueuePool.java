@@ -1,8 +1,10 @@
 package org.telegram.messenger;
 
+import android.os.Looper;
 import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.LinkedList;
+import org.telegram.ui.Components.Reactions.HwEmojis;
 
 public class DispatchQueuePool {
     private boolean cleanupScheduled;
@@ -41,26 +43,54 @@ public class DispatchQueuePool {
     };
     private int guid = Utilities.random.nextInt();
 
-    public DispatchQueuePool(int i) {
-        this.maxCount = i;
-    }
-
     static int access$110(DispatchQueuePool dispatchQueuePool) {
         int i = dispatchQueuePool.createdCount;
         dispatchQueuePool.createdCount = i - 1;
         return i;
     }
 
-    public void lambda$execute$1(DispatchQueue dispatchQueue) {
-        this.totalTasksCount--;
-        int i = this.busyQueuesMap.get(dispatchQueue.index) - 1;
-        if (i != 0) {
-            this.busyQueuesMap.put(dispatchQueue.index, i);
+    public DispatchQueuePool(int i) {
+        this.maxCount = i;
+    }
+
+    public void lambda$execute$0(final Runnable runnable) {
+        final DispatchQueue remove;
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    DispatchQueuePool.this.lambda$execute$0(runnable);
+                }
+            });
             return;
         }
-        this.busyQueuesMap.delete(dispatchQueue.index);
-        this.busyQueues.remove(dispatchQueue);
-        this.queues.add(dispatchQueue);
+        if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
+            remove = this.busyQueues.remove(0);
+        } else if (this.queues.isEmpty()) {
+            remove = new DispatchQueue("DispatchQueuePool" + this.guid + "_" + Utilities.random.nextInt());
+            remove.setPriority(10);
+            this.createdCount = this.createdCount + 1;
+        } else {
+            remove = this.queues.remove(0);
+        }
+        if (!this.cleanupScheduled) {
+            AndroidUtilities.runOnUIThread(this.cleanupRunnable, 30000L);
+            this.cleanupScheduled = true;
+        }
+        this.totalTasksCount++;
+        this.busyQueues.add(remove);
+        this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
+        if (HwEmojis.isHwEnabled()) {
+            remove.setPriority(1);
+        } else if (remove.getPriority() != 10) {
+            remove.setPriority(10);
+        }
+        remove.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                DispatchQueuePool.this.lambda$execute$2(runnable, remove);
+            }
+        });
     }
 
     public void lambda$execute$2(Runnable runnable, final DispatchQueue dispatchQueue) {
@@ -73,7 +103,15 @@ public class DispatchQueuePool {
         });
     }
 
-    public void lambda$execute$0(final java.lang.Runnable r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DispatchQueuePool.lambda$execute$0(java.lang.Runnable):void");
+    public void lambda$execute$1(DispatchQueue dispatchQueue) {
+        this.totalTasksCount--;
+        int i = this.busyQueuesMap.get(dispatchQueue.index) - 1;
+        if (i == 0) {
+            this.busyQueuesMap.delete(dispatchQueue.index);
+            this.busyQueues.remove(dispatchQueue);
+            this.queues.add(dispatchQueue);
+            return;
+        }
+        this.busyQueuesMap.put(dispatchQueue.index, i);
     }
 }

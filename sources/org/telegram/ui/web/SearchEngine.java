@@ -24,31 +24,18 @@ public class SearchEngine {
         this.privacy_policy_url = str4;
     }
 
-    public static SearchEngine getCurrent() {
-        return (SearchEngine) getSearchEngines().get(Utilities.clamp(SharedConfig.searchEngineType, r0.size() - 1, 0));
-    }
-
-    public static ArrayList getSearchEngines() {
-        if (searchEngines == null) {
-            searchEngines = new ArrayList();
-            int i = 1;
-            while (true) {
-                String nullable = nullable(LocaleController.getString("SearchEngine" + i + "Name"));
-                if (nullable == null) {
-                    break;
-                }
-                searchEngines.add(new SearchEngine(nullable, nullable(LocaleController.getString("SearchEngine" + i + "SearchURL")), nullable(LocaleController.getString("SearchEngine" + i + "AutocompleteURL")), nullable(LocaleController.getString("SearchEngine" + i + "PrivacyPolicyURL"))));
-                i++;
-            }
-        }
-        return searchEngines;
-    }
-
-    private static String nullable(String str) {
-        if (str == null || str.startsWith("LOC_ERR") || "reserved".equals(str)) {
+    public String getSearchURL(String str) {
+        if (this.search_url == null) {
             return null;
         }
-        return str;
+        return this.search_url + URLEncoder.encode(str);
+    }
+
+    public String getAutocompleteURL(String str) {
+        if (this.autocomplete_url == null) {
+            return null;
+        }
+        return this.autocomplete_url + URLEncoder.encode(str);
     }
 
     public ArrayList extractSuggestions(String str) {
@@ -83,17 +70,30 @@ public class SearchEngine {
         return arrayList;
     }
 
-    public String getAutocompleteURL(String str) {
-        if (this.autocomplete_url == null) {
-            return null;
+    public static ArrayList getSearchEngines() {
+        if (searchEngines == null) {
+            searchEngines = new ArrayList();
+            int i = 1;
+            while (true) {
+                String nullable = nullable(LocaleController.getString("SearchEngine" + i + "Name"));
+                if (nullable == null) {
+                    break;
+                }
+                searchEngines.add(new SearchEngine(nullable, nullable(LocaleController.getString("SearchEngine" + i + "SearchURL")), nullable(LocaleController.getString("SearchEngine" + i + "AutocompleteURL")), nullable(LocaleController.getString("SearchEngine" + i + "PrivacyPolicyURL"))));
+                i++;
+            }
         }
-        return this.autocomplete_url + URLEncoder.encode(str);
+        return searchEngines;
     }
 
-    public String getSearchURL(String str) {
-        if (this.search_url == null) {
+    private static String nullable(String str) {
+        if (str == null || str.startsWith("LOC_ERR") || "reserved".equals(str)) {
             return null;
         }
-        return this.search_url + URLEncoder.encode(str);
+        return str;
+    }
+
+    public static SearchEngine getCurrent() {
+        return (SearchEngine) getSearchEngines().get(Utilities.clamp(SharedConfig.searchEngineType, r0.size() - 1, 0));
     }
 }

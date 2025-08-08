@@ -3,7 +3,21 @@ package org.webrtc;
 import org.webrtc.VideoEncoder;
 
 public class VideoEncoderWrapper {
+    public static native void nativeOnEncodedFrame(long j, EncodedImage encodedImage);
+
     VideoEncoderWrapper() {
+    }
+
+    static boolean getScalingSettingsOn(VideoEncoder.ScalingSettings scalingSettings) {
+        return scalingSettings.on;
+    }
+
+    static Integer getScalingSettingsLow(VideoEncoder.ScalingSettings scalingSettings) {
+        return scalingSettings.low;
+    }
+
+    static Integer getScalingSettingsHigh(VideoEncoder.ScalingSettings scalingSettings) {
+        return scalingSettings.high;
     }
 
     static VideoEncoder.Callback createEncoderCallback(final long j) {
@@ -14,18 +28,4 @@ public class VideoEncoderWrapper {
             }
         };
     }
-
-    static Integer getScalingSettingsHigh(VideoEncoder.ScalingSettings scalingSettings) {
-        return scalingSettings.high;
-    }
-
-    static Integer getScalingSettingsLow(VideoEncoder.ScalingSettings scalingSettings) {
-        return scalingSettings.low;
-    }
-
-    static boolean getScalingSettingsOn(VideoEncoder.ScalingSettings scalingSettings) {
-        return scalingSettings.on;
-    }
-
-    public static native void nativeOnEncodedFrame(long j, EncodedImage encodedImage);
 }

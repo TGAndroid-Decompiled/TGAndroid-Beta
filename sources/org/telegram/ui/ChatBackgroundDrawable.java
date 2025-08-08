@@ -48,11 +48,43 @@ public class ChatBackgroundDrawable extends Drawable {
     };
     private final ArrayList attachedViews = new ArrayList();
 
+    @Override
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public static Drawable getOrCreate(Drawable drawable, TLRPC.WallPaper wallPaper, boolean z) {
+        TLRPC.WallPaperSettings wallPaperSettings;
+        TLRPC.WallPaperSettings wallPaperSettings2;
+        if (drawable instanceof ChatBackgroundDrawable) {
+            ChatBackgroundDrawable chatBackgroundDrawable = (ChatBackgroundDrawable) drawable;
+            String str = wallPaper.uploadingImage;
+            if (str != null) {
+                if (str.equals(chatBackgroundDrawable.wallpaper.uploadingImage) && ((wallPaperSettings2 = wallPaper.settings) == null || chatBackgroundDrawable.wallpaper.settings == null || wallPaperSettings2.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
+                    return chatBackgroundDrawable;
+                }
+            } else if (wallPaper.id == chatBackgroundDrawable.wallpaper.id && TextUtils.equals(hash(wallPaper.settings), hash(chatBackgroundDrawable.wallpaper.settings)) && (wallPaper.document == null || wallPaper.pattern || (wallPaperSettings = wallPaper.settings) == null || wallPaperSettings.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
+                return chatBackgroundDrawable;
+            }
+        }
+        return new ChatBackgroundDrawable(wallPaper, z, false);
+    }
+
+    public void setParent(View view) {
+        this.parent = view;
+        MotionBackgroundDrawable motionBackgroundDrawable = this.motionBackgroundDrawable;
+        if (motionBackgroundDrawable != null) {
+            motionBackgroundDrawable.setParentView(view);
+        }
+    }
+
     public ChatBackgroundDrawable(final TLRPC.WallPaper wallPaper, boolean z, boolean z2) {
         TLRPC.WallPaperSettings wallPaperSettings;
         String str;
-        ImageReceiver imageReceiver;
-        ImageLocation forDocument;
         TLRPC.WallPaperSettings wallPaperSettings2;
         this.imageReceiver.setInvalidateAll(true);
         boolean z3 = wallPaper.pattern;
@@ -98,31 +130,26 @@ public class ChatBackgroundDrawable extends Drawable {
         Drawable createThumb = createThumb(wallPaper);
         String str3 = wallPaper.uploadingImage;
         if (str3 != null) {
-            imageReceiver = this.imageReceiver;
-            forDocument = ImageLocation.getForPath(str3);
-        } else {
-            TLRPC.Document document = wallPaper.document;
-            if (document == null) {
-                this.imageReceiver.setImageBitmap(createThumb);
-                return;
-            } else {
-                imageReceiver = this.imageReceiver;
-                forDocument = ImageLocation.getForDocument(document);
-            }
+            this.imageReceiver.setImage(ImageLocation.getForPath(str3), str2, createThumb, null, wallPaper, 1);
+            return;
         }
-        imageReceiver.setImage(forDocument, str2, createThumb, null, wallPaper, 1);
+        TLRPC.Document document = wallPaper.document;
+        if (document != null) {
+            this.imageReceiver.setImage(ImageLocation.getForDocument(document), str2, createThumb, null, wallPaper, 1);
+        } else {
+            this.imageReceiver.setImageBitmap(createThumb);
+        }
     }
 
-    private static Drawable bitmapDrawableOf(Drawable drawable) {
-        Bitmap createBitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        drawable.setBounds(0, 0, 20, 20);
-        drawable.draw(canvas);
-        return new BitmapDrawable(createBitmap);
+    public void lambda$new$0(TLRPC.WallPaper wallPaper, Pair pair) {
+        this.motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, (Bitmap) pair.second);
+        View view = this.parent;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 
     public static Drawable createThumb(TLRPC.WallPaper wallPaper) {
-        ColorDrawable colorDrawable;
         Drawable bitmapDrawableOf;
         Drawable drawable = wallPaper.thumbDrawable;
         if (drawable != null) {
@@ -145,61 +172,32 @@ public class ChatBackgroundDrawable extends Drawable {
         } else {
             TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
             if (wallPaperSettings == null || wallPaperSettings.intensity < 0) {
-                colorDrawable = new ColorDrawable(-16777216);
+                bitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(-16777216));
             } else if (wallPaperSettings.second_background_color == 0) {
-                colorDrawable = new ColorDrawable(ColorUtils.setAlphaComponent(wallPaper.settings.background_color, 255));
+                bitmapDrawableOf = bitmapDrawableOf(new ColorDrawable(ColorUtils.setAlphaComponent(wallPaper.settings.background_color, 255)));
+            } else if (wallPaperSettings.third_background_color == 0) {
+                bitmapDrawableOf = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(wallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255)}));
             } else {
-                int i = wallPaperSettings.third_background_color;
                 int alphaComponent = ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255);
-                if (i == 0) {
-                    bitmapDrawableOf = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(wallPaper.settings.rotation), new int[]{alphaComponent, ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255)}));
-                } else {
-                    int alphaComponent2 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
-                    int alphaComponent3 = ColorUtils.setAlphaComponent(wallPaper.settings.third_background_color, 255);
-                    int i2 = wallPaper.settings.fourth_background_color;
-                    r2 = i2 != 0 ? ColorUtils.setAlphaComponent(i2, 255) : 0;
-                    MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
-                    motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, r2);
-                    bitmapDrawableOf = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
-                }
+                int alphaComponent2 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
+                int alphaComponent3 = ColorUtils.setAlphaComponent(wallPaper.settings.third_background_color, 255);
+                int i = wallPaper.settings.fourth_background_color;
+                r2 = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
+                MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
+                motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, r2);
+                bitmapDrawableOf = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
             }
-            bitmapDrawableOf = bitmapDrawableOf(colorDrawable);
         }
         wallPaper.thumbDrawable = bitmapDrawableOf;
         return bitmapDrawableOf;
     }
 
-    public static Drawable getOrCreate(Drawable drawable, TLRPC.WallPaper wallPaper, boolean z) {
-        TLRPC.WallPaperSettings wallPaperSettings;
-        TLRPC.WallPaperSettings wallPaperSettings2;
-        if (drawable instanceof ChatBackgroundDrawable) {
-            ChatBackgroundDrawable chatBackgroundDrawable = (ChatBackgroundDrawable) drawable;
-            String str = wallPaper.uploadingImage;
-            if (str != null) {
-                if (str.equals(chatBackgroundDrawable.wallpaper.uploadingImage) && ((wallPaperSettings2 = wallPaper.settings) == null || chatBackgroundDrawable.wallpaper.settings == null || wallPaperSettings2.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
-                    return chatBackgroundDrawable;
-                }
-            } else if (wallPaper.id == chatBackgroundDrawable.wallpaper.id && TextUtils.equals(hash(wallPaper.settings), hash(chatBackgroundDrawable.wallpaper.settings)) && (wallPaper.document == null || wallPaper.pattern || (wallPaperSettings = wallPaper.settings) == null || wallPaperSettings.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
-                return chatBackgroundDrawable;
-            }
-        }
-        return new ChatBackgroundDrawable(wallPaper, z, false);
-    }
-
-    public static String hash(TLRPC.WallPaperSettings wallPaperSettings) {
-        return wallPaperSettings == null ? "" : String.valueOf(Objects.hash(Boolean.valueOf(wallPaperSettings.blur), Boolean.valueOf(wallPaperSettings.motion), Integer.valueOf(wallPaperSettings.intensity), Integer.valueOf(wallPaperSettings.background_color), Integer.valueOf(wallPaperSettings.second_background_color), Integer.valueOf(wallPaperSettings.third_background_color), Integer.valueOf(wallPaperSettings.fourth_background_color)));
-    }
-
-    private boolean isAttached() {
-        return this.attachedViews.size() > 0;
-    }
-
-    public void lambda$new$0(TLRPC.WallPaper wallPaper, Pair pair) {
-        this.motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, (Bitmap) pair.second);
-        View view = this.parent;
-        if (view != null) {
-            view.invalidate();
-        }
+    private static Drawable bitmapDrawableOf(Drawable drawable) {
+        Bitmap createBitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        drawable.setBounds(0, 0, 20, 20);
+        drawable.draw(canvas);
+        return new BitmapDrawable(createBitmap);
     }
 
     @Override
@@ -237,14 +235,16 @@ public class ChatBackgroundDrawable extends Drawable {
         return 0.0f;
     }
 
-    public Drawable getDrawable(boolean z) {
-        MotionBackgroundDrawable motionBackgroundDrawable = this.motionBackgroundDrawable;
-        return motionBackgroundDrawable != null ? motionBackgroundDrawable : (!z || this.imageReceiver.getStaticThumb() == null) ? this.imageReceiver.getThumb() != null ? this.imageReceiver.getThumb() : this.imageReceiver.getDrawable() != null ? this.imageReceiver.getDrawable() : this.imageReceiver.getStaticThumb() : this.imageReceiver.getStaticThumb();
+    @Override
+    public void setAlpha(int i) {
+        if (this.alpha != i) {
+            this.alpha = i;
+            invalidateSelf();
+        }
     }
 
-    @Override
-    public int getOpacity() {
-        return 0;
+    private boolean isAttached() {
+        return this.attachedViews.size() > 0;
     }
 
     public void onAttachedToWindow(View view) {
@@ -279,23 +279,24 @@ public class ChatBackgroundDrawable extends Drawable {
         }
     }
 
-    @Override
-    public void setAlpha(int i) {
-        if (this.alpha != i) {
-            this.alpha = i;
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public void setParent(View view) {
-        this.parent = view;
+    public Drawable getDrawable(boolean z) {
         MotionBackgroundDrawable motionBackgroundDrawable = this.motionBackgroundDrawable;
         if (motionBackgroundDrawable != null) {
-            motionBackgroundDrawable.setParentView(view);
+            return motionBackgroundDrawable;
         }
+        if (z && this.imageReceiver.getStaticThumb() != null) {
+            return this.imageReceiver.getStaticThumb();
+        }
+        if (this.imageReceiver.getThumb() != null) {
+            return this.imageReceiver.getThumb();
+        }
+        if (this.imageReceiver.getDrawable() != null) {
+            return this.imageReceiver.getDrawable();
+        }
+        return this.imageReceiver.getStaticThumb();
+    }
+
+    public static String hash(TLRPC.WallPaperSettings wallPaperSettings) {
+        return wallPaperSettings == null ? "" : String.valueOf(Objects.hash(Boolean.valueOf(wallPaperSettings.blur), Boolean.valueOf(wallPaperSettings.motion), Integer.valueOf(wallPaperSettings.intensity), Integer.valueOf(wallPaperSettings.background_color), Integer.valueOf(wallPaperSettings.second_background_color), Integer.valueOf(wallPaperSettings.third_background_color), Integer.valueOf(wallPaperSettings.fourth_background_color)));
     }
 }

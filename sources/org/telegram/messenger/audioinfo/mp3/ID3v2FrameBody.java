@@ -43,6 +43,26 @@ public class ID3v2FrameBody {
         this.frameHeader = iD3v2FrameHeader;
     }
 
+    public ID3v2DataInput getData() {
+        return this.data;
+    }
+
+    public long getPosition() {
+        return this.input.getPosition();
+    }
+
+    public long getRemainingLength() {
+        return this.input.getRemainingLength();
+    }
+
+    public ID3v2TagHeader getTagHeader() {
+        return this.tagHeader;
+    }
+
+    public ID3v2FrameHeader getFrameHeader() {
+        return this.frameHeader;
+    }
+
     private String extractString(byte[] bArr, int i, int i2, ID3v2Encoding iD3v2Encoding, boolean z) {
         if (z) {
             int i3 = 0;
@@ -67,52 +87,6 @@ public class ID3v2FrameBody {
         }
     }
 
-    public ID3v2DataInput getData() {
-        return this.data;
-    }
-
-    public ID3v2FrameHeader getFrameHeader() {
-        return this.frameHeader;
-    }
-
-    public long getPosition() {
-        return this.input.getPosition();
-    }
-
-    public long getRemainingLength() {
-        return this.input.getRemainingLength();
-    }
-
-    public ID3v2TagHeader getTagHeader() {
-        return this.tagHeader;
-    }
-
-    public ID3v2Encoding readEncoding() {
-        byte readByte = this.data.readByte();
-        if (readByte == 0) {
-            return ID3v2Encoding.ISO_8859_1;
-        }
-        if (readByte == 1) {
-            return ID3v2Encoding.UTF_16;
-        }
-        if (readByte == 2) {
-            return ID3v2Encoding.UTF_16BE;
-        }
-        if (readByte == 3) {
-            return ID3v2Encoding.UTF_8;
-        }
-        throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
-    }
-
-    public String readFixedLengthString(int i, ID3v2Encoding iD3v2Encoding) {
-        if (i <= getRemainingLength()) {
-            byte[] bytes = ((Buffer) textBuffer.get()).bytes(i);
-            this.data.readFully(bytes, 0, i);
-            return extractString(bytes, 0, i, iD3v2Encoding, true);
-        }
-        throw new ID3v2Exception("Could not read fixed-length string of length: " + i);
-    }
-
     public String readZeroTerminatedString(int i, ID3v2Encoding iD3v2Encoding) {
         int min = Math.min(i, (int) getRemainingLength());
         byte[] bytes = ((Buffer) textBuffer.get()).bytes(min);
@@ -130,6 +104,32 @@ public class ID3v2FrameBody {
             }
         }
         throw new ID3v2Exception("Could not read zero-termiated string");
+    }
+
+    public String readFixedLengthString(int i, ID3v2Encoding iD3v2Encoding) {
+        if (i > getRemainingLength()) {
+            throw new ID3v2Exception("Could not read fixed-length string of length: " + i);
+        }
+        byte[] bytes = ((Buffer) textBuffer.get()).bytes(i);
+        this.data.readFully(bytes, 0, i);
+        return extractString(bytes, 0, i, iD3v2Encoding, true);
+    }
+
+    public ID3v2Encoding readEncoding() {
+        byte readByte = this.data.readByte();
+        if (readByte == 0) {
+            return ID3v2Encoding.ISO_8859_1;
+        }
+        if (readByte == 1) {
+            return ID3v2Encoding.UTF_16;
+        }
+        if (readByte == 2) {
+            return ID3v2Encoding.UTF_16BE;
+        }
+        if (readByte == 3) {
+            return ID3v2Encoding.UTF_8;
+        }
+        throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
     }
 
     public String toString() {

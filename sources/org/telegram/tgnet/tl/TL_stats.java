@@ -13,42 +13,94 @@ import org.telegram.tgnet.tl.TL_stories;
 
 public class TL_stats {
 
-    public static class BroadcastRevenueTransaction extends TLObject {
-        public static BroadcastRevenueTransaction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            BroadcastRevenueTransaction tL_broadcastRevenueTransactionWithdrawal = i != 1121127726 ? i != 1434332356 ? i != 1515784568 ? null : new TL_broadcastRevenueTransactionWithdrawal() : new TL_broadcastRevenueTransactionProceeds() : new TL_broadcastRevenueTransactionRefund();
-            if (tL_broadcastRevenueTransactionWithdrawal == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in BroadcastRevenueTransaction", Integer.valueOf(i)));
-            }
-            if (tL_broadcastRevenueTransactionWithdrawal != null) {
-                tL_broadcastRevenueTransactionWithdrawal.readParams(inputSerializedData, z);
-            }
-            return tL_broadcastRevenueTransactionWithdrawal;
-        }
-    }
+    public static class TL_megagroupStats extends TLObject {
+        public static final int constructor = -276825834;
+        public StatsGraph actions_graph;
+        public StatsGraph growth_graph;
+        public StatsGraph languages_graph;
+        public TL_statsAbsValueAndPrev members;
+        public StatsGraph members_graph;
+        public TL_statsAbsValueAndPrev messages;
+        public StatsGraph messages_graph;
+        public StatsGraph new_members_by_source_graph;
+        public TL_statsDateRangeDays period;
+        public TL_statsAbsValueAndPrev posters;
+        public StatsGraph top_hours_graph;
+        public TL_statsAbsValueAndPrev viewers;
+        public StatsGraph weekdays_graph;
+        public ArrayList<TL_statsGroupTopPoster> top_posters = new ArrayList<>();
+        public ArrayList<TL_statsGroupTopAdmin> top_admins = new ArrayList<>();
+        public ArrayList<TL_statsGroupTopInviter> top_inviters = new ArrayList<>();
+        public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-    public static abstract class PostInteractionCounters extends TLObject {
-        public static PostInteractionCounters TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PostInteractionCounters tL_postInteractionCountersMessage = i != -1974989273 ? i != -419066241 ? null : new TL_postInteractionCountersMessage() : new TL_postInteractionCountersStory();
-            if (tL_postInteractionCountersMessage == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PostInteractionCounters", Integer.valueOf(i)));
+        public static TL_megagroupStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-276825834 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_megagroupStats", Integer.valueOf(i)));
+                }
+                return null;
             }
-            if (tL_postInteractionCountersMessage != null) {
-                tL_postInteractionCountersMessage.readParams(inputSerializedData, z);
-            }
-            return tL_postInteractionCountersMessage;
+            TL_megagroupStats tL_megagroupStats = new TL_megagroupStats();
+            tL_megagroupStats.readParams(inputSerializedData, z);
+            return tL_megagroupStats;
         }
-    }
 
-    public static abstract class PublicForward extends TLObject {
-        public static PublicForward TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PublicForward tL_publicForwardMessage = i != -302797360 ? i != 32685898 ? null : new TL_publicForwardMessage() : new TL_stories.TL_publicForwardStory();
-            if (tL_publicForwardMessage == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PublicForward", Integer.valueOf(i)));
-            }
-            if (tL_publicForwardMessage != null) {
-                tL_publicForwardMessage.readParams(inputSerializedData, z);
-            }
-            return tL_publicForwardMessage;
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.period = TL_statsDateRangeDays.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.members = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.messages = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.viewers = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.posters = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.growth_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.members_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.new_members_by_source_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.languages_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.messages_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.actions_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.top_hours_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.weekdays_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.top_posters = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_stats.TL_statsGroupTopPoster.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.top_admins = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_stats.TL_statsGroupTopAdmin.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.top_inviters = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_stats.TL_statsGroupTopInviter.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-276825834);
+            this.period.serializeToStream(outputSerializedData);
+            this.members.serializeToStream(outputSerializedData);
+            this.messages.serializeToStream(outputSerializedData);
+            this.viewers.serializeToStream(outputSerializedData);
+            this.posters.serializeToStream(outputSerializedData);
+            this.growth_graph.serializeToStream(outputSerializedData);
+            this.members_graph.serializeToStream(outputSerializedData);
+            this.new_members_by_source_graph.serializeToStream(outputSerializedData);
+            this.languages_graph.serializeToStream(outputSerializedData);
+            this.messages_graph.serializeToStream(outputSerializedData);
+            this.actions_graph.serializeToStream(outputSerializedData);
+            this.top_hours_graph.serializeToStream(outputSerializedData);
+            this.weekdays_graph.serializeToStream(outputSerializedData);
+            Vector.serialize(outputSerializedData, this.top_posters);
+            Vector.serialize(outputSerializedData, this.top_admins);
+            Vector.serialize(outputSerializedData, this.top_inviters);
+            Vector.serialize(outputSerializedData, this.users);
         }
     }
 
@@ -56,201 +108,243 @@ public class TL_stats {
         public float rate;
 
         public static StatsGraph TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StatsGraph tL_statsGraphAsync = i != -1901828938 ? i != -1092839390 ? i != 1244130093 ? null : new TL_statsGraphAsync() : new TL_statsGraphError() : new TL_statsGraph();
-            if (tL_statsGraphAsync == null && z) {
+            StatsGraph tL_statsGraph;
+            if (i == -1901828938) {
+                tL_statsGraph = new TL_statsGraph();
+            } else if (i != -1092839390) {
+                tL_statsGraph = i != 1244130093 ? null : new TL_statsGraphAsync();
+            } else {
+                tL_statsGraph = new TL_statsGraphError();
+            }
+            if (tL_statsGraph == null && z) {
                 throw new RuntimeException(String.format("can't parse magic %x in StatsGraph", Integer.valueOf(i)));
             }
-            if (tL_statsGraphAsync != null) {
-                tL_statsGraphAsync.readParams(inputSerializedData, z);
+            if (tL_statsGraph != null) {
+                tL_statsGraph.readParams(inputSerializedData, z);
             }
-            return tL_statsGraphAsync;
+            return tL_statsGraph;
         }
     }
 
-    public static class TL_broadcastRevenueStats extends TLObject {
-        public static final int constructor = 1409802903;
-        public TLRPC.BroadcastRevenueBalances balances;
-        public StatsGraph revenue_graph;
-        public StatsGraph top_hours_graph;
-        public double usd_rate;
-
-        public static TL_broadcastRevenueStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1409802903 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastRevenueStats tL_broadcastRevenueStats = new TL_broadcastRevenueStats();
-            tL_broadcastRevenueStats.readParams(inputSerializedData, z);
-            return tL_broadcastRevenueStats;
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.top_hours_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.revenue_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.balances = TLRPC.BroadcastRevenueBalances.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.usd_rate = inputSerializedData.readDouble(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1409802903);
-            this.top_hours_graph.serializeToStream(outputSerializedData);
-            this.revenue_graph.serializeToStream(outputSerializedData);
-            this.balances.serializeToStream(outputSerializedData);
-            outputSerializedData.writeDouble(this.usd_rate);
-        }
-    }
-
-    public static class TL_broadcastRevenueTransactionProceeds extends BroadcastRevenueTransaction {
-        public static final int constructor = 1434332356;
-        public long amount;
-        public int from_date;
-        public int to_date;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.amount = inputSerializedData.readInt64(z);
-            this.from_date = inputSerializedData.readInt32(z);
-            this.to_date = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1434332356);
-            outputSerializedData.writeInt64(this.amount);
-            outputSerializedData.writeInt32(this.from_date);
-            outputSerializedData.writeInt32(this.to_date);
-        }
-    }
-
-    public static class TL_broadcastRevenueTransactionRefund extends BroadcastRevenueTransaction {
-        public static final int constructor = 1121127726;
-        public long amount;
-        public int from_date;
-        public String provider;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.amount = inputSerializedData.readInt64(z);
-            this.from_date = inputSerializedData.readInt32(z);
-            this.provider = inputSerializedData.readString(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1121127726);
-            outputSerializedData.writeInt64(this.amount);
-            outputSerializedData.writeInt32(this.from_date);
-            outputSerializedData.writeString(this.provider);
-        }
-    }
-
-    public static class TL_broadcastRevenueTransactionWithdrawal extends BroadcastRevenueTransaction {
-        public static final int constructor = 1515784568;
-        public long amount;
-        public int date;
-        public boolean failed;
+    public static class TL_statsGraph extends StatsGraph {
+        public static final int constructor = -1901828938;
         public int flags;
-        public boolean pending;
-        public String provider;
-        public int transaction_date;
-        public String transaction_url;
+        public TLRPC.TL_dataJSON json;
+        public String zoom_token;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.pending = (readInt32 & 1) != 0;
-            this.failed = (readInt32 & 4) != 0;
-            this.amount = inputSerializedData.readInt64(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.provider = inputSerializedData.readString(z);
-            if ((this.flags & 2) != 0) {
-                this.transaction_date = inputSerializedData.readInt32(z);
-                this.transaction_url = inputSerializedData.readString(z);
+            this.flags = inputSerializedData.readInt32(z);
+            this.json = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 1) != 0) {
+                this.zoom_token = inputSerializedData.readString(z);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1515784568);
-            int i = this.pending ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            this.flags = this.failed ? i | 1 : i & (-2);
-            outputSerializedData.writeInt64(this.amount);
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeString(this.provider);
-            if ((this.flags & 2) != 0) {
-                outputSerializedData.writeInt32(this.transaction_date);
-                outputSerializedData.writeString(this.transaction_url);
+            outputSerializedData.writeInt32(-1901828938);
+            outputSerializedData.writeInt32(this.flags);
+            this.json.serializeToStream(outputSerializedData);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeString(this.zoom_token);
             }
         }
     }
 
-    public static class TL_broadcastRevenueTransactions extends TLObject {
-        public static final int constructor = -2028632986;
-        public int count;
-        public ArrayList<BroadcastRevenueTransaction> transactions = new ArrayList<>();
-
-        public static TL_broadcastRevenueTransactions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-2028632986 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueTransactions", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastRevenueTransactions tL_broadcastRevenueTransactions = new TL_broadcastRevenueTransactions();
-            tL_broadcastRevenueTransactions.readParams(inputSerializedData, z);
-            return tL_broadcastRevenueTransactions;
-        }
+    public static class TL_statsGraphAsync extends StatsGraph {
+        public static final int constructor = 1244130093;
+        public String token;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.count = inputSerializedData.readInt32(z);
-            this.transactions = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TL_stats.BroadcastRevenueTransaction.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
+            this.token = inputSerializedData.readString(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2028632986);
-            outputSerializedData.writeInt32(this.count);
-            Vector.serialize(outputSerializedData, this.transactions);
+            outputSerializedData.writeInt32(1244130093);
+            outputSerializedData.writeString(this.token);
         }
     }
 
-    public static class TL_broadcastRevenueWithdrawalUrl extends TLObject {
-        public static final int constructor = -328886473;
-        public String url;
-
-        public static TL_broadcastRevenueWithdrawalUrl TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-328886473 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueWithdrawalUrl", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastRevenueWithdrawalUrl tL_broadcastRevenueWithdrawalUrl = new TL_broadcastRevenueWithdrawalUrl();
-            tL_broadcastRevenueWithdrawalUrl.readParams(inputSerializedData, z);
-            return tL_broadcastRevenueWithdrawalUrl;
-        }
+    public static class TL_statsGraphError extends StatsGraph {
+        public static final int constructor = -1092839390;
+        public String error;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.url = inputSerializedData.readString(z);
+            this.error = inputSerializedData.readString(z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-328886473);
-            outputSerializedData.writeString(this.url);
+            outputSerializedData.writeInt32(-1092839390);
+            outputSerializedData.writeString(this.error);
+        }
+    }
+
+    public static abstract class PostInteractionCounters extends TLObject {
+        public static PostInteractionCounters TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            PostInteractionCounters tL_postInteractionCountersStory;
+            if (i == -1974989273) {
+                tL_postInteractionCountersStory = new TL_postInteractionCountersStory();
+            } else {
+                tL_postInteractionCountersStory = i != -419066241 ? null : new TL_postInteractionCountersMessage();
+            }
+            if (tL_postInteractionCountersStory == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in PostInteractionCounters", Integer.valueOf(i)));
+            }
+            if (tL_postInteractionCountersStory != null) {
+                tL_postInteractionCountersStory.readParams(inputSerializedData, z);
+            }
+            return tL_postInteractionCountersStory;
+        }
+    }
+
+    public static class TL_postInteractionCountersStory extends PostInteractionCounters {
+        public static final int constructor = -1974989273;
+        public int forwards;
+        public int reactions;
+        public int story_id;
+        public int views;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.story_id = inputSerializedData.readInt32(z);
+            this.views = inputSerializedData.readInt32(z);
+            this.forwards = inputSerializedData.readInt32(z);
+            this.reactions = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1974989273);
+            outputSerializedData.writeInt32(this.story_id);
+            outputSerializedData.writeInt32(this.views);
+            outputSerializedData.writeInt32(this.forwards);
+            outputSerializedData.writeInt32(this.reactions);
+        }
+    }
+
+    public static class TL_postInteractionCountersMessage extends PostInteractionCounters {
+        public static final int constructor = -419066241;
+        public int forwards;
+        public int msg_id;
+        public int reactions;
+        public int views;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.msg_id = inputSerializedData.readInt32(z);
+            this.views = inputSerializedData.readInt32(z);
+            this.forwards = inputSerializedData.readInt32(z);
+            this.reactions = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-419066241);
+            outputSerializedData.writeInt32(this.msg_id);
+            outputSerializedData.writeInt32(this.views);
+            outputSerializedData.writeInt32(this.forwards);
+            outputSerializedData.writeInt32(this.reactions);
+        }
+    }
+
+    public static class TL_messageStats extends TLObject {
+        public static final int constructor = 2145983508;
+        public StatsGraph reactions_by_emotion_graph;
+        public StatsGraph views_graph;
+
+        public static TL_messageStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (2145983508 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_messageStats", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_messageStats tL_messageStats = new TL_messageStats();
+            tL_messageStats.readParams(inputSerializedData, z);
+            return tL_messageStats;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.views_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.reactions_by_emotion_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2145983508);
+            this.views_graph.serializeToStream(outputSerializedData);
+            this.reactions_by_emotion_graph.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_statsGroupTopPoster extends TLObject {
+        public static final int constructor = -1660637285;
+        public int avg_chars;
+        public int messages;
+        public long user_id;
+
+        public static TL_statsGroupTopPoster TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-1660637285 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopPoster", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_statsGroupTopPoster tL_statsGroupTopPoster = new TL_statsGroupTopPoster();
+            tL_statsGroupTopPoster.readParams(inputSerializedData, z);
+            return tL_statsGroupTopPoster;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.user_id = inputSerializedData.readInt64(z);
+            this.messages = inputSerializedData.readInt32(z);
+            this.avg_chars = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1660637285);
+            outputSerializedData.writeInt64(this.user_id);
+            outputSerializedData.writeInt32(this.messages);
+            outputSerializedData.writeInt32(this.avg_chars);
+        }
+    }
+
+    public static class TL_statsDateRangeDays extends TLObject {
+        public static final int constructor = -1237848657;
+        public int max_date;
+        public int min_date;
+
+        public static TL_statsDateRangeDays TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-1237848657 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsDateRangeDays", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_statsDateRangeDays tL_statsDateRangeDays = new TL_statsDateRangeDays();
+            tL_statsDateRangeDays.readParams(inputSerializedData, z);
+            return tL_statsDateRangeDays;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.min_date = inputSerializedData.readInt32(z);
+            this.max_date = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1237848657);
+            outputSerializedData.writeInt32(this.min_date);
+            outputSerializedData.writeInt32(this.max_date);
         }
     }
 
@@ -371,6 +465,28 @@ public class TL_stats {
         }
     }
 
+    public static class TL_loadAsyncGraph extends TLObject {
+        public static final int constructor = 1646092192;
+        public int flags;
+        public String token;
+        public long x;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return StatsGraph.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1646092192);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeString(this.token);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt64(this.x);
+            }
+        }
+    }
+
     public static class TL_getMegagroupStats extends TLObject {
         public static final int constructor = -589330937;
         public TLRPC.InputChannel channel;
@@ -459,216 +575,6 @@ public class TL_stats {
         }
     }
 
-    public static class TL_loadAsyncGraph extends TLObject {
-        public static final int constructor = 1646092192;
-        public int flags;
-        public String token;
-        public long x;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return StatsGraph.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1646092192);
-            outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeString(this.token);
-            if ((this.flags & 1) != 0) {
-                outputSerializedData.writeInt64(this.x);
-            }
-        }
-    }
-
-    public static class TL_megagroupStats extends TLObject {
-        public static final int constructor = -276825834;
-        public StatsGraph actions_graph;
-        public StatsGraph growth_graph;
-        public StatsGraph languages_graph;
-        public TL_statsAbsValueAndPrev members;
-        public StatsGraph members_graph;
-        public TL_statsAbsValueAndPrev messages;
-        public StatsGraph messages_graph;
-        public StatsGraph new_members_by_source_graph;
-        public TL_statsDateRangeDays period;
-        public TL_statsAbsValueAndPrev posters;
-        public StatsGraph top_hours_graph;
-        public TL_statsAbsValueAndPrev viewers;
-        public StatsGraph weekdays_graph;
-        public ArrayList<TL_statsGroupTopPoster> top_posters = new ArrayList<>();
-        public ArrayList<TL_statsGroupTopAdmin> top_admins = new ArrayList<>();
-        public ArrayList<TL_statsGroupTopInviter> top_inviters = new ArrayList<>();
-        public ArrayList<TLRPC.User> users = new ArrayList<>();
-
-        public static TL_megagroupStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-276825834 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_megagroupStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_megagroupStats tL_megagroupStats = new TL_megagroupStats();
-            tL_megagroupStats.readParams(inputSerializedData, z);
-            return tL_megagroupStats;
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.period = TL_statsDateRangeDays.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.members = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.messages = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.viewers = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.posters = TL_statsAbsValueAndPrev.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.growth_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.members_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.new_members_by_source_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.languages_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.messages_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.actions_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.top_hours_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.weekdays_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.top_posters = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TL_stats.TL_statsGroupTopPoster.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
-            this.top_admins = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TL_stats.TL_statsGroupTopAdmin.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
-            this.top_inviters = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TL_stats.TL_statsGroupTopInviter.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-276825834);
-            this.period.serializeToStream(outputSerializedData);
-            this.members.serializeToStream(outputSerializedData);
-            this.messages.serializeToStream(outputSerializedData);
-            this.viewers.serializeToStream(outputSerializedData);
-            this.posters.serializeToStream(outputSerializedData);
-            this.growth_graph.serializeToStream(outputSerializedData);
-            this.members_graph.serializeToStream(outputSerializedData);
-            this.new_members_by_source_graph.serializeToStream(outputSerializedData);
-            this.languages_graph.serializeToStream(outputSerializedData);
-            this.messages_graph.serializeToStream(outputSerializedData);
-            this.actions_graph.serializeToStream(outputSerializedData);
-            this.top_hours_graph.serializeToStream(outputSerializedData);
-            this.weekdays_graph.serializeToStream(outputSerializedData);
-            Vector.serialize(outputSerializedData, this.top_posters);
-            Vector.serialize(outputSerializedData, this.top_admins);
-            Vector.serialize(outputSerializedData, this.top_inviters);
-            Vector.serialize(outputSerializedData, this.users);
-        }
-    }
-
-    public static class TL_messageStats extends TLObject {
-        public static final int constructor = 2145983508;
-        public StatsGraph reactions_by_emotion_graph;
-        public StatsGraph views_graph;
-
-        public static TL_messageStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (2145983508 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_messageStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_messageStats tL_messageStats = new TL_messageStats();
-            tL_messageStats.readParams(inputSerializedData, z);
-            return tL_messageStats;
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.views_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.reactions_by_emotion_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2145983508);
-            this.views_graph.serializeToStream(outputSerializedData);
-            this.reactions_by_emotion_graph.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_postInteractionCountersMessage extends PostInteractionCounters {
-        public static final int constructor = -419066241;
-        public int forwards;
-        public int msg_id;
-        public int reactions;
-        public int views;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.msg_id = inputSerializedData.readInt32(z);
-            this.views = inputSerializedData.readInt32(z);
-            this.forwards = inputSerializedData.readInt32(z);
-            this.reactions = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-419066241);
-            outputSerializedData.writeInt32(this.msg_id);
-            outputSerializedData.writeInt32(this.views);
-            outputSerializedData.writeInt32(this.forwards);
-            outputSerializedData.writeInt32(this.reactions);
-        }
-    }
-
-    public static class TL_postInteractionCountersStory extends PostInteractionCounters {
-        public static final int constructor = -1974989273;
-        public int forwards;
-        public int reactions;
-        public int story_id;
-        public int views;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.story_id = inputSerializedData.readInt32(z);
-            this.views = inputSerializedData.readInt32(z);
-            this.forwards = inputSerializedData.readInt32(z);
-            this.reactions = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1974989273);
-            outputSerializedData.writeInt32(this.story_id);
-            outputSerializedData.writeInt32(this.views);
-            outputSerializedData.writeInt32(this.forwards);
-            outputSerializedData.writeInt32(this.reactions);
-        }
-    }
-
-    public static class TL_publicForwardMessage extends PublicForward {
-        public static final int constructor = 32685898;
-        public TLRPC.Message message;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(32685898);
-            this.message.serializeToStream(outputSerializedData);
-        }
-    }
-
     public static class TL_publicForwards extends TLObject {
         public static final int constructor = -1828487648;
         public int count;
@@ -721,6 +627,247 @@ public class TL_stats {
         }
     }
 
+    public static abstract class PublicForward extends TLObject {
+        public static PublicForward TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            PublicForward tL_publicForwardStory;
+            if (i != -302797360) {
+                tL_publicForwardStory = i != 32685898 ? null : new TL_publicForwardMessage();
+            } else {
+                tL_publicForwardStory = new TL_stories.TL_publicForwardStory();
+            }
+            if (tL_publicForwardStory == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in PublicForward", Integer.valueOf(i)));
+            }
+            if (tL_publicForwardStory != null) {
+                tL_publicForwardStory.readParams(inputSerializedData, z);
+            }
+            return tL_publicForwardStory;
+        }
+    }
+
+    public static class TL_publicForwardMessage extends PublicForward {
+        public static final int constructor = 32685898;
+        public TLRPC.Message message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(32685898);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_broadcastRevenueStats extends TLObject {
+        public static final int constructor = 1409802903;
+        public TLRPC.BroadcastRevenueBalances balances;
+        public StatsGraph revenue_graph;
+        public StatsGraph top_hours_graph;
+        public double usd_rate;
+
+        public static TL_broadcastRevenueStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (1409802903 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueStats", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_broadcastRevenueStats tL_broadcastRevenueStats = new TL_broadcastRevenueStats();
+            tL_broadcastRevenueStats.readParams(inputSerializedData, z);
+            return tL_broadcastRevenueStats;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.top_hours_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.revenue_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.balances = TLRPC.BroadcastRevenueBalances.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.usd_rate = inputSerializedData.readDouble(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1409802903);
+            this.top_hours_graph.serializeToStream(outputSerializedData);
+            this.revenue_graph.serializeToStream(outputSerializedData);
+            this.balances.serializeToStream(outputSerializedData);
+            outputSerializedData.writeDouble(this.usd_rate);
+        }
+    }
+
+    public static class TL_broadcastRevenueWithdrawalUrl extends TLObject {
+        public static final int constructor = -328886473;
+        public String url;
+
+        public static TL_broadcastRevenueWithdrawalUrl TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-328886473 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueWithdrawalUrl", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_broadcastRevenueWithdrawalUrl tL_broadcastRevenueWithdrawalUrl = new TL_broadcastRevenueWithdrawalUrl();
+            tL_broadcastRevenueWithdrawalUrl.readParams(inputSerializedData, z);
+            return tL_broadcastRevenueWithdrawalUrl;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.url = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-328886473);
+            outputSerializedData.writeString(this.url);
+        }
+    }
+
+    public static class BroadcastRevenueTransaction extends TLObject {
+        public static BroadcastRevenueTransaction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            BroadcastRevenueTransaction tL_broadcastRevenueTransactionRefund;
+            if (i == 1121127726) {
+                tL_broadcastRevenueTransactionRefund = new TL_broadcastRevenueTransactionRefund();
+            } else if (i == 1434332356) {
+                tL_broadcastRevenueTransactionRefund = new TL_broadcastRevenueTransactionProceeds();
+            } else {
+                tL_broadcastRevenueTransactionRefund = i != 1515784568 ? null : new TL_broadcastRevenueTransactionWithdrawal();
+            }
+            if (tL_broadcastRevenueTransactionRefund == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in BroadcastRevenueTransaction", Integer.valueOf(i)));
+            }
+            if (tL_broadcastRevenueTransactionRefund != null) {
+                tL_broadcastRevenueTransactionRefund.readParams(inputSerializedData, z);
+            }
+            return tL_broadcastRevenueTransactionRefund;
+        }
+    }
+
+    public static class TL_broadcastRevenueTransactionProceeds extends BroadcastRevenueTransaction {
+        public static final int constructor = 1434332356;
+        public long amount;
+        public int from_date;
+        public int to_date;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.amount = inputSerializedData.readInt64(z);
+            this.from_date = inputSerializedData.readInt32(z);
+            this.to_date = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1434332356);
+            outputSerializedData.writeInt64(this.amount);
+            outputSerializedData.writeInt32(this.from_date);
+            outputSerializedData.writeInt32(this.to_date);
+        }
+    }
+
+    public static class TL_broadcastRevenueTransactionWithdrawal extends BroadcastRevenueTransaction {
+        public static final int constructor = 1515784568;
+        public long amount;
+        public int date;
+        public boolean failed;
+        public int flags;
+        public boolean pending;
+        public String provider;
+        public int transaction_date;
+        public String transaction_url;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.pending = (readInt32 & 1) != 0;
+            this.failed = (readInt32 & 4) != 0;
+            this.amount = inputSerializedData.readInt64(z);
+            this.date = inputSerializedData.readInt32(z);
+            this.provider = inputSerializedData.readString(z);
+            if ((this.flags & 2) != 0) {
+                this.transaction_date = inputSerializedData.readInt32(z);
+                this.transaction_url = inputSerializedData.readString(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1515784568);
+            int i = this.pending ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            this.flags = this.failed ? i | 1 : i & (-2);
+            outputSerializedData.writeInt64(this.amount);
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeString(this.provider);
+            if ((this.flags & 2) != 0) {
+                outputSerializedData.writeInt32(this.transaction_date);
+                outputSerializedData.writeString(this.transaction_url);
+            }
+        }
+    }
+
+    public static class TL_broadcastRevenueTransactionRefund extends BroadcastRevenueTransaction {
+        public static final int constructor = 1121127726;
+        public long amount;
+        public int from_date;
+        public String provider;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.amount = inputSerializedData.readInt64(z);
+            this.from_date = inputSerializedData.readInt32(z);
+            this.provider = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1121127726);
+            outputSerializedData.writeInt64(this.amount);
+            outputSerializedData.writeInt32(this.from_date);
+            outputSerializedData.writeString(this.provider);
+        }
+    }
+
+    public static class TL_broadcastRevenueTransactions extends TLObject {
+        public static final int constructor = -2028632986;
+        public int count;
+        public ArrayList<BroadcastRevenueTransaction> transactions = new ArrayList<>();
+
+        public static TL_broadcastRevenueTransactions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-2028632986 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueTransactions", Integer.valueOf(i)));
+                }
+                return null;
+            }
+            TL_broadcastRevenueTransactions tL_broadcastRevenueTransactions = new TL_broadcastRevenueTransactions();
+            tL_broadcastRevenueTransactions.readParams(inputSerializedData, z);
+            return tL_broadcastRevenueTransactions;
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.count = inputSerializedData.readInt32(z);
+            this.transactions = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_stats.BroadcastRevenueTransaction.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2028632986);
+            outputSerializedData.writeInt32(this.count);
+            Vector.serialize(outputSerializedData, this.transactions);
+        }
+    }
+
     public static class TL_statsAbsValueAndPrev extends TLObject {
         public static final int constructor = -884757282;
         public double current;
@@ -749,95 +896,6 @@ public class TL_stats {
             outputSerializedData.writeInt32(-884757282);
             outputSerializedData.writeDouble(this.current);
             outputSerializedData.writeDouble(this.previous);
-        }
-    }
-
-    public static class TL_statsDateRangeDays extends TLObject {
-        public static final int constructor = -1237848657;
-        public int max_date;
-        public int min_date;
-
-        public static TL_statsDateRangeDays TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1237848657 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsDateRangeDays", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsDateRangeDays tL_statsDateRangeDays = new TL_statsDateRangeDays();
-            tL_statsDateRangeDays.readParams(inputSerializedData, z);
-            return tL_statsDateRangeDays;
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.min_date = inputSerializedData.readInt32(z);
-            this.max_date = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1237848657);
-            outputSerializedData.writeInt32(this.min_date);
-            outputSerializedData.writeInt32(this.max_date);
-        }
-    }
-
-    public static class TL_statsGraph extends StatsGraph {
-        public static final int constructor = -1901828938;
-        public int flags;
-        public TLRPC.TL_dataJSON json;
-        public String zoom_token;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.json = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
-                this.zoom_token = inputSerializedData.readString(z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1901828938);
-            outputSerializedData.writeInt32(this.flags);
-            this.json.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
-                outputSerializedData.writeString(this.zoom_token);
-            }
-        }
-    }
-
-    public static class TL_statsGraphAsync extends StatsGraph {
-        public static final int constructor = 1244130093;
-        public String token;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.token = inputSerializedData.readString(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1244130093);
-            outputSerializedData.writeString(this.token);
-        }
-    }
-
-    public static class TL_statsGraphError extends StatsGraph {
-        public static final int constructor = -1092839390;
-        public String error;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.error = inputSerializedData.readString(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1092839390);
-            outputSerializedData.writeString(this.error);
         }
     }
 
@@ -906,40 +964,6 @@ public class TL_stats {
             outputSerializedData.writeInt32(1398765469);
             outputSerializedData.writeInt64(this.user_id);
             outputSerializedData.writeInt32(this.invitations);
-        }
-    }
-
-    public static class TL_statsGroupTopPoster extends TLObject {
-        public static final int constructor = -1660637285;
-        public int avg_chars;
-        public int messages;
-        public long user_id;
-
-        public static TL_statsGroupTopPoster TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1660637285 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopPoster", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsGroupTopPoster tL_statsGroupTopPoster = new TL_statsGroupTopPoster();
-            tL_statsGroupTopPoster.readParams(inputSerializedData, z);
-            return tL_statsGroupTopPoster;
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.user_id = inputSerializedData.readInt64(z);
-            this.messages = inputSerializedData.readInt32(z);
-            this.avg_chars = inputSerializedData.readInt32(z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1660637285);
-            outputSerializedData.writeInt64(this.user_id);
-            outputSerializedData.writeInt32(this.messages);
-            outputSerializedData.writeInt32(this.avg_chars);
         }
     }
 

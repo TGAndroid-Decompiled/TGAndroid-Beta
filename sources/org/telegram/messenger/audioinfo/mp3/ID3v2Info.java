@@ -36,9 +36,25 @@ public class ID3v2Info extends AudioInfo {
         }
     }
 
+    public static boolean isID3v2StartPosition(InputStream inputStream) {
+        boolean z;
+        inputStream.mark(3);
+        try {
+            if (inputStream.read() == 73 && inputStream.read() == 68) {
+                if (inputStream.read() == 51) {
+                    z = true;
+                    return z;
+                }
+            }
+            z = false;
+            return z;
+        } finally {
+            inputStream.reset();
+        }
+    }
+
     public ID3v2Info(InputStream inputStream, Level level) {
-        ID3v2DataInput iD3v2DataInput;
-        long j;
+        ID3v2DataInput data;
         this.debugLevel = level;
         if (isID3v2StartPosition(inputStream)) {
             ID3v2TagHeader iD3v2TagHeader = new ID3v2TagHeader(inputStream);
@@ -59,31 +75,25 @@ public class ID3v2Info extends AudioInfo {
                         if (logger.isLoggable(level)) {
                             logger.log(level, "ID3 frame claims to extend frames area");
                         }
-                    } else {
-                        if (!iD3v2FrameHeader.isValid() || iD3v2FrameHeader.isEncryption()) {
-                            ID3v2DataInput data = tagBody.getData();
-                            long bodySize = iD3v2FrameHeader.getBodySize();
-                            iD3v2DataInput = data;
-                            j = bodySize;
-                        } else {
-                            ID3v2FrameBody frameBody = tagBody.frameBody(iD3v2FrameHeader);
+                    } else if (iD3v2FrameHeader.isValid() && !iD3v2FrameHeader.isEncryption()) {
+                        ID3v2FrameBody frameBody = tagBody.frameBody(iD3v2FrameHeader);
+                        try {
                             try {
-                                try {
-                                    parseFrame(frameBody);
-                                    iD3v2DataInput = frameBody.getData();
-                                } catch (ID3v2Exception e) {
-                                    if (LOGGER.isLoggable(level)) {
-                                        LOGGER.log(level, String.format("ID3 exception occured in frame %s: %s", iD3v2FrameHeader.getFrameId(), e.getMessage()));
-                                    }
-                                    iD3v2DataInput = frameBody.getData();
+                                parseFrame(frameBody);
+                                data = frameBody.getData();
+                            } catch (ID3v2Exception e) {
+                                if (LOGGER.isLoggable(level)) {
+                                    LOGGER.log(level, String.format("ID3 exception occured in frame %s: %s", iD3v2FrameHeader.getFrameId(), e.getMessage()));
                                 }
-                                j = frameBody.getRemainingLength();
-                            } catch (Throwable th) {
-                                frameBody.getData().skipFully(frameBody.getRemainingLength());
-                                throw th;
+                                data = frameBody.getData();
                             }
+                            data.skipFully(frameBody.getRemainingLength());
+                        } catch (Throwable th) {
+                            frameBody.getData().skipFully(frameBody.getRemainingLength());
+                            throw th;
                         }
-                        iD3v2DataInput.skipFully(j);
+                    } else {
+                        tagBody.getData().skipFully(iD3v2FrameHeader.getBodySize());
                     }
                 } catch (ID3v2Exception e2) {
                     Logger logger2 = LOGGER;
@@ -99,21 +109,17 @@ public class ID3v2Info extends AudioInfo {
         }
     }
 
-    public static boolean isID3v2StartPosition(InputStream inputStream) {
-        boolean z;
-        inputStream.mark(3);
-        try {
-            if (inputStream.read() == 73 && inputStream.read() == 68) {
-                if (inputStream.read() == 51) {
-                    z = true;
-                    return z;
-                }
-            }
-            z = false;
-            return z;
-        } finally {
-            inputStream.reset();
-        }
+    void parseFrame(org.telegram.messenger.audioinfo.mp3.ID3v2FrameBody r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.ID3v2Info.parseFrame(org.telegram.messenger.audioinfo.mp3.ID3v2FrameBody):void");
+    }
+
+    String parseTextFrame(ID3v2FrameBody iD3v2FrameBody) {
+        return iD3v2FrameBody.readFixedLengthString((int) iD3v2FrameBody.getRemainingLength(), iD3v2FrameBody.readEncoding());
+    }
+
+    CommentOrUnsynchronizedLyrics parseCommentOrUnsynchronizedLyricsFrame(ID3v2FrameBody iD3v2FrameBody) {
+        ID3v2Encoding readEncoding = iD3v2FrameBody.readEncoding();
+        return new CommentOrUnsynchronizedLyrics(iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1), iD3v2FrameBody.readZeroTerminatedString(200, readEncoding), iD3v2FrameBody.readFixedLengthString((int) iD3v2FrameBody.getRemainingLength(), readEncoding));
     }
 
     AttachedPicture parseAttachedPictureFrame(ID3v2FrameBody iD3v2FrameBody) {
@@ -122,23 +128,16 @@ public class ID3v2Info extends AudioInfo {
         if (iD3v2FrameBody.getTagHeader().getVersion() == 2) {
             String upperCase = iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1).toUpperCase();
             upperCase.hashCode();
-            readZeroTerminatedString = !upperCase.equals("JPG") ? !upperCase.equals("PNG") ? "image/unknown" : "image/png" : "image/jpeg";
+            if (upperCase.equals("JPG")) {
+                readZeroTerminatedString = "image/jpeg";
+            } else if (upperCase.equals("PNG")) {
+                readZeroTerminatedString = "image/png";
+            } else {
+                readZeroTerminatedString = "image/unknown";
+            }
         } else {
             readZeroTerminatedString = iD3v2FrameBody.readZeroTerminatedString(20, ID3v2Encoding.ISO_8859_1);
         }
         return new AttachedPicture(iD3v2FrameBody.getData().readByte(), iD3v2FrameBody.readZeroTerminatedString(200, readEncoding), readZeroTerminatedString, iD3v2FrameBody.getData().readFully((int) iD3v2FrameBody.getRemainingLength()));
-    }
-
-    CommentOrUnsynchronizedLyrics parseCommentOrUnsynchronizedLyricsFrame(ID3v2FrameBody iD3v2FrameBody) {
-        ID3v2Encoding readEncoding = iD3v2FrameBody.readEncoding();
-        return new CommentOrUnsynchronizedLyrics(iD3v2FrameBody.readFixedLengthString(3, ID3v2Encoding.ISO_8859_1), iD3v2FrameBody.readZeroTerminatedString(200, readEncoding), iD3v2FrameBody.readFixedLengthString((int) iD3v2FrameBody.getRemainingLength(), readEncoding));
-    }
-
-    void parseFrame(org.telegram.messenger.audioinfo.mp3.ID3v2FrameBody r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.ID3v2Info.parseFrame(org.telegram.messenger.audioinfo.mp3.ID3v2FrameBody):void");
-    }
-
-    String parseTextFrame(ID3v2FrameBody iD3v2FrameBody) {
-        return iD3v2FrameBody.readFixedLengthString((int) iD3v2FrameBody.getRemainingLength(), iD3v2FrameBody.readEncoding());
     }
 }

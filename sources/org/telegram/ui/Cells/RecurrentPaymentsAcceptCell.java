@@ -41,12 +41,20 @@ public class RecurrentPaymentsAcceptCell extends FrameLayout {
         setWillNotDraw(false);
     }
 
+    public TextView getTextView() {
+        return this.textView;
+    }
+
     public CheckBoxSquare getCheckBox() {
         return this.checkBox;
     }
 
-    public TextView getTextView() {
-        return this.textView;
+    public void setText(CharSequence charSequence) {
+        this.textView.setText(charSequence);
+    }
+
+    public void setChecked(boolean z) {
+        this.checkBox.setChecked(z, true);
     }
 
     @Override
@@ -60,13 +68,5 @@ public class RecurrentPaymentsAcceptCell extends FrameLayout {
             }
             canvas.restore();
         }
-    }
-
-    public void setChecked(boolean z) {
-        this.checkBox.setChecked(z, true);
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.textView.setText(charSequence);
     }
 }

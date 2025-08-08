@@ -45,19 +45,6 @@ public abstract class AccountFrozenAlert {
         }
     }
 
-    public static void lambda$show$0(int i, Context context, BottomSheet[] bottomSheetArr) {
-        String str = MessagesController.getInstance(i).freezeAppealUrl;
-        if (!str.startsWith("http://") && !str.startsWith("https://")) {
-            str = "https://" + str;
-        }
-        Browser.openUrl(context, str);
-        bottomSheetArr[0].lambda$new$0();
-    }
-
-    public static void lambda$show$2(BottomSheet[] bottomSheetArr, View view) {
-        bottomSheetArr[0].lambda$new$0();
-    }
-
     public static void show(int i) {
         if (!shown && UserConfig.selectedAccount == i) {
             Context context = LaunchActivity.instance;
@@ -144,5 +131,18 @@ public abstract class AccountFrozenAlert {
                 AccountFrozenAlert.shown = false;
             }
         });
+    }
+
+    public static void lambda$show$0(int i, Context context, BottomSheet[] bottomSheetArr) {
+        String str = MessagesController.getInstance(i).freezeAppealUrl;
+        if (!str.startsWith("http://") && !str.startsWith("https://")) {
+            str = "https://" + str;
+        }
+        Browser.openUrl(context, str);
+        bottomSheetArr[0].lambda$new$0();
+    }
+
+    public static void lambda$show$2(BottomSheet[] bottomSheetArr, View view) {
+        bottomSheetArr[0].lambda$new$0();
     }
 }

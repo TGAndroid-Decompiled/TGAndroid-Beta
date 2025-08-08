@@ -10,15 +10,6 @@ public abstract class LongProgression implements Iterable {
     private final long last;
     private final long step;
 
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public LongProgression(long j, long j2, long j3) {
         if (j3 == 0) {
             throw new IllegalArgumentException("Step must be non-zero.");
@@ -42,5 +33,14 @@ public abstract class LongProgression implements Iterable {
     @Override
     public LongIterator iterator() {
         return new LongProgressionIterator(this.first, this.last, this.step);
+    }
+
+    public static final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        private Companion() {
+        }
     }
 }

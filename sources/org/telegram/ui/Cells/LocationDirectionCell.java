@@ -35,10 +35,6 @@ public class LocationDirectionCell extends FrameLayout {
         this.frameLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(73.0f), 1073741824));
@@ -46,5 +42,9 @@ public class LocationDirectionCell extends FrameLayout {
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {
         this.frameLayout.setOnClickListener(onClickListener);
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

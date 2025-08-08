@@ -9,6 +9,10 @@ public abstract class StarGiftPatterns {
     private static final float[] profileRight = {-35.66f, -5.0f, 24.0f, 0.2388f, -14.33f, -29.33f, 20.66f, 0.32f, -15.0f, -73.66f, 19.33f, 0.32f, -2.0f, -99.66f, 18.0f, 0.1476f, -64.33f, -24.66f, 23.33f, 0.3235f, -40.66f, -53.33f, 24.0f, 0.3654f, -50.33f, -85.66f, 20.0f, 0.172f, -96.0f, -1.33f, 19.33f, 0.3343f, -136.66f, -13.0f, 18.66f, 0.2569f, -104.66f, -33.66f, 20.66f, 0.2216f, -82.0f, -62.33f, 22.66f, 0.2562f, -131.66f, -60.0f, 18.0f, 0.1316f, -105.66f, -88.33f, 18.0f, 0.1487f};
     private static final float[] profileLeft = {0.0f, -107.33f, 16.0f, 0.1505f, 14.33f, -84.0f, 18.0f, 0.1988f, 0.0f, -50.66f, 18.66f, 0.3225f, 13.0f, -15.0f, 18.66f, 0.37f, 43.33f, 1.0f, 18.66f, 0.3186f};
 
+    public static void drawPattern(Canvas canvas, Drawable drawable, float f, float f2, float f3, float f4) {
+        drawPattern(canvas, 0, drawable, f, f2, f3, f4);
+    }
+
     public static void drawPattern(Canvas canvas, int i, Drawable drawable, float f, float f2, float f3, float f4) {
         if (f3 <= 0.0f) {
             return;
@@ -35,10 +39,6 @@ public abstract class StarGiftPatterns {
             drawable.draw(canvas);
             i2 += 4;
         }
-    }
-
-    public static void drawPattern(Canvas canvas, Drawable drawable, float f, float f2, float f3, float f4) {
-        drawPattern(canvas, 0, drawable, f, f2, f3, f4);
     }
 
     public static void drawProfilePattern(Canvas canvas, Drawable drawable, float f, float f2, float f3, float f4) {

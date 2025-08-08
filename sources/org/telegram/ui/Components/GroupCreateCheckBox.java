@@ -64,12 +64,34 @@ public class GroupCreateCheckBox extends View {
         updateColors();
     }
 
-    private void animateToCheckedState(boolean z) {
-        this.isCheckAnimation = z;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.setDuration(300L);
-        this.checkAnimator.start();
+    public void setColorKeysOverrides(int i, int i2, int i3) {
+        this.checkKey = i;
+        this.innerKey = i2;
+        this.backgroundKey = i3;
+        updateColors();
+    }
+
+    public void updateColors() {
+        this.backgroundInnerPaint.setColor(Theme.getColor(this.innerKey));
+        this.backgroundPaint.setColor(Theme.getColor(this.backgroundKey));
+        this.checkPaint.setColor(Theme.getColor(this.checkKey));
+        invalidate();
+    }
+
+    public void setProgress(float f) {
+        if (this.progress == f) {
+            return;
+        }
+        this.progress = f;
+        invalidate();
+    }
+
+    public float getProgress() {
+        return this.progress;
+    }
+
+    public void setCheckScale(float f) {
+        this.checkScale = f;
     }
 
     private void cancelCheckAnimator() {
@@ -79,8 +101,12 @@ public class GroupCreateCheckBox extends View {
         }
     }
 
-    public float getProgress() {
-        return this.progress;
+    private void animateToCheckedState(boolean z) {
+        this.isCheckAnimation = z;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = ofFloat;
+        ofFloat.setDuration(300L);
+        this.checkAnimator.start();
     }
 
     @Override
@@ -96,8 +122,26 @@ public class GroupCreateCheckBox extends View {
         this.attachedToWindow = false;
     }
 
+    public void setChecked(boolean z, boolean z2) {
+        if (z == this.isChecked) {
+            return;
+        }
+        this.isChecked = z;
+        if (this.attachedToWindow && z2) {
+            animateToCheckedState(z);
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
+        }
+    }
+
+    public void setInnerRadDiff(int i) {
+        this.innerRadDiff = i;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
+        float dp;
         if (getVisibility() == 0 && this.progress != 0.0f) {
             int measuredWidth = getMeasuredWidth() / 2;
             int measuredHeight = getMeasuredHeight() / 2;
@@ -109,7 +153,11 @@ public class GroupCreateCheckBox extends View {
             if (!this.isCheckAnimation) {
                 f = 1.0f - f;
             }
-            float dp = f < 0.2f ? (AndroidUtilities.dp(2.0f) * f) / 0.2f : f < 0.4f ? AndroidUtilities.dp(2.0f) - ((AndroidUtilities.dp(2.0f) * (f - 0.2f)) / 0.2f) : 0.0f;
+            if (f < 0.2f) {
+                dp = (AndroidUtilities.dp(2.0f) * f) / 0.2f;
+            } else {
+                dp = f < 0.4f ? AndroidUtilities.dp(2.0f) - ((AndroidUtilities.dp(2.0f) * (f - 0.2f)) / 0.2f) : 0.0f;
+            }
             if (f3 != 0.0f) {
                 canvas.drawCircle(measuredWidth, measuredHeight, ((measuredWidth - AndroidUtilities.dp(2.0f)) + (AndroidUtilities.dp(2.0f) * f3)) - dp, this.backgroundPaint);
             }
@@ -131,48 +179,5 @@ public class GroupCreateCheckBox extends View {
             float dp6 = dp4 - AndroidUtilities.dp(1.2f);
             canvas.drawLine(dp6, f8, dp6 + sqrt2, f8 - sqrt2, this.checkPaint);
         }
-    }
-
-    public void setCheckScale(float f) {
-        this.checkScale = f;
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        if (z == this.isChecked) {
-            return;
-        }
-        this.isChecked = z;
-        if (this.attachedToWindow && z2) {
-            animateToCheckedState(z);
-        } else {
-            cancelCheckAnimator();
-            setProgress(z ? 1.0f : 0.0f);
-        }
-    }
-
-    public void setColorKeysOverrides(int i, int i2, int i3) {
-        this.checkKey = i;
-        this.innerKey = i2;
-        this.backgroundKey = i3;
-        updateColors();
-    }
-
-    public void setInnerRadDiff(int i) {
-        this.innerRadDiff = i;
-    }
-
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        invalidate();
-    }
-
-    public void updateColors() {
-        this.backgroundInnerPaint.setColor(Theme.getColor(this.innerKey));
-        this.backgroundPaint.setColor(Theme.getColor(this.backgroundKey));
-        this.checkPaint.setColor(Theme.getColor(this.checkKey));
-        invalidate();
     }
 }

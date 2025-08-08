@@ -1,7 +1,7 @@
 package kotlin.io;
 
 import java.io.Closeable;
-import kotlin.ExceptionsKt__ExceptionsKt;
+import kotlin.ExceptionsKt;
 
 public abstract class CloseableKt {
     public static final void closeFinally(Closeable closeable, Throwable th) {
@@ -13,7 +13,7 @@ public abstract class CloseableKt {
             try {
                 closeable.close();
             } catch (Throwable th2) {
-                ExceptionsKt__ExceptionsKt.addSuppressed(th, th2);
+                ExceptionsKt.addSuppressed(th, th2);
             }
         }
     }

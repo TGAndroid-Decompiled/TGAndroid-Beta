@@ -7,18 +7,8 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     public abstract long createNativeVideoEncoder();
 
     @Override
-    public final VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder.EncodeInfo encodeInfo) {
-        throw new UnsupportedOperationException("Not implemented.");
-    }
-
-    @Override
     public VideoEncoder.EncoderInfo getEncoderInfo() {
         return VideoEncoder.CC.$default$getEncoderInfo(this);
-    }
-
-    @Override
-    public final String getImplementationName() {
-        throw new UnsupportedOperationException("Not implemented.");
     }
 
     @Override
@@ -27,8 +17,13 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public final VideoEncoder.ScalingSettings getScalingSettings() {
-        throw new UnsupportedOperationException("Not implemented.");
+    public abstract boolean isHardwareEncoder();
+
+    @Override
+    public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
+        VideoCodecStatus rateAllocation;
+        rateAllocation = setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
+        return rateAllocation;
     }
 
     @Override
@@ -37,10 +32,12 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public abstract boolean isHardwareEncoder();
+    public final VideoCodecStatus release() {
+        throw new UnsupportedOperationException("Not implemented.");
+    }
 
     @Override
-    public final VideoCodecStatus release() {
+    public final VideoCodecStatus encode(VideoFrame videoFrame, VideoEncoder.EncodeInfo encodeInfo) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
@@ -50,9 +47,12 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        VideoCodecStatus rateAllocation;
-        rateAllocation = setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
-        return rateAllocation;
+    public final VideoEncoder.ScalingSettings getScalingSettings() {
+        throw new UnsupportedOperationException("Not implemented.");
+    }
+
+    @Override
+    public final String getImplementationName() {
+        throw new UnsupportedOperationException("Not implemented.");
     }
 }

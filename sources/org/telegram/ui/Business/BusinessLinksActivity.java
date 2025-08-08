@@ -62,213 +62,155 @@ import org.telegram.ui.LaunchActivity;
 public class BusinessLinksActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private static AlertDialog currentDialog;
 
-    public static class BusinessLinkView extends FrameLayout {
-        private TL_account.TL_businessChatLink businessLink;
-        private final SimpleTextView clicksCountTextView;
-        private final ImageView imageView;
-        private final SpoilersTextView messagePreviewTextView;
-        private boolean needDivider;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private final SimpleTextView titleTextView;
+    public static void openRenameAlert(Context context, final int i, final TL_account.TL_businessChatLink tL_businessChatLink, final Theme.ResourcesProvider resourcesProvider, boolean z) {
+        Object builder;
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        Activity findActivity = AndroidUtilities.findActivity(context);
+        final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
+        boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
+        final AlertDialog[] alertDialogArr = new AlertDialog[1];
+        if (z2) {
+            builder = new AlertDialogDecor.Builder(context, resourcesProvider);
+        } else {
+            builder = new AlertDialog.Builder(context, resourcesProvider);
+        }
+        ?? r11 = builder;
+        r11.setTitle(LocaleController.getString(R.string.BusinessLinksRenameTitle));
+        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
+            AnimatedTextView.AnimatedTextDrawable limit;
+            AnimatedColor limitColor = new AnimatedColor(this);
+            private int limitCount;
 
-        public BusinessLinkView(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.resourcesProvider = resourcesProvider;
-            setWillNotDraw(false);
-            ImageView imageView = new ImageView(context);
-            this.imageView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            imageView.setImageResource(R.drawable.msg_limit_links);
-            imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
-            imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(36.0f), Theme.getColor(Theme.key_featuredStickers_addButton)));
-            imageView.setOnClickListener(new View.OnClickListener() {
+            {
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+                this.limit = animatedTextDrawable;
+                animatedTextDrawable.setAnimationProperties(0.2f, 0L, 160L, CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.limit.setTextSize(AndroidUtilities.dp(15.33f));
+                this.limit.setCallback(this);
+                this.limit.setGravity(5);
+            }
+
+            @Override
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == this.limit || super.verifyDrawable(drawable);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                super.onTextChanged(charSequence, i2, i3, i4);
+                if (this.limit != null) {
+                    this.limitCount = 32 - charSequence.length();
+                    this.limit.cancelAnimation();
+                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
+                    String str = "";
+                    if (this.limitCount <= 4) {
+                        str = "" + this.limitCount;
+                    }
+                    animatedTextDrawable.setText(str);
+                }
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
+                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
+                this.limit.draw(canvas);
+            }
+
+            @Override
+            public void onMeasure(int i2, int i3) {
+                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+            }
+        };
+        MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
+        editTextBoldCursor.setInputType(49153);
+        editTextBoldCursor.setTextSize(1, 18.0f);
+        editTextBoldCursor.setText(tL_businessChatLink.title);
+        int i2 = Theme.key_dialogTextBlack;
+        editTextBoldCursor.setTextColor(Theme.getColor(i2, resourcesProvider));
+        editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
+        editTextBoldCursor.setCursorColor(Theme.getColor(Theme.key_chat_messagePanelCursor));
+        editTextBoldCursor.setHintText(LocaleController.getString(R.string.BusinessLinksNamePlaceholder));
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setFocusable(true);
+        editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setBackgroundDrawable(null);
+        editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
+        textView.setTextSize(1, 16.0f);
+        textView.setText(LocaleController.getString(R.string.BusinessLinksRenameMessage));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
+        linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
+        r11.setView(linearLayout);
+        r11.setWidth(AndroidUtilities.dp(292.0f));
+        final View view = currentFocus;
+        editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView2, int i3, KeyEvent keyEvent) {
+                boolean lambda$openRenameAlert$0;
+                lambda$openRenameAlert$0 = BusinessLinksActivity.lambda$openRenameAlert$0(EditTextBoldCursor.this, i, tL_businessChatLink, alertDialogArr, view, textView2, i3, keyEvent);
+                return lambda$openRenameAlert$0;
+            }
+        });
+        r11.setPositiveButton(LocaleController.getString(R.string.Done), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i3) {
+                BusinessLinksActivity.lambda$openRenameAlert$1(EditTextBoldCursor.this, i, tL_businessChatLink, alertDialog, i3);
+            }
+        });
+        r11.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i3) {
+                alertDialog.dismiss();
+            }
+        });
+        if (z2) {
+            AlertDialog create = r11.create();
+            currentDialog = create;
+            alertDialogArr[0] = create;
+            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
-                public final void onClick(View view) {
-                    BusinessLinksActivity.BusinessLinkView.this.lambda$new$0(view);
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    BusinessLinksActivity.lambda$openRenameAlert$3(currentFocus, dialogInterface);
                 }
             });
-            addView(imageView, LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-            SimpleTextView simpleTextView = new SimpleTextView(context);
-            this.titleTextView = simpleTextView;
-            simpleTextView.setTextSize(15);
-            simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-            addView(simpleTextView, LayoutHelper.createFrameRelatively(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-            SimpleTextView simpleTextView2 = new SimpleTextView(context);
-            this.clicksCountTextView = simpleTextView2;
-            simpleTextView2.setTextSize(14);
-            int i = Theme.key_windowBackgroundWhiteGrayText2;
-            simpleTextView2.setTextColor(Theme.getColor(i));
-            simpleTextView2.setGravity(LocaleController.isRTL ? 3 : 5);
-            addView(simpleTextView2, LayoutHelper.createFrameRelatively(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
-            SpoilersTextView spoilersTextView = new SpoilersTextView(context);
-            this.messagePreviewTextView = spoilersTextView;
-            spoilersTextView.setTextSize(1, 13.0f);
-            spoilersTextView.setMaxLines(1);
-            spoilersTextView.setEllipsize(TextUtils.TruncateAt.END);
-            spoilersTextView.setTextColor(Theme.getColor(i, resourcesProvider));
-            spoilersTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-            spoilersTextView.allowClickSpoilers = false;
-            spoilersTextView.setUseAlphaForEmoji(false);
-            NotificationCenter.listenEmojiLoading(spoilersTextView);
-            addView(spoilersTextView, LayoutHelper.createFrameRelatively(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
-        }
-
-        public void lambda$new$0(View view) {
-            TL_account.TL_businessChatLink tL_businessChatLink = this.businessLink;
-            if (tL_businessChatLink != null) {
-                AndroidUtilities.addToClipboard(tL_businessChatLink.link);
-                BulletinFactory.of(LaunchActivity.getLastFragment()).createCopyLinkBulletin().show();
-            }
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            if (this.needDivider) {
-                Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
-                if (themePaint == null) {
-                    themePaint = Theme.dividerPaint;
+            currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public final void onShow(DialogInterface dialogInterface) {
+                    BusinessLinksActivity.lambda$openRenameAlert$4(EditTextBoldCursor.this, dialogInterface);
                 }
-                canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 64.0f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : 0.0f), getMeasuredHeight(), themePaint);
-            }
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            if (LocaleController.isRTL) {
-                this.titleTextView.setPadding(this.clicksCountTextView.getTextWidth(), 0, 0, 0);
-            } else {
-                this.titleTextView.setPadding(0, 0, this.clicksCountTextView.getTextWidth(), 0);
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.needDivider ? 1 : 0), 1073741824));
-        }
-
-        public void set(BusinessLinkWrapper businessLinkWrapper, boolean z) {
-            SimpleTextView simpleTextView;
-            String stripHttps;
-            this.needDivider = z;
-            TL_account.TL_businessChatLink tL_businessChatLink = businessLinkWrapper.link;
-            this.businessLink = tL_businessChatLink;
-            if (TextUtils.isEmpty(tL_businessChatLink.title)) {
-                simpleTextView = this.titleTextView;
-                stripHttps = BusinessLinksController.stripHttps(this.businessLink.link);
-            } else {
-                simpleTextView = this.titleTextView;
-                stripHttps = this.businessLink.title;
-            }
-            simpleTextView.setText(stripHttps);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.businessLink.message);
-            TL_account.TL_businessChatLink tL_businessChatLink2 = this.businessLink;
-            MediaDataController.addTextStyleRuns(tL_businessChatLink2.entities, tL_businessChatLink2.message, spannableStringBuilder);
-            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, this.messagePreviewTextView.getPaint().getFontMetricsInt(), false);
-            MessageObject.replaceAnimatedEmoji(replaceEmoji, this.businessLink.entities, this.messagePreviewTextView.getPaint().getFontMetricsInt());
-            this.messagePreviewTextView.setText(replaceEmoji);
-            int i = this.businessLink.views;
-            if (i == 0) {
-                this.clicksCountTextView.setText(LocaleController.formatString(R.string.NoClicks, new Object[0]));
-            } else {
-                this.clicksCountTextView.setText(LocaleController.formatPluralString("Clicks", i, new Object[0]));
-            }
-            this.clicksCountTextView.requestLayout();
-            invalidate();
-        }
-    }
-
-    public static class BusinessLinkWrapper {
-        TL_account.TL_businessChatLink link;
-
-        public BusinessLinkWrapper(TL_account.TL_businessChatLink tL_businessChatLink) {
-            this.link = tL_businessChatLink;
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            BusinessLinkWrapper businessLinkWrapper = (BusinessLinkWrapper) obj;
-            TL_account.TL_businessChatLink tL_businessChatLink = this.link;
-            int i = tL_businessChatLink.views;
-            TL_account.TL_businessChatLink tL_businessChatLink2 = businessLinkWrapper.link;
-            return i == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(this.link.title, businessLinkWrapper.link.title) && TextUtils.equals(this.link.message, businessLinkWrapper.link.message) && MediaDataController.entitiesEqual(this.link.entities, businessLinkWrapper.link.entities);
-        }
-    }
-
-    public static boolean closeRenameAlert() {
-        AlertDialog alertDialog = currentDialog;
-        if (alertDialog == null || !alertDialog.isShowing()) {
-            return false;
-        }
-        currentDialog.dismiss();
-        return true;
-    }
-
-    private static int getPrivacyType(ArrayList arrayList) {
-        char c = 65535;
-        boolean z = false;
-        for (int i = 0; i < arrayList.size(); i++) {
-            TLRPC.PrivacyRule privacyRule = (TLRPC.PrivacyRule) arrayList.get(i);
-            if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowChatParticipants)) {
-                if (!(privacyRule instanceof TLRPC.TL_privacyValueDisallowChatParticipants)) {
-                    if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowUsers)) {
-                        if (!(privacyRule instanceof TLRPC.TL_privacyValueDisallowUsers)) {
-                            if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowPremium) && c == 65535) {
-                                c = privacyRule instanceof TLRPC.TL_privacyValueAllowAll ? (char) 0 : privacyRule instanceof TLRPC.TL_privacyValueDisallowAll ? (char) 1 : (char) 2;
-                            }
-                        }
-                    }
+            });
+            currentDialog.showDelayed(250L);
+        } else {
+            r11.overrideDismissListener(new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    BusinessLinksActivity.lambda$openRenameAlert$5(currentFocus, editTextBoldCursor, (Runnable) obj);
                 }
-                z = true;
-            }
+            });
+            AlertDialog create2 = r11.create();
+            alertDialogArr[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                }
+            });
+            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public final void onShow(DialogInterface dialogInterface) {
+                    BusinessLinksActivity.lambda$openRenameAlert$7(currentFocus, editTextBoldCursor, dialogInterface);
+                }
+            });
+            alertDialogArr[0].show();
         }
-        if (c == 0 || (c == 65535 && z)) {
-            return 0;
-        }
-        return c == 2 ? 2 : 1;
-    }
-
-    public void lambda$onLongClick$10(TL_account.TL_businessChatLink tL_businessChatLink) {
-        openRenameAlert(getContext(), this.currentAccount, tL_businessChatLink, this.resourceProvider, false);
-    }
-
-    public void lambda$onLongClick$11(TL_account.TL_businessChatLink tL_businessChatLink, AlertDialog alertDialog, int i) {
-        BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(this, tL_businessChatLink.link);
-    }
-
-    public void lambda$onLongClick$12(final TL_account.TL_businessChatLink tL_businessChatLink) {
-        AlertDialog create = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessLinksDeleteTitle)).setMessage(LocaleController.getString(R.string.BusinessLinksDeleteMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                BusinessLinksActivity.this.lambda$onLongClick$11(tL_businessChatLink, alertDialog, i);
-            }
-        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
-        showDialog(create);
-        TextView textView = (TextView) create.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(getThemedColor(Theme.key_text_RedBold));
-        }
-    }
-
-    public static void lambda$onLongClick$8(TL_account.TL_businessChatLink tL_businessChatLink) {
-        AndroidUtilities.addToClipboard(tL_businessChatLink.link);
-        BulletinFactory.of(LaunchActivity.getLastFragment()).createCopyLinkBulletin().show();
-    }
-
-    public void lambda$onLongClick$9(TL_account.TL_businessChatLink tL_businessChatLink) {
-        Intent intent = new Intent(getContext(), (Class<?>) LaunchActivity.class);
-        intent.setAction("android.intent.action.SEND");
-        intent.setType("text/plain");
-        intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
-        startActivityForResult(intent, 500);
+        alertDialogArr[0].setDismissDialogByButtons(false);
+        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
     }
 
     public static boolean lambda$openRenameAlert$0(EditTextBoldCursor editTextBoldCursor, int i, TL_account.TL_businessChatLink tL_businessChatLink, AlertDialog[] alertDialogArr, View view, TextView textView, int i2, KeyEvent keyEvent) {
@@ -332,177 +274,80 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void openRenameAlert(Context context, final int i, final TL_account.TL_businessChatLink tL_businessChatLink, final Theme.ResourcesProvider resourcesProvider, boolean z) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        Activity findActivity = AndroidUtilities.findActivity(context);
-        final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
-        boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
-        final AlertDialog[] alertDialogArr = new AlertDialog[1];
-        ?? builder = z2 ? new AlertDialogDecor.Builder(context, resourcesProvider) : new AlertDialog.Builder(context, resourcesProvider);
-        builder.setTitle(LocaleController.getString(R.string.BusinessLinksRenameTitle));
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
-            AnimatedTextView.AnimatedTextDrawable limit;
-            AnimatedColor limitColor = new AnimatedColor(this);
-            private int limitCount;
-
-            {
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-                this.limit = animatedTextDrawable;
-                animatedTextDrawable.setAnimationProperties(0.2f, 0L, 160L, CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.limit.setTextSize(AndroidUtilities.dp(15.33f));
-                this.limit.setCallback(this);
-                this.limit.setGravity(5);
-            }
-
-            @Override
-            public void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
-                this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
-                this.limit.draw(canvas);
-            }
-
-            @Override
-            public void onMeasure(int i2, int i3) {
-                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
-                if (this.limit != null) {
-                    this.limitCount = 32 - charSequence.length();
-                    this.limit.cancelAnimation();
-                    AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                    String str = "";
-                    if (this.limitCount <= 4) {
-                        str = "" + this.limitCount;
-                    }
-                    animatedTextDrawable.setText(str);
-                }
-            }
-
-            @Override
-            protected boolean verifyDrawable(Drawable drawable) {
-                return drawable == this.limit || super.verifyDrawable(drawable);
-            }
-        };
-        MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
-        editTextBoldCursor.setInputType(49153);
-        editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setText(tL_businessChatLink.title);
-        int i2 = Theme.key_dialogTextBlack;
-        editTextBoldCursor.setTextColor(Theme.getColor(i2, resourcesProvider));
-        editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
-        editTextBoldCursor.setCursorColor(Theme.getColor(Theme.key_chat_messagePanelCursor));
-        editTextBoldCursor.setHintText(LocaleController.getString(R.string.BusinessLinksNamePlaceholder));
-        editTextBoldCursor.setSingleLine(true);
-        editTextBoldCursor.setFocusable(true);
-        editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
-        textView.setTextSize(1, 16.0f);
-        textView.setText(LocaleController.getString(R.string.BusinessLinksRenameMessage));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-        linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-        builder.setView(linearLayout);
-        builder.setWidth(AndroidUtilities.dp(292.0f));
-        final View view = currentFocus;
-        editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public final boolean onEditorAction(TextView textView2, int i3, KeyEvent keyEvent) {
-                boolean lambda$openRenameAlert$0;
-                lambda$openRenameAlert$0 = BusinessLinksActivity.lambda$openRenameAlert$0(EditTextBoldCursor.this, i, tL_businessChatLink, alertDialogArr, view, textView2, i3, keyEvent);
-                return lambda$openRenameAlert$0;
-            }
-        });
-        builder.setPositiveButton(LocaleController.getString(R.string.Done), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
-                BusinessLinksActivity.lambda$openRenameAlert$1(EditTextBoldCursor.this, i, tL_businessChatLink, alertDialog, i3);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
-                alertDialog.dismiss();
-            }
-        });
-        if (z2) {
-            AlertDialog create = builder.create();
-            currentDialog = create;
-            alertDialogArr[0] = create;
-            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    BusinessLinksActivity.lambda$openRenameAlert$3(currentFocus, dialogInterface);
-                }
-            });
-            currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    BusinessLinksActivity.lambda$openRenameAlert$4(EditTextBoldCursor.this, dialogInterface);
-                }
-            });
-            currentDialog.showDelayed(250L);
-        } else {
-            builder.overrideDismissListener(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    BusinessLinksActivity.lambda$openRenameAlert$5(currentFocus, editTextBoldCursor, (Runnable) obj);
-                }
-            });
-            AlertDialog create2 = builder.create();
-            alertDialogArr[0] = create2;
-            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
-                }
-            });
-            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    BusinessLinksActivity.lambda$openRenameAlert$7(currentFocus, editTextBoldCursor, dialogInterface);
-                }
-            });
-            alertDialogArr[0].show();
+    public static boolean closeRenameAlert() {
+        AlertDialog alertDialog = currentDialog;
+        if (alertDialog == null || !alertDialog.isShowing()) {
+            return false;
         }
-        alertDialogArr[0].setDismissDialogByButtons(false);
-        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
+        currentDialog.dismiss();
+        return true;
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        UniversalAdapter universalAdapter;
-        if (i == NotificationCenter.businessLinksUpdated || i == NotificationCenter.privacyRulesUpdated) {
-            UniversalRecyclerView universalRecyclerView = this.listView;
-            if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
-                return;
-            }
-            universalAdapter.update(true);
-            return;
+    public boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.businessLinksUpdated);
+        getNotificationCenter().addObserver(this, NotificationCenter.businessLinkCreated);
+        getNotificationCenter().addObserver(this, NotificationCenter.needDeleteBusinessLink);
+        getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
+        BusinessLinksController.getInstance(this.currentAccount).load(true);
+        ContactsController.getInstance(this.currentAccount).loadPrivacySettings();
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.businessLinksUpdated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.businessLinkCreated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.needDeleteBusinessLink);
+        getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        Bulletin.hideVisible();
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (closeRenameAlert()) {
+            return false;
         }
-        if (i != NotificationCenter.businessLinkCreated) {
-            if (i == NotificationCenter.needDeleteBusinessLink) {
-                BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(this, ((TL_account.TL_businessChatLink) objArr[0]).link);
+        return super.onBackPressed();
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.BusinessLinks);
+    }
+
+    private static int getPrivacyType(ArrayList arrayList) {
+        char c = 65535;
+        boolean z = false;
+        for (int i = 0; i < arrayList.size(); i++) {
+            TLRPC.PrivacyRule privacyRule = (TLRPC.PrivacyRule) arrayList.get(i);
+            if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowChatParticipants)) {
+                if (!(privacyRule instanceof TLRPC.TL_privacyValueDisallowChatParticipants)) {
+                    if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowUsers)) {
+                        if (!(privacyRule instanceof TLRPC.TL_privacyValueDisallowUsers)) {
+                            if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowPremium) && c == 65535) {
+                                if (privacyRule instanceof TLRPC.TL_privacyValueAllowAll) {
+                                    c = 0;
+                                } else {
+                                    c = privacyRule instanceof TLRPC.TL_privacyValueDisallowAll ? (char) 1 : (char) 2;
+                                }
+                            }
+                        }
+                    }
+                }
+                z = true;
             }
-        } else {
-            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) objArr[0];
-            Bundle bundle = new Bundle();
-            bundle.putInt("chatMode", 6);
-            bundle.putString("business_link", tL_businessChatLink.link);
-            presentFragment(new ChatActivity(bundle));
         }
+        if (c == 0 || (c == 65535 && z)) {
+            return 0;
+        }
+        return c == 2 ? 2 : 1;
     }
 
     @Override
     protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        String formatString;
         arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLinksInfo), R.raw.biz_links));
         universalAdapter.whiteSectionStart();
         if (BusinessLinksController.getInstance(this.currentAccount).canAddNew()) {
@@ -528,7 +373,11 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         if (arrayList2.isEmpty()) {
             return;
         }
-        String formatString = arrayList2.size() == 2 ? LocaleController.formatString(R.string.BusinessLinksFooterTwoLinks, arrayList2.get(0), arrayList2.get(1)) : LocaleController.formatString(R.string.BusinessLinksFooterOneLink, arrayList2.get(0));
+        if (arrayList2.size() == 2) {
+            formatString = LocaleController.formatString(R.string.BusinessLinksFooterTwoLinks, arrayList2.get(0), arrayList2.get(1));
+        } else {
+            formatString = LocaleController.formatString(R.string.BusinessLinksFooterOneLink, arrayList2.get(0));
+        }
         SpannableString spannableString = new SpannableString(formatString);
         Iterator it2 = arrayList2.iterator();
         while (it2.hasNext()) {
@@ -539,19 +388,6 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
             }
         }
         arrayList.add(UItem.asShadow(spannableString));
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.BusinessLinks);
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        if (closeRenameAlert()) {
-            return false;
-        }
-        return super.onBackPressed();
     }
 
     @Override
@@ -569,27 +405,6 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
                 presentFragment(new ChatActivity(bundle));
             }
         }
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.businessLinksUpdated);
-        getNotificationCenter().addObserver(this, NotificationCenter.businessLinkCreated);
-        getNotificationCenter().addObserver(this, NotificationCenter.needDeleteBusinessLink);
-        getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
-        BusinessLinksController.getInstance(this.currentAccount).load(true);
-        ContactsController.getInstance(this.currentAccount).loadPrivacySettings();
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.businessLinksUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.businessLinkCreated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.needDeleteBusinessLink);
-        getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
-        Bulletin.hideVisible();
-        super.onFragmentDestroy();
     }
 
     @Override
@@ -629,5 +444,200 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         });
         makeOptions.show();
         return true;
+    }
+
+    public static void lambda$onLongClick$8(TL_account.TL_businessChatLink tL_businessChatLink) {
+        AndroidUtilities.addToClipboard(tL_businessChatLink.link);
+        BulletinFactory.of(LaunchActivity.getLastFragment()).createCopyLinkBulletin().show();
+    }
+
+    public void lambda$onLongClick$9(TL_account.TL_businessChatLink tL_businessChatLink) {
+        Intent intent = new Intent(getContext(), (Class<?>) LaunchActivity.class);
+        intent.setAction("android.intent.action.SEND");
+        intent.setType("text/plain");
+        intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
+        startActivityForResult(intent, 500);
+    }
+
+    public void lambda$onLongClick$10(TL_account.TL_businessChatLink tL_businessChatLink) {
+        openRenameAlert(getContext(), this.currentAccount, tL_businessChatLink, this.resourceProvider, false);
+    }
+
+    public void lambda$onLongClick$12(final TL_account.TL_businessChatLink tL_businessChatLink) {
+        AlertDialog create = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessLinksDeleteTitle)).setMessage(LocaleController.getString(R.string.BusinessLinksDeleteMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) {
+                BusinessLinksActivity.this.lambda$onLongClick$11(tL_businessChatLink, alertDialog, i);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+        showDialog(create);
+        TextView textView = (TextView) create.getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(getThemedColor(Theme.key_text_RedBold));
+        }
+    }
+
+    public void lambda$onLongClick$11(TL_account.TL_businessChatLink tL_businessChatLink, AlertDialog alertDialog, int i) {
+        BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(this, tL_businessChatLink.link);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        UniversalAdapter universalAdapter;
+        if (i == NotificationCenter.businessLinksUpdated || i == NotificationCenter.privacyRulesUpdated) {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+                return;
+            }
+            universalAdapter.update(true);
+            return;
+        }
+        if (i == NotificationCenter.businessLinkCreated) {
+            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) objArr[0];
+            Bundle bundle = new Bundle();
+            bundle.putInt("chatMode", 6);
+            bundle.putString("business_link", tL_businessChatLink.link);
+            presentFragment(new ChatActivity(bundle));
+            return;
+        }
+        if (i == NotificationCenter.needDeleteBusinessLink) {
+            BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(this, ((TL_account.TL_businessChatLink) objArr[0]).link);
+        }
+    }
+
+    public static class BusinessLinkWrapper {
+        TL_account.TL_businessChatLink link;
+
+        public BusinessLinkWrapper(TL_account.TL_businessChatLink tL_businessChatLink) {
+            this.link = tL_businessChatLink;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            BusinessLinkWrapper businessLinkWrapper = (BusinessLinkWrapper) obj;
+            TL_account.TL_businessChatLink tL_businessChatLink = this.link;
+            int i = tL_businessChatLink.views;
+            TL_account.TL_businessChatLink tL_businessChatLink2 = businessLinkWrapper.link;
+            return i == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(this.link.title, businessLinkWrapper.link.title) && TextUtils.equals(this.link.message, businessLinkWrapper.link.message) && MediaDataController.entitiesEqual(this.link.entities, businessLinkWrapper.link.entities);
+        }
+    }
+
+    public static class BusinessLinkView extends FrameLayout {
+        private TL_account.TL_businessChatLink businessLink;
+        private final SimpleTextView clicksCountTextView;
+        private final ImageView imageView;
+        private final SpoilersTextView messagePreviewTextView;
+        private boolean needDivider;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private final SimpleTextView titleTextView;
+
+        public BusinessLinkView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.resourcesProvider = resourcesProvider;
+            setWillNotDraw(false);
+            ImageView imageView = new ImageView(context);
+            this.imageView = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            imageView.setImageResource(R.drawable.msg_limit_links);
+            imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
+            imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(36.0f), Theme.getColor(Theme.key_featuredStickers_addButton)));
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    BusinessLinksActivity.BusinessLinkView.this.lambda$new$0(view);
+                }
+            });
+            addView(imageView, LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
+            SimpleTextView simpleTextView = new SimpleTextView(context);
+            this.titleTextView = simpleTextView;
+            simpleTextView.setTextSize(15);
+            simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+            addView(simpleTextView, LayoutHelper.createFrameRelatively(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
+            SimpleTextView simpleTextView2 = new SimpleTextView(context);
+            this.clicksCountTextView = simpleTextView2;
+            simpleTextView2.setTextSize(14);
+            int i = Theme.key_windowBackgroundWhiteGrayText2;
+            simpleTextView2.setTextColor(Theme.getColor(i));
+            simpleTextView2.setGravity(LocaleController.isRTL ? 3 : 5);
+            addView(simpleTextView2, LayoutHelper.createFrameRelatively(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
+            SpoilersTextView spoilersTextView = new SpoilersTextView(context);
+            this.messagePreviewTextView = spoilersTextView;
+            spoilersTextView.setTextSize(1, 13.0f);
+            spoilersTextView.setMaxLines(1);
+            spoilersTextView.setEllipsize(TextUtils.TruncateAt.END);
+            spoilersTextView.setTextColor(Theme.getColor(i, resourcesProvider));
+            spoilersTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+            spoilersTextView.allowClickSpoilers = false;
+            spoilersTextView.setUseAlphaForEmoji(false);
+            NotificationCenter.listenEmojiLoading(spoilersTextView);
+            addView(spoilersTextView, LayoutHelper.createFrameRelatively(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
+        }
+
+        public void lambda$new$0(View view) {
+            TL_account.TL_businessChatLink tL_businessChatLink = this.businessLink;
+            if (tL_businessChatLink != null) {
+                AndroidUtilities.addToClipboard(tL_businessChatLink.link);
+                BulletinFactory.of(LaunchActivity.getLastFragment()).createCopyLinkBulletin().show();
+            }
+        }
+
+        public void set(BusinessLinkWrapper businessLinkWrapper, boolean z) {
+            this.needDivider = z;
+            TL_account.TL_businessChatLink tL_businessChatLink = businessLinkWrapper.link;
+            this.businessLink = tL_businessChatLink;
+            if (!TextUtils.isEmpty(tL_businessChatLink.title)) {
+                this.titleTextView.setText(this.businessLink.title);
+            } else {
+                this.titleTextView.setText(BusinessLinksController.stripHttps(this.businessLink.link));
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.businessLink.message);
+            TL_account.TL_businessChatLink tL_businessChatLink2 = this.businessLink;
+            MediaDataController.addTextStyleRuns(tL_businessChatLink2.entities, tL_businessChatLink2.message, spannableStringBuilder);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, this.messagePreviewTextView.getPaint().getFontMetricsInt(), false);
+            MessageObject.replaceAnimatedEmoji(replaceEmoji, this.businessLink.entities, this.messagePreviewTextView.getPaint().getFontMetricsInt());
+            this.messagePreviewTextView.setText(replaceEmoji);
+            int i = this.businessLink.views;
+            if (i == 0) {
+                this.clicksCountTextView.setText(LocaleController.formatString(R.string.NoClicks, new Object[0]));
+            } else {
+                this.clicksCountTextView.setText(LocaleController.formatPluralString("Clicks", i, new Object[0]));
+            }
+            this.clicksCountTextView.requestLayout();
+            invalidate();
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            if (this.needDivider) {
+                Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+                if (themePaint == null) {
+                    themePaint = Theme.dividerPaint;
+                }
+                canvas.drawRect(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 64.0f), getMeasuredHeight() - 1, getWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : 0.0f), getMeasuredHeight(), themePaint);
+            }
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            if (LocaleController.isRTL) {
+                this.titleTextView.setPadding(this.clicksCountTextView.getTextWidth(), 0, 0, 0);
+            } else {
+                this.titleTextView.setPadding(0, 0, this.clicksCountTextView.getTextWidth(), 0);
+            }
+        }
     }
 }

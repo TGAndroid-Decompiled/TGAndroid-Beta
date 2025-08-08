@@ -33,89 +33,66 @@ public class AppGlobalConfig {
     public final ConfigLong tonSuggestedPostAmountMin = ofLong("ton_suggested_post_amount_min", 10000000);
     public final ConfigLong tonSuggestedPostAmountMax = ofLong("ton_suggested_post_amount_max", 10000000000000L);
 
-    public static class ConfigBoolean {
-        private final Internal handler;
+    public interface ConfigInternal {
+        boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue);
 
-        public static class Internal implements ConfigInternal {
-            private final boolean defaultValue;
-            private final String name;
-            private boolean value;
-
-            private Internal(String str, boolean z) {
-                this.name = str;
-                this.defaultValue = z;
-            }
-
-            @Override
-            public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                boolean z;
-                if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z = ((TLRPC.TL_jsonBool) jSONValue).value) == this.value) {
-                    return false;
-                }
-                this.value = z;
-                editor.putBoolean(this.name, z);
-                return true;
-            }
-
-            @Override
-            public void load(SharedPreferences sharedPreferences) {
-                this.value = sharedPreferences.getBoolean(this.name, this.defaultValue);
-            }
-        }
-
-        private ConfigBoolean(String str, boolean z) {
-            this.handler = new Internal(str, z);
-        }
-
-        public boolean get() {
-            return this.handler.value;
-        }
+        void load(SharedPreferences sharedPreferences);
     }
 
-    public static class ConfigDouble {
-        private final Internal handler;
+    public AppGlobalConfig() {
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        this.starsSuggestedPostAgeMin = ofTime("stars_suggested_post_age_min", 86400L, timeUnit);
+        this.starsSuggestedPostFutureMin = ofTime("stars_suggested_post_future_min", 300L, timeUnit);
+        this.starsSuggestedPostFutureMax = ofTime("stars_suggested_post_future_max", 2678400L, timeUnit);
+        this.tonUsdRate = ofDouble("ton_usd_rate", 3.0d);
+        this.starsRatingLearnMoreUrl = ofString("stars_rating_learnmore_url", "https://telegram.org/blog/telegram-stars");
+        this.needAgeVideoVerification = ofBoolean("need_age_video_verification", false);
+        this.starsStarGiftResaleCommissionPermille = ofInt("stars_stargift_resale_commission_permille", 800);
+        this.tonStarGiftResaleCommissionPermille = ofInt("ton_stargift_resale_commission_permille", 800);
+        this.starsStarGiftResaleAmountMin = ofInt("stars_stargift_resale_amount_min", 125);
+        this.starsStarGiftResaleAmountMax = ofInt("stars_stargift_resale_amount_max", 35000);
+        this.tonStarGiftResaleAmountMin = ofLong("ton_stargift_resale_amount_min", 10000000L);
+        this.tonStarGiftResaleAmountMax = ofLong("ton_stargift_resale_amount_max", 10000000000000L);
+        this.stargiftsCollectionsLimit = ofInt("stargifts_collections_limit", 100);
+        this.stargiftsCollectionGiftsLimit = ofInt("stargifts_collection_gifts_limit", 100);
+        this.storiesAlbumsLimit = ofInt("stories_albums_limit", 100);
+        this.storiesAlbumStoriesLimit = ofInt("stories_album_stories_limit", 100);
+    }
 
-        public static class Internal implements ConfigInternal {
-            private final double defaultValue;
-            private final String name;
-            private double value;
-
-            private Internal(String str, double d) {
-                this.name = str;
-                this.defaultValue = d;
-            }
-
-            @Override
-            public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                if (!(jSONValue instanceof TLRPC.TL_jsonNumber)) {
-                    return false;
-                }
-                double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
-                if (d == this.value) {
-                    return false;
-                }
-                this.value = d;
-                editor.putFloat(this.name, (float) d);
-                return true;
-            }
-
-            @Override
-            public void load(SharedPreferences sharedPreferences) {
-                this.value = sharedPreferences.getFloat(this.name, (float) this.defaultValue);
+    public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
+        int size = tL_jsonObject.value.size();
+        boolean z = false;
+        for (int i = 0; i < size; i++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
+            ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
+            if (configInternal != null) {
+                z |= configInternal.apply(editor, tL_jsonObjectValue.value);
             }
         }
+        return z;
+    }
 
-        private ConfigDouble(String str, double d) {
-            this.handler = new Internal(str, d);
-        }
-
-        public double get() {
-            return this.handler.value;
+    public void load(SharedPreferences sharedPreferences) {
+        Iterator<ConfigInternal> it = this.map.values().iterator();
+        while (it.hasNext()) {
+            try {
+                it.next().load(sharedPreferences);
+            } catch (ClassCastException e) {
+                FileLog.e(e);
+            }
         }
     }
 
     public static class ConfigInt {
         private final Internal handler;
+
+        private ConfigInt(String str, int i) {
+            this.handler = new Internal(str, i);
+        }
+
+        public int get() {
+            return this.handler.value;
+        }
 
         public static class Internal implements ConfigInternal {
             private final int defaultValue;
@@ -147,24 +124,18 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getInt(this.name, this.defaultValue);
             }
         }
-
-        private ConfigInt(String str, int i) {
-            this.handler = new Internal(str, i);
-        }
-
-        public int get() {
-            return this.handler.value;
-        }
-    }
-
-    public interface ConfigInternal {
-        boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue);
-
-        void load(SharedPreferences sharedPreferences);
     }
 
     public static class ConfigLong {
         private final Internal handler;
+
+        private ConfigLong(String str, long j) {
+            this.handler = new Internal(str, j);
+        }
+
+        public long get() {
+            return this.handler.value;
+        }
 
         public static class Internal implements ConfigInternal {
             private final long defaultValue;
@@ -196,18 +167,64 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getLong(this.name, this.defaultValue);
             }
         }
+    }
 
-        private ConfigLong(String str, long j) {
-            this.handler = new Internal(str, j);
+    public static class ConfigDouble {
+        private final Internal handler;
+
+        private ConfigDouble(String str, double d) {
+            this.handler = new Internal(str, d);
         }
 
-        public long get() {
+        public double get() {
             return this.handler.value;
+        }
+
+        public static class Internal implements ConfigInternal {
+            private final double defaultValue;
+            private final String name;
+            private double value;
+
+            private Internal(String str, double d) {
+                this.name = str;
+                this.defaultValue = d;
+            }
+
+            @Override
+            public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+                if (!(jSONValue instanceof TLRPC.TL_jsonNumber)) {
+                    return false;
+                }
+                double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+                if (d == this.value) {
+                    return false;
+                }
+                this.value = d;
+                editor.putFloat(this.name, (float) d);
+                return true;
+            }
+
+            @Override
+            public void load(SharedPreferences sharedPreferences) {
+                this.value = sharedPreferences.getFloat(this.name, (float) this.defaultValue);
+            }
         }
     }
 
     public static class ConfigString {
         private final Internal handler;
+
+        private ConfigString(String str, String str2) {
+            this.handler = new Internal(str, str2);
+        }
+
+        public String get() {
+            return this.handler.value;
+        }
+
+        public boolean is(String str) {
+            return TextUtils.equals(get(), str);
+        }
 
         public static class Internal implements ConfigInternal {
             private final String defaultValue;
@@ -239,17 +256,44 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getString(this.name, this.defaultValue);
             }
         }
+    }
 
-        private ConfigString(String str, String str2) {
-            this.handler = new Internal(str, str2);
+    public static class ConfigBoolean {
+        private final Internal handler;
+
+        private ConfigBoolean(String str, boolean z) {
+            this.handler = new Internal(str, z);
         }
 
-        public String get() {
+        public boolean get() {
             return this.handler.value;
         }
 
-        public boolean is(String str) {
-            return TextUtils.equals(get(), str);
+        public static class Internal implements ConfigInternal {
+            private final boolean defaultValue;
+            private final String name;
+            private boolean value;
+
+            private Internal(String str, boolean z) {
+                this.name = str;
+                this.defaultValue = z;
+            }
+
+            @Override
+            public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+                boolean z;
+                if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z = ((TLRPC.TL_jsonBool) jSONValue).value) == this.value) {
+                    return false;
+                }
+                this.value = z;
+                editor.putBoolean(this.name, z);
+                return true;
+            }
+
+            @Override
+            public void load(SharedPreferences sharedPreferences) {
+                this.value = sharedPreferences.getBoolean(this.name, this.defaultValue);
+            }
         }
     }
 
@@ -267,38 +311,6 @@ public class AppGlobalConfig {
         }
     }
 
-    public AppGlobalConfig() {
-        TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.starsSuggestedPostAgeMin = ofTime("stars_suggested_post_age_min", 86400L, timeUnit);
-        this.starsSuggestedPostFutureMin = ofTime("stars_suggested_post_future_min", 300L, timeUnit);
-        this.starsSuggestedPostFutureMax = ofTime("stars_suggested_post_future_max", 2678400L, timeUnit);
-        this.tonUsdRate = ofDouble("ton_usd_rate", 3.0d);
-        this.starsRatingLearnMoreUrl = ofString("stars_rating_learnmore_url", "https://telegram.org/blog/telegram-stars");
-        this.needAgeVideoVerification = ofBoolean("need_age_video_verification", false);
-        this.starsStarGiftResaleCommissionPermille = ofInt("stars_stargift_resale_commission_permille", 800);
-        this.tonStarGiftResaleCommissionPermille = ofInt("ton_stargift_resale_commission_permille", 800);
-        this.starsStarGiftResaleAmountMin = ofInt("stars_stargift_resale_amount_min", 125);
-        this.starsStarGiftResaleAmountMax = ofInt("stars_stargift_resale_amount_max", 35000);
-        this.tonStarGiftResaleAmountMin = ofLong("ton_stargift_resale_amount_min", 10000000L);
-        this.tonStarGiftResaleAmountMax = ofLong("ton_stargift_resale_amount_max", 10000000000000L);
-        this.stargiftsCollectionsLimit = ofInt("stargifts_collections_limit", 100);
-        this.stargiftsCollectionGiftsLimit = ofInt("stargifts_collection_gifts_limit", 100);
-        this.storiesAlbumsLimit = ofInt("stories_albums_limit", 100);
-        this.storiesAlbumStoriesLimit = ofInt("stories_album_stories_limit", 100);
-    }
-
-    private ConfigBoolean ofBoolean(String str, boolean z) {
-        ConfigBoolean configBoolean = new ConfigBoolean(str, z);
-        this.map.put(str, configBoolean.handler);
-        return configBoolean;
-    }
-
-    private ConfigDouble ofDouble(String str, double d) {
-        ConfigDouble configDouble = new ConfigDouble(str, d);
-        this.map.put(str, configDouble.handler);
-        return configDouble;
-    }
-
     private ConfigInt ofInt(String str, int i) {
         ConfigInt configInt = new ConfigInt(str, i);
         this.map.put(str, configInt.handler);
@@ -311,6 +323,18 @@ public class AppGlobalConfig {
         return configLong;
     }
 
+    private ConfigDouble ofDouble(String str, double d) {
+        ConfigDouble configDouble = new ConfigDouble(str, d);
+        this.map.put(str, configDouble.handler);
+        return configDouble;
+    }
+
+    private ConfigBoolean ofBoolean(String str, boolean z) {
+        ConfigBoolean configBoolean = new ConfigBoolean(str, z);
+        this.map.put(str, configBoolean.handler);
+        return configBoolean;
+    }
+
     private ConfigString ofString(String str, String str2) {
         ConfigString configString = new ConfigString(str, str2);
         this.map.put(str, configString.handler);
@@ -321,29 +345,5 @@ public class AppGlobalConfig {
         ConfigTime configTime = new ConfigTime(str, timeUnit, j);
         this.map.put(str, configTime.handler);
         return configTime;
-    }
-
-    public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
-        int size = tL_jsonObject.value.size();
-        boolean z = false;
-        for (int i = 0; i < size; i++) {
-            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
-            ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
-            if (configInternal != null) {
-                z |= configInternal.apply(editor, tL_jsonObjectValue.value);
-            }
-        }
-        return z;
-    }
-
-    public void load(SharedPreferences sharedPreferences) {
-        Iterator<ConfigInternal> it = this.map.values().iterator();
-        while (it.hasNext()) {
-            try {
-                it.next().load(sharedPreferences);
-            } catch (ClassCastException e) {
-                FileLog.e(e);
-            }
-        }
     }
 }

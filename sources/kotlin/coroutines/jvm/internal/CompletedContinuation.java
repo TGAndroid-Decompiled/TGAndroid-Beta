@@ -11,12 +11,12 @@ public final class CompletedContinuation implements Continuation {
 
     @Override
     public CoroutineContext getContext() {
-        throw new IllegalStateException("This continuation is already complete".toString());
+        throw new IllegalStateException("This continuation is already complete");
     }
 
     @Override
     public void resumeWith(Object obj) {
-        throw new IllegalStateException("This continuation is already complete".toString());
+        throw new IllegalStateException("This continuation is already complete");
     }
 
     public String toString() {

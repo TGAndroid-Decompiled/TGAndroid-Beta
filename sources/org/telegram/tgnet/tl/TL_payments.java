@@ -12,24 +12,6 @@ import org.telegram.tgnet.tl.TL_stars;
 
 public class TL_payments {
 
-    public static class connectStarRefBot extends TLObject {
-        public static final int constructor = 2127901834;
-        public TLRPC.InputUser bot;
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2127901834);
-            this.peer.serializeToStream(outputSerializedData);
-            this.bot.serializeToStream(outputSerializedData);
-        }
-    }
-
     public static class connectedBotStarRef extends TLObject {
         public static final int constructor = 429997937;
         public long bot_id;
@@ -127,98 +109,52 @@ public class TL_payments {
         }
     }
 
-    public static class editConnectedStarRefBot extends TLObject {
-        public static final int constructor = -453204829;
+    public static class suggestedStarRefBots extends TLObject {
+        public static final int constructor = -1261053863;
+        public int count;
         public int flags;
-        public String link;
-        public TLRPC.InputPeer peer;
-        public boolean revoked;
+        public String next_offset;
+        public ArrayList<starRefProgram> suggested_bots = new ArrayList<>();
+        public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-453204829);
-            int i = this.revoked ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeString(this.link);
-        }
-    }
-
-    public static class getConnectedStarRefBot extends TLObject {
-        public static final int constructor = -1210476304;
-        public TLRPC.InputUser bot;
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1210476304);
-            this.peer.serializeToStream(outputSerializedData);
-            this.bot.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class getConnectedStarRefBots extends TLObject {
-        public static final int constructor = 1483318611;
-        public int flags;
-        public int limit;
-        public int offset_date;
-        public String offset_link;
-        public TLRPC.InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1483318611);
-            outputSerializedData.writeInt32(this.flags);
-            this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
-                outputSerializedData.writeInt32(this.offset_date);
-                outputSerializedData.writeString(this.offset_link);
+        public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            if (-1261053863 != i) {
+                if (z) {
+                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.suggestedStarRefBots", Integer.valueOf(i)));
+                }
+                return null;
             }
-            outputSerializedData.writeInt32(this.limit);
+            suggestedStarRefBots suggestedstarrefbots = new suggestedStarRefBots();
+            suggestedstarrefbots.readParams(inputSerializedData, z);
+            return suggestedstarrefbots;
         }
-    }
-
-    public static class getSuggestedStarRefBots extends TLObject {
-        public static final int constructor = 225134839;
-        public int flags;
-        public int limit;
-        public String offset;
-        public boolean order_by_date;
-        public boolean order_by_revenue;
-        public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return suggestedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.count = inputSerializedData.readInt32(z);
+            this.suggested_bots = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_payments.starRefProgram.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
+            if ((this.flags & 1) != 0) {
+                this.next_offset = inputSerializedData.readString(z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(225134839);
-            int i = this.order_by_revenue ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.order_by_date ? i | 2 : i & (-3);
-            this.flags = i2;
-            outputSerializedData.writeInt32(i2);
-            this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeString(this.offset);
-            outputSerializedData.writeInt32(this.limit);
+            outputSerializedData.writeInt32(-1261053863);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.count);
+            Vector.serialize(outputSerializedData, this.suggested_bots);
+            Vector.serialize(outputSerializedData, this.users);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeString(this.next_offset);
+            }
         }
     }
 
@@ -277,52 +213,116 @@ public class TL_payments {
         }
     }
 
-    public static class suggestedStarRefBots extends TLObject {
-        public static final int constructor = -1261053863;
-        public int count;
-        public int flags;
-        public String next_offset;
-        public ArrayList<starRefProgram> suggested_bots = new ArrayList<>();
-        public ArrayList<TLRPC.User> users = new ArrayList<>();
-
-        public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1261053863 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.suggestedStarRefBots", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            suggestedStarRefBots suggestedstarrefbots = new suggestedStarRefBots();
-            suggestedstarrefbots.readParams(inputSerializedData, z);
-            return suggestedstarrefbots;
-        }
+    public static class connectStarRefBot extends TLObject {
+        public static final int constructor = 2127901834;
+        public TLRPC.InputUser bot;
+        public TLRPC.InputPeer peer;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.suggested_bots = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
-                @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
-                    return TL_payments.starRefProgram.TLdeserialize(inputSerializedData2, i, z2);
-                }
-            }, z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
-            if ((this.flags & 1) != 0) {
-                this.next_offset = inputSerializedData.readString(z);
-            }
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1261053863);
+            outputSerializedData.writeInt32(2127901834);
+            this.peer.serializeToStream(outputSerializedData);
+            this.bot.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class getSuggestedStarRefBots extends TLObject {
+        public static final int constructor = 225134839;
+        public int flags;
+        public int limit;
+        public String offset;
+        public boolean order_by_date;
+        public boolean order_by_revenue;
+        public TLRPC.InputPeer peer;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return suggestedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(225134839);
+            int i = this.order_by_revenue ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.order_by_date ? i | 2 : i & (-3);
+            this.flags = i2;
+            outputSerializedData.writeInt32(i2);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeString(this.offset);
+            outputSerializedData.writeInt32(this.limit);
+        }
+    }
+
+    public static class getConnectedStarRefBots extends TLObject {
+        public static final int constructor = 1483318611;
+        public int flags;
+        public int limit;
+        public int offset_date;
+        public String offset_link;
+        public TLRPC.InputPeer peer;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1483318611);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt32(this.count);
-            Vector.serialize(outputSerializedData, this.suggested_bots);
-            Vector.serialize(outputSerializedData, this.users);
-            if ((this.flags & 1) != 0) {
-                outputSerializedData.writeString(this.next_offset);
+            this.peer.serializeToStream(outputSerializedData);
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt32(this.offset_date);
+                outputSerializedData.writeString(this.offset_link);
             }
+            outputSerializedData.writeInt32(this.limit);
+        }
+    }
+
+    public static class getConnectedStarRefBot extends TLObject {
+        public static final int constructor = -1210476304;
+        public TLRPC.InputUser bot;
+        public TLRPC.InputPeer peer;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1210476304);
+            this.peer.serializeToStream(outputSerializedData);
+            this.bot.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class editConnectedStarRefBot extends TLObject {
+        public static final int constructor = -453204829;
+        public int flags;
+        public String link;
+        public TLRPC.InputPeer peer;
+        public boolean revoked;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-453204829);
+            int i = this.revoked ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            outputSerializedData.writeInt32(i);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeString(this.link);
         }
     }
 }

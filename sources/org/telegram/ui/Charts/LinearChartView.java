@@ -2,7 +2,6 @@ package org.telegram.ui.Charts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 
@@ -12,8 +11,9 @@ public class LinearChartView extends BaseChartView {
     }
 
     @Override
-    public LineViewData createLineViewData(ChartData.Line line) {
-        return new LineViewData(line, false);
+    public void init() {
+        this.useMinHeight = true;
+        super.init();
     }
 
     @Override
@@ -67,27 +67,25 @@ public class LinearChartView extends BaseChartView {
                             }
                             float f4 = (1.0f - ((((float) j) - f2) / (f - f2))) * this.pikerHeight;
                             if (BaseChartView.USE_LINES) {
-                                float[] fArr = lineViewData.linesPathBottom;
-                                int i6 = i5 + 1;
                                 if (i5 == 0) {
+                                    float[] fArr = lineViewData.linesPathBottom;
+                                    int i6 = i5 + 1;
                                     fArr[i5] = f3;
                                     i5 += 2;
                                     fArr[i6] = f4;
                                 } else {
-                                    fArr[i5] = f3;
-                                    fArr[i6] = f4;
+                                    float[] fArr2 = lineViewData.linesPathBottom;
+                                    fArr2[i5] = f3;
+                                    fArr2[i5 + 1] = f4;
                                     int i7 = i5 + 3;
-                                    fArr[i5 + 2] = f3;
+                                    fArr2[i5 + 2] = f3;
                                     i5 += 4;
-                                    fArr[i7] = f4;
+                                    fArr2[i7] = f4;
                                 }
+                            } else if (i4 == 0) {
+                                lineViewData.bottomLinePath.moveTo(f3, f4);
                             } else {
-                                Path path = lineViewData.bottomLinePath;
-                                if (i4 == 0) {
-                                    path.moveTo(f3, f4);
-                                } else {
-                                    path.lineTo(f3, f4);
-                                }
+                                lineViewData.bottomLinePath.lineTo(f3, f4);
                             }
                         }
                         i4++;
@@ -114,8 +112,7 @@ public class LinearChartView extends BaseChartView {
     }
 
     @Override
-    public void init() {
-        this.useMinHeight = true;
-        super.init();
+    public LineViewData createLineViewData(ChartData.Line line) {
+        return new LineViewData(line, false);
     }
 }

@@ -20,6 +20,9 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     private ImageReceiver imageReceiver;
     private int width;
 
+    public static void lambda$new$2() {
+    }
+
     public TextPaintImageReceiverSpan(View view, TLRPC.Document document, Object obj, int i, int i2, boolean z, boolean z2) {
         String format = String.format(Locale.US, "%d_%d_i", Integer.valueOf(i), Integer.valueOf(i2));
         this.width = i;
@@ -47,6 +50,12 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         }
         this.imageReceiver.setImage(ImageLocation.getForDocument(document), format, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), format, -1L, null, obj, 1);
         this.alignTop = z;
+    }
+
+    public static void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        if (imageReceiver.canInvertBitmap()) {
+            imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
+        }
     }
 
     public TextPaintImageReceiverSpan(View view, WebInstantView.WebPhoto webPhoto, Object obj, int i, int i2, boolean z, boolean z2) {
@@ -83,32 +92,10 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         this.alignTop = z;
     }
 
-    public static void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        if (imageReceiver.canInvertBitmap()) {
-            imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
-        }
-    }
-
     public static void lambda$new$1(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         if (imageReceiver.canInvertBitmap()) {
             imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
         }
-    }
-
-    public static void lambda$new$2() {
-    }
-
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        canvas.save();
-        if (this.alignTop) {
-            this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
-        } else {
-            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
-        }
-        this.imageReceiver.draw(canvas);
-        canvas.restore();
     }
 
     @Override
@@ -133,5 +120,18 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
             }
         }
         return this.width;
+    }
+
+    @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        canvas.save();
+        if (this.alignTop) {
+            this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
+        } else {
+            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
+            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
+        }
+        this.imageReceiver.draw(canvas);
+        canvas.restore();
     }
 }

@@ -20,6 +20,7 @@ public class HttpGetTask extends AsyncTask {
 
     @Override
     public String doInBackground(String... strArr) {
+        BufferedReader bufferedReader;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(strArr[0]).openConnection();
             for (Map.Entry entry : this.headers.entrySet()) {
@@ -30,15 +31,20 @@ public class HttpGetTask extends AsyncTask {
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
-            BufferedReader bufferedReader = (responseCode < 200 || responseCode >= 300) ? new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream())) : new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            if (responseCode >= 200 && responseCode < 300) {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            } else {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+            }
             StringBuilder sb = new StringBuilder();
             while (true) {
                 String readLine = bufferedReader.readLine();
-                if (readLine == null) {
+                if (readLine != null) {
+                    sb.append(readLine);
+                } else {
                     bufferedReader.close();
                     return sb.toString();
                 }
-                sb.append(readLine);
             }
         } catch (Exception e) {
             this.exception = e;
@@ -50,10 +56,11 @@ public class HttpGetTask extends AsyncTask {
     public void onPostExecute(String str) {
         Utilities.Callback callback = this.callback;
         if (callback != null) {
-            if (this.exception != null) {
-                str = null;
+            if (this.exception == null) {
+                callback.run(str);
+            } else {
+                callback.run(null);
             }
-            callback.run(str);
         }
     }
 }

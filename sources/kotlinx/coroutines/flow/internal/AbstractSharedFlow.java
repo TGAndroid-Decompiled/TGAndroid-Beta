@@ -11,6 +11,10 @@ public abstract class AbstractSharedFlow {
     private int nextIndex;
     private AbstractSharedFlowSlot[] slots;
 
+    protected abstract AbstractSharedFlowSlot createSlot();
+
+    protected abstract AbstractSharedFlowSlot[] createSlotArray(int i);
+
     public final AbstractSharedFlowSlot allocateSlot() {
         AbstractSharedFlowSlot abstractSharedFlowSlot;
         synchronized (this) {
@@ -47,10 +51,6 @@ public abstract class AbstractSharedFlow {
         return abstractSharedFlowSlot;
     }
 
-    protected abstract AbstractSharedFlowSlot createSlot();
-
-    protected abstract AbstractSharedFlowSlot[] createSlotArray(int i);
-
     public final void freeSlot(AbstractSharedFlowSlot abstractSharedFlowSlot) {
         int i;
         Continuation[] freeLocked;
@@ -70,7 +70,7 @@ public abstract class AbstractSharedFlow {
         for (Continuation continuation : freeLocked) {
             if (continuation != null) {
                 Result.Companion companion = Result.Companion;
-                continuation.resumeWith(Result.m210constructorimpl(Unit.INSTANCE));
+                continuation.resumeWith(Result.m216constructorimpl(Unit.INSTANCE));
             }
         }
     }

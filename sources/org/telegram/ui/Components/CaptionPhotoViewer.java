@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -22,6 +21,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BlurringShader;
+import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
 
@@ -49,10 +49,24 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
     private boolean timerVisible;
     private final int[] values;
 
+    @Override
+    protected int additionalKeyboardHeight() {
+        return 0;
+    }
+
+    @Override
+    protected int getEditTextStyle() {
+        return 3;
+    }
+
+    protected abstract void onMoveButtonClick();
+
+    protected abstract void openedKeyboard();
+
+    protected abstract boolean showMoveButton();
+
     public CaptionPhotoViewer(Context context, final FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager, Runnable runnable) {
         super(context, frameLayout, sizeNotifierFrameLayout, frameLayout2, resourcesProvider, blurManager);
-        Resources resources;
-        int i;
         this.timer = 0;
         this.SHOW_ONCE = Integer.MAX_VALUE;
         this.values = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
@@ -75,14 +89,11 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         animatedTextDrawable.setTextColor(-1);
         if (isAtTop()) {
             animatedTextDrawable.setText(LocaleController.getString(R.string.MoveCaptionDown));
-            resources = context.getResources();
-            i = R.drawable.menu_link_below;
+            this.moveButtonIcon = context.getResources().getDrawable(R.drawable.menu_link_below);
         } else {
             animatedTextDrawable.setText(LocaleController.getString(R.string.MoveCaptionUp));
-            resources = context.getResources();
-            i = R.drawable.menu_link_above;
+            this.moveButtonIcon = context.getResources().getDrawable(R.drawable.menu_link_above);
         }
-        this.moveButtonIcon = resources.getDrawable(i);
         ImageView imageView = new ImageView(context);
         this.addPhotoButton = imageView;
         imageView.setImageResource(R.drawable.filled_add_photo);
@@ -116,12 +127,50 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         });
     }
 
-    public void lambda$new$0(int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CaptionPhotoViewer.lambda$new$0(int):void");
+    public void lambda$new$1(FrameLayout frameLayout, View view) {
+        String formatPluralString;
+        ItemOptions itemOptions = this.timerPopup;
+        if (itemOptions != null && itemOptions.isShown()) {
+            this.timerPopup.dismiss();
+            this.timerPopup = null;
+            return;
+        }
+        this.hint.hide();
+        ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), this.timerButton);
+        this.timerPopup = makeOptions;
+        makeOptions.setDimAlpha(0);
+        this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13, AndroidUtilities.dp(200.0f));
+        this.timerPopup.addGap();
+        for (final int i : this.values) {
+            if (i == 0) {
+                formatPluralString = LocaleController.getString(R.string.TimerPeriodDoNotDelete);
+            } else if (i == Integer.MAX_VALUE) {
+                formatPluralString = LocaleController.getString(R.string.TimerPeriodOnce);
+            } else {
+                formatPluralString = LocaleController.formatPluralString("Seconds", i, new Object[0]);
+            }
+            this.timerPopup.add(0, formatPluralString, new Runnable() {
+                @Override
+                public final void run() {
+                    CaptionPhotoViewer.this.lambda$new$0(i);
+                }
+            });
+            if (this.timer == i) {
+                this.timerPopup.putCheck();
+            }
+        }
+        this.timerPopup.show();
     }
 
-    public void lambda$new$1(android.widget.FrameLayout r7, android.view.View r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CaptionPhotoViewer.lambda$new$1(android.widget.FrameLayout, android.view.View):void");
+    public void expandMoveButton() {
+        AndroidUtilities.cancelRunOnUIThread(this.collapseMoveButton);
+        boolean shouldShowMoveCaptionHint = MessagesController.getInstance(this.currentAccount).shouldShowMoveCaptionHint();
+        this.moveButtonExpanded = shouldShowMoveCaptionHint;
+        if (shouldShowMoveCaptionHint) {
+            MessagesController.getInstance(this.currentAccount).incrementMoveCaptionHint();
+            invalidate();
+            AndroidUtilities.runOnUIThread(this.collapseMoveButton, 5000L);
+        }
     }
 
     public void lambda$new$2() {
@@ -131,57 +180,18 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }
     }
 
-    public void lambda$setAddPhotoVisible$3(boolean z) {
-        if (z) {
+    @Override
+    public void updateKeyboard(int i) {
+        boolean z = this.toKeyboardShow;
+        super.updateKeyboard(i);
+        if (z || !this.keyboardNotifier.keyboardVisible()) {
             return;
         }
-        this.timerButton.setVisibility(8);
-    }
-
-    public void lambda$setTimerVisible$4(boolean z) {
-        if (z) {
-            return;
-        }
-        this.timerButton.setVisibility(8);
-    }
-
-    @Override
-    protected int additionalKeyboardHeight() {
-        return 0;
-    }
-
-    @Override
-    protected void afterUpdateShownKeyboard(boolean z) {
-        this.timerButton.setVisibility((z || !this.timerVisible) ? 8 : 0);
-        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 0);
-        if (z) {
-            this.timerButton.setVisibility(8);
-            this.addPhotoButton.setVisibility(8);
-        }
-    }
-
-    @Override
-    protected void beforeUpdateShownKeyboard(boolean z) {
-        if (!z) {
-            this.timerButton.setVisibility(this.timerVisible ? 0 : 8);
-            this.addPhotoButton.setVisibility(this.addPhotoVisible ? 0 : 8);
-        }
-        HintView2 hintView2 = this.hint;
-        if (hintView2 != null) {
-            hintView2.hide();
-        }
-    }
-
-    @Override
-    protected boolean clipChild(View view) {
-        return view != this.hint;
+        openedKeyboard();
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        int i;
-        Paint paint;
-        int i2;
         super.dispatchDraw(canvas);
         float f = this.moveButtonAnimated.set(this.moveButtonVisible, !showMoveButton());
         float f2 = this.moveButtonExpandedAnimated.set(this.moveButtonExpanded);
@@ -201,31 +211,27 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             canvas.clipRect(this.moveButtonBounds);
             float dpf2 = AndroidUtilities.dpf2(8.33f);
             if (customBlur()) {
-                i = 0;
                 drawBlur(this.backgroundBlur, canvas, this.moveButtonBounds, dpf2, false, 0.0f, 0.0f, true, 1.0f);
-                paint = this.backgroundPaint;
-                i2 = 64;
+                this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 64, f));
+                canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
             } else {
-                i = 0;
                 Paint[] paints = this.backgroundBlur.getPaints(f, 0.0f, 0.0f);
                 if (paints == null || paints[1] == null) {
-                    paint = this.backgroundPaint;
-                    i2 = 128;
+                    this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 128, f));
+                    canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
                 } else {
-                    Paint paint2 = paints[0];
+                    Paint paint = paints[0];
+                    if (paint != null) {
+                        canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, paint);
+                    }
+                    Paint paint2 = paints[1];
                     if (paint2 != null) {
                         canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, paint2);
                     }
-                    Paint paint3 = paints[1];
-                    if (paint3 != null) {
-                        canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, paint3);
-                    }
-                    paint = this.backgroundPaint;
-                    i2 = 51;
+                    this.backgroundPaint.setAlpha(AndroidUtilities.lerp(0, 51, f));
+                    canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
                 }
             }
-            paint.setAlpha(AndroidUtilities.lerp(i, i2, f));
-            canvas.drawRoundRect(this.moveButtonBounds, dpf2, dpf2, this.backgroundPaint);
             this.moveButtonIcon.setBounds((int) (this.moveButtonBounds.left + AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.centerY() - AndroidUtilities.dp(9.0f)), (int) (this.moveButtonBounds.left + AndroidUtilities.dp(27.0f)), (int) (this.moveButtonBounds.centerY() + AndroidUtilities.dp(9.0f)));
             this.moveButtonIcon.draw(canvas);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.moveButtonText;
@@ -238,96 +244,9 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         }
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.moveButtonBounce.setPressed(this.moveButtonAnimated.get() > 0.0f && this.moveButtonBounds.contains(motionEvent.getX(), motionEvent.getY()));
-        } else if (motionEvent.getAction() == 2) {
-            if (this.moveButtonBounce.isPressed() && (this.moveButtonAnimated.get() <= 0.0f || !this.moveButtonBounds.contains(motionEvent.getX(), motionEvent.getY()))) {
-                this.moveButtonBounce.setPressed(false);
-            }
-        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.moveButtonBounce.isPressed()) {
-            if (motionEvent.getAction() == 1) {
-                onMoveButtonClick();
-                this.moveButtonText.setText(LocaleController.getString(isAtTop() ? R.string.MoveCaptionDown : R.string.MoveCaptionUp), true);
-            }
-            this.moveButtonBounce.setPressed(false);
-            return true;
-        }
-        return this.moveButtonBounce.isPressed() || super.dispatchTouchEvent(motionEvent);
+    public void setOnAddPhotoClick(View.OnClickListener onClickListener) {
+        this.addPhotoButton.setOnClickListener(onClickListener);
     }
-
-    public void expandMoveButton() {
-        AndroidUtilities.cancelRunOnUIThread(this.collapseMoveButton);
-        boolean shouldShowMoveCaptionHint = MessagesController.getInstance(this.currentAccount).shouldShowMoveCaptionHint();
-        this.moveButtonExpanded = shouldShowMoveCaptionHint;
-        if (shouldShowMoveCaptionHint) {
-            MessagesController.getInstance(this.currentAccount).incrementMoveCaptionHint();
-            invalidate();
-            AndroidUtilities.runOnUIThread(this.collapseMoveButton, 5000L);
-        }
-    }
-
-    @Override
-    protected int getCaptionDefaultLimit() {
-        return MessagesController.getInstance(this.currentAccount).captionLengthLimitDefault;
-    }
-
-    @Override
-    protected int getCaptionLimit() {
-        return UserConfig.getInstance(this.currentAccount).isPremium() ? getCaptionPremiumLimit() : getCaptionDefaultLimit();
-    }
-
-    @Override
-    protected int getCaptionPremiumLimit() {
-        return MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium;
-    }
-
-    @Override
-    public int getEditTextHeight() {
-        return super.getEditTextHeight();
-    }
-
-    @Override
-    protected int getEditTextLeft() {
-        if (this.addPhotoVisible) {
-            return AndroidUtilities.dp(31.0f);
-        }
-        return 0;
-    }
-
-    @Override
-    protected int getEditTextStyle() {
-        return 3;
-    }
-
-    public boolean hasTimer() {
-        return this.timerVisible && this.timer > 0;
-    }
-
-    @Override
-    protected void onEditHeightChange(int i) {
-        this.hint.setTranslationY(((-Math.min(AndroidUtilities.dp(34.0f), i)) - AndroidUtilities.dp(10.0f)) * (isAtTop() ? -1.0f : 1.0f));
-    }
-
-    protected abstract void onMoveButtonClick();
-
-    @Override
-    public void lambda$new$1() {
-        Runnable runnable = this.applyCaption;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public void onUpdateShowKeyboard(float f) {
-        float f2 = 1.0f - f;
-        this.timerButton.setAlpha(f2);
-        this.addPhotoButton.setAlpha(f2);
-    }
-
-    protected abstract void openedKeyboard();
 
     public void setAddPhotoVisible(final boolean z, boolean z2) {
         this.addPhotoVisible = z;
@@ -355,35 +274,30 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.editText.setLayoutParams(marginLayoutParams);
     }
 
+    public void lambda$setAddPhotoVisible$3(boolean z) {
+        if (z) {
+            return;
+        }
+        this.timerButton.setVisibility(8);
+    }
+
+    @Override
+    protected int getEditTextLeft() {
+        if (this.addPhotoVisible) {
+            return AndroidUtilities.dp(31.0f);
+        }
+        return 0;
+    }
+
     public void setIsVideo(boolean z) {
         this.isVideo = z;
     }
 
-    public void setOnAddPhotoClick(View.OnClickListener onClickListener) {
-        this.addPhotoButton.setOnClickListener(onClickListener);
-    }
-
-    public void setOnTimerChange(Utilities.Callback<Integer> callback) {
-        this.onTTLChange = callback;
-    }
-
-    public void setShowMoveButtonVisible(boolean z, boolean z2) {
-        if (this.moveButtonVisible == z && z2) {
-            return;
-        }
-        this.moveButtonVisible = z;
-        if (!z2) {
-            this.moveButtonAnimated.set(z, true);
-        }
-        invalidate();
-    }
-
-    public void setTimer(int i) {
-        this.timer = i;
-        this.timerDrawable.setValue(i == Integer.MAX_VALUE ? 1 : Math.max(1, i), this.timer > 0, true);
-        HintView2 hintView2 = this.hint;
-        if (hintView2 != null) {
-            hintView2.hide();
+    @Override
+    public void lambda$new$1() {
+        Runnable runnable = this.applyCaption;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 
@@ -412,7 +326,131 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.editText.setLayoutParams(marginLayoutParams);
     }
 
-    protected abstract boolean showMoveButton();
+    public void lambda$setTimerVisible$4(boolean z) {
+        if (z) {
+            return;
+        }
+        this.timerButton.setVisibility(8);
+    }
+
+    public boolean hasTimer() {
+        return this.timerVisible && this.timer > 0;
+    }
+
+    public void setTimer(int i) {
+        this.timer = i;
+        this.timerDrawable.setValue(i == Integer.MAX_VALUE ? 1 : Math.max(1, i), this.timer > 0, true);
+        HintView2 hintView2 = this.hint;
+        if (hintView2 != null) {
+            hintView2.hide();
+        }
+    }
+
+    public void lambda$new$0(int i) {
+        CharSequence replaceTags;
+        if (this.timer == i) {
+            return;
+        }
+        setTimer(i);
+        Utilities.Callback callback = this.onTTLChange;
+        if (callback != null) {
+            callback.run(Integer.valueOf(i));
+        }
+        if (i == 0) {
+            replaceTags = LocaleController.getString(this.isVideo ? R.string.TimerPeriodVideoKeep : R.string.TimerPeriodPhotoKeep);
+            this.hint.setMaxWidthPx(getMeasuredWidth());
+            this.hint.setMultilineText(false);
+            this.hint.setInnerPadding(13.0f, 4.0f, 10.0f, 4.0f);
+            this.hint.setIconMargin(0);
+            this.hint.setIconTranslate(0.0f, -AndroidUtilities.dp(1.0f));
+        } else if (i == Integer.MAX_VALUE) {
+            replaceTags = LocaleController.getString(this.isVideo ? R.string.TimerPeriodVideoSetOnce : R.string.TimerPeriodPhotoSetOnce);
+            this.hint.setMaxWidthPx(getMeasuredWidth());
+            this.hint.setMultilineText(false);
+            this.hint.setInnerPadding(13.0f, 4.0f, 10.0f, 4.0f);
+            this.hint.setIconMargin(0);
+            this.hint.setIconTranslate(0.0f, -AndroidUtilities.dp(1.0f));
+        } else {
+            if (i <= 0) {
+                return;
+            }
+            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(this.isVideo ? "TimerPeriodVideoSetSeconds" : "TimerPeriodPhotoSetSeconds", i, new Object[0]));
+            this.hint.setMultilineText(true);
+            HintView2 hintView2 = this.hint;
+            hintView2.setMaxWidthPx(HintView2.cutInFancyHalf(replaceTags, hintView2.getTextPaint()));
+            this.hint.setInnerPadding(12.0f, 7.0f, 11.0f, 7.0f);
+            this.hint.setIconMargin(2);
+            this.hint.setIconTranslate(0.0f, 0.0f);
+        }
+        this.hint.setTranslationY(((-Math.min(AndroidUtilities.dp(34.0f), getEditTextHeight())) - AndroidUtilities.dp(14.0f)) * (isAtTop() ? -1.0f : 1.0f));
+        this.hint.setText(replaceTags);
+        int i2 = i > 0 ? R.raw.fire_on : R.raw.fire_off;
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        rLottieDrawable.start();
+        this.hint.setIcon(rLottieDrawable);
+        this.hint.show();
+        this.moveButtonExpanded = false;
+        AndroidUtilities.cancelRunOnUIThread(this.collapseMoveButton);
+        invalidate();
+    }
+
+    @Override
+    protected void onEditHeightChange(int i) {
+        this.hint.setTranslationY(((-Math.min(AndroidUtilities.dp(34.0f), i)) - AndroidUtilities.dp(10.0f)) * (isAtTop() ? -1.0f : 1.0f));
+    }
+
+    @Override
+    protected boolean clipChild(View view) {
+        return view != this.hint;
+    }
+
+    public void setOnTimerChange(Utilities.Callback<Integer> callback) {
+        this.onTTLChange = callback;
+    }
+
+    @Override
+    protected int getCaptionLimit() {
+        return UserConfig.getInstance(this.currentAccount).isPremium() ? getCaptionPremiumLimit() : getCaptionDefaultLimit();
+    }
+
+    @Override
+    protected int getCaptionDefaultLimit() {
+        return MessagesController.getInstance(this.currentAccount).captionLengthLimitDefault;
+    }
+
+    @Override
+    protected int getCaptionPremiumLimit() {
+        return MessagesController.getInstance(this.currentAccount).captionLengthLimitPremium;
+    }
+
+    @Override
+    protected void beforeUpdateShownKeyboard(boolean z) {
+        if (!z) {
+            this.timerButton.setVisibility(this.timerVisible ? 0 : 8);
+            this.addPhotoButton.setVisibility(this.addPhotoVisible ? 0 : 8);
+        }
+        HintView2 hintView2 = this.hint;
+        if (hintView2 != null) {
+            hintView2.hide();
+        }
+    }
+
+    @Override
+    public void onUpdateShowKeyboard(float f) {
+        float f2 = 1.0f - f;
+        this.timerButton.setAlpha(f2);
+        this.addPhotoButton.setAlpha(f2);
+    }
+
+    @Override
+    protected void afterUpdateShownKeyboard(boolean z) {
+        this.timerButton.setVisibility((z || !this.timerVisible) ? 8 : 0);
+        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 0);
+        if (z) {
+            this.timerButton.setVisibility(8);
+            this.addPhotoButton.setVisibility(8);
+        }
+    }
 
     @Override
     public void updateColors(Theme.ResourcesProvider resourcesProvider) {
@@ -420,13 +458,38 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         this.timerDrawable.updateColors(-1, Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider), -1);
     }
 
-    @Override
-    public void updateKeyboard(int i) {
-        boolean z = this.toKeyboardShow;
-        super.updateKeyboard(i);
-        if (z || !this.keyboardNotifier.keyboardVisible()) {
+    public void setShowMoveButtonVisible(boolean z, boolean z2) {
+        if (this.moveButtonVisible == z && z2) {
             return;
         }
-        openedKeyboard();
+        this.moveButtonVisible = z;
+        if (!z2) {
+            this.moveButtonAnimated.set(z, true);
+        }
+        invalidate();
+    }
+
+    @Override
+    public int getEditTextHeight() {
+        return super.getEditTextHeight();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.moveButtonBounce.setPressed(this.moveButtonAnimated.get() > 0.0f && this.moveButtonBounds.contains(motionEvent.getX(), motionEvent.getY()));
+        } else if (motionEvent.getAction() == 2) {
+            if (this.moveButtonBounce.isPressed() && (this.moveButtonAnimated.get() <= 0.0f || !this.moveButtonBounds.contains(motionEvent.getX(), motionEvent.getY()))) {
+                this.moveButtonBounce.setPressed(false);
+            }
+        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.moveButtonBounce.isPressed()) {
+            if (motionEvent.getAction() == 1) {
+                onMoveButtonClick();
+                this.moveButtonText.setText(LocaleController.getString(isAtTop() ? R.string.MoveCaptionDown : R.string.MoveCaptionUp), true);
+            }
+            this.moveButtonBounce.setPressed(false);
+            return true;
+        }
+        return this.moveButtonBounce.isPressed() || super.dispatchTouchEvent(motionEvent);
     }
 }

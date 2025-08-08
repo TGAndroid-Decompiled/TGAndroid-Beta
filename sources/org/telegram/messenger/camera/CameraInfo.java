@@ -23,20 +23,20 @@ public class CameraInfo {
         this.frontCamera = i2;
     }
 
-    private Camera getCamera() {
-        return this.camera;
-    }
-
     public int getCameraId() {
         return this.cameraId;
     }
 
-    public ArrayList<Size> getPictureSizes() {
-        return this.pictureSizes;
+    private Camera getCamera() {
+        return this.camera;
     }
 
     public ArrayList<Size> getPreviewSizes() {
         return this.previewSizes;
+    }
+
+    public ArrayList<Size> getPictureSizes() {
+        return this.pictureSizes;
     }
 
     public boolean isFrontface() {

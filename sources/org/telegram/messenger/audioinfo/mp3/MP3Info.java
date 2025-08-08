@@ -100,49 +100,6 @@ public class MP3Info extends AudioInfo {
         }
     }
 
-    long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) {
-        MP3Frame.Header header;
-        long j2;
-        MP3Frame readFirstFrame = readFirstFrame(mP3Input, stopReadCondition);
-        if (readFirstFrame == null) {
-            throw new MP3Exception("No audio frame");
-        }
-        int numberOfFrames = readFirstFrame.getNumberOfFrames();
-        if (numberOfFrames <= 0) {
-            long position = mP3Input.getPosition() - readFirstFrame.getSize();
-            long size = readFirstFrame.getSize();
-            int bitrate = readFirstFrame.getHeader().getBitrate();
-            long j3 = bitrate;
-            int duration = 10000 / readFirstFrame.getHeader().getDuration();
-            boolean z = false;
-            int i = 1;
-            while (true) {
-                if (i == duration && !z && j > 0) {
-                    header = readFirstFrame.getHeader();
-                    j2 = j - position;
-                    break;
-                }
-                readFirstFrame = readNextFrame(mP3Input, stopReadCondition, readFirstFrame);
-                if (readFirstFrame == null) {
-                    return (((size * 1000) * i) * 8) / j3;
-                }
-                int bitrate2 = readFirstFrame.getHeader().getBitrate();
-                int i2 = duration;
-                if (bitrate2 != bitrate) {
-                    z = true;
-                }
-                j3 += bitrate2;
-                size += readFirstFrame.getSize();
-                i++;
-                duration = i2;
-            }
-        } else {
-            header = readFirstFrame.getHeader();
-            j2 = numberOfFrames * readFirstFrame.getSize();
-        }
-        return header.getTotalDuration(j2);
-    }
-
     org.telegram.messenger.audioinfo.mp3.MP3Frame readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input r13, org.telegram.messenger.audioinfo.mp3.MP3Info.StopReadCondition r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.MP3Info.readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input, org.telegram.messenger.audioinfo.mp3.MP3Info$StopReadCondition):org.telegram.messenger.audioinfo.mp3.MP3Frame");
     }
@@ -182,5 +139,42 @@ public class MP3Info extends AudioInfo {
             mP3Input.reset();
         }
         return null;
+    }
+
+    long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) {
+        MP3Frame readFirstFrame = readFirstFrame(mP3Input, stopReadCondition);
+        if (readFirstFrame != null) {
+            if (readFirstFrame.getNumberOfFrames() > 0) {
+                return readFirstFrame.getHeader().getTotalDuration(r4 * readFirstFrame.getSize());
+            }
+            long position = mP3Input.getPosition() - readFirstFrame.getSize();
+            long size = readFirstFrame.getSize();
+            int bitrate = readFirstFrame.getHeader().getBitrate();
+            long j2 = bitrate;
+            int duration = 10000 / readFirstFrame.getHeader().getDuration();
+            boolean z = false;
+            int i = 1;
+            while (true) {
+                if (i == duration && !z && j > 0) {
+                    return readFirstFrame.getHeader().getTotalDuration(j - position);
+                }
+                readFirstFrame = readNextFrame(mP3Input, stopReadCondition, readFirstFrame);
+                if (readFirstFrame != null) {
+                    int bitrate2 = readFirstFrame.getHeader().getBitrate();
+                    int i2 = duration;
+                    if (bitrate2 != bitrate) {
+                        z = true;
+                    }
+                    j2 += bitrate2;
+                    size += readFirstFrame.getSize();
+                    i++;
+                    duration = i2;
+                } else {
+                    return (((size * 1000) * i) * 8) / j2;
+                }
+            }
+        } else {
+            throw new MP3Exception("No audio frame");
+        }
     }
 }

@@ -19,26 +19,26 @@ public class FolderDrawable extends Drawable {
 
     public FolderDrawable(Context context, int i, int i2) {
         this.drawable = context.getResources().getDrawable(i);
-        if (i2 < 0) {
-            this.path = null;
-            this.strokePaint = null;
-            this.fillPaint = null;
+        if (i2 >= 0) {
+            this.path = new Path();
+            Paint paint = new Paint(1);
+            this.strokePaint = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            Paint paint2 = new Paint(1);
+            this.fillPaint = paint2;
+            paint2.setStyle(Paint.Style.FILL);
+            int[] iArr = Theme.keys_avatar_nameInMessage;
+            paint2.setColor(Theme.getColor(iArr[i2 % iArr.length]));
+            paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
             return;
         }
-        this.path = new Path();
-        Paint paint = new Paint(1);
-        this.strokePaint = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Theme.getColor(Theme.key_dialogBackground));
-        paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        Paint paint2 = new Paint(1);
-        this.fillPaint = paint2;
-        paint2.setStyle(Paint.Style.FILL);
-        int[] iArr = Theme.keys_avatar_nameInMessage;
-        paint2.setColor(Theme.getColor(iArr[i2 % iArr.length]));
-        paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+        this.path = null;
+        this.strokePaint = null;
+        this.fillPaint = null;
     }
 
     @Override
@@ -63,24 +63,12 @@ public class FolderDrawable extends Drawable {
         }
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        return this.drawable.getIntrinsicHeight();
+    int x(float f) {
+        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f);
     }
 
-    @Override
-    public int getIntrinsicWidth() {
-        return this.drawable.getIntrinsicWidth();
-    }
-
-    @Override
-    public int getOpacity() {
-        return this.drawable.getOpacity();
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.drawable.setAlpha(i);
+    int y(float f) {
+        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f);
     }
 
     @Override
@@ -90,15 +78,27 @@ public class FolderDrawable extends Drawable {
     }
 
     @Override
+    public void setAlpha(int i) {
+        this.drawable.setAlpha(i);
+    }
+
+    @Override
     public void setColorFilter(ColorFilter colorFilter) {
         this.drawable.setColorFilter(colorFilter);
     }
 
-    int x(float f) {
-        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f);
+    @Override
+    public int getOpacity() {
+        return this.drawable.getOpacity();
     }
 
-    int y(float f) {
-        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f);
+    @Override
+    public int getIntrinsicWidth() {
+        return this.drawable.getIntrinsicWidth();
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return this.drawable.getIntrinsicHeight();
     }
 }

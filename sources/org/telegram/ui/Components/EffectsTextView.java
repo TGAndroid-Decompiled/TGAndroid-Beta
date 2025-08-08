@@ -36,14 +36,32 @@ public class EffectsTextView extends SpoilersTextView {
         this.resourcesProvider = resourcesProvider;
     }
 
-    public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
-        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
-        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
-            return;
-        }
-        onLinkPress.run(clickableSpan);
-        this.pressedLink = null;
-        this.links.clear();
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    }
+
+    @Override
+    public void setDisablePaddingsOffset(boolean z) {
+        this.disablePaddingsOffset = z;
+    }
+
+    @Override
+    public void setDisablePaddingsOffsetX(boolean z) {
+        this.disablePaddingsOffsetX = z;
+    }
+
+    @Override
+    public void setDisablePaddingsOffsetY(boolean z) {
+        this.disablePaddingsOffsetY = z;
+    }
+
+    public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
+        this.onPressListener = onLinkPress;
+    }
+
+    public void setOnLinkLongPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
+        this.onLongPressListener = onLinkPress;
     }
 
     @Override
@@ -65,21 +83,6 @@ public class EffectsTextView extends SpoilersTextView {
             }
         }
         return null;
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (!this.isCustomLinkCollector) {
-            canvas.save();
-            if (!this.disablePaddingsOffset) {
-                canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
-            }
-            if (this.links.draw(canvas)) {
-                invalidate();
-            }
-            canvas.restore();
-        }
-        super.onDraw(canvas);
     }
 
     @Override
@@ -128,31 +131,28 @@ public class EffectsTextView extends SpoilersTextView {
         return this.pressedLink != null || super.onTouchEvent(motionEvent);
     }
 
-    @Override
-    public void setDisablePaddingsOffset(boolean z) {
-        this.disablePaddingsOffset = z;
+    public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
+        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+            return;
+        }
+        onLinkPress.run(clickableSpan);
+        this.pressedLink = null;
+        this.links.clear();
     }
 
     @Override
-    public void setDisablePaddingsOffsetX(boolean z) {
-        this.disablePaddingsOffsetX = z;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetY(boolean z) {
-        this.disablePaddingsOffsetY = z;
-    }
-
-    public void setOnLinkLongPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
-        this.onLongPressListener = onLinkPress;
-    }
-
-    public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
-        this.onPressListener = onLinkPress;
-    }
-
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    protected void onDraw(Canvas canvas) {
+        if (!this.isCustomLinkCollector) {
+            canvas.save();
+            if (!this.disablePaddingsOffset) {
+                canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
+            }
+            if (this.links.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
+        super.onDraw(canvas);
     }
 }

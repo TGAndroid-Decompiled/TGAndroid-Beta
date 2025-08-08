@@ -23,96 +23,10 @@ public class HashtagSearchController {
     private final SearchResult localPostsSearch;
     private final SearchResult myMessagesSearch;
 
-    public static final class MessageCompositeID {
-        final long dialog_id;
-        final int id;
-
-        MessageCompositeID(long j, int i) {
-            this.dialog_id = j;
-            this.id = i;
-        }
-
-        MessageCompositeID(TLRPC.Message message) {
-            this(MessageObject.getDialogId(message), message.id);
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || MessageCompositeID.class != obj.getClass()) {
-                return false;
-            }
-            MessageCompositeID messageCompositeID = (MessageCompositeID) obj;
-            return this.dialog_id == messageCompositeID.dialog_id && this.id == messageCompositeID.id;
-        }
-
-        public int hashCode() {
-            return Objects.hash(Long.valueOf(this.dialog_id), Integer.valueOf(this.id));
-        }
-    }
-
-    public static class SearchResult {
-        public Runnable cancel;
-        public int count;
-        private final int currentAccount;
-        public boolean endReached;
-        public String lastHashtag;
-        public int lastOffsetId;
-        public TLRPC.Peer lastOffsetPeer;
-        public int lastOffsetRate;
-        public boolean loading;
-        public int selectedIndex;
-        public final ArrayList<MessageObject> messages = new ArrayList<>();
-        public final HashMap<MessageCompositeID, Integer> generatedIds = new HashMap<>();
-        public int reqId = -1;
-        public int lastGeneratedId = Integer.MAX_VALUE;
-
-        public SearchResult(int i) {
-            this.currentAccount = i;
-        }
-
-        void clear() {
-            if (this.reqId >= 0) {
-                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
-                this.reqId = -1;
-            }
-            Runnable runnable = this.cancel;
-            if (runnable != null) {
-                runnable.run();
-                this.cancel = null;
-            }
-            this.messages.clear();
-            this.generatedIds.clear();
-            this.lastOffsetRate = 0;
-            this.lastOffsetId = 0;
-            this.lastOffsetPeer = null;
-            this.lastGeneratedId = 2147483637;
-            this.lastHashtag = null;
-            this.selectedIndex = 0;
-            this.count = 0;
-            this.endReached = false;
-        }
-
-        int getMask() {
-            int i = this.selectedIndex >= this.messages.size() - 1 ? 0 : 1;
-            return this.selectedIndex > 0 ? i | 2 : i;
-        }
-    }
-
     static {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
-    }
-
-    private HashtagSearchController(int i) {
-        this.currentAccount = i;
-        this.myMessagesSearch = new SearchResult(i);
-        this.channelPostsSearch = new SearchResult(i);
-        this.localPostsSearch = new SearchResult(i);
-        this.historyPreferences = ApplicationLoader.applicationContext.getSharedPreferences("hashtag_search_history" + i, 0);
-        loadHistoryFromPref();
     }
 
     public static HashtagSearchController getInstance(int i) {
@@ -134,79 +48,13 @@ public class HashtagSearchController {
         return hashtagSearchController;
     }
 
-    public void lambda$searchHashtag$0(SearchResult searchResult, String str, String str2, Runnable[] runnableArr, int i, int i2, int i3, Long l) {
-        if (TextUtils.equals(searchResult.lastHashtag, str)) {
-            if (MessagesController.getInstance(this.currentAccount).getUserOrChat(str2) != null) {
-                searchHashtag(str, i, i2, i3);
-                return;
-            }
-            if (runnableArr[0] == searchResult.cancel) {
-                searchResult.cancel = null;
-                searchResult.loading = false;
-                searchResult.endReached = true;
-                searchResult.count = 0;
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), 0);
-            }
-        }
-    }
-
-    public void lambda$searchHashtag$1(int[] iArr, SearchResult searchResult, TLRPC.messages_Messages messages_messages, ArrayList arrayList, int i, int i2, int i3) {
-        if (iArr[0] == searchResult.reqId) {
-            searchResult.reqId = -1;
-            searchResult.loading = false;
-            searchResult.lastOffsetRate = messages_messages.next_rate;
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                MessageObject messageObject = (MessageObject) it.next();
-                MessageCompositeID messageCompositeID = new MessageCompositeID(messageObject.messageOwner);
-                Integer num = searchResult.generatedIds.get(messageCompositeID);
-                if (num == null) {
-                    int i4 = searchResult.lastGeneratedId;
-                    searchResult.lastGeneratedId = i4 - 1;
-                    num = Integer.valueOf(i4);
-                    searchResult.generatedIds.put(messageCompositeID, num);
-                    searchResult.messages.add(messageObject);
-                }
-                TLRPC.Message message = messageObject.messageOwner;
-                message.realId = message.id;
-                message.id = num.intValue();
-            }
-            if (!messages_messages.messages.isEmpty()) {
-                ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
-                TLRPC.Message message2 = arrayList2.get(arrayList2.size() - 1);
-                searchResult.lastOffsetId = message2.realId;
-                searchResult.lastOffsetPeer = message2.peer_id;
-            }
-            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-            MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
-            searchResult.endReached = messages_messages.messages.size() < i;
-            searchResult.count = Math.max(messages_messages.count, messages_messages.messages.size());
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDidLoad, 0L, Integer.valueOf(arrayList.size()), arrayList, Boolean.FALSE, 0, 0, 0, 0, 2, Boolean.TRUE, Integer.valueOf(i2), Integer.valueOf(i3), 0, 0, 7);
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i2), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), 0);
-        }
-    }
-
-    public void lambda$searchHashtag$2(int i, String str, final int[] iArr, final SearchResult searchResult, final int i2, final int i3, final int i4, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tLObject instanceof TLRPC.messages_Messages) {
-            final TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            final ArrayList arrayList = new ArrayList();
-            Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-            while (it.hasNext()) {
-                MessageObject messageObject = new MessageObject(this.currentAccount, it.next(), null, null, null, null, null, true, true, 0L, false, false, false, i);
-                if (messageObject.hasValidGroupId()) {
-                    messageObject.isPrimaryGroupMessage = true;
-                }
-                messageObject.setQuery(str, false);
-                arrayList.add(messageObject);
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    HashtagSearchController.this.lambda$searchHashtag$1(iArr, searchResult, messages_messages, arrayList, i2, i3, i4);
-                }
-            });
-        }
+    private HashtagSearchController(int i) {
+        this.currentAccount = i;
+        this.myMessagesSearch = new SearchResult(i);
+        this.channelPostsSearch = new SearchResult(i);
+        this.localPostsSearch = new SearchResult(i);
+        this.historyPreferences = ApplicationLoader.applicationContext.getSharedPreferences("hashtag_search_history" + i, 0);
+        loadHistoryFromPref();
     }
 
     private void loadHistoryFromPref() {
@@ -232,54 +80,6 @@ public class HashtagSearchController {
         edit.apply();
     }
 
-    public void clearHistory() {
-        this.history.clear();
-        saveHistoryToPref();
-    }
-
-    public void clearSearchResults() {
-        this.myMessagesSearch.clear();
-        this.channelPostsSearch.clear();
-    }
-
-    public void clearSearchResults(int i) {
-        getSearchResult(i).clear();
-    }
-
-    public int getCount(int i) {
-        return getSearchResult(i).count;
-    }
-
-    public ArrayList<MessageObject> getMessages(int i) {
-        return getSearchResult(i).messages;
-    }
-
-    public SearchResult getSearchResult(int i) {
-        if (i == 1) {
-            return this.myMessagesSearch;
-        }
-        if (i == 2) {
-            return this.channelPostsSearch;
-        }
-        if (i == 3) {
-            return this.localPostsSearch;
-        }
-        throw new RuntimeException("Unknown search type");
-    }
-
-    public boolean isEndReached(int i) {
-        return getSearchResult(i).endReached;
-    }
-
-    public void jumpToMessage(int i, int i2, int i3) {
-        SearchResult searchResult = getSearchResult(i3);
-        if (i2 < 0 || i2 >= searchResult.messages.size()) {
-            return;
-        }
-        searchResult.selectedIndex = i2;
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), Integer.valueOf(searchResult.messages.get(i2).messageOwner.id));
-    }
-
     public void putToHistory(String str) {
         if (str.startsWith("#") || str.startsWith("$")) {
             int indexOf = this.history.indexOf(str);
@@ -299,12 +99,42 @@ public class HashtagSearchController {
         }
     }
 
+    public void clearHistory() {
+        this.history.clear();
+        saveHistoryToPref();
+    }
+
     public void removeHashtagFromHistory(String str) {
         int indexOf = this.history.indexOf(str);
         if (indexOf != -1) {
             this.history.remove(indexOf);
             saveHistoryToPref();
         }
+    }
+
+    public SearchResult getSearchResult(int i) {
+        if (i == 1) {
+            return this.myMessagesSearch;
+        }
+        if (i == 2) {
+            return this.channelPostsSearch;
+        }
+        if (i == 3) {
+            return this.localPostsSearch;
+        }
+        throw new RuntimeException("Unknown search type");
+    }
+
+    public ArrayList<MessageObject> getMessages(int i) {
+        return getSearchResult(i).messages;
+    }
+
+    public int getCount(int i) {
+        return getSearchResult(i).count;
+    }
+
+    public boolean isEndReached(int i) {
+        return getSearchResult(i).endReached;
     }
 
     public void searchHashtag(String str, final int i, final int i2, final int i3) {
@@ -407,6 +237,177 @@ public class HashtagSearchController {
             });
             searchResult.reqId = sendRequest2;
             final int[] iArr2 = {sendRequest2};
+        }
+    }
+
+    public void lambda$searchHashtag$0(SearchResult searchResult, String str, String str2, Runnable[] runnableArr, int i, int i2, int i3, Long l) {
+        if (TextUtils.equals(searchResult.lastHashtag, str)) {
+            if (MessagesController.getInstance(this.currentAccount).getUserOrChat(str2) == null) {
+                if (runnableArr[0] == searchResult.cancel) {
+                    searchResult.cancel = null;
+                    searchResult.loading = false;
+                    searchResult.endReached = true;
+                    searchResult.count = 0;
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), 0);
+                    return;
+                }
+                return;
+            }
+            searchHashtag(str, i, i2, i3);
+        }
+    }
+
+    public void lambda$searchHashtag$2(int i, String str, final int[] iArr, final SearchResult searchResult, final int i2, final int i3, final int i4, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.messages_Messages) {
+            final TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+            final ArrayList arrayList = new ArrayList();
+            Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
+            while (it.hasNext()) {
+                MessageObject messageObject = new MessageObject(this.currentAccount, it.next(), null, null, null, null, null, true, true, 0L, false, false, false, i);
+                if (messageObject.hasValidGroupId()) {
+                    messageObject.isPrimaryGroupMessage = true;
+                }
+                messageObject.setQuery(str, false);
+                arrayList.add(messageObject);
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    HashtagSearchController.this.lambda$searchHashtag$1(iArr, searchResult, messages_messages, arrayList, i2, i3, i4);
+                }
+            });
+        }
+    }
+
+    public void lambda$searchHashtag$1(int[] iArr, SearchResult searchResult, TLRPC.messages_Messages messages_messages, ArrayList arrayList, int i, int i2, int i3) {
+        if (iArr[0] == searchResult.reqId) {
+            searchResult.reqId = -1;
+            searchResult.loading = false;
+            searchResult.lastOffsetRate = messages_messages.next_rate;
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                MessageObject messageObject = (MessageObject) it.next();
+                MessageCompositeID messageCompositeID = new MessageCompositeID(messageObject.messageOwner);
+                Integer num = searchResult.generatedIds.get(messageCompositeID);
+                if (num == null) {
+                    int i4 = searchResult.lastGeneratedId;
+                    searchResult.lastGeneratedId = i4 - 1;
+                    num = Integer.valueOf(i4);
+                    searchResult.generatedIds.put(messageCompositeID, num);
+                    searchResult.messages.add(messageObject);
+                }
+                TLRPC.Message message = messageObject.messageOwner;
+                message.realId = message.id;
+                message.id = num.intValue();
+            }
+            if (!messages_messages.messages.isEmpty()) {
+                ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
+                TLRPC.Message message2 = arrayList2.get(arrayList2.size() - 1);
+                searchResult.lastOffsetId = message2.realId;
+                searchResult.lastOffsetPeer = message2.peer_id;
+            }
+            MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
+            MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
+            searchResult.endReached = messages_messages.messages.size() < i;
+            searchResult.count = Math.max(messages_messages.count, messages_messages.messages.size());
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDidLoad, 0L, Integer.valueOf(arrayList.size()), arrayList, Boolean.FALSE, 0, 0, 0, 0, 2, Boolean.TRUE, Integer.valueOf(i2), Integer.valueOf(i3), 0, 0, 7);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i2), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), 0);
+        }
+    }
+
+    public void jumpToMessage(int i, int i2, int i3) {
+        SearchResult searchResult = getSearchResult(i3);
+        if (i2 < 0 || i2 >= searchResult.messages.size()) {
+            return;
+        }
+        searchResult.selectedIndex = i2;
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), Integer.valueOf(searchResult.messages.get(i2).messageOwner.id));
+    }
+
+    public void clearSearchResults() {
+        this.myMessagesSearch.clear();
+        this.channelPostsSearch.clear();
+    }
+
+    public void clearSearchResults(int i) {
+        getSearchResult(i).clear();
+    }
+
+    public static final class MessageCompositeID {
+        final long dialog_id;
+        final int id;
+
+        MessageCompositeID(TLRPC.Message message) {
+            this(MessageObject.getDialogId(message), message.id);
+        }
+
+        MessageCompositeID(long j, int i) {
+            this.dialog_id = j;
+            this.id = i;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || MessageCompositeID.class != obj.getClass()) {
+                return false;
+            }
+            MessageCompositeID messageCompositeID = (MessageCompositeID) obj;
+            return this.dialog_id == messageCompositeID.dialog_id && this.id == messageCompositeID.id;
+        }
+
+        public int hashCode() {
+            return Objects.hash(Long.valueOf(this.dialog_id), Integer.valueOf(this.id));
+        }
+    }
+
+    public static class SearchResult {
+        public Runnable cancel;
+        public int count;
+        private final int currentAccount;
+        public boolean endReached;
+        public String lastHashtag;
+        public int lastOffsetId;
+        public TLRPC.Peer lastOffsetPeer;
+        public int lastOffsetRate;
+        public boolean loading;
+        public int selectedIndex;
+        public final ArrayList<MessageObject> messages = new ArrayList<>();
+        public final HashMap<MessageCompositeID, Integer> generatedIds = new HashMap<>();
+        public int reqId = -1;
+        public int lastGeneratedId = Integer.MAX_VALUE;
+
+        public SearchResult(int i) {
+            this.currentAccount = i;
+        }
+
+        int getMask() {
+            int i = this.selectedIndex >= this.messages.size() - 1 ? 0 : 1;
+            return this.selectedIndex > 0 ? i | 2 : i;
+        }
+
+        void clear() {
+            if (this.reqId >= 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
+                this.reqId = -1;
+            }
+            Runnable runnable = this.cancel;
+            if (runnable != null) {
+                runnable.run();
+                this.cancel = null;
+            }
+            this.messages.clear();
+            this.generatedIds.clear();
+            this.lastOffsetRate = 0;
+            this.lastOffsetId = 0;
+            this.lastOffsetPeer = null;
+            this.lastGeneratedId = 2147483637;
+            this.lastHashtag = null;
+            this.selectedIndex = 0;
+            this.count = 0;
+            this.endReached = false;
         }
     }
 }

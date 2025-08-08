@@ -5,12 +5,22 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 class VLog {
-    VLog() {
-    }
-
     public static native void d(String str);
 
     public static native void e(String str);
+
+    public static native void i(String str);
+
+    public static native void v(String str);
+
+    public static native void w(String str);
+
+    VLog() {
+    }
+
+    public static void e(Throwable th) {
+        e(null, th);
+    }
 
     public static void e(String str, Throwable th) {
         StringWriter stringWriter = new StringWriter();
@@ -24,14 +34,4 @@ class VLog {
             e(str2);
         }
     }
-
-    public static void e(Throwable th) {
-        e(null, th);
-    }
-
-    public static native void i(String str);
-
-    public static native void v(String str);
-
-    public static native void w(String str);
 }

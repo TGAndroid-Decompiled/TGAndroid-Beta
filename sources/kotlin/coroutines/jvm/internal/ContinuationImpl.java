@@ -9,13 +9,13 @@ public abstract class ContinuationImpl extends BaseContinuationImpl {
     private final CoroutineContext _context;
     private transient Continuation intercepted;
 
-    public ContinuationImpl(Continuation continuation) {
-        this(continuation, continuation != null ? continuation.getContext() : null);
-    }
-
     public ContinuationImpl(Continuation continuation, CoroutineContext coroutineContext) {
         super(continuation);
         this._context = coroutineContext;
+    }
+
+    public ContinuationImpl(Continuation continuation) {
+        this(continuation, continuation != null ? continuation.getContext() : null);
     }
 
     @Override

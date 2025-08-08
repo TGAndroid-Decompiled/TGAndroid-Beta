@@ -9,27 +9,14 @@ import java.lang.reflect.Field;
 public abstract class CastMediaRouteButton extends MediaRouteButton {
     private boolean lastConnected;
 
+    @Override
+    public void setBackground(Drawable drawable) {
+    }
+
+    public abstract void stateUpdated(boolean z);
+
     public CastMediaRouteButton(Context context) {
         super(context);
-    }
-
-    private void checkConnected() {
-        boolean isConnected = isConnected();
-        if (this.lastConnected != isConnected) {
-            this.lastConnected = isConnected;
-            stateUpdated(isConnected);
-        }
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        checkConnected();
-    }
-
-    @Override
-    public void invalidate() {
-        super.invalidate();
-        checkConnected();
     }
 
     public boolean isConnected() {
@@ -43,8 +30,7 @@ public abstract class CastMediaRouteButton extends MediaRouteButton {
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    protected void dispatchDraw(Canvas canvas) {
         checkConnected();
     }
 
@@ -54,8 +40,22 @@ public abstract class CastMediaRouteButton extends MediaRouteButton {
     }
 
     @Override
-    public void setBackground(Drawable drawable) {
+    public void invalidate() {
+        super.invalidate();
+        checkConnected();
     }
 
-    public abstract void stateUpdated(boolean z);
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        checkConnected();
+    }
+
+    private void checkConnected() {
+        boolean isConnected = isConnected();
+        if (this.lastConnected != isConnected) {
+            this.lastConnected = isConnected;
+            stateUpdated(isConnected);
+        }
+    }
 }

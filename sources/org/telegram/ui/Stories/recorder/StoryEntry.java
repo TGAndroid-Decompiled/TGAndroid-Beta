@@ -39,6 +39,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -170,81 +171,49 @@ public class StoryEntry {
         Bitmap decode(BitmapFactory.Options options);
     }
 
-    public static class HDRInfo {
-        public int colorRange;
-        public int colorStandard;
-        public int colorTransfer;
-        public float maxlum;
-        public float minlum;
-
-        public int getHDRType() {
-            if (this.colorStandard != 6) {
-                return 0;
-            }
-            int i = this.colorTransfer;
-            if (i == 7) {
-                return 1;
-            }
-            return i == 6 ? 2 : 0;
-        }
+    public boolean wouldBeVideo() {
+        return wouldBeVideo(this.mediaEntities);
     }
 
-    public static StoryEntry asCollage(CollageLayout collageLayout, ArrayList arrayList) {
-        int i;
-        int i2;
-        StoryEntry storyEntry = new StoryEntry();
-        storyEntry.collage = collageLayout;
-        storyEntry.collageContent = arrayList;
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            StoryEntry storyEntry2 = (StoryEntry) it.next();
-            if (storyEntry2.isVideo) {
-                storyEntry.isVideo = true;
-                storyEntry2.videoLeft = 0.0f;
-                storyEntry2.videoRight = Math.min(1.0f, 59000.0f / ((float) storyEntry2.duration));
-            }
-        }
-        if (storyEntry.isVideo) {
-            i = 720;
-            storyEntry.width = 720;
-            i2 = 1280;
-        } else {
-            i = 1080;
-            storyEntry.width = 1080;
-            i2 = 1920;
-        }
-        storyEntry.height = i2;
-        storyEntry.resultWidth = i;
-        storyEntry.resultHeight = i2;
-        storyEntry.setupMatrix();
-        return storyEntry;
-    }
-
-    public static int calculateInSampleSize(BitmapFactory.Options options, int i, int i2) {
-        double min = (options.outHeight > i2 || options.outWidth > i) ? Math.min((int) Math.ceil(r0 / i2), (int) Math.ceil(r6 / i)) : 1;
-        return Math.max(1, (int) Math.pow(min, Math.floor(Math.log(min) / Math.log(2.0d))));
-    }
-
-    public static boolean canRepostMessage(MessageObject messageObject) {
+    public boolean wouldBeVideo(ArrayList arrayList) {
+        ArrayList<VideoEditedInfo.EmojiEntity> arrayList2;
+        MessageObject messageObject;
         TLRPC.Message message;
-        int i;
-        TLRPC.Peer peer;
-        if (messageObject != null && !messageObject.isSponsored() && (((message = messageObject.messageOwner) == null || !message.noforwards) && (i = messageObject.type) != 17 && i != 12)) {
-            long dialogId = messageObject.getDialogId();
-            TLRPC.Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
-            if (chat != null && chat.noforwards) {
-                return false;
+        if (this.isVideo || this.audioPath != null || this.round != null) {
+            return true;
+        }
+        ArrayList arrayList3 = this.messageObjects;
+        if (arrayList3 != null && arrayList3.size() == 1 && (messageObject = (MessageObject) this.messageObjects.get(0)) != null && (message = messageObject.messageOwner) != null && (message.action instanceof TLRPC.TL_messageActionStarGiftUnique)) {
+            return true;
+        }
+        if (arrayList != null && !arrayList.isEmpty()) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i);
+                byte b = mediaEntity.type;
+                if (b == 0) {
+                    if (isAnimated(mediaEntity.document, mediaEntity.text)) {
+                        return true;
+                    }
+                } else if (b == 1 && (arrayList2 = mediaEntity.entities) != null && !arrayList2.isEmpty()) {
+                    for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
+                        VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
+                        if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
+                            return true;
+                        }
+                    }
+                }
             }
-            if (dialogId < 0 && ChatObject.isChannelAndNotMegaGroup(chat)) {
+        }
+        return false;
+    }
+
+    public static boolean isAnimated(TLRPC.Document document, String str) {
+        if (document != null) {
+            if ("video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type)) {
                 return true;
             }
-            TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
-            if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
-                long peerDialogId = DialogObject.getPeerDialogId(peer);
-                TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
-                if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2) && ChatObject.isPublic(chat2))) {
-                    return true;
-                }
+            if (MessageObject.isAnimatedStickerDocument(document, true) && RLottieDrawable.getFramesCount(str, null) > 1) {
+                return true;
             }
         }
         return false;
@@ -263,255 +232,17 @@ public class StoryEntry {
             float height = bitmapDrawable.getBitmap().getHeight();
             float max = Math.max(i / width, i2 / height);
             drawable.setBounds(0, 0, (int) (width * max), (int) (height * max));
+            drawable.draw(canvas);
         } else {
             drawable.setBounds(0, 0, i, i2);
+            drawable.draw(canvas);
         }
-        drawable.draw(canvas);
         drawable.setBounds(rect);
         drawable.setCallback(callback);
     }
 
-    private String ext(File file) {
-        String path;
-        int lastIndexOf;
-        if (file != null && (lastIndexOf = (path = file.getPath()).lastIndexOf(46)) > 0) {
-            return path.substring(lastIndexOf + 1);
-        }
-        return null;
-    }
-
-    public static StoryEntry fromMedia(ArrayList arrayList) {
-        ArrayList createEntriesFromMedia = ChatActivity.createEntriesFromMedia(arrayList, false, null);
-        if (createEntriesFromMedia.isEmpty()) {
-            return null;
-        }
-        return fromPhotoEntry((MediaController.PhotoEntry) createEntriesFromMedia.get(0));
-    }
-
-    public static StoryEntry fromPhotoEntry(MediaController.PhotoEntry photoEntry) {
-        int i;
-        StoryEntry storyEntry = new StoryEntry();
-        storyEntry.file = new File(photoEntry.path);
-        storyEntry.orientation = photoEntry.orientation;
-        storyEntry.invert = photoEntry.invert;
-        storyEntry.isVideo = photoEntry.isVideo;
-        storyEntry.thumbPath = photoEntry.thumbPath;
-        long j = photoEntry.duration * 1000;
-        storyEntry.duration = j;
-        storyEntry.left = 0.0f;
-        storyEntry.right = Math.min(1.0f, 59000.0f / ((float) j));
-        if (storyEntry.isVideo && storyEntry.thumbPath == null) {
-            storyEntry.thumbPath = "vthumb://" + photoEntry.imageId;
-        }
-        storyEntry.gradientTopColor = photoEntry.gradientTopColor;
-        storyEntry.gradientBottomColor = photoEntry.gradientBottomColor;
-        storyEntry.decodeBounds(storyEntry.file.getAbsolutePath());
-        int i2 = photoEntry.width;
-        if (i2 > 0 && (i = photoEntry.height) > 0) {
-            storyEntry.width = i2;
-            storyEntry.height = i;
-        }
-        storyEntry.setupMatrix();
-        return storyEntry;
-    }
-
-    public static StoryEntry fromPhotoShoot(File file, int i) {
-        StoryEntry storyEntry = new StoryEntry();
-        storyEntry.file = file;
-        storyEntry.fileDeletable = true;
-        storyEntry.orientation = i;
-        storyEntry.invert = 0;
-        storyEntry.isVideo = false;
-        if (file != null) {
-            storyEntry.decodeBounds(file.getAbsolutePath());
-        }
-        storyEntry.setupMatrix();
-        return storyEntry;
-    }
-
-    public static StoryEntry fromStoryItem(File file, TL_stories.StoryItem storyItem) {
-        StoryEntry storyEntry = new StoryEntry();
-        storyEntry.isEdit = true;
-        storyEntry.editStoryId = storyItem.id;
-        storyEntry.file = file;
-        int i = 0;
-        storyEntry.fileDeletable = false;
-        storyEntry.width = 720;
-        storyEntry.height = 1280;
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
-            storyEntry.isVideo = false;
-            if (file != null) {
-                storyEntry.decodeBounds(file.getAbsolutePath());
-            }
-        } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
-            storyEntry.isVideo = true;
-            TLRPC.Document document = messageMedia.document;
-            if (document != null && document.attributes != null) {
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= storyItem.media.document.attributes.size()) {
-                        break;
-                    }
-                    TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i2);
-                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        storyEntry.width = documentAttribute.w;
-                        storyEntry.height = documentAttribute.h;
-                        storyEntry.fileDuration = documentAttribute.duration;
-                        break;
-                    }
-                    i2++;
-                }
-            }
-            TLRPC.Document document2 = storyItem.media.document;
-            if (document2 != null) {
-                String str = storyItem.firstFramePath;
-                if (str != null) {
-                    storyEntry.thumbPath = str;
-                } else if (document2.thumbs != null) {
-                    while (true) {
-                        if (i >= storyItem.media.document.thumbs.size()) {
-                            break;
-                        }
-                        TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i);
-                        if (!(photoSize instanceof TLRPC.TL_photoStrippedSize)) {
-                            File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(photoSize, true);
-                            if (pathToAttach != null && pathToAttach.exists()) {
-                                storyEntry.thumbPath = pathToAttach.getAbsolutePath();
-                                break;
-                            }
-                            i++;
-                        } else {
-                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(photoSize.bytes, null);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        storyEntry.privacyRules.clear();
-        storyEntry.privacyRules.addAll(StoryPrivacyBottomSheet.StoryPrivacy.toInput(storyEntry.currentAccount, storyItem.privacy));
-        storyEntry.period = storyItem.expire_date - storyItem.date;
-        try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), Theme.chat_msgTextPaint.getFontMetricsInt(), true);
-            MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
-            storyEntry.caption = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, Theme.chat_msgTextPaint.getFontMetricsInt());
-        } catch (Exception unused) {
-        }
-        storyEntry.setupMatrix();
-        storyEntry.checkStickers(storyItem);
-        storyEntry.editedMediaAreas = storyItem.media_areas;
-        storyEntry.peer = MessagesController.getInstance(storyEntry.currentAccount).getInputPeer(storyItem.dialogId);
-        return storyEntry;
-    }
-
-    public static StoryEntry fromVideoShoot(File file, String str, long j) {
-        StoryEntry storyEntry = new StoryEntry();
-        storyEntry.fromCamera = true;
-        storyEntry.file = file;
-        storyEntry.fileDeletable = true;
-        storyEntry.orientation = 0;
-        storyEntry.invert = 0;
-        storyEntry.isVideo = true;
-        storyEntry.duration = j;
-        storyEntry.thumbPath = str;
-        storyEntry.left = 0.0f;
-        storyEntry.right = Math.min(1.0f, 59500.0f / ((float) j));
-        return storyEntry;
-    }
-
-    public static long getCoverTime(TL_stories.StoryItem storyItem) {
-        TLRPC.MessageMedia messageMedia;
-        TLRPC.Document document;
-        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
-        if (storyItem == null || (messageMedia = storyItem.media) == null || (document = messageMedia.document) == null) {
-            return 0L;
-        }
-        int i = 0;
-        while (true) {
-            if (i >= document.attributes.size()) {
-                tL_documentAttributeVideo = null;
-                break;
-            }
-            if (document.attributes.get(i) instanceof TLRPC.TL_documentAttributeVideo) {
-                tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) document.attributes.get(i);
-                break;
-            }
-            i++;
-        }
-        if (tL_documentAttributeVideo == null) {
-            return 0L;
-        }
-        return (long) (tL_documentAttributeVideo.video_start_ts * 1000.0d);
-    }
-
-    public static long getRepostDialogId(MessageObject messageObject) {
-        Boolean useForwardForRepost = useForwardForRepost(messageObject);
-        if (useForwardForRepost == null) {
-            return 0L;
-        }
-        return useForwardForRepost.booleanValue() ? DialogObject.getPeerDialogId(messageObject.messageOwner.fwd_from.from_id) : messageObject.getDialogId();
-    }
-
-    public static int getRepostMessageId(MessageObject messageObject) {
-        Boolean useForwardForRepost = useForwardForRepost(messageObject);
-        if (useForwardForRepost == null) {
-            return 0;
-        }
-        return useForwardForRepost.booleanValue() ? messageObject.messageOwner.fwd_from.channel_post : messageObject.getId();
-    }
-
-    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z, boolean z2) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        decodeBitmap.decode(options);
-        options.inJustDecodeBounds = false;
-        options.inScaled = false;
-        Runtime runtime = Runtime.getRuntime();
-        long maxMemory = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory());
-        int i3 = options.outWidth;
-        int i4 = options.outHeight;
-        double d = (i3 * i4 * 4) + (i * i2 * 4);
-        Double.isNaN(d);
-        boolean z3 = d * 1.1d <= ((double) maxMemory);
-        if (i3 <= i && i4 <= i2) {
-            return decodeBitmap.decode(options);
-        }
-        if (!z2 || !z3 || SharedConfig.getDevicePerformanceClass() < 1) {
-            options.inScaled = true;
-            options.inDensity = options.outWidth;
-            options.inTargetDensity = i;
-            return decodeBitmap.decode(options);
-        }
-        Bitmap decode = decodeBitmap.decode(options);
-        float max = Math.max(i / decode.getWidth(), i2 / decode.getHeight());
-        int width = (int) (decode.getWidth() * max);
-        int height = (int) (decode.getHeight() * max);
-        Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        Matrix matrix = new Matrix();
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(decode, tileMode, tileMode);
-        Paint paint = new Paint(3);
-        paint.setShader(bitmapShader);
-        Utilities.clamp(Math.round(1.0f / max), 8, 0);
-        matrix.reset();
-        matrix.postScale(max, max);
-        bitmapShader.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, width, height, paint);
-        return createBitmap;
-    }
-
-    public static boolean isAnimated(TLRPC.Document document, String str) {
-        if (document != null) {
-            if ("video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type)) {
-                return true;
-            }
-            if (MessageObject.isAnimatedStickerDocument(document, true) && RLottieDrawable.getFramesCount(str, null) > 1) {
-                return true;
-            }
-        }
-        return false;
+    public android.graphics.Bitmap buildBitmap(float r27, android.graphics.Bitmap r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryEntry.buildBitmap(float, android.graphics.Bitmap):android.graphics.Bitmap");
     }
 
     public Bitmap lambda$buildBitmap$0(BitmapFactory.Options options) {
@@ -538,144 +269,137 @@ public class StoryEntry {
         return BitmapFactory.decodeFile(this.paintEntitiesFile.getPath(), options);
     }
 
-    public void lambda$checkStickers$14(TLObject tLObject) {
-        this.checkStickersReqId = 0;
-        if (tLObject instanceof Vector) {
-            this.editStickers = new ArrayList();
-            Vector vector = (Vector) tLObject;
-            for (int i = 0; i < vector.objects.size(); i++) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) vector.objects.get(i);
-                TLRPC.Document document = stickerSetCovered.cover;
-                if (document == null && !stickerSetCovered.covers.isEmpty()) {
-                    document = stickerSetCovered.covers.get(0);
-                }
-                if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
-                    TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
-                    if (!tL_stickerSetFullCovered.documents.isEmpty()) {
-                        document = tL_stickerSetFullCovered.documents.get(0);
-                    }
-                }
-                if (document != null) {
-                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputDocument.id = document.id;
-                    tL_inputDocument.access_hash = document.access_hash;
-                    tL_inputDocument.file_reference = document.file_reference;
-                    this.editStickers.add(tL_inputDocument);
-                }
-            }
+    public void buildPhoto(File file) {
+        Bitmap buildBitmap = buildBitmap(1.0f, null);
+        Bitmap bitmap = this.thumbBitmap;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.thumbBitmap = null;
         }
-    }
-
-    public void lambda$checkStickers$15(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StoryEntry.this.lambda$checkStickers$14(tLObject);
-            }
-        });
-    }
-
-    public void lambda$checkStickers$16(TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tL_error == null || !FileRefController.isFileRefError(tL_error.text) || storyItem == null) {
-            requestDelegate.run(tLObject, tL_error);
-        } else {
-            FileRefController.getInstance(this.currentAccount).requestReference(storyItem, tL_messages_getAttachedStickers, requestDelegate);
-        }
-    }
-
-    public void lambda$detectHDR$12(Utilities.Callback callback) {
-        callback.run(this.hdrInfo);
-    }
-
-    public void lambda$detectHDR$13(final Utilities.Callback callback) {
-        Runnable runnable;
+        this.thumbBitmap = Bitmap.createScaledBitmap(buildBitmap, 40, 22, true);
         try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            buildBitmap.compress(Bitmap.CompressFormat.JPEG, 95, fileOutputStream);
+            fileOutputStream.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        buildBitmap.recycle();
+    }
+
+    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z, boolean z2) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        decodeBitmap.decode(options);
+        options.inJustDecodeBounds = false;
+        options.inScaled = false;
+        Runtime runtime = Runtime.getRuntime();
+        long maxMemory = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory());
+        int i3 = options.outWidth;
+        int i4 = options.outHeight;
+        boolean z3 = ((double) ((((long) (i3 * i4)) * 4) + (((long) (i * i2)) * 4))) * 1.1d <= ((double) maxMemory);
+        if (i3 <= i && i4 <= i2) {
+            return decodeBitmap.decode(options);
+        }
+        if (z2 && z3 && SharedConfig.getDevicePerformanceClass() >= 1) {
+            Bitmap decode = decodeBitmap.decode(options);
+            float max = Math.max(i / decode.getWidth(), i2 / decode.getHeight());
+            int width = (int) (decode.getWidth() * max);
+            int height = (int) (decode.getHeight() * max);
+            Bitmap createBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            Matrix matrix = new Matrix();
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(decode, tileMode, tileMode);
+            Paint paint = new Paint(3);
+            paint.setShader(bitmapShader);
+            Utilities.clamp(Math.round(1.0f / max), 8, 0);
+            matrix.reset();
+            matrix.postScale(max, max);
+            bitmapShader.setLocalMatrix(matrix);
+            canvas.drawRect(0.0f, 0.0f, width, height, paint);
+            return createBitmap;
+        }
+        options.inScaled = true;
+        options.inDensity = options.outWidth;
+        options.inTargetDensity = i;
+        return decodeBitmap.decode(options);
+    }
+
+    public File getOriginalFile() {
+        File file = this.filterFile;
+        return file != null ? file : this.file;
+    }
+
+    private String ext(File file) {
+        String path;
+        int lastIndexOf;
+        if (file != null && (lastIndexOf = (path = file.getPath()).lastIndexOf(46)) > 0) {
+            return path.substring(lastIndexOf + 1);
+        }
+        return null;
+    }
+
+    public void updateFilter(PhotoFilterView photoFilterView, final Runnable runnable) {
+        clearFilter();
+        MediaController.SavedFilterState savedFilterState = photoFilterView.getSavedFilterState();
+        this.filterState = savedFilterState;
+        if (this.isVideo) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        if (savedFilterState.isEmpty()) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        Bitmap bitmap = photoFilterView.getBitmap();
+        if (bitmap == null) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        Matrix matrix = new Matrix();
+        int i = this.invert;
+        final boolean z = true;
+        matrix.postScale(i == 1 ? -1.0f : 1.0f, i == 2 ? -1.0f : 1.0f, this.width / 2.0f, this.height / 2.0f);
+        matrix.postRotate(-this.orientation);
+        final Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        this.matrix.preScale(this.width / createBitmap.getWidth(), this.height / createBitmap.getHeight());
+        this.width = createBitmap.getWidth();
+        this.height = createBitmap.getHeight();
+        bitmap.recycle();
+        File file = this.filterFile;
+        if (file != null && file.exists()) {
+            this.filterFile.delete();
+        }
+        String ext = ext(this.file);
+        if (!"png".equals(ext) && !"webp".equals(ext)) {
+            z = false;
+        }
+        this.filterFile = makeCacheFile(this.currentAccount, z ? "webp" : "jpg");
+        if (runnable == null) {
             try {
-                HDRInfo hDRInfo = this.hdrInfo;
-                if (hDRInfo == null) {
-                    hDRInfo = new HDRInfo();
-                    this.hdrInfo = hDRInfo;
-                    hDRInfo.maxlum = 1000.0f;
-                    hDRInfo.minlum = 0.001f;
-                }
-                MediaExtractor mediaExtractor = new MediaExtractor();
-                mediaExtractor.setDataSource(this.file.getAbsolutePath());
-                int findTrack = MediaController.findTrack(mediaExtractor, false);
-                mediaExtractor.selectTrack(findTrack);
-                MediaFormat trackFormat = mediaExtractor.getTrackFormat(findTrack);
-                if (trackFormat.containsKey("color-transfer")) {
-                    hDRInfo.colorTransfer = trackFormat.getInteger("color-transfer");
-                }
-                if (trackFormat.containsKey("color-standard")) {
-                    hDRInfo.colorStandard = trackFormat.getInteger("color-standard");
-                }
-                if (trackFormat.containsKey("color-range")) {
-                    hDRInfo.colorRange = trackFormat.getInteger("color-range");
-                }
-                this.hdrInfo = this.hdrInfo;
-                runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryEntry.this.lambda$detectHDR$12(callback);
-                    }
-                };
+                createBitmap.compress(z ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(this.filterFile));
             } catch (Exception e) {
                 FileLog.e(e);
-                this.hdrInfo = this.hdrInfo;
-                runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryEntry.this.lambda$detectHDR$12(callback);
-                    }
-                };
             }
-            AndroidUtilities.runOnUIThread(runnable);
-        } catch (Throwable th) {
-            this.hdrInfo = this.hdrInfo;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryEntry.this.lambda$detectHDR$12(callback);
-                }
-            });
-            throw th;
+            createBitmap.recycle();
+            return;
         }
-    }
-
-    public static void lambda$getVideoEditedInfo$10(String[] strArr, int[][] iArr, Runnable runnable) {
-        for (int i = 0; i < strArr.length; i++) {
-            String str = strArr[i];
-            if (str != null) {
-                AnimatedFileDrawable.getVideoInfo(str, iArr[i]);
+        Utilities.themeQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                StoryEntry.this.lambda$updateFilter$6(createBitmap, z, runnable);
             }
-        }
-        AndroidUtilities.runOnUIThread(runnable);
-    }
-
-    public static void lambda$getVideoEditedInfo$11(String str, int[][] iArr, Runnable runnable) {
-        AnimatedFileDrawable.getVideoInfo(str, iArr[0]);
-        AndroidUtilities.runOnUIThread(runnable);
-    }
-
-    public void lambda$getVideoEditedInfo$9(java.lang.String r20, int[][] r21, org.telegram.messenger.Utilities.Callback r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryEntry.lambda$getVideoEditedInfo$9(java.lang.String, int[][], org.telegram.messenger.Utilities$Callback):void");
-    }
-
-    public void lambda$setupGradient$7(Bitmap bitmap, Runnable runnable, int[] iArr) {
-        this.gradientTopColor = iArr[0];
-        this.gradientBottomColor = iArr[1];
-        bitmap.recycle();
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public void lambda$setupGradient$8(Runnable runnable, int[] iArr) {
-        this.gradientTopColor = iArr[0];
-        this.gradientBottomColor = iArr[1];
-        if (runnable != null) {
-            runnable.run();
-        }
+        });
     }
 
     public void lambda$updateFilter$6(Bitmap bitmap, boolean z, Runnable runnable) {
@@ -695,67 +419,102 @@ public class StoryEntry {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static File makeCacheFile(int i, String str) {
-        TLRPC.TL_videoSize_layer127 tL_videoSize_layer127;
-        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
-        tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
-        tL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
-        tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
-        tL_fileLocationToBeDeprecated.file_reference = new byte[0];
-        if ("mp4".equals(str) || "webm".equals(str)) {
-            TLRPC.TL_videoSize_layer127 tL_videoSize_layer1272 = new TLRPC.TL_videoSize_layer127();
-            tL_videoSize_layer1272.location = tL_fileLocationToBeDeprecated;
-            tL_videoSize_layer127 = tL_videoSize_layer1272;
-        } else {
-            ?? tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
-            tL_videoSize_layer127 = tL_photoSize_layer127;
+    public void clearFilter() {
+        File file = this.filterFile;
+        if (file != null) {
+            file.delete();
+            this.filterFile = null;
         }
-        return FileLoader.getInstance(i).getPathToAttach(tL_videoSize_layer127, str, true);
     }
 
-    public static File makeCacheFile(int i, boolean z) {
-        return makeCacheFile(i, z ? "mp4" : "jpg");
+    public void clearPaint() {
+        File file = this.paintFile;
+        if (file != null) {
+            file.delete();
+            this.paintFile = null;
+        }
+        File file2 = this.backgroundFile;
+        if (file2 != null) {
+            file2.delete();
+            this.backgroundFile = null;
+        }
+        File file3 = this.messageFile;
+        if (file3 != null) {
+            file3.delete();
+            this.messageFile = null;
+        }
+        File file4 = this.messageVideoMaskFile;
+        if (file4 != null) {
+            file4.delete();
+            this.messageVideoMaskFile = null;
+        }
+        File file5 = this.paintEntitiesFile;
+        if (file5 != null) {
+            file5.delete();
+            this.paintEntitiesFile = null;
+        }
     }
 
-    public static StoryEntry repostMessage(ArrayList arrayList) {
-        MessageObject messageObject;
-        int i;
-        StoryEntry storyEntry = new StoryEntry();
-        storyEntry.isRepostMessage = true;
-        storyEntry.messageObjects = arrayList;
-        storyEntry.resultWidth = 1080;
-        storyEntry.resultHeight = 1920;
-        storyEntry.backgroundWallpaperPeerId = getRepostDialogId((MessageObject) arrayList.get(0));
-        VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
-        mediaEntity.type = (byte) 6;
-        mediaEntity.x = 0.5f;
-        mediaEntity.y = 0.5f;
-        ArrayList arrayList2 = new ArrayList();
-        storyEntry.mediaEntities = arrayList2;
-        arrayList2.add(mediaEntity);
-        if (arrayList.size() == 1 && (messageObject = (MessageObject) arrayList.get(0)) != null && ((i = messageObject.type) == 8 || i == 3 || i == 5)) {
-            TLRPC.Message message = messageObject.messageOwner;
-            if (message != null && message.attachPath != null) {
-                storyEntry.file = new File(messageObject.messageOwner.attachPath);
+    public void destroy(boolean z) {
+        if (this.blurredVideoThumb != null) {
+            this.blurredVideoThumb = null;
+        }
+        File file = this.uploadThumbFile;
+        if (file != null) {
+            file.delete();
+            this.uploadThumbFile = null;
+        }
+        if (!z) {
+            clearPaint();
+            clearFilter();
+            File file2 = this.file;
+            if (file2 != null) {
+                if (this.fileDeletable && (!this.isEdit || this.editedMedia)) {
+                    file2.delete();
+                }
+                this.file = null;
             }
-            File file = storyEntry.file;
-            if (file == null || !file.exists()) {
-                storyEntry.file = FileLoader.getInstance(storyEntry.currentAccount).getPathToMessage(messageObject.messageOwner);
+            if (this.thumbPath != null) {
+                if (this.fileDeletable) {
+                    new File(this.thumbPath).delete();
+                }
+                this.thumbPath = null;
             }
-            File file2 = storyEntry.file;
-            if (file2 == null || !file2.exists()) {
-                storyEntry.file = null;
-            } else {
-                storyEntry.isVideo = true;
-                storyEntry.fileDeletable = false;
-                long duration = (long) (messageObject.getDuration() * 1000.0d);
-                storyEntry.duration = duration;
-                storyEntry.left = 0.0f;
-                storyEntry.right = Math.min(1.0f, 59500.0f / ((float) duration));
+            ArrayList arrayList = this.mediaEntities;
+            if (arrayList != null) {
+                Iterator it = arrayList.iterator();
+                while (it.hasNext()) {
+                    VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) it.next();
+                    if (mediaEntity.type == 2 && !TextUtils.isEmpty(mediaEntity.segmentedPath)) {
+                        try {
+                            new File(mediaEntity.segmentedPath).delete();
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                        mediaEntity.segmentedPath = "";
+                    }
+                }
+            }
+            File file3 = this.round;
+            if (file3 != null && (!this.isEdit || this.editedMedia)) {
+                file3.delete();
+                this.round = null;
+            }
+            if (this.roundThumb != null && (!this.isEdit || this.editedMedia)) {
+                try {
+                    new File(this.roundThumb).delete();
+                } catch (Exception unused) {
+                }
+                this.roundThumb = null;
             }
         }
-        return storyEntry;
+        this.thumbPathBitmap = null;
+        if (this.collageContent != null) {
+            for (int i = 0; i < this.collageContent.size(); i++) {
+                ((StoryEntry) this.collageContent.get(i)).destroy(z);
+            }
+        }
+        cancelCheckStickers();
     }
 
     public static StoryEntry repostStoryItem(File file, TL_stories.StoryItem storyItem) {
@@ -819,6 +578,439 @@ public class StoryEntry {
         return storyEntry;
     }
 
+    public static boolean canRepostMessage(MessageObject messageObject) {
+        TLRPC.Message message;
+        int i;
+        TLRPC.Peer peer;
+        if (messageObject != null && !messageObject.isSponsored() && (((message = messageObject.messageOwner) == null || !message.noforwards) && (i = messageObject.type) != 17 && i != 12)) {
+            long dialogId = messageObject.getDialogId();
+            TLRPC.Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
+            if (chat != null && chat.noforwards) {
+                return false;
+            }
+            if (dialogId < 0 && ChatObject.isChannelAndNotMegaGroup(chat)) {
+                return true;
+            }
+            TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
+                long peerDialogId = DialogObject.getPeerDialogId(peer);
+                TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2) && ChatObject.isPublic(chat2))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static Boolean useForwardForRepost(MessageObject messageObject) {
+        TLRPC.Message message;
+        TLRPC.Peer peer;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
+            return null;
+        }
+        TLRPC.Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(message.peer_id)));
+        if ((chat != null && chat.noforwards) || !ChatObject.isChannelAndNotMegaGroup(chat)) {
+            TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
+            if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
+                long peerDialogId = DialogObject.getPeerDialogId(peer);
+                TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2))) {
+                    return Boolean.TRUE;
+                }
+            }
+            return null;
+        }
+        return Boolean.FALSE;
+    }
+
+    public static long getRepostDialogId(MessageObject messageObject) {
+        Boolean useForwardForRepost = useForwardForRepost(messageObject);
+        if (useForwardForRepost == null) {
+            return 0L;
+        }
+        if (useForwardForRepost.booleanValue()) {
+            return DialogObject.getPeerDialogId(messageObject.messageOwner.fwd_from.from_id);
+        }
+        return messageObject.getDialogId();
+    }
+
+    public static int getRepostMessageId(MessageObject messageObject) {
+        Boolean useForwardForRepost = useForwardForRepost(messageObject);
+        if (useForwardForRepost == null) {
+            return 0;
+        }
+        if (useForwardForRepost.booleanValue()) {
+            return messageObject.messageOwner.fwd_from.channel_post;
+        }
+        return messageObject.getId();
+    }
+
+    public static StoryEntry repostMessage(ArrayList arrayList) {
+        MessageObject messageObject;
+        int i;
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.isRepostMessage = true;
+        storyEntry.messageObjects = arrayList;
+        storyEntry.resultWidth = 1080;
+        storyEntry.resultHeight = 1920;
+        storyEntry.backgroundWallpaperPeerId = getRepostDialogId((MessageObject) arrayList.get(0));
+        VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
+        mediaEntity.type = (byte) 6;
+        mediaEntity.x = 0.5f;
+        mediaEntity.y = 0.5f;
+        ArrayList arrayList2 = new ArrayList();
+        storyEntry.mediaEntities = arrayList2;
+        arrayList2.add(mediaEntity);
+        if (arrayList.size() == 1 && (messageObject = (MessageObject) arrayList.get(0)) != null && ((i = messageObject.type) == 8 || i == 3 || i == 5)) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message != null && message.attachPath != null) {
+                storyEntry.file = new File(messageObject.messageOwner.attachPath);
+            }
+            File file = storyEntry.file;
+            if (file == null || !file.exists()) {
+                storyEntry.file = FileLoader.getInstance(storyEntry.currentAccount).getPathToMessage(messageObject.messageOwner);
+            }
+            File file2 = storyEntry.file;
+            if (file2 != null && file2.exists()) {
+                storyEntry.isVideo = true;
+                storyEntry.fileDeletable = false;
+                long duration = (long) (messageObject.getDuration() * 1000.0d);
+                storyEntry.duration = duration;
+                storyEntry.left = 0.0f;
+                storyEntry.right = Math.min(1.0f, 59500.0f / ((float) duration));
+            } else {
+                storyEntry.file = null;
+            }
+        }
+        return storyEntry;
+    }
+
+    public static StoryEntry fromStoryItem(File file, TL_stories.StoryItem storyItem) {
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.isEdit = true;
+        storyEntry.editStoryId = storyItem.id;
+        storyEntry.file = file;
+        int i = 0;
+        storyEntry.fileDeletable = false;
+        storyEntry.width = 720;
+        storyEntry.height = 1280;
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
+            storyEntry.isVideo = false;
+            if (file != null) {
+                storyEntry.decodeBounds(file.getAbsolutePath());
+            }
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+            storyEntry.isVideo = true;
+            TLRPC.Document document = messageMedia.document;
+            if (document != null && document.attributes != null) {
+                int i2 = 0;
+                while (true) {
+                    if (i2 >= storyItem.media.document.attributes.size()) {
+                        break;
+                    }
+                    TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i2);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                        storyEntry.width = documentAttribute.w;
+                        storyEntry.height = documentAttribute.h;
+                        storyEntry.fileDuration = documentAttribute.duration;
+                        break;
+                    }
+                    i2++;
+                }
+            }
+            TLRPC.Document document2 = storyItem.media.document;
+            if (document2 != null) {
+                String str = storyItem.firstFramePath;
+                if (str != null) {
+                    storyEntry.thumbPath = str;
+                } else if (document2.thumbs != null) {
+                    while (true) {
+                        if (i >= storyItem.media.document.thumbs.size()) {
+                            break;
+                        }
+                        TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i);
+                        if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
+                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(photoSize.bytes, null);
+                            break;
+                        }
+                        File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(photoSize, true);
+                        if (pathToAttach != null && pathToAttach.exists()) {
+                            storyEntry.thumbPath = pathToAttach.getAbsolutePath();
+                            break;
+                        }
+                        i++;
+                    }
+                }
+            }
+        }
+        storyEntry.privacyRules.clear();
+        storyEntry.privacyRules.addAll(StoryPrivacyBottomSheet.StoryPrivacy.toInput(storyEntry.currentAccount, storyItem.privacy));
+        storyEntry.period = storyItem.expire_date - storyItem.date;
+        try {
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), Theme.chat_msgTextPaint.getFontMetricsInt(), true);
+            MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
+            storyEntry.caption = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, Theme.chat_msgTextPaint.getFontMetricsInt());
+        } catch (Exception unused) {
+        }
+        storyEntry.setupMatrix();
+        storyEntry.checkStickers(storyItem);
+        storyEntry.editedMediaAreas = storyItem.media_areas;
+        storyEntry.peer = MessagesController.getInstance(storyEntry.currentAccount).getInputPeer(storyItem.dialogId);
+        return storyEntry;
+    }
+
+    public static StoryEntry fromPhotoEntry(MediaController.PhotoEntry photoEntry) {
+        int i;
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.file = new File(photoEntry.path);
+        storyEntry.orientation = photoEntry.orientation;
+        storyEntry.invert = photoEntry.invert;
+        storyEntry.isVideo = photoEntry.isVideo;
+        storyEntry.thumbPath = photoEntry.thumbPath;
+        long j = photoEntry.duration * 1000;
+        storyEntry.duration = j;
+        storyEntry.left = 0.0f;
+        storyEntry.right = Math.min(1.0f, 59000.0f / ((float) j));
+        if (storyEntry.isVideo && storyEntry.thumbPath == null) {
+            storyEntry.thumbPath = "vthumb://" + photoEntry.imageId;
+        }
+        storyEntry.gradientTopColor = photoEntry.gradientTopColor;
+        storyEntry.gradientBottomColor = photoEntry.gradientBottomColor;
+        storyEntry.decodeBounds(storyEntry.file.getAbsolutePath());
+        int i2 = photoEntry.width;
+        if (i2 > 0 && (i = photoEntry.height) > 0) {
+            storyEntry.width = i2;
+            storyEntry.height = i;
+        }
+        storyEntry.setupMatrix();
+        return storyEntry;
+    }
+
+    public void setupMultipleStoriesSelector() {
+        if (!this.isVideo || isCollage() || this.isEdit || this.isRepost || this.duration <= 69000 || !UserConfig.getInstance(this.currentAccount).isPremium()) {
+            return;
+        }
+        long j = this.duration - 59000;
+        long min = j > 10000 ? Math.min(59000L, j) + 59000 : 59000L;
+        long j2 = this.duration - min;
+        if (j2 > 10000) {
+            min += Math.min(59000L, j2);
+        }
+        this.right = Math.min(1.0f, ((float) min) / ((float) this.duration));
+    }
+
+    public boolean isCollage() {
+        return (this.collage == null || this.collageContent == null) ? false : true;
+    }
+
+    public boolean hasVideo() {
+        if (!isCollage()) {
+            return false;
+        }
+        for (int i = 0; i < this.collageContent.size(); i++) {
+            if (((StoryEntry) this.collageContent.get(i)).isVideo) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static StoryEntry asCollage(CollageLayout collageLayout, ArrayList arrayList) {
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.collage = collageLayout;
+        storyEntry.collageContent = arrayList;
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            StoryEntry storyEntry2 = (StoryEntry) it.next();
+            if (storyEntry2.isVideo) {
+                storyEntry.isVideo = true;
+                storyEntry2.videoLeft = 0.0f;
+                storyEntry2.videoRight = Math.min(1.0f, 59000.0f / ((float) storyEntry2.duration));
+            }
+        }
+        if (storyEntry.isVideo) {
+            storyEntry.width = 720;
+            storyEntry.height = 1280;
+            storyEntry.resultWidth = 720;
+            storyEntry.resultHeight = 1280;
+        } else {
+            storyEntry.width = 1080;
+            storyEntry.height = 1920;
+            storyEntry.resultWidth = 1080;
+            storyEntry.resultHeight = 1920;
+        }
+        storyEntry.setupMatrix();
+        return storyEntry;
+    }
+
+    public static StoryEntry fromPhotoShoot(File file, int i) {
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.file = file;
+        storyEntry.fileDeletable = true;
+        storyEntry.orientation = i;
+        storyEntry.invert = 0;
+        storyEntry.isVideo = false;
+        if (file != null) {
+            storyEntry.decodeBounds(file.getAbsolutePath());
+        }
+        storyEntry.setupMatrix();
+        return storyEntry;
+    }
+
+    public static StoryEntry fromMedia(ArrayList arrayList) {
+        ArrayList createEntriesFromMedia = ChatActivity.createEntriesFromMedia(arrayList, false, null);
+        if (createEntriesFromMedia.isEmpty()) {
+            return null;
+        }
+        return fromPhotoEntry((MediaController.PhotoEntry) createEntriesFromMedia.get(0));
+    }
+
+    public void decodeBounds(String str) {
+        if (str != null) {
+            try {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(str, options);
+                this.width = options.outWidth;
+                this.height = options.outHeight;
+            } catch (Exception unused) {
+            }
+        }
+        if (this.isVideo) {
+            return;
+        }
+        if (((int) Math.max(this.width, (this.height / 16.0f) * 9.0f)) <= 900) {
+            this.resultWidth = 720;
+            this.resultHeight = 1280;
+        } else {
+            this.resultWidth = 1080;
+            this.resultHeight = 1920;
+        }
+    }
+
+    public void setupMatrix() {
+        setupMatrix(this.matrix, 0);
+    }
+
+    public void setupMatrix(Matrix matrix, int i) {
+        matrix.reset();
+        int i2 = this.width;
+        int i3 = this.height;
+        int i4 = this.orientation + i;
+        int i5 = this.invert;
+        matrix.postScale(i5 == 1 ? -1.0f : 1.0f, i5 == 2 ? -1.0f : 1.0f, i2 / 2.0f, i3 / 2.0f);
+        if (i4 != 0) {
+            matrix.postTranslate((-i2) / 2.0f, (-i3) / 2.0f);
+            matrix.postRotate(i4);
+            if (i4 == 90 || i4 == 270) {
+                i3 = i2;
+                i2 = i3;
+            }
+            matrix.postTranslate(i2 / 2.0f, i3 / 2.0f);
+        }
+        float f = i2;
+        float f2 = this.resultWidth / f;
+        if (this.botId != 0) {
+            f2 = Math.min(f2, this.resultHeight / i3);
+        } else {
+            float f3 = i3;
+            if (f3 / f > 1.29f) {
+                f2 = Math.max(f2, this.resultHeight / f3);
+            }
+        }
+        matrix.postScale(f2, f2);
+        matrix.postTranslate((this.resultWidth - (f * f2)) / 2.0f, (this.resultHeight - (i3 * f2)) / 2.0f);
+    }
+
+    public void setupGradient(final Runnable runnable) {
+        final Bitmap bitmap;
+        if (this.isVideo && this.gradientTopColor == 0 && this.gradientBottomColor == 0) {
+            if (this.thumbPath != null) {
+                try {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    if (this.thumbPath.startsWith("vthumb://")) {
+                        long parseInt = Integer.parseInt(this.thumbPath.substring(9));
+                        options.inJustDecodeBounds = true;
+                        MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
+                        options.inSampleSize = calculateInSampleSize(options, 240, 240);
+                        options.inJustDecodeBounds = false;
+                        options.inPreferredConfig = Bitmap.Config.RGB_565;
+                        options.inDither = true;
+                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
+                    } else {
+                        options.inJustDecodeBounds = true;
+                        BitmapFactory.decodeFile(this.thumbPath);
+                        options.inSampleSize = calculateInSampleSize(options, 240, 240);
+                        options.inJustDecodeBounds = false;
+                        options.inPreferredConfig = Bitmap.Config.RGB_565;
+                        options.inDither = true;
+                        bitmap = BitmapFactory.decodeFile(this.thumbPath);
+                    }
+                } catch (Exception unused) {
+                    bitmap = null;
+                }
+                if (bitmap != null) {
+                    DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            StoryEntry.this.lambda$setupGradient$7(bitmap, runnable, (int[]) obj);
+                        }
+                    });
+                    return;
+                }
+                return;
+            }
+            Bitmap bitmap2 = this.thumbPathBitmap;
+            if (bitmap2 != null) {
+                DominantColors.getColors(true, bitmap2, true, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        StoryEntry.this.lambda$setupGradient$8(runnable, (int[]) obj);
+                    }
+                });
+            }
+        }
+    }
+
+    public void lambda$setupGradient$7(Bitmap bitmap, Runnable runnable, int[] iArr) {
+        this.gradientTopColor = iArr[0];
+        this.gradientBottomColor = iArr[1];
+        bitmap.recycle();
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void lambda$setupGradient$8(Runnable runnable, int[] iArr) {
+        this.gradientTopColor = iArr[0];
+        this.gradientBottomColor = iArr[1];
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public static StoryEntry fromVideoShoot(File file, String str, long j) {
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.fromCamera = true;
+        storyEntry.file = file;
+        storyEntry.fileDeletable = true;
+        storyEntry.orientation = 0;
+        storyEntry.invert = 0;
+        storyEntry.isVideo = true;
+        storyEntry.duration = j;
+        storyEntry.thumbPath = str;
+        storyEntry.left = 0.0f;
+        storyEntry.right = Math.min(1.0f, 59500.0f / ((float) j));
+        return storyEntry;
+    }
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int i, int i2) {
+        double min = (options.outHeight > i2 || options.outWidth > i) ? Math.min((int) Math.ceil(r0 / i2), (int) Math.ceil(r6 / i)) : 1;
+        return Math.max(1, (int) Math.pow(min, Math.floor(Math.log(min) / Math.log(2.0d))));
+    }
+
     public static void setupScale(BitmapFactory.Options options, int i, int i2) {
         Runtime runtime = Runtime.getRuntime();
         long maxMemory = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory());
@@ -831,53 +1023,474 @@ public class StoryEntry {
         }
     }
 
-    public static Boolean useForwardForRepost(MessageObject messageObject) {
-        TLRPC.Message message;
-        TLRPC.Peer peer;
-        if (messageObject == null || (message = messageObject.messageOwner) == null) {
-            return null;
+    public int getTotalCount() {
+        if (this.isVideo && !isCollage() && !this.isEdit) {
+            long j = this.duration;
+            if (j > 0 && !this.isRepost) {
+                if ((this.right - this.left) * ((float) j) < 68999) {
+                    return 1;
+                }
+                return (int) Math.ceil(((float) r2) / 59000.0f);
+            }
         }
-        TLRPC.Chat chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(message.peer_id)));
-        if ((chat == null || !chat.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat)) {
-            return Boolean.FALSE;
-        }
-        TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
-        if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
-            long peerDialogId = DialogObject.getPeerDialogId(peer);
-            TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
-            if (peerDialogId < 0 && ((chat2 == null || !chat2.noforwards) && ChatObject.isChannelAndNotMegaGroup(chat2))) {
-                return Boolean.TRUE;
+        return 1;
+    }
+
+    public ArrayList cutIntoEntries() {
+        if (this.isVideo && !isCollage() && !this.isEdit) {
+            long j = this.duration;
+            if (j > 0 && !this.isRepost) {
+                long j2 = (this.right - this.left) * ((float) j);
+                if (j2 < 68999) {
+                    return null;
+                }
+                ArrayList arrayList = new ArrayList();
+                this.right = this.left + (59000.0f / ((float) this.duration));
+                arrayList.add(this);
+                long j3 = 59000;
+                while (j3 < j2) {
+                    long min = Math.min(59000L, j2 - j3);
+                    if (min < 1000) {
+                        break;
+                    }
+                    StoryEntry copy = copy(true);
+                    float f = this.left;
+                    float f2 = (float) this.duration;
+                    copy.left = f + (((float) j3) / f2);
+                    copy.right = this.left + (((float) (min + j3)) / f2);
+                    copy.caption = "";
+                    j3 += 59000;
+                    arrayList.add(copy);
+                }
+                return arrayList;
             }
         }
         return null;
     }
 
-    public android.graphics.Bitmap buildBitmap(float r27, android.graphics.Bitmap r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryEntry.buildBitmap(float, android.graphics.Bitmap):android.graphics.Bitmap");
+    public void getVideoEditedInfo(final Utilities.Callback callback) {
+        int i;
+        if (!wouldBeVideo()) {
+            callback.run(null);
+            return;
+        }
+        if (!this.isVideo && ((i = this.resultWidth) > 720 || this.resultHeight > 1280)) {
+            float f = 720.0f / i;
+            this.matrix.postScale(f, f, 0.0f, 0.0f);
+            this.resultWidth = 720;
+            this.resultHeight = 1280;
+        }
+        File file = this.file;
+        final String absolutePath = file == null ? null : file.getAbsolutePath();
+        final int[][] iArr = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, Math.max(1, isCollage() ? this.collageContent.size() : 0), 11);
+        iArr[0] = new int[11];
+        final Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                StoryEntry.this.lambda$getVideoEditedInfo$9(absolutePath, iArr, callback);
+            }
+        };
+        if (isCollage()) {
+            final String[] strArr = new String[this.collageContent.size()];
+            for (int i2 = 0; i2 < this.collageContent.size(); i2++) {
+                strArr[i2] = ((StoryEntry) this.collageContent.get(i2)).file == null ? null : ((StoryEntry) this.collageContent.get(i2)).file.getAbsolutePath();
+                iArr[i2] = new int[11];
+            }
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryEntry.lambda$getVideoEditedInfo$10(strArr, iArr, runnable);
+                }
+            });
+            return;
+        }
+        if (this.file == null) {
+            runnable.run();
+        } else {
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryEntry.lambda$getVideoEditedInfo$11(absolutePath, iArr, runnable);
+                }
+            });
+        }
     }
 
-    public void buildPhoto(File file) {
-        Bitmap buildBitmap = buildBitmap(1.0f, null);
-        Bitmap bitmap = this.thumbBitmap;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.thumbBitmap = null;
+    public void lambda$getVideoEditedInfo$9(String str, int[][] iArr, Utilities.Callback callback) {
+        long j;
+        long j2;
+        long j3;
+        ArrayList arrayList;
+        VideoEditedInfo videoEditedInfo = new VideoEditedInfo();
+        videoEditedInfo.isStory = true;
+        videoEditedInfo.fromCamera = this.fromCamera;
+        videoEditedInfo.originalWidth = this.width;
+        videoEditedInfo.originalHeight = this.height;
+        videoEditedInfo.resultWidth = this.resultWidth;
+        videoEditedInfo.resultHeight = this.resultHeight;
+        File file = this.paintFile;
+        videoEditedInfo.paintPath = file == null ? null : file.getPath();
+        File file2 = this.messageFile;
+        videoEditedInfo.messagePath = file2 == null ? null : file2.getPath();
+        File file3 = this.messageVideoMaskFile;
+        videoEditedInfo.messageVideoMaskPath = file3 == null ? null : file3.getPath();
+        File file4 = this.backgroundFile;
+        videoEditedInfo.backgroundPath = file4 == null ? null : file4.getPath();
+        int extractRealEncoderBitrate = MediaController.extractRealEncoderBitrate(videoEditedInfo.resultWidth, videoEditedInfo.resultHeight, videoEditedInfo.bitrate, true);
+        if (this.isVideo && str != null && !isCollage()) {
+            videoEditedInfo.originalPath = str;
+            videoEditedInfo.isPhoto = false;
+            videoEditedInfo.framerate = Math.min(59, iArr[0][7]);
+            int videoBitrate = MediaController.getVideoBitrate(str);
+            if (videoBitrate == -1) {
+                videoBitrate = iArr[0][3];
+            }
+            videoEditedInfo.originalBitrate = videoBitrate;
+            if (videoBitrate < 1000000 && (arrayList = this.mediaEntities) != null && !arrayList.isEmpty()) {
+                videoEditedInfo.bitrate = 2000000;
+                videoEditedInfo.originalBitrate = -1;
+            } else {
+                int i = videoEditedInfo.originalBitrate;
+                if (i < 500000) {
+                    videoEditedInfo.bitrate = 2500000;
+                    videoEditedInfo.originalBitrate = -1;
+                } else {
+                    videoEditedInfo.bitrate = Utilities.clamp(i, 3000000, 500000);
+                }
+            }
+            FileLog.d("story bitrate, original = " + videoEditedInfo.originalBitrate + " => " + videoEditedInfo.bitrate);
+            long j4 = (long) iArr[0][4];
+            this.duration = j4;
+            videoEditedInfo.originalDuration = j4 * 1000;
+            float f = (float) j4;
+            long j5 = this.left * f * 1000;
+            videoEditedInfo.startTime = j5;
+            long j6 = this.right * f * 1000;
+            videoEditedInfo.endTime = j6;
+            videoEditedInfo.estimatedDuration = j6 - j5;
+            videoEditedInfo.volume = this.videoVolume;
+            videoEditedInfo.muted = this.muted;
+            videoEditedInfo.estimatedSize = r1[5] + (((r6 / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
+            videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
+            videoEditedInfo.filterState = this.filterState;
+            File file5 = this.paintBlurFile;
+            videoEditedInfo.blurPath = file5 != null ? file5.getPath() : null;
+            j = 0;
+        } else {
+            File file6 = this.filterFile;
+            if (file6 != null) {
+                videoEditedInfo.originalPath = file6.getAbsolutePath();
+            } else {
+                videoEditedInfo.originalPath = str;
+            }
+            videoEditedInfo.isPhoto = true;
+            videoEditedInfo.collage = this.collage;
+            if (isCollage()) {
+                boolean z = false;
+                for (int i2 = 0; i2 < this.collageContent.size(); i2++) {
+                    StoryEntry storyEntry = (StoryEntry) this.collageContent.get(i2);
+                    if (storyEntry.isVideo) {
+                        storyEntry.width = Math.max(storyEntry.width, iArr[i2][1]);
+                        storyEntry.height = Math.max(storyEntry.height, iArr[i2][2]);
+                        storyEntry.duration = Math.max(storyEntry.duration, iArr[i2][4]);
+                        z = true;
+                    }
+                }
+                ArrayList<VideoEditedInfo.Part> parts = VideoEditedInfo.Part.toParts(this);
+                videoEditedInfo.collageParts = parts;
+                if (!z) {
+                    long j7 = this.averageDuration;
+                    this.duration = j7;
+                    videoEditedInfo.originalDuration = j7;
+                    videoEditedInfo.estimatedDuration = j7;
+                } else {
+                    Iterator<VideoEditedInfo.Part> it = parts.iterator();
+                    VideoEditedInfo.Part part = null;
+                    long j8 = 0;
+                    while (it.hasNext()) {
+                        VideoEditedInfo.Part next = it.next();
+                        if (next.isVideo) {
+                            long j9 = next.duration;
+                            if (j9 > j8) {
+                                part = next;
+                                j8 = j9;
+                            }
+                        }
+                    }
+                    if (part != null) {
+                        long j10 = (part.right - part.left) * ((float) part.duration);
+                        this.duration = j10;
+                        videoEditedInfo.originalDuration = j10;
+                        videoEditedInfo.estimatedDuration = j10;
+                        j = -(part.offset + (r10 * r1));
+                        part.offset = j;
+                        Iterator<VideoEditedInfo.Part> it2 = videoEditedInfo.collageParts.iterator();
+                        while (it2.hasNext()) {
+                            VideoEditedInfo.Part next2 = it2.next();
+                            if (next2.isVideo && next2 != part) {
+                                next2.offset += j;
+                            }
+                        }
+                        videoEditedInfo.startTime = -1L;
+                        videoEditedInfo.endTime = -1L;
+                        videoEditedInfo.muted = true;
+                        videoEditedInfo.originalBitrate = -1;
+                        videoEditedInfo.volume = 1.0f;
+                        videoEditedInfo.bitrate = -1;
+                        videoEditedInfo.framerate = 30;
+                        videoEditedInfo.estimatedSize = ((((float) this.duration) / 1000.0f) * extractRealEncoderBitrate) / 8.0f;
+                        videoEditedInfo.filterState = null;
+                    }
+                }
+            } else if (this.round != null) {
+                long j11 = (this.roundRight - this.roundLeft) * ((float) this.roundDuration);
+                this.duration = j11;
+                videoEditedInfo.originalDuration = j11;
+                videoEditedInfo.estimatedDuration = j11;
+            } else if (this.audioPath != null) {
+                long j12 = (this.audioRight - this.audioLeft) * ((float) this.audioDuration);
+                this.duration = j12;
+                videoEditedInfo.originalDuration = j12;
+                videoEditedInfo.estimatedDuration = j12;
+            } else {
+                long j13 = this.averageDuration;
+                this.duration = j13;
+                videoEditedInfo.originalDuration = j13;
+                videoEditedInfo.estimatedDuration = j13;
+            }
+            j = 0;
+            videoEditedInfo.startTime = -1L;
+            videoEditedInfo.endTime = -1L;
+            videoEditedInfo.muted = true;
+            videoEditedInfo.originalBitrate = -1;
+            videoEditedInfo.volume = 1.0f;
+            videoEditedInfo.bitrate = -1;
+            videoEditedInfo.framerate = 30;
+            videoEditedInfo.estimatedSize = ((((float) this.duration) / 1000.0f) * extractRealEncoderBitrate) / 8.0f;
+            videoEditedInfo.filterState = null;
         }
-        this.thumbBitmap = Bitmap.createScaledBitmap(buildBitmap, 40, 22, true);
+        videoEditedInfo.account = this.currentAccount;
+        videoEditedInfo.wallpaperPeerId = this.backgroundWallpaperPeerId;
+        videoEditedInfo.isDark = this.isDark;
+        videoEditedInfo.avatarStartTime = -1L;
+        MediaController.CropState cropState = this.crop;
+        if (cropState != null) {
+            videoEditedInfo.cropState = cropState.clone();
+        } else {
+            videoEditedInfo.cropState = new MediaController.CropState();
+        }
+        videoEditedInfo.cropState.useMatrix = new Matrix();
+        videoEditedInfo.cropState.useMatrix.set(this.matrix);
+        videoEditedInfo.mediaEntities = this.mediaEntities;
+        videoEditedInfo.gradientTopColor = Integer.valueOf(this.gradientTopColor);
+        videoEditedInfo.gradientBottomColor = Integer.valueOf(this.gradientBottomColor);
+        videoEditedInfo.forceFragmenting = true;
+        videoEditedInfo.hdrInfo = this.hdrInfo;
+        videoEditedInfo.mixedSoundInfos.clear();
+        if (isCollage() && !this.muted) {
+            Iterator<VideoEditedInfo.Part> it3 = videoEditedInfo.collageParts.iterator();
+            while (it3.hasNext()) {
+                VideoEditedInfo.Part next3 = it3.next();
+                if (next3.isVideo && next3.volume > 0.0f && !next3.muted) {
+                    MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(next3.path);
+                    mixedSoundInfo.volume = next3.volume;
+                    float f2 = next3.left;
+                    float f3 = (float) next3.duration;
+                    mixedSoundInfo.audioOffset = f2 * f3 * 1000;
+                    mixedSoundInfo.startTime = next3.offset * 1000;
+                    mixedSoundInfo.duration = (next3.right - f2) * f3 * 1000;
+                    videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo);
+                }
+            }
+        }
+        File file7 = this.round;
+        if (file7 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(file7.getAbsolutePath());
+            mixedSoundInfo2.volume = this.roundVolume;
+            float f4 = this.roundLeft;
+            float f5 = (float) this.roundDuration;
+            long j14 = f4 * f5 * 1000;
+            mixedSoundInfo2.audioOffset = j14;
+            if (this.isVideo) {
+                mixedSoundInfo2.startTime = (((float) this.roundOffset) - (this.left * ((float) this.duration))) * 1000;
+                j3 = 0;
+            } else {
+                j3 = 0;
+                mixedSoundInfo2.startTime = 0L;
+            }
+            long j15 = mixedSoundInfo2.startTime + j;
+            mixedSoundInfo2.startTime = j15;
+            if (j15 < j3) {
+                mixedSoundInfo2.audioOffset = j14 - j15;
+                mixedSoundInfo2.startTime = j3;
+            }
+            mixedSoundInfo2.duration = (this.roundRight - f4) * f5 * 1000;
+            videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo2);
+        }
+        String str2 = this.audioPath;
+        if (str2 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo3 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
+            mixedSoundInfo3.volume = this.audioVolume;
+            float f6 = this.audioLeft;
+            float f7 = (float) this.audioDuration;
+            long j16 = f6 * f7 * 1000;
+            mixedSoundInfo3.audioOffset = j16;
+            if (this.isVideo) {
+                mixedSoundInfo3.startTime = (((float) this.audioOffset) - (this.left * ((float) this.duration))) * 1000;
+                j2 = 0;
+            } else {
+                j2 = 0;
+                mixedSoundInfo3.startTime = 0L;
+            }
+            long j17 = mixedSoundInfo3.startTime + j;
+            mixedSoundInfo3.startTime = j17;
+            if (j17 < j2) {
+                mixedSoundInfo3.audioOffset = j16 - j17;
+                mixedSoundInfo3.startTime = j2;
+            }
+            mixedSoundInfo3.duration = (this.audioRight - f6) * f7 * 1000;
+            videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo3);
+        }
+        callback.run(videoEditedInfo);
+    }
+
+    public static void lambda$getVideoEditedInfo$10(String[] strArr, int[][] iArr, Runnable runnable) {
+        for (int i = 0; i < strArr.length; i++) {
+            String str = strArr[i];
+            if (str != null) {
+                AnimatedFileDrawable.getVideoInfo(str, iArr[i]);
+            }
+        }
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    public static void lambda$getVideoEditedInfo$11(String str, int[][] iArr, Runnable runnable) {
+        AnimatedFileDrawable.getVideoInfo(str, iArr[0]);
+        AndroidUtilities.runOnUIThread(runnable);
+    }
+
+    public static File makeCacheFile(int i, boolean z) {
+        return makeCacheFile(i, z ? "mp4" : "jpg");
+    }
+
+    public static File makeCacheFile(int i, String str) {
+        TLRPC.TL_videoSize_layer127 tL_videoSize_layer127;
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
+        tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
+        tL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
+        tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
+        tL_fileLocationToBeDeprecated.file_reference = new byte[0];
+        if ("mp4".equals(str) || "webm".equals(str)) {
+            TLRPC.TL_videoSize_layer127 tL_videoSize_layer1272 = new TLRPC.TL_videoSize_layer127();
+            tL_videoSize_layer1272.location = tL_fileLocationToBeDeprecated;
+            tL_videoSize_layer127 = tL_videoSize_layer1272;
+        } else {
+            ?? tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
+            tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
+            tL_videoSize_layer127 = tL_photoSize_layer127;
+        }
+        return FileLoader.getInstance(i).getPathToAttach(tL_videoSize_layer127, str, true);
+    }
+
+    public static class HDRInfo {
+        public int colorRange;
+        public int colorStandard;
+        public int colorTransfer;
+        public float maxlum;
+        public float minlum;
+
+        public int getHDRType() {
+            if (this.colorStandard != 6) {
+                return 0;
+            }
+            int i = this.colorTransfer;
+            if (i == 7) {
+                return 1;
+            }
+            return i == 6 ? 2 : 0;
+        }
+    }
+
+    public void detectHDR(final Utilities.Callback callback) {
+        if (callback == null) {
+            return;
+        }
+        HDRInfo hDRInfo = this.hdrInfo;
+        if (hDRInfo != null) {
+            callback.run(hDRInfo);
+            return;
+        }
+        if (!this.isVideo || Build.VERSION.SDK_INT < 24) {
+            HDRInfo hDRInfo2 = new HDRInfo();
+            this.hdrInfo = hDRInfo2;
+            callback.run(hDRInfo2);
+            return;
+        }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                StoryEntry.this.lambda$detectHDR$13(callback);
+            }
+        });
+    }
+
+    public void lambda$detectHDR$13(final Utilities.Callback callback) {
+        Runnable runnable;
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            buildBitmap.compress(Bitmap.CompressFormat.JPEG, 95, fileOutputStream);
-            fileOutputStream.close();
-        } catch (Exception e) {
-            FileLog.e(e);
+            try {
+                HDRInfo hDRInfo = this.hdrInfo;
+                if (hDRInfo == null) {
+                    hDRInfo = new HDRInfo();
+                    this.hdrInfo = hDRInfo;
+                    hDRInfo.maxlum = 1000.0f;
+                    hDRInfo.minlum = 0.001f;
+                }
+                MediaExtractor mediaExtractor = new MediaExtractor();
+                mediaExtractor.setDataSource(this.file.getAbsolutePath());
+                int findTrack = MediaController.findTrack(mediaExtractor, false);
+                mediaExtractor.selectTrack(findTrack);
+                MediaFormat trackFormat = mediaExtractor.getTrackFormat(findTrack);
+                if (trackFormat.containsKey("color-transfer")) {
+                    hDRInfo.colorTransfer = trackFormat.getInteger("color-transfer");
+                }
+                if (trackFormat.containsKey("color-standard")) {
+                    hDRInfo.colorStandard = trackFormat.getInteger("color-standard");
+                }
+                if (trackFormat.containsKey("color-range")) {
+                    hDRInfo.colorRange = trackFormat.getInteger("color-range");
+                }
+                this.hdrInfo = this.hdrInfo;
+                runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryEntry.this.lambda$detectHDR$12(callback);
+                    }
+                };
+            } catch (Exception e) {
+                FileLog.e(e);
+                this.hdrInfo = this.hdrInfo;
+                runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryEntry.this.lambda$detectHDR$12(callback);
+                    }
+                };
+            }
+            AndroidUtilities.runOnUIThread(runnable);
+        } catch (Throwable th) {
+            this.hdrInfo = this.hdrInfo;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryEntry.this.lambda$detectHDR$12(callback);
+                }
+            });
+            throw th;
         }
-        buildBitmap.recycle();
     }
 
-    public void cancelCheckStickers() {
-        if (this.checkStickersReqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkStickersReqId, true);
-        }
+    public void lambda$detectHDR$12(Utilities.Callback callback) {
+        callback.run(this.hdrInfo);
     }
 
     public void checkStickers(final TL_stories.StoryItem storyItem) {
@@ -887,7 +1500,22 @@ public class StoryEntry {
         final TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = new TLRPC.TL_messages_getAttachedStickers();
         TLRPC.MessageMedia messageMedia = storyItem.media;
         TLRPC.Photo photo = messageMedia.photo;
-        if (photo == null) {
+        if (photo != null) {
+            if (!photo.has_stickers) {
+                return;
+            }
+            TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
+            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+            tL_inputStickeredMediaPhoto.id = tL_inputPhoto;
+            tL_inputPhoto.id = photo.id;
+            tL_inputPhoto.access_hash = photo.access_hash;
+            byte[] bArr = photo.file_reference;
+            tL_inputPhoto.file_reference = bArr;
+            if (bArr == null) {
+                tL_inputPhoto.file_reference = new byte[0];
+            }
+            tL_messages_getAttachedStickers.media = tL_inputStickeredMediaPhoto;
+        } else {
             TLRPC.Document document = messageMedia.document;
             if (document == null || !MessageObject.isDocumentHasAttachedStickers(document)) {
                 return;
@@ -897,27 +1525,12 @@ public class StoryEntry {
             tL_inputStickeredMediaDocument.id = tL_inputDocument;
             tL_inputDocument.id = document.id;
             tL_inputDocument.access_hash = document.access_hash;
-            byte[] bArr = document.file_reference;
-            tL_inputDocument.file_reference = bArr;
-            if (bArr == null) {
+            byte[] bArr2 = document.file_reference;
+            tL_inputDocument.file_reference = bArr2;
+            if (bArr2 == null) {
                 tL_inputDocument.file_reference = new byte[0];
             }
             tL_messages_getAttachedStickers.media = tL_inputStickeredMediaDocument;
-        } else {
-            if (!photo.has_stickers) {
-                return;
-            }
-            TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
-            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_inputStickeredMediaPhoto.id = tL_inputPhoto;
-            tL_inputPhoto.id = photo.id;
-            tL_inputPhoto.access_hash = photo.access_hash;
-            byte[] bArr2 = photo.file_reference;
-            tL_inputPhoto.file_reference = bArr2;
-            if (bArr2 == null) {
-                tL_inputPhoto.file_reference = new byte[0];
-            }
-            tL_messages_getAttachedStickers.media = tL_inputStickeredMediaPhoto;
         }
         final RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
@@ -933,39 +1546,54 @@ public class StoryEntry {
         });
     }
 
-    public void clearFilter() {
-        File file = this.filterFile;
-        if (file != null) {
-            file.delete();
-            this.filterFile = null;
+    public void lambda$checkStickers$15(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StoryEntry.this.lambda$checkStickers$14(tLObject);
+            }
+        });
+    }
+
+    public void lambda$checkStickers$14(TLObject tLObject) {
+        this.checkStickersReqId = 0;
+        if (tLObject instanceof Vector) {
+            this.editStickers = new ArrayList();
+            Vector vector = (Vector) tLObject;
+            for (int i = 0; i < vector.objects.size(); i++) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) vector.objects.get(i);
+                TLRPC.Document document = stickerSetCovered.cover;
+                if (document == null && !stickerSetCovered.covers.isEmpty()) {
+                    document = stickerSetCovered.covers.get(0);
+                }
+                if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
+                    TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
+                    if (!tL_stickerSetFullCovered.documents.isEmpty()) {
+                        document = tL_stickerSetFullCovered.documents.get(0);
+                    }
+                }
+                if (document != null) {
+                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                    tL_inputDocument.id = document.id;
+                    tL_inputDocument.access_hash = document.access_hash;
+                    tL_inputDocument.file_reference = document.file_reference;
+                    this.editStickers.add(tL_inputDocument);
+                }
+            }
         }
     }
 
-    public void clearPaint() {
-        File file = this.paintFile;
-        if (file != null) {
-            file.delete();
-            this.paintFile = null;
+    public void lambda$checkStickers$16(TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
+            FileRefController.getInstance(this.currentAccount).requestReference(storyItem, tL_messages_getAttachedStickers, requestDelegate);
+        } else {
+            requestDelegate.run(tLObject, tL_error);
         }
-        File file2 = this.backgroundFile;
-        if (file2 != null) {
-            file2.delete();
-            this.backgroundFile = null;
-        }
-        File file3 = this.messageFile;
-        if (file3 != null) {
-            file3.delete();
-            this.messageFile = null;
-        }
-        File file4 = this.messageVideoMaskFile;
-        if (file4 != null) {
-            file4.delete();
-            this.messageVideoMaskFile = null;
-        }
-        File file5 = this.paintEntitiesFile;
-        if (file5 != null) {
-            file5.delete();
-            this.paintEntitiesFile = null;
+    }
+
+    public void cancelCheckStickers() {
+        if (this.checkStickersReqId != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkStickersReqId, true);
         }
     }
 
@@ -1126,428 +1754,28 @@ public class StoryEntry {
         return storyEntry;
     }
 
-    public ArrayList cutIntoEntries() {
-        if (this.isVideo && !isCollage() && !this.isEdit) {
-            long j = this.duration;
-            if (j > 0 && !this.isRepost) {
-                long j2 = (this.right - this.left) * ((float) j);
-                if (j2 < 68999) {
-                    return null;
-                }
-                ArrayList arrayList = new ArrayList();
-                this.right = this.left + (59000.0f / ((float) this.duration));
-                arrayList.add(this);
-                long j3 = 59000;
-                while (j3 < j2) {
-                    long min = Math.min(59000L, j2 - j3);
-                    if (min < 1000) {
-                        break;
-                    }
-                    StoryEntry copy = copy(true);
-                    float f = this.left;
-                    float f2 = (float) this.duration;
-                    copy.left = f + (((float) j3) / f2);
-                    copy.right = this.left + (((float) (min + j3)) / f2);
-                    copy.caption = "";
-                    j3 += 59000;
-                    arrayList.add(copy);
-                }
-                return arrayList;
+    public static long getCoverTime(TL_stories.StoryItem storyItem) {
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.Document document;
+        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
+        if (storyItem == null || (messageMedia = storyItem.media) == null || (document = messageMedia.document) == null) {
+            return 0L;
+        }
+        int i = 0;
+        while (true) {
+            if (i >= document.attributes.size()) {
+                tL_documentAttributeVideo = null;
+                break;
             }
-        }
-        return null;
-    }
-
-    public void decodeBounds(String str) {
-        int i;
-        if (str != null) {
-            try {
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(str, options);
-                this.width = options.outWidth;
-                this.height = options.outHeight;
-            } catch (Exception unused) {
+            if (document.attributes.get(i) instanceof TLRPC.TL_documentAttributeVideo) {
+                tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) document.attributes.get(i);
+                break;
             }
+            i++;
         }
-        if (this.isVideo) {
-            return;
+        if (tL_documentAttributeVideo == null) {
+            return 0L;
         }
-        if (((int) Math.max(this.width, (this.height / 16.0f) * 9.0f)) <= 900) {
-            this.resultWidth = 720;
-            i = 1280;
-        } else {
-            this.resultWidth = 1080;
-            i = 1920;
-        }
-        this.resultHeight = i;
-    }
-
-    public void destroy(boolean z) {
-        if (this.blurredVideoThumb != null) {
-            this.blurredVideoThumb = null;
-        }
-        File file = this.uploadThumbFile;
-        if (file != null) {
-            file.delete();
-            this.uploadThumbFile = null;
-        }
-        if (!z) {
-            clearPaint();
-            clearFilter();
-            File file2 = this.file;
-            if (file2 != null) {
-                if (this.fileDeletable && (!this.isEdit || this.editedMedia)) {
-                    file2.delete();
-                }
-                this.file = null;
-            }
-            if (this.thumbPath != null) {
-                if (this.fileDeletable) {
-                    new File(this.thumbPath).delete();
-                }
-                this.thumbPath = null;
-            }
-            ArrayList arrayList = this.mediaEntities;
-            if (arrayList != null) {
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) it.next();
-                    if (mediaEntity.type == 2 && !TextUtils.isEmpty(mediaEntity.segmentedPath)) {
-                        try {
-                            new File(mediaEntity.segmentedPath).delete();
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                        mediaEntity.segmentedPath = "";
-                    }
-                }
-            }
-            File file3 = this.round;
-            if (file3 != null && (!this.isEdit || this.editedMedia)) {
-                file3.delete();
-                this.round = null;
-            }
-            if (this.roundThumb != null && (!this.isEdit || this.editedMedia)) {
-                try {
-                    new File(this.roundThumb).delete();
-                } catch (Exception unused) {
-                }
-                this.roundThumb = null;
-            }
-        }
-        this.thumbPathBitmap = null;
-        if (this.collageContent != null) {
-            for (int i = 0; i < this.collageContent.size(); i++) {
-                ((StoryEntry) this.collageContent.get(i)).destroy(z);
-            }
-        }
-        cancelCheckStickers();
-    }
-
-    public void detectHDR(final Utilities.Callback callback) {
-        if (callback == null) {
-            return;
-        }
-        HDRInfo hDRInfo = this.hdrInfo;
-        if (hDRInfo != null) {
-            callback.run(hDRInfo);
-            return;
-        }
-        if (this.isVideo && Build.VERSION.SDK_INT >= 24) {
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryEntry.this.lambda$detectHDR$13(callback);
-                }
-            });
-            return;
-        }
-        HDRInfo hDRInfo2 = new HDRInfo();
-        this.hdrInfo = hDRInfo2;
-        callback.run(hDRInfo2);
-    }
-
-    public File getOriginalFile() {
-        File file = this.filterFile;
-        return file != null ? file : this.file;
-    }
-
-    public int getTotalCount() {
-        if (this.isVideo && !isCollage() && !this.isEdit) {
-            long j = this.duration;
-            if (j > 0 && !this.isRepost) {
-                if ((this.right - this.left) * ((float) j) < 68999) {
-                    return 1;
-                }
-                return (int) Math.ceil(((float) r2) / 59000.0f);
-            }
-        }
-        return 1;
-    }
-
-    public void getVideoEditedInfo(final Utilities.Callback callback) {
-        int i;
-        if (!wouldBeVideo()) {
-            callback.run(null);
-            return;
-        }
-        if (!this.isVideo && ((i = this.resultWidth) > 720 || this.resultHeight > 1280)) {
-            float f = 720.0f / i;
-            this.matrix.postScale(f, f, 0.0f, 0.0f);
-            this.resultWidth = 720;
-            this.resultHeight = 1280;
-        }
-        File file = this.file;
-        final String absolutePath = file == null ? null : file.getAbsolutePath();
-        final int[][] iArr = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, Math.max(1, isCollage() ? this.collageContent.size() : 0), 11);
-        iArr[0] = new int[11];
-        final Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                StoryEntry.this.lambda$getVideoEditedInfo$9(absolutePath, iArr, callback);
-            }
-        };
-        if (!isCollage()) {
-            if (this.file == null) {
-                runnable.run();
-                return;
-            } else {
-                Utilities.globalQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryEntry.lambda$getVideoEditedInfo$11(absolutePath, iArr, runnable);
-                    }
-                });
-                return;
-            }
-        }
-        final String[] strArr = new String[this.collageContent.size()];
-        for (int i2 = 0; i2 < this.collageContent.size(); i2++) {
-            strArr[i2] = ((StoryEntry) this.collageContent.get(i2)).file == null ? null : ((StoryEntry) this.collageContent.get(i2)).file.getAbsolutePath();
-            iArr[i2] = new int[11];
-        }
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                StoryEntry.lambda$getVideoEditedInfo$10(strArr, iArr, runnable);
-            }
-        });
-    }
-
-    public boolean hasVideo() {
-        if (!isCollage()) {
-            return false;
-        }
-        for (int i = 0; i < this.collageContent.size(); i++) {
-            if (((StoryEntry) this.collageContent.get(i)).isVideo) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isCollage() {
-        return (this.collage == null || this.collageContent == null) ? false : true;
-    }
-
-    public void setupGradient(final Runnable runnable) {
-        final Bitmap bitmap;
-        Utilities.Callback callback;
-        if (this.isVideo && this.gradientTopColor == 0 && this.gradientBottomColor == 0) {
-            if (this.thumbPath != null) {
-                try {
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    if (this.thumbPath.startsWith("vthumb://")) {
-                        long parseInt = Integer.parseInt(this.thumbPath.substring(9));
-                        options.inJustDecodeBounds = true;
-                        MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
-                        options.inSampleSize = calculateInSampleSize(options, 240, 240);
-                        options.inJustDecodeBounds = false;
-                        options.inPreferredConfig = Bitmap.Config.RGB_565;
-                        options.inDither = true;
-                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
-                    } else {
-                        options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeFile(this.thumbPath);
-                        options.inSampleSize = calculateInSampleSize(options, 240, 240);
-                        options.inJustDecodeBounds = false;
-                        options.inPreferredConfig = Bitmap.Config.RGB_565;
-                        options.inDither = true;
-                        bitmap = BitmapFactory.decodeFile(this.thumbPath);
-                    }
-                } catch (Exception unused) {
-                    bitmap = null;
-                }
-                if (bitmap == null) {
-                    return;
-                } else {
-                    callback = new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            StoryEntry.this.lambda$setupGradient$7(bitmap, runnable, (int[]) obj);
-                        }
-                    };
-                }
-            } else {
-                bitmap = this.thumbPathBitmap;
-                if (bitmap == null) {
-                    return;
-                } else {
-                    callback = new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            StoryEntry.this.lambda$setupGradient$8(runnable, (int[]) obj);
-                        }
-                    };
-                }
-            }
-            DominantColors.getColors(true, bitmap, true, callback);
-        }
-    }
-
-    public void setupMatrix() {
-        setupMatrix(this.matrix, 0);
-    }
-
-    public void setupMatrix(Matrix matrix, int i) {
-        matrix.reset();
-        int i2 = this.width;
-        int i3 = this.height;
-        int i4 = this.orientation + i;
-        int i5 = this.invert;
-        matrix.postScale(i5 == 1 ? -1.0f : 1.0f, i5 == 2 ? -1.0f : 1.0f, i2 / 2.0f, i3 / 2.0f);
-        if (i4 != 0) {
-            matrix.postTranslate((-i2) / 2.0f, (-i3) / 2.0f);
-            matrix.postRotate(i4);
-            if (i4 == 90 || i4 == 270) {
-                i3 = i2;
-                i2 = i3;
-            }
-            matrix.postTranslate(i2 / 2.0f, i3 / 2.0f);
-        }
-        float f = i2;
-        float f2 = this.resultWidth / f;
-        if (this.botId != 0) {
-            f2 = Math.min(f2, this.resultHeight / i3);
-        } else {
-            float f3 = i3;
-            if (f3 / f > 1.29f) {
-                f2 = Math.max(f2, this.resultHeight / f3);
-            }
-        }
-        matrix.postScale(f2, f2);
-        matrix.postTranslate((this.resultWidth - (f * f2)) / 2.0f, (this.resultHeight - (i3 * f2)) / 2.0f);
-    }
-
-    public void setupMultipleStoriesSelector() {
-        if (!this.isVideo || isCollage() || this.isEdit || this.isRepost || this.duration <= 69000 || !UserConfig.getInstance(this.currentAccount).isPremium()) {
-            return;
-        }
-        long j = this.duration - 59000;
-        long min = j > 10000 ? Math.min(59000L, j) + 59000 : 59000L;
-        long j2 = this.duration - min;
-        if (j2 > 10000) {
-            min += Math.min(59000L, j2);
-        }
-        this.right = Math.min(1.0f, ((float) min) / ((float) this.duration));
-    }
-
-    public void updateFilter(PhotoFilterView photoFilterView, final Runnable runnable) {
-        clearFilter();
-        MediaController.SavedFilterState savedFilterState = photoFilterView.getSavedFilterState();
-        this.filterState = savedFilterState;
-        if (this.isVideo) {
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
-        }
-        if (savedFilterState.isEmpty()) {
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
-        }
-        Bitmap bitmap = photoFilterView.getBitmap();
-        if (bitmap == null) {
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
-        }
-        Matrix matrix = new Matrix();
-        int i = this.invert;
-        final boolean z = true;
-        matrix.postScale(i == 1 ? -1.0f : 1.0f, i == 2 ? -1.0f : 1.0f, this.width / 2.0f, this.height / 2.0f);
-        matrix.postRotate(-this.orientation);
-        final Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-        this.matrix.preScale(this.width / createBitmap.getWidth(), this.height / createBitmap.getHeight());
-        this.width = createBitmap.getWidth();
-        this.height = createBitmap.getHeight();
-        bitmap.recycle();
-        File file = this.filterFile;
-        if (file != null && file.exists()) {
-            this.filterFile.delete();
-        }
-        String ext = ext(this.file);
-        if (!"png".equals(ext) && !"webp".equals(ext)) {
-            z = false;
-        }
-        this.filterFile = makeCacheFile(this.currentAccount, z ? "webp" : "jpg");
-        if (runnable != null) {
-            Utilities.themeQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryEntry.this.lambda$updateFilter$6(createBitmap, z, runnable);
-                }
-            });
-            return;
-        }
-        try {
-            createBitmap.compress(z ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(this.filterFile));
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        createBitmap.recycle();
-    }
-
-    public boolean wouldBeVideo() {
-        return wouldBeVideo(this.mediaEntities);
-    }
-
-    public boolean wouldBeVideo(ArrayList arrayList) {
-        ArrayList<VideoEditedInfo.EmojiEntity> arrayList2;
-        MessageObject messageObject;
-        TLRPC.Message message;
-        if (this.isVideo || this.audioPath != null || this.round != null) {
-            return true;
-        }
-        ArrayList arrayList3 = this.messageObjects;
-        if (arrayList3 != null && arrayList3.size() == 1 && (messageObject = (MessageObject) this.messageObjects.get(0)) != null && (message = messageObject.messageOwner) != null && (message.action instanceof TLRPC.TL_messageActionStarGiftUnique)) {
-            return true;
-        }
-        if (arrayList != null && !arrayList.isEmpty()) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i);
-                byte b = mediaEntity.type;
-                if (b == 0) {
-                    if (isAnimated(mediaEntity.document, mediaEntity.text)) {
-                        return true;
-                    }
-                } else if (b == 1 && (arrayList2 = mediaEntity.entities) != null && !arrayList2.isEmpty()) {
-                    for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
-                        VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
-                        if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return (long) (tL_documentAttributeVideo.video_start_ts * 1000.0d);
     }
 }

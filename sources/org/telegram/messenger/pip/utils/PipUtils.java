@@ -13,18 +13,20 @@ import org.telegram.messenger.pip.PipSource;
 public abstract class PipUtils {
     private static final int[] tmpCords = new int[2];
 
-    public static void applyPictureInPictureParams(Activity activity, PipSource pipSource) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            if (pipSource != null) {
-                AndroidUtilities.setPictureInPictureParams(activity, pipSource.buildPictureInPictureParams());
-            } else {
-                AndroidUtilities.resetPictureInPictureParams(activity);
-            }
-        }
+    public static WindowManager.LayoutParams createWindowLayoutParams(Context context, boolean z) {
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.gravity = 51;
+        layoutParams.format = -3;
+        layoutParams.type = getWindowLayoutParamsType(context, z);
+        layoutParams.flags = 520;
+        return layoutParams;
     }
 
-    public static boolean checkAnyPipPermissions(Context context) {
-        return checkPermissions(context) > 0;
+    public static int getWindowLayoutParamsType(Context context, boolean z) {
+        if (z || !AndroidUtilities.checkInlinePermissions(context)) {
+            return 2;
+        }
+        return Build.VERSION.SDK_INT >= 26 ? 2038 : 2003;
     }
 
     public static int checkPermissions(Context context) {
@@ -37,13 +39,22 @@ public abstract class PipUtils {
         return -1;
     }
 
-    public static WindowManager.LayoutParams createWindowLayoutParams(Context context, boolean z) {
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.gravity = 51;
-        layoutParams.format = -3;
-        layoutParams.type = getWindowLayoutParamsType(context, z);
-        layoutParams.flags = 520;
-        return layoutParams;
+    public static boolean checkAnyPipPermissions(Context context) {
+        return checkPermissions(context) > 0;
+    }
+
+    public static boolean useAutoEnterInPictureInPictureMode() {
+        return Build.VERSION.SDK_INT >= 31;
+    }
+
+    public static void applyPictureInPictureParams(Activity activity, PipSource pipSource) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            if (pipSource != null) {
+                AndroidUtilities.setPictureInPictureParams(activity, pipSource.buildPictureInPictureParams());
+            } else {
+                AndroidUtilities.resetPictureInPictureParams(activity);
+            }
+        }
     }
 
     public static void getPipSourceRectHintPosition(Activity activity, View view, Rect rect) {
@@ -65,16 +76,5 @@ public abstract class PipUtils {
         int clamp3 = MathUtils.clamp(width, i7, decorView.getWidth() + i7);
         int i8 = iArr[1];
         rect.set(clamp, clamp2, clamp3, MathUtils.clamp(height, i8, decorView.getHeight() + i8));
-    }
-
-    public static int getWindowLayoutParamsType(Context context, boolean z) {
-        if (z || !AndroidUtilities.checkInlinePermissions(context)) {
-            return 2;
-        }
-        return Build.VERSION.SDK_INT >= 26 ? 2038 : 2003;
-    }
-
-    public static boolean useAutoEnterInPictureInPictureMode() {
-        return Build.VERSION.SDK_INT >= 31;
     }
 }

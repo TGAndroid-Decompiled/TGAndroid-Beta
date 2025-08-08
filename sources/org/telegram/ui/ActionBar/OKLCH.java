@@ -12,6 +12,60 @@ public abstract class OKLCH {
     public static final double[] toXYZ_M = {0.41239079926595934d, 0.357584339383878d, 0.1804807884018343d, 0.21263900587151027d, 0.715168678767756d, 0.07219231536073371d, 0.01933081871559182d, 0.11919477979462598d, 0.9505321522496607d};
     public static final double[] fromXYZ_M = {3.2409699419045226d, -1.537383177570094d, -0.4986107602930034d, -0.9692436362808796d, 1.8759675015077202d, 0.04155505740717559d, 0.05563007969699366d, -0.20397695888897652d, 1.0569715142428786d};
 
+    public static double[] oklch2oklab(double[] dArr) {
+        double d = dArr[0];
+        double d2 = dArr[1];
+        double d3 = dArr[2];
+        return new double[]{d, Double.isNaN(d3) ? 0.0d : Math.cos((d3 * 3.141592653589793d) / 180.0d) * d2, Double.isNaN(d3) ? 0.0d : d2 * Math.sin((d3 * 3.141592653589793d) / 180.0d)};
+    }
+
+    public static double[] oklab2oklch(double[] dArr) {
+        double d = dArr[0];
+        double d2 = dArr[1];
+        double d3 = dArr[2];
+        return new double[]{d, Math.sqrt(Math.pow(d2, 2.0d) + Math.pow(d3, 2.0d)), (Math.abs(d2) >= 2.0E-4d || Math.abs(d3) >= 2.0E-4d) ? ((((Math.atan2(d3, d2) * 180.0d) / 3.141592653589793d) % 360.0d) + 360.0d) % 360.0d : Double.NaN};
+    }
+
+    public static double[] oklab2xyz(double[] dArr) {
+        double[] multiply = multiply(LabtoLMS_M, dArr);
+        for (int i = 0; i < multiply.length; i++) {
+            multiply[i] = Math.pow(multiply[i], 3.0d);
+        }
+        return multiply(LMStoXYZ_M, multiply);
+    }
+
+    public static double[] xyz2oklab(double[] dArr) {
+        double[] multiply = multiply(XYZtoLMS_M, dArr);
+        for (int i = 0; i < multiply.length; i++) {
+            multiply[i] = Math.cbrt(multiply[i]);
+        }
+        return multiply(LMStoLab_M, multiply);
+    }
+
+    public static double[] xyz2rgbLinear(double[] dArr) {
+        return multiply(fromXYZ_M, dArr);
+    }
+
+    public static double[] rgbLinear2xyz(double[] dArr) {
+        return multiply(toXYZ_M, dArr);
+    }
+
+    public static double[] oklch2rgb(double[] dArr) {
+        return xyz2rgbLinear(oklab2xyz(oklch2oklab(dArr)));
+    }
+
+    public static double[] rgb2oklch(double[] dArr) {
+        return oklab2oklch(xyz2oklab(rgbLinear2xyz(dArr)));
+    }
+
+    public static double[] rgb(int i) {
+        return new double[]{Color.red(i) / 255.0d, Color.green(i) / 255.0d, Color.blue(i) / 255.0d};
+    }
+
+    public static int rgb(double[] dArr) {
+        return Color.rgb((int) Math.round(Utilities.clamp(dArr[0], 1.0d, 0.0d) * 255.0d), (int) Math.round(Utilities.clamp(dArr[1], 1.0d, 0.0d) * 255.0d), (int) Math.round(Utilities.clamp(dArr[2], 1.0d, 0.0d) * 255.0d));
+    }
+
     public static int adapt(int i, int i2) {
         double[] rgb2oklch = rgb2oklch(rgb(i2));
         double[] rgb2oklch2 = rgb2oklch(rgb(i));
@@ -36,65 +90,5 @@ public abstract class OKLCH {
         double d5 = dArr[2];
         double d6 = dArr2[2];
         return new double[]{(d * d2) + (d3 * d4) + (d5 * d6), (dArr[3] * d2) + (dArr[4] * d4) + (dArr[5] * d6), (dArr[6] * d2) + (dArr[7] * d4) + (dArr[8] * d6)};
-    }
-
-    public static double[] oklab2oklch(double[] dArr) {
-        double d = dArr[0];
-        double d2 = dArr[1];
-        double d3 = dArr[2];
-        return new double[]{d, Math.sqrt(Math.pow(d2, 2.0d) + Math.pow(d3, 2.0d)), (Math.abs(d2) >= 2.0E-4d || Math.abs(d3) >= 2.0E-4d) ? ((((Math.atan2(d3, d2) * 180.0d) / 3.141592653589793d) % 360.0d) + 360.0d) % 360.0d : Double.NaN};
-    }
-
-    public static double[] oklab2xyz(double[] dArr) {
-        double[] multiply = multiply(LabtoLMS_M, dArr);
-        for (int i = 0; i < multiply.length; i++) {
-            multiply[i] = Math.pow(multiply[i], 3.0d);
-        }
-        return multiply(LMStoXYZ_M, multiply);
-    }
-
-    public static double[] oklch2oklab(double[] dArr) {
-        double d = dArr[0];
-        double d2 = dArr[1];
-        double d3 = dArr[2];
-        return new double[]{d, Double.isNaN(d3) ? 0.0d : Math.cos((d3 * 3.141592653589793d) / 180.0d) * d2, Double.isNaN(d3) ? 0.0d : d2 * Math.sin((d3 * 3.141592653589793d) / 180.0d)};
-    }
-
-    public static double[] oklch2rgb(double[] dArr) {
-        return xyz2rgbLinear(oklab2xyz(oklch2oklab(dArr)));
-    }
-
-    public static int rgb(double[] dArr) {
-        return Color.rgb((int) Math.round(Utilities.clamp(dArr[0], 1.0d, 0.0d) * 255.0d), (int) Math.round(Utilities.clamp(dArr[1], 1.0d, 0.0d) * 255.0d), (int) Math.round(Utilities.clamp(dArr[2], 1.0d, 0.0d) * 255.0d));
-    }
-
-    public static double[] rgb(int i) {
-        double red = Color.red(i);
-        Double.isNaN(red);
-        double green = Color.green(i);
-        Double.isNaN(green);
-        double blue = Color.blue(i);
-        Double.isNaN(blue);
-        return new double[]{red / 255.0d, green / 255.0d, blue / 255.0d};
-    }
-
-    public static double[] rgb2oklch(double[] dArr) {
-        return oklab2oklch(xyz2oklab(rgbLinear2xyz(dArr)));
-    }
-
-    public static double[] rgbLinear2xyz(double[] dArr) {
-        return multiply(toXYZ_M, dArr);
-    }
-
-    public static double[] xyz2oklab(double[] dArr) {
-        double[] multiply = multiply(XYZtoLMS_M, dArr);
-        for (int i = 0; i < multiply.length; i++) {
-            multiply[i] = Math.cbrt(multiply[i]);
-        }
-        return multiply(LMStoLab_M, multiply);
-    }
-
-    public static double[] xyz2rgbLinear(double[] dArr) {
-        return multiply(fromXYZ_M, dArr);
     }
 }

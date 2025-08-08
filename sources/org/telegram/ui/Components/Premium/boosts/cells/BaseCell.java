@@ -34,6 +34,16 @@ public abstract class BaseCell extends FrameLayout {
     public final SimpleTextView subtitleTextView;
     protected final SimpleTextView titleTextView;
 
+    protected int dividerPadding() {
+        return 0;
+    }
+
+    protected int getFullHeight() {
+        return 56;
+    }
+
+    protected abstract boolean needCheck();
+
     public BaseCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
@@ -81,86 +91,6 @@ public abstract class BaseCell extends FrameLayout {
         radioButton.setVisibility(8);
     }
 
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.needDivider) {
-            this.dividerPaint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-            int i = needCheck() ? 105 : 70;
-            if (this.imageView.getVisibility() == 8) {
-                i -= 40;
-            }
-            int dividerPadding = i + dividerPadding();
-            if (LocaleController.isRTL) {
-                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(dividerPadding), getHeight(), this.dividerPaint);
-            } else {
-                canvas.drawRect(AndroidUtilities.dp(dividerPadding), getHeight() - 1, getWidth(), getHeight(), this.dividerPaint);
-            }
-        }
-    }
-
-    protected int dividerPadding() {
-        return 0;
-    }
-
-    protected int getFullHeight() {
-        return 56;
-    }
-
-    public void markChecked(RecyclerListView recyclerListView) {
-        if (needCheck()) {
-            for (int i = 0; i < recyclerListView.getChildCount(); i++) {
-                View childAt = recyclerListView.getChildAt(i);
-                if (childAt.getClass().isInstance(this)) {
-                    ((BaseCell) childAt).setChecked(childAt == this, true);
-                }
-            }
-        }
-    }
-
-    protected abstract boolean needCheck();
-
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(getFullHeight()), 1073741824));
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        if (this.radioButton.getVisibility() == 0) {
-            this.radioButton.setChecked(z, z2);
-        }
-    }
-
-    public void setDivider(boolean z) {
-        this.needDivider = z;
-        invalidate();
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        SimpleTextView simpleTextView;
-        float f;
-        if (TextUtils.isEmpty(charSequence)) {
-            this.titleTextView.setTranslationY(0.0f);
-            this.subtitleTextView.setVisibility(8);
-        } else {
-            this.titleTextView.setTranslationY(AndroidUtilities.dp(-9.0f));
-            this.subtitleTextView.setTranslationY(AndroidUtilities.dp(12.0f));
-            this.subtitleTextView.setText(charSequence);
-            this.subtitleTextView.setVisibility(0);
-        }
-        if (this.imageView.getVisibility() == 8) {
-            if (LocaleController.isRTL) {
-                simpleTextView = this.titleTextView;
-                f = 40.0f;
-            } else {
-                simpleTextView = this.titleTextView;
-                f = -40.0f;
-            }
-            simpleTextView.setTranslationX(AndroidUtilities.dp(f));
-            this.subtitleTextView.setTranslationX(AndroidUtilities.dp(f));
-        }
-    }
-
     public void updateLayouts() {
         float f;
         float f2;
@@ -200,6 +130,23 @@ public abstract class BaseCell extends FrameLayout {
         radioButton.setLayoutParams(LayoutHelper.createFrame(22, 22.0f, (z3 ? 5 : 3) | 16, z3 ? 15.0f : 20.0f, 0.0f, z3 ? 20.0f : 15.0f, 0.0f));
     }
 
+    public void setChecked(boolean z, boolean z2) {
+        if (this.radioButton.getVisibility() == 0) {
+            this.radioButton.setChecked(z, z2);
+        }
+    }
+
+    public void markChecked(RecyclerListView recyclerListView) {
+        if (needCheck()) {
+            for (int i = 0; i < recyclerListView.getChildCount(); i++) {
+                View childAt = recyclerListView.getChildAt(i);
+                if (childAt.getClass().isInstance(this)) {
+                    ((BaseCell) childAt).setChecked(childAt == this, true);
+                }
+            }
+        }
+    }
+
     public CharSequence withArrow(CharSequence charSequence) {
         SpannableString spannableString = new SpannableString(">");
         Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
@@ -209,5 +156,54 @@ public abstract class BaseCell extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append(charSequence).append((CharSequence) " ").append((CharSequence) spannableString);
         return spannableStringBuilder;
+    }
+
+    public void setSubtitle(CharSequence charSequence) {
+        if (TextUtils.isEmpty(charSequence)) {
+            this.titleTextView.setTranslationY(0.0f);
+            this.subtitleTextView.setVisibility(8);
+        } else {
+            this.titleTextView.setTranslationY(AndroidUtilities.dp(-9.0f));
+            this.subtitleTextView.setTranslationY(AndroidUtilities.dp(12.0f));
+            this.subtitleTextView.setText(charSequence);
+            this.subtitleTextView.setVisibility(0);
+        }
+        if (this.imageView.getVisibility() == 8) {
+            if (LocaleController.isRTL) {
+                this.titleTextView.setTranslationX(AndroidUtilities.dp(40.0f));
+                this.subtitleTextView.setTranslationX(AndroidUtilities.dp(40.0f));
+            } else {
+                this.titleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
+                this.subtitleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
+            }
+        }
+    }
+
+    public void setDivider(boolean z) {
+        this.needDivider = z;
+        invalidate();
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(getFullHeight()), 1073741824));
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.needDivider) {
+            this.dividerPaint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
+            int i = needCheck() ? 105 : 70;
+            if (this.imageView.getVisibility() == 8) {
+                i -= 40;
+            }
+            int dividerPadding = i + dividerPadding();
+            if (LocaleController.isRTL) {
+                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(dividerPadding), getHeight(), this.dividerPaint);
+            } else {
+                canvas.drawRect(AndroidUtilities.dp(dividerPadding), getHeight() - 1, getWidth(), getHeight(), this.dividerPaint);
+            }
+        }
     }
 }

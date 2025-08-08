@@ -48,6 +48,95 @@ public class SuggestionOffer {
         this.resourcesProvider = resourcesProvider;
     }
 
+    public void update(MessageObject messageObject) {
+        int i;
+        TLRPC.Message message;
+        TLRPC.SuggestedPost suggestedPost = (messageObject == null || (message = messageObject.messageOwner) == null) ? null : message.suggested_post;
+        if (suggestedPost == null) {
+            return;
+        }
+        MessageSuggestionParams of = MessageSuggestionParams.of(suggestedPost);
+        TextPaint textPaint = (TextPaint) getThemedPaint("paintChatActionText3");
+        this.height = AndroidUtilities.dp(14.0f) * 2;
+        this.rows.clear();
+        AmountUtils$Amount amountUtils$Amount = of.amount;
+        if (amountUtils$Amount != null && !amountUtils$Amount.isZero()) {
+            this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoPrice), textPaint), new Text(LocaleController.bold(of.amount.formatAsDecimalSpaced()), textPaint)));
+        }
+        if (suggestedPost.schedule_date > 0) {
+            this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new Text(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
+        }
+        Iterator it = this.rows.iterator();
+        float f = 0.0f;
+        float f2 = 0.0f;
+        while (it.hasNext()) {
+            Row row = (Row) it.next();
+            f = Math.max(f, row.title.getWidth());
+            f2 = Math.max(f2, row.info.getWidth());
+            int height = this.height + row.getHeight();
+            this.height = height;
+            this.height = height + AndroidUtilities.dp(7.0f);
+        }
+        int dp = (int) (f2 + f + AndroidUtilities.dp(11.0f));
+        int max = Math.max(dp, AndroidUtilities.dp(160.0f));
+        String name = DialogObject.getName(messageObject.getFromChatId());
+        int editedSuggestionFlags = messageObject.getEditedSuggestionFlags();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (editedSuggestionFlags == 0) {
+            if (messageObject.isOutOwner()) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.SuggestionOfferInfoTitleYou));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitle, name));
+            }
+        } else {
+            MessageObject messageObject2 = messageObject.replyMessageObject;
+            if (messageObject2 != null) {
+                DialogObject.getName(messageObject2.getFromChatId());
+            }
+            StringBuilder sb = new StringBuilder();
+            int i2 = editedSuggestionFlags & 4;
+            int i3 = editedSuggestionFlags & 2;
+            int i4 = editedSuggestionFlags & 8;
+            int i5 = editedSuggestionFlags & 1;
+            int i6 = (i2 != 0 ? 1 : 0) + (i3 != 0 ? 1 : 0) + (i4 != 0 ? 1 : 0) + (i5 != 0 ? 1 : 0);
+            if (i5 != 0) {
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedPrice, i6 == 1);
+                i = 1;
+            } else {
+                i = 0;
+            }
+            if (i3 != 0) {
+                i++;
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedTime, i6 == i);
+            }
+            if (i2 != 0) {
+                i++;
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedText, i6 == i);
+            }
+            if (i4 != 0) {
+                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedMedia, i6 == i + 1);
+            }
+            if (messageObject.isOutOwner()) {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromYou, sb));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromX, name, sb));
+            }
+        }
+        this.title = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        int i7 = 0;
+        for (int i8 = 0; i8 < this.title.getLineCount(); i8++) {
+            i7 = (int) Math.max(i7, this.title.getLineWidth(i8));
+        }
+        int height2 = this.height + this.title.getHeight();
+        this.height = height2;
+        this.height = height2 + AndroidUtilities.dp(5.0f);
+        int max2 = Math.max(dp, i7) + (AndroidUtilities.dp(24.0f) * 2);
+        this.width = max2;
+        this.titleX = (max2 - max) / 2;
+        this.rowsTitleX = (max2 - dp) / 2;
+        this.rowsInfoX = (int) (r1 + AndroidUtilities.dp(11.0f) + f);
+    }
+
     private void updateBuildTitleStep(StringBuilder sb, int i, boolean z) {
         if (sb.length() > 0) {
             if (z) {
@@ -59,6 +148,14 @@ public class SuggestionOffer {
             }
         }
         sb.append(LocaleController.getString(i));
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getWidth() {
+        return this.width;
     }
 
     public void draw(Canvas canvas, int i, float f, float f2, float f3, float f4, boolean z) {
@@ -99,100 +196,9 @@ public class SuggestionOffer {
         canvas.restore();
     }
 
-    public int getHeight() {
-        return this.height;
-    }
-
     protected Paint getThemedPaint(String str) {
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         Paint paint = resourcesProvider != null ? resourcesProvider.getPaint(str) : null;
         return paint != null ? paint : Theme.getThemePaint(str);
-    }
-
-    public int getWidth() {
-        return this.width;
-    }
-
-    public void update(MessageObject messageObject) {
-        int i;
-        String formatString;
-        TLRPC.Message message;
-        TLRPC.SuggestedPost suggestedPost = (messageObject == null || (message = messageObject.messageOwner) == null) ? null : message.suggested_post;
-        if (suggestedPost == null) {
-            return;
-        }
-        MessageSuggestionParams of = MessageSuggestionParams.of(suggestedPost);
-        TextPaint textPaint = (TextPaint) getThemedPaint("paintChatActionText3");
-        this.height = AndroidUtilities.dp(14.0f) * 2;
-        this.rows.clear();
-        AmountUtils$Amount amountUtils$Amount = of.amount;
-        if (amountUtils$Amount != null && !amountUtils$Amount.isZero()) {
-            this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoPrice), textPaint), new Text(LocaleController.bold(of.amount.formatAsDecimalSpaced()), textPaint)));
-        }
-        if (suggestedPost.schedule_date > 0) {
-            this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new Text(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
-        }
-        Iterator it = this.rows.iterator();
-        float f = 0.0f;
-        float f2 = 0.0f;
-        while (it.hasNext()) {
-            Row row = (Row) it.next();
-            f = Math.max(f, row.title.getWidth());
-            f2 = Math.max(f2, row.info.getWidth());
-            int height = this.height + row.getHeight();
-            this.height = height;
-            this.height = height + AndroidUtilities.dp(7.0f);
-        }
-        int dp = (int) (f2 + f + AndroidUtilities.dp(11.0f));
-        int max = Math.max(dp, AndroidUtilities.dp(160.0f));
-        String name = DialogObject.getName(messageObject.getFromChatId());
-        int editedSuggestionFlags = messageObject.getEditedSuggestionFlags();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (editedSuggestionFlags == 0) {
-            formatString = messageObject.isOutOwner() ? LocaleController.getString(R.string.SuggestionOfferInfoTitleYou) : LocaleController.formatString(R.string.SuggestionOfferInfoTitle, name);
-        } else {
-            MessageObject messageObject2 = messageObject.replyMessageObject;
-            if (messageObject2 != null) {
-                DialogObject.getName(messageObject2.getFromChatId());
-            }
-            StringBuilder sb = new StringBuilder();
-            int i2 = editedSuggestionFlags & 4;
-            int i3 = editedSuggestionFlags & 2;
-            int i4 = editedSuggestionFlags & 8;
-            int i5 = editedSuggestionFlags & 1;
-            int i6 = (i2 != 0 ? 1 : 0) + (i3 != 0 ? 1 : 0) + (i4 != 0 ? 1 : 0) + (i5 != 0 ? 1 : 0);
-            if (i5 != 0) {
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedPrice, i6 == 1);
-                i = 1;
-            } else {
-                i = 0;
-            }
-            if (i3 != 0) {
-                i++;
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedTime, i6 == i);
-            }
-            if (i2 != 0) {
-                i++;
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedText, i6 == i);
-            }
-            if (i4 != 0) {
-                updateBuildTitleStep(sb, R.string.SuggestionOfferInfoTitleEditedMedia, i6 == i + 1);
-            }
-            formatString = messageObject.isOutOwner() ? LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromYou, sb) : LocaleController.formatString(R.string.SuggestionOfferInfoTitleEditedFromX, name, sb);
-        }
-        spannableStringBuilder.append((CharSequence) formatString);
-        this.title = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        int i7 = 0;
-        for (int i8 = 0; i8 < this.title.getLineCount(); i8++) {
-            i7 = (int) Math.max(i7, this.title.getLineWidth(i8));
-        }
-        int height2 = this.height + this.title.getHeight();
-        this.height = height2;
-        this.height = height2 + AndroidUtilities.dp(5.0f);
-        int max2 = Math.max(dp, i7) + (AndroidUtilities.dp(24.0f) * 2);
-        this.width = max2;
-        this.titleX = (max2 - max) / 2;
-        this.rowsTitleX = (max2 - dp) / 2;
-        this.rowsInfoX = (int) (r1 + AndroidUtilities.dp(11.0f) + f);
     }
 }

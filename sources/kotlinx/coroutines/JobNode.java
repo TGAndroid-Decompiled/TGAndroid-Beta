@@ -6,8 +6,13 @@ public abstract class JobNode extends CompletionHandlerBase implements Disposabl
     public JobSupport job;
 
     @Override
-    public void dispose() {
-        getJob().removeNode$kotlinx_coroutines_core(this);
+    public NodeList getList() {
+        return null;
+    }
+
+    @Override
+    public boolean isActive() {
+        return true;
     }
 
     public final JobSupport getJob() {
@@ -19,18 +24,13 @@ public abstract class JobNode extends CompletionHandlerBase implements Disposabl
         return null;
     }
 
-    @Override
-    public NodeList getList() {
-        return null;
-    }
-
-    @Override
-    public boolean isActive() {
-        return true;
-    }
-
     public final void setJob(JobSupport jobSupport) {
         this.job = jobSupport;
+    }
+
+    @Override
+    public void dispose() {
+        getJob().removeNode$kotlinx_coroutines_core(this);
     }
 
     @Override

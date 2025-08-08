@@ -20,6 +20,21 @@ public abstract class CloseProgressDrawable2 extends Drawable {
     private RectF rect;
     private int side;
 
+    protected abstract int getCurrentColor();
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
     public CloseProgressDrawable2() {
         this(2.0f);
     }
@@ -36,47 +51,6 @@ public abstract class CloseProgressDrawable2 extends Drawable {
         this.side = AndroidUtilities.dp(8.0f);
     }
 
-    private void setColor(int i) {
-        if (this.currentColor != i) {
-            this.globalColorAlpha = Color.alpha(i);
-            this.paint.setColor(ColorUtils.setAlphaComponent(i, 255));
-        }
-    }
-
-    @Override
-    public void draw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CloseProgressDrawable2.draw(android.graphics.Canvas):void");
-    }
-
-    protected abstract int getCurrentColor();
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public void setSide(int i) {
-        this.side = i;
-    }
-
     public void startAnimation() {
         this.animating = true;
         this.lastFrameTime = System.currentTimeMillis();
@@ -85,5 +59,31 @@ public abstract class CloseProgressDrawable2 extends Drawable {
 
     public void stopAnimation() {
         this.animating = false;
+    }
+
+    private void setColor(int i) {
+        if (this.currentColor != i) {
+            this.globalColorAlpha = Color.alpha(i);
+            this.paint.setColor(ColorUtils.setAlphaComponent(i, 255));
+        }
+    }
+
+    public void setSide(int i) {
+        this.side = i;
+    }
+
+    @Override
+    public void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CloseProgressDrawable2.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 }

@@ -19,28 +19,26 @@ class WebRtcAudioManager {
         return (AudioManager) context.getSystemService("audio");
     }
 
-    static int getInputBufferSize(Context context, AudioManager audioManager, int i, int i2) {
-        return isLowLatencyInputSupported(context) ? getLowLatencyFramesPerBuffer(audioManager) : getMinInputFrameSize(i, i2);
-    }
-
-    private static int getLowLatencyFramesPerBuffer(AudioManager audioManager) {
-        String property = audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER");
-        if (property == null) {
-            return 256;
-        }
-        return Integer.parseInt(property);
-    }
-
-    private static int getMinInputFrameSize(int i, int i2) {
-        return AudioRecord.getMinBufferSize(i, i2 == 1 ? 16 : 12, 2) / (i2 * 2);
-    }
-
-    private static int getMinOutputFrameSize(int i, int i2) {
-        return AudioTrack.getMinBufferSize(i, i2 == 1 ? 4 : 12, 2) / (i2 * 2);
-    }
-
     static int getOutputBufferSize(Context context, AudioManager audioManager, int i, int i2) {
-        return isLowLatencyOutputSupported(context) ? getLowLatencyFramesPerBuffer(audioManager) : getMinOutputFrameSize(i, i2);
+        if (isLowLatencyOutputSupported(context)) {
+            return getLowLatencyFramesPerBuffer(audioManager);
+        }
+        return getMinOutputFrameSize(i, i2);
+    }
+
+    static int getInputBufferSize(Context context, AudioManager audioManager, int i, int i2) {
+        if (isLowLatencyInputSupported(context)) {
+            return getLowLatencyFramesPerBuffer(audioManager);
+        }
+        return getMinInputFrameSize(i, i2);
+    }
+
+    static boolean isLowLatencyOutputSupported(Context context) {
+        return context.getPackageManager().hasSystemFeature("android.hardware.audio.low_latency");
+    }
+
+    static boolean isLowLatencyInputSupported(Context context) {
+        return isLowLatencyOutputSupported(context);
     }
 
     public static int getSampleRate(AudioManager audioManager) {
@@ -61,11 +59,19 @@ class WebRtcAudioManager {
         return Integer.parseInt(property);
     }
 
-    static boolean isLowLatencyInputSupported(Context context) {
-        return isLowLatencyOutputSupported(context);
+    private static int getLowLatencyFramesPerBuffer(AudioManager audioManager) {
+        String property = audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER");
+        if (property == null) {
+            return 256;
+        }
+        return Integer.parseInt(property);
     }
 
-    static boolean isLowLatencyOutputSupported(Context context) {
-        return context.getPackageManager().hasSystemFeature("android.hardware.audio.low_latency");
+    private static int getMinOutputFrameSize(int i, int i2) {
+        return AudioTrack.getMinBufferSize(i, i2 == 1 ? 4 : 12, 2) / (i2 * 2);
+    }
+
+    private static int getMinInputFrameSize(int i, int i2) {
+        return AudioRecord.getMinBufferSize(i, i2 == 1 ? 16 : 12, 2) / (i2 * 2);
     }
 }

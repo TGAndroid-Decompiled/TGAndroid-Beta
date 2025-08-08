@@ -25,12 +25,31 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     public final Object countOrElement;
     public final CoroutineDispatcher dispatcher;
 
+    @Override
+    public CoroutineContext getContext() {
+        return this.continuation.getContext();
+    }
+
+    @Override
+    public Continuation getDelegate$kotlinx_coroutines_core() {
+        return this;
+    }
+
     public DispatchedContinuation(CoroutineDispatcher coroutineDispatcher, Continuation continuation) {
         super(-1);
         this.dispatcher = coroutineDispatcher;
         this.continuation = continuation;
         this._state = DispatchedContinuationKt.access$getUNDEFINED$p();
         this.countOrElement = ThreadContextKt.threadContextElements(getContext());
+    }
+
+    @Override
+    public CoroutineStackFrame getCallerFrame() {
+        Continuation continuation = this.continuation;
+        if (continuation instanceof CoroutineStackFrame) {
+            return (CoroutineStackFrame) continuation;
+        }
+        return null;
     }
 
     private final CancellableContinuationImpl getReusableCancellableContinuation() {
@@ -41,15 +60,20 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
         return null;
     }
 
+    public final boolean isReusable$kotlinx_coroutines_core() {
+        return _reusableCancellableContinuation$FU.get(this) != null;
+    }
+
     public final void awaitReusability$kotlinx_coroutines_core() {
         do {
         } while (_reusableCancellableContinuation$FU.get(this) == DispatchedContinuationKt.REUSABLE_CLAIMED);
     }
 
-    @Override
-    public void cancelCompletedResult$kotlinx_coroutines_core(Object obj, Throwable th) {
-        if (obj instanceof CompletedWithCancellation) {
-            ((CompletedWithCancellation) obj).onCancellation.invoke(th);
+    public final void release$kotlinx_coroutines_core() {
+        awaitReusability$kotlinx_coroutines_core();
+        CancellableContinuationImpl reusableCancellableContinuation = getReusableCancellableContinuation();
+        if (reusableCancellableContinuation != null) {
+            reusableCancellableContinuation.detachChild$kotlinx_coroutines_core();
         }
     }
 
@@ -71,27 +95,23 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
         }
     }
 
-    @Override
-    public CoroutineStackFrame getCallerFrame() {
-        Continuation continuation = this.continuation;
-        if (continuation instanceof CoroutineStackFrame) {
-            return (CoroutineStackFrame) continuation;
-        }
+    public final Throwable tryReleaseClaimedContinuation$kotlinx_coroutines_core(CancellableContinuation cancellableContinuation) {
+        Symbol symbol;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$FU;
+        do {
+            Object obj = atomicReferenceFieldUpdater.get(this);
+            symbol = DispatchedContinuationKt.REUSABLE_CLAIMED;
+            if (obj != symbol) {
+                if (obj instanceof Throwable) {
+                    if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, obj, null)) {
+                        throw new IllegalArgumentException("Failed requirement.");
+                    }
+                    return (Throwable) obj;
+                }
+                throw new IllegalStateException(("Inconsistent state " + obj).toString());
+            }
+        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, symbol, cancellableContinuation));
         return null;
-    }
-
-    @Override
-    public CoroutineContext getContext() {
-        return this.continuation.getContext();
-    }
-
-    @Override
-    public Continuation getDelegate$kotlinx_coroutines_core() {
-        return this;
-    }
-
-    public final boolean isReusable$kotlinx_coroutines_core() {
-        return _reusableCancellableContinuation$FU.get(this) != null;
     }
 
     public final boolean postponeCancellation$kotlinx_coroutines_core(Throwable th) {
@@ -114,12 +134,11 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
         }
     }
 
-    public final void release$kotlinx_coroutines_core() {
-        awaitReusability$kotlinx_coroutines_core();
-        CancellableContinuationImpl reusableCancellableContinuation = getReusableCancellableContinuation();
-        if (reusableCancellableContinuation != null) {
-            reusableCancellableContinuation.detachChild$kotlinx_coroutines_core();
-        }
+    @Override
+    public Object takeState$kotlinx_coroutines_core() {
+        Object obj = this._state;
+        this._state = DispatchedContinuationKt.access$getUNDEFINED$p();
+        return obj;
     }
 
     @Override
@@ -133,60 +152,41 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
             return;
         }
         EventLoop eventLoop$kotlinx_coroutines_core = ThreadLocalEventLoop.INSTANCE.getEventLoop$kotlinx_coroutines_core();
-        if (eventLoop$kotlinx_coroutines_core.isUnconfinedLoopActive()) {
-            this._state = state$default;
-            this.resumeMode = 0;
-            eventLoop$kotlinx_coroutines_core.dispatchUnconfined(this);
+        if (!eventLoop$kotlinx_coroutines_core.isUnconfinedLoopActive()) {
+            eventLoop$kotlinx_coroutines_core.incrementUseCount(true);
+            try {
+                CoroutineContext context2 = getContext();
+                Object updateThreadContext = ThreadContextKt.updateThreadContext(context2, this.countOrElement);
+                try {
+                    this.continuation.resumeWith(obj);
+                    Unit unit = Unit.INSTANCE;
+                    do {
+                    } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());
+                } finally {
+                    ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
+                }
+            } catch (Throwable th) {
+                try {
+                    handleFatalException$kotlinx_coroutines_core(th, null);
+                } finally {
+                    eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
+                }
+            }
             return;
         }
-        eventLoop$kotlinx_coroutines_core.incrementUseCount(true);
-        try {
-            CoroutineContext context2 = getContext();
-            Object updateThreadContext = ThreadContextKt.updateThreadContext(context2, this.countOrElement);
-            try {
-                this.continuation.resumeWith(obj);
-                Unit unit = Unit.INSTANCE;
-                do {
-                } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());
-            } finally {
-                ThreadContextKt.restoreThreadContext(context2, updateThreadContext);
-            }
-        } catch (Throwable th) {
-            try {
-                handleFatalException$kotlinx_coroutines_core(th, null);
-            } finally {
-                eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
-            }
-        }
+        this._state = state$default;
+        this.resumeMode = 0;
+        eventLoop$kotlinx_coroutines_core.dispatchUnconfined(this);
     }
 
     @Override
-    public Object takeState$kotlinx_coroutines_core() {
-        Object obj = this._state;
-        this._state = DispatchedContinuationKt.access$getUNDEFINED$p();
-        return obj;
+    public void cancelCompletedResult$kotlinx_coroutines_core(Object obj, Throwable th) {
+        if (obj instanceof CompletedWithCancellation) {
+            ((CompletedWithCancellation) obj).onCancellation.invoke(th);
+        }
     }
 
     public String toString() {
         return "DispatchedContinuation[" + this.dispatcher + ", " + DebugStringsKt.toDebugString(this.continuation) + ']';
-    }
-
-    public final Throwable tryReleaseClaimedContinuation$kotlinx_coroutines_core(CancellableContinuation cancellableContinuation) {
-        Symbol symbol;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$FU;
-        do {
-            Object obj = atomicReferenceFieldUpdater.get(this);
-            symbol = DispatchedContinuationKt.REUSABLE_CLAIMED;
-            if (obj != symbol) {
-                if (obj instanceof Throwable) {
-                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, obj, null)) {
-                        return (Throwable) obj;
-                    }
-                    throw new IllegalArgumentException("Failed requirement.".toString());
-                }
-                throw new IllegalStateException(("Inconsistent state " + obj).toString());
-            }
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, symbol, cancellableContinuation));
-        return null;
     }
 }

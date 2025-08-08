@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.StateSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,47 +52,48 @@ public class CanvasButton {
         CornerPathEffect cornerPathEffect = new CornerPathEffect(this.roundRadius);
         this.pathEffect = cornerPathEffect;
         paint.setPathEffect(cornerPathEffect);
-        if (Build.VERSION.SDK_INT >= 21) {
-            Paint paint2 = new Paint(1);
-            this.maskPaint = paint2;
-            paint2.setFilterBitmap(true);
-            this.maskPaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(12.0f)));
-            this.maskPaint.setColor(-1);
-            final Paint paint3 = new Paint(1);
-            paint3.setFilterBitmap(true);
-            paint3.setColor(-1);
-            BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{Theme.getColor(Theme.key_listSelector) & 436207615}), null, new Drawable() {
-                @Override
-                public void draw(Canvas canvas) {
-                    CanvasButton canvasButton = CanvasButton.this;
-                    canvasButton.drawInternal(canvas, canvasButton.usingRectCount > 1 ? canvasButton.maskPaint : paint3);
-                }
+        Paint paint2 = new Paint(1);
+        this.maskPaint = paint2;
+        paint2.setFilterBitmap(true);
+        this.maskPaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(12.0f)));
+        this.maskPaint.setColor(-1);
+        final Paint paint3 = new Paint(1);
+        paint3.setFilterBitmap(true);
+        paint3.setColor(-1);
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{Theme.getColor(Theme.key_listSelector) & 436207615}), null, new Drawable() {
+            @Override
+            public int getOpacity() {
+                return -2;
+            }
 
-                @Override
-                public int getOpacity() {
-                    return -2;
-                }
+            @Override
+            public void setAlpha(int i) {
+            }
 
-                @Override
-                public void setAlpha(int i) {
-                }
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
 
-                @Override
-                public void setColorFilter(ColorFilter colorFilter) {
+            @Override
+            public void draw(Canvas canvas) {
+                CanvasButton canvasButton = CanvasButton.this;
+                if (canvasButton.usingRectCount > 1) {
+                    canvasButton.drawInternal(canvas, canvasButton.maskPaint);
+                } else {
+                    canvasButton.drawInternal(canvas, paint3);
                 }
-            });
-            this.selectorDrawable = rippleDrawableSafe;
-            rippleDrawableSafe.setCallback(view);
-        }
+            }
+        });
+        this.selectorDrawable = rippleDrawableSafe;
+        rippleDrawableSafe.setCallback(view);
     }
 
-    private boolean contains(int i, int i2) {
-        for (int i3 = 0; i3 < this.usingRectCount; i3++) {
-            if (((RectF) this.drawingRects.get(i3)).contains(i, i2)) {
-                return true;
-            }
+    public void draw(Canvas canvas) {
+        drawInternal(canvas, this.paint);
+        Drawable drawable = this.selectorDrawable;
+        if (drawable != null) {
+            drawable.draw(canvas);
         }
-        return false;
     }
 
     public void drawInternal(Canvas canvas, Paint paint) {
@@ -105,14 +105,14 @@ public class CanvasButton {
                 if (drawable != null) {
                     drawable.setBounds((int) ((RectF) this.drawingRects.get(0)).left, (int) ((RectF) this.drawingRects.get(0)).top, (int) ((RectF) this.drawingRects.get(0)).right, (int) ((RectF) this.drawingRects.get(0)).bottom);
                 }
-                if (!this.rounded) {
-                    paint.setPathEffect(this.pathEffect);
-                    canvas.drawRoundRect((RectF) this.drawingRects.get(0), 0.0f, 0.0f, paint);
-                    return;
-                } else {
+                if (this.rounded) {
                     paint.setPathEffect(null);
                     float min = Math.min(((RectF) this.drawingRects.get(0)).width(), ((RectF) this.drawingRects.get(0)).height()) / 2.0f;
                     canvas.drawRoundRect((RectF) this.drawingRects.get(0), min, min, paint);
+                    return;
+                } else {
+                    paint.setPathEffect(this.pathEffect);
+                    canvas.drawRoundRect((RectF) this.drawingRects.get(0), 0.0f, 0.0f, paint);
                     return;
                 }
             }
@@ -175,36 +175,17 @@ public class CanvasButton {
         }
     }
 
-    public void addRect(RectF rectF) {
-        int i = this.usingRectCount + 1;
-        this.usingRectCount = i;
-        if (i > this.drawingRects.size()) {
-            this.drawingRects.add(new RectF());
-        }
-        ((RectF) this.drawingRects.get(this.usingRectCount - 1)).set(rectF);
-    }
-
-    public void cancelRipple() {
-        Drawable drawable;
-        if (Build.VERSION.SDK_INT < 21 || (drawable = this.selectorDrawable) == null) {
-            return;
-        }
-        drawable.setState(StateSet.NOTHING);
-        this.selectorDrawable.jumpToCurrentState();
-    }
-
     public boolean checkTouchEvent(MotionEvent motionEvent) {
-        Drawable drawable;
         Runnable runnable;
-        Drawable drawable2;
-        Drawable drawable3;
+        Drawable drawable;
         int x = (int) motionEvent.getX();
         int y = (int) motionEvent.getY();
         if (motionEvent.getAction() == 0) {
             if (contains(x, y)) {
                 this.buttonPressed = true;
-                if (Build.VERSION.SDK_INT >= 21 && (drawable3 = this.selectorDrawable) != null) {
-                    drawable3.setHotspot(x, y);
+                Drawable drawable2 = this.selectorDrawable;
+                if (drawable2 != null) {
+                    drawable2.setHotspot(x, y);
                     this.selectorDrawable.setState(pressedState);
                 }
                 AndroidUtilities.cancelRunOnUIThread(this.longPressRunnableInner);
@@ -220,30 +201,27 @@ public class CanvasButton {
                     runnable.run();
                 }
                 this.parent.playSoundEffect(0);
-                if (Build.VERSION.SDK_INT >= 21 && (drawable = this.selectorDrawable) != null) {
-                    drawable.setState(StateSet.NOTHING);
+                Drawable drawable3 = this.selectorDrawable;
+                if (drawable3 != null) {
+                    drawable3.setState(StateSet.NOTHING);
                 }
                 this.buttonPressed = false;
                 this.parent.invalidate();
             }
             AndroidUtilities.cancelRunOnUIThread(this.longPressRunnableInner);
-        } else if (motionEvent.getAction() == 2 && this.buttonPressed && Build.VERSION.SDK_INT >= 21 && (drawable2 = this.selectorDrawable) != null) {
-            drawable2.setHotspot(x, y);
+        } else if (motionEvent.getAction() == 2 && this.buttonPressed && (drawable = this.selectorDrawable) != null) {
+            drawable.setHotspot(x, y);
         }
         return this.buttonPressed;
     }
 
-    public void draw(Canvas canvas) {
-        drawInternal(canvas, this.paint);
-        Drawable drawable = this.selectorDrawable;
-        if (drawable != null) {
-            drawable.draw(canvas);
+    private boolean contains(int i, int i2) {
+        for (int i3 = 0; i3 < this.usingRectCount; i3++) {
+            if (((RectF) this.drawingRects.get(i3)).contains(i, i2)) {
+                return true;
+            }
         }
-    }
-
-    public void rewind() {
-        this.pathCreated = false;
-        this.usingRectCount = 0;
+        return false;
     }
 
     public void setColor(int i) {
@@ -253,25 +231,27 @@ public class CanvasButton {
     public void setColor(int i, int i2) {
         this.paint.setColor(i);
         Drawable drawable = this.selectorDrawable;
-        if (drawable == null || Build.VERSION.SDK_INT < 21) {
-            return;
+        if (drawable != null) {
+            Theme.setSelectorDrawableColor(drawable, i2, true);
         }
-        Theme.setSelectorDrawableColor(drawable, i2, true);
     }
 
     public void setDelegate(Runnable runnable) {
         this.delegate = runnable;
     }
 
-    public void setLongPress(Runnable runnable) {
-        this.longPressEnabled = true;
-        this.longPressRunnable = runnable;
+    public void rewind() {
+        this.pathCreated = false;
+        this.usingRectCount = 0;
     }
 
-    public void setRect(int i, int i2, int i3, int i4) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(i, i2, i3, i4);
-        setRect(rectF);
+    public void addRect(RectF rectF) {
+        int i = this.usingRectCount + 1;
+        this.usingRectCount = i;
+        if (i > this.drawingRects.size()) {
+            this.drawingRects.add(new RectF());
+        }
+        ((RectF) this.drawingRects.get(this.usingRectCount - 1)).set(rectF);
     }
 
     public void setRect(RectF rectF) {
@@ -279,7 +259,26 @@ public class CanvasButton {
         addRect(rectF);
     }
 
+    public void setLongPress(Runnable runnable) {
+        this.longPressEnabled = true;
+        this.longPressRunnable = runnable;
+    }
+
     public void setRounded(boolean z) {
         this.rounded = z;
+    }
+
+    public void cancelRipple() {
+        Drawable drawable = this.selectorDrawable;
+        if (drawable != null) {
+            drawable.setState(StateSet.NOTHING);
+            this.selectorDrawable.jumpToCurrentState();
+        }
+    }
+
+    public void setRect(int i, int i2, int i3, int i4) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(i, i2, i3, i4);
+        setRect(rectF);
     }
 }

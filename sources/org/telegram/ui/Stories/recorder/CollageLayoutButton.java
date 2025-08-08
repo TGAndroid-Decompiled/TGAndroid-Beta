@@ -30,6 +30,192 @@ import org.telegram.ui.Stories.recorder.CollageLayout;
 import org.telegram.ui.Stories.recorder.CollageLayoutButton;
 
 public class CollageLayoutButton extends ToggleButton2 {
+    public CollageLayoutButton(Context context) {
+        super(context);
+    }
+
+    public static class CollageLayoutListView extends FrameLayout {
+        public final RecyclerListView listView;
+        private Utilities.Callback onLayoutClick;
+        private CollageLayout selectedLayout;
+        private boolean visible;
+        private ValueAnimator visibleAnimator;
+        private float visibleProgress;
+
+        public void setSelected(CollageLayout collageLayout) {
+            this.selectedLayout = collageLayout;
+            AndroidUtilities.updateVisibleRows(this.listView);
+        }
+
+        public CollageLayoutListView(final Context context, final FlashViews flashViews) {
+            super(context);
+            RecyclerListView recyclerListView = new RecyclerListView(context) {
+                private final GradientClip clip = new GradientClip();
+
+                @Override
+                public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                    if (motionEvent.getX() <= getPaddingLeft() || motionEvent.getX() >= getWidth() - getPaddingRight()) {
+                        return false;
+                    }
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                    return super.onInterceptTouchEvent(motionEvent);
+                }
+
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (motionEvent.getX() <= getPaddingLeft() || motionEvent.getX() >= getWidth() - getPaddingRight()) {
+                        return false;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+
+                @Override
+                public void dispatchDraw(Canvas canvas) {
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (CollageLayoutListView.this.visibleProgress * 255.0f), 31);
+                    canvas.save();
+                    float paddingLeft = getPaddingLeft();
+                    float width = getWidth() - getPaddingRight();
+                    canvas.clipRect(paddingLeft, 0.0f, width, getHeight());
+                    canvas.translate((1.0f - CollageLayoutListView.this.visibleProgress) * width, 0.0f);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                    canvas.save();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(paddingLeft, 0.0f, AndroidUtilities.dp(12.0f) + paddingLeft, getHeight());
+                    this.clip.draw(canvas, rectF, 0, CollageLayoutListView.this.visibleProgress);
+                    rectF.set(width - AndroidUtilities.dp(12.0f), 0.0f, width, getHeight());
+                    this.clip.draw(canvas, rectF, 2, CollageLayoutListView.this.visibleProgress);
+                    canvas.restore();
+                    canvas.restore();
+                }
+            };
+            this.listView = recyclerListView;
+            recyclerListView.setAdapter(new RecyclerView.Adapter() {
+                @Override
+                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                    Button button = new Button(context);
+                    button.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(56.0f)));
+                    button.setBackground(Theme.createSelectorDrawable(553648127));
+                    return new RecyclerListView.Holder(button);
+                }
+
+                @Override
+                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                    Button button = (Button) viewHolder.itemView;
+                    CollageLayout collageLayout = (CollageLayout) CollageLayout.getLayouts().get(i);
+                    boolean z = i == button.position;
+                    button.setDrawable(new CollageLayoutDrawable(collageLayout));
+                    button.setSelected(collageLayout.equals(CollageLayoutListView.this.selectedLayout), z);
+                    button.position = i;
+                }
+
+                @Override
+                public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+                    Button button = (Button) viewHolder.itemView;
+                    flashViews.add(button);
+                    int i = button.position;
+                    if (i >= 0 && i < CollageLayout.getLayouts().size()) {
+                        CollageLayout collageLayout = (CollageLayout) CollageLayout.getLayouts().get(button.position);
+                        button.setDrawable(new CollageLayoutDrawable(collageLayout));
+                        button.setSelected(collageLayout.equals(CollageLayoutListView.this.selectedLayout), false);
+                    }
+                    super.onViewAttachedToWindow(viewHolder);
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) {
+                    flashViews.remove((Button) viewHolder.itemView);
+                    super.onViewDetachedFromWindow(viewHolder);
+                }
+
+                @Override
+                public int getItemCount() {
+                    return CollageLayout.getLayouts().size();
+                }
+            });
+            recyclerListView.setLayoutManager(new LinearLayoutManager(context, 0, false));
+            recyclerListView.setClipToPadding(false);
+            recyclerListView.setVisibility(8);
+            recyclerListView.setWillNotDraw(false);
+            recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                @Override
+                public final void onItemClick(View view, int i) {
+                    CollageLayoutButton.CollageLayoutListView.this.lambda$new$0(view, i);
+                }
+            });
+            addView(recyclerListView, LayoutHelper.createFrame(-1, 56.0f));
+        }
+
+        public void lambda$new$0(View view, int i) {
+            Utilities.Callback callback = this.onLayoutClick;
+            if (callback != null) {
+                callback.run((CollageLayout) CollageLayout.getLayouts().get(i));
+            }
+        }
+
+        private static class Button extends ToggleButton2 {
+            public int position;
+
+            public Button(Context context) {
+                super(context);
+            }
+        }
+
+        public void setOnLayoutClick(Utilities.Callback<CollageLayout> callback) {
+            this.onLayoutClick = callback;
+        }
+
+        public void setBounds(float f, float f2) {
+            this.listView.setPadding((int) f, 0, (int) f2, 0);
+            this.listView.invalidate();
+        }
+
+        public boolean isVisible() {
+            return this.visible;
+        }
+
+        public void setVisible(final boolean z, boolean z2) {
+            ValueAnimator valueAnimator = this.visibleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (this.visible == z) {
+                return;
+            }
+            this.visible = z;
+            if (z2) {
+                this.listView.setVisibility(0);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.visibleProgress, z ? 1.0f : 0.0f);
+                this.visibleAnimator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        CollageLayoutButton.CollageLayoutListView.this.lambda$setVisible$1(valueAnimator2);
+                    }
+                });
+                this.visibleAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        CollageLayoutListView.this.visibleProgress = z ? 1.0f : 0.0f;
+                        CollageLayoutListView.this.listView.invalidate();
+                        CollageLayoutListView.this.listView.setVisibility(z ? 0 : 8);
+                    }
+                });
+                this.visibleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.visibleAnimator.setDuration(340L);
+                this.visibleAnimator.start();
+                return;
+            }
+            this.visibleProgress = z ? 1.0f : 0.0f;
+            this.listView.invalidate();
+            this.listView.setVisibility(z ? 0 : 8);
+        }
+
+        public void lambda$setVisible$1(ValueAnimator valueAnimator) {
+            this.visibleProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.listView.invalidate();
+        }
+    }
 
     public static class CollageLayoutDrawable extends Drawable {
         private boolean cross;
@@ -38,6 +224,11 @@ public class CollageLayoutButton extends ToggleButton2 {
         public final Paint paint;
         public final Path path;
         private final float[] radii;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
 
         public CollageLayoutDrawable(CollageLayout collageLayout) {
             this(collageLayout, false);
@@ -150,21 +341,6 @@ public class CollageLayoutButton extends ToggleButton2 {
         }
 
         @Override
-        public int getIntrinsicHeight() {
-            return AndroidUtilities.dp(32.0f);
-        }
-
-        @Override
-        public int getIntrinsicWidth() {
-            return AndroidUtilities.dp(32.0f);
-        }
-
-        @Override
-        public int getOpacity() {
-            return -2;
-        }
-
-        @Override
         public void setAlpha(int i) {
             this.paint.setAlpha(i);
         }
@@ -173,192 +349,15 @@ public class CollageLayoutButton extends ToggleButton2 {
         public void setColorFilter(ColorFilter colorFilter) {
             this.paint.setColorFilter(colorFilter);
         }
-    }
 
-    public static class CollageLayoutListView extends FrameLayout {
-        public final RecyclerListView listView;
-        private Utilities.Callback onLayoutClick;
-        private CollageLayout selectedLayout;
-        private boolean visible;
-        private ValueAnimator visibleAnimator;
-        private float visibleProgress;
-
-        private static class Button extends ToggleButton2 {
-            public int position;
-
-            public Button(Context context) {
-                super(context);
-            }
+        @Override
+        public int getIntrinsicWidth() {
+            return AndroidUtilities.dp(32.0f);
         }
 
-        public CollageLayoutListView(final Context context, final FlashViews flashViews) {
-            super(context);
-            RecyclerListView recyclerListView = new RecyclerListView(context) {
-                private final GradientClip clip = new GradientClip();
-
-                @Override
-                public void dispatchDraw(Canvas canvas) {
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (CollageLayoutListView.this.visibleProgress * 255.0f), 31);
-                    canvas.save();
-                    float paddingLeft = getPaddingLeft();
-                    float width = getWidth() - getPaddingRight();
-                    canvas.clipRect(paddingLeft, 0.0f, width, getHeight());
-                    canvas.translate((1.0f - CollageLayoutListView.this.visibleProgress) * width, 0.0f);
-                    super.dispatchDraw(canvas);
-                    canvas.restore();
-                    canvas.save();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(paddingLeft, 0.0f, AndroidUtilities.dp(12.0f) + paddingLeft, getHeight());
-                    this.clip.draw(canvas, rectF, 0, CollageLayoutListView.this.visibleProgress);
-                    rectF.set(width - AndroidUtilities.dp(12.0f), 0.0f, width, getHeight());
-                    this.clip.draw(canvas, rectF, 2, CollageLayoutListView.this.visibleProgress);
-                    canvas.restore();
-                    canvas.restore();
-                }
-
-                @Override
-                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                    if (motionEvent.getX() <= getPaddingLeft() || motionEvent.getX() >= getWidth() - getPaddingRight()) {
-                        return false;
-                    }
-                    return super.dispatchTouchEvent(motionEvent);
-                }
-
-                @Override
-                public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                    if (motionEvent.getX() <= getPaddingLeft() || motionEvent.getX() >= getWidth() - getPaddingRight()) {
-                        return false;
-                    }
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    return super.onInterceptTouchEvent(motionEvent);
-                }
-            };
-            this.listView = recyclerListView;
-            recyclerListView.setAdapter(new RecyclerView.Adapter() {
-                @Override
-                public int getItemCount() {
-                    return CollageLayout.getLayouts().size();
-                }
-
-                @Override
-                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                    Button button = (Button) viewHolder.itemView;
-                    CollageLayout collageLayout = (CollageLayout) CollageLayout.getLayouts().get(i);
-                    boolean z = i == button.position;
-                    button.setDrawable(new CollageLayoutDrawable(collageLayout));
-                    button.setSelected(collageLayout.equals(CollageLayoutListView.this.selectedLayout), z);
-                    button.position = i;
-                }
-
-                @Override
-                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                    Button button = new Button(context);
-                    button.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(56.0f)));
-                    button.setBackground(Theme.createSelectorDrawable(553648127));
-                    return new RecyclerListView.Holder(button);
-                }
-
-                @Override
-                public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
-                    Button button = (Button) viewHolder.itemView;
-                    flashViews.add(button);
-                    int i = button.position;
-                    if (i >= 0 && i < CollageLayout.getLayouts().size()) {
-                        CollageLayout collageLayout = (CollageLayout) CollageLayout.getLayouts().get(button.position);
-                        button.setDrawable(new CollageLayoutDrawable(collageLayout));
-                        button.setSelected(collageLayout.equals(CollageLayoutListView.this.selectedLayout), false);
-                    }
-                    super.onViewAttachedToWindow(viewHolder);
-                }
-
-                @Override
-                public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) {
-                    flashViews.remove((Button) viewHolder.itemView);
-                    super.onViewDetachedFromWindow(viewHolder);
-                }
-            });
-            recyclerListView.setLayoutManager(new LinearLayoutManager(context, 0, false));
-            recyclerListView.setClipToPadding(false);
-            recyclerListView.setVisibility(8);
-            recyclerListView.setWillNotDraw(false);
-            recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                @Override
-                public final void onItemClick(View view, int i) {
-                    CollageLayoutButton.CollageLayoutListView.this.lambda$new$0(view, i);
-                }
-            });
-            addView(recyclerListView, LayoutHelper.createFrame(-1, 56.0f));
+        @Override
+        public int getIntrinsicHeight() {
+            return AndroidUtilities.dp(32.0f);
         }
-
-        public void lambda$new$0(View view, int i) {
-            Utilities.Callback callback = this.onLayoutClick;
-            if (callback != null) {
-                callback.run((CollageLayout) CollageLayout.getLayouts().get(i));
-            }
-        }
-
-        public void lambda$setVisible$1(ValueAnimator valueAnimator) {
-            this.visibleProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            this.listView.invalidate();
-        }
-
-        public boolean isVisible() {
-            return this.visible;
-        }
-
-        public void setBounds(float f, float f2) {
-            this.listView.setPadding((int) f, 0, (int) f2, 0);
-            this.listView.invalidate();
-        }
-
-        public void setOnLayoutClick(Utilities.Callback<CollageLayout> callback) {
-            this.onLayoutClick = callback;
-        }
-
-        public void setSelected(CollageLayout collageLayout) {
-            this.selectedLayout = collageLayout;
-            AndroidUtilities.updateVisibleRows(this.listView);
-        }
-
-        public void setVisible(final boolean z, boolean z2) {
-            ValueAnimator valueAnimator = this.visibleAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            if (this.visible == z) {
-                return;
-            }
-            this.visible = z;
-            if (!z2) {
-                this.visibleProgress = z ? 1.0f : 0.0f;
-                this.listView.invalidate();
-                this.listView.setVisibility(z ? 0 : 8);
-                return;
-            }
-            this.listView.setVisibility(0);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.visibleProgress, z ? 1.0f : 0.0f);
-            this.visibleAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    CollageLayoutButton.CollageLayoutListView.this.lambda$setVisible$1(valueAnimator2);
-                }
-            });
-            this.visibleAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    CollageLayoutListView.this.visibleProgress = z ? 1.0f : 0.0f;
-                    CollageLayoutListView.this.listView.invalidate();
-                    CollageLayoutListView.this.listView.setVisibility(z ? 0 : 8);
-                }
-            });
-            this.visibleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.visibleAnimator.setDuration(340L);
-            this.visibleAnimator.start();
-        }
-    }
-
-    public CollageLayoutButton(Context context) {
-        super(context);
     }
 }

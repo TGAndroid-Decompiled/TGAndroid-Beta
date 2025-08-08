@@ -30,16 +30,20 @@ public class RtpCapabilities {
             this.mimeType = str2;
         }
 
-        Integer getClockRate() {
-            return this.clockRate;
+        int getPreferredPayloadType() {
+            return this.preferredPayloadType;
+        }
+
+        String getName() {
+            return this.name;
         }
 
         MediaStreamTrack.MediaType getKind() {
             return this.kind;
         }
 
-        String getName() {
-            return this.name;
+        Integer getClockRate() {
+            return this.clockRate;
         }
 
         Integer getNumChannels() {
@@ -48,10 +52,6 @@ public class RtpCapabilities {
 
         Map getParameters() {
             return this.parameters;
-        }
-
-        int getPreferredPayloadType() {
-            return this.preferredPayloadType;
         }
     }
 
@@ -66,16 +66,16 @@ public class RtpCapabilities {
             this.preferredEncrypted = z;
         }
 
-        public boolean getPreferredEncrypted() {
-            return this.preferredEncrypted;
+        public String getUri() {
+            return this.uri;
         }
 
         public int getPreferredId() {
             return this.preferredId;
         }
 
-        public String getUri() {
-            return this.uri;
+        public boolean getPreferredEncrypted() {
+            return this.preferredEncrypted;
         }
     }
 
@@ -84,11 +84,11 @@ public class RtpCapabilities {
         this.codecs = list;
     }
 
-    List<CodecCapability> getCodecs() {
-        return this.codecs;
-    }
-
     public List<HeaderExtensionCapability> getHeaderExtensions() {
         return this.headerExtensions;
+    }
+
+    List<CodecCapability> getCodecs() {
+        return this.codecs;
     }
 }

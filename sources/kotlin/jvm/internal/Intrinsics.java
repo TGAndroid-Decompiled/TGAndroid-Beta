@@ -4,8 +4,22 @@ import java.util.Arrays;
 import kotlin.UninitializedPropertyAccessException;
 
 public abstract class Intrinsics {
-    public static boolean areEqual(Object obj, Object obj2) {
-        return obj == null ? obj2 == null : obj.equals(obj2);
+    public static int compare(int i, int i2) {
+        if (i < i2) {
+            return -1;
+        }
+        return i == i2 ? 0 : 1;
+    }
+
+    public static int compare(long j, long j2) {
+        if (j < j2) {
+            return -1;
+        }
+        return j == j2 ? 0 : 1;
+    }
+
+    public static String stringPlus(String str, Object obj) {
+        return str + obj;
     }
 
     public static void checkNotNull(Object obj) {
@@ -18,6 +32,22 @@ public abstract class Intrinsics {
         if (obj == null) {
             throwJavaNpe(str);
         }
+    }
+
+    public static void throwJavaNpe() {
+        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException()));
+    }
+
+    public static void throwJavaNpe(String str) {
+        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(str)));
+    }
+
+    public static void throwUninitializedProperty(String str) {
+        throw ((UninitializedPropertyAccessException) sanitizeStackTrace(new UninitializedPropertyAccessException(str)));
+    }
+
+    public static void throwUninitializedPropertyAccessException(String str) {
+        throwUninitializedProperty("lateinit property " + str + " has not been initialized");
     }
 
     public static void checkNotNullExpressionValue(Object obj, String str) {
@@ -33,18 +63,8 @@ public abstract class Intrinsics {
         }
     }
 
-    public static int compare(int i, int i2) {
-        if (i < i2) {
-            return -1;
-        }
-        return i == i2 ? 0 : 1;
-    }
-
-    public static int compare(long j, long j2) {
-        if (j < j2) {
-            return -1;
-        }
-        return j == j2 ? 0 : 1;
+    private static void throwParameterIsNullNPE(String str) {
+        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(createParameterIsNullExceptionMessage(str))));
     }
 
     private static String createParameterIsNullExceptionMessage(String str) {
@@ -59,6 +79,13 @@ public abstract class Intrinsics {
         }
         StackTraceElement stackTraceElement = stackTrace[i];
         return "Parameter specified as non-null is null: method " + stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName() + ", parameter " + str;
+    }
+
+    public static boolean areEqual(Object obj, Object obj2) {
+        if (obj == null) {
+            return obj2 == null;
+        }
+        return obj.equals(obj2);
     }
 
     private static Throwable sanitizeStackTrace(Throwable th) {
@@ -76,29 +103,5 @@ public abstract class Intrinsics {
         }
         th.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i + 1, length));
         return th;
-    }
-
-    public static String stringPlus(String str, Object obj) {
-        return str + obj;
-    }
-
-    public static void throwJavaNpe() {
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException()));
-    }
-
-    public static void throwJavaNpe(String str) {
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(str)));
-    }
-
-    private static void throwParameterIsNullNPE(String str) {
-        throw ((NullPointerException) sanitizeStackTrace(new NullPointerException(createParameterIsNullExceptionMessage(str))));
-    }
-
-    public static void throwUninitializedProperty(String str) {
-        throw ((UninitializedPropertyAccessException) sanitizeStackTrace(new UninitializedPropertyAccessException(str)));
-    }
-
-    public static void throwUninitializedPropertyAccessException(String str) {
-        throwUninitializedProperty("lateinit property " + str + " has not been initialized");
     }
 }

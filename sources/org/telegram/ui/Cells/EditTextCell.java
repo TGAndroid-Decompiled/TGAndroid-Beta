@@ -41,6 +41,69 @@ public class EditTextCell extends FrameLayout {
     private boolean showLimitWhenFocused;
     private int showLimitWhenNear;
 
+    protected void onFocusChanged(boolean z) {
+    }
+
+    public void onTextChanged(CharSequence charSequence) {
+    }
+
+    public void setShowLimitWhenEmpty(boolean z) {
+        this.showLimitWhenEmpty = z;
+        if (z) {
+            updateLimitText();
+        }
+    }
+
+    public void setShowLimitWhenNear(int i) {
+        this.showLimitWhenNear = i;
+        updateLimitText();
+    }
+
+    public void updateLimitText() {
+        int i;
+        if (this.editText == null) {
+            return;
+        }
+        this.limitCount = this.maxLength - getText().length();
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
+        String str = "";
+        if ((!TextUtils.isEmpty(getText()) || this.showLimitWhenEmpty) && ((!this.showLimitWhenFocused || (this.focused && !this.autofocused)) && ((i = this.showLimitWhenNear) == -1 || this.limitCount <= i))) {
+            str = "" + this.limitCount;
+        }
+        animatedTextDrawable.setText(str);
+    }
+
+    public void whenHitEnter(final Runnable runnable) {
+        this.editText.setImeOptions(6);
+        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i != 6) {
+                    return false;
+                }
+                runnable.run();
+                return true;
+            }
+        });
+    }
+
+    public void lambda$hideKeyboardOnEnter$0() {
+        AndroidUtilities.hideKeyboard(this.editText);
+    }
+
+    public void hideKeyboardOnEnter() {
+        whenHitEnter(new Runnable() {
+            @Override
+            public final void run() {
+                EditTextCell.this.lambda$hideKeyboardOnEnter$0();
+            }
+        });
+    }
+
+    public void setShowLimitOnFocus(boolean z) {
+        this.showLimitWhenFocused = z;
+    }
+
     public EditTextCell(Context context, String str, final boolean z, final boolean z2, final int i, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.showLimitWhenNear = -1;
@@ -53,12 +116,36 @@ public class EditTextCell extends FrameLayout {
         this.maxLength = i;
         EditTextCaption editTextCaption = new EditTextCaption(context, resourcesProvider) {
             @Override
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == EditTextCell.this.limit || super.verifyDrawable(drawable);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                super.onTextChanged(charSequence, i2, i3, i4);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = EditTextCell.this.limit;
+                if (animatedTextDrawable2 == null || i <= 0) {
+                    return;
+                }
+                animatedTextDrawable2.cancelAnimation();
+                EditTextCell.this.updateLimitText();
+            }
+
+            @Override
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 EditTextCell editTextCell = EditTextCell.this;
                 editTextCell.limit.setTextColor(editTextCell.limitColor.set(Theme.getColor(editTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 EditTextCell.this.limit.setBounds(getScrollX(), 0, ((getScrollX() + getWidth()) - getPaddingRight()) + AndroidUtilities.dp(42.0f), getHeight());
                 EditTextCell.this.limit.draw(canvas);
+            }
+
+            @Override
+            public void onDraw(Canvas canvas) {
+                canvas.save();
+                canvas.clipRect(getScrollX() + getPaddingLeft(), 0, (getScrollX() + getWidth()) - getPaddingRight(), getHeight());
+                super.onDraw(canvas);
+                canvas.restore();
             }
 
             @Override
@@ -86,30 +173,6 @@ public class EditTextCell extends FrameLayout {
                     menu.add(i3, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
                 }
             }
-
-            @Override
-            public void onDraw(Canvas canvas) {
-                canvas.save();
-                canvas.clipRect(getScrollX() + getPaddingLeft(), 0, (getScrollX() + getWidth()) - getPaddingRight(), getHeight());
-                super.onDraw(canvas);
-                canvas.restore();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = EditTextCell.this.limit;
-                if (animatedTextDrawable2 == null || i <= 0) {
-                    return;
-                }
-                animatedTextDrawable2.cancelAnimation();
-                EditTextCell.this.updateLimitText();
-            }
-
-            @Override
-            protected boolean verifyDrawable(Drawable drawable) {
-                return drawable == EditTextCell.this.limit || super.verifyDrawable(drawable);
-            }
         };
         this.editText = editTextCaption;
         this.limit.setCallback(editTextCaption);
@@ -135,6 +198,18 @@ public class EditTextCell extends FrameLayout {
         editTextCaption.setCursorWidth(1.5f);
         editTextCaption.addTextChangedListener(new TextWatcher() {
             @Override
+            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                if (EditTextCell.this.ignoreEditText) {
+                    return;
+                }
+                EditTextCell.this.autofocused = false;
+            }
+
+            @Override
             public void afterTextChanged(Editable editable) {
                 if (!EditTextCell.this.ignoreEditText) {
                     if (i > 0 && editable != null && editable.length() > i) {
@@ -158,18 +233,6 @@ public class EditTextCell extends FrameLayout {
                     }
                 }
             }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-                if (EditTextCell.this.ignoreEditText) {
-                    return;
-                }
-                EditTextCell.this.autofocused = false;
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
         });
         editTextCaption.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -185,56 +248,6 @@ public class EditTextCell extends FrameLayout {
         updateLimitText();
     }
 
-    public void lambda$hideKeyboardOnEnter$0() {
-        AndroidUtilities.hideKeyboard(this.editText);
-    }
-
-    public void updateLimitText() {
-        int i;
-        if (this.editText == null) {
-            return;
-        }
-        this.limitCount = this.maxLength - getText().length();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-        String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.showLimitWhenEmpty) && ((!this.showLimitWhenFocused || (this.focused && !this.autofocused)) && ((i = this.showLimitWhenNear) == -1 || this.limitCount <= i))) {
-            str = "" + this.limitCount;
-        }
-        animatedTextDrawable.setText(str);
-    }
-
-    public CharSequence getText() {
-        return this.editText.getText();
-    }
-
-    public void hideKeyboardOnEnter() {
-        whenHitEnter(new Runnable() {
-            @Override
-            public final void run() {
-                EditTextCell.this.lambda$hideKeyboardOnEnter$0();
-            }
-        });
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
-    }
-
-    protected void onFocusChanged(boolean z) {
-    }
-
-    public void onTextChanged(CharSequence charSequence) {
-    }
-
-    public void setDivider(boolean z) {
-        this.needDivider = z;
-        setWillNotDraw(!z);
-    }
-
     public ImageView setLeftDrawable(Drawable drawable) {
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -246,22 +259,6 @@ public class EditTextCell extends FrameLayout {
         return imageView;
     }
 
-    public void setShowLimitOnFocus(boolean z) {
-        this.showLimitWhenFocused = z;
-    }
-
-    public void setShowLimitWhenEmpty(boolean z) {
-        this.showLimitWhenEmpty = z;
-        if (z) {
-            updateLimitText();
-        }
-    }
-
-    public void setShowLimitWhenNear(int i) {
-        this.showLimitWhenNear = i;
-        updateLimitText();
-    }
-
     public void setText(CharSequence charSequence) {
         this.ignoreEditText = true;
         this.editText.setText(charSequence);
@@ -270,17 +267,20 @@ public class EditTextCell extends FrameLayout {
         this.ignoreEditText = false;
     }
 
-    public void whenHitEnter(final Runnable runnable) {
-        this.editText.setImeOptions(6);
-        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i != 6) {
-                    return false;
-                }
-                runnable.run();
-                return true;
-            }
-        });
+    public CharSequence getText() {
+        return this.editText.getText();
+    }
+
+    public void setDivider(boolean z) {
+        this.needDivider = z;
+        setWillNotDraw(!z);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
     }
 }

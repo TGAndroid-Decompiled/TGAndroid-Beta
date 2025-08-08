@@ -5,6 +5,7 @@ import android.media.MediaCrypto;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.view.Surface;
+import java.nio.ByteBuffer;
 
 public class MediaCodecPlayer {
     private final MediaCodec codec;
@@ -55,28 +56,65 @@ public class MediaCodecPlayer {
         createDecoderByType.start();
     }
 
-    public boolean ensure(long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecPlayer.ensure(long):boolean");
-    }
-
-    public int getHeight() {
-        return this.h;
-    }
-
-    public int getOrientation() {
-        return this.o;
-    }
-
-    public int getOrientedHeight() {
-        return (this.o / 90) % 2 == 1 ? this.w : this.h;
+    public int getWidth() {
+        return this.w;
     }
 
     public int getOrientedWidth() {
         return (this.o / 90) % 2 == 1 ? this.h : this.w;
     }
 
-    public int getWidth() {
-        return this.w;
+    public int getHeight() {
+        return this.h;
+    }
+
+    public int getOrientedHeight() {
+        return (this.o / 90) % 2 == 1 ? this.w : this.h;
+    }
+
+    public int getOrientation() {
+        return this.o;
+    }
+
+    public boolean ensure(long j) {
+        ByteBuffer inputBuffer;
+        if (this.done) {
+            return false;
+        }
+        boolean z = this.first;
+        this.first = false;
+        long j2 = j * 1000;
+        if (!z && j2 <= this.lastPositionUs) {
+            return false;
+        }
+        if (this.extractor.getSampleTime() > j2 || (z && j2 > 1000000)) {
+            this.extractor.seekTo(j2, 0);
+        }
+        while (true) {
+            int dequeueInputBuffer = this.codec.dequeueInputBuffer(10000L);
+            if (dequeueInputBuffer >= 0 && (inputBuffer = this.codec.getInputBuffer(dequeueInputBuffer)) != null) {
+                int readSampleData = this.extractor.readSampleData(inputBuffer, 0);
+                if (readSampleData > 0) {
+                    this.codec.queueInputBuffer(dequeueInputBuffer, 0, readSampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
+                    this.extractor.advance();
+                } else {
+                    this.codec.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
+                    release();
+                    return false;
+                }
+            }
+            MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
+            int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 10000L);
+            if (dequeueOutputBuffer >= 0) {
+                long j3 = bufferInfo.presentationTimeUs;
+                if (j3 >= j2 - 16000) {
+                    this.lastPositionUs = j3;
+                    this.codec.releaseOutputBuffer(dequeueOutputBuffer, true);
+                    return true;
+                }
+                this.codec.releaseOutputBuffer(dequeueOutputBuffer, false);
+            }
+        }
     }
 
     public void release() {

@@ -14,22 +14,31 @@ public abstract class ChatActivityContainer extends FrameLayout {
     private boolean isActive;
     private final INavigationLayout parentLayout;
 
+    protected void onSearchLoadingUpdate(boolean z) {
+    }
+
     public ChatActivityContainer(Context context, INavigationLayout iNavigationLayout, Bundle bundle) {
         super(context);
         this.isActive = true;
         this.parentLayout = iNavigationLayout;
         ChatActivity chatActivity = new ChatActivity(bundle) {
             @Override
-            protected void onSearchLoadingUpdate(boolean z) {
-                ChatActivityContainer.this.onSearchLoadingUpdate(z);
+            public void setNavigationBarColor(int i) {
             }
 
             @Override
-            public void setNavigationBarColor(int i) {
+            protected void onSearchLoadingUpdate(boolean z) {
+                ChatActivityContainer.this.onSearchLoadingUpdate(z);
             }
         };
         this.chatActivity = chatActivity;
         chatActivity.isInsideContainer = true;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        initChatActivity();
     }
 
     public void initChatActivity() {
@@ -55,17 +64,6 @@ public abstract class ChatActivityContainer extends FrameLayout {
         }
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        initChatActivity();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-    }
-
     public void onPause() {
         this.isActive = false;
         if (this.fragmentView != null) {
@@ -80,6 +78,8 @@ public abstract class ChatActivityContainer extends FrameLayout {
         }
     }
 
-    protected void onSearchLoadingUpdate(boolean z) {
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
     }
 }

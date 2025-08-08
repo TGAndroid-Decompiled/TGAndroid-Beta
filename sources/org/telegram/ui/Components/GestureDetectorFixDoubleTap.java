@@ -19,6 +19,10 @@ public class GestureDetectorFixDoubleTap {
         void setLongpressDuration(long j);
     }
 
+    public static class OnGestureListener extends GestureDetector.SimpleOnGestureListener {
+        public abstract boolean hasDoubleTap(MotionEvent motionEvent);
+    }
+
     static class GestureDetectorCompatImplBase implements GestureDetectorCompatImpl {
         private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
         private boolean mAlwaysInBiggerTapRegion;
@@ -64,18 +68,21 @@ public class GestureDetectorFixDoubleTap {
                     GestureDetectorCompatImplBase.this.dispatchLongPress();
                     return;
                 }
-                if (i != 3) {
-                    throw new RuntimeException("Unknown message " + message);
-                }
-                GestureDetectorCompatImplBase gestureDetectorCompatImplBase2 = GestureDetectorCompatImplBase.this;
-                GestureDetector.OnDoubleTapListener onDoubleTapListener = gestureDetectorCompatImplBase2.mDoubleTapListener;
-                if (onDoubleTapListener != null) {
-                    if (gestureDetectorCompatImplBase2.mStillDown) {
-                        gestureDetectorCompatImplBase2.mDeferConfirmSingleTap = true;
-                    } else {
-                        onDoubleTapListener.onSingleTapConfirmed(gestureDetectorCompatImplBase2.mCurrentDownEvent);
+                if (i == 3) {
+                    GestureDetectorCompatImplBase gestureDetectorCompatImplBase2 = GestureDetectorCompatImplBase.this;
+                    GestureDetector.OnDoubleTapListener onDoubleTapListener = gestureDetectorCompatImplBase2.mDoubleTapListener;
+                    if (onDoubleTapListener != null) {
+                        if (!gestureDetectorCompatImplBase2.mStillDown) {
+                            onDoubleTapListener.onSingleTapConfirmed(gestureDetectorCompatImplBase2.mCurrentDownEvent);
+                            return;
+                        } else {
+                            gestureDetectorCompatImplBase2.mDeferConfirmSingleTap = true;
+                            return;
+                        }
                     }
+                    return;
                 }
+                throw new RuntimeException("Unknown message " + message);
             }
         }
 
@@ -90,6 +97,42 @@ public class GestureDetectorFixDoubleTap {
                 setOnDoubleTapListener(onGestureListener);
             }
             init(context);
+        }
+
+        private void init(Context context) {
+            if (context == null) {
+                throw new IllegalArgumentException("Context must not be null");
+            }
+            if (this.mListener == null) {
+                throw new IllegalArgumentException("OnGestureListener must not be null");
+            }
+            this.mIsLongpressEnabled = true;
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.mMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.mMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
+            this.mTouchSlopSquare = scaledTouchSlop * scaledTouchSlop;
+            this.mDoubleTapSlopSquare = scaledDoubleTapSlop * scaledDoubleTapSlop;
+        }
+
+        public void setOnDoubleTapListener(GestureDetector.OnDoubleTapListener onDoubleTapListener) {
+            this.mDoubleTapListener = onDoubleTapListener;
+        }
+
+        @Override
+        public void setIsLongpressEnabled(boolean z) {
+            this.mIsLongpressEnabled = z;
+        }
+
+        @Override
+        public void setLongpressDuration(long j) {
+            this.mLongpressDuration = j;
+        }
+
+        @Override
+        public boolean onTouchEvent(android.view.MotionEvent r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GestureDetectorFixDoubleTap.GestureDetectorCompatImplBase.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
         private void cancel() {
@@ -121,23 +164,6 @@ public class GestureDetectorFixDoubleTap {
             }
         }
 
-        private void init(Context context) {
-            if (context == null) {
-                throw new IllegalArgumentException("Context must not be null");
-            }
-            if (this.mListener == null) {
-                throw new IllegalArgumentException("OnGestureListener must not be null");
-            }
-            this.mIsLongpressEnabled = true;
-            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-            int scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
-            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
-            this.mMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
-            this.mMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
-            this.mTouchSlopSquare = scaledTouchSlop * scaledTouchSlop;
-            this.mDoubleTapSlopSquare = scaledDoubleTapSlop * scaledDoubleTapSlop;
-        }
-
         private boolean isConsideredDoubleTap(MotionEvent motionEvent, MotionEvent motionEvent2, MotionEvent motionEvent3) {
             if (!this.mAlwaysInBiggerTapRegion || motionEvent3.getEventTime() - motionEvent2.getEventTime() > 220) {
                 return false;
@@ -153,29 +179,6 @@ public class GestureDetectorFixDoubleTap {
             this.mInLongPress = true;
             this.mListener.onLongPress(this.mCurrentDownEvent);
         }
-
-        @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GestureDetectorFixDoubleTap.GestureDetectorCompatImplBase.onTouchEvent(android.view.MotionEvent):boolean");
-        }
-
-        @Override
-        public void setIsLongpressEnabled(boolean z) {
-            this.mIsLongpressEnabled = z;
-        }
-
-        @Override
-        public void setLongpressDuration(long j) {
-            this.mLongpressDuration = j;
-        }
-
-        public void setOnDoubleTapListener(GestureDetector.OnDoubleTapListener onDoubleTapListener) {
-            this.mDoubleTapListener = onDoubleTapListener;
-        }
-    }
-
-    public static class OnGestureListener extends GestureDetector.SimpleOnGestureListener {
-        public abstract boolean hasDoubleTap(MotionEvent motionEvent);
     }
 
     public GestureDetectorFixDoubleTap(Context context, OnGestureListener onGestureListener) {

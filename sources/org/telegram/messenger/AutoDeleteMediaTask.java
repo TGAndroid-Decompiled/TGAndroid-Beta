@@ -10,13 +10,32 @@ import org.telegram.messenger.CacheByChatsController;
 public class AutoDeleteMediaTask {
     public static Set<String> usingFilePaths = Collections.newSetFromMap(new ConcurrentHashMap());
 
-    public static class FileInfoInternal extends CacheByChatsController.KeepMediaFile {
-        final long lastUsageDate;
-
-        private FileInfoInternal(File file) {
-            super(file);
-            this.lastUsageDate = Utilities.getLastUsageFileTime(file.getAbsolutePath());
+    public static void run() {
+        final int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+        if (Math.abs(currentTimeMillis - SharedConfig.lastKeepMediaCheckTime) < 86400) {
+            return;
         }
+        SharedConfig.lastKeepMediaCheckTime = currentTimeMillis;
+        final File checkDirectory = FileLoader.checkDirectory(4);
+        Utilities.cacheClearQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                AutoDeleteMediaTask.lambda$run$1(currentTimeMillis, checkDirectory);
+            }
+        });
+    }
+
+    public static void lambda$run$1(int r29, java.io.File r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AutoDeleteMediaTask.lambda$run$1(int, java.io.File):void");
+    }
+
+    public static int lambda$run$0(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
+        long j = fileInfoInternal2.lastUsageDate;
+        long j2 = fileInfoInternal.lastUsageDate;
+        if (j > j2) {
+            return -1;
+        }
+        return j < j2 ? 1 : 0;
     }
 
     private static void fillFilesRecursive(File file, ArrayList<FileInfoInternal> arrayList) {
@@ -33,17 +52,13 @@ public class AutoDeleteMediaTask {
         }
     }
 
-    public static int lambda$run$0(FileInfoInternal fileInfoInternal, FileInfoInternal fileInfoInternal2) {
-        long j = fileInfoInternal2.lastUsageDate;
-        long j2 = fileInfoInternal.lastUsageDate;
-        if (j > j2) {
-            return -1;
-        }
-        return j < j2 ? 1 : 0;
-    }
+    public static class FileInfoInternal extends CacheByChatsController.KeepMediaFile {
+        final long lastUsageDate;
 
-    public static void lambda$run$1(int r29, java.io.File r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AutoDeleteMediaTask.lambda$run$1(int, java.io.File):void");
+        private FileInfoInternal(File file) {
+            super(file);
+            this.lastUsageDate = Utilities.getLastUsageFileTime(file.getAbsolutePath());
+        }
     }
 
     public static void lockFile(File file) {
@@ -53,33 +68,18 @@ public class AutoDeleteMediaTask {
         lockFile(file.getAbsolutePath());
     }
 
-    public static void lockFile(String str) {
-        if (str == null) {
-            return;
-        }
-        usingFilePaths.add(str);
-    }
-
-    public static void run() {
-        final int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        if (Math.abs(currentTimeMillis - SharedConfig.lastKeepMediaCheckTime) < 86400) {
-            return;
-        }
-        SharedConfig.lastKeepMediaCheckTime = currentTimeMillis;
-        final File checkDirectory = FileLoader.checkDirectory(4);
-        Utilities.cacheClearQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                AutoDeleteMediaTask.lambda$run$1(currentTimeMillis, checkDirectory);
-            }
-        });
-    }
-
     public static void unlockFile(File file) {
         if (file == null) {
             return;
         }
         unlockFile(file.getAbsolutePath());
+    }
+
+    public static void lockFile(String str) {
+        if (str == null) {
+            return;
+        }
+        usingFilePaths.add(str);
     }
 
     public static void unlockFile(String str) {

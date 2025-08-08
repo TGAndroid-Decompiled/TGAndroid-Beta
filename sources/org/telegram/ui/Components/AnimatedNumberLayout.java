@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -15,13 +16,13 @@ import org.telegram.ui.Components.AnimationProperties;
 public class AnimatedNumberLayout {
     public static final Property PROGRESS = new AnimationProperties.FloatProperty("progress") {
         @Override
-        public Float get(AnimatedNumberLayout animatedNumberLayout) {
-            return Float.valueOf(animatedNumberLayout.progress);
+        public void setValue(AnimatedNumberLayout animatedNumberLayout, float f) {
+            animatedNumberLayout.setProgress(f);
         }
 
         @Override
-        public void setValue(AnimatedNumberLayout animatedNumberLayout, float f) {
-            animatedNumberLayout.setProgress(f);
+        public Float get(AnimatedNumberLayout animatedNumberLayout) {
+            return Float.valueOf(animatedNumberLayout.progress);
         }
     };
     private ObjectAnimator animator;
@@ -43,10 +44,6 @@ public class AnimatedNumberLayout {
         }
         this.progress = f;
         this.parentView.invalidate();
-    }
-
-    public void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedNumberLayout.draw(android.graphics.Canvas):void");
     }
 
     public int getWidth() {
@@ -79,11 +76,11 @@ public class AnimatedNumberLayout {
                 int i3 = i2 + 1;
                 String substring = format2.substring(i2, i3);
                 String substring2 = (this.oldLetters.isEmpty() || i2 >= format.length()) ? null : format.substring(i2, i3);
-                if (substring2 == null || !substring2.equals(substring)) {
-                    this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r12.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-                } else {
+                if (substring2 != null && substring2.equals(substring)) {
                     this.letters.add((StaticLayout) this.oldLetters.get(i2));
                     this.oldLetters.set(i2, null);
+                } else {
+                    this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r12.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
                 i2 = i3;
             }
@@ -102,5 +99,63 @@ public class AnimatedNumberLayout {
             }
             this.parentView.invalidate();
         }
+    }
+
+    public void draw(Canvas canvas) {
+        if (this.letters.isEmpty()) {
+            return;
+        }
+        float height = ((StaticLayout) this.letters.get(0)).getHeight();
+        int max = Math.max(this.letters.size(), this.oldLetters.size());
+        canvas.save();
+        int alpha = this.textPaint.getAlpha();
+        int i = 0;
+        while (i < max) {
+            canvas.save();
+            StaticLayout staticLayout = i < this.oldLetters.size() ? (StaticLayout) this.oldLetters.get(i) : null;
+            StaticLayout staticLayout2 = i < this.letters.size() ? (StaticLayout) this.letters.get(i) : null;
+            float f = this.progress;
+            if (f > 0.0f) {
+                if (staticLayout != null) {
+                    float f2 = alpha;
+                    this.textPaint.setAlpha((int) (f * f2));
+                    canvas.save();
+                    canvas.translate(0.0f, (this.progress - 1.0f) * height);
+                    staticLayout.draw(canvas);
+                    canvas.restore();
+                    if (staticLayout2 != null) {
+                        this.textPaint.setAlpha((int) (f2 * (1.0f - this.progress)));
+                        canvas.translate(0.0f, this.progress * height);
+                    }
+                } else {
+                    this.textPaint.setAlpha(alpha);
+                }
+            } else if (f < 0.0f) {
+                if (staticLayout != null) {
+                    this.textPaint.setAlpha((int) (alpha * (-f)));
+                    canvas.save();
+                    canvas.translate(0.0f, (this.progress + 1.0f) * height);
+                    staticLayout.draw(canvas);
+                    canvas.restore();
+                }
+                if (staticLayout2 != null) {
+                    if (i == max - 1 || staticLayout != null) {
+                        this.textPaint.setAlpha((int) (alpha * (this.progress + 1.0f)));
+                        canvas.translate(0.0f, this.progress * height);
+                    } else {
+                        this.textPaint.setAlpha(alpha);
+                    }
+                }
+            } else if (staticLayout2 != null) {
+                this.textPaint.setAlpha(alpha);
+            }
+            if (staticLayout2 != null) {
+                staticLayout2.draw(canvas);
+            }
+            canvas.restore();
+            canvas.translate(staticLayout2 != null ? staticLayout2.getLineWidth(0) : staticLayout.getLineWidth(0), 0.0f);
+            i++;
+        }
+        canvas.restore();
     }
 }

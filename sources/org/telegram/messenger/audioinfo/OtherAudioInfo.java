@@ -11,7 +11,6 @@ public class OtherAudioInfo extends AudioInfo {
     private final MediaMetadataRetriever r;
 
     public OtherAudioInfo(File file) {
-        Bitmap bitmap;
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
         this.r = mediaMetadataRetriever;
         try {
@@ -36,11 +35,10 @@ public class OtherAudioInfo extends AudioInfo {
             if (this.cover != null) {
                 float max = Math.max(r5.getWidth(), this.cover.getHeight()) / 120.0f;
                 if (max > 0.0f) {
-                    bitmap = Bitmap.createScaledBitmap(this.cover, (int) (r0.getWidth() / max), (int) (this.cover.getHeight() / max), true);
+                    this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r0.getWidth() / max), (int) (this.cover.getHeight() / max), true);
                 } else {
-                    bitmap = this.cover;
+                    this.smallCover = this.cover;
                 }
-                this.smallCover = bitmap;
             }
         } catch (Exception e) {
             this.failed = true;
@@ -56,11 +54,11 @@ public class OtherAudioInfo extends AudioInfo {
         }
     }
 
-    private long getLong(int i) {
+    private String getString(int i) {
         try {
-            return Long.parseLong(this.r.extractMetadata(i));
+            return this.r.extractMetadata(i);
         } catch (Exception unused) {
-            return 0L;
+            return null;
         }
     }
 
@@ -72,11 +70,11 @@ public class OtherAudioInfo extends AudioInfo {
         }
     }
 
-    private String getString(int i) {
+    private long getLong(int i) {
         try {
-            return this.r.extractMetadata(i);
+            return Long.parseLong(this.r.extractMetadata(i));
         } catch (Exception unused) {
-            return null;
+            return 0L;
         }
     }
 }

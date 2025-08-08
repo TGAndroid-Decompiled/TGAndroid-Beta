@@ -10,33 +10,33 @@ public abstract class StackTraceRecoveryKt {
     private static final String baseContinuationImplClassName;
     private static final String stackTraceRecoveryClassName;
 
-    static {
-        Object m210constructorimpl;
-        Object m210constructorimpl2;
-        try {
-            Result.Companion companion = Result.Companion;
-            m210constructorimpl = Result.m210constructorimpl(BaseContinuationImpl.class.getCanonicalName());
-        } catch (Throwable th) {
-            Result.Companion companion2 = Result.Companion;
-            m210constructorimpl = Result.m210constructorimpl(ResultKt.createFailure(th));
-        }
-        if (Result.m212exceptionOrNullimpl(m210constructorimpl) != null) {
-            m210constructorimpl = "kotlin.coroutines.jvm.internal.BaseContinuationImpl";
-        }
-        baseContinuationImplClassName = (String) m210constructorimpl;
-        try {
-            m210constructorimpl2 = Result.m210constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
-        } catch (Throwable th2) {
-            Result.Companion companion3 = Result.Companion;
-            m210constructorimpl2 = Result.m210constructorimpl(ResultKt.createFailure(th2));
-        }
-        if (Result.m212exceptionOrNullimpl(m210constructorimpl2) != null) {
-            m210constructorimpl2 = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
-        }
-        stackTraceRecoveryClassName = (String) m210constructorimpl2;
-    }
-
     public static final Throwable recoverStackTrace(Throwable th) {
         return th;
+    }
+
+    static {
+        Object m216constructorimpl;
+        Object m216constructorimpl2;
+        try {
+            Result.Companion companion = Result.Companion;
+            m216constructorimpl = Result.m216constructorimpl(BaseContinuationImpl.class.getCanonicalName());
+        } catch (Throwable th) {
+            Result.Companion companion2 = Result.Companion;
+            m216constructorimpl = Result.m216constructorimpl(ResultKt.createFailure(th));
+        }
+        if (Result.m218exceptionOrNullimpl(m216constructorimpl) != null) {
+            m216constructorimpl = "kotlin.coroutines.jvm.internal.BaseContinuationImpl";
+        }
+        baseContinuationImplClassName = (String) m216constructorimpl;
+        try {
+            m216constructorimpl2 = Result.m216constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
+        } catch (Throwable th2) {
+            Result.Companion companion3 = Result.Companion;
+            m216constructorimpl2 = Result.m216constructorimpl(ResultKt.createFailure(th2));
+        }
+        if (Result.m218exceptionOrNullimpl(m216constructorimpl2) != null) {
+            m216constructorimpl2 = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
+        }
+        stackTraceRecoveryClassName = (String) m216constructorimpl2;
     }
 }

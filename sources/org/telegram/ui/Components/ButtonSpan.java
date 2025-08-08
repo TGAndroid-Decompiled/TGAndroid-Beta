@@ -23,86 +23,6 @@ public class ButtonSpan extends ReplacementSpan {
     private final Theme.ResourcesProvider resourcesProvider;
     private final Text text;
 
-    public static class TextViewButtons extends LinkSpanDrawable.LinksTextView {
-        ButtonSpan buttonToBeAdded;
-        private ButtonSpan pressedSpan;
-
-        public TextViewButtons(Context context) {
-            super(context);
-        }
-
-        public TextViewButtons(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, resourcesProvider);
-        }
-
-        public void addButton(ButtonSpan buttonSpan) {
-            this.buttonToBeAdded = buttonSpan;
-        }
-
-        public ButtonSpan findSpan(float f, int i) {
-            Layout layout;
-            if (!(getText() instanceof Spanned) || (layout = getLayout()) == null) {
-                return null;
-            }
-            int lineForVertical = layout.getLineForVertical(i);
-            int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f);
-            Spanned spanned = (Spanned) getText();
-            for (ButtonSpan buttonSpan : (ButtonSpan[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), ButtonSpan.class)) {
-                if (spanned.getSpanStart(buttonSpan) <= offsetForHorizontal && spanned.getSpanEnd(buttonSpan) >= offsetForHorizontal && layout.getPrimaryHorizontal(spanned.getSpanStart(buttonSpan)) <= f && layout.getPrimaryHorizontal(spanned.getSpanEnd(buttonSpan)) >= f) {
-                    return buttonSpan;
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            if (this.buttonToBeAdded == null || getMeasuredWidth() <= 0) {
-                return;
-            }
-            SpannableString spannableString = new SpannableString(" btn");
-            spannableString.setSpan(this.buttonToBeAdded, 1, spannableString.length(), 33);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.buttonToBeAdded.getSize()) - AndroidUtilities.dp(4.0f), TextUtils.TruncateAt.END));
-            spannableStringBuilder.append((CharSequence) spannableString);
-            setText(spannableStringBuilder);
-            this.buttonToBeAdded = null;
-        }
-
-        @Override
-        public void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            ButtonSpan buttonSpan;
-            int action = motionEvent.getAction();
-            ButtonSpan findSpan = findSpan(motionEvent.getX() - getPaddingLeft(), ((int) motionEvent.getY()) - getPaddingTop());
-            if (action == 0) {
-                this.pressedSpan = findSpan;
-                if (findSpan != null) {
-                    findSpan.setPressed(this, true);
-                    return true;
-                }
-            } else {
-                if (action == 1 || action == 3) {
-                    ButtonSpan buttonSpan2 = this.pressedSpan;
-                    if (buttonSpan2 != null) {
-                        buttonSpan2.setPressed(this, false);
-                        if (action == 1 && this.pressedSpan.onClickListener != null) {
-                            this.pressedSpan.onClickListener.run();
-                        }
-                    }
-                } else if (action == 2 && (buttonSpan = this.pressedSpan) != null && buttonSpan != findSpan) {
-                    buttonSpan.setPressed(this, false);
-                }
-                this.pressedSpan = null;
-            }
-            return this.pressedSpan != null || super.onTouchEvent(motionEvent);
-        }
-    }
-
     public ButtonSpan(CharSequence charSequence, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         this.onClickListener = runnable;
@@ -113,6 +33,15 @@ public class ButtonSpan extends ReplacementSpan {
         SpannableString spannableString = new SpannableString("btn");
         spannableString.setSpan(new ButtonSpan(charSequence, runnable, resourcesProvider), 0, spannableString.length(), 33);
         return spannableString;
+    }
+
+    public int getSize() {
+        return (int) (this.text.getCurrentWidth() + AndroidUtilities.dp(14.0f));
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return getSize();
     }
 
     @Override
@@ -133,19 +62,89 @@ public class ButtonSpan extends ReplacementSpan {
         canvas.restore();
     }
 
-    public int getSize() {
-        return (int) (this.text.getCurrentWidth() + AndroidUtilities.dp(14.0f));
-    }
-
-    @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return getSize();
-    }
-
     public void setPressed(View view, boolean z) {
         if (this.bounce == null) {
             this.bounce = new ButtonBounce(view);
         }
         this.bounce.setPressed(z);
+    }
+
+    public static class TextViewButtons extends LinkSpanDrawable.LinksTextView {
+        ButtonSpan buttonToBeAdded;
+        private ButtonSpan pressedSpan;
+
+        public TextViewButtons(Context context) {
+            super(context);
+        }
+
+        public TextViewButtons(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+        }
+
+        public ButtonSpan findSpan(float f, int i) {
+            Layout layout;
+            if (!(getText() instanceof Spanned) || (layout = getLayout()) == null) {
+                return null;
+            }
+            int lineForVertical = layout.getLineForVertical(i);
+            int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f);
+            Spanned spanned = (Spanned) getText();
+            for (ButtonSpan buttonSpan : (ButtonSpan[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), ButtonSpan.class)) {
+                if (spanned.getSpanStart(buttonSpan) <= offsetForHorizontal && spanned.getSpanEnd(buttonSpan) >= offsetForHorizontal && layout.getPrimaryHorizontal(spanned.getSpanStart(buttonSpan)) <= f && layout.getPrimaryHorizontal(spanned.getSpanEnd(buttonSpan)) >= f) {
+                    return buttonSpan;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            ButtonSpan buttonSpan;
+            int action = motionEvent.getAction();
+            ButtonSpan findSpan = findSpan(motionEvent.getX() - getPaddingLeft(), ((int) motionEvent.getY()) - getPaddingTop());
+            if (action == 0) {
+                this.pressedSpan = findSpan;
+                if (findSpan != null) {
+                    findSpan.setPressed(this, true);
+                    return true;
+                }
+            } else if (action == 1 || action == 3) {
+                ButtonSpan buttonSpan2 = this.pressedSpan;
+                if (buttonSpan2 != null) {
+                    buttonSpan2.setPressed(this, false);
+                    if (action == 1 && this.pressedSpan.onClickListener != null) {
+                        this.pressedSpan.onClickListener.run();
+                    }
+                }
+                this.pressedSpan = null;
+            } else if (action == 2 && (buttonSpan = this.pressedSpan) != null && buttonSpan != findSpan) {
+                buttonSpan.setPressed(this, false);
+                this.pressedSpan = null;
+            }
+            return this.pressedSpan != null || super.onTouchEvent(motionEvent);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            if (this.buttonToBeAdded == null || getMeasuredWidth() <= 0) {
+                return;
+            }
+            SpannableString spannableString = new SpannableString(" btn");
+            spannableString.setSpan(this.buttonToBeAdded, 1, spannableString.length(), 33);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.buttonToBeAdded.getSize()) - AndroidUtilities.dp(4.0f), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append((CharSequence) spannableString);
+            setText(spannableStringBuilder);
+            this.buttonToBeAdded = null;
+        }
+
+        public void addButton(ButtonSpan buttonSpan) {
+            this.buttonToBeAdded = buttonSpan;
+        }
     }
 }

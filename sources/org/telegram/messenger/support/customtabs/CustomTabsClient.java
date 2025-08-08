@@ -27,9 +27,30 @@ public abstract class CustomTabsClient {
         return context.bindService(intent, customTabsServiceConnection, 33);
     }
 
+    public boolean warmup(long j) {
+        try {
+            return this.mService.warmup(j);
+        } catch (RemoteException unused) {
+            return false;
+        }
+    }
+
     public CustomTabsSession newSession(final CustomTabsCallback customTabsCallback) {
         ICustomTabsCallback.Stub stub = new ICustomTabsCallback.Stub() {
             private Handler mHandler = new Handler(Looper.getMainLooper());
+
+            @Override
+            public void onNavigationEvent(final int i, final Bundle bundle) {
+                if (customTabsCallback == null) {
+                    return;
+                }
+                this.mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        customTabsCallback.onNavigationEvent(i, bundle);
+                    }
+                });
+            }
 
             @Override
             public void extraCallback(final String str, final Bundle bundle) {
@@ -58,19 +79,6 @@ public abstract class CustomTabsClient {
             }
 
             @Override
-            public void onNavigationEvent(final int i, final Bundle bundle) {
-                if (customTabsCallback == null) {
-                    return;
-                }
-                this.mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        customTabsCallback.onNavigationEvent(i, bundle);
-                    }
-                });
-            }
-
-            @Override
             public void onPostMessage(final String str, final Bundle bundle) {
                 if (customTabsCallback == null) {
                     return;
@@ -90,14 +98,6 @@ public abstract class CustomTabsClient {
             return null;
         } catch (RemoteException unused) {
             return null;
-        }
-    }
-
-    public boolean warmup(long j) {
-        try {
-            return this.mService.warmup(j);
-        } catch (RemoteException unused) {
-            return false;
         }
     }
 }

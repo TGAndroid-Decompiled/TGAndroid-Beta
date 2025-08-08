@@ -10,10 +10,6 @@ public final class ThreadLocalEventLoop {
     private ThreadLocalEventLoop() {
     }
 
-    public final EventLoop currentOrNull$kotlinx_coroutines_core() {
-        return (EventLoop) ref.get();
-    }
-
     public final EventLoop getEventLoop$kotlinx_coroutines_core() {
         ThreadLocal threadLocal = ref;
         EventLoop eventLoop = (EventLoop) threadLocal.get();
@@ -23,6 +19,10 @@ public final class ThreadLocalEventLoop {
         EventLoop createEventLoop = EventLoopKt.createEventLoop();
         threadLocal.set(createEventLoop);
         return createEventLoop;
+    }
+
+    public final EventLoop currentOrNull$kotlinx_coroutines_core() {
+        return (EventLoop) ref.get();
     }
 
     public final void resetEventLoop$kotlinx_coroutines_core() {

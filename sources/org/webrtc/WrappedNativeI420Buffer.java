@@ -14,6 +14,11 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
     private final int strideY;
     private final int width;
 
+    @Override
+    public int getBufferType() {
+        return VideoFrame.I420Buffer.CC.$default$getBufferType(this);
+    }
+
     WrappedNativeI420Buffer(int i, int i2, ByteBuffer byteBuffer, int i3, ByteBuffer byteBuffer2, int i4, ByteBuffer byteBuffer3, int i5, long j) {
         this.width = i;
         this.height = i2;
@@ -28,13 +33,18 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
     }
 
     @Override
-    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
-        return JavaI420Buffer.cropAndScaleI420(this, i, i2, i3, i4, i5, i6);
+    public int getWidth() {
+        return this.width;
     }
 
     @Override
-    public int getBufferType() {
-        return VideoFrame.I420Buffer.CC.$default$getBufferType(this);
+    public int getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public ByteBuffer getDataY() {
+        return this.dataY.slice();
     }
 
     @Override
@@ -48,13 +58,8 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
     }
 
     @Override
-    public ByteBuffer getDataY() {
-        return this.dataY.slice();
-    }
-
-    @Override
-    public int getHeight() {
-        return this.height;
+    public int getStrideY() {
+        return this.strideY;
     }
 
     @Override
@@ -68,18 +73,9 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
     }
 
     @Override
-    public int getStrideY() {
-        return this.strideY;
-    }
-
-    @Override
-    public int getWidth() {
-        return this.width;
-    }
-
-    @Override
-    public void release() {
-        JniCommon.nativeReleaseRef(this.nativeBuffer);
+    public VideoFrame.I420Buffer toI420() {
+        retain();
+        return this;
     }
 
     @Override
@@ -88,8 +84,12 @@ class WrappedNativeI420Buffer implements VideoFrame.I420Buffer {
     }
 
     @Override
-    public VideoFrame.I420Buffer toI420() {
-        retain();
-        return this;
+    public void release() {
+        JniCommon.nativeReleaseRef(this.nativeBuffer);
+    }
+
+    @Override
+    public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
+        return JavaI420Buffer.cropAndScaleI420(this, i, i2, i3, i4, i5, i6);
     }
 }

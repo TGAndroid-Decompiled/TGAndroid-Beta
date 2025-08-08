@@ -25,11 +25,13 @@ public class DialogRadioCell extends FrameLayout {
 
     public DialogRadioCell(Context context, boolean z) {
         super(context);
-        int color;
-        int i;
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText));
+        if (z) {
+            textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        } else {
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        }
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -43,7 +45,11 @@ public class DialogRadioCell extends FrameLayout {
         addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 23.0f : 61.0f, 0.0f, z2 ? 61.0f : 23.0f, 0.0f));
         TextView textView4 = new TextView(context);
         this.valueTextView = textView4;
-        textView4.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue2 : Theme.key_windowBackgroundWhiteValueText));
+        if (z) {
+            textView4.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2));
+        } else {
+            textView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
+        }
         this.valueTextView.setTextSize(1, 16.0f);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
@@ -55,23 +61,12 @@ public class DialogRadioCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        RadioButton radioButton2 = this.radioButton;
         if (z) {
-            color = Theme.getColor(Theme.key_dialogRadioBackground);
-            i = Theme.key_dialogRadioBackgroundChecked;
+            this.radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
         } else {
-            color = Theme.getColor(Theme.key_radioBackground);
-            i = Theme.key_radioBackgroundChecked;
+            this.radioButton.setColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_radioBackgroundChecked));
         }
-        radioButton2.setColor(color, Theme.getColor(i));
         addView(this.radioButton, LayoutHelper.createFrame(22, 22.0f, (LocaleController.isRTL ? 5 : 3) | 48, 20.0f, 15.0f, 20.0f, 0.0f));
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 60.0f), getHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 60.0f : 0.0f), getHeight() - 1, Theme.dividerPaint);
-        }
     }
 
     @Override
@@ -86,21 +81,8 @@ public class DialogRadioCell extends FrameLayout {
         this.textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
-    public void setChecked(boolean z, boolean z2) {
-        this.radioButton.setChecked(z, z2);
-    }
-
-    public void setEnabled(boolean z, boolean z2) {
-        super.setEnabled(z);
-        if (z2) {
-            this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
-            this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
-            this.radioButton.animate().alpha(z ? 1.0f : 0.5f).start();
-        } else {
-            this.textView.setAlpha(z ? 1.0f : 0.5f);
-            this.valueTextView.setAlpha(z ? 1.0f : 0.5f);
-            this.radioButton.setAlpha(z ? 1.0f : 0.5f);
-        }
+    public void setTextColor(int i) {
+        this.textView.setTextColor(i);
     }
 
     public void setText(CharSequence charSequence, boolean z, boolean z2) {
@@ -120,7 +102,27 @@ public class DialogRadioCell extends FrameLayout {
         setWillNotDraw(!z2);
     }
 
-    public void setTextColor(int i) {
-        this.textView.setTextColor(i);
+    public void setChecked(boolean z, boolean z2) {
+        this.radioButton.setChecked(z, z2);
+    }
+
+    public void setEnabled(boolean z, boolean z2) {
+        super.setEnabled(z);
+        if (z2) {
+            this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
+            this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
+            this.radioButton.animate().alpha(z ? 1.0f : 0.5f).start();
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+            this.valueTextView.setAlpha(z ? 1.0f : 0.5f);
+            this.radioButton.setAlpha(z ? 1.0f : 0.5f);
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.needDivider) {
+            canvas.drawLine(AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 60.0f), getHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(LocaleController.isRTL ? 60.0f : 0.0f), getHeight() - 1, Theme.dividerPaint);
+        }
     }
 }

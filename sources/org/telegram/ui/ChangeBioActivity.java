@@ -50,92 +50,6 @@ public class ChangeBioActivity extends BaseFragment {
         return true;
     }
 
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
-        View view;
-        if (i != 6 || (view = this.doneButton) == null) {
-            return false;
-        }
-        view.performClick();
-        return true;
-    }
-
-    public void lambda$saveName$2(AlertDialog alertDialog, TLRPC.UserFull userFull, String str, TLRPC.User user) {
-        try {
-            alertDialog.dismiss();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        userFull.about = str;
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(user.id), userFull);
-        lambda$onBackPressed$355();
-    }
-
-    public void lambda$saveName$3(AlertDialog alertDialog, TLRPC.TL_error tL_error, TL_account.updateProfile updateprofile) {
-        try {
-            alertDialog.dismiss();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        AlertsCreator.processError(this.currentAccount, tL_error, this, updateprofile, new Object[0]);
-    }
-
-    public void lambda$saveName$4(final AlertDialog alertDialog, final TLRPC.UserFull userFull, final String str, final TL_account.updateProfile updateprofile, TLObject tLObject, final TLRPC.TL_error tL_error) {
-        if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChangeBioActivity.this.lambda$saveName$3(alertDialog, tL_error, updateprofile);
-                }
-            });
-        } else {
-            final TLRPC.User user = (TLRPC.User) tLObject;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChangeBioActivity.this.lambda$saveName$2(alertDialog, userFull, str, user);
-                }
-            });
-        }
-    }
-
-    public void lambda$saveName$5(int i, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
-    }
-
-    public void saveName() {
-        final TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
-        if (getParentActivity() == null || userFull == null) {
-            return;
-        }
-        String str = userFull.about;
-        if (str == null) {
-            str = "";
-        }
-        final String replace = this.firstNameField.getText().toString().replace("\n", "");
-        if (str.equals(replace)) {
-            lambda$onBackPressed$355();
-            return;
-        }
-        final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
-        final TL_account.updateProfile updateprofile = new TL_account.updateProfile();
-        updateprofile.about = replace;
-        updateprofile.flags |= 4;
-        final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateprofile, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChangeBioActivity.this.lambda$saveName$4(alertDialog, userFull, replace, updateprofile, tLObject, tL_error);
-            }
-        }, 2);
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, this.classGuid);
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public final void onCancel(DialogInterface dialogInterface) {
-                ChangeBioActivity.this.lambda$saveName$5(sendRequest, dialogInterface);
-            }
-        });
-        alertDialog.show();
-    }
-
     @Override
     public View createView(Context context) {
         String str;
@@ -225,16 +139,16 @@ public class ChangeBioActivity extends BaseFragment {
         });
         this.firstNameField.addTextChangedListener(new TextWatcher() {
             @Override
-            public void afterTextChanged(Editable editable) {
-                ChangeBioActivity.this.checkTextView.setNumber(ChangeBioActivity.this.getMessagesController().getAboutLimit() - Character.codePointCount(editable, 0, editable.length()), true);
-            }
-
-            @Override
             public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                ChangeBioActivity.this.checkTextView.setNumber(ChangeBioActivity.this.getMessagesController().getAboutLimit() - Character.codePointCount(editable, 0, editable.length()), true);
             }
         });
         frameLayout.addView(this.firstNameField, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 0.0f, 4.0f, 0.0f));
@@ -263,6 +177,110 @@ public class ChangeBioActivity extends BaseFragment {
         return this.fragmentView;
     }
 
+    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+        View view;
+        if (i != 6 || (view = this.doneButton) == null) {
+            return false;
+        }
+        view.performClick();
+        return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
+            return;
+        }
+        this.firstNameField.requestFocus();
+        AndroidUtilities.showKeyboard(this.firstNameField);
+    }
+
+    public void saveName() {
+        final TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
+        if (getParentActivity() == null || userFull == null) {
+            return;
+        }
+        String str = userFull.about;
+        if (str == null) {
+            str = "";
+        }
+        final String replace = this.firstNameField.getText().toString().replace("\n", "");
+        if (str.equals(replace)) {
+            lambda$onBackPressed$355();
+            return;
+        }
+        final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
+        final TL_account.updateProfile updateprofile = new TL_account.updateProfile();
+        updateprofile.about = replace;
+        updateprofile.flags |= 4;
+        final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updateprofile, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChangeBioActivity.this.lambda$saveName$4(alertDialog, userFull, replace, updateprofile, tLObject, tL_error);
+            }
+        }, 2);
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, this.classGuid);
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public final void onCancel(DialogInterface dialogInterface) {
+                ChangeBioActivity.this.lambda$saveName$5(sendRequest, dialogInterface);
+            }
+        });
+        alertDialog.show();
+    }
+
+    public void lambda$saveName$4(final AlertDialog alertDialog, final TLRPC.UserFull userFull, final String str, final TL_account.updateProfile updateprofile, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            final TLRPC.User user = (TLRPC.User) tLObject;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChangeBioActivity.this.lambda$saveName$2(alertDialog, userFull, str, user);
+                }
+            });
+        } else {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChangeBioActivity.this.lambda$saveName$3(alertDialog, tL_error, updateprofile);
+                }
+            });
+        }
+    }
+
+    public void lambda$saveName$2(AlertDialog alertDialog, TLRPC.UserFull userFull, String str, TLRPC.User user) {
+        try {
+            alertDialog.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        userFull.about = str;
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(user.id), userFull);
+        lambda$onBackPressed$355();
+    }
+
+    public void lambda$saveName$3(AlertDialog alertDialog, TLRPC.TL_error tL_error, TL_account.updateProfile updateprofile) {
+        try {
+            alertDialog.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        AlertsCreator.processError(this.currentAccount, tL_error, this, updateprofile, new Object[0]);
+    }
+
+    public void lambda$saveName$5(int i, DialogInterface dialogInterface) {
+        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
+    }
+
+    @Override
+    public void onTransitionAnimationEnd(boolean z, boolean z2) {
+        if (z) {
+            this.firstNameField.requestFocus();
+            AndroidUtilities.showKeyboard(this.firstNameField);
+        }
+    }
+
     @Override
     public ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
@@ -278,23 +296,5 @@ public class ChangeBioActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.helpTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText8));
         arrayList.add(new ThemeDescription(this.checkTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText4));
         return arrayList;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
-            return;
-        }
-        this.firstNameField.requestFocus();
-        AndroidUtilities.showKeyboard(this.firstNameField);
-    }
-
-    @Override
-    public void onTransitionAnimationEnd(boolean z, boolean z2) {
-        if (z) {
-            this.firstNameField.requestFocus();
-            AndroidUtilities.showKeyboard(this.firstNameField);
-        }
     }
 }

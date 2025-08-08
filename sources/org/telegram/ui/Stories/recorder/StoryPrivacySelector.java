@@ -18,68 +18,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public abstract class StoryPrivacySelector extends View {
-    public static void applySaved(int i, StoryEntry storyEntry) {
-        if (storyEntry == null) {
-            return;
-        }
-        storyEntry.privacy = getSaved(i);
-        storyEntry.privacyRules.clear();
-        storyEntry.privacyRules.addAll(storyEntry.privacy.rules);
-        if (UserConfig.getInstance(i).isPremium()) {
-            storyEntry.period = MessagesController.getInstance(i).getMainSettings().getInt("story_period", 86400);
-        } else {
-            storyEntry.period = 86400;
-        }
-    }
-
-    private static StoryPrivacyBottomSheet.StoryPrivacy getSaved(final int i) {
-        try {
-            String string = MessagesController.getInstance(i).getMainSettings().getString("story_privacy2", null);
-            if (string == null) {
-                return new StoryPrivacyBottomSheet.StoryPrivacy();
-            }
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-            StoryPrivacyBottomSheet.StoryPrivacy read = read(serializedData);
-            serializedData.cleanup();
-            if (read.isNone()) {
-                return new StoryPrivacyBottomSheet.StoryPrivacy();
-            }
-            final HashSet hashSet = new HashSet();
-            hashSet.addAll(read.selectedUserIds);
-            Iterator it = read.selectedUserIdsByGroup.values().iterator();
-            while (it.hasNext()) {
-                hashSet.addAll((ArrayList) it.next());
-            }
-            if (!hashSet.isEmpty()) {
-                final MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
-                messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryPrivacySelector.lambda$getSaved$5(MessagesStorage.this, hashSet, i);
-                    }
-                });
-            }
-            return read;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return new StoryPrivacyBottomSheet.StoryPrivacy();
-        }
-    }
-
-    public static void lambda$getSaved$4(int i, ArrayList arrayList) {
-        MessagesController.getInstance(i).putUsers(arrayList, true);
-    }
-
-    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
-        final ArrayList<TLRPC.User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StoryPrivacySelector.lambda$getSaved$4(i, users);
-            }
-        });
-    }
-
     private static StoryPrivacyBottomSheet.StoryPrivacy read(AbstractSerializedData abstractSerializedData) {
         int readInt32 = abstractSerializedData.readInt32(true);
         if (abstractSerializedData.readInt32(true) != 481674261) {
@@ -129,20 +67,6 @@ public abstract class StoryPrivacySelector extends View {
         return storyPrivacy;
     }
 
-    public static void save(int i, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
-        if (storyPrivacy == null) {
-            MessagesController.getInstance(i).getMainSettings().edit().remove("story_privacy2").apply();
-            return;
-        }
-        SerializedData serializedData = new SerializedData(true);
-        write(serializedData, storyPrivacy);
-        SerializedData serializedData2 = new SerializedData(serializedData.length());
-        serializedData.cleanup();
-        write(serializedData2, storyPrivacy);
-        MessagesController.getInstance(i).getMainSettings().edit().putString("story_privacy2", Utilities.bytesToHex(serializedData2.toByteArray())).apply();
-        serializedData2.cleanup();
-    }
-
     private static void write(AbstractSerializedData abstractSerializedData, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
         abstractSerializedData.writeInt32(storyPrivacy.type);
         abstractSerializedData.writeInt32(481674261);
@@ -167,6 +91,82 @@ public abstract class StoryPrivacySelector extends View {
             while (it3.hasNext()) {
                 abstractSerializedData.writeInt64(((Long) it3.next()).longValue());
             }
+        }
+    }
+
+    public static void save(int i, StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
+        if (storyPrivacy == null) {
+            MessagesController.getInstance(i).getMainSettings().edit().remove("story_privacy2").apply();
+            return;
+        }
+        SerializedData serializedData = new SerializedData(true);
+        write(serializedData, storyPrivacy);
+        SerializedData serializedData2 = new SerializedData(serializedData.length());
+        serializedData.cleanup();
+        write(serializedData2, storyPrivacy);
+        MessagesController.getInstance(i).getMainSettings().edit().putString("story_privacy2", Utilities.bytesToHex(serializedData2.toByteArray())).apply();
+        serializedData2.cleanup();
+    }
+
+    private static StoryPrivacyBottomSheet.StoryPrivacy getSaved(final int i) {
+        try {
+            String string = MessagesController.getInstance(i).getMainSettings().getString("story_privacy2", null);
+            if (string == null) {
+                return new StoryPrivacyBottomSheet.StoryPrivacy();
+            }
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+            StoryPrivacyBottomSheet.StoryPrivacy read = read(serializedData);
+            serializedData.cleanup();
+            if (read.isNone()) {
+                return new StoryPrivacyBottomSheet.StoryPrivacy();
+            }
+            final HashSet hashSet = new HashSet();
+            hashSet.addAll(read.selectedUserIds);
+            Iterator it = read.selectedUserIdsByGroup.values().iterator();
+            while (it.hasNext()) {
+                hashSet.addAll((ArrayList) it.next());
+            }
+            if (!hashSet.isEmpty()) {
+                final MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
+                messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoryPrivacySelector.lambda$getSaved$5(MessagesStorage.this, hashSet, i);
+                    }
+                });
+            }
+            return read;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return new StoryPrivacyBottomSheet.StoryPrivacy();
+        }
+    }
+
+    public static void lambda$getSaved$5(MessagesStorage messagesStorage, HashSet hashSet, final int i) {
+        final ArrayList<TLRPC.User> users = messagesStorage.getUsers(new ArrayList<>(hashSet));
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StoryPrivacySelector.lambda$getSaved$4(i, users);
+            }
+        });
+    }
+
+    public static void lambda$getSaved$4(int i, ArrayList arrayList) {
+        MessagesController.getInstance(i).putUsers(arrayList, true);
+    }
+
+    public static void applySaved(int i, StoryEntry storyEntry) {
+        if (storyEntry == null) {
+            return;
+        }
+        storyEntry.privacy = getSaved(i);
+        storyEntry.privacyRules.clear();
+        storyEntry.privacyRules.addAll(storyEntry.privacy.rules);
+        if (UserConfig.getInstance(i).isPremium()) {
+            storyEntry.period = MessagesController.getInstance(i).getMainSettings().getInt("story_period", 86400);
+        } else {
+            storyEntry.period = 86400;
         }
     }
 }

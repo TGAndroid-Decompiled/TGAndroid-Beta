@@ -21,6 +21,14 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
     private static SuggestClearDatabaseBottomSheet dialog;
     BaseFragment fragment;
 
+    public static void show(BaseFragment baseFragment) {
+        if (dialog == null) {
+            SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = new SuggestClearDatabaseBottomSheet(baseFragment);
+            dialog = suggestClearDatabaseBottomSheet;
+            suggestClearDatabaseBottomSheet.show();
+        }
+    }
+
     private SuggestClearDatabaseBottomSheet(final BaseFragment baseFragment) {
         super(baseFragment.getParentActivity(), false);
         this.fragment = baseFragment;
@@ -65,22 +73,6 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public static void dismissDialog() {
-        SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = dialog;
-        if (suggestClearDatabaseBottomSheet != null) {
-            suggestClearDatabaseBottomSheet.lambda$new$0();
-            dialog = null;
-        }
-    }
-
-    public void lambda$new$0(BaseFragment baseFragment, AlertDialog alertDialog, int i) {
-        if (baseFragment.getParentActivity() == null) {
-            return;
-        }
-        MessagesController.getInstance(this.currentAccount).clearQueryTime();
-        baseFragment.getMessagesStorage().clearLocalDatabase();
-    }
-
     public void lambda$new$1(final BaseFragment baseFragment, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.LocalDatabaseClearTextTitle));
@@ -100,17 +92,25 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         }
     }
 
-    public static void show(BaseFragment baseFragment) {
-        if (dialog == null) {
-            SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = new SuggestClearDatabaseBottomSheet(baseFragment);
-            dialog = suggestClearDatabaseBottomSheet;
-            suggestClearDatabaseBottomSheet.show();
+    public void lambda$new$0(BaseFragment baseFragment, AlertDialog alertDialog, int i) {
+        if (baseFragment.getParentActivity() == null) {
+            return;
         }
+        MessagesController.getInstance(this.currentAccount).clearQueryTime();
+        baseFragment.getMessagesStorage().clearLocalDatabase();
     }
 
     @Override
     public void lambda$new$0() {
         super.lambda$new$0();
         dialog = null;
+    }
+
+    public static void dismissDialog() {
+        SuggestClearDatabaseBottomSheet suggestClearDatabaseBottomSheet = dialog;
+        if (suggestClearDatabaseBottomSheet != null) {
+            suggestClearDatabaseBottomSheet.lambda$new$0();
+            dialog = null;
+        }
     }
 }

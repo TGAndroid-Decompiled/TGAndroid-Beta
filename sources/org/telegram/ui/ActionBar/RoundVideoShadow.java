@@ -9,6 +9,15 @@ import org.telegram.messenger.AndroidUtilities;
 public class RoundVideoShadow extends Drawable {
     Paint paint;
 
+    @Override
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
     public RoundVideoShadow() {
         Paint paint = new Paint(1);
         this.paint = paint;
@@ -21,16 +30,7 @@ public class RoundVideoShadow extends Drawable {
     }
 
     @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
     public void setAlpha(int i) {
         this.paint.setAlpha(i);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

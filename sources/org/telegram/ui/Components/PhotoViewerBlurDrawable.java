@@ -28,6 +28,11 @@ public class PhotoViewerBlurDrawable extends CompatDrawable {
         this.backgroundBlur = new BlurringShader.StoryBlurDrawer(blurManager, view, 0, false);
     }
 
+    public PhotoViewerBlurDrawable setApplyBounds(boolean z) {
+        this.applyBounds = z;
+        return this;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         android.graphics.Rect bounds = getBounds();
@@ -48,10 +53,5 @@ public class PhotoViewerBlurDrawable extends CompatDrawable {
         }
         this.photoViewer.drawCaptionBlur(canvas, this.backgroundBlur, Theme.multAlpha(-14277082, alpha), Theme.multAlpha(855638016, alpha), false, true, false);
         canvas.restore();
-    }
-
-    public PhotoViewerBlurDrawable setApplyBounds(boolean z) {
-        this.applyBounds = z;
-        return this;
     }
 }

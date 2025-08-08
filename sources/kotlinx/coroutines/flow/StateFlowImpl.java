@@ -14,10 +14,6 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
     private volatile Object _state;
     private int sequence;
 
-    public StateFlowImpl(Object obj) {
-        this._state = obj;
-    }
-
     private final boolean updateState(Object obj, Object obj2) {
         int i;
         AbstractSharedFlowSlot[] slots;
@@ -64,25 +60,8 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
         }
     }
 
-    @Override
-    public java.lang.Object collect(kotlinx.coroutines.flow.FlowCollector r11, kotlin.coroutines.Continuation r12) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.flow.StateFlowImpl.collect(kotlinx.coroutines.flow.FlowCollector, kotlin.coroutines.Continuation):java.lang.Object");
-    }
-
-    @Override
-    public StateFlowSlot createSlot() {
-        return new StateFlowSlot();
-    }
-
-    @Override
-    public StateFlowSlot[] createSlotArray(int i) {
-        return new StateFlowSlot[i];
-    }
-
-    @Override
-    public Object emit(Object obj, Continuation continuation) {
-        setValue(obj);
-        return Unit.INSTANCE;
+    public StateFlowImpl(Object obj) {
+        this._state = obj;
     }
 
     @Override
@@ -101,5 +80,26 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
             obj = NullSurrogateKt.NULL;
         }
         updateState(null, obj);
+    }
+
+    @Override
+    public Object emit(Object obj, Continuation continuation) {
+        setValue(obj);
+        return Unit.INSTANCE;
+    }
+
+    @Override
+    public java.lang.Object collect(kotlinx.coroutines.flow.FlowCollector r11, kotlin.coroutines.Continuation r12) {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.flow.StateFlowImpl.collect(kotlinx.coroutines.flow.FlowCollector, kotlin.coroutines.Continuation):java.lang.Object");
+    }
+
+    @Override
+    public StateFlowSlot createSlot() {
+        return new StateFlowSlot();
+    }
+
+    @Override
+    public StateFlowSlot[] createSlotArray(int i) {
+        return new StateFlowSlot[i];
     }
 }

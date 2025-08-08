@@ -26,10 +26,6 @@ public class BusinessChatbotController {
         }
     }
 
-    private BusinessChatbotController(int i) {
-        this.currentAccount = i;
-    }
-
     public static BusinessChatbotController getInstance(int i) {
         BusinessChatbotController businessChatbotController = Instance[i];
         if (businessChatbotController == null) {
@@ -49,37 +45,8 @@ public class BusinessChatbotController {
         return businessChatbotController;
     }
 
-    public void lambda$load$0(TLObject tLObject) {
-        this.loading = false;
-        TL_account.connectedBots connectedbots = tLObject instanceof TL_account.connectedBots ? (TL_account.connectedBots) tLObject : null;
-        this.value = connectedbots;
-        if (connectedbots != null) {
-            MessagesController.getInstance(this.currentAccount).putUsers(this.value.users, false);
-        }
-        this.lastTime = System.currentTimeMillis();
-        this.loaded = true;
-        for (int i = 0; i < this.callbacks.size(); i++) {
-            if (this.callbacks.get(i) != null) {
-                ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
-            }
-        }
-        this.callbacks.clear();
-    }
-
-    public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BusinessChatbotController.this.lambda$load$0(tLObject);
-            }
-        });
-    }
-
-    public void invalidate(boolean z) {
-        this.loaded = false;
-        if (z) {
-            load(null);
-        }
+    private BusinessChatbotController(int i) {
+        this.currentAccount = i;
     }
 
     public void load(Utilities.Callback callback) {
@@ -103,6 +70,39 @@ public class BusinessChatbotController {
                 }
             }
             this.callbacks.clear();
+        }
+    }
+
+    public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BusinessChatbotController.this.lambda$load$0(tLObject);
+            }
+        });
+    }
+
+    public void lambda$load$0(TLObject tLObject) {
+        this.loading = false;
+        TL_account.connectedBots connectedbots = tLObject instanceof TL_account.connectedBots ? (TL_account.connectedBots) tLObject : null;
+        this.value = connectedbots;
+        if (connectedbots != null) {
+            MessagesController.getInstance(this.currentAccount).putUsers(this.value.users, false);
+        }
+        this.lastTime = System.currentTimeMillis();
+        this.loaded = true;
+        for (int i = 0; i < this.callbacks.size(); i++) {
+            if (this.callbacks.get(i) != null) {
+                ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
+            }
+        }
+        this.callbacks.clear();
+    }
+
+    public void invalidate(boolean z) {
+        this.loaded = false;
+        if (z) {
+            load(null);
         }
     }
 }

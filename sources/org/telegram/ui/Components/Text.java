@@ -42,6 +42,16 @@ public class Text {
     private int vertPad;
     private float width;
 
+    public Text(CharSequence charSequence, TextPaint textPaint) {
+        this.maxWidth = 9999.0f;
+        this.maxLines = 1;
+        this.align = Layout.Alignment.ALIGN_NORMAL;
+        this.animatedEmojisCacheType = 0;
+        this.ellipsizeWidth = -1.0f;
+        this.paint = textPaint;
+        setText(charSequence);
+    }
+
     public Text(CharSequence charSequence, float f) {
         this(charSequence, f, null);
     }
@@ -59,14 +69,89 @@ public class Text {
         setText(charSequence);
     }
 
-    public Text(CharSequence charSequence, TextPaint textPaint) {
-        this.maxWidth = 9999.0f;
-        this.maxLines = 1;
-        this.align = Layout.Alignment.ALIGN_NORMAL;
-        this.animatedEmojisCacheType = 0;
-        this.ellipsizeWidth = -1.0f;
-        this.paint = textPaint;
-        setText(charSequence);
+    public Text setTextSizePx(float f) {
+        this.paint.setTextSize(f);
+        return this;
+    }
+
+    public Text supportAnimatedEmojis(final View view) {
+        this.drawAnimatedEmojis = true;
+        this.parentView = view;
+        if (view.isAttachedToWindow()) {
+            this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, view, this.animatedEmojis, this.layout);
+        }
+        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View view2) {
+                Text text = Text.this;
+                text.animatedEmojis = AnimatedEmojiSpan.update(text.animatedEmojisCacheType, view, Text.this.animatedEmojis, Text.this.layout);
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View view2) {
+                AnimatedEmojiSpan.release(view, Text.this.animatedEmojis);
+            }
+        });
+        return this;
+    }
+
+    public void detach() {
+        AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
+    }
+
+    public Text setEmojiCacheType(int i) {
+        if (this.animatedEmojisCacheType != i) {
+            this.animatedEmojisCacheType = i;
+            if (this.drawAnimatedEmojis) {
+                AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
+                this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
+            }
+        }
+        return this;
+    }
+
+    public void setText(CharSequence charSequence) {
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder alignment;
+        StaticLayout.Builder maxLines;
+        StaticLayout.Builder lineSpacing;
+        StaticLayout build;
+        if (this.maxLines > 1 && Build.VERSION.SDK_INT >= 23) {
+            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.paint, (int) Math.max(this.maxWidth, 1.0f));
+            alignment = obtain.setAlignment(this.align);
+            maxLines = alignment.setMaxLines(this.maxLines);
+            lineSpacing = maxLines.setLineSpacing(this.lineSpacingAdd, 1.0f);
+            build = lineSpacing.build();
+            this.layout = build;
+        } else {
+            this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), this.align, 1.0f, this.lineSpacingAdd, false);
+        }
+        if (this.align == Layout.Alignment.ALIGN_CENTER) {
+            this.width = this.layout.getWidth();
+            this.left = 0.0f;
+        } else {
+            this.width = 0.0f;
+            this.left = this.layout.getWidth();
+            for (int i = 0; i < this.layout.getLineCount(); i++) {
+                this.width = Math.max(this.width, this.layout.getLineWidth(i));
+                this.left = Math.min(this.left, this.layout.getLineLeft(i));
+            }
+        }
+        View view = this.parentView;
+        if (view == null || !view.isAttachedToWindow()) {
+            return;
+        }
+        this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
+    }
+
+    public Text multiline(int i) {
+        this.maxLines = i;
+        setText(this.layout.getText());
+        return this;
+    }
+
+    public boolean isMultiline() {
+        return this.maxLines > 1;
     }
 
     public Text align(Layout.Alignment alignment) {
@@ -77,8 +162,99 @@ public class Text {
         return this;
     }
 
-    public void detach() {
-        AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
+    public Text lineSpacing(float f) {
+        if (this.lineSpacingAdd != f) {
+            this.lineSpacingAdd = f;
+            setText(this.layout.getText());
+        }
+        return this;
+    }
+
+    public Text setMaxWidth(float f) {
+        this.maxWidth = f;
+        setText(this.layout.getText());
+        return this;
+    }
+
+    public int getLineCount() {
+        return this.layout.getLineCount();
+    }
+
+    public Layout getLayout() {
+        return this.layout;
+    }
+
+    public Text hackClipBounds() {
+        this.hackClipBounds = true;
+        return this;
+    }
+
+    public float getTextSize() {
+        return this.paint.getTextSize();
+    }
+
+    public Text setColor(int i) {
+        this.paint.setColor(i);
+        return this;
+    }
+
+    public Text ellipsize(float f) {
+        this.ellipsizeWidth = f;
+        return this;
+    }
+
+    public void draw(Canvas canvas, float f, float f2, int i, float f3) {
+        if (this.layout == null) {
+            return;
+        }
+        this.paint.setColor(i);
+        TextPaint textPaint = this.paint;
+        textPaint.linkColor = i;
+        int alpha = textPaint.getAlpha();
+        if (f3 != 1.0f) {
+            this.paint.setAlpha((int) (alpha * f3));
+        }
+        if (!this.doNotSave) {
+            canvas.save();
+        }
+        canvas.translate(f, f2 - (isMultiline() ? 0.0f : this.layout.getHeight() / 2.0f));
+        draw(canvas);
+        if (!this.doNotSave) {
+            canvas.restore();
+        }
+        this.paint.setAlpha(alpha);
+    }
+
+    public void draw(Canvas canvas, float f, float f2) {
+        draw(canvas, f, f2, 1.0f);
+    }
+
+    public void draw(Canvas canvas, float f, float f2, float f3) {
+        if (this.layout == null) {
+            return;
+        }
+        if (!this.doNotSave) {
+            canvas.save();
+        }
+        canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
+        int alpha = this.paint.getAlpha();
+        this.paint.setAlpha((int) (alpha * f3));
+        draw(canvas);
+        this.paint.setAlpha(alpha);
+        if (this.doNotSave) {
+            return;
+        }
+        canvas.restore();
+    }
+
+    public Text setVerticalClipPadding(int i) {
+        this.vertPad = i;
+        return this;
+    }
+
+    public Text setShadow(float f) {
+        this.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(-16777216, f));
+        return this;
     }
 
     public void draw(Canvas canvas) {
@@ -131,82 +307,8 @@ public class Text {
         canvas.restore();
     }
 
-    public void draw(Canvas canvas, float f, float f2) {
-        draw(canvas, f, f2, 1.0f);
-    }
-
-    public void draw(Canvas canvas, float f, float f2, float f3) {
-        if (this.layout == null) {
-            return;
-        }
-        if (!this.doNotSave) {
-            canvas.save();
-        }
-        canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
-        int alpha = this.paint.getAlpha();
-        this.paint.setAlpha((int) (alpha * f3));
-        draw(canvas);
-        this.paint.setAlpha(alpha);
-        if (this.doNotSave) {
-            return;
-        }
-        canvas.restore();
-    }
-
-    public void draw(Canvas canvas, float f, float f2, int i, float f3) {
-        if (this.layout == null) {
-            return;
-        }
-        this.paint.setColor(i);
-        TextPaint textPaint = this.paint;
-        textPaint.linkColor = i;
-        int alpha = textPaint.getAlpha();
-        if (f3 != 1.0f) {
-            this.paint.setAlpha((int) (alpha * f3));
-        }
-        if (!this.doNotSave) {
-            canvas.save();
-        }
-        canvas.translate(f, f2 - (isMultiline() ? 0.0f : this.layout.getHeight() / 2.0f));
-        draw(canvas);
-        if (!this.doNotSave) {
-            canvas.restore();
-        }
-        this.paint.setAlpha(alpha);
-    }
-
-    public Text ellipsize(float f) {
-        this.ellipsizeWidth = f;
-        return this;
-    }
-
-    public float getCurrentWidth() {
-        return this.width;
-    }
-
     public Paint.FontMetricsInt getFontMetricsInt() {
         return this.paint.getFontMetricsInt();
-    }
-
-    public float getHeight() {
-        return this.layout.getHeight();
-    }
-
-    public Layout getLayout() {
-        return this.layout;
-    }
-
-    public int getLineCount() {
-        return this.layout.getLineCount();
-    }
-
-    public CharSequence getText() {
-        StaticLayout staticLayout = this.layout;
-        return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
-    }
-
-    public float getTextSize() {
-        return this.paint.getTextSize();
     }
 
     public float getWidth() {
@@ -214,118 +316,19 @@ public class Text {
         return f >= 0.0f ? Math.min(f, this.width) : this.width;
     }
 
-    public Text hackClipBounds() {
-        this.hackClipBounds = true;
-        return this;
+    public float getCurrentWidth() {
+        return this.width;
     }
 
-    public boolean isMultiline() {
-        return this.maxLines > 1;
+    public float getHeight() {
+        return this.layout.getHeight();
     }
 
-    public Text lineSpacing(float f) {
-        if (this.lineSpacingAdd != f) {
-            this.lineSpacingAdd = f;
-            setText(this.layout.getText());
+    public CharSequence getText() {
+        StaticLayout staticLayout = this.layout;
+        if (staticLayout == null || staticLayout.getText() == null) {
+            return "";
         }
-        return this;
-    }
-
-    public Text multiline(int i) {
-        this.maxLines = i;
-        setText(this.layout.getText());
-        return this;
-    }
-
-    public Text setColor(int i) {
-        this.paint.setColor(i);
-        return this;
-    }
-
-    public Text setEmojiCacheType(int i) {
-        if (this.animatedEmojisCacheType != i) {
-            this.animatedEmojisCacheType = i;
-            if (this.drawAnimatedEmojis) {
-                AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
-                this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
-            }
-        }
-        return this;
-    }
-
-    public Text setMaxWidth(float f) {
-        this.maxWidth = f;
-        setText(this.layout.getText());
-        return this;
-    }
-
-    public Text setShadow(float f) {
-        this.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(-16777216, f));
-        return this;
-    }
-
-    public void setText(CharSequence charSequence) {
-        StaticLayout.Builder obtain;
-        StaticLayout.Builder alignment;
-        StaticLayout.Builder maxLines;
-        StaticLayout.Builder lineSpacing;
-        StaticLayout build;
-        if (this.maxLines <= 1 || Build.VERSION.SDK_INT < 23) {
-            this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), this.align, 1.0f, this.lineSpacingAdd, false);
-        } else {
-            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.paint, (int) Math.max(this.maxWidth, 1.0f));
-            alignment = obtain.setAlignment(this.align);
-            maxLines = alignment.setMaxLines(this.maxLines);
-            lineSpacing = maxLines.setLineSpacing(this.lineSpacingAdd, 1.0f);
-            build = lineSpacing.build();
-            this.layout = build;
-        }
-        if (this.align == Layout.Alignment.ALIGN_CENTER) {
-            this.width = this.layout.getWidth();
-            this.left = 0.0f;
-        } else {
-            this.width = 0.0f;
-            this.left = this.layout.getWidth();
-            for (int i = 0; i < this.layout.getLineCount(); i++) {
-                this.width = Math.max(this.width, this.layout.getLineWidth(i));
-                this.left = Math.min(this.left, this.layout.getLineLeft(i));
-            }
-        }
-        View view = this.parentView;
-        if (view == null || !view.isAttachedToWindow()) {
-            return;
-        }
-        this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
-    }
-
-    public Text setTextSizePx(float f) {
-        this.paint.setTextSize(f);
-        return this;
-    }
-
-    public Text setVerticalClipPadding(int i) {
-        this.vertPad = i;
-        return this;
-    }
-
-    public Text supportAnimatedEmojis(final View view) {
-        this.drawAnimatedEmojis = true;
-        this.parentView = view;
-        if (view.isAttachedToWindow()) {
-            this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, view, this.animatedEmojis, this.layout);
-        }
-        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View view2) {
-                Text text = Text.this;
-                text.animatedEmojis = AnimatedEmojiSpan.update(text.animatedEmojisCacheType, view, Text.this.animatedEmojis, Text.this.layout);
-            }
-
-            @Override
-            public void onViewDetachedFromWindow(View view2) {
-                AnimatedEmojiSpan.release(view, Text.this.animatedEmojis);
-            }
-        });
-        return this;
+        return this.layout.getText();
     }
 }

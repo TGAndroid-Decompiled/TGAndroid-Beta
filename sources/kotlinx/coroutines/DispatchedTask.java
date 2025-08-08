@@ -1,7 +1,6 @@
 package kotlinx.coroutines;
 
 import java.util.concurrent.CancellationException;
-import kotlin.ExceptionsKt__ExceptionsKt;
 import kotlin.Result;
 import kotlin.ResultKt;
 import kotlin.Unit;
@@ -16,13 +15,33 @@ import kotlinx.coroutines.scheduling.TaskContext;
 public abstract class DispatchedTask extends Task {
     public int resumeMode;
 
+    public abstract void cancelCompletedResult$kotlinx_coroutines_core(Object obj, Throwable th);
+
+    public abstract Continuation getDelegate$kotlinx_coroutines_core();
+
+    public Object getSuccessfulResult$kotlinx_coroutines_core(Object obj) {
+        return obj;
+    }
+
+    public abstract Object takeState$kotlinx_coroutines_core();
+
     public DispatchedTask(int i) {
         this.resumeMode = i;
     }
 
-    public abstract void cancelCompletedResult$kotlinx_coroutines_core(Object obj, Throwable th);
-
-    public abstract Continuation getDelegate$kotlinx_coroutines_core();
+    public final void handleFatalException$kotlinx_coroutines_core(Throwable th, Throwable th2) {
+        if (th == null && th2 == null) {
+            return;
+        }
+        if (th != null && th2 != null) {
+            kotlin.ExceptionsKt.addSuppressed(th, th2);
+        }
+        if (th == null) {
+            th = th2;
+        }
+        Intrinsics.checkNotNull(th);
+        CoroutineExceptionHandlerKt.handleCoroutineException(getDelegate$kotlinx_coroutines_core().getContext(), new CoroutinesInternalError("Fatal exception in coroutines machinery for " + this + ". Please read KDoc to 'handleFatalException' method and report this incident to maintainers", th));
+    }
 
     public Throwable getExceptionalResult$kotlinx_coroutines_core(Object obj) {
         CompletedExceptionally completedExceptionally = obj instanceof CompletedExceptionally ? (CompletedExceptionally) obj : null;
@@ -32,29 +51,10 @@ public abstract class DispatchedTask extends Task {
         return null;
     }
 
-    public Object getSuccessfulResult$kotlinx_coroutines_core(Object obj) {
-        return obj;
-    }
-
-    public final void handleFatalException$kotlinx_coroutines_core(Throwable th, Throwable th2) {
-        if (th == null && th2 == null) {
-            return;
-        }
-        if (th != null && th2 != null) {
-            ExceptionsKt__ExceptionsKt.addSuppressed(th, th2);
-        }
-        if (th == null) {
-            th = th2;
-        }
-        Intrinsics.checkNotNull(th);
-        CoroutineExceptionHandlerKt.handleCoroutineException(getDelegate$kotlinx_coroutines_core().getContext(), new CoroutinesInternalError("Fatal exception in coroutines machinery for " + this + ". Please read KDoc to 'handleFatalException' method and report this incident to maintainers", th));
-    }
-
     @Override
     public final void run() {
-        Object m210constructorimpl;
-        Object m210constructorimpl2;
-        Object m210constructorimpl3;
+        Object m216constructorimpl;
+        Object m216constructorimpl2;
         TaskContext taskContext = this.taskContext;
         try {
             Continuation delegate$kotlinx_coroutines_core = getDelegate$kotlinx_coroutines_core();
@@ -74,27 +74,26 @@ public abstract class DispatchedTask extends Task {
                     CancellationException cancellationException = job.getCancellationException();
                     cancelCompletedResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core, cancellationException);
                     Result.Companion companion = Result.Companion;
-                    m210constructorimpl2 = Result.m210constructorimpl(ResultKt.createFailure(cancellationException));
+                    continuation.resumeWith(Result.m216constructorimpl(ResultKt.createFailure(cancellationException)));
                 } else if (exceptionalResult$kotlinx_coroutines_core != null) {
                     Result.Companion companion2 = Result.Companion;
-                    m210constructorimpl2 = Result.m210constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core));
+                    continuation.resumeWith(Result.m216constructorimpl(ResultKt.createFailure(exceptionalResult$kotlinx_coroutines_core)));
                 } else {
                     Result.Companion companion3 = Result.Companion;
-                    m210constructorimpl2 = Result.m210constructorimpl(getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core));
+                    continuation.resumeWith(Result.m216constructorimpl(getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core)));
                 }
-                continuation.resumeWith(m210constructorimpl2);
                 Unit unit = Unit.INSTANCE;
                 if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
                     ThreadContextKt.restoreThreadContext(context, updateThreadContext);
                 }
                 try {
                     taskContext.afterTask();
-                    m210constructorimpl3 = Result.m210constructorimpl(Unit.INSTANCE);
+                    m216constructorimpl2 = Result.m216constructorimpl(Unit.INSTANCE);
                 } catch (Throwable th) {
                     Result.Companion companion4 = Result.Companion;
-                    m210constructorimpl3 = Result.m210constructorimpl(ResultKt.createFailure(th));
+                    m216constructorimpl2 = Result.m216constructorimpl(ResultKt.createFailure(th));
                 }
-                handleFatalException$kotlinx_coroutines_core(null, Result.m212exceptionOrNullimpl(m210constructorimpl3));
+                handleFatalException$kotlinx_coroutines_core(null, Result.m218exceptionOrNullimpl(m216constructorimpl2));
             } catch (Throwable th2) {
                 if (updateUndispatchedCompletion == null || updateUndispatchedCompletion.clearThreadContext()) {
                     ThreadContextKt.restoreThreadContext(context, updateThreadContext);
@@ -105,14 +104,12 @@ public abstract class DispatchedTask extends Task {
             try {
                 Result.Companion companion5 = Result.Companion;
                 taskContext.afterTask();
-                m210constructorimpl = Result.m210constructorimpl(Unit.INSTANCE);
+                m216constructorimpl = Result.m216constructorimpl(Unit.INSTANCE);
             } catch (Throwable th4) {
                 Result.Companion companion6 = Result.Companion;
-                m210constructorimpl = Result.m210constructorimpl(ResultKt.createFailure(th4));
+                m216constructorimpl = Result.m216constructorimpl(ResultKt.createFailure(th4));
             }
-            handleFatalException$kotlinx_coroutines_core(th3, Result.m212exceptionOrNullimpl(m210constructorimpl));
+            handleFatalException$kotlinx_coroutines_core(th3, Result.m218exceptionOrNullimpl(m216constructorimpl));
         }
     }
-
-    public abstract Object takeState$kotlinx_coroutines_core();
 }

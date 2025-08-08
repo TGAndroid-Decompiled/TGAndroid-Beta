@@ -5,9 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowInsets;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -24,64 +27,6 @@ public class BottomSheetTabDialog extends Dialog {
     public final BottomSheetTabsOverlay.SheetView sheetView;
     public final WindowView windowView;
 
-    public static class WindowView extends FrameLayout implements BottomSheetTabsOverlay.SheetView {
-        public final BottomSheetTabsOverlay.SheetView sheetView;
-
-        public WindowView(BottomSheetTabsOverlay.SheetView sheetView) {
-            super(sheetView.getContext());
-            this.sheetView = sheetView;
-        }
-
-        @Override
-        public float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z) {
-            return this.sheetView.drawInto(canvas, rectF, f, rectF2, f2, z);
-        }
-
-        @Override
-        public RectF getRect() {
-            return this.sheetView.getRect();
-        }
-
-        public void putView() {
-            View view = (View) this.sheetView;
-            AndroidUtilities.removeFromParent(view);
-            addView(view, LayoutHelper.createFrame(-1, -1, 119));
-        }
-
-        @Override
-        public void setDrawingFromOverlay(boolean z) {
-            this.sheetView.setDrawingFromOverlay(z);
-        }
-    }
-
-    public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo1170getWindowView().getContext(), R.style.TransparentDialog);
-        Paint paint = new Paint(1);
-        this.navigationBarPaint = paint;
-        this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo1170getWindowView = sheet.mo1170getWindowView();
-        this.sheetView = mo1170getWindowView;
-        View view = new View(getContext()) {
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), BottomSheetTabDialog.this.navigationBarPaint);
-            }
-
-            @Override
-            protected void onMeasure(int i, int i2) {
-                setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.navigationBarHeight);
-                setTranslationY(AndroidUtilities.navigationBarHeight);
-            }
-        };
-        this.navigationBar = view;
-        paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        WindowView windowView = new WindowView(mo1170getWindowView);
-        this.windowView = windowView;
-        setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
-        windowView.addView(view, LayoutHelper.createFrame(-1, -2, 80));
-        windowView.setClipToPadding(false);
-    }
-
     public static BottomSheetTabsOverlay.Sheet checkSheet(BottomSheetTabsOverlay.Sheet sheet) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -96,18 +41,119 @@ public class BottomSheetTabDialog extends Dialog {
         return sheet;
     }
 
+    public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
+        super(sheet.mo1177getWindowView().getContext(), R.style.TransparentDialog);
+        Paint paint = new Paint(1);
+        this.navigationBarPaint = paint;
+        this.sheet = sheet;
+        BottomSheetTabsOverlay.SheetView mo1177getWindowView = sheet.mo1177getWindowView();
+        this.sheetView = mo1177getWindowView;
+        View view = new View(getContext()) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), BottomSheetTabDialog.this.navigationBarPaint);
+            }
+
+            @Override
+            protected void onMeasure(int i, int i2) {
+                setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.navigationBarHeight);
+                setTranslationY(AndroidUtilities.navigationBarHeight);
+            }
+        };
+        this.navigationBar = view;
+        paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        WindowView windowView = new WindowView(mo1177getWindowView);
+        this.windowView = windowView;
+        setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
+        windowView.addView(view, LayoutHelper.createFrame(-1, -2, 80));
+        windowView.setClipToPadding(false);
+    }
+
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 30) {
+            window.addFlags(-2147483392);
+        } else {
+            window.addFlags(-2147417856);
+        }
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.gravity = 51;
+        attributes.dimAmount = 0.0f;
+        attributes.flags &= -3;
+        attributes.softInputMode = 16;
+        attributes.height = -1;
+        if (i >= 28) {
+            attributes.layoutInDisplayCutoutMode = 1;
+        }
+        window.setAttributes(attributes);
+        if (i >= 23) {
+            window.setStatusBarColor(0);
+        }
+        this.windowView.setFitsSystemWindows(true);
+        this.windowView.setSystemUiVisibility(1792);
+        this.windowView.setPadding(0, 0, 0, 0);
+        this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                WindowInsets lambda$onCreate$0;
+                lambda$onCreate$0 = BottomSheetTabDialog.lambda$onCreate$0(view, windowInsets);
+                return lambda$onCreate$0;
+            }
+        });
+    }
+
     public static WindowInsets lambda$onCreate$0(View view, WindowInsets windowInsets) {
-        int systemWindowInsetBottom;
-        WindowInsets consumeSystemWindowInsets;
         WindowInsets windowInsets2;
-        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
-        view.setPadding(0, 0, 0, systemWindowInsetBottom);
+        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
         if (Build.VERSION.SDK_INT >= 30) {
             windowInsets2 = WindowInsets.CONSUMED;
             return windowInsets2;
         }
-        consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
-        return consumeSystemWindowInsets;
+        return windowInsets.consumeSystemWindowInsets();
+    }
+
+    public void updateNavigationBarColor() {
+        int navigationBarColor = this.sheet.getNavigationBarColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        this.navigationBarPaint.setColor(navigationBarColor);
+        this.navigationBar.invalidate();
+        AndroidUtilities.setNavigationBarColor(getWindow(), navigationBarColor);
+        AndroidUtilities.setLightNavigationBar(getWindow(), AndroidUtilities.computePerceivedBrightness(navigationBarColor) >= 0.721f);
+        LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
+    }
+
+    public static class WindowView extends FrameLayout implements BottomSheetTabsOverlay.SheetView {
+        public final BottomSheetTabsOverlay.SheetView sheetView;
+
+        public WindowView(BottomSheetTabsOverlay.SheetView sheetView) {
+            super(sheetView.getContext());
+            this.sheetView = sheetView;
+        }
+
+        public void putView() {
+            View view = (View) this.sheetView;
+            AndroidUtilities.removeFromParent(view);
+            addView(view, LayoutHelper.createFrame(-1, -1, 119));
+        }
+
+        @Override
+        public void setDrawingFromOverlay(boolean z) {
+            this.sheetView.setDrawingFromOverlay(z);
+        }
+
+        @Override
+        public RectF getRect() {
+            return this.sheetView.getRect();
+        }
+
+        @Override
+        public float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z) {
+            return this.sheetView.drawInto(canvas, rectF, f, rectF2, f2, z);
+        }
     }
 
     public void attach() {
@@ -137,19 +183,5 @@ public class BottomSheetTabDialog extends Dialog {
     @Override
     public void dismiss() {
         this.sheet.dismiss(false);
-    }
-
-    @Override
-    protected void onCreate(android.os.Bundle r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheetTabDialog.onCreate(android.os.Bundle):void");
-    }
-
-    public void updateNavigationBarColor() {
-        int navigationBarColor = this.sheet.getNavigationBarColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        this.navigationBarPaint.setColor(navigationBarColor);
-        this.navigationBar.invalidate();
-        AndroidUtilities.setNavigationBarColor(getWindow(), navigationBarColor);
-        AndroidUtilities.setLightNavigationBar(getWindow(), AndroidUtilities.computePerceivedBrightness(navigationBarColor) >= 0.721f);
-        LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
     }
 }

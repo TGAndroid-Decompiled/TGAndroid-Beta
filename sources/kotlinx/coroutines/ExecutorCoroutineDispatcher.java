@@ -10,6 +10,10 @@ public abstract class ExecutorCoroutineDispatcher extends CoroutineDispatcher im
     public static final Key Key = new Key(null);
 
     public static final class Key extends AbstractCoroutineContextKey {
+        public Key(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
         private Key() {
             super(CoroutineDispatcher.Key, new Function1() {
                 @Override
@@ -20,10 +24,6 @@ public abstract class ExecutorCoroutineDispatcher extends CoroutineDispatcher im
                     return null;
                 }
             });
-        }
-
-        public Key(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
         }
     }
 }

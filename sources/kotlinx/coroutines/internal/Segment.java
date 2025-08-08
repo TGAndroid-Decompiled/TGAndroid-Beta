@@ -9,24 +9,24 @@ public abstract class Segment extends ConcurrentLinkedListNode implements NotCom
     private volatile int cleanedAndPointers;
     public final long id;
 
+    public abstract int getNumberOfSlots();
+
+    public abstract void onCancellation(int i, Throwable th, CoroutineContext coroutineContext);
+
     public Segment(long j, Segment segment, int i) {
         super(segment);
         this.id = j;
         this.cleanedAndPointers = i << 16;
     }
 
-    public final boolean decPointers$kotlinx_coroutines_core() {
-        return cleanedAndPointers$FU.addAndGet(this, -65536) == getNumberOfSlots() && !isTail();
-    }
-
-    public abstract int getNumberOfSlots();
-
     @Override
     public boolean isRemoved() {
         return cleanedAndPointers$FU.get(this) == getNumberOfSlots() && !isTail();
     }
 
-    public abstract void onCancellation(int i, Throwable th, CoroutineContext coroutineContext);
+    public final boolean decPointers$kotlinx_coroutines_core() {
+        return cleanedAndPointers$FU.addAndGet(this, -65536) == getNumberOfSlots() && !isTail();
+    }
 
     public final void onSlotCleaned() {
         if (cleanedAndPointers$FU.incrementAndGet(this) == getNumberOfSlots()) {

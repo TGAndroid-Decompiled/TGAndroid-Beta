@@ -13,6 +13,11 @@ public abstract class SafeCollector_commonKt {
                 super(2);
             }
 
+            @Override
+            public Object invoke(Object obj, Object obj2) {
+                return invoke(((Number) obj).intValue(), (CoroutineContext.Element) obj2);
+            }
+
             public final Integer invoke(int i, CoroutineContext.Element element) {
                 CoroutineContext.Key key = element.getKey();
                 CoroutineContext.Element element2 = SafeCollector.this.collectContext.get(key);
@@ -22,18 +27,13 @@ public abstract class SafeCollector_commonKt {
                 Job job = (Job) element2;
                 Intrinsics.checkNotNull(element, "null cannot be cast to non-null type kotlinx.coroutines.Job");
                 Job transitiveCoroutineParent = SafeCollector_commonKt.transitiveCoroutineParent((Job) element, job);
-                if (transitiveCoroutineParent == job) {
-                    if (job != null) {
-                        i++;
-                    }
-                    return Integer.valueOf(i);
+                if (transitiveCoroutineParent != job) {
+                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tEmission from another coroutine is detected.\n\t\tChild of " + transitiveCoroutineParent + ", expected child of " + job + ".\n\t\tFlowCollector is not thread-safe and concurrent emissions are prohibited.\n\t\tTo mitigate this restriction please use 'channelFlow' builder instead of 'flow'").toString());
                 }
-                throw new IllegalStateException(("Flow invariant is violated:\n\t\tEmission from another coroutine is detected.\n\t\tChild of " + transitiveCoroutineParent + ", expected child of " + job + ".\n\t\tFlowCollector is not thread-safe and concurrent emissions are prohibited.\n\t\tTo mitigate this restriction please use 'channelFlow' builder instead of 'flow'").toString());
-            }
-
-            @Override
-            public Object invoke(Object obj, Object obj2) {
-                return invoke(((Number) obj).intValue(), (CoroutineContext.Element) obj2);
+                if (job != null) {
+                    i++;
+                }
+                return Integer.valueOf(i);
             }
         })).intValue() == safeCollector.collectContextSize) {
             return;

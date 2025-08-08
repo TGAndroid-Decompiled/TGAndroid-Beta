@@ -22,42 +22,7 @@ public abstract class AbstractCollection implements Collection {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    @Override
-    public boolean contains(Object obj) {
-        if (isEmpty()) {
-            return false;
-        }
-        Iterator<E> it = iterator();
-        while (it.hasNext()) {
-            if (Intrinsics.areEqual(it.next(), obj)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
-        Collection collection = elements;
-        if (collection.isEmpty()) {
-            return true;
-        }
-        Iterator it = collection.iterator();
-        while (it.hasNext()) {
-            if (!contains(it.next())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public abstract int getSize();
-
-    @Override
-    public boolean isEmpty() {
-        return size() == 0;
-    }
 
     @Override
     public boolean remove(Object obj) {
@@ -80,6 +45,40 @@ public abstract class AbstractCollection implements Collection {
     }
 
     @Override
+    public boolean containsAll(Collection elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        Collection collection = elements;
+        if (collection.isEmpty()) {
+            return true;
+        }
+        Iterator it = collection.iterator();
+        while (it.hasNext()) {
+            if (!contains(it.next())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    public String toString() {
+        return CollectionsKt.joinToString$default(this, ", ", "[", "]", 0, null, new Function1() {
+            {
+                super(1);
+            }
+
+            @Override
+            public final CharSequence invoke(Object obj) {
+                return obj == AbstractCollection.this ? "(this Collection)" : String.valueOf(obj);
+            }
+        }, 24, null);
+    }
+
+    @Override
     public Object[] toArray() {
         return CollectionToArray.toArray(this);
     }
@@ -90,18 +89,17 @@ public abstract class AbstractCollection implements Collection {
         return CollectionToArray.toArray(this, array);
     }
 
-    public String toString() {
-        String joinToString$default;
-        joinToString$default = CollectionsKt___CollectionsKt.joinToString$default(this, ", ", "[", "]", 0, null, new Function1() {
-            {
-                super(1);
+    @Override
+    public boolean contains(Object obj) {
+        if (isEmpty()) {
+            return false;
+        }
+        Iterator<E> it = iterator();
+        while (it.hasNext()) {
+            if (Intrinsics.areEqual(it.next(), obj)) {
+                return true;
             }
-
-            @Override
-            public final CharSequence invoke(Object obj) {
-                return obj == AbstractCollection.this ? "(this Collection)" : String.valueOf(obj);
-            }
-        }, 24, null);
-        return joinToString$default;
+        }
+        return false;
     }
 }

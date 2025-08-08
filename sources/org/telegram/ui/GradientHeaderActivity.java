@@ -12,7 +12,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,272 +70,20 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     public boolean whiteBackground;
     protected int yOffset;
 
-    public static class BackgroundView extends LinearLayout {
-        private final FrameLayout aboveTitleLayout;
-        private final FrameLayout belowSubTitleLayout;
-        public final LinkSpanDrawable.LinksTextView subtitleView;
-        private final TextView titleView;
+    protected abstract RecyclerView.Adapter createAdapter();
 
-        public BackgroundView(Context context) {
-            super(context);
-            setOrientation(1);
-            FrameLayout frameLayout = new FrameLayout(context);
-            this.aboveTitleLayout = frameLayout;
-            addView(frameLayout, LayoutHelper.createLinear(-1, -2, 1));
-            frameLayout.setClipChildren(false);
-            setClipChildren(false);
-            TextView textView = new TextView(context);
-            this.titleView = textView;
-            textView.setTextSize(1, 22.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setGravity(1);
-            addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 1, 16, 20, 16, 0));
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-            this.subtitleView = linksTextView;
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            linksTextView.setGravity(1);
-            addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 1, 24, 7, 24, 0));
-            FrameLayout frameLayout2 = new FrameLayout(context);
-            this.belowSubTitleLayout = frameLayout2;
-            addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 1));
-            frameLayout2.setClipChildren(false);
-        }
-
-        public void setData(CharSequence charSequence, CharSequence charSequence2, View view, View view2) {
-            this.titleView.setText(charSequence);
-            this.subtitleView.setText(charSequence2);
-            LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
-            linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), this.subtitleView.getPaint()));
-            if (view != null) {
-                this.aboveTitleLayout.removeAllViews();
-                this.aboveTitleLayout.addView(view, LayoutHelper.createFrame(-1, -2, 1));
-                this.aboveTitleLayout.setClickable(view.isClickable());
-            } else {
-                this.aboveTitleLayout.setClickable(false);
-            }
-            if (view2 != null) {
-                this.belowSubTitleLayout.removeAllViews();
-                this.belowSubTitleLayout.addView(view2, LayoutHelper.createFrame(-1, -2, 1));
-                this.belowSubTitleLayout.setClickable(view2.isClickable());
-            } else {
-                this.belowSubTitleLayout.setClickable(false);
-            }
-            requestLayout();
-        }
+    protected boolean drawActionBarShadow() {
+        return true;
     }
 
-    public class ContentView extends NestedSizeNotifierLayout {
-        private LinearGradient backgroundGradient;
-        private final Paint backgroundGradientPaint;
-        private final Paint backgroundPaint;
-        boolean bottomInterceptedTouch;
-        int lastSize;
-        private Boolean lightStatusBar;
-        boolean subtitleInterceptedTouch;
-        boolean topInterceptedTouch;
+    @Override
+    public boolean isActionBarCrossfadeEnabled() {
+        return false;
+    }
 
-        public ContentView(Context context) {
-            super(context);
-            this.backgroundPaint = new Paint(1);
-            this.backgroundGradientPaint = new Paint(1);
-        }
-
-        private void setLightStatusBar(int i) {
-            boolean z = AndroidUtilities.computePerceivedBrightness(i) >= 0.721f;
-            Boolean bool = this.lightStatusBar;
-            if (bool == null || bool.booleanValue() != z) {
-                View view = GradientHeaderActivity.this.fragmentView;
-                this.lightStatusBar = Boolean.valueOf(z);
-                AndroidUtilities.setLightStatusBar(view, z);
-            }
-        }
-
-        @Override
-        public void dispatchDraw(Canvas canvas) {
-            float measuredWidth;
-            float dp;
-            Paint paint;
-            GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
-            BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
-            if (!gradientHeaderActivity.isDialogVisible) {
-                if (GradientHeaderActivity.this.inc) {
-                    GradientHeaderActivity.access$1416(GradientHeaderActivity.this, 0.016f);
-                    if (GradientHeaderActivity.this.progress > 3.0f) {
-                        GradientHeaderActivity.this.inc = false;
-                    }
-                } else {
-                    GradientHeaderActivity.access$1424(GradientHeaderActivity.this, 0.016f);
-                    if (GradientHeaderActivity.this.progress < 1.0f) {
-                        GradientHeaderActivity.this.inc = true;
-                    }
-                }
-            }
-            View findViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-            GradientHeaderActivity.this.currentYOffset = findViewByPosition != null ? findViewByPosition.getBottom() : 0;
-            int bottom = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
-            GradientHeaderActivity.this.totalProgress = 1.0f - ((r4.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
-            GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-            gradientHeaderActivity2.totalProgress = Utilities.clamp(gradientHeaderActivity2.totalProgress, 1.0f, 0.0f);
-            int bottom2 = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
-            if (GradientHeaderActivity.this.currentYOffset < bottom2) {
-                GradientHeaderActivity.this.currentYOffset = bottom2;
-            }
-            float f = GradientHeaderActivity.this.progressToFull;
-            GradientHeaderActivity.this.progressToFull = 0.0f;
-            if (GradientHeaderActivity.this.currentYOffset < AndroidUtilities.dp(30.0f) + bottom2) {
-                GradientHeaderActivity.this.progressToFull = ((bottom2 + AndroidUtilities.dp(30.0f)) - GradientHeaderActivity.this.currentYOffset) / AndroidUtilities.dp(30.0f);
-            }
-            GradientHeaderActivity gradientHeaderActivity3 = GradientHeaderActivity.this;
-            if (gradientHeaderActivity3.isLandscapeMode) {
-                gradientHeaderActivity3.progressToFull = 1.0f;
-                GradientHeaderActivity.this.totalProgress = 1.0f;
-            }
-            if (f != GradientHeaderActivity.this.progressToFull) {
-                GradientHeaderActivity.this.listView.invalidate();
-            }
-            float max = Math.max((((((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() - GradientHeaderActivity.this.statusBarHeight) - backgroundView.titleView.getMeasuredHeight()) / 2.0f) + GradientHeaderActivity.this.statusBarHeight) - backgroundView.getTop()) - backgroundView.titleView.getTop(), (GradientHeaderActivity.this.currentYOffset - ((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() + backgroundView.getMeasuredHeight()) - GradientHeaderActivity.this.statusBarHeight)) + AndroidUtilities.dp(16.0f));
-            backgroundView.setTranslationY(max);
-            backgroundView.aboveTitleLayout.setTranslationY(((-max) / 4.0f) + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(16.0f));
-            float f2 = ((1.0f - GradientHeaderActivity.this.totalProgress) * 0.4f) + 0.6f;
-            float f3 = 1.0f - (GradientHeaderActivity.this.totalProgress > 0.5f ? (GradientHeaderActivity.this.totalProgress - 0.5f) / 0.5f : 0.0f);
-            backgroundView.aboveTitleLayout.setScaleX(f2);
-            backgroundView.aboveTitleLayout.setScaleY(f2);
-            backgroundView.aboveTitleLayout.setAlpha(f3);
-            backgroundView.belowSubTitleLayout.setAlpha(f3);
-            backgroundView.subtitleView.setAlpha(f3);
-            GradientHeaderActivity gradientHeaderActivity4 = GradientHeaderActivity.this;
-            gradientHeaderActivity4.particlesView.setAlpha(1.0f - gradientHeaderActivity4.totalProgress);
-            GradientHeaderActivity.this.particlesView.setTranslationY((backgroundView.getY() + backgroundView.aboveTitleLayout.getY()) - AndroidUtilities.dp(30.0f));
-            backgroundView.titleView.setTranslationX((AndroidUtilities.dp(72.0f) - backgroundView.titleView.getLeft()) * (1.0f - CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(1.0f - (GradientHeaderActivity.this.totalProgress > 0.3f ? (GradientHeaderActivity.this.totalProgress - 0.3f) / 0.7f : 0.0f))));
-            if (!GradientHeaderActivity.this.isDialogVisible) {
-                invalidate();
-            }
-            GradientHeaderActivity.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * GradientHeaderActivity.this.progress, 0.0f);
-            if (GradientHeaderActivity.this.whiteBackground) {
-                if (this.backgroundGradient == null) {
-                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(350.0f), new int[]{GradientHeaderActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), GradientHeaderActivity.this.getThemedColor(Theme.key_windowBackgroundGray)}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.backgroundGradient = linearGradient;
-                    this.backgroundGradientPaint.setShader(linearGradient);
-                }
-                measuredWidth = getMeasuredWidth();
-                dp = GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f);
-                paint = this.backgroundGradientPaint;
-            } else {
-                measuredWidth = getMeasuredWidth();
-                dp = GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f);
-                paint = GradientHeaderActivity.this.gradientTools.paint;
-            }
-            canvas.drawRect(0.0f, 0.0f, measuredWidth, dp, paint);
-            int themedColor = GradientHeaderActivity.this.getThemedColor(Theme.key_dialogTextBlack);
-            GradientHeaderActivity gradientHeaderActivity5 = GradientHeaderActivity.this;
-            int blendARGB = ColorUtils.blendARGB(themedColor, gradientHeaderActivity5.getThemedColor(gradientHeaderActivity5.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), f3);
-            ((BaseFragment) GradientHeaderActivity.this).actionBar.getBackButton().setColorFilter(blendARGB);
-            backgroundView.titleView.setTextColor(blendARGB);
-            GradientHeaderActivity.this.headerBgPaint.setAlpha((int) ((1.0f - f3) * 255.0f));
-            setLightStatusBar(Theme.blendOver(Theme.getColor(Theme.key_premiumGradientBackground4, ((BaseFragment) GradientHeaderActivity.this).resourceProvider), GradientHeaderActivity.this.headerBgPaint.getColor()));
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), GradientHeaderActivity.this.headerBgPaint);
-            super.dispatchDraw(canvas);
-            if (f3 > 0.01f || !GradientHeaderActivity.this.drawActionBarShadow()) {
-                return;
-            }
-            ((BaseFragment) GradientHeaderActivity.this).parentLayout.drawHeaderShadow(canvas, 255, ((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight());
-        }
-
-        @Override
-        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            View view;
-            BackgroundView backgroundView = GradientHeaderActivity.this.backgroundView;
-            float x = backgroundView.getX() + backgroundView.subtitleView.getX();
-            float y = backgroundView.getY() + backgroundView.subtitleView.getY();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(x, y, backgroundView.subtitleView.getMeasuredWidth() + x, backgroundView.subtitleView.getMeasuredHeight() + y);
-            if ((!rectF.contains(motionEvent.getX(), motionEvent.getY()) && !this.subtitleInterceptedTouch) || GradientHeaderActivity.this.listView.scrollingByUser || !backgroundView.subtitleView.hasLinks() || GradientHeaderActivity.this.progressToFull >= 1.0f) {
-                float x2 = backgroundView.getX() + backgroundView.aboveTitleLayout.getX();
-                float y2 = backgroundView.getY() + backgroundView.aboveTitleLayout.getY();
-                boolean isClickable = backgroundView.aboveTitleLayout.isClickable();
-                rectF.set(x2, y2, backgroundView.aboveTitleLayout.getMeasuredWidth() + x2, backgroundView.aboveTitleLayout.getMeasuredHeight() + y2);
-                if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
-                    GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
-                    if (!gradientHeaderActivity.listView.scrollingByUser && isClickable && gradientHeaderActivity.progressToFull < 1.0f) {
-                        motionEvent.offsetLocation(-x2, -y2);
-                        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-                            this.topInterceptedTouch = true;
-                        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                            this.topInterceptedTouch = false;
-                        }
-                        view = backgroundView.aboveTitleLayout;
-                    }
-                }
-                float x3 = backgroundView.getX() + backgroundView.belowSubTitleLayout.getX();
-                float y3 = backgroundView.getY() + backgroundView.belowSubTitleLayout.getY();
-                rectF.set(x3, y3, backgroundView.belowSubTitleLayout.getMeasuredWidth() + x3, backgroundView.belowSubTitleLayout.getMeasuredHeight() + y3);
-                if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.bottomInterceptedTouch) {
-                    GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-                    if (!gradientHeaderActivity2.listView.scrollingByUser && gradientHeaderActivity2.progressToFull < 1.0f) {
-                        motionEvent.offsetLocation(-x3, -y3);
-                        if (motionEvent.getAction() == 0) {
-                            this.bottomInterceptedTouch = true;
-                        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                            this.bottomInterceptedTouch = false;
-                        }
-                        backgroundView.belowSubTitleLayout.dispatchTouchEvent(motionEvent);
-                        if (this.bottomInterceptedTouch) {
-                            return true;
-                        }
-                    }
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            }
-            motionEvent.offsetLocation(-x, -y);
-            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-                this.subtitleInterceptedTouch = true;
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                this.subtitleInterceptedTouch = false;
-            }
-            view = backgroundView.subtitleView;
-            view.dispatchTouchEvent(motionEvent);
-            return true;
-        }
-
-        @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
-            if (view != GradientHeaderActivity.this.listView) {
-                return super.drawChild(canvas, view, j);
-            }
-            canvas.save();
-            canvas.clipRect(0, ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom(), getMeasuredWidth(), getMeasuredHeight());
-            super.drawChild(canvas, view, j);
-            canvas.restore();
-            return true;
-        }
-
-        @Override
-        public void onMeasure(int i, int i2) {
-            GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
-            BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
-            gradientHeaderActivity.isLandscapeMode = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
-            if (Build.VERSION.SDK_INT >= 21) {
-                GradientHeaderActivity.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
-            }
-            backgroundView.measure(i, View.MeasureSpec.makeMeasureSpec(0, 0));
-            ViewGroup.LayoutParams layoutParams = GradientHeaderActivity.this.particlesView.getLayoutParams();
-            int i3 = GradientHeaderActivity.this.particlesViewHeight;
-            if (i3 <= 0) {
-                i3 = backgroundView.getMeasuredHeight();
-            }
-            layoutParams.height = i3;
-            GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-            LinearLayoutManager linearLayoutManager = gradientHeaderActivity2.layoutManager;
-            if (linearLayoutManager instanceof FillLastLinearLayoutManager) {
-                ((FillLastLinearLayoutManager) linearLayoutManager).setAdditionalHeight(((BaseFragment) gradientHeaderActivity2).actionBar.getMeasuredHeight());
-                ((FillLastLinearLayoutManager) GradientHeaderActivity.this.layoutManager).setMinimumLastViewHeight(0);
-            }
-            super.onMeasure(i, i2);
-            if (this.lastSize != ((getMeasuredHeight() + getMeasuredWidth()) << 16)) {
-                GradientHeaderActivity.this.updateBackgroundImage();
-            }
-        }
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return true;
     }
 
     public GradientHeaderActivity() {
@@ -385,96 +132,36 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         return f2;
     }
 
-    public void updateBackgroundImage() {
-        if (this.contentView.getMeasuredWidth() == 0 || this.contentView.getMeasuredHeight() == 0 || this.backgroundView == null) {
-            return;
-        }
-        this.gradientTools.gradientMatrix(0, 0, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), 0.0f, 0.0f);
-        this.gradientCanvas.save();
-        this.gradientCanvas.scale(100.0f / this.contentView.getMeasuredWidth(), 100.0f / this.contentView.getMeasuredHeight());
-        this.gradientCanvas.drawRect(0.0f, 0.0f, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), this.gradientTools.paint);
-        this.gradientCanvas.restore();
+    public void setMinusHeaderHeight(int i) {
+        this.minusHeaderHeight = i;
     }
 
-    public void updateColors() {
-        if (this.backgroundView == null || this.actionBar == null) {
-            return;
-        }
-        this.headerBgPaint.setColor(getThemedColor(Theme.key_dialogBackground));
-        ActionBar actionBar = this.actionBar;
-        int i = Theme.key_premiumGradientBackgroundOverlay;
-        actionBar.setItemsColor(Theme.getColor(i), false);
-        this.actionBar.setItemsBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 60), false);
-        this.particlesView.drawable.updateColors();
-        BackgroundView backgroundView = this.backgroundView;
-        if (backgroundView != null) {
-            boolean z = this.whiteBackground;
-            TextView textView = backgroundView.titleView;
-            if (z) {
-                i = Theme.key_windowBackgroundWhiteBlackText;
-            }
-            textView.setTextColor(Theme.getColor(i));
-            this.backgroundView.subtitleView.setTextColor(Theme.getColor(i));
-            this.backgroundView.subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
-        }
-        updateBackgroundImage();
-    }
-
-    public void applyScrolledPosition() {
-        applyScrolledPosition(false);
-    }
-
-    public void applyScrolledPosition(boolean z) {
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null || this.layoutManager == null || this.savedScrollPosition < 0) {
-            return;
-        }
-        int i = this.savedScrollOffset;
-        RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(0);
-        if (z && findViewHolderForAdapterPosition != null) {
-            i -= Math.max(findViewHolderForAdapterPosition.itemView.getBottom() - this.listView.getPaddingTop(), 0);
-        }
-        this.layoutManager.scrollToPositionWithOffset(this.savedScrollPosition, i);
-        this.savedScrollPosition = -1;
+    public void setWhiteBackground(boolean z) {
+        this.whiteBackground = z;
     }
 
     public void configureHeader(CharSequence charSequence, CharSequence charSequence2, View view, View view2) {
         this.backgroundView.setData(charSequence, charSequence2, view, view2);
     }
 
-    protected abstract RecyclerView.Adapter createAdapter();
-
-    protected ContentView createContentView() {
-        return new ContentView(getContext());
-    }
-
-    public StarParticlesView createParticlesView() {
-        return new StarParticlesView(getContext()) {
+    public View getHeader(Context context) {
+        return new View(context) {
             @Override
-            public void configure() {
-                StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(50) {
-                    @Override
-                    protected int getPathColor(int i) {
-                        return ColorUtils.setAlphaComponent(Theme.getDefaultColor(this.colorKey), 200);
+            protected void onMeasure(int i, int i2) {
+                GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
+                if (gradientHeaderActivity.isLandscapeMode) {
+                    gradientHeaderActivity.firstViewHeight = (gradientHeaderActivity.statusBarHeight + ((BaseFragment) gradientHeaderActivity).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
+                } else {
+                    int dp = AndroidUtilities.dp(140.0f);
+                    GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
+                    int i3 = dp + gradientHeaderActivity2.statusBarHeight;
+                    if (gradientHeaderActivity2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i3) {
+                        i3 = Math.max(i3, (GradientHeaderActivity.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f)) - GradientHeaderActivity.this.minusHeaderHeight);
                     }
-                };
-                this.drawable = drawable;
-                drawable.type = 100;
-                drawable.roundEffect = false;
-                drawable.useRotate = false;
-                drawable.useBlur = true;
-                drawable.checkBounds = true;
-                drawable.isCircle = false;
-                drawable.size1 = 4;
-                drawable.k3 = 0.98f;
-                drawable.k2 = 0.98f;
-                drawable.k1 = 0.98f;
-                drawable.init();
-            }
-
-            @Override
-            protected int getStarsRectWidth() {
-                return getMeasuredWidth();
+                    GradientHeaderActivity.this.firstViewHeight = i3;
+                }
+                GradientHeaderActivity.access$024(GradientHeaderActivity.this, r5.yOffset * 2.5f);
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(GradientHeaderActivity.this.firstViewHeight, 1073741824));
             }
         };
     }
@@ -487,9 +174,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
-        if (Build.VERSION.SDK_INT >= 21) {
-            this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
-        }
+        this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
         ContentView createContentView = createContentView();
         this.contentView = createContentView;
         createContentView.setFitsSystemWindows(true);
@@ -501,7 +186,11 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 super.onDraw(canvas);
             }
         };
-        this.layoutManager = this.useFillLastLayoutManager ? new FillLastLinearLayoutManager(context, (AndroidUtilities.dp(68.0f) + this.statusBarHeight) - AndroidUtilities.dp(16.0f), this.listView) : new LinearLayoutManager(context);
+        if (this.useFillLastLayoutManager) {
+            this.layoutManager = new FillLastLinearLayoutManager(context, (AndroidUtilities.dp(68.0f) + this.statusBarHeight) - AndroidUtilities.dp(16.0f), this.listView);
+        } else {
+            this.layoutManager = new LinearLayoutManager(context);
+        }
         this.listView.setLayoutManager(this.layoutManager);
         LinearLayoutManager linearLayoutManager = this.layoutManager;
         if (linearLayoutManager instanceof FillLastLinearLayoutManager) {
@@ -558,30 +247,305 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    protected boolean drawActionBarShadow() {
-        return true;
+    protected ContentView createContentView() {
+        return new ContentView(getContext());
     }
 
-    public View getHeader(Context context) {
-        return new View(context) {
-            @Override
-            protected void onMeasure(int i, int i2) {
-                GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
-                if (gradientHeaderActivity.isLandscapeMode) {
-                    gradientHeaderActivity.firstViewHeight = (gradientHeaderActivity.statusBarHeight + ((BaseFragment) gradientHeaderActivity).actionBar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f);
-                } else {
-                    int dp = AndroidUtilities.dp(140.0f);
-                    GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-                    int i3 = dp + gradientHeaderActivity2.statusBarHeight;
-                    if (gradientHeaderActivity2.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f) > i3) {
-                        i3 = Math.max(i3, (GradientHeaderActivity.this.backgroundView.getMeasuredHeight() + AndroidUtilities.dp(24.0f)) - GradientHeaderActivity.this.minusHeaderHeight);
-                    }
-                    GradientHeaderActivity.this.firstViewHeight = i3;
+    public class ContentView extends NestedSizeNotifierLayout {
+        private LinearGradient backgroundGradient;
+        private final Paint backgroundGradientPaint;
+        private final Paint backgroundPaint;
+        boolean bottomInterceptedTouch;
+        int lastSize;
+        private Boolean lightStatusBar;
+        boolean subtitleInterceptedTouch;
+        boolean topInterceptedTouch;
+
+        public ContentView(Context context) {
+            super(context);
+            this.backgroundPaint = new Paint(1);
+            this.backgroundGradientPaint = new Paint(1);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
+            BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
+            gradientHeaderActivity.isLandscapeMode = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
+            GradientHeaderActivity.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
+            backgroundView.measure(i, View.MeasureSpec.makeMeasureSpec(0, 0));
+            ViewGroup.LayoutParams layoutParams = GradientHeaderActivity.this.particlesView.getLayoutParams();
+            int i3 = GradientHeaderActivity.this.particlesViewHeight;
+            if (i3 <= 0) {
+                i3 = backgroundView.getMeasuredHeight();
+            }
+            layoutParams.height = i3;
+            GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
+            LinearLayoutManager linearLayoutManager = gradientHeaderActivity2.layoutManager;
+            if (linearLayoutManager instanceof FillLastLinearLayoutManager) {
+                ((FillLastLinearLayoutManager) linearLayoutManager).setAdditionalHeight(((BaseFragment) gradientHeaderActivity2).actionBar.getMeasuredHeight());
+                ((FillLastLinearLayoutManager) GradientHeaderActivity.this.layoutManager).setMinimumLastViewHeight(0);
+            }
+            super.onMeasure(i, i2);
+            if (this.lastSize != ((getMeasuredHeight() + getMeasuredWidth()) << 16)) {
+                GradientHeaderActivity.this.updateBackgroundImage();
+            }
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            BackgroundView backgroundView = GradientHeaderActivity.this.backgroundView;
+            float x = backgroundView.getX() + backgroundView.subtitleView.getX();
+            float y = backgroundView.getY() + backgroundView.subtitleView.getY();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(x, y, backgroundView.subtitleView.getMeasuredWidth() + x, backgroundView.subtitleView.getMeasuredHeight() + y);
+            if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.subtitleInterceptedTouch) && !GradientHeaderActivity.this.listView.scrollingByUser && backgroundView.subtitleView.hasLinks() && GradientHeaderActivity.this.progressToFull < 1.0f) {
+                motionEvent.offsetLocation(-x, -y);
+                if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                    this.subtitleInterceptedTouch = true;
+                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    this.subtitleInterceptedTouch = false;
                 }
-                GradientHeaderActivity.access$024(GradientHeaderActivity.this, r5.yOffset * 2.5f);
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(GradientHeaderActivity.this.firstViewHeight, 1073741824));
+                backgroundView.subtitleView.dispatchTouchEvent(motionEvent);
+                return true;
+            }
+            float x2 = backgroundView.getX() + backgroundView.aboveTitleLayout.getX();
+            float y2 = backgroundView.getY() + backgroundView.aboveTitleLayout.getY();
+            boolean isClickable = backgroundView.aboveTitleLayout.isClickable();
+            rectF.set(x2, y2, backgroundView.aboveTitleLayout.getMeasuredWidth() + x2, backgroundView.aboveTitleLayout.getMeasuredHeight() + y2);
+            if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
+                GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
+                if (!gradientHeaderActivity.listView.scrollingByUser && isClickable && gradientHeaderActivity.progressToFull < 1.0f) {
+                    motionEvent.offsetLocation(-x2, -y2);
+                    if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                        this.topInterceptedTouch = true;
+                    } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                        this.topInterceptedTouch = false;
+                    }
+                    backgroundView.aboveTitleLayout.dispatchTouchEvent(motionEvent);
+                    return true;
+                }
+            }
+            float x3 = backgroundView.getX() + backgroundView.belowSubTitleLayout.getX();
+            float y3 = backgroundView.getY() + backgroundView.belowSubTitleLayout.getY();
+            rectF.set(x3, y3, backgroundView.belowSubTitleLayout.getMeasuredWidth() + x3, backgroundView.belowSubTitleLayout.getMeasuredHeight() + y3);
+            if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.bottomInterceptedTouch) {
+                GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
+                if (!gradientHeaderActivity2.listView.scrollingByUser && gradientHeaderActivity2.progressToFull < 1.0f) {
+                    motionEvent.offsetLocation(-x3, -y3);
+                    if (motionEvent.getAction() == 0) {
+                        this.bottomInterceptedTouch = true;
+                    } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                        this.bottomInterceptedTouch = false;
+                    }
+                    backgroundView.belowSubTitleLayout.dispatchTouchEvent(motionEvent);
+                    if (this.bottomInterceptedTouch) {
+                        return true;
+                    }
+                }
+            }
+            return super.dispatchTouchEvent(motionEvent);
+        }
+
+        @Override
+        public void dispatchDraw(Canvas canvas) {
+            GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
+            BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
+            if (!gradientHeaderActivity.isDialogVisible) {
+                if (GradientHeaderActivity.this.inc) {
+                    GradientHeaderActivity.access$1416(GradientHeaderActivity.this, 0.016f);
+                    if (GradientHeaderActivity.this.progress > 3.0f) {
+                        GradientHeaderActivity.this.inc = false;
+                    }
+                } else {
+                    GradientHeaderActivity.access$1424(GradientHeaderActivity.this, 0.016f);
+                    if (GradientHeaderActivity.this.progress < 1.0f) {
+                        GradientHeaderActivity.this.inc = true;
+                    }
+                }
+            }
+            View findViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+            GradientHeaderActivity.this.currentYOffset = findViewByPosition != null ? findViewByPosition.getBottom() : 0;
+            int bottom = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
+            GradientHeaderActivity.this.totalProgress = 1.0f - ((r4.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
+            GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
+            gradientHeaderActivity2.totalProgress = Utilities.clamp(gradientHeaderActivity2.totalProgress, 1.0f, 0.0f);
+            int bottom2 = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
+            if (GradientHeaderActivity.this.currentYOffset < bottom2) {
+                GradientHeaderActivity.this.currentYOffset = bottom2;
+            }
+            float f = GradientHeaderActivity.this.progressToFull;
+            GradientHeaderActivity.this.progressToFull = 0.0f;
+            if (GradientHeaderActivity.this.currentYOffset < AndroidUtilities.dp(30.0f) + bottom2) {
+                GradientHeaderActivity.this.progressToFull = ((bottom2 + AndroidUtilities.dp(30.0f)) - GradientHeaderActivity.this.currentYOffset) / AndroidUtilities.dp(30.0f);
+            }
+            GradientHeaderActivity gradientHeaderActivity3 = GradientHeaderActivity.this;
+            if (gradientHeaderActivity3.isLandscapeMode) {
+                gradientHeaderActivity3.progressToFull = 1.0f;
+                GradientHeaderActivity.this.totalProgress = 1.0f;
+            }
+            if (f != GradientHeaderActivity.this.progressToFull) {
+                GradientHeaderActivity.this.listView.invalidate();
+            }
+            float max = Math.max((((((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() - GradientHeaderActivity.this.statusBarHeight) - backgroundView.titleView.getMeasuredHeight()) / 2.0f) + GradientHeaderActivity.this.statusBarHeight) - backgroundView.getTop()) - backgroundView.titleView.getTop(), (GradientHeaderActivity.this.currentYOffset - ((((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight() + backgroundView.getMeasuredHeight()) - GradientHeaderActivity.this.statusBarHeight)) + AndroidUtilities.dp(16.0f));
+            backgroundView.setTranslationY(max);
+            backgroundView.aboveTitleLayout.setTranslationY(((-max) / 4.0f) + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(16.0f));
+            float f2 = ((1.0f - GradientHeaderActivity.this.totalProgress) * 0.4f) + 0.6f;
+            float f3 = 1.0f - (GradientHeaderActivity.this.totalProgress > 0.5f ? (GradientHeaderActivity.this.totalProgress - 0.5f) / 0.5f : 0.0f);
+            backgroundView.aboveTitleLayout.setScaleX(f2);
+            backgroundView.aboveTitleLayout.setScaleY(f2);
+            backgroundView.aboveTitleLayout.setAlpha(f3);
+            backgroundView.belowSubTitleLayout.setAlpha(f3);
+            backgroundView.subtitleView.setAlpha(f3);
+            GradientHeaderActivity gradientHeaderActivity4 = GradientHeaderActivity.this;
+            gradientHeaderActivity4.particlesView.setAlpha(1.0f - gradientHeaderActivity4.totalProgress);
+            GradientHeaderActivity.this.particlesView.setTranslationY((backgroundView.getY() + backgroundView.aboveTitleLayout.getY()) - AndroidUtilities.dp(30.0f));
+            backgroundView.titleView.setTranslationX((AndroidUtilities.dp(72.0f) - backgroundView.titleView.getLeft()) * (1.0f - CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(1.0f - (GradientHeaderActivity.this.totalProgress > 0.3f ? (GradientHeaderActivity.this.totalProgress - 0.3f) / 0.7f : 0.0f))));
+            if (!GradientHeaderActivity.this.isDialogVisible) {
+                invalidate();
+            }
+            GradientHeaderActivity.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * GradientHeaderActivity.this.progress, 0.0f);
+            if (!GradientHeaderActivity.this.whiteBackground) {
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), GradientHeaderActivity.this.gradientTools.paint);
+            } else {
+                if (this.backgroundGradient == null) {
+                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(350.0f), new int[]{GradientHeaderActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), GradientHeaderActivity.this.getThemedColor(Theme.key_windowBackgroundGray)}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.backgroundGradient = linearGradient;
+                    this.backgroundGradientPaint.setShader(linearGradient);
+                }
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), this.backgroundGradientPaint);
+            }
+            int themedColor = GradientHeaderActivity.this.getThemedColor(Theme.key_dialogTextBlack);
+            GradientHeaderActivity gradientHeaderActivity5 = GradientHeaderActivity.this;
+            int blendARGB = ColorUtils.blendARGB(themedColor, gradientHeaderActivity5.getThemedColor(gradientHeaderActivity5.whiteBackground ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_premiumGradientBackgroundOverlay), f3);
+            ((BaseFragment) GradientHeaderActivity.this).actionBar.getBackButton().setColorFilter(blendARGB);
+            backgroundView.titleView.setTextColor(blendARGB);
+            GradientHeaderActivity.this.headerBgPaint.setAlpha((int) ((1.0f - f3) * 255.0f));
+            setLightStatusBar(Theme.blendOver(Theme.getColor(Theme.key_premiumGradientBackground4, ((BaseFragment) GradientHeaderActivity.this).resourceProvider), GradientHeaderActivity.this.headerBgPaint.getColor()));
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), GradientHeaderActivity.this.headerBgPaint);
+            super.dispatchDraw(canvas);
+            if (f3 > 0.01f || !GradientHeaderActivity.this.drawActionBarShadow()) {
+                return;
+            }
+            ((BaseFragment) GradientHeaderActivity.this).parentLayout.drawHeaderShadow(canvas, 255, ((BaseFragment) GradientHeaderActivity.this).actionBar.getMeasuredHeight());
+        }
+
+        private void setLightStatusBar(int i) {
+            boolean z = AndroidUtilities.computePerceivedBrightness(i) >= 0.721f;
+            Boolean bool = this.lightStatusBar;
+            if (bool == null || bool.booleanValue() != z) {
+                View view = GradientHeaderActivity.this.fragmentView;
+                this.lightStatusBar = Boolean.valueOf(z);
+                AndroidUtilities.setLightStatusBar(view, z);
+            }
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            if (view == GradientHeaderActivity.this.listView) {
+                canvas.save();
+                canvas.clipRect(0, ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom(), getMeasuredWidth(), getMeasuredHeight());
+                super.drawChild(canvas, view, j);
+                canvas.restore();
+                return true;
+            }
+            return super.drawChild(canvas, view, j);
+        }
+    }
+
+    public StarParticlesView createParticlesView() {
+        return new StarParticlesView(getContext()) {
+            @Override
+            public void configure() {
+                StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(50) {
+                    @Override
+                    protected int getPathColor(int i) {
+                        return ColorUtils.setAlphaComponent(Theme.getDefaultColor(this.colorKey), 200);
+                    }
+                };
+                this.drawable = drawable;
+                drawable.type = 100;
+                drawable.roundEffect = false;
+                drawable.useRotate = false;
+                drawable.useBlur = true;
+                drawable.checkBounds = true;
+                drawable.isCircle = false;
+                drawable.size1 = 4;
+                drawable.k3 = 0.98f;
+                drawable.k2 = 0.98f;
+                drawable.k1 = 0.98f;
+                drawable.init();
+            }
+
+            @Override
+            protected int getStarsRectWidth() {
+                return getMeasuredWidth();
             }
         };
+    }
+
+    public Paint setDarkGradientLocation(float f, float f2) {
+        this.darkGradientTools.gradientMatrix(0, 0, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), (-f) - ((this.contentView.getMeasuredWidth() * 0.1f) * this.progress), -f2);
+        return this.darkGradientTools.paint;
+    }
+
+    public void updateBackgroundImage() {
+        if (this.contentView.getMeasuredWidth() == 0 || this.contentView.getMeasuredHeight() == 0 || this.backgroundView == null) {
+            return;
+        }
+        this.gradientTools.gradientMatrix(0, 0, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), 0.0f, 0.0f);
+        this.gradientCanvas.save();
+        this.gradientCanvas.scale(100.0f / this.contentView.getMeasuredWidth(), 100.0f / this.contentView.getMeasuredHeight());
+        this.gradientCanvas.drawRect(0.0f, 0.0f, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), this.gradientTools.paint);
+        this.gradientCanvas.restore();
+    }
+
+    @Override
+    public Dialog showDialog(Dialog dialog) {
+        Dialog showDialog = super.showDialog(dialog);
+        updateDialogVisibility(showDialog != null);
+        return showDialog;
+    }
+
+    @Override
+    public void onDialogDismiss(Dialog dialog) {
+        super.onDialogDismiss(dialog);
+        updateDialogVisibility(false);
+    }
+
+    public void updateDialogVisibility(boolean z) {
+        if (z != this.isDialogVisible) {
+            this.isDialogVisible = z;
+            this.particlesView.setPaused(z);
+            this.contentView.invalidate();
+        }
+    }
+
+    public void updateColors() {
+        if (this.backgroundView == null || this.actionBar == null) {
+            return;
+        }
+        this.headerBgPaint.setColor(getThemedColor(Theme.key_dialogBackground));
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_premiumGradientBackgroundOverlay;
+        actionBar.setItemsColor(Theme.getColor(i), false);
+        this.actionBar.setItemsBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 60), false);
+        this.particlesView.drawable.updateColors();
+        BackgroundView backgroundView = this.backgroundView;
+        if (backgroundView != null) {
+            if (this.whiteBackground) {
+                TextView textView = backgroundView.titleView;
+                int i2 = Theme.key_windowBackgroundWhiteBlackText;
+                textView.setTextColor(Theme.getColor(i2));
+                this.backgroundView.subtitleView.setTextColor(Theme.getColor(i2));
+                this.backgroundView.subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
+            } else {
+                backgroundView.titleView.setTextColor(Theme.getColor(i));
+                this.backgroundView.subtitleView.setTextColor(Theme.getColor(i));
+                this.backgroundView.subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
+            }
+        }
+        updateBackgroundImage();
     }
 
     @Override
@@ -600,24 +564,14 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     }
 
     @Override
-    public boolean isActionBarCrossfadeEnabled() {
-        return false;
-    }
-
-    @Override
     public boolean isLightStatusBar() {
         return this.whiteBackground && !Theme.isCurrentThemeDark();
     }
 
     @Override
-    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public void onDialogDismiss(Dialog dialog) {
-        super.onDialogDismiss(dialog);
-        updateDialogVisibility(false);
+    public void onResume() {
+        super.onResume();
+        this.particlesView.setPaused(false);
     }
 
     @Override
@@ -629,10 +583,59 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        this.particlesView.setPaused(false);
+    public static class BackgroundView extends LinearLayout {
+        private final FrameLayout aboveTitleLayout;
+        private final FrameLayout belowSubTitleLayout;
+        public final LinkSpanDrawable.LinksTextView subtitleView;
+        private final TextView titleView;
+
+        public BackgroundView(Context context) {
+            super(context);
+            setOrientation(1);
+            FrameLayout frameLayout = new FrameLayout(context);
+            this.aboveTitleLayout = frameLayout;
+            addView(frameLayout, LayoutHelper.createLinear(-1, -2, 1));
+            frameLayout.setClipChildren(false);
+            setClipChildren(false);
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 22.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setGravity(1);
+            addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 1, 16, 20, 16, 0));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.subtitleView = linksTextView;
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+            linksTextView.setGravity(1);
+            addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 1, 24, 7, 24, 0));
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            this.belowSubTitleLayout = frameLayout2;
+            addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 1));
+            frameLayout2.setClipChildren(false);
+        }
+
+        public void setData(CharSequence charSequence, CharSequence charSequence2, View view, View view2) {
+            this.titleView.setText(charSequence);
+            this.subtitleView.setText(charSequence2);
+            LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
+            linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), this.subtitleView.getPaint()));
+            if (view != null) {
+                this.aboveTitleLayout.removeAllViews();
+                this.aboveTitleLayout.addView(view, LayoutHelper.createFrame(-1, -2, 1));
+                this.aboveTitleLayout.setClickable(view.isClickable());
+            } else {
+                this.aboveTitleLayout.setClickable(false);
+            }
+            if (view2 != null) {
+                this.belowSubTitleLayout.removeAllViews();
+                this.belowSubTitleLayout.addView(view2, LayoutHelper.createFrame(-1, -2, 1));
+                this.belowSubTitleLayout.setClickable(view2.isClickable());
+            } else {
+                this.belowSubTitleLayout.setClickable(false);
+            }
+            requestLayout();
+        }
     }
 
     public void saveScrollPosition() {
@@ -663,31 +666,21 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         }
     }
 
-    public Paint setDarkGradientLocation(float f, float f2) {
-        this.darkGradientTools.gradientMatrix(0, 0, this.contentView.getMeasuredWidth(), this.contentView.getMeasuredHeight(), (-f) - ((this.contentView.getMeasuredWidth() * 0.1f) * this.progress), -f2);
-        return this.darkGradientTools.paint;
+    public void applyScrolledPosition() {
+        applyScrolledPosition(false);
     }
 
-    public void setMinusHeaderHeight(int i) {
-        this.minusHeaderHeight = i;
-    }
-
-    public void setWhiteBackground(boolean z) {
-        this.whiteBackground = z;
-    }
-
-    @Override
-    public Dialog showDialog(Dialog dialog) {
-        Dialog showDialog = super.showDialog(dialog);
-        updateDialogVisibility(showDialog != null);
-        return showDialog;
-    }
-
-    public void updateDialogVisibility(boolean z) {
-        if (z != this.isDialogVisible) {
-            this.isDialogVisible = z;
-            this.particlesView.setPaused(z);
-            this.contentView.invalidate();
+    public void applyScrolledPosition(boolean z) {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView == null || this.layoutManager == null || this.savedScrollPosition < 0) {
+            return;
         }
+        int i = this.savedScrollOffset;
+        RecyclerView.ViewHolder findViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(0);
+        if (z && findViewHolderForAdapterPosition != null) {
+            i -= Math.max(findViewHolderForAdapterPosition.itemView.getBottom() - this.listView.getPaddingTop(), 0);
+        }
+        this.layoutManager.scrollToPositionWithOffset(this.savedScrollPosition, i);
+        this.savedScrollPosition = -1;
     }
 }

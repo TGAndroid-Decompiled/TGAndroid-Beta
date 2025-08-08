@@ -56,18 +56,6 @@ public class PersistColorPalette {
         loadColors();
     }
 
-    private void checkIndex(int i) {
-        if (i < 0 || i >= COLORS_COUNT) {
-            throw new IndexOutOfBoundsException("Color palette index should be in range 0 ... " + COLORS_COUNT);
-        }
-    }
-
-    private List getAllColors() {
-        ArrayList arrayList = new ArrayList(PRESET_COLORS);
-        arrayList.addAll(this.colors);
-        return arrayList;
-    }
-
     public static PersistColorPalette getInstance(int i) {
         PersistColorPalette[] persistColorPaletteArr = instances;
         if (persistColorPaletteArr[i] == null) {
@@ -76,14 +64,84 @@ public class PersistColorPalette {
         return instances[i];
     }
 
-    private void loadColors() {
-        for (int i = 0; i < MODIFIABLE_COLORS_COUNT; i++) {
-            this.colors.add(Integer.valueOf((int) this.mConfig.getLong("color_" + i, ((Integer) DEFAULT_MODIFIABLE_COLORS.get(i)).intValue())));
+    public int getCurrentTextType() {
+        return this.currentTextType;
+    }
+
+    public void setCurrentTextType(int i) {
+        this.currentTextType = i;
+        this.mConfig.edit().putInt("text_type", i).apply();
+    }
+
+    public void setInTextMode(boolean z) {
+        if (this.inTextMode != z) {
+            this.inTextMode = z;
+            if (z) {
+                setCurrentBrush(-1, false);
+            } else {
+                setCurrentBrush(this.mConfig.getInt("brush", 0), false);
+            }
         }
-        for (int i2 = 0; i2 < Brush.BRUSHES_LIST.size(); i2++) {
-            this.brushColor.put(Integer.valueOf(i2), Integer.valueOf((int) this.mConfig.getLong("brush_color_" + i2, ((Brush) Brush.BRUSHES_LIST.get(i2)).getDefaultColor())));
+    }
+
+    public int getCurrentAlignment() {
+        return this.currentAlignment;
+    }
+
+    public void setCurrentAlignment(int i) {
+        this.currentAlignment = i;
+        this.mConfig.edit().putInt("text_alignment", i).apply();
+    }
+
+    public String getCurrentTypeface() {
+        return this.currentTypeface;
+    }
+
+    public void setCurrentTypeface(String str) {
+        this.currentTypeface = str;
+        this.mConfig.edit().putString("typeface", str).apply();
+    }
+
+    public float getWeight(String str, float f) {
+        return this.mConfig.getFloat("weight_" + str, f);
+    }
+
+    public void setWeight(String str, float f) {
+        this.mConfig.edit().putFloat("weight_" + str, f).apply();
+    }
+
+    public float getCurrentWeight() {
+        return this.currentWeight;
+    }
+
+    public void setCurrentWeight(float f) {
+        this.currentWeight = f;
+        this.mConfig.edit().putFloat("weight", f).apply();
+    }
+
+    public void setCurrentBrush(int i) {
+        setCurrentBrush(i, true);
+    }
+
+    public void setCurrentBrush(int i, boolean z) {
+        this.currentBrush = i;
+        if (z) {
+            this.mConfig.edit().putInt("brush", i).apply();
         }
-        this.brushColor.put(-1, Integer.valueOf((int) this.mConfig.getLong("brush_color_-1", -1L)));
+        Integer num = (Integer) this.brushColor.get(Integer.valueOf(i));
+        if (num != null) {
+            selectColor(num.intValue(), false);
+            saveColors();
+        }
+    }
+
+    public boolean getFillShapes() {
+        return this.fillShapes;
+    }
+
+    public void toggleFillShapes() {
+        this.fillShapes = !this.fillShapes;
+        this.mConfig.edit().putBoolean("fill_shapes", this.fillShapes).apply();
     }
 
     public void cleanup() {
@@ -99,24 +157,23 @@ public class PersistColorPalette {
         saveColors();
     }
 
+    private void checkIndex(int i) {
+        if (i < 0 || i >= COLORS_COUNT) {
+            throw new IndexOutOfBoundsException("Color palette index should be in range 0 ... " + COLORS_COUNT);
+        }
+    }
+
     public int getColor(int i) {
-        Object obj;
         checkIndex(i);
         List allColors = getAllColors();
         if (i >= allColors.size()) {
             int i2 = PRESET_COLORS_COUNT;
-            if (i >= i2) {
-                obj = DEFAULT_MODIFIABLE_COLORS.get(i - i2);
-                return ((Integer) obj).intValue();
+            if (i < i2) {
+                return ((Integer) PRESET_COLORS.get(i)).intValue();
             }
-            allColors = PRESET_COLORS;
+            return ((Integer) DEFAULT_MODIFIABLE_COLORS.get(i - i2)).intValue();
         }
-        obj = allColors.get(i);
-        return ((Integer) obj).intValue();
-    }
-
-    public int getCurrentAlignment() {
-        return this.currentAlignment;
+        return ((Integer) allColors.get(i)).intValue();
     }
 
     public int getCurrentColor() {
@@ -139,51 +196,10 @@ public class PersistColorPalette {
         return 0;
     }
 
-    public int getCurrentTextType() {
-        return this.currentTextType;
-    }
-
-    public String getCurrentTypeface() {
-        return this.currentTypeface;
-    }
-
-    public float getCurrentWeight() {
-        return this.currentWeight;
-    }
-
-    public boolean getFillShapes() {
-        return this.fillShapes;
-    }
-
-    public float getWeight(String str, float f) {
-        return this.mConfig.getFloat("weight_" + str, f);
-    }
-
-    public void resetCurrentColor() {
-        setCurrentBrush(0);
-    }
-
-    public void saveColors() {
-        if (!this.pendingChange.isEmpty() || this.needSaveBrushColor) {
-            SharedPreferences.Editor edit = this.mConfig.edit();
-            if (!this.pendingChange.isEmpty()) {
-                int i = 0;
-                while (i < MODIFIABLE_COLORS_COUNT) {
-                    edit.putLong("color_" + i, ((Integer) (i < this.pendingChange.size() ? this.pendingChange : DEFAULT_MODIFIABLE_COLORS).get(i)).intValue());
-                    i++;
-                }
-                this.colors.clear();
-                this.colors.addAll(this.pendingChange);
-                this.pendingChange.clear();
-            }
-            if (this.needSaveBrushColor) {
-                if (((Integer) this.brushColor.get(Integer.valueOf(this.currentBrush))) != null) {
-                    edit.putLong("brush_color_" + this.currentBrush, r1.intValue());
-                }
-                this.needSaveBrushColor = false;
-            }
-            edit.apply();
-        }
+    private List getAllColors() {
+        ArrayList arrayList = new ArrayList(PRESET_COLORS);
+        arrayList.addAll(this.colors);
+        return arrayList;
     }
 
     public void selectColor(int i) {
@@ -226,60 +242,45 @@ public class PersistColorPalette {
         }
     }
 
-    public void setCurrentAlignment(int i) {
-        this.currentAlignment = i;
-        this.mConfig.edit().putInt("text_alignment", i).apply();
-    }
-
-    public void setCurrentBrush(int i) {
-        setCurrentBrush(i, true);
-    }
-
-    public void setCurrentBrush(int i, boolean z) {
-        this.currentBrush = i;
-        if (z) {
-            this.mConfig.edit().putInt("brush", i).apply();
-        }
-        Integer num = (Integer) this.brushColor.get(Integer.valueOf(i));
-        if (num != null) {
-            selectColor(num.intValue(), false);
-            saveColors();
-        }
-    }
-
     public void setCurrentBrushColorByColorIndex(int i) {
         this.brushColor.put(Integer.valueOf(this.currentBrush), Integer.valueOf(getColor(i)));
         this.needSaveBrushColor = true;
     }
 
-    public void setCurrentTextType(int i) {
-        this.currentTextType = i;
-        this.mConfig.edit().putInt("text_type", i).apply();
-    }
-
-    public void setCurrentTypeface(String str) {
-        this.currentTypeface = str;
-        this.mConfig.edit().putString("typeface", str).apply();
-    }
-
-    public void setCurrentWeight(float f) {
-        this.currentWeight = f;
-        this.mConfig.edit().putFloat("weight", f).apply();
-    }
-
-    public void setInTextMode(boolean z) {
-        if (this.inTextMode != z) {
-            this.inTextMode = z;
-            setCurrentBrush(z ? -1 : this.mConfig.getInt("brush", 0), false);
+    private void loadColors() {
+        for (int i = 0; i < MODIFIABLE_COLORS_COUNT; i++) {
+            this.colors.add(Integer.valueOf((int) this.mConfig.getLong("color_" + i, ((Integer) DEFAULT_MODIFIABLE_COLORS.get(i)).intValue())));
         }
+        for (int i2 = 0; i2 < Brush.BRUSHES_LIST.size(); i2++) {
+            this.brushColor.put(Integer.valueOf(i2), Integer.valueOf((int) this.mConfig.getLong("brush_color_" + i2, ((Brush) Brush.BRUSHES_LIST.get(i2)).getDefaultColor())));
+        }
+        this.brushColor.put(-1, Integer.valueOf((int) this.mConfig.getLong("brush_color_-1", -1L)));
     }
 
-    public void setWeight(String str, float f) {
-        this.mConfig.edit().putFloat("weight_" + str, f).apply();
+    public void resetCurrentColor() {
+        setCurrentBrush(0);
     }
 
-    public void toggleFillShapes() {
-        this.fillShapes = !this.fillShapes;
-        this.mConfig.edit().putBoolean("fill_shapes", this.fillShapes).apply();
+    public void saveColors() {
+        if (!this.pendingChange.isEmpty() || this.needSaveBrushColor) {
+            SharedPreferences.Editor edit = this.mConfig.edit();
+            if (!this.pendingChange.isEmpty()) {
+                int i = 0;
+                while (i < MODIFIABLE_COLORS_COUNT) {
+                    edit.putLong("color_" + i, ((Integer) (i < this.pendingChange.size() ? this.pendingChange : DEFAULT_MODIFIABLE_COLORS).get(i)).intValue());
+                    i++;
+                }
+                this.colors.clear();
+                this.colors.addAll(this.pendingChange);
+                this.pendingChange.clear();
+            }
+            if (this.needSaveBrushColor) {
+                if (((Integer) this.brushColor.get(Integer.valueOf(this.currentBrush))) != null) {
+                    edit.putLong("brush_color_" + this.currentBrush, r1.intValue());
+                }
+                this.needSaveBrushColor = false;
+            }
+            edit.apply();
+        }
     }
 }

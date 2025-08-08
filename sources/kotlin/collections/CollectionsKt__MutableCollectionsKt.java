@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import kotlin.jvm.internal.Intrinsics;
 
-public abstract class CollectionsKt__MutableCollectionsKt extends CollectionsKt__MutableCollectionsJVMKt {
+abstract class CollectionsKt__MutableCollectionsKt extends CollectionsKt__MutableCollectionsJVMKt {
     public static boolean addAll(Collection collection, Iterable elements) {
         Intrinsics.checkNotNullParameter(collection, "<this>");
         Intrinsics.checkNotNullParameter(elements, "elements");

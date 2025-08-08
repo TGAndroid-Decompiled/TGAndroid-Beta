@@ -7,6 +7,17 @@ import kotlin.jvm.internal.Intrinsics;
 
 public interface CoroutineContext {
 
+    public interface Key {
+    }
+
+    Object fold(Object obj, Function2 function2);
+
+    Element get(Key key);
+
+    CoroutineContext minusKey(Key key);
+
+    CoroutineContext plus(CoroutineContext coroutineContext);
+
     public static final class DefaultImpls {
         public static CoroutineContext plus(CoroutineContext coroutineContext, CoroutineContext context) {
             Intrinsics.checkNotNullParameter(context, "context");
@@ -39,11 +50,15 @@ public interface CoroutineContext {
     }
 
     public interface Element extends CoroutineContext {
+        @Override
+        Element get(Key key);
+
+        Key getKey();
 
         public static final class DefaultImpls {
-            public static Object fold(Element element, Object obj, Function2 operation) {
-                Intrinsics.checkNotNullParameter(operation, "operation");
-                return operation.invoke(obj, element);
+            public static CoroutineContext plus(Element element, CoroutineContext context) {
+                Intrinsics.checkNotNullParameter(context, "context");
+                return DefaultImpls.plus(element, context);
             }
 
             public static Element get(Element element, Key key) {
@@ -55,31 +70,15 @@ public interface CoroutineContext {
                 return element;
             }
 
+            public static Object fold(Element element, Object obj, Function2 operation) {
+                Intrinsics.checkNotNullParameter(operation, "operation");
+                return operation.invoke(obj, element);
+            }
+
             public static CoroutineContext minusKey(Element element, Key key) {
                 Intrinsics.checkNotNullParameter(key, "key");
                 return Intrinsics.areEqual(element.getKey(), key) ? EmptyCoroutineContext.INSTANCE : element;
             }
-
-            public static CoroutineContext plus(Element element, CoroutineContext context) {
-                Intrinsics.checkNotNullParameter(context, "context");
-                return DefaultImpls.plus(element, context);
-            }
         }
-
-        @Override
-        Element get(Key key);
-
-        Key getKey();
     }
-
-    public interface Key {
-    }
-
-    Object fold(Object obj, Function2 function2);
-
-    Element get(Key key);
-
-    CoroutineContext minusKey(Key key);
-
-    CoroutineContext plus(CoroutineContext coroutineContext);
 }

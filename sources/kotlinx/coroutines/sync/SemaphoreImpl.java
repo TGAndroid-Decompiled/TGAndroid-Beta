@@ -58,60 +58,56 @@ public class SemaphoreImpl {
         };
     }
 
-    private final boolean addAcquireToQueue(Waiter waiter) {
-        int i;
-        Object findSegmentInternal;
-        int i2;
-        Symbol symbol;
-        Symbol symbol2;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = tail$FU;
-        SemaphoreSegment semaphoreSegment = (SemaphoreSegment) atomicReferenceFieldUpdater.get(this);
-        long andIncrement = enqIdx$FU.getAndIncrement(this);
-        SemaphoreImpl$addAcquireToQueue$createNewSegment$1 semaphoreImpl$addAcquireToQueue$createNewSegment$1 = SemaphoreImpl$addAcquireToQueue$createNewSegment$1.INSTANCE;
-        i = SemaphoreKt.SEGMENT_SIZE;
-        long j = andIncrement / i;
-        loop0: while (true) {
-            findSegmentInternal = ConcurrentLinkedListKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$addAcquireToQueue$createNewSegment$1);
-            if (!SegmentOrClosed.m268isClosedimpl(findSegmentInternal)) {
-                Segment m267getSegmentimpl = SegmentOrClosed.m267getSegmentimpl(findSegmentInternal);
-                while (true) {
-                    Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
-                    if (segment.id >= m267getSegmentimpl.id) {
-                        break loop0;
-                    }
-                    if (!m267getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
-                        break;
-                    }
-                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, m267getSegmentimpl)) {
-                        if (segment.decPointers$kotlinx_coroutines_core()) {
-                            segment.remove();
-                        }
-                    } else if (m267getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
-                        m267getSegmentimpl.remove();
-                    }
-                }
+    public int getAvailablePermits() {
+        return Math.max(_availablePermits$FU.get(this), 0);
+    }
+
+    public boolean tryAcquire() {
+        while (true) {
+            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _availablePermits$FU;
+            int i = atomicIntegerFieldUpdater.get(this);
+            if (i > this.permits) {
+                coerceAvailablePermitsAtMaximum();
             } else {
-                break;
+                if (i <= 0) {
+                    return false;
+                }
+                if (atomicIntegerFieldUpdater.compareAndSet(this, i, i - 1)) {
+                    return true;
+                }
             }
         }
-        SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m267getSegmentimpl(findSegmentInternal);
-        i2 = SemaphoreKt.SEGMENT_SIZE;
-        int i3 = (int) (andIncrement % i2);
-        if (ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i3, null, waiter)) {
-            waiter.invokeOnCancellation(semaphoreSegment2, i3);
-            return true;
+    }
+
+    public final void acquire(CancellableContinuation cancellableContinuation) {
+        while (decPermits() <= 0) {
+            Intrinsics.checkNotNull(cancellableContinuation, "null cannot be cast to non-null type kotlinx.coroutines.Waiter");
+            if (addAcquireToQueue((Waiter) cancellableContinuation)) {
+                return;
+            }
         }
-        symbol = SemaphoreKt.PERMIT;
-        symbol2 = SemaphoreKt.TAKEN;
-        if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i3, symbol, symbol2)) {
-            return false;
-        }
-        if (waiter instanceof CancellableContinuation) {
-            Intrinsics.checkNotNull(waiter, "null cannot be cast to non-null type kotlinx.coroutines.CancellableContinuation<kotlin.Unit>");
-            ((CancellableContinuation) waiter).resume(Unit.INSTANCE, this.onCancellationRelease);
-            return true;
-        }
-        throw new IllegalStateException(("unexpected: " + waiter).toString());
+        cancellableContinuation.resume(Unit.INSTANCE, this.onCancellationRelease);
+    }
+
+    private final int decPermits() {
+        int andDecrement;
+        do {
+            andDecrement = _availablePermits$FU.getAndDecrement(this);
+        } while (andDecrement > this.permits);
+        return andDecrement;
+    }
+
+    public void release() {
+        do {
+            int andIncrement = _availablePermits$FU.getAndIncrement(this);
+            if (andIncrement >= this.permits) {
+                coerceAvailablePermitsAtMaximum();
+                throw new IllegalStateException(("The number of released permits cannot be greater than " + this.permits).toString());
+            }
+            if (andIncrement >= 0) {
+                return;
+            }
+        } while (!tryResumeNextFromQueue());
     }
 
     private final void coerceAvailablePermitsAtMaximum() {
@@ -128,25 +124,59 @@ public class SemaphoreImpl {
         } while (!atomicIntegerFieldUpdater.compareAndSet(this, i, i2));
     }
 
-    private final int decPermits() {
-        int andDecrement;
-        do {
-            andDecrement = _availablePermits$FU.getAndDecrement(this);
-        } while (andDecrement > this.permits);
-        return andDecrement;
-    }
-
-    private final boolean tryResumeAcquire(Object obj) {
-        if (!(obj instanceof CancellableContinuation)) {
-            throw new IllegalStateException(("unexpected: " + obj).toString());
+    private final boolean addAcquireToQueue(Waiter waiter) {
+        int i;
+        Object findSegmentInternal;
+        int i2;
+        Symbol symbol;
+        Symbol symbol2;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = tail$FU;
+        SemaphoreSegment semaphoreSegment = (SemaphoreSegment) atomicReferenceFieldUpdater.get(this);
+        long andIncrement = enqIdx$FU.getAndIncrement(this);
+        SemaphoreImpl$addAcquireToQueue$createNewSegment$1 semaphoreImpl$addAcquireToQueue$createNewSegment$1 = SemaphoreImpl$addAcquireToQueue$createNewSegment$1.INSTANCE;
+        i = SemaphoreKt.SEGMENT_SIZE;
+        long j = andIncrement / i;
+        loop0: while (true) {
+            findSegmentInternal = ConcurrentLinkedListKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$addAcquireToQueue$createNewSegment$1);
+            if (!SegmentOrClosed.m275isClosedimpl(findSegmentInternal)) {
+                Segment m274getSegmentimpl = SegmentOrClosed.m274getSegmentimpl(findSegmentInternal);
+                while (true) {
+                    Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
+                    if (segment.id >= m274getSegmentimpl.id) {
+                        break loop0;
+                    }
+                    if (!m274getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                        break;
+                    }
+                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, m274getSegmentimpl)) {
+                        if (segment.decPointers$kotlinx_coroutines_core()) {
+                            segment.remove();
+                        }
+                    } else if (m274getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                        m274getSegmentimpl.remove();
+                    }
+                }
+            } else {
+                break;
+            }
         }
-        Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.CancellableContinuation<kotlin.Unit>");
-        CancellableContinuation cancellableContinuation = (CancellableContinuation) obj;
-        Object tryResume = cancellableContinuation.tryResume(Unit.INSTANCE, null, this.onCancellationRelease);
-        if (tryResume == null) {
-            return false;
+        SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m274getSegmentimpl(findSegmentInternal);
+        i2 = SemaphoreKt.SEGMENT_SIZE;
+        int i3 = (int) (andIncrement % i2);
+        if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i3, null, waiter)) {
+            symbol = SemaphoreKt.PERMIT;
+            symbol2 = SemaphoreKt.TAKEN;
+            if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i3, symbol, symbol2)) {
+                return false;
+            }
+            if (waiter instanceof CancellableContinuation) {
+                Intrinsics.checkNotNull(waiter, "null cannot be cast to non-null type kotlinx.coroutines.CancellableContinuation<kotlin.Unit>");
+                ((CancellableContinuation) waiter).resume(Unit.INSTANCE, this.onCancellationRelease);
+                return true;
+            }
+            throw new IllegalStateException(("unexpected: " + waiter).toString());
         }
-        cancellableContinuation.completeResume(tryResume);
+        waiter.invokeOnCancellation(semaphoreSegment2, i3);
         return true;
     }
 
@@ -168,28 +198,28 @@ public class SemaphoreImpl {
         SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 = SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1.INSTANCE;
         loop0: while (true) {
             findSegmentInternal = ConcurrentLinkedListKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1);
-            if (SegmentOrClosed.m268isClosedimpl(findSegmentInternal)) {
+            if (SegmentOrClosed.m275isClosedimpl(findSegmentInternal)) {
                 break;
             }
-            Segment m267getSegmentimpl = SegmentOrClosed.m267getSegmentimpl(findSegmentInternal);
+            Segment m274getSegmentimpl = SegmentOrClosed.m274getSegmentimpl(findSegmentInternal);
             while (true) {
                 Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
-                if (segment.id >= m267getSegmentimpl.id) {
+                if (segment.id >= m274getSegmentimpl.id) {
                     break loop0;
                 }
-                if (!m267getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                if (!m274getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
                     break;
                 }
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, m267getSegmentimpl)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, m274getSegmentimpl)) {
                     if (segment.decPointers$kotlinx_coroutines_core()) {
                         segment.remove();
                     }
-                } else if (m267getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
-                    m267getSegmentimpl.remove();
+                } else if (m274getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                    m274getSegmentimpl.remove();
                 }
             }
         }
-        SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m267getSegmentimpl(findSegmentInternal);
+        SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m274getSegmentimpl(findSegmentInternal);
         semaphoreSegment2.cleanPrev();
         if (semaphoreSegment2.id > j) {
             return false;
@@ -198,67 +228,37 @@ public class SemaphoreImpl {
         int i4 = (int) (andIncrement % i2);
         symbol = SemaphoreKt.PERMIT;
         Object andSet = semaphoreSegment2.getAcquirers().getAndSet(i4, symbol);
-        if (andSet != null) {
-            symbol2 = SemaphoreKt.CANCELLED;
-            if (andSet == symbol2) {
-                return false;
-            }
-            return tryResumeAcquire(andSet);
-        }
-        i3 = SemaphoreKt.MAX_SPIN_CYCLES;
-        for (int i5 = 0; i5 < i3; i5++) {
-            Object obj = semaphoreSegment2.getAcquirers().get(i4);
-            symbol5 = SemaphoreKt.TAKEN;
-            if (obj == symbol5) {
-                return true;
-            }
-        }
-        symbol3 = SemaphoreKt.PERMIT;
-        symbol4 = SemaphoreKt.BROKEN;
-        return !ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i4, symbol3, symbol4);
-    }
-
-    public final void acquire(CancellableContinuation cancellableContinuation) {
-        while (decPermits() <= 0) {
-            Intrinsics.checkNotNull(cancellableContinuation, "null cannot be cast to non-null type kotlinx.coroutines.Waiter");
-            if (addAcquireToQueue((Waiter) cancellableContinuation)) {
-                return;
-            }
-        }
-        cancellableContinuation.resume(Unit.INSTANCE, this.onCancellationRelease);
-    }
-
-    public int getAvailablePermits() {
-        return Math.max(_availablePermits$FU.get(this), 0);
-    }
-
-    public void release() {
-        do {
-            int andIncrement = _availablePermits$FU.getAndIncrement(this);
-            if (andIncrement >= this.permits) {
-                coerceAvailablePermitsAtMaximum();
-                throw new IllegalStateException(("The number of released permits cannot be greater than " + this.permits).toString());
-            }
-            if (andIncrement >= 0) {
-                return;
-            }
-        } while (!tryResumeNextFromQueue());
-    }
-
-    public boolean tryAcquire() {
-        while (true) {
-            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _availablePermits$FU;
-            int i = atomicIntegerFieldUpdater.get(this);
-            if (i > this.permits) {
-                coerceAvailablePermitsAtMaximum();
-            } else {
-                if (i <= 0) {
-                    return false;
-                }
-                if (atomicIntegerFieldUpdater.compareAndSet(this, i, i - 1)) {
+        if (andSet == null) {
+            i3 = SemaphoreKt.MAX_SPIN_CYCLES;
+            for (int i5 = 0; i5 < i3; i5++) {
+                Object obj = semaphoreSegment2.getAcquirers().get(i4);
+                symbol5 = SemaphoreKt.TAKEN;
+                if (obj == symbol5) {
                     return true;
                 }
             }
+            symbol3 = SemaphoreKt.PERMIT;
+            symbol4 = SemaphoreKt.BROKEN;
+            return !ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i4, symbol3, symbol4);
         }
+        symbol2 = SemaphoreKt.CANCELLED;
+        if (andSet == symbol2) {
+            return false;
+        }
+        return tryResumeAcquire(andSet);
+    }
+
+    private final boolean tryResumeAcquire(Object obj) {
+        if (obj instanceof CancellableContinuation) {
+            Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.CancellableContinuation<kotlin.Unit>");
+            CancellableContinuation cancellableContinuation = (CancellableContinuation) obj;
+            Object tryResume = cancellableContinuation.tryResume(Unit.INSTANCE, null, this.onCancellationRelease);
+            if (tryResume == null) {
+                return false;
+            }
+            cancellableContinuation.completeResume(tryResume);
+            return true;
+        }
+        throw new IllegalStateException(("unexpected: " + obj).toString());
     }
 }

@@ -39,12 +39,13 @@ public class StatsReport {
         int i = 0;
         while (true) {
             Value[] valueArr = this.values;
-            if (i >= valueArr.length) {
+            if (i < valueArr.length) {
+                sb.append(valueArr[i].toString());
+                sb.append(", ");
+                i++;
+            } else {
                 return sb.toString();
             }
-            sb.append(valueArr[i].toString());
-            sb.append(", ");
-            i++;
         }
     }
 }

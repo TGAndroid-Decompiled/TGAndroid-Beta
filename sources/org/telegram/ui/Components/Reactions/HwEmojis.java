@@ -18,29 +18,39 @@ public abstract class HwEmojis {
     private static boolean isCascade = false;
     private static boolean isBeforePreparing = false;
 
+    public static void prepare(Runnable runnable, boolean z) {
+        isCascade = z;
+        isPreparing = true;
+        isBeforePreparing = false;
+        if (firstOpen) {
+            firstOpen = false;
+        }
+        task = runnable;
+    }
+
     public static void beforePreparing() {
         ImageLoader.getInstance().getCacheOutQueue().pause();
         isBeforePreparing = true;
     }
 
-    public static void disableHw() {
-        ImageLoader.getInstance().getCacheOutQueue().resume();
-        hwEnabled = false;
-        isPreparing = false;
-        isBeforePreparing = false;
-        task = null;
-        Iterator it = hwViews.iterator();
-        while (it.hasNext()) {
-            ((View) it.next()).invalidate();
-        }
-        hwViews.clear();
+    public static boolean isCascade() {
+        return isCascade;
     }
 
-    public static void enableHw() {
-        ImageLoader.getInstance().getCacheOutQueue().pause();
-        hwEnabled = true;
-        isPreparing = false;
-        isBeforePreparing = false;
+    public static boolean isPreparing() {
+        return isPreparing;
+    }
+
+    public static boolean isFirstOpen() {
+        return firstOpen;
+    }
+
+    public static boolean isHwEnabled() {
+        return hwEnabled;
+    }
+
+    public static boolean isHwEnabledOrPreparing() {
+        return hwEnabled || isPreparing || isBeforePreparing;
     }
 
     public static void exec() {
@@ -71,33 +81,23 @@ public abstract class HwEmojis {
         return hwEnabled;
     }
 
-    public static boolean isCascade() {
-        return isCascade;
-    }
-
-    public static boolean isFirstOpen() {
-        return firstOpen;
-    }
-
-    public static boolean isHwEnabled() {
-        return hwEnabled;
-    }
-
-    public static boolean isHwEnabledOrPreparing() {
-        return hwEnabled || isPreparing || isBeforePreparing;
-    }
-
-    public static boolean isPreparing() {
-        return isPreparing;
-    }
-
-    public static void prepare(Runnable runnable, boolean z) {
-        isCascade = z;
-        isPreparing = true;
+    public static void enableHw() {
+        ImageLoader.getInstance().getCacheOutQueue().pause();
+        hwEnabled = true;
+        isPreparing = false;
         isBeforePreparing = false;
-        if (firstOpen) {
-            firstOpen = false;
+    }
+
+    public static void disableHw() {
+        ImageLoader.getInstance().getCacheOutQueue().resume();
+        hwEnabled = false;
+        isPreparing = false;
+        isBeforePreparing = false;
+        task = null;
+        Iterator it = hwViews.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
         }
-        task = runnable;
+        hwViews.clear();
     }
 }

@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -29,6 +28,8 @@ public abstract class BottomPagerTabs extends View {
     private boolean touchDown;
     private int value;
 
+    public abstract Tab[] createTabs();
+
     public class Tab {
         private boolean active;
         final RectF clickRect;
@@ -44,6 +45,11 @@ public abstract class BottomPagerTabs extends View {
         final AnimatedFloat nonscrollingT;
         final TextPaint paint;
         final Drawable ripple;
+
+        public Tab customFrameInvert() {
+            this.customFrameInvert = true;
+            return this;
+        }
 
         public Tab(int i, int i2, int i3, int i4, CharSequence charSequence) {
             TextPaint textPaint = new TextPaint(1);
@@ -71,13 +77,40 @@ public abstract class BottomPagerTabs extends View {
             this.ripple = Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider), 0.1f), 7, AndroidUtilities.dp(16.0f));
         }
 
-        public Tab customFrameInvert() {
-            this.customFrameInvert = true;
-            return this;
-        }
-
-        public void setActive(boolean r3, boolean r4) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomPagerTabs.Tab.setActive(boolean, boolean):void");
+        public void setActive(boolean z, boolean z2) {
+            if (this.customFrameInvert) {
+                z = !z;
+            }
+            if (this.active == z) {
+                return;
+            }
+            if (BottomPagerTabs.this.tabs[this.i].customEndFrameMid != 0) {
+                if (z) {
+                    this.drawable.setCustomEndFrame(this.customEndFrameMid);
+                    if (this.drawable.getCurrentFrame() >= this.customEndFrameEnd - 2) {
+                        this.drawable.setCurrentFrame(0, false);
+                    }
+                    int currentFrame = this.drawable.getCurrentFrame();
+                    int i = this.customEndFrameMid;
+                    if (currentFrame <= i) {
+                        this.drawable.start();
+                    } else {
+                        this.drawable.setCurrentFrame(i);
+                    }
+                } else if (this.drawable.getCurrentFrame() >= this.customEndFrameMid - 1) {
+                    this.drawable.setCustomEndFrame(this.customEndFrameEnd - 1);
+                    this.drawable.start();
+                } else {
+                    this.drawable.setCustomEndFrame(0);
+                    this.drawable.setCurrentFrame(0);
+                }
+            } else if (z) {
+                this.drawable.setCurrentFrame(0);
+                if (z2) {
+                    this.drawable.start();
+                }
+            }
+            this.active = z;
         }
 
         public void setColor(int i) {
@@ -100,6 +133,18 @@ public abstract class BottomPagerTabs extends View {
         setProgress(0.0f, false);
     }
 
+    public void setScrolling(boolean z) {
+        if (this.scrolling == z) {
+            return;
+        }
+        this.scrolling = z;
+        invalidate();
+    }
+
+    public void setProgress(float f) {
+        setProgress(f, true);
+    }
+
     private void setProgress(float f, boolean z) {
         float clamp = Utilities.clamp(f, this.tabs.length, 0.0f);
         this.progress = clamp;
@@ -107,17 +152,19 @@ public abstract class BottomPagerTabs extends View {
         int i = 0;
         while (true) {
             Tab[] tabArr = this.tabs;
-            if (i >= tabArr.length) {
-                invalidate();
-                return;
-            } else {
+            if (i < tabArr.length) {
                 tabArr[i].setActive(((float) Math.abs(this.value - i)) < (this.tabs[i].active ? 0.25f : 0.35f), z);
                 i++;
+            } else {
+                invalidate();
+                return;
             }
         }
     }
 
-    public abstract Tab[] createTabs();
+    public void setOnTabClick(Utilities.Callback<Integer> callback) {
+        this.onTabClick = callback;
+    }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
@@ -130,15 +177,7 @@ public abstract class BottomPagerTabs extends View {
         float f3 = 2.0f;
         float f4 = 0.0f;
         if (f > 0.0f) {
-            double floor = Math.floor(this.progress) + 0.5d;
-            double d = this.progress;
-            Double.isNaN(d);
-            double abs = (Math.abs(floor - d) * 1.2000000476837158d) + 0.4000000059604645d;
-            Paint paint = this.selectPaint;
-            int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
-            double d2 = f;
-            Double.isNaN(d2);
-            paint.setColor(ColorUtils.setAlphaComponent(color, (int) (abs * 18.0d * d2)));
+            this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), (int) (((Math.abs((Math.floor(this.progress) + 0.5d) - this.progress) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * f)));
             float f5 = width;
             float f6 = f5 / 2.0f;
             float paddingLeft = getPaddingLeft() + AndroidUtilities.lerp((((float) Math.floor(this.progress)) * f5) + f6, (f5 * ((float) Math.ceil(this.progress))) + f6, this.progress - ((int) r13));
@@ -156,9 +195,9 @@ public abstract class BottomPagerTabs extends View {
             Tab tab = tabArr[i];
             tab.clickRect.set(getPaddingLeft() + (i * width), f4, r13 + width, getHeight());
             float min2 = 1.0f - Math.min(1.0f, Math.abs(this.progress - i));
-            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6, this.resourcesProvider);
+            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6, this.resourcesProvider);
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            tab.setColor(ColorUtils.blendARGB(color2, Theme.getColor(i2, this.resourcesProvider), min2));
+            tab.setColor(ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), min2));
             android.graphics.Rect rect = AndroidUtilities.rectTmp2;
             float f8 = min / f3;
             rect.set((int) (tab.clickRect.centerX() - f8), AndroidUtilities.dp(f2), (int) (tab.clickRect.centerX() + f8), AndroidUtilities.dp(41.0f));
@@ -184,11 +223,6 @@ public abstract class BottomPagerTabs extends View {
             f3 = 2.0f;
             f4 = 0.0f;
         }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(64.0f) + AndroidUtilities.getShadowHeight());
     }
 
     @Override
@@ -227,37 +261,24 @@ public abstract class BottomPagerTabs extends View {
             }
             this.touchDown = false;
         } else if (motionEvent.getAction() == 3) {
-            if (Build.VERSION.SDK_INT >= 21) {
-                int i3 = 0;
-                while (true) {
-                    Tab[] tabArr2 = this.tabs;
-                    if (i3 >= tabArr2.length) {
-                        break;
-                    }
+            int i3 = 0;
+            while (true) {
+                Tab[] tabArr2 = this.tabs;
+                if (i3 < tabArr2.length) {
                     tabArr2[i3].ripple.setState(new int[0]);
                     i3++;
+                } else {
+                    this.touchDown = false;
+                    return true;
                 }
             }
-            this.touchDown = false;
-            return true;
         }
         return super.onTouchEvent(motionEvent);
     }
 
-    public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.onTabClick = callback;
-    }
-
-    public void setProgress(float f) {
-        setProgress(f, true);
-    }
-
-    public void setScrolling(boolean z) {
-        if (this.scrolling == z) {
-            return;
-        }
-        this.scrolling = z;
-        invalidate();
+    @Override
+    protected void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(64.0f) + AndroidUtilities.getShadowHeight());
     }
 
     @Override
@@ -265,13 +286,14 @@ public abstract class BottomPagerTabs extends View {
         int i = 0;
         while (true) {
             Tab[] tabArr = this.tabs;
-            if (i >= tabArr.length) {
+            if (i < tabArr.length) {
+                if (tabArr[i].ripple == drawable) {
+                    return true;
+                }
+                i++;
+            } else {
                 return super.verifyDrawable(drawable);
             }
-            if (tabArr[i].ripple == drawable) {
-                return true;
-            }
-            i++;
         }
     }
 }

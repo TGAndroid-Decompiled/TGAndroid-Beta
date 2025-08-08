@@ -24,22 +24,29 @@ public class EmptyTextProgressView extends FrameLayout {
     private TextView textView;
     private LinearLayout textViewLayout;
 
+    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
     public EmptyTextProgressView(Context context) {
         this(context, null, null);
     }
 
     public EmptyTextProgressView(Context context, View view, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        FrameLayout.LayoutParams createFrame;
         View view2 = view;
         this.resourcesProvider = resourcesProvider;
         if (view2 == null) {
             view2 = new RadialProgressView(context);
-            createFrame = LayoutHelper.createFrame(-2, -2.0f);
+            addView(view2, LayoutHelper.createFrame(-2, -2.0f));
         } else {
-            createFrame = LayoutHelper.createFrame(-1, -1.0f);
+            addView(view2, LayoutHelper.createFrame(-1, -1.0f));
         }
-        addView(view2, createFrame);
         this.progressView = view2;
         LinearLayout linearLayout = new LinearLayout(context);
         this.textViewLayout = linearLayout;
@@ -74,57 +81,26 @@ public class EmptyTextProgressView extends FrameLayout {
         });
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void showProgress() {
+        showProgress(true);
     }
 
-    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
-        return true;
+    public void showProgress(boolean z) {
+        AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 0.9f, z);
+        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, true, 1.0f, z);
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
+    public void showTextView() {
+        AndroidUtilities.updateViewVisibilityAnimated(this.textView, true, 0.9f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, false, 1.0f, true);
     }
 
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int i5;
-        int measuredHeight;
-        this.inLayout = true;
-        int i6 = i3 - i;
-        int i7 = i4 - i2;
-        int childCount = getChildCount();
-        for (int i8 = 0; i8 < childCount; i8++) {
-            View childAt = getChildAt(i8);
-            if (childAt.getVisibility() != 8) {
-                int measuredWidth = (i6 - childAt.getMeasuredWidth()) / 2;
-                View view = this.progressView;
-                if (childAt != view || !(view instanceof FlickerLoadingView)) {
-                    int i9 = this.showAtPos;
-                    if (i9 == 2) {
-                        i5 = AndroidUtilities.dp(100.0f);
-                    } else if (i9 == 1) {
-                        i5 = i7 / 2;
-                    }
-                    measuredHeight = i5 - childAt.getMeasuredHeight();
-                    int paddingTop = (measuredHeight / 2) + getPaddingTop();
-                    childAt.layout(measuredWidth, paddingTop, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + paddingTop);
-                }
-                measuredHeight = i7 - childAt.getMeasuredHeight();
-                int paddingTop2 = (measuredHeight / 2) + getPaddingTop();
-                childAt.layout(measuredWidth, paddingTop2, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + paddingTop2);
-            }
-        }
-        this.inLayout = false;
+    public void setText(String str) {
+        this.textView.setText(str);
     }
 
-    @Override
-    public void requestLayout() {
-        if (this.inLayout) {
-            return;
-        }
-        super.requestLayout();
+    public void setTextColor(int i) {
+        this.textView.setTextColor(i);
     }
 
     public void setLottie(int i, int i2, int i3) {
@@ -142,26 +118,6 @@ public class EmptyTextProgressView extends FrameLayout {
         }
     }
 
-    public void setShowAtCenter(boolean z) {
-        this.showAtPos = z ? 1 : 0;
-    }
-
-    public void setShowAtTop(boolean z) {
-        this.showAtPos = z ? 2 : 0;
-    }
-
-    public void setText(String str) {
-        this.textView.setText(str);
-    }
-
-    public void setTextColor(int i) {
-        this.textView.setTextColor(i);
-    }
-
-    public void setTextSize(int i) {
-        this.textView.setTextSize(1, i);
-    }
-
     public void setTopImage(int i) {
         if (i == 0) {
             this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
@@ -175,17 +131,63 @@ public class EmptyTextProgressView extends FrameLayout {
         this.textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));
     }
 
-    public void showProgress() {
-        showProgress(true);
+    public void setTextSize(int i) {
+        this.textView.setTextSize(1, i);
     }
 
-    public void showProgress(boolean z) {
-        AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 0.9f, z);
-        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, true, 1.0f, z);
+    public void setShowAtCenter(boolean z) {
+        this.showAtPos = z ? 1 : 0;
     }
 
-    public void showTextView() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.textView, true, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, false, 1.0f, true);
+    public void setShowAtTop(boolean z) {
+        this.showAtPos = z ? 2 : 0;
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int measuredHeight;
+        int paddingTop;
+        this.inLayout = true;
+        int i5 = i3 - i;
+        int i6 = i4 - i2;
+        int childCount = getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            View childAt = getChildAt(i7);
+            if (childAt.getVisibility() != 8) {
+                int measuredWidth = (i5 - childAt.getMeasuredWidth()) / 2;
+                View view = this.progressView;
+                if (childAt == view && (view instanceof FlickerLoadingView)) {
+                    measuredHeight = (i6 - childAt.getMeasuredHeight()) / 2;
+                    paddingTop = getPaddingTop();
+                } else {
+                    int i8 = this.showAtPos;
+                    if (i8 == 2) {
+                        measuredHeight = (AndroidUtilities.dp(100.0f) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else if (i8 == 1) {
+                        measuredHeight = ((i6 / 2) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else {
+                        measuredHeight = (i6 - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    }
+                }
+                int i9 = measuredHeight + paddingTop;
+                childAt.layout(measuredWidth, i9, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i9);
+            }
+        }
+        this.inLayout = false;
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.inLayout) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

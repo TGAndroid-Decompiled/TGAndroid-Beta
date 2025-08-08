@@ -15,40 +15,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
     private MediaController.VideoConvertMessage currentMessage;
     String currentPath;
 
-    public static boolean isRunning() {
-        return instance != null;
-    }
-
-    public void lambda$didReceivedNotification$0() {
-        MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
-        if (currentForegroundConverMessage != null) {
-            setCurrentMessage(currentForegroundConverMessage);
-        } else {
-            stopSelf();
-        }
-    }
-
-    private void setCurrentMessage(MediaController.VideoConvertMessage videoConvertMessage) {
-        MediaController.VideoConvertMessage videoConvertMessage2 = this.currentMessage;
-        if (videoConvertMessage2 == videoConvertMessage) {
-            return;
-        }
-        if (videoConvertMessage2 != null) {
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadFailed);
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploaded);
-        }
-        updateBuilderForMessage(videoConvertMessage);
-        this.currentMessage = videoConvertMessage;
-        int i = videoConvertMessage.currentAccount;
-        this.currentAccount = i;
-        this.currentPath = videoConvertMessage.messageObject.messageOwner.attachPath;
-        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileUploadProgressChanged);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileUploadFailed);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileUploaded);
-        if (isRunning()) {
-            updateNotification();
-        }
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     public static void start(boolean z) {
@@ -81,71 +50,6 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         }
     }
 
-    private void updateBuilderForMessage(MediaController.VideoConvertMessage videoConvertMessage) {
-        NotificationCompat.Builder builder;
-        int i;
-        if (videoConvertMessage == null) {
-            return;
-        }
-        MessageObject messageObject = videoConvertMessage.messageObject;
-        boolean z = messageObject != null && MessageObject.isGifMessage(messageObject.messageOwner);
-        if (videoConvertMessage.foregroundConversion) {
-            builder = this.builder;
-            i = R.string.ConvertingVideo;
-        } else {
-            builder = this.builder;
-            i = z ? R.string.SendingGif : R.string.SendingVideo;
-        }
-        builder.setTicker(LocaleController.getString(i));
-        this.builder.setContentText(LocaleController.getString(i));
-        this.builder.setProgress(100, 0, true);
-    }
-
-    public void updateNotification() {
-        try {
-            if (MediaController.getInstance().getCurrentForegroundConverMessage() == null) {
-                return;
-            }
-            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(4, this.builder.build());
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        String str;
-        String str2;
-        if (i != NotificationCenter.fileUploadProgressChanged) {
-            if (i == NotificationCenter.fileUploaded || i == NotificationCenter.fileUploadFailed) {
-                String str3 = (String) objArr[0];
-                if (i2 == this.currentAccount && (str = this.currentPath) != null && str.equals(str3)) {
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            VideoEncodingService.this.lambda$didReceivedNotification$0();
-                        }
-                    });
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        String str4 = (String) objArr[0];
-        if (i2 == this.currentAccount && (str2 = this.currentPath) != null && str2.equals(str4)) {
-            float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
-            int i3 = (int) (min * 100.0f);
-            this.builder.setProgress(100, i3, i3 == 0);
-            updateNotification();
-        }
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -161,6 +65,54 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         this.currentMessage = null;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("VideoEncodingService: destroy video service");
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        String str;
+        String str2;
+        if (i == NotificationCenter.fileUploadProgressChanged) {
+            String str3 = (String) objArr[0];
+            if (i2 == this.currentAccount && (str2 = this.currentPath) != null && str2.equals(str3)) {
+                float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
+                int i3 = (int) (min * 100.0f);
+                this.builder.setProgress(100, i3, i3 == 0);
+                updateNotification();
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.fileUploaded || i == NotificationCenter.fileUploadFailed) {
+            String str4 = (String) objArr[0];
+            if (i2 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        VideoEncodingService.this.lambda$didReceivedNotification$0();
+                    }
+                });
+            }
+        }
+    }
+
+    public void lambda$didReceivedNotification$0() {
+        MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
+        if (currentForegroundConverMessage != null) {
+            setCurrentMessage(currentForegroundConverMessage);
+        } else {
+            stopSelf();
+        }
+    }
+
+    public void updateNotification() {
+        try {
+            if (MediaController.getInstance().getCurrentForegroundConverMessage() == null) {
+                return;
+            }
+            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(4, this.builder.build());
+        } catch (Throwable th) {
+            FileLog.e(th);
         }
     }
 
@@ -193,5 +145,57 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             }
         });
         return 2;
+    }
+
+    private void updateBuilderForMessage(MediaController.VideoConvertMessage videoConvertMessage) {
+        if (videoConvertMessage == null) {
+            return;
+        }
+        MessageObject messageObject = videoConvertMessage.messageObject;
+        boolean z = messageObject != null && MessageObject.isGifMessage(messageObject.messageOwner);
+        if (videoConvertMessage.foregroundConversion) {
+            NotificationCompat.Builder builder = this.builder;
+            int i = R.string.ConvertingVideo;
+            builder.setTicker(LocaleController.getString(i));
+            this.builder.setContentText(LocaleController.getString(i));
+        } else if (z) {
+            NotificationCompat.Builder builder2 = this.builder;
+            int i2 = R.string.SendingGif;
+            builder2.setTicker(LocaleController.getString(i2));
+            this.builder.setContentText(LocaleController.getString(i2));
+        } else {
+            NotificationCompat.Builder builder3 = this.builder;
+            int i3 = R.string.SendingVideo;
+            builder3.setTicker(LocaleController.getString(i3));
+            this.builder.setContentText(LocaleController.getString(i3));
+        }
+        this.builder.setProgress(100, 0, true);
+    }
+
+    private void setCurrentMessage(MediaController.VideoConvertMessage videoConvertMessage) {
+        MediaController.VideoConvertMessage videoConvertMessage2 = this.currentMessage;
+        if (videoConvertMessage2 == videoConvertMessage) {
+            return;
+        }
+        if (videoConvertMessage2 != null) {
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploadFailed);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploaded);
+        }
+        updateBuilderForMessage(videoConvertMessage);
+        this.currentMessage = videoConvertMessage;
+        int i = videoConvertMessage.currentAccount;
+        this.currentAccount = i;
+        this.currentPath = videoConvertMessage.messageObject.messageOwner.attachPath;
+        NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileUploadProgressChanged);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileUploadFailed);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileUploaded);
+        if (isRunning()) {
+            updateNotification();
+        }
+    }
+
+    public static boolean isRunning() {
+        return instance != null;
     }
 }

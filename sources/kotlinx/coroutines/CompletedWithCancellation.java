@@ -7,11 +7,6 @@ public final class CompletedWithCancellation {
     public final Function1 onCancellation;
     public final Object result;
 
-    public CompletedWithCancellation(Object obj, Function1 function1) {
-        this.result = obj;
-        this.onCancellation = function1;
-    }
-
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -30,5 +25,10 @@ public final class CompletedWithCancellation {
 
     public String toString() {
         return "CompletedWithCancellation(result=" + this.result + ", onCancellation=" + this.onCancellation + ')';
+    }
+
+    public CompletedWithCancellation(Object obj, Function1 function1) {
+        this.result = obj;
+        this.onCancellation = function1;
     }
 }

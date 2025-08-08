@@ -30,6 +30,20 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
     ImageReceiver stickerPreloadImageReceiver;
     private final int type;
 
+    @Override
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    @Override
+    public void setParent(View view) {
+        AttachableDrawable.CC.$default$setParent(this, view);
+    }
+
     public VectorAvatarThumbDrawable(TLRPC.VideoSize videoSize, boolean z, int i) {
         GradientTools gradientTools = new GradientTools();
         this.gradientTools = gradientTools;
@@ -67,14 +81,6 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i != NotificationCenter.groupStickersDidLoad || this.imageSeted) {
-            return;
-        }
-        setImage();
-    }
-
-    @Override
     public void draw(Canvas canvas) {
         this.gradientTools.setBounds(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom);
         if (this.currentParent != null) {
@@ -107,40 +113,12 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
         }
     }
 
-    public boolean equals(Object obj) {
-        TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup;
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && getClass() == obj.getClass()) {
-            VectorAvatarThumbDrawable vectorAvatarThumbDrawable = (VectorAvatarThumbDrawable) obj;
-            if (this.type == vectorAvatarThumbDrawable.type) {
-                GradientTools gradientTools = this.gradientTools;
-                int i = gradientTools.color1;
-                GradientTools gradientTools2 = vectorAvatarThumbDrawable.gradientTools;
-                if (i == gradientTools2.color1 && gradientTools.color2 == gradientTools2.color2 && gradientTools.color3 == gradientTools2.color3 && gradientTools.color4 == gradientTools2.color4) {
-                    AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-                    if (animatedEmojiDrawable != null && vectorAvatarThumbDrawable.animatedEmojiDrawable != null) {
-                        return animatedEmojiDrawable.getDocumentId() == vectorAvatarThumbDrawable.animatedEmojiDrawable.getDocumentId();
-                    }
-                    TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.sizeStickerMarkup;
-                    return tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = vectorAvatarThumbDrawable.sizeStickerMarkup) != null && tL_videoSizeStickerMarkup2.stickerset.id == tL_videoSizeStickerMarkup.stickerset.id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id;
-                }
-            }
-        }
-        return false;
-    }
-
     @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void invalidate() {
-        Iterator it = this.parents.iterator();
-        while (it.hasNext()) {
-            ((ImageReceiver) it.next()).invalidate();
+    public void setAlpha(int i) {
+        this.gradientTools.paint.setAlpha(i);
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+        if (animatedEmojiDrawable != null) {
+            animatedEmojiDrawable.setAlpha(i);
         }
     }
 
@@ -193,21 +171,43 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
     }
 
     @Override
-    public void setAlpha(int i) {
-        this.gradientTools.paint.setAlpha(i);
-        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-        if (animatedEmojiDrawable != null) {
-            animatedEmojiDrawable.setAlpha(i);
+    public void invalidate() {
+        Iterator it = this.parents.iterator();
+        while (it.hasNext()) {
+            ((ImageReceiver) it.next()).invalidate();
         }
     }
 
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public boolean equals(Object obj) {
+        TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup;
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && getClass() == obj.getClass()) {
+            VectorAvatarThumbDrawable vectorAvatarThumbDrawable = (VectorAvatarThumbDrawable) obj;
+            if (this.type == vectorAvatarThumbDrawable.type) {
+                GradientTools gradientTools = this.gradientTools;
+                int i = gradientTools.color1;
+                GradientTools gradientTools2 = vectorAvatarThumbDrawable.gradientTools;
+                if (i == gradientTools2.color1 && gradientTools.color2 == gradientTools2.color2 && gradientTools.color3 == gradientTools2.color3 && gradientTools.color4 == gradientTools2.color4) {
+                    AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+                    if (animatedEmojiDrawable != null && vectorAvatarThumbDrawable.animatedEmojiDrawable != null) {
+                        return animatedEmojiDrawable.getDocumentId() == vectorAvatarThumbDrawable.animatedEmojiDrawable.getDocumentId();
+                    }
+                    TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.sizeStickerMarkup;
+                    return tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = vectorAvatarThumbDrawable.sizeStickerMarkup) != null && tL_videoSizeStickerMarkup2.stickerset.id == tL_videoSizeStickerMarkup.stickerset.id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
-    public void setParent(View view) {
-        AttachableDrawable.CC.$default$setParent(this, view);
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i != NotificationCenter.groupStickersDidLoad || this.imageSeted) {
+            return;
+        }
+        setImage();
     }
 
     public void setParent(ImageReceiver imageReceiver) {

@@ -13,19 +13,19 @@ public final class ExtendedDefaultDataSourceFactory implements DataSource.Factor
     private final TransferListener listener;
     private final LongSparseArray<Uri> mtprotoUris;
 
-    public ExtendedDefaultDataSourceFactory(Context context, TransferListener transferListener, DataSource.Factory factory) {
-        this.mtprotoUris = new LongSparseArray<>();
-        this.context = context.getApplicationContext();
-        this.listener = transferListener;
-        this.baseDataSourceFactory = factory;
-    }
-
     public ExtendedDefaultDataSourceFactory(Context context, String str) {
         this(context, str, (TransferListener) null);
     }
 
     public ExtendedDefaultDataSourceFactory(Context context, String str, TransferListener transferListener) {
         this(context, transferListener, new DefaultHttpDataSourceFactory(str, transferListener));
+    }
+
+    public ExtendedDefaultDataSourceFactory(Context context, TransferListener transferListener, DataSource.Factory factory) {
+        this.mtprotoUris = new LongSparseArray<>();
+        this.context = context.getApplicationContext();
+        this.listener = transferListener;
+        this.baseDataSourceFactory = factory;
     }
 
     @Override

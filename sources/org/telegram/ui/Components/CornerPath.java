@@ -29,6 +29,124 @@ public class CornerPath extends Path {
         this.rects = new ArrayList(i);
     }
 
+    public void setPadding(int i, int i2) {
+        this.paddingX = i;
+        this.paddingY = i2;
+    }
+
+    @Override
+    public void addRect(RectF rectF, Path.Direction direction) {
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            float f = rectF.left;
+            float f2 = this.paddingX;
+            float f3 = f - f2;
+            float f4 = rectF.top;
+            float f5 = this.paddingY;
+            super.addRect(f3, f4 - f5, rectF.right + f2, rectF.bottom + f5, direction);
+            return;
+        }
+        if (this.rects.size() > 0) {
+            if (((RectF) this.rects.get(r10.size() - 1)).contains(rectF)) {
+                return;
+            }
+        }
+        if (this.rects.size() > 0) {
+            if (Math.abs(rectF.top - ((RectF) this.rects.get(r1.size() - 1)).top) <= this.rectsUnionDiffDelta) {
+                if (Math.abs(rectF.bottom - ((RectF) this.rects.get(r1.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
+                    ((RectF) this.rects.get(r10.size() - 1)).union(rectF);
+                    this.isPathCreated = false;
+                }
+            }
+        }
+        ArrayList arrayList = recycled;
+        if (arrayList != null && arrayList.size() > 0) {
+            rectF2 = (RectF) recycled.remove(0);
+        } else {
+            rectF2 = new RectF();
+        }
+        rectF2.set(rectF);
+        this.rects.add(rectF2);
+        this.isPathCreated = false;
+    }
+
+    @Override
+    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            float f5 = this.paddingX;
+            float f6 = f - f5;
+            float f7 = this.paddingY;
+            super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
+            return;
+        }
+        if (this.rects.size() > 0) {
+            if (((RectF) this.rects.get(r12.size() - 1)).contains(f, f2, f3, f4)) {
+                return;
+            }
+        }
+        if (this.rects.size() > 0) {
+            if (Math.abs(f2 - ((RectF) this.rects.get(r12.size() - 1)).top) <= this.rectsUnionDiffDelta) {
+                if (Math.abs(f4 - ((RectF) this.rects.get(r12.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
+                    ((RectF) this.rects.get(r12.size() - 1)).union(f, f2, f3, f4);
+                    this.isPathCreated = false;
+                }
+            }
+        }
+        ArrayList arrayList = recycled;
+        if (arrayList != null && arrayList.size() > 0) {
+            rectF = (RectF) recycled.remove(0);
+        } else {
+            rectF = new RectF();
+        }
+        rectF.set(f, f2, f3, f4);
+        this.rects.add(rectF);
+        this.isPathCreated = false;
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            return;
+        }
+        resetRects();
+    }
+
+    @Override
+    public void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            return;
+        }
+        resetRects();
+    }
+
+    private void resetRects() {
+        if (recycled == null) {
+            recycled = new ArrayList(this.rects.size());
+        }
+        recycled.addAll(this.rects);
+        this.rects.clear();
+        this.isPathCreated = false;
+    }
+
+    public void closeRects() {
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation || this.isPathCreated) {
+            return;
+        }
+        createClosedPathsFromRects(this.rects);
+        this.isPathCreated = true;
+    }
+
+    public void setUseCornerPathImplementation(boolean z) {
+        this.useCornerPathImplementation = z;
+    }
+
+    public void setRectsUnionDiffDelta(float f) {
+        this.rectsUnionDiffDelta = f;
+    }
+
     private void createClosedPathsFromRects(List list) {
         if (list.isEmpty()) {
             return;
@@ -85,113 +203,5 @@ public class CornerPath extends Path {
         if (z) {
             createClosedPathsFromRects(list.subList(size, list.size()));
         }
-    }
-
-    private void resetRects() {
-        if (recycled == null) {
-            recycled = new ArrayList(this.rects.size());
-        }
-        recycled.addAll(this.rects);
-        this.rects.clear();
-        this.isPathCreated = false;
-    }
-
-    @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            float f5 = this.paddingX;
-            float f6 = f - f5;
-            float f7 = this.paddingY;
-            super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
-            return;
-        }
-        if (this.rects.size() > 0) {
-            if (((RectF) this.rects.get(r12.size() - 1)).contains(f, f2, f3, f4)) {
-                return;
-            }
-        }
-        if (this.rects.size() > 0) {
-            if (Math.abs(f2 - ((RectF) this.rects.get(r12.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(f4 - ((RectF) this.rects.get(r12.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ((RectF) this.rects.get(r12.size() - 1)).union(f, f2, f3, f4);
-                    this.isPathCreated = false;
-                }
-            }
-        }
-        ArrayList arrayList = recycled;
-        RectF rectF = (arrayList == null || arrayList.size() <= 0) ? new RectF() : (RectF) recycled.remove(0);
-        rectF.set(f, f2, f3, f4);
-        this.rects.add(rectF);
-        this.isPathCreated = false;
-    }
-
-    @Override
-    public void addRect(RectF rectF, Path.Direction direction) {
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            float f = rectF.left;
-            float f2 = this.paddingX;
-            float f3 = f - f2;
-            float f4 = rectF.top;
-            float f5 = this.paddingY;
-            super.addRect(f3, f4 - f5, rectF.right + f2, rectF.bottom + f5, direction);
-            return;
-        }
-        if (this.rects.size() > 0) {
-            if (((RectF) this.rects.get(r10.size() - 1)).contains(rectF)) {
-                return;
-            }
-        }
-        if (this.rects.size() > 0) {
-            if (Math.abs(rectF.top - ((RectF) this.rects.get(r1.size() - 1)).top) <= this.rectsUnionDiffDelta) {
-                if (Math.abs(rectF.bottom - ((RectF) this.rects.get(r1.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
-                    ((RectF) this.rects.get(r10.size() - 1)).union(rectF);
-                    this.isPathCreated = false;
-                }
-            }
-        }
-        ArrayList arrayList = recycled;
-        RectF rectF2 = (arrayList == null || arrayList.size() <= 0) ? new RectF() : (RectF) recycled.remove(0);
-        rectF2.set(rectF);
-        this.rects.add(rectF2);
-        this.isPathCreated = false;
-    }
-
-    public void closeRects() {
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation || this.isPathCreated) {
-            return;
-        }
-        createClosedPathsFromRects(this.rects);
-        this.isPathCreated = true;
-    }
-
-    @Override
-    public void reset() {
-        super.reset();
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            return;
-        }
-        resetRects();
-    }
-
-    @Override
-    public void rewind() {
-        super.rewind();
-        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
-            return;
-        }
-        resetRects();
-    }
-
-    public void setPadding(int i, int i2) {
-        this.paddingX = i;
-        this.paddingY = i2;
-    }
-
-    public void setRectsUnionDiffDelta(float f) {
-        this.rectsUnionDiffDelta = f;
-    }
-
-    public void setUseCornerPathImplementation(boolean z) {
-        this.useCornerPathImplementation = z;
     }
 }

@@ -24,6 +24,11 @@ public class ChatCell extends BaseCell {
         void onChatDeleted(TLRPC.Chat chat);
     }
 
+    @Override
+    protected boolean needCheck() {
+        return false;
+    }
+
     public ChatCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
         this.titleTextView.setTypeface(AndroidUtilities.bold());
@@ -40,30 +45,18 @@ public class ChatCell extends BaseCell {
         this.titleTextView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
     }
 
-    public void lambda$setChat$0(TLRPC.Chat chat, View view) {
-        ChatDeleteListener chatDeleteListener = this.chatDeleteListener;
-        if (chatDeleteListener != null) {
-            chatDeleteListener.onChatDeleted(chat);
-        }
-    }
-
-    public TLRPC.Chat getChat() {
-        return this.chat;
-    }
-
-    @Override
-    protected boolean needCheck() {
-        return false;
-    }
-
     @Override
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         this.deleteImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
+    public TLRPC.Chat getChat() {
+        return this.chat;
+    }
+
     public void setChat(final TLRPC.Chat chat, int i, boolean z, int i2) {
-        String formatPluralString;
+        String string;
         this.removable = z;
         this.chat = chat;
         this.avatarDrawable.setInfo(chat);
@@ -71,21 +64,22 @@ public class ChatCell extends BaseCell {
         this.imageView.setForUserOrChat(chat, this.avatarDrawable);
         this.titleTextView.setText(Emoji.replaceEmoji(chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-        if (!z) {
-            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]);
-        } else if (i2 >= 1) {
-            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+        if (z) {
+            if (i2 >= 1) {
+                string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+            } else {
+                string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            }
+            setSubtitle(string);
         } else {
-            formatPluralString = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
         }
-        setSubtitle(formatPluralString);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         setDivider(true);
-        ImageView imageView = this.deleteImageView;
         if (z) {
-            imageView.setVisibility(0);
+            this.deleteImageView.setVisibility(0);
         } else {
-            imageView.setVisibility(4);
+            this.deleteImageView.setVisibility(4);
         }
         this.deleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,20 +89,29 @@ public class ChatCell extends BaseCell {
         });
     }
 
+    public void lambda$setChat$0(TLRPC.Chat chat, View view) {
+        ChatDeleteListener chatDeleteListener = this.chatDeleteListener;
+        if (chatDeleteListener != null) {
+            chatDeleteListener.onChatDeleted(chat);
+        }
+    }
+
     public void setChatDeleteListener(ChatDeleteListener chatDeleteListener) {
         this.chatDeleteListener = chatDeleteListener;
     }
 
     public void setCounter(int i, int i2) {
-        String formatPluralString;
+        String string;
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat);
         if (!this.removable) {
-            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]);
-        } else if (i2 >= 1) {
-            formatPluralString = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
-        } else {
-            formatPluralString = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+            setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
+            return;
         }
-        setSubtitle(formatPluralString);
+        if (i2 >= 1) {
+            string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+        } else {
+            string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+        }
+        setSubtitle(string);
     }
 }

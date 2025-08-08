@@ -34,7 +34,10 @@ public class HttpGetBitmapTask extends AsyncTask {
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode >= 200 && responseCode < 300) {
-                return (httpURLConnection.getContentType() == null || !httpURLConnection.getContentType().contains("svg")) ? BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream())) : SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
+                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
+                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
+                }
+                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
             }
             httpURLConnection.disconnect();
             return null;
@@ -48,10 +51,11 @@ public class HttpGetBitmapTask extends AsyncTask {
     public void onPostExecute(Bitmap bitmap) {
         Utilities.Callback callback = this.callback;
         if (callback != null) {
-            if (this.exception != null) {
-                bitmap = null;
+            if (this.exception == null) {
+                callback.run(bitmap);
+            } else {
+                callback.run(null);
             }
-            callback.run(bitmap);
         }
     }
 }

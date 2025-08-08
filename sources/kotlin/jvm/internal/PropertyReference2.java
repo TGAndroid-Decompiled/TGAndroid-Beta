@@ -14,13 +14,13 @@ public abstract class PropertyReference2 extends PropertyReference implements KP
     }
 
     @Override
-    public KProperty2.Getter getGetter() {
-        ((KProperty2) getReflected()).getGetter();
-        return null;
+    public Object invoke(Object obj, Object obj2) {
+        return get(obj, obj2);
     }
 
     @Override
-    public Object invoke(Object obj, Object obj2) {
-        return get(obj, obj2);
+    public KProperty2.Getter getGetter() {
+        ((KProperty2) getReflected()).getGetter();
+        return null;
     }
 }

@@ -14,6 +14,11 @@ public abstract class FunctionReference extends CallableReference implements Fun
     }
 
     @Override
+    public int getArity() {
+        return this.arity;
+    }
+
+    @Override
     protected KCallable computeReflected() {
         return Reflection.function(this);
     }
@@ -30,11 +35,6 @@ public abstract class FunctionReference extends CallableReference implements Fun
             return obj.equals(compute());
         }
         return false;
-    }
-
-    @Override
-    public int getArity() {
-        return this.arity;
     }
 
     public int hashCode() {

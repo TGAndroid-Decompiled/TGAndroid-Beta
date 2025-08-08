@@ -8,7 +8,7 @@ public abstract class RestrictedContinuationImpl extends BaseContinuationImpl {
     public RestrictedContinuationImpl(Continuation continuation) {
         super(continuation);
         if (continuation != null && continuation.getContext() != EmptyCoroutineContext.INSTANCE) {
-            throw new IllegalArgumentException("Coroutines with restricted suspension must have EmptyCoroutineContext".toString());
+            throw new IllegalArgumentException("Coroutines with restricted suspension must have EmptyCoroutineContext");
         }
     }
 

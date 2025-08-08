@@ -6,76 +6,12 @@ public class DataChannel {
     private long nativeDataChannel;
     private long nativeObserver;
 
-    public static class Buffer {
-        public final boolean binary;
-        public final ByteBuffer data;
-
-        public Buffer(ByteBuffer byteBuffer, boolean z) {
-            this.data = byteBuffer;
-            this.binary = z;
-        }
-    }
-
-    public static class Init {
-        public boolean negotiated;
-        public boolean ordered = true;
-        public int maxRetransmitTimeMs = -1;
-        public int maxRetransmits = -1;
-        public String protocol = "";
-        public int id = -1;
-
-        int getId() {
-            return this.id;
-        }
-
-        int getMaxRetransmitTimeMs() {
-            return this.maxRetransmitTimeMs;
-        }
-
-        int getMaxRetransmits() {
-            return this.maxRetransmits;
-        }
-
-        boolean getNegotiated() {
-            return this.negotiated;
-        }
-
-        boolean getOrdered() {
-            return this.ordered;
-        }
-
-        String getProtocol() {
-            return this.protocol;
-        }
-    }
-
     public interface Observer {
         void onBufferedAmountChange(long j);
 
         void onMessage(Buffer buffer);
 
         void onStateChange();
-    }
-
-    public enum State {
-        CONNECTING,
-        OPEN,
-        CLOSING,
-        CLOSED;
-
-        static State fromNativeIndex(int i) {
-            return values()[i];
-        }
-    }
-
-    public DataChannel(long j) {
-        this.nativeDataChannel = j;
-    }
-
-    private void checkDataChannelExists() {
-        if (this.nativeDataChannel == 0) {
-            throw new IllegalStateException("DataChannel has been disposed.");
-        }
     }
 
     private native long nativeBufferedAmount();
@@ -94,6 +30,94 @@ public class DataChannel {
 
     private native void nativeUnregisterObserver(long j);
 
+    public static class Init {
+        public boolean negotiated;
+        public boolean ordered = true;
+        public int maxRetransmitTimeMs = -1;
+        public int maxRetransmits = -1;
+        public String protocol = "";
+        public int id = -1;
+
+        boolean getOrdered() {
+            return this.ordered;
+        }
+
+        int getMaxRetransmitTimeMs() {
+            return this.maxRetransmitTimeMs;
+        }
+
+        int getMaxRetransmits() {
+            return this.maxRetransmits;
+        }
+
+        String getProtocol() {
+            return this.protocol;
+        }
+
+        boolean getNegotiated() {
+            return this.negotiated;
+        }
+
+        int getId() {
+            return this.id;
+        }
+    }
+
+    public static class Buffer {
+        public final boolean binary;
+        public final ByteBuffer data;
+
+        public Buffer(ByteBuffer byteBuffer, boolean z) {
+            this.data = byteBuffer;
+            this.binary = z;
+        }
+    }
+
+    public enum State {
+        CONNECTING,
+        OPEN,
+        CLOSING,
+        CLOSED;
+
+        static State fromNativeIndex(int i) {
+            return values()[i];
+        }
+    }
+
+    public DataChannel(long j) {
+        this.nativeDataChannel = j;
+    }
+
+    public void registerObserver(Observer observer) {
+        checkDataChannelExists();
+        long j = this.nativeObserver;
+        if (j != 0) {
+            nativeUnregisterObserver(j);
+        }
+        this.nativeObserver = nativeRegisterObserver(observer);
+    }
+
+    public void unregisterObserver() {
+        checkDataChannelExists();
+        nativeUnregisterObserver(this.nativeObserver);
+        this.nativeObserver = 0L;
+    }
+
+    public String label() {
+        checkDataChannelExists();
+        return nativeLabel();
+    }
+
+    public int id() {
+        checkDataChannelExists();
+        return nativeId();
+    }
+
+    public State state() {
+        checkDataChannelExists();
+        return nativeState();
+    }
+
     public long bufferedAmount() {
         checkDataChannelExists();
         return nativeBufferedAmount();
@@ -102,6 +126,13 @@ public class DataChannel {
     public void close() {
         checkDataChannelExists();
         nativeClose();
+    }
+
+    public boolean send(Buffer buffer) {
+        checkDataChannelExists();
+        byte[] bArr = new byte[buffer.data.remaining()];
+        buffer.data.get(bArr);
+        return nativeSend(bArr, buffer.binary);
     }
 
     public void dispose() {
@@ -114,40 +145,9 @@ public class DataChannel {
         return this.nativeDataChannel;
     }
 
-    public int id() {
-        checkDataChannelExists();
-        return nativeId();
-    }
-
-    public String label() {
-        checkDataChannelExists();
-        return nativeLabel();
-    }
-
-    public void registerObserver(Observer observer) {
-        checkDataChannelExists();
-        long j = this.nativeObserver;
-        if (j != 0) {
-            nativeUnregisterObserver(j);
+    private void checkDataChannelExists() {
+        if (this.nativeDataChannel == 0) {
+            throw new IllegalStateException("DataChannel has been disposed.");
         }
-        this.nativeObserver = nativeRegisterObserver(observer);
-    }
-
-    public boolean send(Buffer buffer) {
-        checkDataChannelExists();
-        byte[] bArr = new byte[buffer.data.remaining()];
-        buffer.data.get(bArr);
-        return nativeSend(bArr, buffer.binary);
-    }
-
-    public State state() {
-        checkDataChannelExists();
-        return nativeState();
-    }
-
-    public void unregisterObserver() {
-        checkDataChannelExists();
-        nativeUnregisterObserver(this.nativeObserver);
-        this.nativeObserver = 0L;
     }
 }

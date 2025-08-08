@@ -14,26 +14,6 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     private static native List<VideoCodecInfo> nativeGetSupportedCodecs(long j);
 
     @Override
-    public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        final long nativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
-        if (nativeCreateEncoder != 0) {
-            return new WrappedNativeVideoEncoder() {
-                @Override
-                public long createNativeVideoEncoder() {
-                    return nativeCreateEncoder;
-                }
-
-                @Override
-                public boolean isHardwareEncoder() {
-                    return false;
-                }
-            };
-        }
-        Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
-        return null;
-    }
-
-    @Override
     public VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
         return VideoEncoderFactory.CC.$default$getEncoderSelector(this);
     }
@@ -43,6 +23,26 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
         VideoCodecInfo[] supportedCodecs;
         supportedCodecs = getSupportedCodecs();
         return supportedCodecs;
+    }
+
+    @Override
+    public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
+        final long nativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
+        if (nativeCreateEncoder == 0) {
+            Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
+            return null;
+        }
+        return new WrappedNativeVideoEncoder() {
+            @Override
+            public boolean isHardwareEncoder() {
+                return false;
+            }
+
+            @Override
+            public long createNativeVideoEncoder() {
+                return nativeCreateEncoder;
+            }
+        };
     }
 
     @Override

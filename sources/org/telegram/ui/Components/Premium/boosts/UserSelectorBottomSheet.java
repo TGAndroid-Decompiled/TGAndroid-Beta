@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ReplacementSpan;
 import android.view.View;
@@ -55,7 +56,6 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -116,6 +116,165 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     private long userId;
     private CheckBox2 videoCheckbox;
 
+    public static UserSelectorBottomSheet open() {
+        return open(0L, null);
+    }
+
+    public static UserSelectorBottomSheet open(long j, BirthdayController.BirthdayState birthdayState) {
+        return open(0, j, birthdayState);
+    }
+
+    public static UserSelectorBottomSheet open(final int i, long j, BirthdayController.BirthdayState birthdayState) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
+            return null;
+        }
+        UserSelectorBottomSheet userSelectorBottomSheet = instance;
+        if (userSelectorBottomSheet != null) {
+            return userSelectorBottomSheet;
+        }
+        UserSelectorBottomSheet userSelectorBottomSheet2 = new UserSelectorBottomSheet(lastFragment.getContext(), lastFragment.getCurrentAccount(), j, birthdayState, i, true, lastFragment.getResourceProvider()) {
+        };
+        if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(lastFragment)) {
+            userSelectorBottomSheet2.makeAttached(lastFragment);
+        }
+        lastFragment.showDialog(userSelectorBottomSheet2);
+        instance = userSelectorBottomSheet2;
+        return userSelectorBottomSheet2;
+    }
+
+    public static boolean handleIntent(Intent intent, Browser.Progress progress) {
+        String scheme;
+        String path;
+        Uri data = intent.getData();
+        if (data == null || (scheme = data.getScheme()) == null) {
+            return false;
+        }
+        if (scheme.equals("http") || scheme.equals("https")) {
+            String lowerCase = data.getHost().toLowerCase();
+            if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null || !path.startsWith("/premium_multigift")) {
+                return false;
+            }
+            open();
+            return true;
+        }
+        if (!scheme.equals("tg")) {
+            return false;
+        }
+        String uri = data.toString();
+        if (!uri.startsWith("tg:premium_multigift") && !uri.startsWith("tg://premium_multigift")) {
+            return false;
+        }
+        open();
+        return true;
+    }
+
+    private void cancelSearch() {
+        if (this.runningRequest >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.runningRequest, true);
+            this.runningRequest = -1;
+        }
+    }
+
+    public void search(String str) {
+        cancelSearch();
+        TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
+        tL_contacts_search.q = str;
+        this.runningRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_search, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                UserSelectorBottomSheet.this.lambda$search$1(tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$search$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$search$0(tLObject);
+            }
+        });
+    }
+
+    public void lambda$search$0(TLObject tLObject) {
+        TLObject userOrChat;
+        TLObject userOrChat2;
+        this.searchResult.clear();
+        this.runningRequest = -1;
+        if (tLObject instanceof TLRPC.TL_contacts_found) {
+            TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
+            MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+            messagesController.putUsers(tL_contacts_found.users, false);
+            messagesController.putChats(tL_contacts_found.chats, false);
+            HashSet hashSet = new HashSet();
+            Iterator<TLRPC.Peer> it = tL_contacts_found.my_results.iterator();
+            while (it.hasNext()) {
+                long peerDialogId = DialogObject.getPeerDialogId(it.next());
+                if (!hashSet.contains(Long.valueOf(peerDialogId)) && (userOrChat2 = messagesController.getUserOrChat(peerDialogId)) != null) {
+                    this.searchResult.add(userOrChat2);
+                    hashSet.add(Long.valueOf(peerDialogId));
+                }
+            }
+            Iterator<TLRPC.Peer> it2 = tL_contacts_found.results.iterator();
+            while (it2.hasNext()) {
+                long peerDialogId2 = DialogObject.getPeerDialogId(it2.next());
+                if (!hashSet.contains(Long.valueOf(peerDialogId2)) && (userOrChat = messagesController.getUserOrChat(peerDialogId2)) != null) {
+                    this.searchResult.add(userOrChat);
+                    hashSet.add(Long.valueOf(peerDialogId2));
+                }
+            }
+        }
+        updateList(true, true);
+    }
+
+    private void checkEditTextHint() {
+        int i;
+        if (!this.selectedIds.isEmpty() || (i = this.type) == 1 || i == 2 || i == 3 || i == 4) {
+            if (this.isHintSearchText) {
+                return;
+            }
+            this.isHintSearchText = true;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserSelectorBottomSheet.this.lambda$checkEditTextHint$2();
+                }
+            }, 10L);
+            return;
+        }
+        if (this.isHintSearchText) {
+            this.isHintSearchText = false;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserSelectorBottomSheet.this.lambda$checkEditTextHint$3();
+                }
+            }, 10L);
+        }
+    }
+
+    public void lambda$checkEditTextHint$2() {
+        this.searchField.setHintText(LocaleController.getString(R.string.Search), true);
+    }
+
+    public void lambda$checkEditTextHint$3() {
+        this.searchField.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+    }
+
+    public void createRecipientsBtnSpaceSpan() {
+        this.recipientsBtnSpaceSpan = new ReplacementSpan() {
+            @Override
+            public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+            }
+
+            @Override
+            public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+                return (int) UserSelectorBottomSheet.this.recipientsBtnExtraSpace;
+            }
+        };
+    }
+
     public UserSelectorBottomSheet(Context context, final int i, long j, BirthdayController.BirthdayState birthdayState, final int i2, boolean z, final Theme.ResourcesProvider resourcesProvider) {
         super(context, null, z, false, false, resourcesProvider);
         this.oldItems = new ArrayList();
@@ -163,7 +322,10 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), resourcesProvider) {
             @Override
             protected int getHeaderHeight() {
-                return AndroidUtilities.dp(getResources().getConfiguration().orientation == 2 ? 48.0f : 54.0f);
+                if (getResources().getConfiguration().orientation == 2) {
+                    return AndroidUtilities.dp(48.0f);
+                }
+                return AndroidUtilities.dp(54.0f);
             }
         };
         this.headerView = selectorHeaderCell;
@@ -374,266 +536,6 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    private int addSection(ArrayList arrayList, CharSequence charSequence, ArrayList arrayList2, boolean z) {
-        int i = 0;
-        if (arrayList2.isEmpty()) {
-            return 0;
-        }
-        ArrayList arrayList3 = new ArrayList();
-        Iterator it = arrayList2.iterator();
-        while (it.hasNext()) {
-            TLRPC.User user = (TLRPC.User) it.next();
-            if (user != null && !user.bot && !UserObject.isService(user.id)) {
-                long j = user.id;
-                if (j != this.userId && !this.excludeUserIds.contains(Long.valueOf(j))) {
-                    this.selectedIds.contains(Long.valueOf(user.id));
-                    i += AndroidUtilities.dp(56.0f);
-                    arrayList3.add(decorate(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id)))));
-                }
-            }
-        }
-        if (arrayList3.isEmpty()) {
-            return i;
-        }
-        int dp = i + AndroidUtilities.dp(32.0f);
-        arrayList.add(SelectorAdapter.Item.asTopSection(charSequence));
-        arrayList.addAll(arrayList3);
-        return dp;
-    }
-
-    private void cancelSearch() {
-        if (this.runningRequest >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.runningRequest, true);
-            this.runningRequest = -1;
-        }
-    }
-
-    private void checkEditTextHint() {
-        Runnable runnable;
-        int i;
-        if (!this.selectedIds.isEmpty() || (i = this.type) == 1 || i == 2 || i == 3 || i == 4) {
-            if (this.isHintSearchText) {
-                return;
-            }
-            this.isHintSearchText = true;
-            runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$checkEditTextHint$2();
-                }
-            };
-        } else {
-            if (!this.isHintSearchText) {
-                return;
-            }
-            this.isHintSearchText = false;
-            runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$checkEditTextHint$3();
-                }
-            };
-        }
-        AndroidUtilities.runOnUIThread(runnable, 10L);
-    }
-
-    private void clearSearchAfterSelect() {
-        if (isSearching()) {
-            this.query = null;
-            this.searchField.setText("");
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            updateItems(true, true);
-        }
-    }
-
-    public void createRecipientsBtnSpaceSpan() {
-        this.recipientsBtnSpaceSpan = new ReplacementSpan() {
-            @Override
-            public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-            }
-
-            @Override
-            public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-                return (int) UserSelectorBottomSheet.this.recipientsBtnExtraSpace;
-            }
-        };
-    }
-
-    private SelectorAdapter.Item decorate(SelectorAdapter.Item item) {
-        if (this.type != 4) {
-            return item.withOptions(openOptions(item.user));
-        }
-        TLRPC.User user = item.user;
-        if (user == null) {
-            return item;
-        }
-        final long j = user.id;
-        return item.withCall(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                UserSelectorBottomSheet.this.lambda$decorate$14(j, view);
-            }
-        }, new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                UserSelectorBottomSheet.this.lambda$decorate$15(j, view);
-            }
-        });
-    }
-
-    public static boolean handleIntent(Intent intent, Browser.Progress progress) {
-        String scheme;
-        String path;
-        Uri data = intent.getData();
-        if (data == null || (scheme = data.getScheme()) == null) {
-            return false;
-        }
-        if (!scheme.equals("http") && !scheme.equals("https")) {
-            if (!scheme.equals("tg")) {
-                return false;
-            }
-            String uri = data.toString();
-            if (!uri.startsWith("tg:premium_multigift") && !uri.startsWith("tg://premium_multigift")) {
-                return false;
-            }
-            open();
-            return true;
-        }
-        String lowerCase = data.getHost().toLowerCase();
-        if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null || !path.startsWith("/premium_multigift")) {
-            return false;
-        }
-        open();
-        return true;
-    }
-
-    private void initContacts(boolean z) {
-        if (this.contacts.isEmpty()) {
-            this.contacts.addAll(ContactsController.getInstance(this.currentAccount).contacts);
-            this.contactsMap.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
-            this.contactsLetters.addAll(ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray);
-            if (z) {
-                updateItems(true, true);
-            }
-        }
-    }
-
-    private void initHints(boolean z) {
-        if (this.hints.isEmpty()) {
-            this.hints.addAll(MediaDataController.getInstance(this.currentAccount).hints);
-            if (z) {
-                updateItems(true, true);
-            }
-        }
-    }
-
-    private boolean isSearching() {
-        return !TextUtils.isEmpty(this.query);
-    }
-
-    public void lambda$checkEditTextHint$2() {
-        this.searchField.setHintText(LocaleController.getString(R.string.Search), true);
-    }
-
-    public void lambda$checkEditTextHint$3() {
-        this.searchField.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
-    }
-
-    public void lambda$decorate$14(long j, View view) {
-        this.selectedIds.add(Long.valueOf(j));
-        Utilities.Callback2 callback2 = this.onUsersSelectedListener;
-        if (callback2 != null) {
-            callback2.run(Boolean.FALSE, this.selectedIds);
-            this.onUsersSelectedListener = null;
-        }
-        lambda$new$0();
-    }
-
-    public void lambda$decorate$15(long j, View view) {
-        this.selectedIds.add(Long.valueOf(j));
-        Utilities.Callback2 callback2 = this.onUsersSelectedListener;
-        if (callback2 != null) {
-            callback2.run(Boolean.TRUE, this.selectedIds);
-            this.onUsersSelectedListener = null;
-        }
-        lambda$new$0();
-    }
-
-    public void lambda$didReceivedNotification$23() {
-        initContacts(true);
-    }
-
-    public void lambda$didReceivedNotification$24() {
-        initHints(true);
-    }
-
-    public void lambda$didReceivedNotification$25() {
-        updateItems(true, true);
-    }
-
-    public void lambda$new$10() {
-        checkEditTextHint();
-        updateList(true, false);
-    }
-
-    public boolean lambda$new$11(int i, View view, int i2, float f, float f2) {
-        if (!(view instanceof SelectorUserCell)) {
-            return false;
-        }
-        SelectorUserCell selectorUserCell = (SelectorUserCell) view;
-        TLRPC.User user = selectorUserCell.getUser();
-        long j = user != null ? user.id : -selectorUserCell.getChat().id;
-        boolean z = (i == 4 && this.selectedIds.isEmpty()) ? false : true;
-        if (this.selectedIds.contains(Long.valueOf(j))) {
-            this.selectedIds.remove(Long.valueOf(j));
-        } else {
-            this.selectedIds.add(Long.valueOf(j));
-            this.allSelectedObjects.put(Long.valueOf(j), user);
-        }
-        if (this.selectedIds.size() == getLimit() + 1) {
-            this.selectedIds.remove(Long.valueOf(j));
-            showMaximumUsersToast();
-            return true;
-        }
-        boolean z2 = (i == 4 && this.selectedIds.isEmpty()) ? false : true;
-        if (z != z2) {
-            this.buttonContainer.setVisibility(0);
-            this.buttonContainer.animate().alpha(z2 ? 1.0f : 0.0f).translationY(z2 ? 0.0f : AndroidUtilities.dp(12.0f)).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(!z2 ? new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$new$9();
-                }
-            } : null).start();
-            this.selectorAdapter.setCallButtonsVisible(!z2);
-        }
-        checkEditTextHint();
-        this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$new$10();
-            }
-        }, null);
-        updateList(true, true);
-        clearSearchAfterSelect();
-        return true;
-    }
-
-    public void lambda$new$12() {
-        checkEditTextHint();
-        updateList(true, false);
-    }
-
-    public void lambda$new$13(List list) {
-        this.paymentOptions.clear();
-        this.paymentOptions.addAll(list);
-        if (this.actionButton.isLoading()) {
-            this.actionButton.setLoading(false);
-            if (this.recyclerListView.isAttachedToWindow()) {
-                next();
-            }
-        }
-    }
-
     public void lambda$new$4(View view) {
         this.videoCheckbox.setChecked(!r3.isChecked(), true);
     }
@@ -642,28 +544,19 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         next();
     }
 
-    public void lambda$new$6() {
-        this.buttonContainer.setVisibility(8);
-    }
-
-    public void lambda$new$7() {
-        checkEditTextHint();
-        updateList(true, false);
-    }
-
     public void lambda$new$8(int i, Theme.ResourcesProvider resourcesProvider, int i2, View view, int i3, float f, float f2) {
         boolean z = false;
         if (view instanceof TextCell) {
-            if (i != 4) {
-                openBirthdaySetup();
+            if (i == 4) {
+                Runnable runnable = this.onShareCallLinkListener;
+                if (runnable != null) {
+                    runnable.run();
+                    lambda$new$0();
+                    return;
+                }
                 return;
             }
-            Runnable runnable = this.onShareCallLinkListener;
-            if (runnable != null) {
-                runnable.run();
-                lambda$new$0();
-                return;
-            }
+            openBirthdaySetup();
             return;
         }
         if (view instanceof SelectorUserCell) {
@@ -764,197 +657,108 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public void lambda$new$9() {
+    public void lambda$new$6() {
         this.buttonContainer.setVisibility(8);
     }
 
-    public void lambda$openBirthdaySetup$26(TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
-        Bulletin createSimpleBulletin;
-        String str;
-        if (tLObject instanceof TLRPC.TL_boolTrue) {
-            createSimpleBulletin = BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.PrivacyBirthdaySetDone)).setDuration(5000);
-        } else {
-            if (userFull != null) {
-                int i = userFull.flags2;
-                userFull.flags2 = tL_birthday == null ? i & (-33) : i | 32;
-                userFull.birthday = tL_birthday;
-                MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, false);
-            }
-            if (tL_error != null && (str = tL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
-                if (getContext() != null) {
-                    new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.PrivacyBirthdayTooOftenTitle)).setMessage(LocaleController.getString(R.string.PrivacyBirthdayTooOftenMessage)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
-                    return;
-                }
-                return;
-            }
-            createSimpleBulletin = BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError));
-        }
-        createSimpleBulletin.show();
-    }
-
-    public void lambda$openBirthdaySetup$27(final TLRPC.UserFull userFull, final TL_account.TL_birthday tL_birthday, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$26(tLObject, userFull, tL_birthday, tL_error);
-            }
-        });
-    }
-
-    public void lambda$openBirthdaySetup$28(TL_account.TL_birthday tL_birthday) {
-        TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
-        updatebirthday.flags |= 1;
-        updatebirthday.birthday = tL_birthday;
-        final TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
-        final TL_account.TL_birthday tL_birthday2 = userFull != null ? userFull.birthday : null;
-        if (userFull != null) {
-            userFull.flags2 |= 32;
-            userFull.birthday = tL_birthday;
-        }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatebirthday, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$27(userFull, tL_birthday2, tLObject, tL_error);
-            }
-        }, 1024);
-        MessagesController.getInstance(this.currentAccount).invalidateContentSettings();
-        MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "BIRTHDAY_SETUP");
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-        updateItems(true, true);
-    }
-
-    public void lambda$openBirthdaySetup$29() {
-        if (getBaseFragment() == null) {
-            return;
-        }
-        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-        bottomSheetParams.transitionFromLeft = true;
-        bottomSheetParams.allowNestedScroll = false;
-        getBaseFragment().showAsSheet(new PrivacyControlActivity(11), bottomSheetParams);
-    }
-
-    public void lambda$openOptions$20(TLRPC.User user) {
-        if (user == null) {
-            return;
-        }
-        BaseFragment baseFragment = getBaseFragment();
-        if (baseFragment != null) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.id);
-            baseFragment.presentFragment(new ChatActivity(bundle));
-            return;
-        }
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-        bottomSheetParams.transitionFromLeft = true;
-        bottomSheetParams.allowNestedScroll = false;
-        if (safeLastFragment == null) {
-            return;
-        }
-        Bundle bundle2 = new Bundle();
-        bundle2.putLong("user_id", user.id);
-        safeLastFragment.showAsSheet(new ChatActivity(bundle2), bottomSheetParams);
-    }
-
-    public void lambda$openOptions$21(TLRPC.User user) {
-        if (user == null) {
-            return;
-        }
-        BaseFragment baseFragment = getBaseFragment();
-        if (baseFragment != null) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.id);
-            baseFragment.presentFragment(new ProfileActivity(bundle));
-            return;
-        }
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null) {
-            return;
-        }
-        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-        bottomSheetParams.transitionFromLeft = true;
-        bottomSheetParams.allowNestedScroll = false;
-        Bundle bundle2 = new Bundle();
-        bundle2.putLong("user_id", user.id);
-        safeLastFragment.showAsSheet(new ProfileActivity(bundle2), bottomSheetParams);
-    }
-
-    public void lambda$openOptions$22(final TLRPC.User user, View view) {
-        ItemOptions.makeOptions(this.container, this.resourcesProvider, (View) view.getParent()).add(R.drawable.profile_discuss, LocaleController.getString(R.string.SendMessage), new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$openOptions$20(user);
-            }
-        }).add(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$openOptions$21(user);
-            }
-        }).show();
-    }
-
-    public void lambda$search$0(TLObject tLObject) {
-        TLObject userOrChat;
-        TLObject userOrChat2;
-        this.searchResult.clear();
-        this.runningRequest = -1;
-        if (tLObject instanceof TLRPC.TL_contacts_found) {
-            TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
-            MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-            messagesController.putUsers(tL_contacts_found.users, false);
-            messagesController.putChats(tL_contacts_found.chats, false);
-            HashSet hashSet = new HashSet();
-            Iterator<TLRPC.Peer> it = tL_contacts_found.my_results.iterator();
-            while (it.hasNext()) {
-                long peerDialogId = DialogObject.getPeerDialogId(it.next());
-                if (!hashSet.contains(Long.valueOf(peerDialogId)) && (userOrChat2 = messagesController.getUserOrChat(peerDialogId)) != null) {
-                    this.searchResult.add(userOrChat2);
-                    hashSet.add(Long.valueOf(peerDialogId));
-                }
-            }
-            Iterator<TLRPC.Peer> it2 = tL_contacts_found.results.iterator();
-            while (it2.hasNext()) {
-                long peerDialogId2 = DialogObject.getPeerDialogId(it2.next());
-                if (!hashSet.contains(Long.valueOf(peerDialogId2)) && (userOrChat = messagesController.getUserOrChat(peerDialogId2)) != null) {
-                    this.searchResult.add(userOrChat);
-                    hashSet.add(Long.valueOf(peerDialogId2));
-                }
-            }
-        }
-        updateList(true, true);
-    }
-
-    public void lambda$search$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$search$0(tLObject);
-            }
-        });
-    }
-
-    public void lambda$updateItems$18() {
+    public void lambda$new$7() {
         checkEditTextHint();
         updateList(true, false);
     }
 
-    public void lambda$updateItems$19(ArrayList arrayList, View view) {
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            Long l = (Long) it.next();
-            l.longValue();
-            this.selectedIds.remove(l);
-            this.allSelectedObjects.remove(l);
+    public boolean lambda$new$11(int i, View view, int i2, float f, float f2) {
+        if (!(view instanceof SelectorUserCell)) {
+            return false;
+        }
+        SelectorUserCell selectorUserCell = (SelectorUserCell) view;
+        TLRPC.User user = selectorUserCell.getUser();
+        long j = user != null ? user.id : -selectorUserCell.getChat().id;
+        boolean z = (i == 4 && this.selectedIds.isEmpty()) ? false : true;
+        if (this.selectedIds.contains(Long.valueOf(j))) {
+            this.selectedIds.remove(Long.valueOf(j));
+        } else {
+            this.selectedIds.add(Long.valueOf(j));
+            this.allSelectedObjects.put(Long.valueOf(j), user);
+        }
+        if (this.selectedIds.size() == getLimit() + 1) {
+            this.selectedIds.remove(Long.valueOf(j));
+            showMaximumUsersToast();
+            return true;
+        }
+        boolean z2 = (i == 4 && this.selectedIds.isEmpty()) ? false : true;
+        if (z != z2) {
+            this.buttonContainer.setVisibility(0);
+            this.buttonContainer.animate().alpha(z2 ? 1.0f : 0.0f).translationY(z2 ? 0.0f : AndroidUtilities.dp(12.0f)).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(!z2 ? new Runnable() {
+                @Override
+                public final void run() {
+                    UserSelectorBottomSheet.this.lambda$new$9();
+                }
+            } : null).start();
+            this.selectorAdapter.setCallButtonsVisible(!z2);
         }
         checkEditTextHint();
         this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
             @Override
             public final void run() {
-                UserSelectorBottomSheet.this.lambda$updateItems$18();
+                UserSelectorBottomSheet.this.lambda$new$10();
             }
         }, null);
         updateList(true, true);
         clearSearchAfterSelect();
+        return true;
+    }
+
+    public void lambda$new$9() {
+        this.buttonContainer.setVisibility(8);
+    }
+
+    public void lambda$new$10() {
+        checkEditTextHint();
+        updateList(true, false);
+    }
+
+    public void lambda$new$12() {
+        checkEditTextHint();
+        updateList(true, false);
+    }
+
+    public void lambda$new$13(List list) {
+        this.paymentOptions.clear();
+        this.paymentOptions.addAll(list);
+        if (this.actionButton.isLoading()) {
+            this.actionButton.setLoading(false);
+            if (this.recyclerListView.isAttachedToWindow()) {
+                next();
+            }
+        }
+    }
+
+    private void initContacts(boolean z) {
+        if (this.contacts.isEmpty()) {
+            this.contacts.addAll(ContactsController.getInstance(this.currentAccount).contacts);
+            this.contactsMap.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
+            this.contactsLetters.addAll(ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray);
+            if (z) {
+                updateItems(true, true);
+            }
+        }
+    }
+
+    private void initHints(boolean z) {
+        if (this.hints.isEmpty()) {
+            this.hints.addAll(MediaDataController.getInstance(this.currentAccount).hints);
+            if (z) {
+                updateItems(true, true);
+            }
+        }
+    }
+
+    @Override
+    protected void onPreDraw(Canvas canvas, int i, float f) {
+        this.headerView.setTranslationY(Math.max(i, AndroidUtilities.statusBarHeight - AndroidUtilities.dp(8.0f)) + AndroidUtilities.dp(8.0f));
+        this.searchField.setTranslationY(this.headerView.getTranslationY() + this.headerView.getMeasuredHeight());
+        this.sectionCell.setTranslationY(this.searchField.getTranslationY() + this.searchField.getMeasuredHeight());
+        this.recyclerListView.setTranslationY(((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) + this.sectionCell.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
     }
 
     private void next() {
@@ -1004,191 +808,15 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public void onSearch(String str) {
-        this.query = str;
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
-    }
-
-    public static UserSelectorBottomSheet open() {
-        return open(0L, null);
-    }
-
-    public static UserSelectorBottomSheet open(final int i, long j, BirthdayController.BirthdayState birthdayState) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null) {
-            return null;
-        }
-        UserSelectorBottomSheet userSelectorBottomSheet = instance;
-        if (userSelectorBottomSheet != null) {
-            return userSelectorBottomSheet;
-        }
-        UserSelectorBottomSheet userSelectorBottomSheet2 = new UserSelectorBottomSheet(lastFragment.getContext(), lastFragment.getCurrentAccount(), j, birthdayState, i, true, lastFragment.getResourceProvider()) {
-        };
-        if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(lastFragment)) {
-            userSelectorBottomSheet2.makeAttached(lastFragment);
-        }
-        lastFragment.showDialog(userSelectorBottomSheet2);
-        instance = userSelectorBottomSheet2;
-        return userSelectorBottomSheet2;
-    }
-
-    public static UserSelectorBottomSheet open(long j, BirthdayController.BirthdayState birthdayState) {
-        return open(0, j, birthdayState);
-    }
-
-    private void openBirthdaySetup() {
-        AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$28((TL_account.TL_birthday) obj);
-            }
-        }, new Runnable() {
-            @Override
-            public final void run() {
-                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$29();
-            }
-        }, this.resourcesProvider).show();
-    }
-
-    public void search(String str) {
-        cancelSearch();
-        TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
-        tL_contacts_search.q = str;
-        this.runningRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_search, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                UserSelectorBottomSheet.this.lambda$search$1(tLObject, tL_error);
-            }
-        });
-    }
-
-    private void showMaximumUsersToast() {
-        BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, this.type == 4 ? LocaleController.formatPluralStringComma("UserSelectorLimit", getLimit()) : LocaleController.getString(R.string.BoostingSelectUpToWarningUsers)).show(true);
-        try {
-            this.container.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-    }
-
-    public void updateActionButton(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet.updateActionButton(boolean):void");
-    }
-
-    private void updateCheckboxes(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet.updateCheckboxes(boolean):void");
-    }
-
-    private void updateList(boolean z, boolean z2) {
-        updateItems(z, z2);
-        updateCheckboxes(z);
-        updateActionButton(z);
-    }
-
-    public void addTONOption(int i) {
-        this.includeTonOption = true;
-        this.tonDays = i;
-        updateItems(false, true);
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), false, this.resourcesProvider);
-        this.selectorAdapter = selectorAdapter;
-        selectorAdapter.setGreenSelector(true);
-        return this.selectorAdapter;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        Runnable runnable;
-        if (i == NotificationCenter.giftsToUserSent) {
-            lambda$new$0();
+    public void scrollToTop(boolean z) {
+        if (z) {
+            LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
+            linearSmoothScrollerCustom.setTargetPosition(1);
+            linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(36.0f));
+            this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
             return;
         }
-        if (i == NotificationCenter.contactsDidLoad) {
-            runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$23();
-                }
-            };
-        } else if (i == NotificationCenter.reloadHints) {
-            runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$24();
-                }
-            };
-        } else if (i != NotificationCenter.userInfoDidLoad) {
-            return;
-        } else {
-            runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$25();
-                }
-            };
-        }
-        AndroidUtilities.runOnUIThread(runnable);
-    }
-
-    @Override
-    public void lambda$new$0() {
-        AndroidUtilities.hideKeyboard(this.searchField.getEditText());
-        super.lambda$new$0();
-    }
-
-    @Override
-    public void dismissInternal() {
-        super.dismissInternal();
-        instance = null;
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-    }
-
-    public UserSelectorBottomSheet exceptUsers(Collection collection) {
-        this.excludeUserIds.addAll(collection);
-        updateItems(false, true);
-        return this;
-    }
-
-    public UserSelectorBottomSheet exceptUsers(long... jArr) {
-        for (long j : jArr) {
-            this.excludeUserIds.add(Long.valueOf(j));
-        }
-        updateItems(false, true);
-        return this;
-    }
-
-    protected int getLimit() {
-        if (this.type == 4) {
-            return Math.max(0, (MessagesController.getInstance(this.currentAccount).conferenceCallSizeLimit - this.excludeUserIds.size()) - 1);
-        }
-        return 10;
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        int i;
-        String str = this.customTitle;
-        if (str != null) {
-            return str;
-        }
-        int i2 = this.type;
-        if (i2 != 0) {
-            if (i2 == 1) {
-                i = R.string.GiftStarsTitle;
-            } else if (i2 != 2) {
-                i = i2 != 4 ? R.string.GiftTelegramPremiumTitle : R.string.VoipConferenceAddPeople;
-            }
-            return LocaleController.getString(i);
-        }
-        i = R.string.GiftTelegramPremiumOrStarsTitle;
-        return LocaleController.getString(i);
-    }
-
-    protected boolean needChecks() {
-        return this.type == 4;
+        this.recyclerListView.scrollToPosition(0);
     }
 
     @Override
@@ -1201,12 +829,6 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        updateItems(false, true);
-    }
-
-    @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.giftsToUserSent);
@@ -1216,61 +838,150 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     @Override
-    protected void onPreDraw(Canvas canvas, int i, float f) {
-        this.headerView.setTranslationY(Math.max(i, AndroidUtilities.statusBarHeight - AndroidUtilities.dp(8.0f)) + AndroidUtilities.dp(8.0f));
-        this.searchField.setTranslationY(this.headerView.getTranslationY() + this.headerView.getMeasuredHeight());
-        this.sectionCell.setTranslationY(this.searchField.getTranslationY() + this.searchField.getMeasuredHeight());
-        this.recyclerListView.setTranslationY(((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) + this.sectionCell.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+    public void dismissInternal() {
+        super.dismissInternal();
+        instance = null;
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
     }
 
-    public View.OnClickListener openOptions(final TLRPC.User user) {
-        if (this.type == 3) {
-            return null;
+    protected int getLimit() {
+        if (this.type == 4) {
+            return Math.max(0, (MessagesController.getInstance(this.currentAccount).conferenceCallSizeLimit - this.excludeUserIds.size()) - 1);
         }
-        return new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                UserSelectorBottomSheet.this.lambda$openOptions$22(user, view);
+        return 10;
+    }
+
+    private void showMaximumUsersToast() {
+        String string;
+        if (this.type == 4) {
+            string = LocaleController.formatPluralStringComma("UserSelectorLimit", getLimit());
+        } else {
+            string = LocaleController.getString(R.string.BoostingSelectUpToWarningUsers);
+        }
+        BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
+        try {
+            this.container.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+    }
+
+    private void updateList(boolean z, boolean z2) {
+        updateItems(z, z2);
+        updateCheckboxes(z);
+        updateActionButton(z);
+    }
+
+    private void updateCheckboxes(boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet.updateCheckboxes(boolean):void");
+    }
+
+    public void updateActionButton(boolean z) {
+        this.actionButton.setShowZero(false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (this.type == 4) {
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CallInviteMembersButton));
+        } else if (this.selectedIds.size() == 0) {
+            if (LocaleController.isRTL) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString("GiftPremiumChooseRecipientsBtn", R.string.GiftPremiumChooseRecipientsBtn));
+                spannableStringBuilder.append((CharSequence) "d").setSpan(this.recipientsBtnSpaceSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            } else {
+                spannableStringBuilder.append((CharSequence) "d").setSpan(this.recipientsBtnSpaceSpan, 0, 1, 33);
+                spannableStringBuilder.append((CharSequence) LocaleController.getString("GiftPremiumChooseRecipientsBtn", R.string.GiftPremiumChooseRecipientsBtn));
             }
-        };
-    }
-
-    public void scrollToTop(boolean z) {
-        if (!z) {
-            this.recyclerListView.scrollToPosition(0);
-            return;
+        } else {
+            spannableStringBuilder.append((CharSequence) LocaleController.getString("GiftPremiumProceedBtn", R.string.GiftPremiumProceedBtn));
         }
-        LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
-        linearSmoothScrollerCustom.setTargetPosition(1);
-        linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(36.0f));
-        this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
+        this.actionButton.setCount(this.selectedIds.size(), true);
+        this.actionButton.setText(spannableStringBuilder, z, false);
+        this.actionButton.setEnabled(this.selectedIds.size() > 0);
     }
 
-    public UserSelectorBottomSheet setOnShareCallLinkListener(Runnable runnable) {
-        this.onShareCallLinkListener = runnable;
-        updateItems(false, true);
-        return this;
+    public void onSearch(String str) {
+        this.query = str;
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
     }
 
-    public void setOnUserSelector(Utilities.Callback callback) {
-        this.onUserSelectedListener = callback;
-    }
-
-    public UserSelectorBottomSheet setOnUsersSelector(Utilities.Callback2 callback2) {
-        this.onUsersSelectedListener = callback2;
-        return this;
-    }
-
-    public void setTitle(String str) {
-        this.customTitle = str;
-        ActionBar actionBar = this.actionBar;
-        if (actionBar != null) {
-            actionBar.setTitle(getTitle());
+    private void clearSearchAfterSelect() {
+        if (isSearching()) {
+            this.query = null;
+            this.searchField.setText("");
+            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+            updateItems(true, true);
         }
-        SelectorHeaderCell selectorHeaderCell = this.headerView;
-        if (selectorHeaderCell != null) {
-            selectorHeaderCell.setText(getTitle());
+    }
+
+    private boolean isSearching() {
+        return !TextUtils.isEmpty(this.query);
+    }
+
+    private SelectorAdapter.Item decorate(SelectorAdapter.Item item) {
+        if (this.type == 4) {
+            TLRPC.User user = item.user;
+            if (user == null) {
+                return item;
+            }
+            final long j = user.id;
+            return item.withCall(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    UserSelectorBottomSheet.this.lambda$decorate$14(j, view);
+                }
+            }, new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    UserSelectorBottomSheet.this.lambda$decorate$15(j, view);
+                }
+            });
         }
+        return item.withOptions(openOptions(item.user));
+    }
+
+    public void lambda$decorate$14(long j, View view) {
+        this.selectedIds.add(Long.valueOf(j));
+        Utilities.Callback2 callback2 = this.onUsersSelectedListener;
+        if (callback2 != null) {
+            callback2.run(Boolean.FALSE, this.selectedIds);
+            this.onUsersSelectedListener = null;
+        }
+        lambda$new$0();
+    }
+
+    public void lambda$decorate$15(long j, View view) {
+        this.selectedIds.add(Long.valueOf(j));
+        Utilities.Callback2 callback2 = this.onUsersSelectedListener;
+        if (callback2 != null) {
+            callback2.run(Boolean.TRUE, this.selectedIds);
+            this.onUsersSelectedListener = null;
+        }
+        lambda$new$0();
+    }
+
+    private int addSection(ArrayList arrayList, CharSequence charSequence, ArrayList arrayList2, boolean z) {
+        int i = 0;
+        if (arrayList2.isEmpty()) {
+            return 0;
+        }
+        ArrayList arrayList3 = new ArrayList();
+        Iterator it = arrayList2.iterator();
+        while (it.hasNext()) {
+            TLRPC.User user = (TLRPC.User) it.next();
+            if (user != null && !user.bot && !UserObject.isService(user.id)) {
+                long j = user.id;
+                if (j != this.userId && !this.excludeUserIds.contains(Long.valueOf(j))) {
+                    this.selectedIds.contains(Long.valueOf(user.id));
+                    i += AndroidUtilities.dp(56.0f);
+                    arrayList3.add(decorate(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id)))));
+                }
+            }
+        }
+        if (arrayList3.isEmpty()) {
+            return i;
+        }
+        int dp = i + AndroidUtilities.dp(32.0f);
+        arrayList.add(SelectorAdapter.Item.asTopSection(charSequence));
+        arrayList.addAll(arrayList3);
+        return dp;
     }
 
     public void updateItems(boolean z, boolean z2) {
@@ -1281,8 +992,6 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         TLRPC.User user;
         BirthdayController.BirthdayState birthdayState2;
         SelectorAdapter selectorAdapter;
-        ArrayList arrayList;
-        SelectorAdapter.Item decorate;
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
@@ -1297,9 +1006,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                         long j = user2.id;
                         i += AndroidUtilities.dp(56.0f);
                         if (!this.excludeUserIds.contains(Long.valueOf(user2.id))) {
-                            arrayList = this.items;
-                            decorate = decorate(SelectorAdapter.Item.asUser(user2, this.selectedIds.contains(Long.valueOf(j))));
-                            arrayList.add(decorate);
+                            this.items.add(decorate(SelectorAdapter.Item.asUser(user2, this.selectedIds.contains(Long.valueOf(j)))));
                         }
                     }
                 } else if (tLObject instanceof TLRPC.Chat) {
@@ -1308,9 +1015,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                         long j2 = -chat.id;
                         i += AndroidUtilities.dp(56.0f);
                         if (!this.excludeUserIds.contains(Long.valueOf(-chat.id))) {
-                            arrayList = this.items;
-                            decorate = SelectorAdapter.Item.asChat(chat, this.selectedIds.contains(Long.valueOf(j2)));
-                            arrayList.add(decorate);
+                            this.items.add(SelectorAdapter.Item.asChat(chat, this.selectedIds.contains(Long.valueOf(j2))));
                         }
                     }
                 }
@@ -1322,11 +1027,11 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                     combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                     this.tonIcon = combinedDrawable;
                 }
-                ArrayList arrayList2 = this.items;
+                ArrayList arrayList = this.items;
                 Drawable drawable = this.tonIcon;
                 String string = LocaleController.getString(R.string.Gift2ExportTONTitle);
                 int i2 = this.tonDays;
-                arrayList2.add(SelectorAdapter.Item.asCustomUser(2, drawable, string, i2 > 0 ? LocaleController.formatPluralString("Gift2ExportTONUnlocksIn", i2, new Object[0]) : ""));
+                arrayList.add(SelectorAdapter.Item.asCustomUser(2, drawable, string, i2 > 0 ? LocaleController.formatPluralString("Gift2ExportTONUnlocksIn", i2, new Object[0]) : ""));
             }
             TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
             if (userFull == null) {
@@ -1352,10 +1057,10 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 asUser.subtext = LocaleController.getString(R.string.Gift2Myself);
                 this.items.add(asUser);
             }
-            final ArrayList arrayList3 = new ArrayList();
+            final ArrayList arrayList2 = new ArrayList();
             SelectorAdapter.Item item = null;
             if (!this.hints.isEmpty()) {
-                ArrayList arrayList4 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
                 Iterator it2 = this.hints.iterator();
                 while (it2.hasNext()) {
                     TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TLRPC.TL_topPeer) it2.next()).peer.user_id));
@@ -1364,23 +1069,23 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                         if (j3 != this.userId && !user3.self && !user3.bot && !UserObject.isService(j3) && !UserObject.isDeleted(user3) && ((birthdayState2 = this.birthdays) == null || !birthdayState2.contains(user3.id))) {
                             if (!this.excludeUserIds.contains(Long.valueOf(user3.id))) {
                                 if (this.selectedIds.contains(Long.valueOf(user3.id))) {
-                                    arrayList3.add(Long.valueOf(user3.id));
+                                    arrayList2.add(Long.valueOf(user3.id));
                                 }
                                 dp += AndroidUtilities.dp(56.0f);
-                                arrayList4.add(decorate(SelectorAdapter.Item.asUser(user3, this.selectedIds.contains(Long.valueOf(user3.id)))));
+                                arrayList3.add(decorate(SelectorAdapter.Item.asUser(user3, this.selectedIds.contains(Long.valueOf(user3.id)))));
                             }
                         }
                     }
                 }
-                if (!arrayList4.isEmpty()) {
+                if (!arrayList3.isEmpty()) {
                     dp += AndroidUtilities.dp(32.0f);
                     item = SelectorAdapter.Item.asTopSection(LocaleController.getString(R.string.GiftPremiumFrequentContacts));
                     this.items.add(item);
-                    this.items.addAll(arrayList4);
+                    this.items.addAll(arrayList3);
                 }
             }
             for (String str : this.contactsLetters) {
-                ArrayList arrayList5 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
                 for (TLRPC.TL_contact tL_contact : (List) this.contactsMap.get(str)) {
                     long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
                     long j4 = tL_contact.user_id;
@@ -1388,23 +1093,23 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                         if (!this.excludeUserIds.contains(Long.valueOf(tL_contact.user_id)) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_contact.user_id))) != null && !user.bot && !UserObject.isService(user.id)) {
                             dp += AndroidUtilities.dp(56.0f);
                             if (this.selectedIds.contains(Long.valueOf(user.id))) {
-                                arrayList3.add(Long.valueOf(user.id));
+                                arrayList2.add(Long.valueOf(user.id));
                             }
-                            arrayList5.add(decorate(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id)))));
+                            arrayList4.add(decorate(SelectorAdapter.Item.asUser(user, this.selectedIds.contains(Long.valueOf(user.id)))));
                         }
                     }
                 }
-                if (!arrayList5.isEmpty()) {
+                if (!arrayList4.isEmpty()) {
                     dp += AndroidUtilities.dp(32.0f);
                     this.items.add(SelectorAdapter.Item.asLetter(str.toUpperCase()));
-                    this.items.addAll(arrayList5);
+                    this.items.addAll(arrayList4);
                 }
             }
-            if (item != null && arrayList3.size() > 0 && !this.selectedIds.isEmpty()) {
+            if (item != null && arrayList2.size() > 0 && !this.selectedIds.isEmpty()) {
                 item.withRightText(LocaleController.getString(R.string.DeselectAll), new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        UserSelectorBottomSheet.this.lambda$updateItems$19(arrayList3, view);
+                        UserSelectorBottomSheet.this.lambda$updateItems$19(arrayList2, view);
                     }
                 });
             }
@@ -1423,5 +1128,315 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         } else {
             selectorAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void lambda$updateItems$19(ArrayList arrayList, View view) {
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            Long l = (Long) it.next();
+            l.longValue();
+            this.selectedIds.remove(l);
+            this.allSelectedObjects.remove(l);
+        }
+        checkEditTextHint();
+        this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$updateItems$18();
+            }
+        }, null);
+        updateList(true, true);
+        clearSearchAfterSelect();
+    }
+
+    public void lambda$updateItems$18() {
+        checkEditTextHint();
+        updateList(true, false);
+    }
+
+    public View.OnClickListener openOptions(final TLRPC.User user) {
+        if (this.type == 3) {
+            return null;
+        }
+        return new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                UserSelectorBottomSheet.this.lambda$openOptions$22(user, view);
+            }
+        };
+    }
+
+    public void lambda$openOptions$22(final TLRPC.User user, View view) {
+        ItemOptions.makeOptions(this.container, this.resourcesProvider, (View) view.getParent()).add(R.drawable.profile_discuss, LocaleController.getString(R.string.SendMessage), new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$openOptions$20(user);
+            }
+        }).add(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$openOptions$21(user);
+            }
+        }).show();
+    }
+
+    public void lambda$openOptions$20(TLRPC.User user) {
+        if (user == null) {
+            return;
+        }
+        BaseFragment baseFragment = getBaseFragment();
+        if (baseFragment == null) {
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+            bottomSheetParams.transitionFromLeft = true;
+            bottomSheetParams.allowNestedScroll = false;
+            if (safeLastFragment == null) {
+                return;
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.id);
+            safeLastFragment.showAsSheet(new ChatActivity(bundle), bottomSheetParams);
+            return;
+        }
+        Bundle bundle2 = new Bundle();
+        bundle2.putLong("user_id", user.id);
+        baseFragment.presentFragment(new ChatActivity(bundle2));
+    }
+
+    public void lambda$openOptions$21(TLRPC.User user) {
+        if (user == null) {
+            return;
+        }
+        BaseFragment baseFragment = getBaseFragment();
+        if (baseFragment == null) {
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment == null) {
+                return;
+            }
+            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+            bottomSheetParams.transitionFromLeft = true;
+            bottomSheetParams.allowNestedScroll = false;
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.id);
+            safeLastFragment.showAsSheet(new ProfileActivity(bundle), bottomSheetParams);
+            return;
+        }
+        Bundle bundle2 = new Bundle();
+        bundle2.putLong("user_id", user.id);
+        baseFragment.presentFragment(new ProfileActivity(bundle2));
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        updateItems(false, true);
+    }
+
+    public void setTitle(String str) {
+        this.customTitle = str;
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null) {
+            actionBar.setTitle(getTitle());
+        }
+        SelectorHeaderCell selectorHeaderCell = this.headerView;
+        if (selectorHeaderCell != null) {
+            selectorHeaderCell.setText(getTitle());
+        }
+    }
+
+    public UserSelectorBottomSheet setOnShareCallLinkListener(Runnable runnable) {
+        this.onShareCallLinkListener = runnable;
+        updateItems(false, true);
+        return this;
+    }
+
+    public void setOnUserSelector(Utilities.Callback callback) {
+        this.onUserSelectedListener = callback;
+    }
+
+    public UserSelectorBottomSheet exceptUsers(long... jArr) {
+        for (long j : jArr) {
+            this.excludeUserIds.add(Long.valueOf(j));
+        }
+        updateItems(false, true);
+        return this;
+    }
+
+    public UserSelectorBottomSheet exceptUsers(Collection collection) {
+        this.excludeUserIds.addAll(collection);
+        updateItems(false, true);
+        return this;
+    }
+
+    public UserSelectorBottomSheet setOnUsersSelector(Utilities.Callback2 callback2) {
+        this.onUsersSelectedListener = callback2;
+        return this;
+    }
+
+    public void addTONOption(int i) {
+        this.includeTonOption = true;
+        this.tonDays = i;
+        updateItems(false, true);
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        String str = this.customTitle;
+        if (str != null) {
+            return str;
+        }
+        int i = this.type;
+        if (i != 0) {
+            if (i == 1) {
+                return LocaleController.getString(R.string.GiftStarsTitle);
+            }
+            if (i != 2) {
+                if (i == 4) {
+                    return LocaleController.getString(R.string.VoipConferenceAddPeople);
+                }
+                return LocaleController.getString(R.string.GiftTelegramPremiumTitle);
+            }
+        }
+        return LocaleController.getString(R.string.GiftTelegramPremiumOrStarsTitle);
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), false, this.resourcesProvider);
+        this.selectorAdapter = selectorAdapter;
+        selectorAdapter.setGreenSelector(true);
+        return this.selectorAdapter;
+    }
+
+    protected boolean needChecks() {
+        return this.type == 4;
+    }
+
+    @Override
+    public void lambda$new$0() {
+        AndroidUtilities.hideKeyboard(this.searchField.getEditText());
+        super.lambda$new$0();
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.giftsToUserSent) {
+            lambda$new$0();
+            return;
+        }
+        if (i == NotificationCenter.contactsDidLoad) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$23();
+                }
+            });
+        } else if (i == NotificationCenter.reloadHints) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$24();
+                }
+            });
+        } else if (i == NotificationCenter.userInfoDidLoad) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    UserSelectorBottomSheet.this.lambda$didReceivedNotification$25();
+                }
+            });
+        }
+    }
+
+    public void lambda$didReceivedNotification$23() {
+        initContacts(true);
+    }
+
+    public void lambda$didReceivedNotification$24() {
+        initHints(true);
+    }
+
+    public void lambda$didReceivedNotification$25() {
+        updateItems(true, true);
+    }
+
+    private void openBirthdaySetup() {
+        AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$28((TL_account.TL_birthday) obj);
+            }
+        }, new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$29();
+            }
+        }, this.resourcesProvider).show();
+    }
+
+    public void lambda$openBirthdaySetup$28(TL_account.TL_birthday tL_birthday) {
+        TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+        updatebirthday.flags |= 1;
+        updatebirthday.birthday = tL_birthday;
+        final TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(UserConfig.getInstance(this.currentAccount).getClientUserId());
+        final TL_account.TL_birthday tL_birthday2 = userFull != null ? userFull.birthday : null;
+        if (userFull != null) {
+            userFull.flags2 |= 32;
+            userFull.birthday = tL_birthday;
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatebirthday, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$27(userFull, tL_birthday2, tLObject, tL_error);
+            }
+        }, 1024);
+        MessagesController.getInstance(this.currentAccount).invalidateContentSettings();
+        MessagesController.getInstance(this.currentAccount).removeSuggestion(0L, "BIRTHDAY_SETUP");
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+        updateItems(true, true);
+    }
+
+    public void lambda$openBirthdaySetup$27(final TLRPC.UserFull userFull, final TL_account.TL_birthday tL_birthday, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                UserSelectorBottomSheet.this.lambda$openBirthdaySetup$26(tLObject, userFull, tL_birthday, tL_error);
+            }
+        });
+    }
+
+    public void lambda$openBirthdaySetup$26(TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
+        String str;
+        if (tLObject instanceof TLRPC.TL_boolTrue) {
+            BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.PrivacyBirthdaySetDone)).setDuration(5000).show();
+            return;
+        }
+        if (userFull != null) {
+            if (tL_birthday == null) {
+                userFull.flags2 &= -33;
+            } else {
+                userFull.flags2 |= 32;
+            }
+            userFull.birthday = tL_birthday;
+            MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, false);
+        }
+        if (tL_error != null && (str = tL_error.text) != null && str.startsWith("FLOOD_WAIT_")) {
+            if (getContext() != null) {
+                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.PrivacyBirthdayTooOftenTitle)).setMessage(LocaleController.getString(R.string.PrivacyBirthdayTooOftenMessage)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                return;
+            }
+            return;
+        }
+        BulletinFactory.of(this.bulletinContainer, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.UnknownError)).show();
+    }
+
+    public void lambda$openBirthdaySetup$29() {
+        if (getBaseFragment() == null) {
+            return;
+        }
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        getBaseFragment().showAsSheet(new PrivacyControlActivity(11), bottomSheetParams);
     }
 }

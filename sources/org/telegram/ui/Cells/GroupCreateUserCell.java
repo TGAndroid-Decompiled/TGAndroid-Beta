@@ -75,6 +75,25 @@ public class GroupCreateUserCell extends FrameLayout {
     private long starsPriceBlocked;
     private SimpleTextView statusTextView;
 
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    public boolean isBlocked() {
+        return this.premiumBlocked;
+    }
+
+    private void updatePremiumBlocked(boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCreateUserCell.updatePremiumBlocked(boolean):void");
+    }
+
+    public void overridePremiumBlocked(TL_account.RequirementToContact requirementToContact, boolean z) {
+        this.showPremiumBlocked = true;
+        this.blockedOverridden = requirementToContact;
+        updatePremiumBlocked(z);
+    }
+
     public GroupCreateUserCell(Context context, int i, int i2, boolean z) {
         this(context, i, i2, z, false, null);
     }
@@ -144,36 +163,60 @@ public class GroupCreateUserCell extends FrameLayout {
         setWillNotDraw(false);
     }
 
-    public void lambda$setChecked$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f = 0.18f * floatValue;
-        float f2 = this.isChecked ? 1.0f - f : 0.82f + f;
-        this.avatarImageView.setScaleX(f2);
-        this.avatarImageView.setScaleY(f2);
-        if (!this.isChecked) {
-            floatValue = 1.0f - floatValue;
-        }
-        this.checkProgress = floatValue;
-        invalidate();
+    public void setObject(TLObject tLObject, CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        setObject(tLObject, charSequence, charSequence2);
+        this.drawDivider = z;
     }
 
-    public static Drawable makeMiniAppsDrawable(Context context, boolean z) {
-        AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setAvatarType(8);
-        avatarDrawable.setScaleSize(z ? 0.8f : 1.1f);
-        avatarDrawable.setColor(Theme.getColor(Theme.key_avatar_backgroundBlue), Theme.getColor(Theme.key_avatar_background2Blue));
-        return avatarDrawable;
+    public void setObject(Object obj, CharSequence charSequence, CharSequence charSequence2) {
+        this.currentObject = obj;
+        this.currentStatus = charSequence2;
+        this.currentName = charSequence;
+        this.drawDivider = false;
+        this.currentPremium = false;
+        this.currentMiniapps = false;
+        update(0);
+    }
+
+    public void setPremium() {
+        this.currentPremium = true;
+        this.currentObject = "premium";
+        this.avatarImageView.setImageDrawable(makePremiumUsersDrawable(getContext(), false));
+        this.nameTextView.setText(LocaleController.getString(R.string.PrivacyPremium));
+        SimpleTextView simpleTextView = this.statusTextView;
+        int i = Theme.key_windowBackgroundWhiteGrayText;
+        simpleTextView.setTag(Integer.valueOf(i));
+        SimpleTextView simpleTextView2 = this.statusTextView;
+        if (this.forceDarkTheme) {
+            i = Theme.key_voipgroup_lastSeenText;
+        }
+        simpleTextView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        SimpleTextView simpleTextView3 = this.statusTextView;
+        simpleTextView3.setEmojiColor(simpleTextView3.getTextColor());
+        this.statusTextView.setText(LocaleController.getString(R.string.PrivacyPremiumText));
+    }
+
+    public void setMiniapps() {
+        this.currentMiniapps = true;
+        this.currentObject = "miniapps";
+        this.avatarImageView.setImageDrawable(makeMiniAppsDrawable(getContext(), false));
+        this.nameTextView.setText(LocaleController.getString(R.string.PrivacyMiniapps));
+        SimpleTextView simpleTextView = this.statusTextView;
+        int i = Theme.key_windowBackgroundWhiteGrayText;
+        simpleTextView.setTag(Integer.valueOf(i));
+        SimpleTextView simpleTextView2 = this.statusTextView;
+        if (this.forceDarkTheme) {
+            i = Theme.key_voipgroup_lastSeenText;
+        }
+        simpleTextView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        SimpleTextView simpleTextView3 = this.statusTextView;
+        simpleTextView3.setEmojiColor(simpleTextView3.getTextColor());
+        this.statusTextView.setText(LocaleController.getString(R.string.PrivacyMiniappsText));
     }
 
     public static Drawable makePremiumUsersDrawable(Context context, boolean z) {
         final PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient2, Theme.key_premiumGradient1, -1, -1, -1, null);
         CombinedDrawable combinedDrawable = new CombinedDrawable(new Drawable() {
-            @Override
-            public void draw(Canvas canvas) {
-                PremiumGradient.PremiumGradientTools.this.gradientMatrix(getBounds());
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, PremiumGradient.PremiumGradientTools.this.paint);
-            }
-
             @Override
             public int getOpacity() {
                 return -2;
@@ -186,6 +229,12 @@ public class GroupCreateUserCell extends FrameLayout {
             @Override
             public void setColorFilter(ColorFilter colorFilter) {
             }
+
+            @Override
+            public void draw(Canvas canvas) {
+                PremiumGradient.PremiumGradientTools.this.gradientMatrix(getBounds());
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, PremiumGradient.PremiumGradientTools.this.paint);
+            }
         }, context.getResources().getDrawable(R.drawable.msg_settings_premium), 0, 0);
         if (z) {
             combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
@@ -193,137 +242,20 @@ public class GroupCreateUserCell extends FrameLayout {
         return combinedDrawable;
     }
 
-    private void updatePremiumBlocked(boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCreateUserCell.updatePremiumBlocked(boolean):void");
+    public static Drawable makeMiniAppsDrawable(Context context, boolean z) {
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setAvatarType(8);
+        avatarDrawable.setScaleSize(z ? 0.8f : 1.1f);
+        avatarDrawable.setColor(Theme.getColor(Theme.key_avatar_backgroundBlue), Theme.getColor(Theme.key_avatar_background2Blue));
+        return avatarDrawable;
     }
 
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        Paint paint;
-        super.dispatchDraw(canvas);
-        float f = this.premiumBlockedT.set(this.premiumBlocked);
-        if (f > 0.0f) {
-            float y = this.avatarImageView.getY() + (this.avatarImageView.getHeight() / 2.0f) + AndroidUtilities.dp(18.0f);
-            float x = this.avatarImageView.getX() + (this.avatarImageView.getWidth() / 2.0f) + AndroidUtilities.dp(18.0f);
-            canvas.save();
-            Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-            canvas.drawCircle(x, y, AndroidUtilities.dp(11.33f) * f, Theme.dialogs_onlineCirclePaint);
-            if (this.blockedOverridden == null) {
-                if (this.premiumGradient == null) {
-                    this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, this.resourcesProvider);
-                }
-                this.premiumGradient.gradientMatrix((int) (x - AndroidUtilities.dp(10.0f)), (int) (y - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + x), (int) (AndroidUtilities.dp(10.0f) + y), 0.0f, 0.0f);
-                paint = this.premiumGradient.paint;
-            } else {
-                if (this.lockBackgroundPaint == null) {
-                    this.lockBackgroundPaint = new Paint();
-                }
-                this.lockBackgroundPaint.setColor(Theme.getColor(Theme.key_avatar_backgroundGray, this.resourcesProvider));
-                paint = this.lockBackgroundPaint;
-            }
-            canvas.drawCircle(x, y, AndroidUtilities.dp(10.0f) * f, paint);
-            if (this.lockDrawable == null) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
-                this.lockDrawable = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            }
-            this.lockDrawable.setBounds((int) (x - (((r4.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
-            this.lockDrawable.setAlpha((int) (f * 255.0f));
-            this.lockDrawable.draw(canvas);
-            canvas.restore();
-        }
+    public void setForbiddenCheck(boolean z) {
+        this.checkBox.setForbidden(z);
     }
 
     public CheckBox2 getCheckBox() {
         return this.checkBox;
-    }
-
-    public Object getObject() {
-        return this.currentObject;
-    }
-
-    public SimpleTextView getStatusTextView() {
-        return this.statusTextView;
-    }
-
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    public boolean isBlocked() {
-        return this.premiumBlocked;
-    }
-
-    public boolean isChecked() {
-        CheckBox2 checkBox2 = this.checkBox;
-        return checkBox2 != null ? checkBox2.isChecked() : this.isChecked;
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        float f;
-        float measuredHeight;
-        float f2;
-        float measuredHeight2;
-        Paint themePaint;
-        super.onDraw(canvas);
-        if (this.premiumBlockedT.set(this.premiumBlocked) <= 0.0f && this.checkBoxType == 2 && (this.isChecked || this.checkProgress > 0.0f)) {
-            this.paint.setColor(Theme.getColor(Theme.key_checkboxSquareBackground, this.resourcesProvider));
-            canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), AndroidUtilities.dp(18.0f) + (AndroidUtilities.dp(4.0f) * this.checkProgress), this.paint);
-        }
-        if (this.drawDivider) {
-            int dp = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
-            int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(LocaleController.isRTL ? this.padding + 72 : 0.0f);
-            if (this.forceDarkTheme) {
-                Theme.dividerExtraPaint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar, this.resourcesProvider));
-                f = dp;
-                measuredHeight = getMeasuredHeight() - 1;
-                f2 = measuredWidth;
-                measuredHeight2 = getMeasuredHeight();
-                themePaint = Theme.dividerExtraPaint;
-            } else {
-                f = dp;
-                measuredHeight = getMeasuredHeight() - 1;
-                f2 = measuredWidth;
-                measuredHeight2 = getMeasuredHeight();
-                themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
-            }
-            canvas.drawRect(f, measuredHeight, f2, measuredHeight2, themePaint);
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (isChecked()) {
-            accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(true);
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
-        Object obj = this.currentObject;
-        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((!(obj instanceof String) || "premium".equalsIgnoreCase((String) obj) || "miniapps".equalsIgnoreCase((String) this.currentObject)) ? 58.0f : 50.0f), 1073741824));
-    }
-
-    public void overridePremiumBlocked(TL_account.RequirementToContact requirementToContact, boolean z) {
-        this.showPremiumBlocked = true;
-        this.blockedOverridden = requirementToContact;
-        updatePremiumBlocked(z);
-    }
-
-    public void recycle() {
-        this.avatarImageView.getImageReceiver().cancelLoadImage();
-    }
-
-    public void setCheckBoxEnabled(boolean z) {
-        CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 != null) {
-            checkBox2.setEnabled(z);
-        }
     }
 
     public void setChecked(boolean z, boolean z2) {
@@ -366,83 +298,61 @@ public class GroupCreateUserCell extends FrameLayout {
         invalidate();
     }
 
+    public void lambda$setChecked$1(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        float f = 0.18f * floatValue;
+        float f2 = this.isChecked ? 1.0f - f : 0.82f + f;
+        this.avatarImageView.setScaleX(f2);
+        this.avatarImageView.setScaleY(f2);
+        if (!this.isChecked) {
+            floatValue = 1.0f - floatValue;
+        }
+        this.checkProgress = floatValue;
+        invalidate();
+    }
+
+    public void setCheckBoxEnabled(boolean z) {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            checkBox2.setEnabled(z);
+        }
+    }
+
+    public boolean isChecked() {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            return checkBox2.isChecked();
+        }
+        return this.isChecked;
+    }
+
+    public Object getObject() {
+        return this.currentObject;
+    }
+
     public void setDrawDivider(boolean z) {
         this.drawDivider = z;
         invalidate();
     }
 
-    public void setForbiddenCheck(boolean z) {
-        this.checkBox.setForbidden(z);
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        Object obj = this.currentObject;
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((!(obj instanceof String) || "premium".equalsIgnoreCase((String) obj) || "miniapps".equalsIgnoreCase((String) this.currentObject)) ? 58.0f : 50.0f), 1073741824));
     }
 
-    public void setMiniapps() {
-        this.currentMiniapps = true;
-        this.currentObject = "miniapps";
-        this.avatarImageView.setImageDrawable(makeMiniAppsDrawable(getContext(), false));
-        this.nameTextView.setText(LocaleController.getString(R.string.PrivacyMiniapps));
-        SimpleTextView simpleTextView = this.statusTextView;
-        int i = Theme.key_windowBackgroundWhiteGrayText;
-        simpleTextView.setTag(Integer.valueOf(i));
-        SimpleTextView simpleTextView2 = this.statusTextView;
-        if (this.forceDarkTheme) {
-            i = Theme.key_voipgroup_lastSeenText;
-        }
-        simpleTextView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
-        SimpleTextView simpleTextView3 = this.statusTextView;
-        simpleTextView3.setEmojiColor(simpleTextView3.getTextColor());
-        this.statusTextView.setText(LocaleController.getString(R.string.PrivacyMiniappsText));
-    }
-
-    public void setObject(Object obj, CharSequence charSequence, CharSequence charSequence2) {
-        this.currentObject = obj;
-        this.currentStatus = charSequence2;
-        this.currentName = charSequence;
-        this.drawDivider = false;
-        this.currentPremium = false;
-        this.currentMiniapps = false;
-        update(0);
-    }
-
-    public void setObject(TLObject tLObject, CharSequence charSequence, CharSequence charSequence2, boolean z) {
-        setObject(tLObject, charSequence, charSequence2);
-        this.drawDivider = z;
-    }
-
-    public void setPremium() {
-        this.currentPremium = true;
-        this.currentObject = "premium";
-        this.avatarImageView.setImageDrawable(makePremiumUsersDrawable(getContext(), false));
-        this.nameTextView.setText(LocaleController.getString(R.string.PrivacyPremium));
-        SimpleTextView simpleTextView = this.statusTextView;
-        int i = Theme.key_windowBackgroundWhiteGrayText;
-        simpleTextView.setTag(Integer.valueOf(i));
-        SimpleTextView simpleTextView2 = this.statusTextView;
-        if (this.forceDarkTheme) {
-            i = Theme.key_voipgroup_lastSeenText;
-        }
-        simpleTextView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
-        SimpleTextView simpleTextView3 = this.statusTextView;
-        simpleTextView3.setEmojiColor(simpleTextView3.getTextColor());
-        this.statusTextView.setText(LocaleController.getString(R.string.PrivacyPremiumText));
+    public void recycle() {
+        this.avatarImageView.getImageReceiver().cancelLoadImage();
     }
 
     public void update(int i) {
-        FrameLayout.LayoutParams layoutParams;
-        int dp;
         String str;
-        SimpleTextView simpleTextView;
-        int i2;
-        String string;
         String str2;
         TLRPC.FileLocation fileLocation;
         String str3;
-        SimpleTextView simpleTextView2;
-        int i3;
         TLRPC.UserStatus userStatus;
-        String formatUserStatus;
         TLRPC.FileLocation fileLocation2;
-        AvatarDrawable avatarDrawable;
-        int i4;
         Object obj = this.currentObject;
         if (obj == null || this.currentPremium || this.currentMiniapps) {
             return;
@@ -450,11 +360,11 @@ public class GroupCreateUserCell extends FrameLayout {
         TLRPC.Chat chat = null;
         if (obj instanceof String) {
             ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(15.0f);
+            ViewGroup.LayoutParams layoutParams = this.avatarImageView.getLayoutParams();
             ViewGroup.LayoutParams layoutParams2 = this.avatarImageView.getLayoutParams();
-            ViewGroup.LayoutParams layoutParams3 = this.avatarImageView.getLayoutParams();
-            int dp2 = AndroidUtilities.dp(38.0f);
-            layoutParams3.height = dp2;
-            layoutParams2.width = dp2;
+            int dp = AndroidUtilities.dp(38.0f);
+            layoutParams2.height = dp;
+            layoutParams.width = dp;
             CheckBox2 checkBox2 = this.checkBox;
             if (checkBox2 != null) {
                 ((FrameLayout.LayoutParams) checkBox2.getLayoutParams()).topMargin = AndroidUtilities.dp(25.0f);
@@ -531,9 +441,7 @@ public class GroupCreateUserCell extends FrameLayout {
             }
             switch (c) {
                 case 0:
-                    avatarDrawable = this.avatarDrawable;
-                    i4 = 11;
-                    avatarDrawable.setAvatarType(i4);
+                    this.avatarDrawable.setAvatarType(11);
                     break;
                 case 1:
                     this.avatarDrawable.setAvatarType(6);
@@ -545,25 +453,19 @@ public class GroupCreateUserCell extends FrameLayout {
                     this.avatarDrawable.setAvatarType(4);
                     break;
                 case 4:
-                    avatarDrawable = this.avatarDrawable;
-                    i4 = 24;
-                    avatarDrawable.setAvatarType(i4);
+                    this.avatarDrawable.setAvatarType(24);
                     break;
                 case 5:
                     this.avatarDrawable.setAvatarType(8);
                     break;
                 case 6:
-                    avatarDrawable = this.avatarDrawable;
-                    i4 = 10;
-                    avatarDrawable.setAvatarType(i4);
+                    this.avatarDrawable.setAvatarType(10);
                     break;
                 case 7:
                     this.avatarDrawable.setAvatarType(9);
                     break;
                 case '\b':
-                    avatarDrawable = this.avatarDrawable;
-                    i4 = 23;
-                    avatarDrawable.setAvatarType(i4);
+                    this.avatarDrawable.setAvatarType(23);
                     break;
                 case '\t':
                     this.avatarDrawable.setAvatarType(7);
@@ -575,19 +477,16 @@ public class GroupCreateUserCell extends FrameLayout {
             this.avatarImageView.setImage(null, "50_50", this.avatarDrawable);
         } else {
             CharSequence charSequence = this.currentStatus;
-            if (charSequence == null || !TextUtils.isEmpty(charSequence)) {
-                layoutParams = (FrameLayout.LayoutParams) this.nameTextView.getLayoutParams();
-                dp = AndroidUtilities.dp(10.0f);
+            if (charSequence != null && TextUtils.isEmpty(charSequence)) {
+                ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(19.0f);
             } else {
-                layoutParams = (FrameLayout.LayoutParams) this.nameTextView.getLayoutParams();
-                dp = AndroidUtilities.dp(19.0f);
+                ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(10.0f);
             }
-            layoutParams.topMargin = dp;
+            ViewGroup.LayoutParams layoutParams3 = this.avatarImageView.getLayoutParams();
             ViewGroup.LayoutParams layoutParams4 = this.avatarImageView.getLayoutParams();
-            ViewGroup.LayoutParams layoutParams5 = this.avatarImageView.getLayoutParams();
-            int dp3 = AndroidUtilities.dp(46.0f);
-            layoutParams5.height = dp3;
-            layoutParams4.width = dp3;
+            int dp2 = AndroidUtilities.dp(46.0f);
+            layoutParams4.height = dp2;
+            layoutParams3.width = dp2;
             CheckBox2 checkBox22 = this.checkBox;
             if (checkBox22 != null) {
                 ((FrameLayout.LayoutParams) checkBox22.getLayoutParams()).topMargin = AndroidUtilities.dp(29.0f) + this.padding;
@@ -648,46 +547,38 @@ public class GroupCreateUserCell extends FrameLayout {
                 }
                 if (this.currentStatus == null) {
                     if (user.bot) {
+                        SimpleTextView simpleTextView = this.statusTextView;
+                        int i2 = Theme.key_windowBackgroundWhiteGrayText;
+                        simpleTextView.setTag(Integer.valueOf(i2));
+                        SimpleTextView simpleTextView2 = this.statusTextView;
+                        if (this.forceDarkTheme) {
+                            i2 = Theme.key_voipgroup_lastSeenText;
+                        }
+                        simpleTextView2.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+                        this.statusTextView.setText(LocaleController.getString(R.string.Bot));
+                    } else if (user.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((userStatus = user.status) != null && userStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(user.id)))) {
                         SimpleTextView simpleTextView3 = this.statusTextView;
-                        int i5 = Theme.key_windowBackgroundWhiteGrayText;
-                        simpleTextView3.setTag(Integer.valueOf(i5));
+                        int i3 = Theme.key_windowBackgroundWhiteBlueText;
+                        simpleTextView3.setTag(Integer.valueOf(i3));
                         SimpleTextView simpleTextView4 = this.statusTextView;
                         if (this.forceDarkTheme) {
-                            i5 = Theme.key_voipgroup_lastSeenText;
+                            i3 = Theme.key_voipgroup_listeningText;
                         }
-                        simpleTextView4.setTextColor(Theme.getColor(i5, this.resourcesProvider));
-                        simpleTextView2 = this.statusTextView;
-                        i3 = R.string.Bot;
-                    } else if (user.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((userStatus = user.status) != null && userStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(user.id)))) {
+                        simpleTextView4.setTextColor(Theme.getColor(i3, this.resourcesProvider));
+                        this.statusTextView.setText(LocaleController.getString(R.string.Online));
+                    } else {
                         SimpleTextView simpleTextView5 = this.statusTextView;
-                        int i6 = Theme.key_windowBackgroundWhiteBlueText;
-                        simpleTextView5.setTag(Integer.valueOf(i6));
+                        int i4 = Theme.key_windowBackgroundWhiteGrayText;
+                        simpleTextView5.setTag(Integer.valueOf(i4));
                         SimpleTextView simpleTextView6 = this.statusTextView;
                         if (this.forceDarkTheme) {
-                            i6 = Theme.key_voipgroup_listeningText;
+                            i4 = Theme.key_voipgroup_lastSeenText;
                         }
-                        simpleTextView6.setTextColor(Theme.getColor(i6, this.resourcesProvider));
-                        simpleTextView2 = this.statusTextView;
-                        i3 = R.string.Online;
-                    } else {
-                        SimpleTextView simpleTextView7 = this.statusTextView;
-                        int i7 = Theme.key_windowBackgroundWhiteGrayText;
-                        simpleTextView7.setTag(Integer.valueOf(i7));
-                        SimpleTextView simpleTextView8 = this.statusTextView;
-                        if (this.forceDarkTheme) {
-                            i7 = Theme.key_voipgroup_lastSeenText;
-                        }
-                        simpleTextView8.setTextColor(Theme.getColor(i7, this.resourcesProvider));
-                        simpleTextView2 = this.statusTextView;
-                        formatUserStatus = LocaleController.formatUserStatus(this.currentAccount, user);
-                        simpleTextView2.setText(formatUserStatus);
-                        SimpleTextView simpleTextView9 = this.statusTextView;
-                        simpleTextView9.setEmojiColor(simpleTextView9.getTextColor());
+                        simpleTextView6.setTextColor(Theme.getColor(i4, this.resourcesProvider));
+                        this.statusTextView.setText(LocaleController.formatUserStatus(this.currentAccount, user));
                     }
-                    formatUserStatus = LocaleController.getString(i3);
-                    simpleTextView2.setText(formatUserStatus);
-                    SimpleTextView simpleTextView92 = this.statusTextView;
-                    simpleTextView92.setEmojiColor(simpleTextView92.getTextColor());
+                    SimpleTextView simpleTextView7 = this.statusTextView;
+                    simpleTextView7.setEmojiColor(simpleTextView7.getTextColor());
                 }
                 this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
             } else {
@@ -723,44 +614,35 @@ public class GroupCreateUserCell extends FrameLayout {
                     this.nameTextView.setText(str);
                 }
                 if (this.currentStatus == null) {
-                    SimpleTextView simpleTextView10 = this.statusTextView;
-                    int i8 = Theme.key_windowBackgroundWhiteGrayText;
-                    simpleTextView10.setTag(Integer.valueOf(i8));
-                    SimpleTextView simpleTextView11 = this.statusTextView;
+                    SimpleTextView simpleTextView8 = this.statusTextView;
+                    int i5 = Theme.key_windowBackgroundWhiteGrayText;
+                    simpleTextView8.setTag(Integer.valueOf(i5));
+                    SimpleTextView simpleTextView9 = this.statusTextView;
                     if (this.forceDarkTheme) {
-                        i8 = Theme.key_voipgroup_lastSeenText;
+                        i5 = Theme.key_voipgroup_lastSeenText;
                     }
-                    simpleTextView11.setTextColor(Theme.getColor(i8));
-                    SimpleTextView simpleTextView12 = this.statusTextView;
-                    simpleTextView12.setEmojiColor(simpleTextView12.getTextColor());
-                    if (chat2.participants_count == 0) {
-                        if (chat2.has_geo) {
-                            simpleTextView = this.statusTextView;
-                            i2 = R.string.MegaLocation;
-                        } else if (ChatObject.isPublic(chat2)) {
-                            if (!ChatObject.isChannel(chat2) || chat2.megagroup) {
-                                simpleTextView = this.statusTextView;
-                                i2 = R.string.MegaPublic;
-                            } else {
-                                simpleTextView = this.statusTextView;
-                                i2 = R.string.ChannelPublic;
-                            }
-                        } else if (!ChatObject.isChannel(chat2) || chat2.megagroup) {
-                            simpleTextView = this.statusTextView;
-                            i2 = R.string.MegaPrivate;
+                    simpleTextView9.setTextColor(Theme.getColor(i5));
+                    SimpleTextView simpleTextView10 = this.statusTextView;
+                    simpleTextView10.setEmojiColor(simpleTextView10.getTextColor());
+                    if (chat2.participants_count != 0) {
+                        if (ChatObject.isChannel(chat2) && !chat2.megagroup) {
+                            this.statusTextView.setText(LocaleController.formatPluralString("Subscribers", chat2.participants_count, new Object[0]));
                         } else {
-                            simpleTextView = this.statusTextView;
-                            i2 = R.string.ChannelPrivate;
+                            this.statusTextView.setText(LocaleController.formatPluralString("Members", chat2.participants_count, new Object[0]));
                         }
-                        string = LocaleController.getString(i2);
-                    } else if (!ChatObject.isChannel(chat2) || chat2.megagroup) {
-                        simpleTextView = this.statusTextView;
-                        string = LocaleController.formatPluralString("Members", chat2.participants_count, new Object[0]);
+                    } else if (chat2.has_geo) {
+                        this.statusTextView.setText(LocaleController.getString(R.string.MegaLocation));
+                    } else if (!ChatObject.isPublic(chat2)) {
+                        if (ChatObject.isChannel(chat2) && !chat2.megagroup) {
+                            this.statusTextView.setText(LocaleController.getString(R.string.ChannelPrivate));
+                        } else {
+                            this.statusTextView.setText(LocaleController.getString(R.string.MegaPrivate));
+                        }
+                    } else if (ChatObject.isChannel(chat2) && !chat2.megagroup) {
+                        this.statusTextView.setText(LocaleController.getString(R.string.ChannelPublic));
                     } else {
-                        simpleTextView = this.statusTextView;
-                        string = LocaleController.formatPluralString("Subscribers", chat2.participants_count, new Object[0]);
+                        this.statusTextView.setText(LocaleController.getString(R.string.MegaPublic));
                     }
-                    simpleTextView.setText(string);
                 }
                 this.avatarImageView.setForUserOrChat(chat2, this.avatarDrawable);
                 chat = chat2;
@@ -770,17 +652,86 @@ public class GroupCreateUserCell extends FrameLayout {
         CharSequence charSequence4 = this.currentStatus;
         if (charSequence4 != null) {
             this.statusTextView.setText(charSequence4, true);
-            SimpleTextView simpleTextView13 = this.statusTextView;
-            int i9 = Theme.key_windowBackgroundWhiteGrayText;
-            simpleTextView13.setTag(Integer.valueOf(i9));
-            SimpleTextView simpleTextView14 = this.statusTextView;
+            SimpleTextView simpleTextView11 = this.statusTextView;
+            int i6 = Theme.key_windowBackgroundWhiteGrayText;
+            simpleTextView11.setTag(Integer.valueOf(i6));
+            SimpleTextView simpleTextView12 = this.statusTextView;
             if (this.forceDarkTheme) {
-                i9 = Theme.key_voipgroup_lastSeenText;
+                i6 = Theme.key_voipgroup_lastSeenText;
             }
-            simpleTextView14.setTextColor(Theme.getColor(i9, this.resourcesProvider));
-            SimpleTextView simpleTextView15 = this.statusTextView;
-            simpleTextView15.setEmojiColor(simpleTextView15.getTextColor());
+            simpleTextView12.setTextColor(Theme.getColor(i6, this.resourcesProvider));
+            SimpleTextView simpleTextView13 = this.statusTextView;
+            simpleTextView13.setEmojiColor(simpleTextView13.getTextColor());
         }
         updatePremiumBlocked(false);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.premiumBlockedT.set(this.premiumBlocked) <= 0.0f && this.checkBoxType == 2 && (this.isChecked || this.checkProgress > 0.0f)) {
+            this.paint.setColor(Theme.getColor(Theme.key_checkboxSquareBackground, this.resourcesProvider));
+            canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), AndroidUtilities.dp(18.0f) + (AndroidUtilities.dp(4.0f) * this.checkProgress), this.paint);
+        }
+        if (this.drawDivider) {
+            int dp = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
+            int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(LocaleController.isRTL ? this.padding + 72 : 0.0f);
+            if (this.forceDarkTheme) {
+                Theme.dividerExtraPaint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar, this.resourcesProvider));
+                canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
+            } else {
+                canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.getThemePaint("paintDivider", this.resourcesProvider));
+            }
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        Paint paint;
+        super.dispatchDraw(canvas);
+        float f = this.premiumBlockedT.set(this.premiumBlocked);
+        if (f > 0.0f) {
+            float y = this.avatarImageView.getY() + (this.avatarImageView.getHeight() / 2.0f) + AndroidUtilities.dp(18.0f);
+            float x = this.avatarImageView.getX() + (this.avatarImageView.getWidth() / 2.0f) + AndroidUtilities.dp(18.0f);
+            canvas.save();
+            Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+            canvas.drawCircle(x, y, AndroidUtilities.dp(11.33f) * f, Theme.dialogs_onlineCirclePaint);
+            if (this.blockedOverridden == null) {
+                if (this.premiumGradient == null) {
+                    this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, this.resourcesProvider);
+                }
+                this.premiumGradient.gradientMatrix((int) (x - AndroidUtilities.dp(10.0f)), (int) (y - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + x), (int) (AndroidUtilities.dp(10.0f) + y), 0.0f, 0.0f);
+                paint = this.premiumGradient.paint;
+            } else {
+                if (this.lockBackgroundPaint == null) {
+                    this.lockBackgroundPaint = new Paint();
+                }
+                this.lockBackgroundPaint.setColor(Theme.getColor(Theme.key_avatar_backgroundGray, this.resourcesProvider));
+                paint = this.lockBackgroundPaint;
+            }
+            canvas.drawCircle(x, y, AndroidUtilities.dp(10.0f) * f, paint);
+            if (this.lockDrawable == null) {
+                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                this.lockDrawable = mutate;
+                mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            }
+            this.lockDrawable.setBounds((int) (x - (((r4.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
+            this.lockDrawable.setAlpha((int) (f * 255.0f));
+            this.lockDrawable.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (isChecked()) {
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(true);
+        }
+    }
+
+    public SimpleTextView getStatusTextView() {
+        return this.statusTextView;
     }
 }

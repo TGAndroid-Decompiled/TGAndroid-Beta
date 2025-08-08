@@ -87,579 +87,6 @@ public abstract class StoriesUtilities {
     private static final PathMeasure forumRoundRectPathMeasure = new PathMeasure();
     private static final Path forumSegmentPath = new Path();
 
-    public static class AvatarStoryParams {
-        public boolean allowLongress;
-        public float alpha;
-        public boolean animate;
-        public int animateFromUnreadState;
-        ButtonBounce buttonBounce;
-        public View child;
-        public long crossfadeToDialog;
-        public float crossfadeToDialogProgress;
-        public int currentState;
-        private long dialogId;
-        public boolean drawHiddenStoriesAsSegments;
-        public boolean drawInside;
-        public boolean drawSegments;
-        public boolean forceAnimateProgressToSegments;
-        public int forceState;
-        float globalAngle;
-        public int globalState;
-        boolean inc;
-        public boolean isArchive;
-        public boolean isDialogStoriesCell;
-        public boolean isFirst;
-        public boolean isLast;
-        private final boolean isStoryCell;
-        Runnable longPressRunnable;
-        UserStoriesLoadOperation operation;
-        public RectF originalAvatarRect;
-        boolean pressed;
-        public int prevState;
-        public int prevUnreadState;
-        public float progressToArc;
-        public float progressToProgressSegments;
-        public float progressToSate;
-        public float progressToSegments;
-        public Theme.ResourcesProvider resourcesProvider;
-        public boolean showProgress;
-        float startX;
-        float startY;
-        public int storyId;
-        public TL_stories.StoryItem storyItem;
-        float sweepAngle;
-        public int unreadState;
-
-        public AvatarStoryParams(boolean z) {
-            this(z, null);
-        }
-
-        public AvatarStoryParams(boolean z, Theme.ResourcesProvider resourcesProvider) {
-            this.drawSegments = true;
-            this.animate = true;
-            this.progressToSegments = 1.0f;
-            this.progressToArc = 0.0f;
-            this.alpha = 1.0f;
-            this.progressToSate = 1.0f;
-            this.showProgress = false;
-            this.originalAvatarRect = new RectF();
-            this.allowLongress = false;
-            this.isStoryCell = z;
-            this.resourcesProvider = resourcesProvider;
-        }
-
-        public void lambda$checkOnTouchEvent$0(View view) {
-            try {
-                view.performHapticFeedback(0);
-            } catch (Exception unused) {
-            }
-            ButtonBounce buttonBounce = this.buttonBounce;
-            if (buttonBounce != null) {
-                buttonBounce.setPressed(false);
-            }
-            ViewParent parent = view.getParent();
-            if (parent instanceof ViewGroup) {
-                ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
-            }
-            this.pressed = false;
-            onLongPress();
-        }
-
-        private void processOpenStory(View view) {
-            MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-            StoriesController storiesController = messagesController.getStoriesController();
-            if (this.drawHiddenStoriesAsSegments) {
-                openStory(0L, null);
-                return;
-            }
-            if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
-                if (storiesController.hasStories(this.dialogId)) {
-                    openStory(this.dialogId, null);
-                    return;
-                }
-                long j = this.dialogId;
-                if (j > 0) {
-                    TLRPC.User user = messagesController.getUser(Long.valueOf(j));
-                    if (user == null || user.stories_unavailable || user.stories_max_id <= 0) {
-                        return;
-                    }
-                    new UserStoriesLoadOperation().load(this.dialogId, view, this);
-                    return;
-                }
-                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
-                if (chat == null || chat.stories_unavailable || chat.stories_max_id <= 0) {
-                    return;
-                }
-                new UserStoriesLoadOperation().load(this.dialogId, view, this);
-            }
-        }
-
-        public void updateProgressParams() {
-            boolean z;
-            if (this.inc) {
-                float f = this.sweepAngle + 0.016f;
-                this.sweepAngle = f;
-                if (f >= 1.0f) {
-                    this.sweepAngle = 1.0f;
-                    z = false;
-                    this.inc = z;
-                }
-            } else {
-                float f2 = this.sweepAngle - 0.016f;
-                this.sweepAngle = f2;
-                if (f2 < 0.0f) {
-                    this.sweepAngle = 0.0f;
-                    z = true;
-                    this.inc = z;
-                }
-            }
-            this.globalAngle += 1.152f;
-        }
-
-        public boolean checkOnTouchEvent(MotionEvent motionEvent, final View view) {
-            TLRPC.User user;
-            this.child = view;
-            StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController();
-            boolean z = false;
-            if (motionEvent.getAction() == 0 && this.originalAvatarRect.contains(motionEvent.getX(), motionEvent.getY())) {
-                long j = this.dialogId;
-                TLRPC.Chat chat = null;
-                MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-                if (j > 0) {
-                    user = messagesController.getUser(Long.valueOf(this.dialogId));
-                } else {
-                    TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-this.dialogId));
-                    user = null;
-                    chat = chat2;
-                }
-                if (this.drawHiddenStoriesAsSegments) {
-                    z = storiesController.hasHiddenStories();
-                } else if (this.dialogId <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (chat != null && !chat.stories_unavailable && chat.stories_max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (user != null && !user.stories_unavailable && user.stories_max_id > 0)) {
-                    z = true;
-                }
-                if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z) {
-                    ButtonBounce buttonBounce = this.buttonBounce;
-                    if (buttonBounce == null) {
-                        this.buttonBounce = new ButtonBounce(view, 1.5f, 5.0f);
-                    } else {
-                        buttonBounce.setView(view);
-                    }
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    this.buttonBounce.setPressed(true);
-                    this.pressed = true;
-                    this.startX = motionEvent.getX();
-                    this.startY = motionEvent.getY();
-                    if (this.allowLongress) {
-                        Runnable runnable = this.longPressRunnable;
-                        if (runnable != null) {
-                            AndroidUtilities.cancelRunOnUIThread(runnable);
-                        }
-                        Runnable runnable2 = new Runnable() {
-                            @Override
-                            public final void run() {
-                                StoriesUtilities.AvatarStoryParams.this.lambda$checkOnTouchEvent$0(view);
-                            }
-                        };
-                        this.longPressRunnable = runnable2;
-                        AndroidUtilities.runOnUIThread(runnable2, ViewConfiguration.getLongPressTimeout());
-                    }
-                }
-            } else if (motionEvent.getAction() == 2 && this.pressed) {
-                if (Math.abs(this.startX - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.startY - motionEvent.getY()) > AndroidUtilities.touchSlop) {
-                    ButtonBounce buttonBounce2 = this.buttonBounce;
-                    if (buttonBounce2 != null) {
-                        buttonBounce2.setView(view);
-                        this.buttonBounce.setPressed(false);
-                    }
-                    Runnable runnable3 = this.longPressRunnable;
-                    if (runnable3 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(runnable3);
-                    }
-                    view.getParent().requestDisallowInterceptTouchEvent(false);
-                    this.pressed = false;
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                ButtonBounce buttonBounce3 = this.buttonBounce;
-                if (buttonBounce3 != null) {
-                    buttonBounce3.setView(view);
-                    this.buttonBounce.setPressed(false);
-                }
-                if (this.pressed && motionEvent.getAction() == 1) {
-                    processOpenStory(view);
-                }
-                ViewParent parent = view.getParent();
-                if (parent instanceof ViewGroup) {
-                    ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
-                }
-                this.pressed = false;
-                Runnable runnable4 = this.longPressRunnable;
-                if (runnable4 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable4);
-                }
-            }
-            return this.pressed;
-        }
-
-        public float getScale() {
-            ButtonBounce buttonBounce = this.buttonBounce;
-            if (buttonBounce == null) {
-                return 1.0f;
-            }
-            return buttonBounce.getScale(0.08f);
-        }
-
-        public void onDetachFromWindow() {
-            reset();
-        }
-
-        public void onLongPress() {
-        }
-
-        public void openStory(long j, Runnable runnable) {
-            BaseFragment lastFragment = LaunchActivity.getLastFragment();
-            if (lastFragment == null || this.child == null) {
-                return;
-            }
-            lastFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
-            ViewParent parent = this.child.getParent();
-            lastFragment.getOrCreateStoryViewer().open(lastFragment.getContext(), j, parent instanceof RecyclerView ? StoriesListPlaceProvider.of((RecyclerListView) parent) : null);
-        }
-
-        public void reset() {
-            UserStoriesLoadOperation userStoriesLoadOperation = this.operation;
-            if (userStoriesLoadOperation != null) {
-                userStoriesLoadOperation.cancel();
-                this.operation = null;
-            }
-            this.buttonBounce = null;
-            this.pressed = false;
-        }
-    }
-
-    public static class EnsureStoryFileLoadedObject {
-        private boolean cancelled;
-        long dialogId;
-        ImageReceiver imageReceiver;
-        public Runnable runnable;
-        StoriesController storiesController;
-
-        private EnsureStoryFileLoadedObject(StoriesController storiesController, long j) {
-            this.cancelled = false;
-            this.dialogId = j;
-            this.storiesController = storiesController;
-        }
-
-        public void cancel() {
-            this.cancelled = true;
-            this.storiesController.setLoading(this.dialogId, false);
-        }
-    }
-
-    public static class StoryGradientTools {
-        private final AnimatedColor animatedColor1;
-        private final AnimatedColor animatedColor2;
-        private int color1;
-        private int color2;
-        public final int currentAccount;
-        private final Runnable invalidate;
-        private final boolean isDialogCell;
-        private final GradientTools tools;
-
-        public StoryGradientTools(View view, boolean z) {
-            this(new Shaker$$ExternalSyntheticLambda0(view), z);
-            Objects.requireNonNull(view);
-        }
-
-        public StoryGradientTools(Runnable runnable, boolean z) {
-            this.currentAccount = UserConfig.selectedAccount;
-            this.invalidate = runnable;
-            this.isDialogCell = z;
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.animatedColor1 = new AnimatedColor(runnable, 350L, cubicBezierInterpolator);
-            this.animatedColor2 = new AnimatedColor(runnable, 350L, cubicBezierInterpolator);
-            GradientTools gradientTools = new GradientTools();
-            this.tools = gradientTools;
-            gradientTools.isDiagonal = true;
-            gradientTools.isRotate = true;
-            resetColors(false);
-            gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
-            gradientTools.paint.setStyle(Paint.Style.STROKE);
-            gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
-        }
-
-        private void resetColors(boolean z) {
-            int color;
-            int i;
-            if (this.isDialogCell) {
-                color = Theme.getColor(Theme.key_stories_circle_dialog1);
-                i = Theme.key_stories_circle_dialog2;
-            } else {
-                color = Theme.getColor(Theme.key_stories_circle1);
-                i = Theme.key_stories_circle2;
-            }
-            setColors(color, Theme.getColor(i), z);
-        }
-
-        private void setColors(int i, int i2, boolean z) {
-            this.color1 = i;
-            this.color2 = i2;
-            if (!z) {
-                this.animatedColor1.set(i, true);
-                this.animatedColor2.set(i2, true);
-            }
-            Runnable runnable = this.invalidate;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-
-        public Paint getPaint(RectF rectF) {
-            this.tools.setColors(this.animatedColor1.set(this.color1), this.animatedColor2.set(this.color2));
-            this.tools.setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
-            return this.tools.paint;
-        }
-
-        public void setChat(TLRPC.Chat chat, boolean z) {
-            TLRPC.TL_peerColor tL_peerColor;
-            setColorId((chat == null || (tL_peerColor = chat.profile_color) == null) ? -1 : tL_peerColor.color, z);
-        }
-
-        public void setColor(MessagesController.PeerColor peerColor, boolean z) {
-            if (peerColor != null) {
-                setColors(peerColor.getStoryColor1(Theme.isCurrentThemeDark()), peerColor.getStoryColor2(Theme.isCurrentThemeDark()), z);
-            } else {
-                resetColors(z);
-            }
-        }
-
-        public void setColorId(int i, boolean z) {
-            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).profilePeerColors;
-            setColor(peerColors == null ? null : peerColors.getColor(i), z);
-        }
-
-        public void setUser(TLRPC.User user, boolean z) {
-            TLRPC.TL_peerColor tL_peerColor;
-            setColorId((user == null || (tL_peerColor = user.profile_color) == null) ? -1 : tL_peerColor.color, z);
-        }
-    }
-
-    public static class UserStoriesLoadOperation {
-        boolean canceled;
-        private int currentAccount;
-        long dialogId;
-        int guid = ConnectionsManager.generateClassGuid();
-        AvatarStoryParams params;
-        int reqId;
-        View view;
-
-        public void lambda$load$0(View view, long j) {
-            view.invalidate();
-            MessagesController.getInstance(this.currentAccount).getStoriesController().setLoading(j, false);
-        }
-
-        public void lambda$load$1(final View view, final long j, AvatarStoryParams avatarStoryParams) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$0(view, j);
-                }
-            }, 500L);
-            avatarStoryParams.openStory(j, null);
-        }
-
-        public void lambda$load$2(org.telegram.tgnet.TLObject r10, final long r11, final android.view.View r13, final org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r14, org.telegram.messenger.MessagesController r15) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.UserStoriesLoadOperation.lambda$load$2(org.telegram.tgnet.TLObject, long, android.view.View, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, org.telegram.messenger.MessagesController):void");
-        }
-
-        public void lambda$load$3(final long j, final View view, final AvatarStoryParams avatarStoryParams, final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$2(tLObject, j, view, avatarStoryParams, messagesController);
-                }
-            });
-        }
-
-        void cancel() {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, false);
-            this.canceled = true;
-            this.params = null;
-        }
-
-        void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) {
-            int i = UserConfig.selectedAccount;
-            this.currentAccount = i;
-            this.dialogId = j;
-            this.params = avatarStoryParams;
-            this.view = view;
-            final MessagesController messagesController = MessagesController.getInstance(i);
-            messagesController.getStoriesController().setLoading(j, true);
-            view.invalidate();
-            TL_stories.TL_stories_getPeerStories tL_stories_getPeerStories = new TL_stories.TL_stories_getPeerStories();
-            tL_stories_getPeerStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
-            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getPeerStories, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$3(j, view, avatarStoryParams, messagesController, tLObject, tL_error);
-                }
-            });
-        }
-    }
-
-    public static void applyUploadingStr(SimpleTextView simpleTextView, boolean z, boolean z2) {
-        String string = LocaleController.getString(z2 ? R.string.StoryEditing : R.string.UploadingStory);
-        int indexOf = string.indexOf("…");
-        String str = string;
-        if (indexOf > 0) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
-            UploadingDotsSpannable uploadingDotsSpannable = new UploadingDotsSpannable();
-            valueOf.setSpan(uploadingDotsSpannable, valueOf.length() - 1, valueOf.length(), 0);
-            uploadingDotsSpannable.setParent(simpleTextView, z);
-            str = valueOf;
-        }
-        simpleTextView.setText(str);
-    }
-
-    public static void applyViewedUser(TL_stories.StoryItem storyItem, TLRPC.User user) {
-        if (user == null || storyItem.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || hasExpiredViews(storyItem)) {
-            return;
-        }
-        if (storyItem.views == null) {
-            storyItem.views = new TL_stories.TL_storyViews();
-        }
-        TL_stories.StoryViews storyViews = storyItem.views;
-        if (storyViews.views_count == 0) {
-            storyViews.views_count = 1;
-            storyViews.recent_viewers.add(Long.valueOf(user.id));
-        }
-    }
-
-    private static void checkGrayPaint(Theme.ResourcesProvider resourcesProvider) {
-        Paint paint;
-        int blendARGB;
-        if (grayPaint == null) {
-            Paint paint2 = new Paint(1);
-            grayPaint = paint2;
-            paint2.setStyle(Paint.Style.STROKE);
-            grayPaint.setStrokeWidth(AndroidUtilities.dpf2(1.3f));
-            grayPaint.setStrokeCap(Paint.Cap.ROUND);
-        }
-        int color = Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider);
-        if (grayLastColor != color) {
-            grayLastColor = color;
-            float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(color);
-            if (computePerceivedBrightness >= 0.721f) {
-                paint = grayPaint;
-                blendARGB = ColorUtils.blendARGB(color, -16777216, 0.2f);
-            } else if (computePerceivedBrightness < 0.25f) {
-                paint = grayPaint;
-                blendARGB = ColorUtils.blendARGB(color, -1, 0.2f);
-            } else {
-                paint = grayPaint;
-                blendARGB = ColorUtils.blendARGB(color, -1, 0.44f);
-            }
-            paint.setColor(blendARGB);
-        }
-    }
-
-    private static void checkStoriesGradientTools(boolean z) {
-        int color;
-        int i;
-        GradientTools[] gradientToolsArr = storiesGradientTools;
-        if (gradientToolsArr[z ? 1 : 0] == null) {
-            gradientToolsArr[z ? 1 : 0] = new GradientTools();
-            GradientTools gradientTools = storiesGradientTools[z ? 1 : 0];
-            gradientTools.isDiagonal = true;
-            gradientTools.isRotate = true;
-            if (z) {
-                color = Theme.getColor(Theme.key_stories_circle_dialog1);
-                i = Theme.key_stories_circle_dialog2;
-            } else {
-                color = Theme.getColor(Theme.key_stories_circle1);
-                i = Theme.key_stories_circle2;
-            }
-            gradientTools.setColors(color, Theme.getColor(i));
-            storiesGradientTools[z ? 1 : 0].paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
-            storiesGradientTools[z ? 1 : 0].paint.setStyle(Paint.Style.STROKE);
-            storiesGradientTools[z ? 1 : 0].paint.setStrokeCap(Paint.Cap.ROUND);
-        }
-    }
-
-    private static void checkStoryCellGrayPaint(boolean z, Theme.ResourcesProvider resourcesProvider) {
-        Paint paint;
-        int blendARGB;
-        Paint[] paintArr = storyCellGreyPaint;
-        if (paintArr[z ? 1 : 0] == null) {
-            paintArr[z ? 1 : 0] = new Paint(1);
-            storyCellGreyPaint[z ? 1 : 0].setStyle(Paint.Style.STROKE);
-            storyCellGreyPaint[z ? 1 : 0].setStrokeWidth(AndroidUtilities.dpf2(1.3f));
-            storyCellGreyPaint[z ? 1 : 0].setStrokeCap(Paint.Cap.ROUND);
-        }
-        int color = Theme.getColor(!z ? Theme.key_actionBarDefault : Theme.key_actionBarDefaultArchived, resourcesProvider);
-        if (storyCellGrayLastColor != color) {
-            storyCellGrayLastColor = color;
-            float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(color);
-            if (computePerceivedBrightness >= 0.721f) {
-                paint = storyCellGreyPaint[z ? 1 : 0];
-                blendARGB = ColorUtils.blendARGB(color, -16777216, 0.2f);
-            } else if (computePerceivedBrightness < 0.25f) {
-                paint = storyCellGreyPaint[z ? 1 : 0];
-                blendARGB = ColorUtils.blendARGB(color, -1, 0.2f);
-            } else {
-                paint = storyCellGreyPaint[z ? 1 : 0];
-                blendARGB = ColorUtils.blendARGB(color, -1, 0.44f);
-            }
-            paint.setColor(blendARGB);
-        }
-    }
-
-    public static CharSequence createExpiredStoryString() {
-        return createExpiredStoryString(false, R.string.ExpiredStory, new Object[0]);
-    }
-
-    public static CharSequence createExpiredStoryString(boolean z, int i, Object... objArr) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.formatString(i, objArr));
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_bomb);
-        if (z) {
-            coloredImageSpan.setScale(0.8f, 0.8f);
-        } else {
-            coloredImageSpan.setTopOffset(-1);
-        }
-        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
-        return spannableStringBuilder;
-    }
-
-    public static CharSequence createReplyStoryString() {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.getString(R.string.Story));
-        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_mini_replystory2), 0, 1, 0);
-        return spannableStringBuilder;
-    }
-
-    public static void drawArcExcludeArc(Canvas canvas, RectF rectF, Paint paint, float f, float f2, float f3, float f4) {
-        boolean z;
-        float f5 = f2 - f;
-        if (f >= f3 || f2 >= f3 + f5) {
-            z = false;
-        } else {
-            canvas.drawArc(rectF, f, Math.min(f2, f3) - f, false, paint);
-            z = true;
-        }
-        float max = Math.max(f, f4);
-        float min = Math.min(f2, 360.0f + f3);
-        if (min >= max) {
-            canvas.drawArc(rectF, max, min - max, false, paint);
-        } else {
-            if (z) {
-                return;
-            }
-            if (f <= f3 || f2 >= f4) {
-                canvas.drawArc(rectF, f, f5, false, paint);
-            }
-        }
-    }
-
     public static void drawAvatarWithStory(long j, Canvas canvas, ImageReceiver imageReceiver, AvatarStoryParams avatarStoryParams) {
         drawAvatarWithStory(j, canvas, imageReceiver, UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId() != j && MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(j), avatarStoryParams);
     }
@@ -709,16 +136,18 @@ public abstract class StoriesUtilities {
                 predictiveUnreadState = 3;
             }
             z2 = false;
-        } else if (!hasHiddenStories) {
+        } else if (hasHiddenStories) {
+            if (avatarStoryParams.drawSegments) {
+                predictiveUnreadState = 2;
+                i = 2;
+            } else {
+                int unreadState = storiesController.getUnreadState(j, avatarStoryParams.storyId);
+                i = unreadState;
+                predictiveUnreadState = unreadState == 0 ? 2 : 1;
+            }
+        } else {
             predictiveUnreadState = getPredictiveUnreadState(storiesController, j);
             i = predictiveUnreadState;
-        } else if (avatarStoryParams.drawSegments) {
-            predictiveUnreadState = 2;
-            i = 2;
-        } else {
-            int unreadState = storiesController.getUnreadState(j, avatarStoryParams.storyId);
-            i = unreadState;
-            predictiveUnreadState = unreadState == 0 ? 2 : 1;
         }
         int i4 = avatarStoryParams.forceState;
         if (i4 != 0) {
@@ -902,12 +331,12 @@ public abstract class StoriesUtilities {
                 }
                 f3 = 0.0f;
             }
-            if (avatarStoryParams.prevState != 3 || avatarStoryParams.progressToSate == f) {
-                paint8.setAlpha((int) (avatarStoryParams.alpha * 255.0f * f6));
-                dp = f3 + (AndroidUtilities.dp(5.0f) * (f - f6));
-            } else {
+            if (avatarStoryParams.prevState == 3 && avatarStoryParams.progressToSate != f) {
                 dp = f3 + (AndroidUtilities.dp(7.0f) * f6);
                 paint8.setAlpha((int) (avatarStoryParams.alpha * 255.0f * (f - f6)));
+            } else {
+                paint8.setAlpha((int) (avatarStoryParams.alpha * 255.0f * f6));
+                dp = f3 + (AndroidUtilities.dp(5.0f) * (f - f6));
             }
             RectF rectF4 = rectTmp;
             rectF4.set(avatarStoryParams.originalAvatarRect);
@@ -960,21 +389,26 @@ public abstract class StoriesUtilities {
         }
     }
 
-    private static void drawCircleInternal(Canvas canvas, View view, AvatarStoryParams avatarStoryParams, Paint paint, boolean z) {
-        if (z) {
-            RectF rectF = forumRect;
-            rectF.set(rectTmp);
-            rectF.inset(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
-            return;
+    private static void drawSegmentsInternal(android.graphics.Canvas r24, org.telegram.ui.Stories.StoriesController r25, org.telegram.messenger.ImageReceiver r26, org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r27, android.graphics.Paint r28, android.graphics.Paint r29, android.graphics.Paint r30, boolean r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.drawSegmentsInternal(android.graphics.Canvas, org.telegram.ui.Stories.StoriesController, org.telegram.messenger.ImageReceiver, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, android.graphics.Paint, android.graphics.Paint, android.graphics.Paint, boolean):void");
+    }
+
+    public static int getPredictiveUnreadState(StoriesController storiesController, long j) {
+        if (j == 0) {
+            return 0;
         }
-        float f = avatarStoryParams.progressToArc;
-        if (f != 0.0f) {
-            canvas.drawArc(rectTmp, (f / 2.0f) + 360.0f, 360.0f - f, false, paint);
-        } else {
-            RectF rectF2 = rectTmp;
-            canvas.drawCircle(rectF2.centerX(), rectF2.centerY(), rectF2.width() / 2.0f, paint);
+        if (j > 0) {
+            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
+            if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || user == null || user.stories_max_id <= 0 || user.stories_unavailable) {
+                return 0;
+            }
+            return user.stories_max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
         }
+        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
+        if (chat == null || chat.stories_max_id <= 0 || chat.stories_unavailable) {
+            return 0;
+        }
+        return chat.stories_max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
     }
 
     private static void drawProgress(Canvas canvas, AvatarStoryParams avatarStoryParams, View view, Paint paint) {
@@ -991,12 +425,437 @@ public abstract class StoriesUtilities {
         }
     }
 
-    private static void drawSegment(android.graphics.Canvas r9, android.graphics.RectF r10, android.graphics.Paint r11, float r12, float r13, org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.drawSegment(android.graphics.Canvas, android.graphics.RectF, android.graphics.Paint, float, float, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, boolean):void");
+    private static void checkStoryCellGrayPaint(boolean z, Theme.ResourcesProvider resourcesProvider) {
+        Paint[] paintArr = storyCellGreyPaint;
+        if (paintArr[z ? 1 : 0] == null) {
+            paintArr[z ? 1 : 0] = new Paint(1);
+            storyCellGreyPaint[z ? 1 : 0].setStyle(Paint.Style.STROKE);
+            storyCellGreyPaint[z ? 1 : 0].setStrokeWidth(AndroidUtilities.dpf2(1.3f));
+            storyCellGreyPaint[z ? 1 : 0].setStrokeCap(Paint.Cap.ROUND);
+        }
+        int color = Theme.getColor(!z ? Theme.key_actionBarDefault : Theme.key_actionBarDefaultArchived, resourcesProvider);
+        if (storyCellGrayLastColor != color) {
+            storyCellGrayLastColor = color;
+            float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(color);
+            if (computePerceivedBrightness >= 0.721f) {
+                storyCellGreyPaint[z ? 1 : 0].setColor(ColorUtils.blendARGB(color, -16777216, 0.2f));
+            } else if (computePerceivedBrightness < 0.25f) {
+                storyCellGreyPaint[z ? 1 : 0].setColor(ColorUtils.blendARGB(color, -1, 0.2f));
+            } else {
+                storyCellGreyPaint[z ? 1 : 0].setColor(ColorUtils.blendARGB(color, -1, 0.44f));
+            }
+        }
     }
 
-    private static void drawSegmentsInternal(android.graphics.Canvas r24, org.telegram.ui.Stories.StoriesController r25, org.telegram.messenger.ImageReceiver r26, org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r27, android.graphics.Paint r28, android.graphics.Paint r29, android.graphics.Paint r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.drawSegmentsInternal(android.graphics.Canvas, org.telegram.ui.Stories.StoriesController, org.telegram.messenger.ImageReceiver, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, android.graphics.Paint, android.graphics.Paint, android.graphics.Paint, boolean):void");
+    private static void checkGrayPaint(Theme.ResourcesProvider resourcesProvider) {
+        if (grayPaint == null) {
+            Paint paint = new Paint(1);
+            grayPaint = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            grayPaint.setStrokeWidth(AndroidUtilities.dpf2(1.3f));
+            grayPaint.setStrokeCap(Paint.Cap.ROUND);
+        }
+        int color = Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider);
+        if (grayLastColor != color) {
+            grayLastColor = color;
+            float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(color);
+            if (computePerceivedBrightness >= 0.721f) {
+                grayPaint.setColor(ColorUtils.blendARGB(color, -16777216, 0.2f));
+            } else if (computePerceivedBrightness < 0.25f) {
+                grayPaint.setColor(ColorUtils.blendARGB(color, -1, 0.2f));
+            } else {
+                grayPaint.setColor(ColorUtils.blendARGB(color, -1, 0.44f));
+            }
+        }
+    }
+
+    private static void drawCircleInternal(Canvas canvas, View view, AvatarStoryParams avatarStoryParams, Paint paint, boolean z) {
+        if (z) {
+            RectF rectF = forumRect;
+            rectF.set(rectTmp);
+            rectF.inset(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
+            return;
+        }
+        float f = avatarStoryParams.progressToArc;
+        if (f == 0.0f) {
+            RectF rectF2 = rectTmp;
+            canvas.drawCircle(rectF2.centerX(), rectF2.centerY(), rectF2.width() / 2.0f, paint);
+        } else {
+            canvas.drawArc(rectTmp, (f / 2.0f) + 360.0f, 360.0f - f, false, paint);
+        }
+    }
+
+    private static void drawSegment(Canvas canvas, RectF rectF, Paint paint, float f, float f2, AvatarStoryParams avatarStoryParams, boolean z) {
+        if (z) {
+            float height = rectF.height() * 0.32f;
+            float f3 = ((((int) f) / 90) * 90) + 90;
+            float f4 = (-199.0f) + f3;
+            float f5 = (f - f4) / 360.0f;
+            float f6 = (f2 - f4) / 360.0f;
+            Path path = forumRoundRectPath;
+            path.rewind();
+            path.addRoundRect(rectF, height, height, Path.Direction.CW);
+            Matrix matrix = forumRoundRectMatrix;
+            matrix.reset();
+            matrix.postRotate(f3, rectF.centerX(), rectF.centerY());
+            path.transform(matrix);
+            PathMeasure pathMeasure = forumRoundRectPathMeasure;
+            pathMeasure.setPath(path, false);
+            float length = pathMeasure.getLength();
+            Path path2 = forumSegmentPath;
+            path2.reset();
+            pathMeasure.getSegment(f5 * length, length * f6, path2, true);
+            path2.rLineTo(0.0f, 0.0f);
+            canvas.drawPath(path2, paint);
+            return;
+        }
+        boolean z2 = avatarStoryParams.isFirst;
+        if (!z2 && !avatarStoryParams.isLast) {
+            if (f < 90.0f) {
+                float f7 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f7) / 2.0f, f7 / 2.0f);
+                return;
+            } else {
+                float f8 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f8) / 2.0f) + 180.0f, (f8 / 2.0f) + 180.0f);
+                return;
+            }
+        }
+        if (avatarStoryParams.isLast) {
+            float f9 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f9) / 2.0f) + 180.0f, (f9 / 2.0f) + 180.0f);
+        } else if (z2) {
+            float f10 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f10) / 2.0f, f10 / 2.0f);
+        } else {
+            canvas.drawArc(rectF, f, f2 - f, false, paint);
+        }
+    }
+
+    private static int getInset(int i, int i2) {
+        if (i == 3) {
+            i = i2;
+        }
+        if (i == 2) {
+            return AndroidUtilities.dp(3.0f);
+        }
+        if (i == 1) {
+            return AndroidUtilities.dp(4.0f);
+        }
+        return 0;
+    }
+
+    public static Paint getUnreadCirclePaint(ImageReceiver imageReceiver, boolean z) {
+        checkStoriesGradientTools(z);
+        storiesGradientTools[z ? 1 : 0].setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return storiesGradientTools[z ? 1 : 0].paint;
+    }
+
+    private static void checkStoriesGradientTools(boolean z) {
+        GradientTools[] gradientToolsArr = storiesGradientTools;
+        if (gradientToolsArr[z ? 1 : 0] == null) {
+            gradientToolsArr[z ? 1 : 0] = new GradientTools();
+            GradientTools gradientTools = storiesGradientTools[z ? 1 : 0];
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            if (z) {
+                gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
+            } else {
+                gradientTools.setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
+            }
+            storiesGradientTools[z ? 1 : 0].paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            storiesGradientTools[z ? 1 : 0].paint.setStyle(Paint.Style.STROKE);
+            storiesGradientTools[z ? 1 : 0].paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+    }
+
+    public static void updateColors() {
+        GradientTools gradientTools = closeFriendsGradientTools;
+        if (gradientTools != null) {
+            gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
+        }
+        GradientTools gradientTools2 = storiesGradientTools[0];
+        if (gradientTools2 != null) {
+            gradientTools2.setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
+        }
+        GradientTools gradientTools3 = storiesGradientTools[1];
+        if (gradientTools3 != null) {
+            gradientTools3.setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
+        }
+        if (errorGradientTools != null) {
+            int color = Theme.getColor(Theme.key_color_orange);
+            int color2 = Theme.getColor(Theme.key_text_RedBold);
+            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
+        }
+    }
+
+    public static Paint getCloseFriendsPaint(ImageReceiver imageReceiver) {
+        if (closeFriendsGradientTools == null) {
+            GradientTools gradientTools = new GradientTools();
+            closeFriendsGradientTools = gradientTools;
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
+            closeFriendsGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            closeFriendsGradientTools.paint.setStyle(Paint.Style.STROKE);
+            closeFriendsGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+        closeFriendsGradientTools.setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return closeFriendsGradientTools.paint;
+    }
+
+    public static Paint getErrorPaint(ImageReceiver imageReceiver) {
+        if (errorGradientTools == null) {
+            GradientTools gradientTools = new GradientTools();
+            errorGradientTools = gradientTools;
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            int color = Theme.getColor(Theme.key_color_orange);
+            int color2 = Theme.getColor(Theme.key_text_RedBold);
+            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
+            errorGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            errorGradientTools.paint.setStyle(Paint.Style.STROKE);
+            errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+        errorGradientTools.setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return errorGradientTools.paint;
+    }
+
+    public static Paint getErrorPaint(RectF rectF) {
+        if (errorGradientTools == null) {
+            GradientTools gradientTools = new GradientTools();
+            errorGradientTools = gradientTools;
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            int color = Theme.getColor(Theme.key_color_orange);
+            int color2 = Theme.getColor(Theme.key_text_RedBold);
+            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
+            errorGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            errorGradientTools.paint.setStyle(Paint.Style.STROKE);
+            errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+        errorGradientTools.setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
+        return errorGradientTools.paint;
+    }
+
+    public static void setStoryMiniImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        if (storyItem == null) {
+            return;
+        }
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        TLRPC.Document document = messageMedia.document;
+        if (document != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1000), storyItem.media.document), "100_100", null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
+            return;
+        }
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo != null && (arrayList = photo.sizes) != null) {
+            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000), photo), "100_100", null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
+        } else {
+            imageReceiver.clearImage();
+        }
+    }
+
+    public static void setImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
+        setImage(imageReceiver, storyItem, "320_320");
+    }
+
+    public static void setImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, String str) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TLRPC.Document document;
+        if (storyItem == null) {
+            return;
+        }
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia != null && (document = messageMedia.document) != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, Integer.MAX_VALUE), storyItem.media.document), str, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
+            imageReceiver.addDecorator(new StoryWidgetsImageDecorator(storyItem));
+            return;
+        }
+        TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+        if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
+            Bitmap createBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
+            createBitmap.eraseColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+            imageReceiver.setImageBitmap(createBitmap);
+            imageReceiver.addDecorator(new StoryWidgetsImageDecorator(storyItem));
+            return;
+        }
+        if (photo != null && (arrayList = photo.sizes) != null) {
+            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), photo), str, null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
+            imageReceiver.addDecorator(new StoryWidgetsImageDecorator(storyItem));
+        } else {
+            imageReceiver.clearImage();
+        }
+    }
+
+    public static void setImage(ImageReceiver imageReceiver, StoriesController.UploadingStory uploadingStory) {
+        if (uploadingStory.entry.isVideo) {
+            imageReceiver.setImage(ImageLocation.getForPath(uploadingStory.firstFramePath), "320_180", null, null, null, 0L, null, null, 0);
+        } else {
+            imageReceiver.setImage(ImageLocation.getForPath(uploadingStory.path), "320_180", null, null, null, 0L, null, null, 0);
+        }
+    }
+
+    public static void setThumbImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, int i, int i2) {
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TLRPC.Document document;
+        TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia != null && (document = messageMedia.document) != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), storyItem.media.document), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
+            return;
+        }
+        TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+        if (photo != null && (arrayList = photo.sizes) != null) {
+            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), photo), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
+            return;
+        }
+        imageReceiver.clearImage();
+    }
+
+    public static Drawable getExpiredStoryDrawable() {
+        if (expiredStoryDrawable == null) {
+            Bitmap createBitmap = Bitmap.createBitmap(360, 180, Bitmap.Config.ARGB_8888);
+            createBitmap.eraseColor(-7829368);
+            Canvas canvas = new Canvas(createBitmap);
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(15.0f);
+            textPaint.setTextAlign(Paint.Align.CENTER);
+            textPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 100));
+            canvas.drawText("expired", 180.0f, 86.0f, textPaint);
+            canvas.drawText("story", 180.0f, 106.0f, textPaint);
+            expiredStoryDrawable = new BitmapDrawable(createBitmap);
+        }
+        return expiredStoryDrawable;
+    }
+
+    public static CharSequence getUploadingStr(TextView textView, boolean z, boolean z2) {
+        String string;
+        if (z2) {
+            string = LocaleController.getString(R.string.StoryEditing);
+        } else {
+            string = LocaleController.getString(R.string.UploadingStory);
+        }
+        if (string.indexOf("…") <= 0) {
+            return string;
+        }
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
+        UploadingDotsSpannable uploadingDotsSpannable = new UploadingDotsSpannable();
+        valueOf.setSpan(uploadingDotsSpannable, valueOf.length() - 1, valueOf.length(), 0);
+        uploadingDotsSpannable.setParent(textView, z);
+        return valueOf;
+    }
+
+    public static void applyUploadingStr(SimpleTextView simpleTextView, boolean z, boolean z2) {
+        String string;
+        if (z2) {
+            string = LocaleController.getString(R.string.StoryEditing);
+        } else {
+            string = LocaleController.getString(R.string.UploadingStory);
+        }
+        if (string.indexOf("…") > 0) {
+            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
+            UploadingDotsSpannable uploadingDotsSpannable = new UploadingDotsSpannable();
+            valueOf.setSpan(uploadingDotsSpannable, valueOf.length() - 1, valueOf.length(), 0);
+            uploadingDotsSpannable.setParent(simpleTextView, z);
+            simpleTextView.setText(valueOf);
+            return;
+        }
+        simpleTextView.setText(string);
+    }
+
+    public static CharSequence createExpiredStoryString() {
+        return createExpiredStoryString(false, R.string.ExpiredStory, new Object[0]);
+    }
+
+    public static CharSequence createExpiredStoryString(boolean z, int i, Object... objArr) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.formatString(i, objArr));
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_bomb);
+        if (z) {
+            coloredImageSpan.setScale(0.8f, 0.8f);
+        } else {
+            coloredImageSpan.setTopOffset(-1);
+        }
+        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
+        return spannableStringBuilder;
+    }
+
+    public static CharSequence createReplyStoryString() {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.getString(R.string.Story));
+        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_mini_replystory2), 0, 1, 0);
+        return spannableStringBuilder;
+    }
+
+    public static boolean hasExpiredViews(TL_stories.StoryItem storyItem) {
+        return storyItem != null && ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime() > storyItem.expire_date + 86400;
+    }
+
+    public static void applyViewedUser(TL_stories.StoryItem storyItem, TLRPC.User user) {
+        if (user == null || storyItem.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || hasExpiredViews(storyItem)) {
+            return;
+        }
+        if (storyItem.views == null) {
+            storyItem.views = new TL_stories.TL_storyViews();
+        }
+        TL_stories.StoryViews storyViews = storyItem.views;
+        if (storyViews.views_count == 0) {
+            storyViews.views_count = 1;
+            storyViews.recent_viewers.add(Long.valueOf(user.id));
+        }
+    }
+
+    public static void drawArcExcludeArc(Canvas canvas, RectF rectF, Paint paint, float f, float f2, float f3, float f4) {
+        boolean z;
+        float f5 = f2 - f;
+        if (f >= f3 || f2 >= f3 + f5) {
+            z = false;
+        } else {
+            canvas.drawArc(rectF, f, Math.min(f2, f3) - f, false, paint);
+            z = true;
+        }
+        float max = Math.max(f, f4);
+        float min = Math.min(f2, 360.0f + f3);
+        if (min >= max) {
+            canvas.drawArc(rectF, max, min - max, false, paint);
+        } else {
+            if (z) {
+                return;
+            }
+            if (f <= f3 || f2 >= f4) {
+                canvas.drawArc(rectF, f, f5, false, paint);
+            }
+        }
+    }
+
+    public static boolean isExpired(int i, TL_stories.StoryItem storyItem) {
+        return ConnectionsManager.getInstance(i).getCurrentTime() > storyItem.expire_date;
+    }
+
+    public static String getStoryImageFilter() {
+        int max = (int) (Math.max(AndroidUtilities.getRealScreenSize().x, AndroidUtilities.getRealScreenSize().y) / AndroidUtilities.density);
+        return max + "_" + max;
+    }
+
+    public static class EnsureStoryFileLoadedObject {
+        private boolean cancelled;
+        long dialogId;
+        ImageReceiver imageReceiver;
+        public Runnable runnable;
+        StoriesController storiesController;
+
+        private EnsureStoryFileLoadedObject(StoriesController storiesController, long j) {
+            this.cancelled = false;
+            this.dialogId = j;
+            this.storiesController = storiesController;
+        }
+
+        public void cancel() {
+            this.cancelled = true;
+            this.storiesController.setLoading(this.dialogId, false);
+        }
     }
 
     public static EnsureStoryFileLoadedObject ensureStoryFileLoaded(TL_stories.PeerStories peerStories, final Runnable runnable) {
@@ -1026,29 +885,18 @@ public abstract class StoriesUtilities {
             storyItem = peerStories.stories.get(0);
         }
         TLRPC.MessageMedia messageMedia = storyItem.media;
-        if (messageMedia == null || messageMedia.document == null) {
-            TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
-            if (photo == null || (arrayList = photo.sizes) == null) {
-                runnable.run();
-                return null;
-            }
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), "", false);
+        if (messageMedia != null && messageMedia.document != null) {
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(storyItem.media.document, "", false);
             if (pathToAttach != null && pathToAttach.exists()) {
                 runnable.run();
                 return null;
             }
-        } else {
-            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(storyItem.media.document, "", false);
-            if (pathToAttach2 != null && pathToAttach2.exists()) {
-                runnable.run();
-                return null;
-            }
-            File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(storyItem.media.document, "", true);
-            if (pathToAttach3 != null) {
+            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(storyItem.media.document, "", true);
+            if (pathToAttach2 != null) {
                 try {
-                    int lastIndexOf = pathToAttach3.getName().lastIndexOf(".");
+                    int lastIndexOf = pathToAttach2.getName().lastIndexOf(".");
                     if (lastIndexOf > 0) {
-                        File file = new File(pathToAttach3.getParentFile(), pathToAttach3.getName().substring(0, lastIndexOf) + ".temp");
+                        File file = new File(pathToAttach2.getParentFile(), pathToAttach2.getName().substring(0, lastIndexOf) + ".temp");
                         if (file.exists() && file.length() > 0) {
                             runnable.run();
                             return null;
@@ -1056,6 +904,18 @@ public abstract class StoriesUtilities {
                     }
                 } catch (Exception unused) {
                 }
+            }
+        } else {
+            TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
+            if (photo != null && (arrayList = photo.sizes) != null) {
+                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), "", false);
+                if (pathToAttach3 != null && pathToAttach3.exists()) {
+                    runnable.run();
+                    return null;
+                }
+            } else {
+                runnable.run();
+                return null;
             }
         }
         final EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = new EnsureStoryFileLoadedObject(storiesController, DialogObject.getPeerDialogId(peerStories.peer));
@@ -1096,148 +956,17 @@ public abstract class StoriesUtilities {
         ensureStoryFileLoadedObject.imageReceiver.onAttachedToWindow();
         String storyImageFilter = getStoryImageFilter();
         TLRPC.MessageMedia messageMedia2 = storyItem.media;
-        if (messageMedia2 == null || (document = messageMedia2.document) == null) {
-            TLRPC.Photo photo2 = messageMedia2 != null ? messageMedia2.photo : null;
-            if (photo2 == null || (arrayList2 = photo2.sizes) == null) {
-                ensureStoryFileLoadedObject.runnable.run();
-                return null;
-            }
+        if (messageMedia2 != null && (document = messageMedia2.document) != null) {
+            ensureStoryFileLoadedObject.imageReceiver.setImage(ImageLocation.getForDocument(document), storyImageFilter + "_pframe", null, null, null, 0L, null, storyItem, 0);
+            return ensureStoryFileLoadedObject;
+        }
+        TLRPC.Photo photo2 = messageMedia2 != null ? messageMedia2.photo : null;
+        if (photo2 != null && (arrayList2 = photo2.sizes) != null) {
             ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, Integer.MAX_VALUE), photo2), storyImageFilter, null, null, null, 0L, null, storyItem, 0);
             return ensureStoryFileLoadedObject;
         }
-        ensureStoryFileLoadedObject.imageReceiver.setImage(ImageLocation.getForDocument(document), storyImageFilter + "_pframe", null, null, null, 0L, null, storyItem, 0);
-        return ensureStoryFileLoadedObject;
-    }
-
-    public static Paint getCloseFriendsPaint(ImageReceiver imageReceiver) {
-        if (closeFriendsGradientTools == null) {
-            GradientTools gradientTools = new GradientTools();
-            closeFriendsGradientTools = gradientTools;
-            gradientTools.isDiagonal = true;
-            gradientTools.isRotate = true;
-            gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
-            closeFriendsGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
-            closeFriendsGradientTools.paint.setStyle(Paint.Style.STROKE);
-            closeFriendsGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
-        }
-        closeFriendsGradientTools.setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return closeFriendsGradientTools.paint;
-    }
-
-    public static Paint getErrorPaint(RectF rectF) {
-        if (errorGradientTools == null) {
-            GradientTools gradientTools = new GradientTools();
-            errorGradientTools = gradientTools;
-            gradientTools.isDiagonal = true;
-            gradientTools.isRotate = true;
-            int color = Theme.getColor(Theme.key_color_orange);
-            int color2 = Theme.getColor(Theme.key_text_RedBold);
-            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
-            errorGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
-            errorGradientTools.paint.setStyle(Paint.Style.STROKE);
-            errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
-        }
-        errorGradientTools.setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return errorGradientTools.paint;
-    }
-
-    public static Paint getErrorPaint(ImageReceiver imageReceiver) {
-        if (errorGradientTools == null) {
-            GradientTools gradientTools = new GradientTools();
-            errorGradientTools = gradientTools;
-            gradientTools.isDiagonal = true;
-            gradientTools.isRotate = true;
-            int color = Theme.getColor(Theme.key_color_orange);
-            int color2 = Theme.getColor(Theme.key_text_RedBold);
-            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
-            errorGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
-            errorGradientTools.paint.setStyle(Paint.Style.STROKE);
-            errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
-        }
-        errorGradientTools.setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return errorGradientTools.paint;
-    }
-
-    public static Drawable getExpiredStoryDrawable() {
-        if (expiredStoryDrawable == null) {
-            Bitmap createBitmap = Bitmap.createBitmap(360, 180, Bitmap.Config.ARGB_8888);
-            createBitmap.eraseColor(-7829368);
-            Canvas canvas = new Canvas(createBitmap);
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(15.0f);
-            textPaint.setTextAlign(Paint.Align.CENTER);
-            textPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 100));
-            canvas.drawText("expired", 180.0f, 86.0f, textPaint);
-            canvas.drawText("story", 180.0f, 106.0f, textPaint);
-            expiredStoryDrawable = new BitmapDrawable(createBitmap);
-        }
-        return expiredStoryDrawable;
-    }
-
-    private static int getInset(int i, int i2) {
-        float f;
-        if (i == 3) {
-            i = i2;
-        }
-        if (i == 2) {
-            f = 3.0f;
-        } else {
-            if (i != 1) {
-                return 0;
-            }
-            f = 4.0f;
-        }
-        return AndroidUtilities.dp(f);
-    }
-
-    public static int getPredictiveUnreadState(StoriesController storiesController, long j) {
-        if (j == 0) {
-            return 0;
-        }
-        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        if (j <= 0) {
-            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
-            if (chat == null || chat.stories_max_id <= 0 || chat.stories_unavailable) {
-                return 0;
-            }
-            return chat.stories_max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
-        }
-        TLRPC.User user = messagesController.getUser(Long.valueOf(j));
-        if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || user == null || user.stories_max_id <= 0 || user.stories_unavailable) {
-            return 0;
-        }
-        return user.stories_max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
-    }
-
-    public static String getStoryImageFilter() {
-        int max = (int) (Math.max(AndroidUtilities.getRealScreenSize().x, AndroidUtilities.getRealScreenSize().y) / AndroidUtilities.density);
-        return max + "_" + max;
-    }
-
-    public static Paint getUnreadCirclePaint(ImageReceiver imageReceiver, boolean z) {
-        checkStoriesGradientTools(z);
-        storiesGradientTools[z ? 1 : 0].setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return storiesGradientTools[z ? 1 : 0].paint;
-    }
-
-    public static CharSequence getUploadingStr(TextView textView, boolean z, boolean z2) {
-        String string = LocaleController.getString(z2 ? R.string.StoryEditing : R.string.UploadingStory);
-        if (string.indexOf("…") <= 0) {
-            return string;
-        }
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
-        UploadingDotsSpannable uploadingDotsSpannable = new UploadingDotsSpannable();
-        valueOf.setSpan(uploadingDotsSpannable, valueOf.length() - 1, valueOf.length(), 0);
-        uploadingDotsSpannable.setParent(textView, z);
-        return valueOf;
-    }
-
-    public static boolean hasExpiredViews(TL_stories.StoryItem storyItem) {
-        return storyItem != null && ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime() > storyItem.expire_date + 86400;
-    }
-
-    public static boolean isExpired(int i, TL_stories.StoryItem storyItem) {
-        return ConnectionsManager.getInstance(i).getCurrentTime() > storyItem.expire_date;
+        ensureStoryFileLoadedObject.runnable.run();
+        return null;
     }
 
     public static void lambda$ensureStoryFileLoaded$0(EnsureStoryFileLoadedObject ensureStoryFileLoadedObject, Runnable runnable) {
@@ -1256,95 +985,392 @@ public abstract class StoriesUtilities {
         }
     }
 
-    public static void setImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
-        setImage(imageReceiver, storyItem, "320_320");
-    }
+    public static class AvatarStoryParams {
+        public boolean allowLongress;
+        public float alpha;
+        public boolean animate;
+        public int animateFromUnreadState;
+        ButtonBounce buttonBounce;
+        public View child;
+        public long crossfadeToDialog;
+        public float crossfadeToDialogProgress;
+        public int currentState;
+        private long dialogId;
+        public boolean drawHiddenStoriesAsSegments;
+        public boolean drawInside;
+        public boolean drawSegments;
+        public boolean forceAnimateProgressToSegments;
+        public int forceState;
+        float globalAngle;
+        public int globalState;
+        boolean inc;
+        public boolean isArchive;
+        public boolean isDialogStoriesCell;
+        public boolean isFirst;
+        public boolean isLast;
+        private final boolean isStoryCell;
+        Runnable longPressRunnable;
+        UserStoriesLoadOperation operation;
+        public RectF originalAvatarRect;
+        boolean pressed;
+        public int prevState;
+        public int prevUnreadState;
+        public float progressToArc;
+        public float progressToProgressSegments;
+        public float progressToSate;
+        public float progressToSegments;
+        public Theme.ResourcesProvider resourcesProvider;
+        public boolean showProgress;
+        float startX;
+        float startY;
+        public int storyId;
+        public TL_stories.StoryItem storyItem;
+        float sweepAngle;
+        public int unreadState;
 
-    public static void setImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, String str) {
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        StoryWidgetsImageDecorator storyWidgetsImageDecorator;
-        TLRPC.Document document;
-        if (storyItem == null) {
-            return;
+        public void onLongPress() {
         }
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        if (messageMedia == null || (document = messageMedia.document) == null) {
-            TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
-            if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
-                Bitmap createBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
-                createBitmap.eraseColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
-                imageReceiver.setImageBitmap(createBitmap);
-                storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(storyItem);
-            } else if (photo == null || (arrayList = photo.sizes) == null) {
-                imageReceiver.clearImage();
-                return;
+
+        public AvatarStoryParams(boolean z) {
+            this(z, null);
+        }
+
+        public AvatarStoryParams(boolean z, Theme.ResourcesProvider resourcesProvider) {
+            this.drawSegments = true;
+            this.animate = true;
+            this.progressToSegments = 1.0f;
+            this.progressToArc = 0.0f;
+            this.alpha = 1.0f;
+            this.progressToSate = 1.0f;
+            this.showProgress = false;
+            this.originalAvatarRect = new RectF();
+            this.allowLongress = false;
+            this.isStoryCell = z;
+            this.resourcesProvider = resourcesProvider;
+        }
+
+        public void updateProgressParams() {
+            if (this.inc) {
+                float f = this.sweepAngle + 0.016f;
+                this.sweepAngle = f;
+                if (f >= 1.0f) {
+                    this.sweepAngle = 1.0f;
+                    this.inc = false;
+                }
             } else {
-                imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, Integer.MAX_VALUE), photo), str, null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
-                storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(storyItem);
+                float f2 = this.sweepAngle - 0.016f;
+                this.sweepAngle = f2;
+                if (f2 < 0.0f) {
+                    this.sweepAngle = 0.0f;
+                    this.inc = true;
+                }
             }
-        } else {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, Integer.MAX_VALUE), storyItem.media.document), str, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
-            storyWidgetsImageDecorator = new StoryWidgetsImageDecorator(storyItem);
+            this.globalAngle += 1.152f;
         }
-        imageReceiver.addDecorator(storyWidgetsImageDecorator);
+
+        public boolean checkOnTouchEvent(MotionEvent motionEvent, final View view) {
+            TLRPC.User user;
+            this.child = view;
+            StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController();
+            boolean z = false;
+            if (motionEvent.getAction() == 0 && this.originalAvatarRect.contains(motionEvent.getX(), motionEvent.getY())) {
+                TLRPC.Chat chat = null;
+                if (this.dialogId > 0) {
+                    user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(this.dialogId));
+                } else {
+                    user = null;
+                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-this.dialogId));
+                }
+                if (this.drawHiddenStoriesAsSegments) {
+                    z = storiesController.hasHiddenStories();
+                } else if (this.dialogId <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (chat != null && !chat.stories_unavailable && chat.stories_max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (user != null && !user.stories_unavailable && user.stories_max_id > 0)) {
+                    z = true;
+                }
+                if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z) {
+                    ButtonBounce buttonBounce = this.buttonBounce;
+                    if (buttonBounce == null) {
+                        this.buttonBounce = new ButtonBounce(view, 1.5f, 5.0f);
+                    } else {
+                        buttonBounce.setView(view);
+                    }
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    this.buttonBounce.setPressed(true);
+                    this.pressed = true;
+                    this.startX = motionEvent.getX();
+                    this.startY = motionEvent.getY();
+                    if (this.allowLongress) {
+                        Runnable runnable = this.longPressRunnable;
+                        if (runnable != null) {
+                            AndroidUtilities.cancelRunOnUIThread(runnable);
+                        }
+                        Runnable runnable2 = new Runnable() {
+                            @Override
+                            public final void run() {
+                                StoriesUtilities.AvatarStoryParams.this.lambda$checkOnTouchEvent$0(view);
+                            }
+                        };
+                        this.longPressRunnable = runnable2;
+                        AndroidUtilities.runOnUIThread(runnable2, ViewConfiguration.getLongPressTimeout());
+                    }
+                }
+            } else if (motionEvent.getAction() == 2 && this.pressed) {
+                if (Math.abs(this.startX - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.startY - motionEvent.getY()) > AndroidUtilities.touchSlop) {
+                    ButtonBounce buttonBounce2 = this.buttonBounce;
+                    if (buttonBounce2 != null) {
+                        buttonBounce2.setView(view);
+                        this.buttonBounce.setPressed(false);
+                    }
+                    Runnable runnable3 = this.longPressRunnable;
+                    if (runnable3 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(runnable3);
+                    }
+                    view.getParent().requestDisallowInterceptTouchEvent(false);
+                    this.pressed = false;
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                ButtonBounce buttonBounce3 = this.buttonBounce;
+                if (buttonBounce3 != null) {
+                    buttonBounce3.setView(view);
+                    this.buttonBounce.setPressed(false);
+                }
+                if (this.pressed && motionEvent.getAction() == 1) {
+                    processOpenStory(view);
+                }
+                ViewParent parent = view.getParent();
+                if (parent instanceof ViewGroup) {
+                    ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
+                }
+                this.pressed = false;
+                Runnable runnable4 = this.longPressRunnable;
+                if (runnable4 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable4);
+                }
+            }
+            return this.pressed;
+        }
+
+        public void lambda$checkOnTouchEvent$0(View view) {
+            try {
+                view.performHapticFeedback(0);
+            } catch (Exception unused) {
+            }
+            ButtonBounce buttonBounce = this.buttonBounce;
+            if (buttonBounce != null) {
+                buttonBounce.setPressed(false);
+            }
+            ViewParent parent = view.getParent();
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
+            }
+            this.pressed = false;
+            onLongPress();
+        }
+
+        private void processOpenStory(View view) {
+            MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+            StoriesController storiesController = messagesController.getStoriesController();
+            if (this.drawHiddenStoriesAsSegments) {
+                openStory(0L, null);
+                return;
+            }
+            if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+                if (storiesController.hasStories(this.dialogId)) {
+                    openStory(this.dialogId, null);
+                    return;
+                }
+                long j = this.dialogId;
+                if (j > 0) {
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(j));
+                    if (user == null || user.stories_unavailable || user.stories_max_id <= 0) {
+                        return;
+                    }
+                    new UserStoriesLoadOperation().load(this.dialogId, view, this);
+                    return;
+                }
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
+                if (chat == null || chat.stories_unavailable || chat.stories_max_id <= 0) {
+                    return;
+                }
+                new UserStoriesLoadOperation().load(this.dialogId, view, this);
+            }
+        }
+
+        public void openStory(long j, Runnable runnable) {
+            BaseFragment lastFragment = LaunchActivity.getLastFragment();
+            if (lastFragment == null || this.child == null) {
+                return;
+            }
+            lastFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
+            ViewParent parent = this.child.getParent();
+            lastFragment.getOrCreateStoryViewer().open(lastFragment.getContext(), j, parent instanceof RecyclerView ? StoriesListPlaceProvider.of((RecyclerListView) parent) : null);
+        }
+
+        public float getScale() {
+            ButtonBounce buttonBounce = this.buttonBounce;
+            if (buttonBounce == null) {
+                return 1.0f;
+            }
+            return buttonBounce.getScale(0.08f);
+        }
+
+        public void reset() {
+            UserStoriesLoadOperation userStoriesLoadOperation = this.operation;
+            if (userStoriesLoadOperation != null) {
+                userStoriesLoadOperation.cancel();
+                this.operation = null;
+            }
+            this.buttonBounce = null;
+            this.pressed = false;
+        }
+
+        public void onDetachFromWindow() {
+            reset();
+        }
     }
 
-    public static void setImage(ImageReceiver imageReceiver, StoriesController.UploadingStory uploadingStory) {
-        imageReceiver.setImage(ImageLocation.getForPath(uploadingStory.entry.isVideo ? uploadingStory.firstFramePath : uploadingStory.path), "320_180", null, null, null, 0L, null, null, 0);
+    public static class UserStoriesLoadOperation {
+        boolean canceled;
+        private int currentAccount;
+        long dialogId;
+        int guid = ConnectionsManager.generateClassGuid();
+        AvatarStoryParams params;
+        int reqId;
+        View view;
+
+        void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) {
+            int i = UserConfig.selectedAccount;
+            this.currentAccount = i;
+            this.dialogId = j;
+            this.params = avatarStoryParams;
+            this.view = view;
+            final MessagesController messagesController = MessagesController.getInstance(i);
+            messagesController.getStoriesController().setLoading(j, true);
+            view.invalidate();
+            TL_stories.TL_stories_getPeerStories tL_stories_getPeerStories = new TL_stories.TL_stories_getPeerStories();
+            tL_stories_getPeerStories.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+            this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getPeerStories, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$3(j, view, avatarStoryParams, messagesController, tLObject, tL_error);
+                }
+            });
+        }
+
+        public void lambda$load$3(final long j, final View view, final AvatarStoryParams avatarStoryParams, final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$2(tLObject, j, view, avatarStoryParams, messagesController);
+                }
+            });
+        }
+
+        public void lambda$load$2(org.telegram.tgnet.TLObject r10, final long r11, final android.view.View r13, final org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r14, org.telegram.messenger.MessagesController r15) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.UserStoriesLoadOperation.lambda$load$2(org.telegram.tgnet.TLObject, long, android.view.View, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams, org.telegram.messenger.MessagesController):void");
+        }
+
+        public void lambda$load$1(final View view, final long j, AvatarStoryParams avatarStoryParams) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoriesUtilities.UserStoriesLoadOperation.this.lambda$load$0(view, j);
+                }
+            }, 500L);
+            avatarStoryParams.openStory(j, null);
+        }
+
+        public void lambda$load$0(View view, long j) {
+            view.invalidate();
+            MessagesController.getInstance(this.currentAccount).getStoriesController().setLoading(j, false);
+        }
+
+        void cancel() {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, false);
+            this.canceled = true;
+            this.params = null;
+        }
     }
 
-    public static void setStoryMiniImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem) {
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        if (storyItem == null) {
-            return;
-        }
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        TLRPC.Document document = messageMedia.document;
-        if (document != null) {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1000), storyItem.media.document), "100_100", null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
-            return;
-        }
-        TLRPC.Photo photo = messageMedia.photo;
-        if (photo == null || (arrayList = photo.sizes) == null) {
-            imageReceiver.clearImage();
-        } else {
-            imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, 1000), photo), "100_100", null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
-        }
-    }
+    public static class StoryGradientTools {
+        private final AnimatedColor animatedColor1;
+        private final AnimatedColor animatedColor2;
+        private int color1;
+        private int color2;
+        public final int currentAccount;
+        private final Runnable invalidate;
+        private final boolean isDialogCell;
+        private final GradientTools tools;
 
-    public static void setThumbImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, int i, int i2) {
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        TLRPC.Document document;
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        if (messageMedia != null && (document = messageMedia.document) != null) {
-            imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), storyItem.media.document), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
-            return;
+        public StoryGradientTools(View view, boolean z) {
+            this(new Shaker$$ExternalSyntheticLambda0(view), z);
+            Objects.requireNonNull(view);
         }
-        TLRPC.Photo photo = messageMedia != null ? messageMedia.photo : null;
-        if (photo == null || (arrayList = photo.sizes) == null) {
-            imageReceiver.clearImage();
-            return;
-        }
-        imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), photo), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(photo.sizes), 0L, null, storyItem, 0);
-    }
 
-    public static void updateColors() {
-        GradientTools gradientTools = closeFriendsGradientTools;
-        if (gradientTools != null) {
-            gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
+        public StoryGradientTools(Runnable runnable, boolean z) {
+            this.currentAccount = UserConfig.selectedAccount;
+            this.invalidate = runnable;
+            this.isDialogCell = z;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            this.animatedColor1 = new AnimatedColor(runnable, 350L, cubicBezierInterpolator);
+            this.animatedColor2 = new AnimatedColor(runnable, 350L, cubicBezierInterpolator);
+            GradientTools gradientTools = new GradientTools();
+            this.tools = gradientTools;
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            resetColors(false);
+            gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            gradientTools.paint.setStyle(Paint.Style.STROKE);
+            gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
         }
-        GradientTools gradientTools2 = storiesGradientTools[0];
-        if (gradientTools2 != null) {
-            gradientTools2.setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
+
+        public void setUser(TLRPC.User user, boolean z) {
+            TLRPC.TL_peerColor tL_peerColor;
+            setColorId((user == null || (tL_peerColor = user.profile_color) == null) ? -1 : tL_peerColor.color, z);
         }
-        GradientTools gradientTools3 = storiesGradientTools[1];
-        if (gradientTools3 != null) {
-            gradientTools3.setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
+
+        public void setChat(TLRPC.Chat chat, boolean z) {
+            TLRPC.TL_peerColor tL_peerColor;
+            setColorId((chat == null || (tL_peerColor = chat.profile_color) == null) ? -1 : tL_peerColor.color, z);
         }
-        if (errorGradientTools != null) {
-            int color = Theme.getColor(Theme.key_color_orange);
-            int color2 = Theme.getColor(Theme.key_text_RedBold);
-            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
+
+        public void setColorId(int i, boolean z) {
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).profilePeerColors;
+            setColor(peerColors == null ? null : peerColors.getColor(i), z);
+        }
+
+        public void setColor(MessagesController.PeerColor peerColor, boolean z) {
+            if (peerColor != null) {
+                setColors(peerColor.getStoryColor1(Theme.isCurrentThemeDark()), peerColor.getStoryColor2(Theme.isCurrentThemeDark()), z);
+            } else {
+                resetColors(z);
+            }
+        }
+
+        private void resetColors(boolean z) {
+            if (this.isDialogCell) {
+                setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2), z);
+            } else {
+                setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2), z);
+            }
+        }
+
+        private void setColors(int i, int i2, boolean z) {
+            this.color1 = i;
+            this.color2 = i2;
+            if (!z) {
+                this.animatedColor1.set(i, true);
+                this.animatedColor2.set(i2, true);
+            }
+            Runnable runnable = this.invalidate;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        public Paint getPaint(RectF rectF) {
+            this.tools.setColors(this.animatedColor1.set(this.color1), this.animatedColor2.set(this.color2));
+            this.tools.setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            return this.tools.paint;
         }
     }
 }

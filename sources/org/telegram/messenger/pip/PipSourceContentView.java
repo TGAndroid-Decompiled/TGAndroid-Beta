@@ -16,6 +16,26 @@ public class PipSourceContentView extends ViewGroup {
         this.state = pipSourceHandlerState2;
     }
 
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        this.state.updatePositionViewRect(size, size2, ((PipActivityContentLayout) getParent()).isViewInPip());
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            getChildAt(i3).measure(View.MeasureSpec.makeMeasureSpec(this.state.position.width(), 1073741824), View.MeasureSpec.makeMeasureSpec(this.state.position.height(), 1073741824));
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        for (int i5 = 0; i5 < getChildCount(); i5++) {
+            View childAt = getChildAt(i5);
+            Rect rect = this.state.position;
+            childAt.layout(rect.left, rect.top, rect.right, rect.bottom);
+        }
+    }
+
     public void lambda$dispatchDraw$0(Canvas canvas) {
         super.dispatchDraw(canvas);
     }
@@ -28,25 +48,5 @@ public class PipSourceContentView extends ViewGroup {
                 PipSourceContentView.this.lambda$dispatchDraw$0((Canvas) obj);
             }
         });
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        for (int i5 = 0; i5 < getChildCount(); i5++) {
-            View childAt = getChildAt(i5);
-            Rect rect = this.state.position;
-            childAt.layout(rect.left, rect.top, rect.right, rect.bottom);
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int size2 = View.MeasureSpec.getSize(i2);
-        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        this.state.updatePositionViewRect(size, size2, ((PipActivityContentLayout) getParent()).isViewInPip());
-        for (int i3 = 0; i3 < getChildCount(); i3++) {
-            getChildAt(i3).measure(View.MeasureSpec.makeMeasureSpec(this.state.position.width(), 1073741824), View.MeasureSpec.makeMeasureSpec(this.state.position.height(), 1073741824));
-        }
     }
 }

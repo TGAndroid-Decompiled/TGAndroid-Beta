@@ -8,9 +8,6 @@ import kotlin.jvm.internal.Intrinsics;
 public final class EmptyCoroutineContext implements CoroutineContext, Serializable {
     public static final EmptyCoroutineContext INSTANCE = new EmptyCoroutineContext();
 
-    private EmptyCoroutineContext() {
-    }
-
     @Override
     public Object fold(Object obj, Function2 operation) {
         Intrinsics.checkNotNullParameter(operation, "operation");
@@ -37,6 +34,9 @@ public final class EmptyCoroutineContext implements CoroutineContext, Serializab
     public CoroutineContext plus(CoroutineContext context) {
         Intrinsics.checkNotNullParameter(context, "context");
         return context;
+    }
+
+    private EmptyCoroutineContext() {
     }
 
     public String toString() {

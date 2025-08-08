@@ -27,6 +27,32 @@ public abstract class BufferedChannelKt {
     private static final Symbol SUSPEND;
     private static final Symbol SUSPEND_NO_WAITER;
 
+    public static final long constructEBCompletedAndPauseFlag(long j, boolean z) {
+        return (z ? 4611686018427387904L : 0L) + j;
+    }
+
+    public static final long constructSendersAndCloseStatus(long j, int i) {
+        return (i << 60) + j;
+    }
+
+    public static final long initialBufferEnd(int i) {
+        if (i == 0) {
+            return 0L;
+        }
+        if (i != Integer.MAX_VALUE) {
+            return i;
+        }
+        return Long.MAX_VALUE;
+    }
+
+    public static final KFunction createSegmentFunction() {
+        return BufferedChannelKt$createSegmentFunction$1.INSTANCE;
+    }
+
+    public static final ChannelSegment createSegment(long j, ChannelSegment channelSegment) {
+        return new ChannelSegment(j, channelSegment, channelSegment.getChannel(), 0);
+    }
+
     static {
         int systemProp$default;
         int systemProp$default2;
@@ -52,34 +78,11 @@ public abstract class BufferedChannelKt {
         NO_CLOSE_CAUSE = new Symbol("NO_CLOSE_CAUSE");
     }
 
-    public static final long constructEBCompletedAndPauseFlag(long j, boolean z) {
-        return (z ? 4611686018427387904L : 0L) + j;
-    }
-
-    public static final long constructSendersAndCloseStatus(long j, int i) {
-        return (i << 60) + j;
-    }
-
-    public static final ChannelSegment createSegment(long j, ChannelSegment channelSegment) {
-        return new ChannelSegment(j, channelSegment, channelSegment.getChannel(), 0);
-    }
-
-    public static final KFunction createSegmentFunction() {
-        return BufferedChannelKt$createSegmentFunction$1.INSTANCE;
-    }
-
-    public static final Symbol getCHANNEL_CLOSED() {
-        return CHANNEL_CLOSED;
-    }
-
-    public static final long initialBufferEnd(int i) {
-        if (i == 0) {
-            return 0L;
+    public static boolean tryResume0$default(CancellableContinuation cancellableContinuation, Object obj, Function1 function1, int i, Object obj2) {
+        if ((i & 2) != 0) {
+            function1 = null;
         }
-        if (i != Integer.MAX_VALUE) {
-            return i;
-        }
-        return Long.MAX_VALUE;
+        return tryResume0(cancellableContinuation, obj, function1);
     }
 
     public static final boolean tryResume0(CancellableContinuation cancellableContinuation, Object obj, Function1 function1) {
@@ -91,10 +94,7 @@ public abstract class BufferedChannelKt {
         return true;
     }
 
-    public static boolean tryResume0$default(CancellableContinuation cancellableContinuation, Object obj, Function1 function1, int i, Object obj2) {
-        if ((i & 2) != 0) {
-            function1 = null;
-        }
-        return tryResume0(cancellableContinuation, obj, function1);
+    public static final Symbol getCHANNEL_CLOSED() {
+        return CHANNEL_CLOSED;
     }
 }

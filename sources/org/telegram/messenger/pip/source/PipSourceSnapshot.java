@@ -6,6 +6,7 @@ import android.graphics.RecordingCanvas;
 import android.graphics.RenderNode;
 import android.os.Build;
 import android.view.View;
+import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.Utilities;
 
 public class PipSourceSnapshot {
@@ -18,16 +19,17 @@ public class PipSourceSnapshot {
         this.picture = picture;
         callback.run(picture.beginRecording(i, i2));
         picture.endRecording();
-        if (Build.VERSION.SDK_INT < 29) {
-            this.node = null;
+        if (Build.VERSION.SDK_INT >= 29) {
+            PipSourceSnapshot$$ExternalSyntheticApiModelOutline0.m();
+            RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("pip-node-" + View.generateViewId());
+            this.node = m;
+            m.setPosition(0, 0, i, i2);
+            beginRecording = m.beginRecording();
+            beginRecording.drawPicture(picture);
+            m.endRecording();
             return;
         }
-        RenderNode renderNode = new RenderNode("pip-node-" + View.generateViewId());
-        this.node = renderNode;
-        renderNode.setPosition(0, 0, i, i2);
-        beginRecording = renderNode.beginRecording();
-        beginRecording.drawPicture(picture);
-        renderNode.endRecording();
+        this.node = null;
     }
 
     public void draw(Canvas canvas, float f) {

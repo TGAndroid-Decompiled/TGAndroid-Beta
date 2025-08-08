@@ -12,6 +12,23 @@ public class ChromecastMedia {
     public final String mimeType;
     public final int width;
 
+    private ChromecastMedia(Builder builder) {
+        this.mimeType = builder.mimeType;
+        this.mediaMetadata = builder.buildMetadata();
+        this.internalUri = builder.internalUri;
+        this.externalPath = builder.externalPath;
+        this.width = builder.width;
+        this.height = builder.height;
+    }
+
+    public String getExternalUri(String str) {
+        return ChromecastFileServer.getUrlToSource(str, this.externalPath);
+    }
+
+    public MediaInfo buildMediaInfo(String str, String str2) {
+        return new MediaInfo.Builder(getExternalUri(str) + str2).setContentType(this.mimeType).setMetadata(this.mediaMetadata).setStreamType(1).build();
+    }
+
     public static class Builder {
         private MediaMetadata baseMetadata;
         private final String externalPath;
@@ -28,10 +45,39 @@ public class ChromecastMedia {
             this.externalPath = str2;
         }
 
+        public static Builder fromUri(Uri uri, String str, String str2) {
+            return new Builder(str2, uri, str);
+        }
+
+        public Builder setTitle(String str) {
+            this.title = str;
+            return this;
+        }
+
+        public Builder setSubtitle(String str) {
+            this.subtitle = str;
+            return this;
+        }
+
+        public Builder setSize(int i, int i2) {
+            this.width = i;
+            this.height = i2;
+            return this;
+        }
+
+        public Builder setMetadata(MediaMetadata mediaMetadata) {
+            this.baseMetadata = mediaMetadata;
+            return this;
+        }
+
+        public ChromecastMedia build() {
+            return new ChromecastMedia(this);
+        }
+
         public MediaMetadata buildMetadata() {
+            int i = 3;
             String str = this.mimeType;
             str.hashCode();
-            int i = 3;
             char c = 65535;
             switch (str.hashCode()) {
                 case -1487394660:
@@ -101,57 +147,15 @@ public class ChromecastMedia {
                 sb2.append(this.height);
                 sb2.append(")");
             }
-            mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", sb.length() > 0 ? sb.toString() : "No Title");
+            if (sb.length() > 0) {
+                mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", sb.toString());
+            } else {
+                mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", "No Title");
+            }
             if (sb2.length() > 0) {
                 mediaMetadata.putString("com.google.android.gms.cast.metadata.SUBTITLE", sb2.toString());
             }
             return mediaMetadata;
         }
-
-        public static Builder fromUri(Uri uri, String str, String str2) {
-            return new Builder(str2, uri, str);
-        }
-
-        public ChromecastMedia build() {
-            return new ChromecastMedia(this);
-        }
-
-        public Builder setMetadata(MediaMetadata mediaMetadata) {
-            this.baseMetadata = mediaMetadata;
-            return this;
-        }
-
-        public Builder setSize(int i, int i2) {
-            this.width = i;
-            this.height = i2;
-            return this;
-        }
-
-        public Builder setSubtitle(String str) {
-            this.subtitle = str;
-            return this;
-        }
-
-        public Builder setTitle(String str) {
-            this.title = str;
-            return this;
-        }
-    }
-
-    private ChromecastMedia(Builder builder) {
-        this.mimeType = builder.mimeType;
-        this.mediaMetadata = builder.buildMetadata();
-        this.internalUri = builder.internalUri;
-        this.externalPath = builder.externalPath;
-        this.width = builder.width;
-        this.height = builder.height;
-    }
-
-    public MediaInfo buildMediaInfo(String str, String str2) {
-        return new MediaInfo.Builder(getExternalUri(str) + str2).setContentType(this.mimeType).setMetadata(this.mediaMetadata).setStreamType(1).build();
-    }
-
-    public String getExternalUri(String str) {
-        return ChromecastFileServer.getUrlToSource(str, this.externalPath);
     }
 }

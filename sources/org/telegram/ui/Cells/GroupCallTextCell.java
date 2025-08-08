@@ -69,47 +69,27 @@ public abstract class GroupCallTextCell extends FrameLayout {
         return this.textView;
     }
 
-    public ImageView getValueImageView() {
-        return this.valueImageView;
-    }
-
     public SimpleTextView getValueTextView() {
         return this.valueTextView;
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        float dp;
-        int i;
-        if (this.needDivider) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
-            } else {
-                i = 0;
-            }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, this.dividerPaint);
-        }
+    public ImageView getValueImageView() {
+        return this.valueImageView;
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        CharSequence text = this.textView.getText();
-        if (TextUtils.isEmpty(text)) {
-            return;
+    public void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int dp = AndroidUtilities.dp(48.0f);
+        this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - this.valueTextView.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        if (this.imageView.getVisibility() == 0) {
+            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
         }
-        CharSequence text2 = this.valueTextView.getText();
-        if (!TextUtils.isEmpty(text2)) {
-            text = ((Object) text) + ": " + ((Object) text2);
+        if (this.valueImageView.getVisibility() == 0) {
+            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
         }
-        accessibilityNodeInfo.setText(text);
+        setMeasuredDimension(size, AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0));
     }
 
     @Override
@@ -143,19 +123,8 @@ public abstract class GroupCallTextCell extends FrameLayout {
         }
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(48.0f);
-        this.valueTextView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(this.leftPadding), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(this.leftPadding + 71)) - this.valueTextView.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        if (this.imageView.getVisibility() == 0) {
-            this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        }
-        if (this.valueImageView.getVisibility() == 0) {
-            this.valueImageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        }
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0));
+    public void setTextColor(int i) {
+        this.textView.setTextColor(i);
     }
 
     public void setColors(int i, int i2) {
@@ -163,10 +132,6 @@ public abstract class GroupCallTextCell extends FrameLayout {
         this.textView.setTag(null);
         this.imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
         this.imageView.setTag(null);
-    }
-
-    public void setOffsetFromImage(int i) {
-        this.offsetFromImage = i;
     }
 
     public void setTextAndIcon(String str, int i, boolean z) {
@@ -181,7 +146,43 @@ public abstract class GroupCallTextCell extends FrameLayout {
         setWillNotDraw(!z);
     }
 
-    public void setTextColor(int i) {
-        this.textView.setTextColor(i);
+    public void setOffsetFromImage(int i) {
+        this.offsetFromImage = i;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        float dp;
+        int i;
+        if (this.needDivider) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
+            } else {
+                i = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, this.dividerPaint);
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        CharSequence text = this.textView.getText();
+        if (TextUtils.isEmpty(text)) {
+            return;
+        }
+        CharSequence text2 = this.valueTextView.getText();
+        if (!TextUtils.isEmpty(text2)) {
+            accessibilityNodeInfo.setText(((Object) text) + ": " + ((Object) text2));
+            return;
+        }
+        accessibilityNodeInfo.setText(text);
     }
 }

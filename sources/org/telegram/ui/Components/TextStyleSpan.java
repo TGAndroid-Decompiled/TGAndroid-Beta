@@ -28,39 +28,6 @@ public class TextStyleSpan extends MetricAffectingSpan {
             this.urlEntity = textStyleRun.urlEntity;
         }
 
-        public void applyStyle(TextPaint textPaint) {
-            Typeface typeface = getTypeface();
-            if (typeface != null) {
-                textPaint.setTypeface(typeface);
-            }
-            textPaint.setFlags((this.flags & 16) != 0 ? textPaint.getFlags() | 8 : textPaint.getFlags() & (-9));
-            textPaint.setFlags((this.flags & 8) != 0 ? textPaint.getFlags() | 16 : textPaint.getFlags() & (-17));
-            if ((this.flags & 512) != 0) {
-                textPaint.bgColor = Theme.getColor(Theme.key_chats_archivePullDownBackground);
-            }
-        }
-
-        public Typeface getTypeface() {
-            String str;
-            int i = this.flags;
-            if ((i & 4) != 0 || (i & 2048) != 0) {
-                return Typeface.MONOSPACE;
-            }
-            int i2 = i & 1;
-            if (i2 != 0 && (i & 2) != 0) {
-                str = "fonts/rmediumitalic.ttf";
-            } else {
-                if (i2 != 0) {
-                    return AndroidUtilities.bold();
-                }
-                if ((i & 2) == 0) {
-                    return null;
-                }
-                str = "fonts/ritalic.ttf";
-            }
-            return AndroidUtilities.getTypeface(str);
-        }
-
         public void merge(TextStyleRun textStyleRun) {
             TLRPC.MessageEntity messageEntity;
             this.flags |= textStyleRun.flags;
@@ -73,6 +40,44 @@ public class TextStyleSpan extends MetricAffectingSpan {
         public void replace(TextStyleRun textStyleRun) {
             this.flags = textStyleRun.flags;
             this.urlEntity = textStyleRun.urlEntity;
+        }
+
+        public void applyStyle(TextPaint textPaint) {
+            Typeface typeface = getTypeface();
+            if (typeface != null) {
+                textPaint.setTypeface(typeface);
+            }
+            if ((this.flags & 16) != 0) {
+                textPaint.setFlags(textPaint.getFlags() | 8);
+            } else {
+                textPaint.setFlags(textPaint.getFlags() & (-9));
+            }
+            if ((this.flags & 8) != 0) {
+                textPaint.setFlags(textPaint.getFlags() | 16);
+            } else {
+                textPaint.setFlags(textPaint.getFlags() & (-17));
+            }
+            if ((this.flags & 512) != 0) {
+                textPaint.bgColor = Theme.getColor(Theme.key_chats_archivePullDownBackground);
+            }
+        }
+
+        public Typeface getTypeface() {
+            int i = this.flags;
+            if ((i & 4) != 0 || (i & 2048) != 0) {
+                return Typeface.MONOSPACE;
+            }
+            int i2 = i & 1;
+            if (i2 != 0 && (i & 2) != 0) {
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+            }
+            if (i2 != 0) {
+                return AndroidUtilities.bold();
+            }
+            if ((i & 2) != 0) {
+                return AndroidUtilities.getTypeface("fonts/ritalic.ttf");
+            }
+            return null;
         }
     }
 
@@ -101,16 +106,21 @@ public class TextStyleSpan extends MetricAffectingSpan {
     }
 
     public void setSpoilerRevealed(boolean z) {
-        TextStyleRun textStyleRun;
-        int i;
         if (z) {
-            textStyleRun = this.style;
-            i = textStyleRun.flags | 512;
+            this.style.flags |= 512;
         } else {
-            textStyleRun = this.style;
-            i = textStyleRun.flags & (-513);
+            this.style.flags &= -513;
         }
-        textStyleRun.flags = i;
+    }
+
+    @Override
+    public void updateMeasureState(TextPaint textPaint) {
+        int i = this.textSize;
+        if (i != 0) {
+            textPaint.setTextSize(i);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.style.applyStyle(textPaint);
     }
 
     @Override
@@ -122,16 +132,6 @@ public class TextStyleSpan extends MetricAffectingSpan {
         int i2 = this.color;
         if (i2 != 0) {
             textPaint.setColor(i2);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.style.applyStyle(textPaint);
-    }
-
-    @Override
-    public void updateMeasureState(TextPaint textPaint) {
-        int i = this.textSize;
-        if (i != 0) {
-            textPaint.setTextSize(i);
         }
         textPaint.setFlags(textPaint.getFlags() | 128);
         this.style.applyStyle(textPaint);

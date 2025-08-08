@@ -11,6 +11,11 @@ public class NotificationsService extends Service {
     }
 
     @Override
+    public int onStartCommand(Intent intent, int i, int i2) {
+        return 1;
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         ApplicationLoader.postInitApplication();
@@ -24,10 +29,5 @@ public class NotificationsService extends Service {
             intent.setPackage(getPackageName());
             sendBroadcast(intent);
         }
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int i, int i2) {
-        return 1;
     }
 }

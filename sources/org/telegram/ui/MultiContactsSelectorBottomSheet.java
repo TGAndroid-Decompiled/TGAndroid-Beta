@@ -77,6 +77,93 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         void onUserSelected(List list);
     }
 
+    public static void open(Boolean bool, Boolean bool2, int i, SelectorListener selectorListener) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null && instance == null) {
+            MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = new MultiContactsSelectorBottomSheet(lastFragment, true, i, bool, bool2, selectorListener);
+            multiContactsSelectorBottomSheet.show();
+            instance = multiContactsSelectorBottomSheet;
+        }
+    }
+
+    private boolean filter(TLRPC.User user) {
+        if (user == null) {
+            return false;
+        }
+        if (this.filterBots != null && UserObject.isBot(user) != this.filterBots.booleanValue()) {
+            return false;
+        }
+        Boolean bool = this.filterPremium;
+        return bool == null || user.premium == bool.booleanValue();
+    }
+
+    public void loadData(final String str) {
+        if (this.lastRequestId >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastRequestId, true);
+            this.lastRequestId = -1;
+        }
+        Boolean bool = this.filterBots;
+        BoostRepository.searchContactsLocally(str, bool != null && bool.booleanValue(), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                MultiContactsSelectorBottomSheet.this.lambda$loadData$1(str, (List) obj);
+            }
+        });
+    }
+
+    public void lambda$loadData$1(String str, List list) {
+        final HashSet hashSet = new HashSet();
+        this.foundUsers.clear();
+        if (list != null) {
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                TLRPC.User user = (TLRPC.User) it.next();
+                if (user != null && !hashSet.contains(Long.valueOf(user.id)) && filter(user)) {
+                    this.foundUsers.add(user);
+                    hashSet.add(Long.valueOf(user.id));
+                }
+            }
+        }
+        Boolean bool = this.filterBots;
+        if (bool != null && bool.booleanValue()) {
+            this.lastRequestId = BoostRepository.searchContacts(str, true, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    MultiContactsSelectorBottomSheet.this.lambda$loadData$0(hashSet, (List) obj);
+                }
+            });
+        } else {
+            updateList(true, true);
+        }
+    }
+
+    public void lambda$loadData$0(HashSet hashSet, List list) {
+        if (list != null) {
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                TLRPC.User user = (TLRPC.User) it.next();
+                if (user != null && !hashSet.contains(Long.valueOf(user.id)) && filter(user)) {
+                    this.foundUsers.add(user);
+                    hashSet.add(Long.valueOf(user.id));
+                }
+            }
+        }
+        updateList(true, true);
+    }
+
+    public void createRecipientsBtnSpaceSpan() {
+        this.recipientsBtnSpaceSpan = new ReplacementSpan() {
+            @Override
+            public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+            }
+
+            @Override
+            public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+                return (int) MultiContactsSelectorBottomSheet.this.recipientsBtnExtraSpace;
+            }
+        };
+    }
+
     public MultiContactsSelectorBottomSheet(BaseFragment baseFragment, boolean z, final int i, Boolean bool, Boolean bool2, SelectorListener selectorListener) {
         super(baseFragment, z, false, false, baseFragment.getResourceProvider());
         this.oldItems = new ArrayList();
@@ -113,7 +200,10 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), this.resourcesProvider) {
             @Override
             protected int getHeaderHeight() {
-                return AndroidUtilities.dp(getResources().getConfiguration().orientation == 2 ? 48.0f : 54.0f);
+                if (getResources().getConfiguration().orientation == 2) {
+                    return AndroidUtilities.dp(48.0f);
+                }
+                return AndroidUtilities.dp(54.0f);
             }
         };
         this.headerView = selectorHeaderCell;
@@ -264,89 +354,8 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         fixNavigationBar();
     }
 
-    private void clearSearchAfterSelect() {
-        if (isSearching()) {
-            this.query = null;
-            this.searchField.setText("");
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            updateItems(true, true);
-        }
-    }
-
-    public void createRecipientsBtnSpaceSpan() {
-        this.recipientsBtnSpaceSpan = new ReplacementSpan() {
-            @Override
-            public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-            }
-
-            @Override
-            public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-                return (int) MultiContactsSelectorBottomSheet.this.recipientsBtnExtraSpace;
-            }
-        };
-    }
-
-    private boolean filter(TLRPC.User user) {
-        if (user == null) {
-            return false;
-        }
-        if (this.filterBots != null && UserObject.isBot(user) != this.filterBots.booleanValue()) {
-            return false;
-        }
-        Boolean bool = this.filterPremium;
-        return bool == null || user.premium == bool.booleanValue();
-    }
-
-    private boolean isSearching() {
-        return !TextUtils.isEmpty(this.query);
-    }
-
-    public void lambda$loadData$0(HashSet hashSet, List list) {
-        if (list != null) {
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                TLRPC.User user = (TLRPC.User) it.next();
-                if (user != null && !hashSet.contains(Long.valueOf(user.id)) && filter(user)) {
-                    this.foundUsers.add(user);
-                    hashSet.add(Long.valueOf(user.id));
-                }
-            }
-        }
-        updateList(true, true);
-    }
-
-    public void lambda$loadData$1(String str, List list) {
-        final HashSet hashSet = new HashSet();
-        this.foundUsers.clear();
-        if (list != null) {
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                TLRPC.User user = (TLRPC.User) it.next();
-                if (user != null && !hashSet.contains(Long.valueOf(user.id)) && filter(user)) {
-                    this.foundUsers.add(user);
-                    hashSet.add(Long.valueOf(user.id));
-                }
-            }
-        }
-        Boolean bool = this.filterBots;
-        if (bool == null || !bool.booleanValue()) {
-            updateList(true, true);
-        } else {
-            this.lastRequestId = BoostRepository.searchContacts(str, true, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    MultiContactsSelectorBottomSheet.this.lambda$loadData$0(hashSet, (List) obj);
-                }
-            });
-        }
-    }
-
     public void lambda$new$2(View view) {
         next();
-    }
-
-    public void lambda$new$3() {
-        updateList(true, false);
     }
 
     public void lambda$new$4(int i, View view, int i2, float f, float f2) {
@@ -375,28 +384,20 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         }
     }
 
+    public void lambda$new$3() {
+        updateList(true, false);
+    }
+
     public void lambda$new$5() {
         updateList(true, false);
     }
 
-    public void lambda$updateSectionCell$6(View view) {
-        this.selectedIds.clear();
-        this.searchField.spansContainer.removeAllSpans(true);
-        updateList(true, false);
-    }
-
-    public void loadData(final String str) {
-        if (this.lastRequestId >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastRequestId, true);
-            this.lastRequestId = -1;
-        }
-        Boolean bool = this.filterBots;
-        BoostRepository.searchContactsLocally(str, bool != null && bool.booleanValue(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                MultiContactsSelectorBottomSheet.this.lambda$loadData$1(str, (List) obj);
-            }
-        });
+    @Override
+    protected void onPreDraw(Canvas canvas, int i, float f) {
+        this.headerView.setTranslationY(Math.max(i, AndroidUtilities.statusBarHeight + (((this.headerView.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f)) + AndroidUtilities.dp(8.0f));
+        this.searchField.setTranslationY(this.headerView.getTranslationY() + this.headerView.getMeasuredHeight());
+        this.sectionCell.setTranslationY(this.searchField.getTranslationY() + this.searchField.getMeasuredHeight());
+        this.recyclerListView.setTranslationY(((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) + this.sectionCell.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
     }
 
     private void next() {
@@ -413,19 +414,22 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         lambda$new$0();
     }
 
-    public void onSearch(String str) {
-        this.query = str;
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 100L);
+    public void scrollToTop(boolean z) {
+        if (z) {
+            LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
+            linearSmoothScrollerCustom.setTargetPosition(1);
+            linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(36.0f));
+            this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
+            return;
+        }
+        this.recyclerListView.scrollToPosition(0);
     }
 
-    public static void open(Boolean bool, Boolean bool2, int i, SelectorListener selectorListener) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment != null && instance == null) {
-            MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = new MultiContactsSelectorBottomSheet(lastFragment, true, i, bool, bool2, selectorListener);
-            multiContactsSelectorBottomSheet.show();
-            instance = multiContactsSelectorBottomSheet;
-        }
+    @Override
+    public void dismissInternal() {
+        super.dismissInternal();
+        instance = null;
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
     }
 
     private void showMaximumUsersToast() {
@@ -436,21 +440,10 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         }
     }
 
-    public void updateActionButton(boolean z) {
-        int i;
-        this.actionButton.setShowZero(false);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (this.selectedIds.size() == 0) {
-            spannableStringBuilder.append((CharSequence) "d").setSpan(this.recipientsBtnSpaceSpan, 0, 1, 33);
-            Boolean bool = this.filterBots;
-            i = (bool == null || !bool.booleanValue()) ? R.string.ChooseUsers : this.maxCount > 1 ? R.string.ChooseBots : R.string.ChooseBot;
-        } else {
-            i = R.string.GiftPremiumProceedBtn;
-        }
-        spannableStringBuilder.append((CharSequence) LocaleController.getString(i));
-        this.actionButton.setCount(this.selectedIds.size(), true);
-        this.actionButton.setText(spannableStringBuilder, z, false);
-        this.actionButton.setEnabled(true);
+    private void updateList(boolean z, boolean z2) {
+        updateItems(z, z2);
+        updateCheckboxes(z);
+        updateActionButton(z);
     }
 
     private void updateCheckboxes(boolean z) {
@@ -469,11 +462,11 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                     SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
                     selectorUserCell.setChecked(item.checked, z);
                     TLRPC.Chat chat = item.chat;
-                    float f = 1.0f;
-                    if (chat != null && this.selectorAdapter.getParticipantsCount(chat) > 200) {
-                        f = 0.3f;
+                    if (chat != null) {
+                        selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(chat) > 200 ? 0.3f : 1.0f, z);
+                    } else {
+                        selectorUserCell.setCheckboxAlpha(1.0f, z);
                     }
-                    selectorUserCell.setCheckboxAlpha(f, z);
                 }
                 i2 = childAdapterPosition;
             }
@@ -485,87 +478,65 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         }
     }
 
-    private void updateList(boolean z, boolean z2) {
-        updateItems(z, z2);
-        updateCheckboxes(z);
-        updateActionButton(z);
+    public void updateActionButton(boolean z) {
+        this.actionButton.setShowZero(false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (this.selectedIds.size() == 0) {
+            spannableStringBuilder.append((CharSequence) "d").setSpan(this.recipientsBtnSpaceSpan, 0, 1, 33);
+            Boolean bool = this.filterBots;
+            if (bool == null || !bool.booleanValue()) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ChooseUsers));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(this.maxCount > 1 ? R.string.ChooseBots : R.string.ChooseBot));
+            }
+        } else {
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GiftPremiumProceedBtn));
+        }
+        this.actionButton.setCount(this.selectedIds.size(), true);
+        this.actionButton.setText(spannableStringBuilder, z, false);
+        this.actionButton.setEnabled(true);
+    }
+
+    public void onSearch(String str) {
+        this.query = str;
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 100L);
+    }
+
+    private void clearSearchAfterSelect() {
+        if (isSearching()) {
+            this.query = null;
+            this.searchField.setText("");
+            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+            updateItems(true, true);
+        }
     }
 
     private void updateSectionCell(boolean z) {
-        SelectorAdapter selectorAdapter;
-        View.OnClickListener onClickListener;
         HashSet hashSet = this.selectedIds;
         if (hashSet == null) {
             return;
         }
         if (hashSet.size() > 0) {
-            selectorAdapter = this.selectorAdapter;
-            onClickListener = new View.OnClickListener() {
+            this.selectorAdapter.setTopSectionClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     MultiContactsSelectorBottomSheet.this.lambda$updateSectionCell$6(view);
                 }
-            };
+            });
         } else {
-            selectorAdapter = this.selectorAdapter;
-            onClickListener = null;
+            this.selectorAdapter.setTopSectionClickListener(null);
         }
-        selectorAdapter.setTopSectionClickListener(onClickListener);
     }
 
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), true, this.resourcesProvider);
-        this.selectorAdapter = selectorAdapter;
-        selectorAdapter.setGreenSelector(true);
-        return this.selectorAdapter;
+    public void lambda$updateSectionCell$6(View view) {
+        this.selectedIds.clear();
+        this.searchField.spansContainer.removeAllSpans(true);
+        updateList(true, false);
     }
 
-    @Override
-    public void lambda$new$0() {
-        AndroidUtilities.hideKeyboard(this.searchField.getEditText());
-        super.lambda$new$0();
-    }
-
-    @Override
-    public void dismissInternal() {
-        super.dismissInternal();
-        instance = null;
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        Boolean bool = this.filterBots;
-        if (bool == null || !bool.booleanValue()) {
-            return LocaleController.getString(R.string.ChooseUsers);
-        }
-        return LocaleController.getString(this.maxCount > 1 ? R.string.ChooseBots : R.string.ChooseBot);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        updateItems(false, true);
-    }
-
-    @Override
-    protected void onPreDraw(Canvas canvas, int i, float f) {
-        this.headerView.setTranslationY(Math.max(i, AndroidUtilities.statusBarHeight + (((this.headerView.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f)) + AndroidUtilities.dp(8.0f));
-        this.searchField.setTranslationY(this.headerView.getTranslationY() + this.headerView.getMeasuredHeight());
-        this.sectionCell.setTranslationY(this.searchField.getTranslationY() + this.searchField.getMeasuredHeight());
-        this.recyclerListView.setTranslationY(((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) + this.sectionCell.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
-    }
-
-    public void scrollToTop(boolean z) {
-        if (!z) {
-            this.recyclerListView.scrollToPosition(0);
-            return;
-        }
-        LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
-        linearSmoothScrollerCustom.setTargetPosition(1);
-        linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(36.0f));
-        this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
+    private boolean isSearching() {
+        return !TextUtils.isEmpty(this.query);
     }
 
     public void updateItems(boolean z, boolean z2) {
@@ -658,5 +629,34 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         } else {
             selectorAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        updateItems(false, true);
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        Boolean bool = this.filterBots;
+        if (bool == null || !bool.booleanValue()) {
+            return LocaleController.getString(R.string.ChooseUsers);
+        }
+        return LocaleController.getString(this.maxCount > 1 ? R.string.ChooseBots : R.string.ChooseBot);
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), true, this.resourcesProvider);
+        this.selectorAdapter = selectorAdapter;
+        selectorAdapter.setGreenSelector(true);
+        return this.selectorAdapter;
+    }
+
+    @Override
+    public void lambda$new$0() {
+        AndroidUtilities.hideKeyboard(this.searchField.getEditText());
+        super.lambda$new$0();
     }
 }

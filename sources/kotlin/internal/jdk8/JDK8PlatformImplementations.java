@@ -10,6 +10,9 @@ public class JDK8PlatformImplementations extends JDK7PlatformImplementations {
         public static final ReflectSdkVersion INSTANCE = new ReflectSdkVersion();
         public static final Integer sdkVersion;
 
+        private ReflectSdkVersion() {
+        }
+
         static {
             Integer num;
             Object obj;
@@ -30,9 +33,6 @@ public class JDK8PlatformImplementations extends JDK7PlatformImplementations {
                 num2 = num;
             }
             sdkVersion = num2;
-        }
-
-        private ReflectSdkVersion() {
         }
     }
 

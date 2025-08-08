@@ -56,6 +56,49 @@ public class GallerySheet extends BottomSheet {
         this.containerView.addView(galleryListView);
     }
 
+    public void lambda$new$1(Object obj, Bitmap bitmap) {
+        Utilities.Callback callback;
+        if (obj == null || this.galleryListViewOpening != null || !(obj instanceof MediaController.PhotoEntry) || (callback = this.onGalleryListener) == null) {
+            return;
+        }
+        callback.run((MediaController.PhotoEntry) obj);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        animate(true, null);
+    }
+
+    public void lambda$dismiss$2() {
+        super.lambda$new$0();
+    }
+
+    @Override
+    public void lambda$new$0() {
+        animate(false, new Runnable() {
+            @Override
+            public final void run() {
+                GallerySheet.this.lambda$dismiss$2();
+            }
+        });
+        super.lambda$new$0();
+    }
+
+    @Override
+    public boolean canDismissWithSwipe() {
+        return !this.listView.actionBarShown;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.listView.top()) {
+            lambda$new$0();
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
     private void animate(boolean z, final Runnable runnable) {
         float translationY = this.listView.getTranslationY();
         final float height = z ? 0.0f : (this.containerView.getHeight() - this.listView.top()) + (AndroidUtilities.navigationBarHeight * 2.5f);
@@ -115,50 +158,7 @@ public class GallerySheet extends BottomSheet {
         this.listView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void lambda$dismiss$2() {
-        super.lambda$new$0();
-    }
-
-    public void lambda$new$1(Object obj, Bitmap bitmap) {
-        Utilities.Callback callback;
-        if (obj == null || this.galleryListViewOpening != null || !(obj instanceof MediaController.PhotoEntry) || (callback = this.onGalleryListener) == null) {
-            return;
-        }
-        callback.run((MediaController.PhotoEntry) obj);
-    }
-
-    @Override
-    public boolean canDismissWithSwipe() {
-        return !this.listView.actionBarShown;
-    }
-
-    @Override
-    public void lambda$new$0() {
-        animate(false, new Runnable() {
-            @Override
-            public final void run() {
-                GallerySheet.this.lambda$dismiss$2();
-            }
-        });
-        super.lambda$new$0();
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0 || motionEvent.getY() >= this.listView.top()) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        lambda$new$0();
-        return true;
-    }
-
     public void setOnGalleryImage(Utilities.Callback callback) {
         this.onGalleryListener = callback;
-    }
-
-    @Override
-    public void show() {
-        super.show();
-        animate(true, null);
     }
 }

@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -96,22 +95,20 @@ public class FireworksEffect {
             ((Particle) this.particles.get(i)).draw(canvas);
         }
         if (Utilities.random.nextBoolean() && this.particles.size() + 8 < 150) {
-            int i2 = Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0;
+            int i2 = AndroidUtilities.statusBarHeight;
             float nextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
             float nextFloat2 = i2 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i2));
             int nextInt = Utilities.random.nextInt(4);
             int i3 = nextInt != 0 ? nextInt != 1 ? nextInt != 2 ? nextInt != 3 ? -5752 : -15088582 : -207021 : -843755 : -13357350;
             for (int i4 = 0; i4 < 8; i4++) {
-                double nextInt2 = Utilities.random.nextInt(270) - 225;
-                Double.isNaN(nextInt2);
-                double d = nextInt2 * 0.017453292519943295d;
-                float cos = (float) Math.cos(d);
-                float sin = (float) Math.sin(d);
-                if (this.freeParticles.isEmpty()) {
-                    particle = new Particle();
-                } else {
+                double nextInt2 = (Utilities.random.nextInt(270) - 225) * 0.017453292519943295d;
+                float cos = (float) Math.cos(nextInt2);
+                float sin = (float) Math.sin(nextInt2);
+                if (!this.freeParticles.isEmpty()) {
                     particle = (Particle) this.freeParticles.get(0);
                     this.freeParticles.remove(0);
+                } else {
+                    particle = new Particle();
                 }
                 particle.x = nextFloat;
                 particle.y = nextFloat2;

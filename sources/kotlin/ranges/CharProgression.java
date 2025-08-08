@@ -10,15 +10,6 @@ public abstract class CharProgression implements Iterable {
     private final char last;
     private final int step;
 
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public CharProgression(char c, char c2, int i) {
         if (i == 0) {
             throw new IllegalArgumentException("Step must be non-zero.");
@@ -42,5 +33,14 @@ public abstract class CharProgression implements Iterable {
     @Override
     public CharIterator iterator() {
         return new CharProgressionIterator(this.first, this.last, this.step);
+    }
+
+    public static final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        private Companion() {
+        }
     }
 }

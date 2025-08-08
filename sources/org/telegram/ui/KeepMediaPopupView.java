@@ -44,64 +44,6 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         void onKeepMediaChange(int i, int i2);
     }
 
-    private static class CheckItem {
-        final ActionBarMenuSubItem item;
-        final int type;
-
-        private CheckItem(ActionBarMenuSubItem actionBarMenuSubItem, int i) {
-            this.item = actionBarMenuSubItem;
-            this.type = i;
-        }
-    }
-
-    public class ExceptionsView extends FrameLayout {
-        AvatarsImageView avatarsImageView;
-        boolean ignoreLayout;
-        SimpleTextView titleView;
-
-        public ExceptionsView(Context context) {
-            super(context);
-            SimpleTextView simpleTextView = new SimpleTextView(context);
-            this.titleView = simpleTextView;
-            simpleTextView.setTextSize(16);
-            this.titleView.setEllipsizeByGradient(true);
-            this.titleView.setRightPadding(AndroidUtilities.dp(68.0f));
-            this.titleView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-            addView(this.titleView, LayoutHelper.createFrame(0, -2.0f, 19, 19.0f, 0.0f, 19.0f, 0.0f));
-            AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
-            this.avatarsImageView = avatarsImageView;
-            avatarsImageView.avatarsDrawable.setShowSavedMessages(true);
-            this.avatarsImageView.setStyle(11);
-            this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
-            addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
-            setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), 0, 4));
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            View view = (View) getParent();
-            if (view != null && view.getWidth() > 0) {
-                i = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
-            }
-            this.ignoreLayout = true;
-            this.titleView.setVisibility(8);
-            super.onMeasure(i, i2);
-            this.titleView.setVisibility(0);
-            this.titleView.getLayoutParams().width = getMeasuredWidth();
-            this.ignoreLayout = false;
-            KeepMediaPopupView.this.updateAvatarsPosition();
-            super.onMeasure(i, i2);
-        }
-
-        @Override
-        public void requestLayout() {
-            if (this.ignoreLayout) {
-                return;
-            }
-            super.requestLayout();
-        }
-    }
-
     public KeepMediaPopupView(final BaseFragment baseFragment, Context context) {
         super(context, null);
         this.checkItems = new ArrayList();
@@ -161,6 +103,51 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         addView((View) linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 0));
     }
 
+    public void lambda$new$2(BaseFragment baseFragment, View view) {
+        this.window.dismiss();
+        if (this.exceptions.isEmpty()) {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("onlySelect", true);
+            bundle.putBoolean("onlySelect", true);
+            bundle.putBoolean("checkCanWrite", false);
+            int i = this.currentType;
+            if (i == 1) {
+                bundle.putInt("dialogsType", 6);
+            } else if (i == 2) {
+                bundle.putInt("dialogsType", 5);
+            } else {
+                bundle.putInt("dialogsType", 4);
+            }
+            bundle.putBoolean("allowGlobalSearch", false);
+            final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+            dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+                @Override
+                public boolean canSelectStories() {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                }
+
+                @Override
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+                    boolean lambda$new$1;
+                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
+                    return lambda$new$1;
+                }
+
+                @Override
+                public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
+                }
+            });
+            baseFragment.presentFragment(dialogsActivity);
+            return;
+        }
+        Bundle bundle2 = new Bundle();
+        bundle2.putInt("type", this.currentType);
+        CacheChatsExceptionsFragment cacheChatsExceptionsFragment = new CacheChatsExceptionsFragment(bundle2);
+        cacheChatsExceptionsFragment.setExceptions(this.exceptions);
+        baseFragment.presentFragment(cacheChatsExceptionsFragment);
+    }
+
     public boolean lambda$new$1(final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         final CacheByChatsController.KeepMediaException keepMediaException = null;
         int i2 = 0;
@@ -195,86 +182,34 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         return true;
     }
 
-    public void lambda$new$2(BaseFragment baseFragment, View view) {
-        CacheChatsExceptionsFragment cacheChatsExceptionsFragment;
-        this.window.dismiss();
-        if (this.exceptions.isEmpty()) {
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("onlySelect", true);
-            bundle.putBoolean("onlySelect", true);
-            bundle.putBoolean("checkCanWrite", false);
-            int i = this.currentType;
-            bundle.putInt("dialogsType", i == 1 ? 6 : i == 2 ? 5 : 4);
-            bundle.putBoolean("allowGlobalSearch", false);
-            final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-            dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-                @Override
-                public boolean canSelectStories() {
-                    return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
-                }
-
-                @Override
-                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
-                    boolean lambda$new$1;
-                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
-                    return lambda$new$1;
-                }
-
-                @Override
-                public boolean didSelectStories(DialogsActivity dialogsActivity2) {
-                    return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
-                }
-            });
-            cacheChatsExceptionsFragment = dialogsActivity;
-        } else {
-            Bundle bundle2 = new Bundle();
-            bundle2.putInt("type", this.currentType);
-            CacheChatsExceptionsFragment cacheChatsExceptionsFragment2 = new CacheChatsExceptionsFragment(bundle2);
-            cacheChatsExceptionsFragment2.setExceptions(this.exceptions);
-            cacheChatsExceptionsFragment = cacheChatsExceptionsFragment2;
-        }
-        baseFragment.presentFragment(cacheChatsExceptionsFragment);
-    }
-
     public void lambda$new$3(int i, View view) {
         this.window.dismiss();
         int i2 = this.currentType;
-        if (i2 < 0) {
+        if (i2 >= 0) {
+            this.cacheByChatsController.setKeepMedia(i2, i);
             Callback callback = this.callback;
             if (callback != null) {
-                callback.onKeepMediaChange(i2, i);
+                callback.onKeepMediaChange(this.currentType, i);
                 return;
             }
             return;
         }
-        this.cacheByChatsController.setKeepMedia(i2, i);
         Callback callback2 = this.callback;
         if (callback2 != null) {
-            callback2.onKeepMediaChange(this.currentType, i);
+            callback2.onKeepMediaChange(i2, i);
         }
-    }
-
-    public void updateAvatarsPosition() {
-        if (this.exceptions != null) {
-            this.exceptionsView.avatarsImageView.setTranslationX(AndroidUtilities.dp(12.0f) * (3 - Math.min(3, this.exceptions.size())));
-        }
-    }
-
-    public void setCallback(Callback callback) {
-        this.callback = callback;
     }
 
     public void update(int i) {
         this.currentType = i;
-        ActionBarMenuSubItem actionBarMenuSubItem = this.twoDay;
         if (i == 3) {
-            actionBarMenuSubItem.setVisibility(0);
+            this.twoDay.setVisibility(0);
             this.oneMonth.setVisibility(8);
             this.gap.setVisibility(8);
             this.exceptionsView.setVisibility(8);
             this.description.setVisibility(8);
         } else {
-            actionBarMenuSubItem.setVisibility(8);
+            this.twoDay.setVisibility(8);
             this.oneMonth.setVisibility(0);
             this.gap.setVisibility(0);
             this.exceptionsView.setVisibility(0);
@@ -288,6 +223,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             this.exceptionsView.avatarsImageView.setObject(0, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.setObject(1, this.parentFragment.getCurrentAccount(), null);
             this.exceptionsView.avatarsImageView.setObject(2, this.parentFragment.getCurrentAccount(), null);
+            this.exceptionsView.avatarsImageView.commitTransition(false);
         } else {
             int min = Math.min(3, this.exceptions.size());
             this.exceptionsView.titleView.setRightPadding(AndroidUtilities.dp((Math.max(0, min - 1) * 12) + 64));
@@ -295,8 +231,8 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             for (int i2 = 0; i2 < min; i2++) {
                 this.exceptionsView.avatarsImageView.setObject(i2, this.parentFragment.getCurrentAccount(), this.parentFragment.getMessagesController().getUserOrChat(((CacheByChatsController.KeepMediaException) this.exceptions.get(i2)).dialogId));
             }
+            this.exceptionsView.avatarsImageView.commitTransition(false);
         }
-        this.exceptionsView.avatarsImageView.commitTransition(false);
         this.delete.setVisibility(8);
         this.description.setVisibility(8);
         updateAvatarsPosition();
@@ -308,5 +244,73 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.delete.setVisibility(z ? 8 : 0);
         this.description.setVisibility(0);
         this.exceptionsView.setVisibility(8);
+    }
+
+    public class ExceptionsView extends FrameLayout {
+        AvatarsImageView avatarsImageView;
+        boolean ignoreLayout;
+        SimpleTextView titleView;
+
+        public ExceptionsView(Context context) {
+            super(context);
+            SimpleTextView simpleTextView = new SimpleTextView(context);
+            this.titleView = simpleTextView;
+            simpleTextView.setTextSize(16);
+            this.titleView.setEllipsizeByGradient(true);
+            this.titleView.setRightPadding(AndroidUtilities.dp(68.0f));
+            this.titleView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+            addView(this.titleView, LayoutHelper.createFrame(0, -2.0f, 19, 19.0f, 0.0f, 19.0f, 0.0f));
+            AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
+            this.avatarsImageView = avatarsImageView;
+            avatarsImageView.avatarsDrawable.setShowSavedMessages(true);
+            this.avatarsImageView.setStyle(11);
+            this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
+            addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
+            setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), 0, 4));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            View view = (View) getParent();
+            if (view != null && view.getWidth() > 0) {
+                i = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
+            }
+            this.ignoreLayout = true;
+            this.titleView.setVisibility(8);
+            super.onMeasure(i, i2);
+            this.titleView.setVisibility(0);
+            this.titleView.getLayoutParams().width = getMeasuredWidth();
+            this.ignoreLayout = false;
+            KeepMediaPopupView.this.updateAvatarsPosition();
+            super.onMeasure(i, i2);
+        }
+
+        @Override
+        public void requestLayout() {
+            if (this.ignoreLayout) {
+                return;
+            }
+            super.requestLayout();
+        }
+    }
+
+    public void updateAvatarsPosition() {
+        if (this.exceptions != null) {
+            this.exceptionsView.avatarsImageView.setTranslationX(AndroidUtilities.dp(12.0f) * (3 - Math.min(3, this.exceptions.size())));
+        }
+    }
+
+    private static class CheckItem {
+        final ActionBarMenuSubItem item;
+        final int type;
+
+        private CheckItem(ActionBarMenuSubItem actionBarMenuSubItem, int i) {
+            this.item = actionBarMenuSubItem;
+            this.type = i;
+        }
+    }
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 }

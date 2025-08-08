@@ -17,6 +17,15 @@ public class MuteDrawable extends Drawable {
     private boolean muted;
     private final Paint strokePaint;
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
     public MuteDrawable(Context context) {
         Paint paint = new Paint(1);
         this.strokePaint = paint;
@@ -76,19 +85,12 @@ public class MuteDrawable extends Drawable {
         canvas.restore();
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
+    public void setMuted(boolean z, boolean z2) {
+        this.muted = z;
+        if (!z2) {
+            this.animatedMuted.set(z, true);
+        }
+        invalidateSelf();
     }
 
     @Override
@@ -97,14 +99,12 @@ public class MuteDrawable extends Drawable {
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
-    public void setMuted(boolean z, boolean z2) {
-        this.muted = z;
-        if (!z2) {
-            this.animatedMuted.set(z, true);
-        }
-        invalidateSelf();
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 }

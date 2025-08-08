@@ -31,10 +31,14 @@ import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
+import j$.util.Collection;
+import j$.util.function.Predicate;
+import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
@@ -50,11 +54,13 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda251;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -64,6 +70,7 @@ import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CompatDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
@@ -119,222 +126,732 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
     private final FrameLayout topView;
     private TLRPC.DisallowedGiftsSettings userSettings;
 
-    public static class CardBackground extends Drawable {
-        private AnimatedFloat animatedSelected;
-        private TL_stars.starGiftAttributeBackdrop backdrop;
-        private final Path clipPath;
-        private RadialGradient gradient;
-        private final Matrix gradientMatrix;
-        private int gradientRadius;
-        public final Paint paint;
-        private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable pattern;
-        private final RectF rect;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private boolean selected;
-        private final Paint selectedPaint;
-        private final Path strokeClipPath;
-        private int[] strokeColors;
-        private LinearGradient strokeGradient;
-        private final Matrix strokeGradientMatrix;
-        public final Paint strokePaint;
-        private final View view;
+    public GiftSheet(Context context, int i, long j, Runnable runnable) {
+        this(context, i, j, null, runnable);
+    }
 
-        public CardBackground(View view, Theme.ResourcesProvider resourcesProvider, boolean z) {
-            Paint paint = new Paint(1);
-            this.paint = paint;
-            Paint paint2 = new Paint(1);
-            this.strokePaint = paint2;
-            this.rect = new RectF();
-            this.clipPath = new Path();
-            this.gradientMatrix = new Matrix();
-            this.strokeClipPath = new Path();
-            this.strokeGradientMatrix = new Matrix();
-            Paint paint3 = new Paint(1);
-            this.selectedPaint = paint3;
-            this.animatedSelected = new AnimatedFloat(new Runnable() {
+    public GiftSheet(final android.content.Context r28, final int r29, final long r30, java.util.List r32, final java.lang.Runnable r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.<init>(android.content.Context, int, long, java.util.List, java.lang.Runnable):void");
+    }
+
+    public void lambda$new$0(View view) {
+        BaseFragment lastFragment;
+        if (this.balanceView.lastBalance > 0 && (lastFragment = LaunchActivity.getLastFragment()) != null) {
+            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+            bottomSheetParams.transitionFromLeft = true;
+            bottomSheetParams.allowNestedScroll = false;
+            lastFragment.showAsSheet(new StarsIntroActivity(), bottomSheetParams);
+        }
+    }
+
+    public void lambda$new$1(long j, View view) {
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return;
+        }
+        lambda$new$0();
+        safeLastFragment.presentFragment(ProfileActivity.of(j));
+    }
+
+    public static void lambda$new$2() {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
+            return;
+        }
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        lastFragment.showAsSheet(new PremiumPreviewFragment("gifts"), bottomSheetParams);
+    }
+
+    public void lambda$new$5(StarsController.GiftsList giftsList, final long j, LinkSpanDrawable.LinksTextView linksTextView, final Runnable runnable, final Context context) {
+        TL_stars.StarGift starGift;
+        TLRPC.Document document;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2StarsInfo, this.name)));
+        spannableStringBuilder.append((CharSequence) " ");
+        HashSet hashSet = new HashSet();
+        HashSet hashSet2 = new HashSet();
+        for (int i = 0; i < giftsList.gifts.size() && hashSet.size() < 3; i++) {
+            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) giftsList.gifts.get(i);
+            if (savedStarGift != null && (starGift = savedStarGift.gift) != null && (document = starGift.getDocument()) != null && !hashSet.contains(Long.valueOf(document.id))) {
+                hashSet2.add(document);
+                hashSet.add(Long.valueOf(document.id));
+            }
+        }
+        if (hashSet2.size() > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append((CharSequence) LocaleController.formatString(R.string.Gift2StarsInfoProfileLink, DialogObject.getShortName(j)).replaceAll(" ", " "));
+            spannableStringBuilder2.append((CharSequence) " ");
+            Iterator it = hashSet2.iterator();
+            while (it.hasNext()) {
+                TLRPC.Document document2 = (TLRPC.Document) it.next();
+                spannableStringBuilder2.append((CharSequence) "\u2060e");
+                spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document2, linksTextView.getPaint().getFontMetricsInt()), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 33);
+            }
+            spannableStringBuilder2.append((CharSequence) " >");
+            spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(spannableStringBuilder2, new Runnable() {
                 @Override
                 public final void run() {
-                    GiftSheet.CardBackground.this.invalidate();
+                    GiftSheet.this.lambda$new$3(runnable, j);
                 }
-            }, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.view = view;
-            this.resourcesProvider = resourcesProvider;
-            this.pattern = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(28.0f)) {
+            }), true));
+        } else {
+            spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.Gift2StarsInfoLink), new Runnable() {
                 @Override
-                public void invalidate() {
-                    super.invalidate();
-                    if (CardBackground.this.getCallback() != null) {
-                        CardBackground.this.getCallback().invalidateDrawable(CardBackground.this);
-                    }
+                public final void run() {
+                    GiftSheet.lambda$new$4(context);
                 }
-            };
-            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                @Override
-                public void onViewAttachedToWindow(View view2) {
-                    CardBackground.this.pattern.attach();
-                }
+            }), true));
+        }
+        linksTextView.setText(spannableStringBuilder);
+        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), linksTextView.getPaint()));
+    }
 
+    public void lambda$new$3(Runnable runnable, long j) {
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return;
+        }
+        lambda$new$0();
+        if (runnable != null) {
+            runnable.run();
+        }
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", j);
+        bundle.putBoolean("open_gifts", true);
+        safeLastFragment.presentFragment(new ProfileActivity(bundle));
+    }
+
+    public static void lambda$new$4(Context context) {
+        new ExplainStarsSheet(context).show();
+    }
+
+    public static void lambda$new$6(StarsController.GiftsList giftsList, Runnable runnable, Object[] objArr) {
+        if (objArr[1] == giftsList) {
+            runnable.run();
+        }
+    }
+
+    public void lambda$new$13(Context context, int i, final Runnable runnable, final long j, View view, int i2) {
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
+        TL_stars.SavedStarGift savedStarGift;
+        UItem item = this.adapter.getItem(i2 - 1);
+        if (item != null && item.instanceOf(GiftCell.Factory.class)) {
+            Object obj = item.object;
+            if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
+                new SendGiftSheet(context, i, (GiftPremiumBottomSheet$GiftTier) obj, this.dialogId, new Runnable() {
+                    @Override
+                    public final void run() {
+                        GiftSheet.this.lambda$new$7(runnable);
+                    }
+                }) {
+                    @Override
+                    protected BulletinFactory getParentBulletinFactory() {
+                        GiftSheet giftSheet = GiftSheet.this;
+                        return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
+                    }
+                }.show();
+                return;
+            }
+            if (obj instanceof TL_stars.StarGift) {
+                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+                StarsController.GiftsList giftsList = this.myGifts;
+                if (giftsList != null && this.selectedTab == this.TAB_MY_GIFTS) {
+                    Iterator it = giftsList.gifts.iterator();
+                    while (true) {
+                        if (!it.hasNext()) {
+                            savedStarGift = null;
+                            break;
+                        }
+                        TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it.next();
+                        if (savedStarGift2.gift.id == starGift.id) {
+                            savedStarGift = savedStarGift2;
+                            break;
+                        }
+                    }
+                    if (savedStarGift == null) {
+                        return;
+                    }
+                    final StarGiftSheet starGiftSheet = new StarGiftSheet(getContext(), i, UserConfig.getInstance(i).getClientUserId(), this.resourcesProvider) {
+                        @Override
+                        public BulletinFactory getBulletinFactory() {
+                            GiftSheet giftSheet = GiftSheet.this;
+                            return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
+                        }
+                    }.set(savedStarGift, (StarsController.IGiftsList) null);
+                    starGiftSheet.openTransferAlert(j, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj2) {
+                            GiftSheet.this.lambda$new$10(starGiftSheet, j, runnable, (Browser.Progress) obj2);
+                        }
+                    });
+                    return;
+                }
+                if (item.accent && starGift.availability_resale > 0) {
+                    BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                    if (safeLastFragment == null) {
+                        return;
+                    }
+                    BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+                    bottomSheetParams.transitionFromLeft = true;
+                    bottomSheetParams.allowNestedScroll = false;
+                    ResaleGiftsFragment resaleGiftsFragment = new ResaleGiftsFragment(j, starGift.title, starGift.id, this.resourcesProvider);
+                    resaleGiftsFragment.setCloseParentSheet(new Runnable() {
+                        @Override
+                        public final void run() {
+                            GiftSheet.this.lambda$new$11(runnable);
+                        }
+                    });
+                    safeLastFragment.showAsSheet(resaleGiftsFragment, bottomSheetParams);
+                    return;
+                }
+                if (starGift.sold_out) {
+                    StarsIntroActivity.showSoldOutGiftSheet(context, i, starGift, this.resourcesProvider);
+                    return;
+                }
+                if (starGift.limited_per_user && starGift.per_user_remains <= 0) {
+                    BulletinFactory.of(this.container, this.resourcesProvider).createSimpleMultiBulletin(starGift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2PerUserLimit", starGift.per_user_total))).show();
+                    return;
+                }
+                if (starGift.require_premium && !UserConfig.getInstance(i).isPremium()) {
+                    BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+                    if (safeLastFragment2 == null) {
+                        return;
+                    }
+                    PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(safeLastFragment2, i, null, null, starGift, this.resourcesProvider);
+                    BackupImageView backupImageView = new BackupImageView(getContext());
+                    final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(backupImageView, AndroidUtilities.dp(160.0f), 4);
+                    backupImageView.setImageDrawable(swapAnimatedEmojiDrawable);
+                    backupImageView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                        @Override
+                        public void onViewAttachedToWindow(View view2) {
+                            swapAnimatedEmojiDrawable.attach();
+                        }
+
+                        @Override
+                        public void onViewDetachedFromWindow(View view2) {
+                            swapAnimatedEmojiDrawable.detach();
+                        }
+                    });
+                    swapAnimatedEmojiDrawable.set(starGift.getDocument(), false);
+                    premiumPreviewBottomSheet.overrideTitleIcon = backupImageView;
+                    premiumPreviewBottomSheet.show();
+                    swapAnimatedEmojiDrawable.play();
+                    return;
+                }
+                long j2 = this.dialogId;
+                Runnable runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        GiftSheet.this.lambda$new$12(runnable);
+                    }
+                };
+                boolean z = starGift.limited;
+                new SendGiftSheet(context, i, starGift, j2, runnable2, z && (disallowedGiftsSettings2 = this.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, z && (disallowedGiftsSettings = this.userSettings) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
+                    @Override
+                    protected BulletinFactory getParentBulletinFactory() {
+                        GiftSheet giftSheet = GiftSheet.this;
+                        return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
+                    }
+                }.show();
+            }
+        }
+    }
+
+    public void lambda$new$7(Runnable runnable) {
+        if (runnable != null) {
+            runnable.run();
+        }
+        lambda$new$0();
+    }
+
+    public void lambda$new$10(final StarGiftSheet starGiftSheet, long j, final Runnable runnable, final Browser.Progress progress) {
+        progress.init();
+        starGiftSheet.doTransfer(j, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                GiftSheet.this.lambda$new$9(progress, runnable, starGiftSheet, (TLRPC.TL_error) obj);
+            }
+        });
+    }
+
+    public void lambda$new$9(Browser.Progress progress, Runnable runnable, final StarGiftSheet starGiftSheet, final TLRPC.TL_error tL_error) {
+        progress.end();
+        if (runnable != null) {
+            runnable.run();
+        }
+        lambda$new$0();
+        if (tL_error != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public void onViewDetachedFromWindow(View view2) {
-                    CardBackground.this.pattern.detach();
+                public final void run() {
+                    GiftSheet.lambda$new$8(StarGiftSheet.this, tL_error);
                 }
             });
-            if (view.isAttachedToWindow()) {
-                this.pattern.attach();
-            }
-            paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-            if (z) {
-                paint.setShadowLayer(AndroidUtilities.dp(1.66f), 0.0f, AndroidUtilities.dp(0.33f), Theme.getColor(Theme.key_dialogCardShadow, resourcesProvider));
-            }
-            Paint.Style style = Paint.Style.STROKE;
-            paint3.setStyle(style);
-            paint2.setStyle(style);
+        } else {
+            lambda$new$0();
         }
+    }
 
-        @Override
-        public void draw(Canvas canvas) {
-            draw(canvas, 0.0f);
+    public static void lambda$new$8(StarGiftSheet starGiftSheet, TLRPC.TL_error tL_error) {
+        starGiftSheet.getBulletinFactory().showForError(tL_error);
+    }
+
+    public void lambda$new$11(Runnable runnable) {
+        if (runnable != null) {
+            runnable.run();
         }
+        lambda$new$0();
+    }
 
-        public void draw(Canvas canvas, float f) {
-            Paint paint;
-            RadialGradient radialGradient;
-            Rect bounds = getBounds();
-            float f2 = this.animatedSelected.set(this.selected);
-            this.rect.set(bounds);
-            this.rect.inset(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
-            if (this.backdrop != null) {
-                int lerp = AndroidUtilities.lerp(Math.min(bounds.width(), bounds.height()), Math.max(bounds.width(), bounds.height()), 0.35f) / 2;
-                if (this.gradient == null || this.gradientRadius != lerp) {
-                    this.gradientRadius = lerp;
-                    float f3 = lerp;
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.backdrop;
-                    int i = stargiftattributebackdrop.center_color | (-16777216);
-                    this.gradient = new RadialGradient(0.0f, 0.0f, f3, new int[]{i, i, stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                }
-                this.gradientMatrix.reset();
-                this.gradientMatrix.postTranslate(bounds.centerX(), Math.min(AndroidUtilities.dp(50.0f), bounds.centerY()));
-                this.gradient.setLocalMatrix(this.gradientMatrix);
-                paint = this.paint;
-                radialGradient = this.gradient;
-            } else {
-                paint = this.paint;
-                radialGradient = null;
-            }
-            paint.setShader(radialGradient);
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), this.paint);
-            boolean z = (this.strokeColors == null && (this.backdrop == null || this.pattern.isEmpty())) ? false : true;
-            if (z) {
-                canvas.save();
-                this.clipPath.rewind();
-                this.clipPath.addRoundRect(this.rect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), Path.Direction.CW);
-                canvas.clipPath(this.clipPath);
-            }
-            if (this.strokeColors != null) {
-                if (this.strokeGradient == null) {
-                    this.strokeGradient = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, this.strokeColors, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                }
-                this.strokeGradientMatrix.reset();
-                this.strokeGradientMatrix.postTranslate(bounds.left, bounds.top);
-                this.strokeGradientMatrix.postRotate((float) ((Math.atan2(bounds.height(), bounds.width()) / 3.141592653589793d) * 180.0d));
-                float sqrt = ((float) Math.sqrt(Math.pow(bounds.width(), 2.0d) + Math.pow(bounds.height(), 2.0d))) / 100.0f;
-                this.strokeGradientMatrix.postScale(sqrt, sqrt);
-                this.strokeGradient.setLocalMatrix(this.strokeGradientMatrix);
-                this.strokePaint.setShader(this.strokeGradient);
-                this.strokePaint.setStrokeWidth(AndroidUtilities.dp(4.66f));
-                canvas.drawRoundRect(this.rect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), this.strokePaint);
-            }
-            if (this.backdrop != null && !this.pattern.isEmpty()) {
-                this.pattern.setColor(Integer.valueOf(this.backdrop.pattern_color | (-16777216)));
-                canvas.save();
-                canvas.translate(bounds.centerX(), bounds.centerY());
-                float lerp2 = AndroidUtilities.lerp(1.0f, 0.925f, f2);
-                canvas.scale(lerp2, lerp2);
-                if (f < 1.0f) {
-                    StarGiftPatterns.drawPattern(canvas, 2, this.pattern, bounds.width(), bounds.height(), 1.0f - f, 1.0f);
-                }
-                if (f > 0.0f) {
-                    canvas.translate(0.0f, AndroidUtilities.dp(-31.0f));
-                    StarGiftPatterns.drawPattern(canvas, 0, this.pattern, bounds.width(), bounds.height(), f, 1.0f);
-                }
-                canvas.restore();
-            }
-            if (z) {
-                canvas.restore();
-            }
-            if (f2 > 0.0f) {
-                this.selectedPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-                this.selectedPaint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(this.rect);
-                float lerp3 = AndroidUtilities.lerp(-AndroidUtilities.dpf2(2.33f), AndroidUtilities.dp(5.166f), f2);
-                rectF.inset(lerp3, lerp3);
-                float lerp4 = AndroidUtilities.lerp(AndroidUtilities.dpf2(11.0f), AndroidUtilities.dpf2(6.66f), f2);
-                canvas.drawRoundRect(rectF, lerp4, lerp4, this.selectedPaint);
-            }
+    public void lambda$new$12(Runnable runnable) {
+        if (runnable != null) {
+            runnable.run();
         }
+        lambda$new$0();
+    }
 
-        @Override
-        public int getOpacity() {
-            return -2;
+    @Override
+    public void show() {
+        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
+            AccountFrozenAlert.show(this.currentAccount);
+            return;
         }
-
-        @Override
-        public boolean getPadding(Rect rect) {
-            rect.set(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
-            return true;
-        }
-
-        public void invalidate() {
-            this.view.invalidate();
-            if (getCallback() != null) {
-                getCallback().invalidateDrawable(this);
-            }
-        }
-
-        @Override
-        public void setAlpha(int i) {
-        }
-
-        public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-            if (this.backdrop != stargiftattributebackdrop) {
-                this.gradient = null;
-            }
-            this.backdrop = stargiftattributebackdrop;
-            invalidate();
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-        }
-
-        public void setPattern(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-            if (stargiftattributepattern == null) {
-                this.pattern.set((Drawable) null, false);
-            } else {
-                this.pattern.set(stargiftattributepattern.document, false);
-            }
-        }
-
-        public void setSelected(boolean z, boolean z2) {
-            if (this.selected == z) {
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.userSettings;
+        if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment != null) {
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(this.dialogId)))).show();
                 return;
             }
-            this.selected = z;
-            if (!z2) {
-                this.animatedSelected.force(z);
-            }
-            invalidate();
+            return;
         }
+        super.show();
+    }
 
-        public void setStrokeColors(int[] iArr) {
-            if (this.strokeColors == iArr) {
+    public GiftSheet setBirthday() {
+        return setBirthday(true);
+    }
+
+    public GiftSheet setBirthday(boolean z) {
+        this.birthday = z;
+        this.adapter.update(false);
+        return this;
+    }
+
+    @Override
+    public void lambda$new$0() {
+        super.lambda$new$0();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.billingProductDetailsUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starGiftsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.userInfoDidLoad);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starGiftSoldOut);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        UniversalAdapter universalAdapter;
+        if (i == NotificationCenter.billingProductDetailsUpdated) {
+            updatePremiumTiers();
+            return;
+        }
+        if (i == NotificationCenter.starGiftsLoaded) {
+            UniversalAdapter universalAdapter2 = this.adapter;
+            if (universalAdapter2 != null) {
+                universalAdapter2.update(true);
                 return;
             }
-            this.strokeColors = iArr;
-            this.strokeGradient = null;
-            invalidate();
+            return;
         }
+        if (i == NotificationCenter.userInfoDidLoad) {
+            if (isShown()) {
+                long longValue = ((Long) objArr[0]).longValue();
+                long j = this.dialogId;
+                if (longValue == j && j > 0) {
+                    TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
+                    TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || userFull == null) ? null : userFull.disallowed_stargifts;
+                    this.userSettings = disallowedGiftsSettings;
+                    if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
+                        lambda$new$0();
+                        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                        if (safeLastFragment != null) {
+                            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(this.dialogId)))).show();
+                            return;
+                        }
+                        return;
+                    }
+                    UniversalAdapter universalAdapter3 = this.adapter;
+                    if (universalAdapter3 != null) {
+                        universalAdapter3.update(true);
+                    }
+                }
+                ArrayList arrayList = this.premiumTiers;
+                if (arrayList == null || arrayList.isEmpty()) {
+                    updatePremiumTiers();
+                    UniversalAdapter universalAdapter4 = this.adapter;
+                    if (universalAdapter4 != null) {
+                        universalAdapter4.update(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.starGiftSoldOut) {
+            if (isShown()) {
+                TL_stars.StarGift starGift = (TL_stars.StarGift) objArr[0];
+                BulletinFactory.of(this.container, this.resourcesProvider).createEmojiBulletin(starGift.sticker, LocaleController.getString(R.string.Gift2SoldOutTitle), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2SoldOutCount", starGift.availability_total))).show();
+                UniversalAdapter universalAdapter5 = this.adapter;
+                if (universalAdapter5 != null) {
+                    universalAdapter5.update(true);
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.myGifts && (universalAdapter = this.adapter) != null) {
+            universalAdapter.update(true);
+        }
+    }
+
+    private void updatePremiumTiers() {
+        List list;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
+        this.premiumTiers.clear();
+        if (this.premiumTiers.isEmpty() && (list = this.options) != null && !list.isEmpty()) {
+            ArrayList arrayList = new ArrayList();
+            long j = 0;
+            for (int size = this.options.size() - 1; size >= 0; size--) {
+                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) this.options.get(size);
+                if (!"XTR".equalsIgnoreCase(tL_premiumGiftCodeOption2.currency)) {
+                    Iterator it = this.options.iterator();
+                    while (true) {
+                        if (!it.hasNext()) {
+                            tL_premiumGiftCodeOption = null;
+                            break;
+                        }
+                        tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) it.next();
+                        if (tL_premiumGiftCodeOption != tL_premiumGiftCodeOption2 && "XTR".equalsIgnoreCase(tL_premiumGiftCodeOption.currency) && tL_premiumGiftCodeOption.months == tL_premiumGiftCodeOption2.months) {
+                            break;
+                        }
+                    }
+                    GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = new GiftPremiumBottomSheet$GiftTier(tL_premiumGiftCodeOption2, tL_premiumGiftCodeOption);
+                    this.premiumTiers.add(giftPremiumBottomSheet$GiftTier);
+                    if (BuildVars.useInvoiceBilling()) {
+                        if (giftPremiumBottomSheet$GiftTier.getPricePerMonth() > j) {
+                            j = giftPremiumBottomSheet$GiftTier.getPricePerMonth();
+                        }
+                    } else if (giftPremiumBottomSheet$GiftTier.getStoreProduct() != null && BillingController.getInstance().isReady()) {
+                        arrayList.add(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(giftPremiumBottomSheet$GiftTier.getStoreProduct()).build());
+                    }
+                }
+            }
+            if (BuildVars.useInvoiceBilling()) {
+                Iterator it2 = this.premiumTiers.iterator();
+                while (it2.hasNext()) {
+                    ((GiftPremiumBottomSheet$GiftTier) it2.next()).setPricePerMonthRegular(j);
+                }
+            } else if (!arrayList.isEmpty()) {
+                System.currentTimeMillis();
+                BillingController.getInstance().queryProductDetails(arrayList, new ProductDetailsResponseListener() {
+                    @Override
+                    public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
+                        GiftSheet.this.lambda$updatePremiumTiers$16(billingResult, list2);
+                    }
+                });
+            }
+        }
+        if (this.premiumTiers.isEmpty()) {
+            BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    GiftSheet.this.lambda$updatePremiumTiers$17((List) obj);
+                }
+            });
+        }
+    }
+
+    public void lambda$updatePremiumTiers$16(BillingResult billingResult, List list) {
+        Iterator it = list.iterator();
+        long j = 0;
+        while (it.hasNext()) {
+            ProductDetails productDetails = (ProductDetails) it.next();
+            Iterator it2 = this.premiumTiers.iterator();
+            while (true) {
+                if (it2.hasNext()) {
+                    GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = (GiftPremiumBottomSheet$GiftTier) it2.next();
+                    if (giftPremiumBottomSheet$GiftTier.getStoreProduct() != null && giftPremiumBottomSheet$GiftTier.getStoreProduct().equals(productDetails.getProductId())) {
+                        giftPremiumBottomSheet$GiftTier.setGooglePlayProductDetails(productDetails);
+                        if (giftPremiumBottomSheet$GiftTier.getPricePerMonth() > j) {
+                            j = giftPremiumBottomSheet$GiftTier.getPricePerMonth();
+                        }
+                    }
+                }
+            }
+        }
+        Iterator it3 = this.premiumTiers.iterator();
+        while (it3.hasNext()) {
+            ((GiftPremiumBottomSheet$GiftTier) it3.next()).setPricePerMonthRegular(j);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                GiftSheet.this.lambda$updatePremiumTiers$15();
+            }
+        });
+    }
+
+    public void lambda$updatePremiumTiers$15() {
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(false);
+        }
+    }
+
+    public void lambda$updatePremiumTiers$17(List list) {
+        if (getContext() == null || !isShown()) {
+            return;
+        }
+        List filterGiftOptions = BoostRepository.filterGiftOptions(list, 1);
+        this.options = filterGiftOptions;
+        List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(filterGiftOptions);
+        this.options = filterGiftOptionsByBilling;
+        if (filterGiftOptionsByBilling.isEmpty()) {
+            return;
+        }
+        updatePremiumTiers();
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(true);
+        }
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return this.self ? LocaleController.getString(R.string.Gift2TitleSelf1) : Emoji.replaceEmoji(LocaleController.formatString(R.string.Gift2User, this.name), null, false);
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                GiftSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, this.resourcesProvider);
+        this.adapter = universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        boolean z;
+        ArrayList arrayList2;
+        boolean z2;
+        boolean z3;
+        StarsController.GiftsList giftsList;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings3;
+        StarsController.GiftsList giftsList2;
+        StarsController.GiftsList giftsList3;
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings4;
+        if (this.self || this.dialogId < 0 || ((disallowedGiftsSettings4 = this.userSettings) != null && disallowedGiftsSettings4.disallow_premium_gifts)) {
+            z = false;
+        } else {
+            arrayList.add(UItem.asCustom(this.topView));
+            arrayList.add(UItem.asCustom(this.premiumHeaderView));
+            ArrayList arrayList3 = this.premiumTiers;
+            if (arrayList3 != null && !arrayList3.isEmpty()) {
+                Iterator it = this.premiumTiers.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(GiftCell.Factory.asPremiumGift((GiftPremiumBottomSheet$GiftTier) it.next()));
+                }
+            } else {
+                arrayList.add(UItem.asFlicker(1, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(2, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(3, 34).setSpanCount(1));
+            }
+            z = true;
+        }
+        StarsController starsController = StarsController.getInstance(this.currentAccount);
+        if (this.birthday) {
+            arrayList2 = starsController.birthdaySortedGifts;
+        } else {
+            arrayList2 = starsController.sortedGifts;
+        }
+        if (this.userSettings != null) {
+            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new Predicate() {
+                @Override
+                public Predicate and(Predicate predicate) {
+                    return Predicate.CC.$default$and(this, predicate);
+                }
+
+                @Override
+                public Predicate negate() {
+                    return Predicate.CC.$default$negate(this);
+                }
+
+                @Override
+                public Predicate or(Predicate predicate) {
+                    return Predicate.CC.$default$or(this, predicate);
+                }
+
+                @Override
+                public final boolean test(Object obj) {
+                    boolean lambda$fillItems$18;
+                    lambda$fillItems$18 = GiftSheet.this.lambda$fillItems$18((TL_stars.StarGift) obj);
+                    return lambda$fillItems$18;
+                }
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda251()));
+        }
+        if (this.dialogId != UserConfig.getInstance(this.currentAccount).getClientUserId() && (giftsList3 = this.myGifts) != null) {
+            Iterator it2 = giftsList3.gifts.iterator();
+            while (it2.hasNext()) {
+                if (((TL_stars.SavedStarGift) it2.next()).gift instanceof TL_stars.TL_starGiftUnique) {
+                    z2 = true;
+                    break;
+                }
+            }
+        }
+        z2 = false;
+        if (!MessagesController.getInstance(this.currentAccount).stargiftsBlocked && (!arrayList2.isEmpty() || ((disallowedGiftsSettings3 = this.userSettings) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && (giftsList2 = this.myGifts) != null && !giftsList2.gifts.isEmpty()))) {
+            if (!z) {
+                arrayList.add(UItem.asCustom(this.topView));
+            } else {
+                arrayList.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
+            }
+            arrayList.add(UItem.asCustom(this.starsHeaderView));
+            TreeSet treeSet = new TreeSet();
+            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = this.userSettings;
+            if (disallowedGiftsSettings5 == null || !disallowedGiftsSettings5.disallow_unique_stargifts) {
+                z3 = false;
+                for (int i = 0; i < arrayList2.size(); i++) {
+                    TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList2.get(i);
+                    boolean z4 = z3;
+                    treeSet.add(Long.valueOf(starGift.stars));
+                    z3 = starGift.availability_resale > 0 ? true : z4;
+                }
+            } else {
+                z3 = false;
+            }
+            ArrayList arrayList4 = new ArrayList();
+            this.TAB_MY_GIFTS = -1;
+            this.TAB_LIMITED = -1;
+            this.TAB_IN_STOCK = -1;
+            this.TAB_ALL = -1;
+            if (!arrayList2.isEmpty()) {
+                this.TAB_ALL = arrayList4.size();
+                arrayList4.add(LocaleController.getString(R.string.Gift2TabAll));
+            }
+            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings6 = this.userSettings;
+            if ((disallowedGiftsSettings6 == null || !disallowedGiftsSettings6.disallow_unique_stargifts) && z2) {
+                this.TAB_MY_GIFTS = arrayList4.size();
+                arrayList4.add(LocaleController.getString(R.string.Gift2TabMine));
+            }
+            TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = this.userSettings;
+            if (disallowedGiftsSettings7 == null || !disallowedGiftsSettings7.disallow_limited_stargifts) {
+                this.TAB_LIMITED = arrayList4.size();
+                arrayList4.add(LocaleController.getString(R.string.Gift2TabLimited));
+            }
+            if (z3) {
+                this.TAB_RESALE = arrayList4.size();
+                arrayList4.add(LocaleController.getString(R.string.Gift2TabResale));
+            }
+            this.TAB_IN_STOCK = arrayList4.size();
+            arrayList4.add(LocaleController.getString(R.string.Gift2TabInStock));
+            int size = arrayList4.size();
+            Iterator it3 = treeSet.iterator();
+            ArrayList arrayList5 = new ArrayList();
+            while (it3.hasNext()) {
+                Long l = (Long) it3.next();
+                arrayList4.add(StarsIntroActivity.replaceStarsWithPlain("⭐️ " + LocaleController.formatNumber(l.longValue(), ','), 0.8f));
+                arrayList5.add(l);
+            }
+            arrayList.add(Tabs.Factory.asTabs(1, arrayList4, this.selectedTab, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    GiftSheet.this.selectTab(((Integer) obj).intValue());
+                }
+            }));
+            int i2 = this.selectedTab - size;
+            long longValue = (i2 < 0 || i2 >= arrayList5.size()) ? 0L : ((Long) arrayList5.get(this.selectedTab - size)).longValue();
+            if (this.myGifts != null && this.selectedTab == this.TAB_MY_GIFTS) {
+                arrayList2 = new ArrayList();
+                Iterator it4 = this.myGifts.gifts.iterator();
+                while (it4.hasNext()) {
+                    TL_stars.StarGift starGift2 = ((TL_stars.SavedStarGift) it4.next()).gift;
+                    if (starGift2 instanceof TL_stars.TL_starGiftUnique) {
+                        arrayList2.add(starGift2);
+                    }
+                }
+            }
+            int i3 = 0;
+            for (int i4 = 0; i4 < arrayList2.size(); i4++) {
+                TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList2.get(i4);
+                int i5 = this.selectedTab;
+                if (i5 == this.TAB_ALL || ((i5 == this.TAB_LIMITED && starGift3.limited) || i5 == this.TAB_MY_GIFTS || ((i5 == this.TAB_IN_STOCK && !starGift3.sold_out) || ((i5 == this.TAB_RESALE && starGift3.availability_resale > 0) || (i5 >= size && starGift3.stars == longValue))))) {
+                    if (!starGift3.sold_out && starGift3.availability_resale > 0 && i5 != this.TAB_RESALE) {
+                        arrayList.add(GiftCell.Factory.asStarGift(i5, starGift3, i5 == this.TAB_MY_GIFTS, starGift3.limited && (disallowedGiftsSettings2 = this.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, false, false));
+                        i3++;
+                    }
+                    int i6 = this.selectedTab;
+                    arrayList.add(GiftCell.Factory.asStarGift(i6, starGift3, i6 == this.TAB_MY_GIFTS, starGift3.limited && (disallowedGiftsSettings = this.userSettings) != null && disallowedGiftsSettings.disallow_limited_stargifts, true, false));
+                    i3++;
+                }
+            }
+            int i7 = this.selectedTab;
+            int i8 = this.TAB_MY_GIFTS;
+            if (i7 == i8 && (giftsList = this.myGifts) != null && !giftsList.endReached) {
+                giftsList.load();
+                arrayList.add(UItem.asFlicker(4, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(5, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(6, 34).setSpanCount(1));
+            } else if (i7 != i8 && starsController.giftsLoading) {
+                arrayList.add(UItem.asFlicker(4, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(5, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(6, 34).setSpanCount(1));
+            }
+            arrayList.add(UItem.asSpace(AndroidUtilities.dp(i3 < 9 ? 300.0f : 40.0f)));
+            return;
+        }
+        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings8 = this.userSettings;
+        if (disallowedGiftsSettings8 == null || disallowedGiftsSettings8.disallow_unique_stargifts || !arrayList2.isEmpty()) {
+            return;
+        }
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(300.0f)));
+    }
+
+    public boolean lambda$fillItems$18(TL_stars.StarGift starGift) {
+        boolean z;
+        if (starGift instanceof TL_stars.TL_starGiftUnique) {
+            z = this.userSettings.disallow_unique_stargifts;
+        } else {
+            if (starGift.limited) {
+                TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.userSettings;
+                if (disallowedGiftsSettings.disallow_limited_stargifts) {
+                    return starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts;
+                }
+                return true;
+            }
+            z = this.userSettings.disallow_unlimited_stargifts;
+        }
+        return !z;
+    }
+
+    public void selectTab(int i) {
+        if (this.selectedTab == i) {
+            return;
+        }
+        this.selectedTab = i;
+        this.itemAnimator.endAnimations();
+        this.adapter.update(true);
     }
 
     public static class GiftCell extends FrameLayout {
@@ -378,98 +895,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final TextView titleView;
         private final ImageView tonOnlySaleView;
         private TL_stars.SavedStarGift userGift;
-
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            public static UItem asPremiumGift(GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier) {
-                UItem spanCount = UItem.ofFactory(Factory.class).setSpanCount(1);
-                spanCount.object = giftPremiumBottomSheet$GiftTier;
-                return spanCount;
-            }
-
-            public static UItem asStarGift(int i, TL_stars.SavedStarGift savedStarGift, boolean z, boolean z2, boolean z3) {
-                UItem spanCount = UItem.ofFactory(Factory.class).setSpanCount(1);
-                spanCount.intValue = i;
-                spanCount.object = savedStarGift;
-                spanCount.accent = z;
-                spanCount.collapsed = z2;
-                spanCount.red = z3;
-                return spanCount;
-            }
-
-            public static UItem asStarGift(int i, TL_stars.StarGift starGift, boolean z, boolean z2, boolean z3, boolean z4) {
-                UItem spanCount = UItem.ofFactory(Factory.class).setSpanCount(1);
-                spanCount.intValue = i;
-                spanCount.object = starGift;
-                spanCount.checked = z;
-                spanCount.object2 = Boolean.valueOf(z2);
-                spanCount.red = z4;
-                spanCount.accent = z3;
-                return spanCount;
-            }
-
-            @Override
-            public void attachedView(View view, UItem uItem) {
-                ((GiftCell) view).setReordering(uItem.reordering, false);
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                boolean starsGift;
-                Object obj = uItem.object;
-                if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
-                    starsGift = ((GiftCell) view).setPremiumGift((GiftPremiumBottomSheet$GiftTier) obj);
-                } else if (obj instanceof TL_stars.StarGift) {
-                    TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                    GiftCell giftCell = (GiftCell) view;
-                    boolean z2 = uItem.checked;
-                    Object obj2 = uItem.object2;
-                    starsGift = giftCell.setStarsGift(starGift, z2, obj2 instanceof Boolean ? ((Boolean) obj2).booleanValue() : false, uItem.accent, uItem.red);
-                } else {
-                    starsGift = obj instanceof TL_stars.SavedStarGift ? ((GiftCell) view).setStarsGift((TL_stars.SavedStarGift) obj, uItem.accent, uItem.red) : false;
-                }
-                if (uItem.collapsed) {
-                    ((GiftCell) view).setChecked(uItem.checked, starsGift);
-                }
-                ((GiftCell) view).setReordering(uItem.reordering, starsGift);
-            }
-
-            @Override
-            public GiftCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new GiftCell(context, i, resourcesProvider);
-            }
-
-            @Override
-            public boolean equals(UItem uItem, UItem uItem2) {
-                if (uItem.accent != uItem2.accent) {
-                    return false;
-                }
-                Object obj = uItem.object;
-                if (obj != null || uItem2.object != null) {
-                    if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
-                        return obj == uItem2.object;
-                    }
-                    if (obj instanceof TL_stars.StarGift) {
-                        Object obj2 = uItem2.object;
-                        if (obj2 instanceof TL_stars.StarGift) {
-                            return ((TL_stars.StarGift) obj).id == ((TL_stars.StarGift) obj2).id;
-                        }
-                    }
-                    if (obj instanceof TL_stars.SavedStarGift) {
-                        Object obj3 = uItem2.object;
-                        if (obj3 instanceof TL_stars.SavedStarGift) {
-                            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                            TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                            return savedStarGift.gift.id == savedStarGift2.gift.id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id;
-                        }
-                    }
-                }
-                return uItem.intValue == uItem2.intValue && uItem.checked == uItem2.checked && uItem.longValue == uItem2.longValue && TextUtils.equals(uItem.text, uItem2.text);
-            }
-        }
 
         public GiftCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
             super(context);
@@ -563,185 +988,9 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             frameLayout.addView(imageView2, LayoutHelper.createFrame(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
         }
 
-        private TL_stars.TL_starGiftUnique getUniqueStarGift() {
-            TL_stars.SavedStarGift savedStarGift = this.userGift;
-            if (savedStarGift == null) {
-                return null;
-            }
-            TL_stars.StarGift starGift = savedStarGift.gift;
-            if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                return (TL_stars.TL_starGiftUnique) starGift;
-            }
-            return null;
-        }
-
-        public void lambda$setPinned$0(boolean z) {
-            if (z) {
-                return;
-            }
-            this.pinnedView.setVisibility(8);
-        }
-
-        public void lambda$setShowPinIcon$1(boolean z) {
-            if (z) {
-                return;
-            }
-            this.pinView.setVisibility(8);
-        }
-
-        private void setSticker(TLRPC.Document document, Object obj) {
-            if (document == null) {
-                this.imageView.clearImage();
-                this.lastDocument = null;
-                this.lastDocumentId = 0L;
-            } else {
-                if (this.lastDocument == document) {
-                    return;
-                }
-                this.lastDocument = document;
-                this.lastDocumentId = document.id;
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-                this.imageView.setImage(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f), obj);
-            }
-        }
-
-        private void updateRibbonText() {
-            Ribbon ribbon;
-            int i;
-            String string;
-            Ribbon ribbon2;
-            int i2;
-            StringBuilder sb;
-            TL_stars.StarGift starGift;
-            TL_stars.SavedStarGift savedStarGift = this.userGift;
-            if (savedStarGift != null) {
-                TL_stars.StarGift starGift2 = savedStarGift.gift;
-                if (starGift2 instanceof TL_stars.TL_starGiftUnique) {
-                    this.ribbon.setVisibility(0);
-                    if (this.userGift.gift.resell_amount != null) {
-                        int blendOver = Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.04f));
-                        this.ribbon.setColor(Theme.getColor(Theme.key_color_green, this.resourcesProvider));
-                        this.ribbon.setStrokeColor(blendOver);
-                        this.ribbon.setBackdrop(null);
-                        ribbon2 = this.ribbon;
-                        i2 = R.string.Gift2OnSale;
-                        ribbon2.setText(LocaleController.getString(i2), false);
-                        return;
-                    }
-                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
-                    this.ribbon.setStrokeColor(0);
-                    this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.userGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                    if (this.pinned) {
-                        ribbon = this.ribbon;
-                        sb = new StringBuilder();
-                        sb.append("#");
-                        starGift = this.userGift.gift;
-                        sb.append(LocaleController.formatNumber(starGift.num, ','));
-                        string = sb.toString();
-                    } else {
-                        ribbon = this.ribbon;
-                        string = LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.userGift.gift.availability_issued, 0));
-                    }
-                } else {
-                    if (!starGift2.limited) {
-                        this.ribbon.setBackdrop(null);
-                        this.ribbon.setVisibility(8);
-                        return;
-                    }
-                    this.ribbon.setVisibility(0);
-                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
-                    this.ribbon.setStrokeColor(0);
-                    this.ribbon.setBackdrop(null);
-                    ribbon = this.ribbon;
-                    string = LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.userGift.gift.availability_total, 0));
-                }
-                ribbon.setText(string, true);
-            }
-            TL_stars.StarGift starGift3 = this.gift;
-            if (starGift3 == null) {
-                GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = this.premiumTier;
-                if (giftPremiumBottomSheet$GiftTier != null) {
-                    if (giftPremiumBottomSheet$GiftTier.getDiscount() <= 0) {
-                        this.ribbon.setVisibility(8);
-                        this.ribbon.setBackdrop(null);
-                        this.ribbon.setStrokeColor(0);
-                        return;
-                    } else {
-                        this.ribbon.setVisibility(0);
-                        this.ribbon.setBackdrop(null);
-                        this.ribbon.setColors(-2535425, -8229377);
-                        this.ribbon.setStrokeColor(0);
-                        this.ribbon.setText(12, LocaleController.formatString(R.string.GiftPremiumOptionDiscount, Integer.valueOf(this.premiumTier.getDiscount())), true);
-                        return;
-                    }
-                }
-                return;
-            }
-            if (this.inResalePage) {
-                this.ribbon.setVisibility(0);
-                this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
-                this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                this.ribbon.setStrokeColor(0);
-                ribbon = this.ribbon;
-                sb = new StringBuilder();
-                sb.append("#");
-                starGift = this.gift;
-                sb.append(LocaleController.formatNumber(starGift.num, ','));
-                string = sb.toString();
-                ribbon.setText(string, true);
-            }
-            if (this.allowResaleInGifts && starGift3.availability_resale > 0) {
-                this.ribbon.setVisibility(0);
-                this.ribbon.setColor(Theme.getColor(Theme.key_color_green, this.resourcesProvider));
-                this.ribbon.setStrokeColor(0);
-                this.ribbon.setBackdrop(null);
-                ribbon2 = this.ribbon;
-                i2 = R.string.Gift2Resale;
-                ribbon2.setText(LocaleController.getString(i2), false);
-                return;
-            }
-            if (this.giftMine) {
-                this.ribbon.setVisibility(0);
-                this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
-                this.ribbon.setStrokeColor(0);
-                this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                ribbon = this.ribbon;
-                string = LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.gift.availability_issued, 0));
-            } else {
-                boolean z = starGift3.limited;
-                if (z && starGift3.availability_remains <= 0) {
-                    this.ribbon.setVisibility(0);
-                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon_soldout, this.resourcesProvider));
-                    this.ribbon.setStrokeColor(0);
-                    this.ribbon.setBackdrop(null);
-                    ribbon = this.ribbon;
-                    i = R.string.Gift2SoldOut;
-                } else if (starGift3.require_premium) {
-                    this.ribbon.setVisibility(0);
-                    this.ribbon.setBackdrop(null);
-                    this.ribbon.setColors(-2650077, -4227818);
-                    this.ribbon.setStrokeColor(0);
-                    ribbon = this.ribbon;
-                    i = R.string.Gift2LimitedPremium;
-                } else {
-                    Ribbon ribbon3 = this.ribbon;
-                    if (!z) {
-                        ribbon3.setBackdrop(null);
-                        this.ribbon.setStrokeColor(0);
-                        this.ribbon.setVisibility(8);
-                        return;
-                    } else {
-                        ribbon3.setVisibility(0);
-                        this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
-                        this.ribbon.setStrokeColor(0);
-                        this.ribbon.setBackdrop(null);
-                        ribbon = this.ribbon;
-                        i = R.string.Gift2LimitedRibbon;
-                    }
-                }
-                string = LocaleController.getString(i);
-            }
-            ribbon.setText(string, true);
+        public void invalidateCustom() {
+            this.card.invalidate();
+            this.card.invalidateDrawable(this.cardBackground);
         }
 
         public void customDraw(View view, Canvas canvas, float f, float f2, float f3) {
@@ -822,6 +1071,94 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             canvas.restore();
         }
 
+        public void setPinned(final boolean z, boolean z2) {
+            TL_stars.SavedStarGift savedStarGift;
+            if (this.pinned == z) {
+                return;
+            }
+            this.pinned = z;
+            boolean z3 = false;
+            if (z2) {
+                this.pinnedView.setVisibility(0);
+                this.pinnedView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.3f).scaleY(z ? 1.0f : 0.3f).withEndAction(new Runnable() {
+                    @Override
+                    public final void run() {
+                        GiftSheet.GiftCell.this.lambda$setPinned$0(z);
+                    }
+                }).start();
+            } else {
+                this.pinnedView.setVisibility(z ? 0 : 8);
+                this.pinnedView.setAlpha(z ? 1.0f : 0.0f);
+                this.pinnedView.setScaleX(z ? 1.0f : 0.3f);
+                this.pinnedView.setScaleY(z ? 1.0f : 0.3f);
+            }
+            if (!this.pinned && this.reordering && !this.inCollection && (savedStarGift = this.userGift) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
+                z3 = true;
+            }
+            setShowPinIcon(z3, z2);
+            updateRibbonText();
+        }
+
+        public void lambda$setPinned$0(boolean z) {
+            if (z) {
+                return;
+            }
+            this.pinnedView.setVisibility(8);
+        }
+
+        private TL_stars.TL_starGiftUnique getUniqueStarGift() {
+            TL_stars.SavedStarGift savedStarGift = this.userGift;
+            if (savedStarGift == null) {
+                return null;
+            }
+            TL_stars.StarGift starGift = savedStarGift.gift;
+            if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                return (TL_stars.TL_starGiftUnique) starGift;
+            }
+            return null;
+        }
+
+        public void setShowPinIcon(final boolean z, boolean z2) {
+            if (this.pinnedIcon == z) {
+                return;
+            }
+            this.pinnedIcon = z;
+            if (z2) {
+                this.pinView.setVisibility(0);
+                this.pinView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.3f).scaleY(z ? 1.0f : 0.3f).withEndAction(new Runnable() {
+                    @Override
+                    public final void run() {
+                        GiftSheet.GiftCell.this.lambda$setShowPinIcon$1(z);
+                    }
+                }).start();
+            } else {
+                this.pinView.setVisibility(z ? 0 : 8);
+                this.pinView.setAlpha(z ? 1.0f : 0.0f);
+                this.pinView.setScaleX(z ? 1.0f : 0.3f);
+                this.pinView.setScaleY(z ? 1.0f : 0.3f);
+            }
+        }
+
+        public void lambda$setShowPinIcon$1(boolean z) {
+            if (z) {
+                return;
+            }
+            this.pinView.setVisibility(8);
+        }
+
+        public void setReordering(boolean z, boolean z2) {
+            TL_stars.SavedStarGift savedStarGift;
+            if (this.reordering == z) {
+                return;
+            }
+            this.reordering = z;
+            if (!z2) {
+                this.animatedReordering.force(z);
+            }
+            invalidate();
+            setShowPinIcon((this.pinned || !z || this.inCollection || (savedStarGift = this.userGift) == null || !(savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) ? false : true, z2);
+        }
+
         @Override
         protected void dispatchDraw(Canvas canvas) {
             canvas.save();
@@ -835,67 +1172,21 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             canvas.restore();
         }
 
-        public TL_stars.StarGift getGift() {
-            return this.gift;
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
         }
 
         public GiftPremiumBottomSheet$GiftTier getPremiumTier() {
             return this.premiumTier;
         }
 
+        public TL_stars.StarGift getGift() {
+            return this.gift;
+        }
+
         public TL_stars.SavedStarGift getSavedGift() {
             return this.userGift;
-        }
-
-        public void invalidateCustom() {
-            this.card.invalidate();
-            this.card.invalidateDrawable(this.cardBackground);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-        }
-
-        public void setChecked(boolean z, boolean z2) {
-            if (this.checkBox == null) {
-                CheckBox2 checkBox2 = new CheckBox2(getContext(), 21);
-                this.checkBox = checkBox2;
-                checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
-                this.checkBox.setDrawUnchecked(false);
-                this.card.addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 51, 4.0f, 4.0f, 4.0f, 4.0f));
-            }
-            this.avatarView.setVisibility(8);
-            this.checkBox.setChecked(z, z2);
-        }
-
-        public void setPinned(final boolean z, boolean z2) {
-            TL_stars.SavedStarGift savedStarGift;
-            if (this.pinned == z) {
-                return;
-            }
-            this.pinned = z;
-            boolean z3 = false;
-            FrameLayout frameLayout = this.pinnedView;
-            if (z2) {
-                frameLayout.setVisibility(0);
-                this.pinnedView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.3f).scaleY(z ? 1.0f : 0.3f).withEndAction(new Runnable() {
-                    @Override
-                    public final void run() {
-                        GiftSheet.GiftCell.this.lambda$setPinned$0(z);
-                    }
-                }).start();
-            } else {
-                frameLayout.setVisibility(z ? 0 : 8);
-                this.pinnedView.setAlpha(z ? 1.0f : 0.0f);
-                this.pinnedView.setScaleX(z ? 1.0f : 0.3f);
-                this.pinnedView.setScaleY(z ? 1.0f : 0.3f);
-            }
-            if (!this.pinned && this.reordering && !this.inCollection && (savedStarGift = this.userGift) != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
-                z3 = true;
-            }
-            setShowPinIcon(z3, z2);
-            updateRibbonText();
         }
 
         public boolean setPremiumGift(GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier) {
@@ -956,91 +1247,381 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             return false;
         }
 
-        public void setReordering(boolean z, boolean z2) {
-            TL_stars.SavedStarGift savedStarGift;
-            if (this.reordering == z) {
-                return;
-            }
-            this.reordering = z;
-            if (!z2) {
-                this.animatedReordering.force(z);
-            }
-            invalidate();
-            setShowPinIcon((this.pinned || !z || this.inCollection || (savedStarGift = this.userGift) == null || !(savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) ? false : true, z2);
-        }
-
-        public void setShowPinIcon(final boolean z, boolean z2) {
-            if (this.pinnedIcon == z) {
-                return;
-            }
-            this.pinnedIcon = z;
-            if (z2) {
-                this.pinView.setVisibility(0);
-                this.pinView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.3f).scaleY(z ? 1.0f : 0.3f).withEndAction(new Runnable() {
-                    @Override
-                    public final void run() {
-                        GiftSheet.GiftCell.this.lambda$setShowPinIcon$1(z);
-                    }
-                }).start();
+        private void setSticker(TLRPC.Document document, Object obj) {
+            if (document == null) {
+                this.imageView.clearImage();
+                this.lastDocument = null;
+                this.lastDocumentId = 0L;
             } else {
-                this.pinView.setVisibility(z ? 0 : 8);
-                this.pinView.setAlpha(z ? 1.0f : 0.0f);
-                this.pinView.setScaleX(z ? 1.0f : 0.3f);
-                this.pinView.setScaleY(z ? 1.0f : 0.3f);
+                if (this.lastDocument == document) {
+                    return;
+                }
+                this.lastDocument = document;
+                this.lastDocumentId = document.id;
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
+                this.imageView.setImage(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f), obj);
             }
-        }
-
-        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.SavedStarGift r21, boolean r22, boolean r23) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.setStarsGift(org.telegram.tgnet.tl.TL_stars$SavedStarGift, boolean, boolean):boolean");
         }
 
         public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r21, boolean r22, boolean r23, boolean r24, boolean r25) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.setStarsGift(org.telegram.tgnet.tl.TL_stars$StarGift, boolean, boolean, boolean, boolean):boolean");
         }
-    }
 
-    public static class Ribbon extends View {
-        private RibbonDrawable drawable;
-
-        public Ribbon(Context context) {
-            super(context);
-            this.drawable = new RibbonDrawable(this, 1.0f);
+        public boolean setStarsGift(TL_stars.SavedStarGift savedStarGift, boolean z, boolean z2) {
+            Runnable runnable = this.cancel;
+            if (runnable != null) {
+                runnable.run();
+                this.cancel = null;
+            }
+            setSticker(savedStarGift.gift.getDocument(), savedStarGift);
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+            this.cardBackground.setBackdrop(stargiftattributebackdrop);
+            this.cardBackground.setPattern((TL_stars.starGiftAttributePattern) StarsController.findAttribute(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class));
+            this.cardBackground.setStrokeColors(null);
+            this.titleView.setVisibility(8);
+            this.subtitleView.setVisibility(8);
+            this.imageView.setTranslationY(0.0f);
+            this.lockView.setWaitingImage();
+            this.lockView.setBlendWithColor(stargiftattributebackdrop != null ? Integer.valueOf(Theme.multAlpha(stargiftattributebackdrop.center_color | (-16777216), 0.75f)) : null);
+            this.pinView.setWaitingImage();
+            this.pinView.setBlendWithColor(stargiftattributebackdrop != null ? Integer.valueOf(Theme.multAlpha(stargiftattributebackdrop.center_color | (-16777216), 0.75f)) : null);
+            this.tonOnlySaleView.setVisibility(savedStarGift.gift.resale_ton_only ? 0 : 8);
+            if (stargiftattributebackdrop != null) {
+                this.pinnedView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), Theme.adaptHSV(stargiftattributebackdrop.center_color | (-16777216), 0.1f, -0.2f)));
+            } else {
+                this.pinnedView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)));
+            }
+            FrameLayout.LayoutParams layoutParams = this.imageViewLayoutParams;
+            layoutParams.gravity = 17;
+            this.imageView.setLayoutParams(layoutParams);
+            this.lockView.setVisibility(0);
+            if (this.lastUserGift == savedStarGift) {
+                this.lockView.animate().alpha(savedStarGift.unsaved ? 1.0f : 0.0f).scaleX(savedStarGift.unsaved ? 1.0f : 0.4f).scaleY(savedStarGift.unsaved ? 1.0f : 0.4f).setDuration(350L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            } else {
+                this.lockView.setAlpha(savedStarGift.unsaved ? 1.0f : 0.0f);
+                this.lockView.setScaleX(savedStarGift.unsaved ? 1.0f : 0.4f);
+                this.lockView.setScaleY(savedStarGift.unsaved ? 1.0f : 0.4f);
+            }
+            boolean z3 = savedStarGift.gift instanceof TL_stars.TL_starGiftUnique;
+            if (z3) {
+                this.avatarView.setVisibility(8);
+            } else if (savedStarGift.name_hidden) {
+                this.avatarView.setVisibility(0);
+                CombinedDrawable platformDrawable = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("anonymous");
+                platformDrawable.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                this.avatarView.setImageDrawable(platformDrawable);
+            } else {
+                long peerDialogId = DialogObject.getPeerDialogId(savedStarGift.from_id);
+                if (peerDialogId > 0) {
+                    TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+                    if (user != null) {
+                        this.avatarView.setVisibility(0);
+                        this.avatarDrawable.setInfo(user);
+                        this.avatarView.setForUserOrChat(user, this.avatarDrawable);
+                    } else {
+                        this.avatarView.setVisibility(8);
+                    }
+                } else {
+                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                    if (chat != null) {
+                        this.avatarView.setVisibility(0);
+                        this.avatarDrawable.setInfo(chat);
+                        this.avatarView.setForUserOrChat(chat, this.avatarDrawable);
+                    } else {
+                        this.avatarView.setVisibility(8);
+                    }
+                }
+            }
+            if (stargiftattributebackdrop != null && savedStarGift.gift.resell_amount != null) {
+                this.priceView.setVisibility(0);
+                FrameLayout.LayoutParams layoutParams2 = this.imageViewLayoutParams;
+                layoutParams2.topMargin = 0;
+                layoutParams2.bottomMargin = 0;
+                this.priceView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f), 0);
+                this.priceView.setTextSize(1, 12.0f);
+                ColoredImageSpan[] coloredImageSpanArr = new ColoredImageSpan[1];
+                TL_stars.StarGift starGift = savedStarGift.gift;
+                if (starGift.resale_ton_only && DialogObject.getPeerDialogId(starGift.owner_id) == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                    this.priceView.setText(StarsIntroActivity.replaceStars(true, "XTR " + ((Object) StarsIntroActivity.formatStarsAmount(savedStarGift.gift.getResellAmount(AmountUtils$Currency.TON).toTl(), 1.0f, ',')), 0.95f, coloredImageSpanArr));
+                } else {
+                    this.priceView.setText(StarsIntroActivity.replaceStars("XTR " + LocaleController.formatNumber(savedStarGift.gift.getResellStars(), ','), 0.95f, coloredImageSpanArr));
+                }
+                ColoredImageSpan coloredImageSpan = coloredImageSpanArr[0];
+                if (coloredImageSpan != null) {
+                    coloredImageSpan.translate(0.0f, AndroidUtilities.dp(0.5f));
+                }
+                int blendOver = Theme.blendOver(stargiftattributebackdrop.center_color | (-16777216), Theme.multAlpha(stargiftattributebackdrop.pattern_color | (-16777216), 0.55f));
+                this.priceView.setBackground(new StarsBackground(1895825407, blendOver));
+                this.priceView.setTextColor(-1);
+                this.tonOnlySaleView.setBackground(new StarsBackground(1895825407, blendOver));
+                this.tonOnlySaleView.setColorFilter(-1);
+                ((FrameLayout.LayoutParams) this.priceView.getLayoutParams()).gravity = 49;
+                ((ViewGroup.MarginLayoutParams) this.priceView.getLayoutParams()).topMargin = AndroidUtilities.dp(69.0f);
+            } else {
+                if (z) {
+                    this.priceView.setVisibility(8);
+                    this.imageViewLayoutParams.topMargin = AndroidUtilities.dp(12.0f);
+                    this.imageViewLayoutParams.bottomMargin = AndroidUtilities.dp(12.0f);
+                } else {
+                    this.priceView.setVisibility(0);
+                    FrameLayout.LayoutParams layoutParams3 = this.imageViewLayoutParams;
+                    layoutParams3.topMargin = 0;
+                    layoutParams3.bottomMargin = 0;
+                }
+                if (z3) {
+                    this.priceView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+                    this.priceView.setTextSize(1, 12.0f);
+                    this.priceView.setText(LocaleController.getString(R.string.Gift2PriceUnique));
+                } else {
+                    this.priceView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(10.0f), 0);
+                    this.priceView.setTextSize(1, 12.0f);
+                    TextView textView = this.priceView;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("XTR ");
+                    TL_stars.StarGift starGift2 = savedStarGift.gift;
+                    long j = starGift2.stars;
+                    long j2 = savedStarGift.convert_stars;
+                    if (j2 <= 0) {
+                        j2 = starGift2.convert_stars;
+                    }
+                    sb.append(LocaleController.formatNumber(Math.max(j, j2), ','));
+                    textView.setText(StarsIntroActivity.replaceStarsWithPlain(sb.toString(), 0.66f));
+                }
+                this.priceView.setTextColor(z3 ? -1 : Theme.isCurrentThemeDark() ? -1333971 : -4229632);
+                this.priceView.setBackground(new StarsBackground(z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
+                this.tonOnlySaleView.setBackground(new StarsBackground(z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
+                this.tonOnlySaleView.setColorFilter(z3 ? -1 : Theme.isCurrentThemeDark() ? -1333971 : -4229632);
+                ((FrameLayout.LayoutParams) this.priceView.getLayoutParams()).gravity = 49;
+                ((ViewGroup.MarginLayoutParams) this.priceView.getLayoutParams()).topMargin = AndroidUtilities.dp(103.0f);
+            }
+            this.starsPriceView.setVisibility(8);
+            this.lastUserGift = savedStarGift;
+            this.lastTier = null;
+            TL_stars.SavedStarGift savedStarGift2 = this.userGift;
+            this.premiumTier = null;
+            this.gift = null;
+            this.giftMine = false;
+            this.userGift = savedStarGift;
+            this.allowResaleInGifts = false;
+            this.inResalePage = false;
+            this.inCollection = z2;
+            this.title = null;
+            this.subtitle = null;
+            setPinned(savedStarGift.pinned_to_top, savedStarGift2 == savedStarGift);
+            updateRibbonText();
+            return savedStarGift2 == savedStarGift;
         }
 
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            this.drawable.setBounds(0, 0, getWidth(), getHeight());
-            this.drawable.draw(canvas);
+        public void setChecked(boolean z, boolean z2) {
+            if (this.checkBox == null) {
+                CheckBox2 checkBox2 = new CheckBox2(getContext(), 21);
+                this.checkBox = checkBox2;
+                checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+                this.checkBox.setDrawUnchecked(false);
+                this.card.addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 51, 4.0f, 4.0f, 4.0f, 4.0f));
+            }
+            this.avatarView.setVisibility(8);
+            this.checkBox.setChecked(z, z2);
         }
 
-        @Override
-        protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+        private void updateRibbonText() {
+            TL_stars.SavedStarGift savedStarGift = this.userGift;
+            if (savedStarGift != null) {
+                TL_stars.StarGift starGift = savedStarGift.gift;
+                if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                    this.ribbon.setVisibility(0);
+                    if (this.userGift.gift.resell_amount != null) {
+                        int blendOver = Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.04f));
+                        this.ribbon.setColor(Theme.getColor(Theme.key_color_green, this.resourcesProvider));
+                        this.ribbon.setStrokeColor(blendOver);
+                        this.ribbon.setBackdrop(null);
+                        this.ribbon.setText(LocaleController.getString(R.string.Gift2OnSale), false);
+                        return;
+                    }
+                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.userGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                    if (this.pinned) {
+                        this.ribbon.setText("#" + LocaleController.formatNumber(this.userGift.gift.num, ','), true);
+                        return;
+                    }
+                    this.ribbon.setText(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.userGift.gift.availability_issued, 0)), true);
+                    return;
+                }
+                if (starGift.limited) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setText(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.userGift.gift.availability_total, 0)), true);
+                    return;
+                }
+                this.ribbon.setBackdrop(null);
+                this.ribbon.setVisibility(8);
+                return;
+            }
+            TL_stars.StarGift starGift2 = this.gift;
+            if (starGift2 != null) {
+                if (this.inResalePage) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
+                    this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setText("#" + LocaleController.formatNumber(this.gift.num, ','), true);
+                    return;
+                }
+                if (this.allowResaleInGifts && starGift2.availability_resale > 0) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setColor(Theme.getColor(Theme.key_color_green, this.resourcesProvider));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setText(LocaleController.getString(R.string.Gift2Resale), false);
+                    return;
+                }
+                if (this.giftMine) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+                    this.ribbon.setText(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.gift.availability_issued, 0)), true);
+                    return;
+                }
+                boolean z = starGift2.limited;
+                if (z && starGift2.availability_remains <= 0) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon_soldout, this.resourcesProvider));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setText(LocaleController.getString(R.string.Gift2SoldOut), true);
+                    return;
+                }
+                if (starGift2.require_premium) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setColors(-2650077, -4227818);
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedPremium), true);
+                    return;
+                }
+                if (z) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedRibbon), true);
+                    return;
+                }
+                this.ribbon.setBackdrop(null);
+                this.ribbon.setStrokeColor(0);
+                this.ribbon.setVisibility(8);
+                return;
+            }
+            GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = this.premiumTier;
+            if (giftPremiumBottomSheet$GiftTier != null) {
+                if (giftPremiumBottomSheet$GiftTier.getDiscount() > 0) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setColors(-2535425, -8229377);
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setText(12, LocaleController.formatString(R.string.GiftPremiumOptionDiscount, Integer.valueOf(this.premiumTier.getDiscount())), true);
+                    return;
+                }
+                this.ribbon.setVisibility(8);
+                this.ribbon.setBackdrop(null);
+                this.ribbon.setStrokeColor(0);
+            }
         }
 
-        public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-            this.drawable.setBackdrop(stargiftattributebackdrop, false);
-            invalidate();
-        }
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
 
-        public void setColor(int i) {
-            this.drawable.setColor(i);
-        }
+            @Override
+            public GiftCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new GiftCell(context, i, resourcesProvider);
+            }
 
-        public void setColors(int i, int i2) {
-            this.drawable.setColors(i, i2);
-        }
+            @Override
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                boolean starsGift;
+                Object obj = uItem.object;
+                if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
+                    starsGift = ((GiftCell) view).setPremiumGift((GiftPremiumBottomSheet$GiftTier) obj);
+                } else if (obj instanceof TL_stars.StarGift) {
+                    TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+                    GiftCell giftCell = (GiftCell) view;
+                    boolean z2 = uItem.checked;
+                    Object obj2 = uItem.object2;
+                    starsGift = giftCell.setStarsGift(starGift, z2, obj2 instanceof Boolean ? ((Boolean) obj2).booleanValue() : false, uItem.accent, uItem.red);
+                } else {
+                    starsGift = obj instanceof TL_stars.SavedStarGift ? ((GiftCell) view).setStarsGift((TL_stars.SavedStarGift) obj, uItem.accent, uItem.red) : false;
+                }
+                if (uItem.collapsed) {
+                    ((GiftCell) view).setChecked(uItem.checked, starsGift);
+                }
+                ((GiftCell) view).setReordering(uItem.reordering, starsGift);
+            }
 
-        public void setStrokeColor(int i) {
-            this.drawable.setStrokeColor(i);
-        }
+            @Override
+            public void attachedView(View view, UItem uItem) {
+                ((GiftCell) view).setReordering(uItem.reordering, false);
+            }
 
-        public void setText(int i, CharSequence charSequence, boolean z) {
-            this.drawable.setText(i, charSequence, z);
-        }
+            public static UItem asPremiumGift(GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier) {
+                UItem spanCount = UItem.ofFactory(Factory.class).setSpanCount(1);
+                spanCount.object = giftPremiumBottomSheet$GiftTier;
+                return spanCount;
+            }
 
-        public void setText(CharSequence charSequence, boolean z) {
-            this.drawable.setText(z ? 10 : 11, charSequence, z);
+            public static UItem asStarGift(int i, TL_stars.StarGift starGift, boolean z, boolean z2, boolean z3, boolean z4) {
+                UItem spanCount = UItem.ofFactory(Factory.class).setSpanCount(1);
+                spanCount.intValue = i;
+                spanCount.object = starGift;
+                spanCount.checked = z;
+                spanCount.object2 = Boolean.valueOf(z2);
+                spanCount.red = z4;
+                spanCount.accent = z3;
+                return spanCount;
+            }
+
+            public static UItem asStarGift(int i, TL_stars.SavedStarGift savedStarGift, boolean z, boolean z2, boolean z3) {
+                UItem spanCount = UItem.ofFactory(Factory.class).setSpanCount(1);
+                spanCount.intValue = i;
+                spanCount.object = savedStarGift;
+                spanCount.accent = z;
+                spanCount.collapsed = z2;
+                spanCount.red = z3;
+                return spanCount;
+            }
+
+            @Override
+            public boolean equals(UItem uItem, UItem uItem2) {
+                if (uItem.accent != uItem2.accent) {
+                    return false;
+                }
+                Object obj = uItem.object;
+                if (obj != null || uItem2.object != null) {
+                    if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
+                        return obj == uItem2.object;
+                    }
+                    if (obj instanceof TL_stars.StarGift) {
+                        Object obj2 = uItem2.object;
+                        if (obj2 instanceof TL_stars.StarGift) {
+                            return ((TL_stars.StarGift) obj).id == ((TL_stars.StarGift) obj2).id;
+                        }
+                    }
+                    if (obj instanceof TL_stars.SavedStarGift) {
+                        Object obj3 = uItem2.object;
+                        if (obj3 instanceof TL_stars.SavedStarGift) {
+                            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
+                            TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
+                            return savedStarGift.gift.id == savedStarGift2.gift.id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id;
+                        }
+                    }
+                }
+                return uItem.intValue == uItem2.intValue && uItem.checked == uItem2.checked && uItem.longValue == uItem2.longValue && TextUtils.equals(uItem.text, uItem2.text);
+            }
         }
     }
 
@@ -1049,20 +1630,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private Paint strokePaint;
         private Text text;
         private int textColor;
-
-        public RibbonDrawable(View view, float f) {
-            super(view);
-            this.path = new Path();
-            this.strokePaint = new Paint(1);
-            this.textColor = -1;
-            fillRibbonPath(this.path, f);
-            this.paint.setColor(-698031);
-            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
-            this.strokePaint.setColor(0);
-            this.strokePaint.setStyle(Paint.Style.STROKE);
-            this.strokePaint.setStrokeJoin(Paint.Join.ROUND);
-            this.strokePaint.setStrokeCap(Paint.Cap.ROUND);
-        }
 
         public static void fillRibbonPath(Path path, float f) {
             path.rewind();
@@ -1079,6 +1646,49 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             path.cubicTo(AndroidUtilities.dp(f4), AndroidUtilities.dp(45.31f * f), AndroidUtilities.dp(f4), AndroidUtilities.dp(28.38f * f), AndroidUtilities.dp(f4), AndroidUtilities.dp(27.32f * f));
             path.cubicTo(AndroidUtilities.dp(f4), AndroidUtilities.dp(26.26f * f), AndroidUtilities.dp(47.5f * f), AndroidUtilities.dp(25.24f * f), AndroidUtilities.dp(f * 46.82f), AndroidUtilities.dp(f2));
             path.close();
+        }
+
+        public RibbonDrawable(View view, float f) {
+            super(view);
+            this.path = new Path();
+            this.strokePaint = new Paint(1);
+            this.textColor = -1;
+            fillRibbonPath(this.path, f);
+            this.paint.setColor(-698031);
+            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
+            this.strokePaint.setColor(0);
+            this.strokePaint.setStyle(Paint.Style.STROKE);
+            this.strokePaint.setStrokeJoin(Paint.Join.ROUND);
+            this.strokePaint.setStrokeCap(Paint.Cap.ROUND);
+        }
+
+        public void setColor(int i) {
+            this.paint.setShader(null);
+            this.paint.setColor(i);
+        }
+
+        public void setStrokeColor(int i) {
+            this.strokePaint.setColor(i);
+        }
+
+        public void setColors(int i, int i2) {
+            this.paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        }
+
+        public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, boolean z) {
+            if (stargiftattributebackdrop == null) {
+                this.paint.setShader(null);
+            } else {
+                this.paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{Theme.adaptHSV(stargiftattributebackdrop.center_color | (-16777216), z ? 0.07f : 0.05f, z ? -0.15f : -0.1f), Theme.adaptHSV(stargiftattributebackdrop.edge_color | (-16777216), z ? 0.07f : 0.05f, z ? -0.15f : -0.1f)}, new float[]{z ? 1.0f : 0.0f, z ? 0.0f : 1.0f}, Shader.TileMode.CLAMP));
+            }
+        }
+
+        public void setText(int i, CharSequence charSequence, boolean z) {
+            this.text = new Text(charSequence, i, z ? AndroidUtilities.bold() : null);
+        }
+
+        public void setTextColor(int i) {
+            this.textColor = i;
         }
 
         @Override
@@ -1100,34 +1710,50 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
             canvas.restore();
         }
+    }
 
-        public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, boolean z) {
-            if (stargiftattributebackdrop == null) {
-                this.paint.setShader(null);
-            } else {
-                this.paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{Theme.adaptHSV(stargiftattributebackdrop.center_color | (-16777216), z ? 0.07f : 0.05f, z ? -0.15f : -0.1f), Theme.adaptHSV(stargiftattributebackdrop.edge_color | (-16777216), z ? 0.07f : 0.05f, z ? -0.15f : -0.1f)}, new float[]{z ? 1.0f : 0.0f, z ? 0.0f : 1.0f}, Shader.TileMode.CLAMP));
-            }
+    public static class Ribbon extends View {
+        private RibbonDrawable drawable;
+
+        public Ribbon(Context context) {
+            super(context);
+            this.drawable = new RibbonDrawable(this, 1.0f);
         }
 
-        public void setColor(int i) {
-            this.paint.setShader(null);
-            this.paint.setColor(i);
-        }
-
-        public void setColors(int i, int i2) {
-            this.paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-        }
-
-        public void setStrokeColor(int i) {
-            this.strokePaint.setColor(i);
+        public void setText(CharSequence charSequence, boolean z) {
+            this.drawable.setText(z ? 10 : 11, charSequence, z);
         }
 
         public void setText(int i, CharSequence charSequence, boolean z) {
-            this.text = new Text(charSequence, i, z ? AndroidUtilities.bold() : null);
+            this.drawable.setText(i, charSequence, z);
         }
 
-        public void setTextColor(int i) {
-            this.textColor = i;
+        public void setColor(int i) {
+            this.drawable.setColor(i);
+        }
+
+        public void setStrokeColor(int i) {
+            this.drawable.setStrokeColor(i);
+        }
+
+        public void setColors(int i, int i2) {
+            this.drawable.setColors(i, i2);
+        }
+
+        public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
+            this.drawable.setBackdrop(stargiftattributebackdrop, false);
+            invalidate();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            this.drawable.setBounds(0, 0, getWidth(), getHeight());
+            this.drawable.draw(canvas);
         }
     }
 
@@ -1138,6 +1764,11 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final int particlesColor;
         public final Path path;
         public final RectF rectF;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
 
         public StarsBackground(int i) {
             this(ColorUtils.setAlphaComponent(i, 128), i);
@@ -1171,11 +1802,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
 
         @Override
-        public int getOpacity() {
-            return -2;
-        }
-
-        @Override
         public void setAlpha(int i) {
             this.backgroundPaint.setAlpha(i);
         }
@@ -1183,6 +1809,219 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         @Override
         public void setColorFilter(ColorFilter colorFilter) {
             this.backgroundPaint.setColorFilter(colorFilter);
+        }
+    }
+
+    public static class CardBackground extends Drawable {
+        private AnimatedFloat animatedSelected;
+        private TL_stars.starGiftAttributeBackdrop backdrop;
+        private final Path clipPath;
+        private RadialGradient gradient;
+        private final Matrix gradientMatrix;
+        private int gradientRadius;
+        public final Paint paint;
+        private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable pattern;
+        private final RectF rect;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private boolean selected;
+        private final Paint selectedPaint;
+        private final Path strokeClipPath;
+        private int[] strokeColors;
+        private LinearGradient strokeGradient;
+        private final Matrix strokeGradientMatrix;
+        public final Paint strokePaint;
+        private final View view;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public CardBackground(View view, Theme.ResourcesProvider resourcesProvider, boolean z) {
+            Paint paint = new Paint(1);
+            this.paint = paint;
+            Paint paint2 = new Paint(1);
+            this.strokePaint = paint2;
+            this.rect = new RectF();
+            this.clipPath = new Path();
+            this.gradientMatrix = new Matrix();
+            this.strokeClipPath = new Path();
+            this.strokeGradientMatrix = new Matrix();
+            Paint paint3 = new Paint(1);
+            this.selectedPaint = paint3;
+            this.animatedSelected = new AnimatedFloat(new Runnable() {
+                @Override
+                public final void run() {
+                    GiftSheet.CardBackground.this.invalidate();
+                }
+            }, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.view = view;
+            this.resourcesProvider = resourcesProvider;
+            this.pattern = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(28.0f)) {
+                @Override
+                public void invalidate() {
+                    super.invalidate();
+                    if (CardBackground.this.getCallback() != null) {
+                        CardBackground.this.getCallback().invalidateDrawable(CardBackground.this);
+                    }
+                }
+            };
+            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View view2) {
+                    CardBackground.this.pattern.attach();
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View view2) {
+                    CardBackground.this.pattern.detach();
+                }
+            });
+            if (view.isAttachedToWindow()) {
+                this.pattern.attach();
+            }
+            paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
+            if (z) {
+                paint.setShadowLayer(AndroidUtilities.dp(1.66f), 0.0f, AndroidUtilities.dp(0.33f), Theme.getColor(Theme.key_dialogCardShadow, resourcesProvider));
+            }
+            Paint.Style style = Paint.Style.STROKE;
+            paint3.setStyle(style);
+            paint2.setStyle(style);
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            draw(canvas, 0.0f);
+        }
+
+        public void draw(Canvas canvas, float f) {
+            Rect bounds = getBounds();
+            float f2 = this.animatedSelected.set(this.selected);
+            this.rect.set(bounds);
+            this.rect.inset(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
+            if (this.backdrop != null) {
+                int lerp = AndroidUtilities.lerp(Math.min(bounds.width(), bounds.height()), Math.max(bounds.width(), bounds.height()), 0.35f) / 2;
+                if (this.gradient == null || this.gradientRadius != lerp) {
+                    this.gradientRadius = lerp;
+                    float f3 = lerp;
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.backdrop;
+                    int i = stargiftattributebackdrop.center_color | (-16777216);
+                    this.gradient = new RadialGradient(0.0f, 0.0f, f3, new int[]{i, i, stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                }
+                this.gradientMatrix.reset();
+                this.gradientMatrix.postTranslate(bounds.centerX(), Math.min(AndroidUtilities.dp(50.0f), bounds.centerY()));
+                this.gradient.setLocalMatrix(this.gradientMatrix);
+                this.paint.setShader(this.gradient);
+            } else {
+                this.paint.setShader(null);
+            }
+            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), this.paint);
+            boolean z = (this.strokeColors == null && (this.backdrop == null || this.pattern.isEmpty())) ? false : true;
+            if (z) {
+                canvas.save();
+                this.clipPath.rewind();
+                this.clipPath.addRoundRect(this.rect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), Path.Direction.CW);
+                canvas.clipPath(this.clipPath);
+            }
+            if (this.strokeColors != null) {
+                if (this.strokeGradient == null) {
+                    this.strokeGradient = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, this.strokeColors, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                }
+                this.strokeGradientMatrix.reset();
+                this.strokeGradientMatrix.postTranslate(bounds.left, bounds.top);
+                this.strokeGradientMatrix.postRotate((float) ((Math.atan2(bounds.height(), bounds.width()) / 3.141592653589793d) * 180.0d));
+                float sqrt = ((float) Math.sqrt(Math.pow(bounds.width(), 2.0d) + Math.pow(bounds.height(), 2.0d))) / 100.0f;
+                this.strokeGradientMatrix.postScale(sqrt, sqrt);
+                this.strokeGradient.setLocalMatrix(this.strokeGradientMatrix);
+                this.strokePaint.setShader(this.strokeGradient);
+                this.strokePaint.setStrokeWidth(AndroidUtilities.dp(4.66f));
+                canvas.drawRoundRect(this.rect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), this.strokePaint);
+            }
+            if (this.backdrop != null && !this.pattern.isEmpty()) {
+                this.pattern.setColor(Integer.valueOf(this.backdrop.pattern_color | (-16777216)));
+                canvas.save();
+                canvas.translate(bounds.centerX(), bounds.centerY());
+                float lerp2 = AndroidUtilities.lerp(1.0f, 0.925f, f2);
+                canvas.scale(lerp2, lerp2);
+                if (f < 1.0f) {
+                    StarGiftPatterns.drawPattern(canvas, 2, this.pattern, bounds.width(), bounds.height(), 1.0f - f, 1.0f);
+                }
+                if (f > 0.0f) {
+                    canvas.translate(0.0f, AndroidUtilities.dp(-31.0f));
+                    StarGiftPatterns.drawPattern(canvas, 0, this.pattern, bounds.width(), bounds.height(), f, 1.0f);
+                }
+                canvas.restore();
+            }
+            if (z) {
+                canvas.restore();
+            }
+            if (f2 > 0.0f) {
+                this.selectedPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                this.selectedPaint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(this.rect);
+                float lerp3 = AndroidUtilities.lerp(-AndroidUtilities.dpf2(2.33f), AndroidUtilities.dp(5.166f), f2);
+                rectF.inset(lerp3, lerp3);
+                float lerp4 = AndroidUtilities.lerp(AndroidUtilities.dpf2(11.0f), AndroidUtilities.dpf2(6.66f), f2);
+                canvas.drawRoundRect(rectF, lerp4, lerp4, this.selectedPaint);
+            }
+        }
+
+        @Override
+        public boolean getPadding(Rect rect) {
+            rect.set(AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.33f), AndroidUtilities.dp(4.0f));
+            return true;
+        }
+
+        public void invalidate() {
+            this.view.invalidate();
+            if (getCallback() != null) {
+                getCallback().invalidateDrawable(this);
+            }
+        }
+
+        public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
+            if (this.backdrop != stargiftattributebackdrop) {
+                this.gradient = null;
+            }
+            this.backdrop = stargiftattributebackdrop;
+            invalidate();
+        }
+
+        public void setPattern(TL_stars.starGiftAttributePattern stargiftattributepattern) {
+            if (stargiftattributepattern == null) {
+                this.pattern.set((Drawable) null, false);
+            } else {
+                this.pattern.set(stargiftattributepattern.document, false);
+            }
+        }
+
+        public void setStrokeColors(int[] iArr) {
+            if (this.strokeColors == iArr) {
+                return;
+            }
+            this.strokeColors = iArr;
+            this.strokeGradient = null;
+            invalidate();
+        }
+
+        public void setSelected(boolean z, boolean z2) {
+            if (this.selected == z) {
+                return;
+            }
+            this.selected = z;
+            if (!z2) {
+                this.animatedSelected.force(z);
+            }
+            invalidate();
         }
     }
 
@@ -1198,59 +2037,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final RectF selectedRect;
         private final ArrayList tabs;
 
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            public static UItem asTabs(int i, ArrayList arrayList, int i2, Utilities.Callback callback) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.id = i;
-                ofFactory.object = arrayList;
-                ofFactory.intValue = i2;
-                ofFactory.object2 = callback;
-                return ofFactory;
-            }
-
-            private static boolean eq(ArrayList arrayList, ArrayList arrayList2) {
-                if (arrayList == arrayList2) {
-                    return true;
-                }
-                if (arrayList == null && arrayList2 == null) {
-                    return true;
-                }
-                if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
-                    return false;
-                }
-                for (int i = 0; i < arrayList.size(); i++) {
-                    if (!TextUtils.equals((CharSequence) arrayList.get(i), (CharSequence) arrayList2.get(i))) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((Tabs) view).set(uItem.id, (ArrayList) uItem.object, uItem.intValue, (Utilities.Callback) uItem.object2);
-            }
-
-            @Override
-            public boolean contentsEquals(UItem uItem, UItem uItem2) {
-                return uItem.intValue == uItem2.intValue && uItem.object2 == uItem2.object2 && equals(uItem, uItem2);
-            }
-
-            @Override
-            public Tabs createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new Tabs(context, resourcesProvider);
-            }
-
-            @Override
-            public boolean equals(UItem uItem, UItem uItem2) {
-                return uItem.id == uItem2.id && eq((ArrayList) uItem.object, (ArrayList) uItem2.object);
-            }
-        }
-
         public Tabs(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.tabs = new ArrayList();
@@ -1261,13 +2047,35 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             this.lastId = Integer.MIN_VALUE;
             this.resourcesProvider = resourcesProvider;
             LinearLayout linearLayout = new LinearLayout(context) {
-                private final void setBounds(RectF rectF, View view) {
-                    rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                @Override
+                protected void dispatchDraw(Canvas canvas) {
+                    Tabs.this.selectedPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_dialogGiftsTabText), 0.1f));
+                    float f = Tabs.this.animatedSelected.set(Tabs.this.selected);
+                    double d = f;
+                    int clamp = Utilities.clamp((int) Math.floor(d), Tabs.this.tabs.size() - 1, 0);
+                    int clamp2 = Utilities.clamp((int) Math.ceil(d), Tabs.this.tabs.size() - 1, 0);
+                    if (clamp < Tabs.this.tabs.size()) {
+                        setBounds(Tabs.this.flooredRect, (View) Tabs.this.tabs.get(clamp));
+                    } else if (clamp2 < Tabs.this.tabs.size()) {
+                        setBounds(Tabs.this.flooredRect, (View) Tabs.this.tabs.get(clamp2));
+                    } else {
+                        Tabs.this.flooredRect.set(0.0f, 0.0f, 0.0f, 0.0f);
+                    }
+                    if (clamp2 < Tabs.this.tabs.size()) {
+                        setBounds(Tabs.this.ceiledRect, (View) Tabs.this.tabs.get(clamp2));
+                    } else if (clamp < Tabs.this.tabs.size()) {
+                        setBounds(Tabs.this.ceiledRect, (View) Tabs.this.tabs.get(clamp));
+                    } else {
+                        Tabs.this.ceiledRect.set(0.0f, 0.0f, 0.0f, 0.0f);
+                    }
+                    AndroidUtilities.lerp(Tabs.this.flooredRect, Tabs.this.ceiledRect, f - clamp, Tabs.this.selectedRect);
+                    float height = Tabs.this.selectedRect.height() / 2.0f;
+                    canvas.drawRoundRect(Tabs.this.selectedRect, height, height, Tabs.this.selectedPaint);
+                    super.dispatchDraw(canvas);
                 }
 
-                @Override
-                protected void dispatchDraw(android.graphics.Canvas r7) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.Tabs.AnonymousClass1.dispatchDraw(android.graphics.Canvas):void");
+                private final void setBounds(RectF rectF, View view) {
+                    rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
                 }
             };
             this.layout = linearLayout;
@@ -1280,19 +2088,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             setClipToPadding(false);
             setClipChildren(false);
             this.animatedSelected = new AnimatedFloat(linearLayout, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        }
-
-        public void lambda$set$0(int i, Utilities.Callback callback, View view) {
-            TextView textView = (TextView) this.tabs.get(i);
-            smoothScrollTo((textView.getLeft() + (textView.getWidth() / 2)) - (getWidth() / 2), 0);
-            if (callback != null) {
-                callback.run(Integer.valueOf(i));
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
         }
 
         public void set(int i, ArrayList arrayList, int i2, final Utilities.Callback callback) {
@@ -1340,556 +2135,71 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 });
             }
         }
-    }
 
-    public GiftSheet(Context context, int i, long j, Runnable runnable) {
-        this(context, i, j, null, runnable);
-    }
+        public void lambda$set$0(int i, Utilities.Callback callback, View view) {
+            TextView textView = (TextView) this.tabs.get(i);
+            smoothScrollTo((textView.getLeft() + (textView.getWidth() / 2)) - (getWidth() / 2), 0);
+            if (callback != null) {
+                callback.run(Integer.valueOf(i));
+            }
+        }
 
-    public GiftSheet(final android.content.Context r29, final int r30, final long r31, java.util.List r33, final java.lang.Runnable r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.<init>(android.content.Context, int, long, java.util.List, java.lang.Runnable):void");
-    }
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
 
-    public boolean lambda$fillItems$18(TL_stars.StarGift starGift) {
-        boolean z;
-        if (starGift instanceof TL_stars.TL_starGiftUnique) {
-            z = this.userSettings.disallow_unique_stargifts;
-        } else {
-            if (starGift.limited) {
-                TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.userSettings;
-                if (disallowedGiftsSettings.disallow_limited_stargifts) {
-                    return starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts;
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public Tabs createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new Tabs(context, resourcesProvider);
+            }
+
+            @Override
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                ((Tabs) view).set(uItem.id, (ArrayList) uItem.object, uItem.intValue, (Utilities.Callback) uItem.object2);
+            }
+
+            public static UItem asTabs(int i, ArrayList arrayList, int i2, Utilities.Callback callback) {
+                UItem ofFactory = UItem.ofFactory(Factory.class);
+                ofFactory.id = i;
+                ofFactory.object = arrayList;
+                ofFactory.intValue = i2;
+                ofFactory.object2 = callback;
+                return ofFactory;
+            }
+
+            private static boolean eq(ArrayList arrayList, ArrayList arrayList2) {
+                if (arrayList == arrayList2) {
+                    return true;
+                }
+                if (arrayList == null && arrayList2 == null) {
+                    return true;
+                }
+                if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
+                    return false;
+                }
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (!TextUtils.equals((CharSequence) arrayList.get(i), (CharSequence) arrayList2.get(i))) {
+                        return false;
+                    }
                 }
                 return true;
             }
-            z = this.userSettings.disallow_unlimited_stargifts;
-        }
-        return !z;
-    }
 
-    public void lambda$new$0(View view) {
-        BaseFragment lastFragment;
-        if (this.balanceView.lastBalance > 0 && (lastFragment = LaunchActivity.getLastFragment()) != null) {
-            BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-            bottomSheetParams.transitionFromLeft = true;
-            bottomSheetParams.allowNestedScroll = false;
-            lastFragment.showAsSheet(new StarsIntroActivity(), bottomSheetParams);
-        }
-    }
-
-    public void lambda$new$1(long j, View view) {
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null) {
-            return;
-        }
-        lambda$new$0();
-        safeLastFragment.presentFragment(ProfileActivity.of(j));
-    }
-
-    public void lambda$new$10(final StarGiftSheet starGiftSheet, long j, final Runnable runnable, final Browser.Progress progress) {
-        progress.init();
-        starGiftSheet.doTransfer(j, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
-                GiftSheet.this.lambda$new$9(progress, runnable, starGiftSheet, (TLRPC.TL_error) obj);
+            public boolean equals(UItem uItem, UItem uItem2) {
+                return uItem.id == uItem2.id && eq((ArrayList) uItem.object, (ArrayList) uItem2.object);
             }
-        });
-    }
 
-    public void lambda$new$11(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
-        }
-        lambda$new$0();
-    }
-
-    public void lambda$new$12(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
-        }
-        lambda$new$0();
-    }
-
-    public void lambda$new$13(Context context, int i, final Runnable runnable, final long j, View view, int i2) {
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
-        TL_stars.SavedStarGift savedStarGift;
-        UItem item = this.adapter.getItem(i2 - 1);
-        if (item != null && item.instanceOf(GiftCell.Factory.class)) {
-            Object obj = item.object;
-            if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
-                new SendGiftSheet(context, i, (GiftPremiumBottomSheet$GiftTier) obj, this.dialogId, new Runnable() {
-                    @Override
-                    public final void run() {
-                        GiftSheet.this.lambda$new$7(runnable);
-                    }
-                }) {
-                    @Override
-                    protected BulletinFactory getParentBulletinFactory() {
-                        GiftSheet giftSheet = GiftSheet.this;
-                        return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
-                    }
-                }.show();
-                return;
-            }
-            if (obj instanceof TL_stars.StarGift) {
-                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                StarsController.GiftsList giftsList = this.myGifts;
-                if (giftsList != null && this.selectedTab == this.TAB_MY_GIFTS) {
-                    Iterator it = giftsList.gifts.iterator();
-                    while (true) {
-                        if (!it.hasNext()) {
-                            savedStarGift = null;
-                            break;
-                        }
-                        TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it.next();
-                        if (savedStarGift2.gift.id == starGift.id) {
-                            savedStarGift = savedStarGift2;
-                            break;
-                        }
-                    }
-                    if (savedStarGift == null) {
-                        return;
-                    }
-                    final StarGiftSheet starGiftSheet = new StarGiftSheet(getContext(), i, UserConfig.getInstance(i).getClientUserId(), this.resourcesProvider) {
-                        @Override
-                        public BulletinFactory getBulletinFactory() {
-                            GiftSheet giftSheet = GiftSheet.this;
-                            return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
-                        }
-                    }.set(savedStarGift, (StarsController.IGiftsList) null);
-                    starGiftSheet.openTransferAlert(j, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj2) {
-                            GiftSheet.this.lambda$new$10(starGiftSheet, j, runnable, (Browser.Progress) obj2);
-                        }
-                    });
-                    return;
-                }
-                if (item.accent && starGift.availability_resale > 0) {
-                    BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-                    if (safeLastFragment == null) {
-                        return;
-                    }
-                    BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-                    bottomSheetParams.transitionFromLeft = true;
-                    bottomSheetParams.allowNestedScroll = false;
-                    ResaleGiftsFragment resaleGiftsFragment = new ResaleGiftsFragment(j, starGift.title, starGift.id, this.resourcesProvider);
-                    resaleGiftsFragment.setCloseParentSheet(new Runnable() {
-                        @Override
-                        public final void run() {
-                            GiftSheet.this.lambda$new$11(runnable);
-                        }
-                    });
-                    safeLastFragment.showAsSheet(resaleGiftsFragment, bottomSheetParams);
-                    return;
-                }
-                if (starGift.sold_out) {
-                    StarsIntroActivity.showSoldOutGiftSheet(context, i, starGift, this.resourcesProvider);
-                    return;
-                }
-                if (starGift.limited_per_user && starGift.per_user_remains <= 0) {
-                    BulletinFactory.of(this.container, this.resourcesProvider).createSimpleMultiBulletin(starGift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2PerUserLimit", starGift.per_user_total))).show();
-                    return;
-                }
-                if (!starGift.require_premium || UserConfig.getInstance(i).isPremium()) {
-                    long j2 = this.dialogId;
-                    Runnable runnable2 = new Runnable() {
-                        @Override
-                        public final void run() {
-                            GiftSheet.this.lambda$new$12(runnable);
-                        }
-                    };
-                    boolean z = starGift.limited;
-                    new SendGiftSheet(context, i, starGift, j2, runnable2, z && (disallowedGiftsSettings2 = this.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, z && (disallowedGiftsSettings = this.userSettings) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
-                        @Override
-                        protected BulletinFactory getParentBulletinFactory() {
-                            GiftSheet giftSheet = GiftSheet.this;
-                            return BulletinFactory.of(giftSheet.container, giftSheet.resourcesProvider);
-                        }
-                    }.show();
-                    return;
-                }
-                BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
-                if (safeLastFragment2 == null) {
-                    return;
-                }
-                PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(safeLastFragment2, i, null, null, starGift, this.resourcesProvider);
-                BackupImageView backupImageView = new BackupImageView(getContext());
-                final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(backupImageView, AndroidUtilities.dp(160.0f), 4);
-                backupImageView.setImageDrawable(swapAnimatedEmojiDrawable);
-                backupImageView.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                    @Override
-                    public void onViewAttachedToWindow(View view2) {
-                        swapAnimatedEmojiDrawable.attach();
-                    }
-
-                    @Override
-                    public void onViewDetachedFromWindow(View view2) {
-                        swapAnimatedEmojiDrawable.detach();
-                    }
-                });
-                swapAnimatedEmojiDrawable.set(starGift.getDocument(), false);
-                premiumPreviewBottomSheet.overrideTitleIcon = backupImageView;
-                premiumPreviewBottomSheet.show();
-                swapAnimatedEmojiDrawable.play();
-            }
-        }
-    }
-
-    public static void lambda$new$2() {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment == null) {
-            return;
-        }
-        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-        bottomSheetParams.transitionFromLeft = true;
-        bottomSheetParams.allowNestedScroll = false;
-        lastFragment.showAsSheet(new PremiumPreviewFragment("gifts"), bottomSheetParams);
-    }
-
-    public void lambda$new$3(Runnable runnable, long j) {
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null) {
-            return;
-        }
-        lambda$new$0();
-        if (runnable != null) {
-            runnable.run();
-        }
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", j);
-        bundle.putBoolean("open_gifts", true);
-        safeLastFragment.presentFragment(new ProfileActivity(bundle));
-    }
-
-    public static void lambda$new$4(Context context) {
-        new ExplainStarsSheet(context).show();
-    }
-
-    public void lambda$new$5(StarsController.GiftsList giftsList, final long j, LinkSpanDrawable.LinksTextView linksTextView, final Runnable runnable, final Context context) {
-        Runnable runnable2;
-        String str;
-        TL_stars.StarGift starGift;
-        TLRPC.Document document;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2StarsInfo, this.name)));
-        spannableStringBuilder.append((CharSequence) " ");
-        HashSet hashSet = new HashSet();
-        HashSet hashSet2 = new HashSet();
-        for (int i = 0; i < giftsList.gifts.size() && hashSet.size() < 3; i++) {
-            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) giftsList.gifts.get(i);
-            if (savedStarGift != null && (starGift = savedStarGift.gift) != null && (document = starGift.getDocument()) != null && !hashSet.contains(Long.valueOf(document.id))) {
-                hashSet2.add(document);
-                hashSet.add(Long.valueOf(document.id));
-            }
-        }
-        if (hashSet2.size() > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-            spannableStringBuilder2.append((CharSequence) LocaleController.formatString(R.string.Gift2StarsInfoProfileLink, DialogObject.getShortName(j)).replaceAll(" ", " "));
-            spannableStringBuilder2.append((CharSequence) " ");
-            Iterator it = hashSet2.iterator();
-            while (it.hasNext()) {
-                TLRPC.Document document2 = (TLRPC.Document) it.next();
-                spannableStringBuilder2.append((CharSequence) "\u2060e");
-                spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document2, linksTextView.getPaint().getFontMetricsInt()), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 33);
-            }
-            spannableStringBuilder2.append((CharSequence) " >");
-            runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    GiftSheet.this.lambda$new$3(runnable, j);
-                }
-            };
-            str = spannableStringBuilder2;
-        } else {
-            String string = LocaleController.getString(R.string.Gift2StarsInfoLink);
-            runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    GiftSheet.lambda$new$4(context);
-                }
-            };
-            str = string;
-        }
-        spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(str, runnable2), true));
-        linksTextView.setText(spannableStringBuilder);
-        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), linksTextView.getPaint()));
-    }
-
-    public static void lambda$new$6(StarsController.GiftsList giftsList, Runnable runnable, Object[] objArr) {
-        if (objArr[1] == giftsList) {
-            runnable.run();
-        }
-    }
-
-    public void lambda$new$7(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
-        }
-        lambda$new$0();
-    }
-
-    public static void lambda$new$8(StarGiftSheet starGiftSheet, TLRPC.TL_error tL_error) {
-        starGiftSheet.getBulletinFactory().showForError(tL_error);
-    }
-
-    public void lambda$new$9(Browser.Progress progress, Runnable runnable, final StarGiftSheet starGiftSheet, final TLRPC.TL_error tL_error) {
-        progress.end();
-        if (runnable != null) {
-            runnable.run();
-        }
-        lambda$new$0();
-        if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    GiftSheet.lambda$new$8(StarGiftSheet.this, tL_error);
-                }
-            });
-        } else {
-            lambda$new$0();
-        }
-    }
-
-    public void lambda$updatePremiumTiers$15() {
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(false);
-        }
-    }
-
-    public void lambda$updatePremiumTiers$16(BillingResult billingResult, List list) {
-        Iterator it = list.iterator();
-        long j = 0;
-        while (it.hasNext()) {
-            ProductDetails productDetails = (ProductDetails) it.next();
-            Iterator it2 = this.premiumTiers.iterator();
-            while (true) {
-                if (it2.hasNext()) {
-                    GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = (GiftPremiumBottomSheet$GiftTier) it2.next();
-                    if (giftPremiumBottomSheet$GiftTier.getStoreProduct() != null && giftPremiumBottomSheet$GiftTier.getStoreProduct().equals(productDetails.getProductId())) {
-                        giftPremiumBottomSheet$GiftTier.setGooglePlayProductDetails(productDetails);
-                        if (giftPremiumBottomSheet$GiftTier.getPricePerMonth() > j) {
-                            j = giftPremiumBottomSheet$GiftTier.getPricePerMonth();
-                        }
-                    }
-                }
-            }
-        }
-        Iterator it3 = this.premiumTiers.iterator();
-        while (it3.hasNext()) {
-            ((GiftPremiumBottomSheet$GiftTier) it3.next()).setPricePerMonthRegular(j);
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
-                GiftSheet.this.lambda$updatePremiumTiers$15();
+            public boolean contentsEquals(UItem uItem, UItem uItem2) {
+                return uItem.intValue == uItem2.intValue && uItem.object2 == uItem2.object2 && equals(uItem, uItem2);
             }
-        });
-    }
-
-    public void lambda$updatePremiumTiers$17(List list) {
-        if (getContext() == null || !isShown()) {
-            return;
-        }
-        List filterGiftOptions = BoostRepository.filterGiftOptions(list, 1);
-        this.options = filterGiftOptions;
-        List filterGiftOptionsByBilling = BoostRepository.filterGiftOptionsByBilling(filterGiftOptions);
-        this.options = filterGiftOptionsByBilling;
-        if (filterGiftOptionsByBilling.isEmpty()) {
-            return;
-        }
-        updatePremiumTiers();
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(true);
-        }
-    }
-
-    public void selectTab(int i) {
-        if (this.selectedTab == i) {
-            return;
-        }
-        this.selectedTab = i;
-        this.itemAnimator.endAnimations();
-        this.adapter.update(true);
-    }
-
-    private void updatePremiumTiers() {
-        List list;
-        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        this.premiumTiers.clear();
-        if (this.premiumTiers.isEmpty() && (list = this.options) != null && !list.isEmpty()) {
-            ArrayList arrayList = new ArrayList();
-            long j = 0;
-            for (int size = this.options.size() - 1; size >= 0; size--) {
-                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) this.options.get(size);
-                if (!"XTR".equalsIgnoreCase(tL_premiumGiftCodeOption2.currency)) {
-                    Iterator it = this.options.iterator();
-                    while (true) {
-                        if (!it.hasNext()) {
-                            tL_premiumGiftCodeOption = null;
-                            break;
-                        }
-                        tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) it.next();
-                        if (tL_premiumGiftCodeOption != tL_premiumGiftCodeOption2 && "XTR".equalsIgnoreCase(tL_premiumGiftCodeOption.currency) && tL_premiumGiftCodeOption.months == tL_premiumGiftCodeOption2.months) {
-                            break;
-                        }
-                    }
-                    GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = new GiftPremiumBottomSheet$GiftTier(tL_premiumGiftCodeOption2, tL_premiumGiftCodeOption);
-                    this.premiumTiers.add(giftPremiumBottomSheet$GiftTier);
-                    if (BuildVars.useInvoiceBilling()) {
-                        if (giftPremiumBottomSheet$GiftTier.getPricePerMonth() > j) {
-                            j = giftPremiumBottomSheet$GiftTier.getPricePerMonth();
-                        }
-                    } else if (giftPremiumBottomSheet$GiftTier.getStoreProduct() != null && BillingController.getInstance().isReady()) {
-                        arrayList.add(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(giftPremiumBottomSheet$GiftTier.getStoreProduct()).build());
-                    }
-                }
-            }
-            if (BuildVars.useInvoiceBilling()) {
-                Iterator it2 = this.premiumTiers.iterator();
-                while (it2.hasNext()) {
-                    ((GiftPremiumBottomSheet$GiftTier) it2.next()).setPricePerMonthRegular(j);
-                }
-            } else if (!arrayList.isEmpty()) {
-                System.currentTimeMillis();
-                BillingController.getInstance().queryProductDetails(arrayList, new ProductDetailsResponseListener() {
-                    @Override
-                    public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
-                        GiftSheet.this.lambda$updatePremiumTiers$16(billingResult, list2);
-                    }
-                });
-            }
-        }
-        if (this.premiumTiers.isEmpty()) {
-            BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    GiftSheet.this.lambda$updatePremiumTiers$17((List) obj);
-                }
-            });
-        }
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                GiftSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider);
-        this.adapter = universalAdapter;
-        universalAdapter.setApplyBackground(false);
-        return this.adapter;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        UniversalAdapter universalAdapter;
-        if (i == NotificationCenter.billingProductDetailsUpdated) {
-            updatePremiumTiers();
-            return;
-        }
-        if (i == NotificationCenter.starGiftsLoaded) {
-            universalAdapter = this.adapter;
-            if (universalAdapter == null) {
-                return;
-            }
-        } else if (i == NotificationCenter.userInfoDidLoad) {
-            if (!isShown()) {
-                return;
-            }
-            long longValue = ((Long) objArr[0]).longValue();
-            long j = this.dialogId;
-            if (longValue == j && j > 0) {
-                TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
-                TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || userFull == null) ? null : userFull.disallowed_stargifts;
-                this.userSettings = disallowedGiftsSettings;
-                if (disallowedGiftsSettings != null && disallowedGiftsSettings.disallow_premium_gifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts) {
-                    lambda$new$0();
-                    BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-                    if (safeLastFragment != null) {
-                        BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(this.dialogId)))).show();
-                        return;
-                    }
-                    return;
-                }
-                UniversalAdapter universalAdapter2 = this.adapter;
-                if (universalAdapter2 != null) {
-                    universalAdapter2.update(true);
-                }
-            }
-            ArrayList arrayList = this.premiumTiers;
-            if (arrayList != null && !arrayList.isEmpty()) {
-                return;
-            }
-            updatePremiumTiers();
-            universalAdapter = this.adapter;
-            if (universalAdapter == null) {
-                return;
-            }
-        } else if (i == NotificationCenter.starGiftSoldOut) {
-            if (!isShown()) {
-                return;
-            }
-            TL_stars.StarGift starGift = (TL_stars.StarGift) objArr[0];
-            BulletinFactory.of(this.container, this.resourcesProvider).createEmojiBulletin(starGift.sticker, LocaleController.getString(R.string.Gift2SoldOutTitle), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2SoldOutCount", starGift.availability_total))).show();
-            universalAdapter = this.adapter;
-            if (universalAdapter == null) {
-                return;
-            }
-        } else if (i != NotificationCenter.starUserGiftsLoaded || objArr[1] != this.myGifts || (universalAdapter = this.adapter) == null) {
-            return;
-        }
-        universalAdapter.update(true);
-    }
-
-    @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.billingProductDetailsUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starGiftsLoaded);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.userInfoDidLoad);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starGiftSoldOut);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-    }
-
-    public void fillItems(java.util.ArrayList r23, org.telegram.ui.Components.UniversalAdapter r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return this.self ? LocaleController.getString(R.string.Gift2TitleSelf1) : Emoji.replaceEmoji(LocaleController.formatString(R.string.Gift2User, this.name), null, false);
-    }
-
-    public GiftSheet setBirthday() {
-        return setBirthday(true);
-    }
-
-    public GiftSheet setBirthday(boolean z) {
-        this.birthday = z;
-        this.adapter.update(false);
-        return this;
-    }
-
-    @Override
-    public void show() {
-        if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-            AccountFrozenAlert.show(this.currentAccount);
-            return;
-        }
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = this.userSettings;
-        if (disallowedGiftsSettings == null || !disallowedGiftsSettings.disallow_premium_gifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts) {
-            super.show();
-            return;
-        }
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment != null) {
-            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(this.dialogId)))).show();
         }
     }
 }

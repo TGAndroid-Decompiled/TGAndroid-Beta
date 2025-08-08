@@ -17,6 +17,11 @@ public class PlayPauseDrawable extends Drawable {
     private float progress;
     private final int size;
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
     public PlayPauseDrawable(int i) {
         this.size = AndroidUtilities.dp(i);
         Paint paint = new Paint(1);
@@ -24,46 +29,13 @@ public class PlayPauseDrawable extends Drawable {
         paint.setColor(-1);
     }
 
-    @Override
-    public void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PlayPauseDrawable.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return this.size;
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return this.size;
-    }
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-        this.alpha = i;
-    }
-
     public void setColor(int i) {
         this.paint.setColor(i);
     }
 
     @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.paint.setColorFilter(colorFilter);
-    }
-
-    public void setDuration(int i) {
-        this.duration = i;
-    }
-
-    public void setParent(View view) {
-        this.parent = view;
+    public void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PlayPauseDrawable.draw(android.graphics.Canvas):void");
     }
 
     public void setPause(boolean z) {
@@ -79,5 +51,33 @@ public class PlayPauseDrawable extends Drawable {
             this.lastUpdateTime = AnimationUtils.currentAnimationTimeMillis();
             invalidateSelf();
         }
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.alpha = i;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.paint.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return this.size;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return this.size;
+    }
+
+    public void setParent(View view) {
+        this.parent = view;
+    }
+
+    public void setDuration(int i) {
+        this.duration = i;
     }
 }

@@ -49,209 +49,6 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     private List items = new ArrayList();
     private HashMap chatsParticipantsCount = new HashMap();
 
-    public static class Item extends AdapterWithDiffUtils.Item {
-        public boolean boolValue;
-        public TLRPC.Chat chat;
-        public float floatValue;
-        public int intValue;
-        public int intValue2;
-        public int intValue3;
-        public long longValue;
-        public Object object;
-        public TLRPC.InputPeer peer;
-        public int subType;
-        public CharSequence text;
-        public Object user;
-        public List values;
-
-        private Item(int i, boolean z) {
-            super(i, z);
-        }
-
-        public static Item asAddChannel() {
-            return new Item(8, false);
-        }
-
-        public static Item asBoost(int i, int i2, Object obj, int i3) {
-            Item item = new Item(2, i3 == i);
-            item.subType = i;
-            item.intValue = i2;
-            item.user = obj;
-            return item;
-        }
-
-        public static Item asChat(TLRPC.Chat chat, boolean z, int i) {
-            Item item = new Item(9, false);
-            item.chat = chat;
-            item.peer = null;
-            item.boolValue = z;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asDateEnd(long j) {
-            Item item = new Item(10, false);
-            item.longValue = j;
-            return item;
-        }
-
-        public static Item asDivider() {
-            return new Item(4, false);
-        }
-
-        public static Item asDivider(CharSequence charSequence, boolean z) {
-            Item item = new Item(7, false);
-            item.text = charSequence;
-            item.boolValue = z;
-            return item;
-        }
-
-        public static Item asDuration(Object obj, int i, int i2, long j, int i3, String str, boolean z) {
-            Item item = new Item(12, i == i3);
-            item.intValue = i;
-            item.intValue2 = i2;
-            item.longValue = j;
-            item.boolValue = z;
-            item.text = str;
-            item.object = obj;
-            return item;
-        }
-
-        public static Item asEnterPrize(int i) {
-            Item item = new Item(16, false);
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asExpandOptions() {
-            return new Item(18, false);
-        }
-
-        public static Item asHeader(boolean z) {
-            Item item = new Item(0, false);
-            item.boolValue = z;
-            return item;
-        }
-
-        public static Item asOption(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
-            Item item = new Item(17, z);
-            item.intValue = i;
-            item.longValue = j;
-            item.object = tL_starsGiveawayOption;
-            item.boolValue = z2;
-            return item;
-        }
-
-        public static Item asParticipants(int i, int i2, boolean z, List list) {
-            Item item = new Item(11, i2 == i);
-            item.subType = i;
-            item.boolValue = z;
-            item.user = list;
-            return item;
-        }
-
-        public static Item asPeer(TLRPC.InputPeer inputPeer, boolean z, int i) {
-            Item item = new Item(9, false);
-            item.peer = inputPeer;
-            item.chat = null;
-            item.boolValue = z;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asSingleBoost(Object obj) {
-            Item item = new Item(14, false);
-            item.user = obj;
-            return item;
-        }
-
-        public static Item asSlider(List list, int i) {
-            Item item = new Item(5, false);
-            item.values = list;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asSubTitle(CharSequence charSequence) {
-            Item item = new Item(6, false);
-            item.text = charSequence;
-            return item;
-        }
-
-        public static Item asSubTitleWithCounter(CharSequence charSequence, int i) {
-            Item item = new Item(13, false);
-            item.text = charSequence;
-            item.intValue = i;
-            return item;
-        }
-
-        public static Item asSwitcher(CharSequence charSequence, boolean z, boolean z2, int i) {
-            Item item = new Item(15, z);
-            item.text = charSequence;
-            item.boolValue = z2;
-            item.subType = i;
-            return item;
-        }
-
-        public static boolean eq(List list, List list2) {
-            if (list == null && list2 == null) {
-                return true;
-            }
-            if (list == null || list2 == null || list.size() != list2.size()) {
-                return false;
-            }
-            for (int i = 0; i < list.size(); i++) {
-                if (((Integer) list.get(i)).intValue() != ((Integer) list2.get(i)).intValue()) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        @Override
-        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
-            Item item2;
-            int i;
-            int i2;
-            if (this == item) {
-                return true;
-            }
-            if (item != null && getClass() == item.getClass() && (i = (item2 = (Item) item).viewType) == (i2 = this.viewType)) {
-                return i2 == 0 ? this.boolValue == item2.boolValue : i == 17 ? this.intValue == item2.intValue && this.longValue == item2.longValue && this.object == item2.object && this.boolValue == item2.boolValue && this.selectable == item2.selectable : i2 == 5 ? this.intValue == item2.intValue && eq(this.values, item2.values) : i2 == 13 && this.intValue == item2.intValue && TextUtils.equals(this.text, item2.text);
-            }
-            return false;
-        }
-
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj != null && getClass() == obj.getClass()) {
-                Item item = (Item) obj;
-                int i = this.viewType;
-                if (i != item.viewType) {
-                    return false;
-                }
-                if (i == 0) {
-                    return true;
-                }
-                if (i == 17) {
-                    return this.intValue == item.intValue && this.object == item.object;
-                }
-                if (i == 5) {
-                    return eq(this.values, item.values);
-                }
-                if (i == 13) {
-                    return TextUtils.equals(this.text, item.text);
-                }
-                if (this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.intValue3 == item.intValue3 && this.longValue == item.longValue && this.subType == item.subType && this.floatValue == item.floatValue && TextUtils.equals(this.text, item.text)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
     public BoostAdapter(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         BoostRepository.loadParticipantsCount(new Utilities.Callback() {
@@ -262,48 +59,46 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         });
     }
 
-    private int getParticipantsCount(TLRPC.Chat chat) {
-        Integer num;
-        int i;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.id);
-        return (chatFull == null || (i = chatFull.participants_count) <= 0) ? (this.chatsParticipantsCount.isEmpty() || (num = (Integer) this.chatsParticipantsCount.get(Long.valueOf(chat.id))) == null) ? chat.participants_count : num.intValue() : i;
-    }
-
     public void lambda$new$0(HashMap hashMap) {
         this.chatsParticipantsCount.clear();
         this.chatsParticipantsCount.putAll(hashMap);
     }
 
-    @Override
-    public int getItemCount() {
-        return this.items.size();
+    public void setItems(TLRPC.Chat chat, List list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
+        this.items = list;
+        this.currentChat = chat;
+        this.recyclerListView = recyclerListView;
+        this.sliderCallback = callback;
+        this.chatDeleteListener = chatDeleteListener;
+        this.afterTextChangedListener = afterTextChangedListener;
     }
 
-    @Override
-    public int getItemViewType(int i) {
-        return ((Item) this.items.get(i)).viewType;
+    private int getParticipantsCount(TLRPC.Chat chat) {
+        Integer num;
+        int i;
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(chat.id);
+        if (chatFull != null && (i = chatFull.participants_count) > 0) {
+            return i;
+        }
+        if (!this.chatsParticipantsCount.isEmpty() && (num = (Integer) this.chatsParticipantsCount.get(Long.valueOf(chat.id))) != null) {
+            return num.intValue();
+        }
+        return chat.participants_count;
     }
 
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        int itemViewType = viewHolder.getItemViewType();
-        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 15 || itemViewType == 12 || itemViewType == 17 || itemViewType == 18;
-    }
-
-    public void notifyAdditionalPrizeItem(boolean z) {
-        for (int i = 0; i < this.items.size(); i++) {
-            Item item = (Item) this.items.get(i);
-            if (item.viewType == 15 && item.subType == SwitcherCell.TYPE_ADDITION_PRIZE) {
-                int i2 = i + 1;
-                if (z) {
-                    notifyItemInserted(i2);
-                    return;
-                } else {
-                    notifyItemRemoved(i2);
-                    return;
-                }
+    public void updateBoostCounter(int i) {
+        for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
+            View childAt = this.recyclerListView.getChildAt(i2);
+            if (childAt instanceof SubtitleWithCounterCell) {
+                ((SubtitleWithCounterCell) childAt).updateCounter(true, i);
+            }
+            if (childAt instanceof ChatCell) {
+                ChatCell chatCell = (ChatCell) childAt;
+                chatCell.setCounter(i, getParticipantsCount(chatCell.getChat()));
             }
         }
+        notifyItemChanged(8);
+        notifyItemRangeChanged(this.items.size() - 12, 12);
     }
 
     public void notifyAllVisibleTextDividers() {
@@ -314,11 +109,108 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         }
     }
 
+    public void notifyAdditionalPrizeItem(boolean z) {
+        for (int i = 0; i < this.items.size(); i++) {
+            Item item = (Item) this.items.get(i);
+            if (item.viewType == 15 && item.subType == SwitcherCell.TYPE_ADDITION_PRIZE) {
+                if (z) {
+                    notifyItemInserted(i + 1);
+                    return;
+                } else {
+                    notifyItemRemoved(i + 1);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void setPausedStars(boolean z) {
+        HeaderCell headerCell = this.headerCell;
+        if (headerCell != null) {
+            headerCell.setPaused(z);
+        }
+    }
+
+    @Override
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        int itemViewType = viewHolder.getItemViewType();
+        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 15 || itemViewType == 12 || itemViewType == 17 || itemViewType == 18;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view;
+        Context context = viewGroup.getContext();
+        switch (i) {
+            case 2:
+                view = new BoostTypeCell(context, this.resourcesProvider);
+                break;
+            case 3:
+                view = new View(context);
+                break;
+            case 4:
+                view = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+                break;
+            case 5:
+                view = new SliderCell(context, this.resourcesProvider);
+                break;
+            case 6:
+                View headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                view = headerCell;
+                break;
+            case 7:
+                view = new TextInfoCell(context, this.resourcesProvider);
+                break;
+            case 8:
+                view = new AddChannelCell(context, this.resourcesProvider);
+                break;
+            case 9:
+                view = new ChatCell(context, this.resourcesProvider);
+                break;
+            case 10:
+                view = new DateEndCell(context, this.resourcesProvider);
+                break;
+            case 11:
+                view = new ParticipantsTypeCell(context, this.resourcesProvider);
+                break;
+            case 12:
+                view = new DurationCell(context, this.resourcesProvider);
+                break;
+            case 13:
+                View subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
+                subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                view = subtitleWithCounterCell;
+                break;
+            case 14:
+                view = new BoostTypeSingleCell(context, this.resourcesProvider);
+                break;
+            case 15:
+                SwitcherCell switcherCell = new SwitcherCell(context, this.resourcesProvider);
+                switcherCell.setHeight(50);
+                view = switcherCell;
+                break;
+            case 16:
+                view = new EnterPrizeCell(context, this.resourcesProvider);
+                break;
+            case 17:
+                view = new StarGiveawayOptionCell(context, this.resourcesProvider);
+                break;
+            case 18:
+                StarsIntroActivity.ExpandView expandView = new StarsIntroActivity.ExpandView(context, this.resourcesProvider);
+                expandView.set(LocaleController.getString(R.string.NotifyMoreOptions), true, true, false);
+                view = expandView;
+                break;
+            default:
+                view = new HeaderCell(context, this.resourcesProvider);
+                break;
+        }
+        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        return new RecyclerListView.Holder(view);
+    }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        TLRPC.Chat chat;
-        MessagesController messagesController;
-        long j;
         int itemViewType = viewHolder.getItemViewType();
         Item item = (Item) this.items.get(i);
         if (itemViewType == 0) {
@@ -353,21 +245,17 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 ChatCell chatCell = (ChatCell) viewHolder.itemView;
                 TLRPC.InputPeer inputPeer = item.peer;
                 if (inputPeer != null) {
-                    if (!(inputPeer instanceof TLRPC.TL_inputPeerChat)) {
-                        if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                            messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-                            j = inputPeer.channel_id;
-                        }
-                        chatCell.setChatDeleteListener(this.chatDeleteListener);
-                        return;
+                    if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
+                        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.chat_id));
+                        chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount(chat));
+                    } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
+                        TLRPC.Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(inputPeer.channel_id));
+                        chatCell.setChat(chat2, item.intValue, item.boolValue, getParticipantsCount(chat2));
                     }
-                    messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-                    j = inputPeer.chat_id;
-                    chat = messagesController.getChat(Long.valueOf(j));
                 } else {
-                    chat = item.chat;
+                    TLRPC.Chat chat3 = item.chat;
+                    chatCell.setChat(chat3, item.intValue, item.boolValue, getParticipantsCount(chat3));
                 }
-                chatCell.setChat(chat, item.intValue, item.boolValue, getParticipantsCount(chat));
                 chatCell.setChatDeleteListener(this.chatDeleteListener);
                 return;
             case 10:
@@ -406,106 +294,215 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view;
-        View view2;
-        Context context = viewGroup.getContext();
-        switch (i) {
-            case 2:
-                view2 = new BoostTypeCell(context, this.resourcesProvider);
-                break;
-            case 3:
-                view2 = new View(context);
-                break;
-            case 4:
-                view2 = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
-                break;
-            case 5:
-                view2 = new SliderCell(context, this.resourcesProvider);
-                break;
-            case 6:
-                view = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
-                view.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                view2 = view;
-                break;
-            case 7:
-                view2 = new TextInfoCell(context, this.resourcesProvider);
-                break;
-            case 8:
-                view2 = new AddChannelCell(context, this.resourcesProvider);
-                break;
-            case 9:
-                view2 = new ChatCell(context, this.resourcesProvider);
-                break;
-            case 10:
-                view2 = new DateEndCell(context, this.resourcesProvider);
-                break;
-            case 11:
-                view2 = new ParticipantsTypeCell(context, this.resourcesProvider);
-                break;
-            case 12:
-                view2 = new DurationCell(context, this.resourcesProvider);
-                break;
-            case 13:
-                view = new SubtitleWithCounterCell(context, this.resourcesProvider);
-                view.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-                view2 = view;
-                break;
-            case 14:
-                view2 = new BoostTypeSingleCell(context, this.resourcesProvider);
-                break;
-            case 15:
-                SwitcherCell switcherCell = new SwitcherCell(context, this.resourcesProvider);
-                switcherCell.setHeight(50);
-                view2 = switcherCell;
-                break;
-            case 16:
-                view2 = new EnterPrizeCell(context, this.resourcesProvider);
-                break;
-            case 17:
-                view2 = new StarGiveawayOptionCell(context, this.resourcesProvider);
-                break;
-            case 18:
-                StarsIntroActivity.ExpandView expandView = new StarsIntroActivity.ExpandView(context, this.resourcesProvider);
-                expandView.set(LocaleController.getString(R.string.NotifyMoreOptions), true, true, false);
-                view2 = expandView;
-                break;
-            default:
-                view2 = new HeaderCell(context, this.resourcesProvider);
-                break;
+    public int getItemViewType(int i) {
+        return ((Item) this.items.get(i)).viewType;
+    }
+
+    @Override
+    public int getItemCount() {
+        return this.items.size();
+    }
+
+    public static class Item extends AdapterWithDiffUtils.Item {
+        public boolean boolValue;
+        public TLRPC.Chat chat;
+        public float floatValue;
+        public int intValue;
+        public int intValue2;
+        public int intValue3;
+        public long longValue;
+        public Object object;
+        public TLRPC.InputPeer peer;
+        public int subType;
+        public CharSequence text;
+        public Object user;
+        public List values;
+
+        private Item(int i, boolean z) {
+            super(i, z);
         }
-        view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(view2);
-    }
 
-    public void setItems(TLRPC.Chat chat, List list, RecyclerListView recyclerListView, SlideChooseView.Callback callback, ChatCell.ChatDeleteListener chatDeleteListener, EnterPrizeCell.AfterTextChangedListener afterTextChangedListener) {
-        this.items = list;
-        this.currentChat = chat;
-        this.recyclerListView = recyclerListView;
-        this.sliderCallback = callback;
-        this.chatDeleteListener = chatDeleteListener;
-        this.afterTextChangedListener = afterTextChangedListener;
-    }
-
-    public void setPausedStars(boolean z) {
-        HeaderCell headerCell = this.headerCell;
-        if (headerCell != null) {
-            headerCell.setPaused(z);
+        public static Item asHeader(boolean z) {
+            Item item = new Item(0, false);
+            item.boolValue = z;
+            return item;
         }
-    }
 
-    public void updateBoostCounter(int i) {
-        for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
-            View childAt = this.recyclerListView.getChildAt(i2);
-            if (childAt instanceof SubtitleWithCounterCell) {
-                ((SubtitleWithCounterCell) childAt).updateCounter(true, i);
+        public static Item asDivider() {
+            return new Item(4, false);
+        }
+
+        public static Item asDivider(CharSequence charSequence, boolean z) {
+            Item item = new Item(7, false);
+            item.text = charSequence;
+            item.boolValue = z;
+            return item;
+        }
+
+        public static Item asChat(TLRPC.Chat chat, boolean z, int i) {
+            Item item = new Item(9, false);
+            item.chat = chat;
+            item.peer = null;
+            item.boolValue = z;
+            item.intValue = i;
+            return item;
+        }
+
+        public static Item asPeer(TLRPC.InputPeer inputPeer, boolean z, int i) {
+            Item item = new Item(9, false);
+            item.peer = inputPeer;
+            item.chat = null;
+            item.boolValue = z;
+            item.intValue = i;
+            return item;
+        }
+
+        public static Item asEnterPrize(int i) {
+            Item item = new Item(16, false);
+            item.intValue = i;
+            return item;
+        }
+
+        public static Item asSwitcher(CharSequence charSequence, boolean z, boolean z2, int i) {
+            Item item = new Item(15, z);
+            item.text = charSequence;
+            item.boolValue = z2;
+            item.subType = i;
+            return item;
+        }
+
+        public static Item asSingleBoost(Object obj) {
+            Item item = new Item(14, false);
+            item.user = obj;
+            return item;
+        }
+
+        public static Item asBoost(int i, int i2, Object obj, int i3) {
+            Item item = new Item(2, i3 == i);
+            item.subType = i;
+            item.intValue = i2;
+            item.user = obj;
+            return item;
+        }
+
+        public static Item asDateEnd(long j) {
+            Item item = new Item(10, false);
+            item.longValue = j;
+            return item;
+        }
+
+        public static Item asSlider(List list, int i) {
+            Item item = new Item(5, false);
+            item.values = list;
+            item.intValue = i;
+            return item;
+        }
+
+        public static Item asAddChannel() {
+            return new Item(8, false);
+        }
+
+        public static Item asExpandOptions() {
+            return new Item(18, false);
+        }
+
+        public static Item asSubTitle(CharSequence charSequence) {
+            Item item = new Item(6, false);
+            item.text = charSequence;
+            return item;
+        }
+
+        public static Item asSubTitleWithCounter(CharSequence charSequence, int i) {
+            Item item = new Item(13, false);
+            item.text = charSequence;
+            item.intValue = i;
+            return item;
+        }
+
+        public static Item asDuration(Object obj, int i, int i2, long j, int i3, String str, boolean z) {
+            Item item = new Item(12, i == i3);
+            item.intValue = i;
+            item.intValue2 = i2;
+            item.longValue = j;
+            item.boolValue = z;
+            item.text = str;
+            item.object = obj;
+            return item;
+        }
+
+        public static Item asOption(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
+            Item item = new Item(17, z);
+            item.intValue = i;
+            item.longValue = j;
+            item.object = tL_starsGiveawayOption;
+            item.boolValue = z2;
+            return item;
+        }
+
+        public static Item asParticipants(int i, int i2, boolean z, List list) {
+            Item item = new Item(11, i2 == i);
+            item.subType = i;
+            item.boolValue = z;
+            item.user = list;
+            return item;
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
             }
-            if (childAt instanceof ChatCell) {
-                ChatCell chatCell = (ChatCell) childAt;
-                chatCell.setCounter(i, getParticipantsCount(chatCell.getChat()));
+            if (obj != null && getClass() == obj.getClass()) {
+                Item item = (Item) obj;
+                int i = this.viewType;
+                if (i != item.viewType) {
+                    return false;
+                }
+                if (i == 0) {
+                    return true;
+                }
+                if (i == 17) {
+                    return this.intValue == item.intValue && this.object == item.object;
+                }
+                if (i == 5) {
+                    return eq(this.values, item.values);
+                }
+                if (i == 13) {
+                    return TextUtils.equals(this.text, item.text);
+                }
+                if (this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.intValue3 == item.intValue3 && this.longValue == item.longValue && this.subType == item.subType && this.floatValue == item.floatValue && TextUtils.equals(this.text, item.text)) {
+                    return true;
+                }
             }
+            return false;
         }
-        notifyItemChanged(8);
-        notifyItemRangeChanged(this.items.size() - 12, 12);
+
+        public static boolean eq(List list, List list2) {
+            if (list == null && list2 == null) {
+                return true;
+            }
+            if (list == null || list2 == null || list.size() != list2.size()) {
+                return false;
+            }
+            for (int i = 0; i < list.size(); i++) {
+                if (((Integer) list.get(i)).intValue() != ((Integer) list2.get(i)).intValue()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        @Override
+        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+            Item item2;
+            int i;
+            int i2;
+            if (this == item) {
+                return true;
+            }
+            if (item != null && getClass() == item.getClass() && (i = (item2 = (Item) item).viewType) == (i2 = this.viewType)) {
+                return i2 == 0 ? this.boolValue == item2.boolValue : i == 17 ? this.intValue == item2.intValue && this.longValue == item2.longValue && this.object == item2.object && this.boolValue == item2.boolValue && this.selectable == item2.selectable : i2 == 5 ? this.intValue == item2.intValue && eq(this.values, item2.values) : i2 == 13 && this.intValue == item2.intValue && TextUtils.equals(this.text, item2.text);
+            }
+            return false;
+        }
     }
 }

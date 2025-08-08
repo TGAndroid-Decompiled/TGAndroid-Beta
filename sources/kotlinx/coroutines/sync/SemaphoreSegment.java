@@ -8,15 +8,15 @@ import kotlinx.coroutines.internal.Symbol;
 public final class SemaphoreSegment extends Segment {
     private final AtomicReferenceArray acquirers;
 
+    public final AtomicReferenceArray getAcquirers() {
+        return this.acquirers;
+    }
+
     public SemaphoreSegment(long j, SemaphoreSegment semaphoreSegment, int i) {
         super(j, semaphoreSegment, i);
         int i2;
         i2 = SemaphoreKt.SEGMENT_SIZE;
         this.acquirers = new AtomicReferenceArray(i2);
-    }
-
-    public final AtomicReferenceArray getAcquirers() {
-        return this.acquirers;
     }
 
     @Override

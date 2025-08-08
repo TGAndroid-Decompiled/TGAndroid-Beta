@@ -15,9 +15,9 @@ public final class ConstrainedOnceSequence implements Sequence {
     @Override
     public Iterator iterator() {
         Sequence sequence = (Sequence) this.sequenceRef.getAndSet(null);
-        if (sequence != null) {
-            return sequence.iterator();
+        if (sequence == null) {
+            throw new IllegalStateException("This sequence can be consumed only once.");
         }
-        throw new IllegalStateException("This sequence can be consumed only once.");
+        return sequence.iterator();
     }
 }

@@ -1,17 +1,11 @@
 package kotlinx.coroutines;
 
-import java.util.List;
-import kotlin.collections.CollectionsKt__CollectionsKt;
+import kotlin.collections.CollectionsKt;
 import kotlin.coroutines.Continuation;
 
 public abstract class AwaitKt {
     public static final Object awaitAll(Deferred[] deferredArr, Continuation continuation) {
-        List emptyList;
-        if (deferredArr.length != 0) {
-            return new AwaitAll(deferredArr).await(continuation);
-        }
-        emptyList = CollectionsKt__CollectionsKt.emptyList();
-        return emptyList;
+        return deferredArr.length == 0 ? CollectionsKt.emptyList() : new AwaitAll(deferredArr).await(continuation);
     }
 
     public static final java.lang.Object joinAll(java.util.Collection r4, kotlin.coroutines.Continuation r5) {

@@ -64,6 +64,237 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         }
     };
 
+    public MessagesSearchAdapter(Context context, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, int i, boolean z) {
+        this.resourcesProvider = resourcesProvider;
+        this.mContext = context;
+        this.fragment = baseFragment;
+        this.searchType = i;
+        this.isSavedMessages = z;
+    }
+
+    public void lambda$new$0() {
+        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+        if (searchStoriesList != null) {
+            searchStoriesList.load(true, 3);
+        }
+    }
+
+    public void searchStories(String str, boolean z) {
+        if (TextUtils.equals(this.storiesListQuery, str)) {
+            return;
+        }
+        String trim = str.trim();
+        boolean z2 = false;
+        String str2 = null;
+        if (trim.charAt(0) == '$' || trim.charAt(0) == '#') {
+            int indexOf = trim.indexOf(64);
+            if (indexOf >= 0) {
+                String substring = trim.substring(0, indexOf);
+                str2 = trim.substring(indexOf + 1);
+                trim = substring;
+            }
+        } else {
+            trim = null;
+        }
+        boolean z3 = this.containsStories;
+        AndroidUtilities.cancelRunOnUIThread(this.loadStories);
+        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+        if (searchStoriesList != null) {
+            searchStoriesList.cancel();
+        }
+        if (!TextUtils.isEmpty(trim)) {
+            this.storiesListQuery = str;
+            this.storiesList = new StoriesController.SearchStoriesList(this.currentAccount, str2, trim);
+            if (z) {
+                this.loadStories.run();
+            } else {
+                AndroidUtilities.runOnUIThread(this.loadStories, 1000L);
+            }
+        }
+        StoriesController.SearchStoriesList searchStoriesList2 = this.storiesList;
+        if (searchStoriesList2 != null && searchStoriesList2.getCount() > 0) {
+            z2 = true;
+        }
+        if (z2 != z3) {
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.storiesListUpdated && objArr[0] == this.storiesList) {
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        int itemCount = getItemCount();
+        int i = 0;
+        this.containsStories = false;
+        this.searchResultMessages.clear();
+        this.messageIds.clear();
+        ArrayList<MessageObject> foundMessageObjects = this.searchType == 0 ? MediaDataController.getInstance(this.currentAccount).getFoundMessageObjects() : HashtagSearchController.getInstance(this.currentAccount).getMessages(this.searchType);
+        for (int i2 = 0; i2 < foundMessageObjects.size(); i2++) {
+            MessageObject messageObject = foundMessageObjects.get(i2);
+            if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !this.messageIds.contains(Integer.valueOf(messageObject.getId()))) {
+                this.searchResultMessages.add(messageObject);
+                this.messageIds.add(Integer.valueOf(messageObject.getId()));
+            }
+        }
+        int i3 = this.flickerCount;
+        this.loadedCount = this.searchResultMessages.size();
+        if (this.searchType != 0) {
+            if (!HashtagSearchController.getInstance(this.currentAccount).isEndReached(this.searchType) && this.loadedCount != 0) {
+                i = Utilities.clamp(HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType) - this.loadedCount, 3, 0);
+            }
+            this.flickerCount = i;
+        } else {
+            if (!MediaDataController.getInstance(this.currentAccount).searchEndReached() && this.loadedCount != 0) {
+                i = Utilities.clamp(MediaDataController.getInstance(this.currentAccount).getSearchCount() - this.loadedCount, 3, 0);
+            }
+            this.flickerCount = i;
+        }
+        int itemCount2 = getItemCount();
+        if (itemCount < itemCount2) {
+            if (i3 > 0) {
+                notifyItemRangeChanged(itemCount - i3, i3);
+            }
+            notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
+            return;
+        }
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemCount() {
+        boolean z = this.containsStories;
+        return (z ? 1 : 0) + this.searchResultMessages.size() + this.flickerCount;
+    }
+
+    public Object getItem(int i) {
+        if (this.containsStories) {
+            i--;
+        }
+        if (i < 0 || i >= this.searchResultMessages.size()) {
+            return null;
+        }
+        return this.searchResultMessages.get(i);
+    }
+
+    @Override
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        return viewHolder.getItemViewType() == 0 || viewHolder.getItemViewType() == 2;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View dialogCell;
+        if (i == 0) {
+            dialogCell = new DialogCell(null, this.mContext, false, true, this.currentAccount, this.resourcesProvider);
+        } else if (i == 1) {
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext, this.resourcesProvider);
+            flickerLoadingView.setIsSingleCell(true);
+            flickerLoadingView.setViewType(7);
+            dialogCell = flickerLoadingView;
+        } else {
+            dialogCell = i != 2 ? null : new StoriesView(this.mContext, this.resourcesProvider);
+        }
+        dialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        return new RecyclerListView.Holder(dialogCell);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        int i2;
+        boolean z;
+        int i3;
+        int i4;
+        if (viewHolder.getItemViewType() == 0) {
+            DialogCell dialogCell = (DialogCell) viewHolder.itemView;
+            dialogCell.useSeparator = true;
+            MessageObject messageObject = (MessageObject) getItem(i);
+            long dialogId = messageObject.getDialogId();
+            int i5 = messageObject.messageOwner.date;
+            if (this.isSavedMessages) {
+                dialogCell.isSavedDialog = true;
+                long savedDialogId = messageObject.getSavedDialogId();
+                TLRPC.Message message = messageObject.messageOwner;
+                TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+                if (messageFwdHeader == null || ((i4 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
+                    i3 = message.date;
+                } else if (i4 == 0) {
+                    i3 = messageFwdHeader.saved_date;
+                } else {
+                    dialogId = savedDialogId;
+                    i2 = i4;
+                    z = false;
+                }
+                i2 = i3;
+                dialogId = savedDialogId;
+                z = false;
+            } else {
+                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.currentAccount, dialogId)) {
+                    dialogId = messageObject.getFromChatId();
+                }
+                i2 = i5;
+                z = true;
+            }
+            dialogCell.setDialog(dialogId, messageObject, i2, z, false);
+            dialogCell.setDialogCellDelegate(new DialogCell.DialogCellDelegate() {
+                @Override
+                public boolean canClickButtonInside() {
+                    return false;
+                }
+
+                @Override
+                public void onButtonClicked(DialogCell dialogCell2) {
+                }
+
+                @Override
+                public void onButtonLongPress(DialogCell dialogCell2) {
+                }
+
+                @Override
+                public void openHiddenStories() {
+                }
+
+                @Override
+                public void showChatPreview(DialogCell dialogCell2) {
+                }
+
+                @Override
+                public void openStory(DialogCell dialogCell2, Runnable runnable) {
+                    if (MessagesController.getInstance(MessagesSearchAdapter.this.currentAccount).getStoriesController().hasStories(dialogCell2.getDialogId())) {
+                        MessagesSearchAdapter.this.fragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
+                        MessagesSearchAdapter.this.fragment.getOrCreateStoryViewer().open(MessagesSearchAdapter.this.mContext, dialogCell2.getDialogId(), StoriesListPlaceProvider.of((RecyclerListView) dialogCell2.getParent()));
+                    }
+                }
+            });
+            return;
+        }
+        if (viewHolder.getItemViewType() == 2) {
+            ((StoriesView) viewHolder.itemView).set(this.storiesList);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int i) {
+        if (this.containsStories && i - 1 == -1) {
+            return 2;
+        }
+        return i < this.searchResultMessages.size() ? 0 : 1;
+    }
+
+    public void attach() {
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    public void detach() {
+        AndroidUtilities.cancelRunOnUIThread(this.loadStories);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
     public static class StoriesView extends FrameLayout {
         private final ImageView arrowView;
         private final AvatarsDrawable avatarsDrawable;
@@ -72,28 +303,6 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         private final TextView[] titleTextView;
         private float transitValue;
         private ValueAnimator transitionAnimator;
-
-        public static class Factory extends UItem.UItemFactory {
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            public static UItem asStoriesList(StoriesController.SearchStoriesList searchStoriesList) {
-                UItem ofFactory = UItem.ofFactory(Factory.class);
-                ofFactory.object = searchStoriesList;
-                return ofFactory;
-            }
-
-            @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((StoriesView) view).set((StoriesController.SearchStoriesList) uItem.object);
-            }
-
-            @Override
-            public StoriesView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new StoriesView(context, resourcesProvider);
-            }
-        }
 
         public StoriesView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
@@ -136,31 +345,11 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
-            if (this.transitValue > 0.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.transitValue) * 255.0f), 31);
-            } else {
-                canvas.save();
-            }
-            canvas.translate(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), this.transitValue), 0.0f);
-            this.avatarsDrawable.onDraw(canvas);
-            canvas.restore();
-            super.onDraw(canvas);
-            Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
-            if (themePaint == null) {
-                themePaint = Theme.dividerPaint;
-            }
-            canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), themePaint);
-        }
-
-        @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
 
         public boolean set(StoriesController.SearchStoriesList searchStoriesList) {
-            TextView textView;
-            CharSequence formatPluralStringSpaced;
             int i = 0;
             for (int i2 = 0; i2 < searchStoriesList.messageObjects.size() && i < 3; i2++) {
                 MessageObject messageObject = (MessageObject) searchStoriesList.messageObjects.get(i2);
@@ -171,23 +360,20 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             }
             this.avatarsDrawable.setCount(i);
             this.avatarsDrawable.commitTransition(false);
-            if (TextUtils.isEmpty(searchStoriesList.username)) {
-                textView = this.titleTextView[0];
-                formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("HashtagStoriesFound", searchStoriesList.getCount());
+            if (!TextUtils.isEmpty(searchStoriesList.username)) {
+                this.titleTextView[0].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagStoriesFoundChannel", searchStoriesList.getCount(), "@" + searchStoriesList.username), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), null));
             } else {
-                textView = this.titleTextView[0];
-                formatPluralStringSpaced = AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagStoriesFoundChannel", searchStoriesList.getCount(), "@" + searchStoriesList.username), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), null);
+                this.titleTextView[0].setText(LocaleController.formatPluralStringSpaced("HashtagStoriesFound", searchStoriesList.getCount()));
             }
-            textView.setText(formatPluralStringSpaced);
             this.subtitleTextView[0].setText(LocaleController.formatString(R.string.HashtagStoriesFoundSubtitle, searchStoriesList.query));
             return i > 0;
         }
 
         public void setMessages(int i, String str, String str2) {
-            if (TextUtils.isEmpty(str2)) {
-                this.titleTextView[1].setText(LocaleController.formatPluralStringSpaced("HashtagMessagesFound", i));
-            } else {
+            if (!TextUtils.isEmpty(str2)) {
                 this.titleTextView[1].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagMessagesFoundChannel", i, "@" + str2), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), null));
+            } else {
+                this.titleTextView[1].setText(LocaleController.formatPluralStringSpaced("HashtagMessagesFound", i));
             }
             this.subtitleTextView[1].setText(LocaleController.formatString(R.string.HashtagMessagesFoundSubtitle, str));
         }
@@ -243,238 +429,45 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             this.transitionAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.transitionAnimator.start();
         }
-    }
 
-    public MessagesSearchAdapter(Context context, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, int i, boolean z) {
-        this.resourcesProvider = resourcesProvider;
-        this.mContext = context;
-        this.fragment = baseFragment;
-        this.searchType = i;
-        this.isSavedMessages = z;
-    }
-
-    public void lambda$new$0() {
-        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
-        if (searchStoriesList != null) {
-            searchStoriesList.load(true, 3);
-        }
-    }
-
-    public void attach() {
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    public void detach() {
-        AndroidUtilities.cancelRunOnUIThread(this.loadStories);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.storiesListUpdated && objArr[0] == this.storiesList) {
-            notifyDataSetChanged();
-        }
-    }
-
-    public Object getItem(int i) {
-        if (this.containsStories) {
-            i--;
-        }
-        if (i < 0 || i >= this.searchResultMessages.size()) {
-            return null;
-        }
-        return this.searchResultMessages.get(i);
-    }
-
-    @Override
-    public int getItemCount() {
-        boolean z = this.containsStories;
-        return (z ? 1 : 0) + this.searchResultMessages.size() + this.flickerCount;
-    }
-
-    @Override
-    public int getItemViewType(int i) {
-        if (this.containsStories && i - 1 == -1) {
-            return 2;
-        }
-        return i < this.searchResultMessages.size() ? 0 : 1;
-    }
-
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return viewHolder.getItemViewType() == 0 || viewHolder.getItemViewType() == 2;
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        int searchCount;
-        int itemCount = getItemCount();
-        int i = 0;
-        this.containsStories = false;
-        this.searchResultMessages.clear();
-        this.messageIds.clear();
-        ArrayList<MessageObject> foundMessageObjects = this.searchType == 0 ? MediaDataController.getInstance(this.currentAccount).getFoundMessageObjects() : HashtagSearchController.getInstance(this.currentAccount).getMessages(this.searchType);
-        for (int i2 = 0; i2 < foundMessageObjects.size(); i2++) {
-            MessageObject messageObject = foundMessageObjects.get(i2);
-            if ((!messageObject.hasValidGroupId() || messageObject.isPrimaryGroupMessage) && !this.messageIds.contains(Integer.valueOf(messageObject.getId()))) {
-                this.searchResultMessages.add(messageObject);
-                this.messageIds.add(Integer.valueOf(messageObject.getId()));
-            }
-        }
-        int i3 = this.flickerCount;
-        this.loadedCount = this.searchResultMessages.size();
-        if (this.searchType != 0) {
-            if ((!HashtagSearchController.getInstance(this.currentAccount).isEndReached(this.searchType)) && this.loadedCount != 0) {
-                searchCount = HashtagSearchController.getInstance(this.currentAccount).getCount(this.searchType);
-                i = Utilities.clamp(searchCount - this.loadedCount, 3, 0);
-            }
-        } else if ((!MediaDataController.getInstance(this.currentAccount).searchEndReached()) && this.loadedCount != 0) {
-            searchCount = MediaDataController.getInstance(this.currentAccount).getSearchCount();
-            i = Utilities.clamp(searchCount - this.loadedCount, 3, 0);
-        }
-        this.flickerCount = i;
-        int itemCount2 = getItemCount();
-        if (itemCount >= itemCount2) {
-            super.notifyDataSetChanged();
-            return;
-        }
-        if (i3 > 0) {
-            notifyItemRangeChanged(itemCount - i3, i3);
-        }
-        notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        int i2;
-        boolean z;
-        int i3;
-        int i4;
-        if (viewHolder.getItemViewType() != 0) {
-            if (viewHolder.getItemViewType() == 2) {
-                ((StoriesView) viewHolder.itemView).set(this.storiesList);
-                return;
-            }
-            return;
-        }
-        DialogCell dialogCell = (DialogCell) viewHolder.itemView;
-        dialogCell.useSeparator = true;
-        MessageObject messageObject = (MessageObject) getItem(i);
-        long dialogId = messageObject.getDialogId();
-        int i5 = messageObject.messageOwner.date;
-        if (this.isSavedMessages) {
-            dialogCell.isSavedDialog = true;
-            long savedDialogId = messageObject.getSavedDialogId();
-            TLRPC.Message message = messageObject.messageOwner;
-            TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-            if (messageFwdHeader == null || ((i4 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
-                i3 = message.date;
-            } else if (i4 == 0) {
-                i3 = messageFwdHeader.saved_date;
+        @Override
+        protected void onDraw(Canvas canvas) {
+            if (this.transitValue > 0.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.transitValue) * 255.0f), 31);
             } else {
-                dialogId = savedDialogId;
-                i2 = i4;
-                z = false;
+                canvas.save();
             }
-            i2 = i3;
-            dialogId = savedDialogId;
-            z = false;
-        } else {
-            if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.currentAccount, dialogId)) {
-                dialogId = messageObject.getFromChatId();
+            canvas.translate(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), this.transitValue), 0.0f);
+            this.avatarsDrawable.onDraw(canvas);
+            canvas.restore();
+            super.onDraw(canvas);
+            Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+            if (themePaint == null) {
+                themePaint = Theme.dividerPaint;
             }
-            i2 = i5;
-            z = true;
+            canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), themePaint);
         }
-        dialogCell.setDialog(dialogId, messageObject, i2, z, false);
-        dialogCell.setDialogCellDelegate(new DialogCell.DialogCellDelegate() {
-            @Override
-            public boolean canClickButtonInside() {
-                return false;
+
+        public static class Factory extends UItem.UItemFactory {
+            static {
+                UItem.UItemFactory.setup(new Factory());
             }
 
             @Override
-            public void onButtonClicked(DialogCell dialogCell2) {
+            public StoriesView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                return new StoriesView(context, resourcesProvider);
             }
 
             @Override
-            public void onButtonLongPress(DialogCell dialogCell2) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                ((StoriesView) view).set((StoriesController.SearchStoriesList) uItem.object);
             }
 
-            @Override
-            public void openHiddenStories() {
+            public static UItem asStoriesList(StoriesController.SearchStoriesList searchStoriesList) {
+                UItem ofFactory = UItem.ofFactory(Factory.class);
+                ofFactory.object = searchStoriesList;
+                return ofFactory;
             }
-
-            @Override
-            public void openStory(DialogCell dialogCell2, Runnable runnable) {
-                if (MessagesController.getInstance(MessagesSearchAdapter.this.currentAccount).getStoriesController().hasStories(dialogCell2.getDialogId())) {
-                    MessagesSearchAdapter.this.fragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
-                    MessagesSearchAdapter.this.fragment.getOrCreateStoryViewer().open(MessagesSearchAdapter.this.mContext, dialogCell2.getDialogId(), StoriesListPlaceProvider.of((RecyclerListView) dialogCell2.getParent()));
-                }
-            }
-
-            @Override
-            public void showChatPreview(DialogCell dialogCell2) {
-            }
-        });
-    }
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View dialogCell;
-        if (i == 0) {
-            dialogCell = new DialogCell(null, this.mContext, false, true, this.currentAccount, this.resourcesProvider);
-        } else if (i != 1) {
-            dialogCell = i != 2 ? null : new StoriesView(this.mContext, this.resourcesProvider);
-        } else {
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext, this.resourcesProvider);
-            flickerLoadingView.setIsSingleCell(true);
-            flickerLoadingView.setViewType(7);
-            dialogCell = flickerLoadingView;
-        }
-        dialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(dialogCell);
-    }
-
-    public void searchStories(String str, boolean z) {
-        if (TextUtils.equals(this.storiesListQuery, str)) {
-            return;
-        }
-        String trim = str.trim();
-        boolean z2 = false;
-        String str2 = null;
-        if (trim.charAt(0) == '$' || trim.charAt(0) == '#') {
-            int indexOf = trim.indexOf(64);
-            if (indexOf >= 0) {
-                String substring = trim.substring(0, indexOf);
-                str2 = trim.substring(indexOf + 1);
-                trim = substring;
-            }
-        } else {
-            trim = null;
-        }
-        boolean z3 = this.containsStories;
-        AndroidUtilities.cancelRunOnUIThread(this.loadStories);
-        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
-        if (searchStoriesList != null) {
-            searchStoriesList.cancel();
-        }
-        if (!TextUtils.isEmpty(trim)) {
-            this.storiesListQuery = str;
-            this.storiesList = new StoriesController.SearchStoriesList(this.currentAccount, str2, trim);
-            Runnable runnable = this.loadStories;
-            if (z) {
-                runnable.run();
-            } else {
-                AndroidUtilities.runOnUIThread(runnable, 1000L);
-            }
-        }
-        StoriesController.SearchStoriesList searchStoriesList2 = this.storiesList;
-        if (searchStoriesList2 != null && searchStoriesList2.getCount() > 0) {
-            z2 = true;
-        }
-        if (z2 != z3) {
-            notifyDataSetChanged();
         }
     }
 }

@@ -32,6 +32,90 @@ public abstract class AudioInfo {
     protected String version;
     protected short year;
 
+    public long getDuration() {
+        return this.duration;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getArtist() {
+        return this.artist;
+    }
+
+    public String getAlbumArtist() {
+        return this.albumArtist;
+    }
+
+    public String getAlbum() {
+        return this.album;
+    }
+
+    public short getYear() {
+        return this.year;
+    }
+
+    public String getGenre() {
+        return this.genre;
+    }
+
+    public String getComment() {
+        return this.comment;
+    }
+
+    public short getTrack() {
+        return this.track;
+    }
+
+    public short getTracks() {
+        return this.tracks;
+    }
+
+    public short getDisc() {
+        return this.disc;
+    }
+
+    public short getDiscs() {
+        return this.discs;
+    }
+
+    public String getCopyright() {
+        return this.copyright;
+    }
+
+    public String getComposer() {
+        return this.composer;
+    }
+
+    public String getGrouping() {
+        return this.grouping;
+    }
+
+    public boolean isCompilation() {
+        return this.compilation;
+    }
+
+    public String getLyrics() {
+        return this.lyrics;
+    }
+
+    public Bitmap getCover() {
+        return this.cover;
+    }
+
+    public File getCoverFile() {
+        return this.coverFile;
+    }
+
+    public void setCoverFile(File file) {
+        this.coverFile = file;
+    }
+
+    public Bitmap getSmallCover() {
+        return this.smallCover;
+    }
+
     public static AudioInfo getAudioInfo(File file) {
         byte b;
         try {
@@ -61,89 +145,5 @@ public abstract class AudioInfo {
         } catch (Exception unused) {
             return null;
         }
-    }
-
-    public String getAlbum() {
-        return this.album;
-    }
-
-    public String getAlbumArtist() {
-        return this.albumArtist;
-    }
-
-    public String getArtist() {
-        return this.artist;
-    }
-
-    public String getComment() {
-        return this.comment;
-    }
-
-    public String getComposer() {
-        return this.composer;
-    }
-
-    public String getCopyright() {
-        return this.copyright;
-    }
-
-    public Bitmap getCover() {
-        return this.cover;
-    }
-
-    public File getCoverFile() {
-        return this.coverFile;
-    }
-
-    public short getDisc() {
-        return this.disc;
-    }
-
-    public short getDiscs() {
-        return this.discs;
-    }
-
-    public long getDuration() {
-        return this.duration;
-    }
-
-    public String getGenre() {
-        return this.genre;
-    }
-
-    public String getGrouping() {
-        return this.grouping;
-    }
-
-    public String getLyrics() {
-        return this.lyrics;
-    }
-
-    public Bitmap getSmallCover() {
-        return this.smallCover;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public short getTrack() {
-        return this.track;
-    }
-
-    public short getTracks() {
-        return this.tracks;
-    }
-
-    public short getYear() {
-        return this.year;
-    }
-
-    public boolean isCompilation() {
-        return this.compilation;
-    }
-
-    public void setCoverFile(File file) {
-        this.coverFile = file;
     }
 }

@@ -111,39 +111,6 @@ public class TodoItemMenu extends Dialog {
     private ViewPagerFixed viewPager;
     private FrameLayout windowView;
 
-    public class AnonymousClass4 extends ViewPagerFixed.Adapter {
-        final Context val$context;
-
-        AnonymousClass4(Context context) {
-            this.val$context = context;
-        }
-
-        public void lambda$createView$0(View view) {
-            TodoItemMenu.this.dismiss(true);
-        }
-
-        @Override
-        public void bindView(View view, int i, int i2) {
-        }
-
-        @Override
-        public View createView(int i) {
-            FrameLayout frameLayout = new FrameLayout(this.val$context);
-            frameLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    TodoItemMenu.AnonymousClass4.this.lambda$createView$0(view);
-                }
-            });
-            return frameLayout;
-        }
-
-        @Override
-        public int getItemCount() {
-            return 2;
-        }
-    }
-
     public TodoItemMenu(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         this.insets = new Rect();
@@ -179,11 +146,11 @@ public class TodoItemMenu extends Dialog {
 
             @Override
             public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-                if (keyEvent == null || keyEvent.getKeyCode() != 4 || keyEvent.getAction() != 1) {
-                    return super.dispatchKeyEventPreIme(keyEvent);
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    TodoItemMenu.this.dismiss();
+                    return true;
                 }
-                TodoItemMenu.this.dismiss();
-                return true;
+                return super.dispatchKeyEventPreIme(keyEvent);
             }
 
             @Override
@@ -202,14 +169,14 @@ public class TodoItemMenu extends Dialog {
         FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
-                if (view != TodoItemMenu.this.myCell && view != TodoItemMenu.this.myTaskCell) {
-                    return super.drawChild(canvas, view, j);
+                if (view == TodoItemMenu.this.myCell || view == TodoItemMenu.this.myTaskCell) {
+                    canvas.save();
+                    canvas.clipRect(0.0f, AndroidUtilities.lerp(TodoItemMenu.this.clipTop, 0.0f, TodoItemMenu.this.openProgress), getWidth(), AndroidUtilities.lerp(TodoItemMenu.this.clipBottom, getHeight(), TodoItemMenu.this.openProgress));
+                    boolean drawChild = super.drawChild(canvas, view, j);
+                    canvas.restore();
+                    return drawChild;
                 }
-                canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(TodoItemMenu.this.clipTop, 0.0f, TodoItemMenu.this.openProgress), getWidth(), AndroidUtilities.lerp(TodoItemMenu.this.clipBottom, getHeight(), TodoItemMenu.this.openProgress));
-                boolean drawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
-                return drawChild;
+                return super.drawChild(canvas, view, j);
             }
         };
         this.containerView = frameLayout2;
@@ -227,25 +194,24 @@ public class TodoItemMenu extends Dialog {
         FrameLayout frameLayout3 = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
-                int makeMeasureSpec;
-                float f;
                 int size = View.MeasureSpec.getSize(i);
                 int size2 = View.MeasureSpec.getSize(i2);
                 TodoItemMenu.this.updateTranslation();
                 for (int i3 = 0; i3 < getChildCount(); i3++) {
                     View childAt = getChildAt(i3);
-                    if (childAt == TodoItemMenu.this.messageOptionsView && TodoItemMenu.this.messageOptionsViewMaxWidth > 0.0f) {
-                        childAt = TodoItemMenu.this.messageOptionsView;
-                        f = TodoItemMenu.this.messageOptionsViewMaxWidth;
-                    } else if (childAt != TodoItemMenu.this.taskOptionsView || TodoItemMenu.this.taskOptionsViewMaxWidth <= 0.0f) {
-                        makeMeasureSpec = childAt == TodoItemMenu.this.reactionsView ? View.MeasureSpec.makeMeasureSpec(TodoItemMenu.this.reactionsView.getTotalWidth(), 1073741824) : View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
-                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    if (childAt != TodoItemMenu.this.messageOptionsView || TodoItemMenu.this.messageOptionsViewMaxWidth <= 0.0f) {
+                        if (childAt != TodoItemMenu.this.taskOptionsView || TodoItemMenu.this.taskOptionsViewMaxWidth <= 0.0f) {
+                            if (childAt == TodoItemMenu.this.reactionsView) {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(TodoItemMenu.this.reactionsView.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                            } else {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                            }
+                        } else {
+                            TodoItemMenu.this.taskOptionsView.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) TodoItemMenu.this.taskOptionsViewMaxWidth), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        }
                     } else {
-                        childAt = TodoItemMenu.this.taskOptionsView;
-                        f = TodoItemMenu.this.taskOptionsViewMaxWidth;
+                        TodoItemMenu.this.messageOptionsView.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) TodoItemMenu.this.messageOptionsViewMaxWidth), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
-                    makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f), Integer.MIN_VALUE);
-                    childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                 }
                 setMeasuredDimension(size, size2);
             }
@@ -273,493 +239,74 @@ public class TodoItemMenu extends Dialog {
         this.hintTextView.setText(LocaleController.getString(R.string.TodoMenuHint));
         this.hintTextView.setGravity(17);
         this.containerView.addView(this.hintTextView, LayoutHelper.createFrame(-1, -2.0f, 80, 0.0f, 0.0f, 0.0f, 66.0f));
-        if (Build.VERSION.SDK_INT >= 21) {
-            this.windowView.setFitsSystemWindows(true);
-            this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    int systemWindowInsetLeft;
-                    int systemWindowInsetTop;
-                    int systemWindowInsetRight;
-                    int systemWindowInsetBottom;
-                    WindowInsets consumeSystemWindowInsets;
-                    WindowInsets windowInsets2;
-                    Insets insets;
-                    int i;
-                    int i2;
-                    int i3;
-                    int i4;
-                    int i5 = Build.VERSION.SDK_INT;
-                    if (i5 >= 30) {
-                        insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                        Rect rect = TodoItemMenu.this.insets;
-                        i = insets.left;
-                        i2 = insets.top;
-                        i3 = insets.right;
-                        i4 = insets.bottom;
-                        rect.set(i, i2, i3, i4);
-                    } else {
-                        Rect rect2 = TodoItemMenu.this.insets;
-                        systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
-                        systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
-                        systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
-                        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
-                        rect2.set(systemWindowInsetLeft, systemWindowInsetTop, systemWindowInsetRight, systemWindowInsetBottom);
-                    }
-                    TodoItemMenu.this.containerView.setPadding(TodoItemMenu.this.insets.left, TodoItemMenu.this.insets.top, TodoItemMenu.this.insets.right, TodoItemMenu.this.insets.bottom);
-                    TodoItemMenu.this.windowView.requestLayout();
-                    if (i5 >= 30) {
-                        windowInsets2 = WindowInsets.CONSUMED;
-                        return windowInsets2;
-                    }
-                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
-                    return consumeSystemWindowInsets;
+        this.windowView.setFitsSystemWindows(true);
+        this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                WindowInsets windowInsets2;
+                Insets insets;
+                int i;
+                int i2;
+                int i3;
+                int i4;
+                int i5 = Build.VERSION.SDK_INT;
+                if (i5 < 30) {
+                    TodoItemMenu.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+                } else {
+                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    Rect rect = TodoItemMenu.this.insets;
+                    i = insets.left;
+                    i2 = insets.top;
+                    i3 = insets.right;
+                    i4 = insets.bottom;
+                    rect.set(i, i2, i3, i4);
                 }
-            });
-        }
-    }
-
-    private void animateOpenTo(final boolean z, final Runnable runnable) {
-        ValueAnimator valueAnimator = this.openAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator valueAnimator2 = this.open2Animator;
-        if (valueAnimator2 != null) {
-            valueAnimator2.cancel();
-        }
-        setupTranslation();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
-        this.openAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                TodoItemMenu.this.lambda$animateOpenTo$16(valueAnimator3);
-            }
-        });
-        this.openAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                TodoItemMenu.this.openProgress = z ? 1.0f : 0.0f;
-                TodoItemMenu.this.windowView.invalidate();
-                TodoItemMenu.this.containerView.invalidate();
-                TodoItemMenu.this.updateTranslation();
-                Runnable runnable2 = runnable;
-                if (runnable2 != null) {
-                    runnable2.run();
+                TodoItemMenu.this.containerView.setPadding(TodoItemMenu.this.insets.left, TodoItemMenu.this.insets.top, TodoItemMenu.this.insets.right, TodoItemMenu.this.insets.bottom);
+                TodoItemMenu.this.windowView.requestLayout();
+                if (i5 >= 30) {
+                    windowInsets2 = WindowInsets.CONSUMED;
+                    return windowInsets2;
                 }
+                return windowInsets.consumeSystemWindowInsets();
             }
         });
-        long j = !z ? 330L : 520L;
-        ValueAnimator valueAnimator3 = this.openAnimator;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        valueAnimator3.setInterpolator(cubicBezierInterpolator);
-        this.openAnimator.setDuration(j);
-        this.openAnimator.start();
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
-        this.open2Animator = ofFloat2;
-        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                TodoItemMenu.this.lambda$animateOpenTo$17(valueAnimator4);
-            }
-        });
-        this.open2Animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                TodoItemMenu.this.openProgress2 = z ? 1.0f : 0.0f;
-            }
-        });
-        this.open2Animator.setDuration(((float) j) * 1.5f);
-        this.open2Animator.setInterpolator(cubicBezierInterpolator);
-        this.open2Animator.start();
-    }
-
-    public void lambda$animateOpenTo$16(ValueAnimator valueAnimator) {
-        this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.windowView.invalidate();
-        this.containerView.invalidate();
-        updateTranslation();
-    }
-
-    public void lambda$animateOpenTo$17(ValueAnimator valueAnimator) {
-        this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-    }
-
-    public void lambda$dismiss$14() {
-        super.dismiss();
-    }
-
-    public void lambda$dismiss$15(boolean z) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TodoItemMenu.this.lambda$dismiss$14();
-            }
-        });
-        ChatMessageCell chatMessageCell = this.cell;
-        if (chatMessageCell != null) {
-            chatMessageCell.setVisibility(0);
-            if (!z) {
-                ChatMessageCell chatMessageCell2 = this.cell;
-                chatMessageCell2.syncTodoCheck(chatMessageCell2.getTodoIndex(this.taskId), this.myTaskCell);
-            }
-            ChatMessageCell chatMessageCell3 = this.cell;
-            chatMessageCell3.doNotDrawTaskId = -1;
-            chatMessageCell3.invalidate();
-        }
-        Runnable runnable = this.dismissListener;
-        if (runnable != null) {
-            AndroidUtilities.runOnUIThread(runnable);
-            this.dismissListener = null;
-        }
     }
 
     public void lambda$new$0(View view) {
         dismiss();
     }
 
-    public void lambda$prepareBlur$13(View view, Bitmap bitmap) {
-        if (view != null) {
-            view.setVisibility(0);
-        }
-        this.blurBitmap = bitmap;
-        Paint paint = new Paint(1);
-        this.blurBitmapPaint = paint;
-        Bitmap bitmap2 = this.blurBitmap;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-        this.blurBitmapShader = bitmapShader;
-        paint.setShader(bitmapShader);
-        ColorMatrix colorMatrix = new ColorMatrix();
-        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.05f : 0.25f);
-        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.04f);
-        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        this.blurMatrix = new Matrix();
-    }
+    public class AnonymousClass4 extends ViewPagerFixed.Adapter {
+        final Context val$context;
 
-    public void lambda$setCell$1(ChatActivity chatActivity, int i) {
-        if (chatActivity.isInScheduleMode()) {
-            Toast.makeText(getContext(), LocaleController.getString(R.string.MessageScheduledTodo), 1).show();
-        } else {
-            ChatMessageCell chatMessageCell = this.myTaskCell;
-            chatMessageCell.toggleTodoCheck(chatMessageCell.getTodoIndex(i), false);
+        @Override
+        public void bindView(View view, int i, int i2) {
         }
-        dismiss(true);
-    }
 
-    public void lambda$setCell$2(ChatActivity chatActivity, int i) {
-        if (chatActivity.isInScheduleMode()) {
-            Toast.makeText(getContext(), LocaleController.getString(R.string.MessageScheduledTodo), 1).show();
-        } else {
-            ChatMessageCell chatMessageCell = this.myTaskCell;
-            chatMessageCell.toggleTodoCheck(chatMessageCell.getTodoIndex(i), false);
+        @Override
+        public int getItemCount() {
+            return 2;
         }
-        dismiss(true);
-    }
 
-    public void lambda$setCell$3(ChatActivity chatActivity, TLRPC.TodoItem todoItem) {
-        MessageObject messageObject = this.messageObject;
-        chatActivity.showFieldPanelForReplyQuote(messageObject, ChatActivity.ReplyQuote.from(messageObject, todoItem.id));
-        dismiss(false);
-    }
+        AnonymousClass4(Context context) {
+            this.val$context = context;
+        }
 
-    public void lambda$setCell$4(String str) {
-        AndroidUtilities.addToClipboard(str);
-        dismiss(true);
-    }
-
-    public void lambda$setCell$5(TLRPC.TodoItem todoItem) {
-        AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(todoItem.title, false));
-        dismiss(true);
-    }
-
-    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i) {
-        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
-            TLRPC.MessageMedia messageMedia2 = this.messageObject.messageOwner.media;
-            if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
-                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
-            }
-        }
-        this.messageObject.messageOwner.media = messageMedia;
-        chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
-    }
-
-    public void lambda$setCell$7(final ChatActivity chatActivity, int i) {
-        PollCreateActivity pollCreateActivity = new PollCreateActivity(chatActivity, true, Boolean.FALSE);
-        pollCreateActivity.setEditing(MessageObject.getMedia(this.messageObject), false, i);
-        pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
-            @Override
-            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i2) {
-                TodoItemMenu.this.lambda$setCell$6(chatActivity, messageMedia, hashMap, z, i2);
-            }
-        });
-        chatActivity.presentFragment(pollCreateActivity);
-        dismiss(false);
-    }
-
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) {
-        int i2 = 0;
-        while (i2 < tL_messageMediaToDo.todo.list.size()) {
-            if (tL_messageMediaToDo.todo.list.get(i2).id == i) {
-                tL_messageMediaToDo.todo.list.remove(i2);
-                i2--;
-            }
-            i2++;
-        }
-        int i3 = 0;
-        while (i3 < tL_messageMediaToDo.completions.size()) {
-            if (tL_messageMediaToDo.completions.get(i3).id == i) {
-                tL_messageMediaToDo.completions.remove(i3);
-                i3--;
-            }
-            i3++;
-        }
-        this.messageObject.messageOwner.media = tL_messageMediaToDo;
-        chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
-        chatActivity.updateVisibleRows();
-        dismiss(false);
-    }
-
-    public void lambda$setupMessageOptions$10() {
-        dismiss(false);
-    }
-
-    public void lambda$setupMessageOptions$11(Utilities.Callback callback, int i) {
-        callback.run(Integer.valueOf(i));
-        boolean z = true;
-        if (i != 1 && i != 13) {
-            z = false;
-        }
-        dismiss(z);
-    }
-
-    public boolean lambda$setupMessageOptions$12(View view, MotionEvent motionEvent) {
-        if (this.messageOptionsView == null || motionEvent.getAction() != 0) {
-            return false;
-        }
-        Drawable backgroundDrawable = ((ActionBarPopupWindow.ActionBarPopupWindowLayout) this.messageOptionsView).getBackgroundDrawable();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(backgroundDrawable.getBounds());
-        rectF.offset(this.messageOptionsView.getX(), this.messageOptionsView.getY());
-        if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-            return false;
-        }
-        dismiss(true);
-        return true;
-    }
-
-    public void lambda$setupMessageOptions$9() {
-        dismiss(false);
-    }
-
-    private void prepareBlur(final View view) {
-        if (view != null) {
-            view.setVisibility(4);
-        }
-        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                TodoItemMenu.this.lambda$prepareBlur$13(view, (Bitmap) obj);
-            }
-        }, 14.0f);
-    }
-
-    public void setupTranslation() {
-        if (this.hasTranslation || this.windowView.getWidth() <= 0) {
-            return;
-        }
-        ChatMessageCell chatMessageCell = this.cell;
-        if (chatMessageCell != null) {
-            int[] iArr = new int[2];
-            chatMessageCell.getLocationOnScreen(iArr);
-            int i = iArr[0];
-            Rect rect = this.insets;
-            this.tx = i - rect.left;
-            float f = iArr[1] - rect.top;
-            this.ty = f;
-            if (!this.hasDestTranslation) {
-                this.hasDestTranslation = true;
-                this.dtx1 = 0.0f;
-                this.dty1 = f;
-                if (this.messageOptionsView != null) {
-                    float height = f + this.cell.getHeight() + this.messageOptionsView.getHeight();
-                    int height2 = this.windowView.getHeight();
-                    Rect rect2 = this.insets;
-                    if (height > ((height2 - rect2.top) - rect2.bottom) - AndroidUtilities.dp(66.0f)) {
-                        int height3 = this.windowView.getHeight();
-                        Rect rect3 = this.insets;
-                        this.dty1 = ((((height3 - rect3.top) - rect3.bottom) - AndroidUtilities.dp(66.0f)) - this.cell.getHeight()) - this.messageOptionsView.getHeight();
-                    }
-                }
-                int todoIndex = this.myTaskCell.getTodoIndex(this.taskId);
-                this.myTaskCell.getPollButtonTop(todoIndex);
-                float pollButtonBottom = this.myTaskCell.getPollButtonBottom(todoIndex);
-                this.dtx2 = 0.0f;
-                float f2 = this.ty;
-                this.dty2 = f2;
-                float f3 = (int) pollButtonBottom;
-                float f4 = f2 + f3;
-                int height4 = this.windowView.getHeight();
-                Rect rect4 = this.insets;
-                if (f4 > (((height4 - rect4.top) - rect4.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
-                    int height5 = this.windowView.getHeight();
-                    Rect rect5 = this.insets;
-                    this.dty2 = ((((height5 - rect5.top) - rect5.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0;
-                }
-                if (this.taskOptionsView != null) {
-                    float height6 = this.dty2 + f3 + r2.getHeight();
-                    int height7 = this.windowView.getHeight();
-                    Rect rect6 = this.insets;
-                    if (height6 > (((height7 - rect6.top) - rect6.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
-                        int height8 = this.windowView.getHeight();
-                        Rect rect7 = this.insets;
-                        this.dty2 = (((((height8 - rect7.top) - rect7.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0) - this.taskOptionsView.getHeight();
-                    }
-                }
-            }
-            updateTranslation();
-        } else {
-            this.ty = 0.0f;
-            this.tx = 0.0f;
-        }
-        this.hasTranslation = true;
-    }
-
-    public void updateTranslation() {
-        float dp;
-        float positionAnimated = this.viewPager.getPositionAnimated();
-        float lerp = AndroidUtilities.lerp(0, -this.viewPager.getWidth(), positionAnimated);
-        float lerp2 = AndroidUtilities.lerp(this.viewPager.getWidth(), 0, positionAnimated);
-        if (this.hasTranslation) {
-            View view = this.messageOptionsView;
-            if (view instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) view;
-                this.dtx1 = 0.0f;
-                float f = this.ty;
-                this.dty1 = f;
-                if (view != null) {
-                    float height = f + this.cell.getHeight() + actionBarPopupWindowLayout.getVisibleHeight();
-                    int height2 = this.windowView.getHeight();
-                    Rect rect = this.insets;
-                    if (height > ((height2 - rect.top) - rect.bottom) - AndroidUtilities.dp(66.0f)) {
-                        int height3 = this.windowView.getHeight();
-                        Rect rect2 = this.insets;
-                        this.dty1 = ((((height3 - rect2.top) - rect2.bottom) - AndroidUtilities.dp(66.0f)) - this.cell.getHeight()) - actionBarPopupWindowLayout.getVisibleHeight();
-                    }
-                }
-            }
-        }
-        this.myCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx1, this.dismissingWithAlpha ? 1.0f : this.openProgress) + lerp2);
-        this.myCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty1, this.dismissingWithAlpha ? 1.0f : this.openProgress));
-        View view2 = this.messageOptionsView;
-        if (view2 != null) {
-            if (this.isOut) {
-                dp = (((this.dtx1 + lerp2) + this.myCell.getLeft()) + this.myCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f);
-            } else {
-                dp = this.dtx1 + lerp2 + (this.myCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0) + this.myCell.getLeft();
-            }
-            view2.setTranslationX(dp - this.messageOptionsView.getLeft());
-            this.messageOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.messageOptionsView.getX() - lerp2);
-            this.messageOptionsView.setTranslationY(((this.myCell.getY() + this.myCell.getHeight()) - this.messageOptionsView.getTop()) - this.menuContainer.getTop());
-            this.messageOptionsView.setAlpha(this.openProgress);
-            float lerp3 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
-            this.messageOptionsView.setScaleX(lerp3);
-            this.messageOptionsView.setScaleY(lerp3);
-        }
-        this.myTaskCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx2, this.dismissingWithAlpha ? 1.0f : this.openProgress) + lerp);
-        this.myTaskCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty2, this.dismissingWithAlpha ? 1.0f : this.openProgress));
-        if (this.taskOptionsView != null) {
-            int todoIndex = this.myTaskCell.getTodoIndex(this.taskId);
-            this.myTaskCell.getPollButtonTop(todoIndex);
-            float pollButtonBottom = this.myTaskCell.getPollButtonBottom(todoIndex);
-            if (this.isOut) {
-                this.taskOptionsView.setTranslationX(((((this.dtx2 + lerp) + this.myTaskCell.getLeft()) + this.myTaskCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.taskOptionsView.getLeft());
-            } else {
-                this.taskOptionsView.setTranslationX((((this.dtx2 + lerp) + (this.myTaskCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myTaskCell.getLeft()) - this.taskOptionsView.getLeft());
-            }
-            this.taskOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.taskOptionsView.getX() - lerp2);
-            this.taskOptionsView.setTranslationY(((this.myTaskCell.getY() + ((int) pollButtonBottom)) - this.taskOptionsView.getTop()) - this.menuContainer.getTop());
-            this.taskOptionsView.setAlpha(this.openProgress);
-            float lerp4 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
-            this.taskOptionsView.setScaleX(lerp4);
-            this.taskOptionsView.setScaleY(lerp4);
-        }
-        if (this.dismissingWithAlpha) {
-            this.myCell.setAlpha(this.openProgress);
-            this.myTaskCell.setAlpha(this.openProgress);
-        }
-        if (this.reactionsView != null) {
-            float max = lerp2 + Math.max(0.0f, ((this.myCell.getBoundsRight() + this.myCell.getBoundsLeft()) / 2.0f) - (this.reactionsView.getWidth() * 0.8f));
-            this.reactionsView.setTranslationX(max);
-            this.reactionsView.setTranslationY(Math.max(0.0f, ((this.myCell.getY() - this.reactionsView.getHeight()) + AndroidUtilities.dp(22.0f)) - this.menuContainer.getTop()));
-            this.reactionsView.setAlpha(this.openProgress);
-            View windowView = this.reactionsView.getWindowView();
-            if (windowView != null) {
-                windowView.setTranslationX(max);
-                windowView.setAlpha(this.openProgress);
-            }
-        }
-        this.hintTextView.setTranslationX(lerp);
-        this.hintTextView.setAlpha(this.openProgress);
-        this.tabsView.setSelectedTab(positionAnimated);
-        this.tabsView.setAlpha(this.openProgress);
-    }
-
-    @Override
-    public void dismiss() {
-        dismiss(true);
-    }
-
-    public void dismiss(boolean z) {
-        ChatMessageCell chatMessageCell;
-        ChatMessageCell chatMessageCell2;
-        ReactionsContainerLayout reactionsContainerLayout;
-        if (z && (reactionsContainerLayout = this.reactionsView) != null && reactionsContainerLayout.getReactionsWindow() != null && this.reactionsView.getReactionsWindow().isShowing()) {
-            this.reactionsView.dismissWindow();
-            return;
-        }
-        if (this.dismissing) {
-            return;
-        }
-        this.dismissing = true;
-        this.hasTranslation = false;
-        this.viewPager.cancelTouches();
-        final boolean z2 = this.viewPager.getCurrentPosition() == 1;
-        if (z && z2) {
-            ChatMessageCell chatMessageCell3 = this.cell;
-            if (chatMessageCell3 != null) {
-                chatMessageCell3.setVisibility(4);
-                chatMessageCell2 = this.cell;
-                chatMessageCell2.invalidate();
-            }
-            this.dismissingWithAlpha = !z;
-            setupTranslation();
-            this.open = false;
-            animateOpenTo(false, new Runnable() {
+        @Override
+        public View createView(int i) {
+            FrameLayout frameLayout = new FrameLayout(this.val$context);
+            frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void run() {
-                    TodoItemMenu.this.lambda$dismiss$15(z2);
+                public final void onClick(View view) {
+                    TodoItemMenu.AnonymousClass4.this.lambda$createView$0(view);
                 }
             });
-            this.windowView.invalidate();
+            return frameLayout;
         }
-        if (!z && (chatMessageCell = this.cell) != null) {
-            chatMessageCell.setVisibility(0);
-            chatMessageCell2 = this.cell;
-            chatMessageCell2.doNotDrawTaskId = -1;
-            chatMessageCell2.invalidate();
+
+        public void lambda$createView$0(View view) {
+            TodoItemMenu.this.dismiss(true);
         }
-        this.dismissingWithAlpha = !z;
-        setupTranslation();
-        this.open = false;
-        animateOpenTo(false, new Runnable() {
-            @Override
-            public final void run() {
-                TodoItemMenu.this.lambda$dismiss$15(z2);
-            }
-        });
-        this.windowView.invalidate();
     }
 
     @Override
@@ -778,10 +325,7 @@ public class TodoItemMenu extends Dialog {
         int i2 = i & (-131075);
         attributes.flags = i2;
         int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 21) {
-            attributes.flags = i2 | (-2013200128);
-        }
-        attributes.flags |= 1152;
+        attributes.flags = i2 | (-2013198976);
         if (i3 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
@@ -793,14 +337,11 @@ public class TodoItemMenu extends Dialog {
     public void setCell(final ChatActivity chatActivity, ChatMessageCell chatMessageCell, final int i) {
         int i2;
         final TLRPC.TodoItem todoItem;
-        int i3;
-        String string;
-        Runnable runnable;
         this.cell = chatMessageCell;
         this.taskId = i;
         MessageObject messageObject = chatMessageCell != null ? chatMessageCell.getMessageObject() : null;
         this.messageObject = messageObject;
-        int i4 = 0;
+        int i3 = 0;
         this.isOut = messageObject != null && messageObject.isOutOwner();
         if (this.cell != null) {
             this.clipTop = chatActivity.getChatListViewPadding() - AndroidUtilities.dp(4.0f);
@@ -817,6 +358,10 @@ public class TodoItemMenu extends Dialog {
             ChatMessageCell chatMessageCell2 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
                 private final Path clipPath = new Path();
                 private final Paint shadowPaint = new Paint(1);
+
+                @Override
+                public void setPressed(boolean z) {
+                }
 
                 @Override
                 public void onDraw(Canvas canvas) {
@@ -837,12 +382,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onMeasure(int i5, int i6) {
+                protected void onMeasure(int i4, int i5) {
                     setMeasuredDimension(width, height);
-                }
-
-                @Override
-                public void setPressed(boolean z) {
                 }
             };
             this.myTaskCell = chatMessageCell2;
@@ -877,8 +418,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i5, float f, float f2) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell3, chat, i5, f, f2);
+                public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i4, float f, float f2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell3, chat, i4, f, f2);
                 }
 
                 @Override
@@ -922,8 +463,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i5, float f, float f2, boolean z) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell3, chat, i5, f, f2, z);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i4, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell3, chat, i4, f, f2, z);
                 }
 
                 @Override
@@ -967,13 +508,13 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressFactCheckWhat(ChatMessageCell chatMessageCell3, int i5, int i6) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell3, i5, i6);
+                public void didPressFactCheckWhat(ChatMessageCell chatMessageCell3, int i4, int i5) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell3, i4, i5);
                 }
 
                 @Override
-                public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell3, int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell3, i5);
+                public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell3, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell3, i4);
                 }
 
                 @Override
@@ -987,8 +528,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressHint(ChatMessageCell chatMessageCell3, int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell3, i5);
+                public void didPressHint(ChatMessageCell chatMessageCell3, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell3, i4);
                 }
 
                 @Override
@@ -997,8 +538,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressInstantButton(ChatMessageCell chatMessageCell3, int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell3, i5);
+                public void didPressInstantButton(ChatMessageCell chatMessageCell3, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell3, i4);
                 }
 
                 @Override
@@ -1017,8 +558,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressReplyMessage(ChatMessageCell chatMessageCell3, int i5, float f, float f2, boolean z) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell3, i5, f, f2, z);
+                public void didPressReplyMessage(ChatMessageCell chatMessageCell3, int i4, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell3, i4, f, f2, z);
                 }
 
                 @Override
@@ -1047,14 +588,6 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean didPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem2, boolean z) {
-                    if (TodoItemMenu.this.cell.getDelegate() != null) {
-                        return TodoItemMenu.this.cell.getDelegate().didPressToDoButton(TodoItemMenu.this.cell, todoItem2, z);
-                    }
-                    return false;
-                }
-
-                @Override
                 public void didPressUrl(ChatMessageCell chatMessageCell3, CharacterStyle characterStyle, boolean z) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell3, characterStyle, z);
                 }
@@ -1080,8 +613,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressVoteButtons(ChatMessageCell chatMessageCell3, ArrayList arrayList, int i5, int i6, int i7) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell3, arrayList, i5, i6, i7);
+                public void didPressVoteButtons(ChatMessageCell chatMessageCell3, ArrayList arrayList, int i4, int i5, int i6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell3, arrayList, i4, i5, i6);
                 }
 
                 @Override
@@ -1160,8 +693,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean isProgressLoading(ChatMessageCell chatMessageCell3, int i5) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell3, i5);
+                public boolean isProgressLoading(ChatMessageCell chatMessageCell3, int i4) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell3, i4);
                 }
 
                 @Override
@@ -1175,8 +708,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void needOpenWebView(MessageObject messageObject2, String str, String str2, String str3, String str4, int i5, int i6) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject2, str, str2, str3, str4, i5, i6);
+                public void needOpenWebView(MessageObject messageObject2, String str, String str2, String str3, String str4, int i4, int i5) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject2, str, str2, str3, str4, i4, i5);
                 }
 
                 @Override
@@ -1190,13 +723,13 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void needShowPremiumBulletin(int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i5);
+                public void needShowPremiumBulletin(int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i4);
                 }
 
                 @Override
-                public boolean onAccessibilityAction(int i5, Bundle bundle) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i5, bundle);
+                public boolean onAccessibilityAction(int i4, Bundle bundle) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i4, bundle);
                 }
 
                 @Override
@@ -1223,6 +756,14 @@ public class TodoItemMenu extends Dialog {
                 public void videoTimerReached() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
                 }
+
+                @Override
+                public boolean didPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem2, boolean z) {
+                    if (TodoItemMenu.this.cell.getDelegate() != null) {
+                        return TodoItemMenu.this.cell.getDelegate().didPressToDoButton(TodoItemMenu.this.cell, todoItem2, z);
+                    }
+                    return false;
+                }
             });
             ChatMessageCell chatMessageCell3 = this.myTaskCell;
             MessageObject messageObject2 = this.messageObject;
@@ -1232,12 +773,12 @@ public class TodoItemMenu extends Dialog {
             this.containerView.addView(this.myTaskCell, new FrameLayout.LayoutParams(this.cell.getWidth(), height, 51));
             ChatMessageCell chatMessageCell5 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
                 @Override
-                protected void onMeasure(int i5, int i6) {
-                    setMeasuredDimension(width, height);
+                public void setPressed(boolean z) {
                 }
 
                 @Override
-                public void setPressed(boolean z) {
+                protected void onMeasure(int i4, int i5) {
+                    setMeasuredDimension(width, height);
                 }
             };
             this.myCell = chatMessageCell5;
@@ -1273,8 +814,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC.Chat chat, int i5, float f, float f2) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell6, chat, i5, f, f2);
+                public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC.Chat chat, int i4, float f, float f2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell6, chat, i4, f, f2);
                 }
 
                 @Override
@@ -1318,8 +859,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC.Chat chat, int i5, float f, float f2, boolean z) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell6, chat, i5, f, f2, z);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC.Chat chat, int i4, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell6, chat, i4, f, f2, z);
                 }
 
                 @Override
@@ -1363,13 +904,13 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressFactCheckWhat(ChatMessageCell chatMessageCell6, int i5, int i6) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell6, i5, i6);
+                public void didPressFactCheckWhat(ChatMessageCell chatMessageCell6, int i4, int i5) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell6, i4, i5);
                 }
 
                 @Override
-                public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell6, int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell6, i5);
+                public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell6, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell6, i4);
                 }
 
                 @Override
@@ -1383,8 +924,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressHint(ChatMessageCell chatMessageCell6, int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell6, i5);
+                public void didPressHint(ChatMessageCell chatMessageCell6, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell6, i4);
                 }
 
                 @Override
@@ -1393,8 +934,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressInstantButton(ChatMessageCell chatMessageCell6, int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell6, i5);
+                public void didPressInstantButton(ChatMessageCell chatMessageCell6, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell6, i4);
                 }
 
                 @Override
@@ -1413,8 +954,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressReplyMessage(ChatMessageCell chatMessageCell6, int i5, float f, float f2, boolean z) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell6, i5, f, f2, z);
+                public void didPressReplyMessage(ChatMessageCell chatMessageCell6, int i4, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell6, i4, f, f2, z);
                 }
 
                 @Override
@@ -1473,8 +1014,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressVoteButtons(ChatMessageCell chatMessageCell6, ArrayList arrayList, int i5, int i6, int i7) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell6, arrayList, i5, i6, i7);
+                public void didPressVoteButtons(ChatMessageCell chatMessageCell6, ArrayList arrayList, int i4, int i5, int i6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell6, arrayList, i4, i5, i6);
                 }
 
                 @Override
@@ -1553,8 +1094,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean isProgressLoading(ChatMessageCell chatMessageCell6, int i5) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell6, i5);
+                public boolean isProgressLoading(ChatMessageCell chatMessageCell6, int i4) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell6, i4);
                 }
 
                 @Override
@@ -1568,8 +1109,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void needOpenWebView(MessageObject messageObject3, String str, String str2, String str3, String str4, int i5, int i6) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject3, str, str2, str3, str4, i5, i6);
+                public void needOpenWebView(MessageObject messageObject3, String str, String str2, String str3, String str4, int i4, int i5) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject3, str, str2, str3, str4, i4, i5);
                 }
 
                 @Override
@@ -1583,13 +1124,13 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void needShowPremiumBulletin(int i5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i5);
+                public void needShowPremiumBulletin(int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i4);
                 }
 
                 @Override
-                public boolean onAccessibilityAction(int i5, Bundle bundle) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i5, bundle);
+                public boolean onAccessibilityAction(int i4, Bundle bundle) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i4, bundle);
                 }
 
                 @Override
@@ -1633,53 +1174,48 @@ public class TodoItemMenu extends Dialog {
         TLRPC.TodoCompletion todoCompletion = null;
         ItemOptions makeOptions = ItemOptions.makeOptions(this.containerView, this.resourcesProvider, (View) null);
         final TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) MessageObject.getMedia(this.messageObject);
-        final int i5 = 0;
+        final int i4 = 0;
         while (true) {
-            if (i5 >= tL_messageMediaToDo.todo.list.size()) {
-                i5 = -1;
+            if (i4 >= tL_messageMediaToDo.todo.list.size()) {
+                i4 = -1;
                 todoItem = null;
                 break;
             } else {
-                if (tL_messageMediaToDo.todo.list.get(i5).id == i) {
-                    todoItem = tL_messageMediaToDo.todo.list.get(i5);
+                if (tL_messageMediaToDo.todo.list.get(i4).id == i) {
+                    todoItem = tL_messageMediaToDo.todo.list.get(i4);
                     break;
                 }
-                i5++;
+                i4++;
             }
         }
         while (true) {
-            if (i4 >= tL_messageMediaToDo.completions.size()) {
+            if (i3 >= tL_messageMediaToDo.completions.size()) {
                 break;
             }
-            if (tL_messageMediaToDo.completions.get(i4).id == i) {
-                todoCompletion = tL_messageMediaToDo.completions.get(i4);
+            if (tL_messageMediaToDo.completions.get(i3).id == i) {
+                todoCompletion = tL_messageMediaToDo.completions.get(i3);
                 break;
             }
-            i4++;
+            i3++;
         }
         if (this.messageObject.canCompleteTodo()) {
             if (todoCompletion != null) {
                 makeOptions.addText(LocaleController.formatTodoCompletedDate(todoCompletion.date), 14);
                 makeOptions.addGap();
-                i3 = R.drawable.msg_cancel;
-                string = LocaleController.getString(R.string.TodoUncheck);
-                runnable = new Runnable() {
+                makeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.TodoUncheck), new Runnable() {
                     @Override
                     public final void run() {
                         TodoItemMenu.this.lambda$setCell$1(chatActivity, i);
                     }
-                };
+                });
             } else {
-                i3 = R.drawable.msg_select;
-                string = LocaleController.getString(R.string.TodoCheck);
-                runnable = new Runnable() {
+                makeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.TodoCheck), new Runnable() {
                     @Override
                     public final void run() {
                         TodoItemMenu.this.lambda$setCell$2(chatActivity, i);
                     }
-                };
+                });
             }
-            makeOptions.add(i3, string, runnable);
         }
         if (todoItem != null) {
             if (chatActivity != null) {
@@ -1724,7 +1260,7 @@ public class TodoItemMenu extends Dialog {
             makeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.TodoEditItem), new Runnable() {
                 @Override
                 public final void run() {
-                    TodoItemMenu.this.lambda$setCell$7(chatActivity, i5);
+                    TodoItemMenu.this.lambda$setCell$7(chatActivity, i4);
                 }
             });
             if (tL_messageMediaToDo.todo.list.size() > 1) {
@@ -1744,12 +1280,293 @@ public class TodoItemMenu extends Dialog {
         this.menuContainer.addView(this.taskOptionsView, LayoutHelper.createFrame(-2, -2, i2));
     }
 
-    public void setOnDismissListener(Runnable runnable) {
-        this.dismissListener = runnable;
+    public void lambda$setCell$1(ChatActivity chatActivity, int i) {
+        if (chatActivity.isInScheduleMode()) {
+            Toast.makeText(getContext(), LocaleController.getString(R.string.MessageScheduledTodo), 1).show();
+        } else {
+            ChatMessageCell chatMessageCell = this.myTaskCell;
+            chatMessageCell.toggleTodoCheck(chatMessageCell.getTodoIndex(i), false);
+        }
+        dismiss(true);
+    }
+
+    public void lambda$setCell$2(ChatActivity chatActivity, int i) {
+        if (chatActivity.isInScheduleMode()) {
+            Toast.makeText(getContext(), LocaleController.getString(R.string.MessageScheduledTodo), 1).show();
+        } else {
+            ChatMessageCell chatMessageCell = this.myTaskCell;
+            chatMessageCell.toggleTodoCheck(chatMessageCell.getTodoIndex(i), false);
+        }
+        dismiss(true);
+    }
+
+    public void lambda$setCell$3(ChatActivity chatActivity, TLRPC.TodoItem todoItem) {
+        MessageObject messageObject = this.messageObject;
+        chatActivity.showFieldPanelForReplyQuote(messageObject, ChatActivity.ReplyQuote.from(messageObject, todoItem.id));
+        dismiss(false);
+    }
+
+    public void lambda$setCell$4(String str) {
+        AndroidUtilities.addToClipboard(str);
+        dismiss(true);
+    }
+
+    public void lambda$setCell$5(TLRPC.TodoItem todoItem) {
+        AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(todoItem.title, false));
+        dismiss(true);
+    }
+
+    public void lambda$setCell$7(final ChatActivity chatActivity, int i) {
+        PollCreateActivity pollCreateActivity = new PollCreateActivity(chatActivity, true, Boolean.FALSE);
+        pollCreateActivity.setEditing(MessageObject.getMedia(this.messageObject), false, i);
+        pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
+            @Override
+            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i2) {
+                TodoItemMenu.this.lambda$setCell$6(chatActivity, messageMedia, hashMap, z, i2);
+            }
+        });
+        chatActivity.presentFragment(pollCreateActivity);
+        dismiss(false);
+    }
+
+    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap hashMap, boolean z, int i) {
+        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+            TLRPC.MessageMedia messageMedia2 = this.messageObject.messageOwner.media;
+            if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
+                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
+            }
+        }
+        this.messageObject.messageOwner.media = messageMedia;
+        chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
+    }
+
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) {
+        int i2 = 0;
+        while (i2 < tL_messageMediaToDo.todo.list.size()) {
+            if (tL_messageMediaToDo.todo.list.get(i2).id == i) {
+                tL_messageMediaToDo.todo.list.remove(i2);
+                i2--;
+            }
+            i2++;
+        }
+        int i3 = 0;
+        while (i3 < tL_messageMediaToDo.completions.size()) {
+            if (tL_messageMediaToDo.completions.get(i3).id == i) {
+                tL_messageMediaToDo.completions.remove(i3);
+                i3--;
+            }
+            i3++;
+        }
+        this.messageObject.messageOwner.media = tL_messageMediaToDo;
+        chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
+        chatActivity.updateVisibleRows();
+        dismiss(false);
     }
 
     public void setupMessageOptions(final org.telegram.ui.ChatActivity r23, java.util.ArrayList r24, java.util.ArrayList r25, java.util.ArrayList r26, final org.telegram.messenger.Utilities.Callback r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TodoItemMenu.setupMessageOptions(org.telegram.ui.ChatActivity, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, org.telegram.messenger.Utilities$Callback):void");
+    }
+
+    public void lambda$setupMessageOptions$9() {
+        dismiss(false);
+    }
+
+    public void lambda$setupMessageOptions$10() {
+        dismiss(false);
+    }
+
+    public void lambda$setupMessageOptions$11(Utilities.Callback callback, int i) {
+        callback.run(Integer.valueOf(i));
+        boolean z = true;
+        if (i != 1 && i != 13) {
+            z = false;
+        }
+        dismiss(z);
+    }
+
+    public boolean lambda$setupMessageOptions$12(View view, MotionEvent motionEvent) {
+        if (this.messageOptionsView == null || motionEvent.getAction() != 0) {
+            return false;
+        }
+        Drawable backgroundDrawable = ((ActionBarPopupWindow.ActionBarPopupWindowLayout) this.messageOptionsView).getBackgroundDrawable();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(backgroundDrawable.getBounds());
+        rectF.offset(this.messageOptionsView.getX(), this.messageOptionsView.getY());
+        if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            return false;
+        }
+        dismiss(true);
+        return true;
+    }
+
+    public void setupTranslation() {
+        if (this.hasTranslation || this.windowView.getWidth() <= 0) {
+            return;
+        }
+        ChatMessageCell chatMessageCell = this.cell;
+        if (chatMessageCell != null) {
+            int[] iArr = new int[2];
+            chatMessageCell.getLocationOnScreen(iArr);
+            int i = iArr[0];
+            Rect rect = this.insets;
+            this.tx = i - rect.left;
+            float f = iArr[1] - rect.top;
+            this.ty = f;
+            if (!this.hasDestTranslation) {
+                this.hasDestTranslation = true;
+                this.dtx1 = 0.0f;
+                this.dty1 = f;
+                if (this.messageOptionsView != null) {
+                    float height = f + this.cell.getHeight() + this.messageOptionsView.getHeight();
+                    int height2 = this.windowView.getHeight();
+                    Rect rect2 = this.insets;
+                    if (height > ((height2 - rect2.top) - rect2.bottom) - AndroidUtilities.dp(66.0f)) {
+                        int height3 = this.windowView.getHeight();
+                        Rect rect3 = this.insets;
+                        this.dty1 = ((((height3 - rect3.top) - rect3.bottom) - AndroidUtilities.dp(66.0f)) - this.cell.getHeight()) - this.messageOptionsView.getHeight();
+                    }
+                }
+                int todoIndex = this.myTaskCell.getTodoIndex(this.taskId);
+                this.myTaskCell.getPollButtonTop(todoIndex);
+                float pollButtonBottom = this.myTaskCell.getPollButtonBottom(todoIndex);
+                this.dtx2 = 0.0f;
+                float f2 = this.ty;
+                this.dty2 = f2;
+                float f3 = (int) pollButtonBottom;
+                float f4 = f2 + f3;
+                int height4 = this.windowView.getHeight();
+                Rect rect4 = this.insets;
+                if (f4 > (((height4 - rect4.top) - rect4.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
+                    int height5 = this.windowView.getHeight();
+                    Rect rect5 = this.insets;
+                    this.dty2 = ((((height5 - rect5.top) - rect5.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0;
+                }
+                if (this.taskOptionsView != null) {
+                    float height6 = this.dty2 + f3 + r2.getHeight();
+                    int height7 = this.windowView.getHeight();
+                    Rect rect6 = this.insets;
+                    if (height6 > (((height7 - rect6.top) - rect6.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
+                        int height8 = this.windowView.getHeight();
+                        Rect rect7 = this.insets;
+                        this.dty2 = (((((height8 - rect7.top) - rect7.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0) - this.taskOptionsView.getHeight();
+                    }
+                }
+            }
+            updateTranslation();
+        } else {
+            this.ty = 0.0f;
+            this.tx = 0.0f;
+        }
+        this.hasTranslation = true;
+    }
+
+    public void updateTranslation() {
+        float positionAnimated = this.viewPager.getPositionAnimated();
+        float lerp = AndroidUtilities.lerp(0, -this.viewPager.getWidth(), positionAnimated);
+        float lerp2 = AndroidUtilities.lerp(this.viewPager.getWidth(), 0, positionAnimated);
+        if (this.hasTranslation) {
+            View view = this.messageOptionsView;
+            if (view instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) view;
+                this.dtx1 = 0.0f;
+                float f = this.ty;
+                this.dty1 = f;
+                if (view != null) {
+                    float height = f + this.cell.getHeight() + actionBarPopupWindowLayout.getVisibleHeight();
+                    int height2 = this.windowView.getHeight();
+                    Rect rect = this.insets;
+                    if (height > ((height2 - rect.top) - rect.bottom) - AndroidUtilities.dp(66.0f)) {
+                        int height3 = this.windowView.getHeight();
+                        Rect rect2 = this.insets;
+                        this.dty1 = ((((height3 - rect2.top) - rect2.bottom) - AndroidUtilities.dp(66.0f)) - this.cell.getHeight()) - actionBarPopupWindowLayout.getVisibleHeight();
+                    }
+                }
+            }
+        }
+        this.myCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx1, this.dismissingWithAlpha ? 1.0f : this.openProgress) + lerp2);
+        this.myCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty1, this.dismissingWithAlpha ? 1.0f : this.openProgress));
+        View view2 = this.messageOptionsView;
+        if (view2 != null) {
+            if (this.isOut) {
+                view2.setTranslationX(((((this.dtx1 + lerp2) + this.myCell.getLeft()) + this.myCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.messageOptionsView.getLeft());
+            } else {
+                view2.setTranslationX((((this.dtx1 + lerp2) + (this.myCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myCell.getLeft()) - this.messageOptionsView.getLeft());
+            }
+            this.messageOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.messageOptionsView.getX() - lerp2);
+            this.messageOptionsView.setTranslationY(((this.myCell.getY() + this.myCell.getHeight()) - this.messageOptionsView.getTop()) - this.menuContainer.getTop());
+            this.messageOptionsView.setAlpha(this.openProgress);
+            float lerp3 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
+            this.messageOptionsView.setScaleX(lerp3);
+            this.messageOptionsView.setScaleY(lerp3);
+        }
+        this.myTaskCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx2, this.dismissingWithAlpha ? 1.0f : this.openProgress) + lerp);
+        this.myTaskCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty2, this.dismissingWithAlpha ? 1.0f : this.openProgress));
+        if (this.taskOptionsView != null) {
+            int todoIndex = this.myTaskCell.getTodoIndex(this.taskId);
+            this.myTaskCell.getPollButtonTop(todoIndex);
+            float pollButtonBottom = this.myTaskCell.getPollButtonBottom(todoIndex);
+            if (this.isOut) {
+                this.taskOptionsView.setTranslationX(((((this.dtx2 + lerp) + this.myTaskCell.getLeft()) + this.myTaskCell.getPollButtonsLeft()) - AndroidUtilities.dp(8.0f)) - this.taskOptionsView.getLeft());
+            } else {
+                this.taskOptionsView.setTranslationX((((this.dtx2 + lerp) + (this.myTaskCell.needDrawAvatar() ? AndroidUtilities.dp(48.0f) : 0)) + this.myTaskCell.getLeft()) - this.taskOptionsView.getLeft());
+            }
+            this.taskOptionsViewMaxWidth = this.menuContainer.getMeasuredWidth() - (this.taskOptionsView.getX() - lerp2);
+            this.taskOptionsView.setTranslationY(((this.myTaskCell.getY() + ((int) pollButtonBottom)) - this.taskOptionsView.getTop()) - this.menuContainer.getTop());
+            this.taskOptionsView.setAlpha(this.openProgress);
+            float lerp4 = AndroidUtilities.lerp(0.75f, 1.0f, this.openProgress);
+            this.taskOptionsView.setScaleX(lerp4);
+            this.taskOptionsView.setScaleY(lerp4);
+        }
+        if (this.dismissingWithAlpha) {
+            this.myCell.setAlpha(this.openProgress);
+            this.myTaskCell.setAlpha(this.openProgress);
+        }
+        if (this.reactionsView != null) {
+            float max = lerp2 + Math.max(0.0f, ((this.myCell.getBoundsRight() + this.myCell.getBoundsLeft()) / 2.0f) - (this.reactionsView.getWidth() * 0.8f));
+            this.reactionsView.setTranslationX(max);
+            this.reactionsView.setTranslationY(Math.max(0.0f, ((this.myCell.getY() - this.reactionsView.getHeight()) + AndroidUtilities.dp(22.0f)) - this.menuContainer.getTop()));
+            this.reactionsView.setAlpha(this.openProgress);
+            View windowView = this.reactionsView.getWindowView();
+            if (windowView != null) {
+                windowView.setTranslationX(max);
+                windowView.setAlpha(this.openProgress);
+            }
+        }
+        this.hintTextView.setTranslationX(lerp);
+        this.hintTextView.setAlpha(this.openProgress);
+        this.tabsView.setSelectedTab(positionAnimated);
+        this.tabsView.setAlpha(this.openProgress);
+    }
+
+    private void prepareBlur(final View view) {
+        if (view != null) {
+            view.setVisibility(4);
+        }
+        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                TodoItemMenu.this.lambda$prepareBlur$13(view, (Bitmap) obj);
+            }
+        }, 14.0f);
+    }
+
+    public void lambda$prepareBlur$13(View view, Bitmap bitmap) {
+        if (view != null) {
+            view.setVisibility(0);
+        }
+        this.blurBitmap = bitmap;
+        Paint paint = new Paint(1);
+        this.blurBitmapPaint = paint;
+        Bitmap bitmap2 = this.blurBitmap;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+        this.blurBitmapShader = bitmapShader;
+        paint.setShader(bitmapShader);
+        ColorMatrix colorMatrix = new ColorMatrix();
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.05f : 0.25f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.04f);
+        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        this.blurMatrix = new Matrix();
     }
 
     @Override
@@ -1761,5 +1578,148 @@ public class TodoItemMenu extends Dialog {
             this.open = true;
             animateOpenTo(true, null);
         }
+    }
+
+    @Override
+    public void dismiss() {
+        dismiss(true);
+    }
+
+    public void dismiss(boolean z) {
+        ChatMessageCell chatMessageCell;
+        ReactionsContainerLayout reactionsContainerLayout;
+        if (z && (reactionsContainerLayout = this.reactionsView) != null && reactionsContainerLayout.getReactionsWindow() != null && this.reactionsView.getReactionsWindow().isShowing()) {
+            this.reactionsView.dismissWindow();
+            return;
+        }
+        if (this.dismissing) {
+            return;
+        }
+        this.dismissing = true;
+        this.hasTranslation = false;
+        this.viewPager.cancelTouches();
+        final boolean z2 = this.viewPager.getCurrentPosition() == 1;
+        if (z && z2) {
+            ChatMessageCell chatMessageCell2 = this.cell;
+            if (chatMessageCell2 != null) {
+                chatMessageCell2.setVisibility(4);
+                this.cell.invalidate();
+            }
+        } else if (!z && (chatMessageCell = this.cell) != null) {
+            chatMessageCell.setVisibility(0);
+            ChatMessageCell chatMessageCell3 = this.cell;
+            chatMessageCell3.doNotDrawTaskId = -1;
+            chatMessageCell3.invalidate();
+        }
+        this.dismissingWithAlpha = !z;
+        setupTranslation();
+        this.open = false;
+        animateOpenTo(false, new Runnable() {
+            @Override
+            public final void run() {
+                TodoItemMenu.this.lambda$dismiss$15(z2);
+            }
+        });
+        this.windowView.invalidate();
+    }
+
+    public void lambda$dismiss$14() {
+        super.dismiss();
+    }
+
+    public void lambda$dismiss$15(boolean z) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                TodoItemMenu.this.lambda$dismiss$14();
+            }
+        });
+        ChatMessageCell chatMessageCell = this.cell;
+        if (chatMessageCell != null) {
+            chatMessageCell.setVisibility(0);
+            if (!z) {
+                ChatMessageCell chatMessageCell2 = this.cell;
+                chatMessageCell2.syncTodoCheck(chatMessageCell2.getTodoIndex(this.taskId), this.myTaskCell);
+            }
+            ChatMessageCell chatMessageCell3 = this.cell;
+            chatMessageCell3.doNotDrawTaskId = -1;
+            chatMessageCell3.invalidate();
+        }
+        Runnable runnable = this.dismissListener;
+        if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+            this.dismissListener = null;
+        }
+    }
+
+    public void setOnDismissListener(Runnable runnable) {
+        this.dismissListener = runnable;
+    }
+
+    private void animateOpenTo(final boolean z, final Runnable runnable) {
+        ValueAnimator valueAnimator = this.openAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator valueAnimator2 = this.open2Animator;
+        if (valueAnimator2 != null) {
+            valueAnimator2.cancel();
+        }
+        setupTranslation();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
+        this.openAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                TodoItemMenu.this.lambda$animateOpenTo$16(valueAnimator3);
+            }
+        });
+        this.openAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                TodoItemMenu.this.openProgress = z ? 1.0f : 0.0f;
+                TodoItemMenu.this.windowView.invalidate();
+                TodoItemMenu.this.containerView.invalidate();
+                TodoItemMenu.this.updateTranslation();
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+        });
+        long j = !z ? 330L : 520L;
+        ValueAnimator valueAnimator3 = this.openAnimator;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        valueAnimator3.setInterpolator(cubicBezierInterpolator);
+        this.openAnimator.setDuration(j);
+        this.openAnimator.start();
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
+        this.open2Animator = ofFloat2;
+        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                TodoItemMenu.this.lambda$animateOpenTo$17(valueAnimator4);
+            }
+        });
+        this.open2Animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                TodoItemMenu.this.openProgress2 = z ? 1.0f : 0.0f;
+            }
+        });
+        this.open2Animator.setDuration(((float) j) * 1.5f);
+        this.open2Animator.setInterpolator(cubicBezierInterpolator);
+        this.open2Animator.start();
+    }
+
+    public void lambda$animateOpenTo$16(ValueAnimator valueAnimator) {
+        this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.windowView.invalidate();
+        this.containerView.invalidate();
+        updateTranslation();
+    }
+
+    public void lambda$animateOpenTo$17(ValueAnimator valueAnimator) {
+        this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
     }
 }

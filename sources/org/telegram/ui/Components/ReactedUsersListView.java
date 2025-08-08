@@ -58,59 +58,6 @@ public class ReactedUsersListView extends FrameLayout {
     private boolean showReactionPreview;
     private List userReactions;
 
-    public static class ContainerLinerLayout extends LinearLayout {
-        public boolean hasHeader;
-
-        public ContainerLinerLayout(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            int i3;
-            RecyclerListView recyclerListView = null;
-            if (this.hasHeader) {
-                i3 = 0;
-            } else {
-                i3 = 0;
-                for (int i4 = 0; i4 < getChildCount(); i4++) {
-                    if (getChildAt(i4) instanceof ReactedUsersListView) {
-                        recyclerListView = ((ReactedUsersListView) getChildAt(i4)).listView;
-                        if (recyclerListView.getAdapter().getItemCount() == recyclerListView.getChildCount()) {
-                            int childCount = recyclerListView.getChildCount();
-                            for (int i5 = 0; i5 < childCount; i5++) {
-                                recyclerListView.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i2);
-                                if (recyclerListView.getChildAt(i5).getMeasuredWidth() > i3) {
-                                    i3 = recyclerListView.getChildAt(i5).getMeasuredWidth();
-                                }
-                            }
-                            i3 += AndroidUtilities.dp(16.0f);
-                        }
-                    }
-                }
-            }
-            int size = View.MeasureSpec.getSize(i);
-            if (size < AndroidUtilities.dp(240.0f)) {
-                size = AndroidUtilities.dp(240.0f);
-            }
-            if (size > AndroidUtilities.dp(280.0f)) {
-                size = AndroidUtilities.dp(280.0f);
-            }
-            if (size < 0) {
-                size = 0;
-            }
-            if (i3 == 0 || i3 >= size) {
-                i3 = size;
-            }
-            if (recyclerListView != null) {
-                for (int i6 = 0; i6 < recyclerListView.getChildCount(); i6++) {
-                    recyclerListView.getChildAt(i6).measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
-                }
-            }
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
-        }
-    }
-
     public interface OnCustomEmojiSelectedListener {
         void showCustomEmojiAlert(ReactedUsersListView reactedUsersListView, ArrayList arrayList);
     }
@@ -160,26 +107,11 @@ public class ReactedUsersListView extends FrameLayout {
         RecyclerListView recyclerListView = this.listView;
         RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
             @Override
-            public int getItemCount() {
-                return ReactedUsersListView.this.userReactions.size() + ((ReactedUsersListView.this.customReactionsEmoji.isEmpty() || MessagesController.getInstance(i).premiumFeaturesBlocked()) ? 0 : 1);
-            }
-
-            @Override
-            public int getItemViewType(int i2) {
-                return i2 < ReactedUsersListView.this.userReactions.size() ? 0 : 1;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
-                if (viewHolder.getItemViewType() == 0) {
-                    ((ReactedUserHolderView) viewHolder.itemView).setUserReaction((TLRPC.MessagePeerReaction) ReactedUsersListView.this.userReactions.get(i2));
-                }
-            }
-
-            @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
                 FrameLayout reactedUserHolderView;
-                if (i2 != 0) {
+                if (i2 == 0) {
+                    reactedUserHolderView = new ReactedUserHolderView(ReactedUserHolderView.STYLE_DEFAULT, i, context, resourcesProvider, true, z2);
+                } else {
                     ReactedUsersListView reactedUsersListView = ReactedUsersListView.this;
                     MessageContainsEmojiButton messageContainsEmojiButton = reactedUsersListView.messageContainsEmojiButton;
                     if (messageContainsEmojiButton == null) {
@@ -192,10 +124,25 @@ public class ReactedUsersListView extends FrameLayout {
                     view.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
                     reactedUserHolderView.addView(view, LayoutHelper.createFrame(-1, 8.0f));
                     reactedUserHolderView.addView(ReactedUsersListView.this.messageContainsEmojiButton, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
-                } else {
-                    reactedUserHolderView = new ReactedUserHolderView(ReactedUserHolderView.STYLE_DEFAULT, i, context, resourcesProvider, true, z2);
                 }
                 return new RecyclerListView.Holder(reactedUserHolderView);
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
+                if (viewHolder.getItemViewType() == 0) {
+                    ((ReactedUserHolderView) viewHolder.itemView).setUserReaction((TLRPC.MessagePeerReaction) ReactedUsersListView.this.userReactions.get(i2));
+                }
+            }
+
+            @Override
+            public int getItemCount() {
+                return ReactedUsersListView.this.userReactions.size() + ((ReactedUsersListView.this.customReactionsEmoji.isEmpty() || MessagesController.getInstance(i).premiumFeaturesBlocked()) ? 0 : 1);
+            }
+
+            @Override
+            public int getItemViewType(int i2) {
+                return i2 < ReactedUsersListView.this.userReactions.size() ? 0 : 1;
             }
         };
         this.adapter = adapter;
@@ -242,11 +189,90 @@ public class ReactedUsersListView extends FrameLayout {
         this.loadingView.setViewType(this.customReactionsEmoji.isEmpty() ? 16 : 23);
     }
 
-    public int getLoadCount() {
-        return this.filter == null ? 100 : 50;
+    public void lambda$new$0(View view, int i) {
+        OnCustomEmojiSelectedListener onCustomEmojiSelectedListener;
+        int itemViewType = this.adapter.getItemViewType(i);
+        if (itemViewType == 0) {
+            OnProfileSelectedListener onProfileSelectedListener = this.onProfileSelectedListener;
+            if (onProfileSelectedListener != null) {
+                onProfileSelectedListener.onProfileSelected(this, MessageObject.getPeerId(((TLRPC.MessagePeerReaction) this.userReactions.get(i)).peer_id), (TLRPC.MessagePeerReaction) this.userReactions.get(i));
+                return;
+            }
+            return;
+        }
+        if (itemViewType != 1 || (onCustomEmojiSelectedListener = this.onCustomEmojiSelectedListener) == null) {
+            return;
+        }
+        onCustomEmojiSelectedListener.showCustomEmojiAlert(this, this.customEmojiStickerSets);
     }
 
-    public static int lambda$load$2(TLRPC.MessagePeerReaction messagePeerReaction) {
+    public ReactedUsersListView setSeenUsers(List list) {
+        List list2 = this.userReactions;
+        if (list2 != null && !list2.isEmpty()) {
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                ReactedHeaderView.UserSeen userSeen = (ReactedHeaderView.UserSeen) it.next();
+                if (userSeen.user != null && userSeen.date > 0) {
+                    int i = 0;
+                    while (true) {
+                        if (i < this.userReactions.size()) {
+                            TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) this.userReactions.get(i);
+                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == userSeen.dialogId) {
+                                messagePeerReaction.date = userSeen.date;
+                                messagePeerReaction.dateIsSeen = true;
+                                break;
+                            }
+                            i++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        ArrayList arrayList = new ArrayList(list.size());
+        Iterator it2 = list.iterator();
+        while (it2.hasNext()) {
+            ReactedHeaderView.UserSeen userSeen2 = (ReactedHeaderView.UserSeen) it2.next();
+            if (((ArrayList) this.peerReactionMap.get(userSeen2.dialogId)) == null) {
+                TLRPC.TL_messagePeerReaction tL_messagePeerReaction = new TLRPC.TL_messagePeerReaction();
+                tL_messagePeerReaction.reaction = null;
+                TLObject tLObject = userSeen2.user;
+                if (tLObject instanceof TLRPC.User) {
+                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                    tL_messagePeerReaction.peer_id = tL_peerUser;
+                    tL_peerUser.user_id = ((TLRPC.User) userSeen2.user).id;
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
+                    tL_messagePeerReaction.peer_id = tL_peerChat;
+                    tL_peerChat.chat_id = ((TLRPC.Chat) userSeen2.user).id;
+                }
+                tL_messagePeerReaction.date = userSeen2.date;
+                tL_messagePeerReaction.dateIsSeen = true;
+                ArrayList arrayList2 = new ArrayList();
+                arrayList2.add(tL_messagePeerReaction);
+                this.peerReactionMap.put(MessageObject.getPeerId(tL_messagePeerReaction.peer_id), arrayList2);
+                arrayList.add(tL_messagePeerReaction);
+            }
+        }
+        if (this.userReactions.isEmpty()) {
+            this.onlySeenNow = true;
+        }
+        this.userReactions.addAll(arrayList);
+        Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
+            @Override
+            public final int applyAsInt(Object obj) {
+                int lambda$setSeenUsers$1;
+                lambda$setSeenUsers$1 = ReactedUsersListView.lambda$setSeenUsers$1((TLRPC.MessagePeerReaction) obj);
+                return lambda$setSeenUsers$1;
+            }
+        }));
+        this.adapter.notifyDataSetChanged();
+        updateHeight();
+        return this;
+    }
+
+    public static int lambda$setSeenUsers$1(TLRPC.MessagePeerReaction messagePeerReaction) {
         int i = messagePeerReaction.date;
         if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
@@ -254,10 +280,56 @@ public class ReactedUsersListView extends FrameLayout {
         return -i;
     }
 
-    public void lambda$load$3(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.listView.setAlpha(floatValue);
-        this.loadingView.setAlpha(1.0f - floatValue);
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.isLoaded || this.isLoading) {
+            return;
+        }
+        load();
+    }
+
+    public void load() {
+        this.isLoading = true;
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
+        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
+        tL_messages_getMessageReactionsList.id = this.message.getId();
+        tL_messages_getMessageReactionsList.limit = getLoadCount();
+        TLRPC.Reaction reaction = this.filter;
+        tL_messages_getMessageReactionsList.reaction = reaction;
+        String str = this.offset;
+        tL_messages_getMessageReactionsList.offset = str;
+        if (reaction != null) {
+            tL_messages_getMessageReactionsList.flags = 1 | tL_messages_getMessageReactionsList.flags;
+        }
+        if (str != null) {
+            tL_messages_getMessageReactionsList.flags |= 2;
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ReactedUsersListView.this.lambda$load$6(tLObject, tL_error);
+            }
+        }, 64);
+    }
+
+    public void lambda$load$5(final TLObject tLObject) {
+        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
+            @Override
+            public final void run() {
+                ReactedUsersListView.this.lambda$load$4(tLObject);
+            }
+        });
+    }
+
+    public void lambda$load$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ReactedUsersListView.this.lambda$load$5(tLObject);
+            }
+        });
     }
 
     public void lambda$load$4(TLObject tLObject) {
@@ -326,46 +398,13 @@ public class ReactedUsersListView extends FrameLayout {
             if (str == null) {
                 this.canLoadMore = false;
             }
+            this.isLoading = false;
+            return;
         }
         this.isLoading = false;
     }
 
-    public void lambda$load$5(final TLObject tLObject) {
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                ReactedUsersListView.this.lambda$load$4(tLObject);
-            }
-        });
-    }
-
-    public void lambda$load$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ReactedUsersListView.this.lambda$load$5(tLObject);
-            }
-        });
-    }
-
-    public void lambda$new$0(View view, int i) {
-        OnCustomEmojiSelectedListener onCustomEmojiSelectedListener;
-        int itemViewType = this.adapter.getItemViewType(i);
-        if (itemViewType == 0) {
-            OnProfileSelectedListener onProfileSelectedListener = this.onProfileSelectedListener;
-            if (onProfileSelectedListener != null) {
-                onProfileSelectedListener.onProfileSelected(this, MessageObject.getPeerId(((TLRPC.MessagePeerReaction) this.userReactions.get(i)).peer_id), (TLRPC.MessagePeerReaction) this.userReactions.get(i));
-                return;
-            }
-            return;
-        }
-        if (itemViewType != 1 || (onCustomEmojiSelectedListener = this.onCustomEmojiSelectedListener) == null) {
-            return;
-        }
-        onCustomEmojiSelectedListener.showCustomEmojiAlert(this, this.customEmojiStickerSets);
-    }
-
-    public static int lambda$setSeenUsers$1(TLRPC.MessagePeerReaction messagePeerReaction) {
+    public static int lambda$load$2(TLRPC.MessagePeerReaction messagePeerReaction) {
         int i = messagePeerReaction.date;
         if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
@@ -373,29 +412,10 @@ public class ReactedUsersListView extends FrameLayout {
         return -i;
     }
 
-    public void load() {
-        this.isLoading = true;
-        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
-        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
-        tL_messages_getMessageReactionsList.id = this.message.getId();
-        tL_messages_getMessageReactionsList.limit = getLoadCount();
-        TLRPC.Reaction reaction = this.filter;
-        tL_messages_getMessageReactionsList.reaction = reaction;
-        String str = this.offset;
-        tL_messages_getMessageReactionsList.offset = str;
-        if (reaction != null) {
-            tL_messages_getMessageReactionsList.flags = 1 | tL_messages_getMessageReactionsList.flags;
-        }
-        if (str != null) {
-            tL_messages_getMessageReactionsList.flags |= 2;
-        }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReactedUsersListView.this.lambda$load$6(tLObject, tL_error);
-            }
-        }, 64);
+    public void lambda$load$3(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.listView.setAlpha(floatValue);
+        this.loadingView.setAlpha(1.0f - floatValue);
     }
 
     public void updateCustomReactionsButton() {
@@ -436,17 +456,12 @@ public class ReactedUsersListView extends FrameLayout {
         }
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.isLoaded || this.isLoading) {
-            return;
-        }
-        load();
+    public int getLoadCount() {
+        return this.filter == null ? 100 : 50;
     }
 
-    public ReactedUsersListView setOnCustomEmojiSelectedListener(OnCustomEmojiSelectedListener onCustomEmojiSelectedListener) {
-        this.onCustomEmojiSelectedListener = onCustomEmojiSelectedListener;
+    public ReactedUsersListView setOnProfileSelectedListener(OnProfileSelectedListener onProfileSelectedListener) {
+        this.onProfileSelectedListener = onProfileSelectedListener;
         return this;
     }
 
@@ -455,79 +470,66 @@ public class ReactedUsersListView extends FrameLayout {
         return this;
     }
 
-    public ReactedUsersListView setOnProfileSelectedListener(OnProfileSelectedListener onProfileSelectedListener) {
-        this.onProfileSelectedListener = onProfileSelectedListener;
-        return this;
-    }
-
     public void setPredictiveCount(int i) {
         this.predictiveCount = i;
         this.loadingView.setItemsCount(i);
     }
 
-    public ReactedUsersListView setSeenUsers(List list) {
-        List list2 = this.userReactions;
-        if (list2 != null && !list2.isEmpty()) {
-            Iterator it = list.iterator();
-            while (it.hasNext()) {
-                ReactedHeaderView.UserSeen userSeen = (ReactedHeaderView.UserSeen) it.next();
-                if (userSeen.user != null && userSeen.date > 0) {
-                    int i = 0;
-                    while (true) {
-                        if (i < this.userReactions.size()) {
-                            TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) this.userReactions.get(i);
-                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == userSeen.dialogId) {
-                                messagePeerReaction.date = userSeen.date;
-                                messagePeerReaction.dateIsSeen = true;
-                                break;
+    public static class ContainerLinerLayout extends LinearLayout {
+        public boolean hasHeader;
+
+        public ContainerLinerLayout(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            int i3;
+            RecyclerListView recyclerListView = null;
+            if (this.hasHeader) {
+                i3 = 0;
+            } else {
+                i3 = 0;
+                for (int i4 = 0; i4 < getChildCount(); i4++) {
+                    if (getChildAt(i4) instanceof ReactedUsersListView) {
+                        recyclerListView = ((ReactedUsersListView) getChildAt(i4)).listView;
+                        if (recyclerListView.getAdapter().getItemCount() == recyclerListView.getChildCount()) {
+                            int childCount = recyclerListView.getChildCount();
+                            for (int i5 = 0; i5 < childCount; i5++) {
+                                recyclerListView.getChildAt(i5).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i2);
+                                if (recyclerListView.getChildAt(i5).getMeasuredWidth() > i3) {
+                                    i3 = recyclerListView.getChildAt(i5).getMeasuredWidth();
+                                }
                             }
-                            i++;
-                        } else {
-                            break;
+                            i3 += AndroidUtilities.dp(16.0f);
                         }
                     }
                 }
             }
-        }
-        ArrayList arrayList = new ArrayList(list.size());
-        Iterator it2 = list.iterator();
-        while (it2.hasNext()) {
-            ReactedHeaderView.UserSeen userSeen2 = (ReactedHeaderView.UserSeen) it2.next();
-            if (((ArrayList) this.peerReactionMap.get(userSeen2.dialogId)) == null) {
-                TLRPC.TL_messagePeerReaction tL_messagePeerReaction = new TLRPC.TL_messagePeerReaction();
-                tL_messagePeerReaction.reaction = null;
-                TLObject tLObject = userSeen2.user;
-                if (tLObject instanceof TLRPC.User) {
-                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                    tL_messagePeerReaction.peer_id = tL_peerUser;
-                    tL_peerUser.user_id = ((TLRPC.User) userSeen2.user).id;
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
-                    tL_messagePeerReaction.peer_id = tL_peerChat;
-                    tL_peerChat.chat_id = ((TLRPC.Chat) userSeen2.user).id;
+            int size = View.MeasureSpec.getSize(i);
+            if (size < AndroidUtilities.dp(240.0f)) {
+                size = AndroidUtilities.dp(240.0f);
+            }
+            if (size > AndroidUtilities.dp(280.0f)) {
+                size = AndroidUtilities.dp(280.0f);
+            }
+            if (size < 0) {
+                size = 0;
+            }
+            if (i3 == 0 || i3 >= size) {
+                i3 = size;
+            }
+            if (recyclerListView != null) {
+                for (int i6 = 0; i6 < recyclerListView.getChildCount(); i6++) {
+                    recyclerListView.getChildAt(i6).measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
                 }
-                tL_messagePeerReaction.date = userSeen2.date;
-                tL_messagePeerReaction.dateIsSeen = true;
-                ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(tL_messagePeerReaction);
-                this.peerReactionMap.put(MessageObject.getPeerId(tL_messagePeerReaction.peer_id), arrayList2);
-                arrayList.add(tL_messagePeerReaction);
             }
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), i2);
         }
-        if (this.userReactions.isEmpty()) {
-            this.onlySeenNow = true;
-        }
-        this.userReactions.addAll(arrayList);
-        Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
-            @Override
-            public final int applyAsInt(Object obj) {
-                int lambda$setSeenUsers$1;
-                lambda$setSeenUsers$1 = ReactedUsersListView.lambda$setSeenUsers$1((TLRPC.MessagePeerReaction) obj);
-                return lambda$setSeenUsers$1;
-            }
-        }));
-        this.adapter.notifyDataSetChanged();
-        updateHeight();
+    }
+
+    public ReactedUsersListView setOnCustomEmojiSelectedListener(OnCustomEmojiSelectedListener onCustomEmojiSelectedListener) {
+        this.onCustomEmojiSelectedListener = onCustomEmojiSelectedListener;
         return this;
     }
 }

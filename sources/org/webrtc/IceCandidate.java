@@ -26,8 +26,16 @@ public class IceCandidate {
         this.adapterType = adapterType;
     }
 
-    private static boolean objectEquals(Object obj, Object obj2) {
-        return obj == null ? obj2 == null : obj.equals(obj2);
+    public String toString() {
+        return this.sdpMid + ":" + this.sdpMLineIndex + ":" + this.sdp + ":" + this.serverUrl + ":" + this.adapterType.toString();
+    }
+
+    String getSdpMid() {
+        return this.sdpMid;
+    }
+
+    String getSdp() {
+        return this.sdp;
     }
 
     public boolean equals(Object obj) {
@@ -38,19 +46,14 @@ public class IceCandidate {
         return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
     }
 
-    String getSdp() {
-        return this.sdp;
-    }
-
-    String getSdpMid() {
-        return this.sdpMid;
-    }
-
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.sdpMid, Integer.valueOf(this.sdpMLineIndex), this.sdp});
     }
 
-    public String toString() {
-        return this.sdpMid + ":" + this.sdpMLineIndex + ":" + this.sdp + ":" + this.serverUrl + ":" + this.adapterType.toString();
+    private static boolean objectEquals(Object obj, Object obj2) {
+        if (obj == null) {
+            return obj2 == null;
+        }
+        return obj.equals(obj2);
     }
 }

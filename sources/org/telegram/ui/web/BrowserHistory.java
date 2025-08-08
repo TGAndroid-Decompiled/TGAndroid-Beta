@@ -29,16 +29,6 @@ public abstract class BrowserHistory {
         public String url;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.id = inputSerializedData.readInt64(z);
-            this.time = inputSerializedData.readInt64(z);
-            this.url = inputSerializedData.readString(z);
-            WebMetadataCache.WebMetadata webMetadata = new WebMetadataCache.WebMetadata();
-            this.meta = webMetadata;
-            webMetadata.readParams(inputSerializedData, z);
-        }
-
-        @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt64(this.id);
             outputSerializedData.writeInt64(this.time);
@@ -49,18 +39,77 @@ public abstract class BrowserHistory {
             outputSerializedData.writeString(str);
             this.meta.serializeToStream(outputSerializedData);
         }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.id = inputSerializedData.readInt64(z);
+            this.time = inputSerializedData.readInt64(z);
+            this.url = inputSerializedData.readString(z);
+            WebMetadataCache.WebMetadata webMetadata = new WebMetadataCache.WebMetadata();
+            this.meta = webMetadata;
+            webMetadata.readParams(inputSerializedData, z);
+        }
     }
 
-    public static void clearHistory() {
+    public static File getHistoryFile() {
+        return new File(FileLoader.getDirectory(4), "webhistory.dat");
+    }
+
+    public static void preloadHistory() {
+        if (historyLoading || historyLoaded) {
+            return;
+        }
+        historyLoading = true;
+        history = new ArrayList();
+        historyById = new LongSparseArray();
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.lambda$preloadHistory$1();
+            }
+        });
+    }
+
+    public static void lambda$preloadHistory$1() {
+        final ArrayList arrayList = new ArrayList();
+        final LongSparseArray longSparseArray = new LongSparseArray();
         try {
-            history.clear();
-            historyById.clear();
             File historyFile = getHistoryFile();
             if (historyFile.exists()) {
-                historyFile.delete();
+                SerializedData serializedData = new SerializedData(historyFile);
+                long readInt64 = serializedData.readInt64(true);
+                for (long j = 0; j < readInt64; j++) {
+                    Entry entry = new Entry();
+                    entry.readParams(serializedData, true);
+                    arrayList.add(entry);
+                    longSparseArray.put(entry.id, entry);
+                }
             }
         } catch (Exception e) {
             FileLog.e(e);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.lambda$preloadHistory$0(arrayList, longSparseArray);
+            }
+        });
+    }
+
+    public static void lambda$preloadHistory$0(ArrayList arrayList, LongSparseArray longSparseArray) {
+        history.addAll(0, arrayList);
+        for (int i = 0; i < longSparseArray.size(); i++) {
+            historyById.put(longSparseArray.keyAt(i), (Entry) longSparseArray.valueAt(i));
+        }
+        historyLoaded = true;
+        historyLoading = false;
+        ArrayList arrayList2 = callbacks;
+        if (arrayList2 != null) {
+            Iterator it = arrayList2.iterator();
+            while (it.hasNext()) {
+                ((Utilities.Callback) it.next()).run(arrayList);
+            }
+            callbacks = null;
         }
     }
 
@@ -86,49 +135,41 @@ public abstract class BrowserHistory {
         return history;
     }
 
-    public static File getHistoryFile() {
-        return new File(FileLoader.getDirectory(4), "webhistory.dat");
+    public static void pushHistory(Entry entry) {
+        if (entry == null || entry.meta == null) {
+            return;
+        }
+        preloadHistory();
+        Entry entry2 = (Entry) historyById.get(entry.id);
+        if (entry2 != null) {
+            entry2.meta = entry.meta;
+        } else {
+            history.add(entry);
+            historyById.put(entry.id, entry);
+        }
+        scheduleHistorySave();
     }
 
-    public static void lambda$preloadHistory$0(ArrayList arrayList, LongSparseArray longSparseArray) {
-        history.addAll(0, arrayList);
-        for (int i = 0; i < longSparseArray.size(); i++) {
-            historyById.put(longSparseArray.keyAt(i), (Entry) longSparseArray.valueAt(i));
-        }
-        historyLoaded = true;
-        historyLoading = false;
-        ArrayList arrayList2 = callbacks;
-        if (arrayList2 != null) {
-            Iterator it = arrayList2.iterator();
-            while (it.hasNext()) {
-                ((Utilities.Callback) it.next()).run(arrayList);
+    private static void scheduleHistorySave() {
+        AndroidUtilities.cancelRunOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.saveHistory();
             }
-            callbacks = null;
-        }
-    }
-
-    public static void lambda$preloadHistory$1() {
-        final ArrayList arrayList = new ArrayList();
-        final LongSparseArray longSparseArray = new LongSparseArray();
-        try {
-            File historyFile = getHistoryFile();
-            if (historyFile.exists()) {
-                SerializedData serializedData = new SerializedData(historyFile);
-                long readInt64 = serializedData.readInt64(true);
-                for (long j = 0; j < readInt64; j++) {
-                    Entry entry = new Entry();
-                    entry.readParams(serializedData, true);
-                    arrayList.add(entry);
-                    longSparseArray.put(entry.id, entry);
-                }
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+        });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BrowserHistory.lambda$preloadHistory$0(arrayList, longSparseArray);
+                BrowserHistory.saveHistory();
+            }
+        }, 1000L);
+    }
+
+    public static void saveHistory() {
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                BrowserHistory.lambda$saveHistory$2();
             }
         });
     }
@@ -164,57 +205,16 @@ public abstract class BrowserHistory {
         }
     }
 
-    public static void preloadHistory() {
-        if (historyLoading || historyLoaded) {
-            return;
+    public static void clearHistory() {
+        try {
+            history.clear();
+            historyById.clear();
+            File historyFile = getHistoryFile();
+            if (historyFile.exists()) {
+                historyFile.delete();
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        historyLoading = true;
-        history = new ArrayList();
-        historyById = new LongSparseArray();
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                BrowserHistory.lambda$preloadHistory$1();
-            }
-        });
-    }
-
-    public static void pushHistory(Entry entry) {
-        if (entry == null || entry.meta == null) {
-            return;
-        }
-        preloadHistory();
-        Entry entry2 = (Entry) historyById.get(entry.id);
-        if (entry2 != null) {
-            entry2.meta = entry.meta;
-        } else {
-            history.add(entry);
-            historyById.put(entry.id, entry);
-        }
-        scheduleHistorySave();
-    }
-
-    public static void saveHistory() {
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                BrowserHistory.lambda$saveHistory$2();
-            }
-        });
-    }
-
-    private static void scheduleHistorySave() {
-        AndroidUtilities.cancelRunOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BrowserHistory.saveHistory();
-            }
-        });
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BrowserHistory.saveHistory();
-            }
-        }, 1000L);
     }
 }

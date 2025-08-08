@@ -16,16 +16,16 @@ public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
 
     @Override
     public VideoDecoder createDecoder(final VideoCodecInfo videoCodecInfo) {
-        if (nativeIsSupported(this.nativeFactory, videoCodecInfo)) {
-            return new WrappedNativeVideoDecoder() {
-                @Override
-                public long createNative(long j) {
-                    return SoftwareVideoDecoderFactory.nativeCreate(SoftwareVideoDecoderFactory.this.nativeFactory, j, videoCodecInfo);
-                }
-            };
+        if (!nativeIsSupported(this.nativeFactory, videoCodecInfo)) {
+            Logging.w("SoftwareVideoDecoderFactory", "Trying to create decoder for unsupported format. " + videoCodecInfo);
+            return null;
         }
-        Logging.w("SoftwareVideoDecoderFactory", "Trying to create decoder for unsupported format. " + videoCodecInfo);
-        return null;
+        return new WrappedNativeVideoDecoder() {
+            @Override
+            public long createNative(long j) {
+                return SoftwareVideoDecoderFactory.nativeCreate(SoftwareVideoDecoderFactory.this.nativeFactory, j, videoCodecInfo);
+            }
+        };
     }
 
     @Override

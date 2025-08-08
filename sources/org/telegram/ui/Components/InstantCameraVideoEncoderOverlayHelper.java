@@ -25,53 +25,6 @@ public class InstantCameraVideoEncoderOverlayHelper {
     private int logoFrame = 0;
     private final int[] glFrameBuffers = new int[1];
 
-    private static class BlurProgram extends Program {
-        final int uniformOffsetHandle;
-
-        public BlurProgram() {
-            super(R.raw.round_blur_stage_1_frag);
-            this.uniformOffsetHandle = GLES20.glGetUniformLocation(this.program, "texOffset");
-        }
-    }
-
-    private static class MixProgram extends Program {
-        final int uniformBlurredTextureHandle;
-        final int uniformHalfResolutionHandle;
-
-        public MixProgram() {
-            super(R.raw.round_blur_stage_2_frag);
-            this.uniformBlurredTextureHandle = GLES20.glGetUniformLocation(this.program, "bTexture");
-            this.uniformHalfResolutionHandle = GLES20.glGetUniformLocation(this.program, "center");
-        }
-    }
-
-    private static class Program {
-        final int attributePositionHandle;
-        final int attributeTextureHandle;
-        final int fragmentShader;
-        final int program;
-        final int uniformTextureHandle;
-        final int vertexShader;
-
-        public Program(int i) {
-            int createShader = InstantCameraVideoEncoderOverlayHelper.createShader(35633, R.raw.round_blur_vert);
-            this.vertexShader = createShader;
-            int createShader2 = InstantCameraVideoEncoderOverlayHelper.createShader(35632, i);
-            this.fragmentShader = createShader2;
-            int createProgram = InstantCameraVideoEncoderOverlayHelper.createProgram(createShader, createShader2);
-            this.program = createProgram;
-            this.attributePositionHandle = GLES20.glGetAttribLocation(createProgram, "aPosition");
-            this.attributeTextureHandle = GLES20.glGetAttribLocation(createProgram, "aTextureCoord");
-            this.uniformTextureHandle = GLES20.glGetUniformLocation(createProgram, "sTexture");
-        }
-
-        public void destroy() {
-            GLES20.glDeleteProgram(this.program);
-            GLES20.glDeleteShader(this.vertexShader);
-            GLES20.glDeleteShader(this.fragmentShader);
-        }
-    }
-
     public InstantCameraVideoEncoderOverlayHelper(int i, int i2) {
         float[] fArr;
         int i3;
@@ -192,84 +145,17 @@ public class InstantCameraVideoEncoderOverlayHelper {
         asFloatBuffer2.put(fArr3).position(i6);
     }
 
-    public static int createProgram(int i, int i2) {
-        int glCreateProgram = GLES20.glCreateProgram();
-        GLES20.glAttachShader(glCreateProgram, i);
-        GLES20.glAttachShader(glCreateProgram, i2);
-        GLES20.glLinkProgram(glCreateProgram);
-        int[] iArr = new int[1];
-        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
-        if (iArr[0] != 0) {
-            return glCreateProgram;
-        }
-        GLES20.glDeleteProgram(glCreateProgram);
-        return 0;
-    }
-
-    public static int createShader(int i, int i2) {
-        int glCreateShader = GLES20.glCreateShader(i);
-        if (glCreateShader == 0) {
-            return 0;
-        }
-        GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(i2));
-        GLES20.glCompileShader(glCreateShader);
-        int[] iArr = new int[1];
-        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] != 0) {
-            return glCreateShader;
-        }
-        FileLog.e("GlUtils: compile shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
-        GLES20.glDeleteShader(glCreateShader);
-        return 0;
-    }
-
-    private static void setTextureCords(float[] fArr, int i, float f, float f2, float f3, float f4) {
-        fArr[i] = f;
-        fArr[i + 1] = f4;
-        fArr[i + 2] = f3;
-        fArr[i + 3] = f4;
-        fArr[i + 4] = f;
-        fArr[i + 5] = f2;
-        fArr[i + 6] = f3;
-        fArr[i + 7] = f2;
-    }
-
-    private static void setVertexCords(float[] fArr, int i, float f, float f2, float f3, float f4) {
-        fArr[i] = f;
-        fArr[i + 1] = f4;
-        fArr[i + 2] = 0.0f;
-        fArr[i + 3] = f3;
-        fArr[i + 4] = f4;
-        fArr[i + 5] = 0.0f;
-        fArr[i + 6] = f;
-        fArr[i + 7] = f2;
-        fArr[i + 8] = 0.0f;
-        fArr[i + 9] = f3;
-        fArr[i + 10] = f2;
-        fArr[i + 11] = 0.0f;
-    }
-
     public void bind() {
         GLES20.glBindFramebuffer(36160, this.glFrameBuffers[0]);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.glTextures[0], 0);
         GLES20.glViewport(0, 0, this.videoWidth, this.videoHeight);
     }
 
-    public void destroy() {
-        this.programRenderTexture.destroy();
-        this.programRenderBlur.destroy();
-        this.programRenderMixed.destroy();
-        this.programRenderWatermark.destroy();
-        GLES20.glDeleteTextures(5, this.glTextures, 0);
-        GLES20.glDeleteFramebuffers(1, this.glFrameBuffers, 0);
-    }
-
     public void render() {
-        int i;
         GLES20.glDisable(3042);
         Program program = this.programRenderTexture;
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.glTextures[1], 0);
-        int i2 = 48;
+        int i = 48;
         GLES20.glViewport(0, 0, 48, 48);
         GLES20.glUseProgram(program.program);
         GLES20.glVertexAttribPointer(program.attributePositionHandle, 3, 5126, false, 12, this.attributeVertexBuffer.position(0));
@@ -284,36 +170,36 @@ public class InstantCameraVideoEncoderOverlayHelper {
         GLES20.glDisableVertexAttribArray(program.attributeTextureHandle);
         GLES20.glDisableVertexAttribArray(program.attributePositionHandle);
         GLES20.glUseProgram(0);
-        int i3 = 0;
+        int i2 = 0;
         while (true) {
-            if (i3 >= 2) {
+            if (i2 >= 2) {
                 break;
             }
             BlurProgram blurProgram = this.programRenderBlur;
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.glTextures[i3 == 0 ? (char) 2 : (char) 1], 0);
-            GLES20.glViewport(0, 0, i2, i2);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.glTextures[i2 == 0 ? (char) 2 : (char) 1], 0);
+            GLES20.glViewport(0, 0, i, i);
             GLES20.glUseProgram(blurProgram.program);
             GLES20.glVertexAttribPointer(blurProgram.attributePositionHandle, 3, 5126, false, 12, this.attributeVertexBuffer.position(0));
             GLES20.glEnableVertexAttribArray(blurProgram.attributePositionHandle);
             GLES20.glVertexAttribPointer(blurProgram.attributeTextureHandle, 2, 5126, false, 8, this.attributeTextureBuffer.position(0));
             GLES20.glEnableVertexAttribArray(blurProgram.attributeTextureHandle);
             GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.glTextures[i3 == 0 ? (char) 1 : (char) 2]);
+            GLES20.glBindTexture(3553, this.glTextures[i2 == 0 ? (char) 1 : (char) 2]);
             GLES20.glUniform1i(blurProgram.uniformTextureHandle, 0);
-            int i4 = blurProgram.uniformOffsetHandle;
+            int i3 = blurProgram.uniformOffsetHandle;
             float f = 0.0f;
-            float f2 = i3 == 0 ? 0.020833334f : 0.0f;
-            if (i3 == 1) {
+            float f2 = i2 == 0 ? 0.020833334f : 0.0f;
+            if (i2 == 1) {
                 f = 0.020833334f;
             }
-            GLES20.glUniform2f(i4, f2, f);
+            GLES20.glUniform2f(i3, f2, f);
             GLES20.glDrawArrays(5, 0, 4);
             GLES20.glBindTexture(3553, 0);
             GLES20.glDisableVertexAttribArray(blurProgram.attributeTextureHandle);
             GLES20.glDisableVertexAttribArray(blurProgram.attributePositionHandle);
             GLES20.glUseProgram(0);
-            i3++;
-            i2 = 48;
+            i2++;
+            i = 48;
         }
         MixProgram mixProgram = this.programRenderMixed;
         GLES20.glBindFramebuffer(36160, 0);
@@ -343,23 +229,22 @@ public class InstantCameraVideoEncoderOverlayHelper {
         GLES20.glEnable(3042);
         GLES20.glUseProgram(program2.program);
         GLES20.glActiveTexture(33984);
-        for (int i5 = 0; i5 < 2; i5++) {
-            if (i5 == 0) {
+        for (int i4 = 0; i4 < 2; i4++) {
+            if (i4 == 0) {
                 GLES20.glVertexAttribPointer(program2.attributePositionHandle, 3, 5126, false, 12, this.attributeVertexBuffer.position(12));
                 GLES20.glEnableVertexAttribArray(program2.attributePositionHandle);
                 GLES20.glVertexAttribPointer(program2.attributeTextureHandle, 2, 5126, false, 8, this.attributeTextureBuffer.position(8));
                 GLES20.glEnableVertexAttribArray(program2.attributeTextureHandle);
-                i = this.glTextures[3];
+                GLES20.glBindTexture(3553, this.glTextures[3]);
             } else {
-                int i6 = this.logoFrame;
-                this.logoFrame = i6 + 1;
+                int i5 = this.logoFrame;
+                this.logoFrame = i5 + 1;
                 GLES20.glVertexAttribPointer(program2.attributePositionHandle, 3, 5126, false, 12, this.attributeVertexBuffer.position(24));
                 GLES20.glEnableVertexAttribArray(program2.attributePositionHandle);
-                GLES20.glVertexAttribPointer(program2.attributeTextureHandle, 2, 5126, false, 8, this.attributeTextureBuffer.position(((i6 % 27) * 8) + 16));
+                GLES20.glVertexAttribPointer(program2.attributeTextureHandle, 2, 5126, false, 8, this.attributeTextureBuffer.position(((i5 % 27) * 8) + 16));
                 GLES20.glEnableVertexAttribArray(program2.attributeTextureHandle);
-                i = this.glTextures[4];
+                GLES20.glBindTexture(3553, this.glTextures[4]);
             }
-            GLES20.glBindTexture(3553, i);
             GLES20.glUniform1i(program2.uniformTextureHandle, 0);
             GLES20.glDrawArrays(5, 0, 4);
             GLES20.glBindTexture(3553, 0);
@@ -368,5 +253,118 @@ public class InstantCameraVideoEncoderOverlayHelper {
         }
         GLES20.glUseProgram(0);
         GLES20.glDisable(3042);
+    }
+
+    public void destroy() {
+        this.programRenderTexture.destroy();
+        this.programRenderBlur.destroy();
+        this.programRenderMixed.destroy();
+        this.programRenderWatermark.destroy();
+        GLES20.glDeleteTextures(5, this.glTextures, 0);
+        GLES20.glDeleteFramebuffers(1, this.glFrameBuffers, 0);
+    }
+
+    private static class MixProgram extends Program {
+        final int uniformBlurredTextureHandle;
+        final int uniformHalfResolutionHandle;
+
+        public MixProgram() {
+            super(R.raw.round_blur_stage_2_frag);
+            this.uniformBlurredTextureHandle = GLES20.glGetUniformLocation(this.program, "bTexture");
+            this.uniformHalfResolutionHandle = GLES20.glGetUniformLocation(this.program, "center");
+        }
+    }
+
+    private static class BlurProgram extends Program {
+        final int uniformOffsetHandle;
+
+        public BlurProgram() {
+            super(R.raw.round_blur_stage_1_frag);
+            this.uniformOffsetHandle = GLES20.glGetUniformLocation(this.program, "texOffset");
+        }
+    }
+
+    private static class Program {
+        final int attributePositionHandle;
+        final int attributeTextureHandle;
+        final int fragmentShader;
+        final int program;
+        final int uniformTextureHandle;
+        final int vertexShader;
+
+        public Program(int i) {
+            int createShader = InstantCameraVideoEncoderOverlayHelper.createShader(35633, R.raw.round_blur_vert);
+            this.vertexShader = createShader;
+            int createShader2 = InstantCameraVideoEncoderOverlayHelper.createShader(35632, i);
+            this.fragmentShader = createShader2;
+            int createProgram = InstantCameraVideoEncoderOverlayHelper.createProgram(createShader, createShader2);
+            this.program = createProgram;
+            this.attributePositionHandle = GLES20.glGetAttribLocation(createProgram, "aPosition");
+            this.attributeTextureHandle = GLES20.glGetAttribLocation(createProgram, "aTextureCoord");
+            this.uniformTextureHandle = GLES20.glGetUniformLocation(createProgram, "sTexture");
+        }
+
+        public void destroy() {
+            GLES20.glDeleteProgram(this.program);
+            GLES20.glDeleteShader(this.vertexShader);
+            GLES20.glDeleteShader(this.fragmentShader);
+        }
+    }
+
+    public static int createShader(int i, int i2) {
+        int glCreateShader = GLES20.glCreateShader(i);
+        if (glCreateShader == 0) {
+            return 0;
+        }
+        GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(i2));
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] != 0) {
+            return glCreateShader;
+        }
+        FileLog.e("GlUtils: compile shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
+        GLES20.glDeleteShader(glCreateShader);
+        return 0;
+    }
+
+    public static int createProgram(int i, int i2) {
+        int glCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(glCreateProgram, i);
+        GLES20.glAttachShader(glCreateProgram, i2);
+        GLES20.glLinkProgram(glCreateProgram);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        if (iArr[0] != 0) {
+            return glCreateProgram;
+        }
+        GLES20.glDeleteProgram(glCreateProgram);
+        return 0;
+    }
+
+    private static void setVertexCords(float[] fArr, int i, float f, float f2, float f3, float f4) {
+        fArr[i] = f;
+        fArr[i + 1] = f4;
+        fArr[i + 2] = 0.0f;
+        fArr[i + 3] = f3;
+        fArr[i + 4] = f4;
+        fArr[i + 5] = 0.0f;
+        fArr[i + 6] = f;
+        fArr[i + 7] = f2;
+        fArr[i + 8] = 0.0f;
+        fArr[i + 9] = f3;
+        fArr[i + 10] = f2;
+        fArr[i + 11] = 0.0f;
+    }
+
+    private static void setTextureCords(float[] fArr, int i, float f, float f2, float f3, float f4) {
+        fArr[i] = f;
+        fArr[i + 1] = f4;
+        fArr[i + 2] = f3;
+        fArr[i + 3] = f4;
+        fArr[i + 4] = f;
+        fArr[i + 5] = f2;
+        fArr[i + 6] = f3;
+        fArr[i + 7] = f2;
     }
 }

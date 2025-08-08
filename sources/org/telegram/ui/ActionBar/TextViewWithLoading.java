@@ -20,6 +20,24 @@ public abstract class TextViewWithLoading extends TextView {
         this.spinner = new CircularProgressDrawable();
     }
 
+    @Override
+    public void setTextColor(int i) {
+        super.setTextColor(i);
+        this.spinner.setColor(i);
+    }
+
+    public void setLoading(boolean z, boolean z2) {
+        if (this.loading == z) {
+            return;
+        }
+        this.loading = z;
+        invalidate();
+        if (z2) {
+            return;
+        }
+        this.animatedLoading.force(z);
+    }
+
     public boolean isLoading() {
         return this.loading;
     }
@@ -47,23 +65,5 @@ public abstract class TextViewWithLoading extends TextView {
             this.spinner.draw(canvas);
             invalidate();
         }
-    }
-
-    public void setLoading(boolean z, boolean z2) {
-        if (this.loading == z) {
-            return;
-        }
-        this.loading = z;
-        invalidate();
-        if (z2) {
-            return;
-        }
-        this.animatedLoading.force(z);
-    }
-
-    @Override
-    public void setTextColor(int i) {
-        super.setTextColor(i);
-        this.spinner.setColor(i);
     }
 }

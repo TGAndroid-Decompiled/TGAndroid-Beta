@@ -7,7 +7,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
-import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 
 public class GiveawayCell extends UserCell {
@@ -19,6 +18,13 @@ public class GiveawayCell extends UserCell {
         init(context);
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(70.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(70.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
     private void init(Context context) {
         this.counterDrawable = new CounterDrawable(context);
     }
@@ -27,44 +33,23 @@ public class GiveawayCell extends UserCell {
         return this.prepaidGiveaway;
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(70.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(70.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
-    }
-
     public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        AvatarDrawable avatarDrawable;
-        int i;
-        int i2;
-        String valueOf;
         this.prepaidGiveaway = prepaidGiveaway;
-        if (!(prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway)) {
-            if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-                this.avatarDrawable.setAvatarType(16);
-                int i3 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
-                if (i3 == 12) {
-                    avatarDrawable = this.avatarDrawable;
-                    i = -31392;
-                    i2 = -2796986;
-                } else if (i3 == 6) {
-                    avatarDrawable = this.avatarDrawable;
-                    i = -10703110;
-                    i2 = -12481584;
-                } else {
-                    avatarDrawable = this.avatarDrawable;
-                    i = -6631068;
-                    i2 = -11945404;
-                }
-                avatarDrawable.setColor(i, i2);
-                valueOf = String.valueOf(prepaidGiveaway.quantity * BoostRepository.giveawayBoostsPerPremium());
+        if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
+            this.avatarDrawable.setAvatarType(26);
+            this.counterDrawable.setText(String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500));
+        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
+            this.avatarDrawable.setAvatarType(16);
+            int i = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
+            if (i == 12) {
+                this.avatarDrawable.setColor(-31392, -2796986);
+            } else if (i == 6) {
+                this.avatarDrawable.setColor(-10703110, -12481584);
+            } else {
+                this.avatarDrawable.setColor(-6631068, -11945404);
             }
-            this.nameTextView.setRightDrawable(this.counterDrawable);
+            this.counterDrawable.setText(String.valueOf(prepaidGiveaway.quantity * BoostRepository.giveawayBoostsPerPremium()));
         }
-        this.avatarDrawable.setAvatarType(26);
-        valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-        this.counterDrawable.setText(valueOf);
         this.nameTextView.setRightDrawable(this.counterDrawable);
     }
 }

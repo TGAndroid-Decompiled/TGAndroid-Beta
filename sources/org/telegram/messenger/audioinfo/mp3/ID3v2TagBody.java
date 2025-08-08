@@ -17,6 +17,22 @@ public class ID3v2TagBody {
         this.tagHeader = iD3v2TagHeader;
     }
 
+    public ID3v2DataInput getData() {
+        return this.data;
+    }
+
+    public long getPosition() {
+        return this.input.getPosition();
+    }
+
+    public long getRemainingLength() {
+        return this.input.getRemainingLength();
+    }
+
+    public ID3v2TagHeader getTagHeader() {
+        return this.tagHeader;
+    }
+
     public ID3v2FrameBody frameBody(ID3v2FrameHeader iD3v2FrameHeader) {
         int i;
         InputStream inputStream;
@@ -49,22 +65,6 @@ public class ID3v2TagBody {
             inputStream = inputStream2;
         }
         return new ID3v2FrameBody(inputStream, iD3v2FrameHeader.getHeaderSize(), i, this.tagHeader, iD3v2FrameHeader);
-    }
-
-    public ID3v2DataInput getData() {
-        return this.data;
-    }
-
-    public long getPosition() {
-        return this.input.getPosition();
-    }
-
-    public long getRemainingLength() {
-        return this.input.getRemainingLength();
-    }
-
-    public ID3v2TagHeader getTagHeader() {
-        return this.tagHeader;
     }
 
     public String toString() {

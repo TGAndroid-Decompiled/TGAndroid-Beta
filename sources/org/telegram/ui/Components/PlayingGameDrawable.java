@@ -20,24 +20,31 @@ public class PlayingGameDrawable extends StatusDrawable {
     private boolean started = false;
     private RectF rect = new RectF();
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColor(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
     public PlayingGameDrawable(boolean z, Theme.ResourcesProvider resourcesProvider) {
         this.isDialogScreen = z;
         this.resourcesProvider = resourcesProvider;
     }
 
-    public void checkUpdate() {
-        if (this.started) {
-            if (NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress()) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        PlayingGameDrawable.this.checkUpdate();
-                    }
-                }, 100L);
-            } else {
-                update();
-            }
-        }
+    @Override
+    public void setIsChat(boolean z) {
+        this.isChat = z;
     }
 
     private void update() {
@@ -59,6 +66,19 @@ public class PlayingGameDrawable extends StatusDrawable {
     }
 
     @Override
+    public void start() {
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.started = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public void stop() {
+        this.progress = 0.0f;
+        this.started = false;
+    }
+
+    @Override
     public void draw(Canvas canvas) {
         int dp = AndroidUtilities.dp(10.0f);
         int intrinsicHeight = getBounds().top + ((getIntrinsicHeight() - dp) / 2);
@@ -77,10 +97,12 @@ public class PlayingGameDrawable extends StatusDrawable {
             float f3 = dp2 - (dp3 * f2);
             if (i3 == 2) {
                 this.paint.setAlpha(Math.min(255, (int) ((f2 * 255.0f) / 0.5f)));
-            } else if (i3 != 0 || f2 <= 0.5f) {
+            } else if (i3 != 0) {
                 this.paint.setAlpha(255);
-            } else {
+            } else if (f2 > 0.5f) {
                 this.paint.setAlpha((int) ((1.0f - ((f2 - 0.5f) / 0.5f)) * 255.0f));
+            } else {
+                this.paint.setAlpha(255);
             }
             canvas.drawCircle(f3, (dp / 2) + i, AndroidUtilities.dp(1.2f), this.paint);
         }
@@ -91,9 +113,19 @@ public class PlayingGameDrawable extends StatusDrawable {
         checkUpdate();
     }
 
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
+    public void checkUpdate() {
+        if (this.started) {
+            if (!NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress()) {
+                update();
+            } else {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        PlayingGameDrawable.this.checkUpdate();
+                    }
+                }, 100L);
+            }
+        }
     }
 
     @Override
@@ -102,37 +134,7 @@ public class PlayingGameDrawable extends StatusDrawable {
     }
 
     @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColor(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    @Override
-    public void setIsChat(boolean z) {
-        this.isChat = z;
-    }
-
-    @Override
-    public void start() {
-        this.lastUpdateTime = System.currentTimeMillis();
-        this.started = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public void stop() {
-        this.progress = 0.0f;
-        this.started = false;
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
     }
 }

@@ -24,26 +24,45 @@ import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.StatisticActivity;
 
 public abstract class ReactionsUtils {
-    public static void addReactionToEditText(TLRPC.TL_availableReaction tL_availableReaction, HashMap hashMap, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
-        TLRPC.Document document = tL_availableReaction.activate_animation;
-        long j = document.id;
-        AnimatedEmojiSpan createAnimatedEmojiSpan = createAnimatedEmojiSpan(document, Long.valueOf(j), fontMetricsInt);
-        hashMap.put(Long.valueOf(j), createAnimatedEmojiSpan);
-        list.add(Long.valueOf(j));
-        editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
-        if (selectAnimatedEmojiDialog != null) {
-            selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(j), false);
+    public static boolean compare(TLRPC.Reaction reaction, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && visibleReaction.documentId == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, visibleReaction.emojicon)) {
+            return true;
         }
+        if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
+            return false;
+        }
+        long j = visibleReaction.documentId;
+        return j != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j;
     }
 
-    public static void addReactionToEditText(TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji, HashMap hashMap, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
-        AnimatedEmojiSpan createAnimatedEmojiSpan = createAnimatedEmojiSpan(null, Long.valueOf(tL_reactionCustomEmoji.document_id), fontMetricsInt);
-        hashMap.put(Long.valueOf(tL_reactionCustomEmoji.document_id), createAnimatedEmojiSpan);
-        list.add(Long.valueOf(tL_reactionCustomEmoji.document_id));
-        editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
-        if (selectAnimatedEmojiDialog != null) {
-            selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(tL_reactionCustomEmoji.document_id), false);
+    public static boolean compare(TLRPC.Reaction reaction, TLRPC.Reaction reaction2) {
+        if ((reaction instanceof TLRPC.TL_reactionEmoji) && (reaction2 instanceof TLRPC.TL_reactionEmoji) && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, ((TLRPC.TL_reactionEmoji) reaction2).emoticon)) {
+            return true;
         }
+        return (reaction instanceof TLRPC.TL_reactionCustomEmoji) && (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id;
+    }
+
+    public static TLRPC.Reaction toTLReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        if (visibleReaction.emojicon != null) {
+            TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
+            tL_reactionEmoji.emoticon = visibleReaction.emojicon;
+            return tL_reactionEmoji;
+        }
+        TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
+        tL_reactionCustomEmoji.document_id = visibleReaction.documentId;
+        return tL_reactionCustomEmoji;
+    }
+
+    public static CharSequence reactionToCharSequence(TLRPC.Reaction reaction) {
+        if (reaction instanceof TLRPC.TL_reactionEmoji) {
+            return ((TLRPC.TL_reactionEmoji) reaction).emoticon;
+        }
+        if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC.TL_reactionCustomEmoji) reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
+            return spannableStringBuilder;
+        }
+        return "";
     }
 
     public static void applyForStoryViews(TLRPC.Reaction reaction, TLRPC.Reaction reaction2, TL_stories.StoryViews storyViews) {
@@ -78,52 +97,6 @@ public abstract class ReactionsUtils {
         storyViews.reactions.add(tL_reactionCount);
     }
 
-    public static boolean compare(TLRPC.Reaction reaction, TLRPC.Reaction reaction2) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && (reaction2 instanceof TLRPC.TL_reactionEmoji) && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, ((TLRPC.TL_reactionEmoji) reaction2).emoticon)) {
-            return true;
-        }
-        return (reaction instanceof TLRPC.TL_reactionCustomEmoji) && (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id;
-    }
-
-    public static boolean compare(TLRPC.Reaction reaction, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-        if ((reaction instanceof TLRPC.TL_reactionEmoji) && visibleReaction.documentId == 0 && TextUtils.equals(((TLRPC.TL_reactionEmoji) reaction).emoticon, visibleReaction.emojicon)) {
-            return true;
-        }
-        if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
-            return false;
-        }
-        long j = visibleReaction.documentId;
-        return j != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j;
-    }
-
-    public static AnimatedEmojiSpan createAnimatedEmojiSpan(TLRPC.Document document, Long l, Paint.FontMetricsInt fontMetricsInt) {
-        AnimatedEmojiSpan animatedEmojiSpan = document != null ? new AnimatedEmojiSpan(document, 1.0f, fontMetricsInt) : new AnimatedEmojiSpan(l.longValue(), 1.0f, fontMetricsInt);
-        animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-        return animatedEmojiSpan;
-    }
-
-    public static SpannableString createSpannableText(AnimatedEmojiSpan animatedEmojiSpan, String str) {
-        SpannableString spannableString = new SpannableString(str);
-        spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
-        return spannableString;
-    }
-
-    public static void lambda$showLimitReachedDialogForReactions$0(BaseFragment baseFragment, long j) {
-        baseFragment.presentFragment(StatisticActivity.create(baseFragment.getMessagesController().getChat(Long.valueOf(-j))));
-    }
-
-    public static CharSequence reactionToCharSequence(TLRPC.Reaction reaction) {
-        if (reaction instanceof TLRPC.TL_reactionEmoji) {
-            return ((TLRPC.TL_reactionEmoji) reaction).emoticon;
-        }
-        if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
-            return "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC.TL_reactionCustomEmoji) reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
-        return spannableStringBuilder;
-    }
-
     public static void showLimitReachedDialogForReactions(final long j, int i, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         final BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null || tL_premium_boostsStatus == null) {
@@ -140,6 +113,49 @@ public abstract class ReactionsUtils {
             }
         });
         limitReachedBottomSheet.show();
+    }
+
+    public static void lambda$showLimitReachedDialogForReactions$0(BaseFragment baseFragment, long j) {
+        baseFragment.presentFragment(StatisticActivity.create(baseFragment.getMessagesController().getChat(Long.valueOf(-j))));
+    }
+
+    public static SpannableString createSpannableText(AnimatedEmojiSpan animatedEmojiSpan, String str) {
+        SpannableString spannableString = new SpannableString(str);
+        spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
+        return spannableString;
+    }
+
+    public static AnimatedEmojiSpan createAnimatedEmojiSpan(TLRPC.Document document, Long l, Paint.FontMetricsInt fontMetricsInt) {
+        AnimatedEmojiSpan animatedEmojiSpan;
+        if (document != null) {
+            animatedEmojiSpan = new AnimatedEmojiSpan(document, 1.0f, fontMetricsInt);
+        } else {
+            animatedEmojiSpan = new AnimatedEmojiSpan(l.longValue(), 1.0f, fontMetricsInt);
+        }
+        animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+        return animatedEmojiSpan;
+    }
+
+    public static void addReactionToEditText(TLRPC.TL_availableReaction tL_availableReaction, HashMap hashMap, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
+        TLRPC.Document document = tL_availableReaction.activate_animation;
+        long j = document.id;
+        AnimatedEmojiSpan createAnimatedEmojiSpan = createAnimatedEmojiSpan(document, Long.valueOf(j), fontMetricsInt);
+        hashMap.put(Long.valueOf(j), createAnimatedEmojiSpan);
+        list.add(Long.valueOf(j));
+        editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
+        if (selectAnimatedEmojiDialog != null) {
+            selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(j), false);
+        }
+    }
+
+    public static void addReactionToEditText(TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji, HashMap hashMap, List list, Editable editable, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Paint.FontMetricsInt fontMetricsInt) {
+        AnimatedEmojiSpan createAnimatedEmojiSpan = createAnimatedEmojiSpan(null, Long.valueOf(tL_reactionCustomEmoji.document_id), fontMetricsInt);
+        hashMap.put(Long.valueOf(tL_reactionCustomEmoji.document_id), createAnimatedEmojiSpan);
+        list.add(Long.valueOf(tL_reactionCustomEmoji.document_id));
+        editable.append((CharSequence) createSpannableText(createAnimatedEmojiSpan, "e"));
+        if (selectAnimatedEmojiDialog != null) {
+            selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(tL_reactionCustomEmoji.document_id), false);
+        }
     }
 
     public static List startPreloadReactions(TLRPC.Chat chat, TLRPC.ChatFull chatFull) {
@@ -182,16 +198,5 @@ public abstract class ReactionsUtils {
         while (it.hasNext()) {
             ((AnimatedEmojiDrawable) it.next()).removeView((AnimatedEmojiSpan.InvalidateHolder) null);
         }
-    }
-
-    public static TLRPC.Reaction toTLReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-        if (visibleReaction.emojicon != null) {
-            TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
-            tL_reactionEmoji.emoticon = visibleReaction.emojicon;
-            return tL_reactionEmoji;
-        }
-        TLRPC.TL_reactionCustomEmoji tL_reactionCustomEmoji = new TLRPC.TL_reactionCustomEmoji();
-        tL_reactionCustomEmoji.document_id = visibleReaction.documentId;
-        return tL_reactionCustomEmoji;
     }
 }

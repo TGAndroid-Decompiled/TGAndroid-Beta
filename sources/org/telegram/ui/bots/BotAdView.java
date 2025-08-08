@@ -43,6 +43,9 @@ public class BotAdView extends FrameLayout {
     public final LinkSpanDrawable.LinksTextView textView;
     public final TextView titleView;
 
+    public static void lambda$new$0(View view) {
+    }
+
     public BotAdView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.invalidatedMeasure = true;
@@ -116,62 +119,7 @@ public class BotAdView extends FrameLayout {
         linearLayout.addView(imageView, LayoutHelper.createLinear(32, 32, 53, 10, 3, 0, 2));
     }
 
-    public static void lambda$new$0(View view) {
-    }
-
-    public void lambda$set$1(ChatActivity chatActivity, MessageObject messageObject, ClickableSpan clickableSpan) {
-        if (chatActivity != null) {
-            chatActivity.logSponsoredClicked(messageObject, false, false);
-        }
-        if (clickableSpan instanceof URLSpan) {
-            String url = ((URLSpan) clickableSpan).getURL();
-            if (url != null) {
-                url = url.trim();
-            }
-            if (chatActivity != null && url != null && (url.startsWith("$") || url.startsWith("#"))) {
-                chatActivity.openHashtagSearch(url, true);
-                return;
-            }
-        }
-        clickableSpan.onClick(this.textView);
-    }
-
-    public static void lambda$set$2(Runnable runnable, View view) {
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public void lambda$set$3(ChatActivity chatActivity, MessageObject messageObject, String str, View view) {
-        if (chatActivity != null) {
-            chatActivity.logSponsoredClicked(messageObject, false, false);
-        }
-        Browser.openUrl(getContext(), Uri.parse(str), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
-    }
-
-    public static void lambda$set$4(Runnable runnable, View view) {
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public int height() {
-        if (this.invalidatedMeasure || getMeasuredHeight() <= 0) {
-            measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
-        }
-        return getMeasuredHeight();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.invalidatedMeasure = false;
-    }
-
     public void set(final ChatActivity chatActivity, final MessageObject messageObject, final Runnable runnable, final Runnable runnable2) {
-        BackupImageView backupImageView;
-        ImageLocation forPhoto;
-        ImageLocation forPhoto2;
         if (messageObject == null) {
             return;
         }
@@ -186,26 +134,19 @@ public class BotAdView extends FrameLayout {
             TLRPC.MessageMedia messageMedia = messageObject.sponsoredMedia;
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 48);
-                backupImageView = this.imageView;
-                forPhoto = ImageLocation.getForDocument(messageObject.sponsoredMedia.document);
-                forPhoto2 = ImageLocation.getForDocument(closestPhotoSizeWithSize, messageObject.sponsoredMedia.document);
+                this.imageView.setImage(ImageLocation.getForDocument(messageObject.sponsoredMedia.document), "48_48", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 48), messageObject.sponsoredMedia.document), "48_48", null, 0L, 0, null);
             } else {
                 TLRPC.Photo photo = messageMedia.photo;
                 if (photo != null) {
-                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 48, true, null, true);
-                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.sponsoredMedia.photo.sizes, 48, true, closestPhotoSizeWithSize2, false);
-                    backupImageView = this.imageView;
-                    forPhoto = ImageLocation.getForPhoto(closestPhotoSizeWithSize2, messageObject.sponsoredMedia.photo);
-                    forPhoto2 = ImageLocation.getForPhoto(closestPhotoSizeWithSize3, messageObject.sponsoredMedia.photo);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 48, true, null, true);
+                    this.imageView.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.sponsoredMedia.photo), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(messageObject.sponsoredMedia.photo.sizes, 48, true, closestPhotoSizeWithSize, false), messageObject.sponsoredMedia.photo), "48_48", null, 0L, 0, null);
                 }
             }
-            backupImageView.setImage(forPhoto, "48_48", forPhoto2, "48_48", null, 0L, 0, null);
         } else {
             TLRPC.Photo photo2 = messageObject.sponsoredPhoto;
             if (photo2 != null) {
-                TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, 48, true, null, true);
-                this.imageView.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize4, messageObject.sponsoredPhoto), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(messageObject.sponsoredPhoto.sizes, 48, true, closestPhotoSizeWithSize4, false), messageObject.sponsoredPhoto), "48_48", null, 0L, 0, null);
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, 48, true, null, true);
+                this.imageView.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize2, messageObject.sponsoredPhoto), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(messageObject.sponsoredPhoto.sizes, 48, true, closestPhotoSizeWithSize2, false), messageObject.sponsoredPhoto), "48_48", null, 0L, 0, null);
                 this.imageView.setVisibility(0);
                 this.closeView.setVisibility(8);
             } else {
@@ -255,5 +196,54 @@ public class BotAdView extends FrameLayout {
                 BotAdView.lambda$set$4(runnable2, view);
             }
         });
+    }
+
+    public void lambda$set$1(ChatActivity chatActivity, MessageObject messageObject, ClickableSpan clickableSpan) {
+        if (chatActivity != null) {
+            chatActivity.logSponsoredClicked(messageObject, false, false);
+        }
+        if (clickableSpan instanceof URLSpan) {
+            String url = ((URLSpan) clickableSpan).getURL();
+            if (url != null) {
+                url = url.trim();
+            }
+            if (chatActivity != null && url != null && (url.startsWith("$") || url.startsWith("#"))) {
+                chatActivity.openHashtagSearch(url, true);
+                return;
+            }
+        }
+        clickableSpan.onClick(this.textView);
+    }
+
+    public static void lambda$set$2(Runnable runnable, View view) {
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void lambda$set$3(ChatActivity chatActivity, MessageObject messageObject, String str, View view) {
+        if (chatActivity != null) {
+            chatActivity.logSponsoredClicked(messageObject, false, false);
+        }
+        Browser.openUrl(getContext(), Uri.parse(str), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
+    }
+
+    public static void lambda$set$4(Runnable runnable, View view) {
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public int height() {
+        if (this.invalidatedMeasure || getMeasuredHeight() <= 0) {
+            measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+        }
+        return getMeasuredHeight();
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.invalidatedMeasure = false;
     }
 }

@@ -18,7 +18,9 @@ public abstract class NavigationExt {
             List fragmentStack = lastFragment.getParentLayout().getFragmentStack();
             ArrayList arrayList = new ArrayList();
             for (int size = parentLayout.getFragmentStack().size() - 1; size >= 0; size--) {
-                if (fragmentConsumer.consume((BaseFragment) fragmentStack.get(size))) {
+                if (!fragmentConsumer.consume((BaseFragment) fragmentStack.get(size))) {
+                    arrayList.add((BaseFragment) fragmentStack.get(size));
+                } else {
                     for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
                         if (arrayList.get(size2) != lastFragment) {
                             ((BaseFragment) arrayList.get(size2)).removeSelfFromStack();
@@ -27,7 +29,6 @@ public abstract class NavigationExt {
                     lastFragment.lambda$onBackPressed$355();
                     return true;
                 }
-                arrayList.add((BaseFragment) fragmentStack.get(size));
             }
         }
         return false;

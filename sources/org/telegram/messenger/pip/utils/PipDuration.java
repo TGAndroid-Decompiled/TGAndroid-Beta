@@ -18,6 +18,25 @@ public class PipDuration {
         this.count = sharedPreferences.getInt("count", 0);
     }
 
+    public void start() {
+        this.start = SystemClock.uptimeMillis();
+    }
+
+    public long estimated() {
+        return this.estimated;
+    }
+
+    public float progress() {
+        if (this.estimated > 0) {
+            return MathUtils.clamp(((float) (SystemClock.uptimeMillis() - this.start)) / ((float) this.estimated), 0.0f, 1.0f);
+        }
+        return 0.5f;
+    }
+
+    public boolean isStarted() {
+        return this.start != 0;
+    }
+
     public long end() {
         if (this.start == 0) {
             return 0L;
@@ -28,24 +47,5 @@ public class PipDuration {
         this.count++;
         this.mPrefs.edit().putLong("estimated", this.estimated).putInt("count", this.count).apply();
         return uptimeMillis;
-    }
-
-    public long estimated() {
-        return this.estimated;
-    }
-
-    public boolean isStarted() {
-        return this.start != 0;
-    }
-
-    public float progress() {
-        if (this.estimated > 0) {
-            return MathUtils.clamp(((float) (SystemClock.uptimeMillis() - this.start)) / ((float) this.estimated), 0.0f, 1.0f);
-        }
-        return 0.5f;
-    }
-
-    public void start() {
-        this.start = SystemClock.uptimeMillis();
     }
 }

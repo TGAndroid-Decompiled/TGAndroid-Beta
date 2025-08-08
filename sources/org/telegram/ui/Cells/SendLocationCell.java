@@ -88,36 +88,34 @@ public class SendLocationCell extends FrameLayout {
         setWillNotDraw(false);
     }
 
-    public void checkText() {
-        String string;
-        int i;
-        LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
-        if (sharingLocationInfo == null) {
-            string = LocaleController.getString(R.string.SendLiveLocation);
-            i = R.string.SendLiveLocationInfo;
-        } else {
-            if (this.liveDisable) {
-                String string2 = LocaleController.getString(R.string.StopLiveLocation);
-                int i2 = sharingLocationInfo.messageObject.messageOwner.edit_date;
-                setText(string2, LocaleController.formatLocationUpdateDate(i2 != 0 ? i2 : r0.date));
-                return;
-            }
-            string = LocaleController.getString(R.string.SharingLiveLocation);
-            i = R.string.SharingLiveLocationAdd;
-        }
-        setText(string, LocaleController.getString(i));
+    private void updateImage() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SendLocationCell.updateImage():void");
     }
 
     private ImageView getImageView() {
         return this.imageView;
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void setHasLocation(boolean z) {
+        if (LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId) == null) {
+            this.titleTextView.setAlpha(z ? 1.0f : 0.5f);
+            this.accurateTextView.setAlpha(z ? 1.0f : 0.5f);
+            this.imageView.setAlpha(z ? 1.0f : 0.5f);
+        }
+        if (this.live) {
+            checkText();
+        }
     }
 
-    private void updateImage() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SendLocationCell.updateImage():void");
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        AndroidUtilities.cancelRunOnUIThread(this.invalidateRunnable);
     }
 
     @Override
@@ -129,10 +127,36 @@ public class SendLocationCell extends FrameLayout {
         }
     }
 
+    public void setText(String str, String str2) {
+        this.titleTextView.setText(str);
+        this.accurateTextView.setText(str2);
+    }
+
+    public void setDialogId(long j) {
+        this.dialogId = j;
+        if (this.live) {
+            checkText();
+        }
+    }
+
+    public void checkText() {
+        LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
+        if (sharingLocationInfo != null) {
+            if (this.liveDisable) {
+                String string = LocaleController.getString(R.string.StopLiveLocation);
+                int i = sharingLocationInfo.messageObject.messageOwner.edit_date;
+                setText(string, LocaleController.formatLocationUpdateDate(i != 0 ? i : r0.date));
+                return;
+            }
+            setText(LocaleController.getString(R.string.SharingLiveLocation), LocaleController.getString(R.string.SharingLiveLocationAdd));
+            return;
+        }
+        setText(LocaleController.getString(R.string.SendLiveLocation), LocaleController.getString(R.string.SendLiveLocationInfo));
+    }
+
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.invalidateRunnable);
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.textDrawable || super.verifyDrawable(drawable);
     }
 
     @Override
@@ -149,11 +173,11 @@ public class SendLocationCell extends FrameLayout {
         LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId);
         float f2 = this.progress.get();
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        if (sharingLocationInfo == null || (i = sharingLocationInfo.stopTime) < currentTime || sharingLocationInfo.period == Integer.MAX_VALUE) {
-            f = this.progressAlpha.set(false);
-        } else {
+        if (sharingLocationInfo != null && (i = sharingLocationInfo.stopTime) >= currentTime && sharingLocationInfo.period != Integer.MAX_VALUE) {
             f2 = Math.abs(i - currentTime) / sharingLocationInfo.period;
             f = this.progressAlpha.set(true);
+        } else {
+            f = this.progressAlpha.set(false);
         }
         float f3 = f2;
         float f4 = f;
@@ -202,36 +226,7 @@ public class SendLocationCell extends FrameLayout {
         canvas.restore();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-    }
-
-    public void setDialogId(long j) {
-        this.dialogId = j;
-        if (this.live) {
-            checkText();
-        }
-    }
-
-    public void setHasLocation(boolean z) {
-        if (LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId) == null) {
-            this.titleTextView.setAlpha(z ? 1.0f : 0.5f);
-            this.accurateTextView.setAlpha(z ? 1.0f : 0.5f);
-            this.imageView.setAlpha(z ? 1.0f : 0.5f);
-        }
-        if (this.live) {
-            checkText();
-        }
-    }
-
-    public void setText(String str, String str2) {
-        this.titleTextView.setText(str);
-        this.accurateTextView.setText(str2);
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.textDrawable || super.verifyDrawable(drawable);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

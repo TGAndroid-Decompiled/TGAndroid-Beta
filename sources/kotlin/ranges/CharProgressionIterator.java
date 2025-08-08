@@ -29,13 +29,13 @@ public final class CharProgressionIterator extends CharIterator {
     @Override
     public char nextChar() {
         int i = this.next;
-        if (i != this.finalElement) {
-            this.next = this.step + i;
-        } else {
+        if (i == this.finalElement) {
             if (!this.hasNext) {
                 throw new NoSuchElementException();
             }
             this.hasNext = false;
+        } else {
+            this.next = this.step + i;
         }
         return (char) i;
     }

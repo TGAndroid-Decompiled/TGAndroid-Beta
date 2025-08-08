@@ -23,18 +23,6 @@ public final class ModuleNameRetriever {
     private ModuleNameRetriever() {
     }
 
-    private final Cache buildCache(BaseContinuationImpl baseContinuationImpl) {
-        try {
-            Cache cache2 = new Cache(Class.class.getDeclaredMethod("getModule", null), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-            cache = cache2;
-            return cache2;
-        } catch (Exception unused) {
-            Cache cache3 = notOnJava9;
-            cache = cache3;
-            return cache3;
-        }
-    }
-
     public final String getModuleName(BaseContinuationImpl continuation) {
         Intrinsics.checkNotNullParameter(continuation, "continuation");
         Cache cache2 = cache;
@@ -60,5 +48,17 @@ public final class ModuleNameRetriever {
             return (String) invoke3;
         }
         return null;
+    }
+
+    private final Cache buildCache(BaseContinuationImpl baseContinuationImpl) {
+        try {
+            Cache cache2 = new Cache(Class.class.getDeclaredMethod("getModule", null), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), baseContinuationImpl.getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
+            cache = cache2;
+            return cache2;
+        } catch (Exception unused) {
+            Cache cache3 = notOnJava9;
+            cache = cache3;
+            return cache3;
+        }
     }
 }

@@ -6,9 +6,6 @@ import java.util.NoSuchElementException;
 public final class EmptyIterator implements ListIterator {
     public static final EmptyIterator INSTANCE = new EmptyIterator();
 
-    private EmptyIterator() {
-    }
-
     @Override
     public void add(Object obj) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
@@ -25,18 +22,8 @@ public final class EmptyIterator implements ListIterator {
     }
 
     @Override
-    public Void next() {
-        throw new NoSuchElementException();
-    }
-
-    @Override
     public int nextIndex() {
         return 0;
-    }
-
-    @Override
-    public Void previous() {
-        throw new NoSuchElementException();
     }
 
     @Override
@@ -52,5 +39,18 @@ public final class EmptyIterator implements ListIterator {
     @Override
     public void set(Object obj) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    private EmptyIterator() {
+    }
+
+    @Override
+    public Void next() {
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public Void previous() {
+        throw new NoSuchElementException();
     }
 }

@@ -31,6 +31,18 @@ public class SuggestedAffiliateProgramsFragment extends BaseFragment implements 
     }
 
     @Override
+    public boolean onFragmentCreate() {
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.channelSuggestedBotsUpdate);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.channelSuggestedBotsUpdate);
+        super.onFragmentDestroy();
+    }
+
+    @Override
     public View createView(Context context) {
         ActionBar actionBar = this.actionBar;
         BackDrawable backDrawable = new BackDrawable(false);
@@ -71,14 +83,6 @@ public class SuggestedAffiliateProgramsFragment extends BaseFragment implements 
         return sizeNotifierFrameLayout;
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        UniversalRecyclerView universalRecyclerView;
-        if (i == NotificationCenter.channelSuggestedBotsUpdate && ((Long) objArr[0]).longValue() == this.dialogId && (universalRecyclerView = this.listView) != null && (universalRecyclerView.getAdapter() instanceof UniversalAdapter)) {
-            ((UniversalAdapter) this.listView.getAdapter()).update(true);
-        }
-    }
-
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         BotStarsController.ChannelSuggestedBots channelSuggestedBots = BotStarsController.getInstance(this.currentAccount).getChannelSuggestedBots(this.dialogId);
         for (int i = 0; i < channelSuggestedBots.bots.size(); i++) {
@@ -88,6 +92,21 @@ public class SuggestedAffiliateProgramsFragment extends BaseFragment implements 
             arrayList.add(UItem.asFlicker(29));
             arrayList.add(UItem.asFlicker(29));
             arrayList.add(UItem.asFlicker(29));
+        }
+    }
+
+    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
+        Object obj = uItem.object;
+        if (obj instanceof TL_payments.starRefProgram) {
+            ChannelAffiliateProgramsFragment.showConnectAffiliateAlert(getContext(), this.currentAccount, (TL_payments.starRefProgram) obj, this.dialogId, this.resourceProvider, false);
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        UniversalRecyclerView universalRecyclerView;
+        if (i == NotificationCenter.channelSuggestedBotsUpdate && ((Long) objArr[0]).longValue() == this.dialogId && (universalRecyclerView = this.listView) != null && (universalRecyclerView.getAdapter() instanceof UniversalAdapter)) {
+            ((UniversalAdapter) this.listView.getAdapter()).update(true);
         }
     }
 
@@ -101,24 +120,5 @@ public class SuggestedAffiliateProgramsFragment extends BaseFragment implements 
             color = Theme.getColor(Theme.key_actionBarActionModeDefault);
         }
         return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.channelSuggestedBotsUpdate);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.channelSuggestedBotsUpdate);
-        super.onFragmentDestroy();
-    }
-
-    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
-        Object obj = uItem.object;
-        if (obj instanceof TL_payments.starRefProgram) {
-            ChannelAffiliateProgramsFragment.showConnectAffiliateAlert(getContext(), this.currentAccount, (TL_payments.starRefProgram) obj, this.dialogId, this.resourceProvider, false);
-        }
     }
 }

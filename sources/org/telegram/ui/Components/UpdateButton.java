@@ -11,7 +11,6 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.os.Build;
 import android.util.Property;
 import android.view.View;
 import android.widget.TextView;
@@ -40,9 +39,7 @@ public class UpdateButton extends IUpdateButton {
         setWillNotDraw(false);
         setVisibility(4);
         setTranslationY(AndroidUtilities.dp(48.0f));
-        if (Build.VERSION.SDK_INT >= 21) {
-            setBackground(Theme.getSelectorDrawable(1090519039, false));
-        }
+        setBackground(Theme.getSelectorDrawable(1090519039, false));
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -100,11 +97,6 @@ public class UpdateButton extends IUpdateButton {
     }
 
     @Override
-    public void onTranslationUpdate(Utilities.Callback<Float> callback) {
-        this.onTranslationUpdate = callback;
-    }
-
-    @Override
     public void setTranslationY(float f) {
         super.setTranslationY(f);
         Utilities.Callback callback = this.onTranslationUpdate;
@@ -114,26 +106,51 @@ public class UpdateButton extends IUpdateButton {
     }
 
     @Override
+    public void onTranslationUpdate(Utilities.Callback<Float> callback) {
+        this.onTranslationUpdate = callback;
+    }
+
+    @Override
     public void update(boolean z) {
-        AnimatorSet animatorSet;
-        AnimatorListenerAdapter animatorListenerAdapter;
-        if (ApplicationLoader.applicationLoaderInstance.getUpdate() == null || ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile() == null) {
-            if (getTag() == null) {
+        if (ApplicationLoader.applicationLoaderInstance.getUpdate() != null && ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile() != null) {
+            if (getTag() != null) {
                 return;
             }
-            setTag(null);
-            if (!z) {
-                setTranslationY(AndroidUtilities.dp(48.0f));
-                setVisibility(4);
+            AnimatorSet animatorSet = this.animator;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            setVisibility(0);
+            setTag(1);
+            if (z) {
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.animator = animatorSet2;
+                animatorSet2.setDuration(180L);
+                this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                this.animator.playTogether(ObjectAnimator.ofFloat(this, (Property<UpdateButton, Float>) View.TRANSLATION_Y, 0.0f));
+                this.animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        UpdateButton.this.animator = null;
+                    }
+                });
+                this.animator.start();
                 return;
             }
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.animator = animatorSet2;
-            animatorSet2.setDuration(180L);
+            setTranslationY(0.0f);
+            return;
+        }
+        if (getTag() == null) {
+            return;
+        }
+        setTag(null);
+        if (z) {
+            AnimatorSet animatorSet3 = new AnimatorSet();
+            this.animator = animatorSet3;
+            animatorSet3.setDuration(180L);
             this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             this.animator.playTogether(ObjectAnimator.ofFloat(this, (Property<UpdateButton, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(48.0f)));
-            animatorSet = this.animator;
-            animatorListenerAdapter = new AnimatorListenerAdapter() {
+            this.animator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (UpdateButton.this.getTag() == null) {
@@ -141,35 +158,11 @@ public class UpdateButton extends IUpdateButton {
                     }
                     UpdateButton.this.animator = null;
                 }
-            };
-        } else {
-            if (getTag() != null) {
-                return;
-            }
-            AnimatorSet animatorSet3 = this.animator;
-            if (animatorSet3 != null) {
-                animatorSet3.cancel();
-            }
-            setVisibility(0);
-            setTag(1);
-            if (!z) {
-                setTranslationY(0.0f);
-                return;
-            }
-            AnimatorSet animatorSet4 = new AnimatorSet();
-            this.animator = animatorSet4;
-            animatorSet4.setDuration(180L);
-            this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            this.animator.playTogether(ObjectAnimator.ofFloat(this, (Property<UpdateButton, Float>) View.TRANSLATION_Y, 0.0f));
-            animatorSet = this.animator;
-            animatorListenerAdapter = new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    UpdateButton.this.animator = null;
-                }
-            };
+            });
+            this.animator.start();
+            return;
         }
-        animatorSet.addListener(animatorListenerAdapter);
-        this.animator.start();
+        setTranslationY(AndroidUtilities.dp(48.0f));
+        setVisibility(4);
     }
 }

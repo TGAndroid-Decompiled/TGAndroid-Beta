@@ -12,6 +12,9 @@ public final class Charsets {
     public static final Charset UTF_16LE;
     public static final Charset UTF_8;
 
+    private Charsets() {
+    }
+
     static {
         Charset forName = Charset.forName("UTF-8");
         Intrinsics.checkNotNullExpressionValue(forName, "forName(\"UTF-8\")");
@@ -31,8 +34,5 @@ public final class Charsets {
         Charset forName6 = Charset.forName("ISO-8859-1");
         Intrinsics.checkNotNullExpressionValue(forName6, "forName(\"ISO-8859-1\")");
         ISO_8859_1 = forName6;
-    }
-
-    private Charsets() {
     }
 }

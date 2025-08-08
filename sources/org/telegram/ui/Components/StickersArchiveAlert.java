@@ -23,8 +23,67 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
     private BaseFragment parentFragment;
     private ArrayList stickerSets;
 
+    public StickersArchiveAlert(Context context, BaseFragment baseFragment, ArrayList arrayList) {
+        super(context);
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(0);
+        if (stickerSetCovered.set.masks) {
+            this.currentType = 1;
+            setTitle(LocaleController.getString(R.string.ArchivedMasksAlertTitle));
+        } else {
+            this.currentType = 0;
+            setTitle(LocaleController.getString(R.string.ArchivedStickersAlertTitle));
+        }
+        this.stickerSets = new ArrayList(arrayList);
+        this.parentFragment = baseFragment;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        setView(linearLayout);
+        TextView textView = new TextView(context);
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        textView.setGravity(LayoutHelper.getAbsoluteGravityStart());
+        textView.setTextSize(1, 16.0f);
+        textView.setPadding(AndroidUtilities.dp(23.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(23.0f), 0);
+        if (stickerSetCovered.set.masks) {
+            textView.setText(LocaleController.getString(R.string.ArchivedMasksAlertInfo));
+        } else {
+            textView.setText(LocaleController.getString(R.string.ArchivedStickersAlertInfo));
+        }
+        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
+        RecyclerListView recyclerListView = new RecyclerListView(context);
+        recyclerListView.setLayoutManager(new LinearLayoutManager(getContext(), 1, false));
+        recyclerListView.setAdapter(new ListAdapter(context));
+        recyclerListView.setVerticalScrollBarEnabled(false);
+        recyclerListView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        recyclerListView.setGlowColor(-657673);
+        linearLayout.addView(recyclerListView, LayoutHelper.createLinear(-1, -2, 0.0f, 10.0f, 0.0f, 0.0f));
+        setNegativeButton(LocaleController.getString(R.string.Close), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) {
+                alertDialog.dismiss();
+            }
+        });
+        if (this.parentFragment != null) {
+            setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    StickersArchiveAlert.this.lambda$new$1(alertDialog, i);
+                }
+            });
+        }
+    }
+
+    public void lambda$new$1(AlertDialog alertDialog, int i) {
+        this.parentFragment.presentFragment(new StickersActivity(this.currentType, null));
+        alertDialog.dismiss();
+    }
+
     private class ListAdapter extends RecyclerListView.SelectionAdapter {
         Context context;
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return false;
+        }
 
         public ListAdapter(Context context) {
             this.context = context;
@@ -36,72 +95,15 @@ public class StickersArchiveAlert extends AlertDialog.Builder {
         }
 
         @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return false;
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            ArchivedStickerSetCell archivedStickerSetCell = new ArchivedStickerSetCell(this.context, false);
+            archivedStickerSetCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(82.0f)));
+            return new RecyclerListView.Holder(archivedStickerSetCell);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ((ArchivedStickerSetCell) viewHolder.itemView).setStickersSet((TLRPC.StickerSetCovered) StickersArchiveAlert.this.stickerSets.get(i), i != StickersArchiveAlert.this.stickerSets.size() - 1);
         }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            ArchivedStickerSetCell archivedStickerSetCell = new ArchivedStickerSetCell(this.context, false);
-            archivedStickerSetCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(82.0f)));
-            return new RecyclerListView.Holder(archivedStickerSetCell);
-        }
-    }
-
-    public StickersArchiveAlert(Context context, BaseFragment baseFragment, ArrayList arrayList) {
-        super(context);
-        int i;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(0);
-        if (stickerSetCovered.set.masks) {
-            this.currentType = 1;
-            i = R.string.ArchivedMasksAlertTitle;
-        } else {
-            this.currentType = 0;
-            i = R.string.ArchivedStickersAlertTitle;
-        }
-        setTitle(LocaleController.getString(i));
-        this.stickerSets = new ArrayList(arrayList);
-        this.parentFragment = baseFragment;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        setView(linearLayout);
-        TextView textView = new TextView(context);
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        textView.setGravity(LayoutHelper.getAbsoluteGravityStart());
-        textView.setTextSize(1, 16.0f);
-        textView.setPadding(AndroidUtilities.dp(23.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(23.0f), 0);
-        textView.setText(LocaleController.getString(stickerSetCovered.set.masks ? R.string.ArchivedMasksAlertInfo : R.string.ArchivedStickersAlertInfo));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
-        RecyclerListView recyclerListView = new RecyclerListView(context);
-        recyclerListView.setLayoutManager(new LinearLayoutManager(getContext(), 1, false));
-        recyclerListView.setAdapter(new ListAdapter(context));
-        recyclerListView.setVerticalScrollBarEnabled(false);
-        recyclerListView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        recyclerListView.setGlowColor(-657673);
-        linearLayout.addView(recyclerListView, LayoutHelper.createLinear(-1, -2, 0.0f, 10.0f, 0.0f, 0.0f));
-        setNegativeButton(LocaleController.getString(R.string.Close), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
-                alertDialog.dismiss();
-            }
-        });
-        if (this.parentFragment != null) {
-            setPositiveButton(LocaleController.getString(R.string.Settings), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i2) {
-                    StickersArchiveAlert.this.lambda$new$1(alertDialog, i2);
-                }
-            });
-        }
-    }
-
-    public void lambda$new$1(AlertDialog alertDialog, int i) {
-        this.parentFragment.presentFragment(new StickersActivity(this.currentType, null));
-        alertDialog.dismiss();
     }
 }

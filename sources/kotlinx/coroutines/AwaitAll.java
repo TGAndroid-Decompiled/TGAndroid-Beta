@@ -6,8 +6,7 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Result;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
-import kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt;
-import kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt;
+import kotlin.coroutines.intrinsics.IntrinsicsKt;
 import kotlin.coroutines.jvm.internal.DebugProbesKt;
 import kotlin.jvm.internal.Intrinsics;
 
@@ -15,6 +14,40 @@ public final class AwaitAll {
     private static final AtomicIntegerFieldUpdater notCompletedCount$FU = AtomicIntegerFieldUpdater.newUpdater(AwaitAll.class, "notCompletedCount");
     private final Deferred[] deferreds;
     private volatile int notCompletedCount;
+
+    public AwaitAll(Deferred[] deferredArr) {
+        this.deferreds = deferredArr;
+        this.notCompletedCount = deferredArr.length;
+    }
+
+    public final class DisposeHandlersOnCancel extends CancelHandler {
+        private final AwaitAllNode[] nodes;
+
+        public DisposeHandlersOnCancel(AwaitAllNode[] awaitAllNodeArr) {
+            this.nodes = awaitAllNodeArr;
+        }
+
+        @Override
+        public Object invoke(Object obj) {
+            invoke((Throwable) obj);
+            return Unit.INSTANCE;
+        }
+
+        public final void disposeAll() {
+            for (AwaitAllNode awaitAllNode : this.nodes) {
+                awaitAllNode.getHandle().dispose();
+            }
+        }
+
+        @Override
+        public void invoke(Throwable th) {
+            disposeAll();
+        }
+
+        public String toString() {
+            return "DisposeHandlersOnCancel[" + this.nodes + ']';
+        }
+    }
 
     public final class AwaitAllNode extends JobNode {
         private static final AtomicReferenceFieldUpdater _disposer$FU = AtomicReferenceFieldUpdater.newUpdater(AwaitAllNode.class, Object.class, "_disposer");
@@ -26,8 +59,10 @@ public final class AwaitAll {
             this.continuation = cancellableContinuation;
         }
 
-        public final DisposeHandlersOnCancel getDisposer() {
-            return (DisposeHandlersOnCancel) _disposer$FU.get(this);
+        @Override
+        public Object invoke(Object obj) {
+            invoke((Throwable) obj);
+            return Unit.INSTANCE;
         }
 
         public final DisposableHandle getHandle() {
@@ -39,10 +74,16 @@ public final class AwaitAll {
             return null;
         }
 
-        @Override
-        public Object invoke(Object obj) {
-            invoke((Throwable) obj);
-            return Unit.INSTANCE;
+        public final void setHandle(DisposableHandle disposableHandle) {
+            this.handle = disposableHandle;
+        }
+
+        public final DisposeHandlersOnCancel getDisposer() {
+            return (DisposeHandlersOnCancel) _disposer$FU.get(this);
+        }
+
+        public final void setDisposer(DisposeHandlersOnCancel disposeHandlersOnCancel) {
+            _disposer$FU.set(this, disposeHandlersOnCancel);
         }
 
         @Override
@@ -67,58 +108,13 @@ public final class AwaitAll {
                 for (Deferred deferred : deferredArr) {
                     arrayList.add(deferred.getCompleted());
                 }
-                cancellableContinuation.resumeWith(Result.m210constructorimpl(arrayList));
+                cancellableContinuation.resumeWith(Result.m216constructorimpl(arrayList));
             }
         }
-
-        public final void setDisposer(DisposeHandlersOnCancel disposeHandlersOnCancel) {
-            _disposer$FU.set(this, disposeHandlersOnCancel);
-        }
-
-        public final void setHandle(DisposableHandle disposableHandle) {
-            this.handle = disposableHandle;
-        }
-    }
-
-    public final class DisposeHandlersOnCancel extends CancelHandler {
-        private final AwaitAllNode[] nodes;
-
-        public DisposeHandlersOnCancel(AwaitAllNode[] awaitAllNodeArr) {
-            this.nodes = awaitAllNodeArr;
-        }
-
-        public final void disposeAll() {
-            for (AwaitAllNode awaitAllNode : this.nodes) {
-                awaitAllNode.getHandle().dispose();
-            }
-        }
-
-        @Override
-        public Object invoke(Object obj) {
-            invoke((Throwable) obj);
-            return Unit.INSTANCE;
-        }
-
-        @Override
-        public void invoke(Throwable th) {
-            disposeAll();
-        }
-
-        public String toString() {
-            return "DisposeHandlersOnCancel[" + this.nodes + ']';
-        }
-    }
-
-    public AwaitAll(Deferred[] deferredArr) {
-        this.deferreds = deferredArr;
-        this.notCompletedCount = deferredArr.length;
     }
 
     public final Object await(Continuation continuation) {
-        Continuation intercepted;
-        Object coroutine_suspended;
-        intercepted = IntrinsicsKt__IntrinsicsJvmKt.intercepted(continuation);
-        CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(intercepted, 1);
+        CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(IntrinsicsKt.intercepted(continuation), 1);
         cancellableContinuationImpl.initCancellability();
         int length = this.deferreds.length;
         AwaitAllNode[] awaitAllNodeArr = new AwaitAllNode[length];
@@ -140,8 +136,7 @@ public final class AwaitAll {
             cancellableContinuationImpl.invokeOnCancellation(disposeHandlersOnCancel);
         }
         Object result = cancellableContinuationImpl.getResult();
-        coroutine_suspended = IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED();
-        if (result == coroutine_suspended) {
+        if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
             DebugProbesKt.probeCoroutineSuspended(continuation);
         }
         return result;

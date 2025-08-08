@@ -20,6 +20,8 @@ public class DatabaseMigrationHelper {
         int i3;
         int i4;
         int i5;
+        NativeByteBuffer nativeByteBuffer2;
+        NativeByteBuffer nativeByteBuffer3;
         SQLiteCursor sQLiteCursor3;
         SQLiteCursor sQLiteCursor4;
         SQLiteCursor sQLiteCursor5;
@@ -180,13 +182,13 @@ public class DatabaseMigrationHelper {
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
                         tL_chatFull.participants = TLdeserialize;
-                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tL_chatFull.getObjectSize());
-                        tL_chatFull.serializeToStream(nativeByteBuffer2);
+                        NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(tL_chatFull.getObjectSize());
+                        tL_chatFull.serializeToStream(nativeByteBuffer4);
                         executeFast2.requery();
                         executeFast2.bindLong(1, intValue2);
-                        executeFast2.bindByteBuffer(2, nativeByteBuffer2);
+                        executeFast2.bindByteBuffer(2, nativeByteBuffer4);
                         executeFast2.step();
-                        nativeByteBuffer2.reuse();
+                        nativeByteBuffer4.reuse();
                     }
                 }
             }
@@ -827,28 +829,31 @@ public class DatabaseMigrationHelper {
                         executeFast10.bindInteger(7, i3);
                         executeFast10.bindInteger(8, i5);
                         executeFast10.bindInteger(9, intValue24);
-                        NativeByteBuffer nativeByteBuffer3 = nativeByteBuffer;
                         if (nativeByteBuffer != null) {
-                            executeFast10.bindByteBuffer(10, nativeByteBuffer3);
+                            nativeByteBuffer2 = nativeByteBuffer;
+                            executeFast10.bindByteBuffer(10, nativeByteBuffer2);
                         } else {
+                            nativeByteBuffer2 = nativeByteBuffer;
                             executeFast10.bindNull(10);
                         }
                         executeFast10.bindInteger(11, intValue25);
                         executeFast10.bindInteger(12, intValue26);
                         executeFast10.bindInteger(13, intValue27);
                         if (byteBufferValue8 != null) {
-                            executeFast10.bindByteBuffer(14, byteBufferValue8);
+                            nativeByteBuffer3 = byteBufferValue8;
+                            executeFast10.bindByteBuffer(14, nativeByteBuffer3);
                         } else {
+                            nativeByteBuffer3 = byteBufferValue8;
                             executeFast10.bindNull(14);
                         }
                         executeFast10.bindInteger(15, i2);
                         executeFast10.bindInteger(16, i4 > 0 ? 1 : 0);
                         executeFast10.step();
+                        if (nativeByteBuffer2 != null) {
+                            nativeByteBuffer2.reuse();
+                        }
                         if (nativeByteBuffer3 != null) {
                             nativeByteBuffer3.reuse();
-                        }
-                        if (byteBufferValue8 != null) {
-                            byteBufferValue8.reuse();
                         }
                         byteBufferValue6.reuse();
                         database = sQLiteDatabase3;

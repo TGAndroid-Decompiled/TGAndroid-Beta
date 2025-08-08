@@ -45,26 +45,6 @@ public class ReactedHeaderView extends FrameLayout {
     private TextView titleView;
     private List users;
 
-    public static class UserSeen {
-        public int date;
-        long dialogId;
-        public TLObject user;
-
-        public UserSeen(TLObject tLObject, int i) {
-            long j;
-            this.user = tLObject;
-            this.date = i;
-            if (tLObject instanceof TLRPC.User) {
-                j = ((TLRPC.User) tLObject).id;
-            } else if (!(tLObject instanceof TLRPC.Chat)) {
-                return;
-            } else {
-                j = -((TLRPC.Chat) tLObject).id;
-            }
-            this.dialogId = j;
-        }
-    }
-
     public ReactedHeaderView(Context context, int i, MessageObject messageObject, long j) {
         super(context);
         this.seenUsers = new ArrayList();
@@ -103,6 +83,211 @@ public class ReactedHeaderView extends FrameLayout {
         this.titleView.setAlpha(0.0f);
         this.avatarsImageView.setAlpha(0.0f);
         setBackground(Theme.getSelectorDrawable(false));
+    }
+
+    public void setSeenCallback(Consumer consumer) {
+        this.seenCallback = consumer;
+    }
+
+    public static class UserSeen {
+        public int date;
+        long dialogId;
+        public TLObject user;
+
+        public UserSeen(TLObject tLObject, int i) {
+            this.user = tLObject;
+            this.date = i;
+            if (tLObject instanceof TLRPC.User) {
+                this.dialogId = ((TLRPC.User) tLObject).id;
+            } else if (tLObject instanceof TLRPC.Chat) {
+                this.dialogId = -((TLRPC.Chat) tLObject).id;
+            }
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.isLoaded) {
+            return;
+        }
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        final TLRPC.Chat chat = messagesController.getChat(Long.valueOf(this.message.getChatId()));
+        TLRPC.ChatFull chatFull = messagesController.getChatFull(this.message.getChatId());
+        if (chat != null && this.message.isOutOwner() && this.message.isSent() && !this.message.isEditing() && !this.message.isSending() && !this.message.isSendError() && !this.message.isContentUnread() && !this.message.isUnread() && ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - this.message.messageOwner.date < 604800 && ((ChatObject.isMegagroup(chat) || !ChatObject.isChannel(chat)) && chatFull != null && chatFull.participants_count <= MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold && !(this.message.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+            TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
+            tL_messages_getMessageReadParticipants.msg_id = this.message.getId();
+            tL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.message.getDialogId());
+            TLRPC.Peer peer = this.message.messageOwner.from_id;
+            final long j = peer != null ? peer.user_id : 0L;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReadParticipants, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ReactedHeaderView.this.lambda$onAttachedToWindow$5(j, chat, tLObject, tL_error);
+                }
+            }, 64);
+            return;
+        }
+        loadReactions();
+    }
+
+    public void lambda$onAttachedToWindow$5(long j, TLRPC.Chat chat, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof Vector) {
+            final ArrayList arrayList = new ArrayList();
+            final ArrayList arrayList2 = new ArrayList();
+            Iterator it = ((Vector) tLObject).objects.iterator();
+            while (it.hasNext()) {
+                Object next = it.next();
+                if (next instanceof Long) {
+                    Long l = (Long) next;
+                    if (j != l.longValue()) {
+                        arrayList.add(l);
+                        arrayList2.add(0);
+                    }
+                } else if (next instanceof TLRPC.TL_readParticipantDate) {
+                    TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) next;
+                    long j2 = tL_readParticipantDate.user_id;
+                    int i = tL_readParticipantDate.date;
+                    if (j != j2) {
+                        arrayList.add(Long.valueOf(j2));
+                        arrayList2.add(Integer.valueOf(i));
+                    }
+                }
+            }
+            arrayList.add(Long.valueOf(j));
+            arrayList2.add(0);
+            final ArrayList arrayList3 = new ArrayList();
+            final Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    ReactedHeaderView.this.lambda$onAttachedToWindow$0(arrayList3);
+                }
+            };
+            if (ChatObject.isChannel(chat)) {
+                TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                tL_channels_getParticipants.limit = MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold;
+                tL_channels_getParticipants.offset = 0;
+                tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
+                tL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(chat.id);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                        ReactedHeaderView.this.lambda$onAttachedToWindow$2(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
+                    }
+                });
+                return;
+            }
+            TLRPC.TL_messages_getFullChat tL_messages_getFullChat = new TLRPC.TL_messages_getFullChat();
+            tL_messages_getFullChat.chat_id = chat.id;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                    ReactedHeaderView.this.lambda$onAttachedToWindow$4(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
+                }
+            });
+        }
+    }
+
+    public void lambda$onAttachedToWindow$0(List list) {
+        this.seenUsers.addAll(list);
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            UserSeen userSeen = (UserSeen) it.next();
+            int i = 0;
+            while (true) {
+                if (i >= this.users.size()) {
+                    this.users.add(userSeen);
+                    break;
+                } else if (MessageObject.getObjectPeerId(((UserSeen) this.users.get(i)).user) != MessageObject.getObjectPeerId(userSeen.user)) {
+                    i++;
+                } else if (userSeen.date > 0) {
+                    ((UserSeen) this.users.get(i)).date = userSeen.date;
+                }
+            }
+        }
+        Consumer consumer = this.seenCallback;
+        if (consumer != null) {
+            consumer.accept(list);
+        }
+        loadReactions();
+    }
+
+    public void lambda$onAttachedToWindow$2(final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ReactedHeaderView.this.lambda$onAttachedToWindow$1(tLObject, list, list2, list3, runnable);
+            }
+        });
+    }
+
+    public void lambda$onAttachedToWindow$1(TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
+        if (tLObject != null) {
+            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+            for (int i = 0; i < tL_channels_channelParticipants.users.size(); i++) {
+                TLRPC.User user = tL_channels_channelParticipants.users.get(i);
+                MessagesController.getInstance(this.currentAccount).putUser(user, false);
+                int indexOf = list.indexOf(Long.valueOf(user.id));
+                if (!user.self && indexOf >= 0) {
+                    list2.add(new UserSeen(user, ((Integer) list3.get(indexOf)).intValue()));
+                }
+            }
+        }
+        runnable.run();
+    }
+
+    public void lambda$onAttachedToWindow$4(final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ReactedHeaderView.this.lambda$onAttachedToWindow$3(tLObject, list, list2, list3, runnable);
+            }
+        });
+    }
+
+    public void lambda$onAttachedToWindow$3(TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
+        if (tLObject != null) {
+            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
+            for (int i = 0; i < tL_messages_chatFull.users.size(); i++) {
+                TLRPC.User user = tL_messages_chatFull.users.get(i);
+                MessagesController.getInstance(this.currentAccount).putUser(user, false);
+                int indexOf = list.indexOf(Long.valueOf(user.id));
+                if (!user.self && indexOf >= 0) {
+                    list2.add(new UserSeen(user, ((Integer) list3.get(indexOf)).intValue()));
+                }
+            }
+        }
+        runnable.run();
+    }
+
+    private void loadReactions() {
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
+        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
+        tL_messages_getMessageReactionsList.id = this.message.getId();
+        tL_messages_getMessageReactionsList.limit = 3;
+        tL_messages_getMessageReactionsList.reaction = null;
+        tL_messages_getMessageReactionsList.offset = null;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ReactedHeaderView.this.lambda$loadReactions$7(tLObject, tL_error);
+            }
+        }, 64);
+    }
+
+    public void lambda$loadReactions$7(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
+            final TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
+            final int i = tL_messages_messageReactionsList.count;
+            tL_messages_messageReactionsList.users.size();
+            post(new Runnable() {
+                @Override
+                public final void run() {
+                    ReactedHeaderView.this.lambda$loadReactions$6(i, tL_messages_messageReactionsList);
+                }
+            });
+        }
     }
 
     public void lambda$loadReactions$6(int i, TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList) {
@@ -171,210 +356,20 @@ public class ReactedHeaderView extends FrameLayout {
         updateView();
     }
 
-    public void lambda$loadReactions$7(TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
-            final TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
-            final int i = tL_messages_messageReactionsList.count;
-            tL_messages_messageReactionsList.users.size();
-            post(new Runnable() {
-                @Override
-                public final void run() {
-                    ReactedHeaderView.this.lambda$loadReactions$6(i, tL_messages_messageReactionsList);
-                }
-            });
-        }
-    }
-
-    public void lambda$onAttachedToWindow$0(List list) {
-        this.seenUsers.addAll(list);
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            UserSeen userSeen = (UserSeen) it.next();
-            int i = 0;
-            while (true) {
-                if (i >= this.users.size()) {
-                    this.users.add(userSeen);
-                    break;
-                } else if (MessageObject.getObjectPeerId(((UserSeen) this.users.get(i)).user) != MessageObject.getObjectPeerId(userSeen.user)) {
-                    i++;
-                } else if (userSeen.date > 0) {
-                    ((UserSeen) this.users.get(i)).date = userSeen.date;
-                }
-            }
-        }
-        Consumer consumer = this.seenCallback;
-        if (consumer != null) {
-            consumer.accept(list);
-        }
-        loadReactions();
-    }
-
-    public void lambda$onAttachedToWindow$1(TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
-        if (tLObject != null) {
-            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-            for (int i = 0; i < tL_channels_channelParticipants.users.size(); i++) {
-                TLRPC.User user = tL_channels_channelParticipants.users.get(i);
-                MessagesController.getInstance(this.currentAccount).putUser(user, false);
-                int indexOf = list.indexOf(Long.valueOf(user.id));
-                if (!user.self && indexOf >= 0) {
-                    list2.add(new UserSeen(user, ((Integer) list3.get(indexOf)).intValue()));
-                }
-            }
-        }
-        runnable.run();
-    }
-
-    public void lambda$onAttachedToWindow$2(final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ReactedHeaderView.this.lambda$onAttachedToWindow$1(tLObject, list, list2, list3, runnable);
-            }
-        });
-    }
-
-    public void lambda$onAttachedToWindow$3(TLObject tLObject, List list, List list2, List list3, Runnable runnable) {
-        if (tLObject != null) {
-            TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
-            for (int i = 0; i < tL_messages_chatFull.users.size(); i++) {
-                TLRPC.User user = tL_messages_chatFull.users.get(i);
-                MessagesController.getInstance(this.currentAccount).putUser(user, false);
-                int indexOf = list.indexOf(Long.valueOf(user.id));
-                if (!user.self && indexOf >= 0) {
-                    list2.add(new UserSeen(user, ((Integer) list3.get(indexOf)).intValue()));
-                }
-            }
-        }
-        runnable.run();
-    }
-
-    public void lambda$onAttachedToWindow$4(final List list, final List list2, final List list3, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ReactedHeaderView.this.lambda$onAttachedToWindow$3(tLObject, list, list2, list3, runnable);
-            }
-        });
-    }
-
-    public void lambda$onAttachedToWindow$5(long j, TLRPC.Chat chat, TLObject tLObject, TLRPC.TL_error tL_error) {
-        RequestDelegate requestDelegate;
-        ConnectionsManager connectionsManager;
-        TLRPC.TL_messages_getFullChat tL_messages_getFullChat;
-        int i;
-        if (tLObject instanceof Vector) {
-            final ArrayList arrayList = new ArrayList();
-            final ArrayList arrayList2 = new ArrayList();
-            Iterator it = ((Vector) tLObject).objects.iterator();
-            while (it.hasNext()) {
-                Object next = it.next();
-                if (next instanceof Long) {
-                    Long l = (Long) next;
-                    if (j != l.longValue()) {
-                        arrayList.add(l);
-                        i = 0;
-                        arrayList2.add(i);
-                    }
-                } else if (next instanceof TLRPC.TL_readParticipantDate) {
-                    TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) next;
-                    long j2 = tL_readParticipantDate.user_id;
-                    int i2 = tL_readParticipantDate.date;
-                    if (j != j2) {
-                        arrayList.add(Long.valueOf(j2));
-                        i = Integer.valueOf(i2);
-                        arrayList2.add(i);
-                    }
-                }
-            }
-            arrayList.add(Long.valueOf(j));
-            arrayList2.add(0);
-            final ArrayList arrayList3 = new ArrayList();
-            final Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    ReactedHeaderView.this.lambda$onAttachedToWindow$0(arrayList3);
-                }
-            };
-            if (ChatObject.isChannel(chat)) {
-                TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                tL_channels_getParticipants.limit = MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold;
-                tL_channels_getParticipants.offset = 0;
-                tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
-                tL_channels_getParticipants.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(chat.id);
-                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.currentAccount);
-                requestDelegate = new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        ReactedHeaderView.this.lambda$onAttachedToWindow$2(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
-                    }
-                };
-                tL_messages_getFullChat = tL_channels_getParticipants;
-                connectionsManager = connectionsManager2;
-            } else {
-                TLRPC.TL_messages_getFullChat tL_messages_getFullChat2 = new TLRPC.TL_messages_getFullChat();
-                tL_messages_getFullChat2.chat_id = chat.id;
-                ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(this.currentAccount);
-                requestDelegate = new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        ReactedHeaderView.this.lambda$onAttachedToWindow$4(arrayList, arrayList3, arrayList2, runnable, tLObject2, tL_error2);
-                    }
-                };
-                tL_messages_getFullChat = tL_messages_getFullChat2;
-                connectionsManager = connectionsManager3;
-            }
-            connectionsManager.sendRequest(tL_messages_getFullChat, requestDelegate);
-        }
-    }
-
-    private void loadReactions() {
-        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
-        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());
-        tL_messages_getMessageReactionsList.id = this.message.getId();
-        tL_messages_getMessageReactionsList.limit = 3;
-        tL_messages_getMessageReactionsList.reaction = null;
-        tL_messages_getMessageReactionsList.offset = null;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReactedHeaderView.this.lambda$loadReactions$7(tLObject, tL_error);
-            }
-        }, 64);
+    public List<UserSeen> getSeenUsers() {
+        return this.seenUsers;
     }
 
     private void updateView() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReactedHeaderView.updateView():void");
     }
 
-    public List<UserSeen> getSeenUsers() {
-        return this.seenUsers;
-    }
-
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.isLoaded) {
+    public void requestLayout() {
+        if (this.ignoreLayout) {
             return;
         }
-        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        final TLRPC.Chat chat = messagesController.getChat(Long.valueOf(this.message.getChatId()));
-        TLRPC.ChatFull chatFull = messagesController.getChatFull(this.message.getChatId());
-        if (chat == null || !this.message.isOutOwner() || !this.message.isSent() || this.message.isEditing() || this.message.isSending() || this.message.isSendError() || this.message.isContentUnread() || this.message.isUnread() || ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - this.message.messageOwner.date >= 604800 || ((!ChatObject.isMegagroup(chat) && ChatObject.isChannel(chat)) || chatFull == null || chatFull.participants_count > MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold || (this.message.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
-            loadReactions();
-            return;
-        }
-        TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
-        tL_messages_getMessageReadParticipants.msg_id = this.message.getId();
-        tL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.message.getDialogId());
-        TLRPC.Peer peer = this.message.messageOwner.from_id;
-        final long j = peer != null ? peer.user_id : 0L;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReadParticipants, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReactedHeaderView.this.lambda$onAttachedToWindow$5(j, chat, tLObject, tL_error);
-            }
-        }, 64);
+        super.requestLayout();
     }
 
     @Override
@@ -390,19 +385,9 @@ public class ReactedHeaderView extends FrameLayout {
             this.flickerLoadingView.getLayoutParams().width = getMeasuredWidth();
             this.flickerLoadingView.setVisibility(0);
             this.ignoreLayout = false;
-        }
-        super.onMeasure(i, i2);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
+            super.onMeasure(i, i2);
             return;
         }
-        super.requestLayout();
-    }
-
-    public void setSeenCallback(Consumer consumer) {
-        this.seenCallback = consumer;
+        super.onMeasure(i, i2);
     }
 }

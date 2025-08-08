@@ -7,6 +7,7 @@ import android.graphics.Path;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -86,6 +87,22 @@ public class StarGiftUniqueActionLayout {
         this.bounce = new ButtonBounce(chatActionCell);
         this.imageReceiver = new ImageReceiver(chatActionCell);
         this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(chatActionCell, AndroidUtilities.dp(28.0f));
+    }
+
+    public void set(org.telegram.messenger.MessageObject r18, boolean r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.set(org.telegram.messenger.MessageObject, boolean):void");
+    }
+
+    public boolean has() {
+        return this.action != null;
+    }
+
+    public float getWidth() {
+        return this.width;
+    }
+
+    public float getHeight() {
+        return this.height;
     }
 
     public void attach() {
@@ -194,23 +211,31 @@ public class StarGiftUniqueActionLayout {
         this.view.invalidateOutbounds();
     }
 
-    public float getHeight() {
-        return this.height;
-    }
-
-    public float getWidth() {
-        return this.width;
-    }
-
-    public boolean has() {
-        return this.action != null;
-    }
-
-    public boolean onTouchEvent(float r10, float r11, android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.onTouchEvent(float, float, android.view.MotionEvent):boolean");
-    }
-
-    public void set(org.telegram.messenger.MessageObject r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.set(org.telegram.messenger.MessageObject, boolean):void");
+    public boolean onTouchEvent(float f, float f2, MotionEvent motionEvent) {
+        boolean contains = this.buttonRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
+        boolean contains2 = this.backgroundRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
+        if (motionEvent.getAction() == 0) {
+            this.bounce.setPressed(contains2 && !contains);
+            this.buttonBounce.setPressed(contains);
+        } else if (motionEvent.getAction() == 2) {
+            if (this.buttonBounce.isPressed() && !contains) {
+                this.buttonBounce.setPressed(false);
+            } else if (this.bounce.isPressed() && !contains2) {
+                this.bounce.setPressed(false);
+            }
+        } else {
+            if (motionEvent.getAction() == 1 && (this.buttonBounce.isPressed() || this.bounce.isPressed())) {
+                new StarGiftSheet(this.view.getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.resourcesProvider).set(this.currentMessageObject).show();
+                this.buttonBounce.setPressed(false);
+                this.bounce.setPressed(false);
+                return true;
+            }
+            if (motionEvent.getAction() == 3 && (this.buttonBounce.isPressed() || this.bounce.isPressed())) {
+                this.buttonBounce.setPressed(false);
+                this.bounce.setPressed(false);
+                return true;
+            }
+        }
+        return this.buttonBounce.isPressed() || this.bounce.isPressed();
     }
 }

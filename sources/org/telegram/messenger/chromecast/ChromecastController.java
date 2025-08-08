@@ -22,6 +22,98 @@ public class ChromecastController implements SessionManagerListener {
     private final SessionManager sessionManager;
     private final ChromecastControllerState state;
 
+    private ChromecastController() {
+        CastContext sharedInstance = CastContext.getSharedInstance(ApplicationLoader.applicationContext);
+        sharedInstance.addCastStateListener(new CastStateListener() {
+            @Override
+            public final void onCastStateChanged(int i) {
+                ChromecastController.lambda$new$0(i);
+            }
+        });
+        this.state = new ChromecastControllerState();
+        SessionManager sessionManager = sharedInstance.getSessionManager();
+        this.sessionManager = sessionManager;
+        sessionManager.addSessionManagerListener(this, CastSession.class);
+        tryInitClient(sessionManager.getCurrentCastSession());
+    }
+
+    public static void lambda$new$0(int i) {
+        Log.d("CAST_STATE", "onCastStateChanged " + i);
+    }
+
+    public boolean isCasting() {
+        return this.state.getClient() != null;
+    }
+
+    public void setCurrentMediaAndCastIfNeeded(ChromecastMediaVariations chromecastMediaVariations) {
+        Log.d("CAST_CONTROLLER", "set current media");
+        ChromecastMediaVariations media = this.state.getMedia();
+        if (CastSync.isActive() && eq(media, chromecastMediaVariations)) {
+            return;
+        }
+        this.state.setMedia(chromecastMediaVariations);
+    }
+
+    public String setCover(File file) {
+        return this.state.setCoverFile(file);
+    }
+
+    public static boolean eq(ChromecastMediaVariations chromecastMediaVariations, ChromecastMediaVariations chromecastMediaVariations2) {
+        if (chromecastMediaVariations == null && chromecastMediaVariations2 == null) {
+            return true;
+        }
+        if (chromecastMediaVariations == null || chromecastMediaVariations2 == null || chromecastMediaVariations.getVariationsCount() != chromecastMediaVariations2.getVariationsCount()) {
+            return false;
+        }
+        for (int i = 0; i < chromecastMediaVariations.getVariationsCount(); i++) {
+            if (!eq(chromecastMediaVariations.getVariation(i), chromecastMediaVariations2.getVariation(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean eq(ChromecastMedia chromecastMedia, ChromecastMedia chromecastMedia2) {
+        if (chromecastMedia == null && chromecastMedia2 == null) {
+            return true;
+        }
+        return chromecastMedia != null && chromecastMedia2 != null && Objects.equals(chromecastMedia.mimeType, chromecastMedia2.mimeType) && Objects.equals(chromecastMedia.mediaMetadata, chromecastMedia2.mediaMetadata) && Objects.equals(chromecastMedia.internalUri, chromecastMedia2.internalUri) && Objects.equals(chromecastMedia.externalPath, chromecastMedia2.externalPath) && chromecastMedia.width == chromecastMedia2.width && chromecastMedia.height == chromecastMedia2.height;
+    }
+
+    private void tryInitClient(CastSession castSession) {
+        if (castSession == null) {
+            return;
+        }
+        RemoteMediaClient remoteMediaClient = castSession.getRemoteMediaClient();
+        String sessionId = castSession.getSessionId();
+        if (TextUtils.isEmpty(sessionId) || remoteMediaClient == null) {
+            return;
+        }
+        RemoteMediaClientHandler client = this.state.getClient();
+        if (client == null || !TextUtils.equals(client.session.getSessionId(), sessionId)) {
+            this.state.setClient(new RemoteMediaClientHandler(castSession, this.sessionManager, remoteMediaClient));
+            CastDevice castDevice = castSession.getCastDevice();
+            PhotoViewer.getInstance().showChromecastBulletin(ChromecastFileServer.getHost(), castDevice != null ? castDevice.getFriendlyName() : null);
+        }
+    }
+
+    public static ChromecastController getInstance() {
+        ChromecastController chromecastController = Instance;
+        if (chromecastController == null) {
+            synchronized (ChromecastController.class) {
+                try {
+                    chromecastController = Instance;
+                    if (chromecastController == null) {
+                        chromecastController = new ChromecastController();
+                        Instance = chromecastController;
+                    }
+                } finally {
+                }
+            }
+        }
+        return chromecastController;
+    }
+
     public static class RemoteMediaClientHandler extends RemoteMediaClient.Callback {
         private int attempt;
         public final RemoteMediaClient client;
@@ -38,6 +130,40 @@ public class ChromecastController implements SessionManagerListener {
             this.client = remoteMediaClient;
         }
 
+        public void load(ChromecastMediaVariations chromecastMediaVariations) {
+            this.media = chromecastMediaVariations;
+            this.index = 0;
+            this.attempt = 0;
+            loadImpl();
+        }
+
+        public void register() {
+            this.client.registerCallback(this);
+        }
+
+        public void unregister() {
+            this.client.unregisterCallback(this);
+        }
+
+        public void close() {
+            this.manager.endCurrentSession(true);
+        }
+
+        private void loadNext(boolean z) {
+            if (z) {
+                this.index++;
+            } else {
+                int i = this.attempt + 1;
+                this.attempt = i;
+                if (i > 3) {
+                    this.attempt = 0;
+                    this.index++;
+                }
+            }
+            Log.e("CAST_CLIENT", "next attempt " + this.lastMediaErrorCode + " " + this.index + " " + this.attempt);
+            loadImpl();
+        }
+
         private void loadImpl() {
             this.lastMediaErrorCode = -1;
             if (this.media == null) {
@@ -47,32 +173,6 @@ public class ChromecastController implements SessionManagerListener {
             String host = ChromecastFileServer.getHost();
             ChromecastMedia variation = this.index < this.media.getVariationsCount() ? this.media.getVariation(this.index) : ChromecastFileServer.ASSET_FALLBACK_FILE;
             this.client.load(variation.buildMediaInfo(host, "?index=" + this.index + "&attempt=" + this.attempt), new MediaLoadOptions.Builder().setAutoplay(true).build());
-        }
-
-        private void loadNext(boolean z) {
-            if (!z) {
-                int i = this.attempt + 1;
-                this.attempt = i;
-                if (i > 3) {
-                    this.attempt = 0;
-                }
-                Log.e("CAST_CLIENT", "next attempt " + this.lastMediaErrorCode + " " + this.index + " " + this.attempt);
-                loadImpl();
-            }
-            this.index++;
-            Log.e("CAST_CLIENT", "next attempt " + this.lastMediaErrorCode + " " + this.index + " " + this.attempt);
-            loadImpl();
-        }
-
-        public void close() {
-            this.manager.endCurrentSession(true);
-        }
-
-        public void load(ChromecastMediaVariations chromecastMediaVariations) {
-            this.media = chromecastMediaVariations;
-            this.index = 0;
-            this.attempt = 0;
-            loadImpl();
         }
 
         @Override
@@ -109,7 +209,6 @@ public class ChromecastController implements SessionManagerListener {
 
         @Override
         public void onStatusUpdated() {
-            boolean z;
             Log.d("CAST_CLIENT", "onStatusUpdated " + this.session.getSessionId());
             int idleReason = this.client.getIdleReason();
             if (idleReason != this.lastIdleReason) {
@@ -122,103 +221,25 @@ public class ChromecastController implements SessionManagerListener {
                 if (idleReason == 4) {
                     int i = this.lastMediaErrorCode;
                     if (i == 104) {
-                        z = true;
-                    } else if (i != 102) {
-                        return;
-                    } else {
-                        z = false;
+                        loadNext(true);
+                    } else if (i == 102) {
+                        loadNext(false);
                     }
-                    loadNext(z);
                 }
             }
         }
-
-        public void register() {
-            this.client.registerCallback(this);
-        }
-
-        public void unregister() {
-            this.client.unregisterCallback(this);
-        }
     }
 
-    private ChromecastController() {
-        CastContext sharedInstance = CastContext.getSharedInstance(ApplicationLoader.applicationContext);
-        sharedInstance.addCastStateListener(new CastStateListener() {
-            @Override
-            public final void onCastStateChanged(int i) {
-                ChromecastController.lambda$new$0(i);
-            }
-        });
-        this.state = new ChromecastControllerState();
-        SessionManager sessionManager = sharedInstance.getSessionManager();
-        this.sessionManager = sessionManager;
-        sessionManager.addSessionManagerListener(this, CastSession.class);
-        tryInitClient(sessionManager.getCurrentCastSession());
+    @Override
+    public void onSessionStarting(CastSession castSession) {
+        Log.d("CAST_SESSION", "onSessionStarting " + castSession.getSessionId());
+        tryInitClient(castSession);
     }
 
-    public static boolean eq(ChromecastMedia chromecastMedia, ChromecastMedia chromecastMedia2) {
-        if (chromecastMedia == null && chromecastMedia2 == null) {
-            return true;
-        }
-        return chromecastMedia != null && chromecastMedia2 != null && Objects.equals(chromecastMedia.mimeType, chromecastMedia2.mimeType) && Objects.equals(chromecastMedia.mediaMetadata, chromecastMedia2.mediaMetadata) && Objects.equals(chromecastMedia.internalUri, chromecastMedia2.internalUri) && Objects.equals(chromecastMedia.externalPath, chromecastMedia2.externalPath) && chromecastMedia.width == chromecastMedia2.width && chromecastMedia.height == chromecastMedia2.height;
-    }
-
-    public static boolean eq(ChromecastMediaVariations chromecastMediaVariations, ChromecastMediaVariations chromecastMediaVariations2) {
-        if (chromecastMediaVariations == null && chromecastMediaVariations2 == null) {
-            return true;
-        }
-        if (chromecastMediaVariations == null || chromecastMediaVariations2 == null || chromecastMediaVariations.getVariationsCount() != chromecastMediaVariations2.getVariationsCount()) {
-            return false;
-        }
-        for (int i = 0; i < chromecastMediaVariations.getVariationsCount(); i++) {
-            if (!eq(chromecastMediaVariations.getVariation(i), chromecastMediaVariations2.getVariation(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static ChromecastController getInstance() {
-        ChromecastController chromecastController = Instance;
-        if (chromecastController == null) {
-            synchronized (ChromecastController.class) {
-                try {
-                    chromecastController = Instance;
-                    if (chromecastController == null) {
-                        chromecastController = new ChromecastController();
-                        Instance = chromecastController;
-                    }
-                } finally {
-                }
-            }
-        }
-        return chromecastController;
-    }
-
-    public static void lambda$new$0(int i) {
-        Log.d("CAST_STATE", "onCastStateChanged " + i);
-    }
-
-    private void tryInitClient(CastSession castSession) {
-        if (castSession == null) {
-            return;
-        }
-        RemoteMediaClient remoteMediaClient = castSession.getRemoteMediaClient();
-        String sessionId = castSession.getSessionId();
-        if (TextUtils.isEmpty(sessionId) || remoteMediaClient == null) {
-            return;
-        }
-        RemoteMediaClientHandler client = this.state.getClient();
-        if (client == null || !TextUtils.equals(client.session.getSessionId(), sessionId)) {
-            this.state.setClient(new RemoteMediaClientHandler(castSession, this.sessionManager, remoteMediaClient));
-            CastDevice castDevice = castSession.getCastDevice();
-            PhotoViewer.getInstance().showChromecastBulletin(ChromecastFileServer.getHost(), castDevice != null ? castDevice.getFriendlyName() : null);
-        }
-    }
-
-    public boolean isCasting() {
-        return this.state.getClient() != null;
+    @Override
+    public void onSessionStarted(CastSession castSession, String str) {
+        Log.d("CAST_SESSION", "onSessionStarted " + castSession.getSessionId() + " " + str);
+        tryInitClient(castSession);
     }
 
     @Override
@@ -253,32 +274,7 @@ public class ChromecastController implements SessionManagerListener {
     }
 
     @Override
-    public void onSessionStarted(CastSession castSession, String str) {
-        Log.d("CAST_SESSION", "onSessionStarted " + castSession.getSessionId() + " " + str);
-        tryInitClient(castSession);
-    }
-
-    @Override
-    public void onSessionStarting(CastSession castSession) {
-        Log.d("CAST_SESSION", "onSessionStarting " + castSession.getSessionId());
-        tryInitClient(castSession);
-    }
-
-    @Override
     public void onSessionSuspended(CastSession castSession, int i) {
         Log.d("CAST_SESSION", "onSessionStartSuspended " + castSession.getSessionId() + " " + i);
-    }
-
-    public String setCover(File file) {
-        return this.state.setCoverFile(file);
-    }
-
-    public void setCurrentMediaAndCastIfNeeded(ChromecastMediaVariations chromecastMediaVariations) {
-        Log.d("CAST_CONTROLLER", "set current media");
-        ChromecastMediaVariations media = this.state.getMedia();
-        if (CastSync.isActive() && eq(media, chromecastMediaVariations)) {
-            return;
-        }
-        this.state.setMedia(chromecastMediaVariations);
     }
 }

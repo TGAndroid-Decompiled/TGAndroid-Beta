@@ -1,6 +1,5 @@
 package kotlinx.coroutines;
 
-import kotlin.ExceptionsKt__ExceptionsKt;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.internal.CoroutineExceptionHandlerImpl_commonKt;
 
@@ -23,7 +22,7 @@ public abstract class CoroutineExceptionHandlerKt {
             return th;
         }
         RuntimeException runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th2);
-        ExceptionsKt__ExceptionsKt.addSuppressed(runtimeException, th);
+        kotlin.ExceptionsKt.addSuppressed(runtimeException, th);
         return runtimeException;
     }
 }

@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline2;
+import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -108,209 +109,13 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     public float tx;
     public float ty;
 
-    public class Part {
-        private ValueAnimator animator;
-        private StoryEntry content;
-        private boolean current;
-        private final AnimatedFloat highlightAnimated;
-        public final ImageReceiver imageReceiver;
-        private int index;
-        public CollageLayout.Part part;
-        public TextureView textureView;
-        public boolean textureViewReady;
-        public VideoPlayerHolderBase videoPlayer;
-        private volatile long pendingSeek = -1;
-        public boolean hasBounds = false;
-        public RectF fromBounds = new RectF();
-        public RectF bounds = new RectF();
-        public float boundsTransition = 1.0f;
-
-        public class AnonymousClass3 extends VideoPlayerHolderBase {
-            AnonymousClass3() {
-            }
-
-            public void lambda$onVideoSizeChanged$0(int i, int i2, int i3) {
-                StoryEntry storyEntry = Part.this.content;
-                if (storyEntry == null) {
-                    return;
-                }
-                if (storyEntry.width == i && storyEntry.height == i2 && storyEntry.orientation == i3) {
-                    return;
-                }
-                storyEntry.width = i;
-                storyEntry.height = i2;
-                storyEntry.orientation = i3;
-                TextureView textureView = Part.this.textureView;
-                if (textureView != null) {
-                    textureView.requestLayout();
-                }
-            }
-
-            @Override
-            public boolean needRepeat() {
-                return !CollageLayoutView2.this.preview;
-            }
-
-            @Override
-            public void onRenderedFirstFrame() {
-                Part part = Part.this;
-                part.textureViewReady = true;
-                CollageLayoutView2.this.invalidate();
-            }
-
-            @Override
-            protected void onVideoSizeChanged(final int i, final int i2, final int i3, float f) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        CollageLayoutView2.Part.AnonymousClass3.this.lambda$onVideoSizeChanged$0(i, i2, i3);
-                    }
-                });
-            }
-        }
-
-        public Part() {
-            this.highlightAnimated = new AnimatedFloat(CollageLayoutView2.this, 0L, 1200L, CubicBezierInterpolator.EASE_OUT);
-            this.imageReceiver = new ImageReceiver(CollageLayoutView2.this);
-        }
-
-        public static long access$802(Part part, long j) {
-            part.pendingSeek = j;
-            return j;
-        }
-
-        public void destroyContent() {
-            VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayer;
-            if (videoPlayerHolderBase != null) {
-                videoPlayerHolderBase.pause();
-                this.videoPlayer.release(null);
-                this.videoPlayer = null;
-            }
-            TextureView textureView = this.textureView;
-            if (textureView != null) {
-                AndroidUtilities.removeFromParent(textureView);
-                this.textureView = null;
-            }
-            this.textureViewReady = false;
-        }
-
-        public boolean hasContent() {
-            return this.content != null;
-        }
-
-        public void setContent(StoryEntry storyEntry) {
-            destroyContent();
-            this.content = storyEntry;
-            StringBuilder sb = new StringBuilder();
-            sb.append((int) Math.ceil(AndroidUtilities.displaySize.x / AndroidUtilities.density));
-            sb.append("_");
-            sb.append((int) Math.ceil(AndroidUtilities.displaySize.y / AndroidUtilities.density));
-            sb.append((storyEntry == null || !storyEntry.isVideo) ? "" : "_g");
-            sb.append("_exif");
-            String sb2 = sb.toString();
-            StoryEntry storyEntry2 = this.content;
-            if (storyEntry2 == null) {
-                this.imageReceiver.clearImage();
-            } else if (storyEntry2.isVideo) {
-                Bitmap bitmap = storyEntry2.blurredVideoThumb;
-                if (bitmap == null && (bitmap = storyEntry2.thumbBitmap) == null) {
-                    String str = storyEntry2.thumbPath;
-                    if (str != null) {
-                        this.imageReceiver.setImage(str, sb2, null, null, 0L);
-                    } else {
-                        this.imageReceiver.clearImage();
-                    }
-                } else {
-                    this.imageReceiver.setImageBitmap(bitmap);
-                }
-                TextureView textureView = new TextureView(CollageLayoutView2.this.getContext());
-                this.textureView = textureView;
-                CollageLayoutView2.this.addView(textureView);
-                AnonymousClass3 anonymousClass3 = new AnonymousClass3();
-                this.videoPlayer = anonymousClass3;
-                anonymousClass3.allowMultipleInstances(true);
-                this.videoPlayer.with(this.textureView);
-                this.videoPlayer.preparePlayer(Uri.fromFile(this.content.file), false, 1.0f);
-                VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayer;
-                CollageLayoutView2 collageLayoutView2 = CollageLayoutView2.this;
-                videoPlayerHolderBase.setVolume((collageLayoutView2.isMuted || this.content.muted || !collageLayoutView2.preview) ? 0.0f : this.content.videoVolume);
-                if (!CollageLayoutView2.this.preview || CollageLayoutView2.this.playing) {
-                    this.videoPlayer.play();
-                } else {
-                    this.videoPlayer.pause();
-                }
-            } else {
-                this.imageReceiver.setImage(storyEntry2.file.getAbsolutePath(), sb2, null, null, 0L);
-            }
-            CollageLayoutView2.this.invalidate();
-        }
-
-        public void setCurrent(boolean z) {
-            this.current = z;
-        }
-
-        public void setPart(CollageLayout.Part part, boolean z) {
-            CollageLayout.Part part2 = this.part;
-            if (part != null) {
-                this.part = part;
-            }
-            ValueAnimator valueAnimator = this.animator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.animator = null;
-            }
-            if (z) {
-                if (this.hasBounds) {
-                    RectF rectF = this.fromBounds;
-                    AndroidUtilities.lerp(rectF, this.bounds, this.boundsTransition, rectF);
-                } else {
-                    CollageLayoutView2.this.layoutOut(this.fromBounds, part);
-                }
-                if (part == null) {
-                    CollageLayoutView2.this.layoutOut(this.bounds, part2);
-                } else {
-                    CollageLayoutView2.this.layout(this.bounds, part);
-                }
-                this.boundsTransition = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.animator = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        Part.this.boundsTransition = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                        CollageLayoutView2.this.invalidate();
-                    }
-                });
-                this.animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        Part part3 = Part.this;
-                        part3.boundsTransition = 1.0f;
-                        if (CollageLayoutView2.this.removingParts.contains(part3)) {
-                            Part.this.imageReceiver.onDetachedFromWindow();
-                            Part.this.destroyContent();
-                            Part part4 = Part.this;
-                            CollageLayoutView2.this.removingParts.remove(part4);
-                        }
-                        CollageLayoutView2.this.invalidate();
-                    }
-                });
-                this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                this.animator.setDuration(360L);
-                this.animator.start();
-            } else {
-                CollageLayoutView2.this.layout(this.bounds, part);
-                this.boundsTransition = 1.0f;
-                if (part == null) {
-                    this.imageReceiver.onDetachedFromWindow();
-                    destroyContent();
-                    CollageLayoutView2.this.removingParts.remove(this);
-                }
-            }
-            CollageLayoutView2.this.invalidate();
-            this.hasBounds = true;
-        }
+    public static void lambda$onLongPress$4() {
     }
+
+    public void forceNotRestorePosition() {
+    }
+
+    protected abstract void onLayoutUpdate(CollageLayout collageLayout);
 
     public CollageLayoutView2(Context context, BlurringShader.BlurManager blurManager, FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -371,77 +176,12 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         setWillNotDraw(false);
     }
 
-    private void drawDrawable(Canvas canvas, Drawable drawable, RectF rectF, float f) {
-        if (drawable == null) {
-            return;
-        }
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        float max = Math.max(rectF.width() / intrinsicWidth, rectF.height() / intrinsicHeight);
-        canvas.save();
-        canvas.translate(rectF.centerX(), rectF.centerY());
-        canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
-        canvas.scale(max, max);
-        canvas.translate((-intrinsicWidth) / 2.0f, (-intrinsicHeight) / 2.0f);
-        drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-        drawable.draw(canvas);
-        if (f > 0.0f) {
-            canvas.drawColor(Theme.multAlpha(-16777216, drawable.getAlpha() * f));
-        }
-        canvas.restore();
+    public Part getCurrent() {
+        return this.currentPart;
     }
 
-    private void drawPart(android.graphics.Canvas r8, android.graphics.RectF r9, org.telegram.ui.Stories.recorder.CollageLayoutView2.Part r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.drawPart(android.graphics.Canvas, android.graphics.RectF, org.telegram.ui.Stories.recorder.CollageLayoutView2$Part):void");
-    }
-
-    private void drawView(Canvas canvas, View view, RectF rectF, float f) {
-        QRScanner.QrRegionDrawer qrRegionDrawer;
-        Bitmap bitmap;
-        if (view == null) {
-            return;
-        }
-        float max = Math.max(rectF.width() / view.getWidth(), rectF.height() / view.getHeight());
-        canvas.save();
-        canvas.translate(rectF.centerX(), rectF.centerY());
-        canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
-        canvas.scale(max, max);
-        canvas.translate((-view.getWidth()) / 2.0f, (-view.getHeight()) / 2.0f);
-        if (AndroidUtilities.makingGlobalBlurBitmap) {
-            TextureView textureView = view instanceof TextureView ? (TextureView) view : view instanceof CameraView ? ((CameraView) view).getTextureView() : null;
-            if (textureView != null && (bitmap = textureView.getBitmap()) != null) {
-                canvas.scale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-                canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-            }
-        } else {
-            view.draw(canvas);
-        }
-        if (f > 0.0f) {
-            canvas.drawColor(Theme.multAlpha(-16777216, view.getAlpha() * f));
-        }
-        canvas.restore();
-        if (view != this.cameraView || (qrRegionDrawer = this.qrDrawer) == null) {
-            return;
-        }
-        qrRegionDrawer.draw(canvas, rectF);
-    }
-
-    private void finishNode(Canvas canvas) {
-        RecordingCanvas beginRecording;
-        if (this.renderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
-            return;
-        }
-        RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.renderNode);
-        m.endRecording();
-        canvas.drawRenderNode(m);
-        Object obj = this.blurRenderNode;
-        if (obj != null) {
-            RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
-            m2.setPosition(0, 0, getWidth(), getHeight());
-            beginRecording = m2.beginRecording();
-            beginRecording.drawRenderNode(m);
-            m2.endRecording();
-        }
+    public Part getNext() {
+        return this.nextPart;
     }
 
     public void lambda$new$0() {
@@ -451,53 +191,65 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
     }
 
-    public void lambda$new$7() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.lambda$new$7():void");
-    }
-
-    public void lambda$onLongPress$1(Float f) {
-        this.longPressedPart.content.videoVolume = f.floatValue();
-        Part part = this.longPressedPart;
-        VideoPlayerHolderBase videoPlayerHolderBase = part.videoPlayer;
-        if (videoPlayerHolderBase != null) {
-            videoPlayerHolderBase.setVolume(part.content.videoVolume);
+    public void setLayout(CollageLayout collageLayout, boolean z) {
+        if (collageLayout == null) {
+            collageLayout = new CollageLayout(".");
+        }
+        this.currentLayout = collageLayout;
+        AndroidUtilities.cancelRunOnUIThread(this.resetReordering);
+        int i = 0;
+        while (i < Math.max(collageLayout.parts.size(), this.parts.size())) {
+            CollageLayout.Part part = i < collageLayout.parts.size() ? (CollageLayout.Part) collageLayout.parts.get(i) : null;
+            Part part2 = i < this.parts.size() ? (Part) this.parts.get(i) : null;
+            if (part2 == null && part != null) {
+                Part part3 = new Part();
+                if (this.attached) {
+                    part3.imageReceiver.onAttachedToWindow();
+                }
+                part3.setPart(part, z);
+                this.parts.add(part3);
+            } else if (part != null) {
+                part2.setPart(part, z);
+            } else if (part2 != null) {
+                this.removingParts.add(part2);
+                this.parts.remove(part2);
+                part2.setPart(null, z);
+                i--;
+            }
+            i++;
+        }
+        updatePartsState();
+        invalidate();
+        if (z) {
+            AndroidUtilities.runOnUIThread(this.resetReordering, 360L);
         }
     }
 
-    public void lambda$onLongPress$2() {
-        retake(this.longPressedPart);
-    }
-
-    public void lambda$onLongPress$3() {
-        delete(this.longPressedPart);
-    }
-
-    public static void lambda$onLongPress$4() {
-    }
-
-    public void lambda$onLongPress$5() {
-        VideoPlayerHolderBase videoPlayerHolderBase;
-        Part part = this.longPressedPart;
-        if (part == null || (videoPlayerHolderBase = part.videoPlayer) == null) {
-            return;
+    public void highlight(int i) {
+        Iterator it = this.parts.iterator();
+        while (it.hasNext()) {
+            Part part = (Part) it.next();
+            if (part.index == i) {
+                part.highlightAnimated.set(1.0f, true);
+                invalidate();
+                return;
+            }
         }
-        videoPlayerHolderBase.setVolume(0.0f);
     }
 
-    public void layout(RectF rectF, CollageLayout.Part part) {
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        if (measuredWidth <= 0 || measuredHeight <= 0) {
-            Point point = AndroidUtilities.displaySize;
-            int i = point.x;
-            measuredHeight = point.y;
-            measuredWidth = i;
+    public ArrayList<Integer> getOrder() {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < this.parts.size(); i++) {
+            arrayList.add(Integer.valueOf(((Part) this.parts.get(i)).index));
         }
-        int[] iArr = part.layout.columns;
-        int i2 = part.y;
-        float f = measuredWidth / iArr[i2];
-        float f2 = measuredHeight / r2.h;
-        rectF.set(part.x * f, i2 * f2, f * (r8 + 1), f2 * (i2 + 1));
+        return arrayList;
+    }
+
+    public void swap(int i, int i2) {
+        Collections.swap(this.parts, i, i2);
+        setLayout(this.currentLayout, true);
+        this.reordering = true;
+        invalidate();
     }
 
     public void layoutOut(RectF rectF, CollageLayout.Part part) {
@@ -533,6 +285,465 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             return;
         }
         rectF.offset(0.0f, rectF.height());
+    }
+
+    public void layout(RectF rectF, CollageLayout.Part part) {
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        if (measuredWidth <= 0 || measuredHeight <= 0) {
+            Point point = AndroidUtilities.displaySize;
+            int i = point.x;
+            measuredHeight = point.y;
+            measuredWidth = i;
+        }
+        int[] iArr = part.layout.columns;
+        int i2 = part.y;
+        float f = measuredWidth / iArr[i2];
+        float f2 = measuredHeight / r2.h;
+        rectF.set(part.x * f, i2 * f2, f * (r8 + 1), f2 * (i2 + 1));
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        if (view == this.cameraView && AndroidUtilities.makingGlobalBlurBitmap) {
+            return false;
+        }
+        return super.drawChild(canvas, view, j);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        Part part;
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        setMeasuredDimension(size, size2);
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            View childAt = getChildAt(i3);
+            if (childAt == this.cameraView) {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            } else {
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= this.parts.size()) {
+                        part = null;
+                        break;
+                    } else {
+                        if (childAt == ((Part) this.parts.get(i4)).textureView) {
+                            part = (Part) this.parts.get(i4);
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+                if (part == null || part.content == null || part.content.width <= 0 || part.content.height <= 0) {
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                } else {
+                    int i5 = part.content.width;
+                    int i6 = part.content.height;
+                    if (part.content.orientation % 90 != 1) {
+                        i6 = i5;
+                        i5 = i6;
+                    }
+                    float f = i6;
+                    float f2 = i5;
+                    float min = Math.min(1.0f, Math.max(f / size, f2 / size2));
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (f * min), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (f2 * min), 1073741824));
+                }
+            }
+        }
+    }
+
+    public void set(StoryEntry storyEntry, boolean z) {
+        if (storyEntry == null || storyEntry.collageContent == null) {
+            clear(true);
+            return;
+        }
+        setLayout(storyEntry.collage, z);
+        for (int i = 0; i < this.parts.size(); i++) {
+            ((Part) this.parts.get(i)).setContent((StoryEntry) storyEntry.collageContent.get(i));
+        }
+    }
+
+    @Override
+    public void drawScrim(Canvas canvas, float f) {
+        Part part = this.longPressedPart;
+        if (part != null) {
+            CollageLayout.Part part2 = part.part;
+            float f2 = part2.layout.h;
+            float f3 = this.animatedColumns[part2.y].set(r0.columns[r3]);
+            this.rect.set((getMeasuredWidth() / f3) * part2.x, (getMeasuredHeight() / f2) * part2.y, (getMeasuredWidth() / f3) * (part2.x + 1), (getMeasuredHeight() / f2) * (part2.y + 1));
+            drawPart(canvas, this.rect, this.longPressedPart);
+        }
+    }
+
+    @Override
+    public void getBounds(RectF rectF) {
+        Part part = this.longPressedPart;
+        if (part != null) {
+            CollageLayout.Part part2 = part.part;
+            float f = part2.layout.h;
+            float f2 = this.animatedColumns[part2.y].set(r1.columns[r4]);
+            rectF.set((getMeasuredWidth() / f2) * part2.x, (getMeasuredHeight() / f) * part2.y, (getMeasuredWidth() / f2) * (part2.x + 1), (getMeasuredHeight() / f) * (part2.y + 1));
+            return;
+        }
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+    }
+
+    public Object getBlurRenderNode() {
+        Shader.TileMode tileMode;
+        RenderEffect createBlurEffect;
+        if (this.renderNode == null && Build.VERSION.SDK_INT >= 31) {
+            this.renderNode = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNode");
+            RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNodeBlur");
+            this.blurRenderNode = m;
+            BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(m);
+            float dp = AndroidUtilities.dp(32.0f);
+            float dp2 = AndroidUtilities.dp(32.0f);
+            tileMode = Shader.TileMode.DECAL;
+            createBlurEffect = RenderEffect.createBlurEffect(dp, dp2, tileMode);
+            m.setRenderEffect(createBlurEffect);
+        }
+        return this.blurRenderNode;
+    }
+
+    private void finishNode(Canvas canvas) {
+        RecordingCanvas beginRecording;
+        if (this.renderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
+            return;
+        }
+        RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.renderNode);
+        m.endRecording();
+        canvas.drawRenderNode(m);
+        Object obj = this.blurRenderNode;
+        if (obj != null) {
+            RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
+            m2.setPosition(0, 0, getWidth(), getHeight());
+            beginRecording = m2.beginRecording();
+            beginRecording.drawRenderNode(m);
+            m2.endRecording();
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(android.graphics.Canvas r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    public int getTotalCount() {
+        return this.parts.size();
+    }
+
+    public int getFilledCount() {
+        int i = 0;
+        for (int i2 = 0; i2 < this.parts.size(); i2++) {
+            if (((Part) this.parts.get(i2)).hasContent()) {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    public float getFilledProgress() {
+        return getFilledCount() / getTotalCount();
+    }
+
+    private void drawPart(Canvas canvas, RectF rectF, Part part) {
+        boolean z;
+        ImageView imageView;
+        int width;
+        int height;
+        if (AndroidUtilities.makingGlobalBlurBitmap && part == this.longPressedPart) {
+            return;
+        }
+        if (part != this.reorderingPart || this.animatedReordering.get() <= 0.0f) {
+            z = false;
+        } else {
+            canvas.save();
+            this.clipPath.rewind();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(rectF);
+            rectF2.inset(AndroidUtilities.dp(10.0f) * this.animatedReordering.get(), AndroidUtilities.dp(10.0f) * this.animatedReordering.get());
+            float dp = AndroidUtilities.dp(12.0f) * this.animatedReordering.get();
+            this.clipPath.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+            z = true;
+        }
+        if (part != null && part.content != null) {
+            TextureView textureView = part.textureView;
+            if (textureView != null && part.textureViewReady) {
+                drawView(canvas, textureView, rectF, 0.0f);
+            } else {
+                part.imageReceiver.setImageCoords(rectF.left, rectF.top, rectF.width(), rectF.height());
+                if (!part.imageReceiver.draw(canvas)) {
+                    CameraView cameraView = this.cameraView;
+                    if (cameraView == null && this.cameraThumbVisible) {
+                        drawDrawable(canvas, this.cameraThumbDrawable, rectF, 0.0f);
+                    } else {
+                        drawView(canvas, cameraView, rectF, 0.0f);
+                    }
+                }
+            }
+        } else if ((part != null && part.current) || AndroidUtilities.makingGlobalBlurBitmap) {
+            CameraView cameraView2 = this.cameraView;
+            if (cameraView2 != null || !this.cameraThumbVisible) {
+                drawView(canvas, cameraView2, rectF, (part == null || !part.current) ? 0.4f : 0.0f);
+            } else {
+                drawDrawable(canvas, this.cameraThumbDrawable, rectF, (part == null || !part.current) ? 0.4f : 0.0f);
+            }
+        } else {
+            setCameraNeedsBlur(!this.preview);
+            if (this.cameraViewBlurRenderNode != null && Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
+                RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.cameraViewBlurRenderNode);
+                float width2 = rectF.width();
+                width = m.getWidth();
+                float f = width2 / width;
+                float height2 = rectF.height();
+                height = m.getHeight();
+                float max = Math.max(f, height2 / height);
+                canvas.save();
+                canvas.translate(rectF.left, rectF.top);
+                canvas.clipRect(0.0f, 0.0f, rectF.width(), rectF.height());
+                canvas.scale(max, max);
+                canvas.drawRenderNode(m);
+                canvas.drawColor(1677721600);
+                canvas.restore();
+            } else {
+                drawView(canvas, this.cameraView, rectF, 0.75f);
+            }
+            CameraView cameraView3 = this.cameraView;
+            if (cameraView3 != null && (imageView = cameraView3.blurredStubView) != null && imageView.getVisibility() == 0 && this.cameraView.blurredStubView.getAlpha() > 0.0f) {
+                drawView(canvas, this.cameraView.blurredStubView, rectF, 0.4f);
+            }
+        }
+        if (z) {
+            canvas.restore();
+        }
+    }
+
+    private void drawView(Canvas canvas, View view, RectF rectF, float f) {
+        QRScanner.QrRegionDrawer qrRegionDrawer;
+        TextureView textureView;
+        Bitmap bitmap;
+        if (view == null) {
+            return;
+        }
+        float max = Math.max(rectF.width() / view.getWidth(), rectF.height() / view.getHeight());
+        canvas.save();
+        canvas.translate(rectF.centerX(), rectF.centerY());
+        canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
+        canvas.scale(max, max);
+        canvas.translate((-view.getWidth()) / 2.0f, (-view.getHeight()) / 2.0f);
+        if (AndroidUtilities.makingGlobalBlurBitmap) {
+            if (view instanceof TextureView) {
+                textureView = (TextureView) view;
+            } else {
+                textureView = view instanceof CameraView ? ((CameraView) view).getTextureView() : null;
+            }
+            if (textureView != null && (bitmap = textureView.getBitmap()) != null) {
+                canvas.scale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+            }
+        } else {
+            view.draw(canvas);
+        }
+        if (f > 0.0f) {
+            canvas.drawColor(Theme.multAlpha(-16777216, view.getAlpha() * f));
+        }
+        canvas.restore();
+        if (view != this.cameraView || (qrRegionDrawer = this.qrDrawer) == null) {
+            return;
+        }
+        qrRegionDrawer.draw(canvas, rectF);
+    }
+
+    private void drawDrawable(Canvas canvas, Drawable drawable, RectF rectF, float f) {
+        if (drawable == null) {
+            return;
+        }
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int intrinsicHeight = drawable.getIntrinsicHeight();
+        float max = Math.max(rectF.width() / intrinsicWidth, rectF.height() / intrinsicHeight);
+        canvas.save();
+        canvas.translate(rectF.centerX(), rectF.centerY());
+        canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
+        canvas.scale(max, max);
+        canvas.translate((-intrinsicWidth) / 2.0f, (-intrinsicHeight) / 2.0f);
+        drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+        drawable.draw(canvas);
+        if (f > 0.0f) {
+            canvas.drawColor(Theme.multAlpha(-16777216, drawable.getAlpha() * f));
+        }
+        canvas.restore();
+    }
+
+    public void updatePartsState() {
+        this.currentPart = null;
+        this.nextPart = null;
+        int i = 0;
+        while (true) {
+            if (i >= this.parts.size()) {
+                break;
+            }
+            Part part = (Part) this.parts.get(i);
+            if (!part.hasContent()) {
+                if (this.currentPart == null) {
+                    this.currentPart = part;
+                } else {
+                    this.nextPart = part;
+                    break;
+                }
+            }
+            i++;
+        }
+        for (int i2 = 0; i2 < this.parts.size(); i2++) {
+            Part part2 = (Part) this.parts.get(i2);
+            part2.setCurrent(part2 == this.currentPart);
+        }
+    }
+
+    public boolean push(StoryEntry storyEntry) {
+        if (storyEntry != null && storyEntry.isVideo) {
+            Iterator it = this.parts.iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                Part part = (Part) it.next();
+                if (part.content != null && part.content.isVideo && part.content.videoVolume > 0.0f) {
+                    storyEntry.videoVolume = 0.0f;
+                    break;
+                }
+            }
+        }
+        Part part2 = this.currentPart;
+        if (part2 != null) {
+            part2.setContent(storyEntry);
+        }
+        updatePartsState();
+        requestLayout();
+        return this.currentPart == null;
+    }
+
+    public ArrayList<StoryEntry> getContent() {
+        ArrayList<StoryEntry> arrayList = new ArrayList<>();
+        Iterator it = this.parts.iterator();
+        while (it.hasNext()) {
+            Part part = (Part) it.next();
+            if (part.hasContent()) {
+                arrayList.add(part.content);
+            }
+        }
+        return arrayList;
+    }
+
+    public void clear(boolean z) {
+        Iterator it = this.parts.iterator();
+        while (it.hasNext()) {
+            ((Part) it.next()).setContent(null);
+        }
+        updatePartsState();
+    }
+
+    public CollageLayout getLayout() {
+        return this.currentLayout;
+    }
+
+    public boolean hasLayout() {
+        return this.currentLayout.parts.size() > 1;
+    }
+
+    public boolean hasContent() {
+        Iterator it = this.parts.iterator();
+        while (it.hasNext()) {
+            if (((Part) it.next()).hasContent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setCameraView(CameraView cameraView) {
+        CameraView cameraView2 = this.cameraView;
+        if (cameraView2 != cameraView && cameraView2 != null) {
+            cameraView2.unlistenDraw(new CollageLayoutView2$$ExternalSyntheticLambda1(this));
+            AndroidUtilities.removeFromParent(this.cameraView);
+            this.cameraView = null;
+            updateCameraNeedsBlur();
+        }
+        this.cameraView = cameraView;
+        if (cameraView != null) {
+            addView(cameraView, LayoutHelper.createFrame(-1, -1, 119));
+        }
+        CameraView cameraView3 = this.cameraView;
+        if (cameraView3 != null) {
+            cameraView3.unlistenDraw(new CollageLayoutView2$$ExternalSyntheticLambda1(this));
+        }
+        this.cameraView = cameraView;
+        if (cameraView != null) {
+            cameraView.listenDraw(new CollageLayoutView2$$ExternalSyntheticLambda1(this));
+        }
+        updateCameraNeedsBlur();
+        invalidate();
+    }
+
+    public void setCameraThumb(Drawable drawable) {
+        this.cameraThumbDrawable = drawable;
+        invalidate();
+    }
+
+    public void setCameraThumbVisible(boolean z) {
+        this.cameraThumbVisible = z;
+        invalidate();
+    }
+
+    public void setOnCameraThumbClick(Runnable runnable) {
+        this.onCameraThumbClick = runnable;
+    }
+
+    public void setCameraNeedsBlur(boolean z) {
+        if (this.needsBlur == z) {
+            return;
+        }
+        this.needsBlur = z;
+        updateCameraNeedsBlur();
+    }
+
+    public void updateCameraNeedsBlur() {
+        CameraView cameraView = this.cameraView;
+        boolean z = cameraView != null && this.needsBlur;
+        if (z == (this.cameraViewBlurRenderNode != null)) {
+            return;
+        }
+        if (z) {
+            this.cameraViewBlurRenderNode = cameraView.getBlurRenderNode();
+        } else {
+            this.cameraViewBlurRenderNode = null;
+        }
+    }
+
+    public Part getPartAt(float f, float f2) {
+        float f3 = this.animatedRows.get();
+        for (int i = 0; i < this.parts.size(); i++) {
+            Part part = (Part) this.parts.get(i);
+            float f4 = this.animatedColumns[part.part.y].get();
+            this.rect.set((getMeasuredWidth() / f4) * r3.x, (getMeasuredHeight() / f3) * r3.y, (getMeasuredWidth() / f4) * (r3.x + 1), (getMeasuredHeight() / f3) * (r3.y + 1));
+            if (this.rect.contains(f, f2)) {
+                return part;
+            }
+        }
+        return null;
+    }
+
+    public int getPartIndexAt(float f, float f2) {
+        float f3 = this.animatedRows.get();
+        for (int i = 0; i < this.parts.size(); i++) {
+            float f4 = this.animatedColumns[((Part) this.parts.get(i)).part.y].get();
+            this.rect.set((getMeasuredWidth() / f4) * r2.x, (getMeasuredHeight() / f3) * r2.y, (getMeasuredWidth() / f4) * (r2.x + 1), (getMeasuredHeight() / f3) * (r2.y + 1));
+            if (this.rect.contains(f, f2)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void onLongPress() {
@@ -607,28 +818,43 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
     }
 
-    public boolean cancelTouch() {
-        if (this.pressedPart == null) {
-            return false;
+    public void lambda$onLongPress$1(Float f) {
+        this.longPressedPart.content.videoVolume = f.floatValue();
+        Part part = this.longPressedPart;
+        VideoPlayerHolderBase videoPlayerHolderBase = part.videoPlayer;
+        if (videoPlayerHolderBase != null) {
+            videoPlayerHolderBase.setVolume(part.content.videoVolume);
         }
-        this.pressedPart = null;
-        this.reorderingTouch = false;
-        invalidate();
-        Runnable runnable = this.onLongPressPart;
-        if (runnable == null) {
-            return true;
-        }
-        AndroidUtilities.cancelRunOnUIThread(runnable);
-        this.onLongPressPart = null;
-        return true;
     }
 
-    public void clear(boolean z) {
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            ((Part) it.next()).setContent(null);
+    public void lambda$onLongPress$2() {
+        retake(this.longPressedPart);
+    }
+
+    public void lambda$onLongPress$3() {
+        delete(this.longPressedPart);
+    }
+
+    public void lambda$onLongPress$5() {
+        VideoPlayerHolderBase videoPlayerHolderBase;
+        Part part = this.longPressedPart;
+        if (part == null || (videoPlayerHolderBase = part.videoPlayer) == null) {
+            return;
         }
+        videoPlayerHolderBase.setVolume(0.0f);
+    }
+
+    public void retake(Part part) {
+        if (part == null) {
+            return;
+        }
+        part.setContent(null);
         updatePartsState();
+        invalidate();
+        Runnable runnable = this.onResetState;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
     public void delete(Part part) {
@@ -649,11 +875,6 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             }
             onLayoutUpdate(delete);
         }
-    }
-
-    @Override
-    protected void dispatchDraw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.dispatchDraw(android.graphics.Canvas):void");
     }
 
     @Override
@@ -748,229 +969,229 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         return this.pressedPart != null || super.dispatchTouchEvent(motionEvent);
     }
 
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (view == this.cameraView && AndroidUtilities.makingGlobalBlurBitmap) {
+    public boolean cancelTouch() {
+        if (this.pressedPart == null) {
             return false;
         }
-        return super.drawChild(canvas, view, j);
-    }
-
-    @Override
-    public void drawScrim(Canvas canvas, float f) {
-        Part part = this.longPressedPart;
-        if (part != null) {
-            CollageLayout.Part part2 = part.part;
-            float f2 = part2.layout.h;
-            float f3 = this.animatedColumns[part2.y].set(r0.columns[r3]);
-            this.rect.set((getMeasuredWidth() / f3) * part2.x, (getMeasuredHeight() / f2) * part2.y, (getMeasuredWidth() / f3) * (part2.x + 1), (getMeasuredHeight() / f2) * (part2.y + 1));
-            drawPart(canvas, this.rect, this.longPressedPart);
+        this.pressedPart = null;
+        this.reorderingTouch = false;
+        invalidate();
+        Runnable runnable = this.onLongPressPart;
+        if (runnable == null) {
+            return true;
         }
+        AndroidUtilities.cancelRunOnUIThread(runnable);
+        this.onLongPressPart = null;
+        return true;
     }
 
-    public void forceNotRestorePosition() {
-    }
+    public class Part {
+        private ValueAnimator animator;
+        private StoryEntry content;
+        private boolean current;
+        private final AnimatedFloat highlightAnimated;
+        public final ImageReceiver imageReceiver;
+        private int index;
+        public CollageLayout.Part part;
+        public TextureView textureView;
+        public boolean textureViewReady;
+        public VideoPlayerHolderBase videoPlayer;
+        private volatile long pendingSeek = -1;
+        public boolean hasBounds = false;
+        public RectF fromBounds = new RectF();
+        public RectF bounds = new RectF();
+        public float boundsTransition = 1.0f;
 
-    public Object getBlurRenderNode() {
-        Shader.TileMode tileMode;
-        RenderEffect createBlurEffect;
-        if (this.renderNode == null && Build.VERSION.SDK_INT >= 31) {
-            this.renderNode = new RenderNode("CameraViewRenderNode");
-            RenderNode renderNode = new RenderNode("CameraViewRenderNodeBlur");
-            this.blurRenderNode = renderNode;
-            BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(renderNode);
-            float dp = AndroidUtilities.dp(32.0f);
-            float dp2 = AndroidUtilities.dp(32.0f);
-            tileMode = Shader.TileMode.DECAL;
-            createBlurEffect = RenderEffect.createBlurEffect(dp, dp2, tileMode);
-            renderNode.setRenderEffect(createBlurEffect);
+        public static long access$802(Part part, long j) {
+            part.pendingSeek = j;
+            return j;
         }
-        return this.blurRenderNode;
-    }
 
-    @Override
-    public void getBounds(RectF rectF) {
-        Part part = this.longPressedPart;
-        if (part == null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            return;
+        public Part() {
+            this.highlightAnimated = new AnimatedFloat(CollageLayoutView2.this, 0L, 1200L, CubicBezierInterpolator.EASE_OUT);
+            this.imageReceiver = new ImageReceiver(CollageLayoutView2.this);
         }
-        CollageLayout.Part part2 = part.part;
-        float f = part2.layout.h;
-        float f2 = this.animatedColumns[part2.y].set(r1.columns[r4]);
-        rectF.set((getMeasuredWidth() / f2) * part2.x, (getMeasuredHeight() / f) * part2.y, (getMeasuredWidth() / f2) * (part2.x + 1), (getMeasuredHeight() / f) * (part2.y + 1));
-    }
 
-    public ArrayList<StoryEntry> getContent() {
-        ArrayList<StoryEntry> arrayList = new ArrayList<>();
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
-            if (part.hasContent()) {
-                arrayList.add(part.content);
+        public void setPart(CollageLayout.Part part, boolean z) {
+            CollageLayout.Part part2 = this.part;
+            if (part != null) {
+                this.part = part;
             }
-        }
-        return arrayList;
-    }
-
-    public Part getCurrent() {
-        return this.currentPart;
-    }
-
-    public long getDuration() {
-        Part mainPart;
-        if (!this.preview || (mainPart = getMainPart()) == null || mainPart.content == null) {
-            return 1L;
-        }
-        return Math.max(Math.min(((float) mainPart.content.duration) * (mainPart.content.videoRight - mainPart.content.videoLeft), 59500L), 1L);
-    }
-
-    public int getFilledCount() {
-        int i = 0;
-        for (int i2 = 0; i2 < this.parts.size(); i2++) {
-            if (((Part) this.parts.get(i2)).hasContent()) {
-                i++;
+            ValueAnimator valueAnimator = this.animator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.animator = null;
             }
-        }
-        return i;
-    }
-
-    public float getFilledProgress() {
-        return getFilledCount() / getTotalCount();
-    }
-
-    public CollageLayout getLayout() {
-        return this.currentLayout;
-    }
-
-    public Part getMainPart() {
-        Part part = null;
-        if (!this.preview) {
-            return null;
-        }
-        Iterator it = this.parts.iterator();
-        long j = 0;
-        while (it.hasNext()) {
-            Part part2 = (Part) it.next();
-            if (part2.content != null && part2.content.isVideo) {
-                long j2 = part2.content.duration;
-                VideoPlayerHolderBase videoPlayerHolderBase = part2.videoPlayer;
-                if (videoPlayerHolderBase != null && videoPlayerHolderBase.getDuration() > 0) {
-                    j2 = part2.videoPlayer.getDuration();
+            if (!z) {
+                CollageLayoutView2.this.layout(this.bounds, part);
+                this.boundsTransition = 1.0f;
+                if (part == null) {
+                    this.imageReceiver.onDetachedFromWindow();
+                    destroyContent();
+                    CollageLayoutView2.this.removingParts.remove(this);
                 }
-                if (j2 > j) {
-                    part = part2;
-                    j = j2;
+            } else {
+                if (!this.hasBounds) {
+                    CollageLayoutView2.this.layoutOut(this.fromBounds, part);
+                } else {
+                    RectF rectF = this.fromBounds;
+                    AndroidUtilities.lerp(rectF, this.bounds, this.boundsTransition, rectF);
+                }
+                if (part == null) {
+                    CollageLayoutView2.this.layoutOut(this.bounds, part2);
+                } else {
+                    CollageLayoutView2.this.layout(this.bounds, part);
+                }
+                this.boundsTransition = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.animator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        Part.this.boundsTransition = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                        CollageLayoutView2.this.invalidate();
+                    }
+                });
+                this.animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        Part part3 = Part.this;
+                        part3.boundsTransition = 1.0f;
+                        if (CollageLayoutView2.this.removingParts.contains(part3)) {
+                            Part.this.imageReceiver.onDetachedFromWindow();
+                            Part.this.destroyContent();
+                            Part part4 = Part.this;
+                            CollageLayoutView2.this.removingParts.remove(part4);
+                        }
+                        CollageLayoutView2.this.invalidate();
+                    }
+                });
+                this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.animator.setDuration(360L);
+                this.animator.start();
+            }
+            CollageLayoutView2.this.invalidate();
+            this.hasBounds = true;
+        }
+
+        public void setCurrent(boolean z) {
+            this.current = z;
+        }
+
+        public void setContent(StoryEntry storyEntry) {
+            destroyContent();
+            this.content = storyEntry;
+            StringBuilder sb = new StringBuilder();
+            sb.append((int) Math.ceil(AndroidUtilities.displaySize.x / AndroidUtilities.density));
+            sb.append("_");
+            sb.append((int) Math.ceil(AndroidUtilities.displaySize.y / AndroidUtilities.density));
+            sb.append((storyEntry == null || !storyEntry.isVideo) ? "" : "_g");
+            sb.append("_exif");
+            String sb2 = sb.toString();
+            StoryEntry storyEntry2 = this.content;
+            if (storyEntry2 == null) {
+                this.imageReceiver.clearImage();
+            } else if (storyEntry2.isVideo) {
+                Bitmap bitmap = storyEntry2.blurredVideoThumb;
+                if (bitmap != null) {
+                    this.imageReceiver.setImageBitmap(bitmap);
+                } else {
+                    Bitmap bitmap2 = storyEntry2.thumbBitmap;
+                    if (bitmap2 != null) {
+                        this.imageReceiver.setImageBitmap(bitmap2);
+                    } else {
+                        String str = storyEntry2.thumbPath;
+                        if (str != null) {
+                            this.imageReceiver.setImage(str, sb2, null, null, 0L);
+                        } else {
+                            this.imageReceiver.clearImage();
+                        }
+                    }
+                }
+                TextureView textureView = new TextureView(CollageLayoutView2.this.getContext());
+                this.textureView = textureView;
+                CollageLayoutView2.this.addView(textureView);
+                AnonymousClass3 anonymousClass3 = new AnonymousClass3();
+                this.videoPlayer = anonymousClass3;
+                anonymousClass3.allowMultipleInstances(true);
+                this.videoPlayer.with(this.textureView);
+                this.videoPlayer.preparePlayer(Uri.fromFile(this.content.file), false, 1.0f);
+                VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayer;
+                CollageLayoutView2 collageLayoutView2 = CollageLayoutView2.this;
+                videoPlayerHolderBase.setVolume((collageLayoutView2.isMuted || this.content.muted || !collageLayoutView2.preview) ? 0.0f : this.content.videoVolume);
+                if (!CollageLayoutView2.this.preview || CollageLayoutView2.this.playing) {
+                    this.videoPlayer.play();
+                } else {
+                    this.videoPlayer.pause();
+                }
+            } else {
+                this.imageReceiver.setImage(storyEntry2.file.getAbsolutePath(), sb2, null, null, 0L);
+            }
+            CollageLayoutView2.this.invalidate();
+        }
+
+        public class AnonymousClass3 extends VideoPlayerHolderBase {
+            AnonymousClass3() {
+            }
+
+            @Override
+            public void onRenderedFirstFrame() {
+                Part part = Part.this;
+                part.textureViewReady = true;
+                CollageLayoutView2.this.invalidate();
+            }
+
+            @Override
+            protected void onVideoSizeChanged(final int i, final int i2, final int i3, float f) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        CollageLayoutView2.Part.AnonymousClass3.this.lambda$onVideoSizeChanged$0(i, i2, i3);
+                    }
+                });
+            }
+
+            public void lambda$onVideoSizeChanged$0(int i, int i2, int i3) {
+                StoryEntry storyEntry = Part.this.content;
+                if (storyEntry == null) {
+                    return;
+                }
+                if (storyEntry.width == i && storyEntry.height == i2 && storyEntry.orientation == i3) {
+                    return;
+                }
+                storyEntry.width = i;
+                storyEntry.height = i2;
+                storyEntry.orientation = i3;
+                TextureView textureView = Part.this.textureView;
+                if (textureView != null) {
+                    textureView.requestLayout();
                 }
             }
-        }
-        return part;
-    }
 
-    public Part getNext() {
-        return this.nextPart;
-    }
-
-    public ArrayList<Integer> getOrder() {
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        for (int i = 0; i < this.parts.size(); i++) {
-            arrayList.add(Integer.valueOf(((Part) this.parts.get(i)).index));
-        }
-        return arrayList;
-    }
-
-    public Part getPartAt(float f, float f2) {
-        float f3 = this.animatedRows.get();
-        for (int i = 0; i < this.parts.size(); i++) {
-            Part part = (Part) this.parts.get(i);
-            float f4 = this.animatedColumns[part.part.y].get();
-            this.rect.set((getMeasuredWidth() / f4) * r3.x, (getMeasuredHeight() / f3) * r3.y, (getMeasuredWidth() / f4) * (r3.x + 1), (getMeasuredHeight() / f3) * (r3.y + 1));
-            if (this.rect.contains(f, f2)) {
-                return part;
+            @Override
+            public boolean needRepeat() {
+                return !CollageLayoutView2.this.preview;
             }
         }
-        return null;
-    }
 
-    public int getPartIndexAt(float f, float f2) {
-        float f3 = this.animatedRows.get();
-        for (int i = 0; i < this.parts.size(); i++) {
-            float f4 = this.animatedColumns[((Part) this.parts.get(i)).part.y].get();
-            this.rect.set((getMeasuredWidth() / f4) * r2.x, (getMeasuredHeight() / f3) * r2.y, (getMeasuredWidth() / f4) * (r2.x + 1), (getMeasuredHeight() / f3) * (r2.y + 1));
-            if (this.rect.contains(f, f2)) {
-                return i;
+        public boolean hasContent() {
+            return this.content != null;
+        }
+
+        public void destroyContent() {
+            VideoPlayerHolderBase videoPlayerHolderBase = this.videoPlayer;
+            if (videoPlayerHolderBase != null) {
+                videoPlayerHolderBase.pause();
+                this.videoPlayer.release(null);
+                this.videoPlayer = null;
             }
-        }
-        return -1;
-    }
-
-    public long getPosition() {
-        if (!this.preview) {
-            return 0L;
-        }
-        if (!this.playing) {
-            return this.lastPausedPosition;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j = currentTimeMillis - this.previewStartTime;
-        if (j > getDuration()) {
-            this.previewStartTime = currentTimeMillis - (j % getDuration());
-        }
-        return j;
-    }
-
-    public long getPositionWithOffset() {
-        if (!this.preview) {
-            return 0L;
-        }
-        getPosition();
-        Part mainPart = getMainPart();
-        return getPosition() + (mainPart != null ? mainPart.content.videoOffset + (mainPart.content.videoLeft * ((float) mainPart.content.duration)) : 0L);
-    }
-
-    public int getTotalCount() {
-        return this.parts.size();
-    }
-
-    public boolean hasContent() {
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            if (((Part) it.next()).hasContent()) {
-                return true;
+            TextureView textureView = this.textureView;
+            if (textureView != null) {
+                AndroidUtilities.removeFromParent(textureView);
+                this.textureView = null;
             }
+            this.textureViewReady = false;
         }
-        return false;
-    }
-
-    public boolean hasLayout() {
-        return this.currentLayout.parts.size() > 1;
-    }
-
-    public boolean hasVideo() {
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
-            if (part.content != null && part.content.isVideo) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void highlight(int i) {
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
-            if (part.index == i) {
-                part.highlightAnimated.set(1.0f, true);
-                invalidate();
-                return;
-            }
-        }
-    }
-
-    public boolean isPlaying() {
-        return this.playing;
     }
 
     @Override
@@ -992,224 +1213,12 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
     }
 
-    protected abstract void onLayoutUpdate(CollageLayout collageLayout);
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int makeMeasureSpec;
-        int makeMeasureSpec2;
-        Part part;
-        int size = View.MeasureSpec.getSize(i);
-        int size2 = View.MeasureSpec.getSize(i2);
-        setMeasuredDimension(size, size2);
-        for (int i3 = 0; i3 < getChildCount(); i3++) {
-            View childAt = getChildAt(i3);
-            if (childAt != this.cameraView) {
-                int i4 = 0;
-                while (true) {
-                    if (i4 >= this.parts.size()) {
-                        part = null;
-                        break;
-                    } else {
-                        if (childAt == ((Part) this.parts.get(i4)).textureView) {
-                            part = (Part) this.parts.get(i4);
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-                if (part != null && part.content != null && part.content.width > 0 && part.content.height > 0) {
-                    int i5 = part.content.width;
-                    int i6 = part.content.height;
-                    if (part.content.orientation % 90 != 1) {
-                        i6 = i5;
-                        i5 = i6;
-                    }
-                    float f = i6;
-                    float f2 = i5;
-                    float min = Math.min(1.0f, Math.max(f / size, f2 / size2));
-                    makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) (f * min), 1073741824);
-                    makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec((int) (f2 * min), 1073741824);
-                    childAt.measure(makeMeasureSpec, makeMeasureSpec2);
-                }
-            }
-            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-            makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
-            childAt.measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-    }
-
-    public boolean push(StoryEntry storyEntry) {
-        if (storyEntry != null && storyEntry.isVideo) {
-            Iterator it = this.parts.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                Part part = (Part) it.next();
-                if (part.content != null && part.content.isVideo && part.content.videoVolume > 0.0f) {
-                    storyEntry.videoVolume = 0.0f;
-                    break;
-                }
-            }
-        }
-        Part part2 = this.currentPart;
-        if (part2 != null) {
-            part2.setContent(storyEntry);
-        }
-        updatePartsState();
-        requestLayout();
-        return this.currentPart == null;
-    }
-
-    public void retake(Part part) {
-        if (part == null) {
-            return;
-        }
-        part.setContent(null);
-        updatePartsState();
-        invalidate();
-        Runnable runnable = this.onResetState;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public void seekTo(long j, boolean z) {
-        if (this.preview) {
-            long clamp = Utilities.clamp(j, getDuration(), 0L);
-            if (!this.playing) {
-                this.lastPausedPosition = clamp;
-            }
-            this.previewStartTime = System.currentTimeMillis() - clamp;
-            this.fastSeek = z;
-            if (this.preview) {
-                AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
-                this.syncRunnable.run();
-            }
-        }
-    }
-
-    public void set(StoryEntry storyEntry, boolean z) {
-        if (storyEntry == null || storyEntry.collageContent == null) {
-            clear(true);
-            return;
-        }
-        setLayout(storyEntry.collage, z);
-        for (int i = 0; i < this.parts.size(); i++) {
-            ((Part) this.parts.get(i)).setContent((StoryEntry) storyEntry.collageContent.get(i));
-        }
-    }
-
-    public void setCameraNeedsBlur(boolean z) {
-        if (this.needsBlur == z) {
-            return;
-        }
-        this.needsBlur = z;
-        updateCameraNeedsBlur();
-    }
-
-    public void setCameraThumb(Drawable drawable) {
-        this.cameraThumbDrawable = drawable;
-        invalidate();
-    }
-
-    public void setCameraThumbVisible(boolean z) {
-        this.cameraThumbVisible = z;
-        invalidate();
-    }
-
-    public void setCameraView(CameraView cameraView) {
-        CameraView cameraView2 = this.cameraView;
-        if (cameraView2 != cameraView && cameraView2 != null) {
-            cameraView2.unlistenDraw(new CollageLayoutView2$$ExternalSyntheticLambda1(this));
-            AndroidUtilities.removeFromParent(this.cameraView);
-            this.cameraView = null;
-            updateCameraNeedsBlur();
-        }
-        this.cameraView = cameraView;
-        if (cameraView != null) {
-            addView(cameraView, LayoutHelper.createFrame(-1, -1, 119));
-        }
-        CameraView cameraView3 = this.cameraView;
-        if (cameraView3 != null) {
-            cameraView3.unlistenDraw(new CollageLayoutView2$$ExternalSyntheticLambda1(this));
-        }
-        this.cameraView = cameraView;
-        if (cameraView != null) {
-            cameraView.listenDraw(new CollageLayoutView2$$ExternalSyntheticLambda1(this));
-        }
-        updateCameraNeedsBlur();
-        invalidate();
-    }
-
     public void setCancelGestures(Runnable runnable) {
         this.cancelGestures = runnable;
     }
 
-    public void setLayout(CollageLayout collageLayout, boolean z) {
-        if (collageLayout == null) {
-            collageLayout = new CollageLayout(".");
-        }
-        this.currentLayout = collageLayout;
-        AndroidUtilities.cancelRunOnUIThread(this.resetReordering);
-        int i = 0;
-        while (i < Math.max(collageLayout.parts.size(), this.parts.size())) {
-            CollageLayout.Part part = i < collageLayout.parts.size() ? (CollageLayout.Part) collageLayout.parts.get(i) : null;
-            Part part2 = i < this.parts.size() ? (Part) this.parts.get(i) : null;
-            if (part2 == null && part != null) {
-                Part part3 = new Part();
-                if (this.attached) {
-                    part3.imageReceiver.onAttachedToWindow();
-                }
-                part3.setPart(part, z);
-                this.parts.add(part3);
-            } else if (part != null) {
-                part2.setPart(part, z);
-            } else if (part2 != null) {
-                this.removingParts.add(part2);
-                this.parts.remove(part2);
-                part2.setPart(null, z);
-                i--;
-            }
-            i++;
-        }
-        updatePartsState();
-        invalidate();
-        if (z) {
-            AndroidUtilities.runOnUIThread(this.resetReordering, 360L);
-        }
-    }
-
-    public void setMuted(boolean z) {
-        if (this.isMuted == z) {
-            return;
-        }
-        this.isMuted = z;
-    }
-
-    public void setOnCameraThumbClick(Runnable runnable) {
-        this.onCameraThumbClick = runnable;
-    }
-
-    public void setPlaying(boolean z) {
-        boolean z2 = this.restorePositionOnPlaying;
-        this.restorePositionOnPlaying = true;
-        if (this.playing == z) {
-            return;
-        }
-        this.playing = z;
-        if (!z) {
-            this.lastPausedPosition = getPosition();
-        } else if (z2) {
-            seekTo(this.lastPausedPosition, false);
-        } else {
-            this.fastSeek = false;
-        }
-        if (this.preview) {
-            AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
-            this.syncRunnable.run();
-        }
+    public void setResetState(Runnable runnable) {
+        this.onResetState = runnable;
     }
 
     public void setPreview(boolean z) {
@@ -1248,55 +1257,128 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
     }
 
-    public void setPreviewView(PreviewView previewView) {
-        this.previewView = previewView;
-    }
-
-    public void setResetState(Runnable runnable) {
-        this.onResetState = runnable;
+    public Part getMainPart() {
+        Part part = null;
+        if (!this.preview) {
+            return null;
+        }
+        Iterator it = this.parts.iterator();
+        long j = 0;
+        while (it.hasNext()) {
+            Part part2 = (Part) it.next();
+            if (part2.content != null && part2.content.isVideo) {
+                long j2 = part2.content.duration;
+                VideoPlayerHolderBase videoPlayerHolderBase = part2.videoPlayer;
+                if (videoPlayerHolderBase != null && videoPlayerHolderBase.getDuration() > 0) {
+                    j2 = part2.videoPlayer.getDuration();
+                }
+                if (j2 > j) {
+                    part = part2;
+                    j = j2;
+                }
+            }
+        }
+        return part;
     }
 
     public void setTimelineView(TimelineView timelineView) {
         this.timelineView = timelineView;
     }
 
-    public void swap(int i, int i2) {
-        Collections.swap(this.parts, i, i2);
-        setLayout(this.currentLayout, true);
-        this.reordering = true;
-        invalidate();
+    public void setPreviewView(PreviewView previewView) {
+        this.previewView = previewView;
     }
 
-    public void updateCameraNeedsBlur() {
-        CameraView cameraView = this.cameraView;
-        boolean z = cameraView != null && this.needsBlur;
-        if (z == (this.cameraViewBlurRenderNode != null)) {
+    public long getPosition() {
+        if (!this.preview) {
+            return 0L;
+        }
+        if (!this.playing) {
+            return this.lastPausedPosition;
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        long j = currentTimeMillis - this.previewStartTime;
+        if (j > getDuration()) {
+            this.previewStartTime = currentTimeMillis - (j % getDuration());
+        }
+        return j;
+    }
+
+    public long getPositionWithOffset() {
+        if (!this.preview) {
+            return 0L;
+        }
+        getPosition();
+        Part mainPart = getMainPart();
+        return getPosition() + (mainPart != null ? mainPart.content.videoOffset + (mainPart.content.videoLeft * ((float) mainPart.content.duration)) : 0L);
+    }
+
+    public void setPlaying(boolean z) {
+        boolean z2 = this.restorePositionOnPlaying;
+        this.restorePositionOnPlaying = true;
+        if (this.playing == z) {
             return;
         }
-        this.cameraViewBlurRenderNode = z ? cameraView.getBlurRenderNode() : null;
+        this.playing = z;
+        if (!z) {
+            this.lastPausedPosition = getPosition();
+        } else if (z2) {
+            seekTo(this.lastPausedPosition, false);
+        } else {
+            this.fastSeek = false;
+        }
+        if (this.preview) {
+            AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
+            this.syncRunnable.run();
+        }
     }
 
-    public void updatePartsState() {
-        this.currentPart = null;
-        this.nextPart = null;
-        int i = 0;
-        while (true) {
-            if (i >= this.parts.size()) {
-                break;
-            }
-            Part part = (Part) this.parts.get(i);
-            if (!part.hasContent()) {
-                if (this.currentPart != null) {
-                    this.nextPart = part;
-                    break;
-                }
-                this.currentPart = part;
-            }
-            i++;
+    public boolean isPlaying() {
+        return this.playing;
+    }
+
+    public void setMuted(boolean z) {
+        if (this.isMuted == z) {
+            return;
         }
-        for (int i2 = 0; i2 < this.parts.size(); i2++) {
-            Part part2 = (Part) this.parts.get(i2);
-            part2.setCurrent(part2 == this.currentPart);
+        this.isMuted = z;
+    }
+
+    public boolean hasVideo() {
+        Iterator it = this.parts.iterator();
+        while (it.hasNext()) {
+            Part part = (Part) it.next();
+            if (part.content != null && part.content.isVideo) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    public long getDuration() {
+        Part mainPart;
+        if (!this.preview || (mainPart = getMainPart()) == null || mainPart.content == null) {
+            return 1L;
+        }
+        return Math.max(Math.min(((float) mainPart.content.duration) * (mainPart.content.videoRight - mainPart.content.videoLeft), 59500L), 1L);
+    }
+
+    public void seekTo(long j, boolean z) {
+        if (this.preview) {
+            long clamp = Utilities.clamp(j, getDuration(), 0L);
+            if (!this.playing) {
+                this.lastPausedPosition = clamp;
+            }
+            this.previewStartTime = System.currentTimeMillis() - clamp;
+            this.fastSeek = z;
+            if (this.preview) {
+                AndroidUtilities.cancelRunOnUIThread(this.syncRunnable);
+                this.syncRunnable.run();
+            }
+        }
+    }
+
+    public void lambda$new$7() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.lambda$new$7():void");
     }
 }

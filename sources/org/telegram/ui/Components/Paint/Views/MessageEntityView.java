@@ -68,94 +68,11 @@ public abstract class MessageEntityView extends EntityView {
     private int videoHeight;
     private int videoWidth;
 
-    public class MessageEntityViewSelectionView extends EntityView.SelectionView {
-        private final Paint clearPaint;
-        private Path path;
+    public abstract boolean drawForBitmap();
 
-        public MessageEntityViewSelectionView(Context context) {
-            super(context);
-            Paint paint = new Paint(1);
-            this.clearPaint = paint;
-            this.path = new Path();
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            int saveCount = canvas.getSaveCount();
-            float showAlpha = getShowAlpha();
-            if (showAlpha <= 0.0f) {
-                return;
-            }
-            if (showAlpha < 1.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
-            }
-            float dp = AndroidUtilities.dp(2.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float f = dp2 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f;
-            float measuredHeight = getMeasuredHeight() - f;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = dp2 + measuredWidth;
-            float f3 = dp2 + measuredHeight;
-            rectF.set(dp2, dp2, f2, f3);
-            float dp3 = AndroidUtilities.dp(12.0f);
-            float min = Math.min(dp3, measuredWidth / 2.0f);
-            float f4 = measuredHeight / 2.0f;
-            float min2 = Math.min(dp3, f4);
-            this.path.rewind();
-            float f5 = min * 2.0f;
-            float f6 = dp2 + f5;
-            float f7 = 2.0f * min2;
-            float f8 = dp2 + f7;
-            rectF.set(dp2, dp2, f6, f8);
-            this.path.arcTo(rectF, 180.0f, 90.0f);
-            float f9 = f2 - f5;
-            rectF.set(f9, dp2, f2, f8);
-            this.path.arcTo(rectF, 270.0f, 90.0f);
-            canvas.drawPath(this.path, this.paint);
-            this.path.rewind();
-            float f10 = f3 - f7;
-            rectF.set(dp2, f10, f6, f3);
-            this.path.arcTo(rectF, 180.0f, -90.0f);
-            rectF.set(f9, f10, f2, f3);
-            this.path.arcTo(rectF, 90.0f, -90.0f);
-            canvas.drawPath(this.path, this.paint);
-            float f11 = dp2 + f4;
-            canvas.drawCircle(dp2, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.drawCircle(f2, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            float f12 = dp2 + min2;
-            float f13 = f3 - min2;
-            canvas.drawLine(dp2, f12, dp2, f13, this.paint);
-            canvas.drawLine(f2, f12, f2, f13, this.paint);
-            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
-            canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
-            canvas.restoreToCount(saveCount);
-        }
-
-        @Override
-        protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
-            float f4 = f3 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f4;
-            float measuredHeight = getMeasuredHeight() - f4;
-            float f5 = (measuredHeight / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > f5 - dp2 && f < f3 + dp2 && f2 < f5 + dp2) {
-                return 1;
-            }
-            float f6 = f3 + measuredWidth;
-            if (f <= f6 - dp2 || f2 <= f5 - dp2 || f >= f6 + dp2 || f2 >= f5 + dp2) {
-                return (f <= f3 || f >= measuredWidth || f2 <= f3 || f2 >= measuredHeight) ? 0 : 3;
-            }
-            return 2;
-        }
+    @Override
+    protected float getBounceScale() {
+        return 0.02f;
     }
 
     public MessageEntityView(final Context context, Point point, float f, float f2, ArrayList arrayList, final BlurringShader.BlurManager blurManager, final boolean z, final PreviewView.TextureViewHolder textureViewHolder) {
@@ -176,6 +93,42 @@ public abstract class MessageEntityView extends EntityView {
             public final TextPaint chat_actionTextPaint2;
             public final TextPaint chat_botButtonPaint;
 
+            @Override
+            public void applyServiceShaderMatrix(int i, int i2, float f3, float f4) {
+                Theme.applyServiceShaderMatrix(i, i2, f3, f4);
+            }
+
+            @Override
+            public ColorFilter getAnimatedEmojiColorFilter() {
+                ColorFilter colorFilter;
+                colorFilter = Theme.chat_animatedEmojiTextColorFilter;
+                return colorFilter;
+            }
+
+            @Override
+            public int getColorOrDefault(int i) {
+                int color;
+                color = getColor(i);
+                return color;
+            }
+
+            @Override
+            public int getCurrentColor(int i) {
+                int color;
+                color = getColor(i);
+                return color;
+            }
+
+            @Override
+            public boolean hasGradientService() {
+                return Theme.ResourcesProvider.CC.$default$hasGradientService(this);
+            }
+
+            @Override
+            public void setAnimatedColor(int i, int i2) {
+                Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
+            }
+
             {
                 TextPaint textPaint = new TextPaint();
                 this.chat_actionTextPaint = textPaint;
@@ -195,88 +148,8 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public void applyServiceShaderMatrix(int i, int i2, float f3, float f4) {
-                Theme.applyServiceShaderMatrix(i, i2, f3, f4);
-            }
-
-            @Override
-            public ColorFilter getAnimatedEmojiColorFilter() {
-                ColorFilter colorFilter;
-                colorFilter = Theme.chat_animatedEmojiTextColorFilter;
-                return colorFilter;
-            }
-
-            @Override
             public int getColor(int i) {
                 return MessageEntityView.this.currentColors.get(i, Theme.getColor(i));
-            }
-
-            @Override
-            public int getColorOrDefault(int i) {
-                int color;
-                color = getColor(i);
-                return color;
-            }
-
-            @Override
-            public int getCurrentColor(int i) {
-                int color;
-                color = getColor(i);
-                return color;
-            }
-
-            @Override
-            public Drawable getDrawable(String str) {
-                if (str.equals("drawableMsgIn")) {
-                    if (MessageEntityView.this.msgInDrawable == null) {
-                        MessageEntityView.this.msgInDrawable = new Theme.MessageDrawable(0, false, false, MessageEntityView.this.resourcesProvider);
-                    }
-                    return MessageEntityView.this.msgInDrawable;
-                }
-                if (str.equals("drawableMsgInSelected")) {
-                    if (MessageEntityView.this.msgInDrawableSelected == null) {
-                        MessageEntityView.this.msgInDrawableSelected = new Theme.MessageDrawable(0, false, true, MessageEntityView.this.resourcesProvider);
-                    }
-                    return MessageEntityView.this.msgInDrawableSelected;
-                }
-                if (str.equals("drawableMsgOut")) {
-                    if (MessageEntityView.this.msgOutDrawable == null) {
-                        MessageEntityView.this.msgOutDrawable = new Theme.MessageDrawable(0, true, false, MessageEntityView.this.resourcesProvider);
-                    }
-                    return MessageEntityView.this.msgOutDrawable;
-                }
-                if (str.equals("drawableMsgOutSelected")) {
-                    if (MessageEntityView.this.msgOutDrawableSelected == null) {
-                        MessageEntityView.this.msgOutDrawableSelected = new Theme.MessageDrawable(0, true, true, MessageEntityView.this.resourcesProvider);
-                    }
-                    return MessageEntityView.this.msgOutDrawableSelected;
-                }
-                if (str.equals("drawableMsgInMedia")) {
-                    if (MessageEntityView.this.msgMediaInDrawable == null) {
-                        MessageEntityView.this.msgMediaInDrawable = new Theme.MessageDrawable(1, false, false, MessageEntityView.this.resourcesProvider);
-                    }
-                    MessageEntityView.this.msgMediaInDrawable.invalidateSelf();
-                    return MessageEntityView.this.msgMediaInDrawable;
-                }
-                if (str.equals("drawableMsgInMediaSelected")) {
-                    if (MessageEntityView.this.msgMediaInDrawableSelected == null) {
-                        MessageEntityView.this.msgMediaInDrawableSelected = new Theme.MessageDrawable(1, false, true, MessageEntityView.this.resourcesProvider);
-                    }
-                    return MessageEntityView.this.msgMediaInDrawableSelected;
-                }
-                if (str.equals("drawableMsgOutMedia")) {
-                    if (MessageEntityView.this.msgMediaOutDrawable == null) {
-                        MessageEntityView.this.msgMediaOutDrawable = new Theme.MessageDrawable(1, true, false, MessageEntityView.this.resourcesProvider);
-                    }
-                    return MessageEntityView.this.msgMediaOutDrawable;
-                }
-                if (!str.equals("drawableMsgOutMediaSelected")) {
-                    return Theme.getThemeDrawable(str);
-                }
-                if (MessageEntityView.this.msgMediaOutDrawableSelected == null) {
-                    MessageEntityView.this.msgMediaOutDrawableSelected = new Theme.MessageDrawable(1, true, true, MessageEntityView.this.resourcesProvider);
-                }
-                return MessageEntityView.this.msgMediaOutDrawableSelected;
             }
 
             @Override
@@ -334,18 +207,62 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public boolean hasGradientService() {
-                return Theme.ResourcesProvider.CC.$default$hasGradientService(this);
+            public Drawable getDrawable(String str) {
+                if (str.equals("drawableMsgIn")) {
+                    if (MessageEntityView.this.msgInDrawable == null) {
+                        MessageEntityView.this.msgInDrawable = new Theme.MessageDrawable(0, false, false, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgInDrawable;
+                }
+                if (str.equals("drawableMsgInSelected")) {
+                    if (MessageEntityView.this.msgInDrawableSelected == null) {
+                        MessageEntityView.this.msgInDrawableSelected = new Theme.MessageDrawable(0, false, true, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgInDrawableSelected;
+                }
+                if (str.equals("drawableMsgOut")) {
+                    if (MessageEntityView.this.msgOutDrawable == null) {
+                        MessageEntityView.this.msgOutDrawable = new Theme.MessageDrawable(0, true, false, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgOutDrawable;
+                }
+                if (str.equals("drawableMsgOutSelected")) {
+                    if (MessageEntityView.this.msgOutDrawableSelected == null) {
+                        MessageEntityView.this.msgOutDrawableSelected = new Theme.MessageDrawable(0, true, true, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgOutDrawableSelected;
+                }
+                if (str.equals("drawableMsgInMedia")) {
+                    if (MessageEntityView.this.msgMediaInDrawable == null) {
+                        MessageEntityView.this.msgMediaInDrawable = new Theme.MessageDrawable(1, false, false, MessageEntityView.this.resourcesProvider);
+                    }
+                    MessageEntityView.this.msgMediaInDrawable.invalidateSelf();
+                    return MessageEntityView.this.msgMediaInDrawable;
+                }
+                if (str.equals("drawableMsgInMediaSelected")) {
+                    if (MessageEntityView.this.msgMediaInDrawableSelected == null) {
+                        MessageEntityView.this.msgMediaInDrawableSelected = new Theme.MessageDrawable(1, false, true, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgMediaInDrawableSelected;
+                }
+                if (str.equals("drawableMsgOutMedia")) {
+                    if (MessageEntityView.this.msgMediaOutDrawable == null) {
+                        MessageEntityView.this.msgMediaOutDrawable = new Theme.MessageDrawable(1, true, false, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgMediaOutDrawable;
+                }
+                if (str.equals("drawableMsgOutMediaSelected")) {
+                    if (MessageEntityView.this.msgMediaOutDrawableSelected == null) {
+                        MessageEntityView.this.msgMediaOutDrawableSelected = new Theme.MessageDrawable(1, true, true, MessageEntityView.this.resourcesProvider);
+                    }
+                    return MessageEntityView.this.msgMediaOutDrawableSelected;
+                }
+                return Theme.getThemeDrawable(str);
             }
 
             @Override
             public boolean isDark() {
                 return MessageEntityView.this.isDark;
-            }
-
-            @Override
-            public void setAnimatedColor(int i, int i2) {
-                Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
             }
         };
         this.blurManager = blurManager;
@@ -383,33 +300,38 @@ public abstract class MessageEntityView extends EntityView {
             private final Path clipPath = new Path();
 
             @Override
-            protected boolean drawChild(Canvas canvas, View view, long j) {
-                ImageReceiver photoImage;
-                if (view != MessageEntityView.this.textureView) {
-                    return super.drawChild(canvas, view, j);
+            protected void onMeasure(int i4, int i5) {
+                int left;
+                int boundsRight;
+                MessageEntityView.this.listView.measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
+                if (MessageEntityView.this.textureView != null) {
+                    MessageEntityView.this.textureView.measure(View.MeasureSpec.makeMeasureSpec(MessageEntityView.this.listView.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(MessageEntityView.this.listView.getMeasuredHeight(), 1073741824));
                 }
-                ChatMessageCell cell = MessageEntityView.this.getCell();
-                if (cell == null || (photoImage = cell.getPhotoImage()) == null) {
-                    return false;
+                int measuredWidth = MessageEntityView.this.listView.getMeasuredWidth();
+                int i6 = 0;
+                for (int i7 = 0; i7 < MessageEntityView.this.listView.getChildCount(); i7++) {
+                    View childAt = MessageEntityView.this.listView.getChildAt(i7);
+                    int left2 = childAt.getLeft();
+                    int right = childAt.getRight();
+                    if (childAt instanceof ChatMessageCell) {
+                        ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
+                        left2 = childAt.getLeft() + chatMessageCell.getBoundsLeft();
+                        left = childAt.getLeft();
+                        boundsRight = chatMessageCell.getBoundsRight();
+                    } else if (childAt instanceof ChatActionCell) {
+                        ChatActionCell chatActionCell = (ChatActionCell) childAt;
+                        left2 = childAt.getLeft() + chatActionCell.getBoundsLeft();
+                        left = childAt.getLeft();
+                        boundsRight = chatActionCell.getBoundsRight();
+                    } else {
+                        measuredWidth = Math.min(left2, measuredWidth);
+                        i6 = Math.max(right, i6);
+                    }
+                    right = boundsRight + left;
+                    measuredWidth = Math.min(left2, measuredWidth);
+                    i6 = Math.max(right, i6);
                 }
-                this.videoMatrix.reset();
-                float max = Math.max(photoImage.getImageWidth() / MessageEntityView.this.videoWidth, photoImage.getImageHeight() / MessageEntityView.this.videoHeight);
-                this.videoMatrix.postScale((MessageEntityView.this.videoWidth / MessageEntityView.this.textureView.getWidth()) * max, (MessageEntityView.this.videoHeight / MessageEntityView.this.textureView.getHeight()) * max);
-                this.videoMatrix.postTranslate(((MessageEntityView.this.listView.getX() + cell.getX()) + photoImage.getCenterX()) - ((MessageEntityView.this.videoWidth * max) / 2.0f), ((MessageEntityView.this.listView.getY() + cell.getY()) + photoImage.getCenterY()) - ((MessageEntityView.this.videoHeight * max) / 2.0f));
-                MessageEntityView.this.textureView.setTransform(this.videoMatrix);
-                canvas.save();
-                this.clipPath.rewind();
-                AndroidUtilities.rectTmp.set(MessageEntityView.this.listView.getX() + cell.getX() + photoImage.getImageX(), MessageEntityView.this.listView.getY() + cell.getY() + photoImage.getImageY(), MessageEntityView.this.listView.getX() + cell.getX() + photoImage.getImageX2(), MessageEntityView.this.listView.getY() + cell.getY() + photoImage.getImageY2());
-                for (int i4 = 0; i4 < photoImage.getRoundRadius().length; i4++) {
-                    int i5 = i4 * 2;
-                    this.radii[i5] = photoImage.getRoundRadius()[i4];
-                    this.radii[i5 + 1] = photoImage.getRoundRadius()[i4];
-                }
-                this.clipPath.addRoundRect(AndroidUtilities.rectTmp, this.radii, Path.Direction.CW);
-                canvas.clipPath(this.clipPath);
-                boolean drawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
-                return drawChild;
+                setMeasuredDimension(i6 - measuredWidth, MessageEntityView.this.listView.getMeasuredHeight());
             }
 
             @Override
@@ -448,38 +370,33 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            protected void onMeasure(int i4, int i5) {
-                int left;
-                int boundsRight;
-                MessageEntityView.this.listView.measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
-                if (MessageEntityView.this.textureView != null) {
-                    MessageEntityView.this.textureView.measure(View.MeasureSpec.makeMeasureSpec(MessageEntityView.this.listView.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(MessageEntityView.this.listView.getMeasuredHeight(), 1073741824));
-                }
-                int measuredWidth = MessageEntityView.this.listView.getMeasuredWidth();
-                int i6 = 0;
-                for (int i7 = 0; i7 < MessageEntityView.this.listView.getChildCount(); i7++) {
-                    View childAt = MessageEntityView.this.listView.getChildAt(i7);
-                    int left2 = childAt.getLeft();
-                    int right = childAt.getRight();
-                    if (childAt instanceof ChatMessageCell) {
-                        ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
-                        left2 = childAt.getLeft() + chatMessageCell.getBoundsLeft();
-                        left = childAt.getLeft();
-                        boundsRight = chatMessageCell.getBoundsRight();
-                    } else if (childAt instanceof ChatActionCell) {
-                        ChatActionCell chatActionCell = (ChatActionCell) childAt;
-                        left2 = childAt.getLeft() + chatActionCell.getBoundsLeft();
-                        left = childAt.getLeft();
-                        boundsRight = chatActionCell.getBoundsRight();
-                    } else {
-                        measuredWidth = Math.min(left2, measuredWidth);
-                        i6 = Math.max(right, i6);
+            protected boolean drawChild(Canvas canvas, View view, long j) {
+                ImageReceiver photoImage;
+                if (view == MessageEntityView.this.textureView) {
+                    ChatMessageCell cell = MessageEntityView.this.getCell();
+                    if (cell == null || (photoImage = cell.getPhotoImage()) == null) {
+                        return false;
                     }
-                    right = boundsRight + left;
-                    measuredWidth = Math.min(left2, measuredWidth);
-                    i6 = Math.max(right, i6);
+                    this.videoMatrix.reset();
+                    float max = Math.max(photoImage.getImageWidth() / MessageEntityView.this.videoWidth, photoImage.getImageHeight() / MessageEntityView.this.videoHeight);
+                    this.videoMatrix.postScale((MessageEntityView.this.videoWidth / MessageEntityView.this.textureView.getWidth()) * max, (MessageEntityView.this.videoHeight / MessageEntityView.this.textureView.getHeight()) * max);
+                    this.videoMatrix.postTranslate(((MessageEntityView.this.listView.getX() + cell.getX()) + photoImage.getCenterX()) - ((MessageEntityView.this.videoWidth * max) / 2.0f), ((MessageEntityView.this.listView.getY() + cell.getY()) + photoImage.getCenterY()) - ((MessageEntityView.this.videoHeight * max) / 2.0f));
+                    MessageEntityView.this.textureView.setTransform(this.videoMatrix);
+                    canvas.save();
+                    this.clipPath.rewind();
+                    AndroidUtilities.rectTmp.set(MessageEntityView.this.listView.getX() + cell.getX() + photoImage.getImageX(), MessageEntityView.this.listView.getY() + cell.getY() + photoImage.getImageY(), MessageEntityView.this.listView.getX() + cell.getX() + photoImage.getImageX2(), MessageEntityView.this.listView.getY() + cell.getY() + photoImage.getImageY2());
+                    for (int i4 = 0; i4 < photoImage.getRoundRadius().length; i4++) {
+                        int i5 = i4 * 2;
+                        this.radii[i5] = photoImage.getRoundRadius()[i4];
+                        this.radii[i5 + 1] = photoImage.getRoundRadius()[i4];
+                    }
+                    this.clipPath.addRoundRect(AndroidUtilities.rectTmp, this.radii, Path.Direction.CW);
+                    canvas.clipPath(this.clipPath);
+                    boolean drawChild = super.drawChild(canvas, view, j);
+                    canvas.restore();
+                    return drawChild;
                 }
-                setMeasuredDimension(i6 - measuredWidth, MessageEntityView.this.listView.getMeasuredHeight());
+                return super.drawChild(canvas, view, j);
             }
         };
         this.container = frameLayout;
@@ -490,6 +407,120 @@ public abstract class MessageEntityView extends EntityView {
             private final ArrayList drawCaptionAfter = new ArrayList();
             private final ArrayList drawReactionsAfter = new ArrayList();
             private final ArrayList drawingGroups = new ArrayList(10);
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                canvas.save();
+                this.selectorRect.setEmpty();
+                drawChatBackgroundElements(canvas);
+                super.dispatchDraw(canvas);
+                drawChatForegroundElements(canvas);
+                canvas.restore();
+            }
+
+            private void drawChatForegroundElements(Canvas canvas) {
+                int size = this.drawTimeAfter.size();
+                boolean z2 = 1;
+                boolean z3 = false;
+                if (size > 0) {
+                    for (int i4 = 0; i4 < size; i4++) {
+                        ChatMessageCell chatMessageCell = (ChatMessageCell) this.drawTimeAfter.get(i4);
+                        canvas.save();
+                        canvas.translate(chatMessageCell.getLeft() + chatMessageCell.getNonAnimationTranslationX(false), chatMessageCell.getY());
+                        chatMessageCell.drawTime(canvas, chatMessageCell.shouldDrawAlphaLayer() ? chatMessageCell.getAlpha() : 1.0f, true);
+                        canvas.restore();
+                    }
+                    this.drawTimeAfter.clear();
+                }
+                int size2 = this.drawNamesAfter.size();
+                if (size2 > 0) {
+                    for (int i5 = 0; i5 < size2; i5++) {
+                        ChatMessageCell chatMessageCell2 = (ChatMessageCell) this.drawNamesAfter.get(i5);
+                        float left = chatMessageCell2.getLeft() + chatMessageCell2.getNonAnimationTranslationX(false);
+                        float y = chatMessageCell2.getY();
+                        float alpha = chatMessageCell2.shouldDrawAlphaLayer() ? chatMessageCell2.getAlpha() : 1.0f;
+                        canvas.save();
+                        canvas.translate(left, y);
+                        chatMessageCell2.setInvalidatesParent(true);
+                        chatMessageCell2.drawNamesLayout(canvas, alpha);
+                        chatMessageCell2.setInvalidatesParent(false);
+                        canvas.restore();
+                    }
+                    this.drawNamesAfter.clear();
+                }
+                int size3 = this.drawCaptionAfter.size();
+                if (size3 > 0) {
+                    int i6 = 0;
+                    while (i6 < size3) {
+                        ChatMessageCell chatMessageCell3 = (ChatMessageCell) this.drawCaptionAfter.get(i6);
+                        boolean z4 = chatMessageCell3.getCurrentPosition() != null && (chatMessageCell3.getCurrentPosition().flags & z2) == 0;
+                        float alpha2 = chatMessageCell3.shouldDrawAlphaLayer() ? chatMessageCell3.getAlpha() : 1.0f;
+                        float left2 = chatMessageCell3.getLeft() + chatMessageCell3.getNonAnimationTranslationX(z3);
+                        float y2 = chatMessageCell3.getY();
+                        canvas.save();
+                        MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup();
+                        if (currentMessagesGroup != null && currentMessagesGroup.transitionParams.backgroundChangeBounds) {
+                            float nonAnimationTranslationX = chatMessageCell3.getNonAnimationTranslationX(z2);
+                            MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
+                            float f3 = transitionParams.left + nonAnimationTranslationX + transitionParams.offsetLeft;
+                            float f4 = transitionParams.top + transitionParams.offsetTop;
+                            float f5 = transitionParams.right + nonAnimationTranslationX + transitionParams.offsetRight;
+                            float f6 = transitionParams.bottom + transitionParams.offsetBottom;
+                            if (!transitionParams.backgroundChangeBounds) {
+                                f4 += chatMessageCell3.getTranslationY();
+                                f6 += chatMessageCell3.getTranslationY();
+                            }
+                            canvas.clipRect(f3 + AndroidUtilities.dp(8.0f), f4 + AndroidUtilities.dp(8.0f), f5 - AndroidUtilities.dp(8.0f), f6 - AndroidUtilities.dp(8.0f));
+                        }
+                        if (chatMessageCell3.getTransitionParams().wasDraw) {
+                            canvas.translate(left2, y2);
+                            chatMessageCell3.setInvalidatesParent(true);
+                            chatMessageCell3.drawCaptionLayout(canvas, z4, alpha2);
+                            chatMessageCell3.setInvalidatesParent(false);
+                            canvas.restore();
+                        }
+                        i6++;
+                        z2 = 1;
+                        z3 = false;
+                    }
+                    this.drawCaptionAfter.clear();
+                }
+                int size4 = this.drawReactionsAfter.size();
+                if (size4 > 0) {
+                    for (int i7 = 0; i7 < size4; i7++) {
+                        ChatMessageCell chatMessageCell4 = (ChatMessageCell) this.drawReactionsAfter.get(i7);
+                        if (chatMessageCell4.getCurrentPosition() == null || (chatMessageCell4.getCurrentPosition().flags & 1) != 0) {
+                            float alpha3 = chatMessageCell4.shouldDrawAlphaLayer() ? chatMessageCell4.getAlpha() : 1.0f;
+                            float left3 = chatMessageCell4.getLeft() + chatMessageCell4.getNonAnimationTranslationX(false);
+                            float y3 = chatMessageCell4.getY();
+                            canvas.save();
+                            MessageObject.GroupedMessages currentMessagesGroup2 = chatMessageCell4.getCurrentMessagesGroup();
+                            if (currentMessagesGroup2 != null && currentMessagesGroup2.transitionParams.backgroundChangeBounds) {
+                                float nonAnimationTranslationX2 = chatMessageCell4.getNonAnimationTranslationX(true);
+                                MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup2.transitionParams;
+                                float f7 = transitionParams2.left + nonAnimationTranslationX2 + transitionParams2.offsetLeft;
+                                float f8 = transitionParams2.top + transitionParams2.offsetTop;
+                                float f9 = transitionParams2.right + nonAnimationTranslationX2 + transitionParams2.offsetRight;
+                                float f10 = transitionParams2.bottom + transitionParams2.offsetBottom;
+                                if (!transitionParams2.backgroundChangeBounds) {
+                                    f8 += chatMessageCell4.getTranslationY();
+                                    f10 += chatMessageCell4.getTranslationY();
+                                }
+                                canvas.clipRect(f7 + AndroidUtilities.dp(8.0f), f8 + AndroidUtilities.dp(8.0f), f9 - AndroidUtilities.dp(8.0f), f10 - AndroidUtilities.dp(8.0f));
+                            }
+                            if (chatMessageCell4.getTransitionParams().wasDraw) {
+                                canvas.translate(left3, y3);
+                                chatMessageCell4.setInvalidatesParent(true);
+                                chatMessageCell4.drawReactionsLayout(canvas, alpha3, null);
+                                chatMessageCell4.drawCommentLayout(canvas, alpha3);
+                                chatMessageCell4.setInvalidatesParent(false);
+                                canvas.restore();
+                            }
+                        }
+                    }
+                    this.drawReactionsAfter.clear();
+                }
+            }
 
             private void drawChatBackgroundElements(Canvas canvas) {
                 float f3;
@@ -684,120 +715,6 @@ public abstract class MessageEntityView extends EntityView {
                 }
             }
 
-            private void drawChatForegroundElements(Canvas canvas) {
-                int size = this.drawTimeAfter.size();
-                boolean z2 = 1;
-                boolean z3 = false;
-                if (size > 0) {
-                    for (int i4 = 0; i4 < size; i4++) {
-                        ChatMessageCell chatMessageCell = (ChatMessageCell) this.drawTimeAfter.get(i4);
-                        canvas.save();
-                        canvas.translate(chatMessageCell.getLeft() + chatMessageCell.getNonAnimationTranslationX(false), chatMessageCell.getY());
-                        chatMessageCell.drawTime(canvas, chatMessageCell.shouldDrawAlphaLayer() ? chatMessageCell.getAlpha() : 1.0f, true);
-                        canvas.restore();
-                    }
-                    this.drawTimeAfter.clear();
-                }
-                int size2 = this.drawNamesAfter.size();
-                if (size2 > 0) {
-                    for (int i5 = 0; i5 < size2; i5++) {
-                        ChatMessageCell chatMessageCell2 = (ChatMessageCell) this.drawNamesAfter.get(i5);
-                        float left = chatMessageCell2.getLeft() + chatMessageCell2.getNonAnimationTranslationX(false);
-                        float y = chatMessageCell2.getY();
-                        float alpha = chatMessageCell2.shouldDrawAlphaLayer() ? chatMessageCell2.getAlpha() : 1.0f;
-                        canvas.save();
-                        canvas.translate(left, y);
-                        chatMessageCell2.setInvalidatesParent(true);
-                        chatMessageCell2.drawNamesLayout(canvas, alpha);
-                        chatMessageCell2.setInvalidatesParent(false);
-                        canvas.restore();
-                    }
-                    this.drawNamesAfter.clear();
-                }
-                int size3 = this.drawCaptionAfter.size();
-                if (size3 > 0) {
-                    int i6 = 0;
-                    while (i6 < size3) {
-                        ChatMessageCell chatMessageCell3 = (ChatMessageCell) this.drawCaptionAfter.get(i6);
-                        boolean z4 = chatMessageCell3.getCurrentPosition() != null && (chatMessageCell3.getCurrentPosition().flags & z2) == 0;
-                        float alpha2 = chatMessageCell3.shouldDrawAlphaLayer() ? chatMessageCell3.getAlpha() : 1.0f;
-                        float left2 = chatMessageCell3.getLeft() + chatMessageCell3.getNonAnimationTranslationX(z3);
-                        float y2 = chatMessageCell3.getY();
-                        canvas.save();
-                        MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell3.getCurrentMessagesGroup();
-                        if (currentMessagesGroup != null && currentMessagesGroup.transitionParams.backgroundChangeBounds) {
-                            float nonAnimationTranslationX = chatMessageCell3.getNonAnimationTranslationX(z2);
-                            MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
-                            float f3 = transitionParams.left + nonAnimationTranslationX + transitionParams.offsetLeft;
-                            float f4 = transitionParams.top + transitionParams.offsetTop;
-                            float f5 = transitionParams.right + nonAnimationTranslationX + transitionParams.offsetRight;
-                            float f6 = transitionParams.bottom + transitionParams.offsetBottom;
-                            if (!transitionParams.backgroundChangeBounds) {
-                                f4 += chatMessageCell3.getTranslationY();
-                                f6 += chatMessageCell3.getTranslationY();
-                            }
-                            canvas.clipRect(f3 + AndroidUtilities.dp(8.0f), f4 + AndroidUtilities.dp(8.0f), f5 - AndroidUtilities.dp(8.0f), f6 - AndroidUtilities.dp(8.0f));
-                        }
-                        if (chatMessageCell3.getTransitionParams().wasDraw) {
-                            canvas.translate(left2, y2);
-                            chatMessageCell3.setInvalidatesParent(true);
-                            chatMessageCell3.drawCaptionLayout(canvas, z4, alpha2);
-                            chatMessageCell3.setInvalidatesParent(false);
-                            canvas.restore();
-                        }
-                        i6++;
-                        z2 = 1;
-                        z3 = false;
-                    }
-                    this.drawCaptionAfter.clear();
-                }
-                int size4 = this.drawReactionsAfter.size();
-                if (size4 > 0) {
-                    for (int i7 = 0; i7 < size4; i7++) {
-                        ChatMessageCell chatMessageCell4 = (ChatMessageCell) this.drawReactionsAfter.get(i7);
-                        if (chatMessageCell4.getCurrentPosition() == null || (chatMessageCell4.getCurrentPosition().flags & 1) != 0) {
-                            float alpha3 = chatMessageCell4.shouldDrawAlphaLayer() ? chatMessageCell4.getAlpha() : 1.0f;
-                            float left3 = chatMessageCell4.getLeft() + chatMessageCell4.getNonAnimationTranslationX(false);
-                            float y3 = chatMessageCell4.getY();
-                            canvas.save();
-                            MessageObject.GroupedMessages currentMessagesGroup2 = chatMessageCell4.getCurrentMessagesGroup();
-                            if (currentMessagesGroup2 != null && currentMessagesGroup2.transitionParams.backgroundChangeBounds) {
-                                float nonAnimationTranslationX2 = chatMessageCell4.getNonAnimationTranslationX(true);
-                                MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup2.transitionParams;
-                                float f7 = transitionParams2.left + nonAnimationTranslationX2 + transitionParams2.offsetLeft;
-                                float f8 = transitionParams2.top + transitionParams2.offsetTop;
-                                float f9 = transitionParams2.right + nonAnimationTranslationX2 + transitionParams2.offsetRight;
-                                float f10 = transitionParams2.bottom + transitionParams2.offsetBottom;
-                                if (!transitionParams2.backgroundChangeBounds) {
-                                    f8 += chatMessageCell4.getTranslationY();
-                                    f10 += chatMessageCell4.getTranslationY();
-                                }
-                                canvas.clipRect(f7 + AndroidUtilities.dp(8.0f), f8 + AndroidUtilities.dp(8.0f), f9 - AndroidUtilities.dp(8.0f), f10 - AndroidUtilities.dp(8.0f));
-                            }
-                            if (chatMessageCell4.getTransitionParams().wasDraw) {
-                                canvas.translate(left3, y3);
-                                chatMessageCell4.setInvalidatesParent(true);
-                                chatMessageCell4.drawReactionsLayout(canvas, alpha3, null);
-                                chatMessageCell4.drawCommentLayout(canvas, alpha3);
-                                chatMessageCell4.setInvalidatesParent(false);
-                                canvas.restore();
-                            }
-                        }
-                    }
-                    this.drawReactionsAfter.clear();
-                }
-            }
-
-            @Override
-            public void dispatchDraw(Canvas canvas) {
-                canvas.save();
-                this.selectorRect.setEmpty();
-                drawChatBackgroundElements(canvas);
-                super.dispatchDraw(canvas);
-                drawChatForegroundElements(canvas);
-                canvas.restore();
-            }
-
             @Override
             public boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
@@ -806,30 +723,8 @@ public abstract class MessageEntityView extends EntityView {
         this.listView = recyclerListView;
         recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
-            public int getItemCount() {
-                return MessageEntityView.this.messageObjects.size();
-            }
-
-            @Override
-            public int getItemViewType(int i4) {
-                return ((MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4)).contentType;
-            }
-
-            @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 return true;
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) {
-                MessageObject.GroupedMessagePosition position;
-                MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
-                View view = viewHolder.itemView;
-                if (view instanceof ChatMessageCell) {
-                    ((ChatMessageCell) view).setMessageObject(messageObject3, MessageEntityView.this.groupedMessages, MessageEntityView.this.groupedMessages != null, (MessageEntityView.this.groupedMessages == null || (position = MessageEntityView.this.groupedMessages.getPosition(messageObject3)) == null || position.minY == 0) ? false : true, false);
-                } else if (view instanceof ChatActionCell) {
-                    ((ChatActionCell) view).setMessageObject(messageObject3);
-                }
             }
 
             @Override
@@ -872,6 +767,11 @@ public abstract class MessageEntityView extends EntityView {
                     private final float[] radii = new float[8];
                     private final Path clipPath = new Path();
 
+                    @Override
+                    public boolean onTouchEvent(MotionEvent motionEvent) {
+                        return false;
+                    }
+
                     {
                         this.blurDrawer = new BlurringShader.StoryBlurDrawer(blurManager, this, 10);
                         Paint paint = new Paint();
@@ -879,56 +779,6 @@ public abstract class MessageEntityView extends EntityView {
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         this.src = new Rect();
                         this.dst = new RectF();
-                    }
-
-                    @Override
-                    public boolean drawPhotoImage(Canvas canvas) {
-                        PreviewView.TextureViewHolder textureViewHolder2;
-                        ImageReceiver photoImage = getPhotoImage();
-                        AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
-                        if (!z || photoImage == null || (((textureViewHolder2 = textureViewHolder) == null || !textureViewHolder2.active || !textureViewHolder2.textureViewActive || !MessageEntityView.this.textureViewActive) && !MessageEntityView.this.clipVideoMessageForBitmap && (MessageEntityView.this.textureView == null || !MessageEntityView.this.drawForBitmap()))) {
-                            return super.drawPhotoImage(canvas);
-                        }
-                        for (int i5 = 0; i5 < photoImage.getRoundRadius().length; i5++) {
-                            int i6 = i5 * 2;
-                            this.radii[i6] = photoImage.getRoundRadius()[i5];
-                            this.radii[i6 + 1] = photoImage.getRoundRadius()[i5];
-                        }
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        rectF.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
-                        this.clipPath.rewind();
-                        this.clipPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
-                        if (MessageEntityView.this.textureView == null || !MessageEntityView.this.drawForBitmap()) {
-                            canvas.drawPath(this.clipPath, this.clearPaint);
-                        } else {
-                            Bitmap bitmap = MessageEntityView.this.textureView.getBitmap();
-                            if (bitmap == null) {
-                                return super.drawPhotoImage(canvas);
-                            }
-                            canvas.save();
-                            canvas.clipPath(this.clipPath);
-                            canvas.translate(-getX(), -getY());
-                            float max = Math.max(photoImage.getImageWidth() / MessageEntityView.this.videoWidth, photoImage.getImageHeight() / MessageEntityView.this.videoHeight);
-                            canvas.translate(photoImage.getCenterX() - ((MessageEntityView.this.videoWidth * max) / 2.0f), photoImage.getCenterY() - ((MessageEntityView.this.videoHeight * max) / 2.0f));
-                            canvas.scale((MessageEntityView.this.videoWidth / MessageEntityView.this.textureView.getWidth()) * max, (MessageEntityView.this.videoHeight / MessageEntityView.this.textureView.getHeight()) * max);
-                            this.src.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                            this.dst.set(0.0f, 0.0f, MessageEntityView.this.textureView.getWidth(), MessageEntityView.this.textureView.getHeight());
-                            canvas.drawBitmap(bitmap, this.src, this.dst, (Paint) null);
-                            canvas.restore();
-                        }
-                        return true;
-                    }
-
-                    @Override
-                    public Paint getThemedPaint(String str) {
-                        if ("paintChatActionBackground".equals(str)) {
-                            MessageEntityView.this.usesBackgroundPaint = true;
-                            Paint paint = this.blurDrawer.getPaint(1.0f);
-                            if (paint != null) {
-                                return paint;
-                            }
-                        }
-                        return super.getThemedPaint(str);
                     }
 
                     @Override
@@ -945,15 +795,96 @@ public abstract class MessageEntityView extends EntityView {
                     }
 
                     @Override
-                    public boolean onTouchEvent(MotionEvent motionEvent) {
-                        return false;
+                    public Paint getThemedPaint(String str) {
+                        if ("paintChatActionBackground".equals(str)) {
+                            MessageEntityView.this.usesBackgroundPaint = true;
+                            Paint paint = this.blurDrawer.getPaint(1.0f);
+                            if (paint != null) {
+                                return paint;
+                            }
+                        }
+                        return super.getThemedPaint(str);
+                    }
+
+                    @Override
+                    public boolean drawPhotoImage(Canvas canvas) {
+                        PreviewView.TextureViewHolder textureViewHolder2;
+                        ImageReceiver photoImage = getPhotoImage();
+                        AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                        if (z && photoImage != null && (((textureViewHolder2 = textureViewHolder) != null && textureViewHolder2.active && textureViewHolder2.textureViewActive && MessageEntityView.this.textureViewActive) || MessageEntityView.this.clipVideoMessageForBitmap || (MessageEntityView.this.textureView != null && MessageEntityView.this.drawForBitmap()))) {
+                            for (int i5 = 0; i5 < photoImage.getRoundRadius().length; i5++) {
+                                int i6 = i5 * 2;
+                                this.radii[i6] = photoImage.getRoundRadius()[i5];
+                                this.radii[i6 + 1] = photoImage.getRoundRadius()[i5];
+                            }
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
+                            this.clipPath.rewind();
+                            this.clipPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
+                            if (MessageEntityView.this.textureView != null && MessageEntityView.this.drawForBitmap()) {
+                                Bitmap bitmap = MessageEntityView.this.textureView.getBitmap();
+                                if (bitmap != null) {
+                                    canvas.save();
+                                    canvas.clipPath(this.clipPath);
+                                    canvas.translate(-getX(), -getY());
+                                    float max = Math.max(photoImage.getImageWidth() / MessageEntityView.this.videoWidth, photoImage.getImageHeight() / MessageEntityView.this.videoHeight);
+                                    canvas.translate(photoImage.getCenterX() - ((MessageEntityView.this.videoWidth * max) / 2.0f), photoImage.getCenterY() - ((MessageEntityView.this.videoHeight * max) / 2.0f));
+                                    canvas.scale((MessageEntityView.this.videoWidth / MessageEntityView.this.textureView.getWidth()) * max, (MessageEntityView.this.videoHeight / MessageEntityView.this.textureView.getHeight()) * max);
+                                    this.src.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                                    this.dst.set(0.0f, 0.0f, MessageEntityView.this.textureView.getWidth(), MessageEntityView.this.textureView.getHeight());
+                                    canvas.drawBitmap(bitmap, this.src, this.dst, (Paint) null);
+                                    canvas.restore();
+                                } else {
+                                    return super.drawPhotoImage(canvas);
+                                }
+                            } else {
+                                canvas.drawPath(this.clipPath, this.clearPaint);
+                            }
+                            return true;
+                        }
+                        return super.drawPhotoImage(canvas);
                     }
                 };
                 chatMessageCell.isChat = true;
                 return new RecyclerListView.Holder(chatMessageCell);
             }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) {
+                MessageObject.GroupedMessagePosition position;
+                MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
+                View view = viewHolder.itemView;
+                if (view instanceof ChatMessageCell) {
+                    ((ChatMessageCell) view).setMessageObject(messageObject3, MessageEntityView.this.groupedMessages, MessageEntityView.this.groupedMessages != null, (MessageEntityView.this.groupedMessages == null || (position = MessageEntityView.this.groupedMessages.getPosition(messageObject3)) == null || position.minY == 0) ? false : true, false);
+                } else if (view instanceof ChatActionCell) {
+                    ((ChatActionCell) view).setMessageObject(messageObject3);
+                }
+            }
+
+            @Override
+            public int getItemViewType(int i4) {
+                return ((MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4)).contentType;
+            }
+
+            @Override
+            public int getItemCount() {
+                return MessageEntityView.this.messageObjects.size();
+            }
         });
         GridLayoutManagerFixed gridLayoutManagerFixed = new GridLayoutManagerFixed(context, 1000, 1, true) {
+            @Override
+            public boolean supportsPredictiveItemAnimations() {
+                return false;
+            }
+
+            @Override
+            public boolean shouldLayoutChildFromOpositeSide(View view) {
+                if (view instanceof ChatMessageCell) {
+                    return !((ChatMessageCell) view).getMessageObject().isOutOwner();
+                }
+                return false;
+            }
+
             @Override
             protected boolean hasSiblingChild(int i4) {
                 byte b;
@@ -974,19 +905,6 @@ public abstract class MessageEntityView extends EntityView {
                         }
                     }
                 }
-                return false;
-            }
-
-            @Override
-            public boolean shouldLayoutChildFromOpositeSide(View view) {
-                if (view instanceof ChatMessageCell) {
-                    return !((ChatMessageCell) view).getMessageObject().isOutOwner();
-                }
-                return false;
-            }
-
-            @Override
-            public boolean supportsPredictiveItemAnimations() {
                 return false;
             }
         };
@@ -1063,6 +981,29 @@ public abstract class MessageEntityView extends EntityView {
         updatePosition();
     }
 
+    public void lambda$new$0(TextureView textureView) {
+        this.textureView = textureView;
+        if (textureView != null) {
+            this.container.addView(textureView, 0);
+        }
+    }
+
+    public void lambda$new$2(Integer num, Integer num2) {
+        this.videoWidth = num.intValue();
+        this.videoHeight = num2.intValue();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessageEntityView.this.lambda$new$1();
+            }
+        }, 60L);
+    }
+
+    public void lambda$new$1() {
+        this.textureViewActive = true;
+        invalidateAll();
+    }
+
     public ChatMessageCell getCell() {
         if (this.listView == null) {
             return null;
@@ -1075,27 +1016,196 @@ public abstract class MessageEntityView extends EntityView {
         return null;
     }
 
-    public void lambda$new$0(TextureView textureView) {
-        this.textureView = textureView;
-        if (textureView != null) {
-            this.container.addView(textureView, 0);
+    public float getBubbleBounds(RectF rectF) {
+        float y;
+        float y2;
+        float f;
+        float f2;
+        float f3 = 2.1474836E9f;
+        float f4 = 2.1474836E9f;
+        float f5 = -2.1474836E9f;
+        float f6 = -2.1474836E9f;
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            View childAt = this.listView.getChildAt(i);
+            if (childAt instanceof ChatMessageCell) {
+                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
+                if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().isRoundVideo() && chatMessageCell.getPhotoImage() != null) {
+                    f = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX();
+                    f2 = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX2();
+                    y = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY();
+                    y2 = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY2();
+                } else {
+                    float x = this.container.getX() + childAt.getX() + chatMessageCell.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
+                    if (this.groupedMessages == null) {
+                        x += AndroidUtilities.dp(8.0f);
+                    }
+                    float x2 = ((this.container.getX() + childAt.getX()) + chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
+                    y = this.container.getY() + childAt.getY() + chatMessageCell.getBackgroundDrawableTop() + AndroidUtilities.dp(2.0f);
+                    y2 = ((this.container.getY() + childAt.getY()) + chatMessageCell.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
+                    f = x;
+                    f2 = x2;
+                }
+                f3 = Math.min(Math.min(f3, f), f2);
+                f5 = Math.max(Math.max(f5, f), f2);
+                f4 = Math.min(Math.min(f4, y), y2);
+                f6 = Math.max(Math.max(f6, y), y2);
+            } else if (childAt instanceof ChatActionCell) {
+                ChatActionCell chatActionCell = (ChatActionCell) childAt;
+                if (chatActionCell.starGiftLayout.has()) {
+                    float x3 = this.container.getX() + chatActionCell.getX() + chatActionCell.getBoundsLeft();
+                    float x4 = this.container.getX() + chatActionCell.getX() + chatActionCell.getBoundsRight();
+                    float y3 = this.container.getY() + chatActionCell.getY();
+                    float y4 = this.container.getY() + chatActionCell.getY() + chatActionCell.getMeasuredHeight();
+                    f3 = Math.min(Math.min(f3, x3), x4);
+                    f5 = Math.max(Math.max(f5, x3), x4);
+                    f4 = Math.min(Math.min(f4, y3), y4);
+                    f6 = Math.max(Math.max(f6, y3), y4);
+                }
+            }
+        }
+        rectF.set(f3, f4, f5, f6);
+        return AndroidUtilities.dp(SharedConfig.bubbleRadius);
+    }
+
+    public void invalidateAll() {
+        this.listView.invalidate();
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            this.listView.getChildAt(i).invalidate();
         }
     }
 
-    public void lambda$new$1() {
-        this.textureViewActive = true;
-        invalidateAll();
+    public void prepareToDraw(boolean z) {
+        this.clipVideoMessageForBitmap = z;
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            View childAt = this.listView.getChildAt(i);
+            if (childAt instanceof ChatMessageCell) {
+                ((ChatMessageCell) childAt).drawingToBitmap = z;
+            }
+        }
     }
 
-    public void lambda$new$2(Integer num, Integer num2) {
-        this.videoWidth = num.intValue();
-        this.videoHeight = num2.intValue();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MessageEntityView.this.lambda$new$1();
+    @Override
+    public void updatePosition() {
+        setX(getPositionX() - (getMeasuredWidth() / 2.0f));
+        setY(getPositionY() - (getMeasuredHeight() / 2.0f));
+        updateSelectionView();
+        if (this.usesBackgroundPaint) {
+            invalidateAll();
+        }
+    }
+
+    @Override
+    protected void onMeasure(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.onMeasure(int, int):void");
+    }
+
+    @Override
+    public org.telegram.ui.Components.Rect getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new org.telegram.ui.Components.Rect();
+        }
+        float scaleX = viewGroup.getScaleX();
+        return new org.telegram.ui.Components.Rect(((getPositionX() * scaleX) - (((getMeasuredWidth() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getMeasuredHeight() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getMeasuredWidth() * getScale() * scaleX) + AndroidUtilities.dp(71.0f), (getMeasuredHeight() * getScale() * scaleX) + AndroidUtilities.dp(71.0f));
+    }
+
+    @Override
+    protected EntityView.SelectionView createSelectionView() {
+        return new MessageEntityViewSelectionView(getContext());
+    }
+
+    public class MessageEntityViewSelectionView extends EntityView.SelectionView {
+        private final Paint clearPaint;
+        private Path path;
+
+        public MessageEntityViewSelectionView(Context context) {
+            super(context);
+            Paint paint = new Paint(1);
+            this.clearPaint = paint;
+            this.path = new Path();
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        }
+
+        @Override
+        protected int pointInsideHandle(float f, float f2) {
+            float dp = AndroidUtilities.dp(1.0f);
+            float dp2 = AndroidUtilities.dp(19.5f);
+            float f3 = dp + dp2;
+            float f4 = f3 * 2.0f;
+            float measuredWidth = getMeasuredWidth() - f4;
+            float measuredHeight = getMeasuredHeight() - f4;
+            float f5 = (measuredHeight / 2.0f) + f3;
+            if (f > f3 - dp2 && f2 > f5 - dp2 && f < f3 + dp2 && f2 < f5 + dp2) {
+                return 1;
             }
-        }, 60L);
+            float f6 = f3 + measuredWidth;
+            if (f <= f6 - dp2 || f2 <= f5 - dp2 || f >= f6 + dp2 || f2 >= f5 + dp2) {
+                return (f <= f3 || f >= measuredWidth || f2 <= f3 || f2 >= measuredHeight) ? 0 : 3;
+            }
+            return 2;
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            int saveCount = canvas.getSaveCount();
+            float showAlpha = getShowAlpha();
+            if (showAlpha <= 0.0f) {
+                return;
+            }
+            if (showAlpha < 1.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+            }
+            float dp = AndroidUtilities.dp(2.0f);
+            float dpf2 = AndroidUtilities.dpf2(5.66f);
+            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
+            float f = dp2 * 2.0f;
+            float measuredWidth = getMeasuredWidth() - f;
+            float measuredHeight = getMeasuredHeight() - f;
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f2 = dp2 + measuredWidth;
+            float f3 = dp2 + measuredHeight;
+            rectF.set(dp2, dp2, f2, f3);
+            float dp3 = AndroidUtilities.dp(12.0f);
+            float min = Math.min(dp3, measuredWidth / 2.0f);
+            float f4 = measuredHeight / 2.0f;
+            float min2 = Math.min(dp3, f4);
+            this.path.rewind();
+            float f5 = min * 2.0f;
+            float f6 = dp2 + f5;
+            float f7 = 2.0f * min2;
+            float f8 = dp2 + f7;
+            rectF.set(dp2, dp2, f6, f8);
+            this.path.arcTo(rectF, 180.0f, 90.0f);
+            float f9 = f2 - f5;
+            rectF.set(f9, dp2, f2, f8);
+            this.path.arcTo(rectF, 270.0f, 90.0f);
+            canvas.drawPath(this.path, this.paint);
+            this.path.rewind();
+            float f10 = f3 - f7;
+            rectF.set(dp2, f10, f6, f3);
+            this.path.arcTo(rectF, 180.0f, -90.0f);
+            rectF.set(f9, f10, f2, f3);
+            this.path.arcTo(rectF, 90.0f, -90.0f);
+            canvas.drawPath(this.path, this.paint);
+            float f11 = dp2 + f4;
+            canvas.drawCircle(dp2, f11, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(dp2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas.drawCircle(f2, f11, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(f2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            float f12 = dp2 + min2;
+            float f13 = f3 - min2;
+            canvas.drawLine(dp2, f12, dp2, f13, this.paint);
+            canvas.drawLine(f2, f12, f2, f13, this.paint);
+            canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
+            canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
+            canvas.restoreToCount(saveCount);
+        }
+    }
+
+    public void setupTheme(org.telegram.ui.Stories.recorder.StoryEntry r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.setupTheme(org.telegram.ui.Stories.recorder.StoryEntry):void");
     }
 
     public TLRPC.Message copyMessage(TLRPC.Message message) {
@@ -1175,116 +1285,5 @@ public abstract class MessageEntityView extends EntityView {
         tL_messageService.translatedText = message.translatedText;
         tL_messageService.replyStory = message.replyStory;
         return tL_messageService;
-    }
-
-    @Override
-    protected EntityView.SelectionView createSelectionView() {
-        return new MessageEntityViewSelectionView(getContext());
-    }
-
-    public abstract boolean drawForBitmap();
-
-    @Override
-    protected float getBounceScale() {
-        return 0.02f;
-    }
-
-    public float getBubbleBounds(RectF rectF) {
-        float x;
-        float y;
-        float y2;
-        float max;
-        float f;
-        float f2 = 2.1474836E9f;
-        float f3 = 2.1474836E9f;
-        float f4 = -2.1474836E9f;
-        float f5 = -2.1474836E9f;
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (childAt instanceof ChatMessageCell) {
-                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
-                if (chatMessageCell.getMessageObject() == null || !chatMessageCell.getMessageObject().isRoundVideo() || chatMessageCell.getPhotoImage() == null) {
-                    float x2 = this.container.getX() + childAt.getX() + chatMessageCell.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
-                    if (this.groupedMessages == null) {
-                        x2 += AndroidUtilities.dp(8.0f);
-                    }
-                    float x3 = ((this.container.getX() + childAt.getX()) + chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
-                    y = this.container.getY() + childAt.getY() + chatMessageCell.getBackgroundDrawableTop() + AndroidUtilities.dp(2.0f);
-                    y2 = ((this.container.getY() + childAt.getY()) + chatMessageCell.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
-                    f = x2;
-                    x = x3;
-                } else {
-                    f = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX();
-                    x = this.container.getX() + chatMessageCell.getX() + chatMessageCell.getPhotoImage().getImageX2();
-                    y = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY();
-                    y2 = this.container.getY() + chatMessageCell.getY() + chatMessageCell.getPhotoImage().getImageY2();
-                }
-                f2 = Math.min(Math.min(f2, f), x);
-                max = Math.max(f4, f);
-            } else {
-                if (childAt instanceof ChatActionCell) {
-                    ChatActionCell chatActionCell = (ChatActionCell) childAt;
-                    if (chatActionCell.starGiftLayout.has()) {
-                        float x4 = this.container.getX() + chatActionCell.getX() + chatActionCell.getBoundsLeft();
-                        x = this.container.getX() + chatActionCell.getX() + chatActionCell.getBoundsRight();
-                        y = this.container.getY() + chatActionCell.getY();
-                        y2 = this.container.getY() + chatActionCell.getY() + chatActionCell.getMeasuredHeight();
-                        f2 = Math.min(Math.min(f2, x4), x);
-                        max = Math.max(f4, x4);
-                    }
-                }
-            }
-            f4 = Math.max(max, x);
-            f3 = Math.min(Math.min(f3, y), y2);
-            f5 = Math.max(Math.max(f5, y), y2);
-        }
-        rectF.set(f2, f3, f4, f5);
-        return AndroidUtilities.dp(SharedConfig.bubbleRadius);
-    }
-
-    @Override
-    public org.telegram.ui.Components.Rect getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new org.telegram.ui.Components.Rect();
-        }
-        float scaleX = viewGroup.getScaleX();
-        return new org.telegram.ui.Components.Rect(((getPositionX() * scaleX) - (((getMeasuredWidth() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getMeasuredHeight() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getMeasuredWidth() * getScale() * scaleX) + AndroidUtilities.dp(71.0f), (getMeasuredHeight() * getScale() * scaleX) + AndroidUtilities.dp(71.0f));
-    }
-
-    public void invalidateAll() {
-        this.listView.invalidate();
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            this.listView.getChildAt(i).invalidate();
-        }
-    }
-
-    @Override
-    protected void onMeasure(int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.onMeasure(int, int):void");
-    }
-
-    public void prepareToDraw(boolean z) {
-        this.clipVideoMessageForBitmap = z;
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (childAt instanceof ChatMessageCell) {
-                ((ChatMessageCell) childAt).drawingToBitmap = z;
-            }
-        }
-    }
-
-    public void setupTheme(org.telegram.ui.Stories.recorder.StoryEntry r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.setupTheme(org.telegram.ui.Stories.recorder.StoryEntry):void");
-    }
-
-    @Override
-    public void updatePosition() {
-        setX(getPositionX() - (getMeasuredWidth() / 2.0f));
-        setY(getPositionY() - (getMeasuredHeight() / 2.0f));
-        updateSelectionView();
-        if (this.usesBackgroundPaint) {
-            invalidateAll();
-        }
     }
 }

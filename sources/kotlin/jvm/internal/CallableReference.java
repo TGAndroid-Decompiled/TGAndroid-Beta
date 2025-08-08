@@ -14,6 +14,8 @@ public abstract class CallableReference implements KCallable, Serializable {
     private transient KCallable reflected;
     private final String signature;
 
+    protected abstract KCallable computeReflected();
+
     private static class NoReceiver implements Serializable {
         private static final NoReceiver INSTANCE = new NoReceiver();
 
@@ -29,6 +31,10 @@ public abstract class CallableReference implements KCallable, Serializable {
         this.isTopLevel = z;
     }
 
+    public Object getBoundReceiver() {
+        return this.receiver;
+    }
+
     public KCallable compute() {
         KCallable kCallable = this.reflected;
         if (kCallable != null) {
@@ -39,14 +45,12 @@ public abstract class CallableReference implements KCallable, Serializable {
         return computeReflected;
     }
 
-    protected abstract KCallable computeReflected();
-
-    public Object getBoundReceiver() {
-        return this.receiver;
-    }
-
-    public String getName() {
-        return this.name;
+    public KCallable getReflected() {
+        KCallable compute = compute();
+        if (compute != this) {
+            return compute;
+        }
+        throw new KotlinReflectionNotSupportedError();
     }
 
     public KDeclarationContainer getOwner() {
@@ -57,12 +61,8 @@ public abstract class CallableReference implements KCallable, Serializable {
         return this.isTopLevel ? Reflection.getOrCreateKotlinPackage(cls) : Reflection.getOrCreateKotlinClass(cls);
     }
 
-    public KCallable getReflected() {
-        KCallable compute = compute();
-        if (compute != this) {
-            return compute;
-        }
-        throw new KotlinReflectionNotSupportedError();
+    public String getName() {
+        return this.name;
     }
 
     public String getSignature() {

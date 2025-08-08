@@ -33,6 +33,11 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
     int rowCount;
     private int totalGradientHeight;
 
+    @Override
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        return false;
+    }
+
     public DoubledLimitsBottomSheet$Adapter(int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         ArrayList arrayList = new ArrayList();
         this.limits = arrayList;
@@ -62,46 +67,6 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         int size = arrayList.size() + 1;
         this.rowCount = size;
         this.limitsStartEnd = size;
-    }
-
-    @Override
-    public int getItemCount() {
-        return this.rowCount;
-    }
-
-    @Override
-    public int getItemViewType(int i) {
-        if (i == this.headerRow) {
-            return 1;
-        }
-        return i == this.lastViewRow ? 2 : 0;
-    }
-
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return false;
-    }
-
-    public void measureGradient(Context context, int i, int i2) {
-        DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
-        int i3 = 0;
-        for (int i4 = 0; i4 < this.limits.size(); i4++) {
-            doubledLimitsBottomSheet$LimitCell.setData((DoubledLimitsBottomSheet$Limit) this.limits.get(i4));
-            doubledLimitsBottomSheet$LimitCell.measure(View.MeasureSpec.makeMeasureSpec(i, 1073741824), View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
-            ((DoubledLimitsBottomSheet$Limit) this.limits.get(i4)).yOffset = i3;
-            i3 += doubledLimitsBottomSheet$LimitCell.getMeasuredHeight();
-        }
-        this.totalGradientHeight = i3;
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        if (viewHolder.getItemViewType() == 0) {
-            DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = (DoubledLimitsBottomSheet$LimitCell) viewHolder.itemView;
-            doubledLimitsBottomSheet$LimitCell.setData((DoubledLimitsBottomSheet$Limit) this.limits.get(i - this.limitsStartRow));
-            doubledLimitsBottomSheet$LimitCell.previewView.gradientYOffset = ((DoubledLimitsBottomSheet$Limit) this.limits.get(i - this.limitsStartRow)).yOffset;
-            doubledLimitsBottomSheet$LimitCell.previewView.gradientTotalHeight = this.totalGradientHeight;
-        }
     }
 
     @Override
@@ -143,5 +108,40 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         }
         fixedHeightEmptyCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
         return new RecyclerListView.Holder(fixedHeightEmptyCell);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        if (viewHolder.getItemViewType() == 0) {
+            DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = (DoubledLimitsBottomSheet$LimitCell) viewHolder.itemView;
+            doubledLimitsBottomSheet$LimitCell.setData((DoubledLimitsBottomSheet$Limit) this.limits.get(i - this.limitsStartRow));
+            doubledLimitsBottomSheet$LimitCell.previewView.gradientYOffset = ((DoubledLimitsBottomSheet$Limit) this.limits.get(i - this.limitsStartRow)).yOffset;
+            doubledLimitsBottomSheet$LimitCell.previewView.gradientTotalHeight = this.totalGradientHeight;
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return this.rowCount;
+    }
+
+    @Override
+    public int getItemViewType(int i) {
+        if (i == this.headerRow) {
+            return 1;
+        }
+        return i == this.lastViewRow ? 2 : 0;
+    }
+
+    public void measureGradient(Context context, int i, int i2) {
+        DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
+        int i3 = 0;
+        for (int i4 = 0; i4 < this.limits.size(); i4++) {
+            doubledLimitsBottomSheet$LimitCell.setData((DoubledLimitsBottomSheet$Limit) this.limits.get(i4));
+            doubledLimitsBottomSheet$LimitCell.measure(View.MeasureSpec.makeMeasureSpec(i, 1073741824), View.MeasureSpec.makeMeasureSpec(i2, Integer.MIN_VALUE));
+            ((DoubledLimitsBottomSheet$Limit) this.limits.get(i4)).yOffset = i3;
+            i3 += doubledLimitsBottomSheet$LimitCell.getMeasuredHeight();
+        }
+        this.totalGradientHeight = i3;
     }
 }

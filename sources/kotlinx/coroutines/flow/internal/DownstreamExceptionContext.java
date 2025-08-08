@@ -7,11 +7,6 @@ public final class DownstreamExceptionContext implements CoroutineContext {
     private final CoroutineContext $$delegate_0;
     public final Throwable e;
 
-    public DownstreamExceptionContext(Throwable th, CoroutineContext coroutineContext) {
-        this.e = th;
-        this.$$delegate_0 = coroutineContext;
-    }
-
     @Override
     public Object fold(Object obj, Function2 function2) {
         return this.$$delegate_0.fold(obj, function2);
@@ -30,5 +25,10 @@ public final class DownstreamExceptionContext implements CoroutineContext {
     @Override
     public CoroutineContext plus(CoroutineContext coroutineContext) {
         return this.$$delegate_0.plus(coroutineContext);
+    }
+
+    public DownstreamExceptionContext(Throwable th, CoroutineContext coroutineContext) {
+        this.e = th;
+        this.$$delegate_0 = coroutineContext;
     }
 }

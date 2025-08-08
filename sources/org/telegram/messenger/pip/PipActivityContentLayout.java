@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 
-class PipActivityContentLayout extends FrameLayout {
+public class PipActivityContentLayout extends FrameLayout {
     private final Activity activity;
     private boolean isViewInPip;
     private int originalHeight;
@@ -14,10 +14,6 @@ class PipActivityContentLayout extends FrameLayout {
     public PipActivityContentLayout(Activity activity) {
         super(activity);
         this.activity = activity;
-    }
-
-    public boolean isViewInPip() {
-        return this.isViewInPip;
     }
 
     @Override
@@ -31,5 +27,9 @@ class PipActivityContentLayout extends FrameLayout {
         }
         this.isViewInPip = isInPictureInPictureMode && size < this.originalWidth && size2 < this.originalHeight;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+    }
+
+    public boolean isViewInPip() {
+        return this.isViewInPip;
     }
 }

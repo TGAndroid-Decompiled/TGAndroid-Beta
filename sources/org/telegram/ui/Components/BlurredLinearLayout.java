@@ -51,6 +51,15 @@ public class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
+    public void setBackgroundColor(int i) {
+        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
+            this.backgroundColor = i;
+        } else {
+            super.setBackgroundColor(i);
+        }
+    }
+
+    @Override
     protected void onAttachedToWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (SharedConfig.chatBlurEnabled() && (sizeNotifierFrameLayout = this.sizeNotifierFrameLayout) != null) {
@@ -66,14 +75,5 @@ public class BlurredLinearLayout extends LinearLayout {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);
         }
         super.onDetachedFromWindow();
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null) {
-            super.setBackgroundColor(i);
-        } else {
-            this.backgroundColor = i;
-        }
     }
 }

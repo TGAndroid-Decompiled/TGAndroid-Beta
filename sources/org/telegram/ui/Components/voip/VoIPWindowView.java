@@ -42,80 +42,6 @@ public abstract class VoIPWindowView extends FrameLayout {
         this.runEnterTransition = true;
     }
 
-    public WindowManager.LayoutParams createWindowLayoutParams() {
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.height = -1;
-        layoutParams.format = -2;
-        layoutParams.width = -1;
-        layoutParams.gravity = 51;
-        layoutParams.type = 99;
-        layoutParams.screenOrientation = 1;
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 28) {
-            layoutParams.layoutInDisplayCutoutMode = 1;
-        }
-        layoutParams.flags = i >= 21 ? -2147286784 : 131072;
-        layoutParams.flags |= 2621568;
-        return layoutParams;
-    }
-
-    public void finish() {
-        finish(330L);
-    }
-
-    public void finish(long j) {
-        if (this.finished) {
-            return;
-        }
-        this.finished = true;
-        VoIPFragment.clearInstance();
-        if (this.lockOnScreen) {
-            try {
-                ((WindowManager) this.activity.getSystemService("window")).removeView(this);
-            } catch (Exception unused) {
-            }
-        } else {
-            int i = UserConfig.selectedAccount;
-            this.notificationsLocker.lock();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    VoIPWindowView.this.notificationsLocker.unlock();
-                    if (VoIPWindowView.this.getParent() != null) {
-                        VoIPWindowView voIPWindowView = VoIPWindowView.this;
-                        voIPWindowView.activity.setRequestedOrientation(voIPWindowView.orientationBefore);
-                        WindowManager windowManager = (WindowManager) VoIPWindowView.this.activity.getSystemService("window");
-                        VoIPWindowView.this.setVisibility(8);
-                        try {
-                            windowManager.removeView(VoIPWindowView.this);
-                        } catch (Exception unused2) {
-                        }
-                        OrientationHelper.cameraRotationDisabled = false;
-                    }
-                }
-            }).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
-        }
-    }
-
-    public void finishImmediate() {
-        if (getParent() != null) {
-            this.activity.setRequestedOrientation(this.orientationBefore);
-            WindowManager windowManager = (WindowManager) this.activity.getSystemService("window");
-            setVisibility(8);
-            windowManager.removeView(this);
-            OrientationHelper.cameraRotationDisabled = false;
-        }
-    }
-
-    public boolean isLockOnScreen() {
-        return this.lockOnScreen;
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return onTouchEvent(motionEvent);
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
@@ -124,6 +50,11 @@ public abstract class VoIPWindowView extends FrameLayout {
         }
         this.runEnterTransition = true;
         startEnterTransition();
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return onTouchEvent(motionEvent);
     }
 
     @Override
@@ -176,12 +107,42 @@ public abstract class VoIPWindowView extends FrameLayout {
         return false;
     }
 
-    public void requestFullscreen(boolean z) {
-        setSystemUiVisibility(z ? getSystemUiVisibility() | 4 : getSystemUiVisibility() & (-5));
+    public void finish() {
+        finish(330L);
     }
 
-    public void setLockOnScreen(boolean z) {
-        this.lockOnScreen = z;
+    public void finish(long j) {
+        if (this.finished) {
+            return;
+        }
+        this.finished = true;
+        VoIPFragment.clearInstance();
+        if (this.lockOnScreen) {
+            try {
+                ((WindowManager) this.activity.getSystemService("window")).removeView(this);
+            } catch (Exception unused) {
+            }
+        } else {
+            int i = UserConfig.selectedAccount;
+            this.notificationsLocker.lock();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    VoIPWindowView.this.notificationsLocker.unlock();
+                    if (VoIPWindowView.this.getParent() != null) {
+                        VoIPWindowView voIPWindowView = VoIPWindowView.this;
+                        voIPWindowView.activity.setRequestedOrientation(voIPWindowView.orientationBefore);
+                        WindowManager windowManager = (WindowManager) VoIPWindowView.this.activity.getSystemService("window");
+                        VoIPWindowView.this.setVisibility(8);
+                        try {
+                            windowManager.removeView(VoIPWindowView.this);
+                        } catch (Exception unused2) {
+                        }
+                        OrientationHelper.cameraRotationDisabled = false;
+                    }
+                }
+            }).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        }
     }
 
     public void startEnterTransition() {
@@ -191,5 +152,46 @@ public abstract class VoIPWindowView extends FrameLayout {
         setTranslationY(getMeasuredHeight());
         setAlpha(0.0f);
         animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+    }
+
+    public void setLockOnScreen(boolean z) {
+        this.lockOnScreen = z;
+    }
+
+    public WindowManager.LayoutParams createWindowLayoutParams() {
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.height = -1;
+        layoutParams.format = -2;
+        layoutParams.width = -1;
+        layoutParams.gravity = 51;
+        layoutParams.type = 99;
+        layoutParams.screenOrientation = 1;
+        if (Build.VERSION.SDK_INT >= 28) {
+            layoutParams.layoutInDisplayCutoutMode = 1;
+        }
+        layoutParams.flags = 2621568 | (-2147286784);
+        return layoutParams;
+    }
+
+    public boolean isLockOnScreen() {
+        return this.lockOnScreen;
+    }
+
+    public void requestFullscreen(boolean z) {
+        if (z) {
+            setSystemUiVisibility(getSystemUiVisibility() | 4);
+        } else {
+            setSystemUiVisibility(getSystemUiVisibility() & (-5));
+        }
+    }
+
+    public void finishImmediate() {
+        if (getParent() != null) {
+            this.activity.setRequestedOrientation(this.orientationBefore);
+            WindowManager windowManager = (WindowManager) this.activity.getSystemService("window");
+            setVisibility(8);
+            windowManager.removeView(this);
+            OrientationHelper.cameraRotationDisabled = false;
+        }
     }
 }

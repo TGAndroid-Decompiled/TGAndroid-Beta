@@ -35,112 +35,9 @@ public class StoriesIntro extends FrameLayout {
     private final Runnable startItemAnimationRunnable;
     private ValueAnimator valueAnimator;
 
-    public static class StoriesIntroItemView extends View {
-        private final Paint backgroundPaint;
-        private final String header;
-        private final TextPaint headerTextPaint;
-        private final RLottieDrawable lottieDrawable;
-        private float progress;
-        private final RectF rectF;
-        private final String subHeader;
-        private final TextPaint subHeaderTextPaint;
-        private final Rect textBounds;
-
-        public StoriesIntroItemView(Context context, int i, String str, String str2) {
-            super(context);
-            this.textBounds = new Rect();
-            this.header = str;
-            this.subHeader = str2;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
-            this.lottieDrawable = rLottieDrawable;
-            rLottieDrawable.setAutoRepeat(1);
-            rLottieDrawable.setMasterParent(this);
-            Paint paint = new Paint(1);
-            this.backgroundPaint = paint;
-            paint.setColor(383310040);
-            TextPaint textPaint = new TextPaint(1);
-            this.headerTextPaint = textPaint;
-            textPaint.setColor(-1);
-            textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
-            textPaint.setTypeface(AndroidUtilities.bold());
-            TextPaint textPaint2 = new TextPaint(1);
-            this.subHeaderTextPaint = textPaint2;
-            textPaint2.setColor(-1761607681);
-            textPaint2.setTextSize(TypedValue.applyDimension(1, 14.0f, getResources().getDisplayMetrics()));
-            this.rectF = new RectF();
-        }
-
-        public long getLottieAnimationDuration() {
-            return this.lottieDrawable.getDuration() * 2;
-        }
-
-        public int getRequiredWidth() {
-            TextPaint textPaint = this.headerTextPaint;
-            String str = this.header;
-            textPaint.getTextBounds(str, 0, str.length(), this.textBounds);
-            int width = this.textBounds.width();
-            TextPaint textPaint2 = this.subHeaderTextPaint;
-            String str2 = this.subHeader;
-            textPaint2.getTextBounds(str2, 0, str2.length(), this.textBounds);
-            return AndroidUtilities.dp(88.0f) + AndroidUtilities.dp(8.0f) + Math.max(width, this.textBounds.width());
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            int dp = AndroidUtilities.dp(40.0f);
-            int measuredHeight = getMeasuredHeight() / 2;
-            int dp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
-            int i = dp2 / 2;
-            int i2 = dp - i;
-            int i3 = measuredHeight - i;
-            this.lottieDrawable.setBounds(i2, i3, i2 + dp2, dp2 + i3);
-            this.lottieDrawable.draw(canvas);
-            if (this.progress > 0.0f) {
-                float dpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);
-                float f = dpf2 * 2.0f;
-                this.rectF.set(dpf2, dpf2, getMeasuredWidth() - f, getMeasuredHeight() - f);
-                this.backgroundPaint.setAlpha((int) (this.progress * 30.0f));
-                canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), this.backgroundPaint);
-                canvas.save();
-                float f2 = (this.progress * 0.05f) + 1.0f;
-                canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            }
-            canvas.drawText(this.header, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.headerTextPaint);
-            canvas.drawText(this.subHeader, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(18.0f), this.subHeaderTextPaint);
-            if (this.progress > 0.0f) {
-                canvas.restore();
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            int dp = AndroidUtilities.dp(40.0f);
-            int measuredHeight = getMeasuredHeight() / 2;
-            int dp2 = AndroidUtilities.dp(36.0f);
-            int i3 = dp2 / 2;
-            int i4 = dp - i3;
-            int i5 = measuredHeight - i3;
-            this.lottieDrawable.setBounds(i4, i5, i4 + dp2, dp2 + i5);
-        }
-
-        public void setProgress(float f) {
-            this.progress = f;
-            invalidate();
-        }
-
-        public void startIconAnimation() {
-            this.lottieDrawable.setAutoRepeatCount(2);
-            this.lottieDrawable.start();
-        }
-
-        public void stopAnimation() {
-            this.lottieDrawable.setCurrentFrame(0);
-            this.lottieDrawable.stop();
-            this.progress = 0.0f;
-            invalidate();
-        }
+    public void lambda$new$0() {
+        updateCurrentAnimatedItem();
+        startAnimation(true);
     }
 
     public StoriesIntro(Context context, final View view) {
@@ -219,33 +116,6 @@ public class StoriesIntro extends FrameLayout {
         });
     }
 
-    public void lambda$new$0() {
-        updateCurrentAnimatedItem();
-        startAnimation(true);
-    }
-
-    public void lambda$startAnimation$1(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        ((StoriesIntroItemView) this.items.get(this.current)).setProgress(floatValue);
-        int i = this.prev;
-        if (i != -1) {
-            ((StoriesIntroItemView) this.items.get(i)).setProgress(1.0f - floatValue);
-        }
-    }
-
-    private void updateCurrentAnimatedItem() {
-        int i = this.current + 1;
-        this.current = i;
-        if (i >= this.items.size()) {
-            this.current = 0;
-        }
-        int i2 = this.prev + 1;
-        this.prev = i2;
-        if (i2 >= this.items.size()) {
-            this.prev = 0;
-        }
-    }
-
     public void startAnimation(boolean z) {
         ValueAnimator valueAnimator = this.valueAnimator;
         if (valueAnimator != null) {
@@ -276,6 +146,15 @@ public class StoriesIntro extends FrameLayout {
         AndroidUtilities.runOnUIThread(this.startItemAnimationRunnable, ((StoriesIntroItemView) this.items.get(this.current)).getLottieAnimationDuration() + 100);
     }
 
+    public void lambda$startAnimation$1(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        ((StoriesIntroItemView) this.items.get(this.current)).setProgress(floatValue);
+        int i = this.prev;
+        if (i != -1) {
+            ((StoriesIntroItemView) this.items.get(i)).setProgress(1.0f - floatValue);
+        }
+    }
+
     public void stopAnimation() {
         AndroidUtilities.cancelRunOnUIThread(this.startItemAnimationRunnable);
         ValueAnimator valueAnimator = this.valueAnimator;
@@ -289,5 +168,126 @@ public class StoriesIntro extends FrameLayout {
         }
         ((StoriesIntroItemView) this.items.get(this.current)).stopAnimation();
         updateCurrentAnimatedItem();
+    }
+
+    private void updateCurrentAnimatedItem() {
+        int i = this.current + 1;
+        this.current = i;
+        if (i >= this.items.size()) {
+            this.current = 0;
+        }
+        int i2 = this.prev + 1;
+        this.prev = i2;
+        if (i2 >= this.items.size()) {
+            this.prev = 0;
+        }
+    }
+
+    public static class StoriesIntroItemView extends View {
+        private final Paint backgroundPaint;
+        private final String header;
+        private final TextPaint headerTextPaint;
+        private final RLottieDrawable lottieDrawable;
+        private float progress;
+        private final RectF rectF;
+        private final String subHeader;
+        private final TextPaint subHeaderTextPaint;
+        private final Rect textBounds;
+
+        public StoriesIntroItemView(Context context, int i, String str, String str2) {
+            super(context);
+            this.textBounds = new Rect();
+            this.header = str;
+            this.subHeader = str2;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+            this.lottieDrawable = rLottieDrawable;
+            rLottieDrawable.setAutoRepeat(1);
+            rLottieDrawable.setMasterParent(this);
+            Paint paint = new Paint(1);
+            this.backgroundPaint = paint;
+            paint.setColor(383310040);
+            TextPaint textPaint = new TextPaint(1);
+            this.headerTextPaint = textPaint;
+            textPaint.setColor(-1);
+            textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            TextPaint textPaint2 = new TextPaint(1);
+            this.subHeaderTextPaint = textPaint2;
+            textPaint2.setColor(-1761607681);
+            textPaint2.setTextSize(TypedValue.applyDimension(1, 14.0f, getResources().getDisplayMetrics()));
+            this.rectF = new RectF();
+        }
+
+        public int getRequiredWidth() {
+            TextPaint textPaint = this.headerTextPaint;
+            String str = this.header;
+            textPaint.getTextBounds(str, 0, str.length(), this.textBounds);
+            int width = this.textBounds.width();
+            TextPaint textPaint2 = this.subHeaderTextPaint;
+            String str2 = this.subHeader;
+            textPaint2.getTextBounds(str2, 0, str2.length(), this.textBounds);
+            return AndroidUtilities.dp(88.0f) + AndroidUtilities.dp(8.0f) + Math.max(width, this.textBounds.width());
+        }
+
+        public long getLottieAnimationDuration() {
+            return this.lottieDrawable.getDuration() * 2;
+        }
+
+        public void stopAnimation() {
+            this.lottieDrawable.setCurrentFrame(0);
+            this.lottieDrawable.stop();
+            this.progress = 0.0f;
+            invalidate();
+        }
+
+        public void startIconAnimation() {
+            this.lottieDrawable.setAutoRepeatCount(2);
+            this.lottieDrawable.start();
+        }
+
+        public void setProgress(float f) {
+            this.progress = f;
+            invalidate();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
+            int dp2 = AndroidUtilities.dp(36.0f);
+            int i3 = dp2 / 2;
+            int i4 = dp - i3;
+            int i5 = measuredHeight - i3;
+            this.lottieDrawable.setBounds(i4, i5, i4 + dp2, dp2 + i5);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
+            int dp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
+            int i = dp2 / 2;
+            int i2 = dp - i;
+            int i3 = measuredHeight - i;
+            this.lottieDrawable.setBounds(i2, i3, i2 + dp2, dp2 + i3);
+            this.lottieDrawable.draw(canvas);
+            if (this.progress > 0.0f) {
+                float dpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);
+                float f = dpf2 * 2.0f;
+                this.rectF.set(dpf2, dpf2, getMeasuredWidth() - f, getMeasuredHeight() - f);
+                this.backgroundPaint.setAlpha((int) (this.progress * 30.0f));
+                canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), this.backgroundPaint);
+                canvas.save();
+                float f2 = (this.progress * 0.05f) + 1.0f;
+                canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            }
+            canvas.drawText(this.header, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.headerTextPaint);
+            canvas.drawText(this.subHeader, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(18.0f), this.subHeaderTextPaint);
+            if (this.progress > 0.0f) {
+                canvas.restore();
+            }
+        }
     }
 }

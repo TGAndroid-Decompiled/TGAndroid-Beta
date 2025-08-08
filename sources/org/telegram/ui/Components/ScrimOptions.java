@@ -93,11 +93,11 @@ public class ScrimOptions extends Dialog {
 
             @Override
             public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-                if (keyEvent == null || keyEvent.getKeyCode() != 4 || keyEvent.getAction() != 1) {
-                    return super.dispatchKeyEventPreIme(keyEvent);
+                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+                    ScrimOptions.this.onBackPressed();
+                    return true;
                 }
-                ScrimOptions.this.onBackPressed();
-                return true;
+                return super.dispatchKeyEventPreIme(keyEvent);
             }
 
             @Override
@@ -117,50 +117,123 @@ public class ScrimOptions extends Dialog {
         this.containerView = sizeNotifierFrameLayout;
         sizeNotifierFrameLayout.setClipToPadding(false);
         frameLayout.addView(sizeNotifierFrameLayout, LayoutHelper.createFrame(-1, -1, 119));
-        if (Build.VERSION.SDK_INT >= 21) {
-            frameLayout.setFitsSystemWindows(true);
-            frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    int systemWindowInsetLeft;
-                    int systemWindowInsetTop;
-                    int systemWindowInsetRight;
-                    int systemWindowInsetBottom;
-                    WindowInsets consumeSystemWindowInsets;
-                    WindowInsets windowInsets2;
-                    Insets insets;
-                    int i;
-                    int i2;
-                    int i3;
-                    int i4;
-                    int i5 = Build.VERSION.SDK_INT;
-                    if (i5 >= 30) {
-                        insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                        android.graphics.Rect rect = ScrimOptions.this.insets;
-                        i = insets.left;
-                        i2 = insets.top;
-                        i3 = insets.right;
-                        i4 = insets.bottom;
-                        rect.set(i, i2, i3, i4);
-                    } else {
-                        android.graphics.Rect rect2 = ScrimOptions.this.insets;
-                        systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
-                        systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
-                        systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
-                        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
-                        rect2.set(systemWindowInsetLeft, systemWindowInsetTop, systemWindowInsetRight, systemWindowInsetBottom);
-                    }
-                    ScrimOptions.this.containerView.setPadding(ScrimOptions.this.insets.left, ScrimOptions.this.insets.top, ScrimOptions.this.insets.right, ScrimOptions.this.insets.bottom);
-                    ScrimOptions.this.windowView.requestLayout();
-                    if (i5 >= 30) {
-                        windowInsets2 = WindowInsets.CONSUMED;
-                        return windowInsets2;
-                    }
-                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
-                    return consumeSystemWindowInsets;
+        frameLayout.setFitsSystemWindows(true);
+        frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override
+            public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                WindowInsets windowInsets2;
+                Insets insets;
+                int i;
+                int i2;
+                int i3;
+                int i4;
+                int i5 = Build.VERSION.SDK_INT;
+                if (i5 < 30) {
+                    ScrimOptions.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+                } else {
+                    insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                    android.graphics.Rect rect = ScrimOptions.this.insets;
+                    i = insets.left;
+                    i2 = insets.top;
+                    i3 = insets.right;
+                    i4 = insets.bottom;
+                    rect.set(i, i2, i3, i4);
                 }
-            });
+                ScrimOptions.this.containerView.setPadding(ScrimOptions.this.insets.left, ScrimOptions.this.insets.top, ScrimOptions.this.insets.right, ScrimOptions.this.insets.bottom);
+                ScrimOptions.this.windowView.requestLayout();
+                if (i5 >= 30) {
+                    windowInsets2 = WindowInsets.CONSUMED;
+                    return windowInsets2;
+                }
+                return windowInsets.consumeSystemWindowInsets();
+            }
+        });
+    }
+
+    public void lambda$new$0(View view) {
+        onBackPressed();
+    }
+
+    public void setItemOptions(ItemOptions itemOptions) {
+        this.options = itemOptions;
+        this.optionsView = itemOptions.getLayout();
+        FrameLayout frameLayout = new FrameLayout(this.context);
+        this.optionsContainer = frameLayout;
+        frameLayout.addView(this.optionsView, LayoutHelper.createFrame(-2, -2.0f));
+        this.containerView.addView(this.optionsContainer, LayoutHelper.createFrame(-2, -2.0f));
+    }
+
+    @Override
+    public boolean isShowing() {
+        return !this.dismissing;
+    }
+
+    @Override
+    public void show() {
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            super.show();
+            prepareBlur(null);
+            animateOpenTo(true, null);
         }
+    }
+
+    @Override
+    public void dismiss() {
+        if (this.dismissing) {
+            return;
+        }
+        this.dismissing = true;
+        animateOpenTo(false, new Runnable() {
+            @Override
+            public final void run() {
+                ScrimOptions.this.lambda$dismiss$2();
+            }
+        });
+        this.windowView.invalidate();
+    }
+
+    public void lambda$dismiss$1() {
+        super.dismiss();
+    }
+
+    public void lambda$dismiss$2() {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ScrimOptions.this.lambda$dismiss$1();
+            }
+        });
+    }
+
+    public void dismissFast() {
+        if (this.dismissing) {
+            return;
+        }
+        this.dismissing = true;
+        animateOpenTo(false, 2.0f, new Runnable() {
+            @Override
+            public final void run() {
+                ScrimOptions.this.lambda$dismissFast$4();
+            }
+        });
+        this.windowView.invalidate();
+    }
+
+    public void lambda$dismissFast$3() {
+        super.dismiss();
+    }
+
+    public void lambda$dismissFast$4() {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ScrimOptions.this.lambda$dismissFast$3();
+            }
+        });
+    }
+
+    private void animateOpenTo(boolean z, Runnable runnable) {
+        animateOpenTo(z, 1.0f, runnable);
     }
 
     private void animateOpenTo(final boolean z, float f, final Runnable runnable) {
@@ -196,10 +269,6 @@ public class ScrimOptions extends Dialog {
         this.openAnimator.start();
     }
 
-    private void animateOpenTo(boolean z, Runnable runnable) {
-        animateOpenTo(z, 1.0f, runnable);
-    }
-
     public void lambda$animateOpenTo$5(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.openProgress = floatValue;
@@ -210,34 +279,40 @@ public class ScrimOptions extends Dialog {
         this.containerView.invalidate();
     }
 
-    public void lambda$dismiss$1() {
-        super.dismiss();
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        setContentView(this.windowView, new ViewGroup.LayoutParams(-1, -1));
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.height = -1;
+        attributes.gravity = 119;
+        attributes.dimAmount = 0.0f;
+        int i = attributes.flags & (-3);
+        attributes.softInputMode = 16;
+        attributes.flags = 131072 | i;
+        int i2 = Build.VERSION.SDK_INT;
+        attributes.flags = i | (-1945959040);
+        if (i2 >= 28) {
+            attributes.layoutInDisplayCutoutMode = 1;
+        }
+        window.setAttributes(attributes);
+        this.windowView.setSystemUiVisibility(256);
+        AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());
     }
 
-    public void lambda$dismiss$2() {
-        AndroidUtilities.runOnUIThread(new Runnable() {
+    private void prepareBlur(final View view) {
+        if (view != null) {
+            view.setVisibility(4);
+        }
+        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
             @Override
-            public final void run() {
-                ScrimOptions.this.lambda$dismiss$1();
+            public final void run(Object obj) {
+                ScrimOptions.this.lambda$prepareBlur$6(view, (Bitmap) obj);
             }
-        });
-    }
-
-    public void lambda$dismissFast$3() {
-        super.dismiss();
-    }
-
-    public void lambda$dismissFast$4() {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ScrimOptions.this.lambda$dismissFast$3();
-            }
-        });
-    }
-
-    public void lambda$new$0(View view) {
-        onBackPressed();
+        }, 14.0f);
     }
 
     public void lambda$prepareBlur$6(View view, Bitmap bitmap) {
@@ -257,52 +332,6 @@ public class ScrimOptions extends Dialog {
         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.07f);
         this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         this.blurMatrix = new Matrix();
-    }
-
-    private void prepareBlur(final View view) {
-        if (view != null) {
-            view.setVisibility(4);
-        }
-        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                ScrimOptions.this.lambda$prepareBlur$6(view, (Bitmap) obj);
-            }
-        }, 14.0f);
-    }
-
-    @Override
-    public void dismiss() {
-        if (this.dismissing) {
-            return;
-        }
-        this.dismissing = true;
-        animateOpenTo(false, new Runnable() {
-            @Override
-            public final void run() {
-                ScrimOptions.this.lambda$dismiss$2();
-            }
-        });
-        this.windowView.invalidate();
-    }
-
-    public void dismissFast() {
-        if (this.dismissing) {
-            return;
-        }
-        this.dismissing = true;
-        animateOpenTo(false, 2.0f, new Runnable() {
-            @Override
-            public final void run() {
-                ScrimOptions.this.lambda$dismissFast$4();
-            }
-        });
-        this.windowView.invalidate();
-    }
-
-    @Override
-    public boolean isShowing() {
-        return !this.dismissing;
     }
 
     public void layout() {
@@ -344,52 +373,7 @@ public class ScrimOptions extends Dialog {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        setContentView(this.windowView, new ViewGroup.LayoutParams(-1, -1));
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i = attributes.flags & (-3);
-        attributes.softInputMode = 16;
-        attributes.flags = 131072 | i;
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 21) {
-            attributes.flags = i | (-1945960192);
-        }
-        attributes.flags |= 1152;
-        if (i2 >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
-        }
-        window.setAttributes(attributes);
-        this.windowView.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());
-    }
-
-    public void setItemOptions(ItemOptions itemOptions) {
-        this.options = itemOptions;
-        this.optionsView = itemOptions.getLayout();
-        FrameLayout frameLayout = new FrameLayout(this.context);
-        this.optionsContainer = frameLayout;
-        frameLayout.addView(this.optionsView, LayoutHelper.createFrame(-2, -2.0f));
-        this.containerView.addView(this.optionsContainer, LayoutHelper.createFrame(-2, -2.0f));
-    }
-
     public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r31, android.text.style.CharacterStyle r32, java.lang.CharSequence r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrimOptions.setScrim(org.telegram.ui.Cells.ChatMessageCell, android.text.style.CharacterStyle, java.lang.CharSequence):void");
-    }
-
-    @Override
-    public void show() {
-        if (AndroidUtilities.isSafeToShow(getContext())) {
-            super.show();
-            prepareBlur(null);
-            animateOpenTo(true, null);
-        }
     }
 }

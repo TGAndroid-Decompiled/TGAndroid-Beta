@@ -2,7 +2,6 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Region;
@@ -80,6 +79,36 @@ public class SharedLinkCell extends FrameLayout {
     private int titleY;
     private int viewType;
 
+    public interface SharedLinkCellDelegate {
+        boolean canPerformActions();
+
+        void needOpenWebView(TLRPC.WebPage webPage, MessageObject messageObject);
+
+        void onLinkPress(String str, boolean z);
+    }
+
+    static int access$104(SharedLinkCell sharedLinkCell) {
+        int i = sharedLinkCell.pressCount + 1;
+        sharedLinkCell.pressCount = i;
+        return i;
+    }
+
+    public final class CheckForTap implements Runnable {
+        private CheckForTap() {
+        }
+
+        @Override
+        public void run() {
+            if (SharedLinkCell.this.pendingCheckForLongPress == null) {
+                SharedLinkCell sharedLinkCell = SharedLinkCell.this;
+                sharedLinkCell.pendingCheckForLongPress = new CheckForLongPress();
+            }
+            SharedLinkCell.this.pendingCheckForLongPress.currentPressCount = SharedLinkCell.access$104(SharedLinkCell.this);
+            SharedLinkCell sharedLinkCell2 = SharedLinkCell.this;
+            sharedLinkCell2.postDelayed(sharedLinkCell2.pendingCheckForLongPress, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
+        }
+    }
+
     public class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
@@ -106,28 +135,27 @@ public class SharedLinkCell extends FrameLayout {
         }
     }
 
-    public final class CheckForTap implements Runnable {
-        private CheckForTap() {
+    protected void startCheckLongPress() {
+        if (this.checkingForLongPress) {
+            return;
         }
-
-        @Override
-        public void run() {
-            if (SharedLinkCell.this.pendingCheckForLongPress == null) {
-                SharedLinkCell sharedLinkCell = SharedLinkCell.this;
-                sharedLinkCell.pendingCheckForLongPress = new CheckForLongPress();
-            }
-            SharedLinkCell.this.pendingCheckForLongPress.currentPressCount = SharedLinkCell.access$104(SharedLinkCell.this);
-            SharedLinkCell sharedLinkCell2 = SharedLinkCell.this;
-            sharedLinkCell2.postDelayed(sharedLinkCell2.pendingCheckForLongPress, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
+        this.checkingForLongPress = true;
+        if (this.pendingCheckForTap == null) {
+            this.pendingCheckForTap = new CheckForTap();
         }
+        postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
     }
 
-    public interface SharedLinkCellDelegate {
-        boolean canPerformActions();
-
-        void needOpenWebView(TLRPC.WebPage webPage, MessageObject messageObject);
-
-        void onLinkPress(String str, boolean z);
+    protected void cancelCheckLongPress() {
+        this.checkingForLongPress = false;
+        CheckForLongPress checkForLongPress = this.pendingCheckForLongPress;
+        if (checkForLongPress != null) {
+            removeCallbacks(checkForLongPress);
+        }
+        CheckForTap checkForTap = this.pendingCheckForTap;
+        if (checkForTap != null) {
+            removeCallbacks(checkForTap);
+        }
     }
 
     public SharedLinkCell(Context context, int i) {
@@ -190,31 +218,51 @@ public class SharedLinkCell extends FrameLayout {
         textPaint3.setTextSize(AndroidUtilities.dp(13.0f));
     }
 
-    static int access$104(SharedLinkCell sharedLinkCell) {
-        int i = sharedLinkCell.pressCount + 1;
-        sharedLinkCell.pressCount = i;
-        return i;
+    @Override
+    protected void onMeasure(int r31, int r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onMeasure(int, int):void");
     }
 
-    private int getYOffsetForType(int i) {
-        return i != 1 ? i != 2 ? this.linkY : this.description2Y : this.descriptionY;
+    public void setLink(MessageObject messageObject, boolean z) {
+        this.needDivider = z;
+        resetPressedLink();
+        this.message = messageObject;
+        requestLayout();
     }
 
-    public void lambda$startSpoilerRipples$0() {
-        this.message.isSpoilersRevealed = true;
-        this.linkSpoilers.clear();
-        this.descriptionLayoutSpoilers.clear();
-        this.descriptionLayout2Spoilers.clear();
-        invalidate();
+    public ImageReceiver getLinkImageView() {
+        return this.linkImageView;
     }
 
-    public void lambda$startSpoilerRipples$1() {
-        post(new Runnable() {
-            @Override
-            public final void run() {
-                SharedLinkCell.this.lambda$startSpoilerRipples$0();
-            }
-        });
+    public void setDelegate(SharedLinkCellDelegate sharedLinkCellDelegate) {
+        this.delegate = sharedLinkCellDelegate;
+    }
+
+    public MessageObject getMessage() {
+        return this.message;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.drawLinkImageView) {
+            this.linkImageView.onDetachedFromWindow();
+        }
+        AnimatedEmojiSpan.release(this, this.fromInfoLayoutEmojis);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.drawLinkImageView) {
+            this.linkImageView.onAttachedToWindow();
+        }
+        this.fromInfoLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.fromInfoLayoutEmojis, this.fromInfoLayout);
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
     private void startSpoilerRipples(int i, int i2, int i3) {
@@ -278,16 +326,31 @@ public class SharedLinkCell extends FrameLayout {
         this.spoilerPressed = null;
     }
 
-    protected void cancelCheckLongPress() {
-        this.checkingForLongPress = false;
-        CheckForLongPress checkForLongPress = this.pendingCheckForLongPress;
-        if (checkForLongPress != null) {
-            removeCallbacks(checkForLongPress);
+    public void lambda$startSpoilerRipples$1() {
+        post(new Runnable() {
+            @Override
+            public final void run() {
+                SharedLinkCell.this.lambda$startSpoilerRipples$0();
+            }
+        });
+    }
+
+    public void lambda$startSpoilerRipples$0() {
+        this.message.isSpoilersRevealed = true;
+        this.linkSpoilers.clear();
+        this.descriptionLayoutSpoilers.clear();
+        this.descriptionLayout2Spoilers.clear();
+        invalidate();
+    }
+
+    private int getYOffsetForType(int i) {
+        if (i == 1) {
+            return this.descriptionY;
         }
-        CheckForTap checkForTap = this.pendingCheckForTap;
-        if (checkForTap != null) {
-            removeCallbacks(checkForTap);
+        if (i != 2) {
+            return this.linkY;
         }
+        return this.description2Y;
     }
 
     public String getLink(int i) {
@@ -297,39 +360,24 @@ public class SharedLinkCell extends FrameLayout {
         return ((CharSequence) this.links.get(i)).toString();
     }
 
-    public ImageReceiver getLinkImageView() {
-        return this.linkImageView;
+    protected void resetPressedLink() {
+        this.linksCollector.clear(true);
+        this.pressedLinkIndex = -1;
+        this.pressedLink = null;
+        this.linkPreviewPressed = false;
+        cancelCheckLongPress();
+        invalidate();
     }
 
-    public MessageObject getMessage() {
-        return this.message;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.drawLinkImageView) {
-            this.linkImageView.onAttachedToWindow();
+    public void setChecked(boolean z, boolean z2) {
+        if (this.checkBox.getVisibility() != 0) {
+            this.checkBox.setVisibility(0);
         }
-        this.fromInfoLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.fromInfoLayoutEmojis, this.fromInfoLayout);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.drawLinkImageView) {
-            this.linkImageView.onDetachedFromWindow();
-        }
-        AnimatedEmojiSpan.release(this, this.fromInfoLayoutEmojis);
+        this.checkBox.setChecked(z, z2);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float dp;
-        float measuredHeight;
-        float measuredWidth;
-        float measuredHeight2;
-        Paint paint;
         if (this.viewType == 1) {
             this.description2TextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
         }
@@ -341,11 +389,11 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.titleLayout != null) {
             canvas.save();
-            float dp2 = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
+            float dp = AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline);
             if (LocaleController.isRTL) {
-                dp2 += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
+                dp += this.dateLayout == null ? 0.0f : r1.getWidth() + AndroidUtilities.dp(4.0f);
             }
-            canvas.translate(dp2, this.titleY);
+            canvas.translate(dp, this.titleY);
             this.titleLayout.draw(canvas);
             canvas.restore();
         }
@@ -427,19 +475,10 @@ public class SharedLinkCell extends FrameLayout {
         }
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                measuredHeight = getMeasuredHeight() - 1;
-                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline);
-                measuredHeight2 = getMeasuredHeight() - 1;
-                paint = Theme.dividerPaint;
-                dp = 0.0f;
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
-                dp = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
-                measuredHeight = getMeasuredHeight() - 1;
-                measuredWidth = getMeasuredWidth();
-                measuredHeight2 = getMeasuredHeight() - 1;
-                paint = Theme.dividerPaint;
+                canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth, measuredHeight2, paint);
         }
     }
 
@@ -464,53 +503,5 @@ public class SharedLinkCell extends FrameLayout {
             accessibilityNodeInfo.setChecked(true);
             accessibilityNodeInfo.setCheckable(true);
         }
-    }
-
-    @Override
-    protected void onMeasure(int r31, int r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onMeasure(int, int):void");
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    protected void resetPressedLink() {
-        this.linksCollector.clear(true);
-        this.pressedLinkIndex = -1;
-        this.pressedLink = null;
-        this.linkPreviewPressed = false;
-        cancelCheckLongPress();
-        invalidate();
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        if (this.checkBox.getVisibility() != 0) {
-            this.checkBox.setVisibility(0);
-        }
-        this.checkBox.setChecked(z, z2);
-    }
-
-    public void setDelegate(SharedLinkCellDelegate sharedLinkCellDelegate) {
-        this.delegate = sharedLinkCellDelegate;
-    }
-
-    public void setLink(MessageObject messageObject, boolean z) {
-        this.needDivider = z;
-        resetPressedLink();
-        this.message = messageObject;
-        requestLayout();
-    }
-
-    protected void startCheckLongPress() {
-        if (this.checkingForLongPress) {
-            return;
-        }
-        this.checkingForLongPress = true;
-        if (this.pendingCheckForTap == null) {
-            this.pendingCheckForTap = new CheckForTap();
-        }
-        postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
     }
 }

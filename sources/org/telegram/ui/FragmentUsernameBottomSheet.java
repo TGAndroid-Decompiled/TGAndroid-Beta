@@ -36,28 +36,15 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class FragmentUsernameBottomSheet {
-    public static void lambda$open$0(String str, int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
-        AndroidUtilities.addToClipboard(str);
-        (i == 1 ? BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)) : BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyLinkBulletin()).show();
-    }
-
-    public static void lambda$open$1(Context context, TL_fragment.TL_collectibleInfo tL_collectibleInfo, View view) {
-        Browser.openUrl(context, tL_collectibleInfo.url);
-    }
-
-    public static void lambda$open$2(Runnable runnable, BottomSheet bottomSheet, View view) {
-        runnable.run();
-        bottomSheet.lambda$new$0();
-    }
-
     public static void open(final Context context, final int i, String str, TLObject tLObject, final TL_fragment.TL_collectibleInfo tL_collectibleInfo, final Theme.ResourcesProvider resourcesProvider) {
         String str2;
+        String str3;
         Object obj;
         String formatString;
-        String str3;
+        String str4;
         String formatString2;
         final String format;
-        String str4;
+        String str5;
         final ?? bottomSheet = new BottomSheet(context, false, resourcesProvider);
         bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         ?? linearLayout = new LinearLayout(context);
@@ -79,24 +66,28 @@ public abstract class FragmentUsernameBottomSheet {
             rLottieImageView.setTranslationY(AndroidUtilities.dp(2.0f));
         }
         frameLayout.addView(rLottieImageView, LayoutHelper.createLinear(-1, -1, 17));
-        String userName = tLObject instanceof TLRPC.User ? UserObject.getUserName((TLRPC.User) tLObject) : tLObject instanceof TLRPC.Chat ? ((TLRPC.Chat) tLObject).title : "";
+        if (tLObject instanceof TLRPC.User) {
+            str2 = UserObject.getUserName((TLRPC.User) tLObject);
+        } else {
+            str2 = tLObject instanceof TLRPC.Chat ? ((TLRPC.Chat) tLObject).title : "";
+        }
         String formatCurrency = BillingController.getInstance().formatCurrency(tL_collectibleInfo.amount, tL_collectibleInfo.currency);
         String formatCurrency2 = BillingController.getInstance().formatCurrency(tL_collectibleInfo.crypto_amount, tL_collectibleInfo.crypto_currency);
         if (i == 0) {
-            str2 = userName;
+            str3 = str2;
             formatString = LocaleController.formatString(R.string.FragmentUsernameTitle, "@" + str);
             int i3 = R.string.FragmentUsernameMessage;
             obj = linearLayout;
             String formatShortDateTime = LocaleController.formatShortDateTime((long) tL_collectibleInfo.purchase_date);
             if (TextUtils.isEmpty(formatCurrency)) {
-                str4 = "";
+                str5 = "";
             } else {
-                str4 = "(" + formatCurrency + ")";
+                str5 = "(" + formatCurrency + ")";
             }
-            formatString2 = LocaleController.formatString(i3, formatShortDateTime, formatCurrency2, str4);
+            formatString2 = LocaleController.formatString(i3, formatShortDateTime, formatCurrency2, str5);
             format = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/" + str;
         } else {
-            str2 = userName;
+            str3 = str2;
             obj = linearLayout;
             if (i != 1) {
                 return;
@@ -105,11 +96,11 @@ public abstract class FragmentUsernameBottomSheet {
             int i4 = R.string.FragmentPhoneMessage;
             String formatShortDateTime2 = LocaleController.formatShortDateTime((long) tL_collectibleInfo.purchase_date);
             if (TextUtils.isEmpty(formatCurrency)) {
-                str3 = "";
+                str4 = "";
             } else {
-                str3 = "(" + formatCurrency + ")";
+                str4 = "(" + formatCurrency + ")";
             }
-            formatString2 = LocaleController.formatString(i4, formatShortDateTime2, formatCurrency2, str3);
+            formatString2 = LocaleController.formatString(i4, formatShortDateTime2, formatCurrency2, str4);
             format = PhoneFormat.getInstance().format("+" + str);
         }
         final Runnable runnable = format != null ? new Runnable() {
@@ -146,7 +137,7 @@ public abstract class FragmentUsernameBottomSheet {
         textView.setTextColor(Theme.getColor(i5, resourcesProvider));
         textView.setTextSize(1, 13.0f);
         textView.setSingleLine();
-        textView.setText(Emoji.replaceEmoji(str2, textView.getPaint().getFontMetricsInt(), false));
+        textView.setText(Emoji.replaceEmoji(str3, textView.getPaint().getFontMetricsInt(), false));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 19, 37.0f, 0.0f, 10.0f, 0.0f));
         r11.addView(frameLayout2, LayoutHelper.createLinear(-2, 28, 1, 42, 10, 42, 18));
         TextView textView2 = new TextView(context);
@@ -177,5 +168,23 @@ public abstract class FragmentUsernameBottomSheet {
         }
         bottomSheet.setCustomView(r11);
         bottomSheet.show();
+    }
+
+    public static void lambda$open$0(String str, int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider) {
+        AndroidUtilities.addToClipboard(str);
+        if (i == 1) {
+            BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();
+        } else {
+            BulletinFactory.of(bottomSheet.getContainer(), resourcesProvider).createCopyLinkBulletin().show();
+        }
+    }
+
+    public static void lambda$open$1(Context context, TL_fragment.TL_collectibleInfo tL_collectibleInfo, View view) {
+        Browser.openUrl(context, tL_collectibleInfo.url);
+    }
+
+    public static void lambda$open$2(Runnable runnable, BottomSheet bottomSheet, View view) {
+        runnable.run();
+        bottomSheet.lambda$new$0();
     }
 }

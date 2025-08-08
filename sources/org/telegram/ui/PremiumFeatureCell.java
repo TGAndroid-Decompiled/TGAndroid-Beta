@@ -65,37 +65,6 @@ public class PremiumFeatureCell extends FrameLayout {
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.imageDrawable != null) {
-            updateImageBounds();
-            this.imageDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon)));
-            this.imageDrawable.draw(canvas);
-        }
-        if (this.drawDivider) {
-            canvas.drawRect(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
-        if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.attach();
-        }
-        super.onAttachedToWindow();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
-        if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.detach();
-        }
-        super.onDetachedFromWindow();
-    }
-
     public void setData(PremiumPreviewFragment.PremiumFeatureData premiumFeatureData, boolean z) {
         if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && premiumFeatureData.type == 12 && premiumFeatureData.icon == R.drawable.filled_premium_status2) {
             this.nextIcon.setVisibility(8);
@@ -129,19 +98,50 @@ public class PremiumFeatureCell extends FrameLayout {
                 this.imageDrawable.attach();
             }
         }
-        if (j != 0) {
-            this.imageDrawable.set(j, z);
+        if (j == 0) {
+            if (this.premiumStar == null) {
+                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
+                this.premiumStar = mutate;
+                mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
+            }
+            this.imageDrawable.set(this.premiumStar, z);
             return;
         }
-        if (this.premiumStar == null) {
-            Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
-            this.premiumStar = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
-        }
-        this.imageDrawable.set(this.premiumStar, z);
+        this.imageDrawable.set(j, z);
     }
 
     public void updateImageBounds() {
         this.imageDrawable.setBounds((getWidth() - this.imageDrawable.getIntrinsicWidth()) - AndroidUtilities.dp(21.0f), (getHeight() - this.imageDrawable.getIntrinsicHeight()) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.imageDrawable.getIntrinsicHeight()) / 2);
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.imageDrawable != null) {
+            updateImageBounds();
+            this.imageDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon)));
+            this.imageDrawable.draw(canvas);
+        }
+        if (this.drawDivider) {
+            canvas.drawRect(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
+        if (swapAnimatedEmojiDrawable != null) {
+            swapAnimatedEmojiDrawable.attach();
+        }
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
+        if (swapAnimatedEmojiDrawable != null) {
+            swapAnimatedEmojiDrawable.detach();
+        }
+        super.onDetachedFromWindow();
     }
 }

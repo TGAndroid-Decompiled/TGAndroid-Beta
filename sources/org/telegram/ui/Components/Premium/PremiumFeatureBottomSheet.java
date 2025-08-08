@@ -11,8 +11,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +39,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BottomPagesView;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -78,214 +77,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     int topGlobalOffset;
     ViewPager viewPager;
 
-    public class AnonymousClass5 implements ViewPager.OnPageChangeListener {
-        final BottomPagesView val$bottomPages;
-
-        AnonymousClass5(BottomPagesView bottomPagesView) {
-            this.val$bottomPages = bottomPagesView;
-        }
-
-        private void checkPage() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet.AnonymousClass5.checkPage():void");
-        }
-
-        public void lambda$checkPage$0() {
-            PremiumFeatureBottomSheet.this.checkTopOffset();
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int i) {
-        }
-
-        @Override
-        public void onPageScrolled(int i, float f, int i2) {
-            this.val$bottomPages.setPageOffset(i, f);
-            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-            premiumFeatureBottomSheet.selectedPosition = i;
-            premiumFeatureBottomSheet.toPosition = i2 > 0 ? i + 1 : i - 1;
-            premiumFeatureBottomSheet.progress = f;
-            checkPage();
-        }
-
-        @Override
-        public void onPageSelected(int i) {
-            ActionBar actionBar;
-            int i2;
-            if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 0) {
-                actionBar = PremiumFeatureBottomSheet.this.actionBar;
-                i2 = R.string.DoubledLimits;
-            } else {
-                if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type != 14) {
-                    if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 28) {
-                        actionBar = PremiumFeatureBottomSheet.this.actionBar;
-                        i2 = R.string.TelegramBusiness;
-                    }
-                    checkPage();
-                }
-                actionBar = PremiumFeatureBottomSheet.this.actionBar;
-                i2 = R.string.UpgradedStories;
-            }
-            actionBar.setTitle(LocaleController.getString(i2));
-            PremiumFeatureBottomSheet.this.actionBar.requestLayout();
-            checkPage();
-        }
-    }
-
-    public class ViewPage extends LinearLayout {
-        LinkSpanDrawable.LinksTextView description;
-        public int position;
-        TextView title;
-        PagerHeaderView topHeader;
-        View topView;
-        boolean topViewOnFullHeight;
-
-        public ViewPage(Context context, int i) {
-            super(context);
-            setOrientation(1);
-            View viewForPosition = PremiumFeatureBottomSheet.this.getViewForPosition(context, i);
-            this.topView = viewForPosition;
-            addView(viewForPosition);
-            this.topHeader = (PagerHeaderView) this.topView;
-            TextView textView = new TextView(context);
-            this.title = textView;
-            textView.setGravity(1);
-            TextView textView2 = this.title;
-            int i2 = Theme.key_dialogTextBlack;
-            textView2.setTextColor(PremiumFeatureBottomSheet.this.getThemedColor(i2));
-            this.title.setTextSize(1, 20.0f);
-            this.title.setTypeface(AndroidUtilities.bold());
-            addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-            this.description = linksTextView;
-            linksTextView.setGravity(1);
-            this.description.setTextSize(1, 15.0f);
-            this.description.setTextColor(PremiumFeatureBottomSheet.this.getThemedColor(i2));
-            if (!PremiumFeatureBottomSheet.this.onlySelectedType) {
-                this.description.setLines(2);
-            }
-            addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 10.0f, 21.0f, 16.0f));
-            setClipChildren(false);
-        }
-
-        @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
-            if (view != this.topView) {
-                return super.drawChild(canvas, view, j);
-            }
-            boolean z = view instanceof BaseListPageView;
-            setTranslationY(z ? 0.0f : PremiumFeatureBottomSheet.this.topGlobalOffset);
-            if (z) {
-                return super.drawChild(canvas, view, j);
-            }
-            canvas.save();
-            canvas.clipRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j);
-            canvas.restore();
-            return drawChild;
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            this.title.setVisibility(0);
-            View view = this.topView;
-            if (view instanceof BaseListPageView) {
-                ((BaseListPageView) view).setTopOffset(PremiumFeatureBottomSheet.this.topGlobalOffset);
-            }
-            ViewGroup.LayoutParams layoutParams = this.topView.getLayoutParams();
-            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-            layoutParams.height = premiumFeatureBottomSheet.contentHeight;
-            this.description.setVisibility(((BottomSheet) premiumFeatureBottomSheet).isPortrait ? 0 : 8);
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.title.getLayoutParams();
-            if (((BottomSheet) PremiumFeatureBottomSheet.this).isPortrait) {
-                marginLayoutParams.topMargin = AndroidUtilities.dp(20.0f);
-                marginLayoutParams.bottomMargin = 0;
-            } else {
-                marginLayoutParams.topMargin = AndroidUtilities.dp(10.0f);
-                marginLayoutParams.bottomMargin = AndroidUtilities.dp(10.0f);
-            }
-            ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = 0;
-            super.onMeasure(i, i2);
-            if (this.topViewOnFullHeight) {
-                this.topView.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
-                ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
-                this.title.setVisibility(8);
-                this.description.setVisibility(8);
-                super.onMeasure(i, i2);
-            }
-        }
-
-        void setFeatureDate(PremiumPreviewFragment.PremiumFeatureData premiumFeatureData) {
-            String str;
-            LinkSpanDrawable.LinksTextView linksTextView;
-            int i;
-            int i2 = premiumFeatureData.type;
-            if (i2 == 0 || i2 == 14 || i2 == 28) {
-                this.title.setText("");
-                this.description.setText("");
-                this.topViewOnFullHeight = true;
-            } else {
-                if (PremiumFeatureBottomSheet.this.onlySelectedType) {
-                    if (PremiumFeatureBottomSheet.this.startType == 4) {
-                        this.title.setText(LocaleController.getString(R.string.AdditionalReactions));
-                        linksTextView = this.description;
-                        i = R.string.AdditionalReactionsDescription;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 3) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewNoAds));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewNoAdsDescription2;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 24) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewTags));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewTagsDescription;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 10) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewAppIcon));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewAppIconDescription2;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 2) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewDownloadSpeed));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewDownloadSpeedDescription2;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 9) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewAdvancedChatManagementDescription2;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 8) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewVoiceToText));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewVoiceToTextDescription2;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 13) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewTranslations));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewTranslationsDescription;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 38) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewEffects));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewEffectsDescription;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 22) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewWallpaper));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewWallpaperDescription;
-                    } else if (PremiumFeatureBottomSheet.this.startType == 23) {
-                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewProfileColor));
-                        linksTextView = this.description;
-                        i = R.string.PremiumPreviewProfileColorDescription;
-                    } else {
-                        this.title.setText(premiumFeatureData.title);
-                        LinkSpanDrawable.LinksTextView linksTextView2 = this.description;
-                        str = premiumFeatureData.description;
-                        linksTextView = linksTextView2;
-                        linksTextView.setText(AndroidUtilities.replaceTags(str));
-                    }
-                    str = LocaleController.getString(i);
-                    linksTextView.setText(AndroidUtilities.replaceTags(str));
-                } else {
-                    this.title.setText(premiumFeatureData.title);
-                    this.description.setText(AndroidUtilities.replaceTags(premiumFeatureData.description));
-                }
-                this.topViewOnFullHeight = false;
-            }
-            requestLayout();
-        }
+    public boolean isFullscreenType(int i) {
+        return i == 0 || i == 14 || i == 28;
     }
 
     public PremiumFeatureBottomSheet(BaseFragment baseFragment, int i, boolean z) {
@@ -316,16 +109,11 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
             protected void onMeasure(int i3, int i4) {
-                PremiumFeatureBottomSheet premiumFeatureBottomSheet;
-                int size;
                 if (((BottomSheet) PremiumFeatureBottomSheet.this).isPortrait) {
-                    premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-                    size = View.MeasureSpec.getSize(i3);
+                    PremiumFeatureBottomSheet.this.contentHeight = View.MeasureSpec.getSize(i3);
                 } else {
-                    premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-                    size = (int) (View.MeasureSpec.getSize(i4) * 0.65f);
+                    PremiumFeatureBottomSheet.this.contentHeight = (int) (View.MeasureSpec.getSize(i4) * 0.65f);
                 }
-                premiumFeatureBottomSheet.contentHeight = size;
                 super.onMeasure(i3, i4);
             }
         };
@@ -364,6 +152,11 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         premiumGradientTools.exactly = true;
         this.content = new FrameLayout(getContext()) {
             @Override
+            protected void onMeasure(int i4, int i5) {
+                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(PremiumFeatureBottomSheet.this.contentHeight + AndroidUtilities.dp(2.0f), 1073741824));
+            }
+
+            @Override
             protected void dispatchDraw(Canvas canvas) {
                 premiumGradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), 0.0f, 0.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
@@ -374,11 +167,6 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 1, AndroidUtilities.dp(12.0f) - 1, premiumGradientTools.paint);
                 canvas.restore();
                 super.dispatchDraw(canvas);
-            }
-
-            @Override
-            protected void onMeasure(int i4, int i5) {
-                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(PremiumFeatureBottomSheet.this.contentHeight + AndroidUtilities.dp(2.0f), 1073741824));
             }
         };
         this.closeLayout = new FrameLayout(getContext());
@@ -415,8 +203,42 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
             }
 
-            private boolean processTap(android.view.MotionEvent r7, boolean r8) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet.AnonymousClass3.processTap(android.view.MotionEvent, boolean):boolean");
+            @Override
+            public void onMeasure(int i4, int i5) {
+                int dp = AndroidUtilities.dp(100.0f);
+                if (getChildCount() > 0) {
+                    getChildAt(0).measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
+                    dp = getChildAt(0).getMeasuredHeight();
+                }
+                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(dp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
+            }
+
+            private boolean processTap(MotionEvent motionEvent, boolean z3) {
+                Scroller scroller;
+                if (motionEvent.getAction() == 0) {
+                    this.lastTapTime = System.currentTimeMillis();
+                    return true;
+                }
+                if (motionEvent.getAction() == 1) {
+                    if (System.currentTimeMillis() - this.lastTapTime <= ViewConfiguration.getTapTimeout() && (scroller = this.scroller) != null && scroller.isFinished()) {
+                        this.smoothScroll = true;
+                        if (motionEvent.getX() > getWidth() * 0.45f) {
+                            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
+                            if (premiumFeatureBottomSheet.selectedPosition + 1 < premiumFeatureBottomSheet.premiumFeatures.size()) {
+                                setCurrentItem(PremiumFeatureBottomSheet.this.selectedPosition + 1, true);
+                            }
+                        } else {
+                            int i4 = PremiumFeatureBottomSheet.this.selectedPosition - 1;
+                            if (i4 >= 0) {
+                                setCurrentItem(i4, true);
+                            }
+                        }
+                        this.smoothScroll = false;
+                    }
+                } else if (motionEvent.getAction() == 3) {
+                    this.lastTapTime = -1L;
+                }
+                return false;
             }
 
             @Override
@@ -427,16 +249,6 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 } catch (Exception unused) {
                     return false;
                 }
-            }
-
-            @Override
-            public void onMeasure(int i4, int i5) {
-                int dp = AndroidUtilities.dp(100.0f);
-                if (getChildCount() > 0) {
-                    getChildAt(0).measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
-                    dp = getChildAt(0).getMeasuredHeight();
-                }
-                super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(dp + PremiumFeatureBottomSheet.this.topGlobalOffset, 1073741824));
             }
 
             @Override
@@ -452,8 +264,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.viewPager.setOffscreenPageLimit(0);
         this.viewPager.setAdapter(new PagerAdapter() {
             @Override
-            public void destroyItem(ViewGroup viewGroup, int i4, Object obj) {
-                viewGroup.removeView((View) obj);
+            public boolean isViewFromObject(View view, Object obj) {
+                return view == obj;
             }
 
             @Override
@@ -472,8 +284,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             }
 
             @Override
-            public boolean isViewFromObject(View view, Object obj) {
-                return view == obj;
+            public void destroyItem(ViewGroup viewGroup, int i4, Object obj) {
+                viewGroup.removeView((View) obj);
             }
         });
         ViewPager viewPager2 = this.viewPager;
@@ -524,6 +336,27 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             Path path = new Path();
 
             @Override
+            public boolean hasOverlappingRendering() {
+                return false;
+            }
+
+            @Override
+            public void setTranslationY(float f) {
+                super.setTranslationY(f);
+                PremiumFeatureBottomSheet.this.onContainerTranslationYChanged(f);
+            }
+
+            @Override
+            protected void onMeasure(int i4, int i5) {
+                this.lastSize = (i4 + i5) << 16;
+                PremiumFeatureBottomSheet.this.topGlobalOffset = 0;
+                scrollView.measure(i4, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5), Integer.MIN_VALUE));
+                PremiumFeatureBottomSheet.this.topGlobalOffset = (View.MeasureSpec.getSize(i5) - scrollView.getMeasuredHeight()) + ((BottomSheet) PremiumFeatureBottomSheet.this).backgroundPaddingTop;
+                super.onMeasure(i4, i5);
+                PremiumFeatureBottomSheet.this.checkTopOffset();
+            }
+
+            @Override
             protected void dispatchDraw(Canvas canvas) {
                 Drawable drawable = ((BottomSheet) PremiumFeatureBottomSheet.this).shadowDrawable;
                 PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
@@ -540,6 +373,22 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             }
 
             @Override
+            protected boolean drawChild(Canvas canvas, View view, long j) {
+                if (view == scrollView) {
+                    canvas.save();
+                    this.path.rewind();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(0.0f, PremiumFeatureBottomSheet.this.topCurrentOffset + AndroidUtilities.dp(18.0f), getMeasuredWidth(), getMeasuredHeight());
+                    this.path.addRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Path.Direction.CW);
+                    canvas.clipPath(this.path);
+                    super.drawChild(canvas, view, j);
+                    canvas.restore();
+                    return true;
+                }
+                return super.drawChild(canvas, view, j);
+            }
+
+            @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0) {
                     float y = motionEvent.getY();
@@ -550,66 +399,59 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 }
                 return super.dispatchTouchEvent(motionEvent);
             }
-
-            @Override
-            protected boolean drawChild(Canvas canvas, View view, long j) {
-                if (view != scrollView) {
-                    return super.drawChild(canvas, view, j);
-                }
-                canvas.save();
-                this.path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, PremiumFeatureBottomSheet.this.topCurrentOffset + AndroidUtilities.dp(18.0f), getMeasuredWidth(), getMeasuredHeight());
-                this.path.addRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Path.Direction.CW);
-                canvas.clipPath(this.path);
-                super.drawChild(canvas, view, j);
-                canvas.restore();
-                return true;
-            }
-
-            @Override
-            public boolean hasOverlappingRendering() {
-                return false;
-            }
-
-            @Override
-            protected void onMeasure(int i4, int i5) {
-                this.lastSize = (i4 + i5) << 16;
-                PremiumFeatureBottomSheet.this.topGlobalOffset = 0;
-                scrollView.measure(i4, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5), Integer.MIN_VALUE));
-                PremiumFeatureBottomSheet.this.topGlobalOffset = (View.MeasureSpec.getSize(i5) - scrollView.getMeasuredHeight()) + ((BottomSheet) PremiumFeatureBottomSheet.this).backgroundPaddingTop;
-                super.onMeasure(i4, i5);
-                PremiumFeatureBottomSheet.this.checkTopOffset();
-            }
-
-            @Override
-            public void setTranslationY(float f) {
-                super.setTranslationY(f);
-                PremiumFeatureBottomSheet.this.onContainerTranslationYChanged(f);
-            }
         };
         this.containerView = frameLayout3;
         int i4 = this.backgroundPaddingLeft;
         frameLayout3.setPadding(i4, this.backgroundPaddingTop - 1, i4, 0);
     }
 
-    private static Theme.ResourcesProvider getResourceProvider(BaseFragment baseFragment) {
-        if (baseFragment != null) {
-            return (baseFragment.getLastStoryViewer() == null || !baseFragment.getLastStoryViewer().isShown()) ? baseFragment.getResourceProvider() : baseFragment.getLastStoryViewer().getResourceProvider();
-        }
-        return null;
-    }
-
-    public boolean isFullscreenType(int i) {
-        return i == 0 || i == 14 || i == 28;
-    }
-
-    private boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(getThemedColor(Theme.key_dialogBackground)) > 0.699999988079071d;
-    }
-
     public void lambda$new$0(View view) {
         lambda$new$0();
+    }
+
+    public class AnonymousClass5 implements ViewPager.OnPageChangeListener {
+        final BottomPagesView val$bottomPages;
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+        }
+
+        AnonymousClass5(BottomPagesView bottomPagesView) {
+            this.val$bottomPages = bottomPagesView;
+        }
+
+        @Override
+        public void onPageScrolled(int i, float f, int i2) {
+            this.val$bottomPages.setPageOffset(i, f);
+            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
+            premiumFeatureBottomSheet.selectedPosition = i;
+            premiumFeatureBottomSheet.toPosition = i2 > 0 ? i + 1 : i - 1;
+            premiumFeatureBottomSheet.progress = f;
+            checkPage();
+        }
+
+        @Override
+        public void onPageSelected(int i) {
+            if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 0) {
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.DoubledLimits));
+                PremiumFeatureBottomSheet.this.actionBar.requestLayout();
+            } else if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 14) {
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.UpgradedStories));
+                PremiumFeatureBottomSheet.this.actionBar.requestLayout();
+            } else if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 28) {
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
+                PremiumFeatureBottomSheet.this.actionBar.requestLayout();
+            }
+            checkPage();
+        }
+
+        private void checkPage() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet.AnonymousClass5.checkPage():void");
+        }
+
+        public void lambda$checkPage$0() {
+            PremiumFeatureBottomSheet.this.checkTopOffset();
+        }
     }
 
     public void lambda$new$1(BaseFragment baseFragment, boolean z, PremiumPreviewFragment.PremiumFeatureData premiumFeatureData, View view) {
@@ -653,62 +495,364 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         lambda$new$0();
     }
 
-    private void setButtonText() {
-        AnimatedTextView animatedTextView;
-        String string;
-        AnimatedTextView animatedTextView2;
-        int i;
-        if (!this.forceAbout) {
-            if (!this.onlySelectedType) {
-                animatedTextView = this.premiumButtonView.buttonTextView;
-                string = PremiumPreviewFragment.getPremiumButtonText(this.currentAccount, this.selectedTier);
-                animatedTextView.setText(string);
-            }
-            int i2 = this.startType;
-            if (i2 == 4) {
-                animatedTextView2 = this.premiumButtonView.buttonTextView;
-                i = R.string.UnlockPremiumReactions;
-            } else if (i2 == 10) {
-                animatedTextView2 = this.premiumButtonView.buttonTextView;
-                i = R.string.UnlockPremiumIcons;
-            }
-            animatedTextView2.setText(LocaleController.getString(i));
-            this.premiumButtonView.setIcon(R.raw.unlock_icon);
-            return;
+    private static Theme.ResourcesProvider getResourceProvider(BaseFragment baseFragment) {
+        if (baseFragment == null) {
+            return null;
         }
-        animatedTextView = this.premiumButtonView.buttonTextView;
-        string = LocaleController.getString(R.string.AboutTelegramPremium);
-        animatedTextView.setText(string);
+        if (baseFragment.getLastStoryViewer() != null && baseFragment.getLastStoryViewer().isShown()) {
+            return baseFragment.getLastStoryViewer().getResourceProvider();
+        }
+        return baseFragment.getResourceProvider();
     }
 
-    public void updateStatusBar() {
-        Window window;
-        boolean isLightStatusBar;
-        ActionBar actionBar = this.actionBar;
-        if (actionBar != null && actionBar.getTag() != null) {
-            window = getWindow();
-            isLightStatusBar = isLightStatusBar();
-        } else {
-            if (this.baseFragment == null) {
+    public PremiumFeatureBottomSheet setForceAbout() {
+        this.forceAbout = true;
+        this.premiumButtonView.clearOverlayText();
+        setButtonText();
+        return this;
+    }
+
+    private void setButtonText() {
+        if (this.forceAbout) {
+            this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.AboutTelegramPremium));
+            return;
+        }
+        if (this.onlySelectedType) {
+            int i = this.startType;
+            if (i == 4) {
+                this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.UnlockPremiumReactions));
+                this.premiumButtonView.setIcon(R.raw.unlock_icon);
+                return;
+            } else if (i == 10) {
+                this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.UnlockPremiumIcons));
+                this.premiumButtonView.setIcon(R.raw.unlock_icon);
+                return;
+            } else {
+                this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.AboutTelegramPremium));
                 return;
             }
-            window = getWindow();
-            isLightStatusBar = this.baseFragment.isLightStatusBar();
         }
-        AndroidUtilities.setLightStatusBar(window, isLightStatusBar);
+        this.premiumButtonView.buttonTextView.setText(PremiumPreviewFragment.getPremiumButtonText(this.currentAccount, this.selectedTier));
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
-        for (int i = 0; i < this.viewPager.getChildCount(); i++) {
-            ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i);
-            if (viewPage.position == this.selectedPosition) {
-                if (viewPage.topView instanceof BaseListPageView) {
-                    return !((BaseListPageView) r1).recyclerListView.canScrollVertically(-1);
+    public void show() {
+        super.show();
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 16);
+    }
+
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingProductDetailsUpdated);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.premiumPromoUpdated);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        ActionBar actionBar = new ActionBar(getContext()) {
+            @Override
+            public void setAlpha(float f) {
+                if (getAlpha() != f) {
+                    super.setAlpha(f);
+                    ((BottomSheet) PremiumFeatureBottomSheet.this).containerView.invalidate();
                 }
             }
+
+            @Override
+            public void setTag(Object obj) {
+                super.setTag(obj);
+                PremiumFeatureBottomSheet.this.updateStatusBar();
+            }
+        };
+        this.actionBar = actionBar;
+        actionBar.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
+        this.actionBar.setTitleColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
+        ActionBar actionBar2 = this.actionBar;
+        int i = Theme.key_actionBarActionModeDefaultIcon;
+        actionBar2.setItemsColor(getThemedColor(i), false);
+        this.actionBar.setItemsColor(getThemedColor(i), true);
+        this.actionBar.setCastShadows(true);
+        this.actionBar.setExtraHeight(AndroidUtilities.dp(2.0f));
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
+                    PremiumFeatureBottomSheet.this.lambda$new$0();
+                }
+            }
+        });
+        this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+        ((FrameLayout.LayoutParams) this.actionBar.getLayoutParams()).topMargin = (-this.backgroundPaddingTop) - AndroidUtilities.dp(2.0f);
+        AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, false, 1.0f, false);
+        if (((PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(this.selectedPosition)).type == 14) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.UpgradedStories));
+            this.actionBar.requestLayout();
+        } else if (((PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(this.selectedPosition)).type == 28) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
+            this.actionBar.requestLayout();
+        } else {
+            this.actionBar.setTitle(LocaleController.getString(R.string.DoubledLimits));
+            this.actionBar.requestLayout();
         }
-        return true;
+    }
+
+    @Override
+    public void lambda$new$0() {
+        super.lambda$new$0();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.billingProductDetailsUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.premiumPromoUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 16);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.billingProductDetailsUpdated || i == NotificationCenter.premiumPromoUpdated) {
+            setButtonText();
+        } else if (i == NotificationCenter.currentUserPremiumStatusChanged) {
+            if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+                this.premiumButtonView.setOverlayText(LocaleController.getString(R.string.OK), false, true);
+            } else {
+                this.premiumButtonView.clearOverlayText();
+            }
+        }
+    }
+
+    public class ViewPage extends LinearLayout {
+        LinkSpanDrawable.LinksTextView description;
+        public int position;
+        TextView title;
+        PagerHeaderView topHeader;
+        View topView;
+        boolean topViewOnFullHeight;
+
+        public ViewPage(Context context, int i) {
+            super(context);
+            setOrientation(1);
+            View viewForPosition = PremiumFeatureBottomSheet.this.getViewForPosition(context, i);
+            this.topView = viewForPosition;
+            addView(viewForPosition);
+            this.topHeader = (PagerHeaderView) this.topView;
+            TextView textView = new TextView(context);
+            this.title = textView;
+            textView.setGravity(1);
+            TextView textView2 = this.title;
+            int i2 = Theme.key_dialogTextBlack;
+            textView2.setTextColor(PremiumFeatureBottomSheet.this.getThemedColor(i2));
+            this.title.setTextSize(1, 20.0f);
+            this.title.setTypeface(AndroidUtilities.bold());
+            addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.description = linksTextView;
+            linksTextView.setGravity(1);
+            this.description.setTextSize(1, 15.0f);
+            this.description.setTextColor(PremiumFeatureBottomSheet.this.getThemedColor(i2));
+            if (!PremiumFeatureBottomSheet.this.onlySelectedType) {
+                this.description.setLines(2);
+            }
+            addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 10.0f, 21.0f, 16.0f));
+            setClipChildren(false);
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            this.title.setVisibility(0);
+            View view = this.topView;
+            if (view instanceof BaseListPageView) {
+                ((BaseListPageView) view).setTopOffset(PremiumFeatureBottomSheet.this.topGlobalOffset);
+            }
+            ViewGroup.LayoutParams layoutParams = this.topView.getLayoutParams();
+            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
+            layoutParams.height = premiumFeatureBottomSheet.contentHeight;
+            this.description.setVisibility(((BottomSheet) premiumFeatureBottomSheet).isPortrait ? 0 : 8);
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.title.getLayoutParams();
+            if (((BottomSheet) PremiumFeatureBottomSheet.this).isPortrait) {
+                marginLayoutParams.topMargin = AndroidUtilities.dp(20.0f);
+                marginLayoutParams.bottomMargin = 0;
+            } else {
+                marginLayoutParams.topMargin = AndroidUtilities.dp(10.0f);
+                marginLayoutParams.bottomMargin = AndroidUtilities.dp(10.0f);
+            }
+            ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = 0;
+            super.onMeasure(i, i2);
+            if (this.topViewOnFullHeight) {
+                this.topView.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
+                ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
+                this.title.setVisibility(8);
+                this.description.setVisibility(8);
+                super.onMeasure(i, i2);
+            }
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            if (view == this.topView) {
+                boolean z = view instanceof BaseListPageView;
+                if (z) {
+                    setTranslationY(0.0f);
+                } else {
+                    setTranslationY(PremiumFeatureBottomSheet.this.topGlobalOffset);
+                }
+                if (z) {
+                    return super.drawChild(canvas, view, j);
+                }
+                canvas.save();
+                canvas.clipRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+                boolean drawChild = super.drawChild(canvas, view, j);
+                canvas.restore();
+                return drawChild;
+            }
+            return super.drawChild(canvas, view, j);
+        }
+
+        void setFeatureDate(PremiumPreviewFragment.PremiumFeatureData premiumFeatureData) {
+            int i = premiumFeatureData.type;
+            if (i != 0 && i != 14 && i != 28) {
+                if (PremiumFeatureBottomSheet.this.onlySelectedType) {
+                    if (PremiumFeatureBottomSheet.this.startType != 4) {
+                        if (PremiumFeatureBottomSheet.this.startType != 3) {
+                            if (PremiumFeatureBottomSheet.this.startType != 24) {
+                                if (PremiumFeatureBottomSheet.this.startType != 10) {
+                                    if (PremiumFeatureBottomSheet.this.startType != 2) {
+                                        if (PremiumFeatureBottomSheet.this.startType != 9) {
+                                            if (PremiumFeatureBottomSheet.this.startType != 8) {
+                                                if (PremiumFeatureBottomSheet.this.startType != 13) {
+                                                    if (PremiumFeatureBottomSheet.this.startType != 38) {
+                                                        if (PremiumFeatureBottomSheet.this.startType != 22) {
+                                                            if (PremiumFeatureBottomSheet.this.startType == 23) {
+                                                                this.title.setText(LocaleController.getString(R.string.PremiumPreviewProfileColor));
+                                                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewProfileColorDescription)));
+                                                            } else {
+                                                                this.title.setText(premiumFeatureData.title);
+                                                                this.description.setText(AndroidUtilities.replaceTags(premiumFeatureData.description));
+                                                            }
+                                                        } else {
+                                                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewWallpaper));
+                                                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewWallpaperDescription)));
+                                                        }
+                                                    } else {
+                                                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewEffects));
+                                                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewEffectsDescription)));
+                                                    }
+                                                } else {
+                                                    this.title.setText(LocaleController.getString(R.string.PremiumPreviewTranslations));
+                                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewTranslationsDescription)));
+                                                }
+                                            } else {
+                                                this.title.setText(LocaleController.getString(R.string.PremiumPreviewVoiceToText));
+                                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewVoiceToTextDescription2)));
+                                            }
+                                        } else {
+                                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement));
+                                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagementDescription2)));
+                                        }
+                                    } else {
+                                        this.title.setText(LocaleController.getString(R.string.PremiumPreviewDownloadSpeed));
+                                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewDownloadSpeedDescription2)));
+                                    }
+                                } else {
+                                    this.title.setText(LocaleController.getString(R.string.PremiumPreviewAppIcon));
+                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewAppIconDescription2)));
+                                }
+                            } else {
+                                this.title.setText(LocaleController.getString(R.string.PremiumPreviewTags));
+                                this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewTagsDescription)));
+                            }
+                        } else {
+                            this.title.setText(LocaleController.getString(R.string.PremiumPreviewNoAds));
+                            this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewNoAdsDescription2)));
+                        }
+                    } else {
+                        this.title.setText(LocaleController.getString(R.string.AdditionalReactions));
+                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AdditionalReactionsDescription)));
+                    }
+                    this.topViewOnFullHeight = false;
+                } else {
+                    this.title.setText(premiumFeatureData.title);
+                    this.description.setText(AndroidUtilities.replaceTags(premiumFeatureData.description));
+                    this.topViewOnFullHeight = false;
+                }
+            } else {
+                this.title.setText("");
+                this.description.setText("");
+                this.topViewOnFullHeight = true;
+            }
+            requestLayout();
+        }
+    }
+
+    View getViewForPosition(Context context, int i) {
+        PremiumPreviewFragment.PremiumFeatureData premiumFeatureData = (PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(i);
+        int i2 = premiumFeatureData.type;
+        if (i2 == 0) {
+            DoubleLimitsPageView doubleLimitsPageView = new DoubleLimitsPageView(context, this.resourcesProvider);
+            doubleLimitsPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                    super.onScrolled(recyclerView, i3, i4);
+                    ((BottomSheet) PremiumFeatureBottomSheet.this).containerView.invalidate();
+                    PremiumFeatureBottomSheet.this.checkTopOffset();
+                }
+            });
+            return doubleLimitsPageView;
+        }
+        if (i2 == 14 || i2 == 28) {
+            FeaturesPageView featuresPageView = new FeaturesPageView(context, i2 == 28 ? 1 : 0, this.resourcesProvider);
+            featuresPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                    super.onScrolled(recyclerView, i3, i4);
+                    ((BottomSheet) PremiumFeatureBottomSheet.this).containerView.invalidate();
+                    PremiumFeatureBottomSheet.this.checkTopOffset();
+                }
+            });
+            return featuresPageView;
+        }
+        if (i2 == 5) {
+            return new PremiumStickersPreviewRecycler(context, this.currentAccount) {
+                @Override
+                public void setOffset(float f) {
+                    setAutoPlayEnabled(f == 0.0f);
+                    super.setOffset(f);
+                }
+            };
+        }
+        if (i2 == 10) {
+            return new PremiumAppIconsPreviewView(context, this.resourcesProvider);
+        }
+        return new VideoScreenPreview(context, this.svgIcon, this.currentAccount, premiumFeatureData.type, this.resourcesProvider);
+    }
+
+    @Override
+    public boolean onCustomOpenAnimation() {
+        if (this.viewPager.getChildCount() > 0) {
+            View view = ((ViewPage) this.viewPager.getChildAt(0)).topView;
+            if (view instanceof PremiumAppIconsPreviewView) {
+                final PremiumAppIconsPreviewView premiumAppIconsPreviewView = (PremiumAppIconsPreviewView) view;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(r2.getMeasuredWidth(), 0.0f);
+                premiumAppIconsPreviewView.setOffset(r2.getMeasuredWidth());
+                this.enterAnimationIsRunning = true;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        premiumAppIconsPreviewView.setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    }
+                });
+                ofFloat.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        PremiumFeatureBottomSheet.this.enterAnimationIsRunning = false;
+                        premiumAppIconsPreviewView.setOffset(0.0f);
+                        super.onAnimationEnd(animator);
+                    }
+                });
+                ofFloat.setDuration(500L);
+                ofFloat.setStartDelay(100L);
+                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                ofFloat.start();
+            }
+        }
+        return super.onCustomOpenAnimation();
     }
 
     void checkTopOffset() {
@@ -761,165 +905,29 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         }
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.billingProductDetailsUpdated || i == NotificationCenter.premiumPromoUpdated) {
-            setButtonText();
-        } else if (i == NotificationCenter.currentUserPremiumStatusChanged) {
-            if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-                this.premiumButtonView.setOverlayText(LocaleController.getString(R.string.OK), false, true);
-            } else {
-                this.premiumButtonView.clearOverlayText();
-            }
+    public void updateStatusBar() {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.getTag() != null) {
+            AndroidUtilities.setLightStatusBar(getWindow(), isLightStatusBar());
+        } else if (this.baseFragment != null) {
+            AndroidUtilities.setLightStatusBar(getWindow(), this.baseFragment.isLightStatusBar());
         }
     }
 
-    @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.billingProductDetailsUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.premiumPromoUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 16);
-    }
-
-    View getViewForPosition(Context context, int i) {
-        PremiumPreviewFragment.PremiumFeatureData premiumFeatureData = (PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(i);
-        int i2 = premiumFeatureData.type;
-        if (i2 == 0) {
-            DoubleLimitsPageView doubleLimitsPageView = new DoubleLimitsPageView(context, this.resourcesProvider);
-            doubleLimitsPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
-                    super.onScrolled(recyclerView, i3, i4);
-                    ((BottomSheet) PremiumFeatureBottomSheet.this).containerView.invalidate();
-                    PremiumFeatureBottomSheet.this.checkTopOffset();
-                }
-            });
-            return doubleLimitsPageView;
-        }
-        if (i2 != 14 && i2 != 28) {
-            return i2 == 5 ? new PremiumStickersPreviewRecycler(context, this.currentAccount) {
-                @Override
-                public void setOffset(float f) {
-                    setAutoPlayEnabled(f == 0.0f);
-                    super.setOffset(f);
-                }
-            } : i2 == 10 ? new PremiumAppIconsPreviewView(context, this.resourcesProvider) : new VideoScreenPreview(context, this.svgIcon, this.currentAccount, premiumFeatureData.type, this.resourcesProvider);
-        }
-        FeaturesPageView featuresPageView = new FeaturesPageView(context, i2 == 28 ? 1 : 0, this.resourcesProvider);
-        featuresPageView.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
-                super.onScrolled(recyclerView, i3, i4);
-                ((BottomSheet) PremiumFeatureBottomSheet.this).containerView.invalidate();
-                PremiumFeatureBottomSheet.this.checkTopOffset();
-            }
-        });
-        return featuresPageView;
+    private boolean isLightStatusBar() {
+        return ColorUtils.calculateLuminance(getThemedColor(Theme.key_dialogBackground)) > 0.699999988079071d;
     }
 
     @Override
-    public void onCreate(Bundle bundle) {
-        ActionBar actionBar;
-        int i;
-        super.onCreate(bundle);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingProductDetailsUpdated);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.premiumPromoUpdated);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        ActionBar actionBar2 = new ActionBar(getContext()) {
-            @Override
-            public void setAlpha(float f) {
-                if (getAlpha() != f) {
-                    super.setAlpha(f);
-                    ((BottomSheet) PremiumFeatureBottomSheet.this).containerView.invalidate();
+    public boolean canDismissWithSwipe() {
+        for (int i = 0; i < this.viewPager.getChildCount(); i++) {
+            ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i);
+            if (viewPage.position == this.selectedPosition) {
+                if (viewPage.topView instanceof BaseListPageView) {
+                    return !((BaseListPageView) r1).recyclerListView.canScrollVertically(-1);
                 }
             }
-
-            @Override
-            public void setTag(Object obj) {
-                super.setTag(obj);
-                PremiumFeatureBottomSheet.this.updateStatusBar();
-            }
-        };
-        this.actionBar = actionBar2;
-        actionBar2.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
-        this.actionBar.setTitleColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
-        ActionBar actionBar3 = this.actionBar;
-        int i2 = Theme.key_actionBarActionModeDefaultIcon;
-        actionBar3.setItemsColor(getThemedColor(i2), false);
-        this.actionBar.setItemsColor(getThemedColor(i2), true);
-        this.actionBar.setCastShadows(true);
-        this.actionBar.setExtraHeight(AndroidUtilities.dp(2.0f));
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i3) {
-                if (i3 == -1) {
-                    PremiumFeatureBottomSheet.this.lambda$new$0();
-                }
-            }
-        });
-        this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-        ((FrameLayout.LayoutParams) this.actionBar.getLayoutParams()).topMargin = (-this.backgroundPaddingTop) - AndroidUtilities.dp(2.0f);
-        AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, false, 1.0f, false);
-        if (((PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(this.selectedPosition)).type == 14) {
-            actionBar = this.actionBar;
-            i = R.string.UpgradedStories;
-        } else if (((PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(this.selectedPosition)).type == 28) {
-            actionBar = this.actionBar;
-            i = R.string.TelegramBusiness;
-        } else {
-            actionBar = this.actionBar;
-            i = R.string.DoubledLimits;
         }
-        actionBar.setTitle(LocaleController.getString(i));
-        this.actionBar.requestLayout();
-    }
-
-    @Override
-    public boolean onCustomOpenAnimation() {
-        if (this.viewPager.getChildCount() > 0) {
-            View view = ((ViewPage) this.viewPager.getChildAt(0)).topView;
-            if (view instanceof PremiumAppIconsPreviewView) {
-                final PremiumAppIconsPreviewView premiumAppIconsPreviewView = (PremiumAppIconsPreviewView) view;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(r2.getMeasuredWidth(), 0.0f);
-                premiumAppIconsPreviewView.setOffset(r2.getMeasuredWidth());
-                this.enterAnimationIsRunning = true;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        premiumAppIconsPreviewView.setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                    }
-                });
-                ofFloat.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        PremiumFeatureBottomSheet.this.enterAnimationIsRunning = false;
-                        premiumAppIconsPreviewView.setOffset(0.0f);
-                        super.onAnimationEnd(animator);
-                    }
-                });
-                ofFloat.setDuration(500L);
-                ofFloat.setStartDelay(100L);
-                ofFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                ofFloat.start();
-            }
-        }
-        return super.onCustomOpenAnimation();
-    }
-
-    public PremiumFeatureBottomSheet setForceAbout() {
-        this.forceAbout = true;
-        this.premiumButtonView.clearOverlayText();
-        setButtonText();
-        return this;
-    }
-
-    @Override
-    public void show() {
-        super.show();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 16);
+        return true;
     }
 }

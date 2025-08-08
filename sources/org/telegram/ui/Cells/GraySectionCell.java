@@ -63,23 +63,13 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         ViewCompat.setAccessibilityHeading(this, true);
     }
 
-    public static void createThemeDescriptions(List list, RecyclerListView recyclerListView) {
+    @Override
+    public void updateColors() {
+        setBackgroundColor(getThemedColor(Theme.key_graySection));
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.textView;
         int i = Theme.key_graySectionText;
-        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
-        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"rightTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
-        list.add(new ThemeDescription(recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{GraySectionCell.class}, null, null, null, Theme.key_graySection));
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public CharSequence getText() {
-        return this.textView.getText();
-    }
-
-    public TextView getTextView() {
-        return this.textView;
+        textViewEmojis.setTextColor(getThemedColor(i));
+        this.rightTextView.setTextColor(getThemedColor(i));
     }
 
     @Override
@@ -92,32 +82,14 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         requestLayout();
     }
 
-    public void setRightText(CharSequence charSequence) {
-        setRightText(charSequence, true);
+    public void setTextColor(int i) {
+        int themedColor = getThemedColor(i);
+        this.textView.setTextColor(themedColor);
+        this.rightTextView.setTextColor(themedColor);
     }
 
-    public void setRightText(CharSequence charSequence, View.OnClickListener onClickListener) {
-        this.rightTextView.setText(charSequence, false);
-        this.rightTextView.setOnClickListener(onClickListener);
-        this.rightTextView.setVisibility(0);
-    }
-
-    public void setRightText(CharSequence charSequence, boolean z) {
-        this.rightTextView.setText(charSequence, true, z);
-        this.rightTextView.setVisibility(0);
-    }
-
-    public void setRightText(CharSequence charSequence, boolean z, View.OnClickListener onClickListener) {
-        this.rightTextView.setText(charSequence, true, z);
-        this.rightTextView.setOnClickListener(onClickListener);
-        this.rightTextView.setVisibility(0);
-    }
-
-    public void setRightTextMargin(int i) {
-        float f = i;
-        this.rightTextViewLayoutParams.leftMargin = AndroidUtilities.dp(f);
-        this.rightTextViewLayoutParams.rightMargin = AndroidUtilities.dp(f);
-        this.rightTextView.setLayoutParams(this.rightTextViewLayoutParams);
+    public CharSequence getText() {
+        return this.textView.getText();
     }
 
     public void setText(CharSequence charSequence) {
@@ -133,18 +105,46 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
         this.rightTextView.setVisibility(0);
     }
 
-    public void setTextColor(int i) {
-        int themedColor = getThemedColor(i);
-        this.textView.setTextColor(themedColor);
-        this.rightTextView.setTextColor(themedColor);
+    public void setRightText(CharSequence charSequence) {
+        setRightText(charSequence, true);
     }
 
-    @Override
-    public void updateColors() {
-        setBackgroundColor(getThemedColor(Theme.key_graySection));
-        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.textView;
+    public void setRightTextMargin(int i) {
+        float f = i;
+        this.rightTextViewLayoutParams.leftMargin = AndroidUtilities.dp(f);
+        this.rightTextViewLayoutParams.rightMargin = AndroidUtilities.dp(f);
+        this.rightTextView.setLayoutParams(this.rightTextViewLayoutParams);
+    }
+
+    public void setRightText(CharSequence charSequence, boolean z) {
+        this.rightTextView.setText(charSequence, true, z);
+        this.rightTextView.setVisibility(0);
+    }
+
+    public void setRightText(CharSequence charSequence, View.OnClickListener onClickListener) {
+        this.rightTextView.setText(charSequence, false);
+        this.rightTextView.setOnClickListener(onClickListener);
+        this.rightTextView.setVisibility(0);
+    }
+
+    public void setRightText(CharSequence charSequence, boolean z, View.OnClickListener onClickListener) {
+        this.rightTextView.setText(charSequence, true, z);
+        this.rightTextView.setOnClickListener(onClickListener);
+        this.rightTextView.setVisibility(0);
+    }
+
+    public static void createThemeDescriptions(List list, RecyclerListView recyclerListView) {
         int i = Theme.key_graySectionText;
-        textViewEmojis.setTextColor(getThemedColor(i));
-        this.rightTextView.setTextColor(getThemedColor(i));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"rightTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
+        list.add(new ThemeDescription(recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{GraySectionCell.class}, null, null, null, Theme.key_graySection));
+    }
+
+    public TextView getTextView() {
+        return this.textView;
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

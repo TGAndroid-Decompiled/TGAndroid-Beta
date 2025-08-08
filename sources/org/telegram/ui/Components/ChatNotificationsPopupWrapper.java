@@ -44,28 +44,6 @@ public class ChatNotificationsPopupWrapper {
     public int type;
     public ActionBarPopupWindow.ActionBarPopupWindowLayout windowLayout;
 
-    public class AnonymousClass1 extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
-        Path path = new Path();
-
-        AnonymousClass1(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            super(context, i, resourcesProvider);
-            this.path = new Path();
-        }
-
-        @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
-            canvas.save();
-            this.path.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-            this.path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-            canvas.clipPath(this.path);
-            boolean drawChild = super.drawChild(canvas, view, j);
-            canvas.restore();
-            return drawChild;
-        }
-    }
-
     public interface Callback {
 
         public abstract class CC {
@@ -195,6 +173,224 @@ public class ChatNotificationsPopupWrapper {
         });
     }
 
+    public class AnonymousClass1 extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
+        Path path = new Path();
+
+        AnonymousClass1(final Context context2, int i2, final Theme.ResourcesProvider resourcesProvider2) {
+            super(context2, i2, resourcesProvider2);
+            this.path = new Path();
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            canvas.save();
+            this.path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+            this.path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(this.path);
+            boolean drawChild = super.drawChild(canvas, view, j);
+            canvas.restore();
+            return drawChild;
+        }
+    }
+
+    public void lambda$new$1(Callback callback, View view) {
+        dismiss();
+        callback.toggleSound();
+    }
+
+    public void lambda$new$2(Callback callback, View view) {
+        dismiss();
+        callback.muteFor(this.muteForLastSelected1Time);
+    }
+
+    public void lambda$new$3(Callback callback, View view) {
+        dismiss();
+        callback.muteFor(this.muteForLastSelected2Time);
+    }
+
+    public void lambda$new$6(Context context, Theme.ResourcesProvider resourcesProvider, final int i, final Callback callback, View view) {
+        dismiss();
+        AlertsCreator.createMuteForPickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
+            @Override
+            public final void didSelectDate(boolean z, int i2) {
+                ChatNotificationsPopupWrapper.lambda$new$5(i, callback, z, i2);
+            }
+        });
+    }
+
+    public static void lambda$new$5(final int i, final Callback callback, boolean z, final int i2) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatNotificationsPopupWrapper.lambda$new$4(i2, i, callback);
+            }
+        }, 16L);
+    }
+
+    public static void lambda$new$4(int i, int i2, Callback callback) {
+        if (i != 0) {
+            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
+            notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
+        }
+        callback.muteFor(i);
+    }
+
+    public void lambda$new$7(Callback callback, View view) {
+        dismiss();
+        callback.showCustomize();
+    }
+
+    public void lambda$new$9(final Callback callback, View view) {
+        dismiss();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatNotificationsPopupWrapper.Callback.this.toggleMute();
+            }
+        });
+    }
+
+    public void lambda$new$10(Callback callback, View view) {
+        if (callback != null) {
+            callback.openExceptions();
+        }
+        dismiss();
+    }
+
+    private void dismiss() {
+        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
+        if (actionBarPopupWindow != null) {
+            actionBarPopupWindow.dismiss();
+            this.popupWindow.dismiss();
+        }
+        this.callback.dismiss();
+        this.lastDismissTime = System.currentTimeMillis();
+    }
+
+    public void lambda$update$11(final long j, final long j2, final HashSet hashSet) {
+        int i;
+        int i2;
+        int i3;
+        if (System.currentTimeMillis() - this.lastDismissTime < 200) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatNotificationsPopupWrapper.this.lambda$update$11(j, j2, hashSet);
+                }
+            });
+            return;
+        }
+        boolean isDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, j2);
+        if (isDialogMuted) {
+            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute);
+            i = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
+            this.soundToggle.setVisibility(8);
+        } else {
+            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute);
+            int color = Theme.getColor(Theme.key_text_RedBold);
+            this.soundToggle.setVisibility(0);
+            if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, j2)) {
+                this.soundToggle.setTextAndIcon(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off);
+            } else {
+                this.soundToggle.setTextAndIcon(LocaleController.getString(R.string.SoundOn), R.drawable.msg_tone_on);
+            }
+            i = color;
+        }
+        if (this.type == 1) {
+            this.backItem.setVisibility(8);
+        }
+        if (isDialogMuted || this.type == 1) {
+            i2 = 0;
+            i3 = 0;
+        } else {
+            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
+            i3 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
+            i2 = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
+        }
+        if (i3 != 0) {
+            this.muteForLastSelected1Time = i3;
+            this.muteForLastSelected.setVisibility(0);
+            this.muteForLastSelected.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i3));
+            this.muteForLastSelected.setText(formatMuteForTime(i3));
+        } else {
+            this.muteForLastSelected.setVisibility(8);
+        }
+        if (i2 != 0) {
+            this.muteForLastSelected2Time = i2;
+            this.muteForLastSelected2.setVisibility(0);
+            this.muteForLastSelected2.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i2));
+            this.muteForLastSelected2.setText(formatMuteForTime(i2));
+        } else {
+            this.muteForLastSelected2.setVisibility(8);
+        }
+        this.muteUnmuteButton.setColors(i, i);
+        this.muteUnmuteButton.setSelectorColor(Theme.multAlpha(i, 0.1f));
+        if (hashSet == null || hashSet.isEmpty()) {
+            this.gap.setVisibility(8);
+            this.topicsExceptionsTextView.setVisibility(8);
+        } else {
+            this.gap.setVisibility(0);
+            this.topicsExceptionsTextView.setVisibility(0);
+            this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
+        }
+    }
+
+    private String formatMuteForTime(int i) {
+        StringBuilder sb = new StringBuilder();
+        int i2 = i / 86400;
+        int i3 = i - (86400 * i2);
+        int i4 = i3 / 3600;
+        int i5 = (i3 - (i4 * 3600)) / 60;
+        if (i2 != 0) {
+            sb.append(i2);
+            sb.append(LocaleController.getString(R.string.SecretChatTimerDays));
+        }
+        if (i4 != 0) {
+            if (sb.length() > 0) {
+                sb.append(" ");
+            }
+            sb.append(i4);
+            sb.append(LocaleController.getString(R.string.SecretChatTimerHours));
+        }
+        if (i5 != 0) {
+            if (sb.length() > 0) {
+                sb.append(" ");
+            }
+            sb.append(i5);
+            sb.append(LocaleController.getString(R.string.SecretChatTimerMinutes));
+        }
+        return LocaleController.formatString("MuteForButton", R.string.MuteForButton, sb.toString());
+    }
+
+    public void showAsOptions(BaseFragment baseFragment, View view, float f, float f2) {
+        if (baseFragment == null || baseFragment.getFragmentView() == null) {
+            return;
+        }
+        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.windowLayout, -2, -2);
+        this.popupWindow = actionBarPopupWindow;
+        actionBarPopupWindow.setPauseNotifications(true);
+        this.popupWindow.setDismissAnimationDuration(220);
+        this.popupWindow.setOutsideTouchable(true);
+        this.popupWindow.setClippingEnabled(true);
+        this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+        this.popupWindow.setFocusable(true);
+        this.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+        this.popupWindow.setInputMethodMode(2);
+        this.popupWindow.getContentView().setFocusableInTouchMode(true);
+        while (view != baseFragment.getFragmentView()) {
+            if (view.getParent() == null) {
+                return;
+            }
+            f += view.getX();
+            f2 += view.getY();
+            view = (View) view.getParent();
+        }
+        this.popupWindow.showAtLocation(baseFragment.getFragmentView(), 0, (int) (f - (this.windowLayout.getMeasuredWidth() / 2.0f)), (int) (f2 - (this.windowLayout.getMeasuredHeight() / 2.0f)));
+        this.popupWindow.dimBehind();
+    }
+
     public static ItemOptions addAsItemOptions(final BaseFragment baseFragment, final ItemOptions itemOptions, final long j, final long j2) {
         final int currentAccount = baseFragment.getCurrentAccount();
         final Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
@@ -241,65 +437,22 @@ public class ChatNotificationsPopupWrapper {
         return makeSwipeback;
     }
 
-    private void dismiss() {
-        ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
-        if (actionBarPopupWindow != null) {
-            actionBarPopupWindow.dismiss();
-            this.popupWindow.dismiss();
-        }
-        this.callback.dismiss();
-        this.lastDismissTime = System.currentTimeMillis();
-    }
-
-    private String formatMuteForTime(int i) {
-        StringBuilder sb = new StringBuilder();
-        int i2 = i / 86400;
-        int i3 = i - (86400 * i2);
-        int i4 = i3 / 3600;
-        int i5 = (i3 - (i4 * 3600)) / 60;
-        if (i2 != 0) {
-            sb.append(i2);
-            sb.append(LocaleController.getString(R.string.SecretChatTimerDays));
-        }
-        if (i4 != 0) {
-            if (sb.length() > 0) {
-                sb.append(" ");
-            }
-            sb.append(i4);
-            sb.append(LocaleController.getString(R.string.SecretChatTimerHours));
-        }
-        if (i5 != 0) {
-            if (sb.length() > 0) {
-                sb.append(" ");
-            }
-            sb.append(i5);
-            sb.append(LocaleController.getString(R.string.SecretChatTimerMinutes));
-        }
-        return LocaleController.formatString("MuteForButton", R.string.MuteForButton, sb.toString());
-    }
-
     public static void lambda$addAsItemOptions$12(ItemOptions itemOptions, int i, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, Integer num) {
-        int intValue;
-        int i2;
         itemOptions.dismiss();
         if (num.intValue() == 0) {
             if (MessagesController.getInstance(i).isDialogMuted(j, j2)) {
                 NotificationsController.getInstance(i).muteDialog(j, j2, false);
             }
-            if (!BulletinFactory.canShowBulletin(baseFragment)) {
+            if (BulletinFactory.canShowBulletin(baseFragment)) {
+                BulletinFactory.createMuteBulletin(baseFragment, 4, num.intValue(), resourcesProvider).show();
                 return;
             }
-            intValue = num.intValue();
-            i2 = 4;
-        } else {
-            NotificationsController.getInstance(i).muteUntil(j, j2, num.intValue());
-            if (!BulletinFactory.canShowBulletin(baseFragment)) {
-                return;
-            }
-            intValue = num.intValue();
-            i2 = 5;
+            return;
         }
-        BulletinFactory.createMuteBulletin(baseFragment, i2, intValue, resourcesProvider).show();
+        NotificationsController.getInstance(i).muteUntil(j, j2, num.intValue());
+        if (BulletinFactory.canShowBulletin(baseFragment)) {
+            BulletinFactory.createMuteBulletin(baseFragment, 5, num.intValue(), resourcesProvider).show();
+        }
     }
 
     public static void lambda$addAsItemOptions$13(ItemOptions itemOptions, int i, long j, long j2, ItemOptions itemOptions2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
@@ -314,12 +467,13 @@ public class ChatNotificationsPopupWrapper {
         }
     }
 
-    public static void lambda$addAsItemOptions$14(int i, int i2, Utilities.Callback callback) {
-        if (i != 0) {
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
-            notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
-        }
-        callback.run(Integer.valueOf(i));
+    public static void lambda$addAsItemOptions$16(ItemOptions itemOptions, Theme.ResourcesProvider resourcesProvider, final int i, final Utilities.Callback callback) {
+        AlertsCreator.createMuteForPickerDialog(itemOptions.getContext(), resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
+            @Override
+            public final void didSelectDate(boolean z, int i2) {
+                ChatNotificationsPopupWrapper.lambda$addAsItemOptions$15(i, callback, z, i2);
+            }
+        });
     }
 
     public static void lambda$addAsItemOptions$15(final int i, final Utilities.Callback callback, boolean z, final int i2) {
@@ -331,13 +485,12 @@ public class ChatNotificationsPopupWrapper {
         }, 16L);
     }
 
-    public static void lambda$addAsItemOptions$16(ItemOptions itemOptions, Theme.ResourcesProvider resourcesProvider, final int i, final Utilities.Callback callback) {
-        AlertsCreator.createMuteForPickerDialog(itemOptions.getContext(), resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
-            @Override
-            public final void didSelectDate(boolean z, int i2) {
-                ChatNotificationsPopupWrapper.lambda$addAsItemOptions$15(i, callback, z, i2);
-            }
-        });
+    public static void lambda$addAsItemOptions$14(int i, int i2, Utilities.Callback callback) {
+        if (i != 0) {
+            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
+            notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
+        }
+        callback.run(Integer.valueOf(i));
     }
 
     public static void lambda$addAsItemOptions$17(ItemOptions itemOptions, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
@@ -350,203 +503,31 @@ public class ChatNotificationsPopupWrapper {
 
     public static void lambda$addAsItemOptions$18(ItemOptions itemOptions, int i, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         itemOptions.dismiss();
-        boolean z = !MessagesController.getInstance(i).isDialogMuted(j, j2);
-        NotificationsController.getInstance(i).muteDialog(j, j2, z);
+        boolean isDialogMuted = MessagesController.getInstance(i).isDialogMuted(j, j2);
+        NotificationsController.getInstance(i).muteDialog(j, j2, !isDialogMuted);
         if (BulletinFactory.canShowBulletin(baseFragment)) {
-            BulletinFactory.createMuteBulletin(baseFragment, z ? 3 : 4, z ? Integer.MAX_VALUE : 0, resourcesProvider).show();
+            BulletinFactory.createMuteBulletin(baseFragment, !isDialogMuted ? 3 : 4, !isDialogMuted ? Integer.MAX_VALUE : 0, resourcesProvider).show();
         }
     }
 
     public static void lambda$addAsItemOptions$19(int i, long j, long j2, ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2) {
-        String string;
         int i2;
-        int i3;
         if (MessagesController.getInstance(i).isDialogMuted(j, j2)) {
             actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute);
-            i3 = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
+            i2 = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
             actionBarMenuSubItem2.setVisibility(8);
         } else {
             actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute);
             int color = Theme.getColor(Theme.key_text_RedBold);
             actionBarMenuSubItem2.setVisibility(0);
             if (MessagesController.getInstance(i).isDialogNotificationsSoundEnabled(j, j2)) {
-                string = LocaleController.getString(R.string.SoundOff);
-                i2 = R.drawable.msg_tone_off;
+                actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off);
             } else {
-                string = LocaleController.getString(R.string.SoundOn);
-                i2 = R.drawable.msg_tone_on;
+                actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.SoundOn), R.drawable.msg_tone_on);
             }
-            actionBarMenuSubItem2.setTextAndIcon(string, i2);
-            i3 = color;
-        }
-        actionBarMenuSubItem.setColors(i3, i3);
-        actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(i3, 0.1f));
-    }
-
-    public void lambda$new$1(Callback callback, View view) {
-        dismiss();
-        callback.toggleSound();
-    }
-
-    public void lambda$new$10(Callback callback, View view) {
-        if (callback != null) {
-            callback.openExceptions();
-        }
-        dismiss();
-    }
-
-    public void lambda$new$2(Callback callback, View view) {
-        dismiss();
-        callback.muteFor(this.muteForLastSelected1Time);
-    }
-
-    public void lambda$new$3(Callback callback, View view) {
-        dismiss();
-        callback.muteFor(this.muteForLastSelected2Time);
-    }
-
-    public static void lambda$new$4(int i, int i2, Callback callback) {
-        if (i != 0) {
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
-            notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
-        }
-        callback.muteFor(i);
-    }
-
-    public static void lambda$new$5(final int i, final Callback callback, boolean z, final int i2) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatNotificationsPopupWrapper.lambda$new$4(i2, i, callback);
-            }
-        }, 16L);
-    }
-
-    public void lambda$new$6(Context context, Theme.ResourcesProvider resourcesProvider, final int i, final Callback callback, View view) {
-        dismiss();
-        AlertsCreator.createMuteForPickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
-            @Override
-            public final void didSelectDate(boolean z, int i2) {
-                ChatNotificationsPopupWrapper.lambda$new$5(i, callback, z, i2);
-            }
-        });
-    }
-
-    public void lambda$new$7(Callback callback, View view) {
-        dismiss();
-        callback.showCustomize();
-    }
-
-    public void lambda$new$9(final Callback callback, View view) {
-        dismiss();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatNotificationsPopupWrapper.Callback.this.toggleMute();
-            }
-        });
-    }
-
-    public void showAsOptions(BaseFragment baseFragment, View view, float f, float f2) {
-        if (baseFragment == null || baseFragment.getFragmentView() == null) {
-            return;
-        }
-        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.windowLayout, -2, -2);
-        this.popupWindow = actionBarPopupWindow;
-        actionBarPopupWindow.setPauseNotifications(true);
-        this.popupWindow.setDismissAnimationDuration(220);
-        this.popupWindow.setOutsideTouchable(true);
-        this.popupWindow.setClippingEnabled(true);
-        this.popupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-        this.popupWindow.setFocusable(true);
-        this.windowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
-        this.popupWindow.setInputMethodMode(2);
-        this.popupWindow.getContentView().setFocusableInTouchMode(true);
-        while (view != baseFragment.getFragmentView()) {
-            if (view.getParent() == null) {
-                return;
-            }
-            f += view.getX();
-            f2 += view.getY();
-            view = (View) view.getParent();
-        }
-        this.popupWindow.showAtLocation(baseFragment.getFragmentView(), 0, (int) (f - (this.windowLayout.getMeasuredWidth() / 2.0f)), (int) (f2 - (this.windowLayout.getMeasuredHeight() / 2.0f)));
-        this.popupWindow.dimBehind();
-    }
-
-    public void lambda$update$11(final long j, final long j2, final HashSet hashSet) {
-        ActionBarMenuSubItem actionBarMenuSubItem;
-        String string;
-        int i;
-        int i2;
-        int i3;
-        int i4;
-        if (System.currentTimeMillis() - this.lastDismissTime < 200) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatNotificationsPopupWrapper.this.lambda$update$11(j, j2, hashSet);
-                }
-            });
-            return;
-        }
-        boolean isDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, j2);
-        if (isDialogMuted) {
-            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute);
-            i2 = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
-            this.soundToggle.setVisibility(8);
-        } else {
-            this.muteUnmuteButton.setTextAndIcon(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute);
-            int color = Theme.getColor(Theme.key_text_RedBold);
-            this.soundToggle.setVisibility(0);
-            if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, j2)) {
-                actionBarMenuSubItem = this.soundToggle;
-                string = LocaleController.getString(R.string.SoundOff);
-                i = R.drawable.msg_tone_off;
-            } else {
-                actionBarMenuSubItem = this.soundToggle;
-                string = LocaleController.getString(R.string.SoundOn);
-                i = R.drawable.msg_tone_on;
-            }
-            actionBarMenuSubItem.setTextAndIcon(string, i);
             i2 = color;
         }
-        if (this.type == 1) {
-            this.backItem.setVisibility(8);
-        }
-        if (isDialogMuted || this.type == 1) {
-            i3 = 0;
-            i4 = 0;
-        } else {
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-            i4 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
-            i3 = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
-        }
-        if (i4 != 0) {
-            this.muteForLastSelected1Time = i4;
-            this.muteForLastSelected.setVisibility(0);
-            this.muteForLastSelected.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i4));
-            this.muteForLastSelected.setText(formatMuteForTime(i4));
-        } else {
-            this.muteForLastSelected.setVisibility(8);
-        }
-        if (i3 != 0) {
-            this.muteForLastSelected2Time = i3;
-            this.muteForLastSelected2.setVisibility(0);
-            this.muteForLastSelected2.getImageView().setImageDrawable(TimerDrawable.getTtlIcon(i3));
-            this.muteForLastSelected2.setText(formatMuteForTime(i3));
-        } else {
-            this.muteForLastSelected2.setVisibility(8);
-        }
-        this.muteUnmuteButton.setColors(i2, i2);
-        this.muteUnmuteButton.setSelectorColor(Theme.multAlpha(i2, 0.1f));
-        if (hashSet == null || hashSet.isEmpty()) {
-            this.gap.setVisibility(8);
-            this.topicsExceptionsTextView.setVisibility(8);
-        } else {
-            this.gap.setVisibility(0);
-            this.topicsExceptionsTextView.setVisibility(0);
-            this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
-        }
+        actionBarMenuSubItem.setColors(i2, i2);
+        actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(i2, 0.1f));
     }
 }

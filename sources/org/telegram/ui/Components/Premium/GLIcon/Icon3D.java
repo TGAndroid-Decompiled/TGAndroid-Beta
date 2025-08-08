@@ -85,6 +85,7 @@ public class Icon3D {
 
     public Icon3D(Context context, int i) {
         String[] strArr;
+        String str;
         float f = 1.0f;
         this.type = i;
         if (i == 1) {
@@ -117,7 +118,13 @@ public class Icon3D {
         }
         generateTexture();
         int[] iArr = new int[1];
-        String str = (i == 0 || i == 2) ? "shaders/fragment4.glsl" : i == 4 ? "shaders/fragment5.glsl" : "shaders/fragment3.glsl";
+        if (i == 0 || i == 2) {
+            str = "shaders/fragment4.glsl";
+        } else if (i == 4) {
+            str = "shaders/fragment5.glsl";
+        } else {
+            str = "shaders/fragment3.glsl";
+        }
         int loadShader = GLIconRenderer.loadShader(35633, preprocessShader(loadFromAsset(context, "shaders/vertex2.glsl")));
         int loadShader2 = GLIconRenderer.loadShader(35632, preprocessShader(loadFromAsset(context, str)));
         int glCreateProgram = GLES20.glCreateProgram();
@@ -129,47 +136,8 @@ public class Icon3D {
         init(context);
     }
 
-    private void drawModel(int i, boolean z) {
-        int i2 = i * 3;
-        GLES20.glBindBuffer(34962, this.buffers[i2]);
-        GLES20.glVertexAttribPointer(this.mTextureCoordinateHandle, 2, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.buffers[i2 + 1]);
-        GLES20.glVertexAttribPointer(this.mNormalCoordinateHandle, 3, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.buffers[i2 + 2]);
-        GLES20.glVertexAttribPointer(this.mVerticesHandle, 3, 5126, false, 0, 0);
-        GLES20.glUniform1i(this.modelIndexHandle, i);
-        GLES20.glUniform1i(this.modelIndex2Handle, i);
-        GLES20.glUniform1i(this.behindHandle, z ? 1 : 0);
-        GLES20.glUniform1i(this.typeHandle, this.type);
-        GLES20.glDrawArrays(4, 0, this.trianglesCount[i] / 3);
-    }
-
-    private void generateTexture() {
-        this.texture = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(this.texture);
-        Paint paint = new Paint();
-        paint.setShader(new LinearGradient(0.0f, 100.0f, 150.0f, 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP));
-        canvas.drawRect(0.0f, 0.0f, 100.0f, 100.0f, paint);
-        int[] iArr = new int[1];
-        GLES20.glGenTextures(1, iArr, 0);
-        GLES20.glBindTexture(3553, iArr[0]);
-        GLES20.glTexParameteri(3553, 10241, 9728);
-        GLES20.glTexParameteri(3553, 10240, 9728);
-        GLUtils.texImage2D(3553, 0, this.texture, 0);
-        this.mTextureDataHandle = iArr[0];
-    }
-
-    public static Bitmap getBitmapFromAsset(Context context, String str) {
-        try {
-            return BitmapFactory.decodeStream(context.getAssets().open(str));
-        } catch (IOException unused) {
-            return null;
-        }
-    }
-
     private void init(Context context) {
         Bitmap bitmap;
-        String str;
         GLES20.glUseProgram(this.mProgramObject);
         this.mVerticesHandle = GLES20.glGetAttribLocation(this.mProgramObject, "vPosition");
         this.mTextureCoordinateHandle = GLES20.glGetAttribLocation(this.mProgramObject, "a_TexCoordinate");
@@ -249,15 +217,10 @@ public class Icon3D {
         int i6 = this.type;
         if (i6 == 0 || i6 == 2) {
             bitmap = SvgHelper.getBitmap(R.raw.start_texture, 240, 240, -1);
+        } else if (i6 == 1) {
+            bitmap = getBitmapFromAsset(context, "models/coin_border.png");
         } else {
-            if (i6 == 1) {
-                str = "models/coin_border.png";
-            } else if (i6 == 3) {
-                str = "models/deal_border.png";
-            } else {
-                bitmap = null;
-            }
-            bitmap = getBitmapFromAsset(context, str);
+            bitmap = i6 == 3 ? getBitmapFromAsset(context, "models/deal_border.png") : null;
         }
         if (bitmap != null) {
             int[] iArr5 = new int[1];
@@ -284,31 +247,19 @@ public class Icon3D {
         }
     }
 
-    private String preprocessShader(String str) {
-        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
-        StringBuffer stringBuffer = new StringBuffer();
-        while (matcher.find()) {
-            String group = matcher.group(1);
-            int parseInt = Integer.parseInt(group.substring(0, 2), 16);
-            int parseInt2 = Integer.parseInt(group.substring(2, 4), 16);
-            int parseInt3 = Integer.parseInt(group.substring(4, 6), 16);
-            Locale locale = Locale.US;
-            double d = parseInt;
-            Double.isNaN(d);
-            Double valueOf = Double.valueOf(d / 255.0d);
-            double d2 = parseInt2;
-            Double.isNaN(d2);
-            Double valueOf2 = Double.valueOf(d2 / 255.0d);
-            double d3 = parseInt3;
-            Double.isNaN(d3);
-            matcher.appendReplacement(stringBuffer, String.format(locale, "vec3(%.3f, %.3f, %.3f)", valueOf, valueOf2, Double.valueOf(d3 / 255.0d)));
-        }
-        matcher.appendTail(stringBuffer);
-        return stringBuffer.toString();
-    }
-
-    public void destroy() {
-        GLES20.glDeleteProgram(this.mProgramObject);
+    private void generateTexture() {
+        this.texture = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(this.texture);
+        Paint paint = new Paint();
+        paint.setShader(new LinearGradient(0.0f, 100.0f, 150.0f, 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP));
+        canvas.drawRect(0.0f, 0.0f, 100.0f, 100.0f, paint);
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        GLES20.glBindTexture(3553, iArr[0]);
+        GLES20.glTexParameteri(3553, 10241, 9728);
+        GLES20.glTexParameteri(3553, 10240, 9728);
+        GLUtils.texImage2D(3553, 0, this.texture, 0);
+        this.mTextureDataHandle = iArr[0];
     }
 
     public void draw(float[] fArr, float[] fArr2, int i, int i2, float f, float f2, float f3, float f4, float f5, float f6, float f7) {
@@ -366,6 +317,32 @@ public class Icon3D {
         }
     }
 
+    private void drawModel(int i, boolean z) {
+        int i2 = i * 3;
+        GLES20.glBindBuffer(34962, this.buffers[i2]);
+        GLES20.glVertexAttribPointer(this.mTextureCoordinateHandle, 2, 5126, false, 0, 0);
+        GLES20.glBindBuffer(34962, this.buffers[i2 + 1]);
+        GLES20.glVertexAttribPointer(this.mNormalCoordinateHandle, 3, 5126, false, 0, 0);
+        GLES20.glBindBuffer(34962, this.buffers[i2 + 2]);
+        GLES20.glVertexAttribPointer(this.mVerticesHandle, 3, 5126, false, 0, 0);
+        GLES20.glUniform1i(this.modelIndexHandle, i);
+        GLES20.glUniform1i(this.modelIndex2Handle, i);
+        GLES20.glUniform1i(this.behindHandle, z ? 1 : 0);
+        GLES20.glUniform1i(this.typeHandle, this.type);
+        GLES20.glDrawArrays(4, 0, this.trianglesCount[i] / 3);
+    }
+
+    private String preprocessShader(String str) {
+        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            String group = matcher.group(1);
+            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
+        }
+        matcher.appendTail(stringBuffer);
+        return stringBuffer.toString();
+    }
+
     public String loadFromAsset(Context context, String str) {
         StringBuilder sb = new StringBuilder();
         try {
@@ -387,7 +364,19 @@ public class Icon3D {
         return sb.toString();
     }
 
+    public static Bitmap getBitmapFromAsset(Context context, String str) {
+        try {
+            return BitmapFactory.decodeStream(context.getAssets().open(str));
+        } catch (IOException unused) {
+            return null;
+        }
+    }
+
     public void setBackground(Bitmap bitmap) {
         this.backgroundBitmap = bitmap;
+    }
+
+    public void destroy() {
+        GLES20.glDeleteProgram(this.mProgramObject);
     }
 }

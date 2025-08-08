@@ -1,7 +1,7 @@
 package kotlinx.coroutines.internal;
 
 import java.util.concurrent.atomic.AtomicReferenceArray;
-import kotlin.ranges.RangesKt___RangesKt;
+import kotlin.ranges.RangesKt;
 
 public final class ResizableAtomicArray {
     private volatile AtomicReferenceArray<Object> array;
@@ -23,15 +23,13 @@ public final class ResizableAtomicArray {
     }
 
     public final void setSynchronized(int i, Object obj) {
-        int coerceAtLeast;
         AtomicReferenceArray<Object> atomicReferenceArray = this.array;
         int length = atomicReferenceArray.length();
         if (i < length) {
             atomicReferenceArray.set(i, obj);
             return;
         }
-        coerceAtLeast = RangesKt___RangesKt.coerceAtLeast(i + 1, length * 2);
-        AtomicReferenceArray<Object> atomicReferenceArray2 = new AtomicReferenceArray<>(coerceAtLeast);
+        AtomicReferenceArray<Object> atomicReferenceArray2 = new AtomicReferenceArray<>(RangesKt.coerceAtLeast(i + 1, length * 2));
         for (int i2 = 0; i2 < length; i2++) {
             atomicReferenceArray2.set(i2, atomicReferenceArray.get(i2));
         }

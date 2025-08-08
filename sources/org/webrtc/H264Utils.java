@@ -15,20 +15,26 @@ class H264Utils {
     public static final String H264_PROFILE_CONSTRAINED_BASELINE = "42e0";
     public static final String H264_PROFILE_CONSTRAINED_HIGH = "640c";
 
+    private static native boolean nativeIsSameH264Profile(Map<String, String> map, Map<String, String> map2);
+
     H264Utils() {
     }
 
     public static Map<String, String> getDefaultH264Params(boolean z) {
+        String str;
         HashMap hashMap = new HashMap();
         hashMap.put("level-asymmetry-allowed", "1");
         hashMap.put("packetization-mode", "1");
-        hashMap.put("profile-level-id", z ? "640c1f" : "42e01f");
+        if (z) {
+            str = "640c1f";
+        } else {
+            str = "42e01f";
+        }
+        hashMap.put("profile-level-id", str);
         return hashMap;
     }
 
     public static boolean isSameH264Profile(Map<String, String> map, Map<String, String> map2) {
         return nativeIsSameH264Profile(map, map2);
     }
-
-    private static native boolean nativeIsSameH264Profile(Map<String, String> map, Map<String, String> map2);
 }

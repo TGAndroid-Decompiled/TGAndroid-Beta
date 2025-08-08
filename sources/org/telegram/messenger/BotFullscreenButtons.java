@@ -67,107 +67,6 @@ public class BotFullscreenButtons extends View {
     private Drawable verifiedForeground;
     public WebView webView;
 
-    public static class OptionsIcon extends Drawable {
-        private final AnimatedFloat animatedDownloading;
-        private final Paint downloadPaint;
-        private final Path downloadPath;
-        private boolean downloading;
-        private final Drawable drawable;
-        private final long start;
-
-        public OptionsIcon(Context context) {
-            Paint paint = new Paint(1);
-            this.downloadPaint = paint;
-            Path path = new Path();
-            this.downloadPath = path;
-            this.downloading = false;
-            this.animatedDownloading = new AnimatedFloat(new Runnable() {
-                @Override
-                public final void run() {
-                    BotFullscreenButtons.OptionsIcon.this.invalidateSelf();
-                }
-            }, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.start = System.currentTimeMillis();
-            this.drawable = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
-            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
-            path.rewind();
-            path.moveTo(-AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
-            path.lineTo(-AndroidUtilities.dpf2(1.33f), -AndroidUtilities.dpf2(3.5f));
-            path.lineTo(AndroidUtilities.dpf2(1.33f), -AndroidUtilities.dpf2(3.5f));
-            path.lineTo(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
-            path.lineTo(AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(0.16f));
-            path.lineTo(0.0f, AndroidUtilities.dpf2(3.5f));
-            path.lineTo(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(0.16f));
-            path.close();
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            this.drawable.setBounds(getBounds());
-            this.drawable.draw(canvas);
-            float f = this.animatedDownloading.set(this.downloading);
-            if (f > 0.0f) {
-                canvas.save();
-                canvas.translate(getBounds().centerX(), getBounds().centerY());
-                canvas.translate(-AndroidUtilities.dpf2(8.166f), AndroidUtilities.dpf2(5.0f));
-                float f2 = (f * 0.5f) + 0.5f;
-                canvas.scale(f2, f2);
-                this.downloadPaint.setColor(Theme.multAlpha(-1, 0.4f));
-                canvas.drawPath(this.downloadPath, this.downloadPaint);
-                float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 450)) / 450.0f;
-                float f3 = 0.5f + currentTimeMillis;
-                canvas.save();
-                canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), currentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f3));
-                this.downloadPaint.setColor(Theme.multAlpha(-1, 1.0f));
-                canvas.drawPath(this.downloadPath, this.downloadPaint);
-                canvas.restore();
-                if (f3 > 1.0f) {
-                    canvas.save();
-                    canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), 0.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f3 - 1.0f));
-                    this.downloadPaint.setColor(Theme.multAlpha(-1, 1.0f));
-                    canvas.drawPath(this.downloadPath, this.downloadPaint);
-                    canvas.restore();
-                }
-                canvas.restore();
-                invalidateSelf();
-            }
-        }
-
-        @Override
-        public int getIntrinsicHeight() {
-            return this.drawable.getIntrinsicHeight();
-        }
-
-        @Override
-        public int getIntrinsicWidth() {
-            return this.drawable.getIntrinsicWidth();
-        }
-
-        @Override
-        public int getOpacity() {
-            return -2;
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.drawable.setAlpha(i);
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
-            this.downloadPaint.setColorFilter(colorFilter);
-            this.drawable.setColorFilter(colorFilter);
-        }
-
-        public void setDownloading(boolean z) {
-            if (this.downloading == z) {
-                return;
-            }
-            this.downloading = z;
-            invalidateSelf();
-        }
-    }
-
     public BotFullscreenButtons(Context context) {
         super(context);
         this.backgroundPaint = new Paint(1);
@@ -223,22 +122,12 @@ public class BotFullscreenButtons extends View {
         path.close();
     }
 
-    private ButtonBounce getBounce(int i) {
-        return i != 1 ? i != 2 ? i != 3 ? this.nullBounce : this.menuBounce : this.collapseBounce : this.closeBounce;
+    public void setInsets(RectF rectF) {
+        this.insets.set(rectF);
     }
 
-    private int getButton(MotionEvent motionEvent) {
-        if (this.closeRectArea.contains(motionEvent.getX(), motionEvent.getY())) {
-            return 1;
-        }
-        if (this.collapseClickRect.contains(motionEvent.getX(), motionEvent.getY())) {
-            return 2;
-        }
-        return this.menuClickRect.contains(motionEvent.getX(), motionEvent.getY()) ? 3 : 0;
-    }
-
-    public void lambda$new$0() {
-        setPreview(false, true);
+    public void setInsets(Rect rect) {
+        this.insets.set(rect);
     }
 
     @Override
@@ -297,25 +186,22 @@ public class BotFullscreenButtons extends View {
         this.closeRectArea.right = AndroidUtilities.lerp(this.leftMenu.right, this.closeRect.left + AndroidUtilities.dp(30.0f), f4);
         this.closeRectArea.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
         this.backgroundPath.addRoundRect(this.leftMenu, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), direction);
-        if (this.parentRenderNode == null || Build.VERSION.SDK_INT < 31 || !canvas.isHardwareAccelerated() || !((webView = this.webView) == null || webView.getLayerType() == 2)) {
-            this.backgroundPaint.setColor(Theme.multAlpha(-16777216, 0.35f));
-            canvas.drawPath(this.backgroundPath, this.backgroundPaint);
-        } else {
+        if (this.parentRenderNode != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && ((webView = this.webView) == null || webView.getLayerType() == 2)) {
             if (this.blurNode == null) {
-                RenderNode renderNode = new RenderNode("bot_fullscreen_blur");
-                this.blurNode = renderNode;
+                RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("bot_fullscreen_blur");
+                this.blurNode = m;
                 createBlurEffect = RenderEffect.createBlurEffect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Shader.TileMode.CLAMP);
-                renderNode.setRenderEffect(createBlurEffect);
+                m.setRenderEffect(createBlurEffect);
             }
-            RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.parentRenderNode);
-            width = m.getWidth();
+            RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.parentRenderNode);
+            width = m2.getWidth();
             int max = Math.max(1, width - AndroidUtilities.dp(16.0f));
             float dp6 = this.insets.top + AndroidUtilities.dp(46.0f);
-            height = m.getHeight();
+            height = m2.getHeight();
             this.blurNode.setPosition(0, 0, max, Math.max(1, (int) Math.min(dp6, height)));
             beginRecording = this.blurNode.beginRecording();
             beginRecording.translate(-AndroidUtilities.dp(8.0f), 0.0f);
-            beginRecording.drawRenderNode(m);
+            beginRecording.drawRenderNode(m2);
             this.blurNode.endRecording();
             canvas.save();
             canvas.clipPath(this.backgroundPath);
@@ -326,6 +212,9 @@ public class BotFullscreenButtons extends View {
             this.backgroundPaint.setColor(Theme.multAlpha(-16777216, 0.22f));
             canvas.drawPaint(this.backgroundPaint);
             canvas.restore();
+        } else {
+            this.backgroundPaint.setColor(Theme.multAlpha(-16777216, 0.35f));
+            canvas.drawPath(this.backgroundPath, this.backgroundPaint);
         }
         canvas.save();
         canvas.translate(this.closeRect.centerX(), this.closeRect.centerY());
@@ -431,23 +320,6 @@ public class BotFullscreenButtons extends View {
         canvas.restore();
     }
 
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.BotFullscreenButtons.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    public void setBack(boolean z) {
-        setBack(z, true);
-    }
-
-    public void setBack(boolean z, boolean z2) {
-        this.back = z;
-        if (!z2) {
-            this.animatedBack.set(z);
-        }
-        invalidate();
-    }
-
     public void setDownloading(boolean z) {
         if (this.downloading == z) {
             return;
@@ -456,25 +328,31 @@ public class BotFullscreenButtons extends View {
         invalidate();
     }
 
-    public void setInsets(Rect rect) {
-        this.insets.set(rect);
-    }
-
-    public void setInsets(RectF rectF) {
-        this.insets.set(rectF);
-    }
-
     public void setName(String str, boolean z) {
-        Drawable mutate;
         this.previewText = new Text(str, 13.0f, AndroidUtilities.bold());
-        if (z) {
-            this.verifiedBackground = getContext().getResources().getDrawable(R.drawable.verified_area).mutate();
-            mutate = getContext().getResources().getDrawable(R.drawable.verified_check).mutate();
-        } else {
-            mutate = null;
+        if (!z) {
             this.verifiedBackground = null;
+            this.verifiedForeground = null;
+        } else {
+            this.verifiedBackground = getContext().getResources().getDrawable(R.drawable.verified_area).mutate();
+            this.verifiedForeground = getContext().getResources().getDrawable(R.drawable.verified_check).mutate();
         }
-        this.verifiedForeground = mutate;
+    }
+
+    public void lambda$new$0() {
+        setPreview(false, true);
+    }
+
+    public void setPreview(boolean z, boolean z2) {
+        AndroidUtilities.cancelRunOnUIThread(this.hidePreview);
+        this.preview = z;
+        if (!z2) {
+            this.animatedPreview.set(z, true);
+        }
+        invalidate();
+        if (z) {
+            AndroidUtilities.runOnUIThread(this.hidePreview, 2500L);
+        }
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
@@ -493,19 +371,176 @@ public class BotFullscreenButtons extends View {
         this.parentRenderNode = obj;
     }
 
-    public void setPreview(boolean z, boolean z2) {
-        AndroidUtilities.cancelRunOnUIThread(this.hidePreview);
-        this.preview = z;
-        if (!z2) {
-            this.animatedPreview.set(z, true);
-        }
-        invalidate();
-        if (z) {
-            AndroidUtilities.runOnUIThread(this.hidePreview, 2500L);
-        }
-    }
-
     public void setWebView(WebView webView) {
         this.webView = webView;
+    }
+
+    private int getButton(MotionEvent motionEvent) {
+        if (this.closeRectArea.contains(motionEvent.getX(), motionEvent.getY())) {
+            return 1;
+        }
+        if (this.collapseClickRect.contains(motionEvent.getX(), motionEvent.getY())) {
+            return 2;
+        }
+        return this.menuClickRect.contains(motionEvent.getX(), motionEvent.getY()) ? 3 : 0;
+    }
+
+    private ButtonBounce getBounce(int i) {
+        if (i == 1) {
+            return this.closeBounce;
+        }
+        if (i == 2) {
+            return this.collapseBounce;
+        }
+        if (i == 3) {
+            return this.menuBounce;
+        }
+        return this.nullBounce;
+    }
+
+    public void setBack(boolean z) {
+        setBack(z, true);
+    }
+
+    public void setBack(boolean z, boolean z2) {
+        this.back = z;
+        if (!z2) {
+            this.animatedBack.set(z);
+        }
+        invalidate();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        Runnable runnable;
+        Runnable runnable2;
+        Runnable runnable3;
+        if (motionEvent.getAction() == 0) {
+            getBounce(this.pressed).setPressed(false);
+            int button = getButton(motionEvent);
+            this.pressed = button;
+            getBounce(button).setPressed(true);
+        } else if (motionEvent.getAction() == 2) {
+            if (getButton(motionEvent) != this.pressed) {
+                this.pressed = 0;
+                getBounce(0).setPressed(false);
+            }
+        } else if (motionEvent.getAction() == 1) {
+            int i = this.pressed;
+            if (i == 1 && (runnable3 = this.onCloseClickListener) != null) {
+                runnable3.run();
+            } else if (i == 2 && (runnable2 = this.onCollapseClickListener) != null) {
+                runnable2.run();
+            } else if (i == 3 && (runnable = this.onMenuClickListener) != null) {
+                runnable.run();
+            }
+            getBounce(this.pressed).setPressed(false);
+            this.pressed = 0;
+        } else if (motionEvent.getAction() == 3) {
+            getBounce(this.pressed).setPressed(false);
+            this.pressed = 0;
+        }
+        return this.pressed != 0;
+    }
+
+    public static class OptionsIcon extends Drawable {
+        private final AnimatedFloat animatedDownloading;
+        private final Paint downloadPaint;
+        private final Path downloadPath;
+        private boolean downloading;
+        private final Drawable drawable;
+        private final long start;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        public OptionsIcon(Context context) {
+            Paint paint = new Paint(1);
+            this.downloadPaint = paint;
+            Path path = new Path();
+            this.downloadPath = path;
+            this.downloading = false;
+            this.animatedDownloading = new AnimatedFloat(new Runnable() {
+                @Override
+                public final void run() {
+                    BotFullscreenButtons.OptionsIcon.this.invalidateSelf();
+                }
+            }, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.start = System.currentTimeMillis();
+            this.drawable = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
+            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+            path.rewind();
+            path.moveTo(-AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
+            path.lineTo(-AndroidUtilities.dpf2(1.33f), -AndroidUtilities.dpf2(3.5f));
+            path.lineTo(AndroidUtilities.dpf2(1.33f), -AndroidUtilities.dpf2(3.5f));
+            path.lineTo(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(0.16f));
+            path.lineTo(AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(0.16f));
+            path.lineTo(0.0f, AndroidUtilities.dpf2(3.5f));
+            path.lineTo(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(0.16f));
+            path.close();
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            this.drawable.setBounds(getBounds());
+            this.drawable.draw(canvas);
+            float f = this.animatedDownloading.set(this.downloading);
+            if (f > 0.0f) {
+                canvas.save();
+                canvas.translate(getBounds().centerX(), getBounds().centerY());
+                canvas.translate(-AndroidUtilities.dpf2(8.166f), AndroidUtilities.dpf2(5.0f));
+                float f2 = (f * 0.5f) + 0.5f;
+                canvas.scale(f2, f2);
+                this.downloadPaint.setColor(Theme.multAlpha(-1, 0.4f));
+                canvas.drawPath(this.downloadPath, this.downloadPaint);
+                float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.start) % 450)) / 450.0f;
+                float f3 = 0.5f + currentTimeMillis;
+                canvas.save();
+                canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), currentTimeMillis), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f3));
+                this.downloadPaint.setColor(Theme.multAlpha(-1, 1.0f));
+                canvas.drawPath(this.downloadPath, this.downloadPaint);
+                canvas.restore();
+                if (f3 > 1.0f) {
+                    canvas.save();
+                    canvas.clipRect(-AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), 0.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.lerp(-AndroidUtilities.dpf2(3.5f), AndroidUtilities.dpf2(3.5f), f3 - 1.0f));
+                    this.downloadPaint.setColor(Theme.multAlpha(-1, 1.0f));
+                    canvas.drawPath(this.downloadPath, this.downloadPaint);
+                    canvas.restore();
+                }
+                canvas.restore();
+                invalidateSelf();
+            }
+        }
+
+        public void setDownloading(boolean z) {
+            if (this.downloading == z) {
+                return;
+            }
+            this.downloading = z;
+            invalidateSelf();
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.drawable.setAlpha(i);
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+            this.downloadPaint.setColorFilter(colorFilter);
+            this.drawable.setColorFilter(colorFilter);
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return this.drawable.getIntrinsicWidth();
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return this.drawable.getIntrinsicHeight();
+        }
     }
 }

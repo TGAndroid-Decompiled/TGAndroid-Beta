@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -30,6 +29,40 @@ public abstract class BotButtons extends FrameLayout {
     public ButtonsState state;
     private Utilities.Callback whenClicked;
     private Runnable whenResized;
+
+    public static class ButtonsState {
+        public int backgroundColor;
+        public ButtonState main = new ButtonState();
+        public ButtonState secondary = new ButtonState();
+    }
+
+    public static class ButtonState {
+        public boolean active;
+        public int color;
+        public String position;
+        public boolean progressVisible;
+        public boolean shineEffect;
+        public String text;
+        public int textColor;
+        public boolean visible;
+
+        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, int i, int i2) {
+            return of(z, z2, z3, z4, str, i, i2, null);
+        }
+
+        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, int i, int i2, String str2) {
+            ButtonState buttonState = new ButtonState();
+            buttonState.visible = z;
+            buttonState.active = z2;
+            buttonState.progressVisible = z3;
+            buttonState.shineEffect = z4;
+            buttonState.text = str;
+            buttonState.color = i;
+            buttonState.textColor = i2;
+            buttonState.position = str2;
+            return buttonState;
+        }
+    }
 
     public class Button {
         public final AnimatedFloat alpha;
@@ -82,40 +115,6 @@ public abstract class BotButtons extends FrameLayout {
         }
     }
 
-    public static class ButtonState {
-        public boolean active;
-        public int color;
-        public String position;
-        public boolean progressVisible;
-        public boolean shineEffect;
-        public String text;
-        public int textColor;
-        public boolean visible;
-
-        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, int i, int i2) {
-            return of(z, z2, z3, z4, str, i, i2, null);
-        }
-
-        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, int i, int i2, String str2) {
-            ButtonState buttonState = new ButtonState();
-            buttonState.visible = z;
-            buttonState.active = z2;
-            buttonState.progressVisible = z3;
-            buttonState.shineEffect = z4;
-            buttonState.text = str;
-            buttonState.color = i;
-            buttonState.textColor = i2;
-            buttonState.position = str2;
-            return buttonState;
-        }
-    }
-
-    public static class ButtonsState {
-        public int backgroundColor;
-        public ButtonState main = new ButtonState();
-        public ButtonState secondary = new ButtonState();
-    }
-
     public BotButtons(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         Paint paint = new Paint(1);
@@ -134,22 +133,6 @@ public abstract class BotButtons extends FrameLayout {
         buttonsState.backgroundColor = color;
         paint.setColor(color);
         Button[] buttonArr = {new Button(), new Button()};
-    }
-
-    private Button getHitButton(float f, float f2) {
-        int i = 0;
-        while (true) {
-            Button[] buttonArr = this.buttons;
-            if (i >= buttonArr.length) {
-                return null;
-            }
-            ButtonsState buttonsState = this.state;
-            ButtonState buttonState = i == 0 ? buttonsState.main : buttonsState.secondary;
-            if (buttonArr[i].bounds.contains(f, f2) && buttonState.visible && buttonState.active) {
-                return this.buttons[i];
-            }
-            i++;
-        }
     }
 
     @Override
@@ -176,13 +159,12 @@ public abstract class BotButtons extends FrameLayout {
                 return;
             }
             Button button = this.buttons[i3];
-            ButtonsState buttonsState = this.state;
-            ButtonState buttonState = i3 == 0 ? buttonsState.main : buttonsState.secondary;
+            ButtonState buttonState = i3 == 0 ? this.state.main : this.state.secondary;
             float f6 = button.alpha.set(buttonState.visible);
             if (buttonState.visible) {
                 AnimatedFloat animatedFloat = button.x;
-                ButtonsState buttonsState2 = this.state;
-                if (buttonsState2.secondary.visible && buttonsState2.main.visible) {
+                ButtonsState buttonsState = this.state;
+                if (buttonsState.secondary.visible && buttonsState.main.visible) {
                     f = (!"left".equalsIgnoreCase(str) ? !(!"right".equalsIgnoreCase(str) || i3 == 0) : i3 == 0) ? 0 : 1;
                 } else {
                     f = 0.0f;
@@ -193,8 +175,8 @@ public abstract class BotButtons extends FrameLayout {
             }
             if (buttonState.visible) {
                 AnimatedFloat animatedFloat2 = button.y;
-                ButtonsState buttonsState3 = this.state;
-                if (buttonsState3.secondary.visible && buttonsState3.main.visible) {
+                ButtonsState buttonsState2 = this.state;
+                if (buttonsState2.secondary.visible && buttonsState2.main.visible) {
                     f3 = (!"top".equalsIgnoreCase(str) ? !(!"bottom".equalsIgnoreCase(str) || i3 == 0) : i3 == 0) ? 0 : 1;
                 } else {
                     f3 = 0.0f;
@@ -205,8 +187,8 @@ public abstract class BotButtons extends FrameLayout {
             }
             if (buttonState.visible) {
                 AnimatedFloat animatedFloat3 = button.w;
-                ButtonsState buttonsState4 = this.state;
-                f5 = animatedFloat3.set((buttonsState4.secondary.visible && buttonsState4.main.visible && ("left".equalsIgnoreCase(str) || "right".equalsIgnoreCase(str))) ? 0.0f : 1.0f);
+                ButtonsState buttonsState3 = this.state;
+                f5 = animatedFloat3.set((buttonsState3.secondary.visible && buttonsState3.main.visible && ("left".equalsIgnoreCase(str) || "right".equalsIgnoreCase(str))) ? 0.0f : 1.0f);
             } else {
                 f5 = button.w.get();
             }
@@ -271,69 +253,6 @@ public abstract class BotButtons extends FrameLayout {
         }
     }
 
-    public float getAnimatedTotalHeight() {
-        return this.height.get();
-    }
-
-    public int getTotalHeight() {
-        ButtonsState buttonsState = this.state;
-        boolean z = buttonsState.main.visible;
-        int i = (z || buttonsState.secondary.visible) ? 1 : 0;
-        if (z) {
-            ButtonState buttonState = buttonsState.secondary;
-            if (buttonState.visible && ("top".equalsIgnoreCase(buttonState.position) || "bottom".equalsIgnoreCase(this.state.secondary.position))) {
-                i++;
-            }
-        }
-        if (i == 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(i == 1 ? 58.0f : 109.0f);
-    }
-
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(109.0f) + 1, 1073741824));
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        Utilities.Callback callback;
-        if (motionEvent.getAction() == 0) {
-            Button hitButton = getHitButton(motionEvent.getX(), motionEvent.getY());
-            this.pressedButton = hitButton;
-            if (hitButton != null) {
-                hitButton.bounce.setPressed(true);
-                if (Build.VERSION.SDK_INT >= 21) {
-                    this.pressedButton.ripple.setHotspot(motionEvent.getX(), motionEvent.getY());
-                }
-                this.pressedButton.ripple.setState(new int[]{16842919, 16842910});
-            }
-        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.pressedButton != null) {
-            if (motionEvent.getAction() == 1) {
-                Button hitButton2 = getHitButton(motionEvent.getX(), motionEvent.getY());
-                Button button = this.pressedButton;
-                if (hitButton2 == button && (callback = this.whenClicked) != null) {
-                    callback.run(Boolean.valueOf(button == this.buttons[0]));
-                }
-            }
-            this.pressedButton.bounce.setPressed(false);
-            this.pressedButton.ripple.setState(new int[0]);
-            this.pressedButton = null;
-        }
-        return this.pressedButton != null;
-    }
-
-    public void setBackgroundColor(int i, boolean z) {
-        Paint paint = this.backgroundPaint;
-        this.state.backgroundColor = i;
-        paint.setColor(i);
-        if (z) {
-            return;
-        }
-        this.background.set(i, true);
-    }
-
     public void setMainState(ButtonState buttonState, boolean z) {
         int totalHeight = getTotalHeight();
         this.state.main = buttonState;
@@ -348,14 +267,6 @@ public abstract class BotButtons extends FrameLayout {
         } else {
             this.whenResized.run();
         }
-    }
-
-    public void setOnButtonClickListener(Utilities.Callback<Boolean> callback) {
-        this.whenClicked = callback;
-    }
-
-    public void setOnResizeListener(Runnable runnable) {
-        this.whenResized = runnable;
     }
 
     public void setSecondaryState(ButtonState buttonState, boolean z) {
@@ -390,6 +301,93 @@ public abstract class BotButtons extends FrameLayout {
             }
         }
         setBackgroundColor(buttonsState.backgroundColor, z);
+    }
+
+    public void setBackgroundColor(int i, boolean z) {
+        Paint paint = this.backgroundPaint;
+        this.state.backgroundColor = i;
+        paint.setColor(i);
+        if (z) {
+            return;
+        }
+        this.background.set(i, true);
+    }
+
+    public int getTotalHeight() {
+        ButtonsState buttonsState = this.state;
+        boolean z = buttonsState.main.visible;
+        int i = (z || buttonsState.secondary.visible) ? 1 : 0;
+        if (z) {
+            ButtonState buttonState = buttonsState.secondary;
+            if (buttonState.visible && ("top".equalsIgnoreCase(buttonState.position) || "bottom".equalsIgnoreCase(this.state.secondary.position))) {
+                i++;
+            }
+        }
+        if (i == 0) {
+            return 0;
+        }
+        if (i == 1) {
+            return AndroidUtilities.dp(58.0f);
+        }
+        return AndroidUtilities.dp(109.0f);
+    }
+
+    public float getAnimatedTotalHeight() {
+        return this.height.get();
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(109.0f) + 1, 1073741824));
+    }
+
+    private Button getHitButton(float f, float f2) {
+        int i = 0;
+        while (true) {
+            Button[] buttonArr = this.buttons;
+            if (i >= buttonArr.length) {
+                return null;
+            }
+            ButtonState buttonState = i == 0 ? this.state.main : this.state.secondary;
+            if (buttonArr[i].bounds.contains(f, f2) && buttonState.visible && buttonState.active) {
+                return this.buttons[i];
+            }
+            i++;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        Utilities.Callback callback;
+        if (motionEvent.getAction() == 0) {
+            Button hitButton = getHitButton(motionEvent.getX(), motionEvent.getY());
+            this.pressedButton = hitButton;
+            if (hitButton != null) {
+                hitButton.bounce.setPressed(true);
+                this.pressedButton.ripple.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.pressedButton.ripple.setState(new int[]{16842919, 16842910});
+            }
+        } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.pressedButton != null) {
+            if (motionEvent.getAction() == 1) {
+                Button hitButton2 = getHitButton(motionEvent.getX(), motionEvent.getY());
+                Button button = this.pressedButton;
+                if (hitButton2 == button && (callback = this.whenClicked) != null) {
+                    callback.run(Boolean.valueOf(button == this.buttons[0]));
+                }
+            }
+            this.pressedButton.bounce.setPressed(false);
+            this.pressedButton.ripple.setState(new int[0]);
+            this.pressedButton = null;
+        }
+        return this.pressedButton != null;
+    }
+
+    public void setOnButtonClickListener(Utilities.Callback<Boolean> callback) {
+        this.whenClicked = callback;
+    }
+
+    public void setOnResizeListener(Runnable runnable) {
+        this.whenResized = runnable;
     }
 
     @Override

@@ -17,23 +17,6 @@ public class Texture {
         this.bitmap = bitmap;
     }
 
-    public static int generateTexture(int i, int i2) {
-        int[] iArr = new int[1];
-        GLES20.glGenTextures(1, iArr, 0);
-        int i3 = iArr[0];
-        GLES20.glBindTexture(3553, i3);
-        GLES20.glTexParameteri(3553, 10242, 33071);
-        GLES20.glTexParameteri(3553, 10243, 33071);
-        GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glTexParameteri(3553, 10241, 9729);
-        GLES20.glTexImage2D(3553, 0, 6408, i, i2, 0, 6408, 5121, null);
-        return i3;
-    }
-
-    public static int generateTexture(Size size) {
-        return generateTexture((int) size.width, (int) size.height);
-    }
-
     public void cleanResources(boolean z) {
         Bitmap bitmap;
         int i = this.texture;
@@ -89,5 +72,22 @@ public class Texture {
         }
         Utils.HasGLError();
         return this.texture;
+    }
+
+    public static int generateTexture(Size size) {
+        return generateTexture((int) size.width, (int) size.height);
+    }
+
+    public static int generateTexture(int i, int i2) {
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        int i3 = iArr[0];
+        GLES20.glBindTexture(3553, i3);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexImage2D(3553, 0, 6408, i, i2, 0, 6408, 5121, null);
+        return i3;
     }
 }

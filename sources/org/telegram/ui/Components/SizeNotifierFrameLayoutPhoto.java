@@ -20,14 +20,18 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
         this.useSmoothKeyboard = z;
     }
 
-    public void lambda$notifyHeightChanged$0(boolean z) {
-        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
-        if (sizeNotifierFrameLayoutDelegate != null) {
-            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
-        }
-        for (int i = 0; i < this.delegates.size(); i++) {
-            ((SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate) this.delegates.get(i)).onSizeChanged(this.keyboardHeight, z);
-        }
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setWithoutWindow(boolean z) {
+        this.withoutWindow = z;
+    }
+
+    @Override
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        notifyHeightChanged();
     }
 
     @Override
@@ -67,17 +71,13 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
         });
     }
 
-    @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        notifyHeightChanged();
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
-    public void setWithoutWindow(boolean z) {
-        this.withoutWindow = z;
+    public void lambda$notifyHeightChanged$0(boolean z) {
+        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
+        if (sizeNotifierFrameLayoutDelegate != null) {
+            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
+        }
+        for (int i = 0; i < this.delegates.size(); i++) {
+            ((SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate) this.delegates.get(i)).onSizeChanged(this.keyboardHeight, z);
+        }
     }
 }

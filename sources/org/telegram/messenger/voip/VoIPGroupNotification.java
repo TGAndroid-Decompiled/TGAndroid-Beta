@@ -36,6 +36,26 @@ public class VoIPGroupNotification {
         private final ArrayList<TLRPC.GroupCallParticipant> participants;
         private final boolean video;
 
+        @Override
+        public long getCallDuration() {
+            return VoIPServiceState.CC.$default$getCallDuration(this);
+        }
+
+        @Override
+        public TL_phone.PhoneCall getPrivateCall() {
+            return null;
+        }
+
+        @Override
+        public boolean isConference() {
+            return true;
+        }
+
+        @Override
+        public boolean isOutgoing() {
+            return false;
+        }
+
         public State(int i, long j, long j2, int i2, boolean z, TLRPC.GroupCall groupCall, ArrayList<TLRPC.GroupCallParticipant> arrayList) {
             this.currentAccount = i;
             this.dialogId = j;
@@ -50,6 +70,21 @@ public class VoIPGroupNotification {
         }
 
         @Override
+        public TLRPC.User getUser() {
+            return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+        }
+
+        @Override
+        public int getCallState() {
+            return this.destroyed ? 11 : 15;
+        }
+
+        @Override
+        public boolean isCallingVideo() {
+            return this.video;
+        }
+
+        @Override
         public void acceptIncomingCall() {
             VoIPGroupNotification.answer(ApplicationLoader.applicationContext, this.currentAccount, this.msg_id);
         }
@@ -57,6 +92,11 @@ public class VoIPGroupNotification {
         @Override
         public void declineIncomingCall() {
             VoIPGroupNotification.decline(ApplicationLoader.applicationContext, this.currentAccount, this.msg_id);
+        }
+
+        @Override
+        public void stopRinging() {
+            VoIPPreNotificationService.stopRinging();
         }
 
         public void destroy() {
@@ -70,16 +110,6 @@ public class VoIPGroupNotification {
         }
 
         @Override
-        public long getCallDuration() {
-            return VoIPServiceState.CC.$default$getCallDuration(this);
-        }
-
-        @Override
-        public int getCallState() {
-            return this.destroyed ? 11 : 15;
-        }
-
-        @Override
         public TLRPC.GroupCall getGroupCall() {
             return this.groupCall;
         }
@@ -88,35 +118,87 @@ public class VoIPGroupNotification {
         public ArrayList<TLRPC.GroupCallParticipant> getGroupParticipants() {
             return this.participants;
         }
+    }
 
-        @Override
-        public TL_phone.PhoneCall getPrivateCall() {
-            return null;
+    public static void request(final Context context, final int i, final long j, final String str, final long j2, final int i2, final boolean z) {
+        if (Build.VERSION.SDK_INT < 26 || currentCallId == j2) {
+            return;
         }
-
-        @Override
-        public TLRPC.User getUser() {
-            return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+        State state = currentState;
+        if (state == null || state.call_id != j2) {
+            if (VoIPService.getSharedInstance() != null) {
+                if (currentState != null) {
+                    hide(context);
+                }
+            } else {
+                if (MessagesController.getInstance(i).callRequestsDisabled) {
+                    return;
+                }
+                HashSet<Integer> hashSet = ignoreCalls;
+                if (hashSet == null || !hashSet.contains(Integer.valueOf(i2))) {
+                    currentCallId = j2;
+                    TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
+                    TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
+                    getgroupcall.call = tL_inputGroupCallInviteMessage;
+                    tL_inputGroupCallInviteMessage.msg_id = i2;
+                    getgroupcall.limit = 3;
+                    ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            VoIPGroupNotification.lambda$request$1(i, j, j2, i2, z, context, str, tLObject, tL_error);
+                        }
+                    });
+                }
+            }
         }
+    }
 
-        @Override
-        public boolean isCallingVideo() {
-            return this.video;
+    public static void lambda$request$1(final int i, final long j, final long j2, final int i2, final boolean z, final Context context, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VoIPGroupNotification.lambda$request$0(TLObject.this, i, j, j2, i2, z, context, str);
+            }
+        });
+    }
+
+    public static void lambda$request$0(TLObject tLObject, int i, long j, long j2, int i2, boolean z, Context context, String str) {
+        if (tLObject instanceof TL_phone.groupCall) {
+            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
+            MessagesController.getInstance(i).putUsers(groupcall.users, false);
+            MessagesController.getInstance(i).putChats(groupcall.chats, false);
+            currentState = new State(i, j, j2, i2, z, groupcall.call, groupcall.participants);
+            showNotification(context, i, j2, i2, j, str);
+            return;
         }
-
-        @Override
-        public boolean isConference() {
-            return true;
+        if (ignoreCalls == null) {
+            ignoreCalls = new HashSet<>();
         }
+        ignoreCalls.add(Integer.valueOf(i2));
+    }
 
-        @Override
-        public boolean isOutgoing() {
-            return false;
+    private static void showNotification(final android.content.Context r19, final int r20, long r21, final int r23, long r24, java.lang.String r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPGroupNotification.showNotification(android.content.Context, int, long, int, long, java.lang.String):void");
+    }
+
+    public static void open(Context context, int i, int i2) {
+        Runnable runnable = missRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
         }
-
-        @Override
-        public void stopRinging() {
-            VoIPPreNotificationService.stopRinging();
+        VoIPPreNotificationService.stopRinging();
+        State state = currentState;
+        if (state == null || state.msg_id != i2) {
+            return;
+        }
+        ((NotificationManager) context.getSystemService("notification")).cancel(203);
+        VoIPPreNotificationService.stopRinging();
+        Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        if (findActivity == null) {
+            findActivity = LaunchActivity.instance;
+        }
+        if (findActivity != null) {
+            VoIPFragment.show(findActivity, i);
         }
     }
 
@@ -162,6 +244,12 @@ public class VoIPGroupNotification {
         }
     }
 
+    public static void lambda$decline$3(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tLObject instanceof TLRPC.Updates) {
+            MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
+        }
+    }
+
     public static void hide(Context context) {
         State state = currentState;
         if (state == null) {
@@ -202,93 +290,5 @@ public class VoIPGroupNotification {
                 VoIPFragment.getInstance().finish();
             }
         }
-    }
-
-    public static void lambda$decline$3(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (tLObject instanceof TLRPC.Updates) {
-            MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
-        }
-    }
-
-    public static void lambda$request$0(TLObject tLObject, int i, long j, long j2, int i2, boolean z, Context context, String str) {
-        if (!(tLObject instanceof TL_phone.groupCall)) {
-            if (ignoreCalls == null) {
-                ignoreCalls = new HashSet<>();
-            }
-            ignoreCalls.add(Integer.valueOf(i2));
-        } else {
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(i).putUsers(groupcall.users, false);
-            MessagesController.getInstance(i).putChats(groupcall.chats, false);
-            currentState = new State(i, j, j2, i2, z, groupcall.call, groupcall.participants);
-            showNotification(context, i, j2, i2, j, str);
-        }
-    }
-
-    public static void lambda$request$1(final int i, final long j, final long j2, final int i2, final boolean z, final Context context, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VoIPGroupNotification.lambda$request$0(TLObject.this, i, j, j2, i2, z, context, str);
-            }
-        });
-    }
-
-    public static void open(Context context, int i, int i2) {
-        Runnable runnable = missRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        VoIPPreNotificationService.stopRinging();
-        State state = currentState;
-        if (state == null || state.msg_id != i2) {
-            return;
-        }
-        ((NotificationManager) context.getSystemService("notification")).cancel(203);
-        VoIPPreNotificationService.stopRinging();
-        Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        if (findActivity == null) {
-            findActivity = LaunchActivity.instance;
-        }
-        if (findActivity != null) {
-            VoIPFragment.show(findActivity, i);
-        }
-    }
-
-    public static void request(final Context context, final int i, final long j, final String str, final long j2, final int i2, final boolean z) {
-        if (Build.VERSION.SDK_INT < 26 || currentCallId == j2) {
-            return;
-        }
-        State state = currentState;
-        if (state == null || state.call_id != j2) {
-            if (VoIPService.getSharedInstance() != null) {
-                if (currentState != null) {
-                    hide(context);
-                }
-            } else {
-                if (MessagesController.getInstance(i).callRequestsDisabled) {
-                    return;
-                }
-                HashSet<Integer> hashSet = ignoreCalls;
-                if (hashSet == null || !hashSet.contains(Integer.valueOf(i2))) {
-                    currentCallId = j2;
-                    TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
-                    TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = new TLRPC.TL_inputGroupCallInviteMessage();
-                    getgroupcall.call = tL_inputGroupCallInviteMessage;
-                    tL_inputGroupCallInviteMessage.msg_id = i2;
-                    getgroupcall.limit = 3;
-                    ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            VoIPGroupNotification.lambda$request$1(i, j, j2, i2, z, context, str, tLObject, tL_error);
-                        }
-                    });
-                }
-            }
-        }
-    }
-
-    private static void showNotification(final android.content.Context r19, final int r20, long r21, final int r23, long r24, java.lang.String r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPGroupNotification.showNotification(android.content.Context, int, long, int, long, java.lang.String):void");
     }
 }

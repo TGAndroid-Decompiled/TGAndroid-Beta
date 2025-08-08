@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -124,9 +123,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         int i2 = Theme.key_featuredStickers_addButton;
         textView3.setTextColor(Theme.getColor(i2));
         textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 120)));
-        if (Build.VERSION.SDK_INT >= 21) {
-            textView3.setLetterSpacing(0.025f);
-        }
+        textView3.setLetterSpacing(0.025f);
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -146,12 +143,27 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         if (chat != null && ChatObject.isPublic(chat)) {
             linkActionView.setLink("https://t.me/" + ChatObject.getPublicUsername(chat));
             textView3.setVisibility(8);
-        } else if (chatFull == null || (tL_chatInviteExported = chatFull.exported_invite) == null) {
-            generateLink(false);
-        } else {
+        } else if (chatFull != null && (tL_chatInviteExported = chatFull.exported_invite) != null) {
             linkActionView.setLink(tL_chatInviteExported.link);
+        } else {
+            generateLink(false);
         }
         updateColors();
+    }
+
+    public void lambda$new$0(View view) {
+        lambda$new$0();
+    }
+
+    public void lambda$new$1() {
+        generateLink(true);
+    }
+
+    public void lambda$new$2(TLRPC.ChatFull chatFull, BaseFragment baseFragment, View view) {
+        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(chatFull.id, 0L, 0);
+        manageLinksActivity.setInfo(chatFull, chatFull.exported_invite);
+        baseFragment.presentFragment(manageLinksActivity);
+        lambda$new$0();
     }
 
     private void generateLink(final boolean z) {
@@ -166,6 +178,15 @@ public class PermanentLinkBottomSheet extends BottomSheet {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 PermanentLinkBottomSheet.this.lambda$generateLink$4(z, tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$generateLink$4(final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PermanentLinkBottomSheet.this.lambda$generateLink$3(tL_error, tLObject, z);
             }
         });
     }
@@ -189,56 +210,19 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         this.linkGenerating = false;
     }
 
-    public void lambda$generateLink$4(final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    @Override
+    public void show() {
+        super.show();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PermanentLinkBottomSheet.this.lambda$generateLink$3(tL_error, tLObject, z);
+                PermanentLinkBottomSheet.this.lambda$show$5();
             }
-        });
-    }
-
-    public void lambda$new$0(View view) {
-        lambda$new$0();
-    }
-
-    public void lambda$new$1() {
-        generateLink(true);
-    }
-
-    public void lambda$new$2(TLRPC.ChatFull chatFull, BaseFragment baseFragment, View view) {
-        ManageLinksActivity manageLinksActivity = new ManageLinksActivity(chatFull.id, 0L, 0);
-        manageLinksActivity.setInfo(chatFull, chatFull.exported_invite);
-        baseFragment.presentFragment(manageLinksActivity);
-        lambda$new$0();
+        }, 50L);
     }
 
     public void lambda$show$5() {
         this.linkIcon.start();
-    }
-
-    public void updateColors() {
-        RLottieImageView rLottieImageView = this.imageView;
-        int dp = AndroidUtilities.dp(90.0f);
-        int i = Theme.key_featuredStickers_addButton;
-        rLottieImageView.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
-        this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
-        int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
-        this.linkIcon.setLayerColor("Top.**", color);
-        this.linkIcon.setLayerColor("Bottom.**", color);
-        this.linkIcon.setLayerColor("Center.**", color);
-        this.linkActionView.updateColors();
-        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
-    }
-
-    @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
-    }
-
-    @Override
-    public void dismissInternal() {
-        super.dismissInternal();
     }
 
     @Override
@@ -267,14 +251,27 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         return arrayList;
     }
 
+    public void updateColors() {
+        RLottieImageView rLottieImageView = this.imageView;
+        int dp = AndroidUtilities.dp(90.0f);
+        int i = Theme.key_featuredStickers_addButton;
+        rLottieImageView.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
+        this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
+        int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
+        this.linkIcon.setLayerColor("Top.**", color);
+        this.linkIcon.setLayerColor("Bottom.**", color);
+        this.linkIcon.setLayerColor("Center.**", color);
+        this.linkActionView.updateColors();
+        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
+    }
+
     @Override
-    public void show() {
-        super.show();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PermanentLinkBottomSheet.this.lambda$show$5();
-            }
-        }, 50L);
+    public void dismissInternal() {
+        super.dismissInternal();
+    }
+
+    @Override
+    public void lambda$new$0() {
+        super.lambda$new$0();
     }
 }

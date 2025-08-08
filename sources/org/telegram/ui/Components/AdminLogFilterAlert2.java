@@ -135,50 +135,6 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
     }
 
-    private View.OnClickListener getGroupClick(final int i) {
-        return new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                AdminLogFilterAlert2.this.lambda$getGroupClick$2(i, view);
-            }
-        };
-    }
-
-    private String getGroupCount(int i) {
-        StringBuilder sb;
-        if (i != 0) {
-            if (i != 1) {
-                sb = new StringBuilder();
-                TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.currentFilter;
-                sb.append((tL_channelAdminLogEventsFilter.delete ? 1 : 0) + (tL_channelAdminLogEventsFilter.edit ? 1 : 0) + (tL_channelAdminLogEventsFilter.pinned ? 1 : 0));
-            } else {
-                sb = new StringBuilder();
-                TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.currentFilter;
-                sb.append(((tL_channelAdminLogEventsFilter2.info || tL_channelAdminLogEventsFilter2.settings) ? 1 : 0) + (tL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
-            }
-            sb.append("/3");
-        } else {
-            sb = new StringBuilder();
-            TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter3 = this.currentFilter;
-            sb.append(((tL_channelAdminLogEventsFilter3.promote || tL_channelAdminLogEventsFilter3.demote) ? 1 : 0) + ((this.isMegagroup && (tL_channelAdminLogEventsFilter3.kick || tL_channelAdminLogEventsFilter3.ban || tL_channelAdminLogEventsFilter3.unkick || tL_channelAdminLogEventsFilter3.unban)) ? 1 : 0) + ((tL_channelAdminLogEventsFilter3.invite || tL_channelAdminLogEventsFilter3.join) ? 1 : 0) + (tL_channelAdminLogEventsFilter3.leave ? 1 : 0));
-            sb.append("/");
-            sb.append(this.isMegagroup ? 4 : 3);
-        }
-        return sb.toString();
-    }
-
-    public void lambda$getGroupClick$2(int i, View view) {
-        if (i == 0) {
-            this.sectionMembersExpanded = !this.sectionMembersExpanded;
-        } else if (i == 1) {
-            this.sectionSettingsExpanded = !this.sectionSettingsExpanded;
-        } else if (i == 2) {
-            this.sectionMessagesExpanded = !this.sectionMessagesExpanded;
-        }
-        this.adapter.update(true);
-        applyScrolledPosition();
-    }
-
     public void lambda$new$0(View view, int i, float f, float f2) {
         onClick(this.adapter.getItem(i - 1), view, f);
     }
@@ -197,8 +153,8 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    public boolean canDismissWithSwipe() {
-        return !this.recyclerListView.canScrollVertically(-1);
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.EventLog);
     }
 
     @Override
@@ -211,6 +167,50 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
         return universalAdapter;
+    }
+
+    private String getGroupCount(int i) {
+        if (i == 0) {
+            StringBuilder sb = new StringBuilder();
+            TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.currentFilter;
+            sb.append(((tL_channelAdminLogEventsFilter.promote || tL_channelAdminLogEventsFilter.demote) ? 1 : 0) + ((this.isMegagroup && (tL_channelAdminLogEventsFilter.kick || tL_channelAdminLogEventsFilter.ban || tL_channelAdminLogEventsFilter.unkick || tL_channelAdminLogEventsFilter.unban)) ? 1 : 0) + ((tL_channelAdminLogEventsFilter.invite || tL_channelAdminLogEventsFilter.join) ? 1 : 0) + (tL_channelAdminLogEventsFilter.leave ? 1 : 0));
+            sb.append("/");
+            sb.append(this.isMegagroup ? 4 : 3);
+            return sb.toString();
+        }
+        if (i == 1) {
+            StringBuilder sb2 = new StringBuilder();
+            TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.currentFilter;
+            sb2.append(((tL_channelAdminLogEventsFilter2.info || tL_channelAdminLogEventsFilter2.settings) ? 1 : 0) + (tL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
+            sb2.append("/3");
+            return sb2.toString();
+        }
+        StringBuilder sb3 = new StringBuilder();
+        TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter3 = this.currentFilter;
+        sb3.append((tL_channelAdminLogEventsFilter3.delete ? 1 : 0) + (tL_channelAdminLogEventsFilter3.edit ? 1 : 0) + (tL_channelAdminLogEventsFilter3.pinned ? 1 : 0));
+        sb3.append("/3");
+        return sb3.toString();
+    }
+
+    private View.OnClickListener getGroupClick(final int i) {
+        return new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AdminLogFilterAlert2.this.lambda$getGroupClick$2(i, view);
+            }
+        };
+    }
+
+    public void lambda$getGroupClick$2(int i, View view) {
+        if (i == 0) {
+            this.sectionMembersExpanded = !this.sectionMembersExpanded;
+        } else if (i == 1) {
+            this.sectionSettingsExpanded = !this.sectionSettingsExpanded;
+        } else if (i == 2) {
+            this.sectionMessagesExpanded = !this.sectionMessagesExpanded;
+        }
+        this.adapter.update(true);
+        applyScrolledPosition();
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -270,23 +270,8 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         }
     }
 
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.EventLog);
-    }
-
     public void onClick(org.telegram.ui.Components.UItem r7, android.view.View r8, float r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AdminLogFilterAlert2.onClick(org.telegram.ui.Components.UItem, android.view.View, float):void");
-    }
-
-    @Override
-    public void onSmoothContainerViewLayout(float f) {
-        super.onSmoothContainerViewLayout(f);
-        this.buttonContainer.setTranslationY(-f);
-    }
-
-    public void setAdminLogFilterAlertDelegate(AdminLogFilterAlertDelegate adminLogFilterAlertDelegate) {
-        this.delegate = adminLogFilterAlertDelegate;
     }
 
     public void setCurrentAdmins(ArrayList arrayList) {
@@ -303,5 +288,20 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         if (universalAdapter != null) {
             universalAdapter.update(true);
         }
+    }
+
+    public void setAdminLogFilterAlertDelegate(AdminLogFilterAlertDelegate adminLogFilterAlertDelegate) {
+        this.delegate = adminLogFilterAlertDelegate;
+    }
+
+    @Override
+    public void onSmoothContainerViewLayout(float f) {
+        super.onSmoothContainerViewLayout(f);
+        this.buttonContainer.setTranslationY(-f);
+    }
+
+    @Override
+    public boolean canDismissWithSwipe() {
+        return !this.recyclerListView.canScrollVertically(-1);
     }
 }

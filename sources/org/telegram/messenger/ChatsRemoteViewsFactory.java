@@ -23,6 +23,30 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private LongSparseArray dialogs = new LongSparseArray();
     private LongSparseArray messageObjects = new LongSparseArray();
 
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public RemoteViews getLoadingView() {
+        return null;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+    }
+
     public ChatsRemoteViewsFactory(Context context, Intent intent) {
         this.mContext = context;
         Theme.createDialogsResources(context);
@@ -39,6 +63,11 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     }
 
     @Override
+    public void onCreate() {
+        ApplicationLoader.postInitApplication();
+    }
+
+    @Override
     public int getCount() {
         if (this.deleted) {
             return 1;
@@ -47,33 +76,8 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
     public android.widget.RemoteViews getViewAt(int r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatsRemoteViewsFactory.getViewAt(int):android.widget.RemoteViews");
-    }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public void onCreate() {
-        ApplicationLoader.postInitApplication();
     }
 
     @Override
@@ -95,9 +99,5 @@ class ChatsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         for (int i = 0; i < size; i++) {
             this.messageObjects.put(longSparseArray.keyAt(i), new MessageObject(this.accountInstance.getCurrentAccount(), (TLRPC.Message) longSparseArray.valueAt(i), (LongSparseArray) null, (LongSparseArray) null, false, true));
         }
-    }
-
-    @Override
-    public void onDestroy() {
     }
 }

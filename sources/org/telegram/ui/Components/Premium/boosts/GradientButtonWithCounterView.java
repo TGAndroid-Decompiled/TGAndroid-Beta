@@ -27,20 +27,17 @@ public class GradientButtonWithCounterView extends ButtonWithCounterView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        boolean z;
         if (this.incGradient) {
             float f = this.progress + 0.016f;
             this.progress = f;
             if (f > 3.0f) {
-                z = false;
-                this.incGradient = z;
+                this.incGradient = false;
             }
         } else {
             float f2 = this.progress - 0.016f;
             this.progress = f2;
             if (f2 < 1.0f) {
-                z = true;
-                this.incGradient = z;
+                this.incGradient = true;
             }
         }
         this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());

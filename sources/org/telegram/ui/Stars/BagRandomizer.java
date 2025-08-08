@@ -22,15 +22,6 @@ public class BagRandomizer {
         next();
     }
 
-    private void reshuffle() {
-        Collections.shuffle(this.shuffledBag, this.random);
-        this.currentIndex = 0;
-    }
-
-    public Object getNext() {
-        return this.next;
-    }
-
     public Object next() {
         if (this.bag.isEmpty()) {
             return null;
@@ -44,5 +35,14 @@ public class BagRandomizer {
         this.currentIndex = i + 1;
         this.next = list.get(i);
         return obj;
+    }
+
+    public Object getNext() {
+        return this.next;
+    }
+
+    private void reshuffle() {
+        Collections.shuffle(this.shuffledBag, this.random);
+        this.currentIndex = 0;
     }
 }

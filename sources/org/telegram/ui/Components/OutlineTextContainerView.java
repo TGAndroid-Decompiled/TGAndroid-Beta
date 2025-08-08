@@ -75,6 +75,28 @@ public class OutlineTextContainerView extends FrameLayout {
         }
     }).setMultiplier(100.0f);
 
+    public static void lambda$static$1(OutlineTextContainerView outlineTextContainerView, float f) {
+        outlineTextContainerView.selectionProgress = f;
+        if (!outlineTextContainerView.forceUseCenter || outlineTextContainerView.forceForceUseCenter) {
+            outlineTextContainerView.outlinePaint.setStrokeWidth(AndroidUtilities.lerp(outlineTextContainerView.strokeWidthRegular, outlineTextContainerView.strokeWidthSelected, f));
+            outlineTextContainerView.updateColor();
+        }
+        outlineTextContainerView.invalidate();
+    }
+
+    public static void lambda$static$3(OutlineTextContainerView outlineTextContainerView, float f) {
+        outlineTextContainerView.titleProgress = f;
+        if (!outlineTextContainerView.forceUseCenter || outlineTextContainerView.forceForceUseCenter) {
+            outlineTextContainerView.updateColor();
+        }
+        outlineTextContainerView.invalidate();
+    }
+
+    public static void lambda$static$5(OutlineTextContainerView outlineTextContainerView, float f) {
+        outlineTextContainerView.errorProgress = f;
+        outlineTextContainerView.updateColor();
+    }
+
     public OutlineTextContainerView(Context context) {
         this(context, null);
     }
@@ -102,6 +124,84 @@ public class OutlineTextContainerView extends FrameLayout {
         setPadding(0, AndroidUtilities.dp(6.0f), 0, 0);
     }
 
+    public void setForceUseCenter2(boolean z) {
+        this.forceUseCenter2 = z;
+    }
+
+    public void setForceUseCenter(boolean z) {
+        this.forceUseCenter = z;
+        invalidate();
+    }
+
+    public void setForceForceUseCenter(boolean z) {
+        this.forceUseCenter = z;
+        this.forceForceUseCenter = z;
+        invalidate();
+    }
+
+    public EditText getAttachedEditText() {
+        return this.attachedEditText;
+    }
+
+    public void attachEditText(EditText editText) {
+        this.attachedEditText = editText;
+        invalidate();
+    }
+
+    public void setText(String str) {
+        this.mText = str;
+        invalidate();
+    }
+
+    private void setColor(int i) {
+        this.outlinePaint.setColor(i);
+        invalidate();
+    }
+
+    public void updateColor() {
+        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteValueText, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.titleProgress : 0.0f);
+        TextPaint textPaint = this.textPaint;
+        int i = Theme.key_text_RedBold;
+        textPaint.setColor(ColorUtils.blendARGB(blendARGB, Theme.getColor(i, this.resourcesProvider), this.errorProgress));
+        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.selectionProgress : 0.0f), Theme.getColor(i, this.resourcesProvider), this.errorProgress));
+    }
+
+    public void animateSelection(float f) {
+        animateSelection(f, f, true);
+    }
+
+    public void animateSelection(boolean z, boolean z2) {
+        animateSelection(z ? 1.0f : 0.0f, z2 ? 1.0f : 0.0f, true);
+    }
+
+    public void animateSelection(float f, boolean z) {
+        animateSelection(f, f, z);
+    }
+
+    public void animateSelection(boolean z, boolean z2, boolean z3) {
+        animateSelection(z ? 1.0f : 0.0f, z2 ? 1.0f : 0.0f, z3);
+    }
+
+    public void animateSelection(float f, float f2, boolean z) {
+        if (!z) {
+            this.selectionProgress = f;
+            this.titleProgress = f2;
+            if (!this.forceUseCenter) {
+                Paint paint = this.outlinePaint;
+                float f3 = this.strokeWidthRegular;
+                paint.setStrokeWidth(f3 + ((this.strokeWidthSelected - f3) * f));
+            }
+            updateColor();
+            return;
+        }
+        animateSpring(this.selectionSpring, f);
+        animateSpring(this.titleSpring, f2);
+    }
+
+    public void animateError(float f) {
+        animateSpring(this.errorSpring, f);
+    }
+
     private void animateSpring(SpringAnimation springAnimation, float f) {
         float f2 = f * 100.0f;
         if (springAnimation.getSpring() == null || f2 != springAnimation.getSpring().getFinalPosition()) {
@@ -110,76 +210,9 @@ public class OutlineTextContainerView extends FrameLayout {
         }
     }
 
-    public static void lambda$static$1(OutlineTextContainerView outlineTextContainerView, float f) {
-        outlineTextContainerView.selectionProgress = f;
-        if (!outlineTextContainerView.forceUseCenter || outlineTextContainerView.forceForceUseCenter) {
-            outlineTextContainerView.outlinePaint.setStrokeWidth(AndroidUtilities.lerp(outlineTextContainerView.strokeWidthRegular, outlineTextContainerView.strokeWidthSelected, f));
-            outlineTextContainerView.updateColor();
-        }
-        outlineTextContainerView.invalidate();
-    }
-
-    public static void lambda$static$3(OutlineTextContainerView outlineTextContainerView, float f) {
-        outlineTextContainerView.titleProgress = f;
-        if (!outlineTextContainerView.forceUseCenter || outlineTextContainerView.forceForceUseCenter) {
-            outlineTextContainerView.updateColor();
-        }
-        outlineTextContainerView.invalidate();
-    }
-
-    public static void lambda$static$5(OutlineTextContainerView outlineTextContainerView, float f) {
-        outlineTextContainerView.errorProgress = f;
-        outlineTextContainerView.updateColor();
-    }
-
-    private void setColor(int i) {
-        this.outlinePaint.setColor(i);
+    public void setLeftPadding(float f) {
+        this.leftPadding = f;
         invalidate();
-    }
-
-    public void animateError(float f) {
-        animateSpring(this.errorSpring, f);
-    }
-
-    public void animateSelection(float f) {
-        animateSelection(f, f, true);
-    }
-
-    public void animateSelection(float f, float f2, boolean z) {
-        if (z) {
-            animateSpring(this.selectionSpring, f);
-            animateSpring(this.titleSpring, f2);
-            return;
-        }
-        this.selectionProgress = f;
-        this.titleProgress = f2;
-        if (!this.forceUseCenter) {
-            Paint paint = this.outlinePaint;
-            float f3 = this.strokeWidthRegular;
-            paint.setStrokeWidth(f3 + ((this.strokeWidthSelected - f3) * f));
-        }
-        updateColor();
-    }
-
-    public void animateSelection(float f, boolean z) {
-        animateSelection(f, f, z);
-    }
-
-    public void animateSelection(boolean z, boolean z2) {
-        animateSelection(z ? 1.0f : 0.0f, z2 ? 1.0f : 0.0f, true);
-    }
-
-    public void animateSelection(boolean z, boolean z2, boolean z3) {
-        animateSelection(z ? 1.0f : 0.0f, z2 ? 1.0f : 0.0f, z3);
-    }
-
-    public void attachEditText(EditText editText) {
-        this.attachedEditText = editText;
-        invalidate();
-    }
-
-    public EditText getAttachedEditText() {
-        return this.attachedEditText;
     }
 
     @Override
@@ -213,38 +246,5 @@ public class OutlineTextContainerView extends FrameLayout {
         canvas.scale(f3, f3, getPaddingLeft() + AndroidUtilities.dp(18.0f), f);
         canvas.drawText(this.mText, getPaddingLeft() + AndroidUtilities.dp(14.0f) + f2, f, this.textPaint);
         canvas.restore();
-    }
-
-    public void setForceForceUseCenter(boolean z) {
-        this.forceUseCenter = z;
-        this.forceForceUseCenter = z;
-        invalidate();
-    }
-
-    public void setForceUseCenter(boolean z) {
-        this.forceUseCenter = z;
-        invalidate();
-    }
-
-    public void setForceUseCenter2(boolean z) {
-        this.forceUseCenter2 = z;
-    }
-
-    public void setLeftPadding(float f) {
-        this.leftPadding = f;
-        invalidate();
-    }
-
-    public void setText(String str) {
-        this.mText = str;
-        invalidate();
-    }
-
-    public void updateColor() {
-        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteValueText, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.titleProgress : 0.0f);
-        TextPaint textPaint = this.textPaint;
-        int i = Theme.key_text_RedBold;
-        textPaint.setColor(ColorUtils.blendARGB(blendARGB, Theme.getColor(i, this.resourcesProvider), this.errorProgress));
-        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider), (!this.forceUseCenter || this.forceForceUseCenter) ? this.selectionProgress : 0.0f), Theme.getColor(i, this.resourcesProvider), this.errorProgress));
     }
 }

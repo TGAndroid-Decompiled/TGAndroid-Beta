@@ -4,7 +4,7 @@ import kotlin.coroutines.Continuation;
 import kotlin.coroutines.ContinuationInterceptor;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
-import kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsKt;
+import kotlin.coroutines.intrinsics.IntrinsicsKt;
 import kotlin.coroutines.jvm.internal.DebugProbesKt;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
@@ -14,11 +14,26 @@ import kotlinx.coroutines.intrinsics.CancellableKt;
 import kotlinx.coroutines.intrinsics.UndispatchedKt;
 
 public abstract class BuildersKt__Builders_commonKt {
-    public static final Deferred async(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2) {
+    public static Job launch$default(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2, int i, Object obj) {
+        if ((i & 1) != 0) {
+            coroutineContext = EmptyCoroutineContext.INSTANCE;
+        }
+        if ((i & 2) != 0) {
+            coroutineStart = CoroutineStart.DEFAULT;
+        }
+        return BuildersKt.launch(coroutineScope, coroutineContext, coroutineStart, function2);
+    }
+
+    public static final Job launch(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2) {
+        StandaloneCoroutine standaloneCoroutine;
         CoroutineContext newCoroutineContext = CoroutineContextKt.newCoroutineContext(coroutineScope, coroutineContext);
-        DeferredCoroutine lazyDeferredCoroutine = coroutineStart.isLazy() ? new LazyDeferredCoroutine(newCoroutineContext, function2) : new DeferredCoroutine(newCoroutineContext, true);
-        lazyDeferredCoroutine.start(coroutineStart, lazyDeferredCoroutine, function2);
-        return lazyDeferredCoroutine;
+        if (coroutineStart.isLazy()) {
+            standaloneCoroutine = new LazyStandaloneCoroutine(newCoroutineContext, function2);
+        } else {
+            standaloneCoroutine = new StandaloneCoroutine(newCoroutineContext, true);
+        }
+        standaloneCoroutine.start(coroutineStart, standaloneCoroutine, function2);
+        return standaloneCoroutine;
     }
 
     public static Deferred async$default(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2, int i, Object obj) {
@@ -31,26 +46,20 @@ public abstract class BuildersKt__Builders_commonKt {
         return BuildersKt.async(coroutineScope, coroutineContext, coroutineStart, function2);
     }
 
-    public static final Job launch(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2) {
+    public static final Deferred async(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2) {
+        DeferredCoroutine deferredCoroutine;
         CoroutineContext newCoroutineContext = CoroutineContextKt.newCoroutineContext(coroutineScope, coroutineContext);
-        StandaloneCoroutine lazyStandaloneCoroutine = coroutineStart.isLazy() ? new LazyStandaloneCoroutine(newCoroutineContext, function2) : new StandaloneCoroutine(newCoroutineContext, true);
-        lazyStandaloneCoroutine.start(coroutineStart, lazyStandaloneCoroutine, function2);
-        return lazyStandaloneCoroutine;
-    }
-
-    public static Job launch$default(CoroutineScope coroutineScope, CoroutineContext coroutineContext, CoroutineStart coroutineStart, Function2 function2, int i, Object obj) {
-        if ((i & 1) != 0) {
-            coroutineContext = EmptyCoroutineContext.INSTANCE;
+        if (coroutineStart.isLazy()) {
+            deferredCoroutine = new LazyDeferredCoroutine(newCoroutineContext, function2);
+        } else {
+            deferredCoroutine = new DeferredCoroutine(newCoroutineContext, true);
         }
-        if ((i & 2) != 0) {
-            coroutineStart = CoroutineStart.DEFAULT;
-        }
-        return BuildersKt.launch(coroutineScope, coroutineContext, coroutineStart, function2);
+        deferredCoroutine.start(coroutineStart, deferredCoroutine, function2);
+        return deferredCoroutine;
     }
 
     public static final Object withContext(CoroutineContext coroutineContext, Function2 function2, Continuation continuation) {
         Object result$kotlinx_coroutines_core;
-        Object coroutine_suspended;
         CoroutineContext context = continuation.getContext();
         CoroutineContext newCoroutineContext = CoroutineContextKt.newCoroutineContext(context, coroutineContext);
         JobKt.ensureActive(newCoroutineContext);
@@ -77,8 +86,7 @@ public abstract class BuildersKt__Builders_commonKt {
                 result$kotlinx_coroutines_core = dispatchedCoroutine.getResult$kotlinx_coroutines_core();
             }
         }
-        coroutine_suspended = IntrinsicsKt__IntrinsicsKt.getCOROUTINE_SUSPENDED();
-        if (result$kotlinx_coroutines_core == coroutine_suspended) {
+        if (result$kotlinx_coroutines_core == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
             DebugProbesKt.probeCoroutineSuspended(continuation);
         }
         return result$kotlinx_coroutines_core;

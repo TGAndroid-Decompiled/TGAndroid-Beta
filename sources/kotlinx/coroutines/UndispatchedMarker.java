@@ -6,6 +6,11 @@ import kotlin.jvm.functions.Function2;
 public final class UndispatchedMarker implements CoroutineContext.Element, CoroutineContext.Key {
     public static final UndispatchedMarker INSTANCE = new UndispatchedMarker();
 
+    @Override
+    public CoroutineContext.Key getKey() {
+        return this;
+    }
+
     private UndispatchedMarker() {
     }
 
@@ -17,11 +22,6 @@ public final class UndispatchedMarker implements CoroutineContext.Element, Corou
     @Override
     public CoroutineContext.Element get(CoroutineContext.Key key) {
         return CoroutineContext.Element.DefaultImpls.get(this, key);
-    }
-
-    @Override
-    public CoroutineContext.Key getKey() {
-        return this;
     }
 
     @Override

@@ -75,7 +75,6 @@ public class TimerParticles {
 
     public void draw(Canvas canvas, Paint paint, RectF rectF, float f, float f2) {
         Particle particle;
-        float nextFloat;
         int size = this.particles.size();
         int i = 0;
         for (int i2 = 0; i2 < size; i2++) {
@@ -83,66 +82,53 @@ public class TimerParticles {
             paint.setAlpha((int) (particle2.alpha * 255.0f * f2));
             canvas.drawPoint(particle2.x, particle2.y, paint);
         }
-        double d = f - 90.0f;
-        double d2 = 0.017453292519943295d;
-        Double.isNaN(d);
-        double d3 = d * 0.017453292519943295d;
-        double sin = Math.sin(d3);
-        double d4 = -Math.cos(d3);
+        double d = 0.017453292519943295d;
+        double d2 = (f - 90.0f) * 0.017453292519943295d;
+        double sin = Math.sin(d2);
+        double d3 = -Math.cos(d2);
         double width = rectF.width() / 2.0f;
-        Double.isNaN(width);
-        double centerX = rectF.centerX();
-        Double.isNaN(centerX);
-        float f3 = (float) (((-d4) * width) + centerX);
-        Double.isNaN(width);
-        double centerY = rectF.centerY();
-        Double.isNaN(centerY);
-        float f4 = (float) ((width * sin) + centerY);
+        float centerX = (float) (((-d3) * width) + rectF.centerX());
+        float centerY = (float) ((width * sin) + rectF.centerY());
         int clamp = Utilities.clamp(this.freeParticles.size() / 12, 3, 1);
         int i3 = 0;
         while (i3 < clamp) {
-            if (this.freeParticles.isEmpty()) {
-                particle = new Particle();
-            } else {
+            if (!this.freeParticles.isEmpty()) {
                 particle = (Particle) this.freeParticles.get(i);
                 this.freeParticles.remove(i);
+            } else {
+                particle = new Particle();
             }
             if (this.big && this.hasLast) {
-                float f5 = (i3 + 1) / clamp;
-                particle.x = AndroidUtilities.lerp(this.lastCx, f3, f5);
-                particle.y = AndroidUtilities.lerp(this.lastCy, f4, f5);
+                float f3 = (i3 + 1) / clamp;
+                particle.x = AndroidUtilities.lerp(this.lastCx, centerX, f3);
+                particle.y = AndroidUtilities.lerp(this.lastCy, centerY, f3);
             } else {
-                particle.x = f3;
-                particle.y = f4;
+                particle.x = centerX;
+                particle.y = centerY;
             }
-            double nextInt = Utilities.random.nextInt(140) - 70;
-            Double.isNaN(nextInt);
-            double d5 = nextInt * d2;
-            if (d5 < 0.0d) {
-                d5 += 6.283185307179586d;
+            double nextInt = (Utilities.random.nextInt(140) - 70) * d;
+            if (nextInt < 0.0d) {
+                nextInt += 6.283185307179586d;
             }
-            particle.vx = (float) ((Math.cos(d5) * sin) - (Math.sin(d5) * d4));
-            particle.vy = (float) ((Math.sin(d5) * sin) + (Math.cos(d5) * d4));
+            particle.vx = (float) ((Math.cos(nextInt) * sin) - (Math.sin(nextInt) * d3));
+            particle.vy = (float) ((Math.sin(nextInt) * sin) + (Math.cos(nextInt) * d3));
             particle.alpha = 1.0f;
             particle.currentTime = 0.0f;
-            float f6 = 20.0f;
             if (this.big) {
                 particle.lifeTime = Utilities.random.nextInt(200) + 600;
-                nextFloat = Utilities.random.nextFloat() * 20.0f;
-                f6 = 30.0f;
+                particle.velocity = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
             } else {
                 particle.lifeTime = Utilities.random.nextInt(100) + 400;
-                nextFloat = Utilities.random.nextFloat() * 4.0f;
+                particle.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
             }
-            particle.velocity = nextFloat + f6;
             this.particles.add(particle);
             i3++;
             i = 0;
-            d2 = 0.017453292519943295d;
+            d = 0.017453292519943295d;
         }
         this.hasLast = true;
-        this.lastCx = f3;
-        this.lastCy = f4;
+        this.lastCx = centerX;
+        this.lastCy = centerY;
         long elapsedRealtime = SystemClock.elapsedRealtime();
         updateParticles(Math.min(20L, elapsedRealtime - this.lastAnimationTime));
         this.lastAnimationTime = elapsedRealtime;

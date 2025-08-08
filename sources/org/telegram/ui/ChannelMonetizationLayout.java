@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
@@ -149,677 +150,34 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     private final ChannelTransactionsView transactionsLayout;
     private Bulletin withdrawalBulletin;
 
-    public class ChannelTransactionsView extends LinearLayout {
-        private final PageAdapter adapter;
-        private final int currentAccount;
-        private final long dialogId;
-        private boolean[] loadingTransactions;
-        private String starsLastOffset;
-        private final ArrayList starsTransactions;
-        private final ViewPagerFixed.TabsView tabsView;
-        private final ArrayList tonTransactions;
-        private String tonTransactionsLastOffset;
-        private final Runnable updateParentList;
-        private final ViewPagerFixed viewPager;
-
-        public class Page extends FrameLayout {
-            private final long bot_id;
-            private final int currentAccount;
-            private final UniversalRecyclerView listView;
-            private final Runnable loadMore;
-            private final Theme.ResourcesProvider resourcesProvider;
-            private final int type;
-
-            public Page(Context context, long j, int i, int i2, int i3, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-                super(context);
-                this.type = i;
-                this.currentAccount = i2;
-                this.bot_id = j;
-                this.resourcesProvider = resourcesProvider;
-                this.loadMore = runnable;
-                UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i2, i3, true, new Utilities.Callback2() {
-                    @Override
-                    public final void run(Object obj, Object obj2) {
-                        ChannelMonetizationLayout.ChannelTransactionsView.Page.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-                    }
-                }, new Utilities.Callback5() {
-                    @Override
-                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                        ChannelMonetizationLayout.ChannelTransactionsView.Page.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-                    }
-                }, null, resourcesProvider);
-                this.listView = universalRecyclerView;
-                addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
-                universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-                    @Override
-                    public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
-                        if (!Page.this.listView.canScrollVertically(1) || Page.this.isLoadingVisible()) {
-                            runnable.run();
-                        }
-                    }
-                });
-            }
-
-            public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-                int i = this.type;
-                if (i == 0) {
-                    Iterator it = ChannelTransactionsView.this.starsTransactions.iterator();
-                    while (it.hasNext()) {
-                        arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) it.next(), true));
-                    }
-                    if (TextUtils.isEmpty(ChannelTransactionsView.this.starsLastOffset)) {
-                        return;
-                    }
-                } else {
-                    if (i != 1) {
-                        return;
-                    }
-                    Iterator it2 = ChannelTransactionsView.this.tonTransactions.iterator();
-                    while (it2.hasNext()) {
-                        arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) it2.next(), true));
-                    }
-                    if (TextUtils.isEmpty(ChannelTransactionsView.this.tonTransactionsLastOffset)) {
-                        return;
-                    }
-                }
-                arrayList.add(UItem.asFlicker(arrayList.size(), 7));
-                arrayList.add(UItem.asFlicker(arrayList.size(), 7));
-                arrayList.add(UItem.asFlicker(arrayList.size(), 7));
-            }
-
-            public void onClick(UItem uItem, View view, int i, float f, float f2) {
-                Object obj = uItem.object;
-                if (obj instanceof TL_stars.StarsTransaction) {
-                    StarsIntroActivity.showTransactionSheet(getContext(), true, ChannelTransactionsView.this.dialogId, this.currentAccount, (TL_stars.StarsTransaction) uItem.object, this.resourcesProvider);
-                } else if (obj instanceof TL_stats.BroadcastRevenueTransaction) {
-                    ChannelMonetizationLayout.showTransactionSheet(getContext(), this.currentAccount, (TL_stats.BroadcastRevenueTransaction) uItem.object, ChannelTransactionsView.this.dialogId, this.resourcesProvider);
-                }
-            }
-
-            public void checkMore() {
-                if (!this.listView.canScrollVertically(1) || isLoadingVisible()) {
-                    this.loadMore.run();
-                }
-            }
-
-            public boolean isLoadingVisible() {
-                for (int i = 0; i < this.listView.getChildCount(); i++) {
-                    if (this.listView.getChildAt(i) instanceof FlickerLoadingView) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            @Override
-            protected void onAttachedToWindow() {
-                super.onAttachedToWindow();
-                this.listView.adapter.update(false);
-            }
-        }
-
-        public class PageAdapter extends ViewPagerFixed.Adapter {
-            private final int classGuid;
-            private final Context context;
-            private final int currentAccount;
-            private final long dialogId;
-            private final ArrayList items = new ArrayList();
-            private final Theme.ResourcesProvider resourcesProvider;
-
-            public PageAdapter(Context context, int i, long j, int i2, Theme.ResourcesProvider resourcesProvider) {
-                this.context = context;
-                this.currentAccount = i;
-                this.classGuid = i2;
-                this.resourcesProvider = resourcesProvider;
-                this.dialogId = j;
-                fill();
-            }
-
-            public void lambda$createView$0(int i) {
-                ChannelTransactionsView.this.loadTransactions(i);
-            }
-
-            @Override
-            public void bindView(View view, int i, int i2) {
-            }
-
-            @Override
-            public View createView(final int i) {
-                return new Page(this.context, this.dialogId, i, this.currentAccount, this.classGuid, new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChannelMonetizationLayout.ChannelTransactionsView.PageAdapter.this.lambda$createView$0(i);
-                    }
-                }, this.resourcesProvider);
-            }
-
-            public void fill() {
-                this.items.clear();
-                if (!ChannelTransactionsView.this.tonTransactions.isEmpty()) {
-                    this.items.add(UItem.asSpace(1));
-                }
-                if (ChannelTransactionsView.this.starsTransactions.isEmpty()) {
-                    return;
-                }
-                this.items.add(UItem.asSpace(0));
-            }
-
-            @Override
-            public int getItemCount() {
-                return this.items.size();
-            }
-
-            @Override
-            public String getItemTitle(int i) {
-                int i2;
-                int itemViewType = getItemViewType(i);
-                if (itemViewType == 0) {
-                    i2 = R.string.MonetizationTransactionsStars;
-                } else {
-                    if (itemViewType != 1) {
-                        return "";
-                    }
-                    i2 = R.string.MonetizationTransactionsTON;
-                }
-                return LocaleController.getString(i2);
-            }
-
-            @Override
-            public int getItemViewType(int i) {
-                if (i < 0 || i >= this.items.size()) {
-                    return 1;
-                }
-                return ((UItem) this.items.get(i)).intValue;
-            }
-        }
-
-        public ChannelTransactionsView(Context context, int i, long j, int i2, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.tonTransactionsLastOffset = "";
-            this.tonTransactions = new ArrayList();
-            this.starsTransactions = new ArrayList();
-            this.starsLastOffset = "";
-            this.loadingTransactions = new boolean[]{false, false};
-            this.currentAccount = i;
-            this.dialogId = j;
-            this.updateParentList = runnable;
-            setOrientation(1);
-            ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context);
-            this.viewPager = viewPagerFixed;
-            PageAdapter pageAdapter = new PageAdapter(context, i, j, i2, resourcesProvider);
-            this.adapter = pageAdapter;
-            viewPagerFixed.setAdapter(pageAdapter);
-            ViewPagerFixed.TabsView createTabsView = viewPagerFixed.createTabsView(true, 3);
-            this.tabsView = createTabsView;
-            View view = new View(context);
-            view.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-            addView(createTabsView, LayoutHelper.createLinear(-1, 48));
-            addView(view, LayoutHelper.createLinear(-1.0f, 1.0f / AndroidUtilities.density));
-            addView(viewPagerFixed, LayoutHelper.createLinear(-1, -1));
-            setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-            loadTransactions(1);
-            loadTransactions(0);
-        }
-
-        public void lambda$loadTransactions$0(TLObject tLObject, int i, TLRPC.TL_error tL_error, boolean z, boolean z2) {
-            Runnable runnable;
-            if (tLObject instanceof TL_stars.StarsStatus) {
-                TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(starsStatus.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
-                this.tonTransactions.addAll(starsStatus.history);
-                this.tonTransactionsLastOffset = starsStatus.next_offset;
-                this.loadingTransactions[i] = false;
-                updateLists(true, true);
-            } else if (tL_error != null) {
-                BulletinFactory.showError(tL_error);
-            }
-            if (hasTransactions() != z && (runnable = this.updateParentList) != null) {
-                runnable.run();
-            }
-            if (hasTransactions(i) != z2) {
-                updateTabs();
-            }
-        }
-
-        public void lambda$loadTransactions$1(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$0(tLObject, i, tL_error, z, z2);
-                }
-            });
-        }
-
-        public void lambda$loadTransactions$2(TLObject tLObject, int i, TLRPC.TL_error tL_error, boolean z, boolean z2) {
-            Runnable runnable;
-            if (tLObject instanceof TL_stars.StarsStatus) {
-                TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(starsStatus.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
-                this.starsTransactions.addAll(starsStatus.history);
-                this.starsLastOffset = starsStatus.next_offset;
-                this.loadingTransactions[i] = false;
-                updateLists(true, true);
-            } else if (tL_error != null) {
-                BulletinFactory.showError(tL_error);
-            }
-            if (hasTransactions() != z && (runnable = this.updateParentList) != null) {
-                runnable.run();
-            }
-            if (hasTransactions(i) != z2) {
-                updateTabs();
-            }
-        }
-
-        public void lambda$loadTransactions$3(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$2(tLObject, i, tL_error, z, z2);
-                }
-            });
-        }
-
-        public void loadTransactions(final int i) {
-            if (this.loadingTransactions[i]) {
-                return;
-            }
-            final boolean hasTransactions = hasTransactions();
-            final boolean hasTransactions2 = hasTransactions(i);
-            if (i == 1) {
-                if (this.tonTransactionsLastOffset == null || !ChannelMonetizationLayout.this.tonRevenueAvailable) {
-                    return;
-                }
-                this.loadingTransactions[i] = true;
-                TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
-                tL_payments_getStarsTransactions.ton = true;
-                tL_payments_getStarsTransactions.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                tL_payments_getStarsTransactions.offset = this.tonTransactionsLastOffset;
-                tL_payments_getStarsTransactions.limit = this.tonTransactions.isEmpty() ? 5 : 20;
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$1(i, hasTransactions, hasTransactions2, tLObject, tL_error);
-                    }
-                });
-                return;
-            }
-            if (i == 0 && this.starsLastOffset != null && ChannelMonetizationLayout.this.starsRevenueAvailable) {
-                this.loadingTransactions[i] = true;
-                TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions2 = new TL_stars.TL_payments_getStarsTransactions();
-                tL_payments_getStarsTransactions2.ton = false;
-                tL_payments_getStarsTransactions2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                tL_payments_getStarsTransactions2.offset = this.starsLastOffset;
-                tL_payments_getStarsTransactions2.limit = this.starsTransactions.isEmpty() ? 5 : 20;
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions2, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$3(i, hasTransactions, hasTransactions2, tLObject, tL_error);
-                    }
-                });
-            }
-        }
-
-        private void updateLists(boolean z, boolean z2) {
-            for (int i = 0; i < this.viewPager.getViewPages().length; i++) {
-                View view = this.viewPager.getViewPages()[i];
-                if (view instanceof Page) {
-                    Page page = (Page) view;
-                    page.listView.adapter.update(z);
-                    if (z2) {
-                        page.checkMore();
-                    }
-                }
-            }
-        }
-
-        private void updateTabs() {
-            this.adapter.fill();
-            this.viewPager.fillTabs(false);
-            this.viewPager.updateCurrent();
-        }
-
-        public RecyclerListView getCurrentListView() {
-            View currentView = this.viewPager.getCurrentView();
-            if (currentView instanceof Page) {
-                return ((Page) currentView).listView;
-            }
-            return null;
-        }
-
-        public boolean hasTransactions() {
-            return (this.tonTransactions.isEmpty() && this.starsTransactions.isEmpty()) ? false : true;
-        }
-
-        public boolean hasTransactions(int i) {
-            ArrayList arrayList;
-            if (i == 1) {
-                arrayList = this.tonTransactions;
-            } else {
-                if (i != 0) {
-                    return false;
-                }
-                arrayList = this.starsTransactions;
-            }
-            return !arrayList.isEmpty();
-        }
-
-        public void reloadTransactions() {
-            boolean hasTransactions = hasTransactions();
-            for (int i = 0; i < 2; i++) {
-                if (this.loadingTransactions[i]) {
-                    return;
-                }
-                if (i == 1) {
-                    this.tonTransactions.clear();
-                    this.tonTransactionsLastOffset = "";
-                } else {
-                    this.starsTransactions.clear();
-                    this.starsLastOffset = "";
-                }
-                this.loadingTransactions[i] = false;
-                loadTransactions(i);
-            }
-            if (hasTransactions() == hasTransactions || this.updateParentList == null) {
-                return;
-            }
-            updateTabs();
-            this.updateParentList.run();
-        }
+    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        return false;
     }
 
-    public static class FeatureCell extends FrameLayout {
-        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            ImageView imageView = new ImageView(context);
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            imageView.setImageResource(i);
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 0.0f, 5.0f, 18.0f, 0.0f));
-            LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
-            TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextSize(1, 14.0f);
-            textView.setTextColor(Theme.getColor(i2, resourcesProvider));
-            textView.setText(charSequence);
-            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2));
-            TextView textView2 = new TextView(context);
-            textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
-            textView2.setText(charSequence2);
-            linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), AndroidUtilities.dp(325.0f)), View.MeasureSpec.getMode(i)), i2);
-        }
+    @Override
+    public void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5) {
     }
 
-    public static class ProceedOverview {
-        public long amount;
-        public long amount2;
-        public boolean contains2;
-        public long crypto_amount;
-        public String crypto_currency;
-        public String crypto_currency2;
-        public String currency;
-        public CharSequence text;
-        public boolean contains1 = true;
-        public TL_stars.StarsAmount crypto_amount2 = TL_stars.StarsAmount.ofStars(0);
-
-        public static ProceedOverview as(String str, CharSequence charSequence) {
-            ProceedOverview proceedOverview = new ProceedOverview();
-            proceedOverview.crypto_currency = str;
-            proceedOverview.text = charSequence;
-            return proceedOverview;
-        }
-
-        public static ProceedOverview as(String str, String str2, CharSequence charSequence) {
-            ProceedOverview proceedOverview = new ProceedOverview();
-            proceedOverview.contains1 = false;
-            proceedOverview.crypto_currency = str;
-            proceedOverview.crypto_currency2 = str2;
-            proceedOverview.text = charSequence;
-            return proceedOverview;
-        }
+    @Override
+    public boolean onStartNestedScroll(View view, View view2, int i, int i2) {
+        return i == 2;
     }
 
-    public static class ProceedOverviewCell extends LinearLayout {
-        private final LinearLayout[] amountContainer;
-        private final TextView[] amountView;
-        private final AnimatedEmojiSpan.TextViewEmojis[] cryptoAmountView;
-        private final DecimalFormat formatter;
-        private final LinearLayout layout;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private final TextView titleView;
-
-        public ProceedOverviewCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.amountContainer = new LinearLayout[2];
-            this.cryptoAmountView = new AnimatedEmojiSpan.TextViewEmojis[2];
-            this.amountView = new TextView[2];
-            this.resourcesProvider = resourcesProvider;
-            setOrientation(1);
-            LinearLayout linearLayout = new LinearLayout(context);
-            this.layout = linearLayout;
-            linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createLinear(-1, -2, 22.0f, 9.0f, 22.0f, 0.0f));
-            for (int i = 0; i < 2; i++) {
-                this.amountContainer[i] = new LinearLayout(context);
-                this.amountContainer[i].setOrientation(0);
-                this.layout.addView(this.amountContainer[i], LayoutHelper.createLinear(-1, -2, 1.0f, 119));
-                this.cryptoAmountView[i] = new AnimatedEmojiSpan.TextViewEmojis(context);
-                this.cryptoAmountView[i].setTypeface(AndroidUtilities.bold());
-                this.cryptoAmountView[i].setTextSize(1, 16.0f);
-                this.cryptoAmountView[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-                this.amountContainer[i].addView(this.cryptoAmountView[i], LayoutHelper.createLinear(-2, -2, 80, 0, 0, 5, 0));
-                this.amountView[i] = new AnimatedEmojiSpan.TextViewEmojis(context);
-                this.amountView[i].setTextSize(1, 11.5f);
-                this.amountView[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
-                this.amountContainer[i].addView(this.amountView[i], LayoutHelper.createLinear(-2, -2, 80));
-            }
-            TextView textView = new TextView(context);
-            this.titleView = textView;
-            textView.setTextSize(1, 13.0f);
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
-            addView(textView, LayoutHelper.createLinear(-1, -2, 55, 22, 5, 22, 9));
-            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-            decimalFormatSymbols.setDecimalSeparator('.');
-            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-            this.formatter = decimalFormat;
-            decimalFormat.setMinimumFractionDigits(2);
-            decimalFormat.setMaximumFractionDigits(12);
-            decimalFormat.setGroupingUsed(false);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-        }
-
-        public void set(ProceedOverview proceedOverview) {
-            String str;
-            SpannableStringBuilder spannableStringBuilder;
-            int indexOf;
-            LinearLayout linearLayout;
-            this.titleView.setText(proceedOverview.text);
-            int i = 0;
-            while (i < 2) {
-                String str2 = i == 0 ? proceedOverview.crypto_currency : proceedOverview.crypto_currency2;
-                long j = i == 0 ? proceedOverview.amount : proceedOverview.amount2;
-                if (i == 0 && !proceedOverview.contains1) {
-                    linearLayout = this.amountContainer[i];
-                } else if (i != 1 || proceedOverview.contains2) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str2 + " ");
-                    if ("TON".equalsIgnoreCase(str2)) {
-                        DecimalFormat decimalFormat = this.formatter;
-                        double d = proceedOverview.crypto_amount;
-                        Double.isNaN(d);
-                        String format = decimalFormat.format(d / 1.0E9d);
-                        int indexOf2 = format.indexOf(46);
-                        str = "TON";
-                        if (indexOf2 >= 0) {
-                            double d2 = proceedOverview.crypto_amount;
-                            Double.isNaN(d2);
-                            spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber((long) Math.floor(d2 / 1.0E9d), ' '));
-                            spannableStringBuilder2.append((CharSequence) format.substring(indexOf2));
-                        } else {
-                            spannableStringBuilder2.append((CharSequence) format);
-                        }
-                        spannableStringBuilder = ChannelMonetizationLayout.replaceTON(spannableStringBuilder2, this.cryptoAmountView[i].getPaint(), 1.05f, true);
-                    } else {
-                        str = "TON";
-                        if ("XTR".equalsIgnoreCase(str2)) {
-                            spannableStringBuilder2.append(i == 0 ? LocaleController.formatNumber(proceedOverview.crypto_amount, ' ') : StarsIntroActivity.formatStarsAmount(proceedOverview.crypto_amount2, 0.8f, ' '));
-                            spannableStringBuilder = StarsIntroActivity.replaceStarsWithPlain(spannableStringBuilder2, 0.7f);
-                        } else {
-                            spannableStringBuilder2.append((CharSequence) Long.toString(proceedOverview.crypto_amount));
-                            spannableStringBuilder = spannableStringBuilder2;
-                        }
-                    }
-                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(spannableStringBuilder);
-                    if (str.equalsIgnoreCase(str2) && (indexOf = TextUtils.indexOf(spannableStringBuilder3, ".")) >= 0) {
-                        spannableStringBuilder3.setSpan(new RelativeSizeSpan(0.8125f), indexOf, spannableStringBuilder3.length(), 33);
-                    }
-                    this.amountContainer[i].setVisibility(0);
-                    this.cryptoAmountView[i].setText(spannableStringBuilder3);
-                    this.amountView[i].setText("≈" + BillingController.getInstance().formatCurrency(j, proceedOverview.currency));
-                    i++;
-                } else {
-                    linearLayout = this.amountContainer[i];
-                }
-                linearLayout.setVisibility(8);
-                i++;
-            }
-        }
+    @Override
+    public void onStopNestedScroll(View view) {
     }
 
-    public static class TransactionCell extends FrameLayout {
-        private final TextView dateView;
-        private final DecimalFormat formatter;
-        private final LinearLayout layout;
-        private boolean needDivider;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private final TextView titleView;
-        private final AnimatedEmojiSpan.TextViewEmojis valueText;
-
-        public TransactionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.resourcesProvider = resourcesProvider;
-            LinearLayout linearLayout = new LinearLayout(context);
-            this.layout = linearLayout;
-            linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
-            TextView textView = new TextView(context);
-            this.titleView = textView;
-            textView.setTextSize(1, 16.0f);
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-            TextView textView2 = new TextView(context);
-            this.dateView = textView2;
-            textView2.setTextSize(1, 13.0f);
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
-            linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 4.0f, 0.0f, 0.0f));
-            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
-            this.valueText = textViewEmojis;
-            textViewEmojis.setTypeface(AndroidUtilities.bold());
-            textViewEmojis.setTextSize(1, 13.0f);
-            addView(textViewEmojis, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
-            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-            decimalFormatSymbols.setDecimalSeparator('.');
-            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-            this.formatter = decimalFormat;
-            decimalFormat.setMinimumFractionDigits(2);
-            decimalFormat.setMaximumFractionDigits(12);
-            decimalFormat.setGroupingUsed(false);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            if (this.needDivider) {
-                Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-                Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : Theme.dividerPaint;
-                if (paint != null) {
-                    canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(17.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(17.0f) : 0), getMeasuredHeight() - 1, paint);
-                }
-            }
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-        }
-
-        public void set(TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction, boolean z) {
-            long j;
-            char c;
-            boolean z2;
-            String str;
-            if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal) {
-                TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
-                this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionWithdraw));
-                if (tL_broadcastRevenueTransactionWithdrawal.pending) {
-                    this.dateView.setText(LocaleController.getString(R.string.MonetizationTransactionPending));
-                    z2 = false;
-                } else {
-                    z2 = tL_broadcastRevenueTransactionWithdrawal.failed;
-                    TextView textView = this.dateView;
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionWithdrawal.date));
-                    if (z2) {
-                        str = " — " + LocaleController.getString(R.string.MonetizationTransactionNotCompleted);
-                    } else {
-                        str = "";
-                    }
-                    sb.append(str);
-                    textView.setText(sb.toString());
-                }
-                j = tL_broadcastRevenueTransactionWithdrawal.amount;
-                c = 65535;
-            } else {
-                if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
-                    this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionProceed));
-                    this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date) + " - " + LocaleController.formatShortDateTime(r9.to_date));
-                    j = ((TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction).amount;
-                } else {
-                    if (!(broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund)) {
-                        return;
-                    }
-                    this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionRefund));
-                    this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date));
-                    j = ((TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction).amount;
-                }
-                c = 1;
-                z2 = false;
-            }
-            this.dateView.setTextColor(Theme.getColor(z2 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) (c < 0 ? "-" : "+"));
-            spannableStringBuilder.append((CharSequence) "TON ");
-            DecimalFormat decimalFormat = this.formatter;
-            double abs = Math.abs(j);
-            Double.isNaN(abs);
-            spannableStringBuilder.append((CharSequence) decimalFormat.format(abs / 1.0E9d));
-            int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new RelativeSizeSpan(1.15f), 0, indexOf + 1, 33);
-            }
-            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.valueText;
-            textViewEmojis.setText(ChannelMonetizationLayout.replaceTON(spannableStringBuilder, textViewEmojis.getPaint(), 1.1f, AndroidUtilities.dp(0.33f), false));
-            this.valueText.setTextColor(Theme.getColor(c < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen, this.resourcesProvider));
-            this.needDivider = z;
-            setWillNotDraw(!z);
+    public void updateList() {
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.adapter.update(true);
         }
     }
 
     public ChannelMonetizationLayout(final Context context, final BaseFragment baseFragment, final int i, final long j, final Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
+        int i2;
+        final int i3;
         this.shakeDp = 4;
         this.starsBalance = TL_stars.StarsAmount.ofStars(0L);
         this.starRef = new ColoredImageSpan[1];
@@ -865,8 +223,16 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 ChannelMonetizationLayout.this.lambda$new$1();
             }
         }), true);
-        int i2 = (z2 && z) ? R.string.MonetizationProceedsStarsTONInfo : z2 ? R.string.MonetizationProceedsStarsInfo : R.string.MonetizationProceedsTONInfo;
-        final int i3 = (z2 && z) ? R.string.MonetizationProceedsStarsTONInfoLink : z2 ? R.string.MonetizationProceedsStarsInfoLink : R.string.MonetizationProceedsTONInfoLink;
+        if (z2 && z) {
+            i2 = R.string.MonetizationProceedsStarsTONInfo;
+        } else {
+            i2 = z2 ? R.string.MonetizationProceedsStarsInfo : R.string.MonetizationProceedsTONInfo;
+        }
+        if (z2 && z) {
+            i3 = R.string.MonetizationProceedsStarsTONInfoLink;
+        } else {
+            i3 = z2 ? R.string.MonetizationProceedsStarsInfoLink : R.string.MonetizationProceedsTONInfoLink;
+        }
         this.proceedsInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i2), -1, 3, new Runnable() {
             @Override
             public final void run() {
@@ -999,6 +365,14 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         });
         this.starsBalanceEditText.addTextChangedListener(new TextWatcher() {
             @Override
+            public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
+            }
+
+            @Override
             public void afterTextChanged(Editable editable) {
                 if (ChannelMonetizationLayout.this.starsBalanceEditTextIgnore) {
                     return;
@@ -1017,14 +391,6 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 AndroidUtilities.cancelRunOnUIThread(ChannelMonetizationLayout.this.setStarsBalanceButtonText);
                 ChannelMonetizationLayout.this.setStarsBalanceButtonText.run();
                 ChannelMonetizationLayout.this.starsBalanceEditTextAll = false;
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
         });
         LinearLayout linearLayout3 = new LinearLayout(context);
@@ -1137,6 +503,495 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
     }
 
+    public static void lambda$new$0(BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider) {
+        baseFragment.showDialog(makeLearnSheet(context, false, resourcesProvider));
+    }
+
+    public void lambda$new$1() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
+    }
+
+    public void lambda$new$2(int i) {
+        Browser.openUrl(getContext(), LocaleController.getString(i));
+    }
+
+    public void lambda$new$3() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
+    }
+
+    public void lambda$new$6(final BaseFragment baseFragment, View view) {
+        if (!view.isEnabled() || this.balanceButton.isLoading()) {
+            return;
+        }
+        ButtonWithCounterView buttonWithCounterView = this.starsBalanceButton;
+        if (buttonWithCounterView == null || !buttonWithCounterView.isLoading()) {
+            final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+            twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
+                @Override
+                public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+                    ChannelMonetizationLayout.this.lambda$new$4(twoStepVerificationActivity, inputCheckPasswordSRP);
+                }
+            });
+            this.balanceButton.setLoading(true);
+            twoStepVerificationActivity.preload(new Runnable() {
+                @Override
+                public final void run() {
+                    ChannelMonetizationLayout.this.lambda$new$5(baseFragment, twoStepVerificationActivity);
+                }
+            });
+        }
+    }
+
+    public void lambda$new$4(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        initWithdraw(false, inputCheckPasswordSRP, twoStepVerificationActivity);
+    }
+
+    public void lambda$new$5(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
+        this.balanceButton.setLoading(false);
+        baseFragment.presentFragment(twoStepVerificationActivity);
+    }
+
+    public void lambda$new$7(View view, boolean z) {
+        this.starsBalanceEditTextContainer.animateSelection(z ? 1.0f : 0.0f);
+    }
+
+    public void lambda$new$11(final int i, final BaseFragment baseFragment, View view) {
+        if (!view.isEnabled() || this.starsBalanceButton.isLoading() || this.balanceButton.isLoading()) {
+            return;
+        }
+        int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
+        if (this.starsBalanceBlockedUntil > currentTime) {
+            this.withdrawalBulletin = BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.timer_3, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, BotStarsActivity.untilString(this.starsBalanceBlockedUntil - currentTime)))).show();
+            return;
+        }
+        if (this.starsBalanceEditTextValue < MessagesController.getInstance(i).starsRevenueWithdrawalMin) {
+            BulletinFactory.of(baseFragment).createSimpleBulletin(getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) MessagesController.getInstance(i).starsRevenueWithdrawalMin, new Object[0]), new Runnable() {
+                @Override
+                public final void run() {
+                    ChannelMonetizationLayout.this.lambda$new$8(i);
+                }
+            })).show();
+            return;
+        }
+        final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+        twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
+            @Override
+            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+                ChannelMonetizationLayout.this.lambda$new$9(twoStepVerificationActivity, inputCheckPasswordSRP);
+            }
+        });
+        this.starsBalanceButton.setLoading(true);
+        twoStepVerificationActivity.preload(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$new$10(baseFragment, twoStepVerificationActivity);
+            }
+        });
+    }
+
+    public void lambda$new$8(int i) {
+        Bulletin.hideVisible();
+        if (this.starsBalance.amount < MessagesController.getInstance(i).starsRevenueWithdrawalMin) {
+            this.starsBalanceEditTextAll = true;
+            this.starsBalanceEditTextValue = this.starsBalance.amount;
+        } else {
+            this.starsBalanceEditTextAll = false;
+            this.starsBalanceEditTextValue = MessagesController.getInstance(i).starsRevenueWithdrawalMin;
+        }
+        this.starsBalanceEditTextIgnore = true;
+        this.starsBalanceEditText.setText(Long.toString(this.starsBalanceEditTextValue));
+        EditTextBoldCursor editTextBoldCursor = this.starsBalanceEditText;
+        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
+        this.starsBalanceEditTextIgnore = false;
+        AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);
+        this.setStarsBalanceButtonText.run();
+    }
+
+    public void lambda$new$9(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        initWithdraw(true, inputCheckPasswordSRP, twoStepVerificationActivity);
+    }
+
+    public void lambda$new$10(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
+        this.starsBalanceButton.setLoading(false);
+        baseFragment.presentFragment(twoStepVerificationActivity);
+    }
+
+    public void lambda$new$15(int i, long j, final Context context, View view) {
+        if (!view.isEnabled() || this.starsAdsButton.isLoading()) {
+            return;
+        }
+        this.starsAdsButton.setLoading(true);
+        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
+        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i).getInputPeer(j);
+        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$new$14(context, tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$new$14(final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$new$13(tLObject, context);
+            }
+        });
+    }
+
+    public void lambda$new$13(TLObject tLObject, Context context) {
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueAdsAccountUrl) {
+            Browser.openUrl(context, ((TLRPC.TL_payments_starsRevenueAdsAccountUrl) tLObject).url);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$new$12();
+            }
+        }, 1000L);
+    }
+
+    public void lambda$new$12() {
+        this.starsAdsButton.setLoading(false);
+    }
+
+    public boolean lambda$new$18(final BaseFragment baseFragment, TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
+        }
+        final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+        twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
+            @Override
+            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+                ChannelMonetizationLayout.this.lambda$new$16(twoStepVerificationActivity, inputCheckPasswordSRP);
+            }
+        });
+        this.starsBalanceButton.setLoading(true);
+        twoStepVerificationActivity.preload(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$new$17(baseFragment, twoStepVerificationActivity);
+            }
+        });
+        return true;
+    }
+
+    public void lambda$new$16(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        initWithdraw(true, inputCheckPasswordSRP, twoStepVerificationActivity);
+    }
+
+    public void lambda$new$17(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
+        this.starsBalanceButton.setLoading(false);
+        baseFragment.presentFragment(twoStepVerificationActivity);
+    }
+
+    public void lambda$new$19(int i) {
+        int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
+        this.starsBalanceButton.setEnabled(this.starsBalanceEditTextValue > 0 || this.starsBalanceBlockedUntil > currentTime);
+        if (currentTime < this.starsBalanceBlockedUntil) {
+            this.starsBalanceButton.setText(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true);
+            if (this.lock == null) {
+                this.lock = new SpannableStringBuilder("l");
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
+                coloredImageSpan.setTopOffset(1);
+                this.lock.setSpan(coloredImageSpan, 0, 1, 33);
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) this.lock).append((CharSequence) BotStarsActivity.untilString(this.starsBalanceBlockedUntil - currentTime));
+            this.starsBalanceButton.setSubText(spannableStringBuilder, true);
+            Bulletin bulletin = this.withdrawalBulletin;
+            if (bulletin != null && (bulletin.getLayout() instanceof Bulletin.LottieLayout) && this.withdrawalBulletin.getLayout().isAttachedToWindow()) {
+                ((Bulletin.LottieLayout) this.withdrawalBulletin.getLayout()).textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, BotStarsActivity.untilString(this.starsBalanceBlockedUntil - currentTime))));
+            }
+            AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);
+            AndroidUtilities.runOnUIThread(this.setStarsBalanceButtonText, 1000L);
+            return;
+        }
+        this.starsBalanceButton.setSubText(null, true);
+        this.starsBalanceButton.setText(StarsIntroActivity.replaceStars(this.starsBalanceEditTextAll ? LocaleController.getString(R.string.MonetizationStarsWithdrawAll) : LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) this.starsBalanceEditTextValue), this.starRef), true);
+    }
+
+    private void initWithdraw(final boolean z, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
+        TLRPC.TL_payments_getStarsRevenueWithdrawalUrl tL_payments_getStarsRevenueWithdrawalUrl;
+        BaseFragment baseFragment = this.fragment;
+        if (baseFragment == null) {
+            return;
+        }
+        final Activity parentActivity = baseFragment.getParentActivity();
+        TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+        if (parentActivity == null || currentUser == null) {
+            return;
+        }
+        if (z) {
+            tL_payments_getStarsRevenueWithdrawalUrl = new TLRPC.TL_payments_getStarsRevenueWithdrawalUrl();
+            tL_payments_getStarsRevenueWithdrawalUrl.ton = false;
+            tL_payments_getStarsRevenueWithdrawalUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            if (inputCheckPasswordSRP == null) {
+                inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordEmpty();
+            }
+            tL_payments_getStarsRevenueWithdrawalUrl.password = inputCheckPasswordSRP;
+            tL_payments_getStarsRevenueWithdrawalUrl.flags |= 2;
+            tL_payments_getStarsRevenueWithdrawalUrl.amount = this.starsBalanceEditTextValue;
+        } else {
+            tL_payments_getStarsRevenueWithdrawalUrl = new TLRPC.TL_payments_getStarsRevenueWithdrawalUrl();
+            tL_payments_getStarsRevenueWithdrawalUrl.ton = true;
+            tL_payments_getStarsRevenueWithdrawalUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            if (inputCheckPasswordSRP == null) {
+                inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordEmpty();
+            }
+            tL_payments_getStarsRevenueWithdrawalUrl.password = inputCheckPasswordSRP;
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueWithdrawalUrl, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$initWithdraw$24(final TwoStepVerificationActivity twoStepVerificationActivity, final Activity activity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$initWithdraw$23(tL_error, twoStepVerificationActivity, activity, z, tLObject);
+            }
+        });
+    }
+
+    public void lambda$initWithdraw$23(TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, TLObject tLObject) {
+        int i;
+        if (tL_error != null) {
+            if ("PASSWORD_MISSING".equals(tL_error.text) || tL_error.text.startsWith("PASSWORD_TOO_FRESH_") || tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
+                if (twoStepVerificationActivity != null) {
+                    twoStepVerificationActivity.needHideProgress();
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
+                LinearLayout linearLayout = new LinearLayout(activity);
+                linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
+                linearLayout.setOrientation(1);
+                builder.setView(linearLayout);
+                TextView textView = new TextView(activity);
+                int i2 = Theme.key_dialogTextBlack;
+                textView.setTextColor(Theme.getColor(i2));
+                textView.setTextSize(1, 16.0f);
+                textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+                textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.WithdrawChannelAlertText)));
+                linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
+                LinearLayout linearLayout2 = new LinearLayout(activity);
+                linearLayout2.setOrientation(0);
+                linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
+                ImageView imageView = new ImageView(activity);
+                int i3 = R.drawable.list_circle;
+                imageView.setImageResource(i3);
+                imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
+                int color = Theme.getColor(i2);
+                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+                TextView textView2 = new TextView(activity);
+                textView2.setTextColor(Theme.getColor(i2));
+                textView2.setTextSize(1, 16.0f);
+                textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+                textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
+                if (LocaleController.isRTL) {
+                    linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
+                    linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
+                } else {
+                    linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2));
+                    linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
+                }
+                LinearLayout linearLayout3 = new LinearLayout(activity);
+                linearLayout3.setOrientation(0);
+                linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
+                ImageView imageView2 = new ImageView(activity);
+                imageView2.setImageResource(i3);
+                imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
+                TextView textView3 = new TextView(activity);
+                textView3.setTextColor(Theme.getColor(i2));
+                textView3.setTextSize(1, 16.0f);
+                textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+                textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
+                if (LocaleController.isRTL) {
+                    linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
+                    i = 5;
+                    linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
+                } else {
+                    i = 5;
+                    linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
+                    linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
+                }
+                if ("PASSWORD_MISSING".equals(tL_error.text)) {
+                    builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
+                        @Override
+                        public final void onClick(AlertDialog alertDialog, int i4) {
+                            ChannelMonetizationLayout.this.lambda$initWithdraw$20(alertDialog, i4);
+                        }
+                    });
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+                } else {
+                    TextView textView4 = new TextView(activity);
+                    textView4.setTextColor(Theme.getColor(i2));
+                    textView4.setTextSize(1, 16.0f);
+                    if (!LocaleController.isRTL) {
+                        i = 3;
+                    }
+                    textView4.setGravity(i | 48);
+                    textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
+                    linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
+                    builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
+                }
+                if (twoStepVerificationActivity != null) {
+                    twoStepVerificationActivity.showDialog(builder.create());
+                    return;
+                } else {
+                    this.fragment.showDialog(builder.create());
+                    return;
+                }
+            }
+            if ("SRP_ID_INVALID".equals(tL_error.text)) {
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                        ChannelMonetizationLayout.this.lambda$initWithdraw$22(twoStepVerificationActivity, z, tLObject2, tL_error2);
+                    }
+                }, 8);
+                return;
+            }
+            if (twoStepVerificationActivity != null) {
+                twoStepVerificationActivity.needHideProgress();
+                twoStepVerificationActivity.lambda$onBackPressed$355();
+            }
+            BulletinFactory.showError(tL_error);
+            return;
+        }
+        twoStepVerificationActivity.needHideProgress();
+        twoStepVerificationActivity.lambda$onBackPressed$355();
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
+            Browser.openUrl(getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
+            if (z) {
+                loadStarsStats(true);
+            }
+        }
+        reloadTransactions();
+    }
+
+    public void lambda$initWithdraw$20(AlertDialog alertDialog, int i) {
+        this.fragment.presentFragment(new TwoStepVerificationSetupActivity(6, null));
+    }
+
+    public void lambda$initWithdraw$22(final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$initWithdraw$21(tL_error, tLObject, twoStepVerificationActivity, z);
+            }
+        });
+    }
+
+    public void lambda$initWithdraw$21(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z) {
+        if (tL_error == null) {
+            TL_account.Password password = (TL_account.Password) tLObject;
+            twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
+            TwoStepVerificationActivity.initPasswordNewAlgo(password);
+            initWithdraw(z, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
+        }
+    }
+
+    private void setBalance(long j, long j2) {
+        if (this.formatter == null) {
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+            decimalFormatSymbols.setDecimalSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+            this.formatter = decimalFormat;
+            decimalFormat.setMinimumFractionDigits(2);
+            this.formatter.setMaximumFractionDigits(6);
+            this.formatter.setGroupingUsed(false);
+        }
+        double d = j / 1.0E9d;
+        this.formatter.setMaximumFractionDigits(d > 1.5d ? 2 : 6);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTON("TON " + this.formatter.format(d), this.balanceTitle.getPaint(), 0.9f, true));
+        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
+        if (indexOf >= 0) {
+            spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
+        }
+        this.balanceTitle.setText(spannableStringBuilder);
+        this.balanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
+    }
+
+    private void setStarsBalance(TL_stars.StarsAmount starsAmount, int i) {
+        if (this.balanceTitle == null || this.balanceSubtitle == null) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(StarsIntroActivity.replaceStarsWithPlain(TextUtils.concat("XTR ", StarsIntroActivity.formatStarsAmount(starsAmount, 0.8f, ' ')), 1.0f));
+        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
+        if (indexOf >= 0) {
+            spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
+        }
+        this.starsBalance = starsAmount;
+        this.starsBalanceTitle.setText(spannableStringBuilder);
+        this.starsBalanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency((long) (this.stars_rate * starsAmount.amount * 100.0d), "USD"));
+        this.starsBalanceEditTextContainer.setVisibility(starsAmount.amount > 0 ? 0 : 8);
+        if (this.starsBalanceEditTextAll) {
+            this.starsBalanceEditTextIgnore = true;
+            EditTextBoldCursor editTextBoldCursor = this.starsBalanceEditText;
+            long j = starsAmount.amount;
+            this.starsBalanceEditTextValue = j;
+            editTextBoldCursor.setText(Long.toString(j));
+            EditTextBoldCursor editTextBoldCursor2 = this.starsBalanceEditText;
+            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            this.starsBalanceEditTextIgnore = false;
+            this.starsBalanceButton.setEnabled(this.starsBalanceEditTextValue > 0);
+        }
+        ButtonWithCounterView buttonWithCounterView = this.starsAdsButton;
+        if (buttonWithCounterView != null) {
+            buttonWithCounterView.setEnabled(starsAmount.amount > 0);
+        }
+        this.starsBalanceBlockedUntil = i;
+        AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);
+        this.setStarsBalanceButtonText.run();
+    }
+
+    private void loadStarsStats(boolean z) {
+        if (this.starsRevenueAvailable) {
+            final TLRPC.TL_payments_starsRevenueStats starsRevenueStats = BotStarsController.getInstance(this.currentAccount).getStarsRevenueStats(this.dialogId, z);
+            if (starsRevenueStats != null) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChannelMonetizationLayout.this.lambda$loadStarsStats$25(starsRevenueStats);
+                    }
+                });
+                return;
+            }
+            TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
+            tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelMonetizationLayout.this.lambda$loadStarsStats$27(tLObject, tL_error);
+                }
+            });
+        }
+    }
+
+    public void lambda$loadStarsStats$27(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$loadStarsStats$26(tLObject);
+            }
+        });
+    }
+
+    public void lambda$loadStarsStats$26(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
+            lambda$loadStarsStats$25((TLRPC.TL_payments_starsRevenueStats) tLObject);
+        }
+    }
+
     public void lambda$loadStarsStats$25(TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats) {
         FrameLayout frameLayout;
         ChartData chartData;
@@ -1165,6 +1020,195 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 this.listView.scrollToPosition(0);
             }
         }
+    }
+
+    public void lambda$applyStarsStats$28() {
+        this.progress.setVisibility(8);
+    }
+
+    private void initLevel() {
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+        if (chat != null) {
+            this.currentBoostLevel = chat.level;
+        }
+        MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                ChannelMonetizationLayout.this.lambda$initLevel$30((TL_stories.TL_premium_boostsStatus) obj);
+            }
+        });
+        loadStarsStats(false);
+        if (this.tonRevenueAvailable) {
+            TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
+            tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
+            tL_payments_getStarsRevenueStats.ton = true;
+            tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
+            if (chatFull != null) {
+                boolean z = chatFull.restricted_sponsored;
+                this.switchOffValue = z;
+                this.initialSwitchOffValue = z;
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    ChannelMonetizationLayout.this.lambda$initLevel$33(tLObject, tL_error);
+                }
+            }, null, null, 0, Integer.MAX_VALUE, 1, true);
+        }
+    }
+
+    public void lambda$initLevel$30(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$initLevel$29(tL_premium_boostsStatus);
+            }
+        });
+    }
+
+    public void lambda$initLevel$29(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+        UniversalAdapter universalAdapter;
+        this.boostsStatus = tL_premium_boostsStatus;
+        if (tL_premium_boostsStatus != null) {
+            this.currentBoostLevel = tL_premium_boostsStatus.level;
+        }
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(true);
+    }
+
+    public void lambda$initLevel$33(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChannelMonetizationLayout.this.lambda$initLevel$32(tLObject);
+            }
+        });
+    }
+
+    public void lambda$initLevel$32(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
+            TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject;
+            this.impressionsChart = StatisticActivity.createViewData(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0);
+            TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
+            if (statsGraph != null) {
+                statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
+            }
+            this.revenueChart = StatisticActivity.createViewData(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2);
+            StatisticActivity.ChartViewData chartViewData = this.impressionsChart;
+            if (chartViewData != null) {
+                chartViewData.useHourFormat = true;
+            }
+            this.ton_rate = tL_payments_starsRevenueStats.usd_rate;
+            setupBalances(true, tL_payments_starsRevenueStats.status);
+            this.progress.animate().alpha(0.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
+                @Override
+                public final void run() {
+                    ChannelMonetizationLayout.this.lambda$initLevel$31();
+                }
+            }).start();
+            checkLearnSheet();
+        }
+    }
+
+    public void lambda$initLevel$31() {
+        this.progress.setVisibility(8);
+    }
+
+    public void setupBalances(boolean z, TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus) {
+        UniversalAdapter universalAdapter;
+        if (z) {
+            ProceedOverview proceedOverview = this.availableValue;
+            proceedOverview.contains1 = true;
+            long j = tL_starsRevenueStatus.available_balance.amount;
+            proceedOverview.crypto_amount = j;
+            long j2 = (long) ((j / 1.0E9d) * this.ton_rate * 100.0d);
+            proceedOverview.amount = j2;
+            setBalance(j, j2);
+            this.availableValue.currency = "USD";
+            ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
+            proceedOverview2.contains1 = true;
+            long j3 = tL_starsRevenueStatus.current_balance.amount;
+            proceedOverview2.crypto_amount = j3;
+            double d = this.ton_rate;
+            proceedOverview2.amount = (long) ((j3 / 1.0E9d) * d * 100.0d);
+            proceedOverview2.currency = "USD";
+            ProceedOverview proceedOverview3 = this.lifetimeValue;
+            proceedOverview3.contains1 = true;
+            long j4 = tL_starsRevenueStatus.overall_revenue.amount;
+            proceedOverview3.crypto_amount = j4;
+            proceedOverview3.amount = (long) ((j4 / 1.0E9d) * d * 100.0d);
+            proceedOverview3.currency = "USD";
+            this.proceedsAvailable = true;
+            this.balanceButton.setVisibility((tL_starsRevenueStatus.available_balance.amount <= 0 || !tL_starsRevenueStatus.withdrawal_enabled) ? 8 : 0);
+        } else {
+            double d2 = this.stars_rate;
+            if (d2 == 0.0d) {
+                return;
+            }
+            ProceedOverview proceedOverview4 = this.availableValue;
+            proceedOverview4.contains2 = true;
+            TL_stars.StarsAmount starsAmount = tL_starsRevenueStatus.available_balance;
+            proceedOverview4.crypto_amount2 = starsAmount;
+            proceedOverview4.amount2 = (long) (starsAmount.amount * d2 * 100.0d);
+            setStarsBalance(starsAmount, tL_starsRevenueStatus.next_withdrawal_at);
+            this.availableValue.currency = "USD";
+            ProceedOverview proceedOverview5 = this.lastWithdrawalValue;
+            proceedOverview5.contains2 = true;
+            TL_stars.StarsAmount starsAmount2 = tL_starsRevenueStatus.current_balance;
+            proceedOverview5.crypto_amount2 = starsAmount2;
+            double d3 = starsAmount2.amount;
+            double d4 = this.stars_rate;
+            proceedOverview5.amount2 = (long) (d3 * d4 * 100.0d);
+            proceedOverview5.currency = "USD";
+            ProceedOverview proceedOverview6 = this.lifetimeValue;
+            proceedOverview6.contains2 = true;
+            proceedOverview6.crypto_amount2 = tL_starsRevenueStatus.overall_revenue;
+            proceedOverview6.amount2 = (long) (r5.amount * d4 * 100.0d);
+            proceedOverview6.currency = "USD";
+            this.proceedsAvailable = true;
+            LinearLayout linearLayout = this.starsBalanceButtonsLayout;
+            if (linearLayout != null) {
+                linearLayout.setVisibility(tL_starsRevenueStatus.withdrawal_enabled ? 0 : 8);
+            }
+            ButtonWithCounterView buttonWithCounterView = this.starsBalanceButton;
+            if (buttonWithCounterView != null) {
+                buttonWithCounterView.setVisibility((tL_starsRevenueStatus.available_balance.amount > 0 || BuildVars.DEBUG_PRIVATE_VERSION) ? 0 : 8);
+            }
+        }
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
+            return;
+        }
+        universalAdapter.update(true);
+    }
+
+    public void reloadTransactions() {
+        this.transactionsLayout.reloadTransactions();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        instance = this;
+        super.onAttachedToWindow();
+        checkLearnSheet();
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        instance = null;
+        super.onDetachedFromWindow();
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null) {
+            actionBar.setCastShadows(true);
+        }
+    }
+
+    public void setActionBar(ActionBar actionBar) {
+        this.actionBar = actionBar;
     }
 
     private void checkLearnSheet() {
@@ -1222,521 +1266,40 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             arrayList.add(AffiliateProgramFragment.ColorfulTextCell.Factory.as(4, Theme.getColor(Theme.key_color_green, this.resourcesProvider), R.drawable.filled_earn_stars, ChatEditActivity.applyNewSpan(LocaleController.getString(R.string.ChannelAffiliateProgramRowTitle)), LocaleController.getString(R.string.ChannelAffiliateProgramRowText)));
             arrayList.add(UItem.asShadow(-7, null));
         }
-        arrayList.add(this.transactionsLayout.hasTransactions() ? UItem.asFullscreenCustom(this.transactionsLayout, 0) : UItem.asShadow(-10, null));
-    }
-
-    private void initLevel() {
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
-        if (chat != null) {
-            this.currentBoostLevel = chat.level;
-        }
-        MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                ChannelMonetizationLayout.this.lambda$initLevel$30((TL_stories.TL_premium_boostsStatus) obj);
-            }
-        });
-        loadStarsStats(false);
-        if (this.tonRevenueAvailable) {
-            TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
-            tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
-            tL_payments_getStarsRevenueStats.ton = true;
-            tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
-            if (chatFull != null) {
-                boolean z = chatFull.restricted_sponsored;
-                this.switchOffValue = z;
-                this.initialSwitchOffValue = z;
-            }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChannelMonetizationLayout.this.lambda$initLevel$33(tLObject, tL_error);
-                }
-            }, null, null, 0, Integer.MAX_VALUE, 1, true);
-        }
-    }
-
-    private void initWithdraw(final boolean z, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
-        TLRPC.TL_payments_getStarsRevenueWithdrawalUrl tL_payments_getStarsRevenueWithdrawalUrl;
-        BaseFragment baseFragment = this.fragment;
-        if (baseFragment == null) {
-            return;
-        }
-        final Activity parentActivity = baseFragment.getParentActivity();
-        TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-        if (parentActivity == null || currentUser == null) {
-            return;
-        }
-        if (z) {
-            tL_payments_getStarsRevenueWithdrawalUrl = new TLRPC.TL_payments_getStarsRevenueWithdrawalUrl();
-            tL_payments_getStarsRevenueWithdrawalUrl.ton = false;
-            tL_payments_getStarsRevenueWithdrawalUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            if (inputCheckPasswordSRP == null) {
-                inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordEmpty();
-            }
-            tL_payments_getStarsRevenueWithdrawalUrl.password = inputCheckPasswordSRP;
-            tL_payments_getStarsRevenueWithdrawalUrl.flags |= 2;
-            tL_payments_getStarsRevenueWithdrawalUrl.amount = this.starsBalanceEditTextValue;
+        if (this.transactionsLayout.hasTransactions()) {
+            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, 0));
         } else {
-            tL_payments_getStarsRevenueWithdrawalUrl = new TLRPC.TL_payments_getStarsRevenueWithdrawalUrl();
-            tL_payments_getStarsRevenueWithdrawalUrl.ton = true;
-            tL_payments_getStarsRevenueWithdrawalUrl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            if (inputCheckPasswordSRP == null) {
-                inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordEmpty();
-            }
-            tL_payments_getStarsRevenueWithdrawalUrl.password = inputCheckPasswordSRP;
+            arrayList.add(UItem.asShadow(-10, null));
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueWithdrawalUrl, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelMonetizationLayout.this.lambda$initWithdraw$24(twoStepVerificationActivity, parentActivity, z, tLObject, tL_error);
+    }
+
+    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        int i2 = uItem.id;
+        if (i2 != 1) {
+            if (i2 == 4) {
+                this.fragment.presentFragment(new ChannelAffiliateProgramsFragment(this.dialogId));
             }
-        });
-    }
-
-    public void lambda$applyStarsStats$28() {
-        this.progress.setVisibility(8);
-    }
-
-    public void lambda$initLevel$29(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        UniversalAdapter universalAdapter;
-        this.boostsStatus = tL_premium_boostsStatus;
-        if (tL_premium_boostsStatus != null) {
-            this.currentBoostLevel = tL_premium_boostsStatus.level;
-        }
-        UniversalRecyclerView universalRecyclerView = this.listView;
-        if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
-            return;
-        }
-        universalAdapter.update(true);
-    }
-
-    public void lambda$initLevel$30(final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$initLevel$29(tL_premium_boostsStatus);
-            }
-        });
-    }
-
-    public void lambda$initLevel$31() {
-        this.progress.setVisibility(8);
-    }
-
-    public void lambda$initLevel$32(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
-            TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject;
-            this.impressionsChart = StatisticActivity.createViewData(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0);
-            TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
-            if (statsGraph != null) {
-                statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
-            }
-            this.revenueChart = StatisticActivity.createViewData(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2);
-            StatisticActivity.ChartViewData chartViewData = this.impressionsChart;
-            if (chartViewData != null) {
-                chartViewData.useHourFormat = true;
-            }
-            this.ton_rate = tL_payments_starsRevenueStats.usd_rate;
-            setupBalances(true, tL_payments_starsRevenueStats.status);
-            this.progress.animate().alpha(0.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
-                @Override
-                public final void run() {
-                    ChannelMonetizationLayout.this.lambda$initLevel$31();
+        } else {
+            if (this.currentBoostLevel < MessagesController.getInstance(this.currentAccount).channelRestrictSponsoredLevelMin) {
+                if (this.boostsStatus == null) {
+                    return;
                 }
-            }).start();
-            checkLearnSheet();
-        }
-    }
-
-    public void lambda$initLevel$33(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$initLevel$32(tLObject);
-            }
-        });
-    }
-
-    public void lambda$initWithdraw$20(AlertDialog alertDialog, int i) {
-        this.fragment.presentFragment(new TwoStepVerificationSetupActivity(6, null));
-    }
-
-    public void lambda$initWithdraw$21(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z) {
-        if (tL_error == null) {
-            TL_account.Password password = (TL_account.Password) tLObject;
-            twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
-            TwoStepVerificationActivity.initPasswordNewAlgo(password);
-            initWithdraw(z, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
-        }
-    }
-
-    public void lambda$initWithdraw$22(final TwoStepVerificationActivity twoStepVerificationActivity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$initWithdraw$21(tL_error, tLObject, twoStepVerificationActivity, z);
-            }
-        });
-    }
-
-    public void lambda$initWithdraw$23(TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, final boolean z, TLObject tLObject) {
-        int i;
-        int i2;
-        if (tL_error == null) {
-            twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$355();
-            if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
-                Browser.openUrl(getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
-                if (z) {
-                    loadStarsStats(true);
-                }
-            }
-            reloadTransactions();
-            return;
-        }
-        if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
-            if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
+                final LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this.fragment, getContext(), 30, this.currentAccount, this.resourcesProvider);
+                limitReachedBottomSheet.setDialogId(this.dialogId);
+                limitReachedBottomSheet.setBoostsStats(this.boostsStatus, true);
+                MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
                     @Override
-                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        ChannelMonetizationLayout.this.lambda$initWithdraw$22(twoStepVerificationActivity, z, tLObject2, tL_error2);
+                    public final void accept(Object obj) {
+                        ChannelMonetizationLayout.this.lambda$onClick$34(limitReachedBottomSheet, (ChannelBoostsController.CanApplyBoost) obj);
                     }
-                }, 8);
+                });
                 return;
             }
-            if (twoStepVerificationActivity != null) {
-                twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$355();
-            }
-            BulletinFactory.showError(tL_error);
-            return;
+            this.switchOffValue = !this.switchOffValue;
+            AndroidUtilities.cancelRunOnUIThread(this.sendCpmUpdateRunnable);
+            AndroidUtilities.runOnUIThread(this.sendCpmUpdateRunnable, 1000L);
+            this.listView.adapter.update(true);
         }
-        if (twoStepVerificationActivity != null) {
-            twoStepVerificationActivity.needHideProgress();
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
-        LinearLayout linearLayout = new LinearLayout(activity);
-        linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
-        linearLayout.setOrientation(1);
-        builder.setView(linearLayout);
-        TextView textView = new TextView(activity);
-        int i3 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i3));
-        textView.setTextSize(1, 16.0f);
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.WithdrawChannelAlertText)));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-        LinearLayout linearLayout2 = new LinearLayout(activity);
-        linearLayout2.setOrientation(0);
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(activity);
-        int i4 = R.drawable.list_circle;
-        imageView.setImageResource(i4);
-        imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-        int color = Theme.getColor(i3);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-        TextView textView2 = new TextView(activity);
-        textView2.setTextColor(Theme.getColor(i3));
-        textView2.setTextSize(1, 16.0f);
-        textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
-        if (LocaleController.isRTL) {
-            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
-            linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
-        } else {
-            linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2));
-            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
-        }
-        LinearLayout linearLayout3 = new LinearLayout(activity);
-        linearLayout3.setOrientation(0);
-        linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(activity);
-        imageView2.setImageResource(i4);
-        imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), mode));
-        TextView textView3 = new TextView(activity);
-        textView3.setTextColor(Theme.getColor(i3));
-        textView3.setTextSize(1, 16.0f);
-        textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
-        if (LocaleController.isRTL) {
-            linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-            i = 5;
-            linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
-        } else {
-            i = 5;
-            linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
-            linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-        }
-        if ("PASSWORD_MISSING".equals(tL_error.text)) {
-            builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i5) {
-                    ChannelMonetizationLayout.this.lambda$initWithdraw$20(alertDialog, i5);
-                }
-            });
-            i2 = R.string.Cancel;
-        } else {
-            TextView textView4 = new TextView(activity);
-            textView4.setTextColor(Theme.getColor(i3));
-            textView4.setTextSize(1, 16.0f);
-            if (!LocaleController.isRTL) {
-                i = 3;
-            }
-            textView4.setGravity(i | 48);
-            textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
-            linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-            i2 = R.string.OK;
-        }
-        builder.setNegativeButton(LocaleController.getString(i2), null);
-        if (twoStepVerificationActivity != null) {
-            twoStepVerificationActivity.showDialog(builder.create());
-        } else {
-            this.fragment.showDialog(builder.create());
-        }
-    }
-
-    public void lambda$initWithdraw$24(final TwoStepVerificationActivity twoStepVerificationActivity, final Activity activity, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$initWithdraw$23(tL_error, twoStepVerificationActivity, activity, z, tLObject);
-            }
-        });
-    }
-
-    public void lambda$loadStarsStats$26(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
-            lambda$loadStarsStats$25((TLRPC.TL_payments_starsRevenueStats) tLObject);
-        }
-    }
-
-    public void lambda$loadStarsStats$27(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$loadStarsStats$26(tLObject);
-            }
-        });
-    }
-
-    public static void lambda$makeLearnSheet$40(Context context, boolean z) {
-        Browser.openUrl(context, LocaleController.getString(z ? R.string.BotMonetizationInfoTONLink : R.string.MonetizationInfoTONLink));
-    }
-
-    public static void lambda$new$0(BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider) {
-        baseFragment.showDialog(makeLearnSheet(context, false, resourcesProvider));
-    }
-
-    public void lambda$new$1() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
-    }
-
-    public void lambda$new$10(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
-        this.starsBalanceButton.setLoading(false);
-        baseFragment.presentFragment(twoStepVerificationActivity);
-    }
-
-    public void lambda$new$11(final int i, final BaseFragment baseFragment, View view) {
-        if (!view.isEnabled() || this.starsBalanceButton.isLoading() || this.balanceButton.isLoading()) {
-            return;
-        }
-        int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
-        if (this.starsBalanceBlockedUntil > currentTime) {
-            this.withdrawalBulletin = BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.timer_3, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, BotStarsActivity.untilString(this.starsBalanceBlockedUntil - currentTime)))).show();
-            return;
-        }
-        if (this.starsBalanceEditTextValue < MessagesController.getInstance(i).starsRevenueWithdrawalMin) {
-            BulletinFactory.of(baseFragment).createSimpleBulletin(getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate(), AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("BotStarsWithdrawMinLimit", (int) MessagesController.getInstance(i).starsRevenueWithdrawalMin, new Object[0]), new Runnable() {
-                @Override
-                public final void run() {
-                    ChannelMonetizationLayout.this.lambda$new$8(i);
-                }
-            })).show();
-            return;
-        }
-        final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-        twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
-            @Override
-            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                ChannelMonetizationLayout.this.lambda$new$9(twoStepVerificationActivity, inputCheckPasswordSRP);
-            }
-        });
-        this.starsBalanceButton.setLoading(true);
-        twoStepVerificationActivity.preload(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$new$10(baseFragment, twoStepVerificationActivity);
-            }
-        });
-    }
-
-    public void lambda$new$12() {
-        this.starsAdsButton.setLoading(false);
-    }
-
-    public void lambda$new$13(TLObject tLObject, Context context) {
-        if (tLObject instanceof TLRPC.TL_payments_starsRevenueAdsAccountUrl) {
-            Browser.openUrl(context, ((TLRPC.TL_payments_starsRevenueAdsAccountUrl) tLObject).url);
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$new$12();
-            }
-        }, 1000L);
-    }
-
-    public void lambda$new$14(final Context context, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$new$13(tLObject, context);
-            }
-        });
-    }
-
-    public void lambda$new$15(int i, long j, final Context context, View view) {
-        if (!view.isEnabled() || this.starsAdsButton.isLoading()) {
-            return;
-        }
-        this.starsAdsButton.setLoading(true);
-        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i).getInputPeer(j);
-        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelMonetizationLayout.this.lambda$new$14(context, tLObject, tL_error);
-            }
-        });
-    }
-
-    public void lambda$new$16(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-        initWithdraw(true, inputCheckPasswordSRP, twoStepVerificationActivity);
-    }
-
-    public void lambda$new$17(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
-        this.starsBalanceButton.setLoading(false);
-        baseFragment.presentFragment(twoStepVerificationActivity);
-    }
-
-    public boolean lambda$new$18(final BaseFragment baseFragment, TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-        twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
-            @Override
-            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                ChannelMonetizationLayout.this.lambda$new$16(twoStepVerificationActivity, inputCheckPasswordSRP);
-            }
-        });
-        this.starsBalanceButton.setLoading(true);
-        twoStepVerificationActivity.preload(new Runnable() {
-            @Override
-            public final void run() {
-                ChannelMonetizationLayout.this.lambda$new$17(baseFragment, twoStepVerificationActivity);
-            }
-        });
-        return true;
-    }
-
-    public void lambda$new$19(int i) {
-        int currentTime = ConnectionsManager.getInstance(i).getCurrentTime();
-        this.starsBalanceButton.setEnabled(this.starsBalanceEditTextValue > 0 || this.starsBalanceBlockedUntil > currentTime);
-        if (currentTime >= this.starsBalanceBlockedUntil) {
-            this.starsBalanceButton.setSubText(null, true);
-            this.starsBalanceButton.setText(StarsIntroActivity.replaceStars(this.starsBalanceEditTextAll ? LocaleController.getString(R.string.MonetizationStarsWithdrawAll) : LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) this.starsBalanceEditTextValue), this.starRef), true);
-            return;
-        }
-        this.starsBalanceButton.setText(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true);
-        if (this.lock == null) {
-            this.lock = new SpannableStringBuilder("l");
-            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
-            coloredImageSpan.setTopOffset(1);
-            this.lock.setSpan(coloredImageSpan, 0, 1, 33);
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) this.lock).append((CharSequence) BotStarsActivity.untilString(this.starsBalanceBlockedUntil - currentTime));
-        this.starsBalanceButton.setSubText(spannableStringBuilder, true);
-        Bulletin bulletin = this.withdrawalBulletin;
-        if (bulletin != null && (bulletin.getLayout() instanceof Bulletin.LottieLayout) && this.withdrawalBulletin.getLayout().isAttachedToWindow()) {
-            ((Bulletin.LottieLayout) this.withdrawalBulletin.getLayout()).textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotStarsWithdrawalToast, BotStarsActivity.untilString(this.starsBalanceBlockedUntil - currentTime))));
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);
-        AndroidUtilities.runOnUIThread(this.setStarsBalanceButtonText, 1000L);
-    }
-
-    public void lambda$new$2(int i) {
-        Browser.openUrl(getContext(), LocaleController.getString(i));
-    }
-
-    public void lambda$new$3() {
-        Browser.openUrl(getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
-    }
-
-    public void lambda$new$4(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-        initWithdraw(false, inputCheckPasswordSRP, twoStepVerificationActivity);
-    }
-
-    public void lambda$new$5(BaseFragment baseFragment, TwoStepVerificationActivity twoStepVerificationActivity) {
-        this.balanceButton.setLoading(false);
-        baseFragment.presentFragment(twoStepVerificationActivity);
-    }
-
-    public void lambda$new$6(final BaseFragment baseFragment, View view) {
-        if (!view.isEnabled() || this.balanceButton.isLoading()) {
-            return;
-        }
-        ButtonWithCounterView buttonWithCounterView = this.starsBalanceButton;
-        if (buttonWithCounterView == null || !buttonWithCounterView.isLoading()) {
-            final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-            twoStepVerificationActivity.setDelegate(1, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
-                @Override
-                public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                    ChannelMonetizationLayout.this.lambda$new$4(twoStepVerificationActivity, inputCheckPasswordSRP);
-                }
-            });
-            this.balanceButton.setLoading(true);
-            twoStepVerificationActivity.preload(new Runnable() {
-                @Override
-                public final void run() {
-                    ChannelMonetizationLayout.this.lambda$new$5(baseFragment, twoStepVerificationActivity);
-                }
-            });
-        }
-    }
-
-    public void lambda$new$7(View view, boolean z) {
-        this.starsBalanceEditTextContainer.animateSelection(z ? 1.0f : 0.0f);
-    }
-
-    public void lambda$new$8(int i) {
-        long j;
-        Bulletin.hideVisible();
-        if (this.starsBalance.amount < MessagesController.getInstance(i).starsRevenueWithdrawalMin) {
-            this.starsBalanceEditTextAll = true;
-            j = this.starsBalance.amount;
-        } else {
-            this.starsBalanceEditTextAll = false;
-            j = MessagesController.getInstance(i).starsRevenueWithdrawalMin;
-        }
-        this.starsBalanceEditTextValue = j;
-        this.starsBalanceEditTextIgnore = true;
-        this.starsBalanceEditText.setText(Long.toString(this.starsBalanceEditTextValue));
-        EditTextBoldCursor editTextBoldCursor = this.starsBalanceEditText;
-        editTextBoldCursor.setSelection(editTextBoldCursor.getText().length());
-        this.starsBalanceEditTextIgnore = false;
-        AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);
-        this.setStarsBalanceButtonText.run();
-    }
-
-    public void lambda$new$9(TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-        initWithdraw(true, inputCheckPasswordSRP, twoStepVerificationActivity);
     }
 
     public void lambda$onClick$34(LimitReachedBottomSheet limitReachedBottomSheet, ChannelBoostsController.CanApplyBoost canApplyBoost) {
@@ -1744,19 +1307,20 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.fragment.showDialog(limitReachedBottomSheet);
     }
 
-    public void lambda$onNestedScroll$42() {
-        try {
-            RecyclerListView currentListView = this.transactionsLayout.getCurrentListView();
-            if (currentListView == null || currentListView.getAdapter() == null) {
-                return;
-            }
-            currentListView.getAdapter().notifyDataSetChanged();
-        } catch (Throwable unused) {
+    public void sendCpmUpdate() {
+        AndroidUtilities.cancelRunOnUIThread(this.sendCpmUpdateRunnable);
+        if (this.switchOffValue == this.initialSwitchOffValue) {
+            return;
         }
-    }
-
-    public void lambda$sendCpmUpdate$36() {
-        this.initialSwitchOffValue = this.switchOffValue;
+        TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+        tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
+        tL_channels_restrictSponsoredMessages.restricted = this.switchOffValue;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_restrictSponsoredMessages, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                ChannelMonetizationLayout.this.lambda$sendCpmUpdate$37(tLObject, tL_error);
+            }
+        });
     }
 
     public void lambda$sendCpmUpdate$37(TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -1778,32 +1342,465 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
     }
 
-    public static void lambda$showTransactionSheet$38(Context context, TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal, View view) {
-        Browser.openUrl(context, tL_broadcastRevenueTransactionWithdrawal.transaction_url);
+    public void lambda$sendCpmUpdate$36() {
+        this.initialSwitchOffValue = this.switchOffValue;
     }
 
-    private void loadStarsStats(boolean z) {
-        if (this.starsRevenueAvailable) {
-            final TLRPC.TL_payments_starsRevenueStats starsRevenueStats = BotStarsController.getInstance(this.currentAccount).getStarsRevenueStats(this.dialogId, z);
-            if (starsRevenueStats != null) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
+    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint) {
+        return replaceTON(charSequence, textPaint, 1.0f, true);
+    }
+
+    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, boolean z) {
+        return replaceTON(charSequence, textPaint, f, 0.0f, z);
+    }
+
+    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, float f2, boolean z) {
+        if (tonString == null) {
+            tonString = new HashMap();
+        }
+        int i = ((textPaint.getFontMetricsInt().bottom * (z ? 1 : -1)) * ((int) (f * 100.0f))) - ((int) (100.0f * f2));
+        SpannableString spannableString = (SpannableString) tonString.get(Integer.valueOf(i));
+        if (spannableString == null) {
+            spannableString = new SpannableString("T");
+            if (z) {
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
+                coloredImageSpan.setScale(f, f);
+                coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText2);
+                coloredImageSpan.setRelativeSize(textPaint.getFontMetricsInt());
+                coloredImageSpan.spaceScaleX = 0.9f;
+                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+            } else {
+                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_ton);
+                coloredImageSpan2.setScale(f, f);
+                coloredImageSpan2.setTranslateY(f2);
+                coloredImageSpan2.spaceScaleX = 0.95f;
+                spannableString.setSpan(coloredImageSpan2, 0, spannableString.length(), 33);
+            }
+            tonString.put(Integer.valueOf(i), spannableString);
+        }
+        return AndroidUtilities.replaceMultipleCharSequence("TON", charSequence, spannableString);
+    }
+
+    public static class ProceedOverviewCell extends LinearLayout {
+        private final LinearLayout[] amountContainer;
+        private final TextView[] amountView;
+        private final AnimatedEmojiSpan.TextViewEmojis[] cryptoAmountView;
+        private final DecimalFormat formatter;
+        private final LinearLayout layout;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private final TextView titleView;
+
+        public ProceedOverviewCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.amountContainer = new LinearLayout[2];
+            this.cryptoAmountView = new AnimatedEmojiSpan.TextViewEmojis[2];
+            this.amountView = new TextView[2];
+            this.resourcesProvider = resourcesProvider;
+            setOrientation(1);
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.layout = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, LayoutHelper.createLinear(-1, -2, 22.0f, 9.0f, 22.0f, 0.0f));
+            for (int i = 0; i < 2; i++) {
+                this.amountContainer[i] = new LinearLayout(context);
+                this.amountContainer[i].setOrientation(0);
+                this.layout.addView(this.amountContainer[i], LayoutHelper.createLinear(-1, -2, 1.0f, 119));
+                this.cryptoAmountView[i] = new AnimatedEmojiSpan.TextViewEmojis(context);
+                this.cryptoAmountView[i].setTypeface(AndroidUtilities.bold());
+                this.cryptoAmountView[i].setTextSize(1, 16.0f);
+                this.cryptoAmountView[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+                this.amountContainer[i].addView(this.cryptoAmountView[i], LayoutHelper.createLinear(-2, -2, 80, 0, 0, 5, 0));
+                this.amountView[i] = new AnimatedEmojiSpan.TextViewEmojis(context);
+                this.amountView[i].setTextSize(1, 11.5f);
+                this.amountView[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+                this.amountContainer[i].addView(this.amountView[i], LayoutHelper.createLinear(-2, -2, 80));
+            }
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 13.0f);
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+            addView(textView, LayoutHelper.createLinear(-1, -2, 55, 22, 5, 22, 9));
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+            decimalFormatSymbols.setDecimalSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+            this.formatter = decimalFormat;
+            decimalFormat.setMinimumFractionDigits(2);
+            decimalFormat.setMaximumFractionDigits(12);
+            decimalFormat.setGroupingUsed(false);
+        }
+
+        public void set(ProceedOverview proceedOverview) {
+            String str;
+            SpannableStringBuilder spannableStringBuilder;
+            int indexOf;
+            this.titleView.setText(proceedOverview.text);
+            int i = 0;
+            while (i < 2) {
+                String str2 = i == 0 ? proceedOverview.crypto_currency : proceedOverview.crypto_currency2;
+                long j = i == 0 ? proceedOverview.amount : proceedOverview.amount2;
+                if (i == 0 && !proceedOverview.contains1) {
+                    this.amountContainer[i].setVisibility(8);
+                } else if (i == 1 && !proceedOverview.contains2) {
+                    this.amountContainer[i].setVisibility(8);
+                } else {
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str2 + " ");
+                    if (!"TON".equalsIgnoreCase(str2)) {
+                        str = "TON";
+                        if ("XTR".equalsIgnoreCase(str2)) {
+                            if (i == 0) {
+                                spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber(proceedOverview.crypto_amount, ' '));
+                            } else {
+                                spannableStringBuilder2.append(StarsIntroActivity.formatStarsAmount(proceedOverview.crypto_amount2, 0.8f, ' '));
+                            }
+                            spannableStringBuilder = StarsIntroActivity.replaceStarsWithPlain(spannableStringBuilder2, 0.7f);
+                        } else {
+                            spannableStringBuilder2.append((CharSequence) Long.toString(proceedOverview.crypto_amount));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        }
+                    } else {
+                        String format = this.formatter.format(proceedOverview.crypto_amount / 1.0E9d);
+                        int indexOf2 = format.indexOf(46);
+                        if (indexOf2 >= 0) {
+                            str = "TON";
+                            spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber((long) Math.floor(proceedOverview.crypto_amount / 1.0E9d), ' '));
+                            spannableStringBuilder2.append((CharSequence) format.substring(indexOf2));
+                        } else {
+                            str = "TON";
+                            spannableStringBuilder2.append((CharSequence) format);
+                        }
+                        spannableStringBuilder = ChannelMonetizationLayout.replaceTON(spannableStringBuilder2, this.cryptoAmountView[i].getPaint(), 1.05f, true);
+                    }
+                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(spannableStringBuilder);
+                    if (str.equalsIgnoreCase(str2) && (indexOf = TextUtils.indexOf(spannableStringBuilder3, ".")) >= 0) {
+                        spannableStringBuilder3.setSpan(new RelativeSizeSpan(0.8125f), indexOf, spannableStringBuilder3.length(), 33);
+                    }
+                    this.amountContainer[i].setVisibility(0);
+                    this.cryptoAmountView[i].setText(spannableStringBuilder3);
+                    this.amountView[i].setText("≈" + BillingController.getInstance().formatCurrency(j, proceedOverview.currency));
+                }
+                i++;
+            }
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
+    }
+
+    public static class ProceedOverview {
+        public long amount;
+        public long amount2;
+        public boolean contains2;
+        public long crypto_amount;
+        public String crypto_currency;
+        public String crypto_currency2;
+        public String currency;
+        public CharSequence text;
+        public boolean contains1 = true;
+        public TL_stars.StarsAmount crypto_amount2 = TL_stars.StarsAmount.ofStars(0);
+
+        public static ProceedOverview as(String str, CharSequence charSequence) {
+            ProceedOverview proceedOverview = new ProceedOverview();
+            proceedOverview.crypto_currency = str;
+            proceedOverview.text = charSequence;
+            return proceedOverview;
+        }
+
+        public static ProceedOverview as(String str, String str2, CharSequence charSequence) {
+            ProceedOverview proceedOverview = new ProceedOverview();
+            proceedOverview.contains1 = false;
+            proceedOverview.crypto_currency = str;
+            proceedOverview.crypto_currency2 = str2;
+            proceedOverview.text = charSequence;
+            return proceedOverview;
+        }
+    }
+
+    public static class TransactionCell extends FrameLayout {
+        private final TextView dateView;
+        private final DecimalFormat formatter;
+        private final LinearLayout layout;
+        private boolean needDivider;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private final TextView titleView;
+        private final AnimatedEmojiSpan.TextViewEmojis valueText;
+
+        public TransactionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.resourcesProvider = resourcesProvider;
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.layout = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 16.0f);
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
+            TextView textView2 = new TextView(context);
+            this.dateView = textView2;
+            textView2.setTextSize(1, 13.0f);
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+            linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 4.0f, 0.0f, 0.0f));
+            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
+            this.valueText = textViewEmojis;
+            textViewEmojis.setTypeface(AndroidUtilities.bold());
+            textViewEmojis.setTextSize(1, 13.0f);
+            addView(textViewEmojis, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+            decimalFormatSymbols.setDecimalSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+            this.formatter = decimalFormat;
+            decimalFormat.setMinimumFractionDigits(2);
+            decimalFormat.setMaximumFractionDigits(12);
+            decimalFormat.setGroupingUsed(false);
+        }
+
+        public void set(TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction, boolean z) {
+            long j;
+            char c;
+            boolean z2;
+            String str;
+            if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal) {
+                TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
+                this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionWithdraw));
+                if (tL_broadcastRevenueTransactionWithdrawal.pending) {
+                    this.dateView.setText(LocaleController.getString(R.string.MonetizationTransactionPending));
+                    z2 = false;
+                } else {
+                    z2 = tL_broadcastRevenueTransactionWithdrawal.failed;
+                    TextView textView = this.dateView;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionWithdrawal.date));
+                    if (z2) {
+                        str = " — " + LocaleController.getString(R.string.MonetizationTransactionNotCompleted);
+                    } else {
+                        str = "";
+                    }
+                    sb.append(str);
+                    textView.setText(sb.toString());
+                }
+                j = tL_broadcastRevenueTransactionWithdrawal.amount;
+                c = 65535;
+            } else {
+                if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
+                    this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionProceed));
+                    this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date) + " - " + LocaleController.formatShortDateTime(r9.to_date));
+                    j = ((TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction).amount;
+                } else {
+                    if (!(broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund)) {
+                        return;
+                    }
+                    this.titleView.setText(LocaleController.getString(R.string.MonetizationTransactionRefund));
+                    this.dateView.setText(LocaleController.formatShortDateTime(r9.from_date));
+                    j = ((TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction).amount;
+                }
+                c = 1;
+                z2 = false;
+            }
+            this.dateView.setTextColor(Theme.getColor(z2 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) (c < 0 ? "-" : "+"));
+            spannableStringBuilder.append((CharSequence) "TON ");
+            spannableStringBuilder.append((CharSequence) this.formatter.format(Math.abs(j) / 1.0E9d));
+            int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
+            if (indexOf >= 0) {
+                spannableStringBuilder.setSpan(new RelativeSizeSpan(1.15f), 0, indexOf + 1, 33);
+            }
+            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.valueText;
+            textViewEmojis.setText(ChannelMonetizationLayout.replaceTON(spannableStringBuilder, textViewEmojis.getPaint(), 1.1f, AndroidUtilities.dp(0.33f), false));
+            this.valueText.setTextColor(Theme.getColor(c < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen, this.resourcesProvider));
+            this.needDivider = z;
+            setWillNotDraw(!z);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            if (this.needDivider) {
+                Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+                Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : Theme.dividerPaint;
+                if (paint != null) {
+                    canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(17.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(17.0f) : 0), getMeasuredHeight() - 1, paint);
+                }
+            }
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
+    }
+
+    public static void showTransactionSheet(final Context context, int i, TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction, long j, Theme.ResourcesProvider resourcesProvider) {
+        boolean z;
+        ViewGroup viewGroup;
+        long j2;
+        long j3;
+        String str;
+        long j4;
+        boolean z2;
+        char c;
+        boolean z3;
+        BottomSheet bottomSheet;
+        String userName;
+        TLRPC.User user;
+        BottomSheet bottomSheet2 = new BottomSheet(context, false, resourcesProvider);
+        bottomSheet2.fixNavigationBar();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        boolean z4 = broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal;
+        if (z4) {
+            TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
+            String string = LocaleController.getString(R.string.MonetizationTransactionDetailWithdraw);
+            j2 = tL_broadcastRevenueTransactionWithdrawal.date;
+            z = z4;
+            j3 = tL_broadcastRevenueTransactionWithdrawal.amount;
+            viewGroup = linearLayout;
+            z3 = tL_broadcastRevenueTransactionWithdrawal.pending;
+            j4 = 0;
+            c = 65535;
+            str = string;
+            z2 = tL_broadcastRevenueTransactionWithdrawal.failed;
+        } else {
+            z = z4;
+            if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
+                TL_stats.TL_broadcastRevenueTransactionProceeds tL_broadcastRevenueTransactionProceeds = (TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction;
+                String string2 = LocaleController.getString(R.string.MonetizationTransactionDetailProceed);
+                j2 = tL_broadcastRevenueTransactionProceeds.from_date;
+                viewGroup = linearLayout;
+                j4 = tL_broadcastRevenueTransactionProceeds.to_date;
+                j3 = tL_broadcastRevenueTransactionProceeds.amount;
+                str = string2;
+            } else {
+                viewGroup = linearLayout;
+                if (!(broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund)) {
+                    return;
+                }
+                TL_stats.TL_broadcastRevenueTransactionRefund tL_broadcastRevenueTransactionRefund = (TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction;
+                String string3 = LocaleController.getString(R.string.MonetizationTransactionDetailRefund);
+                j2 = tL_broadcastRevenueTransactionRefund.from_date;
+                j3 = tL_broadcastRevenueTransactionRefund.amount;
+                str = string3;
+                j4 = 0;
+            }
+            z2 = false;
+            c = 1;
+            z3 = false;
+        }
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        String str2 = str;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+        decimalFormat.setMinimumFractionDigits(2);
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(false);
+        TextView textView = new TextView(context);
+        textView.setGravity(17);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 18.0f);
+        textView.setTextColor(Theme.getColor(c < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) (c < 0 ? "-" : "+"));
+        spannableStringBuilder.append((CharSequence) decimalFormat.format(Math.round((Math.abs(j3) / 1.0E9d) * 100000.0d) / 100000.0d));
+        spannableStringBuilder.append((CharSequence) " TON");
+        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
+        if (indexOf >= 0) {
+            spannableStringBuilder.setSpan(new RelativeSizeSpan(1.3333334f), 0, indexOf, 33);
+        }
+        textView.setText(spannableStringBuilder);
+        ViewGroup viewGroup2 = viewGroup;
+        viewGroup2.addView(textView, LayoutHelper.createLinear(-1, -2, 49, 0, 24, 0, 6));
+        TextView textView2 = new TextView(context);
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 13.0f);
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+        if (z3) {
+            textView2.setText(LocaleController.getString(R.string.MonetizationTransactionPending));
+        } else if (j2 == 0) {
+            textView2.setText(LocaleController.formatShortDateTime(j4));
+        } else if (j4 == 0) {
+            textView2.setText(LocaleController.formatShortDateTime(j2));
+        } else {
+            textView2.setText(LocaleController.formatShortDateTime(j2) + " - " + LocaleController.formatShortDateTime(j4));
+        }
+        if (z2) {
+            textView2.setTextColor(Theme.getColor(Theme.key_text_RedBold, resourcesProvider));
+            textView2.setText(TextUtils.concat(textView2.getText(), " — ", LocaleController.getString(R.string.MonetizationTransactionNotCompleted)));
+        }
+        viewGroup2.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 0));
+        TextView textView3 = new TextView(context);
+        textView3.setGravity(17);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        textView3.setText(str2);
+        viewGroup2.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 0, 27, 0, 0));
+        if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
+            FrameLayout frameLayout = new FrameLayout(context);
+            frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_groupcreate_spanBackground, resourcesProvider)));
+            if (j < 0) {
+                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+                if (chat == 0) {
+                    userName = "";
+                    user = chat;
+                } else {
+                    userName = chat.title;
+                    user = chat;
+                }
+            } else {
+                TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+                userName = UserObject.getUserName(user2);
+                user = user2;
+            }
+            BackupImageView backupImageView = new BackupImageView(context);
+            backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            avatarDrawable.setInfo((TLObject) user);
+            backupImageView.setForUserOrChat(user, avatarDrawable);
+            frameLayout.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
+            TextView textView4 = new TextView(context);
+            textView4.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
+            textView4.setTextSize(1, 13.0f);
+            textView4.setSingleLine();
+            textView4.setText(userName);
+            frameLayout.addView(textView4, LayoutHelper.createFrame(-2, -2.0f, 19, 37.0f, 0.0f, 10.0f, 0.0f));
+            viewGroup2.addView(frameLayout, LayoutHelper.createLinear(-2, 28, 1, 42, 10, 42, 0));
+        }
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        if (z) {
+            final TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal2 = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
+            if ((tL_broadcastRevenueTransactionWithdrawal2.flags & 2) != 0) {
+                buttonWithCounterView.setText(LocaleController.getString(R.string.MonetizationTransactionDetailWithdrawButton), false);
+                buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void run() {
-                        ChannelMonetizationLayout.this.lambda$loadStarsStats$25(starsRevenueStats);
+                    public final void onClick(View view) {
+                        ChannelMonetizationLayout.lambda$showTransactionSheet$38(context, tL_broadcastRevenueTransactionWithdrawal2, view);
                     }
                 });
-                return;
+                bottomSheet = bottomSheet2;
+                viewGroup2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 55, 18, 30, 18, 14));
+                bottomSheet.setCustomView(viewGroup2);
+                bottomSheet.show();
             }
-            TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
-            tL_payments_getStarsRevenueStats.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-            tL_payments_getStarsRevenueStats.dark = Theme.isCurrentThemeDark();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChannelMonetizationLayout.this.lambda$loadStarsStats$27(tLObject, tL_error);
-                }
-            });
         }
+        buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
+        final BottomSheet bottomSheet3 = bottomSheet2;
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                BottomSheet.this.lambda$new$0();
+            }
+        });
+        bottomSheet = bottomSheet3;
+        viewGroup2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 55, 18, 30, 18, 14));
+        bottomSheet.setCustomView(viewGroup2);
+        bottomSheet.show();
+    }
+
+    public static void lambda$showTransactionSheet$38(Context context, TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal, View view) {
+        Browser.openUrl(context, tL_broadcastRevenueTransactionWithdrawal.transaction_url);
     }
 
     public static BottomSheet makeLearnSheet(final Context context, final boolean z, Theme.ResourcesProvider resourcesProvider) {
@@ -1871,348 +1868,466 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         return bottomSheet;
     }
 
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        int i2 = uItem.id;
-        if (i2 != 1) {
-            if (i2 == 4) {
-                this.fragment.presentFragment(new ChannelAffiliateProgramsFragment(this.dialogId));
+    public static void lambda$makeLearnSheet$40(Context context, boolean z) {
+        Browser.openUrl(context, LocaleController.getString(z ? R.string.BotMonetizationInfoTONLink : R.string.MonetizationInfoTONLink));
+    }
+
+    public static class FeatureCell extends FrameLayout {
+        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            ImageView imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            imageView.setImageResource(i);
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 0.0f, 5.0f, 18.0f, 0.0f));
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
+            TextView textView = new TextView(context);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setTextSize(1, 14.0f);
+            textView.setTextColor(Theme.getColor(i2, resourcesProvider));
+            textView.setText(charSequence);
+            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2));
+            TextView textView2 = new TextView(context);
+            textView2.setTextSize(1, 14.0f);
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+            textView2.setText(charSequence2);
+            linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), AndroidUtilities.dp(325.0f)), View.MeasureSpec.getMode(i)), i2);
+        }
+    }
+
+    public class ChannelTransactionsView extends LinearLayout {
+        private final PageAdapter adapter;
+        private final int currentAccount;
+        private final long dialogId;
+        private boolean[] loadingTransactions;
+        private String starsLastOffset;
+        private final ArrayList starsTransactions;
+        private final ViewPagerFixed.TabsView tabsView;
+        private final ArrayList tonTransactions;
+        private String tonTransactionsLastOffset;
+        private final Runnable updateParentList;
+        private final ViewPagerFixed viewPager;
+
+        public class PageAdapter extends ViewPagerFixed.Adapter {
+            private final int classGuid;
+            private final Context context;
+            private final int currentAccount;
+            private final long dialogId;
+            private final ArrayList items = new ArrayList();
+            private final Theme.ResourcesProvider resourcesProvider;
+
+            @Override
+            public void bindView(View view, int i, int i2) {
             }
-        } else {
-            if (this.currentBoostLevel >= MessagesController.getInstance(this.currentAccount).channelRestrictSponsoredLevelMin) {
-                this.switchOffValue = !this.switchOffValue;
-                AndroidUtilities.cancelRunOnUIThread(this.sendCpmUpdateRunnable);
-                AndroidUtilities.runOnUIThread(this.sendCpmUpdateRunnable, 1000L);
-                this.listView.adapter.update(true);
+
+            public PageAdapter(Context context, int i, long j, int i2, Theme.ResourcesProvider resourcesProvider) {
+                this.context = context;
+                this.currentAccount = i;
+                this.classGuid = i2;
+                this.resourcesProvider = resourcesProvider;
+                this.dialogId = j;
+                fill();
+            }
+
+            public void fill() {
+                this.items.clear();
+                if (!ChannelTransactionsView.this.tonTransactions.isEmpty()) {
+                    this.items.add(UItem.asSpace(1));
+                }
+                if (ChannelTransactionsView.this.starsTransactions.isEmpty()) {
+                    return;
+                }
+                this.items.add(UItem.asSpace(0));
+            }
+
+            @Override
+            public int getItemCount() {
+                return this.items.size();
+            }
+
+            public void lambda$createView$0(int i) {
+                ChannelTransactionsView.this.loadTransactions(i);
+            }
+
+            @Override
+            public View createView(final int i) {
+                return new Page(this.context, this.dialogId, i, this.currentAccount, this.classGuid, new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChannelMonetizationLayout.ChannelTransactionsView.PageAdapter.this.lambda$createView$0(i);
+                    }
+                }, this.resourcesProvider);
+            }
+
+            @Override
+            public int getItemViewType(int i) {
+                if (i < 0 || i >= this.items.size()) {
+                    return 1;
+                }
+                return ((UItem) this.items.get(i)).intValue;
+            }
+
+            @Override
+            public String getItemTitle(int i) {
+                int itemViewType = getItemViewType(i);
+                if (itemViewType == 0) {
+                    return LocaleController.getString(R.string.MonetizationTransactionsStars);
+                }
+                if (itemViewType == 1) {
+                    return LocaleController.getString(R.string.MonetizationTransactionsTON);
+                }
+                return "";
+            }
+        }
+
+        public RecyclerListView getCurrentListView() {
+            View currentView = this.viewPager.getCurrentView();
+            if (currentView instanceof Page) {
+                return ((Page) currentView).listView;
+            }
+            return null;
+        }
+
+        public ChannelTransactionsView(Context context, int i, long j, int i2, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.tonTransactionsLastOffset = "";
+            this.tonTransactions = new ArrayList();
+            this.starsTransactions = new ArrayList();
+            this.starsLastOffset = "";
+            this.loadingTransactions = new boolean[]{false, false};
+            this.currentAccount = i;
+            this.dialogId = j;
+            this.updateParentList = runnable;
+            setOrientation(1);
+            ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context);
+            this.viewPager = viewPagerFixed;
+            PageAdapter pageAdapter = new PageAdapter(context, i, j, i2, resourcesProvider);
+            this.adapter = pageAdapter;
+            viewPagerFixed.setAdapter(pageAdapter);
+            ViewPagerFixed.TabsView createTabsView = viewPagerFixed.createTabsView(true, 3);
+            this.tabsView = createTabsView;
+            View view = new View(context);
+            view.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
+            addView(createTabsView, LayoutHelper.createLinear(-1, 48));
+            addView(view, LayoutHelper.createLinear(-1.0f, 1.0f / AndroidUtilities.density));
+            addView(viewPagerFixed, LayoutHelper.createLinear(-1, -1));
+            setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+            loadTransactions(1);
+            loadTransactions(0);
+        }
+
+        private void updateTabs() {
+            this.adapter.fill();
+            this.viewPager.fillTabs(false);
+            this.viewPager.updateCurrent();
+        }
+
+        public void reloadTransactions() {
+            boolean hasTransactions = hasTransactions();
+            for (int i = 0; i < 2; i++) {
+                if (this.loadingTransactions[i]) {
+                    return;
+                }
+                if (i == 1) {
+                    this.tonTransactions.clear();
+                    this.tonTransactionsLastOffset = "";
+                } else {
+                    this.starsTransactions.clear();
+                    this.starsLastOffset = "";
+                }
+                this.loadingTransactions[i] = false;
+                loadTransactions(i);
+            }
+            if (hasTransactions() == hasTransactions || this.updateParentList == null) {
                 return;
             }
-            if (this.boostsStatus == null) {
+            updateTabs();
+            this.updateParentList.run();
+        }
+
+        private void updateLists(boolean z, boolean z2) {
+            for (int i = 0; i < this.viewPager.getViewPages().length; i++) {
+                View view = this.viewPager.getViewPages()[i];
+                if (view instanceof Page) {
+                    Page page = (Page) view;
+                    page.listView.adapter.update(z);
+                    if (z2) {
+                        page.checkMore();
+                    }
+                }
+            }
+        }
+
+        public boolean hasTransactions() {
+            return (this.tonTransactions.isEmpty() && this.starsTransactions.isEmpty()) ? false : true;
+        }
+
+        public boolean hasTransactions(int i) {
+            boolean isEmpty;
+            if (i == 1) {
+                isEmpty = this.tonTransactions.isEmpty();
+            } else {
+                if (i != 0) {
+                    return false;
+                }
+                isEmpty = this.starsTransactions.isEmpty();
+            }
+            return !isEmpty;
+        }
+
+        public void loadTransactions(final int i) {
+            if (this.loadingTransactions[i]) {
                 return;
             }
-            final LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this.fragment, getContext(), 30, this.currentAccount, this.resourcesProvider);
-            limitReachedBottomSheet.setDialogId(this.dialogId);
-            limitReachedBottomSheet.setBoostsStats(this.boostsStatus, true);
-            MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
+            final boolean hasTransactions = hasTransactions();
+            final boolean hasTransactions2 = hasTransactions(i);
+            if (i == 1) {
+                if (this.tonTransactionsLastOffset == null || !ChannelMonetizationLayout.this.tonRevenueAvailable) {
+                    return;
+                }
+                this.loadingTransactions[i] = true;
+                TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
+                tL_payments_getStarsTransactions.ton = true;
+                tL_payments_getStarsTransactions.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                tL_payments_getStarsTransactions.offset = this.tonTransactionsLastOffset;
+                tL_payments_getStarsTransactions.limit = this.tonTransactions.isEmpty() ? 5 : 20;
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$1(i, hasTransactions, hasTransactions2, tLObject, tL_error);
+                    }
+                });
+                return;
+            }
+            if (i == 0 && this.starsLastOffset != null && ChannelMonetizationLayout.this.starsRevenueAvailable) {
+                this.loadingTransactions[i] = true;
+                TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions2 = new TL_stars.TL_payments_getStarsTransactions();
+                tL_payments_getStarsTransactions2.ton = false;
+                tL_payments_getStarsTransactions2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                tL_payments_getStarsTransactions2.offset = this.starsLastOffset;
+                tL_payments_getStarsTransactions2.limit = this.starsTransactions.isEmpty() ? 5 : 20;
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions2, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$3(i, hasTransactions, hasTransactions2, tLObject, tL_error);
+                    }
+                });
+            }
+        }
+
+        public void lambda$loadTransactions$1(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void accept(Object obj) {
-                    ChannelMonetizationLayout.this.lambda$onClick$34(limitReachedBottomSheet, (ChannelBoostsController.CanApplyBoost) obj);
+                public final void run() {
+                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$0(tLObject, i, tL_error, z, z2);
                 }
             });
         }
-    }
 
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
-        return false;
-    }
-
-    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint) {
-        return replaceTON(charSequence, textPaint, 1.0f, true);
-    }
-
-    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, float f2, boolean z) {
-        if (tonString == null) {
-            tonString = new HashMap();
-        }
-        int i = ((textPaint.getFontMetricsInt().bottom * (z ? 1 : -1)) * ((int) (f * 100.0f))) - ((int) (100.0f * f2));
-        SpannableString spannableString = (SpannableString) tonString.get(Integer.valueOf(i));
-        if (spannableString == null) {
-            spannableString = new SpannableString("T");
-            if (z) {
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
-                coloredImageSpan.setScale(f, f);
-                coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText2);
-                coloredImageSpan.setRelativeSize(textPaint.getFontMetricsInt());
-                coloredImageSpan.spaceScaleX = 0.9f;
-                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-            } else {
-                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_ton);
-                coloredImageSpan2.setScale(f, f);
-                coloredImageSpan2.setTranslateY(f2);
-                coloredImageSpan2.spaceScaleX = 0.95f;
-                spannableString.setSpan(coloredImageSpan2, 0, spannableString.length(), 33);
+        public void lambda$loadTransactions$0(TLObject tLObject, int i, TLRPC.TL_error tL_error, boolean z, boolean z2) {
+            Runnable runnable;
+            if (tLObject instanceof TL_stars.StarsStatus) {
+                TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(starsStatus.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
+                this.tonTransactions.addAll(starsStatus.history);
+                this.tonTransactionsLastOffset = starsStatus.next_offset;
+                this.loadingTransactions[i] = false;
+                updateLists(true, true);
+            } else if (tL_error != null) {
+                BulletinFactory.showError(tL_error);
             }
-            tonString.put(Integer.valueOf(i), spannableString);
-        }
-        return AndroidUtilities.replaceMultipleCharSequence("TON", charSequence, spannableString);
-    }
-
-    public static CharSequence replaceTON(CharSequence charSequence, TextPaint textPaint, float f, boolean z) {
-        return replaceTON(charSequence, textPaint, f, 0.0f, z);
-    }
-
-    public void sendCpmUpdate() {
-        AndroidUtilities.cancelRunOnUIThread(this.sendCpmUpdateRunnable);
-        if (this.switchOffValue == this.initialSwitchOffValue) {
-            return;
-        }
-        TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-        tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
-        tL_channels_restrictSponsoredMessages.restricted = this.switchOffValue;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_restrictSponsoredMessages, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ChannelMonetizationLayout.this.lambda$sendCpmUpdate$37(tLObject, tL_error);
+            if (hasTransactions() != z && (runnable = this.updateParentList) != null) {
+                runnable.run();
             }
-        });
-    }
+            if (hasTransactions(i) != z2) {
+                updateTabs();
+            }
+        }
 
-    private void setBalance(long j, long j2) {
-        if (this.formatter == null) {
-            DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-            decimalFormatSymbols.setDecimalSeparator('.');
-            DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-            this.formatter = decimalFormat;
-            decimalFormat.setMinimumFractionDigits(2);
-            this.formatter.setMaximumFractionDigits(6);
-            this.formatter.setGroupingUsed(false);
-        }
-        DecimalFormat decimalFormat2 = this.formatter;
-        double d = j;
-        Double.isNaN(d);
-        double d2 = d / 1.0E9d;
-        decimalFormat2.setMaximumFractionDigits(d2 > 1.5d ? 2 : 6);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replaceTON("TON " + this.formatter.format(d2), this.balanceTitle.getPaint(), 0.9f, true));
-        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-        if (indexOf >= 0) {
-            spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
-        }
-        this.balanceTitle.setText(spannableStringBuilder);
-        this.balanceSubtitle.setText("≈" + BillingController.getInstance().formatCurrency(j2, "USD"));
-    }
-
-    private void setStarsBalance(TL_stars.StarsAmount starsAmount, int i) {
-        if (this.balanceTitle == null || this.balanceSubtitle == null) {
-            return;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(StarsIntroActivity.replaceStarsWithPlain(TextUtils.concat("XTR ", StarsIntroActivity.formatStarsAmount(starsAmount, 0.8f, ' ')), 1.0f));
-        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-        if (indexOf >= 0) {
-            spannableStringBuilder.setSpan(this.balanceTitleSizeSpan, indexOf, spannableStringBuilder.length(), 33);
-        }
-        this.starsBalance = starsAmount;
-        this.starsBalanceTitle.setText(spannableStringBuilder);
-        AnimatedTextView animatedTextView = this.starsBalanceSubtitle;
-        StringBuilder sb = new StringBuilder();
-        sb.append("≈");
-        BillingController billingController = BillingController.getInstance();
-        double d = this.stars_rate;
-        double d2 = starsAmount.amount;
-        Double.isNaN(d2);
-        sb.append(billingController.formatCurrency((long) (d * d2 * 100.0d), "USD"));
-        animatedTextView.setText(sb.toString());
-        this.starsBalanceEditTextContainer.setVisibility(starsAmount.amount > 0 ? 0 : 8);
-        if (this.starsBalanceEditTextAll) {
-            this.starsBalanceEditTextIgnore = true;
-            EditTextBoldCursor editTextBoldCursor = this.starsBalanceEditText;
-            long j = starsAmount.amount;
-            this.starsBalanceEditTextValue = j;
-            editTextBoldCursor.setText(Long.toString(j));
-            EditTextBoldCursor editTextBoldCursor2 = this.starsBalanceEditText;
-            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            this.starsBalanceEditTextIgnore = false;
-            this.starsBalanceButton.setEnabled(this.starsBalanceEditTextValue > 0);
-        }
-        ButtonWithCounterView buttonWithCounterView = this.starsAdsButton;
-        if (buttonWithCounterView != null) {
-            buttonWithCounterView.setEnabled(starsAmount.amount > 0);
-        }
-        this.starsBalanceBlockedUntil = i;
-        AndroidUtilities.cancelRunOnUIThread(this.setStarsBalanceButtonText);
-        this.setStarsBalanceButtonText.run();
-    }
-
-    public static void showTransactionSheet(final Context context, int i, TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction, long j, Theme.ResourcesProvider resourcesProvider) {
-        boolean z;
-        ViewGroup viewGroup;
-        long j2;
-        long j3;
-        String str;
-        long j4;
-        boolean z2;
-        char c;
-        boolean z3;
-        String str2;
-        BottomSheet bottomSheet;
-        String userName;
-        TLRPC.User user;
-        BottomSheet bottomSheet2 = new BottomSheet(context, false, resourcesProvider);
-        bottomSheet2.fixNavigationBar();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        boolean z4 = broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal;
-        if (z4) {
-            TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
-            String string = LocaleController.getString(R.string.MonetizationTransactionDetailWithdraw);
-            j2 = tL_broadcastRevenueTransactionWithdrawal.date;
-            z = z4;
-            j3 = tL_broadcastRevenueTransactionWithdrawal.amount;
-            viewGroup = linearLayout;
-            z3 = tL_broadcastRevenueTransactionWithdrawal.pending;
-            j4 = 0;
-            c = 65535;
-            str = string;
-            z2 = tL_broadcastRevenueTransactionWithdrawal.failed;
-        } else {
-            z = z4;
-            if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
-                TL_stats.TL_broadcastRevenueTransactionProceeds tL_broadcastRevenueTransactionProceeds = (TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction;
-                String string2 = LocaleController.getString(R.string.MonetizationTransactionDetailProceed);
-                j2 = tL_broadcastRevenueTransactionProceeds.from_date;
-                viewGroup = linearLayout;
-                j4 = tL_broadcastRevenueTransactionProceeds.to_date;
-                j3 = tL_broadcastRevenueTransactionProceeds.amount;
-                str = string2;
-            } else {
-                viewGroup = linearLayout;
-                if (!(broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund)) {
-                    return;
+        public void lambda$loadTransactions$3(final int i, final boolean z, final boolean z2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChannelMonetizationLayout.ChannelTransactionsView.this.lambda$loadTransactions$2(tLObject, i, tL_error, z, z2);
                 }
-                TL_stats.TL_broadcastRevenueTransactionRefund tL_broadcastRevenueTransactionRefund = (TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction;
-                String string3 = LocaleController.getString(R.string.MonetizationTransactionDetailRefund);
-                j2 = tL_broadcastRevenueTransactionRefund.from_date;
-                j3 = tL_broadcastRevenueTransactionRefund.amount;
-                str = string3;
-                j4 = 0;
+            });
+        }
+
+        public void lambda$loadTransactions$2(TLObject tLObject, int i, TLRPC.TL_error tL_error, boolean z, boolean z2) {
+            Runnable runnable;
+            if (tLObject instanceof TL_stars.StarsStatus) {
+                TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(starsStatus.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(starsStatus.chats, false);
+                this.starsTransactions.addAll(starsStatus.history);
+                this.starsLastOffset = starsStatus.next_offset;
+                this.loadingTransactions[i] = false;
+                updateLists(true, true);
+            } else if (tL_error != null) {
+                BulletinFactory.showError(tL_error);
             }
-            z2 = false;
-            c = 1;
-            z3 = false;
-        }
-        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
-        decimalFormatSymbols.setDecimalSeparator('.');
-        String str3 = str;
-        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        decimalFormat.setMinimumFractionDigits(2);
-        decimalFormat.setMaximumFractionDigits(12);
-        decimalFormat.setGroupingUsed(false);
-        TextView textView = new TextView(context);
-        textView.setGravity(17);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 18.0f);
-        textView.setTextColor(Theme.getColor(c < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) (c < 0 ? "-" : "+"));
-        double abs = Math.abs(j3);
-        Double.isNaN(abs);
-        double round = Math.round((abs / 1.0E9d) * 100000.0d);
-        Double.isNaN(round);
-        spannableStringBuilder.append((CharSequence) decimalFormat.format(round / 100000.0d));
-        spannableStringBuilder.append((CharSequence) " TON");
-        int indexOf = TextUtils.indexOf(spannableStringBuilder, ".");
-        if (indexOf >= 0) {
-            spannableStringBuilder.setSpan(new RelativeSizeSpan(1.3333334f), 0, indexOf, 33);
-        }
-        textView.setText(spannableStringBuilder);
-        ViewGroup viewGroup2 = viewGroup;
-        viewGroup2.addView(textView, LayoutHelper.createLinear(-1, -2, 49, 0, 24, 0, 6));
-        TextView textView2 = new TextView(context);
-        textView2.setGravity(17);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
-        if (z3) {
-            str2 = LocaleController.getString(R.string.MonetizationTransactionPending);
-        } else if (j2 == 0) {
-            str2 = LocaleController.formatShortDateTime(j4);
-        } else if (j4 == 0) {
-            str2 = LocaleController.formatShortDateTime(j2);
-        } else {
-            str2 = LocaleController.formatShortDateTime(j2) + " - " + LocaleController.formatShortDateTime(j4);
-        }
-        textView2.setText(str2);
-        if (z2) {
-            textView2.setTextColor(Theme.getColor(Theme.key_text_RedBold, resourcesProvider));
-            textView2.setText(TextUtils.concat(textView2.getText(), " — ", LocaleController.getString(R.string.MonetizationTransactionNotCompleted)));
-        }
-        viewGroup2.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 0, 0, 0, 0));
-        TextView textView3 = new TextView(context);
-        textView3.setGravity(17);
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        textView3.setText(str3);
-        viewGroup2.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 0, 27, 0, 0));
-        if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
-            FrameLayout frameLayout = new FrameLayout(context);
-            frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_groupcreate_spanBackground, resourcesProvider)));
-            MessagesController messagesController = MessagesController.getInstance(i);
-            if (j < 0) {
-                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j));
-                if (chat == null) {
-                    userName = "";
-                    user = chat;
-                } else {
-                    userName = chat.title;
-                    user = chat;
-                }
-            } else {
-                TLRPC.User user2 = messagesController.getUser(Long.valueOf(j));
-                userName = UserObject.getUserName(user2);
-                user = user2;
+            if (hasTransactions() != z && (runnable = this.updateParentList) != null) {
+                runnable.run();
             }
-            BackupImageView backupImageView = new BackupImageView(context);
-            backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
-            AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setInfo((TLObject) user);
-            backupImageView.setForUserOrChat(user, avatarDrawable);
-            frameLayout.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
-            TextView textView4 = new TextView(context);
-            textView4.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
-            textView4.setTextSize(1, 13.0f);
-            textView4.setSingleLine();
-            textView4.setText(userName);
-            frameLayout.addView(textView4, LayoutHelper.createFrame(-2, -2.0f, 19, 37.0f, 0.0f, 10.0f, 0.0f));
-            viewGroup2.addView(frameLayout, LayoutHelper.createLinear(-2, 28, 1, 42, 10, 42, 0));
+            if (hasTransactions(i) != z2) {
+                updateTabs();
+            }
         }
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        if (z) {
-            final TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal2 = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
-            if ((tL_broadcastRevenueTransactionWithdrawal2.flags & 2) != 0) {
-                buttonWithCounterView.setText(LocaleController.getString(R.string.MonetizationTransactionDetailWithdrawButton), false);
-                buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+
+        public class Page extends FrameLayout {
+            private final long bot_id;
+            private final int currentAccount;
+            private final UniversalRecyclerView listView;
+            private final Runnable loadMore;
+            private final Theme.ResourcesProvider resourcesProvider;
+            private final int type;
+
+            public Page(Context context, long j, int i, int i2, int i3, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+                super(context);
+                this.type = i;
+                this.currentAccount = i2;
+                this.bot_id = j;
+                this.resourcesProvider = resourcesProvider;
+                this.loadMore = runnable;
+                UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i2, i3, true, new Utilities.Callback2() {
                     @Override
-                    public final void onClick(View view) {
-                        ChannelMonetizationLayout.lambda$showTransactionSheet$38(context, tL_broadcastRevenueTransactionWithdrawal2, view);
+                    public final void run(Object obj, Object obj2) {
+                        ChannelMonetizationLayout.ChannelTransactionsView.Page.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                    }
+                }, new Utilities.Callback5() {
+                    @Override
+                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                        ChannelMonetizationLayout.ChannelTransactionsView.Page.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    }
+                }, null, resourcesProvider);
+                this.listView = universalRecyclerView;
+                addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
+                universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+                        if (!Page.this.listView.canScrollVertically(1) || Page.this.isLoadingVisible()) {
+                            runnable.run();
+                        }
                     }
                 });
-                bottomSheet = bottomSheet2;
-                viewGroup2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 55, 18, 30, 18, 14));
-                bottomSheet.setCustomView(viewGroup2);
-                bottomSheet.show();
             }
-        }
-        buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
-        final BottomSheet bottomSheet3 = bottomSheet2;
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+
+            public void checkMore() {
+                if (!this.listView.canScrollVertically(1) || isLoadingVisible()) {
+                    this.loadMore.run();
+                }
+            }
+
+            public boolean isLoadingVisible() {
+                for (int i = 0; i < this.listView.getChildCount(); i++) {
+                    if (this.listView.getChildAt(i) instanceof FlickerLoadingView) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
             @Override
-            public final void onClick(View view) {
-                BottomSheet.this.lambda$new$0();
+            protected void onAttachedToWindow() {
+                super.onAttachedToWindow();
+                this.listView.adapter.update(false);
             }
-        });
-        bottomSheet = bottomSheet3;
-        viewGroup2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 55, 18, 30, 18, 14));
-        bottomSheet.setCustomView(viewGroup2);
-        bottomSheet.show();
-    }
 
-    @Override
-    public void onAttachedToWindow() {
-        instance = this;
-        super.onAttachedToWindow();
-        checkLearnSheet();
-    }
+            public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+                int i = this.type;
+                if (i == 0) {
+                    Iterator it = ChannelTransactionsView.this.starsTransactions.iterator();
+                    while (it.hasNext()) {
+                        arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) it.next(), true));
+                    }
+                    if (TextUtils.isEmpty(ChannelTransactionsView.this.starsLastOffset)) {
+                        return;
+                    }
+                    arrayList.add(UItem.asFlicker(arrayList.size(), 7));
+                    arrayList.add(UItem.asFlicker(arrayList.size(), 7));
+                    arrayList.add(UItem.asFlicker(arrayList.size(), 7));
+                    return;
+                }
+                if (i == 1) {
+                    Iterator it2 = ChannelTransactionsView.this.tonTransactions.iterator();
+                    while (it2.hasNext()) {
+                        arrayList.add(StarsIntroActivity.StarsTransactionView.Factory.asTransaction((TL_stars.StarsTransaction) it2.next(), true));
+                    }
+                    if (TextUtils.isEmpty(ChannelTransactionsView.this.tonTransactionsLastOffset)) {
+                        return;
+                    }
+                    arrayList.add(UItem.asFlicker(arrayList.size(), 7));
+                    arrayList.add(UItem.asFlicker(arrayList.size(), 7));
+                    arrayList.add(UItem.asFlicker(arrayList.size(), 7));
+                }
+            }
 
-    @Override
-    public void onDetachedFromWindow() {
-        instance = null;
-        super.onDetachedFromWindow();
-        ActionBar actionBar = this.actionBar;
-        if (actionBar != null) {
-            actionBar.setCastShadows(true);
+            public void onClick(UItem uItem, View view, int i, float f, float f2) {
+                Object obj = uItem.object;
+                if (obj instanceof TL_stars.StarsTransaction) {
+                    StarsIntroActivity.showTransactionSheet(getContext(), true, ChannelTransactionsView.this.dialogId, this.currentAccount, (TL_stars.StarsTransaction) uItem.object, this.resourcesProvider);
+                } else if (obj instanceof TL_stats.BroadcastRevenueTransaction) {
+                    ChannelMonetizationLayout.showTransactionSheet(getContext(), this.currentAccount, (TL_stats.BroadcastRevenueTransaction) uItem.object, ChannelTransactionsView.this.dialogId, this.resourcesProvider);
+                }
+            }
         }
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
+    }
+
+    @Override
+    public void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5, int[] iArr) {
+        boolean z;
+        try {
+            if (view == this.listView && this.transactionsLayout.isAttachedToWindow()) {
+                RecyclerListView currentListView = this.transactionsLayout.getCurrentListView();
+                int bottom = ((View) this.transactionsLayout.getParent()).getBottom();
+                ActionBar actionBar = this.actionBar;
+                if (actionBar != null) {
+                    if (isAttachedToWindow() && this.listView.getHeight() - bottom >= 0) {
+                        z = false;
+                        actionBar.setCastShadows(z);
+                    }
+                    z = true;
+                    actionBar.setCastShadows(z);
+                }
+                if (this.listView.getHeight() - bottom >= 0) {
+                    iArr[1] = i4;
+                    currentListView.scrollBy(0, i4);
+                }
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChannelMonetizationLayout.this.lambda$onNestedScroll$42();
+                }
+            });
+        }
+    }
+
+    public void lambda$onNestedScroll$42() {
+        try {
+            RecyclerListView currentListView = this.transactionsLayout.getCurrentListView();
+            if (currentListView == null || currentListView.getAdapter() == null) {
+                return;
+            }
+            currentListView.getAdapter().notifyDataSetChanged();
+        } catch (Throwable unused) {
+        }
     }
 
     @Override
@@ -2261,76 +2376,12 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     }
 
     @Override
-    public void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5) {
-    }
-
-    @Override
-    public void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5, int[] iArr) {
-        boolean z;
-        try {
-            if (view == this.listView && this.transactionsLayout.isAttachedToWindow()) {
-                RecyclerListView currentListView = this.transactionsLayout.getCurrentListView();
-                int bottom = ((View) this.transactionsLayout.getParent()).getBottom();
-                ActionBar actionBar = this.actionBar;
-                if (actionBar != null) {
-                    if (isAttachedToWindow() && this.listView.getHeight() - bottom >= 0) {
-                        z = false;
-                        actionBar.setCastShadows(z);
-                    }
-                    z = true;
-                    actionBar.setCastShadows(z);
-                }
-                if (this.listView.getHeight() - bottom >= 0) {
-                    iArr[1] = i4;
-                    currentListView.scrollBy(0, i4);
-                }
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChannelMonetizationLayout.this.lambda$onNestedScroll$42();
-                }
-            });
-        }
-    }
-
-    @Override
     public void onNestedScrollAccepted(View view, View view2, int i, int i2) {
         this.nestedScrollingParentHelper.onNestedScrollAccepted(view, view2, i);
     }
 
     @Override
-    public boolean onStartNestedScroll(View view, View view2, int i, int i2) {
-        return i == 2;
-    }
-
-    @Override
-    public void onStopNestedScroll(View view) {
-    }
-
-    @Override
     public void onStopNestedScroll(View view, int i) {
         this.nestedScrollingParentHelper.onStopNestedScroll(view);
-    }
-
-    public void reloadTransactions() {
-        this.transactionsLayout.reloadTransactions();
-    }
-
-    public void setActionBar(ActionBar actionBar) {
-        this.actionBar = actionBar;
-    }
-
-    public void setupBalances(boolean r18, org.telegram.tgnet.TLRPC.TL_starsRevenueStatus r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelMonetizationLayout.setupBalances(boolean, org.telegram.tgnet.TLRPC$TL_starsRevenueStatus):void");
-    }
-
-    public void updateList() {
-        UniversalRecyclerView universalRecyclerView = this.listView;
-        if (universalRecyclerView != null) {
-            universalRecyclerView.adapter.update(true);
-        }
     }
 }

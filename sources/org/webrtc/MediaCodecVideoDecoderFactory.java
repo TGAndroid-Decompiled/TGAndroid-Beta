@@ -16,48 +16,6 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
         this.codecAllowedPredicate = predicate;
     }
 
-    private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        int i = 0;
-        while (true) {
-            MediaCodecInfo mediaCodecInfo = null;
-            if (i >= MediaCodecList.getCodecCount()) {
-                return null;
-            }
-            try {
-                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i);
-            } catch (IllegalArgumentException e) {
-                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e);
-            }
-            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
-                return mediaCodecInfo;
-            }
-            i++;
-        }
-    }
-
-    private boolean isCodecAllowed(MediaCodecInfo mediaCodecInfo) {
-        Predicate<MediaCodecInfo> predicate = this.codecAllowedPredicate;
-        if (predicate == null) {
-            return true;
-        }
-        return predicate.test(mediaCodecInfo);
-    }
-
-    private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
-        String name = mediaCodecInfo.getName();
-        if (name.startsWith("OMX.qcom.")) {
-            return true;
-        }
-        return Build.VERSION.SDK_INT >= 23 && name.startsWith("OMX.Exynos.");
-    }
-
-    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
-        if (MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null) {
-            return isCodecAllowed(mediaCodecInfo);
-        }
-        return false;
-    }
-
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
         VideoCodecMimeType valueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
@@ -84,5 +42,47 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
             }
         }
         return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
+    }
+
+    private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
+        int i = 0;
+        while (true) {
+            MediaCodecInfo mediaCodecInfo = null;
+            if (i >= MediaCodecList.getCodecCount()) {
+                return null;
+            }
+            try {
+                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i);
+            } catch (IllegalArgumentException e) {
+                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e);
+            }
+            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
+                return mediaCodecInfo;
+            }
+            i++;
+        }
+    }
+
+    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+        if (MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null) {
+            return isCodecAllowed(mediaCodecInfo);
+        }
+        return false;
+    }
+
+    private boolean isCodecAllowed(MediaCodecInfo mediaCodecInfo) {
+        Predicate<MediaCodecInfo> predicate = this.codecAllowedPredicate;
+        if (predicate == null) {
+            return true;
+        }
+        return predicate.test(mediaCodecInfo);
+    }
+
+    private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
+        String name = mediaCodecInfo.getName();
+        if (name.startsWith("OMX.qcom.")) {
+            return true;
+        }
+        return Build.VERSION.SDK_INT >= 23 && name.startsWith("OMX.Exynos.");
     }
 }

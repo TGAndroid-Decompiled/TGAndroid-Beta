@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.text.Layout;
-import android.text.StaticLayout;
 import android.view.View;
 import android.view.ViewParent;
 import java.util.ArrayList;
@@ -42,6 +41,38 @@ public class QuoteHighlight extends Path {
         public float top;
 
         private Rect() {
+        }
+    }
+
+    public QuoteHighlight(final ChatMessageCell chatMessageCell, int i, int i2) {
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        this.path = new CornerPath();
+        this.rectangles = new ArrayList();
+        this.quotesToExpand = new ArrayList();
+        this.cell = chatMessageCell;
+        this.t = new AnimatedFloat(0.0f, new Runnable() {
+            @Override
+            public final void run() {
+                QuoteHighlight.lambda$new$0(ChatMessageCell.this);
+            }
+        }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.id = i;
+        int i3 = -i2;
+        this.start = i3;
+        this.end = i3;
+        this.todo = true;
+        int dp = AndroidUtilities.dp(4.0f);
+        this.cornerPathEffectSize = dp;
+        paint.setPathEffect(new CornerPathEffect(dp));
+    }
+
+    public static void lambda$new$0(ChatMessageCell chatMessageCell) {
+        if (chatMessageCell != null) {
+            chatMessageCell.invalidate();
+        }
+        if (chatMessageCell.getParent() instanceof View) {
+            ((View) chatMessageCell.getParent()).invalidate();
         }
     }
 
@@ -84,11 +115,10 @@ public class QuoteHighlight extends Path {
                 this.currentOffsetY = textLayoutBlock.textYOffset(arrayList) + textLayoutBlock.padTop;
                 this.minX = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
                 z = z || AndroidUtilities.isRTL(textLayoutBlock.textLayout.getText());
-                StaticLayout staticLayout = textLayoutBlock.textLayout;
                 if (z) {
-                    staticLayout.getSelectionPath(max, min, this);
+                    textLayoutBlock.textLayout.getSelectionPath(max, min, this);
                 } else {
-                    getSelectionPath(staticLayout, max, min);
+                    getSelectionPath(textLayoutBlock.textLayout, max, min);
                 }
                 if (textLayoutBlock.quoteCollapse && textLayoutBlock.collapsed()) {
                     this.quotesToExpand.add(Integer.valueOf(textLayoutBlock.index));
@@ -106,30 +136,18 @@ public class QuoteHighlight extends Path {
         }
     }
 
-    public QuoteHighlight(final ChatMessageCell chatMessageCell, int i, int i2) {
-        Paint paint = new Paint(1);
-        this.paint = paint;
-        this.path = new CornerPath();
-        this.rectangles = new ArrayList();
-        this.quotesToExpand = new ArrayList();
-        this.cell = chatMessageCell;
-        this.t = new AnimatedFloat(0.0f, new Runnable() {
-            @Override
-            public final void run() {
-                QuoteHighlight.lambda$new$0(ChatMessageCell.this);
-            }
-        }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.id = i;
-        int i3 = -i2;
-        this.start = i3;
-        this.end = i3;
-        this.todo = true;
-        int dp = AndroidUtilities.dp(4.0f);
-        this.cornerPathEffectSize = dp;
-        paint.setPathEffect(new CornerPathEffect(dp));
+    public static void lambda$new$1(View view, ViewParent viewParent) {
+        if (view != null) {
+            view.invalidate();
+        }
+        if (viewParent instanceof View) {
+            ((View) viewParent).invalidate();
+        }
     }
 
     private void getSelectionPath(Layout layout, int i, int i2) {
+        float lineLeft;
+        float lineRight;
         if (i == i2) {
             return;
         }
@@ -139,35 +157,69 @@ public class QuoteHighlight extends Path {
         }
         int lineForOffset = layout.getLineForOffset(i);
         int lineForOffset2 = layout.getLineForOffset(i2);
-        int i3 = lineForOffset;
-        while (i3 <= lineForOffset2) {
+        for (int i3 = lineForOffset; i3 <= lineForOffset2; i3++) {
             int lineStart = layout.getLineStart(i3);
             int lineEnd = layout.getLineEnd(i3);
             if (lineEnd != lineStart && (lineStart + 1 != lineEnd || !Character.isWhitespace(layout.getText().charAt(lineStart)))) {
-                float lineLeft = (i3 != lineForOffset || i <= lineStart) ? layout.getLineLeft(i3) : layout.getPrimaryHorizontal(i);
-                float lineRight = (i3 != lineForOffset2 || i2 >= lineEnd) ? layout.getLineRight(i3) : layout.getPrimaryHorizontal(i2);
+                if (i3 == lineForOffset && i > lineStart) {
+                    lineLeft = layout.getPrimaryHorizontal(i);
+                } else {
+                    lineLeft = layout.getLineLeft(i3);
+                }
+                if (i3 == lineForOffset2 && i2 < lineEnd) {
+                    lineRight = layout.getPrimaryHorizontal(i2);
+                } else {
+                    lineRight = layout.getLineRight(i3);
+                }
                 addRect(Math.min(lineLeft, lineRight), layout.getLineTop(i3), Math.max(lineLeft, lineRight), layout.getLineBottom(i3));
             }
-            i3++;
         }
     }
 
-    public static void lambda$new$0(ChatMessageCell chatMessageCell) {
-        if (chatMessageCell != null) {
-            chatMessageCell.invalidate();
-        }
-        if (chatMessageCell.getParent() instanceof View) {
-            ((View) chatMessageCell.getParent()).invalidate();
-        }
+    public float getT() {
+        return this.t.set(1.0f);
     }
 
-    public static void lambda$new$1(View view, ViewParent viewParent) {
-        if (view != null) {
-            view.invalidate();
+    public void draw(Canvas canvas, float f, float f2, android.graphics.Rect rect, float f3) {
+        float f4 = this.t.set(1.0f);
+        canvas.save();
+        if (this.todo) {
+            int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, f4);
+            if (this.cornerPathEffectSize != lerp) {
+                Paint paint = this.paint;
+                this.cornerPathEffectSize = lerp;
+                paint.setPathEffect(new CornerPathEffect(lerp));
+            }
+            this.path.rewind();
+            int todoIndex = this.cell.getTodoIndex(-this.start);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(this.cell.getBackgroundDrawableLeft(), this.cell.getPollButtonTop(todoIndex), this.cell.getBackgroundDrawableRight(), this.cell.getPollButtonBottom(todoIndex));
+            AndroidUtilities.lerp(rect, rectF, f4, rectF);
+            this.path.addRect(rectF, Path.Direction.CW);
+            this.path.closeRects();
+        } else {
+            canvas.translate(f, f2);
+            this.path.rewind();
+            for (int i = 0; i < this.rectangles.size(); i++) {
+                Rect rect2 = (Rect) this.rectangles.get(i);
+                this.path.addRect(AndroidUtilities.lerp(rect.left - f, rect2.left, f4), AndroidUtilities.lerp(rect2.first ? rect.top - f2 : rect2.prevTop, rect2.top, f4), AndroidUtilities.lerp(rect.right - f, rect2.right, f4), AndroidUtilities.lerp(rect2.last ? rect.bottom - f2 : rect2.nextBottom, rect2.bottom, f4), Path.Direction.CW);
+            }
+            this.path.closeRects();
         }
-        if (viewParent instanceof View) {
-            ((View) viewParent).invalidate();
-        }
+        int alpha = this.paint.getAlpha();
+        this.paint.setAlpha((int) (alpha * f3));
+        canvas.drawPath(this.path, this.paint);
+        this.paint.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    public boolean done() {
+        return this.t.get() >= 1.0f;
+    }
+
+    @Override
+    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        addRect(f, f2, f3, f4);
     }
 
     public void addRect(float f, float f2, float f3, float f4) {
@@ -194,50 +246,5 @@ public class QuoteHighlight extends Path {
         }
         this.rectangles.add(rect);
         this.lastRect = rect;
-    }
-
-    @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        addRect(f, f2, f3, f4);
-    }
-
-    public boolean done() {
-        return this.t.get() >= 1.0f;
-    }
-
-    public void draw(Canvas canvas, float f, float f2, android.graphics.Rect rect, float f3) {
-        float f4 = this.t.set(1.0f);
-        canvas.save();
-        if (this.todo) {
-            int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, f4);
-            if (this.cornerPathEffectSize != lerp) {
-                Paint paint = this.paint;
-                this.cornerPathEffectSize = lerp;
-                paint.setPathEffect(new CornerPathEffect(lerp));
-            }
-            this.path.rewind();
-            int todoIndex = this.cell.getTodoIndex(-this.start);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.cell.getBackgroundDrawableLeft(), this.cell.getPollButtonTop(todoIndex), this.cell.getBackgroundDrawableRight(), this.cell.getPollButtonBottom(todoIndex));
-            AndroidUtilities.lerp(rect, rectF, f4, rectF);
-            this.path.addRect(rectF, Path.Direction.CW);
-        } else {
-            canvas.translate(f, f2);
-            this.path.rewind();
-            for (int i = 0; i < this.rectangles.size(); i++) {
-                Rect rect2 = (Rect) this.rectangles.get(i);
-                this.path.addRect(AndroidUtilities.lerp(rect.left - f, rect2.left, f4), AndroidUtilities.lerp(rect2.first ? rect.top - f2 : rect2.prevTop, rect2.top, f4), AndroidUtilities.lerp(rect.right - f, rect2.right, f4), AndroidUtilities.lerp(rect2.last ? rect.bottom - f2 : rect2.nextBottom, rect2.bottom, f4), Path.Direction.CW);
-            }
-        }
-        this.path.closeRects();
-        int alpha = this.paint.getAlpha();
-        this.paint.setAlpha((int) (alpha * f3));
-        canvas.drawPath(this.path, this.paint);
-        this.paint.setAlpha(alpha);
-        canvas.restore();
-    }
-
-    public float getT() {
-        return this.t.set(1.0f);
     }
 }

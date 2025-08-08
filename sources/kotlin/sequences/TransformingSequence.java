@@ -20,15 +20,15 @@ public final class TransformingSequence implements Sequence {
         return new Iterator() {
             private final Iterator iterator;
 
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            }
+
             {
                 Sequence sequence;
                 sequence = TransformingSequence.this.sequence;
                 this.iterator = sequence.iterator();
-            }
-
-            @Override
-            public boolean hasNext() {
-                return this.iterator.hasNext();
             }
 
             @Override
@@ -39,8 +39,8 @@ public final class TransformingSequence implements Sequence {
             }
 
             @Override
-            public void remove() {
-                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            public boolean hasNext() {
+                return this.iterator.hasNext();
             }
         };
     }

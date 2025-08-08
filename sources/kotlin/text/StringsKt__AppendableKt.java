@@ -5,22 +5,17 @@ import kotlin.jvm.internal.Intrinsics;
 
 public abstract class StringsKt__AppendableKt {
     public static void appendElement(Appendable appendable, Object obj, Function1 function1) {
-        CharSequence valueOf;
         Intrinsics.checkNotNullParameter(appendable, "<this>");
         if (function1 != null) {
-            obj = function1.invoke(obj);
-        } else {
-            if (!(obj == null ? true : obj instanceof CharSequence)) {
-                if (obj instanceof Character) {
-                    appendable.append(((Character) obj).charValue());
-                    return;
-                } else {
-                    valueOf = String.valueOf(obj);
-                    appendable.append(valueOf);
-                }
-            }
+            appendable.append((CharSequence) function1.invoke(obj));
+            return;
         }
-        valueOf = (CharSequence) obj;
-        appendable.append(valueOf);
+        if (obj == null ? true : obj instanceof CharSequence) {
+            appendable.append((CharSequence) obj);
+        } else if (obj instanceof Character) {
+            appendable.append(((Character) obj).charValue());
+        } else {
+            appendable.append(String.valueOf(obj));
+        }
     }
 }

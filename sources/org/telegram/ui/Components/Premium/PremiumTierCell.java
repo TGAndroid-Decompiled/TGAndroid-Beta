@@ -13,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CheckBoxBase;
@@ -102,74 +105,40 @@ public class PremiumTierCell extends ViewGroup {
         setWillNotDraw(false);
     }
 
-    private void checkRtlAndLayout(View view) {
-        Rect rect = AndroidUtilities.rectTmp2;
-        rect.right = rect.left + view.getMeasuredWidth();
-        rect.bottom = rect.top + view.getMeasuredHeight();
-        if (LocaleController.isRTL) {
-            int i = rect.right;
-            rect.right = getWidth() - rect.left;
-            rect.left = getWidth() - i;
-        }
-        view.layout(rect.left, rect.top, rect.right, rect.bottom);
-    }
-
-    public void bind(org.telegram.ui.PremiumPreviewFragment.SubscriptionTier r6, boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.PremiumTierCell.bind(org.telegram.ui.PremiumPreviewFragment$SubscriptionTier, boolean):void");
-    }
-
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        if (!this.isDrawingGradient) {
-            super.dispatchDraw(canvas);
-            return;
-        }
-        Paint paint = this.paint;
-        PremiumTierCell premiumTierCell = this.globalGradientView;
-        if (premiumTierCell != null) {
-            paint = premiumTierCell.paint;
-        }
-        drawChild(canvas, this.checkBox, getDrawingTime());
-        updateColors();
-        updateGradient();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(this.pricePerMonthView.getLeft(), this.pricePerMonthView.getTop() + AndroidUtilities.dp(4.0f), this.pricePerMonthView.getRight(), this.pricePerMonthView.getBottom() - AndroidUtilities.dp(4.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        rectF.set(this.pricePerYearStrikeView.getLeft(), this.pricePerYearStrikeView.getTop() + AndroidUtilities.dp(3.0f), this.pricePerYearStrikeView.getRight(), this.pricePerYearStrikeView.getBottom() - AndroidUtilities.dp(3.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        rectF.set(this.titleView.getLeft(), this.titleView.getTop() + AndroidUtilities.dp(4.0f), this.titleView.getRight(), this.titleView.getBottom() - AndroidUtilities.dp(4.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        invalidate();
-    }
-
-    public PremiumPreviewFragment.SubscriptionTier getTier() {
-        return this.tier;
+    public void setEnabled(boolean z) {
+        super.setEnabled(z);
+        this.titleView.setAlpha(z ? 1.0f : 0.6f);
+        this.pricePerMonthView.setAlpha(z ? 1.0f : 0.6f);
+        this.checkBox.setAlpha(z ? 1.0f : 0.6f);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float left;
-        float height;
-        float width;
-        float height2;
-        Paint paint;
         super.onDraw(canvas);
         if (this.hasDivider) {
             if (LocaleController.isRTL) {
-                height = getHeight() - 1;
-                width = this.titleView.getRight();
-                height2 = getHeight() - 1;
-                paint = Theme.dividerPaint;
-                left = 0.0f;
+                canvas.drawLine(0.0f, getHeight() - 1, this.titleView.getRight(), getHeight() - 1, Theme.dividerPaint);
             } else {
-                left = this.titleView.getLeft();
-                height = getHeight() - 1;
-                width = getWidth();
-                height2 = getHeight() - 1;
-                paint = Theme.dividerPaint;
+                canvas.drawLine(this.titleView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, Theme.dividerPaint);
             }
-            canvas.drawLine(left, height, width, height2, paint);
         }
+    }
+
+    public void setParentXOffset(float f) {
+        this.parentXOffset = f;
+    }
+
+    public void setGlobalGradientView(PremiumTierCell premiumTierCell) {
+        this.globalGradientView = premiumTierCell;
+    }
+
+    public void setProgressDelegate(CheckBoxBase.ProgressDelegate progressDelegate) {
+        this.checkBox.setProgressDelegate(progressDelegate);
+    }
+
+    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
+        this.checkBox.setCirclePaintProvider(genericProvider);
     }
 
     @Override
@@ -196,6 +165,42 @@ public class PremiumTierCell extends ViewGroup {
     }
 
     @Override
+    public void dispatchDraw(Canvas canvas) {
+        if (this.isDrawingGradient) {
+            Paint paint = this.paint;
+            PremiumTierCell premiumTierCell = this.globalGradientView;
+            if (premiumTierCell != null) {
+                paint = premiumTierCell.paint;
+            }
+            drawChild(canvas, this.checkBox, getDrawingTime());
+            updateColors();
+            updateGradient();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(this.pricePerMonthView.getLeft(), this.pricePerMonthView.getTop() + AndroidUtilities.dp(4.0f), this.pricePerMonthView.getRight(), this.pricePerMonthView.getBottom() - AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+            rectF.set(this.pricePerYearStrikeView.getLeft(), this.pricePerYearStrikeView.getTop() + AndroidUtilities.dp(3.0f), this.pricePerYearStrikeView.getRight(), this.pricePerYearStrikeView.getBottom() - AndroidUtilities.dp(3.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+            rectF.set(this.titleView.getLeft(), this.titleView.getTop() + AndroidUtilities.dp(4.0f), this.titleView.getRight(), this.titleView.getBottom() - AndroidUtilities.dp(4.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+            invalidate();
+            return;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    private void checkRtlAndLayout(View view) {
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.right = rect.left + view.getMeasuredWidth();
+        rect.bottom = rect.top + view.getMeasuredHeight();
+        if (LocaleController.isRTL) {
+            int i = rect.right;
+            rect.right = getWidth() - rect.left;
+            rect.left = getWidth() - i;
+        }
+        view.layout(rect.left, rect.top, rect.right, rect.bottom);
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int dp = AndroidUtilities.dp(58.0f);
@@ -216,52 +221,64 @@ public class PremiumTierCell extends ViewGroup {
         setMeasuredDimension(size, dp);
     }
 
+    public PremiumPreviewFragment.SubscriptionTier getTier() {
+        return this.tier;
+    }
+
     public void setChecked(boolean z, boolean z2) {
         this.checkBox.setChecked(z, z2);
     }
 
-    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
-        this.checkBox.setCirclePaintProvider(genericProvider);
-    }
-
-    @Override
-    public void setEnabled(boolean z) {
-        super.setEnabled(z);
-        this.titleView.setAlpha(z ? 1.0f : 0.6f);
-        this.pricePerMonthView.setAlpha(z ? 1.0f : 0.6f);
-        this.checkBox.setAlpha(z ? 1.0f : 0.6f);
-    }
-
-    public void setGlobalGradientView(PremiumTierCell premiumTierCell) {
-        this.globalGradientView = premiumTierCell;
-    }
-
-    public void setParentXOffset(float f) {
-        this.parentXOffset = f;
-    }
-
-    public void setProgressDelegate(CheckBoxBase.ProgressDelegate progressDelegate) {
-        this.checkBox.setProgressDelegate(progressDelegate);
-    }
-
-    public void updateColors() {
-        PremiumTierCell premiumTierCell = this.globalGradientView;
-        if (premiumTierCell != null) {
-            premiumTierCell.updateColors();
-            return;
+    public void bind(PremiumPreviewFragment.SubscriptionTier subscriptionTier, boolean z) {
+        String formatPluralString;
+        this.tier = subscriptionTier;
+        this.hasDivider = z;
+        int months = subscriptionTier.getMonths();
+        if (months == 1) {
+            this.titleView.setText(LocaleController.getString(R.string.PremiumTierMonthly));
+        } else if (months == 6) {
+            this.titleView.setText(LocaleController.getString(R.string.PremiumTierSemiannual));
+        } else if (months != 12) {
+            TextView textView = this.titleView;
+            if (subscriptionTier.getMonths() > 12 && subscriptionTier.getMonths() % 12 == 0) {
+                formatPluralString = LocaleController.formatPluralString("PremiumTierAnnualYears", subscriptionTier.getMonths() / 12, new Object[0]);
+            } else {
+                formatPluralString = LocaleController.formatPluralString("Months", subscriptionTier.getMonths(), new Object[0]);
+            }
+            textView.setText(formatPluralString);
+        } else {
+            this.titleView.setText(LocaleController.getString(R.string.PremiumTierAnnual));
         }
-        int color = Theme.getColor(this.colorKey1);
-        int color2 = Theme.getColor(this.colorKey2);
-        if (this.color1 == color2 && this.color0 == color) {
-            return;
+        boolean z2 = !BuildVars.useInvoiceBilling() && (!BillingController.getInstance().isReady() || subscriptionTier.getOfferDetails() == null);
+        this.isDrawingGradient = z2;
+        if (!z2) {
+            if (subscriptionTier.getDiscount() <= 0) {
+                this.discountView.setVisibility(8);
+                this.pricePerYearStrikeView.setVisibility(8);
+                this.pricePerYearView.setVisibility(8);
+            } else {
+                this.discountView.setText(LocaleController.formatString(R.string.GiftPremiumOptionDiscount, Integer.valueOf(subscriptionTier.getDiscount())));
+                this.discountView.setVisibility(0);
+                this.pricePerYearStrikeView.setVisibility(0);
+                this.pricePerYearView.setVisibility(0);
+            }
+            this.pricePerYearStrikeView.setText(subscriptionTier.getFormattedPricePerYearRegular());
+            this.pricePerYearView.setText(LocaleController.formatString(R.string.PricePerYear, subscriptionTier.getFormattedPricePerYear()));
+            this.pricePerMonthView.setText(LocaleController.formatString(R.string.PricePerMonthMe, subscriptionTier.getFormattedPricePerMonth()));
+            if (subscriptionTier.subscriptionOption.current) {
+                this.pricePerYearView.setVisibility(0);
+                this.pricePerYearView.setText(LocaleController.getString(R.string.YourCurrentPlan));
+            }
+        } else {
+            this.discountView.setText(LocaleController.formatString(R.string.GiftPremiumOptionDiscount, 10));
+            this.discountView.setVisibility(0);
+            this.pricePerYearStrikeView.setVisibility(0);
+            this.pricePerYearView.setVisibility(0);
+            this.pricePerYearStrikeView.setText("USD00.00");
+            this.pricePerYearView.setText(LocaleController.formatString(R.string.PricePerYear, 1000));
+            this.pricePerMonthView.setText(LocaleController.formatString(R.string.PricePerMonthMe, 100));
         }
-        this.color0 = color;
-        this.color1 = color2;
-        int dp = AndroidUtilities.dp(200.0f);
-        this.gradientWidth = dp;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{color2, color, color, color2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-        this.gradient = linearGradient;
-        this.paint.setShader(linearGradient);
+        requestLayout();
     }
 
     public void updateGradient() {
@@ -293,5 +310,25 @@ public class PremiumTierCell extends ViewGroup {
         if (linearGradient != null) {
             linearGradient.setLocalMatrix(this.matrix);
         }
+    }
+
+    public void updateColors() {
+        PremiumTierCell premiumTierCell = this.globalGradientView;
+        if (premiumTierCell != null) {
+            premiumTierCell.updateColors();
+            return;
+        }
+        int color = Theme.getColor(this.colorKey1);
+        int color2 = Theme.getColor(this.colorKey2);
+        if (this.color1 == color2 && this.color0 == color) {
+            return;
+        }
+        this.color0 = color;
+        this.color1 = color2;
+        int dp = AndroidUtilities.dp(200.0f);
+        this.gradientWidth = dp;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{color2, color, color, color2}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+        this.gradient = linearGradient;
+        this.paint.setShader(linearGradient);
     }
 }

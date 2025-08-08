@@ -55,9 +55,8 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
     }
 
     public HashtagActivity(String str, Theme.ResourcesProvider resourcesProvider) {
-        String str2;
         setResourceProvider(resourcesProvider);
-        String str3 = "";
+        String str2 = "";
         String trim = (str == null ? "" : str).trim();
         if (!trim.startsWith("#") && !trim.startsWith("$")) {
             trim = "#" + trim;
@@ -65,141 +64,66 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         int indexOf = trim.indexOf("@");
         if (indexOf > 0) {
             this.hashtag = trim.substring(0, indexOf);
-            str2 = trim.substring(indexOf + 1);
+            this.username = trim.substring(indexOf + 1);
         } else {
             this.hashtag = trim;
-            str2 = null;
+            this.username = null;
         }
-        this.username = str2;
         StringBuilder sb = new StringBuilder();
         sb.append(this.hashtag);
         if (!TextUtils.isEmpty(this.username)) {
-            str3 = "@" + this.username;
+            str2 = "@" + this.username;
         }
-        sb.append(str3);
+        sb.append(str2);
         this.query = sb.toString();
         this.storiesList = new StoriesController.SearchStoriesList(this.currentAccount, this.username, this.hashtag);
     }
 
-    public void lambda$createView$0(View view) {
-        transit(!this.storiesVisible, true);
-        this.storiesView.transition(this.storiesVisible);
+    @Override
+    public boolean onFragmentCreate() {
+        getMessagesController().getStoriesController().attachedSearchLists.add(this.storiesList);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.hashtagSearchUpdated);
+        this.storiesList.load(true, 18);
+        return super.onFragmentCreate();
     }
 
-    public void lambda$updateStoriesVisible$1(boolean z) {
-        if (z) {
-            return;
-        }
-        this.storiesView.setVisibility(8);
+    @Override
+    public void onFragmentDestroy() {
+        getMessagesController().getStoriesController().attachedSearchLists.remove(this.storiesList);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.hashtagSearchUpdated);
+        super.onFragmentDestroy();
     }
 
-    private void transit(final boolean z, boolean z2) {
-        ChatActivity chatActivity;
-        RecyclerListView recyclerListView;
-        ValueAnimator valueAnimator = this.transitAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        if (z2) {
-            if (this.storiesVisible == z) {
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        ChatActivityContainer chatActivityContainer;
+        if (i == NotificationCenter.storiesListUpdated) {
+            Object obj = objArr[0];
+            StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
+            if (obj == searchStoriesList) {
+                MessagesSearchAdapter.StoriesView storiesView = this.storiesView;
+                if (storiesView != null) {
+                    updateStoriesVisible(storiesView.set(searchStoriesList), true);
+                }
+                TextView textView = this.storiesTotalTextView;
+                if (textView != null) {
+                    textView.setText(LocaleController.formatPluralString("FoundStories", this.storiesList.getCount(), new Object[0]));
+                    return;
+                }
                 return;
             }
-            this.storiesVisible = z;
-            this.sharedMediaLayoutContainer.setVisibility(0);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
-            this.transitAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    HashtagActivity.this.transitValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                    HashtagActivity.this.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                    HashtagActivity.this.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                    if (HashtagActivity.this.chatContainer != null && HashtagActivity.this.chatContainer.chatActivity != null && HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView != null) {
-                        HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                        HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                    }
-                    HashtagActivity.this.sharedMediaLayoutContainer.setAlpha(HashtagActivity.this.transitValue);
-                }
-            });
-            this.transitAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    HashtagActivity.this.transitValue = z ? 1.0f : 0.0f;
-                    HashtagActivity.this.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                    HashtagActivity.this.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
-                    if (HashtagActivity.this.chatContainer != null && HashtagActivity.this.chatContainer.chatActivity != null && HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView != null) {
-                        HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                        HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
-                    }
-                    HashtagActivity.this.sharedMediaLayoutContainer.setAlpha(HashtagActivity.this.transitValue);
-                    if (z) {
-                        return;
-                    }
-                    HashtagActivity.this.sharedMediaLayoutContainer.setVisibility(8);
-                }
-            });
-            this.transitAnimator.setDuration(320L);
-            this.transitAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.transitAnimator.start();
             return;
         }
-        this.storiesVisible = z;
-        this.transitValue = z ? 1.0f : 0.0f;
-        this.sharedMediaLayout.setScaleX(z ? 1.0f : 0.95f);
-        this.sharedMediaLayout.setScaleY(z ? 1.0f : 0.95f);
-        this.sharedMediaLayoutContainer.setAlpha(z ? 1.0f : 0.0f);
-        this.sharedMediaLayoutContainer.setVisibility(z ? 0 : 8);
-        ChatActivityContainer chatActivityContainer = this.chatContainer;
-        if (chatActivityContainer == null || (chatActivity = chatActivityContainer.chatActivity) == null || (recyclerListView = chatActivity.messagesSearchListView) == null) {
+        if (i != NotificationCenter.hashtagSearchUpdated || (chatActivityContainer = this.chatContainer) == null || chatActivityContainer.chatActivity == null || ((Integer) objArr[0]).intValue() != this.chatContainer.chatActivity.getClassGuid()) {
             return;
         }
-        recyclerListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
-        this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
-    }
-
-    private void updateStoriesVisible(final boolean z, boolean z2) {
-        this.storiesView.animate().cancel();
-        ValueAnimator valueAnimator = this.contentViewAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
+        int intValue = ((Integer) objArr[1]).intValue();
+        MessagesSearchAdapter.StoriesView storiesView2 = this.storiesView;
+        if (storiesView2 != null) {
+            storiesView2.setMessages(intValue, this.hashtag, this.username);
         }
-        if (!z2) {
-            this.storiesView.setVisibility(z ? 0 : 8);
-            this.storiesView.setTranslationY(z ? 0.0f : -AndroidUtilities.dp(48.0f));
-            this.contentView.setTranslationY(z ? AndroidUtilities.dp(48.0f) : 0.0f);
-            this.contentView.setPadding(0, 0, 0, z ? AndroidUtilities.dp(48.0f) : 0);
-            return;
-        }
-        this.storiesView.setVisibility(0);
-        ViewPropertyAnimator duration = this.storiesView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(48.0f)).withEndAction(new Runnable() {
-            @Override
-            public final void run() {
-                HashtagActivity.this.lambda$updateStoriesVisible$1(z);
-            }
-        }).setDuration(320L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        duration.setInterpolator(cubicBezierInterpolator).start();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.contentViewValue, z ? 1.0f : 0.0f);
-        this.contentViewAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                HashtagActivity.this.contentViewValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                HashtagActivity.this.contentView.setTranslationY(HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f));
-                HashtagActivity.this.contentView.setPadding(0, 0, 0, (int) (HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f)));
-            }
-        });
-        this.contentViewAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                HashtagActivity.this.contentViewValue = z ? 1.0f : 0.0f;
-                HashtagActivity.this.contentView.setTranslationY(HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f));
-                HashtagActivity.this.contentView.setPadding(0, 0, 0, (int) (HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f)));
-            }
-        });
-        this.contentViewAnimator.setDuration(320L);
-        this.contentViewAnimator.setInterpolator(cubicBezierInterpolator);
-        this.contentViewAnimator.start();
     }
 
     @Override
@@ -320,16 +244,6 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public String getStoriesHashtag() {
-                return HashtagActivity.this.hashtag;
-            }
-
-            @Override
-            public String getStoriesHashtagUsername() {
-                return HashtagActivity.this.username;
-            }
-
-            @Override
             protected boolean includeSavedDialogs() {
                 return false;
             }
@@ -376,6 +290,16 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
 
             @Override
             public void showActionMode(boolean z) {
+            }
+
+            @Override
+            public String getStoriesHashtag() {
+                return HashtagActivity.this.hashtag;
+            }
+
+            @Override
+            public String getStoriesHashtagUsername() {
+                return HashtagActivity.this.username;
             }
         };
         this.sharedMediaLayout = sharedMediaLayout;
@@ -424,54 +348,129 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         return this.fragmentView;
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        ChatActivityContainer chatActivityContainer;
-        if (i != NotificationCenter.storiesListUpdated) {
-            if (i != NotificationCenter.hashtagSearchUpdated || (chatActivityContainer = this.chatContainer) == null || chatActivityContainer.chatActivity == null || ((Integer) objArr[0]).intValue() != this.chatContainer.chatActivity.getClassGuid()) {
-                return;
-            }
-            int intValue = ((Integer) objArr[1]).intValue();
-            MessagesSearchAdapter.StoriesView storiesView = this.storiesView;
-            if (storiesView != null) {
-                storiesView.setMessages(intValue, this.hashtag, this.username);
-                return;
-            }
+    public void lambda$createView$0(View view) {
+        transit(!this.storiesVisible, true);
+        this.storiesView.transition(this.storiesVisible);
+    }
+
+    private void updateStoriesVisible(final boolean z, boolean z2) {
+        this.storiesView.animate().cancel();
+        ValueAnimator valueAnimator = this.contentViewAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (!z2) {
+            this.storiesView.setVisibility(z ? 0 : 8);
+            this.storiesView.setTranslationY(z ? 0.0f : -AndroidUtilities.dp(48.0f));
+            this.contentView.setTranslationY(z ? AndroidUtilities.dp(48.0f) : 0.0f);
+            this.contentView.setPadding(0, 0, 0, z ? AndroidUtilities.dp(48.0f) : 0);
             return;
         }
-        Object obj = objArr[0];
-        StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
-        if (obj == searchStoriesList) {
-            MessagesSearchAdapter.StoriesView storiesView2 = this.storiesView;
-            if (storiesView2 != null) {
-                updateStoriesVisible(storiesView2.set(searchStoriesList), true);
+        this.storiesView.setVisibility(0);
+        ViewPropertyAnimator duration = this.storiesView.animate().translationY(z ? 0.0f : -AndroidUtilities.dp(48.0f)).withEndAction(new Runnable() {
+            @Override
+            public final void run() {
+                HashtagActivity.this.lambda$updateStoriesVisible$1(z);
             }
-            TextView textView = this.storiesTotalTextView;
-            if (textView != null) {
-                textView.setText(LocaleController.formatPluralString("FoundStories", this.storiesList.getCount(), new Object[0]));
+        }).setDuration(320L);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        duration.setInterpolator(cubicBezierInterpolator).start();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.contentViewValue, z ? 1.0f : 0.0f);
+        this.contentViewAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                HashtagActivity.this.contentViewValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                HashtagActivity.this.contentView.setTranslationY(HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f));
+                HashtagActivity.this.contentView.setPadding(0, 0, 0, (int) (HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f)));
             }
+        });
+        this.contentViewAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                HashtagActivity.this.contentViewValue = z ? 1.0f : 0.0f;
+                HashtagActivity.this.contentView.setTranslationY(HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f));
+                HashtagActivity.this.contentView.setPadding(0, 0, 0, (int) (HashtagActivity.this.contentViewValue * AndroidUtilities.dp(48.0f)));
+            }
+        });
+        this.contentViewAnimator.setDuration(320L);
+        this.contentViewAnimator.setInterpolator(cubicBezierInterpolator);
+        this.contentViewAnimator.start();
+    }
+
+    public void lambda$updateStoriesVisible$1(boolean z) {
+        if (z) {
+            return;
         }
+        this.storiesView.setVisibility(8);
+    }
+
+    private void transit(final boolean z, boolean z2) {
+        ChatActivity chatActivity;
+        RecyclerListView recyclerListView;
+        ValueAnimator valueAnimator = this.transitAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (!z2) {
+            this.storiesVisible = z;
+            this.transitValue = z ? 1.0f : 0.0f;
+            this.sharedMediaLayout.setScaleX(z ? 1.0f : 0.95f);
+            this.sharedMediaLayout.setScaleY(z ? 1.0f : 0.95f);
+            this.sharedMediaLayoutContainer.setAlpha(z ? 1.0f : 0.0f);
+            this.sharedMediaLayoutContainer.setVisibility(z ? 0 : 8);
+            ChatActivityContainer chatActivityContainer = this.chatContainer;
+            if (chatActivityContainer == null || (chatActivity = chatActivityContainer.chatActivity) == null || (recyclerListView = chatActivity.messagesSearchListView) == null) {
+                return;
+            }
+            recyclerListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
+            this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, this.transitValue));
+            return;
+        }
+        if (this.storiesVisible == z) {
+            return;
+        }
+        this.storiesVisible = z;
+        this.sharedMediaLayoutContainer.setVisibility(0);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.transitValue, z ? 1.0f : 0.0f);
+        this.transitAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                HashtagActivity.this.transitValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                HashtagActivity.this.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
+                HashtagActivity.this.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
+                if (HashtagActivity.this.chatContainer != null && HashtagActivity.this.chatContainer.chatActivity != null && HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView != null) {
+                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
+                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
+                }
+                HashtagActivity.this.sharedMediaLayoutContainer.setAlpha(HashtagActivity.this.transitValue);
+            }
+        });
+        this.transitAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                HashtagActivity.this.transitValue = z ? 1.0f : 0.0f;
+                HashtagActivity.this.sharedMediaLayout.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
+                HashtagActivity.this.sharedMediaLayout.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, HashtagActivity.this.transitValue));
+                if (HashtagActivity.this.chatContainer != null && HashtagActivity.this.chatContainer.chatActivity != null && HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView != null) {
+                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
+                    HashtagActivity.this.chatContainer.chatActivity.messagesSearchListView.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, HashtagActivity.this.transitValue));
+                }
+                HashtagActivity.this.sharedMediaLayoutContainer.setAlpha(HashtagActivity.this.transitValue);
+                if (z) {
+                    return;
+                }
+                HashtagActivity.this.sharedMediaLayoutContainer.setVisibility(8);
+            }
+        });
+        this.transitAnimator.setDuration(320L);
+        this.transitAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.transitAnimator.start();
     }
 
     @Override
     public boolean isLightStatusBar() {
         return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) > 0.699999988079071d;
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        getMessagesController().getStoriesController().attachedSearchLists.add(this.storiesList);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.hashtagSearchUpdated);
-        this.storiesList.load(true, 18);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        getMessagesController().getStoriesController().attachedSearchLists.remove(this.storiesList);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.hashtagSearchUpdated);
-        super.onFragmentDestroy();
     }
 }

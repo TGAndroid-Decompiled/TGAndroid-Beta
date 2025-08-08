@@ -37,86 +37,6 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
     private final Theme.ResourcesProvider resourcesProvider;
     private String slug;
 
-    public GiftInfoAdapter(Theme.ResourcesProvider resourcesProvider) {
-        this.resourcesProvider = resourcesProvider;
-    }
-
-    public void lambda$onBindViewHolder$0(ActionBtnCell actionBtnCell, Void r2) {
-        actionBtnCell.updateLoading(false);
-        afterCodeApplied();
-        dismiss();
-    }
-
-    public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC.TL_error tL_error) {
-        actionBtnCell.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
-    }
-
-    public void lambda$onBindViewHolder$2(final ActionBtnCell actionBtnCell, View view) {
-        if (!this.isUnused) {
-            dismiss();
-        } else {
-            if (actionBtnCell.isLoading()) {
-                return;
-            }
-            actionBtnCell.updateLoading(true);
-            BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$0(actionBtnCell, (Void) obj);
-                }
-            }, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    GiftInfoAdapter.this.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC.TL_error) obj);
-                }
-            });
-        }
-    }
-
-    public void lambda$onBindViewHolder$3(View view) {
-        dismiss();
-    }
-
-    public boolean lambda$share$4(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
-        long j = 0;
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
-            this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
-        }
-        dialogsActivity.lambda$onBackPressed$355();
-        BoostDialogs.showGiftLinkForwardedBulletin(j);
-        return true;
-    }
-
-    public void share() {
-        final String str = "https://t.me/giftcode/" + this.slug;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("onlySelect", true);
-        bundle.putInt("dialogsType", 3);
-        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
-            @Override
-            public boolean canSelectStories() {
-                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
-            }
-
-            @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
-                boolean lambda$share$4;
-                lambda$share$4 = GiftInfoAdapter.this.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
-                return lambda$share$4;
-            }
-
-            @Override
-            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
-                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
-            }
-        });
-        this.baseFragment.presentFragment(dialogsActivity);
-        dismiss();
-    }
-
     protected abstract void afterCodeApplied();
 
     protected abstract void dismiss();
@@ -147,6 +67,19 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         return i2;
     }
 
+    @Override
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        return false;
+    }
+
+    public abstract void onHiddenLinkClicked();
+
+    public abstract void onObjectClicked(TLObject tLObject);
+
+    public GiftInfoAdapter(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+    }
+
     public void init(BaseFragment baseFragment, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str, FrameLayout frameLayout) {
         this.isUnused = tL_payments_checkedGiftCode.used_date == 0;
         this.baseFragment = baseFragment;
@@ -156,13 +89,29 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
     }
 
     @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return false;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View linkCell;
+        Context context = viewGroup.getContext();
+        if (i == 1) {
+            linkCell = new LinkCell(context, this.baseFragment, this.resourcesProvider);
+        } else if (i == 2) {
+            linkCell = new TableCell(context, this.resourcesProvider);
+        } else if (i == 3) {
+            linkCell = new TextInfoCell(context, this.resourcesProvider);
+        } else if (i == 4) {
+            linkCell = new ActionBtnCell(context, this.resourcesProvider);
+            linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+        } else if (i != 5) {
+            linkCell = new HeaderCell(context, this.resourcesProvider);
+        } else {
+            linkCell = new View(context);
+        }
+        linkCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        return new RecyclerListView.Holder(linkCell);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        CharSequence formatString;
         String string;
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType == 0) {
@@ -250,47 +199,103 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         textInfoCell.setTopPadding(14);
         textInfoCell.setBottomPadding(15);
         TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.giftCode;
-        if (tL_payments_checkedGiftCode3.boost == null) {
-            if (this.isUnused) {
-                formatString = AndroidUtilities.replaceSingleTag(LocaleController.getString(tL_payments_checkedGiftCode3.to_id == -1 ? R.string.BoostingSendLinkToAnyone : R.string.BoostingSendLinkToFriends), Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider);
+        if (tL_payments_checkedGiftCode3.boost != null) {
+            String str2 = this.slug;
+            if (str2 == null || str2.isEmpty()) {
+                textInfoCell.setText(LocaleController.getString(R.string.BoostingLinkNotActivated));
+                return;
             } else {
-                Date date = new Date(this.giftCode.used_date * 1000);
-                formatString = LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
+                textInfoCell.setFixedSize(14);
+                textInfoCell.setText(null);
+                return;
             }
-            textInfoCell.setText(formatString);
+        }
+        if (this.isUnused) {
+            if (tL_payments_checkedGiftCode3.to_id == -1) {
+                string = LocaleController.getString(R.string.BoostingSendLinkToAnyone);
+            } else {
+                string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
+            }
+            textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider));
             return;
         }
-        String str2 = this.slug;
-        if (str2 == null || str2.isEmpty()) {
-            string = LocaleController.getString(R.string.BoostingLinkNotActivated);
-        } else {
-            textInfoCell.setFixedSize(14);
-            string = null;
-        }
-        textInfoCell.setText(string);
+        Date date = new Date(this.giftCode.used_date * 1000);
+        textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
     }
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View linkCell;
-        Context context = viewGroup.getContext();
-        if (i == 1) {
-            linkCell = new LinkCell(context, this.baseFragment, this.resourcesProvider);
-        } else if (i == 2) {
-            linkCell = new TableCell(context, this.resourcesProvider);
-        } else if (i == 3) {
-            linkCell = new TextInfoCell(context, this.resourcesProvider);
-        } else if (i != 4) {
-            linkCell = i != 5 ? new HeaderCell(context, this.resourcesProvider) : new View(context);
-        } else {
-            linkCell = new ActionBtnCell(context, this.resourcesProvider);
-            linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+    public void lambda$onBindViewHolder$2(final ActionBtnCell actionBtnCell, View view) {
+        if (this.isUnused) {
+            if (actionBtnCell.isLoading()) {
+                return;
+            }
+            actionBtnCell.updateLoading(true);
+            BoostRepository.applyGiftCode(this.slug, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    GiftInfoAdapter.this.lambda$onBindViewHolder$0(actionBtnCell, (Void) obj);
+                }
+            }, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    GiftInfoAdapter.this.lambda$onBindViewHolder$1(actionBtnCell, (TLRPC.TL_error) obj);
+                }
+            });
+            return;
         }
-        linkCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-        return new RecyclerListView.Holder(linkCell);
+        dismiss();
     }
 
-    public abstract void onHiddenLinkClicked();
+    public void lambda$onBindViewHolder$0(ActionBtnCell actionBtnCell, Void r2) {
+        actionBtnCell.updateLoading(false);
+        afterCodeApplied();
+        dismiss();
+    }
 
-    public abstract void onObjectClicked(TLObject tLObject);
+    public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC.TL_error tL_error) {
+        actionBtnCell.updateLoading(false);
+        BoostDialogs.processApplyGiftCodeError(tL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
+    }
+
+    public void lambda$onBindViewHolder$3(View view) {
+        dismiss();
+    }
+
+    public void share() {
+        final String str = "https://t.me/giftcode/" + this.slug;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("onlySelect", true);
+        bundle.putInt("dialogsType", 3);
+        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+            @Override
+            public boolean canSelectStories() {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+            }
+
+            @Override
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+                boolean lambda$share$4;
+                lambda$share$4 = GiftInfoAdapter.this.lambda$share$4(str, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
+                return lambda$share$4;
+            }
+
+            @Override
+            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
+            }
+        });
+        this.baseFragment.presentFragment(dialogsActivity);
+        dismiss();
+    }
+
+    public boolean lambda$share$4(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        long j = 0;
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
+            this.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
+        }
+        dialogsActivity.lambda$onBackPressed$355();
+        BoostDialogs.showGiftLinkForwardedBulletin(j);
+        return true;
+    }
 }

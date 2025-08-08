@@ -93,6 +93,65 @@ public class StarReactionsOverlay extends View {
         };
     }
 
+    public void lambda$new$0() {
+        this.counterShown = false;
+        invalidate();
+        checkBalance();
+        hide();
+    }
+
+    public void lambda$new$1(ChatActivity chatActivity) {
+        MessageObject messageObject;
+        TLRPC.TL_messageReactions tL_messageReactions;
+        TLRPC.TL_messageReactions tL_messageReactions2;
+        BaseCell baseCell = this.cell;
+        if (baseCell == null) {
+            return;
+        }
+        try {
+            baseCell.performHapticFeedback(0);
+        } catch (Exception unused) {
+        }
+        onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+        BaseCell baseCell2 = this.cell;
+        ArrayList<TLRPC.MessageReactor> arrayList = null;
+        if (baseCell2 instanceof ChatMessageCell) {
+            messageObject = ((ChatMessageCell) baseCell2).getPrimaryMessageObject();
+            if (messageObject == null) {
+                return;
+            }
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message != null && (tL_messageReactions2 = message.reactions) != null) {
+                arrayList = tL_messageReactions2.top_reactors;
+            }
+        } else {
+            if (!(baseCell2 instanceof ChatActionCell) || (messageObject = ((ChatActionCell) baseCell2).getMessageObject()) == null) {
+                return;
+            }
+            TLRPC.Message message2 = messageObject.messageOwner;
+            if (message2 != null && (tL_messageReactions = message2.reactions) != null) {
+                arrayList = tL_messageReactions.top_reactors;
+            }
+        }
+        ArrayList<TLRPC.MessageReactor> arrayList2 = arrayList;
+        StarsController.getInstance(messageObject.currentAccount).commitPaidReaction();
+        TLRPC.ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
+        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, messageObject, arrayList2, currentChatInfo == null || currentChatInfo.paid_reactions_available, chatActivity.getResourceProvider());
+        starsReactionsSheet.setMessageCell(chatActivity, messageObject.getId(), this.cell);
+        starsReactionsSheet.show();
+    }
+
+    private MessageObject getMessageObject() {
+        BaseCell baseCell = this.cell;
+        if (baseCell instanceof ChatMessageCell) {
+            return ((ChatMessageCell) baseCell).getPrimaryMessageObject();
+        }
+        if (baseCell instanceof ChatActionCell) {
+            return ((ChatActionCell) baseCell).getMessageObject();
+        }
+        return null;
+    }
+
     private void checkBalance() {
         String str;
         if (getMessageObject() != null) {
@@ -119,48 +178,45 @@ public class StarReactionsOverlay extends View {
         }
     }
 
-    private MessageObject getMessageObject() {
-        BaseCell baseCell = this.cell;
-        if (baseCell instanceof ChatMessageCell) {
-            return ((ChatMessageCell) baseCell).getPrimaryMessageObject();
-        }
-        if (baseCell instanceof ChatActionCell) {
-            return ((ChatActionCell) baseCell).getMessageObject();
-        }
-        return null;
-    }
-
     public void lambda$checkBalance$2(StarsController starsController, MessageObject messageObject, long j) {
         starsController.sendPaidReaction(messageObject, this.chatActivity, j, true, true, null);
     }
 
-    public void lambda$focusTo$3(ValueAnimator valueAnimator) {
-        this.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void lambda$hide$4() {
-        setMessageCell(null);
-        clearEffects();
-    }
-
-    public void lambda$new$0() {
-        this.counterShown = false;
-        invalidate();
-        checkBalance();
-        hide();
-    }
-
-    public void lambda$new$1(org.telegram.ui.ChatActivity r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarReactionsOverlay.lambda$new$1(org.telegram.ui.ChatActivity):void");
-    }
-
-    public void clearEffects() {
-        Iterator it = this.effects.iterator();
-        while (it.hasNext()) {
-            ((RLottieDrawable) it.next()).recycle(true);
+    public void setMessageCell(BaseCell baseCell) {
+        BaseCell baseCell2 = this.cell;
+        if (baseCell2 == baseCell) {
+            return;
         }
-        this.effects.clear();
+        if (baseCell2 instanceof ChatMessageCell) {
+            ((ChatMessageCell) baseCell2).setScrimReaction(null);
+            ((ChatMessageCell) this.cell).setInvalidateListener(null);
+            this.cell.invalidate();
+        } else if (baseCell2 instanceof ChatActionCell) {
+            ((ChatActionCell) baseCell2).setScrimReaction(null);
+            ((ChatActionCell) this.cell).setInvalidateListener(null);
+            this.cell.invalidate();
+        }
+        this.cell = baseCell;
+        this.messageId = getMessageObject() == null ? 0 : getMessageObject().getId();
+        BaseCell baseCell3 = this.cell;
+        if (baseCell3 instanceof ChatMessageCell) {
+            baseCell3.invalidate();
+            ((ChatMessageCell) this.cell).setInvalidateListener(new Runnable() {
+                @Override
+                public final void run() {
+                    StarReactionsOverlay.this.invalidate();
+                }
+            });
+        } else if (baseCell3 instanceof ChatActionCell) {
+            baseCell3.invalidate();
+            ((ChatActionCell) this.cell).setInvalidateListener(new Runnable() {
+                @Override
+                public final void run() {
+                    StarReactionsOverlay.this.invalidate();
+                }
+            });
+        }
+        invalidate();
     }
 
     @Override
@@ -279,37 +335,6 @@ public class StarReactionsOverlay extends View {
         invalidate();
     }
 
-    public void focusTo(final float f, final Runnable runnable) {
-        ValueAnimator valueAnimator = this.focusAnimator;
-        if (valueAnimator != null) {
-            this.focusAnimator = null;
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.focus, f);
-        this.focusAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StarReactionsOverlay.this.lambda$focusTo$3(valueAnimator2);
-            }
-        });
-        this.focusAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                Runnable runnable2;
-                StarReactionsOverlay.this.focus = f;
-                StarReactionsOverlay.this.invalidate();
-                if (animator != StarReactionsOverlay.this.focusAnimator || (runnable2 = runnable) == null) {
-                    return;
-                }
-                runnable2.run();
-            }
-        });
-        this.focusAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.focusAnimator.setDuration(320L);
-        this.focusAnimator.start();
-    }
-
     public ReactionsLayoutInBubble getReactionsLayoutInBubble() {
         BaseCell baseCell = this.cell;
         if (baseCell instanceof ChatMessageCell) {
@@ -319,24 +344,6 @@ public class StarReactionsOverlay extends View {
             return ((ChatActionCell) baseCell).reactionsLayoutInBubble;
         }
         return null;
-    }
-
-    public void hide() {
-        this.hidden = true;
-        AndroidUtilities.cancelRunOnUIThread(this.hideCounterRunnable);
-        this.counter.setText("");
-        this.counterShown = false;
-        invalidate();
-        focusTo(0.0f, new Runnable() {
-            @Override
-            public final void run() {
-                StarReactionsOverlay.this.lambda$hide$4();
-            }
-        });
-    }
-
-    public boolean isShowing(MessageObject messageObject) {
-        return messageObject != null && messageObject.getId() == this.messageId;
     }
 
     @Override
@@ -369,28 +376,40 @@ public class StarReactionsOverlay extends View {
         return this.pressed;
     }
 
-    public void playEffect() {
-        while (this.effects.size() > 4) {
-            ((RLottieDrawable) this.effects.remove(0)).recycle(true);
+    public void focusTo(final float f, final Runnable runnable) {
+        ValueAnimator valueAnimator = this.focusAnimator;
+        if (valueAnimator != null) {
+            this.focusAnimator = null;
+            valueAnimator.cancel();
         }
-        int[] iArr = this.effectAssets;
-        int i = iArr[Utilities.fastRandom.nextInt(iArr.length)];
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-        rLottieDrawable.setMasterParent(this);
-        rLottieDrawable.setAllowDecodeSingleFrame(true);
-        rLottieDrawable.setAutoRepeat(0);
-        rLottieDrawable.start();
-        this.effects.add(rLottieDrawable);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.focus, f);
+        this.focusAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                StarReactionsOverlay.this.lambda$focusTo$3(valueAnimator2);
+            }
+        });
+        this.focusAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                Runnable runnable2;
+                StarReactionsOverlay.this.focus = f;
+                StarReactionsOverlay.this.invalidate();
+                if (animator != StarReactionsOverlay.this.focusAnimator || (runnable2 = runnable) == null) {
+                    return;
+                }
+                runnable2.run();
+            }
+        });
+        this.focusAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.focusAnimator.setDuration(320L);
+        this.focusAnimator.start();
+    }
+
+    public void lambda$focusTo$3(ValueAnimator valueAnimator) {
+        this.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
-    }
-
-    public void setMessageCell(org.telegram.ui.Cells.BaseCell r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarReactionsOverlay.setMessageCell(org.telegram.ui.Cells.BaseCell):void");
-    }
-
-    public void show() {
-        this.hidden = false;
-        focusTo(1.0f, null);
     }
 
     public void tap(float f, float f2, boolean z, boolean z2) {
@@ -428,15 +447,66 @@ public class StarReactionsOverlay extends View {
                 return;
             }
             this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - (((float) (j - 100)) / 200.0f), 1.0f, 0.0f);
-            if (getMeasuredWidth() != 0 || this.chatActivity.getLayoutContainer() == null) {
-                getLocationInWindow(this.pos2);
-            } else {
+            if (getMeasuredWidth() == 0 && this.chatActivity.getLayoutContainer() != null) {
                 this.chatActivity.getLayoutContainer().getLocationInWindow(this.pos2);
+            } else {
+                getLocationInWindow(this.pos2);
             }
             int[] iArr = this.pos2;
             LaunchActivity.makeRipple(iArr[0] + f, iArr[1] + f2, Utilities.clamp(this.accumulatedRippleIntensity, 0.9f, 0.3f));
             this.accumulatedRippleIntensity = 0.0f;
             this.lastRippleTime = currentTimeMillis;
         }
+    }
+
+    public void hide() {
+        this.hidden = true;
+        AndroidUtilities.cancelRunOnUIThread(this.hideCounterRunnable);
+        this.counter.setText("");
+        this.counterShown = false;
+        invalidate();
+        focusTo(0.0f, new Runnable() {
+            @Override
+            public final void run() {
+                StarReactionsOverlay.this.lambda$hide$4();
+            }
+        });
+    }
+
+    public void lambda$hide$4() {
+        setMessageCell(null);
+        clearEffects();
+    }
+
+    public boolean isShowing(MessageObject messageObject) {
+        return messageObject != null && messageObject.getId() == this.messageId;
+    }
+
+    public void show() {
+        this.hidden = false;
+        focusTo(1.0f, null);
+    }
+
+    public void playEffect() {
+        while (this.effects.size() > 4) {
+            ((RLottieDrawable) this.effects.remove(0)).recycle(true);
+        }
+        int[] iArr = this.effectAssets;
+        int i = iArr[Utilities.fastRandom.nextInt(iArr.length)];
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+        rLottieDrawable.setMasterParent(this);
+        rLottieDrawable.setAllowDecodeSingleFrame(true);
+        rLottieDrawable.setAutoRepeat(0);
+        rLottieDrawable.start();
+        this.effects.add(rLottieDrawable);
+        invalidate();
+    }
+
+    public void clearEffects() {
+        Iterator it = this.effects.iterator();
+        while (it.hasNext()) {
+            ((RLottieDrawable) it.next()).recycle(true);
+        }
+        this.effects.clear();
     }
 }

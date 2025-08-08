@@ -23,6 +23,13 @@ public abstract class CustomReactionEditText extends EditTextCaption {
     private Runnable onFocused;
     private final Theme.ResourcesProvider resourcesProvider;
 
+    public void setMaxLength(int i) {
+        if (this.maxLength != i) {
+            this.maxLength = i;
+            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i)});
+        }
+    }
+
     public CustomReactionEditText(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context, resourcesProvider);
         this.resourcesProvider = resourcesProvider;
@@ -35,9 +42,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         setIncludeFontPadding(true);
         int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 21) {
-            setShowSoftInputOnFocus(false);
-        }
+        setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
         this.maxLength = i;
@@ -68,21 +73,44 @@ public abstract class CustomReactionEditText extends EditTextCaption {
     }
 
     public void lambda$new$0(View view, boolean z) {
-        if (!z) {
-            addReactionsSpan();
+        if (z) {
+            removeReactionsSpan(true);
+            Runnable runnable = this.onFocused;
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
             return;
         }
-        removeReactionsSpan(true);
-        Runnable runnable = this.onFocused;
-        if (runnable != null) {
-            runnable.run();
-        }
+        addReactionsSpan();
     }
 
-    public void lambda$removeReactionsSpan$1(AddReactionsSpan addReactionsSpan) {
-        getText().delete(getText().getSpanStart(addReactionsSpan), getText().getSpanEnd(addReactionsSpan));
-        setCursorVisible(true);
-        setLongClickable(true);
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!this.gestureDetector.onTouchEvent(motionEvent) || isLongClickable()) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        return false;
+    }
+
+    @Override
+    public void onSelectionChanged(int i, int i2) {
+        super.onSelectionChanged(i, i2);
+        if (!hasSelection() || ((AddReactionsSpan[]) getText().getSpans(i, i2, AddReactionsSpan.class)).length == 0) {
+            return;
+        }
+        setSelection(i, i2 - 1);
+    }
+
+    @Override
+    public void extendActionMode(ActionMode actionMode, Menu menu) {
+        menu.clear();
+        int i = R.id.menu_delete;
+        menu.add(i, i, 0, LocaleController.getString(R.string.Delete));
+    }
+
+    public void setOnFocused(Runnable runnable) {
+        this.onFocused = runnable;
     }
 
     public void addReactionsSpan() {
@@ -95,54 +123,6 @@ public abstract class CustomReactionEditText extends EditTextCaption {
             spannableStringBuilder2.setSpan(addReactionsSpan, 0, spannableStringBuilder2.length(), 33);
             setText(getText().append((CharSequence) spannableStringBuilder2));
         }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.gestureDetector.onTouchEvent(motionEvent) || isLongClickable()) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        return false;
-    }
-
-    @Override
-    public void extendActionMode(ActionMode actionMode, Menu menu) {
-        menu.clear();
-        int i = R.id.menu_delete;
-        menu.add(i, i, 0, LocaleController.getString(R.string.Delete));
-    }
-
-    public int getEditTextSelectionEnd() {
-        int selectionEnd = getSelectionEnd();
-        if (selectionEnd < 0) {
-            return 0;
-        }
-        return selectionEnd;
-    }
-
-    public int getEditTextSelectionStart() {
-        int selectionStart = getSelectionStart();
-        if (selectionStart < 0) {
-            return 0;
-        }
-        return selectionStart;
-    }
-
-    public Paint.FontMetricsInt getFontMetricsInt() {
-        return getPaint().getFontMetricsInt();
-    }
-
-    public int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    @Override
-    public void onSelectionChanged(int i, int i2) {
-        super.onSelectionChanged(i, i2);
-        if (!hasSelection() || ((AddReactionsSpan[]) getText().getSpans(i, i2, AddReactionsSpan.class)).length == 0) {
-            return;
-        }
-        setSelection(i, i2 - 1);
     }
 
     public void removeReactionsSpan(boolean z) {
@@ -163,14 +143,33 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         }
     }
 
-    public void setMaxLength(int i) {
-        if (this.maxLength != i) {
-            this.maxLength = i;
-            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i)});
-        }
+    public void lambda$removeReactionsSpan$1(AddReactionsSpan addReactionsSpan) {
+        getText().delete(getText().getSpanStart(addReactionsSpan), getText().getSpanEnd(addReactionsSpan));
+        setCursorVisible(true);
+        setLongClickable(true);
     }
 
-    public void setOnFocused(Runnable runnable) {
-        this.onFocused = runnable;
+    public int getEditTextSelectionEnd() {
+        int selectionEnd = getSelectionEnd();
+        if (selectionEnd < 0) {
+            return 0;
+        }
+        return selectionEnd;
+    }
+
+    public int getEditTextSelectionStart() {
+        int selectionStart = getSelectionStart();
+        if (selectionStart < 0) {
+            return 0;
+        }
+        return selectionStart;
+    }
+
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public Paint.FontMetricsInt getFontMetricsInt() {
+        return getPaint().getFontMetricsInt();
     }
 }

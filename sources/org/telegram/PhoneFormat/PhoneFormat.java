@@ -17,10 +17,6 @@ public class PhoneFormat {
     public String defaultCountry;
     private boolean initialzed = false;
 
-    public PhoneFormat() {
-        init(null);
-    }
-
     public static PhoneFormat getInstance() {
         PhoneFormat phoneFormat = Instance;
         if (phoneFormat == null) {
@@ -48,10 +44,6 @@ public class PhoneFormat {
         return sb.toString();
     }
 
-    public static String stripExceptNumbers(String str) {
-        return stripExceptNumbers(str, false);
-    }
-
     public static String stripExceptNumbers(String str, boolean z) {
         if (str == null) {
             return null;
@@ -64,6 +56,85 @@ public class PhoneFormat {
             }
         }
         return sb.toString();
+    }
+
+    public static String stripExceptNumbers(String str) {
+        return stripExceptNumbers(str, false);
+    }
+
+    public PhoneFormat() {
+        init(null);
+    }
+
+    public void init(java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.PhoneFormat.PhoneFormat.init(java.lang.String):void");
+    }
+
+    public CallingCodeInfo findCallingCodeInfo(String str) {
+        CallingCodeInfo callingCodeInfo = null;
+        int i = 0;
+        while (i < 3 && i < str.length()) {
+            i++;
+            callingCodeInfo = callingCodeInfo(str.substring(0, i));
+            if (callingCodeInfo != null) {
+                break;
+            }
+        }
+        return callingCodeInfo;
+    }
+
+    public String format(String str) {
+        if (!this.initialzed) {
+            return str;
+        }
+        try {
+            String strip = strip(str);
+            if (strip.startsWith("+")) {
+                String substring = strip.substring(1);
+                CallingCodeInfo findCallingCodeInfo = findCallingCodeInfo(substring);
+                if (findCallingCodeInfo == null) {
+                    return str;
+                }
+                return "+" + findCallingCodeInfo.format(substring);
+            }
+            CallingCodeInfo callingCodeInfo = callingCodeInfo(this.defaultCallingCode);
+            if (callingCodeInfo == null) {
+                return str;
+            }
+            String matchingAccessCode = callingCodeInfo.matchingAccessCode(strip);
+            if (matchingAccessCode != null) {
+                String substring2 = strip.substring(matchingAccessCode.length());
+                CallingCodeInfo findCallingCodeInfo2 = findCallingCodeInfo(substring2);
+                if (findCallingCodeInfo2 != null) {
+                    substring2 = findCallingCodeInfo2.format(substring2);
+                }
+                return substring2.length() == 0 ? matchingAccessCode : String.format("%s %s", matchingAccessCode, substring2);
+            }
+            return callingCodeInfo.format(strip);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return str;
+        }
+    }
+
+    int value32(int i) {
+        if (i + 4 > this.data.length) {
+            return 0;
+        }
+        this.buffer.position(i);
+        return this.buffer.getInt();
+    }
+
+    short value16(int i) {
+        if (i + 2 > this.data.length) {
+            return (short) 0;
+        }
+        this.buffer.position(i);
+        return this.buffer.getShort();
+    }
+
+    public java.lang.String valueString(int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.PhoneFormat.PhoneFormat.valueString(int):java.lang.String");
     }
 
     public CallingCodeInfo callingCodeInfo(String str) {
@@ -161,57 +232,6 @@ public class PhoneFormat {
         return callingCodeInfo2;
     }
 
-    public CallingCodeInfo findCallingCodeInfo(String str) {
-        CallingCodeInfo callingCodeInfo = null;
-        int i = 0;
-        while (i < 3 && i < str.length()) {
-            i++;
-            callingCodeInfo = callingCodeInfo(str.substring(0, i));
-            if (callingCodeInfo != null) {
-                break;
-            }
-        }
-        return callingCodeInfo;
-    }
-
-    public String format(String str) {
-        if (!this.initialzed) {
-            return str;
-        }
-        try {
-            String strip = strip(str);
-            if (strip.startsWith("+")) {
-                String substring = strip.substring(1);
-                CallingCodeInfo findCallingCodeInfo = findCallingCodeInfo(substring);
-                if (findCallingCodeInfo == null) {
-                    return str;
-                }
-                return "+" + findCallingCodeInfo.format(substring);
-            }
-            CallingCodeInfo callingCodeInfo = callingCodeInfo(this.defaultCallingCode);
-            if (callingCodeInfo == null) {
-                return str;
-            }
-            String matchingAccessCode = callingCodeInfo.matchingAccessCode(strip);
-            if (matchingAccessCode == null) {
-                return callingCodeInfo.format(strip);
-            }
-            String substring2 = strip.substring(matchingAccessCode.length());
-            CallingCodeInfo findCallingCodeInfo2 = findCallingCodeInfo(substring2);
-            if (findCallingCodeInfo2 != null) {
-                substring2 = findCallingCodeInfo2.format(substring2);
-            }
-            return substring2.length() == 0 ? matchingAccessCode : String.format("%s %s", matchingAccessCode, substring2);
-        } catch (Exception e) {
-            FileLog.e(e);
-            return str;
-        }
-    }
-
-    public void init(java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.PhoneFormat.PhoneFormat.init(java.lang.String):void");
-    }
-
     public void parseDataHeader() {
         int value32 = value32(0);
         int i = 4;
@@ -237,25 +257,5 @@ public class PhoneFormat {
         if (str != null) {
             callingCodeInfo(str);
         }
-    }
-
-    short value16(int i) {
-        if (i + 2 > this.data.length) {
-            return (short) 0;
-        }
-        this.buffer.position(i);
-        return this.buffer.getShort();
-    }
-
-    int value32(int i) {
-        if (i + 4 > this.data.length) {
-            return 0;
-        }
-        this.buffer.position(i);
-        return this.buffer.getInt();
-    }
-
-    public java.lang.String valueString(int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.PhoneFormat.PhoneFormat.valueString(int):java.lang.String");
     }
 }

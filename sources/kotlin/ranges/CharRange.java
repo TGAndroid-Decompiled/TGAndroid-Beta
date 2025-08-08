@@ -7,17 +7,12 @@ public final class CharRange extends CharProgression {
     public static final Companion Companion = new Companion(null);
     private static final CharRange EMPTY = new CharRange(1, 0);
 
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public CharRange(char c, char c2) {
         super(c, c2, 1);
+    }
+
+    public boolean isEmpty() {
+        return Intrinsics.compare((int) getFirst(), (int) getLast()) > 0;
     }
 
     public boolean equals(Object obj) {
@@ -39,11 +34,16 @@ public final class CharRange extends CharProgression {
         return (getFirst() * 31) + getLast();
     }
 
-    public boolean isEmpty() {
-        return Intrinsics.compare((int) getFirst(), (int) getLast()) > 0;
-    }
-
     public String toString() {
         return getFirst() + ".." + getLast();
+    }
+
+    public static final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        private Companion() {
+        }
     }
 }

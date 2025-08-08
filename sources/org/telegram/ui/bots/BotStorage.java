@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.microsoft.appcenter.utils.crypto.CryptoAesHandler$$ExternalSyntheticApiModelOutline5;
 import j$.util.Collection;
 import j$.util.function.Predicate;
 import j$.util.stream.Collectors;
@@ -66,43 +67,6 @@ public class BotStorage {
     public String storage_id;
     public final long user_id;
 
-    public class C1StorageCell extends FrameLayout {
-        private final String id;
-        private final boolean needDivider;
-        private final RadioButton radioButton;
-        final Context val$context;
-
-        public C1StorageCell(StorageConfig storageConfig, boolean z, Context context) {
-            super(context);
-            this.val$context = context;
-            this.id = storageConfig.storage_id;
-            RadioButton radioButton = new RadioButton(context);
-            this.radioButton = radioButton;
-            radioButton.setSize(AndroidUtilities.dp(20.0f));
-            radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
-            addView(radioButton, LayoutHelper.createFrame(22, 22.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
-            TextView makeTextView = TextHelper.makeTextView(context, 16.0f, Theme.key_windowBackgroundWhiteBlackText, true);
-            makeTextView.setText(storageConfig.user_name);
-            addView(makeTextView, LayoutHelper.createLinear(-1, -2, 7, 62, 9, 8, 0));
-            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false);
-            makeTextView2.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(storageConfig.created_at / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(storageConfig.created_at / 1000)))));
-            addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 7, 62, 32, 8, 0));
-            this.needDivider = z;
-            setWillNotDraw(!z);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            if (this.needDivider) {
-                canvas.drawLine(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
-            }
-        }
-
-        public void setChecked(boolean z) {
-            this.radioButton.setChecked(z, true);
-        }
-    }
-
     public static class StorageConfig {
         long created_at;
         long edited_at;
@@ -111,12 +75,117 @@ public class BotStorage {
         String user_name;
     }
 
+    public static boolean isSecuredSupported() {
+        return Build.VERSION.SDK_INT >= 23;
+    }
+
+    public static File getDir() {
+        try {
+            File filesDir = ApplicationLoader.applicationContext.getFilesDir();
+            if (filesDir != null) {
+                File file = new File(filesDir, "apps_storage/");
+                file.mkdirs();
+                if (filesDir.exists() || filesDir.mkdirs()) {
+                    if (filesDir.canWrite()) {
+                        return file;
+                    }
+                }
+            }
+        } catch (Exception unused) {
+        }
+        return new File("");
+    }
+
     public BotStorage(Context context, int i, long j, long j2, boolean z) {
         this.context = context;
         this.account = i;
         this.bot_id = j2;
         this.user_id = j;
         this.secured = z;
+    }
+
+    private File getFile(String str) {
+        File dir = getDir();
+        StringBuilder sb = new StringBuilder();
+        Object obj = str;
+        if (!this.secured) {
+            obj = Long.valueOf(this.user_id);
+        }
+        sb.append(obj);
+        sb.append("_");
+        sb.append(this.bot_id);
+        sb.append(this.secured ? "_s" : "");
+        File file = new File(dir, sb.toString());
+        File dir2 = getDir();
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(this.bot_id);
+        sb2.append(this.secured ? "_s" : "");
+        File file2 = new File(dir2, sb2.toString());
+        if (!file.exists() && file2.exists()) {
+            file2.renameTo(file);
+        } else if (this.secured) {
+            File file3 = new File(getDir(), this.user_id + "_" + this.bot_id + "_s");
+            if (!file.exists() && file3.exists()) {
+                file3.renameTo(file);
+            }
+        }
+        return file;
+    }
+
+    public File getFile() {
+        if (this.secured && TextUtils.isEmpty(this.storage_id)) {
+            HashMap readConfig = readConfig();
+            Iterator it = readConfig.entrySet().iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                Map.Entry entry = (Map.Entry) it.next();
+                if (((StorageConfig) entry.getValue()).user_id == this.user_id) {
+                    this.storage_id = (String) entry.getKey();
+                    break;
+                }
+            }
+            if (TextUtils.isEmpty(this.storage_id)) {
+                this.storage_id = UUID.randomUUID().toString();
+                StorageConfig storageConfig = new StorageConfig();
+                storageConfig.storage_id = this.storage_id;
+                storageConfig.user_id = this.user_id;
+                storageConfig.user_name = DialogObject.getName(UserConfig.getInstance(this.account).getCurrentUser());
+                long currentTimeMillis = System.currentTimeMillis();
+                storageConfig.edited_at = currentTimeMillis;
+                storageConfig.created_at = currentTimeMillis;
+                readConfig.put(this.storage_id, storageConfig);
+                saveConfig(readConfig);
+            }
+        }
+        return getFile(this.storage_id);
+    }
+
+    private File getConfigFile() {
+        return new File(getDir(), "secure_config.json");
+    }
+
+    private SecretKey getSecretKey() {
+        KeyGenParameterSpec.Builder blockModes;
+        KeyGenParameterSpec.Builder encryptionPaddings;
+        KeyGenParameterSpec.Builder userAuthenticationRequired;
+        KeyGenParameterSpec build;
+        if (Build.VERSION.SDK_INT < 23) {
+            throw new RuntimeException("UNSUPPORTED");
+        }
+        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+        keyStore.load(null);
+        if (!keyStore.containsAlias("MiniAppsKey")) {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
+            blockModes = CryptoAesHandler$$ExternalSyntheticApiModelOutline5.m("MiniAppsKey", 3).setBlockModes("GCM");
+            encryptionPaddings = blockModes.setEncryptionPaddings("NoPadding");
+            userAuthenticationRequired = encryptionPaddings.setUserAuthenticationRequired(false);
+            build = userAuthenticationRequired.build();
+            keyGenerator.init(build);
+            keyGenerator.generateKey();
+        }
+        return (SecretKey) keyStore.getKey("MiniAppsKey", null);
     }
 
     private byte[] getBytes(File file) {
@@ -153,165 +222,6 @@ public class BotStorage {
         }
     }
 
-    private File getConfigFile() {
-        return new File(getDir(), "secure_config.json");
-    }
-
-    public static File getDir() {
-        try {
-            File filesDir = ApplicationLoader.applicationContext.getFilesDir();
-            if (filesDir != null) {
-                File file = new File(filesDir, "apps_storage/");
-                file.mkdirs();
-                if (filesDir.exists() || filesDir.mkdirs()) {
-                    if (filesDir.canWrite()) {
-                        return file;
-                    }
-                }
-            }
-        } catch (Exception unused) {
-        }
-        return new File("");
-    }
-
-    private java.io.File getFile(java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotStorage.getFile(java.lang.String):java.io.File");
-    }
-
-    private JSONObject getJSON() {
-        return getJSON(getFile());
-    }
-
-    private JSONObject getJSON(File file) {
-        if (!file.exists() || file.length() > 5242880) {
-            return new JSONObject();
-        }
-        try {
-            return new JSONObject(new String(getBytes(file)));
-        } catch (Exception e) {
-            FileLog.e(e);
-            return new JSONObject();
-        }
-    }
-
-    private byte[] getRawBytes(File file) {
-        FileInputStream fileInputStream = new FileInputStream(file);
-        try {
-            byte[] bArr = new byte[(int) file.length()];
-            fileInputStream.read(bArr);
-            fileInputStream.close();
-            return bArr;
-        } catch (OutOfMemoryError e) {
-            FileLog.e(e);
-            throw new RuntimeException("QUOTA_EXCEEDED");
-        }
-    }
-
-    private SecretKey getSecretKey() {
-        KeyGenParameterSpec.Builder blockModes;
-        KeyGenParameterSpec.Builder encryptionPaddings;
-        KeyGenParameterSpec.Builder userAuthenticationRequired;
-        KeyGenParameterSpec build;
-        if (Build.VERSION.SDK_INT < 23) {
-            throw new RuntimeException("UNSUPPORTED");
-        }
-        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-        keyStore.load(null);
-        if (!keyStore.containsAlias("MiniAppsKey")) {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-            blockModes = new KeyGenParameterSpec.Builder("MiniAppsKey", 3).setBlockModes("GCM");
-            encryptionPaddings = blockModes.setEncryptionPaddings("NoPadding");
-            userAuthenticationRequired = encryptionPaddings.setUserAuthenticationRequired(false);
-            build = userAuthenticationRequired.build();
-            keyGenerator.init(build);
-            keyGenerator.generateKey();
-        }
-        return (SecretKey) keyStore.getKey("MiniAppsKey", null);
-    }
-
-    public static boolean isSecuredSupported() {
-        return Build.VERSION.SDK_INT >= 23;
-    }
-
-    public static boolean lambda$getKey$0(HashSet hashSet, StorageConfig storageConfig) {
-        return !hashSet.contains(Long.valueOf(storageConfig.user_id));
-    }
-
-    public static boolean lambda$getStoragesWithKey$1(HashSet hashSet, StorageConfig storageConfig) {
-        return !hashSet.contains(Long.valueOf(storageConfig.user_id));
-    }
-
-    public static void lambda$showChooseStorage$2(String[] strArr, StorageConfig storageConfig, ArrayList arrayList, ButtonWithCounterView buttonWithCounterView, View view) {
-        strArr[0] = storageConfig.storage_id;
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            C1StorageCell c1StorageCell = (C1StorageCell) it.next();
-            c1StorageCell.setChecked(TextUtils.equals(c1StorageCell.id, strArr[0]));
-        }
-        buttonWithCounterView.setEnabled(strArr[0] != null);
-    }
-
-    public static void lambda$showChooseStorage$3(boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
-        if (!zArr[0] && callback != null) {
-            zArr[0] = true;
-            callback.run(strArr[0]);
-        }
-        bottomSheet.lambda$new$0();
-    }
-
-    public static void lambda$showChooseStorage$4(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
-        if (zArr[0] || callback == null) {
-            return;
-        }
-        zArr[0] = true;
-        callback.run(null);
-    }
-
-    private HashMap readConfig() {
-        HashMap hashMap = new HashMap();
-        try {
-            JSONObject jSONObject = new JSONObject(new String(getRawBytes(getConfigFile())));
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
-                JSONObject jSONObject2 = jSONObject.getJSONObject(next);
-                StorageConfig storageConfig = new StorageConfig();
-                storageConfig.storage_id = next;
-                storageConfig.user_id = jSONObject2.getLong("user_id");
-                storageConfig.user_name = jSONObject2.getString("user_name");
-                storageConfig.created_at = jSONObject2.getLong("created_at");
-                storageConfig.edited_at = jSONObject2.getLong("edited_at");
-                hashMap.put(next, storageConfig);
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        return hashMap;
-    }
-
-    private void saveConfig(HashMap hashMap) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            for (Map.Entry entry : hashMap.entrySet()) {
-                JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("user_id", ((StorageConfig) entry.getValue()).user_id);
-                jSONObject2.put("user_name", ((StorageConfig) entry.getValue()).user_name);
-                jSONObject2.put("created_at", ((StorageConfig) entry.getValue()).created_at);
-                jSONObject2.put("edited_at", ((StorageConfig) entry.getValue()).edited_at);
-                jSONObject.put((String) entry.getKey(), jSONObject2);
-            }
-            saveRawBytes(getConfigFile(), jSONObject.toString().getBytes());
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    private void saveRawBytes(File file, byte[] bArr) {
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        fileOutputStream.write(bArr);
-        fileOutputStream.close();
-    }
-
     private void setBytes(File file, byte[] bArr) {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         if (this.secured) {
@@ -329,6 +239,22 @@ public class BotStorage {
         }
         fileOutputStream.write(bArr);
         fileOutputStream.close();
+    }
+
+    private JSONObject getJSON() {
+        return getJSON(getFile());
+    }
+
+    private JSONObject getJSON(File file) {
+        if (!file.exists() || file.length() > 5242880) {
+            return new JSONObject();
+        }
+        try {
+            return new JSONObject(new String(getBytes(file)));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return new JSONObject();
+        }
     }
 
     private void setJSON(JSONObject jSONObject) {
@@ -352,38 +278,35 @@ public class BotStorage {
         }
     }
 
-    public void clear() {
-        setJSON(new JSONObject());
-    }
-
-    public File getFile() {
-        if (this.secured && TextUtils.isEmpty(this.storage_id)) {
-            HashMap readConfig = readConfig();
-            Iterator it = readConfig.entrySet().iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                Map.Entry entry = (Map.Entry) it.next();
-                if (((StorageConfig) entry.getValue()).user_id == this.user_id) {
-                    this.storage_id = (String) entry.getKey();
-                    break;
-                }
-            }
-            if (TextUtils.isEmpty(this.storage_id)) {
-                this.storage_id = UUID.randomUUID().toString();
-                StorageConfig storageConfig = new StorageConfig();
-                storageConfig.storage_id = this.storage_id;
-                storageConfig.user_id = this.user_id;
-                storageConfig.user_name = DialogObject.getName(UserConfig.getInstance(this.account).getCurrentUser());
-                long currentTimeMillis = System.currentTimeMillis();
-                storageConfig.edited_at = currentTimeMillis;
-                storageConfig.created_at = currentTimeMillis;
-                readConfig.put(this.storage_id, storageConfig);
-                saveConfig(readConfig);
-            }
+    public void setKey(String str, String str2) {
+        if (this.secured && !isSecuredSupported()) {
+            throw new RuntimeException("UNSUPPORTED");
         }
-        return getFile(this.storage_id);
+        if (str.length() + str2.length() > 5242880) {
+            throw new RuntimeException("QUOTA_EXCEEDED");
+        }
+        JSONObject json = getJSON();
+        try {
+            json.put(str, str2);
+            if (json.length() > 10 && this.secured) {
+                throw new RuntimeException("QUOTA_EXCEEDED");
+            }
+            setJSON(json);
+            if (this.secured) {
+                try {
+                    HashMap readConfig = readConfig();
+                    StorageConfig storageConfig = (StorageConfig) readConfig.get(this.storage_id);
+                    if (storageConfig != null) {
+                        storageConfig.edited_at = System.currentTimeMillis();
+                        saveConfig(readConfig);
+                    }
+                } catch (Exception unused) {
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+            throw new RuntimeException("UNKNOWN_ERROR");
+        }
     }
 
     public Pair getKey(String str) {
@@ -443,6 +366,10 @@ public class BotStorage {
         return new Pair(optString, Boolean.valueOf(z));
     }
 
+    public static boolean lambda$getKey$0(HashSet hashSet, StorageConfig storageConfig) {
+        return !hashSet.contains(Long.valueOf(storageConfig.user_id));
+    }
+
     public List getStoragesWithKey(String str) {
         JSONObject json;
         if (this.secured && !isSecuredSupported()) {
@@ -494,6 +421,10 @@ public class BotStorage {
         return arrayList;
     }
 
+    public static boolean lambda$getStoragesWithKey$1(HashSet hashSet, StorageConfig storageConfig) {
+        return !hashSet.contains(Long.valueOf(storageConfig.user_id));
+    }
+
     public void restoreFrom(String str) {
         if (this.secured && !isSecuredSupported()) {
             throw new RuntimeException("UNSUPPORTED");
@@ -520,34 +451,65 @@ public class BotStorage {
         this.storage_id = storageConfig.storage_id;
     }
 
-    public void setKey(String str, String str2) {
-        if (this.secured && !isSecuredSupported()) {
-            throw new RuntimeException("UNSUPPORTED");
-        }
-        if (str.length() + str2.length() > 5242880) {
+    public void clear() {
+        setJSON(new JSONObject());
+    }
+
+    private byte[] getRawBytes(File file) {
+        FileInputStream fileInputStream = new FileInputStream(file);
+        try {
+            byte[] bArr = new byte[(int) file.length()];
+            fileInputStream.read(bArr);
+            fileInputStream.close();
+            return bArr;
+        } catch (OutOfMemoryError e) {
+            FileLog.e(e);
             throw new RuntimeException("QUOTA_EXCEEDED");
         }
-        JSONObject json = getJSON();
+    }
+
+    private void saveRawBytes(File file, byte[] bArr) {
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write(bArr);
+        fileOutputStream.close();
+    }
+
+    private HashMap readConfig() {
+        HashMap hashMap = new HashMap();
         try {
-            json.put(str, str2);
-            if (json.length() > 10 && this.secured) {
-                throw new RuntimeException("QUOTA_EXCEEDED");
-            }
-            setJSON(json);
-            if (this.secured) {
-                try {
-                    HashMap readConfig = readConfig();
-                    StorageConfig storageConfig = (StorageConfig) readConfig.get(this.storage_id);
-                    if (storageConfig != null) {
-                        storageConfig.edited_at = System.currentTimeMillis();
-                        saveConfig(readConfig);
-                    }
-                } catch (Exception unused) {
-                }
+            JSONObject jSONObject = new JSONObject(new String(getRawBytes(getConfigFile())));
+            Iterator<String> keys = jSONObject.keys();
+            while (keys.hasNext()) {
+                String next = keys.next();
+                JSONObject jSONObject2 = jSONObject.getJSONObject(next);
+                StorageConfig storageConfig = new StorageConfig();
+                storageConfig.storage_id = next;
+                storageConfig.user_id = jSONObject2.getLong("user_id");
+                storageConfig.user_name = jSONObject2.getString("user_name");
+                storageConfig.created_at = jSONObject2.getLong("created_at");
+                storageConfig.edited_at = jSONObject2.getLong("edited_at");
+                hashMap.put(next, storageConfig);
             }
         } catch (Exception e) {
             FileLog.e(e);
-            throw new RuntimeException("UNKNOWN_ERROR");
+        }
+        return hashMap;
+    }
+
+    private void saveConfig(HashMap hashMap) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            for (Map.Entry entry : hashMap.entrySet()) {
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("user_id", ((StorageConfig) entry.getValue()).user_id);
+                jSONObject2.put("user_name", ((StorageConfig) entry.getValue()).user_name);
+                jSONObject2.put("created_at", ((StorageConfig) entry.getValue()).created_at);
+                jSONObject2.put("edited_at", ((StorageConfig) entry.getValue()).edited_at);
+                jSONObject.put((String) entry.getKey(), jSONObject2);
+            }
+            saveRawBytes(getConfigFile(), jSONObject.toString().getBytes());
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -617,5 +579,68 @@ public class BotStorage {
             }
         });
         create.show();
+    }
+
+    public class C1StorageCell extends FrameLayout {
+        private final String id;
+        private final boolean needDivider;
+        private final RadioButton radioButton;
+        final Context val$context;
+
+        public C1StorageCell(StorageConfig storageConfig, boolean z, Context context) {
+            super(context);
+            this.val$context = context;
+            this.id = storageConfig.storage_id;
+            RadioButton radioButton = new RadioButton(context);
+            this.radioButton = radioButton;
+            radioButton.setSize(AndroidUtilities.dp(20.0f));
+            radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+            addView(radioButton, LayoutHelper.createFrame(22, 22.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
+            TextView makeTextView = TextHelper.makeTextView(context, 16.0f, Theme.key_windowBackgroundWhiteBlackText, true);
+            makeTextView.setText(storageConfig.user_name);
+            addView(makeTextView, LayoutHelper.createLinear(-1, -2, 7, 62, 9, 8, 0));
+            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false);
+            makeTextView2.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(storageConfig.created_at / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(storageConfig.created_at / 1000)))));
+            addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 7, 62, 32, 8, 0));
+            this.needDivider = z;
+            setWillNotDraw(!z);
+        }
+
+        public void setChecked(boolean z) {
+            this.radioButton.setChecked(z, true);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            if (this.needDivider) {
+                canvas.drawLine(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+            }
+        }
+    }
+
+    public static void lambda$showChooseStorage$2(String[] strArr, StorageConfig storageConfig, ArrayList arrayList, ButtonWithCounterView buttonWithCounterView, View view) {
+        strArr[0] = storageConfig.storage_id;
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            C1StorageCell c1StorageCell = (C1StorageCell) it.next();
+            c1StorageCell.setChecked(TextUtils.equals(c1StorageCell.id, strArr[0]));
+        }
+        buttonWithCounterView.setEnabled(strArr[0] != null);
+    }
+
+    public static void lambda$showChooseStorage$3(boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+        if (!zArr[0] && callback != null) {
+            zArr[0] = true;
+            callback.run(strArr[0]);
+        }
+        bottomSheet.lambda$new$0();
+    }
+
+    public static void lambda$showChooseStorage$4(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+        if (zArr[0] || callback == null) {
+            return;
+        }
+        zArr[0] = true;
+        callback.run(null);
     }
 }

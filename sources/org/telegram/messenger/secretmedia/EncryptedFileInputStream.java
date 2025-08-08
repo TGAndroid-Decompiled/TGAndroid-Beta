@@ -37,20 +37,6 @@ public class EncryptedFileInputStream extends FileInputStream {
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, File file) {
-        byte[] bArr2 = new byte[32];
-        byte[] bArr3 = new byte[16];
-        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-        randomAccessFile.read(bArr2, 0, 32);
-        randomAccessFile.read(bArr3, 0, 16);
-        randomAccessFile.close();
-        Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i, i2, 0);
-    }
-
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, SecureDocumentKey secureDocumentKey) {
-        Utilities.aesCbcEncryptionByteArraySafe(bArr, secureDocumentKey.file_key, secureDocumentKey.file_iv, i, i2, 0, 0);
-    }
-
     @Override
     public int read(byte[] bArr, int i, int i2) {
         if (this.currentMode == 1 && this.fileOffset == 0) {
@@ -74,5 +60,19 @@ public class EncryptedFileInputStream extends FileInputStream {
     public long skip(long j) {
         this.fileOffset = (int) (this.fileOffset + j);
         return super.skip(j);
+    }
+
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, SecureDocumentKey secureDocumentKey) {
+        Utilities.aesCbcEncryptionByteArraySafe(bArr, secureDocumentKey.file_key, secureDocumentKey.file_iv, i, i2, 0, 0);
+    }
+
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i, int i2, File file) {
+        byte[] bArr2 = new byte[32];
+        byte[] bArr3 = new byte[16];
+        RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+        randomAccessFile.read(bArr2, 0, 32);
+        randomAccessFile.read(bArr3, 0, 16);
+        randomAccessFile.close();
+        Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i, i2, 0);
     }
 }

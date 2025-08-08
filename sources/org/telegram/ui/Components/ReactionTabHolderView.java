@@ -70,25 +70,22 @@ public class ReactionTabHolderView extends FrameLayout {
         setOutlineProgress(this.outlineProgress);
     }
 
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        this.rect.set(0.0f, 0.0f, getWidth(), getHeight());
-        RectF rectF = this.rect;
-        float f = this.radius;
-        canvas.drawRoundRect(rectF, f, f, this.bgPaint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-        accessibilityNodeInfo.setClickable(true);
-        if (this.outlineProgress > 0.5d) {
-            accessibilityNodeInfo.setSelected(true);
+    public void setOutlineProgress(float f) {
+        this.outlineProgress = f;
+        int i = Theme.key_chat_inReactionButtonBackground;
+        int color = Theme.getColor(i);
+        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(i), 16);
+        int i2 = Theme.key_chat_inReactionButtonTextSelected;
+        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_inReactionButtonText), Theme.getColor(i2), f);
+        this.bgPaint.setColor(ColorUtils.blendARGB(alphaComponent, color, f));
+        this.counterView.setTextColor(blendARGB);
+        this.drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.MULTIPLY));
+        if (f == 1.0f) {
+            this.overlaySelectorView.setBackground(Theme.createSimpleSelectorRoundRectDrawable((int) this.radius, 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 76)));
+        } else if (f == 0.0f) {
+            this.overlaySelectorView.setBackground(Theme.createSimpleSelectorRoundRectDrawable((int) this.radius, 0, ColorUtils.setAlphaComponent(color, 76)));
         }
-        ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.reaction;
-        accessibilityNodeInfo.setText(visibleReaction != null ? LocaleController.formatPluralString("AccDescrNumberOfPeopleReactions", this.count, visibleReaction) : LocaleController.formatPluralString("ReactionsCount", this.count, new Object[0]));
+        invalidate();
     }
 
     public void setCounter(int i) {
@@ -108,6 +105,9 @@ public class ReactionTabHolderView extends FrameLayout {
             for (TLRPC.TL_availableReaction tL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
                 if (tL_availableReaction.reaction.equals(this.reaction.emojicon)) {
                     this.reactView.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);
+                    this.reactView.setVisibility(0);
+                    this.iconView.setVisibility(8);
+                    return;
                 }
             }
             return;
@@ -117,29 +117,28 @@ public class ReactionTabHolderView extends FrameLayout {
         this.iconView.setVisibility(8);
     }
 
-    public void setOutlineProgress(float f) {
-        View view;
-        int i;
-        this.outlineProgress = f;
-        int i2 = Theme.key_chat_inReactionButtonBackground;
-        int color = Theme.getColor(i2);
-        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(i2), 16);
-        int i3 = Theme.key_chat_inReactionButtonTextSelected;
-        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_inReactionButtonText), Theme.getColor(i3), f);
-        this.bgPaint.setColor(ColorUtils.blendARGB(alphaComponent, color, f));
-        this.counterView.setTextColor(blendARGB);
-        this.drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.MULTIPLY));
-        if (f != 1.0f) {
-            if (f == 0.0f) {
-                view = this.overlaySelectorView;
-                i = (int) this.radius;
-            }
-            invalidate();
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        this.rect.set(0.0f, 0.0f, getWidth(), getHeight());
+        RectF rectF = this.rect;
+        float f = this.radius;
+        canvas.drawRoundRect(rectF, f, f, this.bgPaint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+        accessibilityNodeInfo.setClickable(true);
+        if (this.outlineProgress > 0.5d) {
+            accessibilityNodeInfo.setSelected(true);
         }
-        view = this.overlaySelectorView;
-        i = (int) this.radius;
-        color = Theme.getColor(i3);
-        view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(i, 0, ColorUtils.setAlphaComponent(color, 76)));
-        invalidate();
+        ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.reaction;
+        if (visibleReaction != null) {
+            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrNumberOfPeopleReactions", this.count, visibleReaction));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.formatPluralString("ReactionsCount", this.count, new Object[0]));
+        }
     }
 }

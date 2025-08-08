@@ -25,6 +25,15 @@ public class InfiniteProgress {
         this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
+    public void setAlpha(float f) {
+        this.progressPaint.setAlpha((int) (f * Color.alpha(this.progressColor)));
+    }
+
+    public void setColor(int i) {
+        this.progressColor = i;
+        this.progressPaint.setColor(i);
+    }
+
     private void updateAnimation() {
         long currentTimeMillis = System.currentTimeMillis();
         long j = currentTimeMillis - this.lastUpdateTime;
@@ -60,14 +69,5 @@ public class InfiniteProgress {
         this.progressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f) * f3);
         canvas.drawArc(this.cicleRect, this.radOffset, this.currentCircleLength, false, this.progressPaint);
         updateAnimation();
-    }
-
-    public void setAlpha(float f) {
-        this.progressPaint.setAlpha((int) (f * Color.alpha(this.progressColor)));
-    }
-
-    public void setColor(int i) {
-        this.progressColor = i;
-        this.progressPaint.setColor(i);
     }
 }

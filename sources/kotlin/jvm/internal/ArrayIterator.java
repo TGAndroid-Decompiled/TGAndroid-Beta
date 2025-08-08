@@ -7,6 +7,11 @@ final class ArrayIterator implements Iterator {
     private final Object[] array;
     private int index;
 
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
     public ArrayIterator(Object[] array) {
         Intrinsics.checkNotNullParameter(array, "array");
         this.array = array;
@@ -28,10 +33,5 @@ final class ArrayIterator implements Iterator {
             this.index--;
             throw new NoSuchElementException(e.getMessage());
         }
-    }
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

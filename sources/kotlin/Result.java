@@ -8,12 +8,73 @@ public final class Result implements Serializable {
     public static final Companion Companion = new Companion(null);
     private final Object value;
 
-    public static final class Companion {
-        private Companion() {
-        }
+    public static final Result m215boximpl(Object obj) {
+        return new Result(obj);
+    }
 
+    public static Object m216constructorimpl(Object obj) {
+        return obj;
+    }
+
+    public static boolean m217equalsimpl(Object obj, Object obj2) {
+        return (obj2 instanceof Result) && Intrinsics.areEqual(obj, ((Result) obj2).m223unboximpl());
+    }
+
+    public static int m219hashCodeimpl(Object obj) {
+        if (obj == null) {
+            return 0;
+        }
+        return obj.hashCode();
+    }
+
+    public boolean equals(Object obj) {
+        return m217equalsimpl(this.value, obj);
+    }
+
+    public int hashCode() {
+        return m219hashCodeimpl(this.value);
+    }
+
+    public final Object m223unboximpl() {
+        return this.value;
+    }
+
+    private Result(Object obj) {
+        this.value = obj;
+    }
+
+    public static final boolean m221isSuccessimpl(Object obj) {
+        return !(obj instanceof Failure);
+    }
+
+    public static final boolean m220isFailureimpl(Object obj) {
+        return obj instanceof Failure;
+    }
+
+    public static final Throwable m218exceptionOrNullimpl(Object obj) {
+        if (obj instanceof Failure) {
+            return ((Failure) obj).exception;
+        }
+        return null;
+    }
+
+    public String toString() {
+        return m222toStringimpl(this.value);
+    }
+
+    public static String m222toStringimpl(Object obj) {
+        if (obj instanceof Failure) {
+            return ((Failure) obj).toString();
+        }
+        return "Success(" + obj + ')';
+    }
+
+    public static final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
+        }
+
+        private Companion() {
         }
     }
 
@@ -36,66 +97,5 @@ public final class Result implements Serializable {
         public String toString() {
             return "Failure(" + this.exception + ')';
         }
-    }
-
-    private Result(Object obj) {
-        this.value = obj;
-    }
-
-    public static final Result m209boximpl(Object obj) {
-        return new Result(obj);
-    }
-
-    public static Object m210constructorimpl(Object obj) {
-        return obj;
-    }
-
-    public static boolean m211equalsimpl(Object obj, Object obj2) {
-        return (obj2 instanceof Result) && Intrinsics.areEqual(obj, ((Result) obj2).m217unboximpl());
-    }
-
-    public static final Throwable m212exceptionOrNullimpl(Object obj) {
-        if (obj instanceof Failure) {
-            return ((Failure) obj).exception;
-        }
-        return null;
-    }
-
-    public static int m213hashCodeimpl(Object obj) {
-        if (obj == null) {
-            return 0;
-        }
-        return obj.hashCode();
-    }
-
-    public static final boolean m214isFailureimpl(Object obj) {
-        return obj instanceof Failure;
-    }
-
-    public static final boolean m215isSuccessimpl(Object obj) {
-        return !(obj instanceof Failure);
-    }
-
-    public static String m216toStringimpl(Object obj) {
-        if (obj instanceof Failure) {
-            return ((Failure) obj).toString();
-        }
-        return "Success(" + obj + ')';
-    }
-
-    public boolean equals(Object obj) {
-        return m211equalsimpl(this.value, obj);
-    }
-
-    public int hashCode() {
-        return m213hashCodeimpl(this.value);
-    }
-
-    public String toString() {
-        return m216toStringimpl(this.value);
-    }
-
-    public final Object m217unboximpl() {
-        return this.value;
     }
 }

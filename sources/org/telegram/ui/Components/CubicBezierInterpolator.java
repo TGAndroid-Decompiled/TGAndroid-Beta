@@ -1,16 +1,11 @@
 package org.telegram.ui.Components;
 
 import android.graphics.PointF;
-import android.os.Build;
 import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 import android.view.animation.PathInterpolator;
 import androidx.core.graphics.PathParser;
 
 public class CubicBezierInterpolator implements Interpolator {
-    public static final Interpolator Emphasized;
-    public static final Interpolator EmphasizedAccelerate;
-    public static final Interpolator EmphasizedDecelerate;
     protected PointF a;
     protected PointF b;
     protected PointF c;
@@ -22,21 +17,9 @@ public class CubicBezierInterpolator implements Interpolator {
     public static final CubicBezierInterpolator EASE_IN = new CubicBezierInterpolator(0.42d, 0.0d, 1.0d, 1.0d);
     public static final CubicBezierInterpolator EASE_BOTH = new CubicBezierInterpolator(0.42d, 0.0d, 0.58d, 1.0d);
     public static final CubicBezierInterpolator EASE_OUT_BACK = new CubicBezierInterpolator(0.34d, 1.56d, 0.64d, 1.0d);
-
-    static {
-        int i = Build.VERSION.SDK_INT;
-        Emphasized = i >= 21 ? new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1")) : new LinearInterpolator();
-        EmphasizedDecelerate = i >= 21 ? new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f) : new LinearInterpolator();
-        EmphasizedAccelerate = i >= 21 ? new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f) : new LinearInterpolator();
-    }
-
-    public CubicBezierInterpolator(double d, double d2, double d3, double d4) {
-        this((float) d, (float) d2, (float) d3, (float) d4);
-    }
-
-    public CubicBezierInterpolator(float f, float f2, float f3, float f4) {
-        this(new PointF(f, f2), new PointF(f3, f4));
-    }
+    public static final Interpolator Emphasized = new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+    public static final Interpolator EmphasizedDecelerate = new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+    public static final Interpolator EmphasizedAccelerate = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
 
     public CubicBezierInterpolator(PointF pointF, PointF pointF2) {
         this.a = new PointF();
@@ -54,22 +37,17 @@ public class CubicBezierInterpolator implements Interpolator {
         this.end = pointF2;
     }
 
-    private float getBezierCoordinateX(float f) {
-        PointF pointF = this.c;
-        PointF pointF2 = this.start;
-        float f2 = pointF2.x * 3.0f;
-        pointF.x = f2;
-        PointF pointF3 = this.b;
-        float f3 = ((this.end.x - pointF2.x) * 3.0f) - f2;
-        pointF3.x = f3;
-        PointF pointF4 = this.a;
-        float f4 = (1.0f - pointF.x) - f3;
-        pointF4.x = f4;
-        return f * (pointF.x + ((pointF3.x + (f4 * f)) * f));
+    public CubicBezierInterpolator(float f, float f2, float f3, float f4) {
+        this(new PointF(f, f2), new PointF(f3, f4));
     }
 
-    private float getXDerivate(float f) {
-        return this.c.x + (f * ((this.b.x * 2.0f) + (this.a.x * 3.0f * f)));
+    public CubicBezierInterpolator(double d, double d2, double d3, double d4) {
+        this((float) d, (float) d2, (float) d3, (float) d4);
+    }
+
+    @Override
+    public float getInterpolation(float f) {
+        return getBezierCoordinateY(getXForTime(f));
     }
 
     protected float getBezierCoordinateY(float f) {
@@ -86,11 +64,6 @@ public class CubicBezierInterpolator implements Interpolator {
         return f * (pointF.y + ((pointF3.y + (f4 * f)) * f));
     }
 
-    @Override
-    public float getInterpolation(float f) {
-        return getBezierCoordinateY(getXForTime(f));
-    }
-
     protected float getXForTime(float f) {
         float f2 = f;
         for (int i = 1; i < 14; i++) {
@@ -101,5 +74,23 @@ public class CubicBezierInterpolator implements Interpolator {
             f2 -= bezierCoordinateX / getXDerivate(f2);
         }
         return f2;
+    }
+
+    private float getXDerivate(float f) {
+        return this.c.x + (f * ((this.b.x * 2.0f) + (this.a.x * 3.0f * f)));
+    }
+
+    private float getBezierCoordinateX(float f) {
+        PointF pointF = this.c;
+        PointF pointF2 = this.start;
+        float f2 = pointF2.x * 3.0f;
+        pointF.x = f2;
+        PointF pointF3 = this.b;
+        float f3 = ((this.end.x - pointF2.x) * 3.0f) - f2;
+        pointF3.x = f3;
+        PointF pointF4 = this.a;
+        float f4 = (1.0f - pointF.x) - f3;
+        pointF4.x = f4;
+        return f * (pointF.x + ((pointF3.x + (f4 * f)) * f));
     }
 }

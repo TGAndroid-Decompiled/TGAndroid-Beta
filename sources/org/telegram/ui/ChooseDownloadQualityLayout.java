@@ -64,13 +64,8 @@ public class ChooseDownloadQualityLayout {
         actionBarPopupWindowLayout.addView(linearLayout);
     }
 
-    public void lambda$update$1(MessageObject messageObject, VideoPlayer.Quality quality, View view) {
-        this.callback.onQualitySelected(messageObject, quality);
-    }
-
     public boolean update(final MessageObject messageObject) {
         TLRPC.Message message;
-        CharSequence formatFileSize;
         if (messageObject == null || (message = messageObject.messageOwner) == null || message.media == null || !messageObject.hasVideoQualities()) {
             return false;
         }
@@ -88,7 +83,7 @@ public class ChooseDownloadQualityLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (downloadUri.isCached()) {
                 spannableStringBuilder.append(AndroidUtilities.formatFileSize(downloadUri.document.size));
-                formatFileSize = LocaleController.getString(R.string.QualityCached);
+                spannableStringBuilder.append(LocaleController.getString(R.string.QualityCached));
             } else {
                 SpannableString spannableString = new SpannableString("s ");
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_arrow_mediabold);
@@ -97,9 +92,8 @@ public class ChooseDownloadQualityLayout {
                 coloredImageSpan.spaceScaleX = 0.85f;
                 spannableString.setSpan(coloredImageSpan, 0, 1, 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
-                formatFileSize = AndroidUtilities.formatFileSize(downloadUri.document.size);
+                spannableStringBuilder.append(AndroidUtilities.formatFileSize(downloadUri.document.size));
             }
-            spannableStringBuilder.append(formatFileSize);
             ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.buttonsLayout, 0, sb2, false, null);
             addItem.setSubtext(spannableStringBuilder);
             addItem.setColors(-328966, -328966);
@@ -113,5 +107,9 @@ public class ChooseDownloadQualityLayout {
             addItem.setSelectorColor(268435455);
         }
         return true;
+    }
+
+    public void lambda$update$1(MessageObject messageObject, VideoPlayer.Quality quality, View view) {
+        this.callback.onQualitySelected(messageObject, quality);
     }
 }

@@ -10,7 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.util.Property;
 import android.view.View;
@@ -58,17 +57,16 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         this.gradientDrawableTop = new GradientDrawable(orientation, new int[]{Theme.getColor(i), 0});
         this.gradientDrawableBottom = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{Theme.getColor(i), 0});
         setBackgroundColor(Theme.getColor(i));
-        int i2 = Build.VERSION.SDK_INT;
-        int i3 = i2 >= 21 ? (int) (AndroidUtilities.statusBarHeight / AndroidUtilities.density) : 0;
+        int i2 = (int) (AndroidUtilities.statusBarHeight / AndroidUtilities.density);
         FrameLayout frameLayout = new FrameLayout(context);
-        addView(frameLayout, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(176.0f) + (i2 >= 21 ? AndroidUtilities.statusBarHeight : 0)));
+        addView(frameLayout, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(176.0f) + AndroidUtilities.statusBarHeight));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         rLottieImageView.setAnimation(R.raw.qr_code_logo, 108, 108);
         rLottieImageView.playAnimation();
         rLottieImageView.getAnimatedDrawable().setAutoRepeat(1);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         rLottieImageView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
-        frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, i3, 0.0f, 0.0f));
+        frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, i2, 0.0f, 0.0f));
         rLottieImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -81,11 +79,11 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         AndroidUtilities.setScrollViewEdgeEffectColor(scrollView, Theme.getColor(Theme.key_actionBarDefault));
         this.scrollView.setPadding(0, AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f));
         this.scrollView.setClipToPadding(false);
-        addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f, 51, 27.0f, i3 + 178, 27.0f, 130.0f));
+        addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f, 51, 27.0f, i2 + 178, 27.0f, 130.0f));
         this.scrollView.addView(frameLayout2);
         TextView textView = new TextView(context);
-        int i4 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i4));
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i3));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(49);
         textView.setTypeface(AndroidUtilities.bold());
@@ -93,7 +91,7 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView2 = new TextView(context);
         this.textView = textView2;
-        textView2.setTextColor(Theme.getColor(i4));
+        textView2.setTextColor(Theme.getColor(i3));
         this.textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
         this.textView.setTextSize(1, 15.0f);
         this.textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
@@ -120,11 +118,12 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
             }
 
             @Override
-            protected void onMeasure(int i5, int i6) {
-                if (View.MeasureSpec.getSize(i5) > AndroidUtilities.dp(260.0f)) {
-                    i5 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824);
+            protected void onMeasure(int i4, int i5) {
+                if (View.MeasureSpec.getSize(i4) > AndroidUtilities.dp(260.0f)) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(320.0f), 1073741824), i5);
+                } else {
+                    super.onMeasure(i4, i5);
                 }
-                super.onMeasure(i5, i6);
             }
         };
         this.acceptButton = frameLayout3;
@@ -147,17 +146,17 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         this.acceptButton.addView(this.acceptTextView, LayoutHelper.createFrame(-2, -2, 17));
         FrameLayout frameLayout4 = new FrameLayout(context) {
             @Override
-            protected void onDraw(Canvas canvas) {
-                BlockingUpdateView.this.radialProgress.draw(canvas);
+            protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
+                super.onLayout(z, i4, i5, i6, i7);
+                int dp = AndroidUtilities.dp(36.0f);
+                int i8 = ((i6 - i4) - dp) / 2;
+                int i9 = ((i7 - i5) - dp) / 2;
+                BlockingUpdateView.this.radialProgress.setProgressRect(i8, i9, i8 + dp, dp + i9);
             }
 
             @Override
-            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
-                super.onLayout(z, i5, i6, i7, i8);
-                int dp = AndroidUtilities.dp(36.0f);
-                int i9 = ((i7 - i5) - dp) / 2;
-                int i10 = ((i8 - i6) - dp) / 2;
-                BlockingUpdateView.this.radialProgress.setProgressRect(i9, i10, i9 + dp, dp + i10);
+            protected void onDraw(Canvas canvas) {
+                BlockingUpdateView.this.radialProgress.draw(canvas);
             }
         };
         this.radialProgressView = frameLayout4;
@@ -184,47 +183,71 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
     }
 
     public void lambda$new$1(Context context, View view) {
-        String str;
-        if (!ApplicationLoader.isStandaloneBuild() && !BuildVars.DEBUG_VERSION) {
-            str = BuildVars.isHuaweiStoreApp() ? BuildVars.HUAWEI_STORE_URL : BuildVars.PLAYSTORE_APP_URL;
-        } else {
-            if (!ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
-                return;
-            }
-            TLRPC.TL_help_appUpdate tL_help_appUpdate = this.appUpdate;
-            if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
-                if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document)) {
+        if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
+            if (ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
+                TLRPC.TL_help_appUpdate tL_help_appUpdate = this.appUpdate;
+                if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
+                    if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document)) {
+                        return;
+                    }
+                    FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
+                    showProgress(true);
                     return;
                 }
-                FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
-                showProgress(true);
+                if (tL_help_appUpdate.url != null) {
+                    Browser.openUrl(getContext(), this.appUpdate.url);
+                    return;
+                }
                 return;
             }
-            if (tL_help_appUpdate.url == null) {
-                return;
-            }
-            context = getContext();
-            str = this.appUpdate.url;
-        }
-        Browser.openUrl(context, str);
-    }
-
-    public void lambda$show$2(TLObject tLObject) {
-        if (!(tLObject instanceof TLRPC.TL_help_appUpdate) || ((TLRPC.TL_help_appUpdate) tLObject).can_not_skip) {
             return;
         }
-        setVisibility(8);
-        SharedConfig.pendingAppUpdate = null;
-        SharedConfig.saveConfig();
+        if (BuildVars.isHuaweiStoreApp()) {
+            Browser.openUrl(context, BuildVars.HUAWEI_STORE_URL);
+        } else {
+            Browser.openUrl(context, BuildVars.PLAYSTORE_APP_URL);
+        }
     }
 
-    public void lambda$show$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BlockingUpdateView.this.lambda$show$2(tLObject);
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        if (i == 8) {
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.fileLoaded) {
+            String str = (String) objArr[0];
+            String str2 = this.fileName;
+            if (str2 == null || !str2.equals(str)) {
+                return;
             }
-        });
+            showProgress(false);
+            ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
+            return;
+        }
+        if (i == NotificationCenter.fileLoadFailed) {
+            String str3 = (String) objArr[0];
+            String str4 = this.fileName;
+            if (str4 == null || !str4.equals(str3)) {
+                return;
+            }
+            showProgress(false);
+            return;
+        }
+        if (i == NotificationCenter.fileLoadProgressChanged) {
+            String str5 = (String) objArr[0];
+            String str6 = this.fileName;
+            if (str6 == null || !str6.equals(str5)) {
+                return;
+            }
+            this.radialProgress.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
+        }
     }
 
     private void showProgress(final boolean z) {
@@ -262,78 +285,30 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         }
         this.progressAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
+            public void onAnimationEnd(Animator animator) {
+                if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
+                    return;
+                }
+                if (!z) {
+                    BlockingUpdateView.this.radialProgressView.setVisibility(4);
+                } else {
+                    BlockingUpdateView.this.acceptTextView.setVisibility(4);
+                }
+            }
+
+            @Override
             public void onAnimationCancel(Animator animator) {
                 if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
                     return;
                 }
                 BlockingUpdateView.this.progressAnimation = null;
             }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (BlockingUpdateView.this.progressAnimation == null || !BlockingUpdateView.this.progressAnimation.equals(animator)) {
-                    return;
-                }
-                (!z ? BlockingUpdateView.this.radialProgressView : BlockingUpdateView.this.acceptTextView).setVisibility(4);
-            }
         });
         this.progressAnimation.setDuration(150L);
         this.progressAnimation.start();
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.fileLoaded) {
-            String str = (String) objArr[0];
-            String str2 = this.fileName;
-            if (str2 == null || !str2.equals(str)) {
-                return;
-            }
-            showProgress(false);
-            ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
-            return;
-        }
-        if (i == NotificationCenter.fileLoadFailed) {
-            String str3 = (String) objArr[0];
-            String str4 = this.fileName;
-            if (str4 == null || !str4.equals(str3)) {
-                return;
-            }
-            showProgress(false);
-            return;
-        }
-        if (i == NotificationCenter.fileLoadProgressChanged) {
-            String str5 = (String) objArr[0];
-            String str6 = this.fileName;
-            if (str6 == null || !str6.equals(str5)) {
-                return;
-            }
-            this.radialProgress.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
-        }
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.gradientDrawableTop.setBounds(this.scrollView.getLeft(), this.scrollView.getTop(), this.scrollView.getRight(), this.scrollView.getTop() + AndroidUtilities.dp(16.0f));
-        this.gradientDrawableTop.draw(canvas);
-        this.gradientDrawableBottom.setBounds(this.scrollView.getLeft(), this.scrollView.getBottom() - AndroidUtilities.dp(18.0f), this.scrollView.getRight(), this.scrollView.getBottom());
-        this.gradientDrawableBottom.draw(canvas);
-    }
-
-    @Override
-    public void setVisibility(int i) {
-        super.setVisibility(i);
-        if (i == 8) {
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.accountNum).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
-        }
-    }
-
     public void show(int i, TLRPC.TL_help_appUpdate tL_help_appUpdate, boolean z) {
-        TextView textView;
-        String string;
         this.pressCount = 0;
         this.appUpdate = tL_help_appUpdate;
         this.accountNum = i;
@@ -348,13 +323,10 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
         MessageObject.addEntitiesToText(spannableStringBuilder, tL_help_appUpdate.entities, false, false, false, false);
         this.textView.setText(spannableStringBuilder);
         if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
-            textView = this.acceptTextView;
-            string = LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tL_help_appUpdate.document.size));
+            this.acceptTextView.setText(LocaleController.getString(R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tL_help_appUpdate.document.size)));
         } else {
-            textView = this.acceptTextView;
-            string = LocaleController.getString(R.string.Update);
+            this.acceptTextView.setText(LocaleController.getString(R.string.Update));
         }
-        textView.setText(string);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadProgressChanged);
@@ -374,5 +346,32 @@ public abstract class BlockingUpdateView extends FrameLayout implements Notifica
                 }
             });
         }
+    }
+
+    public void lambda$show$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BlockingUpdateView.this.lambda$show$2(tLObject);
+            }
+        });
+    }
+
+    public void lambda$show$2(TLObject tLObject) {
+        if (!(tLObject instanceof TLRPC.TL_help_appUpdate) || ((TLRPC.TL_help_appUpdate) tLObject).can_not_skip) {
+            return;
+        }
+        setVisibility(8);
+        SharedConfig.pendingAppUpdate = null;
+        SharedConfig.saveConfig();
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.gradientDrawableTop.setBounds(this.scrollView.getLeft(), this.scrollView.getTop(), this.scrollView.getRight(), this.scrollView.getTop() + AndroidUtilities.dp(16.0f));
+        this.gradientDrawableTop.draw(canvas);
+        this.gradientDrawableBottom.setBounds(this.scrollView.getLeft(), this.scrollView.getBottom() - AndroidUtilities.dp(18.0f), this.scrollView.getRight(), this.scrollView.getBottom());
+        this.gradientDrawableBottom.draw(canvas);
     }
 }

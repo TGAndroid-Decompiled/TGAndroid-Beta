@@ -39,53 +39,6 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     private float toOffsetY;
     private float translationOffsetY;
 
-    public class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
-        AnonymousClass3() {
-        }
-
-        public void lambda$onReactionClicked$0() {
-            if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
-                ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
-            }
-            hideMenu();
-        }
-
-        @Override
-        public boolean drawBackground() {
-            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
-        }
-
-        @Override
-        public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
-            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3, i, z);
-        }
-
-        public void hideMenu() {
-            ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
-        }
-
-        @Override
-        public boolean needEnterText() {
-            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
-        }
-
-        @Override
-        public void onEmojiWindowDismissed() {
-            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
-        }
-
-        @Override
-        public void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
-            ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatSelectionReactionMenuOverlay.AnonymousClass3.this.lambda$onReactionClicked$0();
-                }
-            });
-        }
-    }
-
     public ChatSelectionReactionMenuOverlay(ChatActivity chatActivity, Context context) {
         super(context);
         this.selectedMessages = Collections.emptyList();
@@ -102,40 +55,6 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
                 ChatSelectionReactionMenuOverlay.this.invalidatePosition();
             }
         });
-    }
-
-    private void animateVisible(boolean z) {
-        if (z) {
-            setVisibility(0);
-            post(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$0();
-                }
-            });
-            return;
-        }
-        this.messageSet = false;
-        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$1(valueAnimator);
-            }
-        });
-        duration.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                ChatSelectionReactionMenuOverlay.this.setVisibility(8);
-                if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
-                    ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay = ChatSelectionReactionMenuOverlay.this;
-                    chatSelectionReactionMenuOverlay.removeView(chatSelectionReactionMenuOverlay.reactionsContainerLayout);
-                    ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout = null;
-                }
-                ChatSelectionReactionMenuOverlay.this.currentPrimaryObject = null;
-            }
-        });
-        duration.start();
     }
 
     private void checkCreateReactionsLayout() {
@@ -196,6 +115,65 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
     }
 
+    public class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+        @Override
+        public boolean drawBackground() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
+        }
+
+        @Override
+        public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3, i, z);
+        }
+
+        @Override
+        public boolean needEnterText() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
+        }
+
+        @Override
+        public void onEmojiWindowDismissed() {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
+        }
+
+        AnonymousClass3() {
+        }
+
+        @Override
+        public void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+            ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatSelectionReactionMenuOverlay.AnonymousClass3.this.lambda$onReactionClicked$0();
+                }
+            });
+        }
+
+        public void lambda$onReactionClicked$0() {
+            if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
+                ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
+            }
+            hideMenu();
+        }
+
+        public void hideMenu() {
+            ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
+        }
+    }
+
+    public boolean isVisible() {
+        return this.isVisible && !this.hiddenByScroll;
+    }
+
+    public void invalidatePosition() {
+        invalidatePosition(true);
+    }
+
+    public void invalidatePosition(boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.invalidatePosition(boolean):void");
+    }
+
     private MessageObject findPrimaryObject() {
         MessageObject.GroupedMessages group;
         ArrayList<MessageObject> arrayList;
@@ -222,17 +200,55 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         return (messageObject == null || messageObject.needDrawBluredPreview() || ((!MessageObject.isPhoto(messageObject.messageOwner) || MessageObject.getMedia(messageObject.messageOwner).webpage != null) && (messageObject.getDocument() == null || (!MessageObject.isVideoDocument(messageObject.getDocument()) && !MessageObject.isGifDocument(messageObject.getDocument()))))) ? false : true;
     }
 
+    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.setSelectedMessages(java.util.List):void");
+    }
+
+    private void animateVisible(boolean z) {
+        if (z) {
+            setVisibility(0);
+            post(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$0();
+                }
+            });
+            return;
+        }
+        this.messageSet = false;
+        ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
+        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$1(valueAnimator);
+            }
+        });
+        duration.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ChatSelectionReactionMenuOverlay.this.setVisibility(8);
+                if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
+                    ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay = ChatSelectionReactionMenuOverlay.this;
+                    chatSelectionReactionMenuOverlay.removeView(chatSelectionReactionMenuOverlay.reactionsContainerLayout);
+                    ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout = null;
+                }
+                ChatSelectionReactionMenuOverlay.this.currentPrimaryObject = null;
+            }
+        });
+        duration.start();
+    }
+
     public void lambda$animateVisible$0() {
         this.currentPrimaryObject = findPrimaryObject();
         checkCreateReactionsLayout();
         invalidatePosition(false);
-        if (!this.reactionsContainerLayout.isEnabled()) {
-            this.messageSet = false;
-            this.reactionsContainerLayout.setTransitionProgress(1.0f);
-        } else {
+        if (this.reactionsContainerLayout.isEnabled()) {
             this.messageSet = true;
             this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo(), true);
             this.reactionsContainerLayout.startEnterAnimation(false);
+        } else {
+            this.messageSet = false;
+            this.reactionsContainerLayout.setTransitionProgress(1.0f);
         }
     }
 
@@ -242,18 +258,6 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         if (reactionsContainerLayout != null) {
             reactionsContainerLayout.setAlpha(floatValue);
         }
-    }
-
-    public void invalidatePosition() {
-        invalidatePosition(true);
-    }
-
-    public void invalidatePosition(boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.invalidatePosition(boolean):void");
-    }
-
-    public boolean isVisible() {
-        return this.isVisible && !this.hiddenByScroll;
     }
 
     public boolean onBackPressed() {
@@ -270,9 +274,5 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         if (z) {
             animateVisible(false);
         }
-    }
-
-    public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.setSelectedMessages(java.util.List):void");
     }
 }

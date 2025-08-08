@@ -16,6 +16,31 @@ public class PathAnimator {
     private float pathTime = -1.0f;
     private ArrayList keyFrames = new ArrayList();
 
+    public static class KeyFrame {
+        public ArrayList commands;
+        public float time;
+
+        private KeyFrame() {
+            this.commands = new ArrayList();
+        }
+    }
+
+    public static class MoveTo {
+        public float x;
+        public float y;
+
+        private MoveTo() {
+        }
+    }
+
+    public static class LineTo {
+        public float x;
+        public float y;
+
+        private LineTo() {
+        }
+    }
+
     public static class CurveTo {
         public float x;
         public float x1;
@@ -28,31 +53,6 @@ public class PathAnimator {
         }
     }
 
-    public static class KeyFrame {
-        public ArrayList commands;
-        public float time;
-
-        private KeyFrame() {
-            this.commands = new ArrayList();
-        }
-    }
-
-    public static class LineTo {
-        public float x;
-        public float y;
-
-        private LineTo() {
-        }
-    }
-
-    public static class MoveTo {
-        public float x;
-        public float y;
-
-        private MoveTo() {
-        }
-    }
-
     public PathAnimator(float f, float f2, float f3, float f4) {
         this.scale = f;
         this.tx = f2;
@@ -61,7 +61,6 @@ public class PathAnimator {
     }
 
     public void addSvgKeyFrame(String str, float f) {
-        CurveTo curveTo;
         if (str == null) {
             return;
         }
@@ -73,31 +72,28 @@ public class PathAnimator {
             while (i < split.length) {
                 char charAt = split[i].charAt(0);
                 if (charAt == 'C') {
-                    CurveTo curveTo2 = new CurveTo();
-                    curveTo2.x1 = (Float.parseFloat(split[i + 1]) + this.tx) * this.scale;
-                    curveTo2.y1 = (Float.parseFloat(split[i + 2]) + this.ty) * this.scale;
-                    curveTo2.x2 = (Float.parseFloat(split[i + 3]) + this.tx) * this.scale;
-                    curveTo2.y2 = (Float.parseFloat(split[i + 4]) + this.ty) * this.scale;
-                    curveTo2.x = (Float.parseFloat(split[i + 5]) + this.tx) * this.scale;
+                    CurveTo curveTo = new CurveTo();
+                    curveTo.x1 = (Float.parseFloat(split[i + 1]) + this.tx) * this.scale;
+                    curveTo.y1 = (Float.parseFloat(split[i + 2]) + this.ty) * this.scale;
+                    curveTo.x2 = (Float.parseFloat(split[i + 3]) + this.tx) * this.scale;
+                    curveTo.y2 = (Float.parseFloat(split[i + 4]) + this.ty) * this.scale;
+                    curveTo.x = (Float.parseFloat(split[i + 5]) + this.tx) * this.scale;
                     i += 6;
-                    curveTo2.y = (Float.parseFloat(split[i]) + this.ty) * this.scale;
-                    curveTo = curveTo2;
+                    curveTo.y = (Float.parseFloat(split[i]) + this.ty) * this.scale;
+                    keyFrame.commands.add(curveTo);
                 } else if (charAt == 'L') {
                     LineTo lineTo = new LineTo();
                     lineTo.x = (Float.parseFloat(split[i + 1]) + this.tx) * this.scale;
                     i += 2;
                     lineTo.y = (Float.parseFloat(split[i]) + this.ty) * this.scale;
-                    curveTo = lineTo;
-                } else if (charAt != 'M') {
-                    i++;
-                } else {
+                    keyFrame.commands.add(lineTo);
+                } else if (charAt == 'M') {
                     MoveTo moveTo = new MoveTo();
                     moveTo.x = (Float.parseFloat(split[i + 1]) + this.tx) * this.scale;
                     i += 2;
                     moveTo.y = (Float.parseFloat(split[i]) + this.ty) * this.scale;
-                    curveTo = moveTo;
+                    keyFrame.commands.add(moveTo);
                 }
-                keyFrame.commands.add(curveTo);
                 i++;
             }
             this.keyFrames.add(keyFrame);

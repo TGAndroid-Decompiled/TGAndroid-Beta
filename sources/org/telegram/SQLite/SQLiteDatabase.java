@@ -9,53 +9,26 @@ public class SQLiteDatabase {
     private boolean isOpen = true;
     private final long sqliteHandle;
 
+    native void beginTransaction(long j);
+
+    native void closedb(long j);
+
+    native void commitTransaction(long j);
+
+    native long opendb(String str, String str2);
+
+    public long getSQLiteHandle() {
+        return this.sqliteHandle;
+    }
+
     public SQLiteDatabase(String str) {
         this.sqliteHandle = opendb(str, ApplicationLoader.getFilesDirFixed().getPath());
     }
 
-    public void beginTransaction() {
-        if (this.inTransaction) {
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                throw new SQLiteException("database already in transaction");
-            }
-            commitTransaction();
-        }
-        this.inTransaction = true;
-        beginTransaction(this.sqliteHandle);
+    public boolean tableExists(String str) {
+        checkOpened();
+        return executeInt("SELECT rowid FROM sqlite_master WHERE type='table' AND name=?;", str) != null;
     }
-
-    native void beginTransaction(long j);
-
-    void checkOpened() {
-        if (!this.isOpen) {
-            throw new SQLiteException("Database closed");
-        }
-    }
-
-    public void close() {
-        if (this.isOpen) {
-            try {
-                commitTransaction();
-                closedb(this.sqliteHandle);
-            } catch (SQLiteException e) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
-                }
-            }
-            this.isOpen = false;
-        }
-    }
-
-    native void closedb(long j);
-
-    public void commitTransaction() {
-        if (this.inTransaction) {
-            this.inTransaction = false;
-            commitTransaction(this.sqliteHandle);
-        }
-    }
-
-    native void commitTransaction(long j);
 
     public SQLitePreparedStatement executeFast(String str) {
         return new SQLitePreparedStatement(this, str);
@@ -90,24 +63,51 @@ public class SQLiteDatabase {
         query.dispose();
     }
 
-    public void finalize() {
-        super.finalize();
-        close();
-    }
-
-    public long getSQLiteHandle() {
-        return this.sqliteHandle;
-    }
-
-    native long opendb(String str, String str2);
-
     public SQLiteCursor queryFinalized(String str, Object... objArr) {
         checkOpened();
         return new SQLitePreparedStatement(this, str).query(objArr);
     }
 
-    public boolean tableExists(String str) {
-        checkOpened();
-        return executeInt("SELECT rowid FROM sqlite_master WHERE type='table' AND name=?;", str) != null;
+    public void close() {
+        if (this.isOpen) {
+            try {
+                commitTransaction();
+                closedb(this.sqliteHandle);
+            } catch (SQLiteException e) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.e(e.getMessage(), e);
+                }
+            }
+            this.isOpen = false;
+        }
+    }
+
+    void checkOpened() {
+        if (!this.isOpen) {
+            throw new SQLiteException("Database closed");
+        }
+    }
+
+    public void finalize() {
+        super.finalize();
+        close();
+    }
+
+    public void beginTransaction() {
+        if (this.inTransaction) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                throw new SQLiteException("database already in transaction");
+            }
+            commitTransaction();
+        }
+        this.inTransaction = true;
+        beginTransaction(this.sqliteHandle);
+    }
+
+    public void commitTransaction() {
+        if (this.inTransaction) {
+            this.inTransaction = false;
+            commitTransaction(this.sqliteHandle);
+        }
     }
 }

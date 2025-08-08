@@ -19,6 +19,16 @@ public class StackLinearChartView extends BaseChartView {
     boolean[] skipPoints;
     float[] startFromY;
 
+    @Override
+    public long findMaxValue(int i, int i2) {
+        return 100L;
+    }
+
+    @Override
+    protected float getMinDistance() {
+        return 0.1f;
+    }
+
     public StackLinearChartView(Context context) {
         super(context);
         this.matrix = new Matrix();
@@ -27,6 +37,16 @@ public class StackLinearChartView extends BaseChartView {
         this.superDraw = true;
         this.useAlphaSignature = true;
         this.drawPointOnSelection = false;
+    }
+
+    @Override
+    public StackLinearViewData createLineViewData(ChartData.Line line) {
+        return new StackLinearViewData(line);
+    }
+
+    @Override
+    protected void drawChart(android.graphics.Canvas r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.drawChart(android.graphics.Canvas):void");
     }
 
     private int quarterForPoint(float f, float f2) {
@@ -39,16 +59,6 @@ public class StackLinearChartView extends BaseChartView {
             return (f >= centerX || f2 < centerY) ? 3 : 2;
         }
         return 1;
-    }
-
-    @Override
-    public StackLinearViewData createLineViewData(ChartData.Line line) {
-        return new StackLinearViewData(line);
-    }
-
-    @Override
-    protected void drawChart(android.graphics.Canvas r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.drawChart(android.graphics.Canvas):void");
     }
 
     @Override
@@ -172,21 +182,6 @@ public class StackLinearChartView extends BaseChartView {
     }
 
     @Override
-    public void fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams):void");
-    }
-
-    @Override
-    public long findMaxValue(int i, int i2) {
-        return 100L;
-    }
-
-    @Override
-    protected float getMinDistance() {
-        return 0.1f;
-    }
-
-    @Override
     public void onDraw(Canvas canvas) {
         tick();
         drawChart(canvas);
@@ -196,16 +191,22 @@ public class StackLinearChartView extends BaseChartView {
         while (true) {
             this.tmpI = i;
             int i2 = this.tmpI;
-            if (i2 >= this.tmpN) {
+            if (i2 < this.tmpN) {
+                drawHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(i2));
+                drawSignaturesToHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(this.tmpI));
+                i = this.tmpI + 1;
+            } else {
                 drawBottomSignature(canvas);
                 drawPicker(canvas);
                 drawSelection(canvas);
                 super.onDraw(canvas);
                 return;
             }
-            drawHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(i2));
-            drawSignaturesToHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(this.tmpI));
-            i = this.tmpI + 1;
         }
+    }
+
+    @Override
+    public void fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams):void");
     }
 }

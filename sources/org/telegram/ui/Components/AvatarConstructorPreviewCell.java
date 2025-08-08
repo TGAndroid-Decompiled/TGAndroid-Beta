@@ -87,7 +87,11 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
             }
         };
         this.forUser = z;
-        this.emojiList = z ? MediaDataController.getInstance(i).profileAvatarConstructorDefault : MediaDataController.getInstance(i).groupAvatarConstructorDefault;
+        if (z) {
+            this.emojiList = MediaDataController.getInstance(i).profileAvatarConstructorDefault;
+        } else {
+            this.emojiList = MediaDataController.getInstance(i).groupAvatarConstructorDefault;
+        }
         TLRPC.TL_emojiList tL_emojiList = this.emojiList;
         if (tL_emojiList == null || tL_emojiList.document_id.isEmpty()) {
             ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i).getStickerSets(5);
@@ -159,6 +163,21 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     }
 
     @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        int top = (int) (this.textView.getTop() * 0.7f);
+        int i3 = (int) ((r3 - top) * 0.7f);
+        ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
+        this.currentImage.getLayoutParams().height = top;
+        layoutParams.width = top;
+        ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
+        this.nextImage.getLayoutParams().height = top;
+        layoutParams2.width = top;
+        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i3;
+        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i3;
+    }
+
+    @Override
     protected void dispatchDraw(Canvas canvas) {
         GradientTools gradientTools = this.currentBackgroundDrawable;
         if (gradientTools != null) {
@@ -204,20 +223,6 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
         super.dispatchDraw(canvas);
     }
 
-    public AnimatedEmojiDrawable getAnimatedEmoji() {
-        return this.animatedEmojiDrawable;
-    }
-
-    public AvatarConstructorFragment.BackgroundGradient getBackgroundGradient() {
-        AvatarConstructorFragment.BackgroundGradient backgroundGradient = new AvatarConstructorFragment.BackgroundGradient();
-        int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
-        backgroundGradient.color1 = iArr[0];
-        backgroundGradient.color2 = iArr[1];
-        backgroundGradient.color3 = iArr[2];
-        backgroundGradient.color4 = iArr[3];
-        return backgroundGradient;
-    }
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -230,18 +235,17 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
         AndroidUtilities.cancelRunOnUIThread(this.scheduleSwitchToNextRunnable);
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        int top = (int) (this.textView.getTop() * 0.7f);
-        int i3 = (int) ((r3 - top) * 0.7f);
-        ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
-        this.currentImage.getLayoutParams().height = top;
-        layoutParams.width = top;
-        ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
-        this.nextImage.getLayoutParams().height = top;
-        layoutParams2.width = top;
-        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i3;
-        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i3;
+    public AvatarConstructorFragment.BackgroundGradient getBackgroundGradient() {
+        AvatarConstructorFragment.BackgroundGradient backgroundGradient = new AvatarConstructorFragment.BackgroundGradient();
+        int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
+        backgroundGradient.color1 = iArr[0];
+        backgroundGradient.color2 = iArr[1];
+        backgroundGradient.color3 = iArr[2];
+        backgroundGradient.color4 = iArr[3];
+        return backgroundGradient;
+    }
+
+    public AnimatedEmojiDrawable getAnimatedEmoji() {
+        return this.animatedEmojiDrawable;
     }
 }

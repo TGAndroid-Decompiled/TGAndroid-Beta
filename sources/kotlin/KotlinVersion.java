@@ -12,15 +12,6 @@ public final class KotlinVersion implements Comparable {
     public static final Companion Companion = new Companion(null);
     public static final KotlinVersion CURRENT = KotlinVersionCurrentValue.get();
 
-    public static final class Companion {
-        private Companion() {
-        }
-
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
     public KotlinVersion(int i, int i2, int i3) {
         this.major = i;
         this.minor = i2;
@@ -35,10 +26,14 @@ public final class KotlinVersion implements Comparable {
         throw new IllegalArgumentException(("Version components are out of range: " + i + '.' + i2 + '.' + i3).toString());
     }
 
-    @Override
-    public int compareTo(KotlinVersion other) {
-        Intrinsics.checkNotNullParameter(other, "other");
-        return this.version - other.version;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.major);
+        sb.append('.');
+        sb.append(this.minor);
+        sb.append('.');
+        sb.append(this.patch);
+        return sb.toString();
     }
 
     public boolean equals(Object obj) {
@@ -53,13 +48,18 @@ public final class KotlinVersion implements Comparable {
         return this.version;
     }
 
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.major);
-        sb.append('.');
-        sb.append(this.minor);
-        sb.append('.');
-        sb.append(this.patch);
-        return sb.toString();
+    @Override
+    public int compareTo(KotlinVersion other) {
+        Intrinsics.checkNotNullParameter(other, "other");
+        return this.version - other.version;
+    }
+
+    public static final class Companion {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
+        private Companion() {
+        }
     }
 }

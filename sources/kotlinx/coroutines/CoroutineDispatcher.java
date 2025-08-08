@@ -15,7 +15,31 @@ import kotlinx.coroutines.internal.LimitedDispatcherKt;
 public abstract class CoroutineDispatcher extends AbstractCoroutineContextElement implements ContinuationInterceptor {
     public static final Key Key = new Key(null);
 
+    public abstract void dispatch(CoroutineContext coroutineContext, Runnable runnable);
+
+    public boolean isDispatchNeeded(CoroutineContext coroutineContext) {
+        return true;
+    }
+
+    @Override
+    public CoroutineContext.Element get(CoroutineContext.Key key) {
+        return ContinuationInterceptor.DefaultImpls.get(this, key);
+    }
+
+    @Override
+    public CoroutineContext minusKey(CoroutineContext.Key key) {
+        return ContinuationInterceptor.DefaultImpls.minusKey(this, key);
+    }
+
+    public CoroutineDispatcher() {
+        super(ContinuationInterceptor.Key);
+    }
+
     public static final class Key extends AbstractCoroutineContextKey {
+        public Key(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+
         private Key() {
             super(ContinuationInterceptor.Key, new Function1() {
                 @Override
@@ -27,30 +51,6 @@ public abstract class CoroutineDispatcher extends AbstractCoroutineContextElemen
                 }
             });
         }
-
-        public Key(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-    }
-
-    public CoroutineDispatcher() {
-        super(ContinuationInterceptor.Key);
-    }
-
-    public abstract void dispatch(CoroutineContext coroutineContext, Runnable runnable);
-
-    @Override
-    public CoroutineContext.Element get(CoroutineContext.Key key) {
-        return ContinuationInterceptor.DefaultImpls.get(this, key);
-    }
-
-    @Override
-    public final Continuation interceptContinuation(Continuation continuation) {
-        return new DispatchedContinuation(this, continuation);
-    }
-
-    public boolean isDispatchNeeded(CoroutineContext coroutineContext) {
-        return true;
     }
 
     public CoroutineDispatcher limitedParallelism(int i) {
@@ -59,8 +59,8 @@ public abstract class CoroutineDispatcher extends AbstractCoroutineContextElemen
     }
 
     @Override
-    public CoroutineContext minusKey(CoroutineContext.Key key) {
-        return ContinuationInterceptor.DefaultImpls.minusKey(this, key);
+    public final Continuation interceptContinuation(Continuation continuation) {
+        return new DispatchedContinuation(this, continuation);
     }
 
     @Override

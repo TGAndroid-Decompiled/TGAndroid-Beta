@@ -10,11 +10,41 @@ import org.telegram.messenger.NotificationCenter;
 public class ImportingService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private NotificationCompat.Builder builder;
 
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
     public ImportingService() {
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.historyImportProgressChanged);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            stopForeground(true);
+        } catch (Throwable unused) {
+        }
+        NotificationManagerCompat.from(ApplicationLoader.applicationContext).cancel(5);
+        for (int i = 0; i < 4; i++) {
+            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.historyImportProgressChanged);
+            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("destroy import service");
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if ((i != NotificationCenter.historyImportProgressChanged && i != NotificationCenter.stickersImportProgressChanged) || hasImportingStickers() || hasImportingStickers()) {
+            return;
+        }
+        stopSelf();
     }
 
     private boolean hasImportingHistory() {
@@ -36,39 +66,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if ((i != NotificationCenter.historyImportProgressChanged && i != NotificationCenter.stickersImportProgressChanged) || hasImportingStickers() || hasImportingStickers()) {
-            return;
-        }
-        stopSelf();
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        try {
-            stopForeground(true);
-        } catch (Throwable unused) {
-        }
-        NotificationManagerCompat.from(ApplicationLoader.applicationContext).cancel(5);
-        for (int i = 0; i < 4; i++) {
-            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.historyImportProgressChanged);
-            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("destroy import service");
-        }
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int i, int i2) {
-        NotificationCompat.Builder builder;
-        int i3;
         if (!hasImportingStickers() && !hasImportingHistory()) {
             stopSelf();
             return 2;
@@ -78,21 +76,23 @@ public class ImportingService extends Service implements NotificationCenter.Noti
         }
         if (this.builder == null) {
             NotificationsController.checkOtherNotificationsChannel();
-            NotificationCompat.Builder builder2 = new NotificationCompat.Builder(ApplicationLoader.applicationContext);
-            this.builder = builder2;
-            builder2.setSmallIcon(17301640);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(ApplicationLoader.applicationContext);
+            this.builder = builder;
+            builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             this.builder.setContentTitle(LocaleController.getString(R.string.AppName));
             if (hasImportingHistory()) {
-                builder = this.builder;
-                i3 = R.string.ImporImportingService;
+                NotificationCompat.Builder builder2 = this.builder;
+                int i3 = R.string.ImporImportingService;
+                builder2.setTicker(LocaleController.getString(i3));
+                this.builder.setContentText(LocaleController.getString(i3));
             } else {
-                builder = this.builder;
-                i3 = R.string.ImporImportingStickersService;
+                NotificationCompat.Builder builder3 = this.builder;
+                int i4 = R.string.ImporImportingStickersService;
+                builder3.setTicker(LocaleController.getString(i4));
+                this.builder.setContentText(LocaleController.getString(i4));
             }
-            builder.setTicker(LocaleController.getString(i3));
-            this.builder.setContentText(LocaleController.getString(i3));
         }
         this.builder.setProgress(100, 0, true);
         startForeground(5, this.builder.build());

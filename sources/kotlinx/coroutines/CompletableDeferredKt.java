@@ -3,6 +3,11 @@ package kotlinx.coroutines;
 import kotlin.Result;
 
 public abstract class CompletableDeferredKt {
+    public static final boolean completeWith(CompletableDeferred completableDeferred, Object obj) {
+        Throwable m218exceptionOrNullimpl = Result.m218exceptionOrNullimpl(obj);
+        return m218exceptionOrNullimpl == null ? completableDeferred.complete(obj) : completableDeferred.completeExceptionally(m218exceptionOrNullimpl);
+    }
+
     public static final CompletableDeferred CompletableDeferred(Job job) {
         return new CompletableDeferredImpl(job);
     }
@@ -12,10 +17,5 @@ public abstract class CompletableDeferredKt {
             job = null;
         }
         return CompletableDeferred(job);
-    }
-
-    public static final boolean completeWith(CompletableDeferred completableDeferred, Object obj) {
-        Throwable m212exceptionOrNullimpl = Result.m212exceptionOrNullimpl(obj);
-        return m212exceptionOrNullimpl == null ? completableDeferred.complete(obj) : completableDeferred.completeExceptionally(m212exceptionOrNullimpl);
     }
 }

@@ -3,7 +3,7 @@ package kotlinx.coroutines.scheduling;
 import java.util.concurrent.Executor;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
-import kotlin.ranges.RangesKt___RangesKt;
+import kotlin.ranges.RangesKt;
 import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.ExecutorCoroutineDispatcher;
 import kotlinx.coroutines.internal.SystemPropsKt;
@@ -14,21 +14,19 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     private static final CoroutineDispatcher f0default;
 
-    static {
-        int coerceAtLeast;
-        int systemProp$default;
-        UnlimitedIoScheduler unlimitedIoScheduler = UnlimitedIoScheduler.INSTANCE;
-        coerceAtLeast = RangesKt___RangesKt.coerceAtLeast(64, SystemPropsKt.getAVAILABLE_PROCESSORS());
-        systemProp$default = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.io.parallelism", coerceAtLeast, 0, 0, 12, (Object) null);
-        f0default = unlimitedIoScheduler.limitedParallelism(systemProp$default);
-    }
-
     private DefaultIoScheduler() {
     }
 
+    static {
+        int systemProp$default;
+        UnlimitedIoScheduler unlimitedIoScheduler = UnlimitedIoScheduler.INSTANCE;
+        systemProp$default = SystemPropsKt__SystemProps_commonKt.systemProp$default("kotlinx.coroutines.io.parallelism", RangesKt.coerceAtLeast(64, SystemPropsKt.getAVAILABLE_PROCESSORS()), 0, 0, 12, (Object) null);
+        f0default = unlimitedIoScheduler.limitedParallelism(systemProp$default);
+    }
+
     @Override
-    public void close() {
-        throw new IllegalStateException("Cannot be invoked on Dispatchers.IO".toString());
+    public void execute(Runnable runnable) {
+        dispatch(EmptyCoroutineContext.INSTANCE, runnable);
     }
 
     @Override
@@ -37,8 +35,8 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
     }
 
     @Override
-    public void execute(Runnable runnable) {
-        dispatch(EmptyCoroutineContext.INSTANCE, runnable);
+    public void close() {
+        throw new IllegalStateException("Cannot be invoked on Dispatchers.IO");
     }
 
     @Override

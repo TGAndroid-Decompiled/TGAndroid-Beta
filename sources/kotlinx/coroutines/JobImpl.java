@@ -3,14 +3,15 @@ package kotlinx.coroutines;
 public class JobImpl extends JobSupport implements CompletableJob {
     private final boolean handlesException;
 
+    @Override
+    public boolean getOnCancelComplete$kotlinx_coroutines_core() {
+        return true;
+    }
+
     public JobImpl(Job job) {
         super(true);
         initParentJob(job);
         this.handlesException = handlesException();
-    }
-
-    private final boolean handlesException() {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.JobImpl.handlesException():boolean");
     }
 
     @Override
@@ -18,8 +19,7 @@ public class JobImpl extends JobSupport implements CompletableJob {
         return this.handlesException;
     }
 
-    @Override
-    public boolean getOnCancelComplete$kotlinx_coroutines_core() {
-        return true;
+    private final boolean handlesException() {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.JobImpl.handlesException():boolean");
     }
 }

@@ -22,6 +22,11 @@ public class InviteUserCell extends FrameLayout {
     private SimpleTextView nameTextView;
     private SimpleTextView statusTextView;
 
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
     public InviteUserCell(Context context, boolean z) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
@@ -59,13 +64,18 @@ public class InviteUserCell extends FrameLayout {
         }
     }
 
-    public ContactsController.Contact getContact() {
-        return this.currentContact;
+    public void setUser(ContactsController.Contact contact, CharSequence charSequence) {
+        this.currentContact = contact;
+        this.currentName = charSequence;
+        update(0);
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
+    public void setChecked(boolean z, boolean z2) {
+        this.checkBox.setChecked(z, z2);
+    }
+
+    public ContactsController.Contact getContact() {
+        return this.currentContact;
     }
 
     @Override
@@ -75,16 +85,6 @@ public class InviteUserCell extends FrameLayout {
 
     public void recycle() {
         this.avatarImageView.getImageReceiver().cancelLoadImage();
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        this.checkBox.setChecked(z, z2);
-    }
-
-    public void setUser(ContactsController.Contact contact, CharSequence charSequence) {
-        this.currentContact = contact;
-        this.currentName = charSequence;
-        update(0);
     }
 
     public void update(int i) {

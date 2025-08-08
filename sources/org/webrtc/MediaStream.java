@@ -11,16 +11,6 @@ public class MediaStream {
     public final List<VideoTrack> videoTracks = new ArrayList();
     public final List<VideoTrack> preservedVideoTracks = new ArrayList();
 
-    public MediaStream(long j) {
-        this.nativeStream = j;
-    }
-
-    private void checkMediaStreamExists() {
-        if (this.nativeStream == 0) {
-            throw new IllegalStateException("MediaStream has been disposed.");
-        }
-    }
-
     private static native boolean nativeAddAudioTrackToNativeStream(long j, long j2);
 
     private static native boolean nativeAddVideoTrackToNativeStream(long j, long j2);
@@ -31,34 +21,8 @@ public class MediaStream {
 
     private static native boolean nativeRemoveVideoTrack(long j, long j2);
 
-    private static void removeMediaStreamTrack(List<? extends MediaStreamTrack> list, long j) {
-        Iterator<? extends MediaStreamTrack> it = list.iterator();
-        while (it.hasNext()) {
-            MediaStreamTrack next = it.next();
-            if (next.getNativeMediaStreamTrack() == j) {
-                next.dispose();
-                it.remove();
-                return;
-            }
-        }
-        Logging.e("MediaStream", "Couldn't not find track");
-    }
-
-    void addNativeAudioTrack(long j) {
-        this.audioTracks.add(new AudioTrack(j));
-    }
-
-    void addNativeVideoTrack(long j) {
-        this.videoTracks.add(new VideoTrack(j));
-    }
-
-    public boolean addPreservedTrack(VideoTrack videoTrack) {
-        checkMediaStreamExists();
-        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            return false;
-        }
-        this.preservedVideoTracks.add(videoTrack);
-        return true;
+    public MediaStream(long j) {
+        this.nativeStream = j;
     }
 
     public boolean addTrack(AudioTrack audioTrack) {
@@ -77,6 +41,28 @@ public class MediaStream {
         }
         this.videoTracks.add(videoTrack);
         return true;
+    }
+
+    public boolean addPreservedTrack(VideoTrack videoTrack) {
+        checkMediaStreamExists();
+        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            return false;
+        }
+        this.preservedVideoTracks.add(videoTrack);
+        return true;
+    }
+
+    public boolean removeTrack(AudioTrack audioTrack) {
+        checkMediaStreamExists();
+        this.audioTracks.remove(audioTrack);
+        return nativeRemoveAudioTrack(this.nativeStream, audioTrack.getNativeAudioTrack());
+    }
+
+    public boolean removeTrack(VideoTrack videoTrack) {
+        checkMediaStreamExists();
+        this.videoTracks.remove(videoTrack);
+        this.preservedVideoTracks.remove(videoTrack);
+        return nativeRemoveVideoTrack(this.nativeStream, videoTrack.getNativeVideoTrack());
     }
 
     public void dispose() {
@@ -103,33 +89,47 @@ public class MediaStream {
         return nativeGetId(this.nativeStream);
     }
 
-    public long getNativeMediaStream() {
-        checkMediaStreamExists();
-        return this.nativeStream;
+    public String toString() {
+        return "[" + getId() + ":A=" + this.audioTracks.size() + ":V=" + this.videoTracks.size() + "]";
+    }
+
+    void addNativeAudioTrack(long j) {
+        this.audioTracks.add(new AudioTrack(j));
+    }
+
+    void addNativeVideoTrack(long j) {
+        this.videoTracks.add(new VideoTrack(j));
     }
 
     void removeAudioTrack(long j) {
         removeMediaStreamTrack(this.audioTracks, j);
     }
 
-    public boolean removeTrack(AudioTrack audioTrack) {
-        checkMediaStreamExists();
-        this.audioTracks.remove(audioTrack);
-        return nativeRemoveAudioTrack(this.nativeStream, audioTrack.getNativeAudioTrack());
-    }
-
-    public boolean removeTrack(VideoTrack videoTrack) {
-        checkMediaStreamExists();
-        this.videoTracks.remove(videoTrack);
-        this.preservedVideoTracks.remove(videoTrack);
-        return nativeRemoveVideoTrack(this.nativeStream, videoTrack.getNativeVideoTrack());
-    }
-
     void removeVideoTrack(long j) {
         removeMediaStreamTrack(this.videoTracks, j);
     }
 
-    public String toString() {
-        return "[" + getId() + ":A=" + this.audioTracks.size() + ":V=" + this.videoTracks.size() + "]";
+    public long getNativeMediaStream() {
+        checkMediaStreamExists();
+        return this.nativeStream;
+    }
+
+    private void checkMediaStreamExists() {
+        if (this.nativeStream == 0) {
+            throw new IllegalStateException("MediaStream has been disposed.");
+        }
+    }
+
+    private static void removeMediaStreamTrack(List<? extends MediaStreamTrack> list, long j) {
+        Iterator<? extends MediaStreamTrack> it = list.iterator();
+        while (it.hasNext()) {
+            MediaStreamTrack next = it.next();
+            if (next.getNativeMediaStreamTrack() == j) {
+                next.dispose();
+                it.remove();
+                return;
+            }
+        }
+        Logging.e("MediaStream", "Couldn't not find track");
     }
 }

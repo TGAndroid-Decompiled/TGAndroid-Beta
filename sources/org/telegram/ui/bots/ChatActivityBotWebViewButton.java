@@ -64,6 +64,25 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
         setWillNotDraw(false);
     }
 
+    public void setBotMenuButton(BotCommandsMenuView botCommandsMenuView) {
+        this.menuButton = botCommandsMenuView;
+        invalidate();
+    }
+
+    public void setProgress(float f) {
+        this.progress = f;
+        this.backgroundColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground), this.buttonColor, f);
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).setAlpha(f);
+        }
+        invalidate();
+    }
+
+    public void setMeasuredButtonWidth(int i) {
+        this.menuButtonWidth = i;
+        invalidate();
+    }
+
     @Override
     public void draw(Canvas canvas) {
         canvas.save();
@@ -98,24 +117,5 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
             size = Math.min(size, height);
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i2)));
-    }
-
-    public void setBotMenuButton(BotCommandsMenuView botCommandsMenuView) {
-        this.menuButton = botCommandsMenuView;
-        invalidate();
-    }
-
-    public void setMeasuredButtonWidth(int i) {
-        this.menuButtonWidth = i;
-        invalidate();
-    }
-
-    public void setProgress(float f) {
-        this.progress = f;
-        this.backgroundColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground), this.buttonColor, f);
-        for (int i = 0; i < getChildCount(); i++) {
-            getChildAt(i).setAlpha(f);
-        }
-        invalidate();
     }
 }

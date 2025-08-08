@@ -17,11 +17,11 @@ public final class Dispatchers {
         return Default;
     }
 
-    public static final CoroutineDispatcher getIO() {
-        return IO;
-    }
-
     public static final MainCoroutineDispatcher getMain() {
         return MainDispatcherLoader.dispatcher;
+    }
+
+    public static final CoroutineDispatcher getIO() {
+        return IO;
     }
 }

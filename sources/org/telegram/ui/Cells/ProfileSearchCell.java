@@ -161,57 +161,221 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         swapAnimatedEmojiDrawable2.setCallback(this);
     }
 
-    public void lambda$buildLayout$0() {
-        if (!(getParent() instanceof RecyclerListView)) {
-            callOnClick();
-        } else {
-            RecyclerListView recyclerListView = (RecyclerListView) getParent();
-            recyclerListView.getOnItemClickListener().onItemClick(this, recyclerListView.getChildAdapterPosition(this));
-        }
-    }
-
     public ProfileSearchCell allowBotOpenButton(boolean z, Utilities.Callback callback) {
         this.allowBotOpenButton = z;
         this.onOpenButtonClick = callback;
         return this;
     }
 
+    public void setOnSponsoredOptionsClick(Utilities.Callback2<ProfileSearchCell, TLRPC.TL_sponsoredPeer> callback2) {
+        this.onSponsoredOptionsClick = callback2;
+    }
+
+    public ProfileSearchCell showPremiumBlock(boolean z) {
+        this.showPremiumBlocked = z;
+        return this;
+    }
+
+    public ProfileSearchCell useCustomPaints() {
+        this.customPaints = true;
+        return this;
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return this.statusDrawable == drawable || this.botVerificationDrawable == drawable || super.verifyDrawable(drawable);
+    }
+
+    public void setAd(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
+        this.ad = tL_sponsoredPeer;
+    }
+
+    public void setAllowEmojiStatus(boolean z) {
+        this.allowEmojiStatus = z;
+    }
+
+    public void setData(Object obj, TLRPC.EncryptedChat encryptedChat, CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
+        this.currentName = charSequence;
+        TL_account.RequirementToContact requirementToContact = null;
+        if (obj instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) obj;
+            this.user = user;
+            this.chat = null;
+            this.contact = null;
+            if (this.showPremiumBlocked && user != null) {
+                requirementToContact = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id);
+            }
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact);
+            setOpenBotButton(this.allowBotOpenButton && this.user.bot_has_main_app);
+        } else if (obj instanceof TLRPC.Chat) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
+            this.chat = chat;
+            this.user = null;
+            this.contact = null;
+            TL_account.RequirementToContact requirementToContact2 = ChatObject.getRequirementToContact(chat);
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact2);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact2);
+            setOpenBotButton(false);
+        } else if (obj instanceof ContactsController.Contact) {
+            ContactsController.Contact contact = (ContactsController.Contact) obj;
+            this.contact = contact;
+            this.chat = null;
+            this.user = null;
+            if (this.showPremiumBlocked && contact != null && contact.user != null) {
+                requirementToContact = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.contact.user.id);
+            }
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact);
+            setOpenBotButton(false);
+        } else {
+            setOpenBotButton(false);
+        }
+        this.encryptedChat = encryptedChat;
+        this.subLabel = charSequence2;
+        this.drawCount = z;
+        this.savedMessages = z2;
+        update(0);
+    }
+
+    public void setOpenBotButton(boolean z) {
+        if (this.openBot == z) {
+            return;
+        }
+        if (this.openButtonText == null) {
+            this.openButtonText = new Text(LocaleController.getString(R.string.BotOpen), 14.0f, AndroidUtilities.bold());
+        }
+        int currentWidth = z ? ((int) this.openButtonText.getCurrentWidth()) + AndroidUtilities.dp(30.0f) : 0;
+        boolean z2 = LocaleController.isRTL;
+        int i = z2 ? currentWidth : 0;
+        if (z2) {
+            currentWidth = 0;
+        }
+        setPadding(i, 0, currentWidth, 0);
+        this.openBot = z;
+        this.openButtonBounce.setPressed(false);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.avatarImage.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        if (this.showPremiumBlocked) {
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+        }
+        this.statusDrawable.detach();
+        this.botVerificationDrawable.detach();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.avatarImage.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        if (this.showPremiumBlocked) {
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+        }
+        this.statusDrawable.attach();
+        this.botVerificationDrawable.attach();
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        TL_account.RequirementToContact isUserContactBlocked;
+        if (i == NotificationCenter.emojiLoaded) {
+            invalidate();
+            return;
+        }
+        if (i == NotificationCenter.userIsPremiumBlockedUpadted) {
+            if (this.user != null) {
+                if (this.showPremiumBlocked) {
+                    isUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id);
+                }
+                isUserContactBlocked = null;
+            } else {
+                TLRPC.Chat chat = this.chat;
+                if (chat != null) {
+                    isUserContactBlocked = ChatObject.getRequirementToContact(chat);
+                } else {
+                    ContactsController.Contact contact = this.contact;
+                    if (contact == null) {
+                        return;
+                    }
+                    if (this.showPremiumBlocked && contact.user != null) {
+                        isUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.contact.user.id);
+                    }
+                    isUserContactBlocked = null;
+                }
+            }
+            if (this.premiumBlocked == DialogObject.isPremiumBlocked(isUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(isUserContactBlocked)) {
+                return;
+            }
+            this.premiumBlocked = DialogObject.isPremiumBlocked(isUserContactBlocked);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(isUserContactBlocked);
+            invalidate();
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+        }
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(60.0f) + (this.useSeparator ? 1 : 0));
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        if (this.user == null && this.chat == null && this.encryptedChat == null && this.contact == null) {
+            return;
+        }
+        if (this.checkBox != null) {
+            int dp = LocaleController.isRTL ? (i3 - i) - AndroidUtilities.dp(42.0f) : AndroidUtilities.dp(42.0f);
+            int dp2 = AndroidUtilities.dp(36.0f);
+            CheckBox2 checkBox2 = this.checkBox;
+            checkBox2.layout(dp, dp2, checkBox2.getMeasuredWidth() + dp, this.checkBox.getMeasuredHeight() + dp2);
+        }
+        if (z) {
+            buildLayout();
+        }
+    }
+
+    public TLRPC.User getUser() {
+        return this.user;
+    }
+
+    public TLRPC.Chat getChat() {
+        return this.chat;
+    }
+
+    public void setSublabelOffset(int i, int i2) {
+        this.sublabelOffsetX = i;
+        this.sublabelOffsetY = i2;
+    }
+
     public void buildLayout() {
         TLRPC.Chat chat;
-        String userName;
         TextPaint textPaint;
         int measuredWidth;
-        float f;
         CharSequence charSequence;
-        int i;
         TLRPC.UserStatus userStatus;
-        int i2;
+        int i;
         int dp;
-        double d;
-        TextPaint textPaint2;
-        int i3;
-        int i4;
-        int i5;
-        int i6;
-        String str;
-        int dialogUnreadCount;
-        TextPaint textPaint3;
-        int i7;
-        int dp2;
         this.drawNameLock = false;
         this.drawCheck = false;
         this.drawPremium = false;
         if (this.encryptedChat != null) {
             this.drawNameLock = true;
             this.dialog_id = DialogObject.makeEncryptedDialogId(r2.id);
-            if (LocaleController.isRTL) {
-                this.nameLockLeft = (getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline + 2)) - Theme.dialogs_lockDrawable.getIntrinsicWidth();
-                dp2 = AndroidUtilities.dp(11.0f);
-            } else {
+            if (!LocaleController.isRTL) {
                 this.nameLockLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
-                dp2 = AndroidUtilities.dp(AndroidUtilities.leftBaseline + 4) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
+                this.nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline + 4) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
+            } else {
+                this.nameLockLeft = (getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline + 2)) - Theme.dialogs_lockDrawable.getIntrinsicWidth();
+                this.nameLeft = AndroidUtilities.dp(11.0f);
             }
-            this.nameLeft = dp2;
             this.nameLockTop = AndroidUtilities.dp(22.0f);
             updateStatus(false, null, null, false);
         } else {
@@ -222,20 +386,32 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 if (chat2.monoforum && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.chat.linked_monoforum_id))) != null) {
                     this.drawCheck = chat.verified;
                 }
-                this.nameLeft = !LocaleController.isRTL ? AndroidUtilities.dp(AndroidUtilities.leftBaseline) : AndroidUtilities.dp(11.0f);
+                if (!LocaleController.isRTL) {
+                    this.nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                } else {
+                    this.nameLeft = AndroidUtilities.dp(11.0f);
+                }
                 updateStatus(this.drawCheck, null, this.chat, false);
             } else {
                 TLRPC.User user = this.user;
                 if (user != null) {
                     this.dialog_id = user.id;
-                    this.nameLeft = !LocaleController.isRTL ? AndroidUtilities.dp(AndroidUtilities.leftBaseline) : AndroidUtilities.dp(11.0f);
+                    if (!LocaleController.isRTL) {
+                        this.nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                    } else {
+                        this.nameLeft = AndroidUtilities.dp(11.0f);
+                    }
                     this.nameLockTop = AndroidUtilities.dp(21.0f);
                     this.drawCheck = this.user.verified;
                     this.drawPremium = !this.savedMessages && MessagesController.getInstance(this.currentAccount).isPremiumUser(this.user);
                     updateStatus(this.drawCheck, this.user, null, false);
                 } else if (this.contact != null) {
                     this.dialog_id = 0L;
-                    this.nameLeft = !LocaleController.isRTL ? AndroidUtilities.dp(AndroidUtilities.leftBaseline) : AndroidUtilities.dp(11.0f);
+                    if (!LocaleController.isRTL) {
+                        this.nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+                    } else {
+                        this.nameLeft = AndroidUtilities.dp(11.0f);
+                    }
                     if (this.actionButton == null) {
                         CanvasButton canvasButton = new CanvasButton(this);
                         this.actionButton = canvasButton;
@@ -249,7 +425,11 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 }
             }
         }
-        this.statusLeft = !LocaleController.isRTL ? AndroidUtilities.dp(AndroidUtilities.leftBaseline) : AndroidUtilities.dp(11.0f);
+        if (!LocaleController.isRTL) {
+            this.statusLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+        } else {
+            this.statusLeft = AndroidUtilities.dp(11.0f);
+        }
         if (this.ad != null) {
             if (this.adText == null) {
                 SpannableStringBuilder append = new SpannableStringBuilder(LocaleController.getString(R.string.SearchAd)).append((CharSequence) " i");
@@ -280,64 +460,58 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.escape(chat4.title));
                     spannableStringBuilder.append((CharSequence) " ");
                     int length = spannableStringBuilder.length();
-                    int i8 = R.string.MonoforumSpan;
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(i8));
-                    spannableStringBuilder.setSpan(new FilterCreateActivity.TextSpan(LocaleController.getString(i8), 9.33f, Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), length, spannableStringBuilder.length(), 33);
+                    int i2 = R.string.MonoforumSpan;
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(i2));
+                    spannableStringBuilder.setSpan(new FilterCreateActivity.TextSpan(LocaleController.getString(i2), 9.33f, Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), length, spannableStringBuilder.length(), 33);
                     charSequence4 = spannableStringBuilder;
                 } else if (charSequence3 == null) {
-                    userName = this.chat.title;
-                    charSequence4 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(userName));
+                    charSequence4 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(this.chat.title));
                 }
             } else if (charSequence3 == null) {
-                userName = chat3.title;
-                charSequence4 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(userName));
+                charSequence4 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(chat3.title));
             }
         } else if (charSequence3 == null) {
             TLRPC.User user2 = this.user;
             charSequence4 = charSequence3;
             if (user2 != null) {
-                userName = UserObject.getUserName(user2);
-                charSequence4 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(userName));
+                charSequence4 = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(user2)));
             }
         }
         CharSequence replaceNewLines = AndroidUtilities.replaceNewLines(charSequence4);
         if (TextUtils.isEmpty(replaceNewLines)) {
             TLRPC.User user3 = this.user;
-            if (user3 == null || TextUtils.isEmpty(user3.phone)) {
-                replaceNewLines = LocaleController.getString(R.string.HiddenName);
-            } else {
+            if (user3 != null && !TextUtils.isEmpty(user3.phone)) {
                 replaceNewLines = PhoneFormat.getInstance().format("+" + this.user.phone);
+            } else {
+                replaceNewLines = LocaleController.getString(R.string.HiddenName);
             }
         }
         if (this.customPaints) {
             if (this.namePaint == null) {
-                TextPaint textPaint4 = new TextPaint(1);
-                this.namePaint = textPaint4;
-                textPaint4.setTypeface(AndroidUtilities.bold());
+                TextPaint textPaint2 = new TextPaint(1);
+                this.namePaint = textPaint2;
+                textPaint2.setTypeface(AndroidUtilities.bold());
             }
             this.namePaint.setTextSize(AndroidUtilities.dp(16.0f));
             if (this.encryptedChat != null) {
-                textPaint3 = this.namePaint;
-                i7 = Theme.key_chats_secretName;
+                this.namePaint.setColor(Theme.getColor(Theme.key_chats_secretName, this.resourcesProvider));
             } else {
-                textPaint3 = this.namePaint;
-                i7 = Theme.key_chats_name;
+                this.namePaint.setColor(Theme.getColor(Theme.key_chats_name, this.resourcesProvider));
             }
-            textPaint3.setColor(Theme.getColor(i7, this.resourcesProvider));
             textPaint = this.namePaint;
+        } else if (this.encryptedChat != null) {
+            textPaint = Theme.dialogs_searchNameEncryptedPaint;
         } else {
-            textPaint = this.encryptedChat != null ? Theme.dialogs_searchNameEncryptedPaint : Theme.dialogs_searchNamePaint;
+            textPaint = Theme.dialogs_searchNamePaint;
         }
-        TextPaint textPaint5 = textPaint;
-        if (LocaleController.isRTL) {
-            measuredWidth = getMeasuredWidth() - this.nameLeft;
-            f = AndroidUtilities.leftBaseline;
+        TextPaint textPaint3 = textPaint;
+        if (!LocaleController.isRTL) {
+            measuredWidth = (getMeasuredWidth() - this.nameLeft) - AndroidUtilities.dp(14.0f);
+            this.nameWidth = measuredWidth;
         } else {
-            measuredWidth = getMeasuredWidth() - this.nameLeft;
-            f = 14.0f;
+            measuredWidth = (getMeasuredWidth() - this.nameLeft) - AndroidUtilities.dp(AndroidUtilities.leftBaseline);
+            this.nameWidth = measuredWidth;
         }
-        int dp3 = measuredWidth - AndroidUtilities.dp(f);
-        this.nameWidth = dp3;
         if (this.drawNameLock) {
             this.nameWidth -= AndroidUtilities.dp(6.0f) + Theme.dialogs_lockDrawable.getIntrinsicWidth();
         }
@@ -349,39 +523,45 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             }
         }
         if (this.contact != null) {
-            TextPaint textPaint6 = Theme.dialogs_countTextPaint;
-            int i9 = R.string.Invite;
-            int measureText = (int) (textPaint6.measureText(LocaleController.getString(i9)) + 1.0f);
-            this.actionLayout = new StaticLayout(LocaleController.getString(i9), Theme.dialogs_countTextPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            if (LocaleController.isRTL) {
+            TextPaint textPaint4 = Theme.dialogs_countTextPaint;
+            int i3 = R.string.Invite;
+            int measureText = (int) (textPaint4.measureText(LocaleController.getString(i3)) + 1.0f);
+            this.actionLayout = new StaticLayout(LocaleController.getString(i3), Theme.dialogs_countTextPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            if (!LocaleController.isRTL) {
+                this.actionLeft = ((getMeasuredWidth() - measureText) - AndroidUtilities.dp(19.0f)) - AndroidUtilities.dp(16.0f);
+            } else {
                 this.actionLeft = AndroidUtilities.dp(19.0f) + AndroidUtilities.dp(16.0f);
                 this.nameLeft += measureText;
                 this.statusLeft += measureText;
-            } else {
-                this.actionLeft = ((getMeasuredWidth() - measureText) - AndroidUtilities.dp(19.0f)) - AndroidUtilities.dp(16.0f);
             }
             this.nameWidth -= AndroidUtilities.dp(32.0f) + measureText;
         }
         this.nameWidth -= getPaddingLeft() + getPaddingRight();
-        int paddingLeft = dp3 - (getPaddingLeft() + getPaddingRight());
-        if (!this.drawCount || (dialogUnreadCount = MessagesController.getInstance(this.currentAccount).getDialogUnreadCount((TLRPC.Dialog) MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.dialog_id))) == 0) {
+        int paddingLeft = measuredWidth - (getPaddingLeft() + getPaddingRight());
+        if (this.drawCount) {
+            int dialogUnreadCount = MessagesController.getInstance(this.currentAccount).getDialogUnreadCount((TLRPC.Dialog) MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.dialog_id));
+            if (dialogUnreadCount != 0) {
+                this.lastUnreadCount = dialogUnreadCount;
+                String format = String.format(Locale.US, "%d", Integer.valueOf(dialogUnreadCount));
+                this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(format)));
+                this.countLayout = new StaticLayout(format, Theme.dialogs_countTextPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                int dp2 = this.countWidth + AndroidUtilities.dp(18.0f);
+                this.nameWidth -= dp2;
+                paddingLeft -= dp2;
+                if (!LocaleController.isRTL) {
+                    this.countLeft = (getMeasuredWidth() - this.countWidth) - AndroidUtilities.dp(19.0f);
+                } else {
+                    this.countLeft = AndroidUtilities.dp(19.0f);
+                    this.nameLeft += dp2;
+                    this.statusLeft += dp2;
+                }
+            } else {
+                this.lastUnreadCount = 0;
+                this.countLayout = null;
+            }
+        } else {
             this.lastUnreadCount = 0;
             this.countLayout = null;
-        } else {
-            this.lastUnreadCount = dialogUnreadCount;
-            String format = String.format(Locale.US, "%d", Integer.valueOf(dialogUnreadCount));
-            this.countWidth = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(Theme.dialogs_countTextPaint.measureText(format)));
-            this.countLayout = new StaticLayout(format, Theme.dialogs_countTextPaint, this.countWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            int dp4 = this.countWidth + AndroidUtilities.dp(18.0f);
-            this.nameWidth -= dp4;
-            paddingLeft -= dp4;
-            if (LocaleController.isRTL) {
-                this.countLeft = AndroidUtilities.dp(19.0f);
-                this.nameLeft += dp4;
-                this.statusLeft += dp4;
-            } else {
-                this.countLeft = (getMeasuredWidth() - this.countWidth) - AndroidUtilities.dp(19.0f);
-            }
         }
         if (!this.botVerificationDrawable.isEmpty()) {
             if (LocaleController.isRTL) {
@@ -400,58 +580,55 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (this.nameWidth < 0) {
             this.nameWidth = 0;
         }
-        float dp5 = this.nameWidth - AndroidUtilities.dp(12.0f);
+        float dp3 = this.nameWidth - AndroidUtilities.dp(12.0f);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        CharSequence ellipsize = TextUtils.ellipsize(replaceNewLines, textPaint5, dp5, truncateAt);
+        CharSequence ellipsize = TextUtils.ellipsize(replaceNewLines, textPaint3, dp3, truncateAt);
         if (ellipsize != null) {
-            ellipsize = Emoji.replaceEmoji(ellipsize, textPaint5.getFontMetricsInt(), false);
+            ellipsize = Emoji.replaceEmoji(ellipsize, textPaint3.getFontMetricsInt(), false);
         }
-        int i10 = this.nameWidth;
+        int i4 = this.nameWidth;
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.nameLayout = new StaticLayout(ellipsize, textPaint5, i10, alignment, 1.0f, 0.0f, false);
-        TextPaint textPaint7 = Theme.dialogs_offlinePaint;
+        this.nameLayout = new StaticLayout(ellipsize, textPaint3, i4, alignment, 1.0f, 0.0f, false);
+        TextPaint textPaint5 = Theme.dialogs_offlinePaint;
         TLRPC.Chat chat5 = this.chat;
         if (chat5 == null || this.subLabel != null) {
             charSequence = this.subLabel;
             if (charSequence == null) {
                 TLRPC.User user4 = this.user;
-                if (user4 != null) {
-                    if (MessagesController.isSupportUser(user4)) {
-                        i = R.string.SupportStatus;
+                if (user4 == null) {
+                    charSequence = null;
+                } else if (MessagesController.isSupportUser(user4)) {
+                    charSequence = LocaleController.getString(R.string.SupportStatus);
+                } else {
+                    TLRPC.User user5 = this.user;
+                    boolean z = user5.bot;
+                    if (z && (i = user5.bot_active_users) != 0) {
+                        charSequence = LocaleController.formatPluralStringSpaced("BotUsersShort", i);
+                    } else if (z) {
+                        charSequence = LocaleController.getString(R.string.Bot);
                     } else {
-                        TLRPC.User user5 = this.user;
-                        boolean z = user5.bot;
-                        if (z && (i2 = user5.bot_active_users) != 0) {
-                            charSequence = LocaleController.formatPluralStringSpaced("BotUsersShort", i2);
-                        } else if (z) {
-                            i = R.string.Bot;
+                        long j = user5.id;
+                        if (j == 489000) {
+                            charSequence = LocaleController.getString(R.string.VerifyCodesNotifications);
+                        } else if (UserObject.isService(j)) {
+                            charSequence = LocaleController.getString(R.string.ServiceNotifications);
                         } else {
-                            long j = user5.id;
-                            if (j == 489000) {
-                                i = R.string.VerifyCodesNotifications;
-                            } else if (UserObject.isService(j)) {
-                                i = R.string.ServiceNotifications;
-                            } else {
-                                if (this.isOnline == null) {
-                                    this.isOnline = new boolean[1];
-                                }
-                                boolean[] zArr = this.isOnline;
-                                zArr[0] = false;
-                                charSequence = LocaleController.formatUserStatus(this.currentAccount, this.user, zArr);
-                                if (this.isOnline[0]) {
-                                    textPaint7 = Theme.dialogs_onlinePaint;
-                                }
-                                TLRPC.User user6 = this.user;
-                                if (user6 != null && (user6.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || ((userStatus = this.user.status) != null && userStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()))) {
-                                    textPaint7 = Theme.dialogs_onlinePaint;
-                                    i = R.string.Online;
-                                }
+                            if (this.isOnline == null) {
+                                this.isOnline = new boolean[1];
+                            }
+                            boolean[] zArr = this.isOnline;
+                            zArr[0] = false;
+                            charSequence = LocaleController.formatUserStatus(this.currentAccount, this.user, zArr);
+                            if (this.isOnline[0]) {
+                                textPaint5 = Theme.dialogs_onlinePaint;
+                            }
+                            TLRPC.User user6 = this.user;
+                            if (user6 != null && (user6.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || ((userStatus = this.user.status) != null && userStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()))) {
+                                textPaint5 = Theme.dialogs_onlinePaint;
+                                charSequence = LocaleController.getString(R.string.Online);
                             }
                         }
                     }
-                    charSequence = LocaleController.getString(i);
-                } else {
-                    charSequence = null;
                 }
             }
             if (this.savedMessages || UserObject.isReplyUser(this.user)) {
@@ -462,63 +639,51 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             if (ChatObject.isChannel(chat5)) {
                 TLRPC.Chat chat6 = this.chat;
                 if (!chat6.megagroup) {
-                    i4 = chat6.participants_count;
-                    if (i4 != 0) {
-                        str = "Subscribers";
-                        charSequence = LocaleController.formatPluralStringComma(str, i4);
-                        this.nameTop = AndroidUtilities.dp(19.0f);
+                    int i5 = chat6.participants_count;
+                    if (i5 != 0) {
+                        charSequence = LocaleController.formatPluralStringComma("Subscribers", i5);
+                    } else if (!ChatObject.isPublic(chat6)) {
+                        charSequence = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
                     } else {
-                        i5 = !ChatObject.isPublic(chat6) ? R.string.ChannelPrivate : R.string.ChannelPublic;
-                        charSequence = LocaleController.getString(i5).toLowerCase();
-                        this.nameTop = AndroidUtilities.dp(19.0f);
+                        charSequence = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
                     }
+                    this.nameTop = AndroidUtilities.dp(19.0f);
                 }
             }
             TLRPC.Chat chat7 = this.chat;
-            i4 = chat7.participants_count;
-            if (i4 != 0) {
-                str = "Members";
-                charSequence = LocaleController.formatPluralStringComma(str, i4);
-                this.nameTop = AndroidUtilities.dp(19.0f);
+            int i6 = chat7.participants_count;
+            if (i6 != 0) {
+                charSequence = LocaleController.formatPluralStringComma("Members", i6);
+            } else if (chat7.has_geo) {
+                charSequence = LocaleController.getString(R.string.MegaLocation);
+            } else if (ChatObject.isMonoForum(chat7)) {
+                charSequence = LocaleController.getString(R.string.MonoforumMessages);
+            } else if (!ChatObject.isPublic(this.chat)) {
+                charSequence = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
             } else {
-                if (chat7.has_geo) {
-                    i6 = R.string.MegaLocation;
-                } else if (ChatObject.isMonoForum(chat7)) {
-                    i6 = R.string.MonoforumMessages;
-                } else {
-                    i5 = !ChatObject.isPublic(this.chat) ? R.string.MegaPrivate : R.string.MegaPublic;
-                    charSequence = LocaleController.getString(i5).toLowerCase();
-                    this.nameTop = AndroidUtilities.dp(19.0f);
-                }
-                charSequence = LocaleController.getString(i6);
-                this.nameTop = AndroidUtilities.dp(19.0f);
+                charSequence = LocaleController.getString(R.string.MegaPublic).toLowerCase();
             }
+            this.nameTop = AndroidUtilities.dp(19.0f);
         }
         if (this.customPaints) {
             if (this.statusPaint == null) {
                 this.statusPaint = new TextPaint(1);
             }
             this.statusPaint.setTextSize(AndroidUtilities.dp(15.0f));
-            if (textPaint7 == Theme.dialogs_offlinePaint) {
-                textPaint2 = this.statusPaint;
-                i3 = Theme.key_windowBackgroundWhiteGrayText3;
-            } else {
-                if (textPaint7 == Theme.dialogs_onlinePaint) {
-                    textPaint2 = this.statusPaint;
-                    i3 = Theme.key_windowBackgroundWhiteBlueText3;
-                }
-                textPaint7 = this.statusPaint;
+            if (textPaint5 == Theme.dialogs_offlinePaint) {
+                this.statusPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
+            } else if (textPaint5 == Theme.dialogs_onlinePaint) {
+                this.statusPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText3, this.resourcesProvider));
             }
-            textPaint2.setColor(Theme.getColor(i3, this.resourcesProvider));
-            textPaint7 = this.statusPaint;
+            textPaint5 = this.statusPaint;
         }
-        if (TextUtils.isEmpty(charSequence)) {
-            this.nameTop = AndroidUtilities.dp(20.0f);
-            this.statusLayout = null;
-        } else {
-            this.statusLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint7, paddingLeft - AndroidUtilities.dp(12.0f), truncateAt), textPaint7, paddingLeft, alignment, 1.0f, 0.0f, false);
+        if (!TextUtils.isEmpty(charSequence)) {
+            this.statusLayout = new StaticLayout(TextUtils.ellipsize(charSequence, textPaint5, paddingLeft - AndroidUtilities.dp(12.0f), truncateAt), textPaint5, paddingLeft, alignment, 1.0f, 0.0f, false);
             this.nameTop = AndroidUtilities.dp(9.0f);
             this.nameLockTop -= AndroidUtilities.dp(10.0f);
+        } else {
+            this.nameTop = AndroidUtilities.dp(20.0f);
+            this.statusLayout = null;
         }
         if (LocaleController.isRTL) {
             dp = (getMeasuredWidth() - AndroidUtilities.dp(57.0f)) - getPaddingRight();
@@ -529,47 +694,33 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (LocaleController.isRTL) {
             if (this.nameLayout.getLineCount() > 0 && this.nameLayout.getLineLeft(0) == 0.0f) {
                 double ceil = Math.ceil(this.nameLayout.getLineWidth(0));
-                double d2 = this.nameWidth;
-                if (ceil < d2) {
-                    double d3 = this.nameLeft;
-                    Double.isNaN(d2);
-                    Double.isNaN(d3);
-                    this.nameLeft = (int) (d3 + (d2 - ceil));
+                double d = this.nameWidth;
+                if (ceil < d) {
+                    this.nameLeft = (int) (this.nameLeft + (d - ceil));
                 }
             }
             StaticLayout staticLayout = this.statusLayout;
             if (staticLayout != null && staticLayout.getLineCount() > 0 && this.statusLayout.getLineLeft(0) == 0.0f) {
                 double ceil2 = Math.ceil(this.statusLayout.getLineWidth(0));
-                double d4 = paddingLeft;
-                if (ceil2 < d4) {
-                    double d5 = this.statusLeft;
-                    Double.isNaN(d4);
-                    Double.isNaN(d5);
-                    d = d5 + (d4 - ceil2);
-                    this.statusLeft = (int) d;
+                double d2 = paddingLeft;
+                if (ceil2 < d2) {
+                    this.statusLeft = (int) (this.statusLeft + (d2 - ceil2));
                 }
             }
         } else {
             if (this.nameLayout.getLineCount() > 0 && this.nameLayout.getLineRight(0) == this.nameWidth) {
                 double ceil3 = Math.ceil(this.nameLayout.getLineWidth(0));
-                double d6 = this.nameWidth;
-                if (ceil3 < d6) {
-                    double d7 = this.nameLeft;
-                    Double.isNaN(d6);
-                    Double.isNaN(d7);
-                    this.nameLeft = (int) (d7 - (d6 - ceil3));
+                double d3 = this.nameWidth;
+                if (ceil3 < d3) {
+                    this.nameLeft = (int) (this.nameLeft - (d3 - ceil3));
                 }
             }
             StaticLayout staticLayout2 = this.statusLayout;
             if (staticLayout2 != null && staticLayout2.getLineCount() > 0 && this.statusLayout.getLineRight(0) == paddingLeft) {
                 double ceil4 = Math.ceil(this.statusLayout.getLineWidth(0));
-                double d8 = paddingLeft;
-                if (ceil4 < d8) {
-                    double d9 = this.statusLeft;
-                    Double.isNaN(d8);
-                    Double.isNaN(d9);
-                    d = d9 - (d8 - ceil4);
-                    this.statusLeft = (int) d;
+                double d4 = paddingLeft;
+                if (ceil4 < d4) {
+                    this.statusLeft = (int) (this.statusLeft - (d4 - ceil4));
                 }
             }
         }
@@ -578,97 +729,62 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         this.nameLockLeft += getPaddingLeft();
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        MessagesController messagesController;
-        TLRPC.User user;
-        TL_account.RequirementToContact requirementToContact;
-        if (i != NotificationCenter.emojiLoaded) {
-            if (i != NotificationCenter.userIsPremiumBlockedUpadted) {
-                return;
-            }
-            if (this.user != null) {
-                if (this.showPremiumBlocked) {
-                    messagesController = MessagesController.getInstance(this.currentAccount);
-                    user = this.user;
-                    requirementToContact = messagesController.isUserContactBlocked(user.id);
-                }
-                requirementToContact = null;
-            } else {
-                TLRPC.Chat chat = this.chat;
-                if (chat != null) {
-                    requirementToContact = ChatObject.getRequirementToContact(chat);
-                } else {
-                    ContactsController.Contact contact = this.contact;
-                    if (contact == null) {
-                        return;
-                    }
-                    if (this.showPremiumBlocked && contact.user != null) {
-                        messagesController = MessagesController.getInstance(this.currentAccount);
-                        user = this.contact.user;
-                        requirementToContact = messagesController.isUserContactBlocked(user.id);
-                    }
-                    requirementToContact = null;
-                }
-            }
-            if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContact) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(requirementToContact)) {
-                return;
-            }
-            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
-            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact);
+    public void lambda$buildLayout$0() {
+        if (getParent() instanceof RecyclerListView) {
+            RecyclerListView recyclerListView = (RecyclerListView) getParent();
+            recyclerListView.getOnItemClickListener().onItemClick(this, recyclerListView.getChildAdapterPosition(this));
+        } else {
+            callOnClick();
         }
-        invalidate();
     }
 
-    public TLRPC.Chat getChat() {
-        return this.chat;
-    }
-
-    public long getDialogId() {
-        return this.dialog_id;
-    }
-
-    public TLRPC.User getUser() {
-        return this.user;
-    }
-
-    public boolean isBlocked() {
-        return this.premiumBlocked;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.avatarImage.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        if (this.showPremiumBlocked) {
-            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+    public void updateStatus(boolean z, TLRPC.User user, TLRPC.Chat chat, boolean z2) {
+        long botVerificationIcon;
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.statusDrawable;
+        swapAnimatedEmojiDrawable.center = LocaleController.isRTL;
+        boolean z3 = this.allowEmojiStatus;
+        if (z3 && z) {
+            swapAnimatedEmojiDrawable.set(new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable, 0, 0), z2);
+            this.statusDrawable.setColor(null);
+        } else if (z3 && user != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
+        } else if (this.allowEmojiStatus && chat != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
+            this.statusDrawable.set(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
+        } else if (this.allowEmojiStatus && user != null && !this.savedMessages && MessagesController.getInstance(this.currentAccount).isPremiumUser(user)) {
+            this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
+        } else {
+            this.statusDrawable.set((Drawable) null, z2);
+            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
         }
-        this.statusDrawable.attach();
-        this.botVerificationDrawable.attach();
+        if (user != null) {
+            botVerificationIcon = DialogObject.getBotVerificationIcon(user);
+        } else {
+            botVerificationIcon = chat != null ? DialogObject.getBotVerificationIcon(chat) : 0L;
+        }
+        if (botVerificationIcon == 0 || this.savedMessages) {
+            this.botVerificationDrawable.set((Drawable) null, z2);
+        } else {
+            this.botVerificationDrawable.set(botVerificationIcon, z2);
+        }
+        this.botVerificationDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.avatarImage.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        if (this.showPremiumBlocked) {
-            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
-        }
-        this.statusDrawable.detach();
-        this.botVerificationDrawable.detach();
+    public void setRectangularAvatar(boolean z) {
+        this.rectangularAvatar = z;
+    }
+
+    public void update(int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.update(int):void");
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        long j;
-        int i;
+        int width;
+        int ceil;
         int lineRight;
-        float dp;
-        float measuredHeight;
-        float measuredWidth;
-        float measuredHeight2;
         Theme.ResourcesProvider resourcesProvider;
         if (this.user == null && this.chat == null && this.encryptedChat == null && this.contact == null) {
             return;
@@ -680,17 +796,10 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             }
             Paint paint2 = paint;
             if (LocaleController.isRTL) {
-                measuredHeight = getMeasuredHeight() - 1;
-                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline);
-                measuredHeight2 = getMeasuredHeight() - 1;
-                dp = 0.0f;
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, paint2);
             } else {
-                dp = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
-                measuredHeight = getMeasuredHeight() - 1;
-                measuredWidth = getMeasuredWidth();
-                measuredHeight2 = getMeasuredHeight() - 1;
+                canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint2);
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth, measuredHeight2, paint2);
         }
         if (this.drawNameLock) {
             BaseCell.setDrawableBounds(Theme.dialogs_lockDrawable, this.nameLockLeft, this.nameLockTop);
@@ -699,23 +808,13 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         StaticLayout staticLayout = this.nameLayout;
         if (staticLayout != null) {
             if (LocaleController.isRTL) {
-                i = (int) (this.nameLeft + staticLayout.getLineRight(0) + AndroidUtilities.dp(6.0f));
+                ceil = (int) (this.nameLeft + staticLayout.getLineRight(0) + AndroidUtilities.dp(6.0f));
             } else if (staticLayout.getLineLeft(0) == 0.0f) {
-                i = (this.nameLeft - AndroidUtilities.dp(3.0f)) - this.botVerificationDrawable.getIntrinsicWidth();
+                ceil = (this.nameLeft - AndroidUtilities.dp(3.0f)) - this.botVerificationDrawable.getIntrinsicWidth();
             } else {
-                float lineWidth = this.nameLayout.getLineWidth(0);
-                double d = this.nameLeft + this.nameWidth;
-                double ceil = Math.ceil(lineWidth);
-                Double.isNaN(d);
-                double d2 = d - ceil;
-                double dp2 = AndroidUtilities.dp(3.0f);
-                Double.isNaN(dp2);
-                double d3 = d2 - dp2;
-                double intrinsicWidth = this.botVerificationDrawable.getIntrinsicWidth();
-                Double.isNaN(intrinsicWidth);
-                i = (int) (d3 - intrinsicWidth);
+                ceil = (int) ((((this.nameLeft + this.nameWidth) - Math.ceil(this.nameLayout.getLineWidth(0))) - AndroidUtilities.dp(3.0f)) - this.botVerificationDrawable.getIntrinsicWidth());
             }
-            BaseCell.setDrawableBounds(this.botVerificationDrawable, i, this.nameTop + ((this.nameLayout.getHeight() - this.botVerificationDrawable.getIntrinsicHeight()) / 2.0f));
+            BaseCell.setDrawableBounds(this.botVerificationDrawable, ceil, this.nameTop + ((this.nameLayout.getHeight() - this.botVerificationDrawable.getIntrinsicHeight()) / 2.0f));
             this.botVerificationDrawable.draw(canvas);
             canvas.save();
             canvas.translate(this.nameLeft, this.nameTop);
@@ -726,16 +825,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             } else if (this.nameLayout.getLineLeft(0) == 0.0f) {
                 lineRight = (this.nameLeft - AndroidUtilities.dp(3.0f)) - this.statusDrawable.getIntrinsicWidth();
             } else {
-                float lineWidth2 = this.nameLayout.getLineWidth(0);
-                double d4 = this.nameLeft + this.nameWidth;
-                double ceil2 = Math.ceil(lineWidth2);
-                Double.isNaN(d4);
-                double dp3 = AndroidUtilities.dp(3.0f);
-                Double.isNaN(dp3);
-                double d5 = (d4 - ceil2) - dp3;
-                double intrinsicWidth2 = this.statusDrawable.getIntrinsicWidth();
-                Double.isNaN(intrinsicWidth2);
-                lineRight = (int) (d5 - intrinsicWidth2);
+                lineRight = (int) ((((this.nameLeft + this.nameWidth) - Math.ceil(this.nameLayout.getLineWidth(0))) - AndroidUtilities.dp(3.0f)) - this.statusDrawable.getIntrinsicWidth());
             }
             BaseCell.setDrawableBounds(this.statusDrawable, lineRight, this.nameTop + ((this.nameLayout.getHeight() - this.statusDrawable.getIntrinsicHeight()) / 2.0f));
             this.statusDrawable.draw(canvas);
@@ -743,19 +833,23 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (this.ad != null && this.adText != null && this.adBackgroundPaint != null) {
             int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
             this.adBackgroundPaint.setColor(Theme.multAlpha(color, 0.1f));
-            int width = ((int) this.adText.getWidth()) + AndroidUtilities.dp(12.66f);
-            int dp4 = AndroidUtilities.dp(17.33f);
-            int dp5 = LocaleController.isRTL ? AndroidUtilities.dp(12.0f) : (getWidth() - AndroidUtilities.dp(12.0f)) - width;
-            float f = dp5;
-            this.adBounds.set(f, this.nameTop, dp5 + width, r13 + dp4);
+            int width2 = ((int) this.adText.getWidth()) + AndroidUtilities.dp(12.66f);
+            int dp = AndroidUtilities.dp(17.33f);
+            if (LocaleController.isRTL) {
+                width = AndroidUtilities.dp(12.0f);
+            } else {
+                width = (getWidth() - AndroidUtilities.dp(12.0f)) - width2;
+            }
+            float f = width;
+            this.adBounds.set(f, this.nameTop, width + width2, r13 + dp);
             this.adBounds.inset(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f));
             canvas.save();
             float scale = this.adBounce.getScale(0.1f);
             canvas.scale(scale, scale, this.adBounds.centerX(), this.adBounds.centerY());
             canvas.translate(f, this.nameTop);
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = dp4;
-            rectF.set(0.0f, 0.0f, width, f2);
+            float f2 = dp;
+            rectF.set(0.0f, 0.0f, width2, f2);
             float f3 = f2 / 2.0f;
             canvas.drawRoundRect(rectF, f3, f3, this.adBackgroundPaint);
             this.adText.draw(canvas, AndroidUtilities.dp(6.33f), f3, color, 1.0f);
@@ -792,18 +886,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         }
         if (!this.dontDrawAvatar) {
             TLRPC.Chat chat = this.chat;
-            if (chat == null || !chat.monoforum) {
-                TLRPC.User user = this.user;
-                if (user != null) {
-                    j = user.id;
-                } else if (chat != null) {
-                    j = -chat.id;
-                } else {
-                    this.avatarImage.setImageCoords(this.avatarStoryParams.originalAvatarRect);
-                    this.avatarImage.draw(canvas);
-                }
-                StoriesUtilities.drawAvatarWithStory(j, canvas, this.avatarImage, this.avatarStoryParams);
-            } else {
+            if (chat != null && chat.monoforum) {
                 if (this.bubbleClip == null) {
                     this.bubbleClip = new PhotoBubbleClip();
                 }
@@ -813,6 +896,16 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                 this.avatarImage.setImageCoords(this.avatarStoryParams.originalAvatarRect);
                 this.avatarImage.draw(canvas);
                 canvas.restore();
+            } else {
+                TLRPC.User user = this.user;
+                if (user != null) {
+                    StoriesUtilities.drawAvatarWithStory(user.id, canvas, this.avatarImage, this.avatarStoryParams);
+                } else if (chat != null) {
+                    StoriesUtilities.drawAvatarWithStory(-chat.id, canvas, this.avatarImage, this.avatarStoryParams);
+                } else {
+                    this.avatarImage.setImageCoords(this.avatarStoryParams.originalAvatarRect);
+                    this.avatarImage.draw(canvas);
+                }
             }
         }
         float f5 = this.premiumBlockedT.set(this.premiumBlocked);
@@ -840,18 +933,22 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         if (!this.openBot || this.openButtonText == null) {
             return;
         }
-        float dp6 = AndroidUtilities.dp(28.0f) + this.openButtonText.getCurrentWidth();
-        float dp7 = LocaleController.isRTL ? AndroidUtilities.dp(15.0f) : (getWidth() - dp6) - AndroidUtilities.dp(15.0f);
-        float dp8 = AndroidUtilities.dp(28.0f);
+        float dp2 = AndroidUtilities.dp(28.0f) + this.openButtonText.getCurrentWidth();
+        float dp3 = LocaleController.isRTL ? AndroidUtilities.dp(15.0f) : (getWidth() - dp2) - AndroidUtilities.dp(15.0f);
+        float dp4 = AndroidUtilities.dp(28.0f);
         this.openButtonBackgroundPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
-        this.openButtonRect.set(dp7, (getHeight() - dp8) / 2.0f, dp6 + dp7, (getHeight() + dp8) / 2.0f);
+        this.openButtonRect.set(dp3, (getHeight() - dp4) / 2.0f, dp2 + dp3, (getHeight() + dp4) / 2.0f);
         canvas.save();
         float scale2 = this.openButtonBounce.getScale(0.06f);
         canvas.scale(scale2, scale2, this.openButtonRect.centerX(), this.openButtonRect.centerY());
         RectF rectF4 = this.openButtonRect;
         canvas.drawRoundRect(rectF4, rectF4.height() / 2.0f, this.openButtonRect.height() / 2.0f, this.openButtonBackgroundPaint);
-        this.openButtonText.draw(canvas, dp7 + AndroidUtilities.dp(14.0f), getHeight() / 2.0f, -1, 1.0f);
+        this.openButtonText.draw(canvas, dp3 + AndroidUtilities.dp(14.0f), getHeight() / 2.0f, -1, 1.0f);
         canvas.restore();
+    }
+
+    public boolean isBlocked() {
+        return this.premiumBlocked;
     }
 
     @Override
@@ -881,47 +978,8 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         }
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return onTouchEvent(motionEvent);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        if (this.user == null && this.chat == null && this.encryptedChat == null && this.contact == null) {
-            return;
-        }
-        if (this.checkBox != null) {
-            int dp = LocaleController.isRTL ? (i3 - i) - AndroidUtilities.dp(42.0f) : AndroidUtilities.dp(42.0f);
-            int dp2 = AndroidUtilities.dp(36.0f);
-            CheckBox2 checkBox2 = this.checkBox;
-            checkBox2.layout(dp, dp2, checkBox2.getMeasuredWidth() + dp, this.checkBox.getMeasuredHeight() + dp2);
-        }
-        if (z) {
-            buildLayout();
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 != null) {
-            checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
-        }
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(60.0f) + (this.useSeparator ? 1 : 0));
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    public void setAd(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
-        this.ad = tL_sponsoredPeer;
-    }
-
-    public void setAllowEmojiStatus(boolean z) {
-        this.allowEmojiStatus = z;
+    public long getDialogId() {
+        return this.dialog_id;
     }
 
     public void setChecked(boolean z, boolean z2) {
@@ -932,92 +990,62 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         checkBox2.setChecked(z, z2);
     }
 
-    public void setData(Object obj, TLRPC.EncryptedChat encryptedChat, CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
-        long messagesStarsPrice;
-        this.currentName = charSequence;
-        TL_account.RequirementToContact requirementToContact = null;
-        if (obj instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) obj;
-            this.user = user;
-            this.chat = null;
-            this.contact = null;
-            if (this.showPremiumBlocked && user != null) {
-                requirementToContact = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id);
-            }
-            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
-            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContact);
-            setOpenBotButton(this.allowBotOpenButton && this.user.bot_has_main_app);
-        } else {
-            if (obj instanceof TLRPC.Chat) {
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                this.chat = chat;
-                this.user = null;
-                this.contact = null;
-                TL_account.RequirementToContact requirementToContact2 = ChatObject.getRequirementToContact(chat);
-                this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact2);
-                messagesStarsPrice = DialogObject.getMessagesStarsPrice(requirementToContact2);
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.openBot && this.onOpenButtonClick != null && this.user != null) {
+            boolean contains = this.openButtonRect.contains(motionEvent.getX(), motionEvent.getY());
+            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                this.openButtonBounce.setPressed(contains);
             } else {
-                if (obj instanceof ContactsController.Contact) {
-                    ContactsController.Contact contact = (ContactsController.Contact) obj;
-                    this.contact = contact;
-                    this.chat = null;
-                    this.user = null;
-                    if (this.showPremiumBlocked && contact != null && contact.user != null) {
-                        requirementToContact = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.contact.user.id);
+                if (motionEvent.getAction() == 1) {
+                    if (this.openButtonBounce.isPressed()) {
+                        this.onOpenButtonClick.run(this.user);
                     }
-                    this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContact);
-                    messagesStarsPrice = DialogObject.getMessagesStarsPrice(requirementToContact);
+                    this.openButtonBounce.setPressed(false);
+                    return true;
                 }
-                setOpenBotButton(false);
+                if (motionEvent.getAction() == 3) {
+                    this.openButtonBounce.setPressed(false);
+                    return true;
+                }
             }
-            this.starsPriceBlocked = messagesStarsPrice;
-            setOpenBotButton(false);
+            if (contains || this.openButtonBounce.isPressed()) {
+                return true;
+            }
+        } else if (this.ad != null && this.onSponsoredOptionsClick != null) {
+            boolean contains2 = this.adBounds.contains(motionEvent.getX(), motionEvent.getY());
+            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                this.adBounce.setPressed(contains2);
+            } else {
+                if (motionEvent.getAction() == 1) {
+                    if (this.adBounce.isPressed()) {
+                        this.onSponsoredOptionsClick.run(this, this.ad);
+                    }
+                    this.adBounce.setPressed(false);
+                    return true;
+                }
+                if (motionEvent.getAction() == 3) {
+                    this.adBounce.setPressed(false);
+                    return true;
+                }
+            }
+            if (contains2 || this.adBounce.isPressed()) {
+                return true;
+            }
         }
-        this.encryptedChat = encryptedChat;
-        this.subLabel = charSequence2;
-        this.drawCount = z;
-        this.savedMessages = z2;
-        update(0);
-    }
-
-    public void setOnSponsoredOptionsClick(Utilities.Callback2<ProfileSearchCell, TLRPC.TL_sponsoredPeer> callback2) {
-        this.onSponsoredOptionsClick = callback2;
-    }
-
-    public void setOpenBotButton(boolean z) {
-        if (this.openBot == z) {
-            return;
+        if (!(this.user == null && this.chat == null) && this.avatarStoryParams.checkOnTouchEvent(motionEvent, this)) {
+            return true;
         }
-        if (this.openButtonText == null) {
-            this.openButtonText = new Text(LocaleController.getString(R.string.BotOpen), 14.0f, AndroidUtilities.bold());
+        CanvasButton canvasButton = this.actionButton;
+        if (canvasButton == null || !canvasButton.checkTouchEvent(motionEvent)) {
+            return super.onTouchEvent(motionEvent);
         }
-        int currentWidth = z ? ((int) this.openButtonText.getCurrentWidth()) + AndroidUtilities.dp(30.0f) : 0;
-        boolean z2 = LocaleController.isRTL;
-        int i = z2 ? currentWidth : 0;
-        if (z2) {
-            currentWidth = 0;
-        }
-        setPadding(i, 0, currentWidth, 0);
-        this.openBot = z;
-        this.openButtonBounce.setPressed(false);
-    }
-
-    public void setRectangularAvatar(boolean z) {
-        this.rectangularAvatar = z;
-    }
-
-    public void setSublabelOffset(int i, int i2) {
-        this.sublabelOffsetX = i;
-        this.sublabelOffsetY = i2;
-    }
-
-    public ProfileSearchCell showPremiumBlock(boolean z) {
-        this.showPremiumBlocked = z;
-        return this;
-    }
-
-    public void update(int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ProfileSearchCell.update(int):void");
+        return true;
     }
 
     @Override
@@ -1026,51 +1054,5 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             return;
         }
         buildLayout();
-    }
-
-    public void updateStatus(boolean z, TLRPC.User user, TLRPC.Chat chat, boolean z2) {
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable;
-        TLRPC.EmojiStatus emojiStatus;
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.statusDrawable;
-        swapAnimatedEmojiDrawable2.center = LocaleController.isRTL;
-        boolean z3 = this.allowEmojiStatus;
-        if (z3 && z) {
-            swapAnimatedEmojiDrawable2.set(new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable, 0, 0), z2);
-            this.statusDrawable.setColor(null);
-        } else {
-            if (z3 && user != null && !this.savedMessages && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
-                swapAnimatedEmojiDrawable = this.statusDrawable;
-                emojiStatus = user.emoji_status;
-            } else if (!this.allowEmojiStatus || chat == null || this.savedMessages || DialogObject.getEmojiStatusDocumentId(chat.emoji_status) == 0) {
-                if (!this.allowEmojiStatus || user == null || this.savedMessages || !MessagesController.getInstance(this.currentAccount).isPremiumUser(user)) {
-                    this.statusDrawable.set((Drawable) null, z2);
-                } else {
-                    this.statusDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, z2);
-                }
-                this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
-            } else {
-                swapAnimatedEmojiDrawable = this.statusDrawable;
-                emojiStatus = chat.emoji_status;
-            }
-            swapAnimatedEmojiDrawable.set(DialogObject.getEmojiStatusDocumentId(emojiStatus), z2);
-            this.statusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
-        }
-        long botVerificationIcon = user != null ? DialogObject.getBotVerificationIcon(user) : chat != null ? DialogObject.getBotVerificationIcon(chat) : 0L;
-        if (botVerificationIcon == 0 || this.savedMessages) {
-            this.botVerificationDrawable.set((Drawable) null, z2);
-        } else {
-            this.botVerificationDrawable.set(botVerificationIcon, z2);
-        }
-        this.botVerificationDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground, this.resourcesProvider)));
-    }
-
-    public ProfileSearchCell useCustomPaints() {
-        this.customPaints = true;
-        return this;
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return this.statusDrawable == drawable || this.botVerificationDrawable == drawable || super.verifyDrawable(drawable);
     }
 }

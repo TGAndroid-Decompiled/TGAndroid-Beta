@@ -19,15 +19,15 @@ public class VideoCodecInfo {
     @Deprecated
     public final int payload;
 
-    @Deprecated
-    public VideoCodecInfo(int i, String str, Map<String, String> map) {
-        this.payload = i;
+    public VideoCodecInfo(String str, Map<String, String> map) {
+        this.payload = 0;
         this.name = str;
         this.params = map;
     }
 
-    public VideoCodecInfo(String str, Map<String, String> map) {
-        this.payload = 0;
+    @Deprecated
+    public VideoCodecInfo(int i, String str, Map<String, String> map) {
+        this.payload = i;
         this.name = str;
         this.params = map;
     }
@@ -46,19 +46,19 @@ public class VideoCodecInfo {
         return this.name.equalsIgnoreCase(videoCodecInfo.name) && this.params.equals(videoCodecInfo.params);
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    Map getParams() {
-        return this.params;
-    }
-
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.name.toUpperCase(Locale.ROOT), this.params});
     }
 
     public String toString() {
         return "VideoCodec{" + this.name + " " + this.params + "}";
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    Map getParams() {
+        return this.params;
     }
 }

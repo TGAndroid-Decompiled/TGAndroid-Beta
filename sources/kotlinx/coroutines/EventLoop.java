@@ -7,36 +7,31 @@ public abstract class EventLoop extends CoroutineDispatcher {
     private ArrayDeque unconfinedQueue;
     private long useCount;
 
-    public static void decrementUseCount$default(EventLoop eventLoop, boolean z, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: decrementUseCount");
-        }
-        if ((i & 1) != 0) {
-            z = false;
-        }
-        eventLoop.decrementUseCount(z);
-    }
-
     private final long delta(boolean z) {
         return z ? 4294967296L : 1L;
     }
 
-    public static void incrementUseCount$default(EventLoop eventLoop, boolean z, int i, Object obj) {
-        if (obj != null) {
-            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: incrementUseCount");
-        }
-        if ((i & 1) != 0) {
-            z = false;
-        }
-        eventLoop.incrementUseCount(z);
+    public abstract long processNextEvent();
+
+    public boolean shouldBeProcessedFromContext() {
+        return false;
     }
 
-    public final void decrementUseCount(boolean z) {
-        long delta = this.useCount - delta(z);
-        this.useCount = delta;
-        if (delta <= 0 && this.shared) {
-            shutdown();
+    public abstract void shutdown();
+
+    public long getNextTime() {
+        ArrayDeque arrayDeque = this.unconfinedQueue;
+        return (arrayDeque == null || arrayDeque.isEmpty()) ? Long.MAX_VALUE : 0L;
+    }
+
+    public final boolean processUnconfinedEvent() {
+        DispatchedTask dispatchedTask;
+        ArrayDeque arrayDeque = this.unconfinedQueue;
+        if (arrayDeque == null || (dispatchedTask = (DispatchedTask) arrayDeque.removeFirstOrNull()) == null) {
+            return false;
         }
+        dispatchedTask.run();
+        return true;
     }
 
     public final void dispatchUnconfined(DispatchedTask dispatchedTask) {
@@ -46,19 +41,6 @@ public abstract class EventLoop extends CoroutineDispatcher {
             this.unconfinedQueue = arrayDeque;
         }
         arrayDeque.addLast(dispatchedTask);
-    }
-
-    public long getNextTime() {
-        ArrayDeque arrayDeque = this.unconfinedQueue;
-        return (arrayDeque == null || arrayDeque.isEmpty()) ? Long.MAX_VALUE : 0L;
-    }
-
-    public final void incrementUseCount(boolean z) {
-        this.useCount += delta(z);
-        if (z) {
-            return;
-        }
-        this.shared = true;
     }
 
     public final boolean isUnconfinedLoopActive() {
@@ -73,21 +55,39 @@ public abstract class EventLoop extends CoroutineDispatcher {
         return true;
     }
 
-    public abstract long processNextEvent();
-
-    public final boolean processUnconfinedEvent() {
-        DispatchedTask dispatchedTask;
-        ArrayDeque arrayDeque = this.unconfinedQueue;
-        if (arrayDeque == null || (dispatchedTask = (DispatchedTask) arrayDeque.removeFirstOrNull()) == null) {
-            return false;
+    public static void incrementUseCount$default(EventLoop eventLoop, boolean z, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: incrementUseCount");
         }
-        dispatchedTask.run();
-        return true;
+        if ((i & 1) != 0) {
+            z = false;
+        }
+        eventLoop.incrementUseCount(z);
     }
 
-    public boolean shouldBeProcessedFromContext() {
-        return false;
+    public final void incrementUseCount(boolean z) {
+        this.useCount += delta(z);
+        if (z) {
+            return;
+        }
+        this.shared = true;
     }
 
-    public abstract void shutdown();
+    public static void decrementUseCount$default(EventLoop eventLoop, boolean z, int i, Object obj) {
+        if (obj != null) {
+            throw new UnsupportedOperationException("Super calls with default arguments not supported in this target, function: decrementUseCount");
+        }
+        if ((i & 1) != 0) {
+            z = false;
+        }
+        eventLoop.decrementUseCount(z);
+    }
+
+    public final void decrementUseCount(boolean z) {
+        long delta = this.useCount - delta(z);
+        this.useCount = delta;
+        if (delta <= 0 && this.shared) {
+            shutdown();
+        }
+    }
 }

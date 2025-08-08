@@ -18,37 +18,6 @@ public class PeerConnection {
     private List<RtpSender> senders;
     private List<RtpTransceiver> transceivers;
 
-    public enum AdapterType {
-        UNKNOWN(0),
-        ETHERNET(1),
-        WIFI(2),
-        CELLULAR(4),
-        VPN(8),
-        LOOPBACK(16),
-        ADAPTER_TYPE_ANY(32),
-        CELLULAR_2G(64),
-        CELLULAR_3G(128),
-        CELLULAR_4G(256),
-        CELLULAR_5G(512);
-
-        private static final Map<Integer, AdapterType> BY_BITMASK = new HashMap();
-        public final Integer bitMask;
-
-        static {
-            for (AdapterType adapterType : values()) {
-                BY_BITMASK.put(adapterType.bitMask, adapterType);
-            }
-        }
-
-        AdapterType(Integer num) {
-            this.bitMask = num;
-        }
-
-        static AdapterType fromNativeIndex(int i) {
-            return BY_BITMASK.get(Integer.valueOf(i));
-        }
-    }
-
     public enum BundlePolicy {
         BALANCED,
         MAXBUNDLE,
@@ -63,206 +32,6 @@ public class PeerConnection {
     public enum ContinualGatheringPolicy {
         GATHER_ONCE,
         GATHER_CONTINUALLY
-    }
-
-    public enum IceConnectionState {
-        NEW,
-        CHECKING,
-        CONNECTED,
-        COMPLETED,
-        FAILED,
-        DISCONNECTED,
-        CLOSED;
-
-        static IceConnectionState fromNativeIndex(int i) {
-            return values()[i];
-        }
-    }
-
-    public enum IceGatheringState {
-        NEW,
-        GATHERING,
-        COMPLETE;
-
-        static IceGatheringState fromNativeIndex(int i) {
-            return values()[i];
-        }
-    }
-
-    public static class IceServer {
-        public final String hostname;
-        public final String password;
-        public final List<String> tlsAlpnProtocols;
-        public final TlsCertPolicy tlsCertPolicy;
-        public final List<String> tlsEllipticCurves;
-
-        @Deprecated
-        public final String uri;
-        public final List<String> urls;
-        public final String username;
-
-        public static class Builder {
-            private String hostname;
-            private String password;
-            private List<String> tlsAlpnProtocols;
-            private TlsCertPolicy tlsCertPolicy;
-            private List<String> tlsEllipticCurves;
-            private final List<String> urls;
-            private String username;
-
-            private Builder(List<String> list) {
-                this.username = "";
-                this.password = "";
-                this.tlsCertPolicy = TlsCertPolicy.TLS_CERT_POLICY_SECURE;
-                this.hostname = "";
-                if (list != null && !list.isEmpty()) {
-                    this.urls = list;
-                    return;
-                }
-                throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
-            }
-
-            public IceServer createIceServer() {
-                return new IceServer(this.urls.get(0), this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves);
-            }
-
-            public Builder setHostname(String str) {
-                this.hostname = str;
-                return this;
-            }
-
-            public Builder setPassword(String str) {
-                this.password = str;
-                return this;
-            }
-
-            public Builder setTlsAlpnProtocols(List<String> list) {
-                this.tlsAlpnProtocols = list;
-                return this;
-            }
-
-            public Builder setTlsCertPolicy(TlsCertPolicy tlsCertPolicy) {
-                this.tlsCertPolicy = tlsCertPolicy;
-                return this;
-            }
-
-            public Builder setTlsEllipticCurves(List<String> list) {
-                this.tlsEllipticCurves = list;
-                return this;
-            }
-
-            public Builder setUsername(String str) {
-                this.username = str;
-                return this;
-            }
-        }
-
-        @Deprecated
-        public IceServer(String str) {
-            this(str, "", "");
-        }
-
-        @Deprecated
-        public IceServer(String str, String str2, String str3) {
-            this(str, str2, str3, TlsCertPolicy.TLS_CERT_POLICY_SECURE);
-        }
-
-        @Deprecated
-        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy) {
-            this(str, str2, str3, tlsCertPolicy, "");
-        }
-
-        @Deprecated
-        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4) {
-            this(str, Collections.singletonList(str), str2, str3, tlsCertPolicy, str4, null, null);
-        }
-
-        private IceServer(String str, List<String> list, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4, List<String> list2, List<String> list3) {
-            if (str == null || list == null || list.isEmpty()) {
-                throw new IllegalArgumentException("uri == null || urls == null || urls.isEmpty()");
-            }
-            Iterator<String> it = list.iterator();
-            while (it.hasNext()) {
-                if (it.next() == null) {
-                    throw new IllegalArgumentException("urls element is null: " + list);
-                }
-            }
-            if (str2 == null) {
-                throw new IllegalArgumentException("username == null");
-            }
-            if (str3 == null) {
-                throw new IllegalArgumentException("password == null");
-            }
-            if (str4 == null) {
-                throw new IllegalArgumentException("hostname == null");
-            }
-            this.uri = str;
-            this.urls = list;
-            this.username = str2;
-            this.password = str3;
-            this.tlsCertPolicy = tlsCertPolicy;
-            this.hostname = str4;
-            this.tlsAlpnProtocols = list2;
-            this.tlsEllipticCurves = list3;
-        }
-
-        public static Builder builder(String str) {
-            return new Builder(Collections.singletonList(str));
-        }
-
-        public static Builder builder(List<String> list) {
-            return new Builder(list);
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof IceServer)) {
-                return false;
-            }
-            IceServer iceServer = (IceServer) obj;
-            return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
-        }
-
-        String getHostname() {
-            return this.hostname;
-        }
-
-        String getPassword() {
-            return this.password;
-        }
-
-        List<String> getTlsAlpnProtocols() {
-            return this.tlsAlpnProtocols;
-        }
-
-        TlsCertPolicy getTlsCertPolicy() {
-            return this.tlsCertPolicy;
-        }
-
-        List<String> getTlsEllipticCurves() {
-            return this.tlsEllipticCurves;
-        }
-
-        List<String> getUrls() {
-            return this.urls;
-        }
-
-        String getUsername() {
-            return this.username;
-        }
-
-        public int hashCode() {
-            return Arrays.hashCode(new Object[]{this.uri, this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves});
-        }
-
-        public String toString() {
-            return this.urls + " [" + this.username + ":" + this.password + "] [" + this.tlsCertPolicy + "] [" + this.hostname + "] [" + this.tlsAlpnProtocols + "] [" + this.tlsEllipticCurves + "]";
-        }
     }
 
     public enum IceTransportsType {
@@ -337,227 +106,10 @@ public class PeerConnection {
         void onTrack(RtpTransceiver rtpTransceiver);
     }
 
-    public enum PeerConnectionState {
-        NEW,
-        CONNECTING,
-        CONNECTED,
-        DISCONNECTED,
-        FAILED,
-        CLOSED;
-
-        static PeerConnectionState fromNativeIndex(int i) {
-            return values()[i];
-        }
-    }
-
     public enum PortPrunePolicy {
         NO_PRUNE,
         PRUNE_BASED_ON_PRIORITY,
         KEEP_FIRST_READY
-    }
-
-    public static class RTCConfiguration {
-        public RtcCertificatePem certificate;
-        public List<IceServer> iceServers;
-        public TurnCustomizer turnCustomizer;
-        public IceTransportsType iceTransportsType = IceTransportsType.ALL;
-        public BundlePolicy bundlePolicy = BundlePolicy.BALANCED;
-        public RtcpMuxPolicy rtcpMuxPolicy = RtcpMuxPolicy.REQUIRE;
-        public TcpCandidatePolicy tcpCandidatePolicy = TcpCandidatePolicy.ENABLED;
-        public CandidateNetworkPolicy candidateNetworkPolicy = CandidateNetworkPolicy.ALL;
-        public int audioJitterBufferMaxPackets = 50;
-        public boolean audioJitterBufferFastAccelerate = false;
-        public int iceConnectionReceivingTimeout = -1;
-        public int iceBackupCandidatePairPingInterval = -1;
-        public KeyType keyType = KeyType.ECDSA;
-        public ContinualGatheringPolicy continualGatheringPolicy = ContinualGatheringPolicy.GATHER_ONCE;
-        public int iceCandidatePoolSize = 0;
-
-        @Deprecated
-        public boolean pruneTurnPorts = false;
-        public PortPrunePolicy turnPortPrunePolicy = PortPrunePolicy.NO_PRUNE;
-        public boolean presumeWritableWhenFullyRelayed = false;
-        public boolean surfaceIceCandidatesOnIceTransportTypeChanged = false;
-        public Integer iceCheckIntervalStrongConnectivityMs = null;
-        public Integer iceCheckIntervalWeakConnectivityMs = null;
-        public Integer iceCheckMinInterval = null;
-        public Integer iceUnwritableTimeMs = null;
-        public Integer iceUnwritableMinChecks = null;
-        public Integer stunCandidateKeepaliveIntervalMs = null;
-        public Integer stableWritableConnectionPingIntervalMs = null;
-        public boolean disableIPv6OnWifi = false;
-        public int maxIPv6Networks = 5;
-        public boolean enableDscp = false;
-        public boolean enableCpuOveruseDetection = true;
-        public boolean suspendBelowMinBitrate = false;
-        public Integer screencastMinBitrate = null;
-        public AdapterType networkPreference = AdapterType.UNKNOWN;
-        public SdpSemantics sdpSemantics = SdpSemantics.UNIFIED_PLAN;
-        public boolean activeResetSrtpParams = false;
-        public CryptoOptions cryptoOptions = null;
-        public String turnLoggingId = null;
-        public boolean enableImplicitRollback = false;
-        public boolean offerExtmapAllowMixed = true;
-
-        public RTCConfiguration(List<IceServer> list) {
-            this.iceServers = list;
-        }
-
-        boolean getActiveResetSrtpParams() {
-            return this.activeResetSrtpParams;
-        }
-
-        boolean getAudioJitterBufferFastAccelerate() {
-            return this.audioJitterBufferFastAccelerate;
-        }
-
-        int getAudioJitterBufferMaxPackets() {
-            return this.audioJitterBufferMaxPackets;
-        }
-
-        BundlePolicy getBundlePolicy() {
-            return this.bundlePolicy;
-        }
-
-        CandidateNetworkPolicy getCandidateNetworkPolicy() {
-            return this.candidateNetworkPolicy;
-        }
-
-        RtcCertificatePem getCertificate() {
-            return this.certificate;
-        }
-
-        ContinualGatheringPolicy getContinualGatheringPolicy() {
-            return this.continualGatheringPolicy;
-        }
-
-        CryptoOptions getCryptoOptions() {
-            return this.cryptoOptions;
-        }
-
-        boolean getDisableIPv6OnWifi() {
-            return this.disableIPv6OnWifi;
-        }
-
-        boolean getEnableCpuOveruseDetection() {
-            return this.enableCpuOveruseDetection;
-        }
-
-        boolean getEnableDscp() {
-            return this.enableDscp;
-        }
-
-        boolean getEnableImplicitRollback() {
-            return this.enableImplicitRollback;
-        }
-
-        int getIceBackupCandidatePairPingInterval() {
-            return this.iceBackupCandidatePairPingInterval;
-        }
-
-        int getIceCandidatePoolSize() {
-            return this.iceCandidatePoolSize;
-        }
-
-        Integer getIceCheckIntervalStrongConnectivity() {
-            return this.iceCheckIntervalStrongConnectivityMs;
-        }
-
-        Integer getIceCheckIntervalWeakConnectivity() {
-            return this.iceCheckIntervalWeakConnectivityMs;
-        }
-
-        Integer getIceCheckMinInterval() {
-            return this.iceCheckMinInterval;
-        }
-
-        int getIceConnectionReceivingTimeout() {
-            return this.iceConnectionReceivingTimeout;
-        }
-
-        List<IceServer> getIceServers() {
-            return this.iceServers;
-        }
-
-        IceTransportsType getIceTransportsType() {
-            return this.iceTransportsType;
-        }
-
-        Integer getIceUnwritableMinChecks() {
-            return this.iceUnwritableMinChecks;
-        }
-
-        Integer getIceUnwritableTimeout() {
-            return this.iceUnwritableTimeMs;
-        }
-
-        KeyType getKeyType() {
-            return this.keyType;
-        }
-
-        int getMaxIPv6Networks() {
-            return this.maxIPv6Networks;
-        }
-
-        AdapterType getNetworkPreference() {
-            return this.networkPreference;
-        }
-
-        boolean getOfferExtmapAllowMixed() {
-            return this.offerExtmapAllowMixed;
-        }
-
-        boolean getPresumeWritableWhenFullyRelayed() {
-            return this.presumeWritableWhenFullyRelayed;
-        }
-
-        boolean getPruneTurnPorts() {
-            return this.pruneTurnPorts;
-        }
-
-        RtcpMuxPolicy getRtcpMuxPolicy() {
-            return this.rtcpMuxPolicy;
-        }
-
-        Integer getScreencastMinBitrate() {
-            return this.screencastMinBitrate;
-        }
-
-        SdpSemantics getSdpSemantics() {
-            return this.sdpSemantics;
-        }
-
-        Integer getStableWritableConnectionPingIntervalMs() {
-            return this.stableWritableConnectionPingIntervalMs;
-        }
-
-        Integer getStunCandidateKeepaliveInterval() {
-            return this.stunCandidateKeepaliveIntervalMs;
-        }
-
-        boolean getSurfaceIceCandidatesOnIceTransportTypeChanged() {
-            return this.surfaceIceCandidatesOnIceTransportTypeChanged;
-        }
-
-        boolean getSuspendBelowMinBitrate() {
-            return this.suspendBelowMinBitrate;
-        }
-
-        TcpCandidatePolicy getTcpCandidatePolicy() {
-            return this.tcpCandidatePolicy;
-        }
-
-        TurnCustomizer getTurnCustomizer() {
-            return this.turnCustomizer;
-        }
-
-        String getTurnLoggingId() {
-            return this.turnLoggingId;
-        }
-
-        PortPrunePolicy getTurnPortPrunePolicy() {
-            return this.turnPortPrunePolicy;
-        }
     }
 
     public enum RtcpMuxPolicy {
@@ -570,19 +122,6 @@ public class PeerConnection {
         UNIFIED_PLAN
     }
 
-    public enum SignalingState {
-        STABLE,
-        HAVE_LOCAL_OFFER,
-        HAVE_LOCAL_PRANSWER,
-        HAVE_REMOTE_OFFER,
-        HAVE_REMOTE_PRANSWER,
-        CLOSED;
-
-        static SignalingState fromNativeIndex(int i) {
-            return values()[i];
-        }
-    }
-
     public enum TcpCandidatePolicy {
         ENABLED,
         DISABLED
@@ -591,22 +130,6 @@ public class PeerConnection {
     public enum TlsCertPolicy {
         TLS_CERT_POLICY_SECURE,
         TLS_CERT_POLICY_INSECURE_NO_CHECK
-    }
-
-    public PeerConnection(long j) {
-        this.localStreams = new ArrayList();
-        this.senders = new ArrayList();
-        this.receivers = new ArrayList();
-        this.transceivers = new ArrayList();
-        this.nativePeerConnection = j;
-    }
-
-    public PeerConnection(NativePeerConnectionFactory nativePeerConnectionFactory) {
-        this(nativePeerConnectionFactory.createNativePeerConnection());
-    }
-
-    public static long createNativePeerConnectionObserver(Observer observer) {
-        return nativeCreatePeerConnectionObserver(observer);
     }
 
     private native boolean nativeAddIceCandidate(String str, int i, String str2);
@@ -691,12 +214,540 @@ public class PeerConnection {
 
     private native void nativeStopRtcEventLog();
 
-    public void addIceCandidate(IceCandidate iceCandidate, AddIceObserver addIceObserver) {
-        nativeAddIceCandidateWithObserver(iceCandidate.sdpMid, iceCandidate.sdpMLineIndex, iceCandidate.sdp, addIceObserver);
+    public enum IceGatheringState {
+        NEW,
+        GATHERING,
+        COMPLETE;
+
+        static IceGatheringState fromNativeIndex(int i) {
+            return values()[i];
+        }
+    }
+
+    public enum IceConnectionState {
+        NEW,
+        CHECKING,
+        CONNECTED,
+        COMPLETED,
+        FAILED,
+        DISCONNECTED,
+        CLOSED;
+
+        static IceConnectionState fromNativeIndex(int i) {
+            return values()[i];
+        }
+    }
+
+    public enum PeerConnectionState {
+        NEW,
+        CONNECTING,
+        CONNECTED,
+        DISCONNECTED,
+        FAILED,
+        CLOSED;
+
+        static PeerConnectionState fromNativeIndex(int i) {
+            return values()[i];
+        }
+    }
+
+    public enum SignalingState {
+        STABLE,
+        HAVE_LOCAL_OFFER,
+        HAVE_LOCAL_PRANSWER,
+        HAVE_REMOTE_OFFER,
+        HAVE_REMOTE_PRANSWER,
+        CLOSED;
+
+        static SignalingState fromNativeIndex(int i) {
+            return values()[i];
+        }
+    }
+
+    public static class IceServer {
+        public final String hostname;
+        public final String password;
+        public final List<String> tlsAlpnProtocols;
+        public final TlsCertPolicy tlsCertPolicy;
+        public final List<String> tlsEllipticCurves;
+
+        @Deprecated
+        public final String uri;
+        public final List<String> urls;
+        public final String username;
+
+        @Deprecated
+        public IceServer(String str) {
+            this(str, "", "");
+        }
+
+        @Deprecated
+        public IceServer(String str, String str2, String str3) {
+            this(str, str2, str3, TlsCertPolicy.TLS_CERT_POLICY_SECURE);
+        }
+
+        @Deprecated
+        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy) {
+            this(str, str2, str3, tlsCertPolicy, "");
+        }
+
+        @Deprecated
+        public IceServer(String str, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4) {
+            this(str, Collections.singletonList(str), str2, str3, tlsCertPolicy, str4, null, null);
+        }
+
+        private IceServer(String str, List<String> list, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4, List<String> list2, List<String> list3) {
+            if (str == null || list == null || list.isEmpty()) {
+                throw new IllegalArgumentException("uri == null || urls == null || urls.isEmpty()");
+            }
+            Iterator<String> it = list.iterator();
+            while (it.hasNext()) {
+                if (it.next() == null) {
+                    throw new IllegalArgumentException("urls element is null: " + list);
+                }
+            }
+            if (str2 == null) {
+                throw new IllegalArgumentException("username == null");
+            }
+            if (str3 == null) {
+                throw new IllegalArgumentException("password == null");
+            }
+            if (str4 == null) {
+                throw new IllegalArgumentException("hostname == null");
+            }
+            this.uri = str;
+            this.urls = list;
+            this.username = str2;
+            this.password = str3;
+            this.tlsCertPolicy = tlsCertPolicy;
+            this.hostname = str4;
+            this.tlsAlpnProtocols = list2;
+            this.tlsEllipticCurves = list3;
+        }
+
+        public String toString() {
+            return this.urls + " [" + this.username + ":" + this.password + "] [" + this.tlsCertPolicy + "] [" + this.hostname + "] [" + this.tlsAlpnProtocols + "] [" + this.tlsEllipticCurves + "]";
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof IceServer)) {
+                return false;
+            }
+            IceServer iceServer = (IceServer) obj;
+            return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
+        }
+
+        public int hashCode() {
+            return Arrays.hashCode(new Object[]{this.uri, this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves});
+        }
+
+        public static Builder builder(String str) {
+            return new Builder(Collections.singletonList(str));
+        }
+
+        public static Builder builder(List<String> list) {
+            return new Builder(list);
+        }
+
+        public static class Builder {
+            private String hostname;
+            private String password;
+            private List<String> tlsAlpnProtocols;
+            private TlsCertPolicy tlsCertPolicy;
+            private List<String> tlsEllipticCurves;
+            private final List<String> urls;
+            private String username;
+
+            private Builder(List<String> list) {
+                this.username = "";
+                this.password = "";
+                this.tlsCertPolicy = TlsCertPolicy.TLS_CERT_POLICY_SECURE;
+                this.hostname = "";
+                if (list == null || list.isEmpty()) {
+                    throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
+                }
+                this.urls = list;
+            }
+
+            public Builder setUsername(String str) {
+                this.username = str;
+                return this;
+            }
+
+            public Builder setPassword(String str) {
+                this.password = str;
+                return this;
+            }
+
+            public Builder setTlsCertPolicy(TlsCertPolicy tlsCertPolicy) {
+                this.tlsCertPolicy = tlsCertPolicy;
+                return this;
+            }
+
+            public Builder setHostname(String str) {
+                this.hostname = str;
+                return this;
+            }
+
+            public Builder setTlsAlpnProtocols(List<String> list) {
+                this.tlsAlpnProtocols = list;
+                return this;
+            }
+
+            public Builder setTlsEllipticCurves(List<String> list) {
+                this.tlsEllipticCurves = list;
+                return this;
+            }
+
+            public IceServer createIceServer() {
+                return new IceServer(this.urls.get(0), this.urls, this.username, this.password, this.tlsCertPolicy, this.hostname, this.tlsAlpnProtocols, this.tlsEllipticCurves);
+            }
+        }
+
+        List<String> getUrls() {
+            return this.urls;
+        }
+
+        String getUsername() {
+            return this.username;
+        }
+
+        String getPassword() {
+            return this.password;
+        }
+
+        TlsCertPolicy getTlsCertPolicy() {
+            return this.tlsCertPolicy;
+        }
+
+        String getHostname() {
+            return this.hostname;
+        }
+
+        List<String> getTlsAlpnProtocols() {
+            return this.tlsAlpnProtocols;
+        }
+
+        List<String> getTlsEllipticCurves() {
+            return this.tlsEllipticCurves;
+        }
+    }
+
+    public enum AdapterType {
+        UNKNOWN(0),
+        ETHERNET(1),
+        WIFI(2),
+        CELLULAR(4),
+        VPN(8),
+        LOOPBACK(16),
+        ADAPTER_TYPE_ANY(32),
+        CELLULAR_2G(64),
+        CELLULAR_3G(128),
+        CELLULAR_4G(256),
+        CELLULAR_5G(512);
+
+        private static final Map<Integer, AdapterType> BY_BITMASK = new HashMap();
+        public final Integer bitMask;
+
+        static {
+            for (AdapterType adapterType : values()) {
+                BY_BITMASK.put(adapterType.bitMask, adapterType);
+            }
+        }
+
+        AdapterType(Integer num) {
+            this.bitMask = num;
+        }
+
+        static AdapterType fromNativeIndex(int i) {
+            return BY_BITMASK.get(Integer.valueOf(i));
+        }
+    }
+
+    public static class RTCConfiguration {
+        public RtcCertificatePem certificate;
+        public List<IceServer> iceServers;
+        public TurnCustomizer turnCustomizer;
+        public IceTransportsType iceTransportsType = IceTransportsType.ALL;
+        public BundlePolicy bundlePolicy = BundlePolicy.BALANCED;
+        public RtcpMuxPolicy rtcpMuxPolicy = RtcpMuxPolicy.REQUIRE;
+        public TcpCandidatePolicy tcpCandidatePolicy = TcpCandidatePolicy.ENABLED;
+        public CandidateNetworkPolicy candidateNetworkPolicy = CandidateNetworkPolicy.ALL;
+        public int audioJitterBufferMaxPackets = 50;
+        public boolean audioJitterBufferFastAccelerate = false;
+        public int iceConnectionReceivingTimeout = -1;
+        public int iceBackupCandidatePairPingInterval = -1;
+        public KeyType keyType = KeyType.ECDSA;
+        public ContinualGatheringPolicy continualGatheringPolicy = ContinualGatheringPolicy.GATHER_ONCE;
+        public int iceCandidatePoolSize = 0;
+
+        @Deprecated
+        public boolean pruneTurnPorts = false;
+        public PortPrunePolicy turnPortPrunePolicy = PortPrunePolicy.NO_PRUNE;
+        public boolean presumeWritableWhenFullyRelayed = false;
+        public boolean surfaceIceCandidatesOnIceTransportTypeChanged = false;
+        public Integer iceCheckIntervalStrongConnectivityMs = null;
+        public Integer iceCheckIntervalWeakConnectivityMs = null;
+        public Integer iceCheckMinInterval = null;
+        public Integer iceUnwritableTimeMs = null;
+        public Integer iceUnwritableMinChecks = null;
+        public Integer stunCandidateKeepaliveIntervalMs = null;
+        public Integer stableWritableConnectionPingIntervalMs = null;
+        public boolean disableIPv6OnWifi = false;
+        public int maxIPv6Networks = 5;
+        public boolean enableDscp = false;
+        public boolean enableCpuOveruseDetection = true;
+        public boolean suspendBelowMinBitrate = false;
+        public Integer screencastMinBitrate = null;
+        public AdapterType networkPreference = AdapterType.UNKNOWN;
+        public SdpSemantics sdpSemantics = SdpSemantics.UNIFIED_PLAN;
+        public boolean activeResetSrtpParams = false;
+        public CryptoOptions cryptoOptions = null;
+        public String turnLoggingId = null;
+        public boolean enableImplicitRollback = false;
+        public boolean offerExtmapAllowMixed = true;
+
+        public RTCConfiguration(List<IceServer> list) {
+            this.iceServers = list;
+        }
+
+        IceTransportsType getIceTransportsType() {
+            return this.iceTransportsType;
+        }
+
+        List<IceServer> getIceServers() {
+            return this.iceServers;
+        }
+
+        BundlePolicy getBundlePolicy() {
+            return this.bundlePolicy;
+        }
+
+        PortPrunePolicy getTurnPortPrunePolicy() {
+            return this.turnPortPrunePolicy;
+        }
+
+        RtcCertificatePem getCertificate() {
+            return this.certificate;
+        }
+
+        RtcpMuxPolicy getRtcpMuxPolicy() {
+            return this.rtcpMuxPolicy;
+        }
+
+        TcpCandidatePolicy getTcpCandidatePolicy() {
+            return this.tcpCandidatePolicy;
+        }
+
+        CandidateNetworkPolicy getCandidateNetworkPolicy() {
+            return this.candidateNetworkPolicy;
+        }
+
+        int getAudioJitterBufferMaxPackets() {
+            return this.audioJitterBufferMaxPackets;
+        }
+
+        boolean getAudioJitterBufferFastAccelerate() {
+            return this.audioJitterBufferFastAccelerate;
+        }
+
+        int getIceConnectionReceivingTimeout() {
+            return this.iceConnectionReceivingTimeout;
+        }
+
+        int getIceBackupCandidatePairPingInterval() {
+            return this.iceBackupCandidatePairPingInterval;
+        }
+
+        KeyType getKeyType() {
+            return this.keyType;
+        }
+
+        ContinualGatheringPolicy getContinualGatheringPolicy() {
+            return this.continualGatheringPolicy;
+        }
+
+        int getIceCandidatePoolSize() {
+            return this.iceCandidatePoolSize;
+        }
+
+        boolean getPruneTurnPorts() {
+            return this.pruneTurnPorts;
+        }
+
+        boolean getPresumeWritableWhenFullyRelayed() {
+            return this.presumeWritableWhenFullyRelayed;
+        }
+
+        boolean getSurfaceIceCandidatesOnIceTransportTypeChanged() {
+            return this.surfaceIceCandidatesOnIceTransportTypeChanged;
+        }
+
+        Integer getIceCheckIntervalStrongConnectivity() {
+            return this.iceCheckIntervalStrongConnectivityMs;
+        }
+
+        Integer getIceCheckIntervalWeakConnectivity() {
+            return this.iceCheckIntervalWeakConnectivityMs;
+        }
+
+        Integer getIceCheckMinInterval() {
+            return this.iceCheckMinInterval;
+        }
+
+        Integer getIceUnwritableTimeout() {
+            return this.iceUnwritableTimeMs;
+        }
+
+        Integer getIceUnwritableMinChecks() {
+            return this.iceUnwritableMinChecks;
+        }
+
+        Integer getStunCandidateKeepaliveInterval() {
+            return this.stunCandidateKeepaliveIntervalMs;
+        }
+
+        Integer getStableWritableConnectionPingIntervalMs() {
+            return this.stableWritableConnectionPingIntervalMs;
+        }
+
+        boolean getDisableIPv6OnWifi() {
+            return this.disableIPv6OnWifi;
+        }
+
+        int getMaxIPv6Networks() {
+            return this.maxIPv6Networks;
+        }
+
+        TurnCustomizer getTurnCustomizer() {
+            return this.turnCustomizer;
+        }
+
+        boolean getEnableDscp() {
+            return this.enableDscp;
+        }
+
+        boolean getEnableCpuOveruseDetection() {
+            return this.enableCpuOveruseDetection;
+        }
+
+        boolean getSuspendBelowMinBitrate() {
+            return this.suspendBelowMinBitrate;
+        }
+
+        Integer getScreencastMinBitrate() {
+            return this.screencastMinBitrate;
+        }
+
+        AdapterType getNetworkPreference() {
+            return this.networkPreference;
+        }
+
+        SdpSemantics getSdpSemantics() {
+            return this.sdpSemantics;
+        }
+
+        boolean getActiveResetSrtpParams() {
+            return this.activeResetSrtpParams;
+        }
+
+        CryptoOptions getCryptoOptions() {
+            return this.cryptoOptions;
+        }
+
+        String getTurnLoggingId() {
+            return this.turnLoggingId;
+        }
+
+        boolean getEnableImplicitRollback() {
+            return this.enableImplicitRollback;
+        }
+
+        boolean getOfferExtmapAllowMixed() {
+            return this.offerExtmapAllowMixed;
+        }
+    }
+
+    public PeerConnection(NativePeerConnectionFactory nativePeerConnectionFactory) {
+        this(nativePeerConnectionFactory.createNativePeerConnection());
+    }
+
+    public PeerConnection(long j) {
+        this.localStreams = new ArrayList();
+        this.senders = new ArrayList();
+        this.receivers = new ArrayList();
+        this.transceivers = new ArrayList();
+        this.nativePeerConnection = j;
+    }
+
+    public SessionDescription getLocalDescription() {
+        return nativeGetLocalDescription();
+    }
+
+    public SessionDescription getRemoteDescription() {
+        return nativeGetRemoteDescription();
+    }
+
+    public RtcCertificatePem getCertificate() {
+        return nativeGetCertificate();
+    }
+
+    public DataChannel createDataChannel(String str, DataChannel.Init init) {
+        return nativeCreateDataChannel(str, init);
+    }
+
+    public void createOffer(SdpObserver sdpObserver, MediaConstraints mediaConstraints) {
+        nativeCreateOffer(sdpObserver, mediaConstraints);
+    }
+
+    public void createAnswer(SdpObserver sdpObserver, MediaConstraints mediaConstraints) {
+        nativeCreateAnswer(sdpObserver, mediaConstraints);
+    }
+
+    public void setLocalDescription(SdpObserver sdpObserver) {
+        nativeSetLocalDescriptionAutomatically(sdpObserver);
+    }
+
+    public void setLocalDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {
+        nativeSetLocalDescription(sdpObserver, sessionDescription);
+    }
+
+    public void setRemoteDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {
+        nativeSetRemoteDescription(sdpObserver, sessionDescription);
+    }
+
+    public void restartIce() {
+        nativeRestartIce();
+    }
+
+    public void setAudioPlayout(boolean z) {
+        nativeSetAudioPlayout(z);
+    }
+
+    public void setAudioRecording(boolean z) {
+        nativeSetAudioRecording(z);
+    }
+
+    public boolean setConfiguration(RTCConfiguration rTCConfiguration) {
+        return nativeSetConfiguration(rTCConfiguration);
     }
 
     public boolean addIceCandidate(IceCandidate iceCandidate) {
         return nativeAddIceCandidate(iceCandidate.sdpMid, iceCandidate.sdpMLineIndex, iceCandidate.sdp);
+    }
+
+    public void addIceCandidate(IceCandidate iceCandidate, AddIceObserver addIceObserver) {
+        nativeAddIceCandidateWithObserver(iceCandidate.sdpMid, iceCandidate.sdpMLineIndex, iceCandidate.sdp, addIceObserver);
+    }
+
+    public boolean removeIceCandidates(IceCandidate[] iceCandidateArr) {
+        return nativeRemoveIceCandidates(iceCandidateArr);
     }
 
     public boolean addStream(MediaStream mediaStream) {
@@ -705,6 +756,49 @@ public class PeerConnection {
         }
         this.localStreams.add(mediaStream);
         return true;
+    }
+
+    public void removeStream(MediaStream mediaStream) {
+        nativeRemoveLocalStream(mediaStream.getNativeMediaStream());
+        this.localStreams.remove(mediaStream);
+    }
+
+    public RtpSender createSender(String str, String str2) {
+        RtpSender nativeCreateSender = nativeCreateSender(str, str2);
+        if (nativeCreateSender != null) {
+            this.senders.add(nativeCreateSender);
+        }
+        return nativeCreateSender;
+    }
+
+    public List<RtpSender> getSenders() {
+        Iterator<RtpSender> it = this.senders.iterator();
+        while (it.hasNext()) {
+            it.next().dispose();
+        }
+        List<RtpSender> nativeGetSenders = nativeGetSenders();
+        this.senders = nativeGetSenders;
+        return Collections.unmodifiableList(nativeGetSenders);
+    }
+
+    public List<RtpReceiver> getReceivers() {
+        Iterator<RtpReceiver> it = this.receivers.iterator();
+        while (it.hasNext()) {
+            it.next().dispose();
+        }
+        List<RtpReceiver> nativeGetReceivers = nativeGetReceivers();
+        this.receivers = nativeGetReceivers;
+        return Collections.unmodifiableList(nativeGetReceivers);
+    }
+
+    public List<RtpTransceiver> getTransceivers() {
+        Iterator<RtpTransceiver> it = this.transceivers.iterator();
+        while (it.hasNext()) {
+            it.next().dispose();
+        }
+        List<RtpTransceiver> nativeGetTransceivers = nativeGetTransceivers();
+        this.transceivers = nativeGetTransceivers;
+        return Collections.unmodifiableList(nativeGetTransceivers);
     }
 
     public RtpSender addTrack(MediaStreamTrack mediaStreamTrack) {
@@ -723,23 +817,11 @@ public class PeerConnection {
         return nativeAddTrack;
     }
 
-    public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType) {
-        return addTransceiver(mediaType, new RtpTransceiver.RtpTransceiverInit());
-    }
-
-    public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        if (mediaType == null) {
-            throw new NullPointerException("No MediaType specified for addTransceiver.");
+    public boolean removeTrack(RtpSender rtpSender) {
+        if (rtpSender == null) {
+            throw new NullPointerException("No RtpSender specified for removeTrack.");
         }
-        if (rtpTransceiverInit == null) {
-            rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
-        }
-        RtpTransceiver nativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
-        if (nativeAddTransceiverOfType == null) {
-            throw new IllegalStateException("C++ addTransceiver failed.");
-        }
-        this.transceivers.add(nativeAddTransceiverOfType);
-        return nativeAddTransceiverOfType;
+        return nativeRemoveTrack(rtpSender.getNativeRtpSender());
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack) {
@@ -761,32 +843,72 @@ public class PeerConnection {
         return nativeAddTransceiverWithTrack;
     }
 
-    public void close() {
-        nativeClose();
+    public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType) {
+        return addTransceiver(mediaType, new RtpTransceiver.RtpTransceiverInit());
+    }
+
+    public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
+        if (mediaType == null) {
+            throw new NullPointerException("No MediaType specified for addTransceiver.");
+        }
+        if (rtpTransceiverInit == null) {
+            rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
+        }
+        RtpTransceiver nativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
+        if (nativeAddTransceiverOfType == null) {
+            throw new IllegalStateException("C++ addTransceiver failed.");
+        }
+        this.transceivers.add(nativeAddTransceiverOfType);
+        return nativeAddTransceiverOfType;
+    }
+
+    @Deprecated
+    public boolean getStats(StatsObserver statsObserver, MediaStreamTrack mediaStreamTrack) {
+        return nativeOldGetStats(statsObserver, mediaStreamTrack == null ? 0L : mediaStreamTrack.getNativeMediaStreamTrack());
+    }
+
+    public void getStats(RTCStatsCollectorCallback rTCStatsCollectorCallback) {
+        nativeNewGetStats(rTCStatsCollectorCallback);
+    }
+
+    public void getStats(RtpSender rtpSender, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
+        nativeNewGetStatsSender(rtpSender.getNativeRtpSender(), rTCStatsCollectorCallback);
+    }
+
+    public void getStats(RtpReceiver rtpReceiver, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
+        nativeNewGetStatsReceiver(rtpReceiver.getNativeRtpReceiver(), rTCStatsCollectorCallback);
+    }
+
+    public boolean setBitrate(Integer num, Integer num2, Integer num3) {
+        return nativeSetBitrate(num, num2, num3);
+    }
+
+    public boolean startRtcEventLog(int i, int i2) {
+        return nativeStartRtcEventLog(i, i2);
+    }
+
+    public void stopRtcEventLog() {
+        nativeStopRtcEventLog();
+    }
+
+    public SignalingState signalingState() {
+        return nativeSignalingState();
+    }
+
+    public IceConnectionState iceConnectionState() {
+        return nativeIceConnectionState();
     }
 
     public PeerConnectionState connectionState() {
         return nativeConnectionState();
     }
 
-    public void createAnswer(SdpObserver sdpObserver, MediaConstraints mediaConstraints) {
-        nativeCreateAnswer(sdpObserver, mediaConstraints);
+    public IceGatheringState iceGatheringState() {
+        return nativeIceGatheringState();
     }
 
-    public DataChannel createDataChannel(String str, DataChannel.Init init) {
-        return nativeCreateDataChannel(str, init);
-    }
-
-    public void createOffer(SdpObserver sdpObserver, MediaConstraints mediaConstraints) {
-        nativeCreateOffer(sdpObserver, mediaConstraints);
-    }
-
-    public RtpSender createSender(String str, String str2) {
-        RtpSender nativeCreateSender = nativeCreateSender(str, str2);
-        if (nativeCreateSender != null) {
-            this.senders.add(nativeCreateSender);
-        }
-        return nativeCreateSender;
+    public void close() {
+        nativeClose();
     }
 
     public void dispose() {
@@ -814,138 +936,15 @@ public class PeerConnection {
         nativeFreeOwnedPeerConnection(this.nativePeerConnection);
     }
 
-    public RtcCertificatePem getCertificate() {
-        return nativeGetCertificate();
-    }
-
-    public SessionDescription getLocalDescription() {
-        return nativeGetLocalDescription();
+    public long getNativePeerConnection() {
+        return nativeGetNativePeerConnection();
     }
 
     long getNativeOwnedPeerConnection() {
         return this.nativePeerConnection;
     }
 
-    public long getNativePeerConnection() {
-        return nativeGetNativePeerConnection();
-    }
-
-    public List<RtpReceiver> getReceivers() {
-        Iterator<RtpReceiver> it = this.receivers.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
-        }
-        List<RtpReceiver> nativeGetReceivers = nativeGetReceivers();
-        this.receivers = nativeGetReceivers;
-        return Collections.unmodifiableList(nativeGetReceivers);
-    }
-
-    public SessionDescription getRemoteDescription() {
-        return nativeGetRemoteDescription();
-    }
-
-    public List<RtpSender> getSenders() {
-        Iterator<RtpSender> it = this.senders.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
-        }
-        List<RtpSender> nativeGetSenders = nativeGetSenders();
-        this.senders = nativeGetSenders;
-        return Collections.unmodifiableList(nativeGetSenders);
-    }
-
-    public void getStats(RTCStatsCollectorCallback rTCStatsCollectorCallback) {
-        nativeNewGetStats(rTCStatsCollectorCallback);
-    }
-
-    public void getStats(RtpReceiver rtpReceiver, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
-        nativeNewGetStatsReceiver(rtpReceiver.getNativeRtpReceiver(), rTCStatsCollectorCallback);
-    }
-
-    public void getStats(RtpSender rtpSender, RTCStatsCollectorCallback rTCStatsCollectorCallback) {
-        nativeNewGetStatsSender(rtpSender.getNativeRtpSender(), rTCStatsCollectorCallback);
-    }
-
-    @Deprecated
-    public boolean getStats(StatsObserver statsObserver, MediaStreamTrack mediaStreamTrack) {
-        return nativeOldGetStats(statsObserver, mediaStreamTrack == null ? 0L : mediaStreamTrack.getNativeMediaStreamTrack());
-    }
-
-    public List<RtpTransceiver> getTransceivers() {
-        Iterator<RtpTransceiver> it = this.transceivers.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
-        }
-        List<RtpTransceiver> nativeGetTransceivers = nativeGetTransceivers();
-        this.transceivers = nativeGetTransceivers;
-        return Collections.unmodifiableList(nativeGetTransceivers);
-    }
-
-    public IceConnectionState iceConnectionState() {
-        return nativeIceConnectionState();
-    }
-
-    public IceGatheringState iceGatheringState() {
-        return nativeIceGatheringState();
-    }
-
-    public boolean removeIceCandidates(IceCandidate[] iceCandidateArr) {
-        return nativeRemoveIceCandidates(iceCandidateArr);
-    }
-
-    public void removeStream(MediaStream mediaStream) {
-        nativeRemoveLocalStream(mediaStream.getNativeMediaStream());
-        this.localStreams.remove(mediaStream);
-    }
-
-    public boolean removeTrack(RtpSender rtpSender) {
-        if (rtpSender != null) {
-            return nativeRemoveTrack(rtpSender.getNativeRtpSender());
-        }
-        throw new NullPointerException("No RtpSender specified for removeTrack.");
-    }
-
-    public void restartIce() {
-        nativeRestartIce();
-    }
-
-    public void setAudioPlayout(boolean z) {
-        nativeSetAudioPlayout(z);
-    }
-
-    public void setAudioRecording(boolean z) {
-        nativeSetAudioRecording(z);
-    }
-
-    public boolean setBitrate(Integer num, Integer num2, Integer num3) {
-        return nativeSetBitrate(num, num2, num3);
-    }
-
-    public boolean setConfiguration(RTCConfiguration rTCConfiguration) {
-        return nativeSetConfiguration(rTCConfiguration);
-    }
-
-    public void setLocalDescription(SdpObserver sdpObserver) {
-        nativeSetLocalDescriptionAutomatically(sdpObserver);
-    }
-
-    public void setLocalDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {
-        nativeSetLocalDescription(sdpObserver, sessionDescription);
-    }
-
-    public void setRemoteDescription(SdpObserver sdpObserver, SessionDescription sessionDescription) {
-        nativeSetRemoteDescription(sdpObserver, sessionDescription);
-    }
-
-    public SignalingState signalingState() {
-        return nativeSignalingState();
-    }
-
-    public boolean startRtcEventLog(int i, int i2) {
-        return nativeStartRtcEventLog(i, i2);
-    }
-
-    public void stopRtcEventLog() {
-        nativeStopRtcEventLog();
+    public static long createNativePeerConnectionObserver(Observer observer) {
+        return nativeCreatePeerConnectionObserver(observer);
     }
 }

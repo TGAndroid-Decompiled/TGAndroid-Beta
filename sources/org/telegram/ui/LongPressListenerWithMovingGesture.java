@@ -20,36 +20,13 @@ public abstract class LongPressListenerWithMovingGesture implements View.OnTouch
     boolean tapConfirmedOrCanceled;
     View view;
 
+    public abstract void onLongPress();
+
     public LongPressListenerWithMovingGesture() {
         GestureDetector2 gestureDetector2 = new GestureDetector2(new GestureDetector2.OnGestureListener() {
             @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                View view = LongPressListenerWithMovingGesture.this.view;
-                if (view != null) {
-                    view.setPressed(true);
-                    LongPressListenerWithMovingGesture.this.view.setSelected(true);
-                    int i = Build.VERSION.SDK_INT;
-                    if (i >= 21) {
-                        if (i == 21 && LongPressListenerWithMovingGesture.this.view.getBackground() != null) {
-                            LongPressListenerWithMovingGesture.this.view.getBackground().setVisible(true, false);
-                        }
-                        LongPressListenerWithMovingGesture.this.view.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
-                    }
-                }
-                return true;
-            }
-
-            @Override
             public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
                 return false;
-            }
-
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
-                if (longPressListenerWithMovingGesture.view != null) {
-                    longPressListenerWithMovingGesture.onLongPress();
-                }
             }
 
             @Override
@@ -62,14 +39,16 @@ public abstract class LongPressListenerWithMovingGesture implements View.OnTouch
             }
 
             @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                View view;
-                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
-                if (longPressListenerWithMovingGesture.tapConfirmedOrCanceled || (view = longPressListenerWithMovingGesture.view) == null) {
-                    return false;
+            public boolean onDown(MotionEvent motionEvent) {
+                View view = LongPressListenerWithMovingGesture.this.view;
+                if (view != null) {
+                    view.setPressed(true);
+                    LongPressListenerWithMovingGesture.this.view.setSelected(true);
+                    if (Build.VERSION.SDK_INT == 21 && LongPressListenerWithMovingGesture.this.view.getBackground() != null) {
+                        LongPressListenerWithMovingGesture.this.view.getBackground().setVisible(true, false);
+                    }
+                    LongPressListenerWithMovingGesture.this.view.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
                 }
-                view.callOnClick();
-                LongPressListenerWithMovingGesture.this.tapConfirmedOrCanceled = true;
                 return true;
             }
 
@@ -92,13 +71,31 @@ public abstract class LongPressListenerWithMovingGesture implements View.OnTouch
                     LongPressListenerWithMovingGesture.this.subItemClicked = true;
                 }
             }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
+                View view;
+                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
+                if (longPressListenerWithMovingGesture.tapConfirmedOrCanceled || (view = longPressListenerWithMovingGesture.view) == null) {
+                    return false;
+                }
+                view.callOnClick();
+                LongPressListenerWithMovingGesture.this.tapConfirmedOrCanceled = true;
+                return true;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent motionEvent) {
+                LongPressListenerWithMovingGesture longPressListenerWithMovingGesture = LongPressListenerWithMovingGesture.this;
+                if (longPressListenerWithMovingGesture.view != null) {
+                    longPressListenerWithMovingGesture.onLongPress();
+                }
+            }
         });
         this.gestureDetector2 = gestureDetector2;
         this.location = new int[2];
         gestureDetector2.setIsLongpressEnabled(true);
     }
-
-    public abstract void onLongPress();
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -125,23 +122,20 @@ public abstract class LongPressListenerWithMovingGesture implements View.OnTouch
                 itemAt.getHitRect(this.rect);
                 itemAt.getTag();
                 if (itemAt.getVisibility() == 0 && itemAt.isClickable()) {
-                    if (this.rect.contains((int) f, (int) f2)) {
-                        itemAt.setPressed(true);
-                        itemAt.setSelected(true);
-                        int i2 = Build.VERSION.SDK_INT;
-                        if (i2 >= 21) {
-                            if (i2 == 21 && itemAt.getBackground() != null) {
-                                itemAt.getBackground().setVisible(true, false);
-                            }
-                            itemAt.drawableHotspotChanged(f, f2 - itemAt.getTop());
-                        }
-                        this.selectedMenuView = itemAt;
-                    } else {
+                    if (!this.rect.contains((int) f, (int) f2)) {
                         itemAt.setPressed(false);
                         itemAt.setSelected(false);
                         if (Build.VERSION.SDK_INT == 21 && itemAt.getBackground() != null) {
                             itemAt.getBackground().setVisible(false, false);
                         }
+                    } else {
+                        itemAt.setPressed(true);
+                        itemAt.setSelected(true);
+                        if (Build.VERSION.SDK_INT == 21 && itemAt.getBackground() != null) {
+                            itemAt.getBackground().setVisible(true, false);
+                        }
+                        itemAt.drawableHotspotChanged(f, f2 - itemAt.getTop());
+                        this.selectedMenuView = itemAt;
                     }
                 }
             }

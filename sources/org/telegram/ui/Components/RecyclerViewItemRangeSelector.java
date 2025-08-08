@@ -24,23 +24,16 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
     private Runnable autoScrollRunnable = new Runnable() {
         @Override
         public void run() {
-            RecyclerView recyclerView;
-            int i;
             if (RecyclerViewItemRangeSelector.this.recyclerView == null) {
                 return;
             }
             if (RecyclerViewItemRangeSelector.this.inTopHotspot) {
-                recyclerView = RecyclerViewItemRangeSelector.this.recyclerView;
-                i = -RecyclerViewItemRangeSelector.this.autoScrollVelocity;
-            } else {
-                if (!RecyclerViewItemRangeSelector.this.inBottomHotspot) {
-                    return;
-                }
-                recyclerView = RecyclerViewItemRangeSelector.this.recyclerView;
-                i = RecyclerViewItemRangeSelector.this.autoScrollVelocity;
+                RecyclerViewItemRangeSelector.this.recyclerView.scrollBy(0, -RecyclerViewItemRangeSelector.this.autoScrollVelocity);
+                AndroidUtilities.runOnUIThread(this);
+            } else if (RecyclerViewItemRangeSelector.this.inBottomHotspot) {
+                RecyclerViewItemRangeSelector.this.recyclerView.scrollBy(0, RecyclerViewItemRangeSelector.this.autoScrollVelocity);
+                AndroidUtilities.runOnUIThread(this);
             }
-            recyclerView.scrollBy(0, i);
-            AndroidUtilities.runOnUIThread(this);
         }
     };
 
@@ -54,16 +47,12 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
         void setSelected(View view, int i, boolean z);
     }
 
-    public RecyclerViewItemRangeSelector(RecyclerViewItemRangeSelectorDelegate recyclerViewItemRangeSelectorDelegate) {
-        this.delegate = recyclerViewItemRangeSelectorDelegate;
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean z) {
     }
 
-    private void onDragSelectionStop() {
-        this.dragSelectActive = false;
-        this.inTopHotspot = false;
-        this.inBottomHotspot = false;
-        AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
-        this.delegate.onStartStopSelection(false);
+    public RecyclerViewItemRangeSelector(RecyclerViewItemRangeSelectorDelegate recyclerViewItemRangeSelectorDelegate) {
+        this.delegate = recyclerViewItemRangeSelectorDelegate;
     }
 
     @Override
@@ -91,12 +80,7 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
     }
 
     @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean z) {
-    }
-
-    @Override
     public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-        int i;
         View findChildViewUnder = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
         int childAdapterPosition = findChildViewUnder != null ? recyclerView.getChildAdapterPosition(findChildViewUnder) : -1;
         float y = motionEvent.getY();
@@ -116,8 +100,8 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
                     AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
                     AndroidUtilities.runOnUIThread(this.autoScrollRunnable);
                 }
-                int i2 = this.hotspotTopBoundEnd;
-                i = (int) ((i2 - r5) - (y - this.hotspotTopBoundStart));
+                int i = this.hotspotTopBoundEnd;
+                this.autoScrollVelocity = ((int) ((i - r5) - (y - this.hotspotTopBoundStart))) / 2;
             } else if (y >= this.hotspotBottomBoundStart && y <= this.hotspotBottomBoundEnd) {
                 this.inTopHotspot = false;
                 if (!this.inBottomHotspot) {
@@ -125,13 +109,12 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
                     AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
                     AndroidUtilities.runOnUIThread(this.autoScrollRunnable);
                 }
-                i = (int) ((y + this.hotspotBottomBoundEnd) - (this.hotspotBottomBoundStart + r8));
+                this.autoScrollVelocity = ((int) ((y + this.hotspotBottomBoundEnd) - (this.hotspotBottomBoundStart + r8))) / 2;
             } else if (this.inTopHotspot || this.inBottomHotspot) {
                 AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
                 this.inTopHotspot = false;
                 this.inBottomHotspot = false;
             }
-            this.autoScrollVelocity = i / 2;
         }
         if (childAdapterPosition == -1 || this.lastDraggedIndex == childAdapterPosition) {
             return;
@@ -163,5 +146,13 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
         this.initialSelection = i;
         this.lastDraggedIndex = i;
         return true;
+    }
+
+    private void onDragSelectionStop() {
+        this.dragSelectActive = false;
+        this.inTopHotspot = false;
+        this.inBottomHotspot = false;
+        AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
+        this.delegate.onStartStopSelection(false);
     }
 }

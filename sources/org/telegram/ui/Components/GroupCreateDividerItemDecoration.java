@@ -13,10 +13,12 @@ public class GroupCreateDividerItemDecoration extends RecyclerView.ItemDecoratio
     private boolean single;
     private int skipRows;
 
-    @Override
-    public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-        super.getItemOffsets(rect, view, recyclerView, state);
-        rect.top = 1;
+    public void setSearching(boolean z) {
+        this.searching = z;
+    }
+
+    public void setSingle(boolean z) {
+        this.single = z;
     }
 
     @Override
@@ -35,11 +37,9 @@ public class GroupCreateDividerItemDecoration extends RecyclerView.ItemDecoratio
         }
     }
 
-    public void setSearching(boolean z) {
-        this.searching = z;
-    }
-
-    public void setSingle(boolean z) {
-        this.single = z;
+    @Override
+    public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+        super.getItemOffsets(rect, view, recyclerView, state);
+        rect.top = 1;
     }
 }
