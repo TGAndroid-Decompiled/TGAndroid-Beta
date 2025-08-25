@@ -15,8 +15,8 @@ import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import j$.util.Comparator$CC;
 import j$.util.Comparator$EL;
+import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
-import j$.util.function.ToIntFunction;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +27,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
+import java.util.function.ToIntFunction;
 import org.json.JSONObject;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
@@ -144,7 +144,7 @@ public class StarsController {
 
         void load();
 
-        void set(int i, Object obj);
+        void notifyUpdate();
     }
 
     public static void lambda$showStarsTopupInternal$25() {
@@ -954,7 +954,7 @@ public class StarsController {
             public final void run() {
                 StarsController.lambda$showStarsTopupInternal$25();
             }
-        }).show();
+        }, 0L).show();
     }
 
     public static void lambda$showStarsTopupInternal$24() {
@@ -965,7 +965,7 @@ public class StarsController {
         safeLastFragment.presentFragment(new StarsIntroActivity());
     }
 
-    public void buy(final Activity activity, final TL_stars.TL_starsTopupOption tL_starsTopupOption, final Utilities.Callback2 callback2) {
+    public void buy(final Activity activity, final TL_stars.TL_starsTopupOption tL_starsTopupOption, final Utilities.Callback2 callback2, TLRPC.InputPeer inputPeer) {
         if (activity == null) {
             return;
         }
@@ -982,21 +982,18 @@ public class StarsController {
         if (BuildVars.useInvoiceBilling() || !BillingController.getInstance().isReady()) {
             TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup = new TLRPC.TL_inputStorePaymentStarsTopup();
             tL_inputStorePaymentStarsTopup.stars = tL_starsTopupOption.stars;
-            tL_inputStorePaymentStarsTopup.currency = tL_starsTopupOption.currency;
             tL_inputStorePaymentStarsTopup.amount = tL_starsTopupOption.amount;
-            TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup2 = new TLRPC.TL_inputStorePaymentStarsTopup();
-            tL_inputStorePaymentStarsTopup2.stars = tL_starsTopupOption.stars;
-            tL_inputStorePaymentStarsTopup2.amount = tL_starsTopupOption.amount;
-            tL_inputStorePaymentStarsTopup2.currency = tL_starsTopupOption.currency;
+            tL_inputStorePaymentStarsTopup.currency = tL_starsTopupOption.currency;
+            tL_inputStorePaymentStarsTopup.spend_purpose_peer = inputPeer;
             final TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars = new TLRPC.TL_inputInvoiceStars();
-            tL_inputInvoiceStars.purpose = tL_inputStorePaymentStarsTopup2;
+            tL_inputInvoiceStars.purpose = tL_inputStorePaymentStarsTopup;
             TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
             JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams(getResourceProvider());
             if (makeThemeParams != null) {
                 TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                 tL_payments_getPaymentForm.theme_params = tL_dataJSON;
                 tL_dataJSON.data = makeThemeParams.toString();
-                tL_payments_getPaymentForm.flags = 1 | tL_payments_getPaymentForm.flags;
+                tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoiceStars;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
@@ -1007,16 +1004,16 @@ public class StarsController {
             });
             return;
         }
-        final TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup3 = new TLRPC.TL_inputStorePaymentStarsTopup();
-        tL_inputStorePaymentStarsTopup3.stars = tL_starsTopupOption.stars;
-        tL_inputStorePaymentStarsTopup3.currency = tL_starsTopupOption.currency;
-        tL_inputStorePaymentStarsTopup3.amount = tL_starsTopupOption.amount;
+        final TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup2 = new TLRPC.TL_inputStorePaymentStarsTopup();
+        tL_inputStorePaymentStarsTopup2.stars = tL_starsTopupOption.stars;
+        tL_inputStorePaymentStarsTopup2.currency = tL_starsTopupOption.currency;
+        tL_inputStorePaymentStarsTopup2.amount = tL_starsTopupOption.amount;
         QueryProductDetailsParams.Product build = QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(tL_starsTopupOption.store_product).build();
         FileLog.d("StarsController.buy starts queryProductDetails");
         BillingController.getInstance().queryProductDetails(Arrays.asList(build), new ProductDetailsResponseListener() {
             @Override
             public final void onProductDetailsResponse(BillingResult billingResult, List list) {
-                StarsController.lambda$buy$36(Utilities.Callback2.this, tL_inputStorePaymentStarsTopup3, tL_starsTopupOption, activity, billingResult, list);
+                StarsController.lambda$buy$36(Utilities.Callback2.this, tL_inputStorePaymentStarsTopup2, tL_starsTopupOption, activity, billingResult, list);
             }
         });
     }
@@ -1755,7 +1752,7 @@ public class StarsController {
         } else {
             j = tL_payments_paymentFormStars.bot_id;
         }
-        long j3 = j;
+        final long j3 = j;
         if (j3 >= 0) {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3));
             String userName = UserObject.getUserName(user);
@@ -1777,7 +1774,7 @@ public class StarsController {
         StarsIntroActivity.openConfirmPurchaseSheet(context2, resourceProvider, this.currentAccount, messageObject, j3, str2, j2, tL_payments_paymentFormStars.photo, i, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarsController.this.lambda$openPaymentForm$71(j4, zArr, callback, context2, resourceProvider, z, str, messageObject, inputInvoice, tL_payments_paymentFormStars, i, (Utilities.Callback) obj);
+                StarsController.this.lambda$openPaymentForm$71(j4, zArr, callback, context2, resourceProvider, z, str, messageObject, inputInvoice, tL_payments_paymentFormStars, i, j3, (Utilities.Callback) obj);
             }
         }, new Runnable() {
             @Override
@@ -1799,7 +1796,7 @@ public class StarsController {
         openPaymentForm(messageObject, inputInvoice, tL_payments_paymentFormStars, runnable, callback);
     }
 
-    public void lambda$openPaymentForm$71(long j, final boolean[] zArr, final Utilities.Callback callback, Context context, Theme.ResourcesProvider resourcesProvider, boolean z, String str, final MessageObject messageObject, final TLRPC.InputInvoice inputInvoice, final TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, final int i, final Utilities.Callback callback2) {
+    public void lambda$openPaymentForm$71(long j, final boolean[] zArr, final Utilities.Callback callback, Context context, Theme.ResourcesProvider resourcesProvider, boolean z, String str, final MessageObject messageObject, final TLRPC.InputInvoice inputInvoice, final TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, final int i, long j2, final Utilities.Callback callback2) {
         if (this.balance.amount < j) {
             if (!MessagesController.getInstance(this.currentAccount).starsPurchaseAvailable()) {
                 this.paymentFormOpened = false;
@@ -1819,7 +1816,7 @@ public class StarsController {
                 public final void run() {
                     StarsController.this.lambda$openPaymentForm$68(zArr2, messageObject, inputInvoice, tL_payments_paymentFormStars, zArr, i, callback, callback2);
                 }
-            });
+            }, j2);
             starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
@@ -1944,7 +1941,7 @@ public class StarsController {
                 public final void run() {
                     StarsController.this.lambda$subscribeTo$74(zArr2, str, chatInvite, zArr, callback2, callback);
                 }
-            });
+            }, 0L);
             starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
@@ -2133,7 +2130,7 @@ public class StarsController {
                     public final void run() {
                         StarsController.this.lambda$payAfterConfirmed$81(zArr, messageObject, inputInvoice, tL_payments_paymentFormStars, callback);
                     }
-                });
+                }, j2);
                 starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
@@ -2309,7 +2306,7 @@ public class StarsController {
                 public final void run() {
                     StarsController.this.lambda$payAfterConfirmed$89(zArr, str2, chatInvite, callback2);
                 }
-            });
+            }, 0L);
             starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
@@ -2765,7 +2762,7 @@ public class StarsController {
                     public final void run() {
                         StarsController.PendingPaidReactions.this.lambda$commit$0(j);
                     }
-                }).show();
+                }, 0L).show();
                 return;
             }
             this.committed = true;
@@ -2841,7 +2838,7 @@ public class StarsController {
                         public final void run() {
                             StarsController.PendingPaidReactions.this.lambda$commit$2(j);
                         }
-                    }).show();
+                    }, 0L).show();
                 }
                 StarsController.this.invalidateTransactions(false);
                 StarsController.this.invalidateBalance();
@@ -2876,37 +2873,38 @@ public class StarsController {
         boolean z3;
         String str;
         String str2;
+        String str3;
         MessageId from = MessageId.from(messageObject);
         StarsController starsController = getInstance(this.currentAccount);
         Context context2 = getContext(chatActivity);
         if (context2 == null) {
             return null;
         }
-        String str3 = "";
+        String str4 = "";
         if (z2 && starsController.balanceAvailable() && starsController.getBalance(false) <= 0) {
             long dialogId = chatActivity.getDialogId();
             if (dialogId >= 0) {
-                str2 = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
+                str3 = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
             } else {
                 TLRPC.Chat chat = chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
                 if (chat != null) {
-                    str2 = chat.title;
+                    str3 = chat.title;
                 }
-                new StarsIntroActivity.StarsNeededSheet(context2, chatActivity.getResourceProvider(), j, 5, str3, new Runnable() {
+                new StarsIntroActivity.StarsNeededSheet(context2, chatActivity.getResourceProvider(), j, 5, str4, new Runnable() {
                     @Override
                     public final void run() {
                         StarsController.this.lambda$sendPaidReaction$98(messageObject, chatActivity, j, l);
                     }
-                }).show();
+                }, 0L).show();
                 return null;
             }
-            str3 = str2;
-            new StarsIntroActivity.StarsNeededSheet(context2, chatActivity.getResourceProvider(), j, 5, str3, new Runnable() {
+            str4 = str3;
+            new StarsIntroActivity.StarsNeededSheet(context2, chatActivity.getResourceProvider(), j, 5, str4, new Runnable() {
                 @Override
                 public final void run() {
                     StarsController.this.lambda$sendPaidReaction$98(messageObject, chatActivity, j, l);
                 }
-            }).show();
+            }, 0L).show();
             return null;
         }
         PendingPaidReactions pendingPaidReactions = this.currentPendingReactions;
@@ -2938,22 +2936,24 @@ public class StarsController {
                 TLRPC.Chat chat2 = chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId2));
                 if (chat2 != null) {
                     str = chat2.title;
+                } else {
+                    str2 = "";
+                    new StarsIntroActivity.StarsNeededSheet(context, chatActivity.getResourceProvider(), j2, 5, str2, new Runnable() {
+                        @Override
+                        public final void run() {
+                            StarsController.this.lambda$sendPaidReaction$99(messageObject, chatActivity, j2, l);
+                        }
+                    }, 0L).show();
+                    return null;
                 }
-                new StarsIntroActivity.StarsNeededSheet(context, chatActivity.getResourceProvider(), j2, 5, str3, new Runnable() {
-                    @Override
-                    public final void run() {
-                        StarsController.this.lambda$sendPaidReaction$99(messageObject, chatActivity, j2, l);
-                    }
-                }).show();
-                return null;
             }
-            str3 = str;
-            new StarsIntroActivity.StarsNeededSheet(context, chatActivity.getResourceProvider(), j2, 5, str3, new Runnable() {
+            str2 = str;
+            new StarsIntroActivity.StarsNeededSheet(context, chatActivity.getResourceProvider(), j2, 5, str2, new Runnable() {
                 @Override
                 public final void run() {
                     StarsController.this.lambda$sendPaidReaction$99(messageObject, chatActivity, j2, l);
                 }
-            }).show();
+            }, 0L).show();
             return null;
         }
         this.currentPendingReactions.add(j, !(messageObject == null || messageObject.doesPaidReactionExist()) || z);
@@ -3444,7 +3444,7 @@ public class StarsController {
                         public final void run() {
                             StarsController.this.lambda$buyPremiumGift$116(zArr, j2, obj, tL_textWithEntities, callback2);
                         }
-                    });
+                    }, 0L);
                     starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
@@ -3625,7 +3625,7 @@ public class StarsController {
                         public final void run() {
                             StarsController.this.lambda$buyStarGift$124(zArr, starGift, z, z2, j2, tL_textWithEntities, callback2);
                         }
-                    });
+                    }, 0L);
                     starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
@@ -3960,7 +3960,7 @@ public class StarsController {
                         public final void run() {
                             StarsController.this.lambda$buyResellingGift$138(zArr, tL_payments_paymentFormStarGift, starGift, j2, callback2);
                         }
-                    });
+                    }, 0L);
                     starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
                         @Override
                         public final void onDismiss(DialogInterface dialogInterface) {
@@ -4544,11 +4544,7 @@ public class StarsController {
         public final long dialogId;
         public boolean endReached;
         public ArrayList gifts;
-        public boolean include_displayed;
-        public boolean include_hidden;
-        public boolean include_limited;
-        public boolean include_unique;
-        public boolean include_unlimited;
+        private int includeFlags;
         public boolean isCollection;
         public String lastOffset;
         public boolean loading;
@@ -4556,6 +4552,13 @@ public class StarsController {
         public boolean shown;
         public boolean sort_by_date;
         public int totalCount;
+
+        private int getMask(int i) {
+            if ((i & 15) != 0) {
+                return 15;
+            }
+            return (i & 768) != 0 ? 768 : 0;
+        }
 
         public static void lambda$sendPinnedOrder$4(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
@@ -4567,11 +4570,7 @@ public class StarsController {
         public GiftsList(int i, long j, boolean z) {
             this.isCollection = false;
             this.sort_by_date = true;
-            this.include_unlimited = true;
-            this.include_limited = true;
-            this.include_unique = true;
-            this.include_displayed = true;
-            this.include_hidden = true;
+            this.includeFlags = 783;
             this.gifts = new ArrayList();
             this.currentRequestId = -1;
             this.currentAccount = i;
@@ -4584,6 +4583,11 @@ public class StarsController {
         public void setCollectionId(int i) {
             this.isCollection = true;
             this.collectionId = i;
+        }
+
+        @Override
+        public void notifyUpdate() {
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
         }
 
         public void updateGiftsCollections(TL_stars.SavedStarGift savedStarGift, int i, boolean z) {
@@ -4635,31 +4639,66 @@ public class StarsController {
             return -1;
         }
 
-        @Override
-        public void set(int i, Object obj) {
-            if (obj instanceof TL_stars.SavedStarGift) {
-                try {
-                    this.gifts.set(i, (TL_stars.SavedStarGift) obj);
-                } catch (Exception e) {
-                    FileLog.e(e);
+        public void forceTypeIncludeFlag(int i, boolean z) {
+            int mask = getMask(i);
+            int i2 = this.includeFlags;
+            int i3 = i | ((~mask) & i2);
+            if (i2 != i3) {
+                this.includeFlags = i3;
+                if (z) {
+                    invalidate(true);
                 }
+            }
+        }
+
+        public void toggleTypeIncludeFlag(int i) {
+            int mask = getMask(i);
+            int flag = TLObject.setFlag(this.includeFlags & mask, i, !TLObject.hasFlag(r1, i));
+            if (flag == 0) {
+                flag = mask & (~i);
+            }
+            int i2 = this.includeFlags;
+            int i3 = ((~mask) & i2) | flag;
+            if (i2 != i3) {
+                this.includeFlags = i3;
+                invalidate(true);
             }
         }
 
         public void resetFilters() {
             if (hasFilters()) {
+                this.includeFlags = 783;
                 this.sort_by_date = true;
-                this.include_unlimited = true;
-                this.include_limited = true;
-                this.include_unique = true;
-                this.include_displayed = true;
-                this.include_hidden = true;
                 invalidate(true);
             }
         }
 
         public boolean hasFilters() {
-            return (this.sort_by_date && this.include_unlimited && this.include_limited && this.include_unique && this.include_displayed && this.include_hidden) ? false : true;
+            return (this.sort_by_date && this.includeFlags == 783) ? false : true;
+        }
+
+        public boolean isInclude_unlimited() {
+            return TLObject.hasFlag(this.includeFlags, 1);
+        }
+
+        public boolean isInclude_limited() {
+            return TLObject.hasFlag(this.includeFlags, 2);
+        }
+
+        public boolean isInclude_upgradable() {
+            return TLObject.hasFlag(this.includeFlags, 4);
+        }
+
+        public boolean isInclude_unique() {
+            return TLObject.hasFlag(this.includeFlags, 8);
+        }
+
+        public boolean isInclude_displayed() {
+            return TLObject.hasFlag(this.includeFlags, 256);
+        }
+
+        public boolean isInclude_hidden() {
+            return TLObject.hasFlag(this.includeFlags, 512);
         }
 
         @Override
@@ -4708,11 +4747,12 @@ public class StarsController {
             this.loading = true;
             TL_stars.getSavedStarGifts getsavedstargifts = new TL_stars.getSavedStarGifts();
             getsavedstargifts.sort_by_value = !this.sort_by_date;
-            getsavedstargifts.exclude_limited = !this.include_limited;
-            getsavedstargifts.exclude_unlimited = !this.include_unlimited;
-            getsavedstargifts.exclude_unique = !this.include_unique;
-            getsavedstargifts.exclude_saved = !this.include_displayed;
-            getsavedstargifts.exclude_unsaved = !this.include_hidden;
+            getsavedstargifts.exclude_unupgradable = !isInclude_limited();
+            getsavedstargifts.exclude_upgradable = !isInclude_upgradable();
+            getsavedstargifts.exclude_unlimited = !isInclude_unlimited();
+            getsavedstargifts.exclude_unique = !isInclude_unique();
+            getsavedstargifts.exclude_saved = !isInclude_displayed();
+            getsavedstargifts.exclude_unsaved = !isInclude_hidden();
             if (this.dialogId == 0) {
                 getsavedstargifts.peer = new TLRPC.TL_inputPeerSelf();
             } else {

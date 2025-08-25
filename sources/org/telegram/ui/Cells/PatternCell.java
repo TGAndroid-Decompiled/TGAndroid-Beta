@@ -97,7 +97,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     public void setPattern(TLRPC.TL_wallPaper tL_wallPaper) {
         this.currentPattern = tL_wallPaper;
         if (tL_wallPaper != null) {
-            setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_wallPaper.document.thumbs, AndroidUtilities.dp(100.0f)), tL_wallPaper.document), "100_100", null, null, "png", 0L, 1, tL_wallPaper);
+            setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_wallPaper.document.thumbs, AndroidUtilities.dp(100.0f)), tL_wallPaper.document), "100_100", (ImageLocation) null, (String) null, "png", 0L, 1, tL_wallPaper);
         } else {
             setImageDrawable(null);
         }

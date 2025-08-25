@@ -3,13 +3,14 @@ package org.telegram.messenger.voip;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import j$.util.DesugarArrays;
-import j$.util.function.Function;
+import j$.util.function.Function$CC;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -606,9 +607,8 @@ public class ConferenceCall {
                 StringBuilder sb = new StringBuilder();
                 sb.append("[tde2e] call users:\n ");
                 sb.append(TextUtils.join("\n ", (Iterable) DesugarArrays.stream(call_get_state(this.call_id).participants).map(new Function() {
-                    @Override
                     public Function andThen(Function function) {
-                        return Function.CC.$default$andThen(this, function);
+                        return Function$CC.$default$andThen(this, function);
                     }
 
                     @Override
@@ -618,9 +618,8 @@ public class ConferenceCall {
                         return lambda$poll$9;
                     }
 
-                    @Override
                     public Function compose(Function function) {
-                        return Function.CC.$default$compose(this, function);
+                        return Function$CC.$default$compose(this, function);
                     }
                 }).collect(Collectors.toSet())));
                 FileLog.d(sb.toString());

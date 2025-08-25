@@ -192,8 +192,18 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.actionBar.addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 44, 83));
         this.scrollSlidingTextTabStrip.setDelegate(new ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate() {
             @Override
+            public boolean canReorder(int i) {
+                return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$canReorder(this, i);
+            }
+
+            @Override
             public void onSamePageSelected() {
                 ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$onSamePageSelected(this);
+            }
+
+            @Override
+            public boolean showOptions(int i, View view) {
+                return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$showOptions(this, i, view);
             }
 
             @Override

@@ -23,14 +23,14 @@ public abstract class UndispatchedKt {
             try {
                 Object invoke = ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, probeCoroutineCreated);
                 if (invoke != IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
-                    probeCoroutineCreated.resumeWith(Result.m216constructorimpl(invoke));
+                    probeCoroutineCreated.resumeWith(Result.m211constructorimpl(invoke));
                 }
             } finally {
                 ThreadContextKt.restoreThreadContext(context, updateThreadContext);
             }
         } catch (Throwable th) {
             Result.Companion companion = Result.Companion;
-            probeCoroutineCreated.resumeWith(Result.m216constructorimpl(ResultKt.createFailure(th)));
+            probeCoroutineCreated.resumeWith(Result.m211constructorimpl(ResultKt.createFailure(th)));
         }
     }
 

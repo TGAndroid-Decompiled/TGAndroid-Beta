@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.view.View;
-import java.util.Objects;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 
@@ -27,10 +27,16 @@ public class Shaker {
     }
 
     public void concat(Canvas canvas, float f) {
+        concat(canvas, f, 0.0f, 0.0f);
+    }
+
+    public void concat(Canvas canvas, float f, float f2, float f3) {
         Runnable runnable;
         float currentTimeMillis = ((float) (System.currentTimeMillis() - this.start)) / 1000.0f;
+        canvas.translate(f2, f3);
         canvas.rotate(((float) Math.sin(this.r * currentTimeMillis * 3.141592653589793d)) * 1.0f * f);
         canvas.translate(((float) Math.cos(this.sx * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f, ((float) Math.sin(currentTimeMillis * this.sy * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f);
+        canvas.translate(-f2, -f3);
         if (f <= 0.0f || (runnable = this.invalidate) == null) {
             return;
         }

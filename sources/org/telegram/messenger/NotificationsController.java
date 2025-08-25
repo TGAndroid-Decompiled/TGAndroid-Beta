@@ -40,8 +40,6 @@ import androidx.core.graphics.drawable.IconCompat;
 import com.google.android.gms.cast.framework.media.internal.zzo$$ExternalSyntheticApiModelOutline2;
 import com.google.android.search.verification.client.SearchActionVerificationClientService$$ExternalSyntheticApiModelOutline2;
 import j$.util.Comparator$CC;
-import j$.util.function.Consumer;
-import j$.util.function.ToLongFunction;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +52,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.function.Consumer;
+import java.util.function.ToLongFunction;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.voip.VoIPGroupNotification;
@@ -2984,7 +2984,7 @@ public class NotificationsController extends BaseController {
 
     public static void lambda$loadTopicsNotificationsExceptions$50(Consumer consumer, HashSet hashSet) {
         if (consumer != null) {
-            consumer.r(hashSet);
+            consumer.p(hashSet);
         }
     }
 

@@ -39,13 +39,14 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
-import j$.util.function.Function;
+import j$.util.function.Function$CC;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Function;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -275,9 +276,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
                         long fromChatId2 = messageObject.getFromChatId();
                         Set<Long> set = (Set) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new Function() {
-                            @Override
                             public Function andThen(Function function) {
-                                return Function.CC.$default$andThen(this, function);
+                                return Function$CC.$default$andThen(this, function);
                             }
 
                             @Override
@@ -287,9 +287,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                                 return lambda$didReceivedNotification$0;
                             }
 
-                            @Override
                             public Function compose(Function function) {
-                                return Function.CC.$default$compose(this, function);
+                                return Function$CC.$default$compose(this, function);
                             }
                         }).collect(Collectors.toSet());
                         set.add(Long.valueOf(fromChatId2 == getUserConfig().getClientUserId() ? messageObject.messageOwner.peer_id.user_id : fromChatId2));

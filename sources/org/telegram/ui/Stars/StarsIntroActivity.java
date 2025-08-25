@@ -37,6 +37,7 @@ import androidx.core.view.NestedScrollingParentHelper;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -45,7 +46,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
@@ -836,7 +836,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     public final void run(Object obj, Object obj2) {
                         StarsIntroActivity.this.lambda$onItemClick$8(uItem, (Boolean) obj, (String) obj2);
                     }
-                });
+                }, null);
             }
         } else if (uItem.instanceOf(StarsSubscriptionView.Factory.class) && (uItem.object instanceof TL_stars.StarsSubscription)) {
             showSubscriptionSheet(getContext(), this.currentAccount, (TL_stars.StarsSubscription) uItem.object, getResourceProvider());
@@ -2524,7 +2524,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     public final void run(Object obj, Object obj2) {
                         StarsIntroActivity.StarsOptionsSheet.this.lambda$onItemClick$2(uItem, (Boolean) obj, (String) obj2);
                     }
-                });
+                }, null);
             }
         }
 
@@ -2559,6 +2559,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         private final FireworksOverlay fireworksOverlay;
         private final FrameLayout footerView;
         private final HeaderView headerView;
+        private final TLRPC.InputPeer purposePeer;
         private final long starsNeeded;
         private Runnable whenPurchased;
 
@@ -2615,111 +2616,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starBalanceUpdated);
         }
 
-        public StarsNeededSheet(Context context, Theme.ResourcesProvider resourcesProvider, long j, int i, String str, Runnable runnable) {
-            super(context, null, false, false, false, resourcesProvider);
-            String str2;
-            String str3;
-            this.BUTTON_EXPAND = -1;
-            this.topPadding = 0.2f;
-            this.whenPurchased = runnable;
-            fixNavigationBar();
-            RecyclerListView recyclerListView = this.recyclerListView;
-            int i2 = this.backgroundPaddingLeft;
-            recyclerListView.setPadding(i2, 0, i2, 0);
-            this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
-                @Override
-                public final void onItemClick(View view, int i3) {
-                    StarsIntroActivity.StarsNeededSheet.this.lambda$new$0(view, i3);
-                }
-            });
-            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-            defaultItemAnimator.setSupportsChangeAnimations(false);
-            defaultItemAnimator.setDelayAnimations(false);
-            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            defaultItemAnimator.setDurations(350L);
-            this.recyclerListView.setItemAnimator(defaultItemAnimator);
-            setBackgroundColor(Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider));
-            this.starsNeeded = j;
-            HeaderView headerView = new HeaderView(context, this.currentAccount, resourcesProvider);
-            this.headerView = headerView;
-            headerView.titleView.setText(LocaleController.formatPluralString("StarsNeededTitle", (int) Math.max(0L, j - StarsController.getInstance(this.currentAccount).getBalance().amount), new Object[0]));
-            if (i == 1) {
-                str2 = "StarsNeededTextBuySubscription";
-            } else {
-                if (i != 2) {
-                    if (i == 7) {
-                        str2 = "StarsNeededTextKeepBotSubscription";
-                    } else if (i == 8) {
-                        str2 = "StarsNeededTextKeepBizSubscription";
-                    } else if (i != 3) {
-                        if (i == 4) {
-                            str2 = "StarsNeededTextLink";
-                            if (str == null) {
-                                str3 = "StarsNeededTextLink";
-                            } else {
-                                str3 = "StarsNeededTextLink_" + str.toLowerCase();
-                            }
-                            if (LocaleController.nullable(LocaleController.getString(str3)) != null) {
-                                str2 = str3;
-                            }
-                        } else if (i == 5) {
-                            str2 = "StarsNeededTextReactions";
-                        } else if (i == 6) {
-                            str2 = "StarsNeededTextGift";
-                        } else if (i == 12) {
-                            str2 = "StarsNeededTextGiftChannel";
-                        } else if (i == 13) {
-                            str2 = "StarsNeededTextPrivateMessage";
-                        } else if (i == 10) {
-                            str2 = "StarsNeededTextGiftUpgrade";
-                        } else if (i == 11) {
-                            str2 = "StarsNeededTextGiftTransfer";
-                        } else if (i == 9) {
-                            str2 = "StarsNeededBizText";
-                        } else if (i == 14) {
-                            str2 = "StarsNeededTextGiftBuyResale";
-                        } else if (i == 15) {
-                            str2 = "StarsNeededTextSearch";
-                        } else {
-                            str2 = "StarsNeededText";
-                        }
-                    }
-                }
-                str2 = "StarsNeededTextKeepSubscription";
-            }
-            if (TextUtils.isEmpty(str2)) {
-                headerView.subtitleView.setText("");
-            } else {
-                String nullable = LocaleController.nullable(LocaleController.formatString(str2, LocaleController.getStringResId(str2), str));
-                headerView.subtitleView.setText(AndroidUtilities.replaceTags(nullable == null ? LocaleController.getString(str2) : nullable));
-                TextView textView = headerView.subtitleView;
-                textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), headerView.subtitleView.getPaint()));
-            }
-            this.actionBar.setTitle(getTitle());
-            FrameLayout frameLayout = new FrameLayout(context);
-            this.footerView = frameLayout;
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-            frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
-            linksTextView.setTextSize(1, 12.0f);
-            linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
-            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new Runnable() {
-                @Override
-                public final void run() {
-                    StarsIntroActivity.StarsNeededSheet.this.lambda$new$1();
-                }
-            }));
-            linksTextView.setGravity(17);
-            linksTextView.setMaxWidth(HintView2.cutInFancyHalf(linksTextView.getText(), linksTextView.getPaint()));
-            frameLayout.addView(linksTextView, LayoutHelper.createFrame(-2, -1, 17));
-            frameLayout.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-            FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
-            this.fireworksOverlay = fireworksOverlay;
-            this.containerView.addView(fireworksOverlay, LayoutHelper.createFrame(-1, -1.0f));
-            UniversalAdapter universalAdapter = this.adapter;
-            if (universalAdapter != null) {
-                universalAdapter.update(false);
-            }
+        public StarsNeededSheet(android.content.Context r17, org.telegram.ui.ActionBar.Theme.ResourcesProvider r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.StarsNeededSheet.<init>(android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, long, int, java.lang.String, java.lang.Runnable, long):void");
         }
 
         public void lambda$new$0(View view, int i) {
@@ -2842,7 +2740,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     public final void run(Object obj, Object obj2) {
                         StarsIntroActivity.StarsNeededSheet.this.lambda$onItemClick$2(uItem, (Boolean) obj, (String) obj2);
                     }
-                });
+                }, this.purposePeer);
             }
         }
 
@@ -4006,7 +3904,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
         };
         if (starsController.balance.amount < starsSubscription.pricing.amount) {
-            new StarsNeededSheet(context, resourcesProvider, starsSubscription.pricing.amount, z ? 8 : j < 0 ? 2 : 7, str, runnable).show();
+            new StarsNeededSheet(context, resourcesProvider, starsSubscription.pricing.amount, z ? 8 : j < 0 ? 2 : 7, str, runnable, j).show();
         } else {
             runnable.run();
         }

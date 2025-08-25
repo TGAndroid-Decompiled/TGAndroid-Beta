@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
 import j$.util.DesugarArrays;
-import j$.util.function.Function;
-import j$.util.function.Predicate;
+import j$.util.function.Function$CC;
+import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChatObject;
@@ -417,9 +419,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 }
             }
             this.participantsBannedRights = (ArrayList) DesugarArrays.stream(channelParticipantArr).map(new Function() {
-                @Override
                 public Function andThen(Function function) {
-                    return Function.CC.$default$andThen(this, function);
+                    return Function$CC.$default$andThen(this, function);
                 }
 
                 @Override
@@ -429,9 +430,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                     return lambda$new$2;
                 }
 
-                @Override
                 public Function compose(Function function) {
-                    return Function.CC.$default$compose(this, function);
+                    return Function$CC.$default$compose(this, function);
                 }
             }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda251()));
             Action action = new Action(2, arrayList2);
@@ -621,19 +621,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     public void lambda$updateParticipantMessageCounts$5(TLObject tLObject, final TLRPC.InputPeer inputPeer, int i, int[] iArr) {
         if (tLObject instanceof TLRPC.TL_messages_channelMessages) {
             this.participantMessageCounts[i] = ((TLRPC.TL_messages_channelMessages) tLObject).count - ((int) Collection.EL.stream(this.messages).filter(new Predicate() {
-                @Override
                 public Predicate and(Predicate predicate) {
-                    return Predicate.CC.$default$and(this, predicate);
+                    return Predicate$CC.$default$and(this, predicate);
                 }
 
-                @Override
                 public Predicate negate() {
-                    return Predicate.CC.$default$negate(this);
+                    return Predicate$CC.$default$negate(this);
                 }
 
-                @Override
                 public Predicate or(Predicate predicate) {
-                    return Predicate.CC.$default$or(this, predicate);
+                    return Predicate$CC.$default$or(this, predicate);
                 }
 
                 @Override
@@ -984,19 +981,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
     private void performDelete() {
         ArrayList<Integer> arrayList = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override
@@ -1007,19 +1001,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda251()));
         ArrayList<Integer> arrayList2 = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override
@@ -1085,19 +1076,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             tL_channels_reportSpam.participant = MessagesController.getInputPeer((TLRPC.Chat) tLObject);
         }
         tL_channels_reportSpam.id = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override
@@ -1107,19 +1095,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 return lambda$performDelete$13;
             }
         }).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override

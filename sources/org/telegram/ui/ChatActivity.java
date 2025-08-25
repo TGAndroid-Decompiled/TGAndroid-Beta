@@ -101,7 +101,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Collection;
 import j$.util.Comparator$CC;
-import j$.util.function.Predicate;
+import j$.util.Objects;
+import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -123,11 +124,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.PhoneFormat.PhoneFormat;
@@ -22940,10 +22941,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         checkActionBarMenu(false);
         TLRPC.PhotoSize photoSize = this.replyImageLocation;
         if (photoSize != null && (backupImageView = this.replyImageView) != null) {
-            backupImageView.setImage(ImageLocation.getForObject(photoSize, this.replyImageLocationObject), "50_50", ImageLocation.getForObject(this.replyImageThumbLocation, this.replyImageLocationObject), "50_50_b", null, this.replyImageSize, this.replyImageCacheType, this.replyingMessageObject);
+            backupImageView.setImage(ImageLocation.getForObject(photoSize, this.replyImageLocationObject), "50_50", ImageLocation.getForObject(this.replyImageThumbLocation, this.replyImageLocationObject), "50_50_b", (String) null, this.replyImageSize, this.replyImageCacheType, this.replyingMessageObject);
         }
         if (this.pinnedImageLocation != null && this.pinnedMessageImageView != null) {
-            this.pinnedMessageImageView[0].setImage(ImageLocation.getForObject(this.pinnedImageLocation, this.pinnedImageLocationObject), "50_50", ImageLocation.getForObject(this.pinnedImageThumbLocation, this.pinnedImageLocationObject), "50_50_b", null, this.pinnedImageSize, this.pinnedImageCacheType, (MessageObject) this.pinnedMessageObjects.get(Integer.valueOf(this.currentPinnedMessageId)));
+            this.pinnedMessageImageView[0].setImage(ImageLocation.getForObject(this.pinnedImageLocation, this.pinnedImageLocationObject), "50_50", ImageLocation.getForObject(this.pinnedImageThumbLocation, this.pinnedImageLocationObject), "50_50_b", (String) null, this.pinnedImageSize, this.pinnedImageCacheType, (MessageObject) this.pinnedMessageObjects.get(Integer.valueOf(this.currentPinnedMessageId)));
             this.pinnedMessageImageView[0].setHasBlur(this.pinnedImageHasBlur);
         }
         if (this.chatMode == 0) {
@@ -23189,19 +23190,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         if (!UserConfig.getInstance(this.currentAccount).isPremium() && UserConfig.getInstance(this.currentAccount).getClientUserId() != this.dialog_id && (arrayList2 = this.resolvedChatLink.entities) != null) {
             arrayList = (ArrayList) Collection.EL.stream(arrayList2).filter(new Predicate() {
-                @Override
                 public Predicate and(Predicate predicate) {
-                    return Predicate.CC.$default$and(this, predicate);
+                    return Predicate$CC.$default$and(this, predicate);
                 }
 
-                @Override
                 public Predicate negate() {
-                    return Predicate.CC.$default$negate(this);
+                    return Predicate$CC.$default$negate(this);
                 }
 
-                @Override
                 public Predicate or(Predicate predicate) {
-                    return Predicate.CC.$default$or(this, predicate);
+                    return Predicate$CC.$default$or(this, predicate);
                 }
 
                 @Override
@@ -25124,7 +25122,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$updateGreetingLock$304(long j, View view) {
         if (StarsController.getInstance(this.currentAccount).getBalance().amount < j) {
-            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda321(this)).show();
+            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda321(this), getDialogId()).show();
         } else {
             new StarsIntroActivity.StarsOptionsSheet(getContext(), this.resourceProvider).show();
         }
@@ -25139,7 +25137,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$updateGreetingLock$306(long j, View view) {
         if (StarsController.getInstance(this.currentAccount).getBalance().amount < j) {
-            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda321(this)).show();
+            new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 13, DialogObject.getShortName(getDialogId()), new ChatActivity$$ExternalSyntheticLambda321(this), getDialogId()).show();
         } else {
             new StarsIntroActivity.StarsOptionsSheet(getContext(), this.resourceProvider).show();
         }
@@ -26166,7 +26164,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (AmountUtils$Amount.ofSafe(StarsController.getInstance(this.currentAccount, amountUtils$Amount.currency).getBalance()).asNano() < amountUtils$Amount.asNano()) {
             AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
             if (amountUtils$Currency == AmountUtils$Currency.STARS) {
-                new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(this.currentAccount, getDialogId(), true), null).show();
+                new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(this.currentAccount, getDialogId(), true), null, getDialogId()).show();
                 return;
             } else {
                 if (amountUtils$Currency == AmountUtils$Currency.TON) {
@@ -35613,8 +35611,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.contentView == null || this.parentThemeDelegate != null) {
             return;
         }
-        if ((this.themeDelegate.backgroundDrawable == null || this.contentView.getBackgroundImage() == null) && this.contentView.getBackgroundImage() == null) {
-            this.contentView.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion());
+        if (this.themeDelegate.backgroundDrawable == null || this.contentView.getBackgroundImage() == null) {
+            if (this.contentView.getBackgroundImage() == null || AndroidUtilities.isTablet()) {
+                this.contentView.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion());
+            }
         }
     }
 

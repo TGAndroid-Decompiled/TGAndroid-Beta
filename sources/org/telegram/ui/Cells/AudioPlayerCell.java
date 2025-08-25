@@ -2,6 +2,9 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
@@ -9,6 +12,8 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
@@ -25,10 +30,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.DotDividerSpan;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.FilteredSearchView;
 
-public class AudioPlayerCell extends View implements DownloadController.FileDownloadProgressListener {
+public class AudioPlayerCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     private int TAG;
     private boolean buttonPressed;
     private int buttonState;
@@ -38,17 +44,22 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
     private MessageObject currentMessageObject;
     private StaticLayout descriptionLayout;
     private AnimatedEmojiSpan.EmojiGroupedSpans descriptionLayoutEmojis;
-    private int descriptionY;
+    private final int descriptionY;
     private SpannableStringBuilder dotSpan;
     private int hasMiniProgress;
     private boolean miniButtonPressed;
     private int miniButtonState;
+    private boolean needDivider;
+    private final ImageView optionsButton;
     private RadialProgress2 radialProgress;
     private final Theme.ResourcesProvider resourcesProvider;
     private StaticLayout titleLayout;
     private AnimatedEmojiSpan.EmojiGroupedSpans titleLayoutEmojis;
-    private int titleY;
+    private final int titleY;
     private int viewType;
+
+    public static void lambda$new$0(View view) {
+    }
 
     @Override
     public void onProgressUpload(String str, long j, long j2, boolean z) {
@@ -59,8 +70,22 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         this.titleY = AndroidUtilities.dp(9.0f);
         this.descriptionY = AndroidUtilities.dp(29.0f);
         this.currentAccount = UserConfig.selectedAccount;
+        setWillNotDraw(false);
         this.resourcesProvider = resourcesProvider;
         this.viewType = i;
+        ImageView imageView = new ImageView(context);
+        this.optionsButton = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_ab_other);
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 1));
+        addView(imageView, LayoutHelper.createFrame(42, 42.0f, (LocaleController.isRTL ? 3 : 5) | 16, 5.0f, 0.0f, 5.0f, 0.0f));
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AudioPlayerCell.lambda$new$0(view);
+            }
+        });
         RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
         this.radialProgress = radialProgress2;
         radialProgress2.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
@@ -77,7 +102,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
     protected void onMeasure(int i, int i2) {
         this.descriptionLayout = null;
         this.titleLayout = null;
-        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(28.0f);
+        int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(48.0f);
         try {
             StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(this.currentMessageObject.getMusicTitle().replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(r0)), size), TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;
@@ -96,7 +121,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         } catch (Exception e2) {
             FileLog.e(e2);
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(56.0f));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
         int size2 = LocaleController.isRTL ? (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(8.0f)) - AndroidUtilities.dp(52.0f) : AndroidUtilities.dp(8.0f);
         RadialProgress2 radialProgress2 = this.radialProgress;
         int dp = AndroidUtilities.dp(4.0f) + size2;
@@ -106,8 +131,15 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         radialProgress2.setProgressRect(dp, dp2, size2 + AndroidUtilities.dp(48.0f), AndroidUtilities.dp(50.0f));
     }
 
-    public void setMessageObject(MessageObject messageObject) {
+    public void setMessageObject(MessageObject messageObject, boolean z, View.OnClickListener onClickListener, boolean z2) {
         this.currentMessageObject = messageObject;
+        if (this.needDivider != z2) {
+            invalidate();
+        }
+        this.needDivider = z2;
+        this.optionsButton.setImageResource(z ? R.drawable.list_reorder : R.drawable.ic_ab_other);
+        this.optionsButton.setVisibility((z || onClickListener != null) ? 0 : 8);
+        this.optionsButton.setOnClickListener(onClickListener);
         TLRPC.Document document = messageObject.getDocument();
         TLRPC.PhotoSize closestPhotoSizeWithSize = document != null ? FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90) : null;
         if ((closestPhotoSizeWithSize instanceof TLRPC.TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC.TL_photoSizeProgressive)) {
@@ -259,9 +291,11 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Paint themePaint;
+        int i = 0;
         if (this.titleLayout != null) {
             canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
+            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : AndroidUtilities.leftBaseline) + ((LocaleController.isRTL && this.optionsButton.getVisibility() == 0) ? AndroidUtilities.dp(32.0f) : 0), this.titleY);
             this.titleLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.titleLayout, this.titleLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
@@ -269,13 +303,26 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         if (this.descriptionLayout != null) {
             Theme.chat_contextResult_descriptionTextPaint.setColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             canvas.save();
-            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            int dp = AndroidUtilities.dp(LocaleController.isRTL ? 16.0f : AndroidUtilities.leftBaseline);
+            if (LocaleController.isRTL && this.optionsButton.getVisibility() == 0) {
+                i = AndroidUtilities.dp(32.0f);
+            }
+            canvas.translate(dp + i, this.descriptionY);
             this.descriptionLayout.draw(canvas);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.descriptionLayout, this.descriptionLayoutEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas.restore();
         }
         this.radialProgress.setProgressColor(getThemedColor(this.buttonPressed ? Theme.key_chat_inAudioSelectedProgress : Theme.key_chat_inAudioProgress));
         this.radialProgress.draw(canvas);
+        super.onDraw(canvas);
+        if (!this.needDivider || (themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider)) == null) {
+            return;
+        }
+        if (LocaleController.isRTL) {
+            canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getHeight(), themePaint);
+        } else {
+            canvas.drawRect(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getHeight() - 1, getWidth(), getHeight(), themePaint);
+        }
     }
 
     private int getMiniIconForCurrentState() {

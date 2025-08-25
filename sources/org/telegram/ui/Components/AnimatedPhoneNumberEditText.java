@@ -13,10 +13,10 @@ import android.util.TypedValue;
 import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class AnimatedPhoneNumberEditText extends HintEditText {
     private ObjectAnimator animator;

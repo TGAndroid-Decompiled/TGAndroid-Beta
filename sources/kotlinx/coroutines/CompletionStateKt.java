@@ -14,23 +14,23 @@ public abstract class CompletionStateKt {
     }
 
     public static final Object toState(Object obj, Function1 function1) {
-        Throwable m218exceptionOrNullimpl = Result.m218exceptionOrNullimpl(obj);
-        if (m218exceptionOrNullimpl == null) {
+        Throwable m213exceptionOrNullimpl = Result.m213exceptionOrNullimpl(obj);
+        if (m213exceptionOrNullimpl == null) {
             return function1 != null ? new CompletedWithCancellation(obj, function1) : obj;
         }
-        return new CompletedExceptionally(m218exceptionOrNullimpl, false, 2, null);
+        return new CompletedExceptionally(m213exceptionOrNullimpl, false, 2, null);
     }
 
     public static final Object toState(Object obj, CancellableContinuation cancellableContinuation) {
-        Throwable m218exceptionOrNullimpl = Result.m218exceptionOrNullimpl(obj);
-        return m218exceptionOrNullimpl == null ? obj : new CompletedExceptionally(m218exceptionOrNullimpl, false, 2, null);
+        Throwable m213exceptionOrNullimpl = Result.m213exceptionOrNullimpl(obj);
+        return m213exceptionOrNullimpl == null ? obj : new CompletedExceptionally(m213exceptionOrNullimpl, false, 2, null);
     }
 
     public static final Object recoverResult(Object obj, Continuation continuation) {
         if (obj instanceof CompletedExceptionally) {
             Result.Companion companion = Result.Companion;
-            return Result.m216constructorimpl(ResultKt.createFailure(((CompletedExceptionally) obj).cause));
+            return Result.m211constructorimpl(ResultKt.createFailure(((CompletedExceptionally) obj).cause));
         }
-        return Result.m216constructorimpl(obj);
+        return Result.m211constructorimpl(obj);
     }
 }

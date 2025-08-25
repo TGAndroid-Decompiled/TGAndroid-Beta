@@ -367,10 +367,6 @@ public abstract class AboutLinkCell extends FrameLayout {
         invalidate();
     }
 
-    public void setText(String str, boolean z) {
-        setTextAndValue(str, null, z);
-    }
-
     public void setTextAndValue(String str, String str2, boolean z) {
         if (TextUtils.isEmpty(str) || TextUtils.equals(str, this.oldText)) {
             return;

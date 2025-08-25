@@ -20,8 +20,9 @@ import android.widget.FrameLayout;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
+import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
-import j$.util.function.Consumer;
+import j$.util.function.Consumer$CC;
 import java.io.File;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -34,7 +35,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -474,6 +474,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int savedGifsLimitDefault;
     public int savedGifsLimitPremium;
     public SavedMessagesController savedMessagesController;
+    private SavedMusicIds savedMusicIds;
     public boolean savedViewAsChats;
     public int secretWebpagePreview;
     public DialogFilter[] selectedDialogFilter;
@@ -1101,15 +1102,14 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void markAllTopicsAsRead(final long j) {
-        getMessagesStorage().loadTopics(j, new j$.util.function.Consumer() {
+        getMessagesStorage().loadTopics(j, new java.util.function.Consumer() {
             @Override
-            public final void r(Object obj) {
+            public final void p(Object obj) {
                 MessagesController.this.lambda$markAllTopicsAsRead$9(j, (ArrayList) obj);
             }
 
-            @Override
-            public j$.util.function.Consumer andThen(j$.util.function.Consumer consumer) {
-                return Consumer.CC.$default$andThen(this, consumer);
+            public java.util.function.Consumer andThen(java.util.function.Consumer consumer) {
+                return Consumer$CC.$default$andThen(this, consumer);
             }
         });
     }
@@ -19722,7 +19722,7 @@ public class MessagesController extends BaseController implements NotificationCe
         addUserToChat(j, user, i, str, baseFragment, false, runnable, null);
     }
 
-    public void addUsersToChat(final TLRPC.Chat chat, BaseFragment baseFragment, ArrayList<TLRPC.User> arrayList, int i, final androidx.core.util.Consumer consumer, final androidx.core.util.Consumer consumer2, final Runnable runnable) {
+    public void addUsersToChat(final TLRPC.Chat chat, BaseFragment baseFragment, ArrayList<TLRPC.User> arrayList, int i, final Consumer consumer, final Consumer consumer2, final Runnable runnable) {
         final int size = arrayList.size();
         final int[] iArr = {0};
         final TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();
@@ -19733,13 +19733,13 @@ public class MessagesController extends BaseController implements NotificationCe
             addUserToChat(j, user, i, null, baseFragment, false, new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesController.lambda$addUsersToChat$271(androidx.core.util.Consumer.this, user);
+                    MessagesController.lambda$addUsersToChat$271(Consumer.this, user);
                 }
             }, new ErrorDelegate() {
                 @Override
                 public final boolean run(TLRPC.TL_error tL_error) {
                     boolean lambda$addUsersToChat$272;
-                    lambda$addUsersToChat$272 = MessagesController.lambda$addUsersToChat$272(androidx.core.util.Consumer.this, user, tL_error);
+                    lambda$addUsersToChat$272 = MessagesController.lambda$addUsersToChat$272(Consumer.this, user, tL_error);
                     return lambda$addUsersToChat$272;
                 }
             }, new Utilities.Callback() {
@@ -19752,13 +19752,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$addUsersToChat$271(androidx.core.util.Consumer consumer, TLRPC.User user) {
+    public static void lambda$addUsersToChat$271(Consumer consumer, TLRPC.User user) {
         if (consumer != null) {
             consumer.accept(user);
         }
     }
 
-    public static boolean lambda$addUsersToChat$272(androidx.core.util.Consumer consumer, TLRPC.User user, TLRPC.TL_error tL_error) {
+    public static boolean lambda$addUsersToChat$272(Consumer consumer, TLRPC.User user, TLRPC.TL_error tL_error) {
         if (consumer != null) {
             consumer.accept(user);
         }
@@ -20867,7 +20867,7 @@ public class MessagesController extends BaseController implements NotificationCe
         startShortPoll(chat, i, z, null);
     }
 
-    public void startShortPoll(final TLRPC.Chat chat, final int i, final boolean z, final androidx.core.util.Consumer consumer) {
+    public void startShortPoll(final TLRPC.Chat chat, final int i, final boolean z, final Consumer consumer) {
         if (chat == null) {
             return;
         }
@@ -20879,7 +20879,7 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$startShortPoll$307(TLRPC.Chat chat, boolean z, int i, final androidx.core.util.Consumer consumer) {
+    public void lambda$startShortPoll$307(TLRPC.Chat chat, boolean z, int i, final Consumer consumer) {
         ArrayList arrayList = (ArrayList) this.needShortPollChannels.get(chat.id);
         ArrayList arrayList2 = (ArrayList) this.needShortPollOnlines.get(chat.id);
         if (z) {
@@ -20913,7 +20913,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesController.lambda$startShortPoll$305(androidx.core.util.Consumer.this);
+                        MessagesController.lambda$startShortPoll$305(Consumer.this);
                     }
                 });
             }
@@ -20922,7 +20922,7 @@ public class MessagesController extends BaseController implements NotificationCe
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesController.lambda$startShortPoll$306(androidx.core.util.Consumer.this);
+                    MessagesController.lambda$startShortPoll$306(Consumer.this);
                 }
             });
         }
@@ -20941,11 +20941,11 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public static void lambda$startShortPoll$305(androidx.core.util.Consumer consumer) {
+    public static void lambda$startShortPoll$305(Consumer consumer) {
         consumer.accept(Boolean.TRUE);
     }
 
-    public static void lambda$startShortPoll$306(androidx.core.util.Consumer consumer) {
+    public static void lambda$startShortPoll$306(Consumer consumer) {
         consumer.accept(Boolean.FALSE);
     }
 
@@ -26237,6 +26237,225 @@ public class MessagesController extends BaseController implements NotificationCe
         this.sendingSuggestedMessageApprovalMap.remove(j + "_" + i);
         if (tL_error == null && tLObject != null) {
             processUpdates((TLRPC.Updates) tLObject, false);
+        }
+    }
+
+    public static class SavedMusicList {
+        public final int currentAccount;
+        public final long dialogId;
+        public boolean endReached;
+        public final ArrayList<MessageObject> list = new ArrayList<>();
+        public boolean loading;
+        public int totalCount;
+
+        public SavedMusicList(int i, long j) {
+            this.currentAccount = i;
+            this.dialogId = j;
+        }
+
+        public void setup(TLRPC.Document document) {
+            this.list.clear();
+            load();
+            this.list.add(0, toMessageObject(document));
+        }
+
+        public MessageObject toMessageObject(TLRPC.Document document) {
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.id = SharedConfig.getLastLocalId();
+            tL_message.peer_id = MessagesController.getInstance(this.currentAccount).getPeer(this.dialogId);
+            tL_message.from_id = MessagesController.getInstance(this.currentAccount).getPeer(this.dialogId);
+            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+            tL_message.media = tL_messageMediaDocument;
+            tL_messageMediaDocument.document = document;
+            MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, false, false);
+            messageObject.checkMediaExistance();
+            return messageObject;
+        }
+
+        public void load() {
+            if (this.loading || this.endReached) {
+                return;
+            }
+            this.loading = true;
+            TLRPC.TL_getSavedMusic tL_getSavedMusic = new TLRPC.TL_getSavedMusic();
+            tL_getSavedMusic.id = MessagesController.getInstance(this.currentAccount).getInputUser(this.dialogId);
+            tL_getSavedMusic.offset = this.list.size();
+            tL_getSavedMusic.limit = 30;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getSavedMusic, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    MessagesController.SavedMusicList.this.lambda$load$1(tLObject, tL_error);
+                }
+            });
+        }
+
+        public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+            final ArrayList arrayList = new ArrayList();
+            if (tLObject instanceof TLRPC.TL_savedMusic) {
+                Iterator<TLRPC.Document> it = ((TLRPC.TL_savedMusic) tLObject).documents.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(toMessageObject(it.next()));
+                }
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.SavedMusicList.this.lambda$load$0(tLObject, arrayList);
+                }
+            });
+        }
+
+        public void lambda$load$0(TLObject tLObject, ArrayList arrayList) {
+            if (tLObject instanceof TLRPC.TL_savedMusic) {
+                TLRPC.TL_savedMusic tL_savedMusic = (TLRPC.TL_savedMusic) tLObject;
+                if (this.totalCount <= 0 && this.list.size() == 1) {
+                    if (this.list.get(0).getDocument() != null && !arrayList.isEmpty() && ((MessageObject) arrayList.get(0)).getDocument() != null && this.list.get(0).getDocument().id == ((MessageObject) arrayList.get(0)).getDocument().id) {
+                        arrayList.remove(0);
+                    } else {
+                        this.list.clear();
+                    }
+                }
+                this.totalCount = tL_savedMusic.count;
+                this.list.addAll(arrayList);
+                this.endReached = this.list.size() >= this.totalCount;
+            }
+            this.loading = false;
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.musicListLoaded, this);
+        }
+
+        public TLRPC.Document getFirstDocument() {
+            MessageObject messageObject;
+            if (this.list.isEmpty() || (messageObject = this.list.get(0)) == null) {
+                return null;
+            }
+            return messageObject.getDocument();
+        }
+
+        public void remove(MessageObject messageObject) {
+            TLRPC.Document firstDocument = getFirstDocument();
+            this.list.remove(messageObject);
+            if (getFirstDocument() != firstDocument) {
+                updateFirstMusic();
+            }
+        }
+
+        public void move(int i, int i2) {
+            TLRPC.Document firstDocument = getFirstDocument();
+            MessageObject messageObject = this.list.get(i2);
+            MessageObject messageObject2 = this.list.get(i);
+            this.list.set(i, messageObject);
+            this.list.set(i2, messageObject2);
+            if (getFirstDocument() != firstDocument) {
+                updateFirstMusic();
+            }
+            MessageObject messageObject3 = i2 == 0 ? null : this.list.get(i2 - 1);
+            TLRPC.Document document = messageObject2.getDocument();
+            TLRPC.Document document2 = messageObject3 == null ? null : messageObject3.getDocument();
+            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
+            if (document == null) {
+                return;
+            }
+            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+            tL_account_saveMusic.id = tL_inputDocument;
+            tL_inputDocument.id = document.id;
+            tL_inputDocument.access_hash = document.access_hash;
+            byte[] bArr = document.file_reference;
+            tL_inputDocument.file_reference = bArr;
+            if (bArr == null) {
+                tL_inputDocument.file_reference = new byte[0];
+            }
+            if (document2 != null) {
+                tL_account_saveMusic.flags |= 2;
+                TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
+                tL_account_saveMusic.after_id = tL_inputDocument2;
+                tL_inputDocument2.id = document2.id;
+                tL_inputDocument2.access_hash = document2.access_hash;
+                byte[] bArr2 = document2.file_reference;
+                tL_inputDocument2.file_reference = bArr2;
+                if (bArr2 == null) {
+                    tL_inputDocument2.file_reference = new byte[0];
+                }
+            }
+            tL_account_saveMusic.unsave = false;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_account_saveMusic, null);
+        }
+
+        public void updateFirstMusic() {
+            TLRPC.Document firstDocument = getFirstDocument();
+            TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
+            if (userFull == null) {
+                return;
+            }
+            if (firstDocument == null) {
+                userFull.flags2 &= -2097153;
+                userFull.saved_music = null;
+            } else {
+                userFull.flags2 |= 2097152;
+                userFull.saved_music = firstDocument;
+            }
+            MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, false);
+            UserConfig.getInstance(this.currentAccount).saveConfig(true);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.profileMusicUpdated, Long.valueOf(this.dialogId));
+        }
+    }
+
+    public SavedMusicIds getSavedMusicIds() {
+        if (this.savedMusicIds == null) {
+            this.savedMusicIds = new SavedMusicIds(this.currentAccount);
+        }
+        return this.savedMusicIds;
+    }
+
+    public static class SavedMusicIds {
+        public final int currentAccount;
+        public final HashSet<Long> ids = new HashSet<>();
+        public boolean loaded;
+        public boolean loading;
+
+        public SavedMusicIds(int i) {
+            this.currentAccount = i;
+            load();
+        }
+
+        public void load() {
+            if (this.loading || this.loaded) {
+                return;
+            }
+            this.loading = true;
+            TL_account.getSavedMusicIds getsavedmusicids = new TL_account.getSavedMusicIds();
+            getsavedmusicids.hash = 0L;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedmusicids, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    MessagesController.SavedMusicIds.this.lambda$load$1(tLObject, tL_error);
+                }
+            });
+        }
+
+        public void lambda$load$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.SavedMusicIds.this.lambda$load$0(tLObject);
+                }
+            });
+        }
+
+        public void lambda$load$0(TLObject tLObject) {
+            this.loading = false;
+            this.loaded = true;
+            if (tLObject instanceof TL_account.TL_savedMusicIds) {
+                this.ids.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
+            }
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.musicIdsLoaded, new Object[0]);
+        }
+
+        public void update(long j, boolean z) {
+            if (z) {
+                this.ids.add(Long.valueOf(j));
+            } else {
+                this.ids.remove(Long.valueOf(j));
+            }
         }
     }
 }

@@ -41,6 +41,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -49,7 +50,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -2173,7 +2173,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public void lambda$openOptions$35() {
         Activity activity = this.parentActivity;
         if (activity instanceof LaunchActivity) {
-            ((LaunchActivity) activity).lambda$runLinkRequest$94(ChatActivity.of(this.botId));
+            ((LaunchActivity) activity).lambda$runLinkRequest$95(ChatActivity.of(this.botId));
         }
         dismiss(true);
     }
@@ -2973,7 +2973,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1177getWindowView() {
+    public WindowView mo1174getWindowView() {
         return this.windowView;
     }
 

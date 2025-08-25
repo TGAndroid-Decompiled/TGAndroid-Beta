@@ -8,11 +8,11 @@ public abstract class ConcurrentLinkedListKt {
     public static final Object findSegmentInternal(Segment segment, long j, Function2 function2) {
         while (true) {
             if (segment.id >= j && !segment.isRemoved()) {
-                return SegmentOrClosed.m273constructorimpl(segment);
+                return SegmentOrClosed.m267constructorimpl(segment);
             }
             Object nextOrClosed = segment.getNextOrClosed();
             if (nextOrClosed == CLOSED) {
-                return SegmentOrClosed.m273constructorimpl(CLOSED);
+                return SegmentOrClosed.m267constructorimpl(CLOSED);
             }
             Segment segment2 = (Segment) ((ConcurrentLinkedListNode) nextOrClosed);
             if (segment2 == null) {

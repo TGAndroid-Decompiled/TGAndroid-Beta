@@ -928,9 +928,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         if (j >= 0) {
             StarsController.GiftsList giftsList = new StarsController.GiftsList(this.currentAccount, j, false);
             this.gifts = giftsList;
-            giftsList.include_limited = false;
-            giftsList.include_unlimited = false;
-            giftsList.include_unique = true;
+            giftsList.forceTypeIncludeFlag(8, false);
             giftsList.load();
         } else {
             this.gifts = null;

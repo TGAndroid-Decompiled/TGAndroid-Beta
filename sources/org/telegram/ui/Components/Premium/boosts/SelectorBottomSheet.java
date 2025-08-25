@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Map;
-import j$.util.function.BiConsumer;
+import j$.util.function.BiConsumer$CC;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -464,9 +465,8 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     SelectorBottomSheet.this.lambda$loadData$8((String) obj, (List) obj2);
                 }
 
-                @Override
                 public BiConsumer andThen(BiConsumer biConsumer) {
-                    return BiConsumer.CC.$default$andThen(this, biConsumer);
+                    return BiConsumer$CC.$default$andThen(this, biConsumer);
                 }
             });
         }

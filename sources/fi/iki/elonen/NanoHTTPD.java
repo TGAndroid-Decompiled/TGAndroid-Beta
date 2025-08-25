@@ -1,6 +1,7 @@
 package fi.iki.elonen;
 
 import androidx.appcompat.app.WindowDecorActionBar$$ExternalSyntheticThrowCCEIfNotNull0;
+import j$.util.DesugarCollections;
 import j$.util.DesugarTimeZone;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -27,7 +28,6 @@ import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -155,7 +155,7 @@ public abstract class NanoHTTPD {
 
     public static class DefaultAsyncRunner implements AsyncRunner {
         private long requestCount;
-        private final List running = Collections.synchronizedList(new ArrayList());
+        private final List running = DesugarCollections.synchronizedList(new ArrayList());
 
         @Override
         public void closeAll() {

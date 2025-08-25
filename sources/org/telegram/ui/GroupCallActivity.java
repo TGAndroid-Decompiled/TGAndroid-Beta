@@ -67,7 +67,7 @@ import androidx.recyclerview.widget.ListUpdateCallback;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import j$.util.Collection;
-import j$.util.function.Function;
+import j$.util.function.Function$CC;
 import j$.util.stream.Collectors;
 import java.io.File;
 import java.util.ArrayList;
@@ -79,6 +79,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -4689,7 +4690,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (groupCallInvitedCell.hasAvatarSet()) {
                     bundle.putBoolean("expandPhoto", true);
                 }
-                this.parentActivity.lambda$runLinkRequest$94(new ProfileActivity(bundle));
+                this.parentActivity.lambda$runLinkRequest$95(new ProfileActivity(bundle));
                 dismiss();
                 return;
             }
@@ -4798,9 +4799,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             UserSelectorBottomSheet userSelectorBottomSheet = new UserSelectorBottomSheet(activity, this.currentAccount, 0L, null, 4, true, new DarkBlueThemeResourcesProvider());
             ChatObject.Call call4 = this.call;
             userSelectorBottomSheet.exceptUsers(call4 != null ? (Collection) Collection.EL.stream(call4.sortedParticipants).map(new Function() {
-                @Override
                 public Function andThen(Function function) {
-                    return Function.CC.$default$andThen(this, function);
+                    return Function$CC.$default$andThen(this, function);
                 }
 
                 @Override
@@ -4810,9 +4810,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     return lambda$new$17;
                 }
 
-                @Override
                 public Function compose(Function function) {
-                    return Function.CC.$default$compose(this, function);
+                    return Function$CC.$default$compose(this, function);
                 }
             }).collect(Collectors.toSet()) : null).setOnShareCallLinkListener(new Runnable() {
                 @Override
@@ -7682,7 +7681,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$94(new ChatActivity(bundle));
+            this.parentActivity.lambda$runLinkRequest$95(new ChatActivity(bundle));
             dismiss();
             return;
         }
@@ -7699,7 +7698,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle2.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$94(new ChatActivity(bundle2));
+            this.parentActivity.lambda$runLinkRequest$95(new ChatActivity(bundle2));
             dismiss();
             return;
         }

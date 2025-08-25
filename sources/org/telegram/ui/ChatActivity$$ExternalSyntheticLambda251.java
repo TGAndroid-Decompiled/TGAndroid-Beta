@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
-import j$.util.function.Supplier;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 public final class ChatActivity$$ExternalSyntheticLambda251 implements Supplier {
     @Override

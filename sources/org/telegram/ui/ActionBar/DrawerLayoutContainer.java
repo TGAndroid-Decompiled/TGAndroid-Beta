@@ -54,8 +54,6 @@ public class DrawerLayoutContainer extends FrameLayout {
     private Object lastInsets;
     private boolean maybeStartTracking;
     private int minDrawerMargin;
-    private View navigationBar;
-    private Paint navigationBarPaint;
     private INavigationLayout parentActionBarLayout;
     private BitmapDrawable previewBlurDrawable;
     private PreviewForegroundDrawable previewForegroundDrawable;
@@ -77,7 +75,6 @@ public class DrawerLayoutContainer extends FrameLayout {
 
     public DrawerLayoutContainer(Context context) {
         super(context);
-        this.navigationBarPaint = new Paint();
         this.rect = new Rect();
         this.scrimPaint = new Paint();
         this.backgroundPaint = new Paint();
@@ -181,20 +178,19 @@ public class DrawerLayoutContainer extends FrameLayout {
         addView(frameLayout);
         this.drawerLayout.setVisibility(4);
         view.setVisibility(8);
-        int i = Build.VERSION.SDK_INT;
         this.drawerLayout.setFitsSystemWindows(true);
-        if (i >= 35 && (view instanceof RecyclerView)) {
+        if (Build.VERSION.SDK_INT >= 35 && (view instanceof RecyclerView)) {
             ((RecyclerView) view).setClipToPadding(false);
             this.drawerLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view2, WindowInsets windowInsets) {
                     Insets insets;
-                    int i2;
+                    int i;
                     WindowInsets windowInsets2;
                     insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
                     View view3 = view;
-                    i2 = insets.bottom;
-                    view3.setPadding(0, 0, 0, i2);
+                    i = insets.bottom;
+                    view3.setPadding(0, 0, 0, i);
                     DrawerLayoutContainer.this.drawerLayout.requestLayout();
                     windowInsets2 = WindowInsets.CONSUMED;
                     return windowInsets2;
@@ -540,6 +536,9 @@ public class DrawerLayoutContainer extends FrameLayout {
         int size2 = View.MeasureSpec.getSize(i2);
         setMeasuredDimension(size, size2);
         int i3 = size2 - AndroidUtilities.statusBarHeight;
+        if (Build.VERSION.SDK_INT >= 35) {
+            i3 -= AndroidUtilities.navigationBarHeight;
+        }
         if (i3 > 0 && i3 < 4096) {
             AndroidUtilities.displaySize.y = i3;
         }
@@ -571,18 +570,6 @@ public class DrawerLayoutContainer extends FrameLayout {
                     childAt.measure(ViewGroup.getChildMeasureSpec(i, this.minDrawerMargin + layoutParams.leftMargin + layoutParams.rightMargin, layoutParams.width), ViewGroup.getChildMeasureSpec(i2, layoutParams.topMargin + layoutParams.bottomMargin, layoutParams.height));
                 }
             }
-        }
-        View view = this.navigationBar;
-        if (view != null) {
-            if (view.getParent() == null) {
-                ((FrameLayout) AndroidUtilities.findActivity(getContext()).getWindow().getDecorView()).addView(this.navigationBar);
-            }
-            if (this.navigationBar.getLayoutParams().height == AndroidUtilities.navigationBarHeight && ((FrameLayout.LayoutParams) this.navigationBar.getLayoutParams()).topMargin == View.MeasureSpec.getSize(i2)) {
-                return;
-            }
-            this.navigationBar.getLayoutParams().height = AndroidUtilities.navigationBarHeight;
-            ((FrameLayout.LayoutParams) this.navigationBar.getLayoutParams()).topMargin = View.MeasureSpec.getSize(i2);
-            this.navigationBar.requestLayout();
         }
     }
 
@@ -689,29 +676,6 @@ public class DrawerLayoutContainer extends FrameLayout {
             return super.onRequestSendAccessibilityEvent(view, accessibilityEvent);
         }
         return false;
-    }
-
-    public void setNavigationBarColor(int i) {
-        this.navigationBarPaint.setColor(i);
-        View view = this.navigationBar;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    public int getNavigationBarColor() {
-        return this.navigationBarPaint.getColor();
-    }
-
-    public View createNavigationBar() {
-        this.navigationBar = new View(getContext()) {
-            @Override
-            protected void onDraw(Canvas canvas) {
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), DrawerLayoutContainer.this.navigationBarPaint);
-            }
-        };
-        this.navigationBarPaint.setColor(-16777216);
-        return this.navigationBar;
     }
 
     public static class PreviewForegroundDrawable extends Drawable {

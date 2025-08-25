@@ -1248,6 +1248,10 @@ public class SimpleTextView extends View implements Drawable.Callback {
         return measuredWidth - i;
     }
 
+    public float getExactWidth() {
+        return (getPaint().measureText(getText().toString()) + getSideDrawablesSize()) - ((this.leftDrawable == null && this.rightDrawable == null && this.rightDrawable2 == null) ? 0 : this.drawablePadding);
+    }
+
     private void drawLayout(Canvas canvas) {
         if (this.fullAlpha > 0.0f && this.fullLayoutLeftOffset != 0) {
             canvas.save();

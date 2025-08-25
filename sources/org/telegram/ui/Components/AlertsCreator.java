@@ -816,7 +816,7 @@ public abstract class AlertsCreator {
             public final void run() {
                 AlertsCreator.lambda$processError$7();
             }
-        }).show();
+        }, j2).show();
     }
 
     public static Toast showSimpleToast(BaseFragment baseFragment, String str) {
@@ -933,7 +933,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$10(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
-        launchActivity.lambda$runLinkRequest$94(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$95(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$11(TLRPC.TL_langPackLanguage tL_langPackLanguage, LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
@@ -2144,7 +2144,7 @@ public abstract class AlertsCreator {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                AlertsCreator.lambda$ensurePaidMessagesMultiConfirmation$43(i, j, activity, resourcesProvider, arrayList, callback, hashMap);
+                AlertsCreator.lambda$ensurePaidMessagesMultiConfirmation$43(i, j, activity, arrayList, resourcesProvider, callback, hashMap);
             }
         };
         if (!StarsController.getInstance(i).balanceAvailable()) {
@@ -2154,19 +2154,20 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static void lambda$ensurePaidMessagesMultiConfirmation$43(int i, long j, Activity activity, Theme.ResourcesProvider resourcesProvider, ArrayList arrayList, final Utilities.Callback callback, final HashMap hashMap) {
+    public static void lambda$ensurePaidMessagesMultiConfirmation$43(int i, long j, Activity activity, ArrayList arrayList, Theme.ResourcesProvider resourcesProvider, final Utilities.Callback callback, final HashMap hashMap) {
         if (StarsController.getInstance(i).getBalance().amount >= j) {
             callback.run(hashMap);
         } else {
             if (activity == null) {
                 return;
             }
-            new StarsIntroActivity.StarsNeededSheet(activity, resourcesProvider, j, 13, DialogObject.getShortName(i, ((Long) arrayList.get(0)).longValue()), new Runnable() {
+            long longValue = ((Long) arrayList.get(0)).longValue();
+            new StarsIntroActivity.StarsNeededSheet(activity, resourcesProvider, j, 13, DialogObject.getShortName(i, longValue), new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(hashMap);
                 }
-            }).show();
+            }, longValue).show();
         }
     }
 
@@ -2238,7 +2239,7 @@ public abstract class AlertsCreator {
                 public final void run() {
                     AlertsCreator.lambda$ensurePaidMessageConfirmation$45(Utilities.Callback.this, j3);
                 }
-            }).show();
+            }, j2).show();
             return;
         }
         callback.run(Long.valueOf(j3));
@@ -6387,7 +6388,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createFreeSpaceDialog$164(LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
-        launchActivity.lambda$runLinkRequest$94(new CacheControlActivity());
+        launchActivity.lambda$runLinkRequest$95(new CacheControlActivity());
     }
 
     public static Dialog createPrioritySelectDialog(Activity activity, long j, int i, int i2, Runnable runnable) {

@@ -1051,7 +1051,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
 
         @Override
-        public void set(int i, Object obj) {
+        public void notifyUpdate() {
         }
 
         public enum Sorting {

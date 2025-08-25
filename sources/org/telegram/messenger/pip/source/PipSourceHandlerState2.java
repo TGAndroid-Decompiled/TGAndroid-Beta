@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.util.Log;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
-import java.util.Objects;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;

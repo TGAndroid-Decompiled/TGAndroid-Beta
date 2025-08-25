@@ -27,11 +27,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.ChatObject;
@@ -2157,26 +2157,28 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 final ActionBarMenuSubItem addChecked2 = itemOptions.addChecked();
                 addChecked2.setText(LocaleController.getString(R.string.Gift2FilterLimited));
                 final ActionBarMenuSubItem addChecked3 = itemOptions.addChecked();
-                addChecked3.setText(LocaleController.getString(R.string.Gift2FilterUnique));
+                addChecked3.setText(LocaleController.getString(R.string.Gift2FilterUpgradable));
+                final ActionBarMenuSubItem addChecked4 = itemOptions.addChecked();
+                addChecked4.setText(LocaleController.getString(R.string.Gift2FilterUnique));
                 if (canUserDoAction) {
                     itemOptions.addGap();
-                    ActionBarMenuSubItem addChecked4 = itemOptions.addChecked();
-                    addChecked4.setText(LocaleController.getString(R.string.Gift2FilterDisplayed));
                     ActionBarMenuSubItem addChecked5 = itemOptions.addChecked();
-                    addChecked5.setText(LocaleController.getString(R.string.Gift2FilterHidden));
-                    actionBarMenuSubItem = addChecked4;
+                    addChecked5.setText(LocaleController.getString(R.string.Gift2FilterDisplayed));
+                    ActionBarMenuSubItem addChecked6 = itemOptions.addChecked();
+                    addChecked6.setText(LocaleController.getString(R.string.Gift2FilterHidden));
                     actionBarMenuSubItem2 = addChecked5;
+                    actionBarMenuSubItem = addChecked6;
                 } else {
                     actionBarMenuSubItem = null;
                     actionBarMenuSubItem2 = null;
                 }
                 final ActionBarMenuSubItem actionBarMenuSubItem3 = actionBarMenuSubItem;
-                final boolean z = canUserDoAction;
                 final ActionBarMenuSubItem actionBarMenuSubItem4 = actionBarMenuSubItem2;
+                final boolean z = canUserDoAction;
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$0(add, addChecked, addChecked2, addChecked3, z, actionBarMenuSubItem3, actionBarMenuSubItem4);
+                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$0(add, addChecked, addChecked2, addChecked3, addChecked4, z, actionBarMenuSubItem4, actionBarMenuSubItem3);
                     }
                 };
                 runnable2.run();
@@ -2191,91 +2193,28 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 } else {
                     runnable = runnable2;
                 }
-                addChecked.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$2(runnable, view);
-                    }
-                });
-                addChecked.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public final boolean onLongClick(View view) {
-                        boolean lambda$onItemClick$3;
-                        lambda$onItemClick$3 = ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$3(runnable, view);
-                        return lambda$onItemClick$3;
-                    }
-                });
-                addChecked2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$4(runnable, view);
-                    }
-                });
-                addChecked2.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public final boolean onLongClick(View view) {
-                        boolean lambda$onItemClick$5;
-                        lambda$onItemClick$5 = ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$5(runnable, view);
-                        return lambda$onItemClick$5;
-                    }
-                });
-                addChecked3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view) {
-                        ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$6(runnable, view);
-                    }
-                });
-                addChecked3.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public final boolean onLongClick(View view) {
-                        boolean lambda$onItemClick$7;
-                        lambda$onItemClick$7 = ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$7(runnable, view);
-                        return lambda$onItemClick$7;
-                    }
-                });
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked, SelectGiftsBottomSheet.this.list, runnable, 1);
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked2, SelectGiftsBottomSheet.this.list, runnable, 2);
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked3, SelectGiftsBottomSheet.this.list, runnable, 4);
+                ProfileGiftsContainer.setGiftFilterOptionsClickListeners(addChecked4, SelectGiftsBottomSheet.this.list, runnable, 8);
                 if (canUserDoAction) {
-                    actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$8(runnable, view);
-                        }
-                    });
-                    actionBarMenuSubItem3.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public final boolean onLongClick(View view) {
-                            boolean lambda$onItemClick$9;
-                            lambda$onItemClick$9 = ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$9(runnable, view);
-                            return lambda$onItemClick$9;
-                        }
-                    });
-                    actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$10(runnable, view);
-                        }
-                    });
-                    actionBarMenuSubItem4.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public final boolean onLongClick(View view) {
-                            boolean lambda$onItemClick$11;
-                            lambda$onItemClick$11 = ProfileGiftsContainer.SelectGiftsBottomSheet.AnonymousClass1.this.lambda$onItemClick$11(runnable, view);
-                            return lambda$onItemClick$11;
-                        }
-                    });
+                    ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem4, SelectGiftsBottomSheet.this.list, runnable, 256);
+                    ProfileGiftsContainer.setGiftFilterOptionsClickListeners(actionBarMenuSubItem3, SelectGiftsBottomSheet.this.list, runnable, 512);
                 }
                 itemOptions.setOnTopOfScrim().setDismissWithButtons(false).setDimAlpha(0).show();
             }
 
-            public void lambda$onItemClick$0(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, ActionBarMenuSubItem actionBarMenuSubItem3, ActionBarMenuSubItem actionBarMenuSubItem4, boolean z, ActionBarMenuSubItem actionBarMenuSubItem5, ActionBarMenuSubItem actionBarMenuSubItem6) {
+            public void lambda$onItemClick$0(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, ActionBarMenuSubItem actionBarMenuSubItem3, ActionBarMenuSubItem actionBarMenuSubItem4, ActionBarMenuSubItem actionBarMenuSubItem5, boolean z, ActionBarMenuSubItem actionBarMenuSubItem6, ActionBarMenuSubItem actionBarMenuSubItem7) {
                 if (actionBarMenuSubItem != null) {
                     actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(SelectGiftsBottomSheet.this.list.sort_by_date ? R.string.Gift2FilterSortByValue : R.string.Gift2FilterSortByDate), SelectGiftsBottomSheet.this.list.sort_by_date ? R.drawable.menu_sort_value : R.drawable.menu_sort_date);
                 }
-                actionBarMenuSubItem2.setChecked(SelectGiftsBottomSheet.this.list.include_unlimited);
-                actionBarMenuSubItem3.setChecked(SelectGiftsBottomSheet.this.list.include_limited);
-                actionBarMenuSubItem4.setChecked(SelectGiftsBottomSheet.this.list.include_unique);
+                actionBarMenuSubItem2.setChecked(SelectGiftsBottomSheet.this.list.isInclude_unlimited());
+                actionBarMenuSubItem3.setChecked(SelectGiftsBottomSheet.this.list.isInclude_limited());
+                actionBarMenuSubItem4.setChecked(SelectGiftsBottomSheet.this.list.isInclude_upgradable());
+                actionBarMenuSubItem5.setChecked(SelectGiftsBottomSheet.this.list.isInclude_unique());
                 if (z) {
-                    actionBarMenuSubItem5.setChecked(SelectGiftsBottomSheet.this.list.include_displayed);
-                    actionBarMenuSubItem6.setChecked(SelectGiftsBottomSheet.this.list.include_hidden);
+                    actionBarMenuSubItem6.setChecked(SelectGiftsBottomSheet.this.list.isInclude_displayed());
+                    actionBarMenuSubItem7.setChecked(SelectGiftsBottomSheet.this.list.isInclude_hidden());
                 }
             }
 
@@ -2283,107 +2222,6 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 SelectGiftsBottomSheet.this.list.sort_by_date = !SelectGiftsBottomSheet.this.list.sort_by_date;
                 runnable.run();
                 SelectGiftsBottomSheet.this.list.invalidate(true);
-            }
-
-            public void lambda$onItemClick$2(Runnable runnable, View view) {
-                if (!SelectGiftsBottomSheet.this.list.include_unlimited || SelectGiftsBottomSheet.this.list.include_limited || SelectGiftsBottomSheet.this.list.include_unique) {
-                    SelectGiftsBottomSheet.this.list.include_unlimited = !SelectGiftsBottomSheet.this.list.include_unlimited;
-                } else {
-                    SelectGiftsBottomSheet.this.list.include_unlimited = false;
-                    SelectGiftsBottomSheet.this.list.include_limited = true;
-                    SelectGiftsBottomSheet.this.list.include_unique = true;
-                }
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-            }
-
-            public boolean lambda$onItemClick$3(Runnable runnable, View view) {
-                SelectGiftsBottomSheet.this.list.include_unlimited = true;
-                SelectGiftsBottomSheet.this.list.include_limited = false;
-                SelectGiftsBottomSheet.this.list.include_unique = false;
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-                return true;
-            }
-
-            public void lambda$onItemClick$4(Runnable runnable, View view) {
-                if (!SelectGiftsBottomSheet.this.list.include_limited || SelectGiftsBottomSheet.this.list.include_unlimited || SelectGiftsBottomSheet.this.list.include_unique) {
-                    SelectGiftsBottomSheet.this.list.include_limited = !SelectGiftsBottomSheet.this.list.include_limited;
-                } else {
-                    SelectGiftsBottomSheet.this.list.include_limited = false;
-                    SelectGiftsBottomSheet.this.list.include_unlimited = true;
-                    SelectGiftsBottomSheet.this.list.include_unique = true;
-                }
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-            }
-
-            public boolean lambda$onItemClick$5(Runnable runnable, View view) {
-                SelectGiftsBottomSheet.this.list.include_unlimited = false;
-                SelectGiftsBottomSheet.this.list.include_limited = true;
-                SelectGiftsBottomSheet.this.list.include_unique = false;
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-                return true;
-            }
-
-            public void lambda$onItemClick$6(Runnable runnable, View view) {
-                if (!SelectGiftsBottomSheet.this.list.include_unique || SelectGiftsBottomSheet.this.list.include_limited || SelectGiftsBottomSheet.this.list.include_unlimited) {
-                    SelectGiftsBottomSheet.this.list.include_unique = !SelectGiftsBottomSheet.this.list.include_unique;
-                } else {
-                    SelectGiftsBottomSheet.this.list.include_limited = true;
-                    SelectGiftsBottomSheet.this.list.include_unlimited = true;
-                    SelectGiftsBottomSheet.this.list.include_unique = false;
-                }
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-            }
-
-            public boolean lambda$onItemClick$7(Runnable runnable, View view) {
-                SelectGiftsBottomSheet.this.list.include_unlimited = false;
-                SelectGiftsBottomSheet.this.list.include_limited = false;
-                SelectGiftsBottomSheet.this.list.include_unique = true;
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-                return true;
-            }
-
-            public void lambda$onItemClick$8(Runnable runnable, View view) {
-                if (!SelectGiftsBottomSheet.this.list.include_displayed || SelectGiftsBottomSheet.this.list.include_hidden) {
-                    SelectGiftsBottomSheet.this.list.include_displayed = !SelectGiftsBottomSheet.this.list.include_displayed;
-                } else {
-                    SelectGiftsBottomSheet.this.list.include_displayed = false;
-                    SelectGiftsBottomSheet.this.list.include_hidden = true;
-                }
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-            }
-
-            public boolean lambda$onItemClick$9(Runnable runnable, View view) {
-                SelectGiftsBottomSheet.this.list.include_displayed = true;
-                SelectGiftsBottomSheet.this.list.include_hidden = false;
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-                return true;
-            }
-
-            public void lambda$onItemClick$10(Runnable runnable, View view) {
-                if (!SelectGiftsBottomSheet.this.list.include_hidden || SelectGiftsBottomSheet.this.list.include_displayed) {
-                    SelectGiftsBottomSheet.this.list.include_hidden = !SelectGiftsBottomSheet.this.list.include_hidden;
-                } else {
-                    SelectGiftsBottomSheet.this.list.include_hidden = false;
-                    SelectGiftsBottomSheet.this.list.include_displayed = true;
-                }
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-            }
-
-            public boolean lambda$onItemClick$11(Runnable runnable, View view) {
-                SelectGiftsBottomSheet.this.list.include_displayed = false;
-                SelectGiftsBottomSheet.this.list.include_hidden = true;
-                runnable.run();
-                SelectGiftsBottomSheet.this.list.invalidate(true);
-                return true;
             }
         }
 
@@ -2540,5 +2378,33 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
             arrayList.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
         }
+    }
+
+    public static void setGiftFilterOptionsClickListeners(View view, final StarsController.GiftsList giftsList, final Runnable runnable, final int i) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$20(StarsController.GiftsList.this, i, runnable, view2);
+            }
+        });
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public final boolean onLongClick(View view2) {
+                boolean lambda$setGiftFilterOptionsClickListeners$21;
+                lambda$setGiftFilterOptionsClickListeners$21 = ProfileGiftsContainer.lambda$setGiftFilterOptionsClickListeners$21(StarsController.GiftsList.this, i, runnable, view2);
+                return lambda$setGiftFilterOptionsClickListeners$21;
+            }
+        });
+    }
+
+    public static void lambda$setGiftFilterOptionsClickListeners$20(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
+        giftsList.toggleTypeIncludeFlag(i);
+        runnable.run();
+    }
+
+    public static boolean lambda$setGiftFilterOptionsClickListeners$21(StarsController.GiftsList giftsList, int i, Runnable runnable, View view) {
+        giftsList.forceTypeIncludeFlag(i, true);
+        runnable.run();
+        return true;
     }
 }

@@ -13,7 +13,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
-import java.util.Objects;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.MotionBackgroundDrawable;

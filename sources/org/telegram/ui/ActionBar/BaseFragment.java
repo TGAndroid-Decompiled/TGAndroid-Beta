@@ -237,7 +237,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1177getWindowView();
+        View mo1174getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -1263,8 +1263,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1177getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1177getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1174getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1174getWindowView());
                 }
             }
         }
@@ -1275,7 +1275,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1177getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1174getWindowView());
                 }
             }
         }
@@ -1285,7 +1285,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1177getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1174getWindowView()) {
                     return true;
                 }
             }

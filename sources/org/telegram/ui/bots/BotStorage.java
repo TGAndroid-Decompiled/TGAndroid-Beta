@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.microsoft.appcenter.utils.crypto.CryptoAesHandler$$ExternalSyntheticApiModelOutline5;
 import j$.util.Collection;
-import j$.util.function.Predicate;
+import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Predicate;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -326,19 +327,16 @@ public class BotStorage {
                 }
             }
             Iterator it = ((Set) Collection.EL.stream(readConfig().values()).filter(new Predicate() {
-                @Override
                 public Predicate and(Predicate predicate) {
-                    return Predicate.CC.$default$and(this, predicate);
+                    return Predicate$CC.$default$and(this, predicate);
                 }
 
-                @Override
                 public Predicate negate() {
-                    return Predicate.CC.$default$negate(this);
+                    return Predicate$CC.$default$negate(this);
                 }
 
-                @Override
                 public Predicate or(Predicate predicate) {
-                    return Predicate.CC.$default$or(this, predicate);
+                    return Predicate$CC.$default$or(this, predicate);
                 }
 
                 @Override
@@ -387,19 +385,16 @@ public class BotStorage {
             }
         }
         for (StorageConfig storageConfig : (Set) Collection.EL.stream(readConfig().values()).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override

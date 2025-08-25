@@ -154,8 +154,18 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         this.actionBar.addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 44, 83));
         this.scrollSlidingTextTabStrip.setDelegate(new ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate() {
             @Override
+            public boolean canReorder(int i4) {
+                return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$canReorder(this, i4);
+            }
+
+            @Override
             public void onSamePageSelected() {
                 ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$onSamePageSelected(this);
+            }
+
+            @Override
+            public boolean showOptions(int i4, View view2) {
+                return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$showOptions(this, i4, view2);
             }
 
             @Override

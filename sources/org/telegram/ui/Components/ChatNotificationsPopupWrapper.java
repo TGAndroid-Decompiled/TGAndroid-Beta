@@ -364,7 +364,9 @@ public class ChatNotificationsPopupWrapper {
         return LocaleController.formatString("MuteForButton", R.string.MuteForButton, sb.toString());
     }
 
-    public void showAsOptions(BaseFragment baseFragment, View view, float f, float f2) {
+    public void showAsOptions(BaseFragment baseFragment, View view, float f, float f2, boolean z) {
+        float measuredWidth;
+        float measuredHeight;
         if (baseFragment == null || baseFragment.getFragmentView() == null) {
             return;
         }
@@ -387,7 +389,14 @@ public class ChatNotificationsPopupWrapper {
             f2 += view.getY();
             view = (View) view.getParent();
         }
-        this.popupWindow.showAtLocation(baseFragment.getFragmentView(), 0, (int) (f - (this.windowLayout.getMeasuredWidth() / 2.0f)), (int) (f2 - (this.windowLayout.getMeasuredHeight() / 2.0f)));
+        if (z) {
+            measuredWidth = f - AndroidUtilities.dpf2(8.0f);
+            measuredHeight = AndroidUtilities.dpf2(16.0f);
+        } else {
+            measuredWidth = f - (this.windowLayout.getMeasuredWidth() / 2.0f);
+            measuredHeight = this.windowLayout.getMeasuredHeight() / 2.0f;
+        }
+        this.popupWindow.showAtLocation(baseFragment.getFragmentView(), 0, (int) measuredWidth, (int) (f2 - measuredHeight));
         this.popupWindow.dimBehind();
     }
 

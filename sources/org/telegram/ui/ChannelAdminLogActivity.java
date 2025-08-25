@@ -46,14 +46,16 @@ import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Collection;
-import j$.util.function.Function;
-import j$.util.function.Predicate;
+import j$.util.function.Function$CC;
+import j$.util.function.Predicate$CC;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -688,9 +690,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             messageObject.actionDeleteGroupEventId = -1L;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(MessageObject.replaceWithLink(LocaleController.formatPluralString(z2 ? "EventLogDeletedMultipleMessagesToExpand" : "EventLogDeletedMultipleMessages", arrayList.size(), TextUtils.join(", ", Collection.EL.stream(arrayList).map(new Function() {
-            @Override
             public Function andThen(Function function) {
-                return Function.CC.$default$andThen(this, function);
+                return Function$CC.$default$andThen(this, function);
             }
 
             @Override
@@ -698,14 +699,12 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 return Long.valueOf(((MessageObject) obj).getFromChatId());
             }
 
-            @Override
             public Function compose(Function function) {
-                return Function.CC.$default$compose(this, function);
+                return Function$CC.$default$compose(this, function);
             }
         }).distinct().map(new Function() {
-            @Override
             public Function andThen(Function function) {
-                return Function.CC.$default$andThen(this, function);
+                return Function$CC.$default$andThen(this, function);
             }
 
             @Override
@@ -715,24 +714,20 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 return lambda$actionMessagesDeletedBy$5;
             }
 
-            @Override
             public Function compose(Function function) {
-                return Function.CC.$default$compose(this, function);
+                return Function$CC.$default$compose(this, function);
             }
         }).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override

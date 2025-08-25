@@ -6580,6 +6580,15 @@ public class MessageObject {
         return (isQuickReply() || this.type == 30 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
     }
 
+    public boolean isNoforwards() {
+        TLRPC.Message message = this.messageOwner;
+        if (message != null && message.noforwards) {
+            return true;
+        }
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()));
+        return chat != null && chat.noforwards;
+    }
+
     public boolean canEditMedia() {
         if (isSecretMedia()) {
             return false;

@@ -1,8 +1,8 @@
 package org.telegram.tgnet;
 
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Objects;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 

@@ -6,7 +6,7 @@ import android.util.Pair;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import androidx.collection.LongSparseArray;
-import j$.util.function.Consumer;
+import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,10 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
@@ -1657,8 +1657,8 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$loadTopics$49(long r21, j$.util.function.Consumer r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadTopics$49(long, j$.util.function.Consumer):void");
+    public void lambda$loadTopics$49(long r21, java.util.function.Consumer r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadTopics$49(long, java.util.function.Consumer):void");
     }
 
     public void lambda$loadTopics$48(ArrayList arrayList, ArrayList arrayList2) {
@@ -7247,12 +7247,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(211);
+                messageMedia.bytes = Utilities.intToBytes(213);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(211);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(213);
             message.flags |= 512;
         }
     }
@@ -8392,8 +8392,8 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$loadStoryAlbumsCache$248(long r7, j$.util.function.Consumer r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadStoryAlbumsCache$248(long, j$.util.function.Consumer):void");
+    public void lambda$loadStoryAlbumsCache$248(long r7, java.util.function.Consumer r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadStoryAlbumsCache$248(long, java.util.function.Consumer):void");
     }
 
     public SQLiteCursor createLoadStoriesCursor(long j, int i, int i2) {

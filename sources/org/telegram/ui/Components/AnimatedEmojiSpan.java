@@ -1117,7 +1117,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        public void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             float paddingTop = ((getGravity() & 16) == 0 || getLayout() == null) ? 0.0f : getPaddingTop() + ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f);
             float paddingRight = LocaleController.isRTL ? getPaddingRight() : getPaddingLeft();

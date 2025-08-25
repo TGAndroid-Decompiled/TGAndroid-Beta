@@ -1,124 +1,18 @@
 package kotlin.collections;
 
-import j$.lang.Iterable$CC;
-import j$.util.Collection;
-import j$.util.List;
-import j$.util.Spliterator;
-import j$.util.function.Consumer;
-import j$.util.function.IntFunction;
-import j$.util.function.Predicate;
-import j$.util.function.UnaryOperator;
-import j$.util.stream.AbstractC0173t0;
-import j$.util.stream.Stream;
-import java.util.Comparator;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.SequencedCollection;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.RangesKt;
 
-public final class ArrayDeque extends AbstractMutableList implements List {
+public final class ArrayDeque extends AbstractMutableList {
     public static final Companion Companion = new Companion(null);
     private static final Object[] emptyElementData = new Object[0];
     private Object[] elementData = emptyElementData;
     private int head;
     private int size;
-
-    @Override
-    public void forEach(Consumer consumer) {
-        Iterable$CC.$default$forEach(this, consumer);
-    }
-
-    @Override
-    public void forEach(java.util.function.Consumer consumer) {
-        forEach(Consumer.VivifiedWrapper.convert(consumer));
-    }
-
-    public Object getFirst() {
-        return List.CC.$default$getFirst(this);
-    }
-
-    public Object getLast() {
-        return List.CC.$default$getLast(this);
-    }
-
-    @Override
-    public Stream parallelStream() {
-        Stream e0;
-        e0 = AbstractC0173t0.e0(Collection.EL.b(this), true);
-        return e0;
-    }
-
-    @Override
-    public java.util.stream.Stream parallelStream() {
-        return Stream.Wrapper.convert(parallelStream());
-    }
-
-    @Override
-    public boolean removeIf(Predicate predicate) {
-        return Collection.CC.$default$removeIf(this, predicate);
-    }
-
-    @Override
-    public boolean removeIf(java.util.function.Predicate predicate) {
-        return removeIf(Predicate.VivifiedWrapper.convert(predicate));
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator unaryOperator) {
-        List.CC.$default$replaceAll(this, unaryOperator);
-    }
-
-    @Override
-    public void replaceAll(java.util.function.UnaryOperator unaryOperator) {
-        replaceAll(UnaryOperator.VivifiedWrapper.convert(unaryOperator));
-    }
-
-    public java.util.List reversed() {
-        return List.CC.$default$reversed(this);
-    }
-
-    public SequencedCollection m225reversed() {
-        return List.CC.$default$reversed(this);
-    }
-
-    @Override
-    public void sort(Comparator comparator) {
-        List.CC.$default$sort(this, comparator);
-    }
-
-    @Override
-    public Spliterator spliterator() {
-        return List.CC.$default$spliterator(this);
-    }
-
-    @Override
-    public java.util.Spliterator spliterator() {
-        return Spliterator.Wrapper.convert(spliterator());
-    }
-
-    @Override
-    public Stream stream() {
-        return Collection.CC.$default$stream(this);
-    }
-
-    @Override
-    public java.util.stream.Stream stream() {
-        return Stream.Wrapper.convert(stream());
-    }
-
-    @Override
-    public Object[] toArray(IntFunction intFunction) {
-        Object[] array;
-        array = toArray((Object[]) intFunction.apply(0));
-        return array;
-    }
-
-    @Override
-    public Object[] toArray(java.util.function.IntFunction intFunction) {
-        return toArray(IntFunction.VivifiedWrapper.convert(intFunction));
-    }
 
     @Override
     public int getSize() {
@@ -276,7 +170,7 @@ public final class ArrayDeque extends AbstractMutableList implements List {
         this.size = size() + 1;
     }
 
-    private final void copyCollectionElements(int i, java.util.Collection collection) {
+    private final void copyCollectionElements(int i, Collection collection) {
         Iterator it = collection.iterator();
         int length = this.elementData.length;
         while (i < length && it.hasNext()) {
@@ -291,7 +185,7 @@ public final class ArrayDeque extends AbstractMutableList implements List {
     }
 
     @Override
-    public boolean addAll(java.util.Collection elements) {
+    public boolean addAll(Collection elements) {
         Intrinsics.checkNotNullParameter(elements, "elements");
         if (elements.isEmpty()) {
             return false;
@@ -302,7 +196,7 @@ public final class ArrayDeque extends AbstractMutableList implements List {
     }
 
     @Override
-    public boolean addAll(int i, java.util.Collection elements) {
+    public boolean addAll(int i, Collection elements) {
         Intrinsics.checkNotNullParameter(elements, "elements");
         AbstractList.Companion.checkPositionIndex$kotlin_stdlib(i, size());
         if (elements.isEmpty()) {
@@ -542,7 +436,7 @@ public final class ArrayDeque extends AbstractMutableList implements List {
     }
 
     @Override
-    public boolean removeAll(java.util.Collection elements) {
+    public boolean removeAll(Collection elements) {
         int positiveMod;
         Intrinsics.checkNotNullParameter(elements, "elements");
         boolean z = false;
@@ -602,7 +496,7 @@ public final class ArrayDeque extends AbstractMutableList implements List {
     }
 
     @Override
-    public boolean retainAll(java.util.Collection elements) {
+    public boolean retainAll(Collection elements) {
         int positiveMod;
         Intrinsics.checkNotNullParameter(elements, "elements");
         boolean z = false;

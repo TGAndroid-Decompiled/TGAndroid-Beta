@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import androidx.collection.LongSparseArray;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Comparator$CC;
-import j$.util.function.Consumer;
-import j$.util.function.ToIntFunction;
+import j$.util.Objects;
+import j$.util.function.Consumer$CC;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,9 +21,9 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.ToIntFunction;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -4894,15 +4894,14 @@ public class StoriesController {
             }
             this.loading = true;
             if (!this.loadedCache) {
-                MessagesStorage.getInstance(this.currentAccount).loadStoryAlbumsCache(this.dialogId, new j$.util.function.Consumer() {
+                MessagesStorage.getInstance(this.currentAccount).loadStoryAlbumsCache(this.dialogId, new java.util.function.Consumer() {
                     @Override
-                    public final void r(Object obj) {
+                    public final void p(Object obj) {
                         StoriesController.StoriesCollections.this.lambda$load$1((List) obj);
                     }
 
-                    @Override
-                    public j$.util.function.Consumer andThen(j$.util.function.Consumer consumer) {
-                        return Consumer.CC.$default$andThen(this, consumer);
+                    public java.util.function.Consumer andThen(java.util.function.Consumer consumer) {
+                        return Consumer$CC.$default$andThen(this, consumer);
                     }
                 });
                 return;

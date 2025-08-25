@@ -2700,7 +2700,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         anonymousClass4.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), true);
         anonymousClass4.setItemsColor(Theme.getColor(Theme.key_actionBarDefaultIcon), false);
         anonymousClass4.setItemsColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon), true);
-        if (this.inPreviewMode || (AndroidUtilities.isTablet() && this.folderId != 0)) {
+        if (this.inPreviewMode || (AndroidUtilities.isTablet() && this.folderId != 0 && !isArchive())) {
             anonymousClass4.setOccupyStatusBar(false);
         }
         return anonymousClass4;
@@ -5401,13 +5401,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         lambda$updateDialogsHint$32();
     }
 
-    public void lambda$updateDialogsHint$33(long j, String str, View view) {
+    public void lambda$updateDialogsHint$33(long j, String str, long j2, View view) {
         new StarsIntroActivity.StarsNeededSheet(getContext(), getResourceProvider(), j, 2, str, new Runnable() {
             @Override
             public final void run() {
                 DialogsActivity.this.lambda$updateDialogsHint$32();
             }
-        }).show();
+        }, j2).show();
     }
 
     public void lambda$updateDialogsHint$34(View view) {

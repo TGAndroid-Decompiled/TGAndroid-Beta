@@ -21,7 +21,7 @@ public abstract class CancellableKt {
         try {
             Continuation intercepted = IntrinsicsKt.intercepted(IntrinsicsKt.createCoroutineUnintercepted(function2, obj, continuation));
             Result.Companion companion = Result.Companion;
-            DispatchedContinuationKt.resumeCancellableWith(intercepted, Result.m216constructorimpl(Unit.INSTANCE), function1);
+            DispatchedContinuationKt.resumeCancellableWith(intercepted, Result.m211constructorimpl(Unit.INSTANCE), function1);
         } catch (Throwable th) {
             dispatcherFailure(continuation, th);
         }
@@ -31,7 +31,7 @@ public abstract class CancellableKt {
         try {
             Continuation intercepted = IntrinsicsKt.intercepted(continuation);
             Result.Companion companion = Result.Companion;
-            DispatchedContinuationKt.resumeCancellableWith$default(intercepted, Result.m216constructorimpl(Unit.INSTANCE), null, 2, null);
+            DispatchedContinuationKt.resumeCancellableWith$default(intercepted, Result.m211constructorimpl(Unit.INSTANCE), null, 2, null);
         } catch (Throwable th) {
             dispatcherFailure(continuation2, th);
         }
@@ -39,7 +39,7 @@ public abstract class CancellableKt {
 
     private static final void dispatcherFailure(Continuation continuation, Throwable th) {
         Result.Companion companion = Result.Companion;
-        continuation.resumeWith(Result.m216constructorimpl(ResultKt.createFailure(th)));
+        continuation.resumeWith(Result.m211constructorimpl(ResultKt.createFailure(th)));
         throw th;
     }
 }

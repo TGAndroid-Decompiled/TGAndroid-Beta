@@ -54,6 +54,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import j$.util.Objects;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -73,7 +74,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -7627,47 +7627,66 @@ public abstract class Theme {
         }
     }
 
-    public static void setSelectorDrawableColor(Drawable drawable, int i, boolean z) {
+    public static boolean setSelectorDrawableColor(Drawable drawable, int i, boolean z) {
         Drawable stateDrawable;
+        boolean z2;
         if (drawable instanceof StateListDrawable) {
             try {
                 if (z) {
                     Drawable stateDrawable2 = getStateDrawable(drawable, 0);
                     if (stateDrawable2 instanceof ShapeDrawable) {
-                        ((ShapeDrawable) stateDrawable2).getPaint().setColor(i);
+                        z2 = ((ShapeDrawable) stateDrawable2).getPaint().getColor() != i;
+                        try {
+                            ((ShapeDrawable) stateDrawable2).getPaint().setColor(i);
+                        } catch (Throwable unused) {
+                        }
                     } else {
                         stateDrawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                        z2 = false;
                     }
                     stateDrawable = getStateDrawable(drawable, 1);
                 } else {
                     stateDrawable = getStateDrawable(drawable, 2);
+                    z2 = false;
                 }
                 if (stateDrawable instanceof ShapeDrawable) {
-                    ((ShapeDrawable) stateDrawable).getPaint().setColor(i);
-                    return;
+                    if (((ShapeDrawable) stateDrawable).getPaint().getColor() == i && !z2) {
+                        r1 = false;
+                    }
+                    try {
+                        ((ShapeDrawable) stateDrawable).getPaint().setColor(i);
+                    } catch (Throwable unused2) {
+                    }
                 } else {
                     stateDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                    return;
+                    return z2;
                 }
-            } catch (Throwable unused) {
-                return;
+            } catch (Throwable unused3) {
+                return false;
             }
-        }
-        if (drawable instanceof RippleDrawable) {
+        } else {
+            if (!(drawable instanceof RippleDrawable)) {
+                return false;
+            }
             RippleDrawable rippleDrawable = (RippleDrawable) drawable;
             if (z) {
                 rippleDrawable.setColor(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}));
-                return;
+                return false;
             }
-            if (rippleDrawable.getNumberOfLayers() > 0) {
-                Drawable drawable2 = rippleDrawable.getDrawable(0);
-                if (drawable2 instanceof ShapeDrawable) {
-                    ((ShapeDrawable) drawable2).getPaint().setColor(i);
-                } else {
-                    drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-                }
+            if (rippleDrawable.getNumberOfLayers() <= 0) {
+                return false;
+            }
+            Drawable drawable2 = rippleDrawable.getDrawable(0);
+            if (drawable2 instanceof ShapeDrawable) {
+                ShapeDrawable shapeDrawable = (ShapeDrawable) drawable2;
+                r1 = shapeDrawable.getPaint().getColor() != i;
+                shapeDrawable.getPaint().setColor(i);
+            } else {
+                drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                return false;
             }
         }
+        return r1;
     }
 
     public static boolean isThemeWallpaperPublic() {

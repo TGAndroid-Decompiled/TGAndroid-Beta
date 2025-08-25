@@ -22,8 +22,9 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import androidx.core.graphics.ColorUtils;
+import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
-import j$.util.function.Consumer;
+import j$.util.function.Consumer$CC;
 import j$.util.stream.Stream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,7 +42,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.zip.GZIPInputStream;
 import org.telegram.DispatchQueuePriority;
 import org.telegram.messenger.FileLoader;
@@ -1474,13 +1475,12 @@ public class ImageLoader {
                     try {
                         m.forEach(new Consumer() {
                             @Override
-                            public final void r(Object obj) {
+                            public final void p(Object obj) {
                                 ImageLoader.lambda$moveDirectory$2(file2, (java.nio.file.Path) obj);
                             }
 
-                            @Override
                             public Consumer andThen(Consumer consumer) {
-                                return Consumer.CC.$default$andThen(this, consumer);
+                                return Consumer$CC.$default$andThen(this, consumer);
                             }
                         });
                         m.close();

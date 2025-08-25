@@ -374,7 +374,7 @@ public class PostsSearchContainer extends FrameLayout {
             public final void run() {
                 PostsSearchContainer.this.lambda$load$1();
             }
-        }).show();
+        }, 0L).show();
     }
 
     public void lambda$load$1() {

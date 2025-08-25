@@ -30,13 +30,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.graphics.ColorUtils;
 import com.google.zxing.common.detector.MathUtils;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -68,6 +69,7 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.BatchParticlesDrawHelper;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -517,7 +519,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             }
         };
         if (starsController.balanceAvailable() && starsController.getBalance().amount < value) {
-            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable).show();
+            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable, 0L).show();
         } else {
             runnable.run();
         }
@@ -1377,6 +1379,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
     public static class Particles {
         public final Bitmap b;
         private int bPaintColor;
+        private final BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
+        private final Paint batchParticlesPaint;
         private long lastTime;
         public final ArrayList particles;
         public final int type;
@@ -1418,6 +1422,15 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             Paint paint = new Paint();
             paint.setColor(Theme.multAlpha(-1, 0.75f));
             canvas.drawPath(path, paint);
+            if (BatchParticlesDrawHelper.isAvailable()) {
+                BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer = new BatchParticlesDrawHelper.BatchParticlesBuffer(i2);
+                this.batchParticlesBuffer = batchParticlesBuffer;
+                batchParticlesBuffer.fillParticleTextureCords(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
+                this.batchParticlesPaint = BatchParticlesDrawHelper.createBatchParticlesPaint(createBitmap);
+                return;
+            }
+            this.batchParticlesBuffer = null;
+            this.batchParticlesPaint = null;
         }
 
         public void setVisible(float f) {
@@ -1475,14 +1488,36 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
 
         public void draw(Canvas canvas, int i) {
-            if (this.bPaintColor != i) {
-                Paint paint = this.bPaint;
-                this.bPaintColor = i;
-                paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-            }
-            for (int i2 = 0; i2 < Math.min(this.visibleCount, this.particles.size()); i2++) {
-                Particle particle = (Particle) this.particles.get(i2);
-                particle.draw(canvas, i, particle.la);
+            draw(canvas, i, 1.0f);
+        }
+
+        public void draw(Canvas canvas, int i, float f) {
+            int min = Math.min(this.visibleCount, this.particles.size());
+            if (this.batchParticlesBuffer != null) {
+                float width = this.b.getWidth();
+                float height = this.b.getHeight();
+                for (int i2 = 0; i2 < min; i2++) {
+                    Particle particle = (Particle) this.particles.get(i2);
+                    float f2 = particle.a * particle.s * f;
+                    float f3 = (width / 2.0f) * f2;
+                    float f4 = (height / 2.0f) * f2;
+                    BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer = this.batchParticlesBuffer;
+                    float f5 = particle.x;
+                    float f6 = particle.y;
+                    batchParticlesBuffer.setParticleVertexCords(i2, f5 - f3, f6 - f4, f5 + f3, f6 + f4);
+                    this.batchParticlesBuffer.setParticleColor(i2, ColorUtils.setAlphaComponent(i, (int) (particle.la * 255.0f * f)));
+                }
+                BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, min, this.batchParticlesPaint);
+            } else {
+                if (this.bPaintColor != i) {
+                    Paint paint = this.bPaint;
+                    this.bPaintColor = i;
+                    paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+                }
+                for (int i3 = 0; i3 < min; i3++) {
+                    Particle particle2 = (Particle) this.particles.get(i3);
+                    particle2.draw(canvas, i, particle2.la * f);
+                }
             }
             this.firstDraw = false;
         }

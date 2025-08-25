@@ -16,7 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import com.microsoft.appcenter.distribute.Distribute$$ExternalSyntheticApiModelOutline0;
 import com.microsoft.appcenter.distribute.Distribute$$ExternalSyntheticApiModelOutline1;
-import j$.util.function.Consumer;
+import j$.util.function.Consumer$CC;
 import j$.util.stream.Stream;
 import java.io.File;
 import java.nio.file.CopyOption;
@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import org.telegram.messenger.FilesMigrationService;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -134,13 +135,12 @@ public class FilesMigrationService extends Service {
                     try {
                         convert.forEach(new Consumer() {
                             @Override
-                            public final void r(Object obj) {
+                            public final void p(Object obj) {
                                 FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
                             }
 
-                            @Override
                             public Consumer andThen(Consumer consumer) {
-                                return Consumer.CC.$default$andThen(this, consumer);
+                                return Consumer$CC.$default$andThen(this, consumer);
                             }
                         });
                         convert.close();

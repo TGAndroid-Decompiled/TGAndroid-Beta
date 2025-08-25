@@ -13,12 +13,12 @@ import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
-import java.util.Objects;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
@@ -1221,6 +1221,10 @@ public class AnimatedEmojiDrawable extends Drawable {
 
         public boolean isEmpty() {
             return this.drawables[0] == null;
+        }
+
+        public boolean isStable() {
+            return this.drawables[0] != null && this.changeProgress.get() == 1.0f;
         }
 
         public boolean set(long j, int i, boolean z) {

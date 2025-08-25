@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 
-import j$.util.function.Function;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
 import org.telegram.messenger.MessageObject;
 
 public final class DeleteMessagesBottomSheet$$ExternalSyntheticLambda8 implements Function {
-    @Override
     public Function andThen(Function function) {
-        return Function.CC.$default$andThen(this, function);
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
@@ -14,8 +14,7 @@ public final class DeleteMessagesBottomSheet$$ExternalSyntheticLambda8 implement
         return Integer.valueOf(((MessageObject) obj).getId());
     }
 
-    @Override
     public Function compose(Function function) {
-        return Function.CC.$default$compose(this, function);
+        return Function$CC.$default$compose(this, function);
     }
 }

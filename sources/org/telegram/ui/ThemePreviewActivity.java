@@ -1114,7 +1114,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 ImageLocation forDocument = ImageLocation.getForDocument(tL_wallPaper.document);
                 String str = this.imageFilter;
                 TLRPC.TL_wallPaper tL_wallPaper2 = this.selectedPattern;
-                backgroundView.setImage(forDocument, str, null, null, "jpg", tL_wallPaper2.document.size, 1, tL_wallPaper2);
+                backgroundView.setImage(forDocument, str, (ImageLocation) null, (String) null, "jpg", tL_wallPaper2.document.size, 1, tL_wallPaper2);
             }
             this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, false);
             float f = this.previousIntensity;
@@ -3204,7 +3204,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         ImageLocation forDocument = ImageLocation.getForDocument(tL_wallPaper2.document);
                         String str = this.imageFilter;
                         TLRPC.TL_wallPaper tL_wallPaper3 = this.selectedPattern;
-                        backgroundView.setImage(forDocument, str, null, null, "jpg", tL_wallPaper3.document.size, 1, tL_wallPaper3);
+                        backgroundView.setImage(forDocument, str, (ImageLocation) null, (String) null, "jpg", tL_wallPaper3.document.size, 1, tL_wallPaper3);
                     } else if ("d".equals(colorWallpaper.slug)) {
                         Point point = AndroidUtilities.displaySize;
                         int min = Math.min(point.x, point.y);
@@ -3323,7 +3323,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         ImageLocation forDocument2 = ImageLocation.getForDocument(tL_wallPaper4.document);
                         String str2 = this.imageFilter;
                         TLRPC.TL_wallPaper tL_wallPaper5 = this.selectedPattern;
-                        backgroundView3.setImage(forDocument2, str2, null, null, "jpg", tL_wallPaper5.document.size, 1, tL_wallPaper5);
+                        backgroundView3.setImage(forDocument2, str2, (ImageLocation) null, (String) null, "jpg", tL_wallPaper5.document.size, 1, tL_wallPaper5);
                     }
                 } else {
                     Drawable cachedWallpaperNonBlocking = Theme.getCachedWallpaperNonBlocking();

@@ -102,7 +102,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo1177getWindowView();
+        SheetView mo1174getWindowView();
 
         boolean hadDialog();
 
@@ -515,10 +515,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
     }
 
     public static void lambda$dismissSheet$3(Sheet sheet) {
-        if (sheet == null || sheet.mo1177getWindowView() == null) {
+        if (sheet == null || sheet.mo1174getWindowView() == null) {
             return;
         }
-        sheet.mo1177getWindowView().setDrawingFromOverlay(true);
+        sheet.mo1174getWindowView().setDrawingFromOverlay(true);
     }
 
     public void lambda$dismissSheet$4(ValueAnimator valueAnimator) {
@@ -563,7 +563,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
                 canvas.translate(0.0f, -this.val$tab.viewScroll);
                 view.draw(canvas);
             }
-            this.val$sheet.mo1177getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo1174getWindowView().setDrawingFromOverlay(false);
             this.val$sheet.release();
             BottomSheetTabsOverlay.this.dismissingSheet = null;
             BottomSheetTabsOverlay.this.invalidate();
@@ -571,7 +571,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         public static void lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData webTabData, Sheet sheet, Bitmap bitmap) {
             webTabData.previewBitmap = bitmap;
-            sheet.mo1177getWindowView().setDrawingFromOverlay(false);
+            sheet.mo1174getWindowView().setDrawingFromOverlay(false);
             sheet.release();
         }
     }
@@ -740,10 +740,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             int i = this.pos[0];
             int[] iArr = this.pos2;
             rectF.offset(i - iArr[0], r1[1] - iArr[1]);
-            SheetView mo1177getWindowView = this.dismissingSheet.mo1177getWindowView();
+            SheetView mo1174getWindowView = this.dismissingSheet.mo1174getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float drawInto = mo1177getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float drawInto = mo1174getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, drawInto, drawInto, Path.Direction.CW);

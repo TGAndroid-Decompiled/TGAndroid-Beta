@@ -164,9 +164,9 @@ public abstract class WallpaperCell extends FrameLayout {
                     this.imageView.getImageReceiver().setColorFilter(new PorterDuffColorFilter(AndroidUtilities.getPatternColor(patternColor2), PorterDuff.Mode.SRC_IN));
                 }
                 if (photoSize != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(photoSize, tL_wallPaper.document), str, ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_wallPaper.document), null, "jpg", j, 1, tL_wallPaper);
+                    this.imageView.setImage(ImageLocation.getForDocument(photoSize, tL_wallPaper.document), str, ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_wallPaper.document), (String) null, "jpg", j, 1, tL_wallPaper);
                 } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_wallPaper.document), str, null, null, "jpg", j, 1, tL_wallPaper);
+                    this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tL_wallPaper.document), str, (ImageLocation) null, (String) null, "jpg", j, 1, tL_wallPaper);
                 }
                 this.imageView.getImageReceiver().setAlpha(Math.abs(tL_wallPaper.settings.intensity) / 100.0f);
                 return;
@@ -204,7 +204,7 @@ public abstract class WallpaperCell extends FrameLayout {
                         return;
                     }
                     TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(colorWallpaper.pattern.document.thumbs, 100);
-                    this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize3, colorWallpaper.pattern.document), str, null, null, "jpg", closestPhotoSizeWithSize3 != null ? closestPhotoSizeWithSize3.size : colorWallpaper.pattern.document.size, 1, colorWallpaper.pattern);
+                    this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize3, colorWallpaper.pattern.document), str, (ImageLocation) null, (String) null, "jpg", closestPhotoSizeWithSize3 != null ? closestPhotoSizeWithSize3.size : colorWallpaper.pattern.document.size, 1, colorWallpaper.pattern);
                     this.imageView.getImageReceiver().setAlpha(Math.abs(colorWallpaper.intensity));
                     if (Build.VERSION.SDK_INT < 29 || colorWallpaper.gradientColor2 == 0) {
                         this.imageView.getImageReceiver().setColorFilter(new PorterDuffColorFilter(AndroidUtilities.getPatternColor(patternColor), PorterDuff.Mode.SRC_IN));

@@ -174,7 +174,7 @@ public class StarReactionsOverlay extends View {
                 public final void run() {
                     StarReactionsOverlay.this.lambda$checkBalance$2(starsController, messageObject, pendingPaidReactions);
                 }
-            }).show();
+            }, 0L).show();
         }
     }
 

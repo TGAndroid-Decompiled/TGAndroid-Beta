@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -778,7 +779,7 @@ public class PeerConnection {
         }
         List<RtpSender> nativeGetSenders = nativeGetSenders();
         this.senders = nativeGetSenders;
-        return Collections.unmodifiableList(nativeGetSenders);
+        return DesugarCollections.unmodifiableList(nativeGetSenders);
     }
 
     public List<RtpReceiver> getReceivers() {
@@ -788,7 +789,7 @@ public class PeerConnection {
         }
         List<RtpReceiver> nativeGetReceivers = nativeGetReceivers();
         this.receivers = nativeGetReceivers;
-        return Collections.unmodifiableList(nativeGetReceivers);
+        return DesugarCollections.unmodifiableList(nativeGetReceivers);
     }
 
     public List<RtpTransceiver> getTransceivers() {
@@ -798,7 +799,7 @@ public class PeerConnection {
         }
         List<RtpTransceiver> nativeGetTransceivers = nativeGetTransceivers();
         this.transceivers = nativeGetTransceivers;
-        return Collections.unmodifiableList(nativeGetTransceivers);
+        return DesugarCollections.unmodifiableList(nativeGetTransceivers);
     }
 
     public RtpSender addTrack(MediaStreamTrack mediaStreamTrack) {

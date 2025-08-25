@@ -11,7 +11,8 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 import j$.util.Comparator$CC;
-import j$.util.function.Function;
+import j$.util.Objects;
+import j$.util.function.Function$CC;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,8 +23,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -389,9 +390,8 @@ public class TranslateController extends BaseController {
             });
         } else {
             Collections.sort(arrayList, Comparator$CC.comparing(new Function() {
-                @Override
                 public Function andThen(Function function) {
-                    return Function.CC.$default$andThen(this, function);
+                    return Function$CC.$default$andThen(this, function);
                 }
 
                 @Override
@@ -401,9 +401,8 @@ public class TranslateController extends BaseController {
                     return str3;
                 }
 
-                @Override
                 public Function compose(Function function) {
-                    return Function.CC.$default$compose(this, function);
+                    return Function$CC.$default$compose(this, function);
                 }
             }));
         }

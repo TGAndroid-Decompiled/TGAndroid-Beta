@@ -21,11 +21,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChannelBoostsController;
@@ -201,11 +201,21 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     };
                     BoostsActivity.this.boostsTabs.setDelegate(new ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate() {
                         @Override
+                        public boolean canReorder(int i3) {
+                            return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$canReorder(this, i3);
+                        }
+
+                        @Override
                         public void onPageScrolled(float f) {
                         }
 
                         @Override
                         public void onSamePageSelected() {
+                        }
+
+                        @Override
+                        public boolean showOptions(int i3, View view2) {
+                            return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$showOptions(this, i3, view2);
                         }
 
                         @Override

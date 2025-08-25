@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import androidx.collection.LongSparseArray;
-import j$.util.function.Consumer;
+import j$.util.function.Consumer$CC;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
@@ -96,13 +97,12 @@ public class TopicsController extends BaseController {
         if (z) {
             getMessagesStorage().loadTopics(-j, new Consumer() {
                 @Override
-                public final void r(Object obj) {
+                public final void p(Object obj) {
                     TopicsController.this.lambda$loadTopics$1(j, z, i, (ArrayList) obj);
                 }
 
-                @Override
                 public Consumer andThen(Consumer consumer) {
-                    return Consumer.CC.$default$andThen(this, consumer);
+                    return Consumer$CC.$default$andThen(this, consumer);
                 }
             });
             return;
@@ -1220,13 +1220,12 @@ public class TopicsController extends BaseController {
     public void loadTopic(final long j, final long j2, final Runnable runnable) {
         getMessagesStorage().loadTopics(-j, new Consumer() {
             @Override
-            public final void r(Object obj) {
+            public final void p(Object obj) {
                 TopicsController.this.lambda$loadTopic$28(j, j2, runnable, (ArrayList) obj);
             }
 
-            @Override
             public Consumer andThen(Consumer consumer) {
-                return Consumer.CC.$default$andThen(this, consumer);
+                return Consumer$CC.$default$andThen(this, consumer);
             }
         });
     }

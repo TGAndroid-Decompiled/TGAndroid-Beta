@@ -6249,6 +6249,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     str = LocaleController.getString(R.string.OpenChannelPost);
                 } else if (i == 1) {
                     str = LocaleController.getString(R.string.OpenChannel);
+                } else if (i == 29) {
+                    str = LocaleController.getString(R.string.OpenChannelDirect);
                 } else if (i == 13) {
                     str = LocaleController.getString(R.string.SendMessage).toUpperCase();
                 } else if (i == 32) {
@@ -6305,7 +6307,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 } else if (i == 27) {
                     str = LocaleController.getString(R.string.JoinCall).toUpperCase();
                 } else if (i == 28) {
-                    str = "VIEW COLLECTION";
+                    str = LocaleController.getString(R.string.ViewCollection);
                 } else {
                     str = LocaleController.getString(R.string.InstantView);
                 }

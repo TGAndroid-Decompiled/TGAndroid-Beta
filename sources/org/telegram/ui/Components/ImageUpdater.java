@@ -12,10 +12,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
 import androidx.core.content.FileProvider;
+import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
@@ -983,7 +983,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
             photoCropActivity.setDelegate(this);
-            launchActivity.lambda$runLinkRequest$94(photoCropActivity);
+            launchActivity.lambda$runLinkRequest$95(photoCropActivity);
         } catch (Exception e) {
             FileLog.e(e);
             processBitmap(false, ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);

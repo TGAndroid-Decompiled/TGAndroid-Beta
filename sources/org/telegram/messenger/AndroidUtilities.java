@@ -2863,7 +2863,7 @@ public class AndroidUtilities {
     public static int getPhotoSize(boolean z) {
         if (z) {
             if (highQualityPhotoSize == null) {
-                highQualityPhotoSize = 2048;
+                highQualityPhotoSize = 2560;
             }
             return highQualityPhotoSize.intValue();
         }
@@ -5972,5 +5972,12 @@ public class AndroidUtilities {
     public static void logFlagSecure() {
         FileLog.d("[FLAG_SECURE]");
         printStackTrace("FLAG_SECURE");
+    }
+
+    public static <T> T randomOf(ArrayList<T> arrayList) {
+        if (arrayList.isEmpty()) {
+            return null;
+        }
+        return arrayList.get(Math.abs(Utilities.fastRandom.nextInt() % arrayList.size()));
     }
 }

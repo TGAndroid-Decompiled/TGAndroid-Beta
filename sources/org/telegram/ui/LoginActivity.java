@@ -87,7 +87,8 @@ import com.google.android.play.core.integrity.IntegrityManagerFactory;
 import com.google.android.play.core.integrity.IntegrityTokenRequest;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import j$.util.Comparator$CC;
-import j$.util.function.Function;
+import j$.util.Objects;
+import j$.util.function.Function$CC;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -99,10 +100,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.PhoneFormat.PhoneFormat;
@@ -2279,9 +2280,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 FileLog.e(e);
             }
             Collections.sort(this.countriesArray, Comparator$CC.comparing(new Function() {
-                @Override
                 public Function andThen(Function function) {
-                    return Function.CC.$default$andThen(this, function);
+                    return Function$CC.$default$andThen(this, function);
                 }
 
                 @Override
@@ -2291,9 +2291,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     return str3;
                 }
 
-                @Override
                 public Function compose(Function function) {
-                    return Function.CC.$default$compose(this, function);
+                    return Function$CC.$default$compose(this, function);
                 }
             }));
             try {

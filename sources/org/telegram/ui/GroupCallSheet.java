@@ -7,11 +7,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import j$.util.Collection;
-import j$.util.function.Function;
-import j$.util.function.Predicate;
+import j$.util.function.Function$CC;
+import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -118,9 +120,8 @@ public abstract class GroupCallSheet {
         makeLinkTextView.setGravity(17);
         linearLayout.addView(makeLinkTextView, LayoutHelper.createLinear(-1, -2, 1, 2, 0, 2, 4));
         List list = (List) Collection.EL.stream(arrayList).map(new Function() {
-            @Override
             public Function andThen(Function function) {
-                return Function.CC.$default$andThen(this, function);
+                return Function$CC.$default$andThen(this, function);
             }
 
             @Override
@@ -130,24 +131,20 @@ public abstract class GroupCallSheet {
                 return lambda$show$3;
             }
 
-            @Override
             public Function compose(Function function) {
-                return Function.CC.$default$compose(this, function);
+                return Function$CC.$default$compose(this, function);
             }
         }).filter(new Predicate() {
-            @Override
             public Predicate and(Predicate predicate) {
-                return Predicate.CC.$default$and(this, predicate);
+                return Predicate$CC.$default$and(this, predicate);
             }
 
-            @Override
             public Predicate negate() {
-                return Predicate.CC.$default$negate(this);
+                return Predicate$CC.$default$negate(this);
             }
 
-            @Override
             public Predicate or(Predicate predicate) {
-                return Predicate.CC.$default$or(this, predicate);
+                return Predicate$CC.$default$or(this, predicate);
             }
 
             @Override

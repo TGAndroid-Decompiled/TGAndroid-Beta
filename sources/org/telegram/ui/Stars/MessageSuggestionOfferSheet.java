@@ -365,7 +365,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
             AmountUtils$Amount amountUtils$Amount = this.inputAmount;
             AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
             if (amountUtils$Currency == AmountUtils$Currency.STARS) {
-                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(i, j, true), null).show();
+                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, amountUtils$Amount.asDecimal(), 13, ForumUtilities.getMonoForumTitle(i, j, true), null, j).show();
                 return;
             } else {
                 if (amountUtils$Currency == AmountUtils$Currency.TON) {
