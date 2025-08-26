@@ -2538,7 +2538,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 userName = Emoji.replaceEmoji(userName, null, false);
             } catch (Exception unused) {
             }
-            this.titleView.setText(((Object) userName) + "jkflsjlsjfkjflkslfslflksl");
+            this.titleView.setText(userName);
             this.botVerificationEmoji.set(botVerificationIcon, false);
             this.titleView.setLeftDrawable(this.botVerificationEmoji);
             this.statusEmoji.set(j2, false);
