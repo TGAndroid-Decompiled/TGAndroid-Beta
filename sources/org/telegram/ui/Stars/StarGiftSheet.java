@@ -2743,7 +2743,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         private void updateWearImageTranslation() {
             this.wearImageScale = AndroidUtilities.dpf2(33.33f) / AndroidUtilities.dpf2(160.0f);
             this.wearImageTx = ((((-this.imageLayout.getLeft()) + this.titleView[2].getX()) + ((this.titleView[2].getWidth() + Math.min(this.titleView[2].getPaint().measureText(this.titleView[2].getText().toString()), this.titleView[2].getWidth())) / 2.0f)) + AndroidUtilities.dp(24.0f)) - (AndroidUtilities.dp(126.67f) / 2.0f);
-            this.wearImageTy = ((-this.imageLayout.getTop()) + AndroidUtilities.dp(120.0f)) - (AndroidUtilities.dp(126.67f) / 2.0f);
+            this.wearImageTy = ((-this.imageLayout.getTop()) + AndroidUtilities.dp(124.0f)) - (AndroidUtilities.dp(126.67f) / 2.0f);
         }
 
         public void lambda$new$2() {

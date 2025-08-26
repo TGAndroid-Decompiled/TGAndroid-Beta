@@ -2471,7 +2471,6 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             super(context);
             CharSequence userName;
             long botVerificationIcon;
-            long emojiStatusDocumentId;
             ImageReceiver imageReceiver = new ImageReceiver(this);
             this.imageReceiver = imageReceiver;
             AvatarDrawable avatarDrawable = new AvatarDrawable();
@@ -2483,6 +2482,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.currentAccount = i;
             this.dialogId = j;
             this.resourcesProvider = resourcesProvider;
+            long j2 = 0;
             boolean z = j < 0;
             this.isChannel = z;
             SimpleTextView simpleTextView = new SimpleTextView(context) {
@@ -2506,16 +2506,14 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             simpleTextView.setTextColor(-1);
             simpleTextView.setTextSize(20);
             simpleTextView.setTypeface(AndroidUtilities.bold());
-            simpleTextView.setScrollNonFitText(true);
-            simpleTextView.setGravity(1);
-            addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 81, 16.0f, 0.0f, 16.0f, 40.33f));
+            simpleTextView.setWidthWrapContent(true);
+            addView(simpleTextView, LayoutHelper.createFrame(-2, -2.0f, 81, 16.0f, 0.0f, 16.0f, 40.33f));
             SimpleTextView simpleTextView2 = new SimpleTextView(context);
             this.subtitleView = simpleTextView2;
             simpleTextView2.setTextSize(14);
             simpleTextView2.setTextColor(-2130706433);
-            simpleTextView2.setScrollNonFitText(true);
             simpleTextView2.setGravity(1);
-            addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 81, 16.0f, 0.0f, 16.0f, 20.66f));
+            addView(simpleTextView2, LayoutHelper.createFrame(-2, -2.0f, 81, 16.0f, 0.0f, 16.0f, 20.66f));
             imageReceiver.setRoundRadius(AndroidUtilities.dp(96.0f));
             if (z) {
                 TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
@@ -2524,9 +2522,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 imageReceiver.setForUserOrChat(chat, avatarDrawable);
                 botVerificationIcon = DialogObject.getBotVerificationIcon(chat);
                 if (chat != null) {
-                    emojiStatusDocumentId = DialogObject.getEmojiStatusDocumentId(chat.emoji_status);
+                    j2 = DialogObject.getEmojiStatusDocumentId(chat.emoji_status);
                 }
-                emojiStatusDocumentId = 0;
             } else {
                 TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
                 userName = UserObject.getUserName(currentUser);
@@ -2534,27 +2531,22 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 imageReceiver.setForUserOrChat(currentUser, avatarDrawable);
                 botVerificationIcon = DialogObject.getBotVerificationIcon(currentUser);
                 if (currentUser != null) {
-                    emojiStatusDocumentId = DialogObject.getEmojiStatusDocumentId(currentUser.emoji_status);
+                    j2 = DialogObject.getEmojiStatusDocumentId(currentUser.emoji_status);
                 }
-                emojiStatusDocumentId = 0;
             }
             try {
                 userName = Emoji.replaceEmoji(userName, null, false);
             } catch (Exception unused) {
             }
-            this.titleView.setText(userName);
-            if (botVerificationIcon != 0) {
-                this.botVerificationEmoji.set(botVerificationIcon, false);
-                this.titleView.setLeftDrawable(this.botVerificationEmoji);
-            }
-            if (emojiStatusDocumentId != 0) {
-                this.statusEmoji.set(emojiStatusDocumentId, false);
-                this.titleView.setRightDrawable(this.statusEmoji);
-            }
+            this.titleView.setText(((Object) userName) + "jkflsjlsjfkjflkslfslflksl");
+            this.botVerificationEmoji.set(botVerificationIcon, false);
+            this.titleView.setLeftDrawable(this.botVerificationEmoji);
+            this.statusEmoji.set(j2, false);
+            this.titleView.setRightDrawable(this.statusEmoji);
             if (this.isChannel) {
-                long j2 = -j;
-                TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(j2));
-                TLRPC.ChatFull chatFull = MessagesController.getInstance(i).getChatFull(j2);
+                long j3 = -j;
+                TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(j3));
+                TLRPC.ChatFull chatFull = MessagesController.getInstance(i).getChatFull(j3);
                 if (chatFull != null && chatFull.participants_count > 0) {
                     if (ChatObject.isChannelAndNotMegaGroup(chat2)) {
                         this.subtitleView.setText(LocaleController.formatPluralStringComma("Subscribers", chatFull.participants_count));

@@ -9440,13 +9440,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             addView(frameLayout, LayoutHelper.createLinear(-1, 200));
             StarParticlesView starParticlesView = new StarParticlesView(context) {
                 @Override
-                protected void onMeasure(int i, int i2) {
+                public void onMeasure(int i, int i2) {
                     super.onMeasure(i, i2);
                     this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                 }
 
                 @Override
-                protected void configure() {
+                public void configure() {
                     StarParticlesView.Drawable drawable = this.drawable;
                     drawable.useGradient = true;
                     drawable.useBlur = false;
@@ -9467,13 +9467,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             frameLayout.addView(starParticlesView, LayoutHelper.createFrame(-1, 200, 119));
             GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 1) {
                 @Override
-                protected void onAttachedToWindow() {
+                public void onAttachedToWindow() {
                     super.onAttachedToWindow();
                     setPaused(false);
                 }
 
                 @Override
-                protected void onDetachedFromWindow() {
+                public void onDetachedFromWindow() {
                     super.onDetachedFromWindow();
                     setPaused(true);
                 }
