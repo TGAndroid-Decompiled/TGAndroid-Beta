@@ -161,7 +161,7 @@ public class ProfileActionsView extends View {
         }
         float f = this.padding;
         float f2 = ((measuredWidth - ((f / 2.0f) * (r4 - 1))) - (f * 2.0f)) / this.activeCount;
-        RadialGradient radialGradient = new RadialGradient(f2 / 2.0f, this.targetHeight / 2.0f, this.hasColorById ? f2 * 0.65f : 1.0f, 671088640, this.color, Shader.TileMode.CLAMP);
+        RadialGradient radialGradient = new RadialGradient(f2 / 2.0f, this.targetHeight / 2.0f, this.hasColorById ? f2 * 0.65f : 1.0f, Theme.multAlpha(this.color, 0.8f), this.color, Shader.TileMode.CLAMP);
         this.radialGradient = radialGradient;
         this.shaderPaint.setShader(radialGradient);
     }
@@ -245,14 +245,15 @@ public class ProfileActionsView extends View {
                     rectF3.set(action4.rect);
                     rectF3.inset((action4.rect.width() / 2.0f) * (1.0f - action4.getScale()), (action4.rect.height() / 2.0f) * (1.0f - action4.getScale()));
                     int alpha = this.paint.getAlpha();
-                    int alpha2 = (int) (action4.getAlpha() * clamp012 * alpha);
-                    this.paint.setAlpha((int) (alpha2 * (this.radialGradient != null ? 0.1f : 1.0f)));
+                    this.paint.setAlpha((int) (((int) (action4.getAlpha() * clamp012 * alpha)) * (this.radialGradient != null ? 0.1f : 1.0f)));
                     canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.paint);
                     if (this.radialGradient != null) {
-                        this.shaderPaint.setAlpha(alpha2);
+                        int alpha2 = this.shaderPaint.getAlpha();
+                        this.shaderPaint.setAlpha((int) (action4.getAlpha() * clamp012 * alpha2));
                         this.matrix.setTranslate(rectF3.left, rectF3.top);
                         this.radialGradient.setLocalMatrix(this.matrix);
                         canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.shaderPaint);
+                        this.shaderPaint.setAlpha(alpha2);
                     }
                     this.paint.setAlpha(alpha);
                 }
@@ -441,21 +442,26 @@ public class ProfileActionsView extends View {
                     action4.isLoading = true;
                     invalidate();
                 }
+                Action action5 = this.hit;
+                int i2 = action5.supportsAnimate;
+                if (i2 != 0) {
+                    action5.updateDrawable(true, i2);
+                }
                 this.hit.startTime = System.currentTimeMillis();
-                final Action action5 = this.hit;
+                final Action action6 = this.hit;
                 OnActionClickListener onActionClickListener = this.onActionClickListener;
                 if (onActionClickListener != null) {
-                    if (action5.callDelay == 0) {
-                        int i2 = action5.key;
-                        RectF rectF = action5.rect;
-                        onActionClickListener.onClick(i2, rectF.left, rectF.top);
+                    if (action6.callDelay == 0) {
+                        int i3 = action6.key;
+                        RectF rectF = action6.rect;
+                        onActionClickListener.onClick(i3, rectF.left, rectF.top);
                     } else {
                         postDelayed(new Runnable() {
                             @Override
                             public final void run() {
-                                ProfileActionsView.this.lambda$onTouchEvent$0(action5);
+                                ProfileActionsView.this.lambda$onTouchEvent$0(action6);
                             }
-                        }, action5.callDelay);
+                        }, action6.callDelay);
                     }
                 }
             }
@@ -774,16 +780,19 @@ public class ProfileActionsView extends View {
             case 9:
                 find = new Action(this, R.drawable.leave, R.string.ProfileActionsLeave);
                 find.supportsLoading = true;
+                find.supportsAnimate = R.raw.profile_leave;
                 find.stopDelay = 300;
                 break;
             case 10:
                 find = new Action(this, R.drawable.live_stream, R.string.ProfileActionsVoiceChat);
                 find.supportsLoading = true;
+                find.supportsAnimate = R.raw.profile_voicechat;
                 find.stopDelay = 500;
                 break;
             case 11:
                 find = new Action(this, R.drawable.live_stream, R.string.ProfileActionsLiveStream);
                 find.supportsLoading = true;
+                find.supportsAnimate = R.raw.profile_voicechat;
                 find.stopDelay = 500;
                 break;
             case 12:
@@ -884,6 +893,7 @@ public class ProfileActionsView extends View {
         final RectF rect;
         long startTime;
         int stopDelay;
+        int supportsAnimate;
         boolean supportsLoading;
         private Text text;
         private float textScale;
@@ -982,16 +992,20 @@ public class ProfileActionsView extends View {
             this.positionFraction.set(0.0f, true);
         }
 
-        public void update(boolean z, int i, int i2) {
+        public void updateDrawable(boolean z, int i) {
             if (z) {
                 RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
                 rLottieDrawable.setMasterParent(ProfileActionsView.this);
                 rLottieDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 rLottieDrawable.start();
                 this.drawable = rLottieDrawable;
-            } else {
-                this.drawable = ProfileActionsView.this.getResources().getDrawable(i).mutate();
+                return;
             }
+            this.drawable = ProfileActionsView.this.getResources().getDrawable(i).mutate();
+        }
+
+        public void update(boolean z, int i, int i2) {
+            updateDrawable(z, i);
             setText(LocaleController.getString(i2));
         }
 

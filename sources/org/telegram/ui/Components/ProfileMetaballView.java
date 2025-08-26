@@ -64,6 +64,7 @@ public class ProfileMetaballView extends View {
     private final Point p2;
     private final Point p3;
     private final Point p4;
+    private final Point p5;
     private final Path path;
     private int prevOrgKey;
     private int radius;
@@ -98,6 +99,7 @@ public class ProfileMetaballView extends View {
         this.p2 = new Point();
         this.p3 = new Point();
         this.p4 = new Point();
+        this.p5 = new Point();
         this.h1 = new Point();
         this.h2 = new Point();
         this.h3 = new Point();
