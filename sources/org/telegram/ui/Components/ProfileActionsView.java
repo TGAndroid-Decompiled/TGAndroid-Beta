@@ -153,7 +153,6 @@ public class ProfileActionsView extends View {
         }
         if (!this.hasColorById) {
             this.paint.setColor(i);
-            this.paint.setAlpha(40);
             return;
         }
         int measuredWidth = getMeasuredWidth();
@@ -242,17 +241,18 @@ public class ProfileActionsView extends View {
             for (int i2 = 0; i2 < size; i2++) {
                 Action action4 = (Action) this.actions.get(i2);
                 if (!action4.isDeleted) {
+                    RectF rectF3 = AndroidUtilities.rectTmp;
+                    rectF3.set(action4.rect);
+                    rectF3.inset((action4.rect.width() / 2.0f) * (1.0f - action4.getScale()), (action4.rect.height() / 2.0f) * (1.0f - action4.getScale()));
                     int alpha = this.paint.getAlpha();
                     int alpha2 = (int) (action4.getAlpha() * clamp012 * alpha);
                     this.paint.setAlpha((int) (alpha2 * (this.radialGradient != null ? 0.1f : 1.0f)));
-                    canvas.drawRoundRect(action4.rect, roundRadius, roundRadius, this.paint);
+                    canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.paint);
                     if (this.radialGradient != null) {
                         this.shaderPaint.setAlpha(alpha2);
-                        Matrix matrix = this.matrix;
-                        RectF rectF3 = action4.rect;
-                        matrix.setTranslate(rectF3.left, rectF3.top);
+                        this.matrix.setTranslate(rectF3.left, rectF3.top);
                         this.radialGradient.setLocalMatrix(this.matrix);
-                        canvas.drawRoundRect(action4.rect, roundRadius, roundRadius, this.shaderPaint);
+                        canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.shaderPaint);
                     }
                     this.paint.setAlpha(alpha);
                 }
@@ -274,7 +274,7 @@ public class ProfileActionsView extends View {
             return;
         }
         hasDisplayList = renderNode.hasDisplayList();
-        if (hasDisplayList) {
+        if (hasDisplayList && canvas.isHardwareAccelerated()) {
             canvas.save();
             ProfileActivity.AvatarImageView avatarImageView = this.avatarView;
             if (avatarImageView != null) {
@@ -412,20 +412,15 @@ public class ProfileActionsView extends View {
                     break;
                 }
                 Action action3 = (Action) this.actions.get(i);
-                if (action3.isDeleting || !action3.rect.contains(x, y)) {
-                    i++;
-                } else {
+                if (!action3.isDeleting && action3.rect.contains(x, y)) {
                     this.hit = action3;
                     this.downX = x;
                     this.downY = y;
                     this.downTime = System.currentTimeMillis();
                     this.hit.bounce.setPressed(true);
-                    try {
-                        performHapticFeedback(3, 1);
-                        break;
-                    } catch (Exception unused) {
-                    }
+                    break;
                 }
+                i++;
             }
         } else if (action2 == 2) {
             if (this.hit != null && (Math.abs(x - this.downX) > 20.0f || Math.abs(y - this.downY) > 20.0f)) {
@@ -438,7 +433,7 @@ public class ProfileActionsView extends View {
                 if (System.currentTimeMillis() - this.downTime > 250) {
                     try {
                         performHapticFeedback(0, 1);
-                    } catch (Exception unused2) {
+                    } catch (Exception unused) {
                     }
                 }
                 Action action4 = this.hit;

@@ -2249,8 +2249,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         if (i >= playlist.size()) {
             i = 0;
         }
+        if (i <= -1) {
+            i = playlist.size() - 1;
+        }
         if (i2 <= -1) {
             i2 = playlist.size() - 1;
+        }
+        if (i2 >= playlist.size()) {
+            i2 = 0;
         }
         arrayList.add(playlist.get(i));
         if (i != i2) {
@@ -2882,7 +2888,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     ItemOptions.this.openSwipeback(makeSwipeback);
                 }
             });
-            makeOptions.getLast().setRightIcon(R.drawable.msg_arrowright);
+            if (!this.noforwards && makeOptions.getLast() != null) {
+                makeOptions.getLast().setRightIcon(R.drawable.msg_arrowright);
+            }
             makeOptions.addGap();
             makeOptions.addIf(!this.noforwards, R.drawable.msg_forward, LocaleController.getString(R.string.Forward), new Runnable() {
                 @Override

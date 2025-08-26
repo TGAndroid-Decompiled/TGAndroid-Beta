@@ -737,16 +737,18 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     }
 
     public float getPhotoVideoOptionsAlpha(float f) {
+        ProfileGiftsContainer profileGiftsContainer;
+        ProfileGiftsContainer profileGiftsContainer2;
         float f2 = 0.0f;
         if (isArchivedOnlyStoriesView()) {
             return 0.0f;
         }
         MediaPage mediaPage = this.mediaPages[1];
-        if (mediaPage != null && (mediaPage.selectedType == 0 || (((this.mediaPages[1].selectedType == 8 || isStoryAlbumPageType(this.mediaPages[1].selectedType)) && TextUtils.isEmpty(getStoriesHashtag())) || this.mediaPages[1].selectedType == 9 || this.mediaPages[1].selectedType == 11 || this.mediaPages[1].selectedType == 13 || (this.mediaPages[1].selectedType == 14 && this.giftsContainer.canFilter())))) {
+        if (mediaPage != null && (mediaPage.selectedType == 0 || (((this.mediaPages[1].selectedType == 8 || isStoryAlbumPageType(this.mediaPages[1].selectedType)) && TextUtils.isEmpty(getStoriesHashtag())) || this.mediaPages[1].selectedType == 9 || this.mediaPages[1].selectedType == 11 || this.mediaPages[1].selectedType == 13 || (this.mediaPages[1].selectedType == 14 && (profileGiftsContainer2 = this.giftsContainer) != null && profileGiftsContainer2.canFilter())))) {
             f2 = 0.0f + f;
         }
         MediaPage mediaPage2 = this.mediaPages[0];
-        return mediaPage2 != null ? (mediaPage2.selectedType == 0 || ((this.mediaPages[0].selectedType == 8 || isStoryAlbumPageType(this.mediaPages[0].selectedType)) && TextUtils.isEmpty(getStoriesHashtag())) || this.mediaPages[0].selectedType == 9 || this.mediaPages[0].selectedType == 11 || this.mediaPages[0].selectedType == 13 || (this.mediaPages[0].selectedType == 14 && this.giftsContainer.canFilter())) ? f2 + (1.0f - f) : f2 : f2;
+        return mediaPage2 != null ? (mediaPage2.selectedType == 0 || ((this.mediaPages[0].selectedType == 8 || isStoryAlbumPageType(this.mediaPages[0].selectedType)) && TextUtils.isEmpty(getStoriesHashtag())) || this.mediaPages[0].selectedType == 9 || this.mediaPages[0].selectedType == 11 || this.mediaPages[0].selectedType == 13 || (this.mediaPages[0].selectedType == 14 && (profileGiftsContainer = this.giftsContainer) != null && profileGiftsContainer.canFilter())) ? f2 + (1.0f - f) : f2 : f2;
     }
 
     public float getSearchAlpha(float f) {
@@ -3442,8 +3444,9 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     }
 
     public boolean isOptionsItemVisible() {
+        ProfileGiftsContainer profileGiftsContainer;
         int i = this.mediaPages[0].selectedType;
-        return i == 0 || isAnyStoryPageType(i) || i == 11 || i == 13 || (i == 14 && this.giftsContainer.canFilter());
+        return i == 0 || isAnyStoryPageType(i) || i == 11 || i == 13 || (i == 14 && (profileGiftsContainer = this.giftsContainer) != null && profileGiftsContainer.canFilter());
     }
 
     public int getSelectedTab() {

@@ -7370,7 +7370,6 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$openValueStats$142(AlertDialog alertDialog, TLObject tLObject, TLRPC.Document document, String str, final String str2, String str3, final long j, TLRPC.TL_error tL_error) {
-        CharSequence charSequence;
         alertDialog.dismiss();
         if (!(tLObject instanceof TL_stars.UniqueStarGiftValueInfo)) {
             if (tL_error != null) {
@@ -7404,11 +7403,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         textView2.setGravity(17);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 16, 0, 16, 19));
         if (uniqueStarGiftValueInfo.value_is_average) {
-            textView2.setText(AndroidUtilities.replaceTags("This is average sale price of **" + str2 + "** on Telegram and Fragment over the past month."));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftValueAverage, str2)));
         } else if (uniqueStarGiftValueInfo.last_sale_on_fragment) {
-            textView2.setText(AndroidUtilities.replaceTags("This is the price at which **" + str3 + "** was last sold on Fragment."));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftValueLastFragment, str3)));
         } else {
-            textView2.setText(AndroidUtilities.replaceTags("This is the price at which **" + str3 + "** was last sold on Telegram."));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftValueLastTelegram, str3)));
         }
         final FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setClipChildren(false);
@@ -7422,15 +7421,15 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         };
         TableView tableView = new TableView(getContext(), this.resourcesProvider);
         frameLayout.addView(tableView, LayoutHelper.createFrame(-1, -1, 119));
-        tableView.addRow("Initial Sale", LocaleController.formatYearMonthDay(uniqueStarGiftValueInfo.initial_sale_date, true));
-        tableView.addRow("Initial Price", StarsIntroActivity.replaceStarsWithPlain("⭐️" + uniqueStarGiftValueInfo.initial_sale_stars + " (~" + BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.initial_sale_price, uniqueStarGiftValueInfo.currency) + ")", 0.8f));
+        tableView.addRow(LocaleController.getString(R.string.GiftValueInitialSale), LocaleController.formatYearMonthDay(uniqueStarGiftValueInfo.initial_sale_date, true));
+        tableView.addRow(LocaleController.getString(R.string.GiftValueInitialPrice), StarsIntroActivity.replaceStarsWithPlain("⭐️" + uniqueStarGiftValueInfo.initial_sale_stars + " (~" + BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.initial_sale_price, uniqueStarGiftValueInfo.currency) + ")", 0.8f));
         if (TLObject.hasFlag(uniqueStarGiftValueInfo.flags, 1)) {
-            tableView.addRow("Last Sale", LocaleController.formatYearMonthDay(uniqueStarGiftValueInfo.last_sale_date, true));
+            tableView.addRow(LocaleController.getString(R.string.GiftValueLastSale), LocaleController.formatYearMonthDay(uniqueStarGiftValueInfo.last_sale_date, true));
             int round = ((int) (Math.round((uniqueStarGiftValueInfo.last_sale_price / uniqueStarGiftValueInfo.initial_sale_price) * 1000.0d) / 10)) - 100;
             if (round > 0) {
-                tableView.addRow("Last Price", BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.last_sale_price, uniqueStarGiftValueInfo.currency), "+" + LocaleController.formatNumber(round, ' ') + "%", null);
+                tableView.addRow(LocaleController.getString(R.string.GiftValueLastPrice), BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.last_sale_price, uniqueStarGiftValueInfo.currency), "+" + LocaleController.formatNumber(round, ' ') + "%", null);
             } else {
-                tableView.addRow("Last Price", BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.last_sale_price, uniqueStarGiftValueInfo.currency));
+                tableView.addRow(LocaleController.getString(R.string.GiftValueLastPrice), BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.last_sale_price, uniqueStarGiftValueInfo.currency));
             }
         }
         if (TLObject.hasFlag(uniqueStarGiftValueInfo.flags, 4)) {
@@ -7440,8 +7439,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     StarGiftSheet.lambda$openValueStats$135(Utilities.Callback2.this, r2, uniqueStarGiftValueInfo, str2);
                 }
             };
-            charSequence = "?";
-            TableRow addRow = tableView.addRow("Minimum Price", BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), charSequence, runnable);
+            TableRow addRow = tableView.addRow(LocaleController.getString(R.string.GiftValueMinPrice), BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), "?", runnable);
             final ButtonSpan.TextViewButtons[] textViewButtonsArr = {(ButtonSpan.TextViewButtons) ((TableView.TableRowContent) addRow.getChildAt(1)).getChildAt(0)};
             addRow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -7449,8 +7447,6 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     runnable.run();
                 }
             });
-        } else {
-            charSequence = "?";
         }
         if (TLObject.hasFlag(uniqueStarGiftValueInfo.flags, 8)) {
             final Runnable runnable2 = new Runnable() {
@@ -7459,7 +7455,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     StarGiftSheet.lambda$openValueStats$137(Utilities.Callback2.this, r2, uniqueStarGiftValueInfo, str2);
                 }
             };
-            TableRow addRow2 = tableView.addRow("Average Price", BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), charSequence, runnable2);
+            TableRow addRow2 = tableView.addRow(LocaleController.getString(R.string.GiftValueAveragePrice), BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), "?", runnable2);
             final ButtonSpan.TextViewButtons[] textViewButtonsArr2 = {(ButtonSpan.TextViewButtons) ((TableView.TableRowContent) addRow2.getChildAt(1)).getChildAt(0)};
             addRow2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -7476,7 +7472,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.append((CharSequence) "e");
             spannableStringBuilder.setSpan(new AnimatedEmojiSpan(document, 1.5f, buttonWithCounterView.getTextPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            spannableStringBuilder.append((CharSequence) " for sale on Telegram >");
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GiftValueOnSaleTelegram));
             buttonWithCounterView.setText(AndroidUtilities.replaceArrows(spannableStringBuilder, true), false);
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -7492,7 +7488,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber(uniqueStarGiftValueInfo.fragment_listed_count, ' '));
             spannableStringBuilder2.append((CharSequence) "e");
             spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document, 1.5f, buttonWithCounterView2.getTextPaint().getFontMetricsInt()), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder2.append((CharSequence) " for sale on Fragment >");
+            spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.GiftValueOnSaleFragment));
             buttonWithCounterView2.setText(AndroidUtilities.replaceArrows(spannableStringBuilder2, true), false);
             buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -7548,11 +7544,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public static void lambda$openValueStats$135(Utilities.Callback2 callback2, ButtonSpan.TextViewButtons[] textViewButtonsArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str) {
-        callback2.run(textViewButtonsArr[0], "**" + BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency) + "** is the floor price for **" + str + "** gifts listed on Telegram and Fragment.");
+        callback2.run(textViewButtonsArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
     }
 
     public static void lambda$openValueStats$137(Utilities.Callback2 callback2, ButtonSpan.TextViewButtons[] textViewButtonsArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str) {
-        callback2.run(textViewButtonsArr[0], "**" + BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency) + "** is the average sale price of **" + str + "** gifts over the past month.");
+        callback2.run(textViewButtonsArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
     }
 
     public void lambda$openValueStats$140(String str, long j, View view) {

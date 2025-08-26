@@ -1505,7 +1505,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                     float f5 = particle.x;
                     float f6 = particle.y;
                     batchParticlesBuffer.setParticleVertexCords(i2, f5 - f3, f6 - f4, f5 + f3, f6 + f4);
-                    this.batchParticlesBuffer.setParticleColor(i2, ColorUtils.setAlphaComponent(i, (int) (particle.la * 255.0f * f)));
+                    this.batchParticlesBuffer.setParticleColor(i2, ColorUtils.setAlphaComponent(i, (int) (Utilities.clamp01(particle.la * f) * 255.0f)));
                 }
                 BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, min, this.batchParticlesPaint);
             } else {

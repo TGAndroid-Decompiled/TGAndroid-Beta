@@ -490,6 +490,9 @@ public class ProfileMetaballView extends View {
         }
 
         public void clear() {
+            if (this.destroyed) {
+                return;
+            }
             this.hasContent = false;
             this.bitmap.eraseColor(0);
         }
@@ -500,11 +503,11 @@ public class ProfileMetaballView extends View {
         }
 
         public boolean canUse(int i, int i2) {
-            return this.bitmap.getWidth() == i && this.bitmap.getHeight() == i2;
+            return !this.destroyed && this.bitmap.getWidth() == i && this.bitmap.getHeight() == i2;
         }
 
         public boolean canUse(BlurBitmapHolder blurBitmapHolder) {
-            return this.bitmap.getWidth() == blurBitmapHolder.bitmap.getWidth() && this.bitmap.getHeight() == blurBitmapHolder.bitmap.getHeight();
+            return !this.destroyed && this.bitmap.getWidth() == blurBitmapHolder.bitmap.getWidth() && this.bitmap.getHeight() == blurBitmapHolder.bitmap.getHeight();
         }
 
         public void recycle() {

@@ -1270,7 +1270,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (i != 0) {
                     this.emojiColor = i;
                 } else {
-                    this.emojiColor = PeerColorActivity.adaptProfileEmojiColor(this.color1);
+                    this.emojiColor = Theme.multAlpha(PeerColorActivity.adaptProfileEmojiColor(this.color1), 0.15f);
                 }
             } else {
                 ProfileActivity.this.actionBarBackgroundColor = this.currentColor;
@@ -1278,11 +1278,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 ProfileActivity profileActivity = ProfileActivity.this;
                 int i2 = Theme.key_actionBarDefault;
                 if (AndroidUtilities.computePerceivedBrightness(profileActivity.getThemedColor(i2)) > 0.8f) {
-                    this.emojiColor = ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueText);
+                    this.emojiColor = Theme.multAlpha(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueText), 0.15f);
                 } else if (AndroidUtilities.computePerceivedBrightness(ProfileActivity.this.getThemedColor(i2)) < 0.2f) {
-                    this.emojiColor = Theme.multAlpha(ProfileActivity.this.getThemedColor(Theme.key_actionBarDefaultTitle), 0.5f);
+                    this.emojiColor = Theme.multAlpha(Theme.adaptHSV(ProfileActivity.this.getThemedColor(i2), 0.02f, 0.25f), 0.35f);
                 } else {
-                    this.emojiColor = PeerColorActivity.adaptProfileEmojiColor(ProfileActivity.this.getThemedColor(i2));
+                    this.emojiColor = Theme.multAlpha(PeerColorActivity.adaptProfileEmojiColor(ProfileActivity.this.getThemedColor(i2)), 0.15f);
                 }
             }
             if (!z) {
@@ -6309,7 +6309,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (this.savedMusicList.list.isEmpty()) {
                 return;
             }
-            if (MediaController.getInstance().currentSavedMusicList != this.savedMusicList) {
+            if (MediaController.getInstance().currentSavedMusicList != this.savedMusicList || !MediaController.getInstance().isPlayingMessage(this.savedMusicList.list.get(0))) {
                 MediaController.getInstance().cleanup();
                 z = false;
             }

@@ -286,6 +286,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         boolean z2;
         String str;
         String str2;
+        Bitmap bitmap4;
         String musicTitle = messageObject.getMusicTitle();
         String musicAuthor = messageObject.getMusicAuthor();
         AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();
@@ -369,14 +370,9 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         int i = Build.VERSION.SDK_INT;
         boolean isMessagePaused = MediaController.getInstance().isMessagePaused();
         boolean z7 = !isMessagePaused;
+        Bitmap bitmap5 = bitmap3;
         PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("org.telegram.android.musicplayer.previous").setComponent(new ComponentName(this, (Class<?>) MusicPlayerReceiver.class)), fixIntentFlags(301989888));
-        Context applicationContext = getApplicationContext();
-        Intent intent2 = new Intent(this, getClass());
-        StringBuilder sb = new StringBuilder();
-        Bitmap bitmap4 = bitmap3;
-        sb.append(getPackageName());
-        sb.append(".STOP_PLAYER");
-        PendingIntent service = PendingIntent.getService(applicationContext, 0, intent2.setAction(sb.toString()), fixIntentFlags(301989888));
+        PendingIntent service = PendingIntent.getService(getApplicationContext(), 0, new Intent(this, getClass()).setAction(getPackageName() + ".STOP_PLAYER"), fixIntentFlags(301989888));
         PendingIntent broadcast2 = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(!isMessagePaused ? "org.telegram.android.musicplayer.pause" : "org.telegram.android.musicplayer.play").setComponent(new ComponentName(this, (Class<?>) MusicPlayerReceiver.class)), fixIntentFlags(301989888));
         PendingIntent broadcast3 = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("org.telegram.android.musicplayer.next").setComponent(new ComponentName(this, (Class<?>) MusicPlayerReceiver.class)), fixIntentFlags(301989888));
         PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("org.telegram.android.musicplayer.seek").setComponent(new ComponentName(this, (Class<?>) MusicPlayerReceiver.class)), fixIntentFlags(301989888));
@@ -430,7 +426,14 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         this.mediaSession.setPlaybackState(this.playbackState.build());
         String str3 = str2;
         String str4 = str;
-        this.mediaSession.setMetadata(new MediaMetadata.Builder().putBitmap("android.media.metadata.ALBUM_ART", bitmap4).putString("android.media.metadata.ALBUM_ARTIST", str3).putString("android.media.metadata.ARTIST", str3).putLong("android.media.metadata.DURATION", duration).putString("android.media.metadata.TITLE", str4).putString("android.media.metadata.ALBUM", (audioInfo == null || !messageObject.isMusic()) ? null : audioInfo.getAlbum()).build());
+        MediaMetadata.Builder putString = new MediaMetadata.Builder().putString("android.media.metadata.ALBUM_ARTIST", str3).putString("android.media.metadata.ARTIST", str3).putLong("android.media.metadata.DURATION", duration).putString("android.media.metadata.TITLE", str4).putString("android.media.metadata.ALBUM", (audioInfo == null || !messageObject.isMusic()) ? null : audioInfo.getAlbum());
+        if (bitmap5 == null || bitmap5.isRecycled()) {
+            bitmap4 = bitmap5;
+        } else {
+            bitmap4 = bitmap5;
+            putString.putBitmap("android.media.metadata.ALBUM_ART", bitmap4);
+        }
+        this.mediaSession.setMetadata(putString.build());
         builder.setVisibility(1);
         Notification build = builder.build();
         if (i >= 31) {
