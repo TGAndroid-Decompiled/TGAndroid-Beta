@@ -8,12 +8,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
@@ -474,7 +474,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 this.actionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
                 ((ViewGroup.MarginLayoutParams) this.listView.getLayoutParams()).topMargin = this.actionBarHeight;
             } else {
-                this.actionBarHeight = AndroidUtilities.dp(144.0f) + AndroidUtilities.statusBarHeight;
+                this.actionBarHeight = AndroidUtilities.dp(230.0f) + AndroidUtilities.statusBarHeight;
                 ((ViewGroup.MarginLayoutParams) this.listView.getLayoutParams()).topMargin = this.actionBarHeight;
                 ((ViewGroup.MarginLayoutParams) this.profilePreview.getLayoutParams()).height = this.actionBarHeight;
             }
@@ -2312,10 +2312,11 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public static class ColoredActionBar extends View {
-        private LinearGradient backgroundGradient;
+        private RadialGradient backgroundGradient;
         private int backgroundGradientColor1;
         private int backgroundGradientColor2;
         private int backgroundGradientHeight;
+        private int backgroundGradientWidth;
         private final Paint backgroundPaint;
         public int color1;
         private final AnimatedColor color1Animated;
@@ -2383,22 +2384,25 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         protected void dispatchDraw(Canvas canvas) {
             int i = this.color1Animated.set(this.color1);
             int i2 = this.color2Animated.set(this.color2);
-            if (this.backgroundGradient == null || this.backgroundGradientColor1 != i || this.backgroundGradientColor2 != i2 || this.backgroundGradientHeight != getHeight()) {
-                int height = getHeight();
-                this.backgroundGradientHeight = height;
+            if (this.backgroundGradient == null || this.backgroundGradientColor1 != i || this.backgroundGradientColor2 != i2 || this.backgroundGradientWidth != getWidth() || this.backgroundGradientHeight != getHeight()) {
+                this.backgroundGradientWidth = getWidth();
+                this.backgroundGradientHeight = getHeight();
+                float f = this.backgroundGradientWidth;
+                float f2 = this.backgroundGradientHeight;
+                float distance = AndroidUtilities.distance(0.0f, 0.0f, f, f2) * 0.75f;
                 this.backgroundGradientColor2 = i2;
                 this.backgroundGradientColor1 = i;
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{i2, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.backgroundGradient = linearGradient;
-                this.backgroundPaint.setShader(linearGradient);
+                RadialGradient radialGradient = new RadialGradient(f / 2.0f, 0.4f * f2, distance, new int[]{i2, i}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                this.backgroundGradient = radialGradient;
+                this.backgroundPaint.setShader(radialGradient);
                 onUpdateColor();
             }
             if (this.progressToGradient < 1.0f) {
                 canvas.drawColor(this.defaultColor);
             }
-            float f = this.progressToGradient;
-            if (f > 0.0f) {
-                this.backgroundPaint.setAlpha((int) (f * 255.0f));
+            float f3 = this.progressToGradient;
+            if (f3 > 0.0f) {
+                this.backgroundPaint.setAlpha((int) (f3 * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.backgroundPaint);
             }
         }
@@ -2406,7 +2410,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         @Override
         protected void onMeasure(int i, int i2) {
             if (!this.ignoreMeasure) {
-                i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(144.0f), 1073741824);
+                i2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(230.0f), 1073741824);
             }
             super.onMeasure(i, i2);
         }
@@ -2503,14 +2507,16 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             simpleTextView.setTextSize(20);
             simpleTextView.setTypeface(AndroidUtilities.bold());
             simpleTextView.setScrollNonFitText(true);
-            addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 83, 97.0f, 0.0f, 16.0f, 50.33f));
+            simpleTextView.setGravity(1);
+            addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 81, 16.0f, 0.0f, 16.0f, 40.33f));
             SimpleTextView simpleTextView2 = new SimpleTextView(context);
             this.subtitleView = simpleTextView2;
             simpleTextView2.setTextSize(14);
             simpleTextView2.setTextColor(-2130706433);
             simpleTextView2.setScrollNonFitText(true);
-            addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 83, 97.0f, 0.0f, 16.0f, 30.66f));
-            imageReceiver.setRoundRadius(AndroidUtilities.dp(54.0f));
+            simpleTextView2.setGravity(1);
+            addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 81, 16.0f, 0.0f, 16.0f, 20.66f));
+            imageReceiver.setRoundRadius(AndroidUtilities.dp(96.0f));
             if (z) {
                 TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
                 userName = chat == null ? "" : chat.title;
@@ -2739,14 +2745,14 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            this.rectF.set(AndroidUtilities.dp(20.33f), getHeight() - AndroidUtilities.dp(78.66f), AndroidUtilities.dp(20.33f) + AndroidUtilities.dp(53.33f), getHeight() - AndroidUtilities.dp(25.33f));
+            this.rectF.set((getWidth() - AndroidUtilities.dp(86.0f)) / 2.0f, getHeight() - AndroidUtilities.dp(168.0f), (getWidth() + AndroidUtilities.dp(86.0f)) / 2.0f, getHeight() - AndroidUtilities.dp(82.0f));
             this.imageReceiver.setRoundRadius(AndroidUtilities.dp(this.isForum ? 18.0f : 54.0f));
             this.imageReceiver.setImageCoords(this.rectF);
             this.imageReceiver.draw(canvas);
             float width = (this.rectF.width() / 2.0f) + AndroidUtilities.dp(4.0f);
             float dp = AndroidUtilities.dp(this.isForum ? 22.0f : 58.0f);
             canvas.drawRoundRect(this.rectF.centerX() - width, this.rectF.centerY() - width, this.rectF.centerX() + width, this.rectF.centerY() + width, dp, dp, this.storyGradient.getPaint(this.rectF));
-            StarGiftPatterns.drawProfilePattern(canvas, this.emoji, getWidth(), getHeight(), 1.0f, this.emojiCollectible.set(this.isEmojiCollectible));
+            StarGiftPatterns.drawProfileAnimatedPattern(canvas, this.emoji, getWidth(), getHeight(), 1.0f, this.rectF, 1.0f);
             super.dispatchDraw(canvas);
         }
     }

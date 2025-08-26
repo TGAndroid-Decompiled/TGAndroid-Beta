@@ -10,7 +10,6 @@ import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.graphics.Camera;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -2109,7 +2108,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         private final TL_stars.starGiftAttributePattern[] patternAttribute;
         private final int[] patternColors;
         private BagRandomizer patterns;
-        private LinearGradient profileBackgroundGradient;
+        private RadialGradient profileBackgroundGradient;
         private final Matrix profileBackgroundMatrix;
         private Paint profileBackgroundPaint;
         private final LinkSpanDrawable.LinksTextView releasedView;
@@ -2284,17 +2283,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     this.layout[i6].setOrientation(1);
                     View view = this.layout[i6];
                     FrameLayout.LayoutParams[] layoutParamsArr = this.layoutLayoutParams;
-                    ViewGroup.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 119, 16.0f, i6 == 2 ? 64.0f : 170.0f, 16.0f, 0.0f);
+                    ViewGroup.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 119, 16.0f, i6 == 2 ? 32.0f : 170.0f, 16.0f, 0.0f);
                     layoutParamsArr[i6] = createFrame;
                     addView(view, createFrame);
                     if (i6 == 2) {
                         FrameLayout frameLayout = new FrameLayout(context);
                         this.userLayout = frameLayout;
-                        this.layout[i6].addView(frameLayout, LayoutHelper.createLinear(-1, 104, 119));
+                        this.layout[i6].addView(frameLayout, LayoutHelper.createLinear(-1, 144, 119));
                         BackupImageView backupImageView = new BackupImageView(context);
                         this.avatarView = backupImageView;
-                        backupImageView.setRoundRadius(AndroidUtilities.dp(30.0f));
-                        this.userLayout.addView(this.avatarView, LayoutHelper.createFrame(60, 60.0f, 19, 1.0f, 0.0f, 0.0f, 0.0f));
+                        backupImageView.setRoundRadius(AndroidUtilities.dp(41.0f));
+                        this.userLayout.addView(this.avatarView, LayoutHelper.createFrame(82, 82.0f, 49, 0.0f, 2.0f, 0.0f, 0.0f));
                         this.titleView[i6] = new LinkSpanDrawable.LinksTextView(context);
                         this.titleView[i6].setTextColor(-1);
                         this.titleView[i6].setTextSize(1, 20.0f);
@@ -2303,7 +2302,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         LinkSpanDrawable.LinksTextView linksTextView2 = this.titleView[i6];
                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                         linksTextView2.setEllipsize(truncateAt);
-                        this.userLayout.addView(this.titleView[i6], LayoutHelper.createFrame(-1, -2.0f, 55, 81.0f, 30.33f, 40.0f, 0.0f));
+                        this.titleView[i6].setGravity(17);
+                        this.userLayout.addView(this.titleView[i6], LayoutHelper.createFrame(-1, -2.0f, 49, 16.0f, 95.33f, 16.0f, 0.0f));
                         this.subtitleView[i6] = new LinkSpanDrawable.LinksTextView(context);
                         this.subtitleView[i6].setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
                         this.subtitleView[i6].setTextSize(1, 14.0f);
@@ -2311,8 +2311,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         this.subtitleView[i6].setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                         this.subtitleView[i6].setDisablePaddingsOffsetY(true);
                         this.subtitleView[i6].setSingleLine();
-                        this.titleView[i6].setEllipsize(truncateAt);
-                        this.userLayout.addView(this.subtitleView[i6], LayoutHelper.createFrame(-1, -2.0f, 55, 81.0f, 57.0f, 4.0f, 0.0f));
+                        this.subtitleView[i6].setGravity(17);
+                        this.subtitleView[i6].setEllipsize(truncateAt);
+                        this.userLayout.addView(this.subtitleView[i6], LayoutHelper.createFrame(-1, -2.0f, 49, 16.0f, 122.0f, 16.0f, 0.0f));
                     } else {
                         this.titleView[i6] = new LinkSpanDrawable.LinksTextView(context);
                         LinkSpanDrawable.LinksTextView linksTextView3 = this.titleView[i6];
@@ -2741,8 +2742,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
         private void updateWearImageTranslation() {
             this.wearImageScale = AndroidUtilities.dpf2(33.33f) / AndroidUtilities.dpf2(160.0f);
-            this.wearImageTx = (((-this.imageLayout.getLeft()) + AndroidUtilities.dp(97.0f)) + Math.min(this.titleView[2].getPaint().measureText(this.titleView[2].getText().toString()) + AndroidUtilities.dp(12.0f), this.titleView[2].getWidth())) - (AndroidUtilities.dp(126.67f) / 2.0f);
-            this.wearImageTy = ((-this.imageLayout.getTop()) + AndroidUtilities.dp(88.66f)) - (AndroidUtilities.dp(126.67f) / 2.0f);
+            this.wearImageTx = ((((-this.imageLayout.getLeft()) + this.titleView[2].getX()) + ((this.titleView[2].getWidth() + Math.min(this.titleView[2].getPaint().measureText(this.titleView[2].getText().toString()), this.titleView[2].getWidth())) / 2.0f)) + AndroidUtilities.dp(24.0f)) - (AndroidUtilities.dp(126.67f) / 2.0f);
+            this.wearImageTy = ((-this.imageLayout.getTop()) + AndroidUtilities.dp(120.0f)) - (AndroidUtilities.dp(126.67f) / 2.0f);
         }
 
         public void lambda$new$2() {
@@ -2841,9 +2842,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             radialGradientArr[i] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(200.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, tileMode);
             if (i == 0) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(168.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, tileMode);
-                this.profileBackgroundGradient = linearGradient;
-                this.profileBackgroundPaint.setShader(linearGradient);
+                RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(168.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, tileMode);
+                this.profileBackgroundGradient = radialGradient;
+                this.profileBackgroundPaint.setShader(radialGradient);
             }
             Matrix[] matrixArr = this.backgroundMatrix;
             if (matrixArr[i] == null) {
@@ -2959,7 +2960,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 if (this.profileBackgroundGradient != null && this.currentPage.at(2) > 0.0f) {
                     this.profileBackgroundPaint.setAlpha((int) (this.currentPage.at(2) * 255.0f));
                     this.profileBackgroundMatrix.reset();
-                    this.profileBackgroundMatrix.postTranslate(0.0f, 0.0f);
+                    this.profileBackgroundMatrix.postTranslate(getWidth() / 2.0f, 0.4f * realHeight);
                     this.profileBackgroundGradient.setLocalMatrix(this.profileBackgroundMatrix);
                     canvas.drawRect(0.0f, 0.0f, getWidth(), realHeight, this.profileBackgroundPaint);
                 }
@@ -3032,7 +3033,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 if (this.currentPage.at(i) > 0.0f) {
                     canvas.save();
                     this.pattern[0].setColor(Integer.valueOf(i3));
-                    StarGiftPatterns.drawProfilePattern(canvas, this.pattern[0], getWidth(), realHeight, this.currentPage.at(i), 1.0f);
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(this.layout[i].getX() + this.userLayout.getX() + this.avatarView.getX(), this.layout[i].getY() + this.userLayout.getY() + this.avatarView.getY(), this.layout[i].getX() + this.userLayout.getX() + this.avatarView.getX() + this.avatarView.getWidth(), this.layout[i].getY() + this.userLayout.getY() + this.avatarView.getY() + this.avatarView.getHeight());
+                    StarGiftPatterns.drawProfileAnimatedPattern(canvas, this.pattern[0], getWidth(), realHeight * 0.7f, 1.0f, rectF, this.currentPage.at(i));
                     canvas.restore();
                 }
                 for (Button button : this.buttons) {

@@ -1405,7 +1405,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         canvas.save();
                         canvas.clipRect(0, 0, getMeasuredWidth(), i);
                         float f3 = ((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0.0f;
-                        StarGiftPatterns.drawProfileAnimatedPattern(canvas, this.emoji, getMeasuredWidth(), ProfileActivity.this.getHeaderOnlyExtraHeight() + f3 + ((((BaseFragment) ProfileActivity.this).actionBar.getHeight() - f3) / 2.0f), ProfileActivity.this.calculateHeaderExtraDiff(), ProfileActivity.this.avatarContainer);
+                        StarGiftPatterns.drawProfileAnimatedPattern(canvas, this.emoji, getMeasuredWidth(), ProfileActivity.this.getHeaderOnlyExtraHeight() + f3 + ((((BaseFragment) ProfileActivity.this).actionBar.getHeight() - f3) / 2.0f), ProfileActivity.this.calculateHeaderExtraDiff(), ProfileActivity.this.avatarContainer, 1.0f);
                         canvas.restore();
                     }
                 }
