@@ -153,6 +153,7 @@ import org.telegram.ui.Components.CustomPhoneKeyboardView;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ImageUpdater;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LoadingDrawable;
@@ -214,6 +215,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     private CustomPhoneKeyboardView keyboardView;
     private boolean needRequestPermissions;
     private boolean newAccount;
+    private boolean paid;
     private boolean pendingSwitchingAccount;
     private Dialog permissionsDialog;
     private ArrayList permissionsItems;
@@ -1488,6 +1490,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public void open(String str, TLRPC.auth_SentCode auth_sentcode) {
+        this.paid = true;
         Bundle bundle = new Bundle();
         bundle.putString("phone", "+" + str);
         bundle.putString("ephone", "+" + str);
@@ -1500,6 +1503,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             TLRPC.TL_auth_sentCodePaymentRequired tL_auth_sentCodePaymentRequired = (TLRPC.TL_auth_sentCodePaymentRequired) auth_sentcode;
             bundle.putString("product", tL_auth_sentCodePaymentRequired.store_product);
             bundle.putString("phoneHash", tL_auth_sentCodePaymentRequired.phone_code_hash);
+            bundle.putString("support_email_address", tL_auth_sentCodePaymentRequired.support_email_address);
+            bundle.putString("support_email_subject", tL_auth_sentCodePaymentRequired.support_email_subject);
             setPage(18, true, bundle, true);
             return;
         }
@@ -8668,7 +8673,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return true;
         }
 
-        static int access$17926(LoginActivityPhraseView loginActivityPhraseView, double d) {
+        static int access$18026(LoginActivityPhraseView loginActivityPhraseView, double d) {
             int i = (int) (loginActivityPhraseView.time - d);
             loginActivityPhraseView.time = i;
             return i;
@@ -9332,7 +9337,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double currentTimeMillis = System.currentTimeMillis();
                 double d = currentTimeMillis - LoginActivityPhraseView.this.lastCurrentTime;
                 LoginActivityPhraseView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivityPhraseView.access$17926(LoginActivityPhraseView.this, d);
+                LoginActivityPhraseView.access$18026(LoginActivityPhraseView.this, d);
                 if (LoginActivityPhraseView.this.time >= 1000) {
                     int i = (LoginActivityPhraseView.this.time / 1000) / 60;
                     int i2 = (LoginActivityPhraseView.this.time / 1000) - (i * 60);
@@ -9425,6 +9430,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     public class LoginPayView extends SlideView {
         private ButtonWithCounterView button;
         private ExplainStarsSheet.FeatureCell[] cells;
+        private ImageView optionsButton;
         private StarParticlesView starParticlesView;
 
         public LoginPayView(Context context) {
@@ -9465,6 +9471,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             };
             this.starParticlesView = starParticlesView;
             frameLayout.addView(starParticlesView, LayoutHelper.createFrame(-1, 200, 119));
+            ImageView imageView = new ImageView(context);
+            this.optionsButton = imageView;
+            imageView.setImageResource(R.drawable.ic_ab_other);
+            this.optionsButton.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView imageView2 = this.optionsButton;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, ((BaseFragment) LoginActivity.this).resourceProvider), PorterDuff.Mode.SRC_IN));
+            this.optionsButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector)));
+            frameLayout.addView(this.optionsButton, LayoutHelper.createFrame(32, 32.0f, 53, 0.0f, 16.0f, -2.0f, 0.0f));
             GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 1) {
                 @Override
                 public void onAttachedToWindow() {
@@ -9481,17 +9496,17 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             gLIconTextureView.setStarParticlesView(this.starParticlesView);
             Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
-            int i = Theme.key_premiumGradient2;
-            canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i), Theme.getColor(Theme.key_dialogBackground), 0.5f));
+            int i2 = Theme.key_premiumGradient2;
+            canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i2), Theme.getColor(Theme.key_dialogBackground), 0.5f));
             gLIconTextureView.setBackgroundBitmap(createBitmap);
             GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
-            gLIconRenderer.colorKey1 = i;
+            gLIconRenderer.colorKey1 = i2;
             gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
             gLIconRenderer.updateColors();
             frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(160, 160, 1));
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.SMSFeeTitle));
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            textView.setTextColor(Theme.getColor(i));
             textView.setTextSize(1, 20.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setGravity(17);
@@ -9535,6 +9550,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             final String string = bundle == null ? null : bundle.getString("product");
             final String string2 = bundle == null ? null : bundle.getString("phoneFormated");
             final String string3 = bundle == null ? null : bundle.getString("phoneHash");
+            final String string4 = bundle == null ? null : bundle.getString("support_email_email");
+            final String string5 = bundle == null ? null : bundle.getString("support_email_subject");
+            final String[] strArr = new String[1];
+            this.optionsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    LoginActivity.LoginPayView.this.lambda$setParams$2(string4, string5, strArr, view);
+                }
+            });
             this.button.setEnabled(true);
             this.button.setOnClickListener(null);
             if (TextUtils.isEmpty(string)) {
@@ -9553,7 +9577,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.this.lambda$setParams$18(string, string3, string2);
+                    LoginActivity.LoginPayView.this.lambda$setParams$20(string, strArr, string3, string2);
                 }
             };
             if (!BillingController.getInstance().isReady()) {
@@ -9563,65 +9587,80 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$setParams$18(final String str, final String str2, final String str3) {
+        public void lambda$setParams$2(final String str, final String str2, final String[] strArr, View view) {
+            ItemOptions.makeOptions(LoginActivity.this, this.optionsButton).add(R.drawable.msg_help, LocaleController.getString(R.string.SettingsHelp), new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.LoginPayView.this.lambda$setParams$1(str, str2, strArr);
+                }
+            }).setGravity(5).show();
+        }
+
+        public void lambda$setParams$1(java.lang.String r10, java.lang.String r11, java.lang.String[] r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginPayView.lambda$setParams$1(java.lang.String, java.lang.String, java.lang.String[]):void");
+        }
+
+        public void lambda$setParams$20(final String str, final String[] strArr, final String str2, final String str3) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(QueryProductDetailsParams.Product.newBuilder().setProductType("inapp").setProductId(str).build());
             FileLog.d("LoginBilling querying \"" + str + "\" product");
             BillingController.getInstance().queryProductDetails(arrayList, new ProductDetailsResponseListener() {
                 @Override
                 public final void onProductDetailsResponse(BillingResult billingResult, List list) {
-                    LoginActivity.LoginPayView.this.lambda$setParams$17(str, str2, str3, billingResult, list);
+                    LoginActivity.LoginPayView.this.lambda$setParams$19(str, strArr, str2, str3, billingResult, list);
                 }
             });
         }
 
-        public void lambda$setParams$17(final String str, final String str2, final String str3, final BillingResult billingResult, final List list) {
+        public void lambda$setParams$19(final String str, final String[] strArr, final String str2, final String str3, final BillingResult billingResult, final List list) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.this.lambda$setParams$16(str, billingResult, list, str2, str3);
+                    LoginActivity.LoginPayView.this.lambda$setParams$18(str, billingResult, strArr, list, str2, str3);
                 }
             });
         }
 
-        public void lambda$setParams$16(final String str, BillingResult billingResult, List list, String str2, String str3) {
+        public void lambda$setParams$18(final String str, BillingResult billingResult, final String[] strArr, List list, String str2, String str3) {
             FileLog.d("LoginBilling queried \"" + str + "\" product: " + BillingController.getResponseCodeString(billingResult.getResponseCode()));
             if (billingResult.getResponseCode() != 0) {
+                strArr[0] = "BILLING_" + BillingController.getResponseCodeString(billingResult.getResponseCode());
                 BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, BillingController.getResponseCodeString(billingResult.getResponseCode())));
                 return;
             }
-            if (list == null || list.isEmpty()) {
-                BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "PRODUCT_NOT_FOUND"));
+            if (list != null && !list.isEmpty()) {
+                final ProductDetails productDetails = (ProductDetails) list.get(0);
+                final ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = productDetails.getOneTimePurchaseOfferDetails();
+                final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
+                tL_inputStorePaymentAuthCode.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
+                tL_inputStorePaymentAuthCode.amount = (long) ((oneTimePurchaseOfferDetails.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_inputStorePaymentAuthCode.currency)));
+                tL_inputStorePaymentAuthCode.phone_code_hash = TextUtils.isEmpty(str2) ? "" : str2;
+                tL_inputStorePaymentAuthCode.phone_number = str3;
+                FileLog.d("LoginBilling found \"" + str + "\" product, with currency=" + tL_inputStorePaymentAuthCode.currency + " amount=" + tL_inputStorePaymentAuthCode.amount + "; phone=" + str3 + ", phone_code_hash=" + str2);
+                final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentAuthCode;
+                ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        LoginActivity.LoginPayView.this.lambda$setParams$17(oneTimePurchaseOfferDetails, productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, strArr, tLObject, tL_error);
+                    }
+                }, 10);
                 return;
             }
-            final ProductDetails productDetails = (ProductDetails) list.get(0);
-            final ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = productDetails.getOneTimePurchaseOfferDetails();
-            final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
-            tL_inputStorePaymentAuthCode.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
-            tL_inputStorePaymentAuthCode.amount = (long) ((oneTimePurchaseOfferDetails.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_inputStorePaymentAuthCode.currency)));
-            tL_inputStorePaymentAuthCode.phone_code_hash = TextUtils.isEmpty(str2) ? "" : str2;
-            tL_inputStorePaymentAuthCode.phone_number = str3;
-            FileLog.d("LoginBilling found \"" + str + "\" product, with currency=" + tL_inputStorePaymentAuthCode.currency + " amount=" + tL_inputStorePaymentAuthCode.amount + "; phone=" + str3 + ", phone_code_hash=" + str2);
-            final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
-            tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentAuthCode;
-            ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    LoginActivity.LoginPayView.this.lambda$setParams$15(oneTimePurchaseOfferDetails, productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, tLObject, tL_error);
-                }
-            }, 10);
+            strArr[0] = "PRODUCT_NOT_FOUND";
+            BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "PRODUCT_NOT_FOUND"));
         }
 
-        public void lambda$setParams$15(final ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails, final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public void lambda$setParams$17(final ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails, final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final String[] strArr, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.this.lambda$setParams$14(tLObject, tL_error, oneTimePurchaseOfferDetails, productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore);
+                    LoginActivity.LoginPayView.this.lambda$setParams$16(tLObject, tL_error, oneTimePurchaseOfferDetails, productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, strArr);
                 }
             });
         }
 
-        public void lambda$setParams$14(TLObject tLObject, TLRPC.TL_error tL_error, ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails, final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+        public void lambda$setParams$16(TLObject tLObject, TLRPC.TL_error tL_error, ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails, final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, String[] strArr) {
             FileLog.d("LoginBilling canPurchaseStore returned " + tLObject + " " + tL_error);
             if (tLObject instanceof TLRPC.TL_boolTrue) {
                 this.button.setText(LocaleController.formatString(R.string.SMSFeePurchaseTitle, oneTimePurchaseOfferDetails.getFormattedPrice()), false);
@@ -9630,19 +9669,21 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 this.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        LoginActivity.LoginPayView.this.lambda$setParams$13(productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, view);
+                        LoginActivity.LoginPayView.this.lambda$setParams$15(productDetails, tL_inputStorePaymentAuthCode, str, tL_payments_canPurchaseStore, view);
                     }
                 });
                 return;
             }
             if (tLObject instanceof TLRPC.TL_boolFalse) {
+                strArr[0] = "RESPONSE_FALSE";
                 BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "RESPONSE_FALSE"));
             } else if (tL_error != null) {
+                strArr[0] = tL_error.text;
                 BulletinFactory.of(LoginActivity.this.slideViewsContainer, null).showForError(tL_error);
             }
         }
 
-        public void lambda$setParams$13(final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, View view) {
+        public void lambda$setParams$15(final ProductDetails productDetails, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final String str, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, View view) {
             if (this.button.isLoading()) {
                 return;
             }
@@ -9650,48 +9691,49 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    LoginActivity.LoginPayView.this.lambda$setParams$1((String) obj);
+                    LoginActivity.LoginPayView.this.lambda$setParams$3((String) obj);
                 }
             };
             FileLog.d("LoginBilling, querying done purchases...");
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.this.lambda$setParams$6(productDetails, callback, tL_inputStorePaymentAuthCode);
+                    LoginActivity.LoginPayView.this.lambda$setParams$8(productDetails, callback, tL_inputStorePaymentAuthCode);
                 }
             };
             BillingController.getInstance().queryPurchases("inapp", new PurchasesResponseListener() {
                 @Override
                 public final void onQueryPurchasesResponse(BillingResult billingResult, List list) {
-                    LoginActivity.LoginPayView.this.lambda$setParams$12(str, tL_inputStorePaymentAuthCode, tL_payments_canPurchaseStore, runnable, billingResult, list);
+                    LoginActivity.LoginPayView.this.lambda$setParams$14(str, tL_inputStorePaymentAuthCode, tL_payments_canPurchaseStore, runnable, billingResult, list);
                 }
             });
         }
 
-        public void lambda$setParams$1(String str) {
+        public void lambda$setParams$3(String str) {
             FileLog.d("LoginBilling purchased done " + str);
             if ("CANCELLED".equalsIgnoreCase(str)) {
                 this.button.setLoading(false);
             }
         }
 
-        public void lambda$setParams$6(ProductDetails productDetails, final Utilities.Callback callback, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode) {
+        public void lambda$setParams$8(ProductDetails productDetails, final Utilities.Callback callback, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode) {
+            LoginActivity.this.paid = true;
             BillingController.getInstance().addResultListener(productDetails.getProductId(), new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    LoginActivity.LoginPayView.lambda$setParams$3(Utilities.Callback.this, (BillingResult) obj);
+                    LoginActivity.LoginPayView.lambda$setParams$5(Utilities.Callback.this, (BillingResult) obj);
                 }
             });
             BillingController.getInstance().setOnCanceled(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.lambda$setParams$5(Utilities.Callback.this);
+                    LoginActivity.LoginPayView.lambda$setParams$7(Utilities.Callback.this);
                 }
             });
             BillingController.getInstance().launchBillingFlow(LoginActivity.this.getParentActivity(), AccountInstance.getInstance(((BaseFragment) LoginActivity.this).currentAccount), tL_inputStorePaymentAuthCode, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(productDetails).build()));
         }
 
-        public static void lambda$setParams$3(final Utilities.Callback callback, BillingResult billingResult) {
+        public static void lambda$setParams$5(final Utilities.Callback callback, BillingResult billingResult) {
             final String responseCodeString = billingResult.getResponseCode() == 0 ? null : BillingController.getResponseCodeString(billingResult.getResponseCode());
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -9701,7 +9743,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             });
         }
 
-        public static void lambda$setParams$5(final Utilities.Callback callback) {
+        public static void lambda$setParams$7(final Utilities.Callback callback) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -9710,16 +9752,16 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             });
         }
 
-        public void lambda$setParams$12(final String str, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, final BillingResult billingResult, final List list) {
+        public void lambda$setParams$14(final String str, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, final BillingResult billingResult, final List list) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.this.lambda$setParams$11(billingResult, list, str, tL_inputStorePaymentAuthCode, tL_payments_canPurchaseStore, runnable);
+                    LoginActivity.LoginPayView.this.lambda$setParams$13(billingResult, list, str, tL_inputStorePaymentAuthCode, tL_payments_canPurchaseStore, runnable);
                 }
             });
         }
 
-        public void lambda$setParams$11(BillingResult billingResult, List list, String str, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable) {
+        public void lambda$setParams$13(BillingResult billingResult, List list, String str, final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable) {
             if (billingResult.getResponseCode() == 0 && list != null && !list.isEmpty()) {
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
@@ -9734,7 +9776,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         LoginActivity.this.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                LoginActivity.LoginPayView.this.lambda$setParams$10(tL_inputStorePaymentAuthCode, purchase, tL_payments_canPurchaseStore, runnable, tLObject, tL_error);
+                                LoginActivity.LoginPayView.this.lambda$setParams$12(tL_inputStorePaymentAuthCode, purchase, tL_payments_canPurchaseStore, runnable, tLObject, tL_error);
                             }
                         }, 74);
                         return;
@@ -9744,7 +9786,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             runnable.run();
         }
 
-        public void lambda$setParams$10(final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$setParams$12(final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (!(tLObject instanceof TLRPC.Updates)) {
                 if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
@@ -9764,7 +9806,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginPayView.this.lambda$setParams$7(tL_inputStorePaymentAuthCode, tL_updateSentPhoneCode);
+                        LoginActivity.LoginPayView.this.lambda$setParams$9(tL_inputStorePaymentAuthCode, tL_updateSentPhoneCode);
                     }
                 });
             }
@@ -9773,12 +9815,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LoginActivity.LoginPayView.this.lambda$setParams$8();
+                    LoginActivity.LoginPayView.this.lambda$setParams$10();
                 }
             });
         }
 
-        public void lambda$setParams$7(TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, TLRPC.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
+        public void lambda$setParams$9(TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, TLRPC.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
+            LoginActivity.this.paid = true;
             LoginActivity loginActivity = (LoginActivity) LaunchActivity.findFragment(LoginActivity.class);
             if (loginActivity == null) {
                 loginActivity = new LoginActivity(((BaseFragment) LoginActivity.this).currentAccount);
@@ -9790,7 +9833,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             loginActivity.open(tL_inputStorePaymentAuthCode.phone_number, tL_updateSentPhoneCode.sent_code);
         }
 
-        public void lambda$setParams$8() {
+        public void lambda$setParams$10() {
             this.button.setLoading(false);
         }
     }

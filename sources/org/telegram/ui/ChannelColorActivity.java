@@ -1685,7 +1685,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             this.backgroundView = coloredActionBar;
             coloredActionBar.setProgressToGradient(1.0f);
             coloredActionBar.ignoreMeasure = true;
-            addView(coloredActionBar, LayoutHelper.createFrame(-1, ChannelColorActivity.this.isGroup ? 194 : 134, 119));
+            addView(coloredActionBar, LayoutHelper.createFrame(-1, ChannelColorActivity.this.isGroup ? 320 : 260, 119));
             PeerColorActivity.ProfilePreview profilePreview = new PeerColorActivity.ProfilePreview(getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ChannelColorActivity.this.dialogId, ((BaseFragment) ChannelColorActivity.this).resourceProvider) {
                 @Override
                 public void setColor(int i, boolean z) {
@@ -1698,7 +1698,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 }
             };
             this.profileView = profilePreview;
-            addView(profilePreview, LayoutHelper.createFrame(-1, 104.0f, 80, 0.0f, 0.0f, 0.0f, ChannelColorActivity.this.isGroup ? 24.0f : 0.0f));
+            addView(profilePreview, LayoutHelper.createFrame(-1, 230.0f, 80, 0.0f, 0.0f, 0.0f, ChannelColorActivity.this.isGroup ? 24.0f : 0.0f));
             if (ChannelColorActivity.this.needBoostInfoSection()) {
                 SimpleTextView simpleTextView = new SimpleTextView(getContext());
                 this.title = simpleTextView;

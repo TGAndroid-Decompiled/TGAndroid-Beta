@@ -2454,7 +2454,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         private final int currentAccount;
         private final long dialogId;
         private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
-        private AnimatedFloat emojiCollectible;
+        private final AnimatedFloat emojiCollectible;
         protected final ImageReceiver imageReceiver;
         private final boolean isChannel;
         private boolean isEmojiCollectible;
