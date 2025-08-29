@@ -131,7 +131,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         radialProgress2.setProgressRect(dp, dp2, size2 + AndroidUtilities.dp(48.0f), AndroidUtilities.dp(50.0f));
     }
 
-    public void setMessageObject(MessageObject messageObject, boolean z, View.OnClickListener onClickListener, boolean z2) {
+    public void setMessageObject(MessageObject messageObject, boolean z, View.OnClickListener onClickListener, boolean z2, View.OnTouchListener onTouchListener) {
         this.currentMessageObject = messageObject;
         if (this.needDivider != z2) {
             invalidate();
@@ -140,6 +140,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         this.optionsButton.setImageResource(z ? R.drawable.list_reorder : R.drawable.ic_ab_other);
         this.optionsButton.setVisibility((z || onClickListener != null) ? 0 : 8);
         this.optionsButton.setOnClickListener(onClickListener);
+        this.optionsButton.setOnTouchListener(onTouchListener);
         TLRPC.Document document = messageObject.getDocument();
         TLRPC.PhotoSize closestPhotoSizeWithSize = document != null ? FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90) : null;
         if ((closestPhotoSizeWithSize instanceof TLRPC.TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC.TL_photoSizeProgressive)) {

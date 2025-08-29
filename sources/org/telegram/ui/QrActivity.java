@@ -74,6 +74,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -82,6 +83,7 @@ import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.ActionBar.theme.ThemeKey;
 import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -619,7 +621,7 @@ public class QrActivity extends BaseFragment {
                 i = -1;
                 break;
             } else {
-                if (((ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i)).chatTheme.getEmoticon().equals(this.currentTheme.getEmoticon())) {
+                if (ThemeKey.equals(((ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i)).chatTheme.getThemeKey(), this.currentTheme.getThemeKey())) {
                     this.themesViewController.selectedItem = (ChatThemeBottomSheet.ChatThemeItem) arrayList.get(i);
                     break;
                 }
@@ -812,12 +814,13 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$onItemSelected$9(boolean z, long j, Pair pair) {
-        if (pair == null || this.currentTheme.getTlTheme(z ? 1 : 0) == null) {
+        long themeId = this.currentTheme.getThemeId(z ? 1 : 0);
+        if (pair == null || themeId == 0) {
             return;
         }
         long longValue = ((Long) pair.first).longValue();
-        Bitmap bitmap = (Bitmap) pair.second;
-        if (longValue != this.currentTheme.getTlTheme(z ? 1 : 0).id || bitmap == null) {
+        Bitmap bitmap = ((WallpaperBitmapHolder) pair.second).bitmap;
+        if (longValue != themeId || bitmap == null) {
             return;
         }
         onPatternLoaded(bitmap, this.currMotionDrawable.getIntensity(), SystemClock.elapsedRealtime() - j > 150);

@@ -251,12 +251,16 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 if (sizeNotifierFrameLayout3.attached && (sizeNotifierFrameLayout3.backgroundDrawable instanceof ChatBackgroundDrawable)) {
                     ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.backgroundDrawable).onAttachedToWindow(this);
                 }
+                SizeNotifierFrameLayout sizeNotifierFrameLayout4 = SizeNotifierFrameLayout.this;
+                if (sizeNotifierFrameLayout4.attached && (sizeNotifierFrameLayout4.backgroundDrawable instanceof MotionBackgroundDrawable)) {
+                    ((MotionBackgroundDrawable) SizeNotifierFrameLayout.this.backgroundDrawable).onAttachedToWindow();
+                }
                 SizeNotifierFrameLayout.this.backgroundMotion = newDrawableMotion;
                 SizeNotifierFrameLayout.this.themeAnimationValue = 0.0f;
                 SizeNotifierFrameLayout.this.checkMotion();
             }
-            SizeNotifierFrameLayout sizeNotifierFrameLayout4 = SizeNotifierFrameLayout.this;
-            sizeNotifierFrameLayout4.themeAnimationValue = Utilities.clamp(sizeNotifierFrameLayout4.themeAnimationValue + (AndroidUtilities.screenRefreshTime / 200.0f), 1.0f, 0.0f);
+            SizeNotifierFrameLayout sizeNotifierFrameLayout5 = SizeNotifierFrameLayout.this;
+            sizeNotifierFrameLayout5.themeAnimationValue = Utilities.clamp(sizeNotifierFrameLayout5.themeAnimationValue + (AndroidUtilities.screenRefreshTime / 200.0f), 1.0f, 0.0f);
             int i = 0;
             while (i < 2) {
                 Drawable drawable = i == 0 ? SizeNotifierFrameLayout.this.oldBackgroundDrawable : SizeNotifierFrameLayout.this.backgroundDrawable;
@@ -372,9 +376,13 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                         canvas.restore();
                     }
                     if (i == 0 && SizeNotifierFrameLayout.this.oldBackgroundDrawable != null && SizeNotifierFrameLayout.this.themeAnimationValue >= 1.0f) {
-                        SizeNotifierFrameLayout sizeNotifierFrameLayout5 = SizeNotifierFrameLayout.this;
-                        if (sizeNotifierFrameLayout5.attached && (sizeNotifierFrameLayout5.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
+                        SizeNotifierFrameLayout sizeNotifierFrameLayout6 = SizeNotifierFrameLayout.this;
+                        if (sizeNotifierFrameLayout6.attached && (sizeNotifierFrameLayout6.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
                             ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow(SizeNotifierFrameLayout.this.backgroundView);
+                        }
+                        SizeNotifierFrameLayout sizeNotifierFrameLayout7 = SizeNotifierFrameLayout.this;
+                        if (sizeNotifierFrameLayout7.attached && (sizeNotifierFrameLayout7.oldBackgroundDrawable instanceof MotionBackgroundDrawable)) {
+                            ((MotionBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow();
                         }
                         SizeNotifierFrameLayout.this.oldBackgroundDrawable = null;
                         SizeNotifierFrameLayout.this.oldBackgroundMotion = false;
@@ -412,6 +420,18 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         this.backgroundDrawable = drawable;
         if (this.attached && (drawable instanceof ChatBackgroundDrawable)) {
             ((ChatBackgroundDrawable) drawable).onAttachedToWindow(this.backgroundView);
+        }
+        if (this.attached) {
+            Drawable drawable3 = this.backgroundDrawable;
+            if (drawable3 instanceof MotionBackgroundDrawable) {
+                ((MotionBackgroundDrawable) drawable3).onDetachedFromWindow();
+            }
+        }
+        if (this.attached) {
+            Drawable drawable4 = this.backgroundDrawable;
+            if (drawable4 instanceof MotionBackgroundDrawable) {
+                ((MotionBackgroundDrawable) drawable4).onAttachedToWindow();
+            }
         }
         checkMotion();
         this.backgroundView.invalidate();
@@ -903,9 +923,17 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         if (drawable instanceof ChatBackgroundDrawable) {
             ((ChatBackgroundDrawable) drawable).onAttachedToWindow(this.backgroundView);
         }
-        Drawable drawable2 = this.oldBackgroundDrawable;
-        if (drawable2 instanceof ChatBackgroundDrawable) {
-            ((ChatBackgroundDrawable) drawable2).onAttachedToWindow(this.backgroundView);
+        Drawable drawable2 = this.backgroundDrawable;
+        if (drawable2 instanceof MotionBackgroundDrawable) {
+            ((MotionBackgroundDrawable) drawable2).onAttachedToWindow();
+        }
+        Drawable drawable3 = this.oldBackgroundDrawable;
+        if (drawable3 instanceof ChatBackgroundDrawable) {
+            ((ChatBackgroundDrawable) drawable3).onAttachedToWindow(this.backgroundView);
+        }
+        Drawable drawable4 = this.oldBackgroundDrawable;
+        if (drawable4 instanceof MotionBackgroundDrawable) {
+            ((MotionBackgroundDrawable) drawable4).onAttachedToWindow();
         }
     }
 
@@ -940,6 +968,14 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         Drawable drawable2 = this.oldBackgroundDrawable;
         if (drawable2 instanceof ChatBackgroundDrawable) {
             ((ChatBackgroundDrawable) drawable2).onDetachedFromWindow(this.backgroundView);
+        }
+        Drawable drawable3 = this.backgroundDrawable;
+        if (drawable3 instanceof MotionBackgroundDrawable) {
+            ((MotionBackgroundDrawable) drawable3).onDetachedFromWindow();
+        }
+        Drawable drawable4 = this.oldBackgroundDrawable;
+        if (drawable4 instanceof MotionBackgroundDrawable) {
+            ((MotionBackgroundDrawable) drawable4).onDetachedFromWindow();
         }
     }
 

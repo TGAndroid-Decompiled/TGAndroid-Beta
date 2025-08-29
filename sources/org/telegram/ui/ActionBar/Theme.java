@@ -1176,6 +1176,8 @@ public abstract class Theme {
     public static Paint linkSelectionPaint;
     private static int loadingCurrentTheme;
     public static Drawable moveUpDrawable;
+    public static final int myMessages2EndIndex;
+    public static final int myMessages2StartIndex;
     public static final int myMessagesBubblesEndIndex;
     public static final int myMessagesBubblesStartIndex;
     public static final int myMessagesEndIndex;
@@ -2445,6 +2447,22 @@ public abstract class Theme {
             return !z;
         }
 
+        public void resetAccentColorsForMyMessagesGiftThemeLight(SparseIntArray sparseIntArray) {
+            sparseIntArray.put(Theme.key_actionBarDefault, this.accentColor | (-16777216));
+            for (int i = Theme.myMessagesBubblesStartIndex; i < Theme.myMessagesBubblesEndIndex; i++) {
+                sparseIntArray.delete(i);
+                sparseIntArray.put(i, Theme.defaultColors[i]);
+            }
+            for (int i2 = Theme.myMessagesStartIndex; i2 < Theme.myMessagesEndIndex; i2++) {
+                sparseIntArray.delete(i2);
+                sparseIntArray.put(i2, Theme.defaultColors[i2]);
+            }
+            for (int i3 = Theme.myMessages2StartIndex; i3 < Theme.myMessages2EndIndex; i3++) {
+                sparseIntArray.delete(i3);
+                sparseIntArray.put(i3, Theme.defaultColors[i3]);
+            }
+        }
+
         private float getHue(int i) {
             Color.colorToHSV(i, this.tempHSV);
             return this.tempHSV[0];
@@ -3383,35 +3401,38 @@ public abstract class Theme {
             if (tL_theme == null) {
                 return null;
             }
-            TLRPC.ThemeSettings themeSettings = i2 < tL_theme.settings.size() ? tL_theme.settings.get(i2) : null;
+            return createNewAccent(tL_theme.id, i2 < tL_theme.settings.size() ? tL_theme.settings.get(i2) : null, tL_theme, i, z);
+        }
+
+        public ThemeAccent createNewAccent(long j, TLRPC.ThemeSettings themeSettings, TLRPC.TL_theme tL_theme, int i, boolean z) {
             if (z) {
-                ThemeAccent themeAccent = (ThemeAccent) this.chatAccentsByThemeId.get(tL_theme.id);
+                ThemeAccent themeAccent = (ThemeAccent) this.chatAccentsByThemeId.get(j);
                 if (themeAccent != null) {
                     return themeAccent;
                 }
-                int i3 = this.lastChatThemeId + 1;
-                this.lastChatThemeId = i3;
+                int i2 = this.lastChatThemeId + 1;
+                this.lastChatThemeId = i2;
                 ThemeAccent createNewAccent = createNewAccent(themeSettings);
-                createNewAccent.id = i3;
+                createNewAccent.id = i2;
                 createNewAccent.info = tL_theme;
                 createNewAccent.account = i;
-                this.chatAccentsByThemeId.put(i3, createNewAccent);
+                this.chatAccentsByThemeId.put(i2, createNewAccent);
                 return createNewAccent;
             }
-            ThemeAccent themeAccent2 = (ThemeAccent) this.accentsByThemeId.get(tL_theme.id);
+            ThemeAccent themeAccent2 = (ThemeAccent) this.accentsByThemeId.get(j);
             if (themeAccent2 != null) {
                 return themeAccent2;
             }
-            int i4 = this.lastAccentId + 1;
-            this.lastAccentId = i4;
+            int i3 = this.lastAccentId + 1;
+            this.lastAccentId = i3;
             ThemeAccent createNewAccent2 = createNewAccent(themeSettings);
-            createNewAccent2.id = i4;
+            createNewAccent2.id = i3;
             createNewAccent2.info = tL_theme;
             createNewAccent2.account = i;
-            this.themeAccentsMap.put(i4, createNewAccent2);
+            this.themeAccentsMap.put(i3, createNewAccent2);
             this.themeAccents.add(0, createNewAccent2);
             Theme.sortAccents(this);
-            this.accentsByThemeId.put(tL_theme.id, createNewAccent2);
+            this.accentsByThemeId.put(j, createNewAccent2);
             return createNewAccent2;
         }
 

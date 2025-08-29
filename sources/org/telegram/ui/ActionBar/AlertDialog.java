@@ -176,6 +176,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         return false;
     }
 
+    public TextView getMessageTextView() {
+        return this.messageTextView;
+    }
+
     public void lambda$new$0() {
         if (isShowing()) {
             return;

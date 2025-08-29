@@ -70,4 +70,15 @@ public class TLObject {
         serializeToStream(threadLocal.get());
         return nativeByteBuffer.length();
     }
+
+    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
+        if (t != null) {
+            t.readParams(inputSerializedData, z);
+            return t;
+        }
+        if (z) {
+            throw new RuntimeException(String.format("can't parse magic %x in %s", Integer.valueOf(i), cls.getName()));
+        }
+        return null;
+    }
 }

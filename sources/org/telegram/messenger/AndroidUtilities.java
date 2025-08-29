@@ -2997,7 +2997,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int charSequenceIndexOf(java.lang.CharSequence r3, java.lang.CharSequence r4, int r5) {
+    public static int charSequenceIndexOf(java.lang.CharSequence r4, java.lang.CharSequence r5, int r6) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.charSequenceIndexOf(java.lang.CharSequence, java.lang.CharSequence, int):int");
     }
 

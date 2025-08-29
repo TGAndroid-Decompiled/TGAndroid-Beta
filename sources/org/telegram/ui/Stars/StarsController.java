@@ -3724,6 +3724,12 @@ public class StarsController {
             }
             of2.createEmojiBulletin(document2, string2, spannableStringBuilder).show(true);
         } else {
+            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+            int i2 = NotificationCenter.closeProfileActivity;
+            Long valueOf = Long.valueOf(j2);
+            Boolean bool = Boolean.FALSE;
+            notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, valueOf, bool);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChatActivity, Long.valueOf(j2), bool);
             final ChatActivity of3 = ChatActivity.of(j2);
             final SpannableStringBuilder spannableStringBuilder3 = spannableStringBuilder;
             of3.whenFullyVisible(new Runnable() {

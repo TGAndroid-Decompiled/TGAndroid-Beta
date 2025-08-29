@@ -56,14 +56,6 @@ public class EffectsTextView extends SpoilersTextView {
         this.disablePaddingsOffsetY = z;
     }
 
-    public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
-        this.onPressListener = onLinkPress;
-    }
-
-    public void setOnLinkLongPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
-        this.onLongPressListener = onLinkPress;
-    }
-
     @Override
     public ClickableSpan hit(int i, int i2) {
         Layout layout = getLayout();

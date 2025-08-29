@@ -108,6 +108,7 @@ public class MessageObject {
     public static final int TYPE_GIFT_PREMIUM = 18;
     public static final int TYPE_GIFT_PREMIUM_CHANNEL = 25;
     public static final int TYPE_GIFT_STARS = 30;
+    public static final int TYPE_GIFT_THEME_UPDATE = 31;
     public static final int TYPE_GIVEAWAY = 26;
     public static final int TYPE_GIVEAWAY_RESULTS = 28;
     public static final int TYPE_JOINED_CHANNEL = 27;
@@ -3298,6 +3299,9 @@ public class MessageObject {
                             this.type = -1;
                         } else if ((messageAction instanceof TLRPC.TL_messageActionPhoneCall) || (messageAction instanceof TLRPC.TL_messageActionConferenceCall)) {
                             this.type = 16;
+                        } else if ((messageAction instanceof TLRPC.TL_messageActionSetChatTheme) && (((TLRPC.TL_messageActionSetChatTheme) messageAction).theme instanceof TLRPC.TL_chatThemeUniqueGift)) {
+                            this.type = 31;
+                            this.contentType = 1;
                         } else {
                             this.contentType = 1;
                             this.type = 10;
@@ -6036,7 +6040,7 @@ public class MessageObject {
         if (i3 == 10) {
             return AndroidUtilities.dp(30.0f);
         }
-        if (i3 == 11 || i3 == 18 || i3 == 30 || i3 == 25 || i3 == 21) {
+        if (i3 == 11 || i3 == 18 || i3 == 31 || i3 == 30 || i3 == 25 || i3 == 21) {
             return AndroidUtilities.dp(50.0f);
         }
         if (i3 == 5) {
@@ -6577,7 +6581,8 @@ public class MessageObject {
     }
 
     public boolean canForwardMessage() {
-        return (isQuickReply() || this.type == 30 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
+        int i;
+        return (isQuickReply() || (i = this.type) == 30 || i == 31 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
     }
 
     public boolean isNoforwards() {

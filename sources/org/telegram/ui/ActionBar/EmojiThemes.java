@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
@@ -20,29 +21,43 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.tlutils.TlUtils;
+import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.theme.ITheme;
+import org.telegram.ui.ActionBar.theme.ThemeKey;
 
 public class EmojiThemes {
     private static final int[] previewColorKeys = {Theme.key_chat_inBubble, Theme.key_chat_outBubble, Theme.key_featuredStickers_addButton, Theme.key_chat_wallpaper, Theme.key_chat_wallpaper_gradient_to1, Theme.key_chat_wallpaper_gradient_to2, Theme.key_chat_wallpaper_gradient_to3, Theme.key_chat_wallpaper_gradient_rotation};
+    public TLRPC.ChatTheme chatTheme;
     private final int currentAccount;
+    int currentIndex;
     public String emoji;
+    public ArrayList items;
+    public ThemeKey key;
     public boolean showAsDefaultStub;
     public boolean showAsRemovedStub;
     public TLRPC.WallPaper wallpaper;
-    int currentIndex = 0;
-    public ArrayList items = new ArrayList();
 
     public EmojiThemes(int i) {
+        this.currentIndex = 0;
+        this.items = new ArrayList();
         this.currentAccount = i;
     }
 
     public EmojiThemes(int i, TLRPC.TL_theme tL_theme, boolean z) {
+        this.currentIndex = 0;
+        this.items = new ArrayList();
         this.currentAccount = i;
         this.showAsDefaultStub = z;
         this.emoji = tL_theme.emoticon;
+        this.key = ThemeKey.of(tL_theme);
+        this.chatTheme = TLRPC.ChatTheme.ofEmoticon(tL_theme.emoticon);
         if (z) {
             return;
         }
@@ -56,13 +71,38 @@ public class EmojiThemes {
         this.items.add(themeItem2);
     }
 
+    public EmojiThemes(int i, TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift) {
+        this.currentIndex = 0;
+        this.items = new ArrayList();
+        this.currentAccount = i;
+        this.showAsDefaultStub = false;
+        this.emoji = tL_chatThemeUniqueGift.gift.slug;
+        this.key = ThemeKey.of(tL_chatThemeUniqueGift);
+        this.chatTheme = tL_chatThemeUniqueGift;
+        ThemeItem themeItem = new ThemeItem();
+        themeItem.tlChatThemeGift = tL_chatThemeUniqueGift;
+        themeItem.settingsIndex = 0;
+        this.items.add(themeItem);
+        ThemeItem themeItem2 = new ThemeItem();
+        themeItem2.tlChatThemeGift = tL_chatThemeUniqueGift;
+        themeItem2.settingsIndex = 1;
+        this.items.add(themeItem2);
+    }
+
     public boolean isAnyStub() {
         return this.showAsDefaultStub || this.showAsRemovedStub;
+    }
+
+    public boolean isGiftTheme() {
+        ThemeKey themeKey = this.key;
+        return (themeKey == null || TextUtils.isEmpty(themeKey.giftSlug)) ? false : true;
     }
 
     public static EmojiThemes createPreviewFullTheme(int i, TLRPC.TL_theme tL_theme) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = tL_theme.emoticon;
+        emojiThemes.key = ThemeKey.of(tL_theme);
+        emojiThemes.chatTheme = TLRPC.ChatTheme.ofEmoticon(tL_theme.emoticon);
         for (int i2 = 0; i2 < tL_theme.settings.size(); i2++) {
             ThemeItem themeItem = new ThemeItem();
             themeItem.tlTheme = tL_theme;
@@ -75,6 +115,8 @@ public class EmojiThemes {
     public static EmojiThemes createChatThemesDefault(int i) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "❌";
+        emojiThemes.key = ThemeKey.ofEmoticon("❌");
+        emojiThemes.chatTheme = TLRPC.ChatTheme.ofEmoticon("❌");
         emojiThemes.showAsDefaultStub = true;
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = getDefaultThemeInfo(true);
@@ -88,6 +130,8 @@ public class EmojiThemes {
     public static EmojiThemes createChatThemesRemoved(int i) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "❌";
+        emojiThemes.key = ThemeKey.ofEmoticon("❌");
+        emojiThemes.chatTheme = TLRPC.ChatTheme.ofEmoticon("❌");
         emojiThemes.showAsRemovedStub = true;
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = getDefaultThemeInfo(true);
@@ -101,6 +145,8 @@ public class EmojiThemes {
     public static EmojiThemes createPreviewCustom(int i) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "🎨";
+        emojiThemes.key = ThemeKey.ofEmoticon("🎨");
+        emojiThemes.chatTheme = TLRPC.ChatTheme.ofEmoticon("❌");
         int i2 = 0;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         String string = sharedPreferences.getString("lastDayCustomTheme", null);
@@ -160,6 +206,8 @@ public class EmojiThemes {
     public static EmojiThemes createHomePreviewTheme(int i) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "🏠";
+        emojiThemes.key = ThemeKey.ofEmoticon("🏠");
+        emojiThemes.chatTheme = TLRPC.ChatTheme.ofEmoticon("❌");
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = Theme.getTheme("Blue");
         themeItem.accentId = 99;
@@ -182,6 +230,8 @@ public class EmojiThemes {
     public static EmojiThemes createHomeQrTheme(int i) {
         EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "🏠";
+        emojiThemes.key = ThemeKey.ofEmoticon("🏠");
+        emojiThemes.chatTheme = TLRPC.ChatTheme.ofEmoticon("❌");
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = Theme.getTheme("Blue");
         themeItem.accentId = 99;
@@ -202,17 +252,38 @@ public class EmojiThemes {
         return this.emoji;
     }
 
+    public String getEmoticonOrSlug() {
+        ThemeKey themeKey = this.key;
+        if (themeKey == null) {
+            return null;
+        }
+        String str = themeKey.giftSlug;
+        return str != null ? str : themeKey.emoticon;
+    }
+
     public TLRPC.TL_theme getTlTheme(int i) {
         return ((ThemeItem) this.items.get(i)).tlTheme;
     }
 
+    public ThemeKey getThemeKey() {
+        return this.key;
+    }
+
+    public TLRPC.ChatTheme getChatTheme() {
+        return this.chatTheme;
+    }
+
+    public ITheme getITheme(int i) {
+        return (ITheme) this.items.get(i);
+    }
+
+    public long getThemeId(int i) {
+        return ((ThemeItem) this.items.get(i)).getThemeId();
+    }
+
     public TLRPC.WallPaper getWallpaper(int i) {
-        TLRPC.TL_theme tlTheme;
-        int i2 = ((ThemeItem) this.items.get(i)).settingsIndex;
-        if (i2 < 0 || (tlTheme = getTlTheme(i)) == null) {
-            return null;
-        }
-        return tlTheme.settings.get(i2).wallpaper;
+        ThemeItem themeItem = (ThemeItem) this.items.get(i);
+        return themeItem.getThemeWallPaper(themeItem.settingsIndex);
     }
 
     public String getWallpaperLink(int i) {
@@ -227,43 +298,45 @@ public class EmojiThemes {
         Theme.ThemeAccent themeAccent;
         SparseIntArray sparseIntArray;
         int indexOfKey;
+        Theme.ThemeInfo themeInfo;
         Theme.ThemeInfo theme;
         SparseIntArray sparseIntArray2 = ((ThemeItem) this.items.get(i2)).currentPreviewColors;
         if (sparseIntArray2 != null) {
             return sparseIntArray2;
         }
-        Theme.ThemeInfo themeInfo = getThemeInfo(i2);
-        if (themeInfo == null) {
+        Theme.ThemeInfo themeInfo2 = getThemeInfo(i2);
+        if (themeInfo2 == null) {
             int settingsIndex = getSettingsIndex(i2);
+            ITheme iTheme = getITheme(i2);
             TLRPC.TL_theme tlTheme = getTlTheme(i2);
-            if (tlTheme != null) {
-                theme = Theme.getTheme(Theme.getBaseThemeKey(tlTheme.settings.get(settingsIndex)));
+            if (iTheme != null) {
+                theme = Theme.getTheme(Theme.getBaseThemeKey(iTheme.getThemeSettings(settingsIndex)));
             } else {
                 theme = Theme.getTheme("Blue");
             }
             if (theme != null) {
-                themeInfo = new Theme.ThemeInfo(theme);
-                themeAccent = themeInfo.createNewAccent(tlTheme, i, true, settingsIndex);
+                themeInfo2 = new Theme.ThemeInfo(theme);
+                themeAccent = iTheme != null ? themeInfo2.createNewAccent(iTheme.getThemeId(), iTheme.getThemeSettings(settingsIndex), tlTheme, i, true) : null;
                 if (themeAccent != null) {
-                    themeInfo.setCurrentAccentId(themeAccent.id);
+                    themeInfo2.setCurrentAccentId(themeAccent.id);
                 }
             }
             themeAccent = null;
         } else {
-            SparseArray sparseArray = themeInfo.themeAccentsMap;
+            SparseArray sparseArray = themeInfo2.themeAccentsMap;
             if (sparseArray != null) {
                 themeAccent = (Theme.ThemeAccent) sparseArray.get(((ThemeItem) this.items.get(i2)).accentId);
             }
             themeAccent = null;
         }
-        if (themeInfo == null) {
+        if (themeInfo2 == null) {
             return sparseIntArray2;
         }
         String[] strArr = new String[1];
-        if (themeInfo.pathToFile != null) {
-            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo.pathToFile), null, strArr);
+        if (themeInfo2.pathToFile != null) {
+            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo2.pathToFile), null, strArr);
         } else {
-            String str = themeInfo.assetName;
+            String str = themeInfo2.assetName;
             if (str != null) {
                 sparseIntArray = Theme.getThemeFileValues(null, str, strArr);
             } else {
@@ -275,6 +348,9 @@ public class EmojiThemes {
         if (themeAccent != null) {
             SparseIntArray clone = sparseIntArray.clone();
             themeAccent.fillAccentColors(sparseIntArray, clone);
+            if (isGiftTheme() && (themeInfo = themeAccent.parentTheme) != null && themeInfo.isLight()) {
+                themeAccent.resetAccentColorsForMyMessagesGiftThemeLight(clone);
+            }
             sparseIntArray = clone;
         }
         SparseIntArray fallbackKeys = Theme.getFallbackKeys();
@@ -308,23 +384,26 @@ public class EmojiThemes {
         Theme.ThemeAccent themeAccent;
         SparseIntArray sparseIntArray;
         int indexOfKey;
-        Theme.ThemeInfo themeInfo = getThemeInfo(i2);
-        if (themeInfo == null) {
+        Theme.ThemeInfo themeInfo;
+        Theme.ThemeInfo themeInfo2 = getThemeInfo(i2);
+        if (themeInfo2 == null) {
             int settingsIndex = getSettingsIndex(i2);
+            ITheme iTheme = getITheme(i2);
+            TLRPC.ThemeSettings themeSettings = iTheme.getThemeSettings(settingsIndex);
             TLRPC.TL_theme tlTheme = getTlTheme(i2);
-            Theme.ThemeInfo themeInfo2 = new Theme.ThemeInfo(Theme.getTheme(Theme.getBaseThemeKey(tlTheme.settings.get(settingsIndex))));
-            themeAccent = themeInfo2.createNewAccent(tlTheme, i, true, settingsIndex);
-            themeInfo2.setCurrentAccentId(themeAccent.id);
-            themeInfo = themeInfo2;
+            Theme.ThemeInfo themeInfo3 = new Theme.ThemeInfo(Theme.getTheme(Theme.getBaseThemeKey(themeSettings)));
+            themeAccent = themeInfo3.createNewAccent(iTheme.getThemeId(), themeSettings, tlTheme, i, true);
+            themeInfo3.setCurrentAccentId(themeAccent.id);
+            themeInfo2 = themeInfo3;
         } else {
-            SparseArray sparseArray = themeInfo.themeAccentsMap;
+            SparseArray sparseArray = themeInfo2.themeAccentsMap;
             themeAccent = sparseArray != null ? (Theme.ThemeAccent) sparseArray.get(((ThemeItem) this.items.get(i2)).accentId) : null;
         }
         String[] strArr = new String[1];
-        if (themeInfo.pathToFile != null) {
-            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo.pathToFile), null, strArr);
+        if (themeInfo2.pathToFile != null) {
+            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo2.pathToFile), null, strArr);
         } else {
-            String str = themeInfo.assetName;
+            String str = themeInfo2.assetName;
             if (str != null) {
                 sparseIntArray = Theme.getThemeFileValues(null, str, strArr);
             } else {
@@ -335,6 +414,9 @@ public class EmojiThemes {
         if (themeAccent != null) {
             SparseIntArray clone = sparseIntArray.clone();
             themeAccent.fillAccentColors(sparseIntArray, clone);
+            if (isGiftTheme() && (themeInfo = themeAccent.parentTheme) != null && themeInfo.isLight()) {
+                themeAccent.resetAccentColorsForMyMessagesGiftThemeLight(clone);
+            }
             sparseIntArray = clone;
         }
         SparseIntArray fallbackKeys = Theme.getFallbackKeys();
@@ -358,37 +440,42 @@ public class EmojiThemes {
         return ((ThemeItem) this.items.get(i)).themeInfo;
     }
 
-    public void loadWallpaper(int i, ResultCallback resultCallback) {
+    public void loadWallpaper(int i, final ResultCallback resultCallback) {
         TLRPC.WallPaper wallpaper = getWallpaper(i);
         if (wallpaper != null) {
-            loadWallpaperImage(this.currentAccount, getTlTheme(i).id, wallpaper, resultCallback);
+            final long themeId = getThemeId(i);
+            loadWallpaperImage(this.currentAccount, wallpaper.id, wallpaper, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    EmojiThemes.lambda$loadWallpaper$0(ResultCallback.this, themeId, (WallpaperBitmapHolder) obj);
+                }
+            });
         } else if (resultCallback != null) {
             resultCallback.onComplete(null);
         }
     }
 
-    public static void loadWallpaperImage(final int i, final long j, final TLRPC.WallPaper wallPaper, final ResultCallback resultCallback) {
-        ChatThemeController.getInstance(i).getWallpaperBitmap(j, new ResultCallback() {
-            @Override
-            public final void onComplete(Object obj) {
-                EmojiThemes.lambda$loadWallpaperImage$1(ResultCallback.this, j, wallPaper, i, (Bitmap) obj);
-            }
+    public static void lambda$loadWallpaper$0(ResultCallback resultCallback, long j, WallpaperBitmapHolder wallpaperBitmapHolder) {
+        if (resultCallback != null) {
+            resultCallback.onComplete(new Pair(Long.valueOf(j), wallpaperBitmapHolder));
+        }
+    }
 
+    public static void loadWallpaperImage(final int i, final long j, final TLRPC.WallPaper wallPaper, final Utilities.Callback callback) {
+        boolean z = wallPaper.pattern;
+        ChatThemeController chatThemeController = ChatThemeController.getInstance(i);
+        final int i2 = z ? 1 : 0;
+        chatThemeController.loadWallpaperBitmap(j, z ? 1 : 0, new Utilities.Callback() {
             @Override
-            public void onError(Throwable th) {
-                ResultCallback.CC.$default$onError(this, th);
-            }
-
-            @Override
-            public void onError(TLRPC.TL_error tL_error) {
-                ResultCallback.CC.$default$onError(this, tL_error);
+            public final void run(Object obj) {
+                EmojiThemes.lambda$loadWallpaperImage$2(Utilities.Callback.this, wallPaper, i2, i, j, (WallpaperBitmapHolder) obj);
             }
         });
     }
 
-    public static void lambda$loadWallpaperImage$1(final ResultCallback resultCallback, final long j, TLRPC.WallPaper wallPaper, final int i, Bitmap bitmap) {
-        if (bitmap != null && resultCallback != null) {
-            resultCallback.onComplete(new Pair(Long.valueOf(j), bitmap));
+    public static void lambda$loadWallpaperImage$2(final Utilities.Callback callback, TLRPC.WallPaper wallPaper, final int i, final int i2, final long j, WallpaperBitmapHolder wallpaperBitmapHolder) {
+        if (wallpaperBitmapHolder != null && callback != null) {
+            callback.run(wallpaperBitmapHolder);
             return;
         }
         ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
@@ -397,16 +484,16 @@ public class EmojiThemes {
         Point point = AndroidUtilities.displaySize;
         int min = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
-        imageReceiver.setImage(forDocument, ((int) (min / AndroidUtilities.density)) + "_" + ((int) (Math.max(point2.x, point2.y) / AndroidUtilities.density)) + "_f", null, ".jpg", wallPaper, 1);
+        imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (Math.max(point2.x, point2.y) / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.lambda$loadWallpaperImage$0(ResultCallback.this, j, i, imageReceiver2, z, z2, z3);
+                EmojiThemes.lambda$loadWallpaperImage$1(i, callback, i2, j, imageReceiver2, z, z2, z3);
             }
 
             @Override
-            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
-                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
+            public void didSetImageBitmap(int i3, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str, drawable);
             }
 
             @Override
@@ -417,22 +504,8 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void lambda$loadWallpaperImage$0(ResultCallback resultCallback, long j, int i, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
-        if (!z || bitmapSafe == null) {
-            return;
-        }
-        Bitmap bitmap = bitmapSafe.bitmap;
-        if (bitmap == null) {
-            Drawable drawable = bitmapSafe.drawable;
-            if (drawable instanceof BitmapDrawable) {
-                bitmap = ((BitmapDrawable) drawable).getBitmap();
-            }
-        }
-        if (resultCallback != null) {
-            resultCallback.onComplete(new Pair(Long.valueOf(j), bitmap));
-        }
-        ChatThemeController.getInstance(i).saveWallpaperBitmap(bitmap, j);
+    public static void lambda$loadWallpaperImage$1(int r0, org.telegram.messenger.Utilities.Callback r1, int r2, long r3, org.telegram.messenger.ImageReceiver r5, boolean r6, boolean r7, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.EmojiThemes.lambda$loadWallpaperImage$1(int, org.telegram.messenger.Utilities$Callback, int, long, org.telegram.messenger.ImageReceiver, boolean, boolean, boolean):void");
     }
 
     public void loadWallpaperThumb(int i, final ResultCallback resultCallback) {
@@ -444,9 +517,16 @@ public class EmojiThemes {
             }
             return;
         }
-        final long j = getTlTheme(i).id;
-        Bitmap wallpaperThumbBitmap = ChatThemeController.getInstance(this.currentAccount).getWallpaperThumbBitmap(j);
-        final File wallpaperThumbFile = getWallpaperThumbFile(j);
+        final long themeId = getThemeId(i);
+        if (themeId == 0) {
+            if (resultCallback != null) {
+                resultCallback.onComplete(null);
+                return;
+            }
+            return;
+        }
+        Bitmap wallpaperThumbBitmap = ChatThemeController.getInstance(this.currentAccount).getWallpaperThumbBitmap(themeId);
+        final File wallpaperThumbFile = getWallpaperThumbFile(themeId);
         if (wallpaperThumbBitmap == null && wallpaperThumbFile.exists() && wallpaperThumbFile.length() > 0) {
             try {
                 wallpaperThumbBitmap = BitmapFactory.decodeFile(wallpaperThumbFile.getAbsolutePath());
@@ -456,7 +536,7 @@ public class EmojiThemes {
         }
         if (wallpaperThumbBitmap != null) {
             if (resultCallback != null) {
-                resultCallback.onComplete(new Pair(Long.valueOf(j), wallpaperThumbBitmap));
+                resultCallback.onComplete(new Pair(Long.valueOf(themeId), wallpaperThumbBitmap));
                 return;
             }
             return;
@@ -464,7 +544,7 @@ public class EmojiThemes {
         TLRPC.Document document = wallpaper.document;
         if (document == null) {
             if (resultCallback != null) {
-                resultCallback.onComplete(new Pair(Long.valueOf(j), null));
+                resultCallback.onComplete(new Pair(Long.valueOf(themeId), null));
             }
         } else {
             ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 140), wallpaper.document);
@@ -474,7 +554,7 @@ public class EmojiThemes {
             imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                    EmojiThemes.lambda$loadWallpaperThumb$3(ResultCallback.this, j, wallpaperThumbFile, imageReceiver2, z, z2, z3);
+                    EmojiThemes.lambda$loadWallpaperThumb$4(ResultCallback.this, themeId, wallpaperThumbFile, imageReceiver2, z, z2, z3);
                 }
 
                 @Override
@@ -491,7 +571,7 @@ public class EmojiThemes {
         }
     }
 
-    public static void lambda$loadWallpaperThumb$3(ResultCallback resultCallback, long j, final File file, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void lambda$loadWallpaperThumb$4(ResultCallback resultCallback, long j, final File file, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null || bitmapSafe.bitmap.isRecycled()) {
             return;
@@ -510,7 +590,7 @@ public class EmojiThemes {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    EmojiThemes.lambda$loadWallpaperThumb$2(file, bitmap);
+                    EmojiThemes.lambda$loadWallpaperThumb$3(file, bitmap);
                 }
             });
         } else if (resultCallback != null) {
@@ -518,7 +598,7 @@ public class EmojiThemes {
         }
     }
 
-    public static void lambda$loadWallpaperThumb$2(File file, Bitmap bitmap) {
+    public static void lambda$loadWallpaperThumb$3(File file, Bitmap bitmap) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             try {
@@ -631,7 +711,7 @@ public class EmojiThemes {
         }
     }
 
-    public static class ThemeItem {
+    public static class ThemeItem implements ITheme {
         public int accentId = -1;
         public SparseIntArray currentPreviewColors;
         public int inBubbleColor;
@@ -644,7 +724,128 @@ public class EmojiThemes {
         public int patternBgRotation;
         int settingsIndex;
         public Theme.ThemeInfo themeInfo;
+        TLRPC.TL_chatThemeUniqueGift tlChatThemeGift;
         TLRPC.TL_theme tlTheme;
         private String wallpaperLink;
+
+        @Override
+        public long getThemeId() {
+            TLRPC.TL_theme tL_theme = this.tlTheme;
+            if (tL_theme != null) {
+                return tL_theme.id;
+            }
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.tlChatThemeGift;
+            if (tL_chatThemeUniqueGift != null) {
+                return tL_chatThemeUniqueGift.gift.gift_id;
+            }
+            return 0L;
+        }
+
+        @Override
+        public TLRPC.ThemeSettings getThemeSettings(int i) {
+            ArrayList<TLRPC.ThemeSettings> arrayList;
+            TLRPC.TL_theme tL_theme = this.tlTheme;
+            if (tL_theme != null) {
+                arrayList = tL_theme.settings;
+            } else {
+                TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.tlChatThemeGift;
+                if (tL_chatThemeUniqueGift != null) {
+                    arrayList = tL_chatThemeUniqueGift.theme_settings;
+                }
+                return null;
+            }
+            if (arrayList != null && i >= 0 && arrayList.size() > i) {
+                return arrayList.get(i);
+            }
+            return null;
+        }
+
+        public TLRPC.WallPaper getThemeWallPaper(int i) {
+            TLRPC.ThemeSettings themeSettings = getThemeSettings(i);
+            if (themeSettings != null) {
+                return themeSettings.wallpaper;
+            }
+            return null;
+        }
+    }
+
+    public TL_stars.TL_starGiftUnique getThemeGift() {
+        TLRPC.ChatTheme chatTheme = this.chatTheme;
+        if (!(chatTheme instanceof TLRPC.TL_chatThemeUniqueGift)) {
+            return null;
+        }
+        TL_stars.StarGift starGift = ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift;
+        if (starGift instanceof TL_stars.TL_starGiftUnique) {
+            return (TL_stars.TL_starGiftUnique) starGift;
+        }
+        return null;
+    }
+
+    public long getBusyByUserId() {
+        if (this.chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            return ChatThemeController.getInstance(this.currentAccount).getGiftThemeUser(((TLRPC.TL_chatThemeUniqueGift) this.chatTheme).gift.slug);
+        }
+        return 0L;
+    }
+
+    public TLRPC.Document getEmojiAnimatedSticker() {
+        TLRPC.ChatTheme chatTheme = this.chatTheme;
+        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            return TlUtils.getGiftDocument(((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift);
+        }
+        if (chatTheme instanceof TLRPC.TL_chatTheme) {
+            return MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker(((TLRPC.TL_chatTheme) this.chatTheme).emoticon);
+        }
+        return null;
+    }
+
+    public void loadWallpaperGiftPattern(int i, ResultCallback resultCallback) {
+        ThemeItem themeItem = getThemeItem(i);
+        if (themeItem == null || themeItem.tlChatThemeGift == null) {
+            return;
+        }
+        loadWallpaperGiftPattern(this.currentAccount, getThemeId(i), themeItem.tlChatThemeGift.gift, resultCallback);
+    }
+
+    public static void loadWallpaperGiftPattern(int i, final long j, TL_stars.StarGift starGift, final ResultCallback resultCallback) {
+        TLRPC.Document giftDocumentPattern = TlUtils.getGiftDocumentPattern(starGift);
+        ImageLocation forDocument = ImageLocation.getForDocument(giftDocumentPattern);
+        ImageReceiver imageReceiver = new ImageReceiver();
+        imageReceiver.setAllowLoadingOnAttachedOnly(false);
+        imageReceiver.setImage(forDocument, "40_40_firstframe", null, ".jpg", giftDocumentPattern, 1);
+        imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+            @Override
+            public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
+                EmojiThemes.lambda$loadWallpaperGiftPattern$5(ResultCallback.this, j, imageReceiver2, z, z2, z3);
+            }
+
+            @Override
+            public void didSetImageBitmap(int i2, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i2, str, drawable);
+            }
+
+            @Override
+            public void onAnimationReady(ImageReceiver imageReceiver2) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
+            }
+        });
+        ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
+    }
+
+    public static void lambda$loadWallpaperGiftPattern$5(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
+        if (!z || bitmapSafe == null) {
+            return;
+        }
+        Bitmap bitmap = bitmapSafe.bitmap;
+        if (bitmap == null) {
+            Drawable drawable = bitmapSafe.drawable;
+            if (drawable instanceof BitmapDrawable) {
+                bitmap = ((BitmapDrawable) drawable).getBitmap();
+            }
+        }
+        if (resultCallback != null) {
+            resultCallback.onComplete(new Pair(Long.valueOf(j), bitmap));
+        }
     }
 }

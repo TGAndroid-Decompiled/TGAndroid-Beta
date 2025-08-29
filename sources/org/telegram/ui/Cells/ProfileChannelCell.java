@@ -162,16 +162,21 @@ public abstract class ProfileChannelCell extends FrameLayout {
             int i = layoutParams.leftMargin;
             int i2 = layoutParams.topMargin;
             layoutParams.topMargin = dp + ((FrameLayout.LayoutParams) this.dialogCell.getLayoutParams()).topMargin;
-            int i3 = this.dialogCell.nameAdditionalsForChannelSubscriber;
+            DialogCell dialogCell2 = this.dialogCell;
+            int i3 = dialogCell2.nameAdditionalsForChannelSubscriber;
             if (i3 == 0) {
-                i3 = AndroidUtilities.dp(4.0f);
+                if (!LocaleController.isRTL && dialogCell2.nameLayout.getLineLeft(0) <= 0.0f && AndroidUtilities.charSequenceContains(this.dialogCell.nameLayout.getText(), "…")) {
+                    i3 = AndroidUtilities.dp(-12.0f);
+                } else {
+                    i3 = AndroidUtilities.dp(4.0f);
+                }
             }
             if (LocaleController.isRTL) {
-                layoutParams.leftMargin = (int) (((r4.nameLeft + this.dialogCell.nameLayoutTranslateX) - r4.namePaddingEnd) - i3);
+                layoutParams.leftMargin = (int) (((r0.nameLeft + this.dialogCell.nameLayoutTranslateX) - r0.namePaddingEnd) - i3);
             } else {
-                DialogCell dialogCell2 = this.dialogCell;
-                float lineWidth = dialogCell2.channelShouldUseLineWidth ? dialogCell2.nameLayout.getLineWidth(0) : r4.getEllipsizedWidth();
-                layoutParams.leftMargin = (int) (r6.nameLeft + this.dialogCell.nameLayoutTranslateX + ((int) lineWidth) + i3);
+                DialogCell dialogCell3 = this.dialogCell;
+                float lineRight = dialogCell3.channelShouldUseLineWidth ? dialogCell3.nameLayout.getLineRight(0) : dialogCell3.nameWidth;
+                layoutParams.leftMargin = (int) (r6.nameLeft + this.dialogCell.nameLayoutTranslateX + ((int) lineRight) + i3);
             }
             this.subscribersView.setVisibility(0);
             int i4 = layoutParams.leftMargin;

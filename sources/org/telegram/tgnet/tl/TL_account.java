@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda40;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
@@ -1093,12 +1094,12 @@ public class TL_account {
         }
     }
 
-    public static class getChatThemes extends TLObject {
+    public static class getChatThemes extends TLMethod<Themes> {
         public static final int constructor = -700916087;
         public long hash;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public Themes deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return Themes.TLdeserialize(inputSerializedData, i, z);
         }
 
@@ -4326,6 +4327,95 @@ public class TL_account {
             outputSerializedData.writeInt32(1970513129);
             this.id.serializeToStream(outputSerializedData);
             Vector.serialize(outputSerializedData, this.documents);
+        }
+    }
+
+    public static class Tl_getUniqueGiftChatThemes extends TLMethod<ChatThemes> {
+        public static final int constructor = -25890913;
+        public long hash;
+        public int limit;
+        public int offset;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-25890913);
+            outputSerializedData.writeInt32(this.offset);
+            outputSerializedData.writeInt32(this.limit);
+            outputSerializedData.writeInt64(this.hash);
+        }
+
+        @Override
+        public ChatThemes deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return ChatThemes.TLdeserialize(inputSerializedData, i, z);
+        }
+    }
+
+    public static abstract class ChatThemes extends TLObject {
+        public static ChatThemes TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (ChatThemes) TLObject.TLdeserialize(ChatThemes.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static ChatThemes fromConstructor(int i) {
+            if (i == -535699004) {
+                return new TL_chatThemesNotModified();
+            }
+            if (i != 373835863) {
+                return null;
+            }
+            return new Tl_chatThemes();
+        }
+    }
+
+    public static class TL_chatThemesNotModified extends ChatThemes {
+        public static final int constructor = -535699004;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-535699004);
+        }
+    }
+
+    public static class Tl_chatThemes extends ChatThemes {
+        public static final int constructor = 373835863;
+        public ArrayList<TLRPC.Chat> chats;
+        public int flags;
+        public long hash;
+        public int next_offset;
+        public ArrayList<TLRPC.ChatTheme> themes;
+        public ArrayList<TLRPC.User> users;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(373835863);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt64(this.hash);
+            Vector.serialize(outputSerializedData, this.themes);
+            Vector.serialize(outputSerializedData, this.chats);
+            Vector.serialize(outputSerializedData, this.users);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.next_offset);
+            }
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.hash = inputSerializedData.readInt64(z);
+            this.themes = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TLRPC.ChatTheme.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
+            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.next_offset = inputSerializedData.readInt32(z);
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
@@ -49,6 +50,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
@@ -77,9 +79,11 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.theme.ThemeKey;
 import org.telegram.ui.Cells.SessionCell;
 import org.telegram.ui.Cells.ShareDialogCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -109,6 +113,7 @@ import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.TableView;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.Gifts.ProfileGiftsContainer;
 import org.telegram.ui.Gifts.ResaleGiftsFragment;
@@ -125,6 +130,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.TON.TONIntroActivity;
+import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.TwoStepVerificationSetupActivity;
 import org.telegram.ui.bots.AffiliateProgramFragment;
@@ -195,7 +201,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final TextView wearSubtitle;
     private final TextView wearTitle;
 
-    public static void lambda$onResellPressed$23(AlertDialog alertDialog, int i) {
+    public static void lambda$onResellPressed$25(AlertDialog alertDialog, int i) {
     }
 
     @Override
@@ -531,7 +537,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 }
             }
             StarGiftSheet.this.overrideNextIndex = -1;
-            Bulletin.hideVisible();
+            if (Bulletin.getVisibleBulletin() != null) {
+                Bulletin.getVisibleBulletin().hide(false, 0L);
+            }
         }
 
         @Override
@@ -945,6 +953,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             public final void run() {
                 StarGiftSheet.this.lambda$onMenuPressed$5();
             }
+        }).addIf(canSetAsTheme(), R.drawable.msg_colors, LocaleController.getString(R.string.GiftThemesSetIn), new Runnable() {
+            @Override
+            public final void run() {
+                StarGiftSheet.this.openSetAsTheme();
+            }
         }).addIf(canTransfer(), R.drawable.menu_feature_transfer, LocaleController.getString(R.string.Gift2TransferOption), new Runnable() {
             @Override
             public final void run() {
@@ -1001,6 +1014,72 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         onSharePressed(null);
     }
 
+    private boolean canSetAsTheme() {
+        TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
+        if (uniqueGift == null || !uniqueGift.theme_available) {
+            return false;
+        }
+        long peerDialogId = DialogObject.getPeerDialogId(uniqueGift.owner_id);
+        return peerDialogId > 0 && isMineWithActions(this.currentAccount, peerDialogId);
+    }
+
+    public void openSetAsTheme() {
+        lambda$new$0();
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        final TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
+        if (safeLastFragment == null || uniqueGift == null) {
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("onlySelect", true);
+        bundle.putInt("dialogsType", 4);
+        final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+            @Override
+            public boolean canSelectStories() {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+            }
+
+            @Override
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+                boolean lambda$openSetAsTheme$7;
+                lambda$openSetAsTheme$7 = StarGiftSheet.this.lambda$openSetAsTheme$7(uniqueGift, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
+                return lambda$openSetAsTheme$7;
+            }
+
+            @Override
+            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
+            }
+        });
+        safeLastFragment.presentFragment(dialogsActivity);
+    }
+
+    public boolean lambda$openSetAsTheme$7(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        final long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+        long giftThemeUser = ChatThemeController.getInstance(this.currentAccount).getGiftThemeUser(tL_starGiftUnique.slug);
+        if (giftThemeUser != 0 && giftThemeUser != j) {
+            AlertsCreator.showGiftThemeApplyConfirm(getContext(), this.resourcesProvider, this.currentAccount, tL_starGiftUnique, giftThemeUser, new Runnable() {
+                @Override
+                public final void run() {
+                    StarGiftSheet.this.lambda$openSetAsTheme$6(j, tL_starGiftUnique, dialogsActivity);
+                }
+            });
+            return true;
+        }
+        ChatThemeController.getInstance(this.currentAccount).setDialogTheme(j, ThemeKey.ofGiftSlug(tL_starGiftUnique.slug));
+        dialogsActivity.presentFragment(ChatActivity.of(j), true);
+        return true;
+    }
+
+    public void lambda$openSetAsTheme$6(long j, TL_stars.TL_starGiftUnique tL_starGiftUnique, DialogsActivity dialogsActivity) {
+        ChatThemeController.getInstance(this.currentAccount).setDialogTheme(j, ThemeKey.ofGiftSlug(tL_starGiftUnique.slug));
+        dialogsActivity.presentFragment(ChatActivity.of(j), true);
+    }
+
     public void onWearPressed(View view) {
         if (UserConfig.getInstance(this.currentAccount).isPremium() && (isWorn(this.currentAccount, getUniqueGift()) || this.shownWearInfo)) {
             toggleWear();
@@ -1025,14 +1104,14 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                StarGiftSheet.this.lambda$onWearPressed$6(view2);
+                StarGiftSheet.this.lambda$onWearPressed$8(view2);
             }
         });
         this.topView.setWearPreview(MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId));
         switchPage(2, true);
     }
 
-    public void lambda$onWearPressed$6(View view) {
+    public void lambda$onWearPressed$8(View view) {
         this.shownWearInfo = true;
         toggleWear();
     }
@@ -1057,7 +1136,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftSheet.this.lambda$setupWearPage$7(view);
+                StarGiftSheet.this.lambda$setupWearPage$9(view);
             }
         });
         this.topView.setWearPreview(MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId));
@@ -1066,7 +1145,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return this;
     }
 
-    public void lambda$setupWearPage$7(View view) {
+    public void lambda$setupWearPage$9(View view) {
         this.shownWearInfo = true;
         toggleWear();
     }
@@ -1116,7 +1195,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     getBulletinFactory().createSimpleBulletinDetail(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.Gift2ActionWearNeededPremium), new Runnable() {
                         @Override
                         public final void run() {
-                            StarGiftSheet.this.lambda$toggleWear$8();
+                            StarGiftSheet.this.lambda$toggleWear$10();
                         }
                     })).ignoreDetach().show();
                     return;
@@ -1127,7 +1206,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(dialogId, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        StarGiftSheet.this.lambda$toggleWear$11(messagesController, dialogId, (TL_stories.TL_premium_boostsStatus) obj);
+                        StarGiftSheet.this.lambda$toggleWear$13(messagesController, dialogId, (TL_stories.TL_premium_boostsStatus) obj);
                     }
                 });
                 return;
@@ -1144,7 +1223,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$toggleWear$12(z2);
+                StarGiftSheet.this.lambda$toggleWear$14(z2);
             }
         };
         if (this.currentPage.is(0)) {
@@ -1157,16 +1236,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftSheet.this.lambda$toggleWear$13(view);
+                StarGiftSheet.this.lambda$toggleWear$15(view);
             }
         });
     }
 
-    public void lambda$toggleWear$8() {
+    public void lambda$toggleWear$10() {
         new PremiumFeatureBottomSheet(getDummyFragment(), 12, false).show();
     }
 
-    public void lambda$toggleWear$11(final MessagesController messagesController, final long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public void lambda$toggleWear$13(final MessagesController messagesController, final long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         if (tL_premium_boostsStatus == null || tL_premium_boostsStatus.level >= messagesController.channelEmojiStatusLevelMin) {
             this.button.setLoading(false);
             toggleWear(true);
@@ -1174,13 +1253,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             messagesController.getBoostsController().userCanBoostChannel(j, tL_premium_boostsStatus, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    StarGiftSheet.this.lambda$toggleWear$10(tL_premium_boostsStatus, j, messagesController, (ChannelBoostsController.CanApplyBoost) obj);
+                    StarGiftSheet.this.lambda$toggleWear$12(tL_premium_boostsStatus, j, messagesController, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
         }
     }
 
-    public void lambda$toggleWear$10(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, long j, MessagesController messagesController, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$toggleWear$12(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, long j, MessagesController messagesController, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         this.button.setLoading(false);
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(getDummyFragment(), getContext(), 26, this.currentAccount, this.resourcesProvider);
         limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
@@ -1191,22 +1270,22 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$toggleWear$9(chat);
+                    StarGiftSheet.this.lambda$toggleWear$11(chat);
                 }
             });
         }
         limitReachedBottomSheet.show();
     }
 
-    public void lambda$toggleWear$9(TLRPC.Chat chat) {
+    public void lambda$toggleWear$11(TLRPC.Chat chat) {
         presentFragment(StatisticActivity.create(chat));
     }
 
-    public void lambda$toggleWear$12(boolean z) {
+    public void lambda$toggleWear$14(boolean z) {
         showHint(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.Gift2ActionWearDone : R.string.Gift2ActionWearOffDone, getGiftName())), this.ownerTextView, true);
     }
 
-    public void lambda$toggleWear$13(View view) {
+    public void lambda$toggleWear$15(View view) {
         onBackPressed();
     }
 
@@ -1398,12 +1477,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         StarsIntroActivity.showGiftResellPriceSheet(getContext(), this.currentAccount, uniqueGift, null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StarGiftSheet.this.lambda$onUpdatePriceClick$17(uniqueGift, (AmountUtils$Amount) obj, (Runnable) obj2);
+                StarGiftSheet.this.lambda$onUpdatePriceClick$19(uniqueGift, (AmountUtils$Amount) obj, (Runnable) obj2);
             }
         }, this.resourcesProvider);
     }
 
-    public void lambda$onUpdatePriceClick$17(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable) {
+    public void lambda$onUpdatePriceClick$19(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable) {
         TL_stars.StarsAmount tl = amountUtils$Amount.toTl();
         TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
         updatestargiftprice.stargift = getInputStarGift();
@@ -1411,31 +1490,31 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$onUpdatePriceClick$16(tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
+                StarGiftSheet.this.lambda$onUpdatePriceClick$18(tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onUpdatePriceClick$16(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onUpdatePriceClick$18(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onUpdatePriceClick$14(tL_starGiftUnique, amountUtils$Amount, runnable);
+                    StarGiftSheet.this.lambda$onUpdatePriceClick$16(tL_starGiftUnique, amountUtils$Amount, runnable);
                 }
             });
         } else if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onUpdatePriceClick$15(tL_error, runnable);
+                    StarGiftSheet.this.lambda$onUpdatePriceClick$17(tL_error, runnable);
                 }
             });
         }
     }
 
-    public void lambda$onUpdatePriceClick$14(TL_stars.TL_starGiftUnique tL_starGiftUnique, AmountUtils$Amount amountUtils$Amount, Runnable runnable) {
+    public void lambda$onUpdatePriceClick$16(TL_stars.TL_starGiftUnique tL_starGiftUnique, AmountUtils$Amount amountUtils$Amount, Runnable runnable) {
         tL_starGiftUnique.flags |= 16;
         AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.TON;
@@ -1454,7 +1533,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$onUpdatePriceClick$15(TLRPC.TL_error tL_error, Runnable runnable) {
+    public void lambda$onUpdatePriceClick$17(TLRPC.TL_error tL_error, Runnable runnable) {
         getBulletinFactory().showForError(tL_error);
         if (runnable != null) {
             runnable.run();
@@ -1470,12 +1549,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.formatString(R.string.Gift2UnlistTitle, getGiftName())).setMessage(LocaleController.getString(R.string.Gift2UnlistText)).setPositiveButton(LocaleController.getString(R.string.Gift2ActionUnlist), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    StarGiftSheet.this.lambda$onResellPressed$22(uniqueGift, alertDialog, i);
+                    StarGiftSheet.this.lambda$onResellPressed$24(uniqueGift, alertDialog, i);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    StarGiftSheet.lambda$onResellPressed$23(alertDialog, i);
+                    StarGiftSheet.lambda$onResellPressed$25(alertDialog, i);
                 }
             }).show();
         } else if (canResellAt() > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
@@ -1484,13 +1563,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             StarsIntroActivity.showGiftResellPriceSheet(getContext(), this.currentAccount, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    StarGiftSheet.this.lambda$onResellPressed$28(uniqueGift, (AmountUtils$Amount) obj, (Runnable) obj2);
+                    StarGiftSheet.this.lambda$onResellPressed$30(uniqueGift, (AmountUtils$Amount) obj, (Runnable) obj2);
                 }
             }, this.resourcesProvider);
         }
     }
 
-    public void lambda$onResellPressed$22(final TL_stars.TL_starGiftUnique tL_starGiftUnique, AlertDialog alertDialog, int i) {
+    public void lambda$onResellPressed$24(final TL_stars.TL_starGiftUnique tL_starGiftUnique, AlertDialog alertDialog, int i) {
         final Browser.Progress makeButtonLoading = alertDialog.makeButtonLoading(-1);
         makeButtonLoading.init();
         TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
@@ -1499,18 +1578,18 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$onResellPressed$21(makeButtonLoading, tL_starGiftUnique, tLObject, tL_error);
+                StarGiftSheet.this.lambda$onResellPressed$23(makeButtonLoading, tL_starGiftUnique, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onResellPressed$21(final Browser.Progress progress, final TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onResellPressed$23(final Browser.Progress progress, final TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onResellPressed$18(progress, tL_starGiftUnique);
+                    StarGiftSheet.this.lambda$onResellPressed$20(progress, tL_starGiftUnique);
                 }
             });
         } else if (tL_error != null && tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
@@ -1518,20 +1597,20 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onResellPressed$19(progress, parseLong);
+                    StarGiftSheet.this.lambda$onResellPressed$21(progress, parseLong);
                 }
             });
         } else if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onResellPressed$20(progress, tL_error);
+                    StarGiftSheet.this.lambda$onResellPressed$22(progress, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$onResellPressed$18(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+    public void lambda$onResellPressed$20(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         progress.end();
         tL_starGiftUnique.flags &= -17;
         tL_starGiftUnique.resale_ton_only = false;
@@ -1544,17 +1623,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.Gift2ResaleDisable, getGiftName())).show();
     }
 
-    public void lambda$onResellPressed$19(Browser.Progress progress, long j) {
+    public void lambda$onResellPressed$21(Browser.Progress progress, long j) {
         progress.end();
         showTimeoutAlert(getContext(), true, (int) j);
     }
 
-    public void lambda$onResellPressed$20(Browser.Progress progress, TLRPC.TL_error tL_error) {
+    public void lambda$onResellPressed$22(Browser.Progress progress, TLRPC.TL_error tL_error) {
         progress.end();
         getBulletinFactory().showForError(tL_error);
     }
 
-    public void lambda$onResellPressed$28(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable) {
+    public void lambda$onResellPressed$30(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable) {
         TL_stars.StarsAmount tl = amountUtils$Amount.toTl();
         TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
         updatestargiftprice.stargift = getInputStarGift();
@@ -1562,18 +1641,18 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$onResellPressed$27(tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
+                StarGiftSheet.this.lambda$onResellPressed$29(tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onResellPressed$27(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onResellPressed$29(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onResellPressed$24(tL_starGiftUnique, amountUtils$Amount, runnable);
+                    StarGiftSheet.this.lambda$onResellPressed$26(tL_starGiftUnique, amountUtils$Amount, runnable);
                 }
             });
         } else if (tL_error != null && tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
@@ -1581,20 +1660,20 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onResellPressed$25(parseLong, runnable);
+                    StarGiftSheet.this.lambda$onResellPressed$27(parseLong, runnable);
                 }
             });
         } else if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$onResellPressed$26(tL_error, runnable);
+                    StarGiftSheet.this.lambda$onResellPressed$28(tL_error, runnable);
                 }
             });
         }
     }
 
-    public void lambda$onResellPressed$24(TL_stars.TL_starGiftUnique tL_starGiftUnique, AmountUtils$Amount amountUtils$Amount, Runnable runnable) {
+    public void lambda$onResellPressed$26(TL_stars.TL_starGiftUnique tL_starGiftUnique, AmountUtils$Amount amountUtils$Amount, Runnable runnable) {
         tL_starGiftUnique.flags |= 16;
         AmountUtils$Currency amountUtils$Currency = amountUtils$Amount.currency;
         AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.TON;
@@ -1614,14 +1693,14 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.Gift2ResaleEnable, getGiftName())).show();
     }
 
-    public void lambda$onResellPressed$25(long j, Runnable runnable) {
+    public void lambda$onResellPressed$27(long j, Runnable runnable) {
         showTimeoutAlert(getContext(), true, (int) j);
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public void lambda$onResellPressed$26(TLRPC.TL_error tL_error, Runnable runnable) {
+    public void lambda$onResellPressed$28(TLRPC.TL_error tL_error, Runnable runnable) {
         getBulletinFactory().showForError(tL_error);
         if (runnable != null) {
             runnable.run();
@@ -1660,20 +1739,20 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         storyRecorder.setOnPrepareCloseListener(new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                StarGiftSheet.this.lambda$repostStory$30(storyRecorder, view, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
+                StarGiftSheet.this.lambda$repostStory$32(storyRecorder, view, (Long) obj, (Runnable) obj2, (Boolean) obj3, (Long) obj4);
             }
         });
         storyRecorder.openRepost(fromShareCell, StoryEntry.repostMessage(arrayList));
     }
 
-    public void lambda$repostStory$30(StoryRecorder storyRecorder, View view, Long l, Runnable runnable, Boolean bool, final Long l2) {
+    public void lambda$repostStory$32(StoryRecorder storyRecorder, View view, Long l, Runnable runnable, Boolean bool, final Long l2) {
         boolean booleanValue = bool.booleanValue();
         StoryRecorder.SourceView sourceView = null;
         if (booleanValue) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$repostStory$29(l2);
+                    StarGiftSheet.this.lambda$repostStory$31(l2);
                 }
             });
             storyRecorder.replaceSourceView(null);
@@ -1691,7 +1770,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$repostStory$29(Long l) {
+    public void lambda$repostStory$31(Long l) {
         String str;
         String formatString;
         TLRPC.Chat chat;
@@ -3151,7 +3230,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StarGiftSheet.this.lambda$switchPage$31(valueAnimator2);
+                    StarGiftSheet.this.lambda$switchPage$33(valueAnimator2);
                 }
             });
             this.switchingPagesAnimator.addListener(new AnimatorListenerAdapter() {
@@ -3197,7 +3276,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$switchPage$31(ValueAnimator valueAnimator) {
+    public void lambda$switchPage$33(ValueAnimator valueAnimator) {
         this.currentPage.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
         onSwitchedPage();
     }
@@ -3354,19 +3433,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         final ButtonSpan.TextViewButtons[] textViewButtonsArr = {(ButtonSpan.TextViewButtons) ((TableView.TableRowContent) this.tableView.addRow(string, starGiftAttribute.name, AffiliateProgramFragment.percents(starGiftAttribute.rarity_permille), new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$addAttributeRow$32(starGiftAttribute, textViewButtonsArr);
+                StarGiftSheet.this.lambda$addAttributeRow$34(starGiftAttribute, textViewButtonsArr);
             }
         }).getChildAt(1)).getChildAt(0)};
     }
 
-    public void lambda$addAttributeRow$32(TL_stars.StarGiftAttribute starGiftAttribute, ButtonSpan.TextViewButtons[] textViewButtonsArr) {
+    public void lambda$addAttributeRow$34(TL_stars.StarGiftAttribute starGiftAttribute, ButtonSpan.TextViewButtons[] textViewButtonsArr) {
         showHint(LocaleController.formatString(R.string.Gift2RarityHint, AffiliateProgramFragment.percents(starGiftAttribute.rarity_permille)), textViewButtonsArr[0], false);
     }
 
     public static class Roller {
         private AttrRoller backdropRoller;
+        private AttrRoller backdropRoller2;
         TextViewRoll backdropText;
         private boolean drawing;
+        private float durationT;
         private long lastFrameTime;
         private AttrRoller modelRoller;
         TextViewRoll modelText;
@@ -3446,13 +3527,26 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             public boolean isAlmostFinished() {
-                return this.current == this.finish && this.time + 0.25f >= ((float) this.currentT) + 0.5f;
+                return isAlmostFinished(0.25f);
+            }
+
+            public boolean isAlmostFinished(float f) {
+                return this.current == this.finish && this.time + f >= ((float) this.currentT) + 0.5f;
             }
 
             public float step(float f, boolean z) {
+                long j;
                 Attr attr;
                 Attr attr2;
-                this.fast.setDuration(this.slowing >= this.totalSlowing ? 450L : 4500L);
+                AnimatedFloat animatedFloat = this.fast;
+                int i = this.slowing;
+                int i2 = this.totalSlowing;
+                if (i >= i2) {
+                    j = 450;
+                } else {
+                    j = i2 == 3 ? 4500 : 2500;
+                }
+                animatedFloat.setDuration(j);
                 float lerp = this.time + (f * AndroidUtilities.lerp(this.totalSlowing == 3 ? 0.75f : 2.0f, 7.5f, this.fast.set(this.slowing >= this.totalSlowing)) * this.speedMult);
                 this.time = lerp;
                 if (lerp >= 0.0f) {
@@ -3608,6 +3702,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             if (attrRoller3 != null) {
                 attrRoller3.detach();
             }
+            AttrRoller attrRoller4 = this.backdropRoller2;
+            if (attrRoller4 != null) {
+                attrRoller4.detach();
+            }
             stopPreload();
         }
 
@@ -3631,6 +3729,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.rollingGift = tL_starGiftUnique;
             this.whenDone = runnable;
             this.whenDone2 = runnable2;
+            this.durationT = (float) Math.random();
             this.lastFrameTime = System.currentTimeMillis();
             this.realTime = 0.0f;
             this.sentDone = false;
@@ -3649,7 +3748,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 public final void run() {
                     StarGiftSheet.Roller.this.invalidate();
                 }
-            }, this.models, new Sticker(upgradeImageView, upgradeImageViewAttribute), sticker, 0.9f, 3);
+            }, this.models, new Sticker(upgradeImageView, upgradeImageViewAttribute), sticker, 0.9f, this.durationT > 0.5f ? 3 : 2);
             AttrRoller attrRoller2 = this.symbolRoller;
             if (attrRoller2 != null) {
                 attrRoller2.detach();
@@ -3659,7 +3758,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 public final void run() {
                     StarGiftSheet.Roller.this.invalidate();
                 }
-            }, this.symbols, new Symbol(upgradePatternAttribute), new Symbol(stargiftattributepattern), 1.0f, 2);
+            }, this.symbols, new Symbol(upgradePatternAttribute), new Symbol(stargiftattributepattern), 1.0f, this.durationT > 0.5f ? 2 : 1);
             AttrRoller attrRoller3 = this.backdropRoller;
             if (attrRoller3 != null) {
                 attrRoller3.detach();
@@ -3669,7 +3768,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 public final void run() {
                     StarGiftSheet.Roller.this.invalidate();
                 }
-            }, this.backgrounds, new Background(upgradeBackdropAttribute), new Background(stargiftattributebackdrop), 1.0f, 2);
+            }, this.backgrounds, new Background(upgradeBackdropAttribute), new Background(stargiftattributebackdrop), 0.5f, this.durationT > 0.5f ? 2 : 1);
+            AttrRoller attrRoller4 = this.backdropRoller2;
+            if (attrRoller4 != null) {
+                attrRoller4.detach();
+            }
+            this.backdropRoller2 = new AttrRoller(new Runnable() {
+                @Override
+                public final void run() {
+                    StarGiftSheet.Roller.this.invalidate();
+                }
+            }, this.backgrounds, new Background(upgradeBackdropAttribute), new Background(stargiftattributebackdrop), 1.25f, this.durationT > 0.5f ? 2 : 1);
             invalidate();
             return true;
         }
@@ -3678,6 +3787,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.modelRoller.skip();
             this.symbolRoller.skip();
             this.backdropRoller.skip();
+            this.backdropRoller2.skip();
         }
 
         public boolean isRolling() {
@@ -3707,9 +3817,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 float min = Math.min(((float) (currentTimeMillis - this.lastFrameTime)) / 1000.0f, 0.25f);
                 float f = this.realTime + min;
                 this.realTime = f;
-                float step = this.backdropRoller.step(min, f > 0.75f);
-                float step2 = this.symbolRoller.step(min, this.backdropRoller.isFinished());
-                float step3 = this.modelRoller.step(min, this.backdropRoller.isFinished() && this.symbolRoller.isFinished());
+                float step = this.backdropRoller.step(min, f > AndroidUtilities.lerp(0.1f, 1.0f, this.durationT));
+                float step2 = this.backdropRoller2.step(min, this.realTime > AndroidUtilities.lerp(0.1f, 1.0f, this.durationT));
+                float step3 = this.symbolRoller.step(min, this.backdropRoller.isAlmostFinished(0.5f));
+                float step4 = this.modelRoller.step(min, this.backdropRoller.isAlmostFinished(0.5f) && this.symbolRoller.isAlmostFinished(0.5f));
                 this.lastFrameTime = currentTimeMillis;
                 if (this.backdropRoller.isFinished() && this.symbolRoller.isFinished() && this.modelRoller.isFinished() && !this.sentDone) {
                     this.sentDone = true;
@@ -3733,7 +3844,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 if (textViewRoll != null) {
                     AttrRoller attrRoller = this.modelRoller;
                     Attr attr = attrRoller.prev;
-                    float f2 = attrRoller.currentT - step3;
+                    float f2 = attrRoller.currentT - step4;
                     float f3 = f2 - 1.0f;
                     Attr attr2 = attrRoller.finish;
                     boolean z = attr == attr2;
@@ -3746,7 +3857,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 if (textViewRoll2 != null) {
                     AttrRoller attrRoller2 = this.symbolRoller;
                     Attr attr5 = attrRoller2.prev;
-                    float f4 = attrRoller2.currentT - step2;
+                    float f4 = attrRoller2.currentT - step3;
                     float f5 = f4 - 1.0f;
                     Attr attr6 = attrRoller2.finish;
                     boolean z3 = attr5 == attr6;
@@ -3757,9 +3868,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 }
                 TextViewRoll textViewRoll3 = this.backdropText;
                 if (textViewRoll3 != null) {
-                    AttrRoller attrRoller3 = this.backdropRoller;
+                    AttrRoller attrRoller3 = this.backdropRoller2;
                     Attr attr9 = attrRoller3.prev;
-                    float f6 = attrRoller3.currentT - step;
+                    float f6 = attrRoller3.currentT - step2;
                     float f7 = f6 - 1.0f;
                     Attr attr10 = attrRoller3.finish;
                     boolean z5 = attr9 == attr10;
@@ -3773,7 +3884,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 AttrRoller attrRoller4 = this.modelRoller;
                 Attr attr13 = attrRoller4.prev;
                 Sticker sticker = (Sticker) attr13;
-                float f8 = attrRoller4.currentT - step3;
+                float f8 = attrRoller4.currentT - step4;
                 float f9 = f8 - 1.0f;
                 Attr attr14 = attrRoller4.finish;
                 boolean z7 = attr13 == attr14;
@@ -3811,7 +3922,6 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
 
         public void lambda$update$1() {
-            this.rolling = false;
             Runnable runnable = this.whenDone2;
             if (runnable != null) {
                 runnable.run();
@@ -4052,7 +4162,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.afterTableTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2InBlockchain), new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$set$33(str3);
+                    StarGiftSheet.this.lambda$set$35(str3);
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
             this.afterTableTextView.setVisibility(0);
@@ -4064,7 +4174,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarGiftSheet.this.lambda$set$34(view);
+                    StarGiftSheet.this.lambda$set$36(view);
                 }
             });
         }
@@ -4077,11 +4187,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return this;
     }
 
-    public void lambda$set$33(String str) {
+    public void lambda$set$35(String str) {
         Browser.openUrlInSystemBrowser(getContext(), MessagesController.getInstance(this.currentAccount).tonBlockchainExplorerUrl + str);
     }
 
-    public void lambda$set$34(View view) {
+    public void lambda$set$36(View view) {
         onBuyPressed();
     }
 
@@ -4103,12 +4213,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.Gift2ReleasedBy, "@" + publicUsername), new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$releasedByText$35(publicUsername);
+                StarGiftSheet.this.lambda$releasedByText$37(publicUsername);
             }
         });
     }
 
-    public void lambda$releasedByText$35(String str) {
+    public void lambda$releasedByText$37(String str) {
         lambda$new$0();
         Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + str);
     }
@@ -4124,12 +4234,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return replaceSingleTagToLink(LocaleController.formatPluralStringComma("Gift2CollectionNumberBy", i, "@" + publicUsername), new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$releasedByUniqueText$36(publicUsername);
+                StarGiftSheet.this.lambda$releasedByUniqueText$38(publicUsername);
             }
         });
     }
 
-    public void lambda$releasedByUniqueText$36(String str) {
+    public void lambda$releasedByUniqueText$38(String str) {
         lambda$new$0();
         Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + str);
     }
@@ -4199,11 +4309,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.set(org.telegram.tgnet.tl.TL_stars$TL_starGiftUnique, boolean, boolean):void");
     }
 
-    public void lambda$set$37() {
+    public void lambda$set$39() {
         getBulletinFactory().createSimpleBulletin(R.raw.copy, LocaleController.getString(R.string.WalletAddressCopied)).show(false);
     }
 
-    public void lambda$set$39(TL_stars.TL_starGiftUnique tL_starGiftUnique, String str) {
+    public void lambda$set$41(TL_stars.TL_starGiftUnique tL_starGiftUnique, String str) {
         openValueStats(tL_starGiftUnique.gift_id, tL_starGiftUnique.title, getGiftName(), str, tL_starGiftUnique.getDocument(), tL_starGiftUnique.slug);
     }
 
@@ -4216,7 +4326,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
         @Override
         public void onClick(View view) {
-            StarGiftSheet.this.lambda$set$59(r2);
+            StarGiftSheet.this.lambda$set$62(r2);
         }
 
         @Override
@@ -4234,7 +4344,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
         @Override
         public void onClick(View view) {
-            StarGiftSheet.this.lambda$set$59(r2);
+            StarGiftSheet.this.lambda$set$62(r2);
         }
 
         @Override
@@ -4243,21 +4353,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$set$40(View view) {
+    public void lambda$set$42(View view) {
         onBuyPressed();
     }
 
-    public void lambda$set$41(int i, View view) {
+    public void lambda$set$43(int i, View view) {
         this.overrideNextIndex = i;
         ViewPagerFixed viewPagerFixed = this.viewPager;
         viewPagerFixed.scrollToPosition(viewPagerFixed.getCurrentPosition() + (i > getListPosition() ? 1 : -1));
     }
 
-    public void lambda$set$42(View view) {
+    public void lambda$set$44(View view) {
         onBackPressed();
     }
 
-    public void lambda$set$45() {
+    public void lambda$set$47() {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         ImageReceiver imageReceiver = (this.roller.modelRoller == null || this.roller.modelRoller.current == null) ? null : ((Roller.Sticker) this.roller.modelRoller.current).imageReceiver;
@@ -4286,7 +4396,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarGiftSheet.this.lambda$set$43(findGiftToUpgrade, view);
+                    StarGiftSheet.this.lambda$set$45(findGiftToUpgrade, view);
                 }
             });
             return;
@@ -4297,22 +4407,22 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftSheet.this.lambda$set$44(view);
+                StarGiftSheet.this.lambda$set$46(view);
             }
         });
     }
 
-    public void lambda$set$43(int i, View view) {
+    public void lambda$set$45(int i, View view) {
         this.overrideNextIndex = i;
         ViewPagerFixed viewPagerFixed = this.viewPager;
         viewPagerFixed.scrollToPosition(viewPagerFixed.getCurrentPosition() + (i > getListPosition() ? 1 : -1));
     }
 
-    public void lambda$set$44(View view) {
+    public void lambda$set$46(View view) {
         onBackPressed();
     }
 
-    public void lambda$set$46() {
+    public void lambda$set$48() {
         String str;
         if (getGift() == null) {
             str = "";
@@ -4326,8 +4436,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$set$47(View view) {
+    public void lambda$set$49(View view) {
         this.roller.skip();
+    }
+
+    public void lambda$set$50() {
+        this.recyclerListView.scrollToPosition(this.adapter.getItemCount() - 1);
     }
 
     private void setButtonTextResale(TL_stars.StarGift starGift) {
@@ -4349,13 +4463,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     public StarGiftSheet set(TL_stars.SavedStarGift savedStarGift, StarsController.IGiftsList iGiftsList) {
         TLRPC.TL_textWithEntities tL_textWithEntities;
         long j;
+        CharSequence charSequence;
         String formatString;
         char c;
-        CharSequence charSequence;
-        CharSequence concat;
-        String str;
         CharSequence charSequence2;
+        String str;
         CharSequence charSequence3;
+        CharSequence charSequence4;
         final String str2;
         boolean z;
         TL_stars.StarGift starGift;
@@ -4439,8 +4553,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         TopView topView4 = this.topView;
                         String string5 = LocaleController.getString(z5 ? R.string.Gift2TitleReceived : R.string.Gift2TitleProfile);
                         this.title = string5;
-                        if (z3) {
-                            concat = null;
+                        if (z3 || !this.myProfile) {
+                            charSequence = null;
                         } else {
                             if (isBot || !canConvert()) {
                                 if (this.myProfile) {
@@ -4461,47 +4575,47 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                             SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(formatString);
                             if (isBot || !canConvert()) {
                                 c = 1;
-                                charSequence = "";
+                                charSequence2 = "";
                             } else {
                                 c = 1;
-                                charSequence = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2More).replace(' ', (char) 160), new Runnable() {
+                                charSequence2 = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2More).replace(' ', (char) 160), new Runnable() {
                                     @Override
                                     public final void run() {
-                                        StarGiftSheet.this.lambda$set$48();
+                                        StarGiftSheet.this.lambda$set$51();
                                     }
                                 }), true);
                             }
                             CharSequence[] charSequenceArr = new CharSequence[3];
                             charSequenceArr[0] = replaceTags2;
                             charSequenceArr[c] = " ";
-                            charSequenceArr[2] = charSequence;
-                            concat = TextUtils.concat(charSequenceArr);
+                            charSequenceArr[2] = charSequence2;
+                            charSequence = TextUtils.concat(charSequenceArr);
                         }
-                        topView4.setText(0, string5, concat, null, releasedByText(savedStarGift.gift));
+                        topView4.setText(0, string5, charSequence, null, releasedByText(savedStarGift.gift));
                     }
                 }
             }
             if (clientUserId != j || z2) {
-                charSequence2 = " ";
-                charSequence3 = "";
+                charSequence3 = " ";
+                charSequence4 = "";
                 final long j4 = j;
                 this.tableView.addRowUser(LocaleController.getString(R.string.Gift2From), this.currentAccount, j4, new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$set$49(j4);
+                        StarGiftSheet.this.lambda$set$52(j4);
                     }
                 }, (j4 == clientUserId || j4 == 2666000 || isBot || UserObject.isDeleted(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j))) || z2) ? null : LocaleController.getString(R.string.Gift2ButtonSendGift), new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$set$50(j4);
+                        StarGiftSheet.this.lambda$set$53(j4);
                     }
                 });
             } else {
-                charSequence2 = " ";
-                charSequence3 = "";
+                charSequence3 = " ";
+                charSequence4 = "";
             }
             this.tableView.addRow(LocaleController.getString(R.string.StarsTransactionDate), LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(savedStarGift.date * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(savedStarGift.date * 1000))));
-            this.tableView.addRow(LocaleController.getString(R.string.Gift2Value), StarsIntroActivity.replaceStarsWithPlain(TextUtils.concat("⭐️ " + LocaleController.formatNumber(savedStarGift.gift.stars + savedStarGift.upgrade_stars, ','), charSequence2, (!canConvert() || z3) ? charSequence3 : ButtonSpan.make(LocaleController.formatPluralStringComma("Gift2ButtonSell", (int) savedStarGift.convert_stars), new StarGiftSheet$$ExternalSyntheticLambda19(this), this.resourcesProvider)), 0.8f));
+            this.tableView.addRow(LocaleController.getString(R.string.Gift2Value), StarsIntroActivity.replaceStarsWithPlain(TextUtils.concat("⭐️ " + LocaleController.formatNumber(savedStarGift.gift.stars + savedStarGift.upgrade_stars, ','), charSequence3, (!canConvert() || z3) ? charSequence4 : ButtonSpan.make(LocaleController.formatPluralStringComma("Gift2ButtonSell", (int) savedStarGift.convert_stars), new StarGiftSheet$$ExternalSyntheticLambda19(this), this.resourcesProvider)), 0.8f));
             TL_stars.StarGift starGift3 = savedStarGift.gift;
             if (starGift3.limited && !z3) {
                 StarsIntroActivity.addAvailabilityRow(this.tableView, this.currentAccount, starGift3, this.resourcesProvider);
@@ -4531,7 +4645,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarGiftSheet.this.lambda$set$51(view);
+                        StarGiftSheet.this.lambda$set$54(view);
                     }
                 });
             } else if (this.upgradedOnce && z6 && this.viewPager != null && this.giftsList != null && getListPosition() >= 0 && this.giftsList.findGiftToUpgrade(getListPosition()) >= 0) {
@@ -4552,7 +4666,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarGiftSheet.this.lambda$set$52(findGiftToUpgrade, view);
+                        StarGiftSheet.this.lambda$set$55(findGiftToUpgrade, view);
                     }
                 });
             } else if ((savedStarGift.gift instanceof TL_stars.TL_starGift) && !TextUtils.isEmpty(savedStarGift.prepaid_upgrade_hash)) {
@@ -4568,7 +4682,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarGiftSheet.this.lambda$set$53(view);
+                        StarGiftSheet.this.lambda$set$56(view);
                     }
                 });
             } else {
@@ -4579,7 +4693,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StarGiftSheet.this.lambda$set$54(view);
+                        StarGiftSheet.this.lambda$set$57(view);
                     }
                 });
                 str3 = str2;
@@ -4602,7 +4716,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.afterTableTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2InBlockchain), new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$set$55(str2);
+                    StarGiftSheet.this.lambda$set$58(str2);
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
             r2 = 0;
@@ -4637,33 +4751,33 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return this;
     }
 
-    public void lambda$set$48() {
+    public void lambda$set$51() {
         new ExplainStarsSheet(getContext()).show();
     }
 
-    public void lambda$set$50(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda58(this)).show();
+    public void lambda$set$53(long j) {
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda63(this)).show();
     }
 
-    public void lambda$set$51(View view) {
+    public void lambda$set$54(View view) {
         openUpgrade();
     }
 
-    public void lambda$set$52(int i, View view) {
+    public void lambda$set$55(int i, View view) {
         this.overrideNextIndex = i;
         ViewPagerFixed viewPagerFixed = this.viewPager;
         viewPagerFixed.scrollToPosition(viewPagerFixed.getCurrentPosition() + (i > getListPosition() ? 1 : -1));
     }
 
-    public void lambda$set$53(View view) {
+    public void lambda$set$56(View view) {
         openUpgrade();
     }
 
-    public void lambda$set$54(View view) {
+    public void lambda$set$57(View view) {
         onBackPressed();
     }
 
-    public void lambda$set$55(String str) {
+    public void lambda$set$58(String str) {
         Browser.openUrlInSystemBrowser(getContext(), MessagesController.getInstance(this.currentAccount).tonBlockchainExplorerUrl + str);
     }
 
@@ -4728,37 +4842,37 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.set(org.telegram.messenger.MessageObject, org.telegram.ui.Stars.StarsController$IGiftsList):org.telegram.ui.Stars.StarGiftSheet");
     }
 
-    public void lambda$set$56() {
+    public void lambda$set$59() {
         new ExplainStarsSheet(getContext()).show();
     }
 
-    public void lambda$set$58(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda58(this)).show();
+    public void lambda$set$61(long j) {
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda63(this)).show();
     }
 
-    public void lambda$set$60(long j) {
-        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda58(this)).show();
+    public void lambda$set$63(long j) {
+        new GiftSheet(getContext(), this.currentAccount, j, new StarGiftSheet$$ExternalSyntheticLambda63(this)).show();
     }
 
-    public void lambda$set$61(View view) {
+    public void lambda$set$64(View view) {
         openUpgrade();
     }
 
-    public void lambda$set$62(int i, View view) {
+    public void lambda$set$65(int i, View view) {
         this.overrideNextIndex = i;
         ViewPagerFixed viewPagerFixed = this.viewPager;
         viewPagerFixed.scrollToPosition(viewPagerFixed.getCurrentPosition() + (i > getListPosition() ? 1 : -1));
     }
 
-    public void lambda$set$63(View view) {
+    public void lambda$set$66(View view) {
         openUpgrade();
     }
 
-    public void lambda$set$64(View view) {
+    public void lambda$set$67(View view) {
         onBackPressed();
     }
 
-    public void lambda$set$65(String str) {
+    public void lambda$set$68(String str) {
         Browser.openUrlInSystemBrowser(getContext(), MessagesController.getInstance(this.currentAccount).tonBlockchainExplorerUrl + str);
     }
 
@@ -4774,12 +4888,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$repollMessage$67(id, tLObject, tL_error);
+                StarGiftSheet.this.lambda$repollMessage$70(id, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$repollMessage$67(int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$repollMessage$70(int i, final TLObject tLObject, TLRPC.TL_error tL_error) {
         final MessageObject messageObject;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -4800,13 +4914,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$repollMessage$66(tLObject, messageObject);
+                    StarGiftSheet.this.lambda$repollMessage$69(tLObject, messageObject);
                 }
             });
         }
     }
 
-    public void lambda$repollMessage$66(TLObject tLObject, MessageObject messageObject) {
+    public void lambda$repollMessage$69(TLObject tLObject, MessageObject messageObject) {
         TLRPC.Message message;
         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
         MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
@@ -4834,12 +4948,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         StarsController.getInstance(this.currentAccount).getUserStarGift(inputStarGift, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftSheet.this.lambda$repollSavedStarGift$68((TL_stars.SavedStarGift) obj);
+                StarGiftSheet.this.lambda$repollSavedStarGift$71((TL_stars.SavedStarGift) obj);
             }
         });
     }
 
-    public void lambda$repollSavedStarGift$68(TL_stars.SavedStarGift savedStarGift) {
+    public void lambda$repollSavedStarGift$71(TL_stars.SavedStarGift savedStarGift) {
         TLRPC.Message message;
         this.userStarGiftRepolling = false;
         this.userStarGiftRepolled = true;
@@ -4878,12 +4992,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         StarsController.getInstance(this.currentAccount).getStarGiftPreview(j, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftSheet.this.lambda$openAsLearnMore$70(str, (TL_stars.starGiftUpgradePreview) obj);
+                StarGiftSheet.this.lambda$openAsLearnMore$73(str, (TL_stars.starGiftUpgradePreview) obj);
             }
         });
     }
 
-    public void lambda$openAsLearnMore$70(String str, TL_stars.starGiftUpgradePreview stargiftupgradepreview) {
+    public void lambda$openAsLearnMore$73(String str, TL_stars.starGiftUpgradePreview stargiftupgradepreview) {
         if (stargiftupgradepreview == null) {
             return;
         }
@@ -4901,13 +5015,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarGiftSheet.this.lambda$openAsLearnMore$69(view);
+                StarGiftSheet.this.lambda$openAsLearnMore$72(view);
             }
         });
         show();
     }
 
-    public void lambda$openAsLearnMore$69(View view) {
+    public void lambda$openAsLearnMore$72(View view) {
         lambda$new$0();
     }
 
@@ -4968,10 +5082,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         if (dialogId == 0) {
             return;
         }
-        lambda$set$59(dialogId);
+        lambda$set$62(dialogId);
     }
 
-    public void lambda$set$59(long j) {
+    public void lambda$set$62(long j) {
         HintView2 hintView2 = this.currentHintView;
         if (hintView2 != null) {
             hintView2.hide();
@@ -5103,12 +5217,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.Gift2ConvertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("Gift2ConvertText2", Math.max(1, (MessagesController.getInstance(this.currentAccount).stargiftsConvertPeriodMax - (ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - i)) / 86400), (UserObject.isService(peerDialogId) || peerDialogId == 2666000) ? LocaleController.getString(R.string.StarsTransactionHidden) : DialogObject.getShortName(peerDialogId), LocaleController.formatPluralStringComma("Gift2ConvertStars", (int) j3)))).setPositiveButton(LocaleController.getString(R.string.Gift2ConvertButton), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i2) {
-                StarGiftSheet.this.lambda$convert$75(inputStarGift, j4, clientUserId, j3, alertDialog, i2);
+                StarGiftSheet.this.lambda$convert$78(inputStarGift, j4, clientUserId, j3, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
 
-    public void lambda$convert$75(TL_stars.InputSavedStarGift inputSavedStarGift, final long j, final long j2, final long j3, AlertDialog alertDialog, int i) {
+    public void lambda$convert$78(TL_stars.InputSavedStarGift inputSavedStarGift, final long j, final long j2, final long j3, AlertDialog alertDialog, int i) {
         final AlertDialog alertDialog2 = new AlertDialog(ApplicationLoader.applicationContext, 3);
         alertDialog2.showDelayed(500L);
         TL_stars.convertStarGift convertstargift = new TL_stars.convertStarGift();
@@ -5116,21 +5230,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(convertstargift, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$convert$74(alertDialog2, j, j2, j3, tLObject, tL_error);
+                StarGiftSheet.this.lambda$convert$77(alertDialog2, j, j2, j3, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$convert$74(final AlertDialog alertDialog, final long j, final long j2, final long j3, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$convert$77(final AlertDialog alertDialog, final long j, final long j2, final long j3, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$convert$73(alertDialog, tLObject, j, j2, j3, tL_error);
+                StarGiftSheet.this.lambda$convert$76(alertDialog, tLObject, j, j2, j3, tL_error);
             }
         });
     }
 
-    public void lambda$convert$73(AlertDialog alertDialog, TLObject tLObject, long j, long j2, final long j3, TLRPC.TL_error tL_error) {
+    public void lambda$convert$76(AlertDialog alertDialog, TLObject tLObject, long j, long j2, final long j3, TLRPC.TL_error tL_error) {
         alertDialog.dismissUnless(400L);
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
@@ -5163,7 +5277,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 starsIntroActivity.whenFullyVisible(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.lambda$convert$71(StarsIntroActivity.this, j3);
+                        StarGiftSheet.lambda$convert$74(StarsIntroActivity.this, j3);
                     }
                 });
                 safeLastFragment.presentFragment(starsIntroActivity);
@@ -5181,17 +5295,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         statisticActivity.whenFullyVisible(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.lambda$convert$72(StatisticActivity.this, j3);
+                StarGiftSheet.lambda$convert$75(StatisticActivity.this, j3);
             }
         });
         safeLastFragment.presentFragment(statisticActivity);
     }
 
-    public static void lambda$convert$71(StarsIntroActivity starsIntroActivity, long j) {
+    public static void lambda$convert$74(StarsIntroActivity starsIntroActivity, long j) {
         BulletinFactory.of(starsIntroActivity).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2Converted", (int) j)).show(true);
     }
 
-    public static void lambda$convert$72(StatisticActivity statisticActivity, long j) {
+    public static void lambda$convert$75(StatisticActivity statisticActivity, long j) {
         BulletinFactory.of(statisticActivity).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j)).show(true);
     }
 
@@ -5237,21 +5351,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(savestargift, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$toggleShow$78(document, z, tLObject, tL_error);
+                StarGiftSheet.this.lambda$toggleShow$81(document, z, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$toggleShow$78(final TLRPC.Document document, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$toggleShow$81(final TLRPC.Document document, final boolean z, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$toggleShow$77(tLObject, document, z, tL_error);
+                StarGiftSheet.this.lambda$toggleShow$80(tLObject, document, z, tL_error);
             }
         });
     }
 
-    public void lambda$toggleShow$77(TLObject tLObject, TLRPC.Document document, boolean z, TLRPC.TL_error tL_error) {
+    public void lambda$toggleShow$80(TLObject tLObject, TLRPC.Document document, boolean z, TLRPC.TL_error tL_error) {
         final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
@@ -5270,7 +5384,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             BulletinFactory.of(safeLastFragment).createEmojiBulletin(document, LocaleController.getString(z ? R.string.Gift2MadePrivateTitle : R.string.Gift2MadePublicTitle), AndroidUtilities.replaceSingleTag(LocaleController.getString(z ? R.string.Gift2MadePrivate : R.string.Gift2MadePublic), safeLastFragment instanceof ProfileActivity ? null : new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.lambda$toggleShow$76(dialogId, safeLastFragment);
+                    StarGiftSheet.lambda$toggleShow$79(dialogId, safeLastFragment);
                 }
             })).show(true);
         } else {
@@ -5278,7 +5392,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public static void lambda$toggleShow$76(long j, BaseFragment baseFragment) {
+    public static void lambda$toggleShow$79(long j, BaseFragment baseFragment) {
         Bundle bundle = new Bundle();
         if (j >= 0) {
             bundle.putLong("user_id", j);
@@ -5315,7 +5429,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(getuniquestargift, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarGiftSheet.this.lambda$show$81(alertDialog, tLObject, tL_error);
+                    StarGiftSheet.this.lambda$show$84(alertDialog, tLObject, tL_error);
                 }
             });
         } else if (this.savedStarGift == null && (messageObject = this.messageObject) != null && (message = messageObject.messageOwner) != null) {
@@ -5331,7 +5445,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessages, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                StarGiftSheet.this.lambda$show$84(tL_messageActionStarGift, alertDialog2, tLObject, tL_error);
+                                StarGiftSheet.this.lambda$show$87(tL_messageActionStarGift, alertDialog2, tLObject, tL_error);
                             }
                         });
                         return;
@@ -5342,7 +5456,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         StarsController.getInstance(this.currentAccount).getUserStarGift(getInputStarGift(), new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                StarGiftSheet.this.lambda$show$85(alertDialog3, (TL_stars.SavedStarGift) obj);
+                                StarGiftSheet.this.lambda$show$88(alertDialog3, (TL_stars.SavedStarGift) obj);
                             }
                         });
                         return;
@@ -5353,7 +5467,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         super.show();
     }
 
-    public void lambda$show$81(final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$show$84(final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
             final TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(tL_payments_uniqueStarGift.users, false);
@@ -5362,7 +5476,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$show$79(tL_payments_uniqueStarGift);
+                        StarGiftSheet.this.lambda$show$82(tL_payments_uniqueStarGift);
                     }
                 });
                 return;
@@ -5371,19 +5485,19 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.lambda$show$80(AlertDialog.this);
+                StarGiftSheet.lambda$show$83(AlertDialog.this);
             }
         });
     }
 
-    public void lambda$show$79(TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift) {
+    public void lambda$show$82(TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift) {
         TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) tL_payments_uniqueStarGift.gift;
         this.slugStarGift = tL_starGiftUnique;
         set(tL_starGiftUnique, true, false);
         super.show();
     }
 
-    public static void lambda$show$80(AlertDialog alertDialog) {
+    public static void lambda$show$83(AlertDialog alertDialog) {
         alertDialog.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -5391,7 +5505,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$show$84(TLRPC.TL_messageActionStarGift tL_messageActionStarGift, final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$show$87(TLRPC.TL_messageActionStarGift tL_messageActionStarGift, final AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
         final MessageObject messageObject;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -5411,27 +5525,27 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$show$82(alertDialog, messageObject);
+                    StarGiftSheet.this.lambda$show$85(alertDialog, messageObject);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.lambda$show$83(AlertDialog.this);
+                    StarGiftSheet.lambda$show$86(AlertDialog.this);
                 }
             });
         }
     }
 
-    public void lambda$show$82(AlertDialog alertDialog, MessageObject messageObject) {
+    public void lambda$show$85(AlertDialog alertDialog, MessageObject messageObject) {
         alertDialog.dismiss();
         this.messageObjectRepolled = true;
         set(messageObject);
         super.show();
     }
 
-    public static void lambda$show$83(AlertDialog alertDialog) {
+    public static void lambda$show$86(AlertDialog alertDialog) {
         alertDialog.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
@@ -5439,7 +5553,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$show$85(AlertDialog alertDialog, TL_stars.SavedStarGift savedStarGift) {
+    public void lambda$show$88(AlertDialog alertDialog, TL_stars.SavedStarGift savedStarGift) {
         if (savedStarGift != null) {
             alertDialog.dismiss();
             this.userStarGiftRepolled = true;
@@ -5480,7 +5594,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 z3 = tL_messageActionStarGift.name_hidden;
                 TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGift.message;
                 z = (tL_textWithEntities == null || TextUtils.isEmpty(tL_textWithEntities.text)) ? false : true;
-                z2 = tL_messageActionStarGift.peer != null;
+                z2 = tL_messageActionStarGift.peer instanceof TLRPC.TL_peerChannel;
                 str = tL_messageActionStarGift.prepaid_upgrade_hash;
             } else {
                 TL_stars.SavedStarGift savedStarGift = this.savedStarGift;
@@ -5513,7 +5627,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     StarsController.getInstance(this.currentAccount).getStarGiftPreview(j, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            StarGiftSheet.this.lambda$openUpgrade$86((TL_stars.starGiftUpgradePreview) obj);
+                            StarGiftSheet.this.lambda$openUpgrade$89((TL_stars.starGiftUpgradePreview) obj);
                         }
                     });
                 }
@@ -5542,7 +5656,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StarGiftSheet.this.lambda$openUpgrade$88(tLObject, tL_error);
+                        StarGiftSheet.this.lambda$openUpgrade$91(tLObject, tL_error);
                     }
                 });
                 return;
@@ -5551,7 +5665,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$openUpgrade$86(TL_stars.starGiftUpgradePreview stargiftupgradepreview) {
+    public void lambda$openUpgrade$89(TL_stars.starGiftUpgradePreview stargiftupgradepreview) {
         if (stargiftupgradepreview == null) {
             return;
         }
@@ -5559,16 +5673,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         openUpgradeAfter();
     }
 
-    public void lambda$openUpgrade$88(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$openUpgrade$91(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openUpgrade$87(tLObject, tL_error);
+                StarGiftSheet.this.lambda$openUpgrade$90(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$openUpgrade$87(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openUpgrade$90(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.PaymentForm) {
             TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(paymentForm.users, false);
@@ -5583,7 +5697,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.openUpgradeAfter():void");
     }
 
-    public void lambda$openUpgradeAfter$89(View view) {
+    public void lambda$openUpgradeAfter$92(View view) {
         doUpgrade();
     }
 
@@ -5700,7 +5814,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(upgradestargift, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StarGiftSheet.this.lambda$doUpgrade$93(inputStarGift, tLObject, tL_error);
+                        StarGiftSheet.this.lambda$doUpgrade$96(inputStarGift, tLObject, tL_error);
                     }
                 });
                 return;
@@ -5710,7 +5824,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 starsController.getBalance(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$doUpgrade$94(starsController);
+                        StarGiftSheet.this.lambda$doUpgrade$97(starsController);
                     }
                 });
                 return;
@@ -5737,13 +5851,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_sendStarsForm, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarGiftSheet.this.lambda$doUpgrade$101(str2, inputStarGift, j3, tLObject, tL_error);
+                    StarGiftSheet.this.lambda$doUpgrade$105(str2, inputStarGift, j3, tLObject, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$doUpgrade$93(final TL_stars.InputSavedStarGift inputSavedStarGift, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$doUpgrade$96(final TL_stars.InputSavedStarGift inputSavedStarGift, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
@@ -5752,12 +5866,12 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doUpgrade$92(tL_error, tLObject, inputSavedStarGift);
+                StarGiftSheet.this.lambda$doUpgrade$95(tL_error, tLObject, inputSavedStarGift);
             }
         });
     }
 
-    public void lambda$doUpgrade$92(TLRPC.TL_error tL_error, final TLObject tLObject, TL_stars.InputSavedStarGift inputSavedStarGift) {
+    public void lambda$doUpgrade$95(TLRPC.TL_error tL_error, final TLObject tLObject, TL_stars.InputSavedStarGift inputSavedStarGift) {
         if (tL_error != null || !(tLObject instanceof TLRPC.Updates)) {
             getBulletinFactory().showForError(tL_error);
             return;
@@ -5767,27 +5881,27 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         applyNewGiftFromUpdates(inputSavedStarGift, (TLRPC.Updates) tLObject, new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doUpgrade$90();
+                StarGiftSheet.this.lambda$doUpgrade$93();
             }
         });
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doUpgrade$91(tLObject);
+                StarGiftSheet.this.lambda$doUpgrade$94(tLObject);
             }
         });
     }
 
-    public void lambda$doUpgrade$90() {
+    public void lambda$doUpgrade$93() {
         this.button.setLoading(false);
         switchPage(0, true);
     }
 
-    public void lambda$doUpgrade$91(TLObject tLObject) {
+    public void lambda$doUpgrade$94(TLObject tLObject) {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 
-    public void lambda$doUpgrade$94(StarsController starsController) {
+    public void lambda$doUpgrade$97(StarsController starsController) {
         if (!starsController.balanceAvailable()) {
             getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE")).ignoreDetach().show();
         } else {
@@ -5796,16 +5910,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$doUpgrade$101(final String str, final TL_stars.InputSavedStarGift inputSavedStarGift, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$doUpgrade$105(final String str, final TL_stars.InputSavedStarGift inputSavedStarGift, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doUpgrade$100(tLObject, str, inputSavedStarGift, tL_error, j);
+                StarGiftSheet.this.lambda$doUpgrade$104(tLObject, str, inputSavedStarGift, tL_error, j);
             }
         });
     }
 
-    public void lambda$doUpgrade$100(TLObject tLObject, final String str, TL_stars.InputSavedStarGift inputSavedStarGift, TLRPC.TL_error tL_error, final long j) {
+    public void lambda$doUpgrade$104(TLObject tLObject, final String str, TL_stars.InputSavedStarGift inputSavedStarGift, TLRPC.TL_error tL_error, final long j) {
         TL_stars.SavedStarGift savedStarGift;
         if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
@@ -5822,13 +5936,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             applyNewGiftFromUpdates(inputSavedStarGift, tL_payments_paymentResult.updates, new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$doUpgrade$95(str);
+                    StarGiftSheet.this.lambda$doUpgrade$99(str);
                 }
             });
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$doUpgrade$96(tL_payments_paymentResult);
+                    StarGiftSheet.this.lambda$doUpgrade$100(tL_payments_paymentResult);
                 }
             });
             return;
@@ -5842,7 +5956,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 StarsController.getInstance(this.currentAccount).invalidateBalance(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$doUpgrade$99(j);
+                        StarGiftSheet.this.lambda$doUpgrade$103(j);
                     }
                 });
                 return;
@@ -5851,43 +5965,72 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         getBulletinFactory().showForError(tL_error);
     }
 
-    public void lambda$doUpgrade$95(String str) {
+    public void lambda$doUpgrade$99(String str) {
         this.button.setLoading(false);
-        switchPage(0, true);
-        if (TextUtils.isEmpty(str)) {
+        if (!TextUtils.isEmpty(str)) {
+            lambda$new$0();
+            BaseFragment lastFragment = LaunchActivity.getLastFragment();
+            if (lastFragment == null) {
+                return;
+            }
+            if (lastFragment instanceof ChatActivity) {
+                ChatActivity chatActivity = (ChatActivity) lastFragment;
+                if (chatActivity.getDialogId() == this.dialogId) {
+                    BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(this.dialogId)))).show(true);
+                    return;
+                }
+            }
+            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+            int i = NotificationCenter.closeProfileActivity;
+            Long valueOf = Long.valueOf(this.dialogId);
+            Boolean bool = Boolean.FALSE;
+            notificationCenter.lambda$postNotificationNameOnUIThread$1(i, valueOf, bool);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChatActivity, Long.valueOf(this.dialogId), bool);
+            final ChatActivity of = ChatActivity.of(this.dialogId);
+            of.whenFullyVisible(new Runnable() {
+                @Override
+                public final void run() {
+                    StarGiftSheet.this.lambda$doUpgrade$98(of);
+                }
+            });
+            lastFragment.presentFragment(of);
             return;
         }
-        lambda$new$0();
+        switchPage(0, true);
     }
 
-    public void lambda$doUpgrade$96(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
+    public void lambda$doUpgrade$98(ChatActivity chatActivity) {
+        BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(this.dialogId)))).show(true);
+    }
+
+    public void lambda$doUpgrade$100(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
-    public void lambda$doUpgrade$99(long j) {
+    public void lambda$doUpgrade$103(long j) {
         final boolean[] zArr = {false};
         StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, j, 10, null, new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doUpgrade$97(zArr);
+                StarGiftSheet.this.lambda$doUpgrade$101(zArr);
             }
         }, 0L);
         starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                StarGiftSheet.this.lambda$doUpgrade$98(dialogInterface);
+                StarGiftSheet.this.lambda$doUpgrade$102(dialogInterface);
             }
         });
         starsNeededSheet.show();
     }
 
-    public void lambda$doUpgrade$97(boolean[] zArr) {
+    public void lambda$doUpgrade$101(boolean[] zArr) {
         zArr[0] = true;
         this.button.setLoading(false);
         doUpgrade();
     }
 
-    public void lambda$doUpgrade$98(DialogInterface dialogInterface) {
+    public void lambda$doUpgrade$102(DialogInterface dialogInterface) {
         this.button.setLoading(false);
     }
 
@@ -5895,7 +6038,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.openTransfer():void");
     }
 
-    public void lambda$openTransfer$113(int i, int i2, int i3, TL_stars.TL_starGiftUnique tL_starGiftUnique, final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Long l) {
+    public void lambda$openTransfer$117(int i, int i2, int i3, TL_stars.TL_starGiftUnique tL_starGiftUnique, final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Long l) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         if (l.longValue() == -99) {
             if (i < i2) {
@@ -5920,7 +6063,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             new AlertDialog.Builder(getContext(), this.resourcesProvider).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.Gift2ExportTONFragmentOpen), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i5) {
-                    StarGiftSheet.this.lambda$openTransfer$104(userSelectorBottomSheetArr, alertDialog, i5);
+                    StarGiftSheet.this.lambda$openTransfer$108(userSelectorBottomSheetArr, alertDialog, i5);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
             return;
@@ -5928,7 +6071,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openTransfer$108(l, userSelectorBottomSheetArr);
+                StarGiftSheet.this.lambda$openTransfer$112(l, userSelectorBottomSheetArr);
             }
         };
         if (l.longValue() < 0) {
@@ -5939,7 +6082,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getFullChannel, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StarGiftSheet.this.lambda$openTransfer$110(runnable, tLObject, tL_error);
+                        StarGiftSheet.this.lambda$openTransfer$114(runnable, tLObject, tL_error);
                     }
                 });
                 return;
@@ -5959,7 +6102,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_getFullUser, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        StarGiftSheet.this.lambda$openTransfer$112(userSelectorBottomSheetArr, l, runnable, tLObject, tL_error);
+                        StarGiftSheet.this.lambda$openTransfer$116(userSelectorBottomSheetArr, l, runnable, tLObject, tL_error);
                     }
                 });
                 return;
@@ -5968,13 +6111,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         runnable.run();
     }
 
-    public void lambda$openTransfer$104(final UserSelectorBottomSheet[] userSelectorBottomSheetArr, AlertDialog alertDialog, int i) {
+    public void lambda$openTransfer$108(final UserSelectorBottomSheet[] userSelectorBottomSheetArr, AlertDialog alertDialog, int i) {
         final Browser.Progress makeButtonLoading = alertDialog.makeButtonLoading(i);
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         twoStepVerificationActivity.setDelegate(2, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
             public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                StarGiftSheet.this.lambda$openTransfer$102(twoStepVerificationActivity, inputCheckPasswordSRP);
+                StarGiftSheet.this.lambda$openTransfer$106(twoStepVerificationActivity, inputCheckPasswordSRP);
             }
         });
         twoStepVerificationActivity.setDelegateString(getGiftName());
@@ -5982,44 +6125,44 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         twoStepVerificationActivity.preload(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openTransfer$103(userSelectorBottomSheetArr, makeButtonLoading, twoStepVerificationActivity);
+                StarGiftSheet.this.lambda$openTransfer$107(userSelectorBottomSheetArr, makeButtonLoading, twoStepVerificationActivity);
             }
         });
     }
 
-    public void lambda$openTransfer$103(UserSelectorBottomSheet[] userSelectorBottomSheetArr, Browser.Progress progress, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void lambda$openTransfer$107(UserSelectorBottomSheet[] userSelectorBottomSheetArr, Browser.Progress progress, TwoStepVerificationActivity twoStepVerificationActivity) {
         userSelectorBottomSheetArr[0].lambda$new$0();
         progress.end();
         presentFragment(twoStepVerificationActivity);
     }
 
-    public void lambda$openTransfer$108(final Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr) {
+    public void lambda$openTransfer$112(final Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr) {
         openTransferAlert(l.longValue(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftSheet.this.lambda$openTransfer$107(l, userSelectorBottomSheetArr, (Browser.Progress) obj);
+                StarGiftSheet.this.lambda$openTransfer$111(l, userSelectorBottomSheetArr, (Browser.Progress) obj);
             }
         });
     }
 
-    public void lambda$openTransfer$107(Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Browser.Progress progress) {
+    public void lambda$openTransfer$111(Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Browser.Progress progress) {
         progress.init();
         doTransfer(l.longValue(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StarGiftSheet.this.lambda$openTransfer$106(progress, userSelectorBottomSheetArr, (TLRPC.TL_error) obj);
+                StarGiftSheet.this.lambda$openTransfer$110(progress, userSelectorBottomSheetArr, (TLRPC.TL_error) obj);
             }
         });
     }
 
-    public void lambda$openTransfer$106(Browser.Progress progress, UserSelectorBottomSheet[] userSelectorBottomSheetArr, final TLRPC.TL_error tL_error) {
+    public void lambda$openTransfer$110(Browser.Progress progress, UserSelectorBottomSheet[] userSelectorBottomSheetArr, final TLRPC.TL_error tL_error) {
         progress.end();
         userSelectorBottomSheetArr[0].lambda$new$0();
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$openTransfer$105(tL_error);
+                    StarGiftSheet.this.lambda$openTransfer$109(tL_error);
                 }
             });
         } else {
@@ -6027,20 +6170,20 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$openTransfer$105(TLRPC.TL_error tL_error) {
+    public void lambda$openTransfer$109(TLRPC.TL_error tL_error) {
         getBulletinFactory().showForError(tL_error);
     }
 
-    public void lambda$openTransfer$110(final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$openTransfer$114(final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openTransfer$109(tLObject, runnable, tL_error);
+                StarGiftSheet.this.lambda$openTransfer$113(tLObject, runnable, tL_error);
             }
         });
     }
 
-    public void lambda$openTransfer$109(TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error) {
+    public void lambda$openTransfer$113(TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.TL_messages_chatFull) {
             TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_chatFull.users, false);
@@ -6057,16 +6200,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         getBulletinFactory().makeForError(tL_error).ignoreDetach().show();
     }
 
-    public void lambda$openTransfer$112(final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Long l, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$openTransfer$116(final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Long l, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openTransfer$111(tLObject, userSelectorBottomSheetArr, l, runnable, tL_error);
+                StarGiftSheet.this.lambda$openTransfer$115(tLObject, userSelectorBottomSheetArr, l, runnable, tL_error);
             }
         });
     }
 
-    public void lambda$openTransfer$111(TLObject tLObject, UserSelectorBottomSheet[] userSelectorBottomSheetArr, Long l, Runnable runnable, TLRPC.TL_error tL_error) {
+    public void lambda$openTransfer$115(TLObject tLObject, UserSelectorBottomSheet[] userSelectorBottomSheetArr, Long l, Runnable runnable, TLRPC.TL_error tL_error) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         if (tLObject instanceof TLRPC.TL_users_userFull) {
             TLRPC.TL_users_userFull tL_users_userFull = (TLRPC.TL_users_userFull) tLObject;
@@ -6147,16 +6290,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setView(linearLayout).setPositiveButton(j2 > 0 ? StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.Gift2TransferDoPrice, Integer.valueOf((int) j2))) : LocaleController.getString(R.string.Gift2TransferDo), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                StarGiftSheet.lambda$openTransferAlert$114(Utilities.Callback.this, alertDialog, i);
+                StarGiftSheet.lambda$openTransferAlert$118(Utilities.Callback.this, alertDialog, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().setShowStarsBalance(true).show();
     }
 
-    public static void lambda$openTransferAlert$114(Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void lambda$openTransferAlert$118(Utilities.Callback callback, AlertDialog alertDialog, int i) {
         callback.run(alertDialog.makeButtonLoading(i));
     }
 
-    public void lambda$openTransfer$102(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void lambda$openTransfer$106(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
         TL_stars.getStarGiftWithdrawalUrl getstargiftwithdrawalurl = new TL_stars.getStarGiftWithdrawalUrl();
         TL_stars.InputSavedStarGift inputStarGift = getInputStarGift();
         getstargiftwithdrawalurl.stargift = inputStarGift;
@@ -6167,21 +6310,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getstargiftwithdrawalurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$initTONTransfer$119(twoStepVerificationActivity, tLObject, tL_error);
+                StarGiftSheet.this.lambda$initTONTransfer$123(twoStepVerificationActivity, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$initTONTransfer$119(final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$initTONTransfer$123(final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$initTONTransfer$118(tL_error, twoStepVerificationActivity, tLObject);
+                StarGiftSheet.this.lambda$initTONTransfer$122(tL_error, twoStepVerificationActivity, tLObject);
             }
         });
     }
 
-    public void lambda$initTONTransfer$118(TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject) {
+    public void lambda$initTONTransfer$122(TLRPC.TL_error tL_error, final TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject) {
         int i;
         if (getContext() == null) {
             return;
@@ -6251,7 +6394,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     builder.setPositiveButton(LocaleController.getString(R.string.Gift2TransferToTONSetPassword), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i4) {
-                            StarGiftSheet.this.lambda$initTONTransfer$115(alertDialog, i4);
+                            StarGiftSheet.this.lambda$initTONTransfer$119(alertDialog, i4);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -6279,7 +6422,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                        StarGiftSheet.this.lambda$initTONTransfer$117(twoStepVerificationActivity, tLObject2, tL_error2);
+                        StarGiftSheet.this.lambda$initTONTransfer$121(twoStepVerificationActivity, tLObject2, tL_error2);
                     }
                 }, 8);
                 return;
@@ -6298,25 +6441,25 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$initTONTransfer$115(AlertDialog alertDialog, int i) {
+    public void lambda$initTONTransfer$119(AlertDialog alertDialog, int i) {
         presentFragment(new TwoStepVerificationSetupActivity(6, null));
     }
 
-    public void lambda$initTONTransfer$117(final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$initTONTransfer$121(final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$initTONTransfer$116(tL_error, tLObject, twoStepVerificationActivity);
+                StarGiftSheet.this.lambda$initTONTransfer$120(tL_error, tLObject, twoStepVerificationActivity);
             }
         });
     }
 
-    public void lambda$initTONTransfer$116(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void lambda$initTONTransfer$120(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
         if (tL_error == null) {
             TL_account.Password password = (TL_account.Password) tLObject;
             twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
             TwoStepVerificationActivity.initPasswordNewAlgo(password);
-            lambda$openTransfer$102(twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
+            lambda$openTransfer$106(twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
         }
     }
 
@@ -6453,7 +6596,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(transferstargift, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarGiftSheet.this.lambda$doTransfer$122(callback, j, peerDialogId, tLObject, tL_error);
+                    StarGiftSheet.this.lambda$doTransfer$126(callback, j, peerDialogId, tLObject, tL_error);
                 }
             });
             return;
@@ -6463,7 +6606,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             starsController.getBalance(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$doTransfer$123(starsController, j, callback);
+                    StarGiftSheet.this.lambda$doTransfer$127(starsController, j, callback);
                 }
             });
             return;
@@ -6483,24 +6626,24 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$doTransfer$132(tL_inputInvoiceStarGiftTransfer, j, peerDialogId, callback, tLObject, tL_error);
+                StarGiftSheet.this.lambda$doTransfer$136(tL_inputInvoiceStarGiftTransfer, j, peerDialogId, callback, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$doTransfer$122(final Utilities.Callback callback, final long j, final long j2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$doTransfer$126(final Utilities.Callback callback, final long j, final long j2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doTransfer$121(callback, tL_error, tLObject, j, j2);
+                StarGiftSheet.this.lambda$doTransfer$125(callback, tL_error, tLObject, j, j2);
             }
         });
     }
 
-    public void lambda$doTransfer$121(Utilities.Callback callback, TLRPC.TL_error tL_error, TLObject tLObject, final long j, long j2) {
+    public void lambda$doTransfer$125(Utilities.Callback callback, TLRPC.TL_error tL_error, TLObject tLObject, final long j, long j2) {
         if (callback != null) {
             callback.run(tL_error);
         }
@@ -6513,7 +6656,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 of.whenFullyVisible(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$doTransfer$120(of, j);
+                        StarGiftSheet.this.lambda$doTransfer$124(of, j);
                     }
                 });
                 safeLastFragment.presentFragment(of);
@@ -6525,11 +6668,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         StarsController.getInstance(this.currentAccount).invalidateProfileGifts(j2);
     }
 
-    public void lambda$doTransfer$120(ChatActivity chatActivity, long j) {
+    public void lambda$doTransfer$124(ChatActivity chatActivity, long j) {
         BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.forward, LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, getGiftName(), DialogObject.getShortName(j)))).ignoreDetach().show();
     }
 
-    public void lambda$doTransfer$123(StarsController starsController, long j, Utilities.Callback callback) {
+    public void lambda$doTransfer$127(StarsController starsController, long j, Utilities.Callback callback) {
         if (!starsController.balanceAvailable()) {
             getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE")).ignoreDetach().show();
         } else {
@@ -6537,16 +6680,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$doTransfer$132(final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, final long j, final long j2, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$doTransfer$136(final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, final long j, final long j2, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doTransfer$131(tLObject, tL_inputInvoiceStarGiftTransfer, j, j2, callback, tL_error);
+                StarGiftSheet.this.lambda$doTransfer$135(tLObject, tL_inputInvoiceStarGiftTransfer, j, j2, callback, tL_error);
             }
         });
     }
 
-    public void lambda$doTransfer$131(TLObject tLObject, TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, final long j, final long j2, final Utilities.Callback callback, TLRPC.TL_error tL_error) {
+    public void lambda$doTransfer$135(TLObject tLObject, TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, final long j, final long j2, final Utilities.Callback callback, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.PaymentForm) {
             TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(paymentForm.users, false);
@@ -6561,7 +6704,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_sendStarsForm, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    StarGiftSheet.this.lambda$doTransfer$130(j, j2, callback, j3, tLObject2, tL_error2);
+                    StarGiftSheet.this.lambda$doTransfer$134(j, j2, callback, j3, tLObject2, tL_error2);
                 }
             });
             return;
@@ -6572,16 +6715,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         getBulletinFactory().makeForError(tL_error).ignoreDetach().show();
     }
 
-    public void lambda$doTransfer$130(final long j, final long j2, final Utilities.Callback callback, final long j3, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$doTransfer$134(final long j, final long j2, final Utilities.Callback callback, final long j3, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doTransfer$129(tLObject, j, j2, callback, tL_error, j3);
+                StarGiftSheet.this.lambda$doTransfer$133(tLObject, j, j2, callback, tL_error, j3);
             }
         });
     }
 
-    public void lambda$doTransfer$129(TLObject tLObject, final long j, long j2, final Utilities.Callback callback, TLRPC.TL_error tL_error, final long j3) {
+    public void lambda$doTransfer$133(TLObject tLObject, final long j, long j2, final Utilities.Callback callback, TLRPC.TL_error tL_error, final long j3) {
         if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(tL_payments_paymentResult.updates.users, false);
@@ -6600,7 +6743,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     of.whenFullyVisible(new Runnable() {
                         @Override
                         public final void run() {
-                            StarGiftSheet.this.lambda$doTransfer$124(of, j);
+                            StarGiftSheet.this.lambda$doTransfer$128(of, j);
                         }
                     });
                     safeLastFragment.presentFragment(of);
@@ -6611,7 +6754,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.this.lambda$doTransfer$125(tL_payments_paymentResult);
+                    StarGiftSheet.this.lambda$doTransfer$129(tL_payments_paymentResult);
                 }
             });
             return;
@@ -6625,7 +6768,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 StarsController.getInstance(this.currentAccount).invalidateBalance(new Runnable() {
                     @Override
                     public final void run() {
-                        StarGiftSheet.this.lambda$doTransfer$128(j3, j, callback);
+                        StarGiftSheet.this.lambda$doTransfer$132(j3, j, callback);
                     }
                 });
                 return;
@@ -6637,38 +6780,38 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         getBulletinFactory().showForError(tL_error);
     }
 
-    public void lambda$doTransfer$124(ChatActivity chatActivity, long j) {
+    public void lambda$doTransfer$128(ChatActivity chatActivity, long j) {
         BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.forward, LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, getGiftName(), DialogObject.getShortName(j)))).ignoreDetach().show();
     }
 
-    public void lambda$doTransfer$125(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
+    public void lambda$doTransfer$129(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
-    public void lambda$doTransfer$128(long j, final long j2, final Utilities.Callback callback) {
+    public void lambda$doTransfer$132(long j, final long j2, final Utilities.Callback callback) {
         final boolean[] zArr = {false};
         StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, j, 11, null, new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$doTransfer$126(zArr, j2, callback);
+                StarGiftSheet.this.lambda$doTransfer$130(zArr, j2, callback);
             }
         }, 0L);
         starsNeededSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                StarGiftSheet.this.lambda$doTransfer$127(dialogInterface);
+                StarGiftSheet.this.lambda$doTransfer$131(dialogInterface);
             }
         });
         starsNeededSheet.show();
     }
 
-    public void lambda$doTransfer$126(boolean[] zArr, long j, Utilities.Callback callback) {
+    public void lambda$doTransfer$130(boolean[] zArr, long j, Utilities.Callback callback) {
         zArr[0] = true;
         this.button.setLoading(false);
         doTransfer(j, callback);
     }
 
-    public void lambda$doTransfer$127(DialogInterface dialogInterface) {
+    public void lambda$doTransfer$131(DialogInterface dialogInterface) {
         this.button.setLoading(false);
     }
 
@@ -6680,7 +6823,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.onBuyPressed():void");
     }
 
-    public void lambda$onBuyPressed$135(AmountUtils$Currency amountUtils$Currency, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+    public void lambda$onBuyPressed$139(AmountUtils$Currency amountUtils$Currency, final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
         this.button.setLoading(false);
         if (tL_payments_paymentFormStarGift == null) {
             return;
@@ -6688,22 +6831,22 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         new ResaleBuyTransferAlert(getContext(), this.resourcesProvider, tL_starGiftUnique, new PaymentFormState(amountUtils$Currency, tL_payments_paymentFormStarGift, null), this.currentAccount, j, getGiftName(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StarGiftSheet.this.lambda$onBuyPressed$134(tL_starGiftUnique, j, (StarGiftSheet.PaymentFormState) obj, (Browser.Progress) obj2);
+                StarGiftSheet.this.lambda$onBuyPressed$138(tL_starGiftUnique, j, (StarGiftSheet.PaymentFormState) obj, (Browser.Progress) obj2);
             }
         }, null).show();
     }
 
-    public void lambda$onBuyPressed$134(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, PaymentFormState paymentFormState, final Browser.Progress progress) {
+    public void lambda$onBuyPressed$138(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, PaymentFormState paymentFormState, final Browser.Progress progress) {
         progress.init();
         StarsController.getInstance(this.currentAccount, paymentFormState.currency).buyResellingGift(paymentFormState.form, tL_starGiftUnique, j, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StarGiftSheet.this.lambda$onBuyPressed$133(progress, tL_starGiftUnique, j, (Boolean) obj, (String) obj2);
+                StarGiftSheet.this.lambda$onBuyPressed$137(progress, tL_starGiftUnique, j, (Boolean) obj, (String) obj2);
             }
         });
     }
 
-    public void lambda$onBuyPressed$133(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, Boolean bool, String str) {
+    public void lambda$onBuyPressed$137(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, Boolean bool, String str) {
         progress.end();
         if (bool.booleanValue()) {
             Utilities.Callback2 callback2 = this.boughtGift;
@@ -6879,6 +7022,60 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             canvas.save();
             canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
             canvas.drawPath(this.arrowPath, this.arrowPaint);
+            canvas.restore();
+            this.userImageReceiver.setImageCoords(width + AndroidUtilities.dp(96.0f), height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+            this.userImageReceiver.draw(canvas);
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            this.userImageReceiver.onAttachedToWindow();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            this.userImageReceiver.onDetachedFromWindow();
+        }
+    }
+
+    public static class GiftThemeReuseTopView extends View {
+        private final Drawable drawable;
+        private final StarGiftDrawableIcon giftDrawable;
+        private final ImageReceiver userImageReceiver;
+
+        public GiftThemeReuseTopView(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
+            super(context);
+            StarGiftDrawableIcon starGiftDrawableIcon = new StarGiftDrawableIcon(this, starGift, 60, 0.27f);
+            this.giftDrawable = starGiftDrawableIcon;
+            starGiftDrawableIcon.setPatternsType(3);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            avatarDrawable.setInfo(tLObject);
+            ImageReceiver imageReceiver = new ImageReceiver(this);
+            this.userImageReceiver = imageReceiver;
+            imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
+            imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
+            Drawable mutate = context.getDrawable(R.drawable.chats_undo).mutate();
+            this.drawable = mutate;
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), PorterDuff.Mode.MULTIPLY));
+            mutate.setBounds(AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
+            int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
+            this.giftDrawable.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
+            this.giftDrawable.draw(canvas);
+            canvas.save();
+            canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
+            this.drawable.draw(canvas);
             canvas.restore();
             this.userImageReceiver.setImageCoords(width + AndroidUtilities.dp(96.0f), height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
             this.userImageReceiver.draw(canvas);
@@ -7455,21 +7652,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getuniquestargiftvalueinfo, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StarGiftSheet.this.lambda$openValueStats$147(alertDialog, document, str3, str, str2, j, tLObject, tL_error);
+                StarGiftSheet.this.lambda$openValueStats$151(alertDialog, document, str3, str, str2, j, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$openValueStats$147(final AlertDialog alertDialog, final TLRPC.Document document, final String str, final String str2, final String str3, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$openValueStats$151(final AlertDialog alertDialog, final TLRPC.Document document, final String str, final String str2, final String str3, final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openValueStats$146(alertDialog, tLObject, document, str, str2, str3, j, tL_error);
+                StarGiftSheet.this.lambda$openValueStats$150(alertDialog, tLObject, document, str, str2, str3, j, tL_error);
             }
         });
     }
 
-    public void lambda$openValueStats$146(AlertDialog alertDialog, TLObject tLObject, TLRPC.Document document, String str, final String str2, String str3, final long j, TLRPC.TL_error tL_error) {
+    public void lambda$openValueStats$150(AlertDialog alertDialog, TLObject tLObject, TLRPC.Document document, String str, final String str2, String str3, final long j, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (!(tLObject instanceof TL_stars.UniqueStarGiftValueInfo)) {
             if (tL_error != null) {
@@ -7516,7 +7713,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         final Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StarGiftSheet.this.lambda$openValueStats$138(hintView2Arr, frameLayout, (View) obj, (CharSequence) obj2);
+                StarGiftSheet.this.lambda$openValueStats$142(hintView2Arr, frameLayout, (View) obj, (CharSequence) obj2);
             }
         };
         TableView tableView = new TableView(getContext(), this.resourcesProvider);
@@ -7536,7 +7733,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.lambda$openValueStats$139(Utilities.Callback2.this, r2, uniqueStarGiftValueInfo, str2);
+                    StarGiftSheet.lambda$openValueStats$143(Utilities.Callback2.this, r2, uniqueStarGiftValueInfo, str2);
                 }
             };
             TableRow addRow = tableView.addRow(LocaleController.getString(R.string.GiftValueMinPrice), BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), "?", runnable);
@@ -7552,7 +7749,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             final Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    StarGiftSheet.lambda$openValueStats$141(Utilities.Callback2.this, r2, uniqueStarGiftValueInfo, str2);
+                    StarGiftSheet.lambda$openValueStats$145(Utilities.Callback2.this, r2, uniqueStarGiftValueInfo, str2);
                 }
             };
             TableRow addRow2 = tableView.addRow(LocaleController.getString(R.string.GiftValueAveragePrice), BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), "?", runnable2);
@@ -7572,12 +7769,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.append((CharSequence) "e");
             spannableStringBuilder.setSpan(new AnimatedEmojiSpan(document, 1.5f, buttonWithCounterView.getTextPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GiftValueOnSaleTelegram));
-            buttonWithCounterView.setText(AndroidUtilities.replaceArrows(spannableStringBuilder, true), false);
+            buttonWithCounterView.setText(AndroidUtilities.replaceArrows(spannableStringBuilder, false, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f)), false);
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarGiftSheet.this.lambda$openValueStats$144(str2, j, view);
+                    StarGiftSheet.this.lambda$openValueStats$148(str2, j, view);
                 }
             });
             linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 42, 7, 0, 0, 0, 2));
@@ -7588,12 +7786,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber(uniqueStarGiftValueInfo.fragment_listed_count, ' '));
             spannableStringBuilder2.append((CharSequence) "e");
             spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document, 1.5f, buttonWithCounterView2.getTextPaint().getFontMetricsInt()), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.append((CharSequence) " ");
             spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.GiftValueOnSaleFragment));
-            buttonWithCounterView2.setText(AndroidUtilities.replaceArrows(spannableStringBuilder2, true), false);
+            buttonWithCounterView2.setText(AndroidUtilities.replaceArrows(spannableStringBuilder2, false, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f)), false);
             buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarGiftSheet.this.lambda$openValueStats$145(uniqueStarGiftValueInfo, view);
+                    StarGiftSheet.this.lambda$openValueStats$149(uniqueStarGiftValueInfo, view);
                 }
             });
             linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 42, 7, 0, 0, 0, 0));
@@ -7602,7 +7801,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         builder.show();
     }
 
-    public void lambda$openValueStats$138(HintView2[] hintView2Arr, FrameLayout frameLayout, View view, CharSequence charSequence) {
+    public void lambda$openValueStats$142(HintView2[] hintView2Arr, FrameLayout frameLayout, View view, CharSequence charSequence) {
         ButtonSpan buttonSpan;
         HintView2 hintView2 = hintView2Arr[0];
         if (hintView2 != null) {
@@ -7643,15 +7842,15 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         hintView22.show();
     }
 
-    public static void lambda$openValueStats$139(Utilities.Callback2 callback2, ButtonSpan.TextViewButtons[] textViewButtonsArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str) {
+    public static void lambda$openValueStats$143(Utilities.Callback2 callback2, ButtonSpan.TextViewButtons[] textViewButtonsArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str) {
         callback2.run(textViewButtonsArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
     }
 
-    public static void lambda$openValueStats$141(Utilities.Callback2 callback2, ButtonSpan.TextViewButtons[] textViewButtonsArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str) {
+    public static void lambda$openValueStats$145(Utilities.Callback2 callback2, ButtonSpan.TextViewButtons[] textViewButtonsArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str) {
         callback2.run(textViewButtonsArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
     }
 
-    public void lambda$openValueStats$144(String str, long j, View view) {
+    public void lambda$openValueStats$148(String str, long j, View view) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null) {
             return;
@@ -7663,13 +7862,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         resaleGiftsFragment.setCloseParentSheet(new Runnable() {
             @Override
             public final void run() {
-                StarGiftSheet.this.lambda$openValueStats$143();
+                StarGiftSheet.this.lambda$openValueStats$147();
             }
         });
         lastFragment.showAsSheet(resaleGiftsFragment, bottomSheetParams);
     }
 
-    public void lambda$openValueStats$143() {
+    public void lambda$openValueStats$147() {
         Runnable runnable = this.closeParentSheet;
         if (runnable != null) {
             runnable.run();
@@ -7677,7 +7876,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         lambda$new$0();
     }
 
-    public void lambda$openValueStats$145(TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, View view) {
+    public void lambda$openValueStats$149(TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, View view) {
         Browser.openUrlInSystemBrowser(getContext(), uniqueStarGiftValueInfo.fragment_listed_url);
     }
 }

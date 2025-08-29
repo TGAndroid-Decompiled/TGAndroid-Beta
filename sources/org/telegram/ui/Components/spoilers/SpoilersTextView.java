@@ -127,6 +127,14 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         invalidateSpoilers();
     }
 
+    public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
+        this.onPressListener = onLinkPress;
+    }
+
+    public void setOnLinkLongPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {
+        this.onLongPressListener = onLinkPress;
+    }
+
     public int overrideLinkColor() {
         return Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider);
     }

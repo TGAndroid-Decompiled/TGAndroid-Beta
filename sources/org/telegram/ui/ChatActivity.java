@@ -182,6 +182,7 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.utils.PhotoUtilities;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.ResultCallback;
@@ -206,6 +207,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.ActionBar.theme.ThemeKey;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Adapters.MessagesSearchAdapter;
 import org.telegram.ui.AvatarPreviewer;
@@ -3475,6 +3477,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getNotificationCenter().removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
         getNotificationCenter().removeObserver(this, NotificationCenter.didReceiveNewMessages);
         getNotificationCenter().removeObserver(this, NotificationCenter.closeChats);
+        getNotificationCenter().removeObserver(this, NotificationCenter.closeChatActivity);
         getNotificationCenter().removeObserver(this, NotificationCenter.messagesRead);
         getNotificationCenter().removeObserver(this, NotificationCenter.threadMessagesRead);
         getNotificationCenter().removeObserver(this, NotificationCenter.monoForumMessagesRead);
@@ -18225,7 +18228,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (i == 6) {
                 return -1;
             }
-            if (i == 10 || i == 11 || i == 21 || i == 30 || messageObject.isWallpaperAction()) {
+            if (i == 10 || i == 31 || i == 11 || i == 21 || i == 30 || messageObject.isWallpaperAction()) {
                 return messageObject.getId() == 0 ? -1 : 1;
             }
             if (messageObject.isVoice()) {
@@ -34576,17 +34579,30 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$checkThemeEmoticonOrWallpaper$388() {
         TLRPC.UserFull userFull = this.userInfo;
-        setChatThemeEmoticon(userFull != null ? userFull.theme_emoticon : null);
+        setChatThemeEmoticon(userFull != null ? userFull.theme : null);
     }
 
-    private void setChatThemeEmoticon(String str) {
+    private void setChatThemeEmoticon(TLRPC.ChatTheme chatTheme) {
         if (this.themeDelegate == null || this.parentThemeDelegate != null) {
             return;
         }
+        ThemeKey of = ThemeKey.of(chatTheme);
         ChatThemeController chatThemeController = ChatThemeController.getInstance(this.currentAccount);
-        chatThemeController.setDialogTheme(this.dialog_id, str, false);
-        if (!TextUtils.isEmpty(str)) {
-            chatThemeController.requestChatTheme(str, new ResultCallback() {
+        chatThemeController.setDialogTheme(this.dialog_id, chatTheme, false);
+        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            chatThemeController.putThemeIfNeeded(chatTheme);
+            EmojiThemes theme = chatThemeController.getTheme(of);
+            if (theme == null) {
+                theme = new EmojiThemes(this.currentAccount, (TLRPC.TL_chatThemeUniqueGift) chatTheme);
+                theme.initColors();
+                theme.loadPreviewColors(this.currentAccount);
+            }
+            ThemeDelegate themeDelegate = this.themeDelegate;
+            themeDelegate.setCurrentTheme(theme, themeDelegate.wallpaper, this.openAnimationStartTime != 0, null);
+            return;
+        }
+        if (of != null && !of.isEmpty()) {
+            chatThemeController.requestChatTheme(of, new ResultCallback() {
                 @Override
                 public final void onComplete(Object obj) {
                     ChatActivity.this.lambda$setChatThemeEmoticon$389((EmojiThemes) obj);
@@ -34604,8 +34620,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             });
         }
         TLRPC.WallPaper dialogWallpaper = chatThemeController.getDialogWallpaper(this.dialog_id);
-        ThemeDelegate themeDelegate = this.themeDelegate;
-        themeDelegate.setCurrentTheme(themeDelegate.chatTheme, dialogWallpaper, this.openAnimationStartTime != 0, null);
+        ThemeDelegate themeDelegate2 = this.themeDelegate;
+        themeDelegate2.setCurrentTheme(themeDelegate2.chatTheme, dialogWallpaper, this.openAnimationStartTime != 0, null);
     }
 
     public void lambda$setChatThemeEmoticon$389(EmojiThemes emojiThemes) {
@@ -34643,7 +34659,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Theme.MessageDrawable animatingMessageDrawable;
         Theme.MessageDrawable animatingMessageMediaDrawable;
         private Drawable backgroundDrawable;
-        private List cachedThemes;
         private EmojiThemes chatTheme;
         private int currentColor;
         int currentServiceColor;
@@ -34737,14 +34752,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             globalInstance.lambda$postNotificationNameOnUIThread$1(i, Boolean.FALSE, bool, bool);
         }
 
-        public List getCachedThemes() {
-            return this.cachedThemes;
-        }
-
-        public void setCachedThemes(List list) {
-            this.cachedThemes = list;
-        }
-
         @Override
         public int getColor(int i) {
             int indexOfKey;
@@ -34810,6 +34817,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
+        private boolean isGiftTheme() {
+            EmojiThemes currentTheme = getCurrentTheme();
+            return (currentTheme == null || currentTheme.getThemeGift() == null) ? false : true;
+        }
+
         @Override
         public boolean hasGradientService() {
             return this.backgroundDrawable != null ? this.serviceShader != null : Theme.hasGradientService();
@@ -34864,15 +34876,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             boolean booleanValue = bool != null ? bool.booleanValue() : this.isDark;
-            String emoticon = emojiThemes != null ? emojiThemes.getEmoticon() : null;
+            ThemeKey themeKey = emojiThemes != null ? emojiThemes.getThemeKey() : null;
             EmojiThemes emojiThemes2 = this.chatTheme;
-            String emoticon2 = emojiThemes2 != null ? emojiThemes2.getEmoticon() : null;
+            ThemeKey themeKey2 = emojiThemes2 != null ? emojiThemes2.getThemeKey() : null;
             TLRPC.WallPaper wallPaper2 = this.wallpaper;
             if (!z2) {
                 if (!isThemeChangeAvailable(false)) {
                     return;
                 }
-                if (TextUtils.equals(emoticon2, emoticon) && this.isDark == booleanValue && ChatThemeController.equals(wallPaper, wallPaper2)) {
+                if (ThemeKey.equals(themeKey2, themeKey) && this.isDark == booleanValue && ChatThemeController.equals(wallPaper, wallPaper2)) {
                     return;
                 }
             }
@@ -34892,6 +34904,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     Drawable drawable = this.backgroundDrawable;
                     if (drawable instanceof MotionBackgroundDrawable) {
                         this.startServiceBitmap = ((MotionBackgroundDrawable) drawable).getBitmap();
+                        if (isGiftTheme() && this.isDark) {
+                            this.startServiceBitmap = Bitmap.createBitmap(this.startServiceBitmap);
+                            new Canvas(this.startServiceBitmap).drawColor(-870178270);
+                        }
                     }
                 }
                 Drawable drawable2 = this.backgroundDrawable;
@@ -35328,10 +35344,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 f = 0.0f;
             }
             boolean z = drawable2 instanceof MotionBackgroundDrawable;
-            boolean z2 = (z || (drawable2 instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0;
-            this.drawServiceGradient = z2;
-            this.drawSelectedGradient = z2;
-            if (z2) {
+            this.drawServiceGradient = (z || (drawable2 instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0;
+            boolean z2 = isGiftTheme() && this.isDark;
+            boolean z3 = this.drawServiceGradient;
+            this.drawSelectedGradient = z3;
+            if (z3) {
                 if (drawable2 instanceof BitmapDrawable) {
                     Bitmap bitmap = ((BitmapDrawable) drawable2).getBitmap();
                     int i4 = 40;
@@ -35361,15 +35378,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     this.useSourceShader = true;
                 } else {
                     this.serviceBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
-                    this.serviceBitmapSource = ((MotionBackgroundDrawable) drawable2).getBitmap();
+                    Bitmap bitmap4 = ((MotionBackgroundDrawable) drawable2).getBitmap();
+                    this.serviceBitmapSource = bitmap4;
+                    if (z2) {
+                        this.serviceBitmapSource = Bitmap.createBitmap(bitmap4);
+                        new Canvas(this.serviceBitmapSource).drawColor(-870178270);
+                    }
                     this.serviceCanvas = new Canvas(this.serviceBitmap);
                     this.src.set(0, 0, this.serviceBitmapSource.getWidth(), this.serviceBitmapSource.getHeight());
                     this.dst.set(0, 0, this.serviceBitmap.getWidth(), this.serviceBitmap.getHeight());
                     this.serviceCanvas.drawBitmap(this.serviceBitmapSource, this.src, this.dst, (Paint) null);
                     this.serviceCanvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (f * 255.0f)));
-                    Bitmap bitmap4 = this.serviceBitmap;
+                    if (z2) {
+                        this.serviceCanvas.drawColor(-870178270);
+                    }
+                    Bitmap bitmap5 = this.serviceBitmap;
                     Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                    this.serviceShader = new BitmapShader(bitmap4, tileMode2, tileMode2);
+                    this.serviceShader = new BitmapShader(bitmap5, tileMode2, tileMode2);
                     this.serviceShaderSource = new BitmapShader(this.serviceBitmapSource, tileMode2, tileMode2);
                     if (Build.VERSION.SDK_INT >= 33) {
                         this.serviceShader.setFilterMode(2);
@@ -35547,14 +35572,32 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             int color4 = getColor(Theme.key_chat_wallpaper_gradient_to3);
             final MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
             motionBackgroundDrawable.setPatternBitmap(emojiThemes.getWallpaper(this.isDark ? 1 : 0).settings.intensity);
+            motionBackgroundDrawable.setGiftDrawable(emojiThemes.getEmojiAnimatedSticker());
             motionBackgroundDrawable.setColors(color, color2, color3, color4, 0, true);
             motionBackgroundDrawable.setPhase(i);
             final int patternColor = motionBackgroundDrawable.getPatternColor();
             final boolean z = this.isDark;
-            emojiThemes.loadWallpaper(z ? 1 : 0, new ResultCallback() {
+            emojiThemes.loadWallpaperGiftPattern(z ? 1 : 0, new ResultCallback() {
                 @Override
                 public final void onComplete(Object obj) {
-                    ChatActivity.ThemeDelegate.this.lambda$getBackgroundDrawableFromTheme$7(emojiThemes, z, motionBackgroundDrawable, patternColor, (Pair) obj);
+                    ChatActivity.ThemeDelegate.this.lambda$getBackgroundDrawableFromTheme$6(motionBackgroundDrawable, (Pair) obj);
+                }
+
+                @Override
+                public void onError(Throwable th) {
+                    ResultCallback.CC.$default$onError(this, th);
+                }
+
+                @Override
+                public void onError(TLRPC.TL_error tL_error) {
+                    ResultCallback.CC.$default$onError(this, tL_error);
+                }
+            });
+            boolean z2 = this.isDark;
+            emojiThemes.loadWallpaper(z2 ? 1 : 0, new ResultCallback() {
+                @Override
+                public final void onComplete(Object obj) {
+                    ChatActivity.ThemeDelegate.this.lambda$getBackgroundDrawableFromTheme$8(emojiThemes, z, motionBackgroundDrawable, patternColor, (Pair) obj);
                 }
 
                 @Override
@@ -35570,35 +35613,50 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return motionBackgroundDrawable;
         }
 
-        public void lambda$getBackgroundDrawableFromTheme$7(EmojiThemes emojiThemes, boolean z, final MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
+        public void lambda$getBackgroundDrawableFromTheme$6(MotionBackgroundDrawable motionBackgroundDrawable, Pair pair) {
             if (pair == null) {
                 return;
             }
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = (Bitmap) pair.second;
+            EmojiThemes emojiThemes = this.chatTheme;
+            if (emojiThemes == null || longValue != emojiThemes.getThemeId(this.isDark ? 1 : 0) || bitmap == null) {
+                return;
+            }
+            motionBackgroundDrawable.setGiftPatternBitmap(bitmap);
+        }
+
+        public void lambda$getBackgroundDrawableFromTheme$8(EmojiThemes emojiThemes, boolean z, final MotionBackgroundDrawable motionBackgroundDrawable, int i, Pair pair) {
+            if (pair == null) {
+                return;
+            }
+            long longValue = ((Long) pair.first).longValue();
+            Bitmap bitmap = ((WallpaperBitmapHolder) pair.second).bitmap;
             EmojiThemes emojiThemes2 = this.chatTheme;
-            if (emojiThemes2 == null || longValue != emojiThemes2.getTlTheme(this.isDark ? 1 : 0).id || bitmap == null) {
+            if (emojiThemes2 == null || longValue != emojiThemes2.getThemeId(this.isDark ? 1 : 0) || bitmap == null) {
                 return;
             }
             ValueAnimator valueAnimator = this.patternIntensityAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            motionBackgroundDrawable.setPatternBitmap(emojiThemes.getWallpaper(z ? 1 : 0).settings.intensity, bitmap);
+            int i2 = emojiThemes.getWallpaper(z ? 1 : 0).settings.intensity;
+            motionBackgroundDrawable.setPatternGiftPositions(((WallpaperBitmapHolder) pair.second).giftPatternPositions);
+            motionBackgroundDrawable.setPatternBitmap(i2, bitmap);
             motionBackgroundDrawable.setPatternColorFilter(i);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.patternIntensityAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ChatActivity.ThemeDelegate.lambda$getBackgroundDrawableFromTheme$6(MotionBackgroundDrawable.this, valueAnimator2);
+                    ChatActivity.ThemeDelegate.lambda$getBackgroundDrawableFromTheme$7(MotionBackgroundDrawable.this, valueAnimator2);
                 }
             });
             this.patternIntensityAnimator.setDuration(250L);
             this.patternIntensityAnimator.start();
         }
 
-        public static void lambda$getBackgroundDrawableFromTheme$6(MotionBackgroundDrawable motionBackgroundDrawable, ValueAnimator valueAnimator) {
+        public static void lambda$getBackgroundDrawableFromTheme$7(MotionBackgroundDrawable motionBackgroundDrawable, ValueAnimator valueAnimator) {
             motionBackgroundDrawable.setPatternAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
         }
 

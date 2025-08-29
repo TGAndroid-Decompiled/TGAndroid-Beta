@@ -2380,11 +2380,19 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r5, int r6) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r7, int r8) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AudioPlayerAlert.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
-        public void lambda$onBindViewHolder$3(AudioPlayerCell audioPlayerCell, MessageObject messageObject, View view) {
+        public boolean lambda$onBindViewHolder$3(AudioPlayerCell audioPlayerCell, View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() != 0) {
+                return false;
+            }
+            AudioPlayerAlert.this.itemTouchHelper.startDrag(AudioPlayerAlert.this.listView.getChildViewHolder(audioPlayerCell));
+            return false;
+        }
+
+        public void lambda$onBindViewHolder$4(AudioPlayerCell audioPlayerCell, MessageObject messageObject, View view) {
             AudioPlayerAlert.this.showOptions(audioPlayerCell, messageObject);
         }
 
@@ -2401,7 +2409,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        AudioPlayerAlert.ListAdapter.this.lambda$search$4(str);
+                        AudioPlayerAlert.ListAdapter.this.lambda$search$5(str);
                     }
                 };
                 this.searchRunnable = runnable;
@@ -2409,7 +2417,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         }
 
-        public void lambda$search$4(String str) {
+        public void lambda$search$5(String str) {
             this.searchRunnable = null;
             processSearch(str);
         }
@@ -2418,22 +2426,22 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.ListAdapter.this.lambda$processSearch$6(str);
+                    AudioPlayerAlert.ListAdapter.this.lambda$processSearch$7(str);
                 }
             });
         }
 
-        public void lambda$processSearch$6(final String str) {
+        public void lambda$processSearch$7(final String str) {
             final ArrayList arrayList = new ArrayList(AudioPlayerAlert.this.playlist);
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.ListAdapter.this.lambda$processSearch$5(str, arrayList);
+                    AudioPlayerAlert.ListAdapter.this.lambda$processSearch$6(str, arrayList);
                 }
             });
         }
 
-        public void lambda$processSearch$5(String str, ArrayList arrayList) {
+        public void lambda$processSearch$6(String str, ArrayList arrayList) {
             TLRPC.Document document;
             boolean z;
             String str2;
@@ -2503,12 +2511,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AudioPlayerAlert.ListAdapter.this.lambda$updateSearchResults$7(arrayList, str);
+                    AudioPlayerAlert.ListAdapter.this.lambda$updateSearchResults$8(arrayList, str);
                 }
             });
         }
 
-        public void lambda$updateSearchResults$7(ArrayList arrayList, String str) {
+        public void lambda$updateSearchResults$8(ArrayList arrayList, String str) {
             if (AudioPlayerAlert.this.searching) {
                 AudioPlayerAlert.this.searchWas = true;
                 this.searchResult = arrayList;
@@ -2648,7 +2656,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     }
 
     private void saveToProfile(final MessageObject messageObject, final boolean z, final Runnable runnable, final boolean z2) {
-        TLRPC.Document document = messageObject.getDocument();
+        final TLRPC.Document document = messageObject.getDocument();
         if (document == null) {
             return;
         }
@@ -2667,12 +2675,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_account_saveMusic, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                AudioPlayerAlert.this.lambda$saveToProfile$27(z2, messageObject, z, runnable, j, tLObject, tL_error);
+                AudioPlayerAlert.this.lambda$saveToProfile$27(z2, messageObject, z, runnable, j, document, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$saveToProfile$27(boolean z, MessageObject messageObject, final boolean z2, final Runnable runnable, final long j, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$saveToProfile$27(boolean z, MessageObject messageObject, final boolean z2, final Runnable runnable, final long j, final TLRPC.Document document, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tL_error != null && FileRefController.isFileRefError(tL_error.text)) {
             if (z || messageObject.getId() < 0) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -2718,7 +2726,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AudioPlayerAlert.this.lambda$saveToProfile$26(j, z2, runnable);
+                AudioPlayerAlert.this.lambda$saveToProfile$26(j, z2, document, runnable);
             }
         });
     }
@@ -2827,8 +2835,24 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
     }
 
-    public void lambda$saveToProfile$26(long j, boolean z, Runnable runnable) {
+    public void lambda$saveToProfile$26(long j, boolean z, TLRPC.Document document, Runnable runnable) {
         MessagesController.getInstance(this.currentAccount).getSavedMusicIds().update(j, z);
+        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+        TLRPC.UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(clientUserId);
+        if (userFull != null) {
+            if (z) {
+                userFull.flags2 |= 2097152;
+                userFull.saved_music = document;
+            } else {
+                TLRPC.Document document2 = userFull.saved_music;
+                if (document2 != null && document2.id == j) {
+                    userFull.flags2 &= -2097153;
+                    userFull.saved_music = null;
+                }
+            }
+            MessagesStorage.getInstance(this.currentAccount).updateUserInfo(userFull, true);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.profileMusicUpdated, Long.valueOf(clientUserId));
+        }
         if (runnable != null) {
             runnable.run();
         }

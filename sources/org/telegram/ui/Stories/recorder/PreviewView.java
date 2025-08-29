@@ -41,10 +41,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.theme.ThemeKey;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -2405,7 +2407,7 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     public static Drawable getBackgroundDrawableFromTheme(int i, String str, boolean z, boolean z2) {
-        EmojiThemes theme = ChatThemeController.getInstance(i).getTheme(str);
+        EmojiThemes theme = ChatThemeController.getInstance(i).getTheme(ThemeKey.ofEmoticon(str));
         if (theme == null) {
             return Theme.getCachedWallpaper();
         }
@@ -2460,8 +2462,8 @@ public abstract class PreviewView extends FrameLayout {
             return;
         }
         long longValue = ((Long) pair.first).longValue();
-        Bitmap bitmap = (Bitmap) pair.second;
-        if (longValue != emojiThemes.getTlTheme(z ? 1 : 0).id || bitmap == null) {
+        Bitmap bitmap = ((WallpaperBitmapHolder) pair.second).bitmap;
+        if (longValue != emojiThemes.getThemeId(z ? 1 : 0) || bitmap == null) {
             return;
         }
         motionBackgroundDrawable.setPatternBitmap(emojiThemes.getWallpaper(z2 ? 1 : 0).settings.intensity, bitmap);

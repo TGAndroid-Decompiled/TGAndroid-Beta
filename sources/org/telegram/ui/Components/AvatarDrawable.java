@@ -682,7 +682,11 @@ public class AvatarDrawable extends Drawable {
         } else if (this.drawDeleted && (drawable2 = Theme.avatarDrawables[1]) != null) {
             int intrinsicWidth3 = drawable2.getIntrinsicWidth();
             int intrinsicHeight3 = Theme.avatarDrawables[1].getIntrinsicHeight();
-            if (intrinsicWidth3 > width - AndroidUtilities.dp(6.0f) || intrinsicHeight3 > width - AndroidUtilities.dp(6.0f)) {
+            if (this.isProfile) {
+                float f6 = this.scaleSize;
+                intrinsicWidth3 = (int) (intrinsicWidth3 * f6);
+                intrinsicHeight3 = (int) (intrinsicHeight3 * f6);
+            } else if (intrinsicWidth3 > width - AndroidUtilities.dp(6.0f) || intrinsicHeight3 > width - AndroidUtilities.dp(6.0f)) {
                 float dp = width / AndroidUtilities.dp(50.0f);
                 intrinsicWidth3 = (int) (intrinsicWidth3 * dp);
                 intrinsicHeight3 = (int) (intrinsicHeight3 * dp);
@@ -715,11 +719,11 @@ public class AvatarDrawable extends Drawable {
                 }
             }
             if (this.textLayout != null) {
-                float f6 = width;
-                float dp2 = f6 / AndroidUtilities.dp(50.0f);
-                float f7 = f6 / 2.0f;
-                canvas.scale(dp2, dp2, f7, f7);
-                canvas.translate(((f6 - this.textWidth) / 2.0f) - this.textLeft, (f6 - this.textHeight) / 2.0f);
+                float f7 = width;
+                float dp2 = f7 / AndroidUtilities.dp(50.0f);
+                float f8 = f7 / 2.0f;
+                canvas.scale(dp2, dp2, f8, f8);
+                canvas.translate(((f7 - this.textWidth) / 2.0f) - this.textLeft, (f7 - this.textHeight) / 2.0f);
                 this.textLayout.draw(canvas);
             }
         }

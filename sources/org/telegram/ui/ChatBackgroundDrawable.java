@@ -11,7 +11,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
-import android.util.Pair;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import j$.util.Objects;
@@ -21,7 +20,8 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ResultCallback;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
@@ -99,20 +99,10 @@ public class ChatBackgroundDrawable extends Drawable {
             this.motionBackgroundDrawable = motionBackgroundDrawable;
             TLRPC.WallPaperSettings wallPaperSettings3 = wallPaper.settings;
             motionBackgroundDrawable.setColors(wallPaperSettings3.background_color, wallPaperSettings3.second_background_color, wallPaperSettings3.third_background_color, wallPaperSettings3.fourth_background_color);
-            EmojiThemes.loadWallpaperImage(UserConfig.selectedAccount, wallPaper.id, wallPaper, new ResultCallback() {
+            EmojiThemes.loadWallpaperImage(UserConfig.selectedAccount, wallPaper.id, wallPaper, new Utilities.Callback() {
                 @Override
-                public final void onComplete(Object obj) {
-                    ChatBackgroundDrawable.this.lambda$new$0(wallPaper, (Pair) obj);
-                }
-
-                @Override
-                public void onError(Throwable th) {
-                    ResultCallback.CC.$default$onError(this, th);
-                }
-
-                @Override
-                public void onError(TLRPC.TL_error tL_error) {
-                    ResultCallback.CC.$default$onError(this, tL_error);
+                public final void run(Object obj) {
+                    ChatBackgroundDrawable.this.lambda$new$0(wallPaper, (WallpaperBitmapHolder) obj);
                 }
             });
             return;
@@ -141,8 +131,8 @@ public class ChatBackgroundDrawable extends Drawable {
         }
     }
 
-    public void lambda$new$0(TLRPC.WallPaper wallPaper, Pair pair) {
-        this.motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, (Bitmap) pair.second);
+    public void lambda$new$0(TLRPC.WallPaper wallPaper, WallpaperBitmapHolder wallpaperBitmapHolder) {
+        this.motionBackgroundDrawable.setPatternBitmap(wallPaper.settings.intensity, wallpaperBitmapHolder.bitmap);
         View view = this.parent;
         if (view != null) {
             view.invalidate();
@@ -254,12 +244,13 @@ public class ChatBackgroundDrawable extends Drawable {
         if (isAttached() && !this.attached) {
             this.attached = true;
             this.imageReceiver.onAttachedToWindow();
-        } else {
-            if (isAttached() || !this.attached) {
-                return;
-            }
+        } else if (!isAttached() && this.attached) {
             this.attached = false;
             this.imageReceiver.onDetachedFromWindow();
+        }
+        MotionBackgroundDrawable motionBackgroundDrawable = this.motionBackgroundDrawable;
+        if (motionBackgroundDrawable != null) {
+            motionBackgroundDrawable.onAttachedToWindow();
         }
     }
 
@@ -270,12 +261,13 @@ public class ChatBackgroundDrawable extends Drawable {
         if (isAttached() && !this.attached) {
             this.attached = true;
             this.imageReceiver.onAttachedToWindow();
-        } else {
-            if (isAttached() || !this.attached) {
-                return;
-            }
+        } else if (!isAttached() && this.attached) {
             this.attached = false;
             this.imageReceiver.onDetachedFromWindow();
+        }
+        MotionBackgroundDrawable motionBackgroundDrawable = this.motionBackgroundDrawable;
+        if (motionBackgroundDrawable != null) {
+            motionBackgroundDrawable.onDetachedFromWindow();
         }
     }
 

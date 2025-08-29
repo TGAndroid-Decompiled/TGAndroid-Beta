@@ -259,6 +259,17 @@ public class ApplicationLoader extends Application {
         }
     }
 
+    public static File getFilesDirFixed(String str) {
+        try {
+            File file = new File(getFilesDirFixed(), str);
+            file.mkdirs();
+            return file;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
     public static void postInitApplication() {
         if (applicationInited || applicationContext == null) {
             return;

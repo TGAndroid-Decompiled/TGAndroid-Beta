@@ -2685,6 +2685,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         ArrayList<MessageObject> arrayList = SharedConfig.shuffleMusic ? this.shuffledPlaylist : this.playlist;
         if (z && (((i = SharedConfig.repeatMode) == 2 || (i == 1 && arrayList.size() == 1)) && !this.forceLoopCurrentPlaylist)) {
             cleanupPlayer(false, false);
+            int i2 = this.currentPlaylistNum;
+            if (i2 < 0 || i2 >= arrayList.size()) {
+                return;
+            }
             MessageObject messageObject = arrayList.get(this.currentPlaylistNum);
             messageObject.audioProgress = 0.0f;
             messageObject.audioProgressSec = 0;
@@ -2729,8 +2733,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             NotificationCenter.getInstance(this.playingMessageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingPlayStateChanged, Integer.valueOf(this.playingMessageObject.getId()));
             return;
         }
-        int i2 = this.currentPlaylistNum;
-        if (i2 < 0 || i2 >= arrayList.size()) {
+        int i3 = this.currentPlaylistNum;
+        if (i3 < 0 || i3 >= arrayList.size()) {
             return;
         }
         MessageObject messageObject3 = this.playingMessageObject;
@@ -6046,6 +6050,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public boolean restoreMusicPlaylistState() {
+        int i;
         MessageObject messageObject;
         SavedMusicPlaylistState savedMusicPlaylistState = this.savedMusicPlaylistState;
         if (savedMusicPlaylistState == null) {
@@ -6053,7 +6058,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         this.savedMusicPlaylistState = null;
         ArrayList<MessageObject> arrayList = SharedConfig.shuffleMusic ? this.shuffledPlaylist : this.playlist;
-        if (arrayList == null || (messageObject = arrayList.get(this.currentPlaylistNum)) == null || messageObject.getDialogId() != savedMusicPlaylistState.playingMessage.getDialogId() || messageObject.getId() != savedMusicPlaylistState.playingMessage.getId()) {
+        if (arrayList == null || (i = this.currentPlaylistNum) < 0 || i >= arrayList.size() || (messageObject = arrayList.get(this.currentPlaylistNum)) == null || messageObject.getDialogId() != savedMusicPlaylistState.playingMessage.getDialogId() || messageObject.getId() != savedMusicPlaylistState.playingMessage.getId()) {
             return false;
         }
         this.playMusicAgain = false;

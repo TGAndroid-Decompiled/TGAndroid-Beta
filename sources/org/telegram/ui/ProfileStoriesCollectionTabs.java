@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.text.SpannableStringBuilder;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -363,7 +362,6 @@ public abstract class ProfileStoriesCollectionTabs extends FrameLayout implement
             }
             int itemId = getItemId(ProfileStoriesCollectionTabs.this.tabsView.getCurrentPosition());
             ProfileStoriesCollectionTabs.this.collections.reorderStep(arrayList2);
-            Log.i("WTF_DEBUG", "" + ProfileStoriesCollectionTabs.this.tabsView.getCurrentPosition() + " " + itemId);
             if (itemId >= 0) {
                 int itemPosition = getItemPosition(itemId);
                 ProfileStoriesCollectionTabs.this.tabsView.selectTab(itemPosition, itemPosition, 0.0f);

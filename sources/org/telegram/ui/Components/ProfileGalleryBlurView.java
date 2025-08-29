@@ -413,7 +413,7 @@ public class ProfileGalleryBlurView extends View {
     }
 
     private void applyShader(Bitmap bitmap, int i) {
-        if (i >= 2) {
+        if (i >= 2 || bitmap == null || bitmap.isRecycled()) {
             return;
         }
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, this.size / 6.0f, new int[]{0, -1}, new float[]{0.0f, AndroidUtilities.dpf2(56.0f) / this.size}, Shader.TileMode.CLAMP);

@@ -2483,6 +2483,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
         getNotificationCenter().addObserver(this, NotificationCenter.didReceiveNewMessages);
         getNotificationCenter().addObserver(this, NotificationCenter.closeChats);
+        getNotificationCenter().addObserver(this, NotificationCenter.closeProfileActivity);
         getNotificationCenter().addObserver(this, NotificationCenter.topicsDidLoaded);
         getNotificationCenter().addObserver(this, NotificationCenter.updateSearchSettings);
         getNotificationCenter().addObserver(this, NotificationCenter.reloadDialogPhotos);
@@ -2721,6 +2722,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
         getNotificationCenter().removeObserver(this, NotificationCenter.closeChats);
+        getNotificationCenter().removeObserver(this, NotificationCenter.closeProfileActivity);
         getNotificationCenter().removeObserver(this, NotificationCenter.didReceiveNewMessages);
         getNotificationCenter().removeObserver(this, NotificationCenter.topicsDidLoaded);
         getNotificationCenter().removeObserver(this, NotificationCenter.updateSearchSettings);
@@ -3154,7 +3156,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.searchAdapter = new SearchAdapter(context2);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         this.avatarDrawable = avatarDrawable;
-        avatarDrawable.setProfile(r10);
+        avatarDrawable.setScaleSize(2.3809524f);
+        this.avatarDrawable.setProfile(r10);
         this.fragmentView.setWillNotDraw(r14);
         NestedFrameLayout nestedFrameLayout = (NestedFrameLayout) this.fragmentView;
         this.contentView = nestedFrameLayout;
@@ -3718,6 +3721,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         if (rightDrawableX != getRightDrawableX()) {
                             ProfileActivity.this.updateCollectibleHint();
                         }
+                    }
+
+                    @Override
+                    public void setTextSize(int i11) {
+                        super.setTextSize(i11);
+                    }
+
+                    @Override
+                    public void setScaleX(float f6) {
+                        super.setScaleX(f6);
                     }
                 };
                 i5 = 1;
@@ -7403,6 +7416,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 ProfileActivity.this.updateCollectibleHint();
             }
         }
+
+        @Override
+        public void setTextSize(int i11) {
+            super.setTextSize(i11);
+        }
+
+        @Override
+        public void setScaleX(float f6) {
+            super.setScaleX(f6);
+        }
     }
 
     class AnonymousClass24 extends LinkSpanDrawable.ClickableSmallTextView {
@@ -10908,6 +10931,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.avatarContainer.setScaleY(this.avatarScale);
         this.avatarContainer.setTranslationX(this.avatarX);
         this.avatarContainer.setTranslationY(this.avatarY);
+        StarRatingView starRatingView = this.ratingView;
+        if (starRatingView != null) {
+            starRatingView.setAlpha(clamp01);
+        }
         ProfileMetaballView profileMetaballView = this.metaball;
         if (profileMetaballView != null && profileMetaballView.isBackward) {
             profileMetaballView.updateBackward(clamp01);
@@ -10931,7 +10958,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (showDrawable != null) {
             showDrawable.setAlpha((int) AndroidUtilities.lerp(0.0f, this.backwardInitialValues[6], clamp01));
         }
-        float dp = (AndroidUtilities.dp(42.0f) * this.avatarScale) - AndroidUtilities.dp(42.0f);
+        float dp = (AndroidUtilities.dp(42.0f) * ((this.avatarScale * 100.0f) / 42.0f)) - AndroidUtilities.dp(42.0f);
         this.timeItem.setTranslationX(this.avatarContainer.getX() + AndroidUtilities.dp(16.0f) + dp);
         this.timeItem.setTranslationY(this.avatarContainer.getY() + AndroidUtilities.dp(15.0f) + dp);
         this.starBgItem.setTranslationX(this.avatarContainer.getX() + AndroidUtilities.dp(28.0f) + dp);
@@ -11575,6 +11602,23 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             removeSelfFromStack(true);
             return;
         }
+        if (i == NotificationCenter.closeProfileActivity) {
+            long longValue2 = ((Long) objArr[0]).longValue();
+            boolean booleanValue2 = ((Boolean) objArr[1]).booleanValue();
+            if (longValue2 == getDialogId()) {
+                if (booleanValue2 || this.parentLayout.getLastFragment() != this) {
+                    if (this.parentLayout.getLastFragment() == this) {
+                        lambda$onBackPressed$355();
+                        return;
+                    } else {
+                        removeSelfFromStack(true);
+                        return;
+                    }
+                }
+                return;
+            }
+            return;
+        }
         if (i == NotificationCenter.botInfoDidLoad) {
             TL_bots.BotInfo botInfo = (TL_bots.BotInfo) objArr[0];
             if (botInfo.user_id == this.userId) {
@@ -11800,8 +11844,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         if (i == NotificationCenter.channelRecommendationsLoaded) {
-            long longValue2 = ((Long) objArr[0]).longValue();
-            if (this.sharedMediaRow >= 0 || longValue2 != getDialogId()) {
+            long longValue3 = ((Long) objArr[0]).longValue();
+            if (this.sharedMediaRow >= 0 || longValue3 != getDialogId()) {
                 return;
             }
             updateRowsIds();
@@ -12150,6 +12194,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.openAnimationInProgress = true;
             if (!z) {
                 captureBackwardInitialValues();
+                HintView2 hintView2 = this.collectibleHint;
+                if (hintView2 != null) {
+                    hintView2.hide(true);
+                }
             }
         }
         if (z) {

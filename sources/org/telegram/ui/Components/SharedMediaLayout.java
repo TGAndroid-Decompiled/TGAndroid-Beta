@@ -179,6 +179,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     private boolean disableScrolling;
     private SharedDocumentsAdapter documentsAdapter;
     private MediaSearchAdapter documentsSearchAdapter;
+    private int firstTab;
     private AnimatorSet floatingDateAnimation;
     private ChatActionCell floatingDateView;
     private ActionBarMenuItem forwardItem;
@@ -424,7 +425,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     public void showChatPreview(DialogCell dialogCell) {
     }
 
-    static int access$14108(SharedMediaLayout sharedMediaLayout) {
+    static int access$14208(SharedMediaLayout sharedMediaLayout) {
         int i = sharedMediaLayout.tabIndexCounter;
         sharedMediaLayout.tabIndexCounter = i + 1;
         return i;
@@ -1075,7 +1076,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         public ArrayList frozenMessages = new ArrayList();
         RecyclerView.RecycledViewPool recycledViewPool = new RecyclerView.RecycledViewPool();
 
-        static int access$11510(SharedMediaData sharedMediaData) {
+        static int access$11610(SharedMediaData sharedMediaData) {
             int i = sharedMediaData.endLoadingStubs;
             sharedMediaData.endLoadingStubs = i - 1;
             return i;
@@ -3006,14 +3007,22 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
 
         @Override
         public boolean showOptions(final int i, View view) {
+            TLRPC.ProfileTab profileTab;
             if (SharedMediaLayout.this.profileActivity == null || SharedMediaLayout.getTab(i, SharedMediaLayout.this.info instanceof TLRPC.TL_channelFull) == null) {
                 return false;
             }
-            if (SharedMediaLayout.this.info instanceof TLRPC.TL_channelFull) {
-                if (!ChatObject.canUserDoAction(SharedMediaLayout.this.profileActivity.getMessagesController().getChat(Long.valueOf(SharedMediaLayout.this.info.id)), 1)) {
+            if (!(SharedMediaLayout.this.info instanceof TLRPC.TL_channelFull)) {
+                if (SharedMediaLayout.this.dialog_id != SharedMediaLayout.this.profileActivity.getUserConfig().getClientUserId() || SharedMediaLayout.this.userInfo == null) {
                     return false;
                 }
-            } else if (SharedMediaLayout.this.dialog_id != SharedMediaLayout.this.profileActivity.getUserConfig().getClientUserId()) {
+                profileTab = SharedMediaLayout.this.userInfo.main_tab;
+            } else {
+                if (!ChatObject.canUserDoAction(SharedMediaLayout.this.profileActivity.getMessagesController().getChat(Long.valueOf(SharedMediaLayout.this.info.id)), 5)) {
+                    return false;
+                }
+                profileTab = SharedMediaLayout.this.info.main_tab;
+            }
+            if (profileTab != null && (i == SharedMediaLayout.getTabId(profileTab) || SharedMediaLayout.this.firstTab == i)) {
                 return false;
             }
             ItemOptions makeOptions = ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, view);
@@ -9912,7 +9921,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
 
         private StoryAlbumData(Context context, int i) {
             this.albumId = i;
-            this.tabType = SharedMediaLayout.getStoryAlbumType(SharedMediaLayout.access$14108(SharedMediaLayout.this));
+            this.tabType = SharedMediaLayout.getStoryAlbumType(SharedMediaLayout.access$14208(SharedMediaLayout.this));
             this.adapter = new StoriesAdapter(context, i, false) {
                 {
                     SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;

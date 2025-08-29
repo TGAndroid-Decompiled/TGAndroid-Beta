@@ -33,7 +33,7 @@ import org.telegram.ui.Stories.MessageMediaStoryFull;
 import org.telegram.ui.Stories.MessageMediaStoryFull_old;
 
 public class TLRPC {
-    public static final int LAYER = 213;
+    public static final int LAYER = 214;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -158,6 +158,28 @@ public class TLRPC {
         }
     }
 
+    public static class ChatTheme extends TLObject {
+        public static ChatTheme TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (ChatTheme) TLObject.TLdeserialize(ChatTheme.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static ChatTheme fromConstructor(int i) {
+            if (i == -1008731132) {
+                return new TL_chatTheme();
+            }
+            if (i != 878246344) {
+                return null;
+            }
+            return new TL_chatThemeUniqueGift();
+        }
+
+        public static ChatTheme ofEmoticon(String str) {
+            TL_chatTheme tL_chatTheme = new TL_chatTheme();
+            tL_chatTheme.emoticon = str;
+            return tL_chatTheme;
+        }
+    }
+
     public static abstract class Dialog extends TLObject {
         public DraftMessage draft;
         public int flags;
@@ -238,6 +260,25 @@ public class TLRPC {
                 tL_inputBotAppID.readParams(inputSerializedData, z);
             }
             return tL_inputBotAppID;
+        }
+    }
+
+    public static class InputChatTheme extends TLObject {
+        public static InputChatTheme TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (InputChatTheme) TLObject.TLdeserialize(InputChatTheme.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static InputChatTheme fromConstructor(int i) {
+            if (i == -2094627709) {
+                return new Tl_inputChatThemeEmpty();
+            }
+            if (i == -2014978076) {
+                return new Tl_inputChatThemeUniqueGift();
+            }
+            if (i != -918689444) {
+                return null;
+            }
+            return new Tl_inputChatTheme();
         }
     }
 
@@ -1752,6 +1793,46 @@ public class TLRPC {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1713193015);
             Vector.serialize(outputSerializedData, this.reactions);
+        }
+    }
+
+    public static class TL_chatTheme extends ChatTheme {
+        public static final int constructor = -1008731132;
+        public String emoticon;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.emoticon = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1008731132);
+            outputSerializedData.writeString(this.emoticon);
+        }
+    }
+
+    public static class TL_chatThemeUniqueGift extends ChatTheme {
+        public static final int constructor = 878246344;
+        public TL_stars.StarGift gift;
+        public ArrayList<ThemeSettings> theme_settings;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.theme_settings = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TLRPC.ThemeSettings.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(878246344);
+            this.gift.serializeToStream(outputSerializedData);
+            Vector.serialize(outputSerializedData, this.theme_settings);
         }
     }
 
@@ -5843,139 +5924,6 @@ public class TLRPC {
             }
             if ((this.flags & 1048576) != 0) {
                 this.reactions.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 4194304) != 0) {
-                Vector.serialize(outputSerializedData, this.restriction_reason);
-            }
-            writeAttachPath(outputSerializedData);
-        }
-    }
-
-    public static class TL_message_layer117 extends TL_message {
-        public static final int constructor = 1160515173;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.out = (readInt32 & 2) != 0;
-            this.mentioned = (readInt32 & 16) != 0;
-            this.media_unread = (readInt32 & 32) != 0;
-            this.silent = (readInt32 & 8192) != 0;
-            this.post = (readInt32 & 16384) != 0;
-            this.from_scheduled = (262144 & readInt32) != 0;
-            this.legacy = (524288 & readInt32) != 0;
-            this.edit_hide = (readInt32 & 2097152) != 0;
-            this.id = inputSerializedData.readInt32(z);
-            if ((this.flags & 256) != 0) {
-                TL_peerUser tL_peerUser = new TL_peerUser();
-                this.from_id = tL_peerUser;
-                tL_peerUser.user_id = inputSerializedData.readInt32(z);
-            }
-            this.peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
-                this.fwd_from = MessageFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 2048) != 0) {
-                this.via_bot_id = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 8) != 0) {
-                TL_messageReplyHeader tL_messageReplyHeader = new TL_messageReplyHeader();
-                this.reply_to = tL_messageReplyHeader;
-                tL_messageReplyHeader.flags |= 16;
-                tL_messageReplyHeader.reply_to_msg_id = inputSerializedData.readInt32(z);
-            }
-            this.date = inputSerializedData.readInt32(z);
-            this.message = inputSerializedData.readString(z);
-            if ((this.flags & 512) != 0) {
-                MessageMedia TLdeserialize = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-                this.media = TLdeserialize;
-                if (TLdeserialize != null) {
-                    this.ttl = TLdeserialize.ttl_seconds;
-                }
-                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-                    this.message = this.media.captionLegacy;
-                }
-            }
-            if ((this.flags & 64) != 0) {
-                this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 128) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
-            }
-            if ((this.flags & 1024) != 0) {
-                this.views = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 32768) != 0) {
-                this.edit_date = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 65536) != 0) {
-                this.post_author = inputSerializedData.readString(z);
-            }
-            if ((this.flags & 131072) != 0) {
-                this.grouped_id = inputSerializedData.readInt64(z);
-            }
-            if ((this.flags & 4194304) != 0) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new TLRPC$TL_channel$$ExternalSyntheticLambda0(), z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1160515173);
-            int i = this.out ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.mentioned ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
-            this.flags = i3;
-            int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
-            this.flags = i4;
-            int i5 = this.post ? i4 | 16384 : i4 & (-16385);
-            this.flags = i5;
-            int i6 = this.from_scheduled ? i5 | 262144 : i5 & (-262145);
-            this.flags = i6;
-            int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
-            this.flags = i7;
-            int i8 = this.edit_hide ? i7 | 2097152 : i7 & (-2097153);
-            this.flags = i8;
-            outputSerializedData.writeInt32(i8);
-            outputSerializedData.writeInt32(this.id);
-            if ((this.flags & 256) != 0) {
-                outputSerializedData.writeInt32((int) this.from_id.user_id);
-            }
-            this.peer_id.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
-                this.fwd_from.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 2048) != 0) {
-                outputSerializedData.writeInt32((int) this.via_bot_id);
-            }
-            if ((this.flags & 8) != 0) {
-                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
-            }
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeString(this.message);
-            if ((this.flags & 512) != 0) {
-                this.media.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 64) != 0) {
-                this.reply_markup.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 128) != 0) {
-                Vector.serialize(outputSerializedData, this.entities);
-            }
-            if ((this.flags & 1024) != 0) {
-                outputSerializedData.writeInt32(this.views);
-            }
-            if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeInt32(this.edit_date);
-            }
-            if ((this.flags & 65536) != 0) {
-                outputSerializedData.writeString(this.post_author);
-            }
-            if ((this.flags & 131072) != 0) {
-                outputSerializedData.writeInt64(this.grouped_id);
             }
             if ((this.flags & 4194304) != 0) {
                 Vector.serialize(outputSerializedData, this.restriction_reason);
@@ -10493,6 +10441,51 @@ public class TLRPC {
                 outputSerializedData.writeInt64(this.query_id);
             }
             outputSerializedData.writeString(this.url);
+        }
+    }
+
+    public static class Tl_inputChatTheme extends InputChatTheme {
+        public static final int constructor = -918689444;
+        public String emoticon;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.emoticon = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-918689444);
+            outputSerializedData.writeString(this.emoticon);
+        }
+    }
+
+    public static class Tl_inputChatThemeEmpty extends InputChatTheme {
+        public static final int constructor = -2094627709;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2094627709);
+        }
+    }
+
+    public static class Tl_inputChatThemeUniqueGift extends InputChatTheme {
+        public static final int constructor = -2014978076;
+        public String slug;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.slug = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2014978076);
+            outputSerializedData.writeString(this.slug);
         }
     }
 
@@ -25005,7 +24998,9 @@ public class TLRPC {
             this.flags = i;
             int i2 = this.has_scheduled ? i | 256 : i & (-257);
             this.flags = i2;
-            outputSerializedData.writeInt32(i2);
+            int flag = TLObject.setFlag(i2, 65536, this.theme_emoticon != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.id);
             outputSerializedData.writeString(this.about);
             this.participants.serializeToStream(outputSerializedData);
@@ -38307,7 +38302,7 @@ public class TLRPC {
                     tL_messageActionPhoneCall = new TL_messageActionSetMessagesTTL_layer149();
                     break;
                 case -1434950843:
-                    tL_messageActionPhoneCall = new TL_messageActionSetChatTheme();
+                    tL_messageActionPhoneCall = new TL_messageActionSetChatTheme_layer213();
                     break;
                 case -1410748418:
                     tL_messageActionPhoneCall = new TL_messageActionBotAllowed_layer153();
@@ -38341,6 +38336,9 @@ public class TLRPC {
                     break;
                 case -1230047312:
                     tL_messageActionPhoneCall = new TL_messageActionEmpty();
+                    break;
+                case -1189364422:
+                    tL_messageActionPhoneCall = new TL_messageActionSetChatTheme();
                     break;
                 case -1136350937:
                     tL_messageActionPhoneCall = new TL_messageActionSetChatWallPaper_layer166();
@@ -38832,19 +38830,23 @@ public class TLRPC {
         }
     }
 
-    public static class TL_messageActionSetChatTheme extends MessageAction {
+    public static class TL_messageActionSetChatTheme_layer213 extends TL_messageActionSetChatTheme {
         public static final int constructor = -1434950843;
-        public String emoticon;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.emoticon = inputSerializedData.readString(z);
+            this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1434950843);
-            outputSerializedData.writeString(this.emoticon);
+            ChatTheme chatTheme = this.theme;
+            if (chatTheme instanceof TL_chatTheme) {
+                outputSerializedData.writeString(((TL_chatTheme) chatTheme).emoticon);
+            } else {
+                outputSerializedData.writeString("");
+            }
         }
     }
 
@@ -38901,6 +38903,22 @@ public class TLRPC {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1539362612);
             outputSerializedData.writeInt64(this.user_id);
+        }
+    }
+
+    public static class TL_messageActionSetChatTheme extends MessageAction {
+        public static final int constructor = -1189364422;
+        public ChatTheme theme;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.theme = ChatTheme.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1189364422);
+            this.theme.serializeToStream(outputSerializedData);
         }
     }
 
@@ -63384,7 +63402,7 @@ public class TLRPC {
         public TL_stars.Tl_starsRating stars_rating;
         public TL_stories.PeerStories stories;
         public boolean stories_pinned_available;
-        public String theme_emoticon;
+        public ChatTheme theme;
         public boolean translations_disabled;
         public int ttl_period;
         public User user;
@@ -63420,8 +63438,8 @@ public class TLRPC {
                 case -994968513:
                     tL_userFull_layer199_2 = new TL_userFull_layer150();
                     break;
-                case -962665488:
-                    tL_userFull_layer199_2 = new TL_userFull_layer213();
+                case -982010451:
+                    tL_userFull_layer199_2 = new TL_userFull();
                     break;
                 case -862357728:
                     tL_userFull_layer199_2 = new TL_userFull_layer188();
@@ -63434,9 +63452,6 @@ public class TLRPC {
                     break;
                 case -694681851:
                     tL_userFull_layer199_2 = new TL_userFull_layer134();
-                    break;
-                case -510712709:
-                    tL_userFull_layer199_2 = new TL_userFull_layer212_2();
                     break;
                 case -328384029:
                     tL_userFull_layer199_2 = new TL_userFull_layer150_rev2();
@@ -63463,7 +63478,7 @@ public class TLRPC {
                     tL_userFull_layer199_2 = new TL_userFull_layer210();
                     break;
                 case 1071128104:
-                    tL_userFull_layer199_2 = new TL_userFull();
+                    tL_userFull_layer199_2 = new TL_userFull_layer213();
                     break;
                 case 1301765052:
                     tL_userFull_layer199_2 = new TL_userFull_layer199();
@@ -63492,10 +63507,19 @@ public class TLRPC {
             }
             return tL_userFull_layer199_2;
         }
+
+        @Deprecated
+        public String getTheme_emoticon() {
+            ChatTheme chatTheme = this.theme;
+            if (chatTheme instanceof TL_chatTheme) {
+                return ((TL_chatTheme) chatTheme).emoticon;
+            }
+            return null;
+        }
     }
 
-    public static class TL_userFull_layer212_2 extends TL_userFull {
-        public static final int constructor = -510712709;
+    public static class TL_userFull extends UserFull {
+        public static final int constructor = -982010451;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -63507,7 +63531,7 @@ public class TLRPC {
             this.can_pin_message = (readInt32 & 128) != 0;
             this.has_scheduled = (readInt32 & 4096) != 0;
             this.video_calls_available = (readInt32 & 8192) != 0;
-            this.voice_messages_forbidden = (1048576 & readInt32) != 0;
+            this.voice_messages_forbidden = (readInt32 & 1048576) != 0;
             this.translations_disabled = (8388608 & readInt32) != 0;
             this.stories_pinned_available = (67108864 & readInt32) != 0;
             this.blocked_my_stories_from = (134217728 & readInt32) != 0;
@@ -63548,8 +63572,8 @@ public class TLRPC {
             if ((this.flags & 16384) != 0) {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+            if (TLObject.hasFlag(this.flags, 32768)) {
+                this.theme = ChatTheme.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -63610,11 +63634,17 @@ public class TLRPC {
                 this.stars_my_pending_rating = TL_stars.Tl_starsRating.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
                 this.stars_my_pending_rating_date = inputSerializedData.readInt32(z);
             }
+            if (TLObject.hasFlag(this.flags2, 1048576)) {
+                this.main_tab = ProfileTab.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if (TLObject.hasFlag(this.flags2, 2097152)) {
+                this.saved_music = Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-510712709);
+            outputSerializedData.writeInt32(-982010451);
             int i = this.blocked ? this.flags | 1 : this.flags & (-2);
             this.flags = i;
             int i2 = this.phone_calls_available ? i | 16 : i & (-17);
@@ -63627,7 +63657,9 @@ public class TLRPC {
             this.flags = i5;
             int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int flag = TLObject.setFlag(i6, 32768, this.theme != null);
+            this.flags = flag;
+            int i7 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i7;
             int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
             this.flags = i8;
@@ -63650,11 +63682,13 @@ public class TLRPC {
             this.flags2 = i16;
             int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
             this.flags2 = i17;
-            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
-            this.flags2 = flag;
-            int flag2 = TLObject.setFlag(flag, 262144, this.stars_my_pending_rating != null);
+            int flag2 = TLObject.setFlag(i17, 131072, this.stars_rating != null);
             this.flags2 = flag2;
-            outputSerializedData.writeInt32(flag2);
+            int flag3 = TLObject.setFlag(flag2, 262144, this.stars_my_pending_rating != null);
+            this.flags2 = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1048576, this.main_tab != null);
+            this.flags2 = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -63683,8 +63717,8 @@ public class TLRPC {
             if ((this.flags & 16384) != 0) {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
-            if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+            if (TLObject.hasFlag(this.flags, 32768)) {
+                this.theme.serializeToStream(outputSerializedData);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -63745,10 +63779,16 @@ public class TLRPC {
                 this.stars_my_pending_rating.serializeToStream(outputSerializedData);
                 outputSerializedData.writeInt32(this.stars_my_pending_rating_date);
             }
+            if (TLObject.hasFlag(this.flags2, 1048576)) {
+                this.main_tab.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(this.flags2, 2097152)) {
+                this.saved_music.serializeToStream(outputSerializedData);
+            }
         }
     }
 
-    public static class TL_userFull extends UserFull {
+    public static class TL_userFull_layer213 extends TL_userFull {
         public static final int constructor = 1071128104;
 
         @Override
@@ -63803,7 +63843,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -63885,38 +63925,40 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
+            int i16 = this.display_gifts_button ? i15 | 65536 : i15 & (-65537);
             this.flags2 = i16;
-            int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
-            this.flags2 = i17;
-            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
-            this.flags2 = flag;
-            int flag2 = TLObject.setFlag(flag, 262144, this.stars_my_pending_rating != null);
+            int flag2 = TLObject.setFlag(i16, 131072, this.stars_rating != null);
             this.flags2 = flag2;
-            int flag3 = TLObject.setFlag(flag2, 1048576, this.main_tab != null);
+            int flag3 = TLObject.setFlag(flag2, 262144, this.stars_my_pending_rating != null);
             this.flags2 = flag3;
-            outputSerializedData.writeInt32(flag3);
+            int flag4 = TLObject.setFlag(flag3, 1048576, this.main_tab != null);
+            this.flags2 = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -63946,275 +63988,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
-            }
-            if ((this.flags & 65536) != 0) {
-                outputSerializedData.writeString(this.private_forward_name);
-            }
-            if ((this.flags & 131072) != 0) {
-                this.bot_group_admin_rights.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 262144) != 0) {
-                this.bot_broadcast_admin_rights.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 16777216) != 0) {
-                this.wallpaper.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 33554432) != 0) {
-                this.stories.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 1) != 0) {
-                this.business_work_hours.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 2) != 0) {
-                this.business_location.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 4) != 0) {
-                this.business_greeting_message.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 8) != 0) {
-                this.business_away_message.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 16) != 0) {
-                this.business_intro.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 32) != 0) {
-                this.birthday.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 64) != 0) {
-                outputSerializedData.writeInt64(this.personal_channel_id);
-                outputSerializedData.writeInt32(this.personal_channel_message);
-            }
-            if ((this.flags2 & 256) != 0) {
-                outputSerializedData.writeInt32(this.stargifts_count);
-            }
-            if ((this.flags2 & 2048) != 0) {
-                this.starref_program.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 4096) != 0) {
-                this.bot_verification.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 16384) != 0) {
-                outputSerializedData.writeInt64(this.send_paid_messages_stars);
-            }
-            if ((this.flags2 & 32768) != 0) {
-                this.disallowed_stargifts.serializeToStream(outputSerializedData);
-            }
-            if (TLObject.hasFlag(this.flags2, 131072)) {
-                this.stars_rating.serializeToStream(outputSerializedData);
-            }
-            if (TLObject.hasFlag(this.flags2, 262144)) {
-                this.stars_my_pending_rating.serializeToStream(outputSerializedData);
-                outputSerializedData.writeInt32(this.stars_my_pending_rating_date);
-            }
-            if (TLObject.hasFlag(this.flags2, 1048576)) {
-                this.main_tab.serializeToStream(outputSerializedData);
-            }
-            if (TLObject.hasFlag(this.flags2, 2097152)) {
-                this.saved_music.serializeToStream(outputSerializedData);
-            }
-        }
-    }
-
-    public static class TL_userFull_layer213 extends TL_userFull {
-        public static final int constructor = -962665488;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.blocked = (readInt32 & 1) != 0;
-            this.phone_calls_available = (readInt32 & 16) != 0;
-            this.phone_calls_private = (readInt32 & 32) != 0;
-            this.can_pin_message = (readInt32 & 128) != 0;
-            this.has_scheduled = (readInt32 & 4096) != 0;
-            this.video_calls_available = (readInt32 & 8192) != 0;
-            this.voice_messages_forbidden = (readInt32 & 1048576) != 0;
-            this.translations_disabled = (8388608 & readInt32) != 0;
-            this.stories_pinned_available = (67108864 & readInt32) != 0;
-            this.blocked_my_stories_from = (134217728 & readInt32) != 0;
-            this.wallpaper_overridden = (268435456 & readInt32) != 0;
-            this.contact_require_premium = (536870912 & readInt32) != 0;
-            this.read_dates_private = (readInt32 & 1073741824) != 0;
-            int readInt322 = inputSerializedData.readInt32(z);
-            this.flags2 = readInt322;
-            this.sponsored_enabled = (readInt322 & 128) != 0;
-            this.can_view_revenue = (readInt322 & 512) != 0;
-            this.bot_can_manage_emoji_status = (readInt322 & 1024) != 0;
-            this.display_gifts_button = (readInt322 & 65536) != 0;
-            this.id = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
-                this.about = inputSerializedData.readString(z);
-            }
-            this.settings = PeerSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 2097152) != 0) {
-                this.personal_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 4) != 0) {
-                this.profile_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 4194304) != 0) {
-                this.fallback_photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            this.notify_settings = PeerNotifySettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 8) != 0) {
-                this.bot_info = TL_bots.BotInfo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 64) != 0) {
-                this.pinned_msg_id = inputSerializedData.readInt32(z);
-            }
-            this.common_chats_count = inputSerializedData.readInt32(z);
-            if ((this.flags & 2048) != 0) {
-                this.folder_id = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 16384) != 0) {
-                this.ttl_period = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
-            }
-            if ((this.flags & 65536) != 0) {
-                this.private_forward_name = inputSerializedData.readString(z);
-            }
-            if ((this.flags & 131072) != 0) {
-                this.bot_group_admin_rights = TL_chatAdminRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 262144) != 0) {
-                this.bot_broadcast_admin_rights = TL_chatAdminRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 16777216) != 0) {
-                this.wallpaper = WallPaper.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 33554432) != 0) {
-                this.stories = TL_stories.PeerStories.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 1) != 0) {
-                this.business_work_hours = TL_account.TL_businessWorkHours.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 2) != 0) {
-                this.business_location = TL_businessLocation.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 4) != 0) {
-                this.business_greeting_message = TL_account.TL_businessGreetingMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 8) != 0) {
-                this.business_away_message = TL_account.TL_businessAwayMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 16) != 0) {
-                this.business_intro = TL_account.TL_businessIntro.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 32) != 0) {
-                this.birthday = TL_account.TL_birthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 64) != 0) {
-                this.personal_channel_id = inputSerializedData.readInt64(z);
-                this.personal_channel_message = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags2 & 256) != 0) {
-                this.stargifts_count = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags2 & 2048) != 0) {
-                this.starref_program = TL_payments.starRefProgram.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 4096) != 0) {
-                this.bot_verification = TL_bots.botVerification.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 16384) != 0) {
-                this.send_paid_messages_stars = inputSerializedData.readInt64(z);
-            }
-            if ((this.flags2 & 32768) != 0) {
-                this.disallowed_stargifts = DisallowedGiftsSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if (TLObject.hasFlag(this.flags2, 131072)) {
-                this.stars_rating = TL_stars.Tl_starsRating.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if (TLObject.hasFlag(this.flags2, 262144)) {
-                this.stars_my_pending_rating = TL_stars.Tl_starsRating.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-                this.stars_my_pending_rating_date = inputSerializedData.readInt32(z);
-            }
-            if (TLObject.hasFlag(this.flags2, 1048576)) {
-                this.main_tab = ProfileTab.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if (TLObject.hasFlag(this.flags2, 2097152)) {
-                this.saved_music = Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-962665488);
-            int i = this.blocked ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.phone_calls_available ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.phone_calls_private ? i2 | 32 : i2 & (-33);
-            this.flags = i3;
-            int i4 = this.can_pin_message ? i3 | 128 : i3 & (-129);
-            this.flags = i4;
-            int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
-            this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
-            this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
-            this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
-            this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
-            this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
-            this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
-            this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
-            this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
-            this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
-            this.flags2 = i16;
-            int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
-            this.flags2 = i17;
-            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
-            this.flags2 = flag;
-            int flag2 = TLObject.setFlag(flag, 262144, this.stars_my_pending_rating != null);
-            this.flags2 = flag2;
-            int flag3 = TLObject.setFlag(flag2, 1048576, this.main_tab != null);
-            this.flags2 = flag3;
-            outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeInt64(this.id);
-            if ((this.flags & 2) != 0) {
-                outputSerializedData.writeString(this.about);
-            }
-            this.settings.serializeToStream(outputSerializedData);
-            if ((this.flags & 2097152) != 0) {
-                this.personal_photo.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 4) != 0) {
-                this.profile_photo.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 4194304) != 0) {
-                this.fallback_photo.serializeToStream(outputSerializedData);
-            }
-            this.notify_settings.serializeToStream(outputSerializedData);
-            if ((this.flags & 8) != 0) {
-                this.bot_info.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 64) != 0) {
-                outputSerializedData.writeInt32(this.pinned_msg_id);
-            }
-            outputSerializedData.writeInt32(this.common_chats_count);
-            if ((this.flags & 2048) != 0) {
-                outputSerializedData.writeInt32(this.folder_id);
-            }
-            if ((this.flags & 16384) != 0) {
-                outputSerializedData.writeInt32(this.ttl_period);
-            }
-            if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -64339,7 +64113,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -64415,36 +64189,38 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
+            int i16 = this.display_gifts_button ? i15 | 65536 : i15 & (-65537);
             this.flags2 = i16;
-            int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
-            this.flags2 = i17;
-            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
-            this.flags2 = flag;
-            int flag2 = TLObject.setFlag(flag, 262144, this.stars_my_pending_rating != null);
+            int flag2 = TLObject.setFlag(i16, 131072, this.stars_rating != null);
             this.flags2 = flag2;
-            outputSerializedData.writeInt32(flag2);
+            int flag3 = TLObject.setFlag(flag2, 262144, this.stars_my_pending_rating != null);
+            this.flags2 = flag3;
+            outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -64474,7 +64250,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -64593,7 +64369,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -64665,34 +64441,36 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
+            int i16 = this.display_gifts_button ? i15 | 65536 : i15 & (-65537);
             this.flags2 = i16;
-            int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
-            this.flags2 = i17;
-            int flag = TLObject.setFlag(i17, 131072, this.stars_rating != null);
-            this.flags2 = flag;
-            outputSerializedData.writeInt32(flag);
+            int flag2 = TLObject.setFlag(i16, 131072, this.stars_rating != null);
+            this.flags2 = flag2;
+            outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -64722,7 +64500,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -64837,7 +64615,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -64906,32 +64684,34 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
+            int i16 = this.display_gifts_button ? i15 | 65536 : i15 & (-65537);
             this.flags2 = i16;
-            int i17 = this.display_gifts_button ? i16 | 65536 : i16 & (-65537);
-            this.flags2 = i17;
-            outputSerializedData.writeInt32(i17);
+            outputSerializedData.writeInt32(i16);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -64961,7 +64741,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -65072,7 +64852,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -65138,30 +64918,32 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
-            this.flags2 = i16;
-            outputSerializedData.writeInt32(i16);
+            outputSerializedData.writeInt32(i15);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -65191,7 +64973,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -65299,7 +65081,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -65368,30 +65150,32 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
-            this.flags2 = i16;
-            outputSerializedData.writeInt32(i16);
+            outputSerializedData.writeInt32(i15);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -65421,7 +65205,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -65532,7 +65316,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -65598,30 +65382,32 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
-            this.flags2 = i16;
-            outputSerializedData.writeInt32(i16);
+            outputSerializedData.writeInt32(i15);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -65651,7 +65437,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -65759,7 +65545,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -65820,32 +65606,34 @@ public class TLRPC {
             this.flags = i3;
             int i4 = this.can_pin_message ? i3 | 128 : i3 & (-129);
             this.flags = i4;
-            int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
+            this.flags = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i5 = this.video_calls_available ? flag | 8192 : flag & (-8193);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            int i6 = this.voice_messages_forbidden ? i5 | 1048576 : i5 & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
-            this.flags2 = i16;
-            outputSerializedData.writeInt32(i16);
+            outputSerializedData.writeInt32(i15);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -65875,7 +65663,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -65980,7 +65768,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -66040,30 +65828,32 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
+            int i14 = this.can_view_revenue ? i13 | 512 : i13 & (-513);
             this.flags2 = i14;
-            int i15 = this.can_view_revenue ? i14 | 512 : i14 & (-513);
+            int i15 = this.bot_can_manage_emoji_status ? i14 | 1024 : i14 & (-1025);
             this.flags2 = i15;
-            int i16 = this.bot_can_manage_emoji_status ? i15 | 1024 : i15 & (-1025);
-            this.flags2 = i16;
-            outputSerializedData.writeInt32(i16);
+            outputSerializedData.writeInt32(i15);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -66093,7 +65883,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -66193,7 +65983,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -66250,26 +66040,28 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
+            outputSerializedData.writeInt32(i12);
+            int i13 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
+            this.flags2 = i13;
             outputSerializedData.writeInt32(i13);
-            int i14 = this.sponsored_enabled ? this.flags2 | 128 : this.flags2 & (-129);
-            this.flags2 = i14;
-            outputSerializedData.writeInt32(i14);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -66299,7 +66091,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -66394,7 +66186,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -66447,23 +66239,25 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
+            outputSerializedData.writeInt32(i12);
             outputSerializedData.writeInt32(this.flags2);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
@@ -66494,7 +66288,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -66585,7 +66379,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -66635,23 +66429,25 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
+            outputSerializedData.writeInt32(i12);
             outputSerializedData.writeInt32(this.flags2);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
@@ -66682,7 +66478,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -66770,7 +66566,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -66817,23 +66613,25 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
+            outputSerializedData.writeInt32(i12);
             outputSerializedData.writeInt32(this.flags2);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
@@ -66864,7 +66662,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -66948,7 +66746,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -66983,23 +66781,25 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
+            int i10 = this.wallpaper_overridden ? i9 | 268435456 : i9 & (-268435457);
             this.flags = i10;
-            int i11 = this.wallpaper_overridden ? i10 | 268435456 : i10 & (-268435457);
+            int i11 = this.contact_require_premium ? i10 | 536870912 : i10 & (-536870913);
             this.flags = i11;
-            int i12 = this.contact_require_premium ? i11 | 536870912 : i11 & (-536870913);
+            int i12 = this.read_dates_private ? i11 | 1073741824 : i11 & (-1073741825);
             this.flags = i12;
-            int i13 = this.read_dates_private ? i12 | 1073741824 : i12 & (-1073741825);
-            this.flags = i13;
-            outputSerializedData.writeInt32(i13);
+            outputSerializedData.writeInt32(i12);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67029,7 +66829,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67098,7 +66898,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67133,17 +66933,19 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
+            int i8 = this.stories_pinned_available ? i7 | 67108864 : i7 & (-67108865);
             this.flags = i8;
-            int i9 = this.stories_pinned_available ? i8 | 67108864 : i8 & (-67108865);
+            int i9 = this.blocked_my_stories_from ? i8 | 134217728 : i8 & (-134217729);
             this.flags = i9;
-            int i10 = this.blocked_my_stories_from ? i9 | 134217728 : i9 & (-134217729);
-            this.flags = i10;
-            outputSerializedData.writeInt32(i10);
+            outputSerializedData.writeInt32(i9);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67173,7 +66975,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67240,7 +67042,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67272,13 +67074,15 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
-            this.flags = i8;
-            outputSerializedData.writeInt32(i8);
+            outputSerializedData.writeInt32(i7);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67308,7 +67112,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67372,7 +67176,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67401,13 +67205,15 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+            int i7 = this.translations_disabled ? i6 | 8388608 : i6 & (-8388609);
             this.flags = i7;
-            int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
-            this.flags = i8;
-            outputSerializedData.writeInt32(i8);
+            outputSerializedData.writeInt32(i7);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67437,7 +67243,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67494,7 +67300,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67523,11 +67329,13 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
-            this.flags = i7;
-            outputSerializedData.writeInt32(i7);
+            outputSerializedData.writeInt32(i6);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67554,7 +67362,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67608,7 +67416,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67637,11 +67445,13 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            int i6 = this.voice_messages_forbidden ? flag | 1048576 : flag & (-1048577);
             this.flags = i6;
-            int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
-            this.flags = i7;
-            outputSerializedData.writeInt32(i7);
+            outputSerializedData.writeInt32(i6);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67665,7 +67475,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67718,7 +67528,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67744,9 +67554,11 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67770,7 +67582,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67820,7 +67632,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
             if ((this.flags & 65536) != 0) {
                 this.private_forward_name = inputSerializedData.readString(z);
@@ -67840,9 +67652,11 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.id);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67866,7 +67680,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
             if ((this.flags & 65536) != 0) {
                 outputSerializedData.writeString(this.private_forward_name);
@@ -67910,7 +67724,7 @@ public class TLRPC {
                 this.ttl_period = inputSerializedData.readInt32(z);
             }
             if ((this.flags & 32768) != 0) {
-                this.theme_emoticon = inputSerializedData.readString(z);
+                this.theme = ChatTheme.ofEmoticon(inputSerializedData.readString(z));
             }
         }
 
@@ -67927,9 +67741,11 @@ public class TLRPC {
             this.flags = i4;
             int i5 = this.has_scheduled ? i4 | 4096 : i4 & (-4097);
             this.flags = i5;
-            int i6 = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
+            this.flags = this.video_calls_available ? i5 | 8192 : i5 & (-8193);
+            String theme_emoticon = getTheme_emoticon();
+            int flag = TLObject.setFlag(this.flags, 32768, theme_emoticon != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.user.serializeToStream(outputSerializedData);
             if ((this.flags & 2) != 0) {
                 outputSerializedData.writeString(this.about);
@@ -67953,7 +67769,7 @@ public class TLRPC {
                 outputSerializedData.writeInt32(this.ttl_period);
             }
             if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeString(this.theme_emoticon);
+                outputSerializedData.writeString(theme_emoticon);
             }
         }
     }
@@ -75840,21 +75656,21 @@ public class TLRPC {
         }
     }
 
-    public static class TL_messages_setChatTheme extends TLObject {
-        public static final int constructor = -432283329;
-        public String emoticon;
+    public static class TL_messages_setChatTheme extends TLMethod<Updates> {
+        public static final int constructor = 135398089;
         public InputPeer peer;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Updates.TLdeserialize(inputSerializedData, i, z);
-        }
+        public InputChatTheme theme;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-432283329);
+            outputSerializedData.writeInt32(135398089);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeString(this.emoticon);
+            this.theme.serializeToStream(outputSerializedData);
+        }
+
+        @Override
+        public Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Updates.TLdeserialize(inputSerializedData, i, z);
         }
     }
 
@@ -78690,8 +78506,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 213;
-                this.params.put("legacy_layer", "213");
+                this.layer = 214;
+                this.params.put("legacy_layer", "214");
             }
             if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
                 for (Map.Entry<String, String> entry2 : this.params.entrySet()) {
@@ -81673,72 +81489,6 @@ public class TLRPC {
         public static final int constructor = -181507201;
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-181507201);
-            int i = this.out ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.mentioned ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
-            this.flags = i3;
-            int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
-            this.flags = i4;
-            int i5 = this.post ? i4 | 16384 : i4 & (-16385);
-            this.flags = i5;
-            int i6 = this.from_scheduled ? i5 | 262144 : i5 & (-262145);
-            this.flags = i6;
-            int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
-            this.flags = i7;
-            int i8 = this.edit_hide ? i7 | 2097152 : i7 & (-2097153);
-            this.flags = i8;
-            outputSerializedData.writeInt32(i8);
-            outputSerializedData.writeInt32(this.id);
-            if ((this.flags & 256) != 0) {
-                outputSerializedData.writeInt32((int) this.from_id.user_id);
-            }
-            this.peer_id.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
-                this.fwd_from.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 2048) != 0) {
-                outputSerializedData.writeInt32((int) this.via_bot_id);
-            }
-            if ((this.flags & 8) != 0) {
-                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
-            }
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeString(this.message);
-            if ((this.flags & 512) != 0) {
-                this.media.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 64) != 0) {
-                this.reply_markup.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 128) != 0) {
-                Vector.serialize(outputSerializedData, this.entities);
-            }
-            if ((this.flags & 1024) != 0) {
-                outputSerializedData.writeInt32(this.views);
-            }
-            if ((this.flags & 1024) != 0) {
-                outputSerializedData.writeInt32(this.forwards);
-            }
-            if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeInt32(this.edit_date);
-            }
-            if ((this.flags & 65536) != 0) {
-                outputSerializedData.writeString(this.post_author);
-            }
-            if ((this.flags & 131072) != 0) {
-                outputSerializedData.writeInt64(this.grouped_id);
-            }
-            if ((this.flags & 4194304) != 0) {
-                Vector.serialize(outputSerializedData, this.restriction_reason);
-            }
-            writeAttachPath(outputSerializedData);
-        }
-
-        @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
@@ -81805,6 +81555,205 @@ public class TLRPC {
             if ((this.flags & 4194304) != 0) {
                 this.restriction_reason = Vector.deserialize(inputSerializedData, new TLRPC$TL_channel$$ExternalSyntheticLambda0(), z);
             }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-181507201);
+            int i = this.out ? this.flags | 2 : this.flags & (-3);
+            this.flags = i;
+            int i2 = this.mentioned ? i | 16 : i & (-17);
+            this.flags = i2;
+            int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
+            this.flags = i3;
+            int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
+            this.flags = i4;
+            int i5 = this.post ? i4 | 16384 : i4 & (-16385);
+            this.flags = i5;
+            int i6 = this.from_scheduled ? i5 | 262144 : i5 & (-262145);
+            this.flags = i6;
+            int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
+            this.flags = i7;
+            int i8 = this.edit_hide ? i7 | 2097152 : i7 & (-2097153);
+            this.flags = i8;
+            outputSerializedData.writeInt32(i8);
+            outputSerializedData.writeInt32(this.id);
+            if ((this.flags & 256) != 0) {
+                outputSerializedData.writeInt32((int) this.from_id.user_id);
+            }
+            this.peer_id.serializeToStream(outputSerializedData);
+            if ((this.flags & 4) != 0) {
+                this.fwd_from.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt32((int) this.via_bot_id);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
+            }
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeString(this.message);
+            if ((this.flags & 512) != 0) {
+                this.media.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 64) != 0) {
+                this.reply_markup.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            if ((this.flags & 1024) != 0) {
+                outputSerializedData.writeInt32(this.views);
+            }
+            if ((this.flags & 1024) != 0) {
+                outputSerializedData.writeInt32(this.forwards);
+            }
+            if ((this.flags & 32768) != 0) {
+                outputSerializedData.writeInt32(this.edit_date);
+            }
+            if ((this.flags & 65536) != 0) {
+                outputSerializedData.writeString(this.post_author);
+            }
+            if ((this.flags & 131072) != 0) {
+                outputSerializedData.writeInt64(this.grouped_id);
+            }
+            if ((this.flags & 4194304) != 0) {
+                Vector.serialize(outputSerializedData, this.restriction_reason);
+            }
+            writeAttachPath(outputSerializedData);
+        }
+    }
+
+    public static class TL_message_layer117 extends TL_message {
+        public static final int constructor = 1160515173;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.out = (readInt32 & 2) != 0;
+            this.mentioned = (readInt32 & 16) != 0;
+            this.media_unread = (readInt32 & 32) != 0;
+            this.silent = (readInt32 & 8192) != 0;
+            this.post = (readInt32 & 16384) != 0;
+            this.from_scheduled = (262144 & readInt32) != 0;
+            this.legacy = (524288 & readInt32) != 0;
+            this.edit_hide = (readInt32 & 2097152) != 0;
+            this.id = inputSerializedData.readInt32(z);
+            if ((this.flags & 256) != 0) {
+                TL_peerUser tL_peerUser = new TL_peerUser();
+                this.from_id = tL_peerUser;
+                tL_peerUser.user_id = inputSerializedData.readInt32(z);
+            }
+            this.peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 4) != 0) {
+                this.fwd_from = MessageFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 2048) != 0) {
+                this.via_bot_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 8) != 0) {
+                TL_messageReplyHeader tL_messageReplyHeader = new TL_messageReplyHeader();
+                this.reply_to = tL_messageReplyHeader;
+                tL_messageReplyHeader.flags |= 16;
+                tL_messageReplyHeader.reply_to_msg_id = inputSerializedData.readInt32(z);
+            }
+            this.date = inputSerializedData.readInt32(z);
+            this.message = inputSerializedData.readString(z);
+            if ((this.flags & 512) != 0) {
+                MessageMedia TLdeserialize = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
+                }
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                    this.message = this.media.captionLegacy;
+                }
+            }
+            if ((this.flags & 64) != 0) {
+                this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 128) != 0) {
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+            }
+            if ((this.flags & 1024) != 0) {
+                this.views = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 32768) != 0) {
+                this.edit_date = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 65536) != 0) {
+                this.post_author = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 131072) != 0) {
+                this.grouped_id = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 4194304) != 0) {
+                this.restriction_reason = Vector.deserialize(inputSerializedData, new TLRPC$TL_channel$$ExternalSyntheticLambda0(), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1160515173);
+            int i = this.out ? this.flags | 2 : this.flags & (-3);
+            this.flags = i;
+            int i2 = this.mentioned ? i | 16 : i & (-17);
+            this.flags = i2;
+            int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
+            this.flags = i3;
+            int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
+            this.flags = i4;
+            int i5 = this.post ? i4 | 16384 : i4 & (-16385);
+            this.flags = i5;
+            int i6 = this.from_scheduled ? i5 | 262144 : i5 & (-262145);
+            this.flags = i6;
+            int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
+            this.flags = i7;
+            int i8 = this.edit_hide ? i7 | 2097152 : i7 & (-2097153);
+            this.flags = i8;
+            outputSerializedData.writeInt32(i8);
+            outputSerializedData.writeInt32(this.id);
+            if ((this.flags & 256) != 0) {
+                outputSerializedData.writeInt32((int) this.from_id.user_id);
+            }
+            this.peer_id.serializeToStream(outputSerializedData);
+            if ((this.flags & 4) != 0) {
+                this.fwd_from.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt32((int) this.via_bot_id);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
+            }
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeString(this.message);
+            if ((this.flags & 512) != 0) {
+                this.media.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 64) != 0) {
+                this.reply_markup.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            if ((this.flags & 1024) != 0) {
+                outputSerializedData.writeInt32(this.views);
+            }
+            if ((this.flags & 32768) != 0) {
+                outputSerializedData.writeInt32(this.edit_date);
+            }
+            if ((this.flags & 65536) != 0) {
+                outputSerializedData.writeString(this.post_author);
+            }
+            if ((this.flags & 131072) != 0) {
+                outputSerializedData.writeInt64(this.grouped_id);
+            }
+            if ((this.flags & 4194304) != 0) {
+                Vector.serialize(outputSerializedData, this.restriction_reason);
+            }
+            writeAttachPath(outputSerializedData);
         }
     }
 }

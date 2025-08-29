@@ -57,7 +57,6 @@ public class ProfileActionsView extends View {
     private final Matrix matrix;
     public int mode;
     private OnActionClickListener onActionClickListener;
-    final float padding;
     private final Paint paint;
     private RadialGradient radialGradient;
     private RenderNode renderNode;
@@ -69,6 +68,8 @@ public class ProfileActionsView extends View {
     final float textPadding;
     private final TextPaint textPaint;
     final float top;
+    final float xpadding;
+    final float ypadding;
 
     public interface OnActionClickListener {
         void onClick(int i, float f, float f2);
@@ -103,8 +104,9 @@ public class ProfileActionsView extends View {
         this.callBackwardAnimateFromY = -1.0f;
         paint.setColor(-16777216);
         paint.setAlpha(40);
-        float dpf2 = AndroidUtilities.dpf2(18.0f);
-        this.padding = dpf2;
+        this.xpadding = AndroidUtilities.dpf2(14.0f);
+        float dpf2 = AndroidUtilities.dpf2(12.0f);
+        this.ypadding = dpf2;
         float dpf22 = AndroidUtilities.dpf2(8.0f);
         this.top = dpf22;
         this.textPadding = AndroidUtilities.dpf2(4.0f);
@@ -159,7 +161,7 @@ public class ProfileActionsView extends View {
         if (measuredWidth <= 0) {
             return;
         }
-        float f = this.padding;
+        float f = this.xpadding;
         float f2 = ((measuredWidth - ((f / 2.0f) * (r4 - 1))) - (f * 2.0f)) / this.activeCount;
         RadialGradient radialGradient = new RadialGradient(f2 / 2.0f, this.targetHeight / 2.0f, this.hasColorById ? f2 * 0.65f : 1.0f, Theme.multAlpha(this.color, 0.8f), this.color, Shader.TileMode.CLAMP);
         this.radialGradient = radialGradient;
@@ -168,7 +170,7 @@ public class ProfileActionsView extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.makeMeasureSpec((int) (this.targetHeight + this.top + this.padding), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.makeMeasureSpec((int) (this.targetHeight + this.top + this.ypadding), 1073741824));
     }
 
     public void updatePosition(float f, float f2) {
@@ -179,7 +181,7 @@ public class ProfileActionsView extends View {
 
     private float getItemWidth() {
         int measuredWidth = getMeasuredWidth();
-        float f = this.padding;
+        float f = this.xpadding;
         return ((measuredWidth - ((f / 2.0f) * (r4 - 1))) - (f * 2.0f)) / this.activeCount;
     }
 
@@ -194,13 +196,13 @@ public class ProfileActionsView extends View {
                 canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), y);
             }
         }
-        float max = Math.max(0.0f, (this.currentHeight - this.padding) - this.top);
+        float max = Math.max(0.0f, (this.currentHeight - this.ypadding) - this.top);
         if (max <= 0.0f) {
             return;
         }
-        float f2 = this.padding / 2.0f;
+        float f2 = this.xpadding / 2.0f;
         float itemWidth = getItemWidth();
-        float f3 = this.padding;
+        float f3 = this.xpadding;
         float roundRadius = getRoundRadius();
         if (this.renderNode != null) {
             this.clipPath.rewind();
@@ -837,9 +839,9 @@ public class ProfileActionsView extends View {
         float top = view.getTop();
         if (z) {
             int size = this.actions.size();
-            float f3 = this.padding / 2.0f;
+            float f3 = this.xpadding / 2.0f;
             float itemWidth = getItemWidth();
-            float f4 = this.padding;
+            float f4 = this.xpadding;
             int i = 0;
             while (true) {
                 if (i >= size) {
@@ -858,7 +860,7 @@ public class ProfileActionsView extends View {
                 i++;
             }
             updateBounds(this.callAction);
-            float centerY = (((((f - this.targetHeight) - this.padding) - this.top) + this.callAction.drawable.getBounds().centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
+            float centerY = (((((f - this.targetHeight) - this.ypadding) - this.top) + this.callAction.drawable.getBounds().centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
             view.setTranslationX(AndroidUtilities.lerp(0.0f, (this.callAction.drawable.getBounds().centerX() - (view.getMeasuredWidth() / 2.0f)) - left, f2));
             view.setTranslationY(AndroidUtilities.lerp(0.0f, centerY, f2));
         } else {
@@ -962,8 +964,8 @@ public class ProfileActionsView extends View {
             RectF rectF = this.prevRect;
             float f = rectF.left - 1.0f;
             ProfileActionsView profileActionsView = ProfileActionsView.this;
-            boolean z2 = f <= profileActionsView.padding;
-            boolean z3 = rectF.right + 1.0f >= ((float) profileActionsView.getMeasuredWidth()) - ProfileActionsView.this.padding;
+            boolean z2 = f <= profileActionsView.xpadding;
+            boolean z3 = rectF.right + 1.0f >= ((float) profileActionsView.getMeasuredWidth()) - ProfileActionsView.this.xpadding;
             if (z2 && z3) {
                 z3 = false;
             } else {

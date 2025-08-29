@@ -2221,7 +2221,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1174getWindowView() {
+    public View mo1179getWindowView() {
         return this.windowView;
     }
 

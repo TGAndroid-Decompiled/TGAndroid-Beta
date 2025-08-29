@@ -161,7 +161,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     public void lambda$new$0(BaseFragment baseFragment, View view, int i) {
         ChatThemeBottomSheet.ChatThemeItem chatThemeItem = (ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i);
         Theme.ThemeInfo themeInfo = chatThemeItem.chatTheme.getThemeInfo(this.themeIndex);
-        int accentId = (chatThemeItem.chatTheme.getEmoticon().equals("🏠") || chatThemeItem.chatTheme.getEmoticon().equals("🎨")) ? chatThemeItem.chatTheme.getAccentId(this.themeIndex) : -1;
+        int accentId = (chatThemeItem.chatTheme.getEmoticonOrSlug().equals("🏠") || chatThemeItem.chatTheme.getEmoticonOrSlug().equals("🎨")) ? chatThemeItem.chatTheme.getAccentId(this.themeIndex) : -1;
         if (themeInfo == null) {
             TLRPC.TL_theme tlTheme = chatThemeItem.chatTheme.getTlTheme(this.themeIndex);
             Theme.ThemeInfo theme = Theme.getTheme(Theme.getBaseThemeKey(tlTheme.settings.get(chatThemeItem.chatTheme.getSettingsIndex(this.themeIndex))));

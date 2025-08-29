@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import android.appwidget.AppWidgetManager;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.SparseArray;
@@ -48,7 +49,7 @@ import org.telegram.ui.Stories.StoriesController;
 
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 167;
+    public static final int LAST_DB_VERSION = 168;
     public static final int SENT_FILE_TYPE_AUDIO = 1;
     public static final int SENT_FILE_TYPE_AUDIO_ENCRYPTED = 4;
     public static final int SENT_FILE_TYPE_PHOTO = 0;
@@ -400,7 +401,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (intValue < 167) {
+                if (intValue < 168) {
                     try {
                         updateDbToLastVersion(intValue);
                     } catch (Exception e4) {
@@ -663,7 +664,8 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT, pos INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE star_gifts2(id INTEGER PRIMARY KEY, data BLOB, hash INTEGER, time INTEGER, pos INTEGER);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 167").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE gift_themes (slug TEXT PRIMARY KEY, data BLOB);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 168").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -677,7 +679,7 @@ public class MessagesStorage extends BaseController {
                 MessagesStorage.this.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 167");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 168");
         int migrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -7247,12 +7249,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(213);
+                messageMedia.bytes = Utilities.intToBytes(214);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(213);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(214);
             message.flags |= 512;
         }
     }
@@ -8370,30 +8372,106 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogUnreadReactions$246(boolean, long, int, long):void");
     }
 
-    public void saveStoryAlbumsCache(final long j, final List<StoriesController.StoryAlbum> list) {
-        this.storageQueue.postRunnable(new Runnable() {
+    public void putGiftChatTheme(TLRPC.ChatTheme chatTheme) {
+        putGiftChatThemes(Collections.singletonList(chatTheme));
+    }
+
+    public void putGiftChatThemes(final List<TLRPC.ChatTheme> list) {
+        executeInStorageQueue(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveStoryAlbumsCache$247(j, list);
+                MessagesStorage.this.lambda$putGiftChatThemes$247(list);
             }
         });
     }
 
-    public void lambda$saveStoryAlbumsCache$247(long r6, java.util.List<org.telegram.ui.Stories.StoriesController.StoryAlbum> r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$saveStoryAlbumsCache$247(long, java.util.List):void");
+    public void lambda$putGiftChatThemes$247(List list) {
+        SQLitePreparedStatement sQLitePreparedStatement = null;
+        try {
+            try {
+                try {
+                    sQLitePreparedStatement = this.database.executeFast("REPLACE INTO gift_themes VALUES(?, ?)");
+                    Iterator it = list.iterator();
+                    while (it.hasNext()) {
+                        TLRPC.ChatTheme chatTheme = (TLRPC.ChatTheme) it.next();
+                        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+                            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = (TLRPC.TL_chatThemeUniqueGift) chatTheme;
+                            sQLitePreparedStatement.requery();
+                            sQLitePreparedStatement.bindString(1, tL_chatThemeUniqueGift.gift.slug);
+                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_chatThemeUniqueGift.getObjectSize());
+                            tL_chatThemeUniqueGift.serializeToStream(nativeByteBuffer);
+                            sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
+                            nativeByteBuffer.reuse();
+                            sQLitePreparedStatement.step();
+                        }
+                    }
+                    sQLitePreparedStatement.dispose();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
+                }
+            } catch (SQLiteException e2) {
+                checkSQLException(e2);
+                if (sQLitePreparedStatement == null) {
+                    return;
+                }
+                sQLitePreparedStatement.dispose();
+            }
+        } catch (Throwable th) {
+            if (sQLitePreparedStatement != null) {
+                sQLitePreparedStatement.dispose();
+            }
+            throw th;
+        }
+    }
+
+    public void loadGiftChatTheme(final Utilities.Callback<List<TLRPC.TL_chatThemeUniqueGift>> callback) {
+        executeInStorageQueue(new Runnable() {
+            @Override
+            public final void run() {
+                MessagesStorage.this.lambda$loadGiftChatTheme$250(callback);
+            }
+        });
+    }
+
+    public void lambda$loadGiftChatTheme$250(final org.telegram.messenger.Utilities.Callback r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadGiftChatTheme$250(org.telegram.messenger.Utilities$Callback):void");
+    }
+
+    private void executeInStorageQueue(Runnable runnable) {
+        if (this.storageQueue.getHandler().getLooper() != Looper.myLooper()) {
+            this.storageQueue.postRunnable(runnable);
+        } else {
+            runnable.run();
+        }
+    }
+
+    public void saveStoryAlbumsCache(final long j, final List<StoriesController.StoryAlbum> list) {
+        this.storageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                MessagesStorage.this.lambda$saveStoryAlbumsCache$251(j, list);
+            }
+        });
+    }
+
+    public void lambda$saveStoryAlbumsCache$251(long r6, java.util.List<org.telegram.ui.Stories.StoriesController.StoryAlbum> r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$saveStoryAlbumsCache$251(long, java.util.List):void");
     }
 
     public void loadStoryAlbumsCache(final long j, final Consumer<List<StoriesController.StoryAlbum>> consumer) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadStoryAlbumsCache$248(j, consumer);
+                MessagesStorage.this.lambda$loadStoryAlbumsCache$252(j, consumer);
             }
         });
     }
 
-    public void lambda$loadStoryAlbumsCache$248(long r7, java.util.function.Consumer r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadStoryAlbumsCache$248(long, java.util.function.Consumer):void");
+    public void lambda$loadStoryAlbumsCache$252(long r7, java.util.function.Consumer r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadStoryAlbumsCache$252(long, java.util.function.Consumer):void");
     }
 
     public SQLiteCursor createLoadStoriesCursor(long j, int i, int i2) {

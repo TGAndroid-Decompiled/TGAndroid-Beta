@@ -485,7 +485,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         builder.putString("android.media.metadata.ARTIST", playingMessageObject.getMusicAuthor());
         builder.putString("android.media.metadata.TITLE", playingMessageObject.getMusicTitle());
         AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();
-        if (audioInfo != null && (cover = audioInfo.getCover()) != null) {
+        if (audioInfo != null && (cover = audioInfo.getCover()) != null && !cover.isRecycled()) {
             builder.putBitmap("android.media.metadata.ALBUM_ART", cover);
         }
         this.mediaSession.setMetadata(builder.build());

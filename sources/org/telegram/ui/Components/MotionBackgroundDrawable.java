@@ -21,12 +21,17 @@ import android.os.SystemClock;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.lang.ref.WeakReference;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.wallpaper.WallpaperGiftPatternPosition;
+import org.telegram.tgnet.TLRPC;
 
 public class MotionBackgroundDrawable extends Drawable {
     private static boolean errorWhileGenerateLegacyBitmap;
@@ -36,6 +41,7 @@ public class MotionBackgroundDrawable extends Drawable {
     private int alpha;
     private GenericProvider animationProgressProvider;
     private float backgroundAlpha;
+    private BitmapShader bitmapGiftShader;
     private int bitmapHeight;
     private BitmapShader bitmapShader;
     private int bitmapWidth;
@@ -43,10 +49,13 @@ public class MotionBackgroundDrawable extends Drawable {
     private Bitmap currentBitmap;
     private boolean disableGradientShaderScaling;
     private boolean fastAnimation;
+    private ImageReceiver giftImageReceiver;
+    private List giftPatternPositions;
     private Canvas gradientCanvas;
     private GradientDrawable gradientDrawable;
     private Bitmap gradientFromBitmap;
     private Canvas gradientFromCanvas;
+    private BitmapShader gradientGiftShader;
     private BitmapShader gradientShader;
     private Bitmap[] gradientToBitmap;
     private boolean ignoreInterpolator;
@@ -54,6 +63,7 @@ public class MotionBackgroundDrawable extends Drawable {
     private int intensity;
     private final CubicBezierInterpolator interpolator;
     private boolean invalidateLegacy;
+    public boolean isAttached;
     private boolean isIndeterminateAnimation;
     public boolean isPreview;
     private long lastUpdateTime;
@@ -63,16 +73,20 @@ public class MotionBackgroundDrawable extends Drawable {
     private ColorFilter legacyBitmapColorFilter;
     private Canvas legacyCanvas;
     private Canvas legacyCanvas2;
+    private final Paint legacyPaintNegativeIntensityGradient;
+    private final Paint legacyPaintNegativeIntensityPattern;
     private Matrix matrix;
     private Paint overrideBitmapPaint;
     private Paint paint;
     private Paint paint2;
+    private final Paint paint2Gift;
     private Paint paint3;
     private WeakReference parentView;
     private float patternAlpha;
     private Bitmap patternBitmap;
     private android.graphics.Rect patternBounds;
     private ColorFilter patternColorFilter;
+    private Bitmap patternGiftBitmap;
     private int phase;
     public float posAnimationProgress;
     private boolean postInvalidateParent;
@@ -80,6 +94,9 @@ public class MotionBackgroundDrawable extends Drawable {
     private boolean rotatingPreview;
     private boolean rotationBack;
     private int roundRadius;
+    private final Matrix tmpMatrix;
+    private final Matrix tmpMatrix2;
+    private final Matrix tmpMatrix3;
     private int translationY;
     private Runnable updateAnimationRunnable;
 
@@ -113,7 +130,10 @@ public class MotionBackgroundDrawable extends Drawable {
         this.paint = new Paint(2);
         this.paint2 = new Paint(2);
         this.paint3 = new Paint();
+        this.legacyPaintNegativeIntensityPattern = new Paint(2);
+        this.legacyPaintNegativeIntensityGradient = new Paint(2);
         this.intensity = 100;
+        this.paint2Gift = new Paint(2);
         this.gradientDrawable = new GradientDrawable();
         this.updateAnimationRunnable = new Runnable() {
             @Override
@@ -128,6 +148,9 @@ public class MotionBackgroundDrawable extends Drawable {
         this.indeterminateSpeedScale = 1.0f;
         this.bitmapWidth = 60;
         this.bitmapHeight = 80;
+        this.tmpMatrix = new Matrix();
+        this.tmpMatrix2 = new Matrix();
+        this.tmpMatrix3 = new Matrix();
         init();
     }
 
@@ -148,7 +171,10 @@ public class MotionBackgroundDrawable extends Drawable {
         this.paint = new Paint(2);
         this.paint2 = new Paint(2);
         this.paint3 = new Paint();
+        this.legacyPaintNegativeIntensityPattern = new Paint(2);
+        this.legacyPaintNegativeIntensityGradient = new Paint(2);
         this.intensity = 100;
+        this.paint2Gift = new Paint(2);
         this.gradientDrawable = new GradientDrawable();
         this.updateAnimationRunnable = new Runnable() {
             @Override
@@ -163,6 +189,9 @@ public class MotionBackgroundDrawable extends Drawable {
         this.indeterminateSpeedScale = 1.0f;
         this.bitmapWidth = 60;
         this.bitmapHeight = 80;
+        this.tmpMatrix = new Matrix();
+        this.tmpMatrix2 = new Matrix();
+        this.tmpMatrix3 = new Matrix();
         if (z2) {
             this.bitmapWidth = 80;
             this.bitmapHeight = 80;
@@ -187,6 +216,7 @@ public class MotionBackgroundDrawable extends Drawable {
             blendMode = BlendMode.SOFT_LIGHT;
             paint.setBlendMode(blendMode);
         }
+        this.legacyPaintNegativeIntensityGradient.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
     public void setRoundRadius(int i) {
@@ -367,6 +397,10 @@ public class MotionBackgroundDrawable extends Drawable {
 
     public void setParentView(View view) {
         this.parentView = new WeakReference(view);
+        ImageReceiver imageReceiver = this.giftImageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.setParentView(view);
+        }
     }
 
     public void setColors(int i, int i2, int i3, int i4) {
@@ -451,6 +485,71 @@ public class MotionBackgroundDrawable extends Drawable {
 
     public void setPatternBitmap(int i, Bitmap bitmap) {
         setPatternBitmap(i, bitmap, true);
+    }
+
+    public void setPatternGiftPositions(List list) {
+        this.giftPatternPositions = list;
+    }
+
+    public void setGiftPatternBitmap(Bitmap bitmap) {
+        this.patternGiftBitmap = bitmap;
+        this.invalidateLegacy = true;
+        if (this.intensity < 0) {
+            if (!useLegacyBitmap) {
+                Bitmap bitmap2 = this.currentBitmap;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                this.bitmapGiftShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                Bitmap bitmap3 = this.patternGiftBitmap;
+                Shader.TileMode tileMode2 = Shader.TileMode.REPEAT;
+                this.gradientGiftShader = new BitmapShader(bitmap3, tileMode2, tileMode2);
+                this.paint2Gift.setShader(new ComposeShader(this.bitmapGiftShader, this.gradientGiftShader, PorterDuff.Mode.DST_IN));
+                this.paint2Gift.setFilterBitmap(true);
+            } else {
+                createLegacyBitmap();
+                if (!errorWhileGenerateLegacyBitmap) {
+                    this.paint2Gift.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+                } else {
+                    this.paint2Gift.setXfermode(null);
+                }
+            }
+        } else if (useLegacyBitmap) {
+            this.paint2Gift.setXfermode(null);
+        }
+        invalidateParent();
+    }
+
+    public void setGiftDrawable(TLRPC.Document document) {
+        if (this.giftImageReceiver == null) {
+            ImageReceiver imageReceiver = new ImageReceiver();
+            this.giftImageReceiver = imageReceiver;
+            imageReceiver.setAlpha(0.5f);
+            WeakReference weakReference = this.parentView;
+            if (weakReference != null) {
+                this.giftImageReceiver.setParentView((View) weakReference.get());
+            }
+            if (this.isAttached) {
+                this.giftImageReceiver.onAttachedToWindow();
+            }
+        }
+        this.giftImageReceiver.setImage(ImageLocation.getForDocument(document), "80_80", null, null, null, 0);
+        this.giftImageReceiver.setAutoRepeatCount(1);
+        this.giftImageReceiver.setAutoRepeat(1);
+    }
+
+    public void onAttachedToWindow() {
+        this.isAttached = true;
+        ImageReceiver imageReceiver = this.giftImageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.onAttachedToWindow();
+        }
+    }
+
+    public void onDetachedFromWindow() {
+        this.isAttached = false;
+        ImageReceiver imageReceiver = this.giftImageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.onDetachedFromWindow();
+        }
     }
 
     public void setPatternBitmap(int i, Bitmap bitmap, boolean z) {
@@ -588,6 +687,10 @@ public class MotionBackgroundDrawable extends Drawable {
             float min = 1.0f / Math.min(this.currentBitmap.getWidth() / bounds.width(), this.currentBitmap.getHeight() / bounds.height());
             this.matrix.preScale(min, min);
             this.bitmapShader.setLocalMatrix(this.matrix);
+            BitmapShader bitmapShader = this.bitmapGiftShader;
+            if (bitmapShader != null) {
+                bitmapShader.setLocalMatrix(this.matrix);
+            }
             this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
             int alpha = this.paint.getAlpha();
             this.paint.setAlpha((int) (alpha * this.backgroundAlpha));
@@ -641,16 +744,17 @@ public class MotionBackgroundDrawable extends Drawable {
         if (this.intensity < 0) {
             Bitmap bitmap = this.patternBitmap;
             if (bitmap != null) {
+                float f6 = 1.0f;
                 if (useLegacyBitmap) {
                     if (errorWhileGenerateLegacyBitmap) {
                         float width3 = bitmap.getWidth();
                         float height3 = this.patternBitmap.getHeight();
                         float max2 = Math.max(width2 / width3, height2 / height3);
-                        float f6 = width3 * max2;
-                        float f7 = height3 * max2;
-                        float f8 = (width2 - f6) / 2.0f;
-                        float f9 = (height2 - f7) / 2.0f;
-                        this.rect.set(f8, f9, f6 + f8, f7 + f9);
+                        float f7 = width3 * max2;
+                        float f8 = height3 * max2;
+                        float f9 = (width2 - f7) / 2.0f;
+                        float f10 = (height2 - f8) / 2.0f;
+                        this.rect.set(f9, f10, f7 + f9, f8 + f10);
                         int[] iArr = this.colors;
                         int averageColor = AndroidUtilities.getAverageColor(iArr[2], AndroidUtilities.getAverageColor(iArr[0], iArr[1]));
                         int i3 = this.colors[3];
@@ -666,36 +770,36 @@ public class MotionBackgroundDrawable extends Drawable {
                         canvas.translate(0.0f, f);
                         canvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.paint2);
                     } else {
-                        if (this.legacyBitmap != null) {
+                        Bitmap bitmap2 = this.legacyBitmap;
+                        if (bitmap2 != null) {
                             if (this.invalidateLegacy) {
-                                this.rect.set(0.0f, 0.0f, r1.getWidth(), this.legacyBitmap.getHeight());
-                                int alpha = this.paint.getAlpha();
-                                this.paint.setAlpha(255);
-                                this.legacyCanvas.drawBitmap(this.currentBitmap, (android.graphics.Rect) null, this.rect, this.paint);
-                                this.paint.setAlpha(alpha);
+                                bitmap2.eraseColor(0);
                                 float width4 = this.patternBitmap.getWidth();
                                 float height4 = this.patternBitmap.getHeight();
                                 float max3 = Math.max(width2 / width4, height2 / height4);
-                                float f10 = width4 * max3;
-                                float f11 = height4 * max3;
-                                float f12 = (width2 - f10) / 2.0f;
-                                float f13 = (height2 - f11) / 2.0f;
-                                this.rect.set(f12, f13, f10 + f12, f11 + f13);
-                                this.paint2.setColorFilter(null);
-                                this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * 255.0f));
+                                float f11 = width4 * max3;
+                                float f12 = height4 * max3;
+                                float f13 = (width2 - f11) / 2.0f;
+                                float f14 = (height2 - f12) / 2.0f;
+                                this.rect.set(f13, f14, f11 + f13, f12 + f14);
                                 this.legacyCanvas.save();
                                 Canvas canvas2 = this.legacyCanvas;
-                                float f14 = legacyBitmapScale;
-                                canvas2.scale(f14, f14);
-                                this.legacyCanvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.paint2);
+                                float f15 = legacyBitmapScale;
+                                canvas2.scale(f15, f15);
+                                this.legacyPaintNegativeIntensityPattern.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * 255.0f));
+                                this.legacyCanvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.legacyPaintNegativeIntensityPattern);
+                                this.legacyPaintNegativeIntensityPattern.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * 255.0f * 0.8f));
+                                drawGiftPatternsForPositiveIntensity(this.legacyCanvas, this.rect, this.legacyPaintNegativeIntensityPattern, -1);
                                 this.legacyCanvas.restore();
+                                this.rect.set(0.0f, 0.0f, this.legacyBitmap.getWidth(), this.legacyBitmap.getHeight());
+                                this.legacyCanvas.drawBitmap(this.currentBitmap, (android.graphics.Rect) null, this.rect, this.legacyPaintNegativeIntensityGradient);
                                 this.invalidateLegacy = false;
                             }
                             this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
                             if (this.legacyBitmap2 != null) {
-                                float f15 = this.posAnimationProgress;
-                                if (f15 != 1.0f) {
-                                    this.paint.setAlpha((int) (this.alpha * this.patternAlpha * (1.0f - f15)));
+                                float f16 = this.posAnimationProgress;
+                                if (f16 != 1.0f) {
+                                    this.paint.setAlpha((int) (this.alpha * this.patternAlpha * (1.0f - f16)));
                                     canvas.drawBitmap(this.legacyBitmap2, (android.graphics.Rect) null, this.rect, this.paint);
                                     this.paint.setAlpha((int) (this.alpha * this.patternAlpha * this.posAnimationProgress));
                                     canvas.drawBitmap(this.legacyBitmap, (android.graphics.Rect) null, this.rect, this.paint);
@@ -714,35 +818,47 @@ public class MotionBackgroundDrawable extends Drawable {
                     float min = 1.0f / Math.min(this.currentBitmap.getWidth() / bounds.width(), this.currentBitmap.getHeight() / bounds.height());
                     this.matrix.preScale(min, min);
                     this.bitmapShader.setLocalMatrix(this.matrix);
+                    BitmapShader bitmapShader = this.bitmapGiftShader;
+                    if (bitmapShader != null) {
+                        bitmapShader.setLocalMatrix(this.matrix);
+                    }
                     this.matrix.reset();
-                    float max4 = Math.max(width2 / this.patternBitmap.getWidth(), height2 / this.patternBitmap.getHeight());
-                    this.matrix.setTranslate((int) ((width2 - (r2 * max4)) / 2.0f), (int) (((height2 - (r3 * max4)) / 2.0f) + f));
+                    float width5 = this.patternBitmap.getWidth();
+                    float height5 = this.patternBitmap.getHeight();
+                    float max4 = Math.max(width2 / width5, height2 / height5);
+                    float f17 = (width2 - (width5 * max4)) / 2.0f;
+                    float f18 = ((height2 - (height5 * max4)) / 2.0f) + f;
+                    this.matrix.setTranslate((int) f17, (int) f18);
                     if (!this.disableGradientShaderScaling || max4 > 1.4f || max4 < 0.8f) {
                         this.matrix.preScale(max4, max4);
+                        f6 = max4;
                     }
                     this.gradientShader.setLocalMatrix(this.matrix);
                     this.paint2.setColorFilter(null);
                     this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha));
                     this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
                     RectF rectF = this.rect;
-                    float f16 = this.roundRadius;
-                    canvas.drawRoundRect(rectF, f16, f16, this.paint2);
+                    float f19 = this.roundRadius;
+                    canvas.drawRoundRect(rectF, f19, f19, this.paint2);
+                    drawGiftPatternsForNegativeIntensity(canvas, f17, f18, f6);
                 }
             }
         } else {
-            Bitmap bitmap2 = this.patternBitmap;
-            if (bitmap2 != null) {
-                float width5 = bitmap2.getWidth();
-                float height5 = this.patternBitmap.getHeight();
-                float max5 = Math.max(width2 / width5, height2 / height5);
-                float f17 = width5 * max5;
-                float f18 = height5 * max5;
-                float f19 = (width2 - f17) / 2.0f;
-                float f20 = (height2 - f18) / 2.0f;
-                this.rect.set(f19, f20, f17 + f19, f18 + f20);
+            Bitmap bitmap3 = this.patternBitmap;
+            if (bitmap3 != null) {
+                float width6 = bitmap3.getWidth();
+                float height6 = this.patternBitmap.getHeight();
+                float max5 = Math.max(width2 / width6, height2 / height6);
+                float f20 = width6 * max5;
+                float f21 = height6 * max5;
+                float f22 = (width2 - f20) / 2.0f;
+                float f23 = (height2 - f21) / 2.0f;
+                this.rect.set(f22, f23, f20 + f22, f21 + f23);
                 this.paint2.setColorFilter(this.patternColorFilter);
                 this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha));
                 canvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.paint2);
+                this.paint.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha * 0.8f));
+                drawGiftPatternsForPositiveIntensity(canvas, this.rect, this.paint2, 6);
             }
         }
         canvas.restore();
@@ -801,13 +917,10 @@ public class MotionBackgroundDrawable extends Drawable {
                         canvas.translate(0.0f, f);
                         canvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.paint2);
                     } else {
-                        if (this.legacyBitmap != null) {
+                        Bitmap bitmap2 = this.legacyBitmap;
+                        if (bitmap2 != null) {
                             if (this.invalidateLegacy) {
-                                this.rect.set(0.0f, 0.0f, r3.getWidth(), this.legacyBitmap.getHeight());
-                                int alpha = this.paint.getAlpha();
-                                this.paint.setAlpha(255);
-                                this.legacyCanvas.drawBitmap(this.currentBitmap, (android.graphics.Rect) null, this.rect, this.paint);
-                                this.paint.setAlpha(alpha);
+                                bitmap2.eraseColor(0);
                                 float width4 = this.patternBitmap.getWidth();
                                 float height4 = this.patternBitmap.getHeight();
                                 float max3 = Math.max(width2 / width4, height2 / height4);
@@ -816,14 +929,17 @@ public class MotionBackgroundDrawable extends Drawable {
                                 float f14 = (width2 - f12) / 2.0f;
                                 float f15 = (height2 - f13) / 2.0f;
                                 this.rect.set(f14, f15, f12 + f14, f13 + f15);
-                                this.paint2.setColorFilter(null);
-                                this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * 255.0f));
                                 this.legacyCanvas.save();
                                 Canvas canvas2 = this.legacyCanvas;
                                 float f16 = legacyBitmapScale;
                                 canvas2.scale(f16, f16);
-                                this.legacyCanvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.paint2);
+                                this.legacyPaintNegativeIntensityPattern.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * 255.0f));
+                                this.legacyCanvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.legacyPaintNegativeIntensityPattern);
+                                this.legacyPaintNegativeIntensityPattern.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * 255.0f * 0.8f));
+                                drawGiftPatternsForPositiveIntensity(this.legacyCanvas, this.rect, this.legacyPaintNegativeIntensityPattern, -1);
                                 this.legacyCanvas.restore();
+                                this.rect.set(0.0f, 0.0f, this.legacyBitmap.getWidth(), this.legacyBitmap.getHeight());
+                                this.legacyCanvas.drawBitmap(this.currentBitmap, (android.graphics.Rect) null, this.rect, this.legacyPaintNegativeIntensityGradient);
                                 this.invalidateLegacy = false;
                             }
                             this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
@@ -849,19 +965,30 @@ public class MotionBackgroundDrawable extends Drawable {
                     float min = 1.0f / Math.min(this.currentBitmap.getWidth() / bounds.width(), this.currentBitmap.getHeight() / bounds.height());
                     this.matrix.preScale(min, min);
                     this.bitmapShader.setLocalMatrix(this.matrix);
+                    BitmapShader bitmapShader = this.bitmapGiftShader;
+                    if (bitmapShader != null) {
+                        bitmapShader.setLocalMatrix(this.matrix);
+                    }
                     this.matrix.reset();
-                    float max4 = Math.max(width2 / this.patternBitmap.getWidth(), height2 / this.patternBitmap.getHeight());
-                    this.matrix.setTranslate((int) ((width2 - (r4 * max4)) / 2.0f), (int) (((height2 - (r5 * max4)) / 2.0f) + f));
+                    float width5 = this.patternBitmap.getWidth();
+                    float height5 = this.patternBitmap.getHeight();
+                    float max4 = Math.max(width2 / width5, height2 / height5);
+                    float f18 = (width2 - (width5 * max4)) / 2.0f;
+                    float f19 = ((height2 - (height5 * max4)) / 2.0f) + f;
+                    this.matrix.setTranslate((int) f18, (int) f19);
                     if (!this.disableGradientShaderScaling || max4 > 1.4f || max4 < 0.8f) {
                         this.matrix.preScale(max4, max4);
+                    } else {
+                        max4 = 1.0f;
                     }
                     this.gradientShader.setLocalMatrix(this.matrix);
                     this.paint2.setColorFilter(null);
                     this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha));
                     this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
                     RectF rectF = this.rect;
-                    float f18 = this.roundRadius;
-                    canvas.drawRoundRect(rectF, f18, f18, this.paint2);
+                    float f20 = this.roundRadius;
+                    canvas.drawRoundRect(rectF, f20, f20, this.paint2);
+                    drawGiftPatternsForNegativeIntensity(canvas, f18, f19, max4);
                 }
             }
         } else {
@@ -873,8 +1000,8 @@ public class MotionBackgroundDrawable extends Drawable {
                 this.bitmapShader.setLocalMatrix(this.matrix);
                 this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
                 RectF rectF2 = this.rect;
-                float f19 = this.roundRadius;
-                canvas.drawRoundRect(rectF2, f19, f19, this.paint);
+                float f21 = this.roundRadius;
+                canvas.drawRoundRect(rectF2, f21, f21, this.paint);
             } else {
                 canvas.translate(0.0f, f);
                 GradientDrawable gradientDrawable = this.gradientDrawable;
@@ -888,25 +1015,27 @@ public class MotionBackgroundDrawable extends Drawable {
                     if (paint == null) {
                         paint = this.paint;
                     }
-                    int alpha2 = paint.getAlpha();
-                    paint.setAlpha((int) (alpha2 * this.backgroundAlpha));
+                    int alpha = paint.getAlpha();
+                    paint.setAlpha((int) (alpha * this.backgroundAlpha));
                     canvas.drawBitmap(this.currentBitmap, (android.graphics.Rect) null, this.rect, paint);
-                    paint.setAlpha(alpha2);
+                    paint.setAlpha(alpha);
                 }
             }
-            Bitmap bitmap2 = this.patternBitmap;
-            if (bitmap2 != null) {
-                float width5 = bitmap2.getWidth();
-                float height5 = this.patternBitmap.getHeight();
-                float max5 = Math.max(width2 / width5, height2 / height5);
-                float f20 = width5 * max5;
-                float f21 = height5 * max5;
-                float f22 = (width2 - f20) / 2.0f;
-                float f23 = (height2 - f21) / 2.0f;
-                this.rect.set(f22, f23, f20 + f22, f21 + f23);
+            Bitmap bitmap3 = this.patternBitmap;
+            if (bitmap3 != null) {
+                float width6 = bitmap3.getWidth();
+                float height6 = this.patternBitmap.getHeight();
+                float max5 = Math.max(width2 / width6, height2 / height6);
+                float f22 = width6 * max5;
+                float f23 = height6 * max5;
+                float f24 = (width2 - f22) / 2.0f;
+                float f25 = (height2 - f23) / 2.0f;
+                this.rect.set(f24, f25, f22 + f24, f23 + f25);
                 this.paint2.setColorFilter(this.patternColorFilter);
                 this.paint2.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha));
                 canvas.drawBitmap(this.patternBitmap, (android.graphics.Rect) null, this.rect, this.paint2);
+                this.paint.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha * 0.8f));
+                drawGiftPatternsForPositiveIntensity(canvas, this.rect, this.paint2, 6);
             }
         }
         canvas.restore();
@@ -1082,5 +1211,66 @@ public class MotionBackgroundDrawable extends Drawable {
             this.ignoreInterpolator = true;
         }
         this.isIndeterminateAnimation = z;
+    }
+
+    private void drawGiftPatternsForNegativeIntensity(Canvas canvas, float f, float f2, float f3) {
+        BitmapShader bitmapShader;
+        ImageReceiver imageReceiver;
+        if (this.giftPatternPositions == null || this.gradientGiftShader == null || (bitmapShader = this.bitmapGiftShader) == null || this.patternGiftBitmap == null) {
+            return;
+        }
+        bitmapShader.getLocalMatrix(this.tmpMatrix);
+        this.paint2Gift.setColorFilter(null);
+        this.paint2Gift.setAlpha((int) ((Math.abs(this.intensity) / 100.0f) * this.alpha * this.patternAlpha * 0.8f));
+        canvas.save();
+        canvas.translate(f, f2);
+        canvas.scale(f3, f3);
+        for (int i = 0; i < this.giftPatternPositions.size(); i++) {
+            WallpaperGiftPatternPosition wallpaperGiftPatternPosition = (WallpaperGiftPatternPosition) this.giftPatternPositions.get(i);
+            canvas.save();
+            canvas.concat(wallpaperGiftPatternPosition.matrix);
+            if (i == 6 && (imageReceiver = this.giftImageReceiver) != null) {
+                imageReceiver.setImageCoords(wallpaperGiftPatternPosition.rect);
+                this.giftImageReceiver.draw(canvas);
+            } else {
+                wallpaperGiftPatternPosition.matrix.invert(this.tmpMatrix2);
+                this.tmpMatrix2.preConcat(this.tmpMatrix);
+                this.bitmapGiftShader.setLocalMatrix(this.tmpMatrix2);
+                this.tmpMatrix3.reset();
+                this.tmpMatrix3.setScale(wallpaperGiftPatternPosition.rect.width() / this.patternGiftBitmap.getWidth(), wallpaperGiftPatternPosition.rect.height() / this.patternGiftBitmap.getHeight());
+                Matrix matrix = this.tmpMatrix3;
+                RectF rectF = wallpaperGiftPatternPosition.rect;
+                matrix.postTranslate(rectF.left, rectF.top);
+                this.gradientGiftShader.setLocalMatrix(this.tmpMatrix3);
+                canvas.drawRect(wallpaperGiftPatternPosition.rect, this.paint2Gift);
+            }
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    private void drawGiftPatternsForPositiveIntensity(Canvas canvas, RectF rectF, Paint paint, int i) {
+        ImageReceiver imageReceiver;
+        if (this.patternGiftBitmap == null || this.giftPatternPositions == null) {
+            return;
+        }
+        canvas.save();
+        float width = rectF.width() / this.patternBitmap.getWidth();
+        float height = rectF.height() / this.patternBitmap.getHeight();
+        canvas.translate(rectF.left, rectF.top);
+        canvas.scale(width, height);
+        for (int i2 = 0; i2 < this.giftPatternPositions.size(); i2++) {
+            WallpaperGiftPatternPosition wallpaperGiftPatternPosition = (WallpaperGiftPatternPosition) this.giftPatternPositions.get(i2);
+            canvas.save();
+            canvas.concat(wallpaperGiftPatternPosition.matrix);
+            if (i2 == i && (imageReceiver = this.giftImageReceiver) != null) {
+                imageReceiver.setImageCoords(wallpaperGiftPatternPosition.rect);
+                this.giftImageReceiver.draw(canvas);
+            } else {
+                canvas.drawBitmap(this.patternGiftBitmap, (android.graphics.Rect) null, wallpaperGiftPatternPosition.rect, paint);
+            }
+            canvas.restore();
+        }
+        canvas.restore();
     }
 }

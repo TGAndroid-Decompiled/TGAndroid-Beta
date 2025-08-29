@@ -37,11 +37,10 @@ import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.PrivacyUsersActivity;
 
-public class PrivacyUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ContactsActivity.ContactsActivityDelegate {
+public class PrivacyUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int blockUserDetailRow;
     private int blockUserRow;
     private int deleteAllRow;
@@ -405,14 +404,6 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
         if (listAdapter != null) {
             listAdapter.notifyDataSetChanged();
         }
-    }
-
-    @Override
-    public void didSelectContact(TLRPC.User user, String str, ContactsActivity contactsActivity) {
-        if (user == null) {
-            return;
-        }
-        getMessagesController().blockPeer(user.id);
     }
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {

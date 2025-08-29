@@ -1450,13 +1450,18 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 166").stepThis().dispose();
             i7 = 166;
         }
-        if (i7 != 166) {
+        if (i7 == 166) {
+            sQLiteDatabase.executeFast("DROP TABLE profile_stories").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE profile_stories (dialog_id INTEGER, story_id INTEGER, data BLOB, type INTEGER, seen INTEGER, pin INTEGER, PRIMARY KEY(dialog_id, story_id, type));").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 167").stepThis().dispose();
+            i7 = 167;
+        }
+        if (i7 != 167) {
             return i7;
         }
-        sQLiteDatabase.executeFast("DROP TABLE profile_stories").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE profile_stories (dialog_id INTEGER, story_id INTEGER, data BLOB, type INTEGER, seen INTEGER, pin INTEGER, PRIMARY KEY(dialog_id, story_id, type));").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 167").stepThis().dispose();
-        return 167;
+        sQLiteDatabase.executeFast("CREATE TABLE gift_themes (slug TEXT PRIMARY KEY, data BLOB);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 168").stepThis().dispose();
+        return 168;
     }
 
     public static boolean recoverDatabase(java.io.File r21, java.io.File r22, java.io.File r23, int r24) {
