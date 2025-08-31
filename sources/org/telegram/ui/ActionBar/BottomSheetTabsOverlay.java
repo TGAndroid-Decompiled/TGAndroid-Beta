@@ -526,7 +526,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         invalidate();
     }
 
-    class AnonymousClass2 extends AnimatorListenerAdapter {
+    public class AnonymousClass2 extends AnimatorListenerAdapter {
         final Sheet val$sheet;
         final BottomSheetTabs.WebTabData val$tab;
 

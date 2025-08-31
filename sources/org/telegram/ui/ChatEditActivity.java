@@ -609,7 +609,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$createView$17(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
-        this.autoTranslationCell.getCheckBox().setIcon(tL_premium_boostsStatus.level < getMessagesController().channelAutotranslationLevelMin ? R.drawable.permission_locked : 0);
+        if (tL_premium_boostsStatus != null) {
+            this.autoTranslationCell.getCheckBox().setIcon(tL_premium_boostsStatus.level < getMessagesController().channelAutotranslationLevelMin ? R.drawable.permission_locked : 0);
+        }
     }
 
     public void lambda$createView$24(final boolean[] zArr, final long j, View view) {

@@ -331,13 +331,16 @@ public class ProfileMetaballView extends View {
         float f4 = (imageX * f3) / imageWidth;
         this.inset = f4;
         float f5 = f3 - (f4 * 2.0f);
-        imageReceiver.setImageCoords(0.0f, 0.0f, f5, f5);
+        float dp2 = AndroidUtilities.dp(100.0f);
+        imageReceiver.setImageCoords(0.0f, 0.0f, dp2, dp2);
         int i = this.bgColor;
         if (i != -16777216) {
             beginRecording.drawColor(i);
         }
         beginRecording.save();
         beginRecording.translate(0.0f, this.renderNodeTop);
+        float f6 = f5 / dp2;
+        beginRecording.scale(f6, f6);
         imageReceiver.draw(beginRecording);
         beginRecording.restore();
         if (!z) {
