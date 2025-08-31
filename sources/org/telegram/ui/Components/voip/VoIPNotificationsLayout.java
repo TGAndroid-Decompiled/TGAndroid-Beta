@@ -226,11 +226,14 @@ public class VoIPNotificationsLayout extends LinearLayout {
         public void setText(CharSequence charSequence) {
             int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
             StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(charSequence, this.textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, dp, 10);
-            int i = 0;
-            for (int i2 = 0; i2 < createStaticLayout.getLineCount(); i2++) {
-                i = (int) Math.max(i, Math.ceil(createStaticLayout.getLineWidth(i2)));
+            if (createStaticLayout != null) {
+                int i = 0;
+                for (int i2 = 0; i2 < createStaticLayout.getLineCount(); i2++) {
+                    i = (int) Math.max(i, Math.ceil(createStaticLayout.getLineWidth(i2)));
+                }
+                dp = i;
             }
-            this.textView.setMaxWidth(i);
+            this.textView.setMaxWidth(dp);
             this.textView.setText(charSequence);
         }
 

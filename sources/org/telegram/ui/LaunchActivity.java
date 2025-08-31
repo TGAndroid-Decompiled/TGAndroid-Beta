@@ -7163,11 +7163,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void requestCustomNavigationBar() {
-        if (this.customNavigationBar != null || Build.VERSION.SDK_INT < 26) {
-            return;
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 35 && this.customNavigationBar == null && i >= 26) {
+            this.customNavigationBar = new CustomNavigationBar(this);
+            ((FrameLayout) getWindow().getDecorView()).addView(this.customNavigationBar, LayoutHelper.createFrame(-1, -2, 80));
         }
-        this.customNavigationBar = new CustomNavigationBar(this);
-        ((FrameLayout) getWindow().getDecorView()).addView(this.customNavigationBar, LayoutHelper.createFrame(-1, -2, 80));
     }
 
     public int getNavigationBarColor() {

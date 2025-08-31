@@ -978,7 +978,7 @@ public class ChatThemeController extends BaseController {
             TL_account.Tl_getUniqueGiftChatThemes tl_getUniqueGiftChatThemes = new TL_account.Tl_getUniqueGiftChatThemes();
             tl_getUniqueGiftChatThemes.offset = this.giftsThemeList.offset;
             tl_getUniqueGiftChatThemes.hash = this.giftsThemeList.hash;
-            tl_getUniqueGiftChatThemes.limit = 10;
+            tl_getUniqueGiftChatThemes.limit = 50;
             ConnectionsManager connectionsManager = getConnectionsManager();
             DispatchQueue dispatchQueue = chatThemeQueue;
             Objects.requireNonNull(dispatchQueue);

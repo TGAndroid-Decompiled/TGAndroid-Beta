@@ -2342,7 +2342,7 @@ public abstract class TextSelectionHelper {
             }
             this.arrayList.clear();
             articleSelectableView.fillTextLayoutBlocks(this.arrayList);
-            if (this.arrayList.isEmpty() || (textLayoutBlock = (TextLayoutBlock) this.arrayList.get(i)) == null || textLayoutBlock.getLayout() == null || textLayoutBlock.getLayout().getText() == null) {
+            if (i < 0 || i >= this.arrayList.size() || (textLayoutBlock = (TextLayoutBlock) this.arrayList.get(i)) == null || textLayoutBlock.getLayout() == null || textLayoutBlock.getLayout().getText() == null) {
                 return;
             }
             int i3 = this.endViewOffset;

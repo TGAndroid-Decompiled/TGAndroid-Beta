@@ -4204,6 +4204,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             if (i == 60) {
+                if (ChatActivity.this.forumTopic == null) {
+                    return;
+                }
                 TopicsController topicsController = ChatActivity.this.getMessagesController().getTopicsController();
                 ChatActivity chatActivity14 = ChatActivity.this;
                 long j7 = chatActivity14.currentChat.id;

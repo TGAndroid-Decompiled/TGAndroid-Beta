@@ -4675,7 +4675,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     this.upgradeIconSpan = new ColoredImageSpan(new UpgradeIcon(this.button, Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)));
                 }
                 spannableStringBuilder3.setSpan(this.upgradeIconSpan, 0, 1, 33);
-                spannableStringBuilder3.append((CharSequence) "Gift an Upgrade");
+                spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.Gift2GiftAnUpgrade));
                 this.button.setFilled(true);
                 this.button.setText(spannableStringBuilder3, !this.firstSet);
                 this.button.setSubText(null, !this.firstSet);
@@ -4838,7 +4838,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return set(messageObject, (StarsController.IGiftsList) null);
     }
 
-    public org.telegram.ui.Stars.StarGiftSheet set(org.telegram.messenger.MessageObject r48, org.telegram.ui.Stars.StarsController.IGiftsList r49) {
+    public org.telegram.ui.Stars.StarGiftSheet set(org.telegram.messenger.MessageObject r49, org.telegram.ui.Stars.StarsController.IGiftsList r50) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.set(org.telegram.messenger.MessageObject, org.telegram.ui.Stars.StarsController$IGiftsList):org.telegram.ui.Stars.StarGiftSheet");
     }
 
@@ -5574,6 +5574,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         boolean z2;
         String str;
         boolean z3;
+        boolean z4;
         long j;
         long j2;
         HintView2 hintView2 = this.currentHintView;
@@ -5591,11 +5592,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
                 j = tL_messageActionStarGift.gift.id;
                 j2 = tL_messageActionStarGift.upgrade_stars;
-                z3 = tL_messageActionStarGift.name_hidden;
+                z4 = tL_messageActionStarGift.name_hidden;
                 TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGift.message;
                 z = (tL_textWithEntities == null || TextUtils.isEmpty(tL_textWithEntities.text)) ? false : true;
                 z2 = tL_messageActionStarGift.peer instanceof TLRPC.TL_peerChannel;
                 str = tL_messageActionStarGift.prepaid_upgrade_hash;
+                if (tL_messageActionStarGift.prepaid_upgrade) {
+                    z3 = DialogObject.getPeerDialogId(tL_messageActionStarGift.from_id) != this.messageObject.getFromChatId();
+                } else {
+                    z3 = tL_messageActionStarGift.upgrade_separate;
+                }
             } else {
                 TL_stars.SavedStarGift savedStarGift = this.savedStarGift;
                 if (savedStarGift == null) {
@@ -5604,23 +5610,25 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 TL_stars.StarGift starGift = savedStarGift.gift;
                 long j3 = starGift.id;
                 long j4 = savedStarGift.upgrade_stars;
-                boolean z4 = (starGift instanceof TL_stars.TL_starGift) && savedStarGift.name_hidden;
+                boolean z5 = (starGift instanceof TL_stars.TL_starGift) && savedStarGift.name_hidden;
                 TLRPC.TL_textWithEntities tL_textWithEntities2 = savedStarGift.message;
                 z = (tL_textWithEntities2 == null || TextUtils.isEmpty(tL_textWithEntities2.text)) ? false : true;
                 z2 = this.dialogId < 0;
-                str = this.savedStarGift.prepaid_upgrade_hash;
-                z3 = z4;
+                TL_stars.SavedStarGift savedStarGift2 = this.savedStarGift;
+                str = savedStarGift2.prepaid_upgrade_hash;
+                z3 = savedStarGift2.upgrade_separate;
+                z4 = z5;
                 j = j3;
                 j2 = j4;
             }
-            if (z3) {
+            if (z4) {
                 this.checkboxTextView.setText(LocaleController.getString(z2 ? R.string.Gift2AddMyNameNameChannel : R.string.Gift2AddMyNameName));
             } else if (z) {
                 this.checkboxTextView.setText(LocaleController.getString(R.string.Gift2AddSenderNameComment));
             } else {
                 this.checkboxTextView.setText(LocaleController.getString(R.string.Gift2AddSenderName));
             }
-            this.checkbox.setChecked(!z3 && j2 > 0, false);
+            this.checkbox.setChecked((z4 || j2 <= 0 || z3) ? false : true, false);
             ArrayList arrayList = this.sample_attributes;
             if (arrayList == null || (j2 <= 0 && this.upgrade_form == null)) {
                 if (arrayList == null) {
