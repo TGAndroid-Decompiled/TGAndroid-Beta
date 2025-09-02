@@ -25,6 +25,7 @@ public class NotchInfoUtils {
 
     public static NotchInfo getInfo(Context context) {
         float f;
+        int i;
         if (Build.VERSION.SDK_INT < 28) {
             return null;
         }
@@ -37,19 +38,19 @@ public class NotchInfoUtils {
             }
             String trim = string.trim();
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-            int i = displayMetrics.widthPixels;
+            int i2 = displayMetrics.widthPixels;
             float f2 = displayMetrics.density;
-            int i2 = 5;
             if (trim.endsWith("@right")) {
-                f = i;
+                f = i2;
                 trim = trim.substring(0, trim.length() - 6).trim();
+                i = 5;
             } else if (trim.endsWith("@left")) {
                 trim = trim.substring(0, trim.length() - 5).trim();
                 f = 0.0f;
-                i2 = 3;
+                i = 3;
             } else {
-                f = i / 2.0f;
-                i2 = 17;
+                f = i2 / 2.0f;
+                i = 17;
             }
             boolean endsWith = trim.endsWith("@dp");
             if (endsWith) {
@@ -72,7 +73,12 @@ public class NotchInfoUtils {
                 RectF rectF = new RectF();
                 path.computeBounds(rectF, true);
                 notchInfo.bounds = rectF;
-                notchInfo.gravity = (i2 == 17 || Math.abs(rectF.centerX() - (((float) context.getResources().getDisplayMetrics().widthPixels) / 2.0f)) > ((float) AndroidUtilities.dp(2.0f))) ? i2 : 17;
+                DisplayMetrics displayMetrics2 = context.getResources().getDisplayMetrics();
+                if (i != 17 && Math.abs(rectF.centerX() - (displayMetrics2.widthPixels / 2.0f)) <= AndroidUtilities.dp(2.0f)) {
+                    i = 17;
+                }
+                int i3 = (i != 17 || rectF.left >= ((float) displayMetrics2.widthPixels) / 4.0f) ? i : 3;
+                notchInfo.gravity = (i3 != 17 || rectF.right <= (((float) displayMetrics2.widthPixels) / 4.0f) * 3.0f) ? i3 : 5;
                 notchInfo.rawPath = trim;
                 notchInfo.isAccurate = trim.contains("C") || trim.contains("S") || trim.contains("Q");
                 notchInfo.isLikelyCircle = rectF.width() <= ((float) AndroidUtilities.dp(32.0f)) || rectF.width() <= rectF.height();
