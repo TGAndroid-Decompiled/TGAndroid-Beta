@@ -1098,6 +1098,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean waitingForReplyMessageLoad;
     private boolean waitingForSendingMessageLoad;
     int waitingForWebpageId;
+    private long wallpaperRandomSeed;
     private boolean wasManualScroll;
     private boolean wasPaused;
     TextView webBotTitle;
@@ -35647,6 +35648,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             int i2 = emojiThemes.getWallpaper(z ? 1 : 0).settings.intensity;
             motionBackgroundDrawable.setPatternGiftPositions(((WallpaperBitmapHolder) pair.second).giftPatternPositions);
+            motionBackgroundDrawable.setGiftPatternRandomSeed(ChatActivity.this.wallpaperRandomSeed);
             motionBackgroundDrawable.setPatternBitmap(i2, bitmap);
             motionBackgroundDrawable.setPatternColorFilter(i);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);

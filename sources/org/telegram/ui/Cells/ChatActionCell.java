@@ -1280,7 +1280,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r41) {
+    public void onDraw(android.graphics.Canvas r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 

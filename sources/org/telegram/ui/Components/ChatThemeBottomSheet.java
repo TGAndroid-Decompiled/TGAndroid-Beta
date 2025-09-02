@@ -760,7 +760,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         if (hasChanges()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
             builder.setTitle(LocaleController.getString(R.string.ChatThemeSaveDialogTitle));
-            builder.setSubtitle(LocaleController.getString(R.string.ChatThemeSaveDialogText));
+            builder.setMessage(LocaleController.getString(R.string.ChatThemeSaveDialogText));
             builder.setPositiveButton(LocaleController.getString(R.string.ChatThemeSaveDialogApply), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {

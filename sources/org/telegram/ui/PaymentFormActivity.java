@@ -2210,20 +2210,20 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         Integer num2;
         String[] split = this.inputFields[1].getText().toString().split("/");
         if (split.length == 2) {
-            Integer parseInt = Utilities.parseInt((CharSequence) split[0]);
-            num2 = Utilities.parseInt((CharSequence) split[1]);
-            num = parseInt;
+            num2 = Utilities.parseInt((CharSequence) split[0]);
+            num = Utilities.parseInt((CharSequence) split[1]);
         } else {
             num = null;
             num2 = null;
         }
-        final Card card = new Card(this.inputFields[0].getText().toString(), num, num2, this.inputFields[3].getText().toString(), this.inputFields[2].getText().toString(), null, null, null, null, this.inputFields[5].getText().toString(), this.inputFields[4].getText().toString(), null);
+        final Card card = new Card(this.inputFields[0].getText().toString(), num2, num, this.inputFields[3].getText().toString(), this.inputFields[2].getText().toString(), null, null, null, null, this.inputFields[5].getText().toString(), this.inputFields[4].getText().toString(), null);
         this.cardName = card.getBrand() + " *" + card.getLast4();
+        boolean z = num2 != null && num != null && UserConfig.getInstance(this.currentAccount).getClientPhone().startsWith("7") && "smartglocal".equals(this.paymentForm.native_provider) && (num.intValue() > 22 || (num.intValue() == 22 && num2.intValue() > 1));
         if (!card.validateNumber()) {
             shakeField(0);
             return false;
         }
-        if (!card.validateExpMonth() || !card.validateExpYear() || !card.validateExpiryDate()) {
+        if (!z && (!card.validateExpMonth() || !card.validateExpYear() || !card.validateExpiryDate())) {
             shakeField(1);
             return false;
         }

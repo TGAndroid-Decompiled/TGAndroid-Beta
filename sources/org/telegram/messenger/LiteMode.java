@@ -1,5 +1,8 @@
 package org.telegram.messenger;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
@@ -281,6 +284,14 @@ public class LiteMode {
         HashSet<Utilities.Callback<Boolean>> hashSet = onPowerSaverAppliedListeners;
         if (hashSet != null) {
             hashSet.remove(callback);
+        }
+    }
+
+    public static class BatteryReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            long unused = LiteMode.lastBatteryLevelChecked = 0L;
+            LiteMode.getValue();
         }
     }
 }

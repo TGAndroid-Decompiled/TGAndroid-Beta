@@ -9955,30 +9955,30 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             return null;
         }
         if (i == 8) {
-            return TLRPC.ProfileTab.profileTabPosts;
+            return new TLRPC.TL_profileTabPosts();
         }
         if (i == 14) {
-            return TLRPC.ProfileTab.profileTabGifts;
+            return new TLRPC.TL_profileTabGifts();
         }
         if (i == 0) {
-            return TLRPC.ProfileTab.profileTabMedia;
+            return new TLRPC.TL_profileTabMedia();
         }
         if (i == 1) {
-            return TLRPC.ProfileTab.profileTabFiles;
+            return new TLRPC.TL_profileTabFiles();
         }
         if (i == 2) {
-            return TLRPC.ProfileTab.profileTabVoice;
+            return new TLRPC.TL_profileTabVoice();
         }
         if (i == 3) {
-            return TLRPC.ProfileTab.profileTabLinks;
+            return new TLRPC.TL_profileTabLinks();
         }
         if (i == 4) {
-            return TLRPC.ProfileTab.profileTabMusic;
+            return new TLRPC.TL_profileTabMusic();
         }
         if (i != 5) {
             return null;
         }
-        return TLRPC.ProfileTab.profileTabGifs;
+        return new TLRPC.TL_profileTabGifs();
     }
 
     public static String getTabName(int i) {
@@ -10010,28 +10010,28 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     }
 
     public static int getTabId(TLRPC.ProfileTab profileTab) {
-        if (profileTab == TLRPC.ProfileTab.profileTabPosts) {
+        if (profileTab instanceof TLRPC.TL_profileTabPosts) {
             return 8;
         }
-        if (profileTab == TLRPC.ProfileTab.profileTabMedia) {
+        if (profileTab instanceof TLRPC.TL_profileTabMedia) {
             return 0;
         }
-        if (profileTab == TLRPC.ProfileTab.profileTabGifts) {
+        if (profileTab instanceof TLRPC.TL_profileTabGifts) {
             return 14;
         }
-        if (profileTab == TLRPC.ProfileTab.profileTabMusic) {
+        if (profileTab instanceof TLRPC.TL_profileTabMusic) {
             return 4;
         }
-        if (profileTab == TLRPC.ProfileTab.profileTabVoice) {
+        if (profileTab instanceof TLRPC.TL_profileTabVoice) {
             return 2;
         }
-        if (profileTab == TLRPC.ProfileTab.profileTabLinks) {
+        if (profileTab instanceof TLRPC.TL_profileTabLinks) {
             return 3;
         }
-        if (profileTab == TLRPC.ProfileTab.profileTabFiles) {
+        if (profileTab instanceof TLRPC.TL_profileTabFiles) {
             return 1;
         }
-        return profileTab == TLRPC.ProfileTab.profileTabGifs ? 5 : -1;
+        return profileTab instanceof TLRPC.TL_profileTabGifs ? 5 : -1;
     }
 
     public void sendTabsOrder() {

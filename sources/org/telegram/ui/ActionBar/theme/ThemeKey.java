@@ -62,7 +62,10 @@ public class ThemeKey {
         if (str.startsWith("emoticon_")) {
             return new ThemeKey(str.substring(9), null);
         }
-        return null;
+        if (TextUtils.isEmpty(str)) {
+            return null;
+        }
+        return new ThemeKey(str, null);
     }
 
     public static ThemeKey of(TLRPC.ChatTheme chatTheme) {

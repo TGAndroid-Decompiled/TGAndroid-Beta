@@ -17,6 +17,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -26,10 +27,42 @@ public class StarParticlesView extends View {
     private Paint clipGradientPaint;
     public boolean doNotFling;
     public Drawable drawable;
+    private boolean isPowerSaverApplied;
+    private Utilities.Callback powerSaverCallback;
     int size;
 
     public StarParticlesView(android.content.Context r3) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.<init>(android.content.Context):void");
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Utilities.Callback callback = new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                StarParticlesView.this.onApplyPowerSaverMode(((Boolean) obj).booleanValue());
+            }
+        };
+        this.powerSaverCallback = callback;
+        LiteMode.addOnPowerSaverAppliedListener(callback);
+        onApplyPowerSaverMode(LiteMode.isPowerSaverApplied());
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        Utilities.Callback callback = this.powerSaverCallback;
+        if (callback != null) {
+            LiteMode.removeOnPowerSaverAppliedListener(callback);
+        }
+    }
+
+    public void onApplyPowerSaverMode(boolean z) {
+        if (this.isPowerSaverApplied != z) {
+            this.isPowerSaverApplied = z;
+            invalidate();
+        }
     }
 
     public StarParticlesView(Context context, int i) {
@@ -82,6 +115,9 @@ public class StarParticlesView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (this.isPowerSaverApplied) {
+            return;
+        }
         if (this.clipGradientPaint != null) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         }

@@ -4515,6 +4515,13 @@ public class AndroidUtilities {
         return (float) Math.sqrt((f5 * f5) + (f6 * f6));
     }
 
+    public static float lerp(float f, float f2, float f3, float f4) {
+        if (f4 < 0.5f) {
+            return lerp(f, f2, f4 / 0.5f);
+        }
+        return lerp(f2, f3, (f4 - 0.5f) / 0.5f);
+    }
+
     public static float lerp(float[] fArr, float f) {
         return lerp(fArr[0], fArr[1], f);
     }

@@ -85,13 +85,13 @@ public class HeaderCell extends FrameLayout {
             }
 
             @Override
-            protected void onAttachedToWindow() {
+            public void onAttachedToWindow() {
                 super.onAttachedToWindow();
                 HeaderCell.this.starParticlesView.setPaused(false);
             }
 
             @Override
-            protected void onDetachedFromWindow() {
+            public void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
                 HeaderCell.this.starParticlesView.setPaused(true);
             }

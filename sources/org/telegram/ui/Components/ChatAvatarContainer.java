@@ -64,6 +64,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     private int currentAccount;
     private int currentConnectionState;
     StatusDrawable currentTypingDrawable;
+    private Drawable emojiStatusDefaultDrawable;
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatusDrawable;
     public boolean ignoreTouches;
     private boolean[] isOnline;
@@ -99,6 +100,8 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     private AnimatorSet titleAnimation;
     private AtomicReference titleTextLargerCopyView;
     private SimpleTextView titleTextView;
+    private Drawable verifiedBackground;
+    private Drawable verifiedCheck;
 
     protected boolean canSearch() {
         return false;
@@ -726,12 +729,14 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             }
         } else if (z3) {
             Drawable mutate = getResources().getDrawable(R.drawable.verified_area).mutate();
+            this.verifiedBackground = mutate;
             int themedColor = getThemedColor(Theme.key_profile_verifiedBackground);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
             Drawable mutate2 = getResources().getDrawable(R.drawable.verified_check).mutate();
+            this.verifiedCheck = mutate2;
             mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_profile_verifiedCheck), mode));
-            this.titleTextView.setRightDrawable2(new CombinedDrawable(mutate, mutate2));
+            this.titleTextView.setRightDrawable2(new CombinedDrawable(this.verifiedBackground, this.verifiedCheck));
             this.rightDrawableIsScamOrVerified = true;
             this.rightDrawable2ContentDescription = LocaleController.getString(R.string.AccDescrVerified);
         } else if (this.titleTextView.getRightDrawable() instanceof ScamDrawable) {
@@ -747,8 +752,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 this.emojiStatusDrawable.set(DialogObject.getEmojiStatusDocumentId(emojiStatus), z5);
             } else if (z4) {
                 Drawable mutate3 = ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_premium_liststar).mutate();
+                this.emojiStatusDefaultDrawable = mutate3;
                 mutate3.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_profile_verifiedBackground), PorterDuff.Mode.MULTIPLY));
-                this.emojiStatusDrawable.set(mutate3, z5);
+                this.emojiStatusDrawable.set(this.emojiStatusDefaultDrawable, z5);
             } else {
                 this.emojiStatusDrawable.set((Drawable) null, z5);
             }
@@ -1514,5 +1520,26 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         if (statusDrawable != null) {
             statusDrawable.setColor(getThemedColor(Theme.key_chat_status));
         }
+        Drawable drawable = this.emojiStatusDefaultDrawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_profile_verifiedBackground), PorterDuff.Mode.MULTIPLY));
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.botVerificationDrawable;
+        if (swapAnimatedEmojiDrawable != null) {
+            swapAnimatedEmojiDrawable.setColor(Integer.valueOf(getThemedColor(Theme.key_profile_verifiedBackground)));
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.emojiStatusDrawable;
+        if (swapAnimatedEmojiDrawable2 != null) {
+            swapAnimatedEmojiDrawable2.setColor(Integer.valueOf(getThemedColor(Theme.key_profile_verifiedBackground)));
+        }
+        Drawable drawable2 = this.verifiedBackground;
+        if (drawable2 != null) {
+            drawable2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_profile_verifiedBackground), PorterDuff.Mode.MULTIPLY));
+        }
+        Drawable drawable3 = this.verifiedCheck;
+        if (drawable3 != null) {
+            drawable3.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_profile_verifiedCheck), PorterDuff.Mode.MULTIPLY));
+        }
+        invalidate();
     }
 }

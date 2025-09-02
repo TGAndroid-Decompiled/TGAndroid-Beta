@@ -54,6 +54,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -1925,15 +1926,16 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
     }
 
     public static class StarsBackground extends Drawable {
-        private static int tickIndex;
         public final Paint backgroundPaint;
         private final int color;
         private Runnable invalidateRunnable;
+        private boolean isAttached;
+        private Utilities.Callback liteModeCallback;
         public final StarsReactionsSheet.Particles particles;
+        private boolean particlesAllowed;
         private final int particlesColor;
         public final Path path;
         public final RectF rectF;
-        private int ti;
 
         @Override
         public int getOpacity() {
@@ -1963,41 +1965,77 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         public void draw(Canvas canvas) {
             canvas.drawPath(this.path, this.backgroundPaint);
             if (this.particles != null) {
-                canvas.save();
-                canvas.clipPath(this.path);
-                this.particles.process();
-                this.particles.draw(canvas, this.particlesColor);
-                canvas.restore();
-                if (this.invalidateRunnable == null) {
-                    invalidateSelf();
+                if (this.particlesAllowed || this.invalidateRunnable == null) {
+                    canvas.save();
+                    canvas.clipPath(this.path);
+                    if (this.invalidateRunnable == null) {
+                        this.particles.process();
+                    }
+                    this.particles.draw(canvas, this.particlesColor);
+                    canvas.restore();
+                    if (this.invalidateRunnable == null) {
+                        invalidateSelf();
+                    }
                 }
             }
+        }
+
+        public void invalidateParticles() {
+            StarsReactionsSheet.Particles particles = this.particles;
+            if (particles != null) {
+                particles.process();
+                invalidateSelf();
+            }
+        }
+
+        private void checkParticlesAllowed() {
+            boolean z = (this.particles == null || !this.isAttached || LiteMode.isPowerSaverApplied()) ? false : true;
+            if (this.particlesAllowed == z) {
+                return;
+            }
+            this.particlesAllowed = z;
+            if (z) {
+                int frameSparseness = FrameTickScheduler.getFrameSparseness(15);
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        GiftSheet.StarsBackground.this.invalidateParticles();
+                    }
+                };
+                this.invalidateRunnable = runnable;
+                FrameTickScheduler.subscribe(runnable, frameSparseness, 0);
+            } else {
+                FrameTickScheduler.unsubscribe(this.invalidateRunnable);
+            }
+            invalidateSelf();
         }
 
         public void attach() {
-            if (this.particles == null) {
+            if (this.isAttached) {
                 return;
             }
-            int frameSparseness = FrameTickScheduler.getFrameSparseness(15);
-            Runnable runnable = new Runnable() {
+            this.isAttached = true;
+            checkParticlesAllowed();
+            Utilities.Callback callback = new Utilities.Callback() {
                 @Override
-                public final void run() {
-                    GiftSheet.StarsBackground.this.invalidateSelf();
+                public final void run(Object obj) {
+                    GiftSheet.StarsBackground.this.lambda$attach$0((Boolean) obj);
                 }
             };
-            this.invalidateRunnable = runnable;
-            int i = tickIndex;
-            tickIndex = i + 1;
-            int i2 = i % frameSparseness;
-            this.ti = i2;
-            FrameTickScheduler.subscribe(runnable, frameSparseness, i2);
+            this.liteModeCallback = callback;
+            LiteMode.addOnPowerSaverAppliedListener(callback);
+        }
+
+        public void lambda$attach$0(Boolean bool) {
+            checkParticlesAllowed();
         }
 
         public void detach() {
-            if (this.particles == null) {
-                return;
+            if (this.isAttached) {
+                this.isAttached = false;
+                checkParticlesAllowed();
+                LiteMode.removeOnPowerSaverAppliedListener(this.liteModeCallback);
             }
-            FrameTickScheduler.unsubscribe(this.invalidateRunnable);
         }
 
         @Override

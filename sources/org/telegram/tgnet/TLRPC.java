@@ -20,7 +20,6 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.TranslateController$PollText$$ExternalSyntheticLambda0;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLEnum;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
@@ -372,34 +371,45 @@ public class TLRPC {
         }
     }
 
-    public enum ProfileTab implements TLEnum.Constructor {
-        profileTabPosts(-1181952362),
-        profileTabGifts(1296815210),
-        profileTabMedia(1925597525),
-        profileTabFiles(-1422681088),
-        profileTabMusic(-1624780178),
-        profileTabVoice(-461960914),
-        profileTabLinks(-748329831),
-        profileTabGifs(-1564412267);
-
-        public final int constructor;
-
-        ProfileTab(int i) {
-            this.constructor = i;
-        }
-
+    public static class ProfileTab extends TLObject {
         public static ProfileTab TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (ProfileTab) TLEnum.TLdeserialize(ProfileTab.class, i, z);
-        }
-
-        @Override
-        public int getConstructor() {
-            return this.constructor;
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(getConstructor());
+            ProfileTab tL_profileTabMusic;
+            switch (i) {
+                case -1624780178:
+                    tL_profileTabMusic = new TL_profileTabMusic();
+                    break;
+                case -1564412267:
+                    tL_profileTabMusic = new TL_profileTabGifs();
+                    break;
+                case -1422681088:
+                    tL_profileTabMusic = new TL_profileTabFiles();
+                    break;
+                case -1181952362:
+                    tL_profileTabMusic = new TL_profileTabPosts();
+                    break;
+                case -748329831:
+                    tL_profileTabMusic = new TL_profileTabLinks();
+                    break;
+                case -461960914:
+                    tL_profileTabMusic = new TL_profileTabVoice();
+                    break;
+                case 1296815210:
+                    tL_profileTabMusic = new TL_profileTabGifts();
+                    break;
+                case 1925597525:
+                    tL_profileTabMusic = new TL_profileTabMedia();
+                    break;
+                default:
+                    tL_profileTabMusic = null;
+                    break;
+            }
+            if (tL_profileTabMusic == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in ProfileTab", Integer.valueOf(i)));
+            }
+            if (tL_profileTabMusic != null) {
+                tL_profileTabMusic.readParams(inputSerializedData, z);
+            }
+            return tL_profileTabMusic;
         }
     }
 
@@ -8784,6 +8794,78 @@ public class TLRPC {
         }
     }
 
+    public static class TL_profileTabFiles extends ProfileTab {
+        public static final int constructor = -1422681088;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1422681088);
+        }
+    }
+
+    public static class TL_profileTabGifs extends ProfileTab {
+        public static final int constructor = -1564412267;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1564412267);
+        }
+    }
+
+    public static class TL_profileTabGifts extends ProfileTab {
+        public static final int constructor = 1296815210;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1296815210);
+        }
+    }
+
+    public static class TL_profileTabLinks extends ProfileTab {
+        public static final int constructor = -748329831;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-748329831);
+        }
+    }
+
+    public static class TL_profileTabMedia extends ProfileTab {
+        public static final int constructor = 1925597525;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1925597525);
+        }
+    }
+
+    public static class TL_profileTabMusic extends ProfileTab {
+        public static final int constructor = -1624780178;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1624780178);
+        }
+    }
+
+    public static class TL_profileTabPosts extends ProfileTab {
+        public static final int constructor = -1181952362;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1181952362);
+        }
+    }
+
+    public static class TL_profileTabVoice extends ProfileTab {
+        public static final int constructor = -461960914;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-461960914);
+        }
+    }
+
     public static class TL_quickReply extends TLObject {
         public static final int constructor = 110563371;
         public int count;
@@ -15643,6 +15725,180 @@ public class TLRPC {
         }
     }
 
+    public static abstract class PrivacyKey extends TLObject {
+        public static PrivacyKey TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            PrivacyKey tL_privacyKeyProfilePhoto;
+            switch (i) {
+                case -1777000467:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyProfilePhoto();
+                    break;
+                case -1534675103:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyAbout();
+                    break;
+                case -1137792208:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyStatusTimestamp();
+                    break;
+                case -778378131:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyPhoneNumber();
+                    break;
+                case 110621716:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyVoiceMessages();
+                    break;
+                case 399722706:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyNoPaidMessages();
+                    break;
+                case 536913176:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyBirthday();
+                    break;
+                case 749010424:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyStarGiftsAutoSave();
+                    break;
+                case 961092808:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyPhoneP2P();
+                    break;
+                case 1030105979:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyPhoneCall();
+                    break;
+                case 1124062251:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyAddedByPhone();
+                    break;
+                case 1343122938:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyChatInvite();
+                    break;
+                case 1777096355:
+                    tL_privacyKeyProfilePhoto = new TL_privacyKeyForwards();
+                    break;
+                default:
+                    tL_privacyKeyProfilePhoto = null;
+                    break;
+            }
+            if (tL_privacyKeyProfilePhoto == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in PrivacyKey", Integer.valueOf(i)));
+            }
+            if (tL_privacyKeyProfilePhoto != null) {
+                tL_privacyKeyProfilePhoto.readParams(inputSerializedData, z);
+            }
+            return tL_privacyKeyProfilePhoto;
+        }
+    }
+
+    public static class TL_privacyKeyStatusTimestamp extends PrivacyKey {
+        public static final int constructor = -1137792208;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1137792208);
+        }
+    }
+
+    public static class TL_privacyKeyPhoneP2P extends PrivacyKey {
+        public static final int constructor = 961092808;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(961092808);
+        }
+    }
+
+    public static class TL_privacyKeyChatInvite extends PrivacyKey {
+        public static final int constructor = 1343122938;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1343122938);
+        }
+    }
+
+    public static class TL_privacyKeyPhoneCall extends PrivacyKey {
+        public static final int constructor = 1030105979;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1030105979);
+        }
+    }
+
+    public static class TL_privacyKeyAddedByPhone extends PrivacyKey {
+        public static final int constructor = 1124062251;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1124062251);
+        }
+    }
+
+    public static class TL_privacyKeyAbout extends PrivacyKey {
+        public static final int constructor = -1534675103;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1534675103);
+        }
+    }
+
+    public static class TL_privacyKeyVoiceMessages extends PrivacyKey {
+        public static final int constructor = 110621716;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(110621716);
+        }
+    }
+
+    public static class TL_privacyKeyForwards extends PrivacyKey {
+        public static final int constructor = 1777096355;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1777096355);
+        }
+    }
+
+    public static class TL_privacyKeyPhoneNumber extends PrivacyKey {
+        public static final int constructor = -778378131;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-778378131);
+        }
+    }
+
+    public static class TL_privacyKeyProfilePhoto extends PrivacyKey {
+        public static final int constructor = -1777000467;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1777000467);
+        }
+    }
+
+    public static class TL_privacyKeyBirthday extends PrivacyKey {
+        public static final int constructor = 536913176;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(536913176);
+        }
+    }
+
+    public static class TL_privacyKeyStarGiftsAutoSave extends PrivacyKey {
+        public static final int constructor = 749010424;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(749010424);
+        }
+    }
+
+    public static class TL_privacyKeyNoPaidMessages extends PrivacyKey {
+        public static final int constructor = 399722706;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(399722706);
+        }
+    }
+
     public static abstract class GeoPoint extends TLObject {
         public double _long;
         public long access_hash;
@@ -15740,42 +15996,6 @@ public class TLRPC {
             if ((this.flags & 1) != 0) {
                 outputSerializedData.writeInt32(this.accuracy_radius);
             }
-        }
-    }
-
-    public enum PrivacyKey implements TLEnum.Constructor {
-        privacyKeyStatusTimestamp(-1137792208),
-        privacyKeyChatInvite(1343122938),
-        privacyKeyPhoneCall(1030105979),
-        privacyKeyPhoneP2P(961092808),
-        privacyKeyForwards(1777096355),
-        privacyKeyProfilePhoto(-1777000467),
-        privacyKeyPhoneNumber(-778378131),
-        privacyKeyAddedByPhone(1124062251),
-        privacyKeyVoiceMessages(110621716),
-        privacyKeyAbout(-1534675103),
-        privacyKeyBirthday(536913176),
-        privacyKeyStarGiftsAutoSave(749010424),
-        privacyKeyNoPaidMessages(399722706);
-
-        public final int constructor;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(getConstructor());
-        }
-
-        PrivacyKey(int i) {
-            this.constructor = i;
-        }
-
-        @Override
-        public int getConstructor() {
-            return this.constructor;
-        }
-
-        public static PrivacyKey TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (PrivacyKey) TLEnum.TLdeserialize(PrivacyKey.class, i, z);
         }
     }
 
@@ -22066,6 +22286,180 @@ public class TLRPC {
         }
     }
 
+    public static abstract class InputPrivacyKey extends TLObject {
+        public static InputPrivacyKey TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            InputPrivacyKey tL_inputPrivacyKeyForwards;
+            switch (i) {
+                case -1529000952:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyForwards();
+                    break;
+                case -1360618136:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyVoiceMessages();
+                    break;
+                case -1111124044:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyNoPaidMessages();
+                    break;
+                case -1107622874:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyChatInvite();
+                    break;
+                case -786326563:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyAddedByPhone();
+                    break;
+                case -698740276:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyBirthday();
+                    break;
+                case -610373422:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyPhoneP2P();
+                    break;
+                case -512548031:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyStarGiftsAutoSave();
+                    break;
+                case -88417185:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyPhoneCall();
+                    break;
+                case 55761658:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyPhoneNumber();
+                    break;
+                case 941870144:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyAbout();
+                    break;
+                case 1335282456:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyStatusTimestamp();
+                    break;
+                case 1461304012:
+                    tL_inputPrivacyKeyForwards = new TL_inputPrivacyKeyProfilePhoto();
+                    break;
+                default:
+                    tL_inputPrivacyKeyForwards = null;
+                    break;
+            }
+            if (tL_inputPrivacyKeyForwards == null && z) {
+                throw new RuntimeException(String.format("can't parse magic %x in InputPrivacyKey", Integer.valueOf(i)));
+            }
+            if (tL_inputPrivacyKeyForwards != null) {
+                tL_inputPrivacyKeyForwards.readParams(inputSerializedData, z);
+            }
+            return tL_inputPrivacyKeyForwards;
+        }
+    }
+
+    public static class TL_inputPrivacyKeyStatusTimestamp extends InputPrivacyKey {
+        public static final int constructor = 1335282456;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1335282456);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyChatInvite extends InputPrivacyKey {
+        public static final int constructor = -1107622874;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1107622874);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyPhoneCall extends InputPrivacyKey {
+        public static final int constructor = -88417185;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-88417185);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyForwards extends InputPrivacyKey {
+        public static final int constructor = -1529000952;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1529000952);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyPhoneNumber extends InputPrivacyKey {
+        public static final int constructor = 55761658;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(55761658);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyAddedByPhone extends InputPrivacyKey {
+        public static final int constructor = -786326563;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-786326563);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyVoiceMessages extends InputPrivacyKey {
+        public static final int constructor = -1360618136;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1360618136);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyAbout extends InputPrivacyKey {
+        public static final int constructor = 941870144;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(941870144);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyBirthday extends InputPrivacyKey {
+        public static final int constructor = -698740276;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-698740276);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyStarGiftsAutoSave extends InputPrivacyKey {
+        public static final int constructor = -512548031;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-512548031);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyNoPaidMessages extends InputPrivacyKey {
+        public static final int constructor = -1111124044;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1111124044);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyProfilePhoto extends InputPrivacyKey {
+        public static final int constructor = 1461304012;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1461304012);
+        }
+    }
+
+    public static class TL_inputPrivacyKeyPhoneP2P extends InputPrivacyKey {
+        public static final int constructor = -610373422;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-610373422);
+        }
+    }
+
     public static abstract class messages_ExportedChatInvite extends TLObject {
         public ExportedChatInvite invite;
         public ArrayList<User> users = new ArrayList<>();
@@ -22121,42 +22515,6 @@ public class TLRPC {
             outputSerializedData.writeInt32(410107472);
             this.invite.serializeToStream(outputSerializedData);
             Vector.serialize(outputSerializedData, this.users);
-        }
-    }
-
-    public enum InputPrivacyKey implements TLEnum.Constructor {
-        inputPrivacyKeyStatusTimestamp(1335282456),
-        inputPrivacyKeyChatInvite(-1107622874),
-        inputPrivacyKeyPhoneCall(-88417185),
-        inputPrivacyKeyPhoneP2P(-610373422),
-        inputPrivacyKeyForwards(-1529000952),
-        inputPrivacyKeyProfilePhoto(1461304012),
-        inputPrivacyKeyPhoneNumber(55761658),
-        inputPrivacyKeyAddedByPhone(-786326563),
-        inputPrivacyKeyVoiceMessages(-1360618136),
-        inputPrivacyKeyAbout(941870144),
-        inputPrivacyKeyBirthday(-698740276),
-        inputPrivacyKeyStarGiftsAutoSave(-512548031),
-        inputPrivacyKeyNoPaidMessages(-1111124044);
-
-        public final int constructor;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(getConstructor());
-        }
-
-        InputPrivacyKey(int i) {
-            this.constructor = i;
-        }
-
-        @Override
-        public int getConstructor() {
-            return this.constructor;
-        }
-
-        public static InputPrivacyKey TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (InputPrivacyKey) TLEnum.TLdeserialize(InputPrivacyKey.class, i, z);
         }
     }
 
@@ -56319,9 +56677,6 @@ public class TLRPC {
                 case -1506368542:
                     tL_channel_layer147 = new TL_channel_layer167_2();
                     break;
-                case -1478521753:
-                    tL_channel_layer147 = new TL_channel();
-                    break;
                 case -930515796:
                     tL_channel_layer147 = new TL_channel_layer92();
                     break;
@@ -56341,7 +56696,7 @@ public class TLRPC {
                     tL_channel_layer147 = new TL_channel_layer195();
                     break;
                 case -26717355:
-                    tL_channel_layer147 = new TL_channel_layer212();
+                    tL_channel_layer147 = new TL_channel();
                     break;
                 case 120753115:
                     tL_channel_layer147 = new TL_chatForbidden_layer131();
@@ -57166,219 +57521,6 @@ public class TLRPC {
     }
 
     public static class TL_channel extends Chat {
-        public static final int constructor = -1478521753;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z);
-            this.flags = readInt32;
-            this.creator = (readInt32 & 1) != 0;
-            this.left = (readInt32 & 4) != 0;
-            this.broadcast = (readInt32 & 32) != 0;
-            this.verified = (readInt32 & 128) != 0;
-            this.megagroup = (readInt32 & 256) != 0;
-            this.restricted = (readInt32 & 512) != 0;
-            this.signatures = (readInt32 & 2048) != 0;
-            this.min = (readInt32 & 4096) != 0;
-            this.scam = (readInt32 & 524288) != 0;
-            this.has_link = (1048576 & readInt32) != 0;
-            this.has_geo = (2097152 & readInt32) != 0;
-            this.slowmode_enabled = (4194304 & readInt32) != 0;
-            this.call_active = (8388608 & readInt32) != 0;
-            this.call_not_empty = (16777216 & readInt32) != 0;
-            this.fake = (33554432 & readInt32) != 0;
-            this.gigagroup = (67108864 & readInt32) != 0;
-            this.noforwards = (134217728 & readInt32) != 0;
-            this.join_to_send = (268435456 & readInt32) != 0;
-            this.join_request = (536870912 & readInt32) != 0;
-            this.forum = (readInt32 & 1073741824) != 0;
-            int readInt322 = inputSerializedData.readInt32(z);
-            this.flags2 = readInt322;
-            this.stories_hidden = (readInt322 & 2) != 0;
-            this.stories_hidden_min = (readInt322 & 4) != 0;
-            this.stories_unavailable = (readInt322 & 8) != 0;
-            this.signature_profiles = (readInt322 & 4096) != 0;
-            this.autotranslation = (readInt322 & 32768) != 0;
-            this.broadcast_messages_allowed = (65536 & readInt322) != 0;
-            this.monoforum = (readInt322 & 131072) != 0;
-            this.forum_tabs = (readInt322 & 524288) != 0;
-            this.id = inputSerializedData.readInt64(z);
-            if ((this.flags & 8192) != 0) {
-                this.access_hash = inputSerializedData.readInt64(z);
-            }
-            this.title = inputSerializedData.readString(z);
-            if ((this.flags & 64) != 0) {
-                this.username = inputSerializedData.readString(z);
-            }
-            this.photo = ChatPhoto.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.date = inputSerializedData.readInt32(z);
-            if ((this.flags & 512) != 0) {
-                this.restriction_reason = Vector.deserialize(inputSerializedData, new TLRPC$TL_channel$$ExternalSyntheticLambda0(), z);
-            }
-            if ((this.flags & 16384) != 0) {
-                this.admin_rights = TL_chatAdminRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 32768) != 0) {
-                this.banned_rights = TL_chatBannedRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 262144) != 0) {
-                this.default_banned_rights = TL_chatBannedRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags & 131072) != 0) {
-                this.participants_count = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags2 & 1) != 0) {
-                this.usernames = Vector.deserialize(inputSerializedData, new TLRPC$TL_channel$$ExternalSyntheticLambda1(), z);
-            }
-            if ((this.flags2 & 16) != 0) {
-                this.stories_max_id = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags2 & 128) != 0) {
-                this.color = TL_peerColor.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 256) != 0) {
-                this.profile_color = TL_peerColor.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 512) != 0) {
-                this.emoji_status = EmojiStatus.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
-            if ((this.flags2 & 1024) != 0) {
-                this.level = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags2 & 2048) != 0) {
-                this.subscription_until_date = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags2 & 8192) != 0) {
-                this.bot_verification_icon = inputSerializedData.readInt64(z);
-            }
-            if ((this.flags2 & 16384) != 0) {
-                this.send_paid_messages_stars = inputSerializedData.readInt64(z);
-            }
-            if ((this.flags2 & 262144) != 0) {
-                this.linked_monoforum_id = inputSerializedData.readInt64(z);
-            }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1478521753);
-            int i = this.creator ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.left ? i | 4 : i & (-5);
-            this.flags = i2;
-            int i3 = this.broadcast ? i2 | 32 : i2 & (-33);
-            this.flags = i3;
-            int i4 = this.verified ? i3 | 128 : i3 & (-129);
-            this.flags = i4;
-            int i5 = this.megagroup ? i4 | 256 : i4 & (-257);
-            this.flags = i5;
-            int i6 = this.restricted ? i5 | 512 : i5 & (-513);
-            this.flags = i6;
-            int i7 = this.signatures ? i6 | 2048 : i6 & (-2049);
-            this.flags = i7;
-            int i8 = this.min ? i7 | 4096 : i7 & (-4097);
-            this.flags = i8;
-            int i9 = this.scam ? i8 | 524288 : i8 & (-524289);
-            this.flags = i9;
-            int i10 = this.has_link ? i9 | 1048576 : i9 & (-1048577);
-            this.flags = i10;
-            int i11 = this.has_geo ? i10 | 2097152 : i10 & (-2097153);
-            this.flags = i11;
-            int i12 = this.slowmode_enabled ? i11 | 4194304 : i11 & (-4194305);
-            this.flags = i12;
-            int i13 = this.call_active ? i12 | 8388608 : i12 & (-8388609);
-            this.flags = i13;
-            int i14 = this.call_not_empty ? i13 | 16777216 : i13 & (-16777217);
-            this.flags = i14;
-            int i15 = this.fake ? i14 | 33554432 : i14 & (-33554433);
-            this.flags = i15;
-            int i16 = this.gigagroup ? i15 | 67108864 : i15 & (-67108865);
-            this.flags = i16;
-            int i17 = this.noforwards ? i16 | 134217728 : i16 & (-134217729);
-            this.flags = i17;
-            int i18 = this.join_to_send ? i17 | 268435456 : i17 & (-268435457);
-            this.flags = i18;
-            int i19 = this.join_request ? i18 | 536870912 : i18 & (-536870913);
-            this.flags = i19;
-            int i20 = this.forum ? i19 | 1073741824 : i19 & (-1073741825);
-            this.flags = i20;
-            outputSerializedData.writeInt32(i20);
-            int i21 = this.stories_hidden ? this.flags2 | 2 : this.flags2 & (-3);
-            this.flags2 = i21;
-            int i22 = this.stories_hidden_min ? i21 | 4 : i21 & (-5);
-            this.flags2 = i22;
-            int i23 = this.stories_unavailable ? i22 | 8 : i22 & (-9);
-            this.flags2 = i23;
-            int i24 = this.signature_profiles ? i23 | 4096 : i23 & (-4097);
-            this.flags2 = i24;
-            int i25 = this.autotranslation ? i24 | 32768 : i24 & (-32769);
-            this.flags2 = i25;
-            int i26 = this.broadcast_messages_allowed ? i25 | 65536 : i25 & (-65537);
-            this.flags2 = i26;
-            int i27 = this.monoforum ? i26 | 131072 : i26 & (-131073);
-            this.flags2 = i27;
-            int i28 = this.forum_tabs ? i27 | 524288 : i27 & (-524289);
-            this.flags2 = i28;
-            outputSerializedData.writeInt32(i28);
-            outputSerializedData.writeInt64(this.id);
-            if ((this.flags & 8192) != 0) {
-                outputSerializedData.writeInt64(this.access_hash);
-            }
-            outputSerializedData.writeString(this.title);
-            if ((this.flags & 64) != 0) {
-                outputSerializedData.writeString(this.username);
-            }
-            this.photo.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.date);
-            if ((this.flags & 512) != 0) {
-                Vector.serialize(outputSerializedData, this.restriction_reason);
-            }
-            if ((this.flags & 16384) != 0) {
-                this.admin_rights.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 32768) != 0) {
-                this.banned_rights.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 262144) != 0) {
-                this.default_banned_rights.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 131072) != 0) {
-                outputSerializedData.writeInt32(this.participants_count);
-            }
-            if ((this.flags2 & 1) != 0) {
-                Vector.serialize(outputSerializedData, this.usernames);
-            }
-            if ((this.flags2 & 16) != 0) {
-                outputSerializedData.writeInt32(this.stories_max_id);
-            }
-            if ((this.flags2 & 128) != 0) {
-                this.color.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 256) != 0) {
-                this.profile_color.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 512) != 0) {
-                this.emoji_status.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags2 & 1024) != 0) {
-                outputSerializedData.writeInt32(this.level);
-            }
-            if ((this.flags2 & 2048) != 0) {
-                outputSerializedData.writeInt32(this.subscription_until_date);
-            }
-            if ((this.flags2 & 8192) != 0) {
-                outputSerializedData.writeInt64(this.bot_verification_icon);
-            }
-            if ((this.flags2 & 16384) != 0) {
-                outputSerializedData.writeInt64(this.send_paid_messages_stars);
-            }
-            if ((this.flags2 & 262144) != 0) {
-                outputSerializedData.writeInt64(this.linked_monoforum_id);
-            }
-        }
-    }
-
-    public static class TL_channel_layer212 extends TL_channel {
         public static final int constructor = -26717355;
 
         @Override
@@ -81248,6 +81390,72 @@ public class TLRPC {
         public static final int constructor = 479924263;
 
         @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(479924263);
+            int i = this.out ? this.flags | 2 : this.flags & (-3);
+            this.flags = i;
+            int i2 = this.mentioned ? i | 16 : i & (-17);
+            this.flags = i2;
+            int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
+            this.flags = i3;
+            int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
+            this.flags = i4;
+            int i5 = this.post ? i4 | 16384 : i4 & (-16385);
+            this.flags = i5;
+            int i6 = this.from_scheduled ? i5 | 262144 : i5 & (-262145);
+            this.flags = i6;
+            int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
+            this.flags = i7;
+            int i8 = this.edit_hide ? i7 | 2097152 : i7 & (-2097153);
+            this.flags = i8;
+            outputSerializedData.writeInt32(i8);
+            outputSerializedData.writeInt32(this.id);
+            if ((this.flags & 256) != 0) {
+                outputSerializedData.writeInt32((int) this.from_id.user_id);
+            }
+            this.peer_id.serializeToStream(outputSerializedData);
+            if ((this.flags & 4) != 0) {
+                this.fwd_from.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 2048) != 0) {
+                outputSerializedData.writeInt32((int) this.via_bot_id);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
+            }
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeString(this.message);
+            if ((this.flags & 512) != 0) {
+                this.media.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 64) != 0) {
+                this.reply_markup.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 128) != 0) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            if ((this.flags & 1024) != 0) {
+                outputSerializedData.writeInt32(this.views);
+            }
+            if ((this.flags & 32768) != 0) {
+                outputSerializedData.writeInt32(this.edit_date);
+            }
+            if ((this.flags & 65536) != 0) {
+                outputSerializedData.writeString(this.post_author);
+            }
+            if ((this.flags & 131072) != 0) {
+                outputSerializedData.writeInt64(this.grouped_id);
+            }
+            if ((this.flags & 1048576) != 0) {
+                this.reactions.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4194304) != 0) {
+                outputSerializedData.writeString("");
+            }
+            writeAttachPath(outputSerializedData);
+        }
+
+        @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
@@ -81314,72 +81522,6 @@ public class TLRPC {
             if ((this.flags & 4194304) != 0) {
                 inputSerializedData.readString(z);
             }
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(479924263);
-            int i = this.out ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.mentioned ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
-            this.flags = i3;
-            int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
-            this.flags = i4;
-            int i5 = this.post ? i4 | 16384 : i4 & (-16385);
-            this.flags = i5;
-            int i6 = this.from_scheduled ? i5 | 262144 : i5 & (-262145);
-            this.flags = i6;
-            int i7 = this.legacy ? i6 | 524288 : i6 & (-524289);
-            this.flags = i7;
-            int i8 = this.edit_hide ? i7 | 2097152 : i7 & (-2097153);
-            this.flags = i8;
-            outputSerializedData.writeInt32(i8);
-            outputSerializedData.writeInt32(this.id);
-            if ((this.flags & 256) != 0) {
-                outputSerializedData.writeInt32((int) this.from_id.user_id);
-            }
-            this.peer_id.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
-                this.fwd_from.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 2048) != 0) {
-                outputSerializedData.writeInt32((int) this.via_bot_id);
-            }
-            if ((this.flags & 8) != 0) {
-                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
-            }
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeString(this.message);
-            if ((this.flags & 512) != 0) {
-                this.media.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 64) != 0) {
-                this.reply_markup.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 128) != 0) {
-                Vector.serialize(outputSerializedData, this.entities);
-            }
-            if ((this.flags & 1024) != 0) {
-                outputSerializedData.writeInt32(this.views);
-            }
-            if ((this.flags & 32768) != 0) {
-                outputSerializedData.writeInt32(this.edit_date);
-            }
-            if ((this.flags & 65536) != 0) {
-                outputSerializedData.writeString(this.post_author);
-            }
-            if ((this.flags & 131072) != 0) {
-                outputSerializedData.writeInt64(this.grouped_id);
-            }
-            if ((this.flags & 1048576) != 0) {
-                this.reactions.serializeToStream(outputSerializedData);
-            }
-            if ((this.flags & 4194304) != 0) {
-                outputSerializedData.writeString("");
-            }
-            writeAttachPath(outputSerializedData);
         }
     }
 }

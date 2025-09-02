@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 
 public class CustomNavigationBar extends View {
     private static final boolean USE_INSETS;
+    private View activityContentView;
     private int height;
     private final Paint paint;
 
@@ -32,6 +33,10 @@ public class CustomNavigationBar extends View {
                 }
             });
         }
+    }
+
+    public void setActivityContentView(View view) {
+        this.activityContentView = view;
     }
 
     public void setColor(int i) {
@@ -60,6 +65,16 @@ public class CustomNavigationBar extends View {
             this.height = AndroidUtilities.navigationBarHeight;
         }
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.height, 1073741824));
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        if (!USE_INSETS && (getParent() instanceof View) && this.activityContentView.getMeasuredHeight() >= ((View) getParent()).getMeasuredHeight()) {
+            setTranslationY(this.height);
+        } else {
+            setTranslationY(0.0f);
+        }
     }
 
     @Override

@@ -514,7 +514,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         }
         EmojiThemes.ThemeItem themeItem = emojiThemes.getThemeItem(chatThemeItem.themeIndex);
         int i2 = themeItem.inBubbleColor;
-        if (this.chatThemeItem.chatTheme.getBusyByUserId() != 0) {
+        if (this.themeUserByUserId != 0) {
             i2 = themeItem.patternBgColor;
         }
         themeDrawable.inBubblePaint.setColor(i2);
