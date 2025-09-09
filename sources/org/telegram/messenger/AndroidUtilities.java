@@ -4516,10 +4516,14 @@ public class AndroidUtilities {
     }
 
     public static float lerp(float f, float f2, float f3, float f4) {
-        if (f4 < 0.5f) {
-            return lerp(f, f2, f4 / 0.5f);
+        return lerp(f, f2, f3, 0.5f, f4);
+    }
+
+    public static float lerp(float f, float f2, float f3, float f4, float f5) {
+        if (f5 < f4) {
+            return lerp(f, f2, f5 / f4);
         }
-        return lerp(f2, f3, (f4 - 0.5f) / 0.5f);
+        return lerp(f2, f3, (f5 - f4) / (1.0f - f4));
     }
 
     public static float lerp(float[] fArr, float f) {

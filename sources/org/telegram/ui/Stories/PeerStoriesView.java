@@ -3610,7 +3610,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
 
                 @Override
-                public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z2, int i, long j, boolean z3, long j2) {
+                public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z2, int i, long j, boolean z3, long j2) {
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
                     if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {

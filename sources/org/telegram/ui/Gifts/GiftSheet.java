@@ -23,7 +23,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -1067,7 +1066,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             textView3.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             textView3.setGravity(17);
             textView3.setTextColor(-13397548);
-            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 130.0f, 0.0f, 11.0f));
+            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 11.0f));
             StarsBackgroundView starsBackgroundView = new StarsBackgroundView(context);
             this.priceBackground = starsBackgroundView;
             starsBackgroundView.setBackgroundColor(-16776961);
@@ -1119,9 +1118,9 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         public void customDraw(View view, Canvas canvas, float f, float f2, float f3) {
             float f4;
             float f5;
+            float f6;
             canvas.save();
-            float f6 = f / 2.0f;
-            canvas.scale(getScaleX(), getScaleY(), f6, f2 / 2.0f);
+            canvas.scale(getScaleX(), getScaleY(), f / 2.0f, f2 / 2.0f);
             TL_stars.TL_starGiftUnique uniqueStarGift = getUniqueStarGift();
             float dp = uniqueStarGift != null ? AndroidUtilities.dp(63.0f) * f3 : 0.0f;
             this.cardBackground.setBounds(0, 0, (int) f, (int) f2);
@@ -1182,12 +1181,24 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.title.ellipsize(f - AndroidUtilities.dp(8.0f)).draw(canvas, (f - this.title.getWidth()) / 2.0f, (AndroidUtilities.dp(50.0f) * f8) + ((f2 - AndroidUtilities.dp(40.0f)) - (this.title.getHeight() / 2.0f)), -1, f3);
                 this.subtitle.ellipsize(f - AndroidUtilities.dp(8.0f)).draw(canvas, (f - this.subtitle.getWidth()) / 2.0f, (AndroidUtilities.dp(50.0f) * f8) + ((f2 - AndroidUtilities.dp(19.0f)) - (this.subtitle.getHeight() / 2.0f)), -1, f3 * 0.6f);
             }
-            TextView textView = this.priceView;
-            if (textView != null && textView.getVisibility() == 0) {
+            FrameLayout frameLayout = this.priceLayout;
+            if (frameLayout == null || frameLayout.getVisibility() != 0) {
+                f6 = 1.0f;
+            } else {
                 canvas.save();
-                canvas.translate(f6 - (this.priceView.getWidth() / 2.0f), this.priceView.getY());
-                canvas.saveLayerAlpha(0.0f, 0.0f, this.priceView.getWidth(), this.priceView.getHeight(), (int) (this.priceView.getAlpha() * 255.0f * (f5 - f3)), 31);
-                this.priceView.draw(canvas);
+                canvas.translate(this.priceLayout.getX(), this.priceLayout.getY());
+                f6 = 1.0f;
+                canvas.saveLayerAlpha(0.0f, 0.0f, this.priceLayout.getWidth(), this.priceLayout.getHeight(), (int) ((f5 - f3) * 255.0f * this.priceLayout.getAlpha()), 31);
+                this.priceLayout.draw(canvas);
+                canvas.restore();
+                canvas.restore();
+            }
+            ImageView imageView = this.tonOnlySaleView;
+            if (imageView != null && imageView.getVisibility() == 0) {
+                canvas.save();
+                canvas.translate(this.tonOnlySaleView.getX(), this.tonOnlySaleView.getY());
+                canvas.saveLayerAlpha(0.0f, 0.0f, this.tonOnlySaleView.getWidth(), this.tonOnlySaleView.getHeight(), (int) ((f6 - f3) * 255.0f * this.tonOnlySaleView.getAlpha()), 31);
+                this.tonOnlySaleView.draw(canvas);
                 canvas.restore();
                 canvas.restore();
             }
@@ -1352,8 +1363,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             this.priceView.setText(giftPremiumBottomSheet$GiftTier.getFormattedPrice());
             this.priceBackground.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), 422810068));
             this.priceView.setTextColor(-13397548);
-            ((ViewGroup.MarginLayoutParams) this.priceLayout.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
-            ((FrameLayout.LayoutParams) this.priceLayout.getLayoutParams()).gravity = 49;
             this.lastTier = giftPremiumBottomSheet$GiftTier;
             this.lastDocument = null;
             this.premiumTier = giftPremiumBottomSheet$GiftTier;
@@ -1386,7 +1395,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
         }
 
-        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r22, boolean r23, boolean r24, boolean r25, boolean r26) {
+        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r21, boolean r22, boolean r23, boolean r24, boolean r25) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.setStarsGift(org.telegram.tgnet.tl.TL_stars$StarGift, boolean, boolean, boolean, boolean):boolean");
         }
 
@@ -1480,8 +1489,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.priceView.setTextColor(-1);
                 this.tonOnlySaleView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), blendOver));
                 this.tonOnlySaleView.setColorFilter(-1);
-                ((FrameLayout.LayoutParams) this.priceLayout.getLayoutParams()).gravity = 49;
-                ((ViewGroup.MarginLayoutParams) this.priceLayout.getLayoutParams()).topMargin = AndroidUtilities.dp(69.0f);
             } else {
                 if (z) {
                     this.priceView.setVisibility(8);
@@ -1516,8 +1523,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.priceBackground.setBackground(new StarsBackground(z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
                 this.tonOnlySaleView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
                 this.tonOnlySaleView.setColorFilter(z3 ? -1 : Theme.isCurrentThemeDark() ? -1333971 : -4229632);
-                ((FrameLayout.LayoutParams) this.priceLayout.getLayoutParams()).gravity = 49;
-                ((ViewGroup.MarginLayoutParams) this.priceLayout.getLayoutParams()).topMargin = AndroidUtilities.dp(103.0f);
             }
             this.starsPriceView.setVisibility(8);
             this.lastUserGift = savedStarGift;
@@ -1965,7 +1970,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         public void draw(Canvas canvas) {
             canvas.drawPath(this.path, this.backgroundPaint);
             if (this.particles != null) {
-                if (this.particlesAllowed || this.invalidateRunnable == null) {
+                if (this.particlesAllowed || !this.isAttached) {
                     canvas.save();
                     canvas.clipPath(this.path);
                     if (this.invalidateRunnable == null) {
@@ -1989,7 +1994,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
 
         private void checkParticlesAllowed() {
-            boolean z = (this.particles == null || !this.isAttached || LiteMode.isPowerSaverApplied()) ? false : true;
+            boolean z = this.particles != null && this.isAttached && LiteMode.isEnabled(131072);
             if (this.particlesAllowed == z) {
                 return;
             }

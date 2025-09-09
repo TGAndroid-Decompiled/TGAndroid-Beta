@@ -16,6 +16,7 @@ import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.os.Build;
+import android.view.View;
 import android.widget.FrameLayout;
 import androidx.core.math.MathUtils;
 import java.util.Arrays;
@@ -415,13 +416,25 @@ public class ProfileGooeyView extends FrameLayout {
                 beginRecording3.drawRect(this.whole, this.blackNodePaint);
                 beginRecording3.restore();
             }
+            float lerp = AndroidUtilities.lerp(0.0f, AndroidUtilities.dp(7.0f) * f6, 0.0f, 0.5f, ProfileGooeyView.this.pullProgress);
+            if (ProfileGooeyView.this.getChildCount() > 0) {
+                View childAt = ProfileGooeyView.this.getChildAt(0);
+                float x = childAt.getX() + ((childAt.getWidth() * childAt.getScaleX()) / 2.0f);
+                float y = childAt.getY() + ((childAt.getHeight() * childAt.getScaleY()) / 2.0f) + AndroidUtilities.dp(32.0f);
+                float width = (childAt.getWidth() / 2.0f) * childAt.getScaleX();
+                ProfileGooeyView.this.path.rewind();
+                ProfileGooeyView.this.path.moveTo(x - width, y - (((float) Math.cos(0.7853981633974483d)) * width));
+                ProfileGooeyView.this.path.lineTo(x, (y - width) - (0.25f * lerp));
+                ProfileGooeyView.this.path.lineTo(x + width, y - (((float) Math.cos(0.7853981633974483d)) * width));
+                ProfileGooeyView.this.path.close();
+                beginRecording3.drawPath(ProfileGooeyView.this.path, ProfileGooeyView.this.blackPaint);
+            }
             beginRecording3.saveLayerAlpha(this.whole, (int) (ilerp * 255.0f));
             beginRecording3.drawRenderNode(this.node);
             beginRecording3.restore();
             this.effectNode.endRecording();
             beginRecording4 = this.effectNotchNode.beginRecording();
             beginRecording4.scale(f7, f7, 0.0f, 0.0f);
-            float lerp = AndroidUtilities.lerp(0.0f, AndroidUtilities.dp(7.0f) * f6, 0.0f, ProfileGooeyView.this.pullProgress);
             if (ProfileGooeyView.this.notchInfo == null) {
                 beginRecording4.drawRect(0.0f, 0.0f, r4.getWidth(), AndroidUtilities.dp(32.0f), ProfileGooeyView.this.blackPaint);
                 ProfileGooeyView.this.path.rewind();
@@ -435,19 +448,21 @@ public class ProfileGooeyView extends FrameLayout {
                 ProfileGooeyView profileGooeyView = ProfileGooeyView.this;
                 NotchInfoUtils.NotchInfo notchInfo = profileGooeyView.notchInfo;
                 if (notchInfo.isLikelyCircle) {
-                    float min = (Math.min(notchInfo.bounds.width(), ProfileGooeyView.this.notchInfo.bounds.height()) / 2.0f) + (ProfileGooeyView.this.isSamsung ? AndroidUtilities.lerp(0.8f, 0.0f, ProfileGooeyView.this.pullProgress) * ProfileGooeyView.this.intensity : 0.0f);
+                    float min = Math.min(notchInfo.bounds.width(), ProfileGooeyView.this.notchInfo.bounds.height()) / 2.0f;
                     RectF rectF = ProfileGooeyView.this.notchInfo.bounds;
-                    float width = rectF.bottom - (rectF.width() / 2.0f);
-                    beginRecording4.drawCircle(ProfileGooeyView.this.notchInfo.bounds.centerX(), width, min, ProfileGooeyView.this.blackPaint);
+                    float width2 = rectF.bottom - (rectF.width() / 2.0f);
+                    beginRecording4.drawCircle(ProfileGooeyView.this.notchInfo.bounds.centerX(), width2, min, ProfileGooeyView.this.blackPaint);
                     ProfileGooeyView.this.path.rewind();
                     float f8 = lerp / 2.0f;
-                    ProfileGooeyView.this.path.moveTo(ProfileGooeyView.this.notchInfo.bounds.centerX() - f8, width);
-                    ProfileGooeyView.this.path.lineTo(ProfileGooeyView.this.notchInfo.bounds.centerX(), min + width + lerp);
-                    ProfileGooeyView.this.path.lineTo(ProfileGooeyView.this.notchInfo.bounds.centerX() + f8, width);
+                    ProfileGooeyView.this.path.moveTo(ProfileGooeyView.this.notchInfo.bounds.centerX() - f8, width2);
+                    ProfileGooeyView.this.path.lineTo(ProfileGooeyView.this.notchInfo.bounds.centerX(), min + width2 + lerp);
+                    ProfileGooeyView.this.path.lineTo(ProfileGooeyView.this.notchInfo.bounds.centerX() + f8, width2);
                     ProfileGooeyView.this.path.close();
                     beginRecording4.drawPath(ProfileGooeyView.this.path, ProfileGooeyView.this.blackPaint);
-                } else if (!notchInfo.isAccurate) {
-                    float max = (Math.max(notchInfo.bounds.width(), ProfileGooeyView.this.notchInfo.bounds.height()) / 2.0f) + (AndroidUtilities.lerp(0.8f, 0.0f, ProfileGooeyView.this.pullProgress) * ProfileGooeyView.this.intensity);
+                } else if (notchInfo.isAccurate) {
+                    beginRecording4.drawPath(notchInfo.path, profileGooeyView.blackPaint);
+                } else {
+                    float max = Math.max(notchInfo.bounds.width(), ProfileGooeyView.this.notchInfo.bounds.height()) / 2.0f;
                     this.temp.set(ProfileGooeyView.this.notchInfo.bounds);
                     beginRecording4.drawRoundRect(this.temp, max, max, ProfileGooeyView.this.blackPaint);
                     ProfileGooeyView.this.path.rewind();
@@ -457,15 +472,15 @@ public class ProfileGooeyView extends FrameLayout {
                     ProfileGooeyView.this.path.lineTo(this.temp.centerX() + f9, this.temp.bottom);
                     ProfileGooeyView.this.path.close();
                     beginRecording4.drawPath(ProfileGooeyView.this.path, ProfileGooeyView.this.blackPaint);
-                } else {
-                    beginRecording4.scale(((AndroidUtilities.lerp(0.33f, 0.0f, profileGooeyView.pullProgress) * ProfileGooeyView.this.intensity) / ProfileGooeyView.this.notchInfo.bounds.width()) + 1.0f, ((AndroidUtilities.lerp(0.33f, 0.0f, ProfileGooeyView.this.pullProgress) * ProfileGooeyView.this.intensity) / ProfileGooeyView.this.notchInfo.bounds.height()) + 1.0f, ProfileGooeyView.this.notchInfo.bounds.centerX(), ProfileGooeyView.this.notchInfo.bounds.centerY());
-                    ProfileGooeyView profileGooeyView2 = ProfileGooeyView.this;
-                    beginRecording4.drawPath(profileGooeyView2.notchInfo.path, profileGooeyView2.blackPaint);
                 }
             }
             this.effectNotchNode.endRecording();
             canvas.translate(0.0f, -AndroidUtilities.dp(32.0f));
             canvas.save();
+            NotchInfoUtils.NotchInfo notchInfo2 = ProfileGooeyView.this.notchInfo;
+            if (notchInfo2 != null) {
+                canvas.clipRect(0.0f, notchInfo2.bounds.top, r1.getWidth(), ProfileGooeyView.this.getHeight());
+            }
             canvas.saveLayer(0.0f, 0.0f, ProfileGooeyView.this.getWidth() * f6, ProfileGooeyView.this.getHeight() * f6, null);
             canvas.saveLayer(0.0f, 0.0f, ProfileGooeyView.this.getWidth() * f6, ProfileGooeyView.this.getHeight() * f6, this.filter);
             canvas.scale(f6, f6);

@@ -56,7 +56,7 @@ public abstract class FragmentUsernameBottomSheet {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         int i2 = i == 0 ? 70 : 78;
-        rLottieImageView.setAnimation(i == 0 ? R.raw.fragment_username : R.raw.fragment_phone, i2, i2);
+        rLottieImageView.setAnimation(i == 0 ? R.raw.fragment_username : R.raw.fragment, i2, i2);
         rLottieImageView.playAnimation();
         rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         if (i == 0) {

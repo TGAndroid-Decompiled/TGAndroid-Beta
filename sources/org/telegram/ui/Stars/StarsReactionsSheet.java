@@ -43,6 +43,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -1469,22 +1470,24 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
 
         public void process() {
-            long currentTimeMillis = System.currentTimeMillis();
-            float min = (((float) Math.min(this.lastTime - currentTimeMillis, 16L)) / 1000.0f) * this.speed;
-            for (int i = 0; i < Math.min(this.visibleCount, this.particles.size()); i++) {
-                Particle particle = (Particle) this.particles.get(i);
-                long j = particle.lifetime;
-                float f = j <= 0 ? 2.0f : ((float) (currentTimeMillis - particle.start)) / ((float) j);
-                if (f > 1.0f) {
-                    gen(particle, currentTimeMillis, this.firstDraw);
-                    f = 0.0f;
+            if (LiteMode.isEnabled(131072)) {
+                long currentTimeMillis = System.currentTimeMillis();
+                float min = (((float) Math.min(this.lastTime - currentTimeMillis, 16L)) / 1000.0f) * this.speed;
+                for (int i = 0; i < Math.min(this.visibleCount, this.particles.size()); i++) {
+                    Particle particle = (Particle) this.particles.get(i);
+                    long j = particle.lifetime;
+                    float f = j <= 0 ? 2.0f : ((float) (currentTimeMillis - particle.start)) / ((float) j);
+                    if (f > 1.0f) {
+                        gen(particle, currentTimeMillis, this.firstDraw);
+                        f = 0.0f;
+                    }
+                    particle.x += particle.vx * min;
+                    particle.y += particle.vy * min;
+                    float f2 = 4.0f * f;
+                    particle.la = f2 - (f * f2);
                 }
-                particle.x += particle.vx * min;
-                particle.y += particle.vy * min;
-                float f2 = 4.0f * f;
-                particle.la = f2 - (f * f2);
+                this.lastTime = currentTimeMillis;
             }
-            this.lastTime = currentTimeMillis;
         }
 
         public void draw(Canvas canvas, int i) {
@@ -1492,34 +1495,36 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
 
         public void draw(Canvas canvas, int i, float f) {
-            int min = Math.min(this.visibleCount, this.particles.size());
-            if (this.batchParticlesBuffer != null) {
-                float width = this.b.getWidth();
-                float height = this.b.getHeight();
-                for (int i2 = 0; i2 < min; i2++) {
-                    Particle particle = (Particle) this.particles.get(i2);
-                    float f2 = particle.a * particle.s * f;
-                    float f3 = (width / 2.0f) * f2;
-                    float f4 = (height / 2.0f) * f2;
-                    BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer = this.batchParticlesBuffer;
-                    float f5 = particle.x;
-                    float f6 = particle.y;
-                    batchParticlesBuffer.setParticleVertexCords(i2, f5 - f3, f6 - f4, f5 + f3, f6 + f4);
-                    this.batchParticlesBuffer.setParticleColor(i2, ColorUtils.setAlphaComponent(i, (int) (Utilities.clamp01(particle.la * f) * 255.0f)));
+            if (LiteMode.isEnabled(131072)) {
+                int min = Math.min(this.visibleCount, this.particles.size());
+                if (this.batchParticlesBuffer != null) {
+                    float width = this.b.getWidth();
+                    float height = this.b.getHeight();
+                    for (int i2 = 0; i2 < min; i2++) {
+                        Particle particle = (Particle) this.particles.get(i2);
+                        float f2 = particle.a * particle.s * f;
+                        float f3 = (width / 2.0f) * f2;
+                        float f4 = (height / 2.0f) * f2;
+                        BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer = this.batchParticlesBuffer;
+                        float f5 = particle.x;
+                        float f6 = particle.y;
+                        batchParticlesBuffer.setParticleVertexCords(i2, f5 - f3, f6 - f4, f5 + f3, f6 + f4);
+                        this.batchParticlesBuffer.setParticleColor(i2, ColorUtils.setAlphaComponent(i, (int) (Utilities.clamp01(particle.la * f) * 255.0f)));
+                    }
+                    BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, min, this.batchParticlesPaint);
+                } else {
+                    if (this.bPaintColor != i) {
+                        Paint paint = this.bPaint;
+                        this.bPaintColor = i;
+                        paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+                    }
+                    for (int i3 = 0; i3 < min; i3++) {
+                        Particle particle2 = (Particle) this.particles.get(i3);
+                        particle2.draw(canvas, i, particle2.la * f);
+                    }
                 }
-                BatchParticlesDrawHelper.draw(canvas, this.batchParticlesBuffer, min, this.batchParticlesPaint);
-            } else {
-                if (this.bPaintColor != i) {
-                    Paint paint = this.bPaint;
-                    this.bPaintColor = i;
-                    paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-                }
-                for (int i3 = 0; i3 < min; i3++) {
-                    Particle particle2 = (Particle) this.particles.get(i3);
-                    particle2.draw(canvas, i, particle2.la * f);
-                }
+                this.firstDraw = false;
             }
-            this.firstDraw = false;
         }
 
         public void gen(Particle particle, long j, boolean z) {

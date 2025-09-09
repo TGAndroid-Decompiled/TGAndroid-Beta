@@ -888,7 +888,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             this.allowNesterScroll = true;
         }
         this.parentAlert.setAllowNestedScroll(this.allowNesterScroll);
-        this.doneItemEnabled = (this.quizPoll && i == 0) || z;
+        this.doneItemEnabled = z;
         this.parentAlert.updateDoneItemEnabled();
     }
 

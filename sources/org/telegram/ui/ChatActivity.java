@@ -15453,14 +15453,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, boolean z, int i, long j, boolean z2, long j2) {
+    public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i, long j, boolean z2, long j2) {
         String str2 = null;
         fillEditingMediaWithCaption(str, null);
         if (checkSlowModeAlert()) {
-            if (arrayList2.isEmpty() || TextUtils.isEmpty(str)) {
+            if (arrayList3.isEmpty() || TextUtils.isEmpty(str)) {
                 str2 = str;
             } else {
-                SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(str, this.dialog_id, null, null, null, true, null, null, null, true, 0, null, false);
+                SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(str, this.dialog_id, null, null, null, true, arrayList2, null, null, true, 0, null, false);
                 of.quick_reply_shortcut = this.quickReplyShortcut;
                 of.quick_reply_shortcut_id = getQuickReplyId();
                 of.invert_media = z2;
@@ -15469,8 +15469,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 of.suggestionParams = this.messageSuggestionParams;
                 SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
             }
-            getSendMessagesHelper().sendMessage(arrayList2, this.dialog_id, false, false, true, 0, null, -1, j2, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
-            SendMessagesHelper.prepareSendingDocuments(getAccountInstance(), arrayList, arrayList, null, str2, null, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, this.replyingQuote, this.editingMessageObject, z, i, null, this.quickReplyShortcut, getQuickReplyId(), j, z2, j2, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
+            getSendMessagesHelper().sendMessage(arrayList3, this.dialog_id, false, false, true, 0, null, -1, j2, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
+            SendMessagesHelper.prepareSendingDocuments(getAccountInstance(), arrayList, arrayList, null, str2, arrayList2, null, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, this.replyingQuote, this.editingMessageObject, z, i, null, this.quickReplyShortcut, getQuickReplyId(), j, z2, j2, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
             afterMessageSend();
         }
     }

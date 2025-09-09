@@ -1075,11 +1075,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
 
     public Boolean lambda$new$6(final int i, final BaseFragment baseFragment, final Context context, final Theme.ResourcesProvider resourcesProvider, Integer num, View view) {
         final TL_stars.TL_starGiftCollection tL_starGiftCollection;
-        final int i2;
+        int i2;
         if (num.intValue() == -1 || num.intValue() == -2 || num.intValue() == 0 || this.reorderingCollections) {
-            return Boolean.FALSE;
-        }
-        if (!this.collections.isMine()) {
             return Boolean.FALSE;
         }
         int i3 = 0;
@@ -1097,8 +1094,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             i3++;
         }
         final String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(i).getUserOrChat(this.dialogId));
+        boolean isMine = this.collections.isMine();
+        if (TextUtils.isEmpty(publicUsername) && !isMine) {
+            return Boolean.FALSE;
+        }
         final TL_stars.TL_starGiftCollection tL_starGiftCollection2 = tL_starGiftCollection;
-        ItemOptions add = ItemOptions.makeOptions(baseFragment, view).setScrimViewBackground(new Drawable() {
+        final int i4 = i2;
+        ItemOptions addIf = ItemOptions.makeOptions(baseFragment, view).setScrimViewBackground(new Drawable() {
             private final Drawable bg;
             private final Rect bgBounds = new Rect();
 
@@ -1124,10 +1126,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
 
             @Override
-            public void setAlpha(int i4) {
-                this.bg.setAlpha(i4);
+            public void setAlpha(int i5) {
+                this.bg.setAlpha(i5);
             }
-        }).add(R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
+        }).addIf(isMine, R.drawable.menu_gift_add, LocaleController.getString(R.string.Gift2CollectionsAdd), new Runnable() {
             @Override
             public final void run() {
                 ProfileGiftsContainer.this.addGifts();
@@ -1137,24 +1139,24 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             public final void run() {
                 ProfileGiftsContainer.this.lambda$new$1(i, publicUsername, tL_starGiftCollection2, context, resourcesProvider, baseFragment);
             }
-        }).add(R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new Runnable() {
+        }).addIf(isMine, R.drawable.msg_edit, LocaleController.getString(R.string.Gift2CollectionsRename), new Runnable() {
             @Override
             public final void run() {
                 ProfileGiftsContainer.this.lambda$new$3(tL_starGiftCollection);
             }
-        }).add(R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new Runnable() {
+        }).addIf(isMine, R.drawable.tabs_reorder, LocaleController.getString(R.string.Gift2CollectionsReorder), new Runnable() {
             @Override
             public final void run() {
                 ProfileGiftsContainer.this.lambda$new$4();
             }
-        }).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Gift2CollectionsDelete), true, new Runnable() {
+        }).addIf(isMine, R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Gift2CollectionsDelete), true, new Runnable() {
             @Override
             public final void run() {
-                ProfileGiftsContainer.this.lambda$new$5(i2, tL_starGiftCollection);
+                ProfileGiftsContainer.this.lambda$new$5(i4, tL_starGiftCollection);
             }
         });
-        this.currentMenu = add;
-        add.show();
+        this.currentMenu = addIf;
+        addIf.show();
         return Boolean.TRUE;
     }
 

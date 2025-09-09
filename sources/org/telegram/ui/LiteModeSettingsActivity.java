@@ -247,19 +247,19 @@ public class LiteModeSettingsActivity extends BaseFragment {
             formatString = LocaleController.formatString(R.string.LiteBatteryInfoBelow, String.format("%d%%", Integer.valueOf(LiteMode.getPowerSaverLevel())));
         }
         arrayList.add(Item.asInfo(formatString));
-        this.items.add(Item.asHeader(LocaleController.getString("LiteOptionsTitle")));
+        this.items.add(Item.asHeader(LocaleController.getString(R.string.LiteOptionsTitle)));
         this.items.add(Item.asSwitch(R.drawable.msg2_sticker, LocaleController.getString(R.string.LiteOptionsStickers), 3));
         if (this.expanded[0]) {
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayKeyboard"), 1));
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayChat"), 2));
+            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard), 1));
+            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayChat), 2));
         }
         this.items.add(Item.asSwitch(R.drawable.msg2_smile_status, LocaleController.getString(R.string.LiteOptionsEmoji), 28700));
         if (this.expanded[1]) {
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayKeyboard"), 16388));
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayReactions"), 8200));
-            this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsAutoplayChat"), 4112));
+            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard), 16388));
+            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayReactions), 8200));
+            this.items.add(Item.asCheckbox(LocaleController.getString(R.string.LiteOptionsAutoplayChat), 4112));
         }
-        this.items.add(Item.asSwitch(R.drawable.msg2_ask_question, LocaleController.getString("LiteOptionsChat"), this.FLAGS_CHAT));
+        this.items.add(Item.asSwitch(R.drawable.msg2_ask_question, LocaleController.getString(R.string.LiteOptionsChat), this.FLAGS_CHAT));
         if (this.expanded[2]) {
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBackground"), 32));
             if (!AndroidUtilities.isTablet()) {
@@ -274,9 +274,10 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsThanos"), 65536));
             }
         }
-        this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), 512));
-        this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString("LiteOptionsAutoplayVideo"), 1024));
-        this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString("LiteOptionsAutoplayGifs"), 2048));
+        this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString(R.string.LiteOptionsCalls), 512));
+        this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString(R.string.LiteOptionsAutoplayVideo), 1024));
+        this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString(R.string.LiteOptionsAutoplayGifs), 2048));
+        this.items.add(Item.asSwitch(R.drawable.photo_star, LocaleController.getString(R.string.LiteOptionsParticles), 131072));
         this.items.add(Item.asInfo(""));
         this.items.add(Item.asSwitch(LocaleController.getString("LiteSmoothTransitions"), 1));
         this.items.add(Item.asInfo(LocaleController.getString("LiteSmoothTransitionsInfo")));

@@ -13,11 +13,14 @@ import android.text.Spannable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import j$.util.Objects;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,6 +39,7 @@ public class Emoji {
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
     public static int bigImgSize;
     public static int drawImgSize;
+    private static SparseIntArray emojiAlphaMasks;
     private static Bitmap[][] emojiBmp;
     public static final HashMap<String, String> emojiColor;
     private static final int[] emojiCounts;
@@ -134,7 +138,39 @@ public class Emoji {
     }
 
     public static void lambda$loadEmoji$1(byte b, short s) {
-        Bitmap loadBitmap = loadBitmap("emoji/" + String.format(Locale.US, "%d_%d.png", Byte.valueOf(b), Short.valueOf(s)));
+        StringBuilder sb = new StringBuilder();
+        sb.append("emoji/");
+        Locale locale = Locale.US;
+        sb.append(String.format(locale, "%d_%d.png", Byte.valueOf(b), Short.valueOf(s)));
+        Bitmap loadBitmap = loadBitmap(sb.toString());
+        try {
+            if (emojiAlphaMasks == null) {
+                emojiAlphaMasks = loadEmojiAlphaMasks();
+            }
+            SparseIntArray sparseIntArray = emojiAlphaMasks;
+            int i = sparseIntArray != null ? sparseIntArray.get((b * 4096) + s, -1) : -1;
+            if (loadBitmap != null && i != -1) {
+                Bitmap loadBitmap2 = loadBitmap("emoji/masks/" + String.format(locale, "%d.png", Integer.valueOf(i)));
+                if (loadBitmap2 != null) {
+                    int width = loadBitmap.getWidth();
+                    int height = loadBitmap.getHeight();
+                    int i2 = width * height;
+                    int[] iArr = new int[i2];
+                    int[] iArr2 = new int[i2];
+                    loadBitmap.getPixels(iArr, 0, width, 0, 0, width, height);
+                    loadBitmap2.getPixels(iArr2, 0, width, 0, 0, width, height);
+                    loadBitmap2.recycle();
+                    for (int i3 = 0; i3 < i2; i3++) {
+                        iArr[i3] = (iArr[i3] & 16777215) | ((iArr2[i3] & 255) << 24);
+                    }
+                    loadBitmap.recycle();
+                    loadBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                    loadBitmap.setPixels(iArr, 0, width, 0, 0, width, height);
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
         if (loadBitmap != null) {
             emojiBmp[b][s] = loadBitmap;
             Runnable runnable = invalidateUiRunnable;
@@ -142,6 +178,47 @@ public class Emoji {
             AndroidUtilities.runOnUIThread(runnable);
         }
         loadingEmoji[b][s] = false;
+    }
+
+    private static SparseIntArray loadEmojiAlphaMasks() {
+        try {
+            InputStream open = ApplicationLoader.applicationContext.getAssets().open("emoji/metadata.bin");
+            try {
+                ArrayList arrayList = new ArrayList();
+                byte[] bArr = new byte[8192];
+                int i = 0;
+                while (true) {
+                    int read = open.read(bArr);
+                    if (read == -1) {
+                        break;
+                    }
+                    byte[] bArr2 = new byte[read];
+                    System.arraycopy(bArr, 0, bArr2, 0, read);
+                    arrayList.add(bArr2);
+                    i += read;
+                }
+                byte[] bArr3 = new byte[i];
+                Iterator it = arrayList.iterator();
+                int i2 = 0;
+                while (it.hasNext()) {
+                    byte[] bArr4 = (byte[]) it.next();
+                    System.arraycopy(bArr4, 0, bArr3, i2, bArr4.length);
+                    i2 += bArr4.length;
+                }
+                ByteBuffer order = ByteBuffer.wrap(bArr3).order(ByteOrder.LITTLE_ENDIAN);
+                int i3 = i / 4;
+                SparseIntArray sparseIntArray = new SparseIntArray(i3);
+                for (int i4 = 0; i4 < i3; i4++) {
+                    sparseIntArray.put(order.getShort() & 65535, 65535 & order.getShort());
+                }
+                open.close();
+                return sparseIntArray;
+            } finally {
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
     }
 
     public static Bitmap loadBitmap(String str) {

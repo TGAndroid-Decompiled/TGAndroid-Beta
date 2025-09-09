@@ -4737,6 +4737,7 @@
     <string name="LiteOptionsCalls">Animations in Calls</string>
     <string name="LiteOptionsChat">Animations in Chats</string>
     <string name="LiteOptionsEmoji">Animated Emoji</string>
+    <string name="LiteOptionsParticles">Particles</string>
     <string name="LiteOptionsScale">Zoom animations</string>
     <string name="LiteOptionsSpoiler">Animated spoiler effect</string>
     <string name="LiteOptionsStickers">Animated Stickers</string>
@@ -9728,7 +9729,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f2616_com_google_firebase_crashlytics_mapping_file_id">ffda9e655a3d4e6ebcdfbb9f72db128d</string>
+    <string name="res_0x7f0f2617_com_google_firebase_crashlytics_mapping_file_id">dbcb5444e4924994b561f7df913e5792</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

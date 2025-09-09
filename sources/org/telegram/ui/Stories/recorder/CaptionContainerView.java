@@ -54,6 +54,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.EditTextEmoji;
+import org.telegram.ui.Components.EditTextSuggestionsFix;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MentionsContainerView;
@@ -367,6 +368,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
         };
         this.editText = editTextEmoji;
+        editTextEmoji.getEditText().addTextChangedListener(new EditTextSuggestionsFix());
         editTextEmoji.setFocusable(true);
         editTextEmoji.setFocusableInTouchMode(true);
         editTextEmoji.getEditText().hintLayoutYFix = true;
