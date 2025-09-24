@@ -223,21 +223,24 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     public int getSecondsForIndex(int i) {
         if (i == 1) {
-            return 10;
+            return 5;
         }
         if (i == 2) {
-            return 30;
+            return 10;
         }
         if (i == 3) {
-            return 60;
+            return 30;
         }
         if (i == 4) {
-            return 300;
+            return 60;
         }
         if (i == 5) {
+            return 300;
+        }
+        if (i == 6) {
             return 900;
         }
-        return i == 6 ? 3600 : 0;
+        return i == 7 ? 3600 : 0;
     }
 
     public static void lambda$processDone$26() {
@@ -2201,22 +2204,25 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             return 0;
         }
         int i = chatFull.slowmode_seconds;
-        if (i == 10) {
+        if (i == 5) {
             return 1;
         }
-        if (i == 30) {
+        if (i == 10) {
             return 2;
         }
-        if (i == 60) {
+        if (i == 30) {
             return 3;
         }
-        if (i == 300) {
+        if (i == 60) {
             return 4;
         }
-        if (i == 900) {
+        if (i == 300) {
             return 5;
         }
-        return i == 3600 ? 6 : 0;
+        if (i == 900) {
+            return 6;
+        }
+        return i == 3600 ? 7 : 0;
     }
 
     public String formatSeconds(int i) {
@@ -3257,10 +3263,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     int i2 = ChatUsersActivity.this.selectedSlowmode;
                     String string = LocaleController.getString("SlowmodeOff", R.string.SlowmodeOff);
                     int i3 = R.string.SlowmodeSeconds;
-                    String formatString = LocaleController.formatString("SlowmodeSeconds", i3, 10);
-                    String formatString2 = LocaleController.formatString("SlowmodeSeconds", i3, 30);
+                    String formatString = LocaleController.formatString(i3, 5);
+                    String formatString2 = LocaleController.formatString(i3, 10);
+                    String formatString3 = LocaleController.formatString(i3, 30);
                     int i4 = R.string.SlowmodeMinutes;
-                    slideChooseView.setOptions(i2, string, formatString, formatString2, LocaleController.formatString("SlowmodeMinutes", i4, 1), LocaleController.formatString("SlowmodeMinutes", i4, 5), LocaleController.formatString("SlowmodeMinutes", i4, 15), LocaleController.formatString("SlowmodeHours", R.string.SlowmodeHours, 1));
+                    slideChooseView.setOptions(i2, string, formatString, formatString2, formatString3, LocaleController.formatString(i4, 1), LocaleController.formatString(i4, 5), LocaleController.formatString(i4, 15), LocaleController.formatString(R.string.SlowmodeHours, 1));
                     slideChooseView.setCallback(new SlideChooseView.Callback() {
                         @Override
                         public final void onOptionSelected(int i5) {

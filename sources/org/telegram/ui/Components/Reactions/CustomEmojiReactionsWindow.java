@@ -388,6 +388,10 @@ public class CustomEmojiReactionsWindow {
         createTransition(true);
     }
 
+    public void setLongPressEnabled(boolean z) {
+        this.selectAnimatedEmojiDialog.setLongPressEnabled(z);
+    }
+
     public void updateWindowPosition() {
         if (this.dismissed) {
             return;

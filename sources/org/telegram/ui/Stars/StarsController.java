@@ -4554,6 +4554,7 @@ public class StarsController {
         public boolean isCollection;
         public String lastOffset;
         public boolean loading;
+        public boolean peer_color_available;
         private ArrayList savedPinnedState;
         public boolean shown;
         public boolean sort_by_date;
@@ -4576,6 +4577,7 @@ public class StarsController {
         public GiftsList(int i, long j, boolean z) {
             this.isCollection = false;
             this.sort_by_date = true;
+            this.peer_color_available = false;
             this.includeFlags = 783;
             this.gifts = new ArrayList();
             this.currentRequestId = -1;
@@ -4679,6 +4681,12 @@ public class StarsController {
             }
         }
 
+        public void setFilters(int i) {
+            this.includeFlags = i;
+            this.sort_by_date = true;
+            invalidate(true);
+        }
+
         public boolean hasFilters() {
             return (this.sort_by_date && this.includeFlags == 783) ? false : true;
         }
@@ -4759,6 +4767,7 @@ public class StarsController {
             getsavedstargifts.exclude_unique = !isInclude_unique();
             getsavedstargifts.exclude_saved = !isInclude_displayed();
             getsavedstargifts.exclude_unsaved = !isInclude_hidden();
+            getsavedstargifts.peer_color_available = this.peer_color_available;
             if (this.dialogId == 0) {
                 getsavedstargifts.peer = new TLRPC.TL_inputPeerSelf();
             } else {

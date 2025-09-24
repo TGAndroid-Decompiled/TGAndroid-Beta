@@ -187,6 +187,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public interface ReactionsContainerDelegate {
 
         public abstract class CC {
+            public static boolean $default$allowLongPress(ReactionsContainerDelegate reactionsContainerDelegate) {
+                return true;
+            }
+
             public static boolean $default$drawBackground(ReactionsContainerDelegate reactionsContainerDelegate) {
                 return false;
             }
@@ -201,6 +205,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             public static void $default$onEmojiWindowDismissed(ReactionsContainerDelegate reactionsContainerDelegate) {
             }
         }
+
+        boolean allowLongPress();
 
         boolean drawBackground();
 
@@ -766,7 +772,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (this.reactionsWindow != null) {
             return;
         }
-        this.reactionsWindow = new CustomEmojiReactionsWindow(this.type, this.fragment, this.allReactionsList, this.selectedReactions, this, this.resourcesProvider, this.forceAttachToParent);
+        CustomEmojiReactionsWindow customEmojiReactionsWindow = new CustomEmojiReactionsWindow(this.type, this.fragment, this.allReactionsList, this.selectedReactions, this, this.resourcesProvider, this.forceAttachToParent);
+        this.reactionsWindow = customEmojiReactionsWindow;
+        ReactionsContainerDelegate reactionsContainerDelegate = this.delegate;
+        customEmojiReactionsWindow.setLongPressEnabled(reactionsContainerDelegate == null || reactionsContainerDelegate.allowLongPress());
         invalidateLoopViews();
         this.reactionsWindow.onDismissListener(new Runnable() {
             @Override
@@ -2520,7 +2529,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 this.pressed = true;
                 this.pressedX = motionEvent.getX();
                 this.pressedY = motionEvent.getY();
-                if (this.sideScale == 1.0f && !this.isLocked && ReactionsContainerLayout.this.type != 3 && ReactionsContainerLayout.this.type != 4 && ReactionsContainerLayout.this.type != 5) {
+                if (this.sideScale == 1.0f && !this.isLocked && ReactionsContainerLayout.this.type != 3 && ReactionsContainerLayout.this.type != 4 && ReactionsContainerLayout.this.type != 5 && (ReactionsContainerLayout.this.delegate == null || ReactionsContainerLayout.this.delegate.allowLongPress())) {
                     AndroidUtilities.runOnUIThread(this.longPressRunnable, ViewConfiguration.getLongPressTimeout());
                 }
             }

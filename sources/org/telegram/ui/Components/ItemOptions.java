@@ -1323,7 +1323,11 @@ public class ItemOptions {
                             canvas.restore();
                         }
                     } else if (!(ItemOptions.this.scrimView instanceof GiftSheet.GiftCell) || ItemOptions.this.animateToWidth == 0 || ItemOptions.this.animateToHeight == 0) {
-                        canvas.saveLayerAlpha(0.0f, 0.0f, ItemOptions.this.scrimView.getWidth(), ItemOptions.this.scrimView.getHeight(), (int) (this.dimProgress * 255.0f), 31);
+                        if (ItemOptions.this.allowMoveScrim) {
+                            canvas.saveLayerAlpha(0.0f, 0.0f, ItemOptions.this.scrimView.getWidth(), ItemOptions.this.scrimView.getHeight(), (int) (this.dimProgress * 255.0f), 31);
+                        } else {
+                            canvas.save();
+                        }
                         if (ItemOptions.this.scrimView instanceof ScrimView) {
                             ((ScrimView) ItemOptions.this.scrimView).drawScrim(canvas, this.dimProgress);
                         } else {
@@ -1368,7 +1372,7 @@ public class ItemOptions {
                     this.clipPath.addRoundRect(rectF2, ItemOptions.this.scrimViewRoundRadius * this.dimProgress, ItemOptions.this.scrimViewRoundRadius * this.dimProgress, Path.Direction.CW);
                     canvas.clipPath(this.clipPath);
                 }
-                this.cachedBitmapPaint.setAlpha((int) (this.dimProgress * 255.0f));
+                this.cachedBitmapPaint.setAlpha(255);
                 canvas.drawBitmap(this.cachedBitmap, -ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, this.cachedBitmapPaint);
                 canvas.restore();
             }

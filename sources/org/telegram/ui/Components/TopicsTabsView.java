@@ -38,6 +38,7 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TopicsController;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -59,6 +60,7 @@ import org.telegram.ui.GradientClip;
 public abstract class TopicsTabsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private long animateFromSelectedTopicId;
     private ValueAnimator animator;
+    private final boolean bot;
     private final ImageView button;
     private final boolean canShowProgress;
     private final ImageView closeButton;
@@ -98,6 +100,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         this.resourcesProvider = resourcesProvider;
         long j2 = -j;
         this.mono = ChatObject.isMonoForum(MessagesController.getInstance(i).getChat(Long.valueOf(j2)));
+        this.bot = false;
         SharedPreferences preferences = UserConfig.getInstance(i).getPreferences();
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + j2, false);
         setClipChildren(true);
@@ -583,12 +586,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.savedMessagesDialogsUpdate) {
-            if (((Long) objArr[0]).longValue() != this.dialogId) {
-                return;
-            }
-            updateTabs();
-        } else if (i == NotificationCenter.topicsDidLoaded) {
+        if (i == NotificationCenter.topicsDidLoaded) {
             if (((Long) objArr[0]).longValue() != (-this.dialogId)) {
                 return;
             }
@@ -630,16 +628,14 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
         this.notificationsAttached = z;
         if (z) {
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.topicsDidLoaded);
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
             MessagesController.getInstance(this.currentAccount).getTopicsController().onTopicFragmentResume(-this.dialogId);
-            return;
+        } else {
+            MessagesController.getInstance(this.currentAccount).getTopicsController().onTopicFragmentPause(-this.dialogId);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.topicsDidLoaded);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
         }
-        MessagesController.getInstance(this.currentAccount).getTopicsController().onTopicFragmentPause(-this.dialogId);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.topicsDidLoaded);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
     }
 
     public void fillVerticalTabs(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -647,22 +643,24 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
         TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
         ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(-this.dialogId);
-        arrayList.add(VerticalTabView.Factory.asAll(this.mono).setChecked(this.currentTopicId == 0));
+        arrayList.add(VerticalTabView.Factory.asAll(this.bot, this.mono).setChecked(this.currentTopicId == 0));
         if (topics != null) {
             Iterator<TLRPC.TL_forumTopic> it = topics.iterator();
             z = false;
             while (it.hasNext()) {
                 TLRPC.TL_forumTopic next = it.next();
-                if (!this.excludeTopics.contains(Integer.valueOf(next.id))) {
-                    boolean z2 = next.pinned;
-                    if (!z2 && z) {
-                        universalAdapter.reorderSectionEnd();
-                        z = false;
-                    } else if (z2 && !z) {
-                        universalAdapter.reorderSectionStart();
-                        z = true;
+                if (!this.bot || next.id != 1) {
+                    if (!this.excludeTopics.contains(Integer.valueOf(next.id))) {
+                        boolean z2 = next.pinned;
+                        if (!z2 && z) {
+                            universalAdapter.reorderSectionEnd();
+                            z = false;
+                        } else if (z2 && !z) {
+                            universalAdapter.reorderSectionStart();
+                            z = true;
+                        }
+                        arrayList.add(VerticalTabView.Factory.asTab(this.dialogId, next, this.mono).setChecked(this.currentTopicId == getTopicId(next)));
                     }
-                    arrayList.add(VerticalTabView.Factory.asTab(this.dialogId, next, this.mono).setChecked(this.currentTopicId == getTopicId(next)));
                 }
             }
         } else {
@@ -676,7 +674,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             arrayList.add(VerticalTabView.Factory.asLoading(-3));
             arrayList.add(VerticalTabView.Factory.asLoading(-4));
         }
-        if (this.mono || !ChatObject.canCreateTopic(chat)) {
+        if (this.bot || this.mono || !ChatObject.canCreateTopic(chat)) {
             return;
         }
         arrayList.add(VerticalTabView.Factory.asAdd(false));
@@ -687,22 +685,24 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         TopicsController topicsController = MessagesController.getInstance(this.currentAccount).getTopicsController();
         ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(-this.dialogId);
         boolean z = false;
-        arrayList.add(HorizontalTabView.Factory.asAll(this.mono).setChecked(this.currentTopicId == 0));
+        arrayList.add(HorizontalTabView.Factory.asAll(this.bot, this.mono).setChecked(this.currentTopicId == 0));
         if (topics != null) {
             Iterator<TLRPC.TL_forumTopic> it = topics.iterator();
             boolean z2 = false;
             while (it.hasNext()) {
                 TLRPC.TL_forumTopic next = it.next();
-                if (!this.excludeTopics.contains(Integer.valueOf(next.id))) {
-                    boolean z3 = next.pinned;
-                    if (!z3 && z2) {
-                        universalAdapter.reorderSectionEnd();
-                        z2 = false;
-                    } else if (z3 && !z2) {
-                        universalAdapter.reorderSectionStart();
-                        z2 = true;
+                if (!this.bot || next.id != 1) {
+                    if (!this.excludeTopics.contains(Integer.valueOf(next.id))) {
+                        boolean z3 = next.pinned;
+                        if (!z3 && z2) {
+                            universalAdapter.reorderSectionEnd();
+                            z2 = false;
+                        } else if (z3 && !z2) {
+                            universalAdapter.reorderSectionStart();
+                            z2 = true;
+                        }
+                        arrayList.add(HorizontalTabView.Factory.asTab(this.dialogId, next, this.mono).setChecked(this.currentTopicId == getTopicId(next)));
                     }
-                    arrayList.add(HorizontalTabView.Factory.asTab(this.dialogId, next, this.mono).setChecked(this.currentTopicId == getTopicId(next)));
                 }
             }
             z = z2;
@@ -715,7 +715,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             arrayList.add(HorizontalTabView.Factory.asLoading(-3));
             arrayList.add(HorizontalTabView.Factory.asLoading(-4));
         }
-        if (this.mono || !ChatObject.canCreateTopic(chat)) {
+        if (this.bot || this.mono || !ChatObject.canCreateTopic(chat)) {
             return;
         }
         arrayList.add(HorizontalTabView.Factory.asAdd());
@@ -785,24 +785,28 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
         final TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj;
         final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-        final TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-this.dialogId));
+        long j2 = this.dialogId;
+        TLRPC.Chat chat2 = j2 < 0 ? messagesController.getChat(Long.valueOf(-j2)) : null;
+        long j3 = this.dialogId;
+        TLRPC.User user2 = j3 > 0 ? messagesController.getUser(Long.valueOf(j3)) : null;
         final ItemOptions makeOptions = ItemOptions.makeOptions(this.fragment, view, true);
         if (ChatObject.isMonoForum(chat2)) {
             final long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
             if (peerDialogId == 0 || !ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
                 return false;
             }
+            final TLRPC.Chat chat3 = chat2;
             makeOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
                 @Override
                 public final void run() {
-                    TopicsTabsView.this.lambda$onTabLongClick$7(makeOptions, peerDialogId, chat2);
+                    TopicsTabsView.this.lambda$onTabLongClick$7(makeOptions, peerDialogId, chat3);
                 }
             });
-            long j2 = chat2.id;
+            long j4 = chat2.id;
             if (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
-                long j3 = chat2.linked_monoforum_id;
-                if (j3 != 0) {
-                    j = j3;
+                long j5 = chat2.linked_monoforum_id;
+                if (j5 != 0) {
+                    j = j5;
                     chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
                     user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
                     if (user != null && ChatObject.canBlockUsers(chat)) {
@@ -819,7 +823,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     itemOptions = makeOptions;
                 }
             }
-            j = j2;
+            j = j4;
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
             user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
             if (user != null) {
@@ -835,7 +839,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             }
             itemOptions = makeOptions;
         } else {
-            if (ChatObject.canManageTopics(chat2)) {
+            if (ChatObject.canManageTopics(chat2) || UserObject.isBotForum(user2)) {
                 boolean z = tL_forumTopic.pinned;
                 makeOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
                     @Override
@@ -853,7 +857,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 }
             }
             itemOptions = makeOptions;
-            final ItemOptions addAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, makeOptions, this.dialogId, tL_forumTopic.id);
+            final ItemOptions addAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, itemOptions, this.dialogId, tL_forumTopic.id);
             boolean isDialogMuted = messagesController.isDialogMuted(this.dialogId, tL_forumTopic.id);
             itemOptions.add(isDialogMuted ? R.drawable.msg_unmute : R.drawable.msg_mute, LocaleController.getString(isDialogMuted ? R.string.Unmute : R.string.Mute), new Runnable() {
                 @Override
@@ -1326,18 +1330,18 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             this.imageLayoutView.invalidate();
         }
 
-        public void setAll(boolean z, boolean z2) {
-            setLayout(z);
+        public void setAll(boolean z, boolean z2, boolean z3) {
+            setLayout(z2);
             this.topicId = -1L;
             this.staticImage = true;
             this.isAdd = false;
-            this.textView.setText(LocaleController.getString(R.string.AllTopicsSide));
+            this.textView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsSide));
             this.imageView.clearImage();
             this.imageView.setAnimatedEmojiDrawable(null);
-            this.imageView.setImageResource(R.drawable.other_chats);
+            this.imageView.setImageResource(z ? R.drawable.filled_topic_new_24 : R.drawable.other_chats);
             this.imageView.setScaleX(1.0f);
             this.imageView.setScaleY(1.0f);
-            setSelected(z2);
+            setSelected(z3);
             updateImageColor();
             updateState();
             setCounter(true, 0, false, false, false);
@@ -1523,6 +1527,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             @Override
             public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 VerticalTabView verticalTabView = (VerticalTabView) view;
+                boolean z2 = false;
                 if (uItem.red) {
                     verticalTabView.setLoading();
                 } else {
@@ -1531,7 +1536,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                         if (uItem.longValue == -2) {
                             verticalTabView.setAdd(uItem.accent, uItem.checked);
                         } else {
-                            verticalTabView.setAll(uItem.accent, uItem.checked);
+                            verticalTabView.setAll((uItem.flags & 1) != 0, uItem.accent, uItem.checked);
                         }
                     } else if (obj instanceof TLRPC.TL_forumTopic) {
                         if (!uItem.withUsername) {
@@ -1541,15 +1546,19 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                         }
                     }
                 }
-                verticalTabView.setReorder(universalRecyclerView != null && universalRecyclerView.isReorderAllowed() && verticalTabView.pinned);
+                if (universalRecyclerView != null && universalRecyclerView.isReorderAllowed() && verticalTabView.pinned) {
+                    z2 = true;
+                }
+                verticalTabView.setReorder(z2);
             }
 
-            public static UItem asAll(boolean z) {
+            public static UItem asAll(boolean z, boolean z2) {
                 UItem ofFactory = UItem.ofFactory(Factory.class);
                 ofFactory.id = 0;
                 ofFactory.longValue = 0L;
                 ofFactory.object = null;
-                ofFactory.accent = z;
+                ofFactory.accent = z2;
+                ofFactory.flags = z ? 1 : 0;
                 return ofFactory;
             }
 
@@ -1739,13 +1748,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             return this.topicId;
         }
 
-        public void setAll(boolean z, boolean z2) {
-            setLayout(z);
+        public void setAll(boolean z, boolean z2, boolean z3) {
+            setLayout(z2);
             this.topicId = 0L;
             this.isAdd = false;
             this.staticImage = true;
-            this.textView.setText(LocaleController.getString(R.string.AllTopicsShort));
-            setSelected(z2);
+            this.textView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsShort));
+            setSelected(z3);
             updateTextColor();
             setCounter(true, 0, false, false, false);
             setPinned(false, false);
@@ -1980,6 +1989,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             @Override
             public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 HorizontalTabView horizontalTabView = (HorizontalTabView) view;
+                boolean z2 = false;
                 if (uItem.red) {
                     horizontalTabView.setLoading();
                 } else {
@@ -1988,7 +1998,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                         if (uItem.id == -2) {
                             horizontalTabView.setAdd();
                         } else {
-                            horizontalTabView.setAll(uItem.accent, uItem.checked);
+                            horizontalTabView.setAll((uItem.flags & 1) != 0, uItem.accent, uItem.checked);
                         }
                     } else if (obj instanceof TLRPC.TL_forumTopic) {
                         if (!uItem.withUsername) {
@@ -1998,15 +2008,19 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                         }
                     }
                 }
-                horizontalTabView.setReorder(universalRecyclerView != null && universalRecyclerView.isReorderAllowed() && horizontalTabView.pinned);
+                if (universalRecyclerView != null && universalRecyclerView.isReorderAllowed() && horizontalTabView.pinned) {
+                    z2 = true;
+                }
+                horizontalTabView.setReorder(z2);
             }
 
-            public static UItem asAll(boolean z) {
+            public static UItem asAll(boolean z, boolean z2) {
                 UItem ofFactory = UItem.ofFactory(Factory.class);
                 ofFactory.id = 0;
                 ofFactory.longValue = 0L;
                 ofFactory.object = null;
-                ofFactory.accent = z;
+                ofFactory.accent = z2;
+                ofFactory.flags = z ? 1 : 0;
                 return ofFactory;
             }
 

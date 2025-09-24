@@ -116,6 +116,7 @@ public class LinkActionView extends LinearLayout {
         linearLayout.setOrientation(0);
         TextView textView2 = new TextView(context);
         this.copyView = textView2;
+        ScaleStateListAnimator.apply(textView2, 0.025f, 1.2f);
         textView2.setGravity(17);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_copy_filled)), 0, 1, 0);
@@ -131,6 +132,7 @@ public class LinkActionView extends LinearLayout {
         linearLayout.addView(textView2, LayoutHelper.createLinear(0, 42, 1.0f, 0, 4, 0, 4, 0));
         TextView textView3 = new TextView(context);
         this.shareView = textView3;
+        ScaleStateListAnimator.apply(textView3, 0.025f, 1.2f);
         textView3.setGravity(17);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
         spannableStringBuilder2.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_share_filled)), 0, 1, 0);
@@ -146,6 +148,7 @@ public class LinkActionView extends LinearLayout {
         linearLayout.addView(textView3, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         TextView textView4 = new TextView(context);
         this.removeView = textView4;
+        ScaleStateListAnimator.apply(textView4, 0.025f, 1.2f);
         textView4.setGravity(17);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
         spannableStringBuilder3.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_delete_filled)), 0, 1, 0);
@@ -451,14 +454,19 @@ public class LinkActionView extends LinearLayout {
     }
 
     private void showQrCode() {
+        String str;
+        String str2 = this.link;
+        boolean z = str2 != null && str2.endsWith("?direct");
         Context context = getContext();
         String string = LocaleController.getString(R.string.InviteByQRCode);
-        String str = this.link;
-        String str2 = this.qrText;
-        if (str2 == null) {
-            str2 = LocaleController.getString(this.isChannel ? R.string.QRCodeLinkHelpChannel : R.string.QRCodeLinkHelpGroup);
+        String str3 = this.link;
+        String str4 = this.qrText;
+        if (str4 == null) {
+            str = LocaleController.getString(this.isChannel ? z ? R.string.QRCodeLinkHelpChannelDirect : R.string.QRCodeLinkHelpChannel : R.string.QRCodeLinkHelpGroup);
+        } else {
+            str = str4;
         }
-        QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str, str2, false) {
+        QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str3, str, false) {
             @Override
             public void lambda$new$0() {
                 super.lambda$new$0();

@@ -12,6 +12,7 @@ public class WebFile extends TLObject {
     public TLRPC.InputWebFileLocation location;
     public String mime_type;
     public int msg_id;
+    public boolean noproxy;
     public TLRPC.InputPeer peer;
     public int scale;
     public int size;
@@ -48,20 +49,35 @@ public class WebFile extends TLObject {
     }
 
     public static WebFile createWithWebDocument(TLRPC.WebDocument webDocument) {
-        if (!(webDocument instanceof TLRPC.TL_webDocument)) {
+        if (webDocument instanceof TLRPC.TL_webDocument) {
+            WebFile webFile = new WebFile();
+            TLRPC.TL_webDocument tL_webDocument = (TLRPC.TL_webDocument) webDocument;
+            TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation = new TLRPC.TL_inputWebFileLocation();
+            webFile.location = tL_inputWebFileLocation;
+            String str = webDocument.url;
+            webFile.url = str;
+            tL_inputWebFileLocation.url = str;
+            tL_inputWebFileLocation.access_hash = tL_webDocument.access_hash;
+            webFile.size = tL_webDocument.size;
+            webFile.mime_type = tL_webDocument.mime_type;
+            webFile.attributes = tL_webDocument.attributes;
+            return webFile;
+        }
+        if (!(webDocument instanceof TLRPC.TL_webDocumentNoProxy)) {
             return null;
         }
-        WebFile webFile = new WebFile();
-        TLRPC.TL_webDocument tL_webDocument = (TLRPC.TL_webDocument) webDocument;
-        TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation = new TLRPC.TL_inputWebFileLocation();
-        webFile.location = tL_inputWebFileLocation;
-        String str = webDocument.url;
-        webFile.url = str;
-        tL_inputWebFileLocation.url = str;
-        tL_inputWebFileLocation.access_hash = tL_webDocument.access_hash;
-        webFile.size = tL_webDocument.size;
-        webFile.mime_type = tL_webDocument.mime_type;
-        webFile.attributes = tL_webDocument.attributes;
-        return webFile;
+        WebFile webFile2 = new WebFile();
+        TLRPC.TL_webDocumentNoProxy tL_webDocumentNoProxy = (TLRPC.TL_webDocumentNoProxy) webDocument;
+        TLRPC.TL_inputWebFileLocation tL_inputWebFileLocation2 = new TLRPC.TL_inputWebFileLocation();
+        webFile2.location = tL_inputWebFileLocation2;
+        String str2 = webDocument.url;
+        webFile2.url = str2;
+        tL_inputWebFileLocation2.url = str2;
+        tL_inputWebFileLocation2.access_hash = tL_webDocumentNoProxy.access_hash;
+        webFile2.size = tL_webDocumentNoProxy.size;
+        webFile2.mime_type = tL_webDocumentNoProxy.mime_type;
+        webFile2.attributes = tL_webDocumentNoProxy.attributes;
+        webFile2.noproxy = true;
+        return webFile2;
     }
 }

@@ -779,27 +779,27 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             tL_channels_updateColor.channel = getMessagesController().getInputChannel(-this.dialogId);
             tL_channels_updateColor.for_profile = false;
             if (chat.color == null) {
-                chat.color = new TLRPC.TL_peerColor();
+                chat.color = new TLRPC.PeerColor();
                 chat.flags2 |= 128;
             }
             int i = tL_channels_updateColor.flags;
             tL_channels_updateColor.flags = i | 4;
             int i2 = this.selectedReplyColor;
             tL_channels_updateColor.color = i2;
-            TLRPC.TL_peerColor tL_peerColor = chat.color;
-            int i3 = tL_peerColor.flags;
+            TLRPC.PeerColor peerColor = chat.color;
+            int i3 = peerColor.flags;
             int i4 = i3 | 1;
-            tL_peerColor.flags = i4;
-            tL_peerColor.color = i2;
+            peerColor.flags = i4;
+            peerColor.color = i2;
             long j = this.selectedReplyEmoji;
             if (j != 0) {
                 tL_channels_updateColor.flags = i | 5;
                 tL_channels_updateColor.background_emoji_id = j;
-                tL_peerColor.flags = i3 | 3;
-                tL_peerColor.background_emoji_id = j;
+                peerColor.flags = i3 | 3;
+                peerColor.background_emoji_id = j;
             } else {
-                tL_peerColor.flags = i4 & (-3);
-                tL_peerColor.background_emoji_id = 0L;
+                peerColor.flags = i4 & (-3);
+                peerColor.background_emoji_id = 0L;
             }
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
@@ -814,16 +814,16 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             tL_channels_updateColor2.channel = getMessagesController().getInputChannel(-this.dialogId);
             tL_channels_updateColor2.for_profile = true;
             if (chat.profile_color == null) {
-                chat.profile_color = new TLRPC.TL_peerColor();
+                chat.profile_color = new TLRPC.PeerColor();
                 chat.flags2 |= 256;
             }
             int i5 = this.selectedProfileColor;
             if (i5 >= 0) {
                 tL_channels_updateColor2.flags |= 4;
                 tL_channels_updateColor2.color = i5;
-                TLRPC.TL_peerColor tL_peerColor2 = chat.profile_color;
-                tL_peerColor2.flags |= 1;
-                tL_peerColor2.color = i5;
+                TLRPC.PeerColor peerColor2 = chat.profile_color;
+                peerColor2.flags |= 1;
+                peerColor2.color = i5;
             } else {
                 chat.profile_color.flags &= -2;
             }
@@ -831,13 +831,13 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (j2 != 0) {
                 tL_channels_updateColor2.flags |= 1;
                 tL_channels_updateColor2.background_emoji_id = j2;
-                TLRPC.TL_peerColor tL_peerColor3 = chat.profile_color;
-                tL_peerColor3.flags |= 2;
-                tL_peerColor3.background_emoji_id = j2;
+                TLRPC.PeerColor peerColor3 = chat.profile_color;
+                peerColor3.flags |= 2;
+                peerColor3.background_emoji_id = j2;
             } else {
-                TLRPC.TL_peerColor tL_peerColor4 = chat.profile_color;
-                tL_peerColor4.flags &= -3;
-                tL_peerColor4.background_emoji_id = 0L;
+                TLRPC.PeerColor peerColor4 = chat.profile_color;
+                peerColor4.flags &= -3;
+                peerColor4.background_emoji_id = 0L;
             }
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor2, new RequestDelegate() {
@@ -1253,7 +1253,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 peerColorPicker.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 frameLayout = peerColorPicker;
             } else if (i == 4) {
-                PeerColorActivity.PeerColorGrid peerColorGrid = new PeerColorActivity.PeerColorGrid(ChannelColorActivity.this.getContext(), 1, ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
+                PeerColorActivity.PeerColorGrid peerColorGrid = new PeerColorActivity.PeerColorGrid(ChannelColorActivity.this.getContext(), 0, ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 peerColorGrid.setDivider(false);
                 peerColorGrid.setOnColorClick(new Utilities.Callback() {
                     @Override

@@ -3003,16 +3003,7 @@ public class LocaleController {
             calendar.setTimeInMillis(j2);
             int i3 = calendar.get(6);
             int i4 = calendar.get(1);
-            if (i3 == i && i2 == i4) {
-                if (z) {
-                    return formatString("TodayAtFormatted", R.string.TodayAtFormatted, getInstance().getFormatterDay().format(new Date(j2)));
-                }
-                return formatString("TodayAtFormattedWithToday", R.string.TodayAtFormattedWithToday, getInstance().getFormatterDay().format(new Date(j2)));
-            }
-            if (i3 + 1 == i && i2 == i4) {
-                return formatString("YesterdayAtFormatted", R.string.YesterdayAtFormatted, getInstance().getFormatterDay().format(new Date(j2)));
-            }
-            return Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))) : formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
+            return (i3 == i && i2 == i4) ? z ? formatString(R.string.TodayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))) : formatString(R.string.TodayAtFormattedWithToday, getInstance().getFormatterDay().format(new Date(j2))) : (i3 + 1 == i && i2 == i4) ? formatString(R.string.YesterdayAtFormatted, getInstance().getFormatterDay().format(new Date(j2))) : Math.abs(System.currentTimeMillis() - j2) < 31536000000L ? formatString(R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2))) : formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";
@@ -3539,11 +3530,11 @@ public class LocaleController {
         long j2 = j * 1000;
         try {
             if (Math.abs(System.currentTimeMillis() - j2) < 31536000000L) {
-                formatString = formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
+                formatString = formatString(R.string.formatDateAtTime, getInstance().getFormatterDayMonth().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
             } else {
-                formatString = formatString("formatDateAtTime", R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
+                formatString = formatString(R.string.formatDateAtTime, getInstance().getFormatterYear().format(new Date(j2)), getInstance().getFormatterDay().format(new Date(j2)));
             }
-            return formatString("ChannelOtherSubscriberJoined", R.string.ChannelOtherSubscriberJoined, formatString);
+            return formatString(R.string.ChannelOtherSubscriberJoined, formatString);
         } catch (Exception e) {
             FileLog.e(e);
             return "LOC_ERR";

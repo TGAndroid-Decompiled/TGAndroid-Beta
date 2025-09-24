@@ -8,6 +8,10 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 
 public class AppGlobalConfig {
+    public final ConfigInt contactNoteLengthLimit;
+    public final ConfigInt groupCallMessageLengthLimit;
+    public final ConfigTime groupCallMessageTtl;
+    public final ConfigTime messageTypingDraftTtl;
     public final ConfigBoolean needAgeVideoVerification;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
@@ -57,6 +61,10 @@ public class AppGlobalConfig {
         this.stargiftsCollectionGiftsLimit = ofInt("stargifts_collection_gifts_limit", 100);
         this.storiesAlbumsLimit = ofInt("stories_albums_limit", 100);
         this.storiesAlbumStoriesLimit = ofInt("stories_album_stories_limit", 100);
+        this.messageTypingDraftTtl = ofTime("message_typing_draft_ttl", 30L, timeUnit);
+        this.groupCallMessageTtl = ofTime("group_call_message_ttl", 10L, timeUnit);
+        this.groupCallMessageLengthLimit = ofInt("group_call_message_length_limit_", 128);
+        this.contactNoteLengthLimit = ofInt("contact_note_length_limit", 128);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

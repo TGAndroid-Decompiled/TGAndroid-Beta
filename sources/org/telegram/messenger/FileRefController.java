@@ -1139,11 +1139,11 @@ public class FileRefController extends BaseController {
     }
 
     public void lambda$onUpdateObjectReference$31(Requester requester) {
-        getSendMessagesHelper().lambda$performSendMessageRequest$60((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
+        getSendMessagesHelper().lambda$performSendMessageRequest$61((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
     }
 
     public void lambda$onUpdateObjectReference$32(Requester requester) {
-        getSendMessagesHelper().lambda$performSendMessageRequest$60((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
+        getSendMessagesHelper().lambda$performSendMessageRequest$61((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
     }
 
     private void sendErrorToObject(final Object[] objArr, int i) {
@@ -1215,7 +1215,7 @@ public class FileRefController extends BaseController {
     }
 
     public void lambda$sendErrorToObject$39(Object[] objArr) {
-        getSendMessagesHelper().lambda$performSendMessageRequest$60((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
+        getSendMessagesHelper().lambda$performSendMessageRequest$61((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
     }
 
     private boolean onRequestComplete(java.lang.String r33, java.lang.String r34, org.telegram.tgnet.TLObject r35, org.telegram.tgnet.TLRPC.TL_error r36, boolean r37, boolean r38) {

@@ -94,6 +94,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     public boolean drawDoubleNavigationBar;
     public boolean drawNavigationBar;
     private boolean focusable;
+    private int focusableSoftInputMode;
     private boolean forceKeyboardOnDismiss;
     private boolean fullHeight;
     protected boolean fullWidth;
@@ -976,6 +977,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public BottomSheet(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, z, false, resourcesProvider);
+    }
+
+    public BottomSheet(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         this.currentAccount = UserConfig.selectedAccount;
         this.allowDrawContent = true;
@@ -995,6 +1000,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.allowCustomAnimation = true;
         this.statusBarHeight = AndroidUtilities.statusBarHeight;
         this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.focusableSoftInputMode = 16;
         this.dimBehind = true;
         this.dimBehindAlpha = 51;
         this.allowNestedScroll = true;
@@ -1013,6 +1019,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 30) {
             getWindow().addFlags(-2147483392);
+            if (z2) {
+                this.focusableSoftInputMode = 48;
+            }
         } else {
             getWindow().addFlags(-2147417856);
         }
@@ -1109,15 +1118,17 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.container.setClipToPadding(false);
         this.container.setBackground(this.backDrawable);
         this.focusable = z;
-        this.container.setFitsSystemWindows(true);
-        this.container.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-            @Override
-            public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets lambda$new$1;
-                lambda$new$1 = BottomSheet.this.lambda$new$1(view, windowInsets);
-                return lambda$new$1;
-            }
-        });
+        if (!z2) {
+            this.container.setFitsSystemWindows(true);
+            this.container.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                    WindowInsets lambda$new$1;
+                    lambda$new$1 = BottomSheet.this.lambda$new$1(view, windowInsets);
+                    return lambda$new$1;
+                }
+            });
+        }
         if (i2 >= 30) {
             this.container.setSystemUiVisibility(1792);
         } else {
@@ -1330,7 +1341,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             int i3 = attributes.flags & (-3);
             attributes.flags = i3;
             if (this.focusable) {
-                attributes.softInputMode = 16;
+                attributes.softInputMode = this.focusableSoftInputMode;
             } else {
                 attributes.flags = i3 | 131072;
             }
@@ -1389,7 +1400,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         Window window = getWindow();
         WindowManager.LayoutParams attributes = window.getAttributes();
         if (this.focusable) {
-            attributes.softInputMode = 16;
+            attributes.softInputMode = this.focusableSoftInputMode;
             attributes.flags &= -131073;
         } else {
             attributes.softInputMode = 48;
@@ -1416,7 +1427,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             }
             setShowing(true);
             if (this.focusable) {
-                getWindow().setSoftInputMode(16);
+                getWindow().setSoftInputMode(this.focusableSoftInputMode);
             }
             this.dismissed = false;
             cancelSheetAnimation();
@@ -1820,7 +1831,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1180getWindowView() {
+    public View mo1164getWindowView() {
         return this.container;
     }
 
@@ -2104,7 +2115,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-            AndroidUtilities.setLightNavigationBar(mo1180getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1164getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);

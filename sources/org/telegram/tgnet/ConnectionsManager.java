@@ -339,7 +339,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 214, BuildVars.APP_ID, str3, str9, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 216, BuildVars.APP_ID, str3, str9, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -380,6 +380,10 @@ public class ConnectionsManager extends BaseController {
 
     public int getTimeDifference() {
         return native_getTimeDifference(this.currentAccount);
+    }
+
+    public <T extends TLObject> int sendRequestTyped(TLMethod<T> tLMethod, Utilities.Callback2<T, TLRPC.TL_error> callback2) {
+        return sendRequestTyped(tLMethod, null, callback2);
     }
 
     public <T extends TLObject> int sendRequestTyped(TLMethod<T> tLMethod, final Executor executor, final Utilities.Callback2<T, TLRPC.TL_error> callback2) {

@@ -869,6 +869,10 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         private int[] lastLoadMediaCount = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
         private ArrayList delegates = new ArrayList();
 
+        public long getTopicId() {
+            return this.topicId;
+        }
+
         public boolean hasSharedMedia() {
             int[] lastMediaCount = getLastMediaCount();
             if (lastMediaCount == null) {

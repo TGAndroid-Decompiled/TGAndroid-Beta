@@ -1633,6 +1633,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 BlurringShader.StoryBlurDrawer windowBackgroundBlur;
 
                 @Override
+                public boolean allowLongPress() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+                }
+
+                @Override
                 public boolean drawBackground() {
                     return true;
                 }

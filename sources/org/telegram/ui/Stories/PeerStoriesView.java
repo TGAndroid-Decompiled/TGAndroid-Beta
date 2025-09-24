@@ -6445,6 +6445,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public class AnonymousClass35 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         @Override
+        public boolean allowLongPress() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+        }
+
+        @Override
         public boolean drawBackground() {
             return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
         }
@@ -6590,6 +6595,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public class AnonymousClass37 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+        @Override
+        public boolean allowLongPress() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+        }
+
         @Override
         public boolean drawBackground() {
             return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);

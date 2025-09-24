@@ -2,7 +2,7 @@ package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda40;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda42;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -2120,7 +2120,7 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if ((this.flags & 2) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 16384) != 0) {
@@ -2227,7 +2227,7 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if ((this.flags & 2) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 16384) != 0) {
@@ -2323,7 +2323,7 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if ((this.flags & 2) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 16384) != 0) {
@@ -2413,7 +2413,7 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if ((this.flags & 2) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 16384) != 0) {
@@ -2499,7 +2499,7 @@ public class TL_stories {
                 this.caption = inputSerializedData.readString(z);
             }
             if ((this.flags & 2) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 4) != 0) {

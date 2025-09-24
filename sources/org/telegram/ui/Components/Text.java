@@ -144,6 +144,14 @@ public class Text {
         this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
     }
 
+    public float calculateRealWidth() {
+        float f = 0.0f;
+        for (int i = 0; i < this.layout.getLineCount(); i++) {
+            f = Math.max(f, this.layout.getLineWidth(i));
+        }
+        return f;
+    }
+
     public Text multiline(int i) {
         this.maxLines = i;
         setText(this.layout.getText());

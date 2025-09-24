@@ -1964,6 +1964,11 @@ public class Bulletin {
 
         public class AnonymousClass2 implements ReactionsContainerLayout.ReactionsContainerDelegate {
             @Override
+            public boolean allowLongPress() {
+                return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+            }
+
+            @Override
             public boolean drawBackground() {
                 return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
             }

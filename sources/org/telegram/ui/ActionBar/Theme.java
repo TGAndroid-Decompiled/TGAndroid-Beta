@@ -89,7 +89,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda75;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda71;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -4245,7 +4245,11 @@ public abstract class Theme {
     }
 
     public static Drawable getSelectorDrawable(boolean z, ResourcesProvider resourcesProvider) {
-        return getSelectorDrawable(getColor(key_listSelector, resourcesProvider), z);
+        int color = getColor(key_listSelector, resourcesProvider);
+        if (z) {
+            return getSelectorDrawable(color, key_windowBackgroundWhite, resourcesProvider);
+        }
+        return createSelectorDrawable(color, 2);
     }
 
     public static Drawable getSelectorDrawable(int i, boolean z) {
@@ -4256,8 +4260,12 @@ public abstract class Theme {
     }
 
     public static Drawable getSelectorDrawable(int i, int i2) {
+        return getSelectorDrawable(i, i2, null);
+    }
+
+    public static Drawable getSelectorDrawable(int i, int i2, ResourcesProvider resourcesProvider) {
         if (i2 >= 0) {
-            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), new ColorDrawable(getColor(i2)), new ColorDrawable(-1));
+            return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), new ColorDrawable(getColor(i2, resourcesProvider)), new ColorDrawable(-1));
         }
         return createSelectorDrawable(i, 2);
     }
@@ -5026,7 +5034,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda75(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda71(), 2100L);
                 }
             }
             currentTheme = themeInfo;

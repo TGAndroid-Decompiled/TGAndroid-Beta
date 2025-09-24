@@ -1324,13 +1324,13 @@ public abstract class StoriesUtilities {
         }
 
         public void setUser(TLRPC.User user, boolean z) {
-            TLRPC.TL_peerColor tL_peerColor;
-            setColorId((user == null || (tL_peerColor = user.profile_color) == null) ? -1 : tL_peerColor.color, z);
+            TLRPC.PeerColor peerColor;
+            setColorId((user == null || (peerColor = user.profile_color) == null) ? -1 : peerColor.color, z);
         }
 
         public void setChat(TLRPC.Chat chat, boolean z) {
-            TLRPC.TL_peerColor tL_peerColor;
-            setColorId((chat == null || (tL_peerColor = chat.profile_color) == null) ? -1 : tL_peerColor.color, z);
+            TLRPC.PeerColor peerColor;
+            setColorId((chat == null || (peerColor = chat.profile_color) == null) ? -1 : peerColor.color, z);
         }
 
         public void setColorId(int i, boolean z) {

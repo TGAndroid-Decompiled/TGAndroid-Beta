@@ -196,6 +196,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
     public boolean includeHint;
     private ArrayList installedEmojiSets;
     private boolean isAttached;
+    private boolean isLongPressEnabled;
     private String lastQuery;
     private GridLayoutManager layoutManager;
     private Integer listStateId;
@@ -604,10 +605,12 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
 
         @Override
         public boolean onItemClick(final View view, int i, float f, float f2) {
-            int i2 = this.val$type;
-            if (i2 != 11 && i2 != 13) {
+            int i2;
+            int i3;
+            int i4 = this.val$type;
+            if (i4 != 11 && i4 != 13 && SelectAnimatedEmojiDialog.this.isLongPressEnabled) {
                 boolean z = view instanceof ImageViewEmoji;
-                if (z && (i2 == 1 || i2 == 8)) {
+                if (z && ((i3 = this.val$type) == 1 || i3 == 8)) {
                     SelectAnimatedEmojiDialog.this.incrementHintUse();
                     try {
                         SelectAnimatedEmojiDialog.this.performHapticFeedback(0);
@@ -641,7 +644,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 }
                 if (z) {
                     ImageViewEmoji imageViewEmoji2 = (ImageViewEmoji) view;
-                    if (imageViewEmoji2.span != null && (i2 == 0 || i2 == 12 || i2 == 9 || i2 == 10)) {
+                    if (imageViewEmoji2.span != null && ((i2 = this.val$type) == 0 || i2 == 12 || i2 == 9 || i2 == 10)) {
                         final TL_stars.TL_starGiftUnique tL_starGiftUnique = imageViewEmoji2.starGift;
                         SelectAnimatedEmojiDialog.this.selectStatusDateDialog = new SelectStatusDurationDialog(this.val$context, SelectAnimatedEmojiDialog.this.dismiss, SelectAnimatedEmojiDialog.this, imageViewEmoji2, this.val$resourcesProvider) {
                             {
@@ -831,6 +834,10 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
 
     public void lambda$onRecentLongClick$6(DialogInterface dialogInterface) {
         setDim(0.0f, true);
+    }
+
+    public void setLongPressEnabled(boolean z) {
+        this.isLongPressEnabled = z;
     }
 
     private void setDim(float f, boolean z) {
@@ -4774,7 +4781,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         ImageViewEmoji imageViewEmoji = this.selectedReactionView;
         if (imageViewEmoji != null) {
             float f = this.pressedProgress;
-            if (f != 1.0f && !this.cancelPressed) {
+            if (f != 1.0f && !this.cancelPressed && this.isLongPressEnabled) {
                 float f2 = f + 0.010666667f;
                 this.pressedProgress = f2;
                 if (f2 >= 1.0f) {

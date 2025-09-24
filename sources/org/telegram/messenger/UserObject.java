@@ -184,41 +184,55 @@ public class UserObject {
         if (user == null) {
             return 0;
         }
-        TLRPC.TL_peerColor tL_peerColor = user.color;
-        return (tL_peerColor == null || (tL_peerColor.flags & 1) == 0) ? (int) (user.id % 7) : tL_peerColor.color;
+        TLRPC.PeerColor peerColor = user.color;
+        return (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) ? (int) (user.id % 7) : peerColor.color;
     }
 
     public static long getEmojiId(TLRPC.User user) {
-        TLRPC.TL_peerColor tL_peerColor;
-        if (user == null || (tL_peerColor = user.color) == null || (tL_peerColor.flags & 2) == 0) {
+        if (user == null) {
             return 0L;
         }
-        return tL_peerColor.background_emoji_id;
+        TLRPC.PeerColor peerColor = user.color;
+        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return peerColor.background_emoji_id;
     }
 
     public static int getProfileColorId(TLRPC.User user) {
         if (user == null) {
             return 0;
         }
-        TLRPC.TL_peerColor tL_peerColor = user.profile_color;
-        if (tL_peerColor == null || (tL_peerColor.flags & 1) == 0) {
+        TLRPC.PeerColor peerColor = user.profile_color;
+        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) {
             return -1;
         }
-        return tL_peerColor.color;
+        return peerColor.color;
     }
 
     public static long getProfileEmojiId(TLRPC.User user) {
-        TLRPC.TL_peerColor tL_peerColor;
+        TLRPC.PeerColor peerColor;
         if (user != null) {
             TLRPC.EmojiStatus emojiStatus = user.emoji_status;
             if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
                 return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).pattern_document_id;
             }
         }
-        if (user == null || (tL_peerColor = user.profile_color) == null || (tL_peerColor.flags & 2) == 0) {
+        if (user == null || (peerColor = user.profile_color) == null || (peerColor.flags & 2) == 0) {
             return 0L;
         }
-        return tL_peerColor.background_emoji_id;
+        return peerColor.background_emoji_id;
+    }
+
+    public static long getOnlyProfileEmojiId(TLRPC.User user) {
+        if (user == null) {
+            return 0L;
+        }
+        TLRPC.PeerColor peerColor = user.profile_color;
+        if (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 2) == 0) {
+            return 0L;
+        }
+        return peerColor.background_emoji_id;
     }
 
     public static long getProfileCollectibleId(TLRPC.User user) {
@@ -356,5 +370,9 @@ public class UserObject {
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         return (userFull == null || userFull.id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+    }
+
+    public static boolean isBotForum(TLRPC.User user) {
+        return user != null && user.bot_forum_view;
     }
 }

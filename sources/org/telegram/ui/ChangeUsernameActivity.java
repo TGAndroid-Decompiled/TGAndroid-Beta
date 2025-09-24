@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -284,7 +285,11 @@ public class ChangeUsernameActivity extends BaseFragment {
                 if (tL_username == null || usernameCell.loading) {
                     return;
                 }
-                if (!tL_username.editable) {
+                if (tL_username.editable && ChangeUsernameActivity.this.botId == 0) {
+                    ChangeUsernameActivity.this.listView.smoothScrollToPosition(0);
+                    ChangeUsernameActivity.this.focusUsernameField(true);
+                    return;
+                } else {
                     new AlertDialog.Builder(ChangeUsernameActivity.this.getContext(), ChangeUsernameActivity.this.getResourceProvider()).setTitle(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLink : R.string.UsernameActivateLink)).setMessage(LocaleController.getString(tL_username.active ? R.string.UsernameDeactivateLinkProfileMessage : R.string.UsernameActivateLinkProfileMessage)).setPositiveButton(LocaleController.getString(tL_username.active ? R.string.Hide : R.string.Show), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i2) {
@@ -296,13 +301,6 @@ public class ChangeUsernameActivity extends BaseFragment {
                             alertDialog.dismiss();
                         }
                     }).show();
-                    return;
-                } else {
-                    if (ChangeUsernameActivity.this.botId != 0) {
-                        return;
-                    }
-                    ChangeUsernameActivity.this.listView.smoothScrollToPosition(0);
-                    ChangeUsernameActivity.this.focusUsernameField(true);
                     return;
                 }
             }
@@ -348,6 +346,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public void lambda$onItemClick$1(String str, TLObject tLObject, int i, boolean z, TLRPC.TL_error tL_error, final TLRPC.TL_username tL_username, final boolean z2) {
+            TLRPC.TL_username tL_username2;
             ChangeUsernameActivity.this.loadingUsernames.remove(str);
             if (tLObject instanceof TLRPC.TL_boolTrue) {
                 ChangeUsernameActivity.this.toggleUsername(i, z);
@@ -363,7 +362,33 @@ public class ChangeUsernameActivity extends BaseFragment {
             } else {
                 ChangeUsernameActivity.this.toggleUsername(tL_username, z2, true);
             }
-            ChangeUsernameActivity.this.getMessagesController().updateUsernameActiveness(MessagesController.getInstance(((BaseFragment) ChangeUsernameActivity.this).currentAccount).getUser(Long.valueOf(ChangeUsernameActivity.this.getUserId())), tL_username.username, tL_username.active);
+            TLRPC.User user = MessagesController.getInstance(((BaseFragment) ChangeUsernameActivity.this).currentAccount).getUser(Long.valueOf(ChangeUsernameActivity.this.getUserId()));
+            ChangeUsernameActivity.this.getMessagesController().updateUsernameActiveness(user, tL_username.username, tL_username.active);
+            if (ChangeUsernameActivity.this.botId == 0 || ChangeUsernameActivity.this.usernames == null) {
+                return;
+            }
+            Iterator it = ChangeUsernameActivity.this.usernames.iterator();
+            while (it.hasNext()) {
+                if (((TLRPC.TL_username) it.next()).active) {
+                    return;
+                }
+            }
+            Iterator it2 = ChangeUsernameActivity.this.usernames.iterator();
+            while (true) {
+                if (!it2.hasNext()) {
+                    tL_username2 = null;
+                    break;
+                } else {
+                    tL_username2 = (TLRPC.TL_username) it2.next();
+                    if (tL_username2.editable) {
+                        break;
+                    }
+                }
+            }
+            if (tL_username2 != null) {
+                ChangeUsernameActivity.this.toggleUsername(tL_username2, true, false);
+                ChangeUsernameActivity.this.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
+            }
         }
 
         public void lambda$onItemClick$0(TLRPC.TL_username tL_username, boolean z, AlertDialog alertDialog, int i) {

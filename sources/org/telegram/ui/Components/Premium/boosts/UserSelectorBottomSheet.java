@@ -1371,7 +1371,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             public final void run() {
                 UserSelectorBottomSheet.this.lambda$openBirthdaySetup$29();
             }
-        }, this.resourcesProvider).show();
+        }, false, this.resourcesProvider).show();
     }
 
     public void lambda$openBirthdaySetup$28(TL_account.TL_birthday tL_birthday) {

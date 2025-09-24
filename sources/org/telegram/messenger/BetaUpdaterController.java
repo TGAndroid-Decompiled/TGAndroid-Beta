@@ -121,7 +121,7 @@ public class BetaUpdaterController {
             public final void run(Object obj) {
                 BetaUpdaterController.this.lambda$checkForUpdate$2(runnable, (String) obj);
             }
-        }).execute("https://telegram.org/dl/android/apk-public-beta.json");
+        }).execute("null");
     }
 
     public void lambda$checkForUpdate$2(final Runnable runnable, final String str) {

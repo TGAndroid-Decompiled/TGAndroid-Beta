@@ -122,6 +122,7 @@ public class MessageObject {
     public static final int TYPE_STICKER = 13;
     public static final int TYPE_STORY = 23;
     public static final int TYPE_STORY_MENTION = 24;
+    public static final int TYPE_SUGGEST_BIRTHDAY = 32;
     public static final int TYPE_SUGGEST_PHOTO = 21;
     public static final int TYPE_TEXT = 0;
     public static final int TYPE_VIDEO = 3;
@@ -207,6 +208,7 @@ public class MessageObject {
     public VideoPlayer.VideoUri highestQuality;
     public ArrayList<String> highlightedWords;
     private BotInlineKeyboard.Source inlineKeyboardSource;
+    public boolean isBotPendingDraft;
     public boolean isDateObject;
     public boolean isDownloadingFile;
     private Boolean isEmbedVideoCached;
@@ -258,6 +260,7 @@ public class MessageObject {
     public boolean openedInViewer;
     public int overrideLinkColor;
     public long overrideLinkEmoji;
+    public TLRPC.TL_peerColorCollectible overrideLinkPeerColor;
     public StoriesController.StoriesList parentStoriesList;
     public int parentWidth;
     public SvgHelper.SvgDrawable pathThumb;
@@ -304,7 +307,7 @@ public class MessageObject {
     public String sponsoredAdditionalInfo;
     public String sponsoredButtonText;
     public boolean sponsoredCanReport;
-    public TLRPC.TL_peerColor sponsoredColor;
+    public TLRPC.PeerColor sponsoredColor;
     public byte[] sponsoredId;
     public String sponsoredInfo;
     public TLRPC.MessageMedia sponsoredMedia;
@@ -437,6 +440,10 @@ public class MessageObject {
     public long getTopicId() {
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()));
         return getTopicId(this.currentAccount, this.messageOwner, ChatObject.isForum(chat), ChatObject.isMonoForum(chat));
+    }
+
+    public static long getTopicId(int i, TLRPC.Message message, int i2) {
+        return getTopicId(i, message, (i2 & 1) != 0, (i2 & 4) != 0);
     }
 
     public static long getTopicId(int i, TLRPC.Message message, boolean z) {
@@ -928,6 +935,7 @@ public class MessageObject {
         public int padTop;
         public boolean quote;
         public boolean quoteCollapse;
+        public int start;
         public StaticLayout textLayout;
         public AtomicReference<Layout> spoilersPatchedTextLayout = new AtomicReference<>();
         public List<SpoilerEffect> spoilers = new ArrayList();
@@ -3007,7 +3015,73 @@ public class MessageObject {
     }
 
     public void measureInlineBotButtons() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.measureInlineBotButtons():void");
+        TLRPC.TL_messageReactions tL_messageReactions;
+        CharSequence replaceEmoji;
+        if (this.isRestrictedMessage) {
+            return;
+        }
+        this.wantedBotKeyboardWidth = 0;
+        this.inlineKeyboardSource = null;
+        BotInlineKeyboard.Builder builder = new BotInlineKeyboard.Builder();
+        TLRPC.Message message = this.messageOwner;
+        if (message != null) {
+            TLRPC.ReplyMarkup replyMarkup = message.reply_markup;
+            if ((replyMarkup instanceof TLRPC.TL_replyInlineMarkup) && replyMarkup.rows != null) {
+                builder.addBotKeyboard((TLRPC.TL_replyInlineMarkup) replyMarkup);
+            }
+        }
+        if (hasSuggestionInlineButtons()) {
+            builder.addSeparator();
+            builder.addSuggestionKeyboard();
+        }
+        if (builder.isNotEmpty()) {
+            this.inlineKeyboardSource = builder.build();
+        }
+        BotInlineKeyboard.Source source = this.inlineKeyboardSource;
+        if ((source != null && !hasExtendedMedia()) || ((tL_messageReactions = this.messageOwner.reactions) != null && !tL_messageReactions.results.isEmpty())) {
+            Theme.createCommonMessageResources();
+            StringBuilder sb = this.botButtonsLayout;
+            if (sb == null) {
+                this.botButtonsLayout = new StringBuilder();
+            } else {
+                sb.setLength(0);
+            }
+        }
+        if (source == null || hasExtendedMedia()) {
+            return;
+        }
+        for (int i = 0; i < source.getRowsCount(); i++) {
+            int columnsCount = source.getColumnsCount(i);
+            int i2 = 0;
+            for (int i3 = 0; i3 < columnsCount; i3++) {
+                BotInlineKeyboard.Button button = source.getButton(i, i3);
+                StringBuilder sb2 = this.botButtonsLayout;
+                sb2.append(i);
+                sb2.append(i3);
+                if ((button instanceof BotInlineKeyboard.ButtonBot) && (((BotInlineKeyboard.ButtonBot) button).button instanceof TLRPC.TL_keyboardButtonBuy) && (getMedia(this.messageOwner).flags & 4) != 0) {
+                    replaceEmoji = LocaleController.getString(R.string.PaymentReceipt);
+                } else {
+                    String text = button.getText();
+                    if (text == null) {
+                        text = "";
+                    }
+                    replaceEmoji = Emoji.replaceEmoji(text, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), false);
+                }
+                StaticLayout staticLayout = new StaticLayout(replaceEmoji, Theme.chat_msgBotButtonPaint, AndroidUtilities.dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                if (staticLayout.getLineCount() > 0) {
+                    float lineWidth = staticLayout.getLineWidth(0);
+                    float lineLeft = staticLayout.getLineLeft(0);
+                    if (lineLeft < lineWidth) {
+                        lineWidth -= lineLeft;
+                    }
+                    if (button.getIcon() != 0) {
+                        lineWidth += AndroidUtilities.dp(36.0f);
+                    }
+                    i2 = Math.max(i2, ((int) Math.ceil(lineWidth)) + AndroidUtilities.dp(4.0f));
+                }
+            }
+            this.wantedBotKeyboardWidth = Math.max(this.wantedBotKeyboardWidth, ((i2 + AndroidUtilities.dp(12.0f)) * columnsCount) + (AndroidUtilities.dp(5.0f) * (columnsCount - 1)));
+        }
     }
 
     public boolean isVideoAvatar() {
@@ -3301,6 +3375,9 @@ public class MessageObject {
                             this.type = 16;
                         } else if ((messageAction instanceof TLRPC.TL_messageActionSetChatTheme) && (((TLRPC.TL_messageActionSetChatTheme) messageAction).theme instanceof TLRPC.TL_chatThemeUniqueGift)) {
                             this.type = 31;
+                            this.contentType = 1;
+                        } else if (messageAction instanceof TLRPC.TL_messageActionSuggestBirthday) {
+                            this.type = 32;
                             this.contentType = 1;
                         } else {
                             this.contentType = 1;
@@ -6043,6 +6120,9 @@ public class MessageObject {
         if (i3 == 11 || i3 == 18 || i3 == 31 || i3 == 30 || i3 == 25 || i3 == 21) {
             return AndroidUtilities.dp(50.0f);
         }
+        if (i3 == 32) {
+            return AndroidUtilities.dp(234.0f);
+        }
         if (i3 == 5) {
             return AndroidUtilities.roundMessageSize;
         }
@@ -6582,7 +6662,7 @@ public class MessageObject {
 
     public boolean canForwardMessage() {
         int i;
-        return (isQuickReply() || (i = this.type) == 30 || i == 31 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
+        return (isQuickReply() || (i = this.type) == 30 || i == 31 || i == 32 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
     }
 
     public boolean isNoforwards() {

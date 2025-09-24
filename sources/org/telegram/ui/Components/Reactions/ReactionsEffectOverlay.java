@@ -181,7 +181,10 @@ public class ReactionsEffectOverlay {
             return;
         }
         lastHapticTime = System.currentTimeMillis();
-        currentShortOverlay.cell.performHapticFeedback(3);
+        View view = currentShortOverlay.cell;
+        if (view != null) {
+            view.performHapticFeedback(3);
+        }
     }
 
     public static void removeCurrent(boolean z) {

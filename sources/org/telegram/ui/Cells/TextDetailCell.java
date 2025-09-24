@@ -24,6 +24,7 @@ public class TextDetailCell extends FrameLayout {
     private boolean multiline;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
+    public final LinkSpanDrawable.LinksTextView rightValueTextView;
     private final TextView showMoreTextView;
     public final LinkSpanDrawable.LinksTextView textView;
     public final LinkSpanDrawable.LinksTextView valueTextView;
@@ -103,6 +104,37 @@ public class TextDetailCell extends FrameLayout {
         linksTextView2.setEllipsize(truncateAt);
         linksTextView2.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
         addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+        LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
+            @Override
+            protected int processColor(int i) {
+                return TextDetailCell.this.processColor(i);
+            }
+
+            @Override
+            public int overrideColor() {
+                return processColor(super.overrideColor());
+            }
+        };
+        this.rightValueTextView = linksTextView3;
+        linksTextView3.setOnLinkLongPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
+            @Override
+            public final void run(ClickableSpan clickableSpan) {
+                TextDetailCell.this.lambda$new$2(clickableSpan);
+            }
+        });
+        this.multiline = z;
+        if (z) {
+            setMinimumHeight(AndroidUtilities.dp(60.0f));
+        } else {
+            linksTextView3.setLines(1);
+            linksTextView3.setSingleLine(true);
+        }
+        linksTextView3.setTextSize(1, 13.0f);
+        linksTextView3.setGravity(LocaleController.isRTL ? 3 : 5);
+        linksTextView3.setImportantForAccessibility(2);
+        linksTextView3.setEllipsize(truncateAt);
+        linksTextView3.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
+        addView(linksTextView3, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
         updateColors();
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
@@ -122,6 +154,16 @@ public class TextDetailCell extends FrameLayout {
     }
 
     public void lambda$new$1(ClickableSpan clickableSpan) {
+        if (clickableSpan != null) {
+            try {
+                performHapticFeedback(0, 1);
+            } catch (Exception unused) {
+            }
+            clickableSpan.onClick(this.valueTextView);
+        }
+    }
+
+    public void lambda$new$2(ClickableSpan clickableSpan) {
         if (clickableSpan != null) {
             try {
                 performHapticFeedback(0, 1);
@@ -158,6 +200,16 @@ public class TextDetailCell extends FrameLayout {
     public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, boolean z) {
         this.textView.setText(charSequence);
         this.valueTextView.setText(charSequence2);
+        this.rightValueTextView.setVisibility(8);
+        this.needDivider = z;
+        setWillNotDraw(!z);
+    }
+
+    public void setTextAndValue(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, boolean z) {
+        this.textView.setText(charSequence);
+        this.valueTextView.setText(charSequence2);
+        this.rightValueTextView.setVisibility(0);
+        this.rightValueTextView.setText(charSequence3);
         this.needDivider = z;
         setWillNotDraw(!z);
     }
@@ -244,7 +296,10 @@ public class TextDetailCell extends FrameLayout {
         this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         this.textView.invalidate();
         this.valueTextView.setLinkTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
-        this.valueTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider));
+        LinkSpanDrawable.LinksTextView linksTextView2 = this.valueTextView;
+        int i2 = Theme.key_windowBackgroundWhiteGrayText2;
+        linksTextView2.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+        this.rightValueTextView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         this.valueTextView.invalidate();
     }
 }

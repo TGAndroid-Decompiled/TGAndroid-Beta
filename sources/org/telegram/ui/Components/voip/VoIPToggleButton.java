@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -28,50 +29,45 @@ public class VoIPToggleButton extends FrameLayout {
     private int backgroundCheck1;
     private int backgroundCheck2;
     int backgroundColor;
-    private Paint bitmapPaint;
     private ValueAnimator checkAnimator;
     private boolean checkable;
-    private boolean checkableForAccessibility;
     private boolean checked;
     private float checkedProgress;
     Paint circlePaint;
     private float crossOffset;
-    private Paint crossPaint;
+    private final Paint crossPaint;
     private float crossProgress;
     int currentBackgroundColor;
     int currentIconColor;
     int currentIconRes;
     String currentText;
+    private final float diameter;
     private boolean drawBackground;
     private boolean drawCross;
+    private boolean drawRipple;
     Drawable[] icon;
     private boolean iconChangeColor;
     private float pressedScale;
     private ValueAnimator pressedScaleAnimator;
-    private float radius;
     ValueAnimator replaceAnimator;
     private int replaceColorFrom;
     float replaceProgress;
     Drawable rippleDrawable;
     FrameLayout textLayoutContainer;
     TextView[] textView;
-    private Paint xRefPaint;
-
-    public VoIPToggleButton(Context context) {
-        this(context, 52.0f);
-    }
+    private final Paint xRefPaint;
 
     public VoIPToggleButton(Context context, float f) {
         super(context);
         this.circlePaint = new Paint(1);
         this.drawBackground = true;
+        this.drawRipple = true;
         this.icon = new Drawable[2];
         this.textView = new TextView[2];
         this.crossPaint = new Paint(1);
         this.xRefPaint = new Paint(1);
-        this.bitmapPaint = new Paint(1);
         this.pressedScale = 1.0f;
-        this.radius = f;
+        this.diameter = f;
         setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.textLayoutContainer = frameLayout;
@@ -91,7 +87,6 @@ public class VoIPToggleButton extends FrameLayout {
         this.xRefPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         this.crossPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.crossPaint.setStrokeCap(Paint.Cap.ROUND);
-        this.bitmapPaint.setFilterBitmap(true);
     }
 
     public void setTextSize(int i) {
@@ -102,6 +97,10 @@ public class VoIPToggleButton extends FrameLayout {
 
     public void setDrawBackground(boolean z) {
         this.drawBackground = z;
+    }
+
+    public void setDrawRipple(boolean z) {
+        this.drawRipple = z;
     }
 
     public void setPressedBtn(boolean z) {
@@ -127,7 +126,7 @@ public class VoIPToggleButton extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r19) {
+    protected void onDraw(android.graphics.Canvas r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.VoIPToggleButton.onDraw(android.graphics.Canvas):void");
     }
 
@@ -163,11 +162,11 @@ public class VoIPToggleButton extends FrameLayout {
         }
         if (this.rippleDrawable == null || z) {
             if (Color.alpha(i3) == 255 && AndroidUtilities.computePerceivedBrightness(i3) > 0.5d) {
-                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.radius), 0, ColorUtils.setAlphaComponent(-16777216, (int) (f * 25.5f)));
+                Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.diameter), 0, ColorUtils.setAlphaComponent(-16777216, (int) (f * 25.5f)));
                 this.rippleDrawable = createSimpleSelectorCircleDrawable;
                 createSimpleSelectorCircleDrawable.setCallback(this);
             } else {
-                Drawable createSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.radius), 0, ColorUtils.setAlphaComponent(-1, (int) (f * 76.5f)));
+                Drawable createSimpleSelectorCircleDrawable2 = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(this.diameter), 0, ColorUtils.setAlphaComponent(-1, (int) (f * 76.5f)));
                 this.rippleDrawable = createSimpleSelectorCircleDrawable2;
                 createSimpleSelectorCircleDrawable2.setCallback(this);
             }
@@ -278,6 +277,10 @@ public class VoIPToggleButton extends FrameLayout {
         this.crossOffset = f;
     }
 
+    public View getTextView() {
+        return this.textView[0];
+    }
+
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
@@ -299,10 +302,6 @@ public class VoIPToggleButton extends FrameLayout {
         if (drawable != null) {
             drawable.jumpToCurrentState();
         }
-    }
-
-    public void setCheckableForAccessibility(boolean z) {
-        this.checkableForAccessibility = z;
     }
 
     public void setCheckable(boolean z) {
@@ -356,7 +355,7 @@ public class VoIPToggleButton extends FrameLayout {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setText(this.currentText);
-        if (this.checkable || this.checkableForAccessibility) {
+        if (this.checkable) {
             accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(this.checked);

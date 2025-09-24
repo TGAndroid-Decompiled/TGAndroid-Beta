@@ -641,7 +641,7 @@ public class ReportBottomSheet extends BottomSheet {
                     if (this.editTextCell == null) {
                         EditTextCell editTextCell = new EditTextCell(getContext(), "", true, false, 1024, ((BottomSheet) ReportBottomSheet.this).resourcesProvider) {
                             @Override
-                            public void onTextChanged(CharSequence charSequence) {
+                            protected void onTextChanged(CharSequence charSequence) {
                                 super.onTextChanged(charSequence);
                                 if (Page.this.button != null) {
                                     ButtonWithCounterView buttonWithCounterView = Page.this.button;

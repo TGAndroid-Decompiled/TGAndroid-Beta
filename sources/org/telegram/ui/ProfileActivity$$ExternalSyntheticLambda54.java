@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.ui.Stories.recorder.HintView2;
 
-public final class ProfileActivity$$ExternalSyntheticLambda55 implements Runnable {
+public final class ProfileActivity$$ExternalSyntheticLambda54 implements Runnable {
     public final HintView2 f$0;
 
     @Override

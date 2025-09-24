@@ -38,6 +38,9 @@ public class NotificationCenter {
     public static final int boostByChannelCreated = 187;
     public static final int boostedChannelByUser = 186;
     public static final int botDownloadsUpdate = 231;
+    public static final int botForumDraftDelete = 327;
+    public static final int botForumDraftUpdate = 326;
+    public static final int botForumTopicDidCreate = 325;
     public static final int botInfoDidLoad = 66;
     public static final int botKeyboardDidLoad = 69;
     public static final int botStarsTransactionsLoaded = 222;
@@ -308,7 +311,7 @@ public class NotificationCenter {
     public static final int threadMessagesRead = 10;
     public static final int timezonesUpdated = 210;
     public static final int topicsDidLoaded = 307;
-    private static int totalEvents = 325;
+    private static int totalEvents = 328;
     public static final int translationModelDownloaded = 324;
     public static final int translationModelDownloading = 323;
     public static final int twoStepPasswordChanged = 52;
@@ -565,7 +568,7 @@ public class NotificationCenter {
 
     public void lambda$postNotificationNameOnUIThread$1(int i, Object... objArr) {
         boolean z = true;
-        boolean z2 = i == startAllHeavyOperations || i == stopAllHeavyOperations || i == didReplacedPhotoInMemCache || i == closeChats || i == invalidateMotionBackground || i == needCheckSystemBarColors;
+        boolean z2 = i == startAllHeavyOperations || i == stopAllHeavyOperations || i == didReplacedPhotoInMemCache || i == closeChats || i == invalidateMotionBackground || i == needCheckSystemBarColors || i == messageReceivedByServer2;
         ArrayList arrayList = null;
         if (z2 || this.allowedNotifications.size() <= 0) {
             z = z2;

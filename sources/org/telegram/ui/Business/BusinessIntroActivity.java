@@ -188,7 +188,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         boolean z = false;
         EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.BusinessIntroTitleHint), false, z, getMessagesController().introTitleLengthLimit, this.resourceProvider) {
             @Override
-            public void onTextChanged(CharSequence charSequence) {
+            protected void onTextChanged(CharSequence charSequence) {
                 BusinessIntroActivity.this.greetingsView.setPreview(BusinessIntroActivity.this.titleEdit.getText().toString(), BusinessIntroActivity.this.messageEdit.getText().toString());
                 BusinessIntroActivity.this.checkDone(true, true);
             }
@@ -212,7 +212,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         this.titleEdit.hideKeyboardOnEnter();
         EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.BusinessIntroMessageHint), true, z, getMessagesController().introDescriptionLengthLimit, this.resourceProvider) {
             @Override
-            public void onTextChanged(CharSequence charSequence) {
+            protected void onTextChanged(CharSequence charSequence) {
                 BusinessIntroActivity.this.greetingsView.setPreview(BusinessIntroActivity.this.titleEdit.getText().toString(), BusinessIntroActivity.this.messageEdit.getText().toString());
                 BusinessIntroActivity.this.checkDone(true, true);
             }

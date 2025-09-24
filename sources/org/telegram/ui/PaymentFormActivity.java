@@ -120,6 +120,7 @@ import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class PaymentFormActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private boolean allowUnregistered;
     private TLRPC.User botUser;
     private TextInfoPrivacyCell[] bottomCell;
     private BottomFrameLayout bottomLayout;
@@ -136,6 +137,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     private String currentItemName;
     private TL_account.Password currentPassword;
     private int currentStep;
+    private Utilities.CallbackReturn customErrorReceiver;
+    private Utilities.Callback customResultReceiver;
     private PaymentFormActivityDelegate delegate;
     private TextDetailSettingsCell[] detailSettingsCell;
     private ArrayList dividers;
@@ -360,7 +363,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public PaymentFormActivity(TLRPC.PaymentForm paymentForm, String str, BaseFragment baseFragment) {
-        this(paymentForm, null, str, baseFragment);
+        this(paymentForm, (MessageObject) null, str, baseFragment);
     }
 
     public PaymentFormActivity(TLRPC.PaymentForm paymentForm, TLRPC.InputInvoice inputInvoice, BaseFragment baseFragment) {
@@ -368,8 +371,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.isCheckoutPreview = true;
     }
 
+    public PaymentFormActivity(TLRPC.PaymentForm paymentForm, TLRPC.InputInvoice inputInvoice, boolean z, BaseFragment baseFragment) {
+        this(inputInvoice, paymentForm, null, null, 4, null, null, null, null, null, null, false, null, baseFragment);
+        this.allowUnregistered = z;
+        this.isCheckoutPreview = z;
+    }
+
     public PaymentFormActivity(TLRPC.PaymentForm paymentForm, MessageObject messageObject, BaseFragment baseFragment) {
-        this(paymentForm, messageObject, null, baseFragment);
+        this(paymentForm, messageObject, (String) null, baseFragment);
     }
 
     public PaymentFormActivity(TLRPC.PaymentForm paymentForm, MessageObject messageObject, String str, BaseFragment baseFragment) {
@@ -438,6 +447,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     private void init(TLRPC.InputInvoice inputInvoice, TLRPC.PaymentForm paymentForm, MessageObject messageObject, String str, int i, TLRPC.TL_payments_validatedRequestedInfo tL_payments_validatedRequestedInfo, TLRPC.TL_shippingOption tL_shippingOption, Long l, String str2, String str3, TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo, boolean z, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, BaseFragment baseFragment) {
+        if (baseFragment != null) {
+            this.currentAccount = baseFragment.getCurrentAccount();
+        }
         this.currentStep = i;
         this.parentFragment = baseFragment;
         this.paymentJson = str2;
@@ -875,10 +887,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         showPayAlert(this.totalPrice[0]);
     }
 
-    public class AnonymousClass18 extends WebViewClient {
+    public class AnonymousClass19 extends WebViewClient {
         final Context val$context;
 
-        AnonymousClass18(Context context) {
+        AnonymousClass19(Context context) {
             this.val$context = context;
         }
 
@@ -891,7 +903,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 new AlertDialog.Builder(PaymentFormActivity.this.getContext(), PaymentFormActivity.this.resourcesProvider).setTitle(LocaleController.getString(R.string.ChromeCrashTitle)).setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new Runnable() {
                     @Override
                     public final void run() {
-                        PaymentFormActivity.AnonymousClass18.this.lambda$onRenderProcessGone$0();
+                        PaymentFormActivity.AnonymousClass19.this.lambda$onRenderProcessGone$0();
                     }
                 })).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                 return true;
@@ -965,7 +977,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 PaymentFormActivity.lambda$createView$26(tLObject, tL_error);
             }
-        });
+        }, this.allowUnregistered ? 8 : 0);
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setMessage(LocaleController.getString(R.string.ResendCodeInfo));
         builder.setTitle(LocaleController.getString(R.string.AppName));
@@ -1947,13 +1959,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.checkCell1.setVisibility(0);
             this.bottomCell[0].setVisibility(0);
             ShadowSectionCell shadowSectionCell = this.sectionCell[2];
-            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCell.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            shadowSectionCell.setBackground(Theme.getThemedDrawableByKey(shadowSectionCell.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             return;
         }
         this.checkCell1.setVisibility(8);
         this.bottomCell[0].setVisibility(8);
         ShadowSectionCell shadowSectionCell2 = this.sectionCell[2];
-        shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCell2.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        shadowSectionCell2.setBackground(Theme.getThemedDrawableByKey(shadowSectionCell2.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
     }
 
     public void fillNumber(java.lang.String r8) {
@@ -2246,12 +2258,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         showEditDoneProgress(true, true);
         try {
             if ("stripe".equals(this.paymentForm.native_provider)) {
-                new Stripe(this.providerApiKey).createToken(card, new AnonymousClass25());
+                new Stripe(this.providerApiKey).createToken(card, new AnonymousClass26());
             } else if ("smartglocal".equals(this.paymentForm.native_provider)) {
                 new AsyncTask() {
                     @Override
                     public java.lang.String doInBackground(java.lang.Object... r13) {
-                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.AnonymousClass26.doInBackground(java.lang.Object[]):java.lang.String");
+                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.AnonymousClass27.doInBackground(java.lang.Object[]):java.lang.String");
                     }
 
                     @Override
@@ -2276,8 +2288,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public class AnonymousClass25 implements TokenCallback {
-        AnonymousClass25() {
+    public class AnonymousClass26 implements TokenCallback {
+        AnonymousClass26() {
         }
 
         @Override
@@ -2289,7 +2301,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.AnonymousClass25.this.lambda$onSuccess$0();
+                    PaymentFormActivity.AnonymousClass26.this.lambda$onSuccess$0();
                 }
             });
         }
@@ -2349,7 +2361,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 PaymentFormActivity.this.lambda$sendSavedForm$51(runnable, tL_payments_validateRequestedInfo2, tLObject, tL_error);
             }
-        }, 2);
+        }, (this.allowUnregistered ? 8 : 0) | 2);
     }
 
     public void lambda$sendSavedForm$51(final Runnable runnable, final TLObject tLObject, final TLObject tLObject2, final TLRPC.TL_error tL_error) {
@@ -2442,7 +2454,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 PaymentFormActivity.this.lambda$sendForm$55(tL_payments_validateRequestedInfo3, tLObject, tL_error);
             }
-        }, 2);
+        }, (this.allowUnregistered ? 8 : 0) | 2);
     }
 
     public void lambda$sendForm$55(final TLObject tLObject, final TLObject tLObject2, final TLRPC.TL_error tL_error) {
@@ -2473,7 +2485,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
                     PaymentFormActivity.lambda$sendForm$52(tLObject2, tL_error);
                 }
-            });
+            }, this.allowUnregistered ? 8 : 0);
         }
         goToNextStep();
         setDonePressed(false);
@@ -2578,6 +2590,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
+    public void setCustomResultReceiver(Utilities.Callback callback) {
+        this.customResultReceiver = callback;
+    }
+
+    public void setCustomErrorReceiver(Utilities.CallbackReturn callbackReturn) {
+        this.customErrorReceiver = callbackReturn;
+    }
+
     private void sendData() {
         String str;
         if (this.canceled) {
@@ -2636,12 +2656,17 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 PaymentFormActivity.this.lambda$sendData$69(tL_payments_sendPaymentForm, tLObject, tL_error);
             }
-        }, 2);
+        }, (this.allowUnregistered ? 8 : 0) | 2);
     }
 
     public void lambda$sendData$69(final TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
+                Utilities.Callback callback = this.customResultReceiver;
+                if (callback != null) {
+                    callback.run((TLRPC.TL_payments_paymentResult) tLObject);
+                    return;
+                }
                 TLRPC.Updates updates = ((TLRPC.TL_payments_paymentResult) tLObject).updates;
                 final TLRPC.Message[] messageArr = new TLRPC.Message[1];
                 int size = updates.updates.size();
@@ -2682,12 +2707,15 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             return;
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PaymentFormActivity.this.lambda$sendData$68(tL_error, tL_payments_sendPaymentForm);
-            }
-        });
+        Utilities.CallbackReturn callbackReturn = this.customErrorReceiver;
+        if (callbackReturn == null || !((Boolean) callbackReturn.run(tL_error)).booleanValue()) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    PaymentFormActivity.this.lambda$sendData$68(tL_error, tL_payments_sendPaymentForm);
+                }
+            });
+        }
     }
 
     public void lambda$sendData$60(final TLRPC.Message[] messageArr) {
@@ -3140,7 +3168,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 PaymentFormActivity.this.lambda$checkPassword$74(obj, getpassword, tLObject, tL_error);
             }
-        }, 2);
+        }, (this.allowUnregistered ? 8 : 0) | 2);
     }
 
     public void lambda$checkPassword$74(final String str, final TL_account.getPassword getpassword, final TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -3383,8 +3411,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     @Override
     public boolean onBackPressed() {
-        if (this.shouldNavigateBack) {
-            this.webView.loadUrl(this.webViewUrl);
+        WebView webView = this.webView;
+        if (webView != null && this.shouldNavigateBack) {
+            webView.loadUrl(this.webViewUrl);
             this.shouldNavigateBack = false;
             return false;
         }

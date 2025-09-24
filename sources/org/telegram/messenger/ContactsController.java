@@ -1975,7 +1975,11 @@ public class ContactsController extends BaseController {
         ApplicationLoader.applicationContext.getContentResolver().update(parse, contentValues, null, null);
     }
 
-    public void addContact(final TLRPC.User user, boolean z) {
+    public void addContact(TLRPC.User user, boolean z) {
+        addContact(user, null, z);
+    }
+
+    public void addContact(final TLRPC.User user, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {
         if (user == null) {
             return;
         }
@@ -1990,6 +1994,10 @@ public class ContactsController extends BaseController {
             tL_contacts_addContact.phone = "";
         } else if (str.length() > 0 && !tL_contacts_addContact.phone.startsWith("+")) {
             tL_contacts_addContact.phone = "+" + tL_contacts_addContact.phone;
+        }
+        if (tL_textWithEntities != null) {
+            tL_contacts_addContact.flags |= 2;
+            tL_contacts_addContact.note = tL_textWithEntities;
         }
         getConnectionsManager().sendRequest(tL_contacts_addContact, new RequestDelegate() {
             @Override

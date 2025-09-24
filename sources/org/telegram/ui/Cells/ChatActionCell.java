@@ -71,6 +71,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.SuggestBirthdayActionLayout;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TopicSeparator;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -81,7 +82,6 @@ import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarGiftUniqueActionLayout;
-import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -103,7 +103,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private RectF backgroundRect;
     private int backgroundRectHeight;
     private int backgroundRight;
-    private ButtonBounce bounce;
+    public SuggestBirthdayActionLayout birthdayLayout;
+    private final ButtonBounce bounce;
     private boolean buttonClickableAsImage;
     private boolean canDrawInParent;
     private GiftSheet.CardBackground cardBackground;
@@ -706,6 +707,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (topicSeparator != null) {
             topicSeparator.detach();
         }
+        SuggestBirthdayActionLayout suggestBirthdayActionLayout = this.birthdayLayout;
+        if (suggestBirthdayActionLayout != null) {
+            suggestBirthdayActionLayout.detach();
+        }
     }
 
     public boolean isCellAttachedToWindow() {
@@ -737,6 +742,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         TopicSeparator topicSeparator = this.topicSeparator;
         if (topicSeparator != null) {
             topicSeparator.attach();
+        }
+        SuggestBirthdayActionLayout suggestBirthdayActionLayout = this.birthdayLayout;
+        if (suggestBirthdayActionLayout != null) {
+            suggestBirthdayActionLayout.attach();
         }
     }
 
@@ -878,7 +887,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
                     TL_stars.StarGift starGift = ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift;
                     if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(starGift.slug, (TL_stars.TL_starGiftUnique) starGift, (StarsController.IGiftsList) null).show();
+                        new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(starGift.slug, (TL_stars.TL_starGiftUnique) starGift, null).show();
                     }
                 }
             }
@@ -1056,7 +1065,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private boolean isNewStyleButtonLayout() {
         MessageObject messageObject;
         int i;
-        if (!this.starGiftLayout.has() && (i = (messageObject = this.currentMessageObject).type) != 31 && i != 21 && i != 22 && !messageObject.isStoryMention()) {
+        if (!this.starGiftLayout.has() && this.birthdayLayout == null && (i = (messageObject = this.currentMessageObject).type) != 31 && i != 21 && i != 22 && !messageObject.isStoryMention()) {
             TLRPC.Message message = this.currentMessageObject.messageOwner;
             if (message != null) {
                 TLRPC.MessageAction messageAction = message.action;
@@ -1105,18 +1114,18 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         String formatPluralString = i == 12 ? LocaleController.formatPluralString("BoldYears", 1, new Object[0]) : LocaleController.formatPluralString("BoldMonths", i, new Object[0]);
         if (z) {
             if (tL_messageActionGiftCode.unclaimed) {
-                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingYouHaveUnclaimedPrize", R.string.BoostingYouHaveUnclaimedPrize, str)));
+                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BoostingYouHaveUnclaimedPrize, str)));
                 spannableStringBuilder.append((CharSequence) "\n\n");
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingUnclaimedPrizeDuration", R.string.BoostingUnclaimedPrizeDuration, formatPluralString)));
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BoostingUnclaimedPrizeDuration, formatPluralString)));
             } else {
-                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeFrom", R.string.BoostingReceivedPrizeFrom, str)));
+                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BoostingReceivedPrizeFrom, str)));
                 spannableStringBuilder.append((CharSequence) "\n\n");
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeDuration", R.string.BoostingReceivedPrizeDuration, formatPluralString)));
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BoostingReceivedPrizeDuration, formatPluralString)));
             }
         } else {
-            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(str == null ? LocaleController.getString("BoostingReceivedGiftNoName", R.string.BoostingReceivedGiftNoName) : LocaleController.formatString("BoostingReceivedGiftFrom", R.string.BoostingReceivedGiftFrom, str)));
+            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(str == null ? LocaleController.getString(R.string.BoostingReceivedGiftNoName) : LocaleController.formatString("BoostingReceivedGiftFrom", R.string.BoostingReceivedGiftFrom, str)));
             spannableStringBuilder.append((CharSequence) "\n\n");
-            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedGiftDuration", R.string.BoostingReceivedGiftDuration, formatPluralString)));
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BoostingReceivedGiftDuration, formatPluralString)));
         }
         String string2 = LocaleController.getString("BoostingReceivedGiftOpenBtn", R.string.BoostingReceivedGiftOpenBtn);
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
@@ -1599,28 +1608,43 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             if (hasGradientService()) {
                 canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
             }
-        } else if (isButtonLayout(messageObject2)) {
-            float width3 = (getWidth() - this.giftRectSize) / 2.0f;
-            float f14 = this.textY + this.textHeight;
-            if (isNewStyleButtonLayout()) {
-                float dp6 = f14 + AndroidUtilities.dp(4.0f);
-                AndroidUtilities.rectTmp.set(width3, dp6, this.giftRectSize + width3, this.backgroundRectHeight + dp6);
-            } else {
-                float dp7 = f14 + AndroidUtilities.dp(12.0f);
-                RectF rectF3 = AndroidUtilities.rectTmp;
-                float f15 = this.giftRectSize;
-                rectF3.set(width3, dp7, width3 + f15, f15 + dp7 + this.giftPremiumAdditionalHeight);
-            }
-            if (messageObject2 != null && messageObject2.type == 18 && !this.giftPremiumTextCollapsed && (textLayout = this.giftPremiumText) != null && this.giftPremiumTextCollapsedHeight > 0) {
-                AndroidUtilities.rectTmp.bottom -= (textLayout.layout.getHeight() - this.giftPremiumTextCollapsedHeight) * (1.0f - this.giftPremiumTextExpandedAnimated.get());
-            }
-            if (this.backgroundRect == null) {
-                this.backgroundRect = new RectF();
-            }
-            this.backgroundRect.set(AndroidUtilities.rectTmp);
-            canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
-            if (hasGradientService()) {
-                canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
+        } else {
+            SuggestBirthdayActionLayout suggestBirthdayActionLayout = this.birthdayLayout;
+            if (suggestBirthdayActionLayout != null) {
+                float width3 = suggestBirthdayActionLayout.width();
+                float height = this.birthdayLayout.height();
+                float width4 = (getWidth() - width3) / 2.0f;
+                if (this.backgroundRect == null) {
+                    this.backgroundRect = new RectF();
+                }
+                this.backgroundRect.set(width4, AndroidUtilities.dp(4.0f), width3 + width4, AndroidUtilities.dp(4.0f) + height);
+                canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
+                if (hasGradientService()) {
+                    canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
+                }
+            } else if (isButtonLayout(messageObject2)) {
+                float width5 = (getWidth() - this.giftRectSize) / 2.0f;
+                float f14 = this.textY + this.textHeight;
+                if (isNewStyleButtonLayout()) {
+                    float dp6 = f14 + AndroidUtilities.dp(4.0f);
+                    AndroidUtilities.rectTmp.set(width5, dp6, this.giftRectSize + width5, this.backgroundRectHeight + dp6);
+                } else {
+                    float dp7 = f14 + AndroidUtilities.dp(12.0f);
+                    RectF rectF3 = AndroidUtilities.rectTmp;
+                    float f15 = this.giftRectSize;
+                    rectF3.set(width5, dp7, width5 + f15, f15 + dp7 + this.giftPremiumAdditionalHeight);
+                }
+                if (messageObject2 != null && messageObject2.type == 18 && !this.giftPremiumTextCollapsed && (textLayout = this.giftPremiumText) != null && this.giftPremiumTextCollapsedHeight > 0) {
+                    AndroidUtilities.rectTmp.bottom -= (textLayout.layout.getHeight() - this.giftPremiumTextCollapsedHeight) * (1.0f - this.giftPremiumTextExpandedAnimated.get());
+                }
+                if (this.backgroundRect == null) {
+                    this.backgroundRect = new RectF();
+                }
+                this.backgroundRect.set(AndroidUtilities.rectTmp);
+                canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
+                if (hasGradientService()) {
+                    canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
+                }
             }
         }
         if (i >= 0) {

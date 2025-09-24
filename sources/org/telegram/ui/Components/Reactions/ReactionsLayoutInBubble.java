@@ -155,7 +155,7 @@ public class ReactionsLayoutInBubble {
         return (reaction instanceof TLRPC.TL_reactionCustomEmoji) && (reaction2 instanceof TLRPC.TL_reactionCustomEmoji) && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == ((TLRPC.TL_reactionCustomEmoji) reaction2).document_id;
     }
 
-    public void setMessage(org.telegram.messenger.MessageObject r20, boolean r21, boolean r22, org.telegram.ui.ActionBar.Theme.ResourcesProvider r23) {
+    public void setMessage(org.telegram.messenger.MessageObject r19, boolean r20, boolean r21, org.telegram.ui.ActionBar.Theme.ResourcesProvider r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.setMessage(org.telegram.messenger.MessageObject, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

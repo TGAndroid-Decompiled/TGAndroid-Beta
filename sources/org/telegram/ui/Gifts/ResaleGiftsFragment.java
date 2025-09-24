@@ -921,7 +921,8 @@ public class ResaleGiftsFragment extends BaseFragment {
         if (isLoadingVisible()) {
             this.list.load();
         }
-        if ((this.list.loading || this.list.getTotalCount() > 0) && (!this.list.notSelectedModelAttributes.isEmpty() || !this.list.notSelectedBackdropAttributes.isEmpty() || !this.list.notSelectedPatternAttributes.isEmpty())) {
+        ResaleGiftsList resaleGiftsList = this.list;
+        if ((resaleGiftsList.loading || resaleGiftsList.getTotalCount() > 0) && (!this.list.notSelectedModelAttributes.isEmpty() || !this.list.notSelectedBackdropAttributes.isEmpty() || !this.list.notSelectedPatternAttributes.isEmpty())) {
             z2 = true;
         }
         setClearFiltersShown(z2, true);
@@ -932,10 +933,25 @@ public class ResaleGiftsFragment extends BaseFragment {
         while (it.hasNext()) {
             arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it.next(), false, false, false, true));
         }
-        if (this.list.loading || !this.list.endReached) {
+        ResaleGiftsList resaleGiftsList = this.list;
+        if (resaleGiftsList.loading || !resaleGiftsList.endReached) {
             arrayList.add(UItem.asFlicker(-1, 34).setSpanCount(1));
             arrayList.add(UItem.asFlicker(-2, 34).setSpanCount(1));
             arrayList.add(UItem.asFlicker(-3, 34).setSpanCount(1));
+            if (this.list.gifts.isEmpty()) {
+                arrayList.add(UItem.asFlicker(-4, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-5, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-6, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-7, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-8, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-9, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-10, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-11, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-12, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-13, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-14, 34).setSpanCount(1));
+                arrayList.add(UItem.asFlicker(-15, 34).setSpanCount(1));
+            }
         }
         updateEmptyView(arrayList.isEmpty() && !this.list.loading);
     }
@@ -1026,9 +1042,9 @@ public class ResaleGiftsFragment extends BaseFragment {
     public static class ResaleGiftsList implements StarsController.IGiftsList {
         private final int account;
         private long attributes_hash;
-        private final long gift_id;
+        public final long gift_id;
         private String last_offset;
-        private boolean loading;
+        public boolean loading;
         private final Utilities.Callback onUpdate;
         private int totalCount;
         public final ArrayList gifts = new ArrayList();
@@ -1042,7 +1058,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         public final HashMap backdropAttributesCounter = new HashMap();
         public final HashMap patternAttributesCounter = new HashMap();
         private Sorting sorting = Sorting.BY_PRICE;
-        private boolean endReached = false;
+        public boolean endReached = false;
         private int reqId = -1;
 
         @Override

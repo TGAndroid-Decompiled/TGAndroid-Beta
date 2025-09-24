@@ -1181,6 +1181,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         public int clipBottomAddition;
         public int clipTopAddition;
         public long dialogId;
+        public boolean fadeIn;
         public ImageReceiver imageReceiver;
         public boolean isEvent;
         public View parentView;
@@ -4398,11 +4399,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.scroller = new Scroller(parentActivity);
         AnonymousClass14 anonymousClass14 = new AnonymousClass14(parentActivity);
         this.windowView = anonymousClass14;
-        anonymousClass14.setBackgroundDrawable(this.backgroundDrawable);
+        anonymousClass14.setBackground(this.backgroundDrawable);
         this.windowView.setFocusable(false);
         ClippingImageView clippingImageView = new ClippingImageView(parentActivity);
         this.animatingImageView = clippingImageView;
-        clippingImageView.setAnimationValues(this.animationValues);
+        clippingImageView.setAnimationValues(this.animationValues, false, false);
         this.windowView.addView(this.animatingImageView, LayoutHelper.createFrame(40, 40.0f));
         AnonymousClass15 anonymousClass15 = new FrameLayoutDrawer(parentActivity, parentActivity) {
             AnonymousClass15(final Activity parentActivity2, final Activity parentActivity22) {
@@ -17314,7 +17315,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (z) {
                     ClippingImageView[] animatingImageViews = getAnimatingImageViews(placeProviderObject2);
                     for (int i4 = 0; i4 < animatingImageViews.length; i4++) {
-                        animatingImageViews[i4].setAnimationValues(this.animationValues);
+                        animatingImageViews[i4].setAnimationValues(this.animationValues, r13, placeProviderObject2 == null ? false : placeProviderObject2.fadeIn);
                         animatingImageViews[i4].setVisibility(r13);
                     }
                     final AnimatorSet animatorSet = new AnimatorSet();

@@ -1184,6 +1184,7 @@
     <string name="TwoStepVerificationTitle">Verificación en dos pasos</string>
     <string name="UnableForward">No se pudo reenviar</string>
     <string name="Unblock">Desbloquear usuario</string>
+    <string name="Understood">�� Entendido</string>
     <string name="UndoAllCustom">Deshace todos los ajustes personalizados de notificaciones para tus contactos, grupos y canales.</string>
     <string name="UnsaveMessagesTitle">No guardar %1$s</string>
     <string name="UnsaveSingleMessagesTitle">No guardar mensaje</string>

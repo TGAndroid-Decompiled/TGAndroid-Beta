@@ -43,6 +43,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PeerColorActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.HintView2;
 
@@ -385,6 +386,9 @@ public final class BulletinFactory {
     public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.imageView.setImageDrawable(drawable);
+        if (drawable instanceof PeerColorActivity.PeerColorDrawable) {
+            ((PeerColorActivity.PeerColorDrawable) drawable).setView(lottieLayout.imageView);
+        }
         lottieLayout.textView.setText(charSequence);
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(2);

@@ -2793,7 +2793,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             BaseFragment safeLastFragment = getSafeLastFragment();
             TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
             if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                StarGiftSheet starGiftSheet = new StarGiftSheet(this, i, 0L, null).set(str, (TL_stars.TL_starGiftUnique) starGift, (StarsController.IGiftsList) null);
+                StarGiftSheet starGiftSheet = new StarGiftSheet(this, i, 0L, null).set(str, (TL_stars.TL_starGiftUnique) starGift, null);
                 if (safeLastFragment != null) {
                     if (safeLastFragment.getLastStoryViewer() != null && safeLastFragment.getLastStoryViewer().isFullyVisible()) {
                         safeLastFragment.getLastStoryViewer().showDialog(starGiftSheet);

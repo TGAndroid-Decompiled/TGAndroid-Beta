@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda40;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda42;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -2519,9 +2519,8 @@ public class TL_account {
     }
 
     public static class updateColor extends TLObject {
-        public static final int constructor = 2096079197;
-        public long background_emoji_id;
-        public int color;
+        public static final int constructor = 1749885262;
+        public TLRPC.PeerColor color;
         public int flags;
         public boolean for_profile;
 
@@ -2532,15 +2531,12 @@ public class TL_account {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(2096079197);
+            outputSerializedData.writeInt32(1749885262);
             int i = this.for_profile ? this.flags | 2 : this.flags & (-3);
             this.flags = i;
             outputSerializedData.writeInt32(i);
             if ((this.flags & 4) != 0) {
-                outputSerializedData.writeInt32(this.color);
-            }
-            if ((this.flags & 1) != 0) {
-                outputSerializedData.writeInt64(this.background_emoji_id);
+                this.color.serializeToStream(outputSerializedData);
             }
         }
     }
@@ -3595,7 +3591,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             if ((this.flags & 2) != 0) {
                 this.title = inputSerializedData.readString(z);
@@ -3643,7 +3639,7 @@ public class TL_account {
             this.link = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             if ((this.flags & 2) != 0) {
                 this.title = inputSerializedData.readString(z);
@@ -3733,7 +3729,7 @@ public class TL_account {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.message = inputSerializedData.readString(z);
             if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda40(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
@@ -4331,15 +4327,15 @@ public class TL_account {
     }
 
     public static class Tl_getUniqueGiftChatThemes extends TLMethod<ChatThemes> {
-        public static final int constructor = -25890913;
+        public static final int constructor = -466818615;
         public long hash;
         public int limit;
-        public int offset;
+        public String offset;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-25890913);
-            outputSerializedData.writeInt32(this.offset);
+            outputSerializedData.writeInt32(-466818615);
+            outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
             outputSerializedData.writeInt64(this.hash);
         }
@@ -4356,13 +4352,13 @@ public class TL_account {
         }
 
         private static ChatThemes fromConstructor(int i) {
-            if (i == -535699004) {
-                return new TL_chatThemesNotModified();
+            if (i == -1106673293) {
+                return new Tl_chatThemes();
             }
-            if (i != 373835863) {
+            if (i != -535699004) {
                 return null;
             }
-            return new Tl_chatThemes();
+            return new TL_chatThemesNotModified();
         }
     }
 
@@ -4380,24 +4376,24 @@ public class TL_account {
     }
 
     public static class Tl_chatThemes extends ChatThemes {
-        public static final int constructor = 373835863;
+        public static final int constructor = -1106673293;
         public ArrayList<TLRPC.Chat> chats;
         public int flags;
         public long hash;
-        public int next_offset;
+        public String next_offset;
         public ArrayList<TLRPC.ChatTheme> themes;
         public ArrayList<TLRPC.User> users;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(373835863);
+            outputSerializedData.writeInt32(-1106673293);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.hash);
             Vector.serialize(outputSerializedData, this.themes);
             Vector.serialize(outputSerializedData, this.chats);
             Vector.serialize(outputSerializedData, this.users);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt32(this.next_offset);
+                outputSerializedData.writeString(this.next_offset);
             }
         }
 
@@ -4414,7 +4410,7 @@ public class TL_account {
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readInt32(z);
+                this.next_offset = inputSerializedData.readString(z);
             }
         }
     }

@@ -329,6 +329,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
     public void setBottomPadding(int i) {
         ((FrameLayout.LayoutParams) this.positiveButton.getLayoutParams()).bottomMargin = AndroidUtilities.dp(64.0f) + i;
         ((FrameLayout.LayoutParams) this.titlesLayout.getLayoutParams()).bottomMargin = i;
+        ((FrameLayout.LayoutParams) this.micIconView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(136.0f) + i;
     }
 
     public void updateTitlesLayout() {

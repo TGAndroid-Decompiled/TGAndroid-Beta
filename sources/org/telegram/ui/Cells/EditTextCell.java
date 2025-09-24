@@ -17,7 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -267,8 +271,24 @@ public class EditTextCell extends FrameLayout {
         this.ignoreEditText = false;
     }
 
+    public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.ignoreEditText = true;
+        this.editText.setText(MessageObject.formatTextWithEntities(tL_textWithEntities, false));
+        EditTextCaption editTextCaption = this.editText;
+        editTextCaption.setSelection(editTextCaption.getText().length());
+        this.ignoreEditText = false;
+    }
+
     public CharSequence getText() {
         return this.editText.getText();
+    }
+
+    public TLRPC.TL_textWithEntities getTextWithEntities() {
+        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+        CharSequence[] charSequenceArr = {getText()};
+        tL_textWithEntities.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, true);
+        tL_textWithEntities.text = charSequenceArr[0].toString();
+        return tL_textWithEntities;
     }
 
     public void setDivider(boolean z) {

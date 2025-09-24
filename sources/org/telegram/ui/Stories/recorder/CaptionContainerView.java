@@ -278,7 +278,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
 
             @Override
-            protected void updatedEmojiExpanded() {
+            public void updatedEmojiExpanded() {
                 CaptionContainerView.this.keyboardNotifier.fire();
             }
 

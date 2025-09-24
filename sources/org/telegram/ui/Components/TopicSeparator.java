@@ -114,6 +114,10 @@ public class TopicSeparator {
         return this.text != null;
     }
 
+    public void setText(String str) {
+        this.text = new Text(str, 14.0f, AndroidUtilities.bold());
+    }
+
     public void attach() {
         this.image.onAttachedToWindow();
         AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiImage;

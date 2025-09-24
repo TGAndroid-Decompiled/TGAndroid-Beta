@@ -676,6 +676,11 @@ public class ContentPreviewViewer {
         this.reactionsLayout.setSelectedEmojis(this.selectedEmojis);
         this.reactionsLayout.setDelegate(new ReactionsContainerLayout.ReactionsContainerDelegate() {
             @Override
+            public boolean allowLongPress() {
+                return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+            }
+
+            @Override
             public boolean drawBackground() {
                 return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
             }

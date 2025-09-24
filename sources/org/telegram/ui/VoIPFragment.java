@@ -1053,7 +1053,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.bottomSpeakerBtn = new VoIpSwitchLayout(context, this.backgroundProvider);
         this.bottomVideoBtn = new VoIpSwitchLayout(context, this.backgroundProvider);
         this.bottomMuteBtn = new VoIpSwitchLayout(context, this.backgroundProvider);
-        this.bottomEndCallBtn = new VoIPToggleButton(context) {
+        this.bottomEndCallBtn = new VoIPToggleButton(context, 52.0f) {
             @Override
             protected void dispatchSetPressed(boolean z2) {
                 super.dispatchSetPressed(z2);
