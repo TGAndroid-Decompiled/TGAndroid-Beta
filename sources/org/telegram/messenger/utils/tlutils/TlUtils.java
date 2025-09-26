@@ -173,4 +173,18 @@ public abstract class TlUtils {
         }
         return null;
     }
+
+    public static TLRPC.GroupCall applyGroupCallUpdate(TLRPC.GroupCall groupCall, TLRPC.GroupCall groupCall2) {
+        if ((groupCall2 instanceof TLRPC.TL_groupCall) && (groupCall instanceof TLRPC.TL_groupCall)) {
+            TLRPC.TL_groupCall tL_groupCall = (TLRPC.TL_groupCall) groupCall2;
+            if (tL_groupCall.min) {
+                TLRPC.TL_groupCall tL_groupCall2 = (TLRPC.TL_groupCall) groupCall;
+                tL_groupCall.can_change_join_muted = tL_groupCall2.can_change_join_muted;
+                tL_groupCall.can_start_video = tL_groupCall2.can_start_video;
+                tL_groupCall.creator = tL_groupCall2.creator;
+                tL_groupCall.can_change_messages_enabled = tL_groupCall2.can_change_messages_enabled;
+            }
+        }
+        return groupCall2;
+    }
 }

@@ -1665,7 +1665,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             boolean z5 = starsTransaction.amount instanceof TL_stars.TL_starsTonAmount;
             int i = starsTransaction.flags;
             boolean z6 = (131072 & i) == 0 && (i & 65536) != 0;
-            boolean z7 = !(peerDialogId == 0 || starsTransaction.stargift_upgrade || starsTransaction.posts_search) || starsTransaction.subscription || starsTransaction.floodskip || !(starsTransaction.stargift == null || starsTransaction.stargift_upgrade) || (starsTransaction.gift && (starsTransaction.peer instanceof TL_stars.TL_starsTransactionPeerFragment));
+            boolean z7 = !(peerDialogId == 0 || starsTransaction.stargift_upgrade || starsTransaction.stargift_drop_original_details || starsTransaction.posts_search) || starsTransaction.subscription || starsTransaction.floodskip || !(starsTransaction.stargift == null || starsTransaction.stargift_upgrade || starsTransaction.stargift_drop_original_details) || (starsTransaction.gift && (starsTransaction.peer instanceof TL_stars.TL_starsTransactionPeerFragment));
             this.threeLines = z7;
             this.titleTextViewParams.bottomMargin = z7 ? 0 : AndroidUtilities.dp(4.33f);
             this.subtitleTextView.setVisibility(this.threeLines ? 0 : 8);
@@ -1694,6 +1694,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             if (starsTransaction.stargift_upgrade && starsTransaction.stargift != null) {
                 this.imageView.setImageDrawable(new StarGiftSheet.StarGiftDrawableIcon(this.imageView, starsTransaction.stargift, 46, 0.25f));
                 this.titleTextView.setText(LocaleController.getString(R.string.Gift2TransactionUpgraded));
+                this.subtitleTextView.setVisibility(8);
+            } else if (starsTransaction.stargift_drop_original_details && starsTransaction.stargift != null) {
+                this.imageView.setImageDrawable(new StarGiftSheet.StarGiftDrawableIcon(this.imageView, starsTransaction.stargift, 46, 0.25f));
+                this.titleTextView.setText(LocaleController.getString(R.string.Gift2TransactionRemovedDescription));
                 this.subtitleTextView.setVisibility(8);
             } else if (starsTransaction.posts_search) {
                 this.imageView.setImageDrawable(getPlatformDrawable("search"));
@@ -1744,6 +1748,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                             spannableStringBuilder.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftPurchaseRefund : R.string.StarGiftTransactionGiftSale));
                         }
                         this.subtitleTextView.setText(spannableStringBuilder);
+                    } else if (starsTransaction.stargift_prepaid_upgrade) {
+                        this.subtitleTextView.setText(TextUtils.concat(spannableString, " ", LocaleController.getString(R.string.Gift2TransactionPrepaidUpgrade)));
                     } else if (starsTransaction.stargift instanceof TL_stars.TL_starGiftUnique) {
                         this.subtitleTextView.setText(LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftTransferRefund : R.string.StarGiftTransactionGiftTransfer));
                     } else if (starsTransaction.refund) {

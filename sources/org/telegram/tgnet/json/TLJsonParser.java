@@ -62,8 +62,26 @@ public class TLJsonParser {
         return parseString(this.jsonObject.opt(str), str2);
     }
 
+    public boolean readBoolean(String str, boolean z) {
+        return parseBoolean(this.jsonObject.opt(str), z);
+    }
+
     private String parseString(Object obj, String str) {
         return obj instanceof String ? (String) obj : str;
+    }
+
+    private boolean parseBoolean(Object obj, boolean z) {
+        try {
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (obj instanceof Boolean) {
+            return ((Boolean) obj).booleanValue();
+        }
+        if (obj instanceof String) {
+            return Boolean.parseBoolean((String) obj);
+        }
+        return z;
     }
 
     private long parseInt64(Object obj, long j) {

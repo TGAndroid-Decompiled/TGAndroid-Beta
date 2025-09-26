@@ -19,6 +19,7 @@ import org.telegram.ui.Components.conference.message.GroupCallMessageCell;
 public class GroupCallMessagesListView extends RecyclerView {
     private final GroupCallMessagesAdapter adapter;
     private View blurRoot;
+    private GroupCallMessageCell.Delegate cellDelegate;
     private Delegate delegate;
     private RenderNode renderNode;
     private float renderNodeScale;
@@ -46,6 +47,7 @@ public class GroupCallMessagesListView extends RecyclerView {
             public GroupCallMessageCell.VH onCreateViewHolder(ViewGroup viewGroup, int i) {
                 GroupCallMessageCell.VH onCreateViewHolder = super.onCreateViewHolder(viewGroup, i);
                 onCreateViewHolder.cell.setRenderNode(GroupCallMessagesListView.this.blurRoot, GroupCallMessagesListView.this.renderNode, GroupCallMessagesListView.this.renderNodeScale);
+                onCreateViewHolder.cell.setDelegate(GroupCallMessagesListView.this.cellDelegate);
                 return onCreateViewHolder;
             }
         };
@@ -89,6 +91,10 @@ public class GroupCallMessagesListView extends RecyclerView {
 
     public void setDelegate(Delegate delegate) {
         this.delegate = delegate;
+    }
+
+    public void setClickCellDelegate(GroupCallMessageCell.Delegate delegate) {
+        this.cellDelegate = delegate;
     }
 
     @Override

@@ -117,7 +117,9 @@ public class TableView extends android.widget.TableLayout {
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
         linksTextView.setMaxLines(4);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence2);
-        spannableStringBuilder.insert(spannableStringBuilder.length() / 2, (CharSequence) "\n");
+        if (spannableStringBuilder.length() > 20) {
+            spannableStringBuilder.insert(spannableStringBuilder.length() / 2, (CharSequence) "\n");
+        }
         if (runnable != null) {
             spannableStringBuilder.setSpan(new ClickableSpan() {
                 @Override

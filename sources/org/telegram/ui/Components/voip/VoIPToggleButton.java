@@ -141,16 +141,6 @@ public class VoIPToggleButton extends FrameLayout {
         setData(i, i2, i3, 1.0f, true, str, z, z2);
     }
 
-    public void setEnabled(boolean z, boolean z2) {
-        super.setEnabled(z);
-        if (z2) {
-            animate().alpha(z ? 1.0f : 0.5f).setDuration(180L).start();
-        } else {
-            clearAnimation();
-            setAlpha(z ? 1.0f : 0.5f);
-        }
-    }
-
     public void setData(int i, int i2, int i3, float f, boolean z, String str, boolean z2, boolean z3) {
         String str2;
         if (getVisibility() != 0) {

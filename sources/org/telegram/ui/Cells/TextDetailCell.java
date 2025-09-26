@@ -38,13 +38,14 @@ public class TextDetailCell extends FrameLayout {
     }
 
     public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(context, resourcesProvider, false);
+        this(context, resourcesProvider, false, false);
     }
 
-    public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
         this.showMoreTextView = null;
         this.resourcesProvider = resourcesProvider;
+        this.multiline = z || z2;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
             protected int processColor(int i) {
@@ -65,14 +66,18 @@ public class TextDetailCell extends FrameLayout {
         });
         linksTextView.setTextSize(1, 16.0f);
         linksTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        linksTextView.setLines(1);
-        linksTextView.setMaxLines(1);
-        linksTextView.setSingleLine(true);
+        if (z) {
+            setMinimumHeight(AndroidUtilities.dp(60.0f));
+        } else {
+            linksTextView.setLines(1);
+            linksTextView.setMaxLines(1);
+            linksTextView.setSingleLine(true);
+        }
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         linksTextView.setEllipsize(truncateAt);
         linksTextView.setImportantForAccessibility(2);
         linksTextView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f));
-        addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 17.0f, 6.0f, 17.0f, 0.0f));
+        addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 17.0f, 6.0f, 17.0f, z ? 27.0f : 0.0f));
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
             protected int processColor(int i) {
@@ -91,8 +96,7 @@ public class TextDetailCell extends FrameLayout {
                 TextDetailCell.this.lambda$new$1(clickableSpan);
             }
         });
-        this.multiline = z;
-        if (z) {
+        if (z2) {
             setMinimumHeight(AndroidUtilities.dp(60.0f));
         } else {
             linksTextView2.setLines(1);
@@ -103,7 +107,11 @@ public class TextDetailCell extends FrameLayout {
         linksTextView2.setImportantForAccessibility(2);
         linksTextView2.setEllipsize(truncateAt);
         linksTextView2.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
-        addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+        if (z) {
+            addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 32.0f, 23.0f, 4.0f));
+        } else {
+            addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+        }
         LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
             protected int processColor(int i) {
@@ -122,8 +130,9 @@ public class TextDetailCell extends FrameLayout {
                 TextDetailCell.this.lambda$new$2(clickableSpan);
             }
         });
-        this.multiline = z;
-        if (z) {
+        boolean z3 = this.multiline;
+        this.multiline = z3;
+        if (z3) {
             setMinimumHeight(AndroidUtilities.dp(60.0f));
         } else {
             linksTextView3.setLines(1);
@@ -134,7 +143,11 @@ public class TextDetailCell extends FrameLayout {
         linksTextView3.setImportantForAccessibility(2);
         linksTextView3.setEllipsize(truncateAt);
         linksTextView3.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
-        addView(linksTextView3, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+        if (z) {
+            addView(linksTextView3, LayoutHelper.createFrame(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 32.0f, 23.0f, 4.0f));
+        } else {
+            addView(linksTextView3, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
+        }
         updateColors();
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;

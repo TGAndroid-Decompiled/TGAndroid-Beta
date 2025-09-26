@@ -320,7 +320,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.lastNameField.setText(this.lastNameFromCard);
         EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.AddNotes), true, true, getMessagesController().config.contactNoteLengthLimit.get(), this.resourcesProvider);
         this.noteField = editTextCell3;
-        editTextCell3.editText.setImeOptions(6);
+        editTextCell3.editText.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
+        this.noteField.editText.setImeOptions(6);
         this.noteField.setBackgroundColor(getThemedColor(i2));
         this.noteField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

@@ -48,6 +48,10 @@ public class TLJsonBuilder {
         writeString(str, Integer.toString(i, 10));
     }
 
+    public void writeBoolean(String str, boolean z) {
+        write(str, Boolean.valueOf(z));
+    }
+
     private void write(String str, Object obj) {
         try {
             this.result2.putOpt(str, obj);

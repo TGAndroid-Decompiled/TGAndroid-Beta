@@ -95,6 +95,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
+import org.telegram.messenger.utils.tlutils.TlUtils;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoIPController;
@@ -2549,7 +2550,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             TLRPC.InputGroupCall inputGroupCall = conferenceCall.inputGroupCall;
             inputGroupCall.id = groupCall.id;
             inputGroupCall.access_hash = groupCall.access_hash;
-            conferenceCall.groupCall = groupCall;
+            conferenceCall.groupCall = TlUtils.applyGroupCallUpdate(conferenceCall.groupCall, groupCall);
             startConferenceGroupCall(false, 0, null, false);
             HashSet<Long> hashSet = this.inviteUsersToConference;
             if (hashSet != null) {
@@ -2702,7 +2703,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 }
                 ConferenceCall conferenceCall = this.conference;
                 if (conferenceCall != null) {
-                    conferenceCall.groupCall = groupCall;
+                    conferenceCall.groupCall = TlUtils.applyGroupCallUpdate(conferenceCall.groupCall, groupCall);
                 }
             }
             Iterator it2 = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCallParticipants.class).iterator();

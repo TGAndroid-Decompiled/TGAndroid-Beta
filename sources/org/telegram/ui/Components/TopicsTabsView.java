@@ -100,7 +100,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         this.resourcesProvider = resourcesProvider;
         long j2 = -j;
         this.mono = ChatObject.isMonoForum(MessagesController.getInstance(i).getChat(Long.valueOf(j2)));
-        this.bot = false;
+        this.bot = UserObject.isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
         SharedPreferences preferences = UserConfig.getInstance(i).getPreferences();
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + j2, false);
         setClipChildren(true);

@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.utils.tlutils.TlUtils;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -386,7 +387,7 @@ public class ChatObject {
         public void setCall(AccountInstance accountInstance, long j, TLRPC.GroupCall groupCall) {
             this.chatId = j;
             this.currentAccount = accountInstance;
-            this.call = groupCall;
+            this.call = TlUtils.applyGroupCallUpdate(this.call, groupCall);
             this.recording = groupCall.record_start_date != 0;
             sortParticipants();
             loadMembers(true);
@@ -399,9 +400,9 @@ public class ChatObject {
         public void setCall(AccountInstance accountInstance, long j, TL_phone.groupCall groupcall) {
             this.chatId = j;
             this.currentAccount = accountInstance;
-            TLRPC.GroupCall groupCall = groupcall.call;
-            this.call = groupCall;
-            this.recording = groupCall.record_start_date != 0;
+            TLRPC.GroupCall applyGroupCallUpdate = TlUtils.applyGroupCallUpdate(this.call, groupcall.call);
+            this.call = applyGroupCallUpdate;
+            this.recording = applyGroupCallUpdate.record_start_date != 0;
             int size = groupcall.participants.size();
             int i = Integer.MAX_VALUE;
             for (int i2 = 0; i2 < size; i2++) {
@@ -1151,7 +1152,7 @@ public class ChatObject {
                 this.nextLoadOffset = null;
                 loadMembers(true);
             }
-            this.call = tL_updateGroupCall.call;
+            this.call = TlUtils.applyGroupCallUpdate(this.call, tL_updateGroupCall.call);
             this.recording = this.call.record_start_date != 0;
             this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
         }

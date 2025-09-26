@@ -2815,9 +2815,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     @Override
     public ActionBar createActionBar(Context context) {
+        ChatActivity chatActivity;
         ChatActivity.ThemeDelegate themeDelegate;
         BaseFragment lastFragment = this.parentLayout.getLastFragment();
-        if ((lastFragment instanceof ChatActivity) && (themeDelegate = ((ChatActivity) lastFragment).themeDelegate) != null && themeDelegate.getCurrentTheme() != null) {
+        if ((lastFragment instanceof ChatActivity) && (themeDelegate = (chatActivity = (ChatActivity) lastFragment).themeDelegate) != null && themeDelegate.getCurrentTheme() != null && !chatActivity.themeDelegate.isGiftTheme()) {
             this.resourcesProvider = lastFragment.getResourceProvider();
         }
         AnonymousClass5 anonymousClass5 = new ActionBar(context, this.resourcesProvider) {
@@ -2969,11 +2970,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ChatAvatarContainer avatarContainer;
         TLRPC.UserFull userFull2;
         TLRPC.ChatParticipants chatParticipants;
+        ChatActivity chatActivity;
         ChatActivity.ThemeDelegate themeDelegate;
         Theme.createProfileResources(context);
         Theme.createChatResources(context, false);
         BaseFragment lastFragment = this.parentLayout.getLastFragment();
-        if ((lastFragment instanceof ChatActivity) && (themeDelegate = ((ChatActivity) lastFragment).themeDelegate) != null && themeDelegate.getCurrentTheme() != null) {
+        if ((lastFragment instanceof ChatActivity) && (themeDelegate = (chatActivity = (ChatActivity) lastFragment).themeDelegate) != null && themeDelegate.getCurrentTheme() != null && !chatActivity.themeDelegate.isGiftTheme()) {
             this.resourcesProvider = lastFragment.getResourceProvider();
         }
         this.searchTransitionOffset = 0;
@@ -3880,6 +3882,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         StarRatingView starRatingView = new StarRatingView(context22);
         this.ratingView = starRatingView;
         starRatingView.setLayoutParams(LayoutHelper.createFrame(32, 32.0f, 3, 112.0f, -2.0f, 0.0f, 0.0f));
+        this.ratingView.setResourcesProvider(this.resourcesProvider);
         checkStarRatingVisible();
         this.ratingView.setDelegate(new StarRatingView.Delegate() {
             @Override
@@ -14052,8 +14055,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         class AnonymousClass1 extends TextDetailCell {
-            AnonymousClass1(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-                super(context, resourcesProvider, z);
+            AnonymousClass1(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
+                super(context, resourcesProvider, z, z2);
             }
 
             @Override
@@ -14195,9 +14198,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     break;
                 case 2:
                 case 19:
-                    AnonymousClass1 anonymousClass1 = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 19) {
-                        AnonymousClass1(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-                            super(context, resourcesProvider, z);
+                case 30:
+                    AnonymousClass1 anonymousClass1 = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 30, i == 19) {
+                        AnonymousClass1(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
+                            super(context, resourcesProvider, z, z2);
                         }
 
                         @Override
@@ -14770,7 +14774,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i == ProfileActivity.this.infoHeaderRow || i == ProfileActivity.this.membersHeaderRow || i == ProfileActivity.this.settingsSectionRow2 || i == ProfileActivity.this.numberSectionRow || i == ProfileActivity.this.helpHeaderRow || i == ProfileActivity.this.debugHeaderRow || i == ProfileActivity.this.botPermissionsHeader) {
                 return 1;
             }
-            if (i == ProfileActivity.this.phoneRow || i == ProfileActivity.this.noteRow || i == ProfileActivity.this.locationRow || i == ProfileActivity.this.numberRow) {
+            if (i == ProfileActivity.this.phoneRow || i == ProfileActivity.this.locationRow || i == ProfileActivity.this.numberRow) {
                 return 2;
             }
             ProfileActivity profileActivity = ProfileActivity.this;
@@ -14779,6 +14783,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             if (i == profileActivity.usernameRow || i == ProfileActivity.this.setUsernameRow) {
                 return 19;
+            }
+            if (i == ProfileActivity.this.noteRow) {
+                return 30;
             }
             if (i == ProfileActivity.this.userInfoRow || i == ProfileActivity.this.channelInfoRow || i == ProfileActivity.this.bioRow) {
                 return 3;

@@ -41,6 +41,10 @@ public class StarRatingView extends View {
         checkVisibility();
     }
 
+    public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
+        this.colors.resourcesProvider = resourcesProvider;
+    }
+
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
         return super.verifyDrawable(drawable) || drawable == this.drawable;
@@ -140,6 +144,7 @@ public class StarRatingView extends View {
         public int fillingTextColor;
         private float parentExpanded;
         public MessagesController.PeerColor peerColor;
+        private Theme.ResourcesProvider resourcesProvider;
 
         private Colors() {
             this.backgroundColor = -16777216;
@@ -157,10 +162,10 @@ public class StarRatingView extends View {
             int bgColor1 = peerColor.getBgColor1(Theme.isCurrentThemeDark());
             int bgColor2 = peerColor.getBgColor2(Theme.isCurrentThemeDark());
             int i = AndroidUtilities.computePerceivedBrightness(this.backgroundColor) > 0.721f ? -16777216 : -1;
-            int tabsViewBackgroundColor = StarRatingView.getTabsViewBackgroundColor(null, bgColor2, bgColor1, this.parentExpanded);
+            int tabsViewBackgroundColor = StarRatingView.getTabsViewBackgroundColor(this.resourcesProvider, bgColor2, bgColor1, this.parentExpanded);
             this.fillingTextColor = tabsViewBackgroundColor;
             this.backgroundColor = tabsViewBackgroundColor;
-            int blendARGB = ColorUtils.blendARGB(i, Theme.getColor(Theme.key_actionBarDefaultTitle), this.parentExpanded);
+            int blendARGB = ColorUtils.blendARGB(i, Theme.getColor(Theme.key_actionBarDefaultTitle, this.resourcesProvider), this.parentExpanded);
             this.fillingColor = blendARGB;
             this.backgroundTextColor = blendARGB;
             this.fillingTextColor |= -16777216;
@@ -168,10 +173,10 @@ public class StarRatingView extends View {
 
         public void reset() {
             int i = Theme.key_actionBarDefault;
-            int tabsViewBackgroundColor = StarRatingView.getTabsViewBackgroundColor(null, Theme.getColor(i), Theme.getColor(i), this.parentExpanded);
+            int tabsViewBackgroundColor = StarRatingView.getTabsViewBackgroundColor(this.resourcesProvider, Theme.getColor(i, this.resourcesProvider), Theme.getColor(i, this.resourcesProvider), this.parentExpanded);
             this.fillingTextColor = tabsViewBackgroundColor;
             this.backgroundColor = tabsViewBackgroundColor;
-            int color = Theme.getColor(Theme.key_actionBarDefaultTitle);
+            int color = Theme.getColor(Theme.key_actionBarDefaultTitle, this.resourcesProvider);
             this.fillingColor = color;
             this.backgroundTextColor = color;
             this.fillingTextColor |= -16777216;

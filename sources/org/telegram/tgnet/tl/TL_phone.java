@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
+import me.vkryl.core.BitwiseUtils;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -839,27 +840,31 @@ public class TL_phone {
         }
     }
 
-    public static class toggleGroupCallSettings extends TLObject {
-        public static final int constructor = 1958458429;
+    public static class toggleGroupCallSettings extends TLMethod<TLRPC.Updates> {
+        public static final int constructor = -378390524;
         public TLRPC.InputGroupCall call;
         public int flags;
-        public boolean join_muted;
+        public Boolean join_muted;
+        public Boolean messages_enabled;
         public boolean reset_invite_hash;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1958458429);
-            int i = this.reset_invite_hash ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            outputSerializedData.writeInt32(-378390524);
+            int flag = BitwiseUtils.setFlag(this.flags, 2, this.reset_invite_hash);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.call.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
-                outputSerializedData.writeBool(this.join_muted);
+            if (BitwiseUtils.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeBool(this.join_muted.booleanValue());
+            }
+            if (BitwiseUtils.hasFlag(this.flags, 4)) {
+                outputSerializedData.writeBool(this.messages_enabled.booleanValue());
             }
         }
     }
@@ -1482,14 +1487,16 @@ public class TL_phone {
     }
 
     public static class sendGroupCallMessage extends TLMethod<TLRPC.Bool> {
-        public static final int constructor = -614432696;
+        public static final int constructor = -2021052396;
         public TLRPC.InputGroupCall call;
         public TLRPC.TL_textWithEntities message;
+        public long random_id;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-614432696);
+            outputSerializedData.writeInt32(-2021052396);
             this.call.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt64(this.random_id);
             this.message.serializeToStream(outputSerializedData);
         }
 

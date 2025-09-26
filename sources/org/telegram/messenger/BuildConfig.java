@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 
 public final class BuildConfig {
-    public static final String APP_CENTER_HASH = "null";
-    public static final String BETA_URL = "null";
+    public static final String APP_CENTER_HASH = "f9726602-67c9-48d2-b5d0-4761f1c1a8f3";
+    public static final String BETA_URL = "https://telegram.org/dl/android/apk-public-beta.json";
     public static final boolean BUILD_HOST_IS_WINDOWS = false;
     public static final String BUILD_TYPE = "HA_public";
     public static final String BUILD_VERSION_STRING = "12.1.0";
