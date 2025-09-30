@@ -1148,11 +1148,15 @@ public class ChatObject {
         }
 
         public void processGroupCallUpdate(TLRPC.TL_updateGroupCall tL_updateGroupCall) {
-            if (this.call.version < tL_updateGroupCall.call.version) {
+            processGroupCallUpdate(tL_updateGroupCall.call);
+        }
+
+        public void processGroupCallUpdate(TLRPC.GroupCall groupCall) {
+            if (this.call.version < groupCall.version) {
                 this.nextLoadOffset = null;
                 loadMembers(true);
             }
-            this.call = TlUtils.applyGroupCallUpdate(this.call, tL_updateGroupCall.call);
+            this.call = TlUtils.applyGroupCallUpdate(this.call, groupCall);
             this.recording = this.call.record_start_date != 0;
             this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
         }

@@ -7370,7 +7370,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                                     PhoneConfirmationView.this.codeField[i7 + 1].requestFocus();
                                 }
                                 if ((i7 == PhoneConfirmationView.this.length - 1 || (i7 == PhoneConfirmationView.this.length - 2 && length >= 2)) && PhoneConfirmationView.this.getCode().length() == PhoneConfirmationView.this.length) {
-                                    PhoneConfirmationView.this.lambda$onNextPressed$14(null);
+                                    PhoneConfirmationView.this.lambda$onNextPressed$16(null);
                                 }
                             }
                         }
@@ -7468,7 +7468,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             if (i != 5) {
                 return false;
             }
-            lambda$onNextPressed$14(null);
+            lambda$onNextPressed$16(null);
             return true;
         }
 
@@ -7665,7 +7665,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
 
         @Override
-        public void lambda$onNextPressed$14(String str) {
+        public void lambda$onNextPressed$16(String str) {
             if (this.nextPressed) {
                 return;
             }
@@ -7856,7 +7856,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             }
             if (i == NotificationCenter.didReceiveSmsCode) {
                 editTextBoldCursorArr[0].setText("" + objArr[0]);
-                lambda$onNextPressed$14(null);
+                lambda$onNextPressed$16(null);
                 return;
             }
             if (i == NotificationCenter.didReceiveCall) {
@@ -7865,7 +7865,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                     this.ignoreOnTextChange = true;
                     this.codeField[0].setText(str);
                     this.ignoreOnTextChange = false;
-                    lambda$onNextPressed$14(null);
+                    lambda$onNextPressed$16(null);
                 }
             }
         }

@@ -115,11 +115,10 @@ public class TableView extends android.widget.TableLayout {
         linksTextView.setTextSize(1, 13.0f);
         linksTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider));
-        linksTextView.setMaxLines(4);
+        linksTextView.setMaxLines(1);
+        linksTextView.setSingleLine();
+        linksTextView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence2);
-        if (spannableStringBuilder.length() > 20) {
-            spannableStringBuilder.insert(spannableStringBuilder.length() / 2, (CharSequence) "\n");
-        }
         if (runnable != null) {
             spannableStringBuilder.setSpan(new ClickableSpan() {
                 @Override

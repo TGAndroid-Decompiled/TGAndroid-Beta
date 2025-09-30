@@ -98,8 +98,8 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             }
             if (BuildVars.DEBUG_VERSION) {
                 Distribute.setEnabledForDebuggableBuild(true);
-                if (!TextUtils.isEmpty("f9726602-67c9-48d2-b5d0-4761f1c1a8f3")) {
-                    AppCenter.start(activity.getApplication(), "f9726602-67c9-48d2-b5d0-4761f1c1a8f3", Distribute.class, Crashes.class, Analytics.class);
+                if (!TextUtils.isEmpty("null")) {
+                    AppCenter.start(activity.getApplication(), "null", Distribute.class, Crashes.class, Analytics.class);
                     Crashes.getMinidumpDirectory().thenAccept(new AppCenterConsumer() {
                         @Override
                         public final void accept(Object obj) {
@@ -212,7 +212,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean isCustomUpdate() {
-        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
+        return !TextUtils.isEmpty("null");
     }
 
     @Override

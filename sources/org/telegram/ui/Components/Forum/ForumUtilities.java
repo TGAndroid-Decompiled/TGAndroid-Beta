@@ -28,6 +28,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -320,8 +321,21 @@ public abstract class ForumUtilities {
 
     public static void applyTopic(ChatActivity chatActivity, MessagesStorage.TopicKey topicKey) {
         TLRPC.TL_forumTopic findTopic;
-        TLRPC.Chat chat;
-        if (topicKey.topicId == 0 || (findTopic = chatActivity.getMessagesController().getTopicsController().findTopic(-topicKey.dialogId, topicKey.topicId)) == null || (chat = chatActivity.getMessagesController().getChat(Long.valueOf(-topicKey.dialogId))) == null) {
+        if (topicKey.topicId == 0 || (findTopic = chatActivity.getMessagesController().getTopicsController().findTopic(-topicKey.dialogId, topicKey.topicId)) == null) {
+            return;
+        }
+        if (topicKey.dialogId > 0) {
+            if (UserObject.isBotForum(chatActivity.getMessagesController().getUser(Long.valueOf(topicKey.dialogId)))) {
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(new MessageObject(chatActivity.getCurrentAccount(), findTopic.topicStartMessage, false, false));
+                chatActivity.setThreadMessages(arrayList, null, findTopic.id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+                chatActivity.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
+                return;
+            }
+            return;
+        }
+        TLRPC.Chat chat = chatActivity.getMessagesController().getChat(Long.valueOf(-topicKey.dialogId));
+        if (chat == null) {
             return;
         }
         if (ChatObject.isMonoForum(chat)) {
@@ -329,9 +343,9 @@ public abstract class ForumUtilities {
                 chatActivity.setMonoForumThreadMessages(findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
             }
         } else {
-            ArrayList arrayList = new ArrayList();
-            arrayList.add(new MessageObject(chatActivity.getCurrentAccount(), findTopic.topicStartMessage, false, false));
-            chatActivity.setThreadMessages(arrayList, chat, findTopic.id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.add(new MessageObject(chatActivity.getCurrentAccount(), findTopic.topicStartMessage, false, false));
+            chatActivity.setThreadMessages(arrayList2, chat, findTopic.id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
         }
         chatActivity.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
     }

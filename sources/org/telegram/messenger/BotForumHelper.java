@@ -3,8 +3,8 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import android.util.SparseIntArray;
-import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -130,49 +130,71 @@ public class BotForumHelper extends BaseController {
         }
     }
 
-    public boolean beforeSendingFinalRequest(final TLObject tLObject, MessageObject messageObject, final Runnable runnable) {
-        String str;
-        TLRPC.InputPeer inputPeerFromSendMessageRequest = TlUtils.getInputPeerFromSendMessageRequest(tLObject);
-        final long peerDialogId = DialogObject.getPeerDialogId(inputPeerFromSendMessageRequest);
-        if (inputPeerFromSendMessageRequest == null || peerDialogId <= 0 || !UserObject.isBotForum(getMessagesController().getUser(Long.valueOf(peerDialogId)))) {
-            return true;
-        }
-        final long id = messageObject.getId();
-        long orCalculateRandomIdFromSendMessageRequest = TlUtils.getOrCalculateRandomIdFromSendMessageRequest(tLObject);
-        if (TlUtils.getInputReplyToFromSendMessageRequest(tLObject) instanceof TLRPC.TL_inputReplyToMessage) {
-            return true;
-        }
-        String messageFromSendMessageRequest = TlUtils.getMessageFromSendMessageRequest(tLObject);
-        long nextLong = orCalculateRandomIdFromSendMessageRequest != 0 ? ~orCalculateRandomIdFromSendMessageRequest : Utilities.random.nextLong();
-        if (!TextUtils.isEmpty(messageFromSendMessageRequest)) {
-            str = messageFromSendMessageRequest.substring(0, Math.min(messageFromSendMessageRequest.length(), 16));
-        } else {
-            str = "Chat #" + Integer.toHexString(SessionDetails$$ExternalSyntheticBackport0.m(nextLong));
-        }
-        performSendBotTopicCreate(inputPeerFromSendMessageRequest, str, nextLong, new MessagesStorage.IntCallback() {
-            @Override
-            public final void run(int i) {
-                BotForumHelper.this.lambda$beforeSendingFinalRequest$2(tLObject, peerDialogId, id, runnable, i);
-            }
-        });
-        return false;
+    public boolean beforeSendingFinalRequest(TLObject tLObject, MessageObject messageObject, Runnable runnable) {
+        return beforeSendingFinalRequest(tLObject, Collections.singletonList(messageObject), runnable);
     }
 
-    public void lambda$beforeSendingFinalRequest$2(TLObject tLObject, final long j, final long j2, final Runnable runnable, final int i) {
-        TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage = new TLRPC.TL_inputReplyToMessage();
-        tL_inputReplyToMessage.reply_to_msg_id = i;
-        TlUtils.setInputReplyToFromSendMessageRequest(tLObject, tL_inputReplyToMessage);
+    public boolean beforeSendingFinalRequest(final TLObject tLObject, List<MessageObject> list, final Runnable runnable) {
+        if (list != null && !list.isEmpty()) {
+            TLRPC.InputPeer inputPeerFromSendMessageRequest = TlUtils.getInputPeerFromSendMessageRequest(tLObject);
+            final long peerDialogId = DialogObject.getPeerDialogId(inputPeerFromSendMessageRequest);
+            if (inputPeerFromSendMessageRequest == null || peerDialogId <= 0 || !UserObject.isBotForum(getMessagesController().getUser(Long.valueOf(peerDialogId)))) {
+                return true;
+            }
+            final long[] jArr = new long[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                jArr[i] = list.get(i).getId();
+            }
+            long orCalculateRandomIdFromSendMessageRequest = TlUtils.getOrCalculateRandomIdFromSendMessageRequest(tLObject);
+            if (TlUtils.getInputReplyToFromSendMessageRequest(tLObject) instanceof TLRPC.TL_inputReplyToMessage) {
+                return true;
+            }
+            if ((tLObject instanceof TLRPC.TL_messages_forwardMessages) && ((TLRPC.TL_messages_forwardMessages) tLObject).top_msg_id != 0) {
+                return true;
+            }
+            String messageFromSendMessageRequest = TlUtils.getMessageFromSendMessageRequest(tLObject);
+            long nextRandomId = orCalculateRandomIdFromSendMessageRequest != 0 ? ~orCalculateRandomIdFromSendMessageRequest : getSendMessagesHelper().getNextRandomId();
+            if (!TextUtils.isEmpty(messageFromSendMessageRequest)) {
+                if (messageFromSendMessageRequest.length() > 16) {
+                    messageFromSendMessageRequest = messageFromSendMessageRequest.substring(0, 16) + "...";
+                }
+            } else {
+                messageFromSendMessageRequest = LocaleController.getString(R.string.TopicsTitleMedia);
+            }
+            performSendBotTopicCreate(inputPeerFromSendMessageRequest, messageFromSendMessageRequest, nextRandomId, new MessagesStorage.IntCallback() {
+                @Override
+                public final void run(int i2) {
+                    BotForumHelper.this.lambda$beforeSendingFinalRequest$2(tLObject, jArr, peerDialogId, runnable, i2);
+                }
+            });
+            return false;
+        }
+        return true;
+    }
+
+    public void lambda$beforeSendingFinalRequest$2(TLObject tLObject, final long[] jArr, final long j, final Runnable runnable, final int i) {
+        if (tLObject instanceof TLRPC.TL_messages_forwardMessages) {
+            TLRPC.TL_messages_forwardMessages tL_messages_forwardMessages = (TLRPC.TL_messages_forwardMessages) tLObject;
+            tL_messages_forwardMessages.top_msg_id = i;
+            tL_messages_forwardMessages.flags |= 512;
+        } else {
+            TLRPC.TL_inputReplyToMessage tL_inputReplyToMessage = new TLRPC.TL_inputReplyToMessage();
+            tL_inputReplyToMessage.reply_to_msg_id = i;
+            TlUtils.setInputReplyToFromSendMessageRequest(tLObject, tL_inputReplyToMessage);
+        }
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BotForumHelper.this.lambda$beforeSendingFinalRequest$1(j, j2, i, runnable);
+                BotForumHelper.this.lambda$beforeSendingFinalRequest$1(jArr, j, i, runnable);
             }
         });
     }
 
-    public void lambda$beforeSendingFinalRequest$1(long j, long j2, int i, Runnable runnable) {
-        getMessagesStorage().updateMessageTopicId(j, j2, i);
-        runnable.run();
+    public void lambda$beforeSendingFinalRequest$1(long[] jArr, long j, int i, Runnable runnable) {
+        for (long j2 : jArr) {
+            getMessagesStorage().updateMessageTopicId(j, j2, i);
+        }
+        AndroidUtilities.runOnUIThread(runnable);
     }
 
     private void performSendBotTopicCreate(TLRPC.InputPeer inputPeer, final String str, long j, MessagesStorage.IntCallback intCallback) {
@@ -186,7 +208,8 @@ public class BotForumHelper extends BaseController {
         arrayList.add(intCallback);
         this.pendingBotTopics.put(peerDialogId, arrayList);
         TL_forum.TL_messages_createForumTopic tL_messages_createForumTopic = new TL_forum.TL_messages_createForumTopic();
-        tL_messages_createForumTopic.title = str;
+        tL_messages_createForumTopic.title = TextUtils.isEmpty(str) ? "#New Chat" : str;
+        tL_messages_createForumTopic.title_missing = true;
         tL_messages_createForumTopic.peer = inputPeer;
         tL_messages_createForumTopic.random_id = j;
         getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new Executor() {
@@ -245,6 +268,7 @@ public class BotForumHelper extends BaseController {
         tL_forumTopic.from_id = getMessagesController().getPeer(getUserConfig().clientUserId);
         tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
         tL_forumTopic.icon_color = 0;
+        tL_forumTopic.title_missing = true;
         getMessagesController().getTopicsController().onTopicCreated(j, tL_forumTopic, true);
         performSendBotTopicCreateComplete(j, tL_updateMessageID.id);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j, tL_updateMessageID.id));

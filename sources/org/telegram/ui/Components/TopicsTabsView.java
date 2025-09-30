@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -1218,7 +1219,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 17));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
-            FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(30, 30, 17);
+            FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(34, 34, 17);
             this.imageViewParams = createFrame;
             frameLayout.addView(backupImageView, createFrame);
             this.avatarDrawable = new AvatarDrawable();
@@ -1232,7 +1233,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             textView.setTypeface(AndroidUtilities.bold());
             textView.setMaxLines(3);
             textView.setEllipsize(TextUtils.TruncateAt.END);
-            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 4, 0, 4, 4));
+            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 4, 0, 4, 0));
+            linearLayout.setPadding(0, 0, 0, AndroidUtilities.dp(4.0f));
             View imageView = new ImageView(context);
             this.lineView = imageView;
             imageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(2.33f), Theme.getColor(i2, resourcesProvider)));
@@ -1336,9 +1338,16 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             this.staticImage = true;
             this.isAdd = false;
             this.textView.setText(LocaleController.getString(z ? R.string.BotForumNewTopic : R.string.AllTopicsSide));
+            this.textView.setVisibility(z ? 8 : 0);
             this.imageView.clearImage();
             this.imageView.setAnimatedEmojiDrawable(null);
-            this.imageView.setImageResource(z ? R.drawable.filled_topic_new_24 : R.drawable.other_chats);
+            if (z) {
+                BotNewTopicDrawable botNewTopicDrawable = new BotNewTopicDrawable(getContext());
+                botNewTopicDrawable.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
+                this.imageView.setImageDrawable(botNewTopicDrawable);
+            } else {
+                this.imageView.setImageResource(R.drawable.other_chats);
+            }
             this.imageView.setScaleX(1.0f);
             this.imageView.setScaleY(1.0f);
             setSelected(z3);
@@ -1353,6 +1362,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             this.staticImage = true;
             this.isAdd = true;
             this.textView.setText(LocaleController.getString(R.string.NewTopic));
+            this.textView.setVisibility(0);
             this.imageView.clearImage();
             this.imageView.setAnimatedEmojiDrawable(null);
             this.imageView.setImageResource(R.drawable.emoji_tabs_new3);
@@ -1375,6 +1385,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             loadingSpan.setScaleY(0.75f);
             spannableStringBuilder.setSpan(loadingSpan, 0, 1, 33);
             this.textView.setText(spannableStringBuilder);
+            this.textView.setVisibility(0);
             this.imageView.clearImage();
             this.imageView.setAnimatedEmojiDrawable(null);
             if (this.loadingDrawable == null) {
@@ -1405,23 +1416,24 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             this.topicId = j3;
             this.isAdd = false;
             this.textView.setText(tL_forumTopic.title);
+            this.textView.setVisibility(0);
             if (tL_forumTopic.id == 1) {
                 this.staticImage = true;
                 this.imageView.clearImage();
+                this.imageView.setAnimatedEmojiDrawable(null);
                 this.imageView.setImageResource(R.drawable.msg_filled_general);
                 this.imageView.setScaleX(0.66f);
                 this.imageView.setScaleY(0.66f);
+            } else if (tL_forumTopic.icon_emoji_id != 0) {
+                this.imageView.clearImage();
+                this.imageView.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(UserConfig.selectedAccount, 3, tL_forumTopic.icon_emoji_id));
+                this.imageView.setScaleX(1.0f);
+                this.imageView.setScaleY(1.0f);
             } else {
-                long j4 = tL_forumTopic.icon_emoji_id;
-                if (j4 != 0) {
-                    this.imageView.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(UserConfig.selectedAccount, 3, j4));
-                    this.imageView.setScaleX(1.0f);
-                    this.imageView.setScaleY(1.0f);
-                } else {
-                    this.imageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic, false));
-                    this.imageView.setScaleX(1.0f);
-                    this.imageView.setScaleY(1.0f);
-                }
+                this.imageView.setAnimatedEmojiDrawable(null);
+                this.imageView.setImageDrawable(ForumUtilities.createTopicDrawable(tL_forumTopic, false));
+                this.imageView.setScaleX(1.0f);
+                this.imageView.setScaleY(1.0f);
             }
             setSelected(z);
             updateImageColor();
@@ -1449,6 +1461,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             boolean z2 = peerDialogId == this.topicId;
             this.topicId = peerDialogId;
             this.textView.setText(DialogObject.getName(peerDialogId));
+            this.textView.setVisibility(0);
             if (peerDialogId >= 0) {
                 TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
                 this.avatarDrawable.setInfo(user);
@@ -2111,5 +2124,49 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
     private long getTopicId(TLRPC.TL_forumTopic tL_forumTopic) {
         return this.mono ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id;
+    }
+
+    public static class BotNewTopicDrawable extends Drawable {
+        private final Drawable drawable;
+        private final Paint paint = new Paint(1);
+        private final RectF rectF = new RectF();
+
+        @Override
+        public int getOpacity() {
+            return 0;
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public BotNewTopicDrawable(Context context) {
+            this.drawable = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
+        }
+
+        public void setColor(int i) {
+            this.paint.setColor(i);
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
+            this.drawable.draw(canvas);
+        }
+
+        @Override
+        protected void onBoundsChange(android.graphics.Rect rect) {
+            super.onBoundsChange(rect);
+            this.rectF.set(rect);
+            int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
+            int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
+            this.drawable.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.paint.setAlpha(i);
+            this.drawable.setAlpha(i);
+        }
     }
 }

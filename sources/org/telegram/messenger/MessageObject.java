@@ -42,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import me.vkryl.core.BitwiseUtils;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.CodeHighlighting;
@@ -438,19 +439,28 @@ public class MessageObject {
     }
 
     public long getTopicId() {
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()));
-        return getTopicId(this.currentAccount, this.messageOwner, ChatObject.isForum(chat), ChatObject.isMonoForum(chat));
+        return getTopicId(this.currentAccount, this.messageOwner, getForumFlags(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId())), MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(getDialogId()))));
+    }
+
+    private static int getForumFlags(TLRPC.Chat chat, TLRPC.User user) {
+        return BitwiseUtils.setFlag(BitwiseUtils.setFlag(BitwiseUtils.setFlag(0, 1, ChatObject.isForum(chat)), 4, ChatObject.isMonoForum(chat)), 8, UserObject.isBotForum(user));
     }
 
     public static long getTopicId(int i, TLRPC.Message message, int i2) {
-        return getTopicId(i, message, (i2 & 1) != 0, (i2 & 4) != 0);
+        long topicId = getTopicId(i, message, BitwiseUtils.hasFlag(i2, 1), BitwiseUtils.hasFlag(i2, 4));
+        if (topicId == 0 && BitwiseUtils.hasFlag(i2, 8)) {
+            return -1L;
+        }
+        return topicId;
     }
 
+    @Deprecated
     public static long getTopicId(int i, TLRPC.Message message, boolean z) {
         return getTopicId(i, message, z, false);
     }
 
-    public static long getTopicId(int i, TLRPC.Message message, boolean z, boolean z2) {
+    @Deprecated
+    private static long getTopicId(int i, TLRPC.Message message, boolean z, boolean z2) {
         int i2;
         long clientUserId = UserConfig.getInstance(i).getClientUserId();
         if (z2) {
@@ -3131,6 +3141,10 @@ public class MessageObject {
         return formatTextWithEntities;
     }
 
+    public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities) {
+        return formatTextWithEntities(tL_textWithEntities, false);
+    }
+
     public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {
         Theme.createCommonChatResources();
         TextPaint textPaint = Theme.chat_actionTextPaint;
@@ -3143,9 +3157,25 @@ public class MessageObject {
     }
 
     public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, TextPaint textPaint) {
+        return formatTextWithEntities(tL_textWithEntities, z, false, textPaint);
+    }
+
+    public static CharSequence formatTextWithEntities(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, boolean z2, TextPaint textPaint) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
-        addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, z, false, false, false);
+        addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, z, false, z2, false);
         return replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
+    }
+
+    public static TLRPC.TL_textWithEntities removeLinks(TLRPC.TL_textWithEntities tL_textWithEntities) {
+        TLRPC.TL_textWithEntities tL_textWithEntities2 = new TLRPC.TL_textWithEntities();
+        tL_textWithEntities2.text = tL_textWithEntities.text;
+        for (int i = 0; i < tL_textWithEntities.entities.size(); i++) {
+            TLRPC.MessageEntity messageEntity = tL_textWithEntities.entities.get(i);
+            if (!(messageEntity instanceof TLRPC.TL_messageEntityUrl) && !(messageEntity instanceof TLRPC.TL_messageEntityTextUrl)) {
+                tL_textWithEntities2.entities.add(messageEntity);
+            }
+        }
+        return tL_textWithEntities2;
     }
 
     public java.lang.CharSequence getMediaTitle(org.telegram.tgnet.TLRPC.MessageMedia r8) {

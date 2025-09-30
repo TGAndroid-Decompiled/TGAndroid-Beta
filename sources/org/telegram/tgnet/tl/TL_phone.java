@@ -843,7 +843,6 @@ public class TL_phone {
     public static class toggleGroupCallSettings extends TLMethod<TLRPC.Updates> {
         public static final int constructor = -378390524;
         public TLRPC.InputGroupCall call;
-        public int flags;
         public Boolean join_muted;
         public Boolean messages_enabled;
         public boolean reset_invite_hash;
@@ -856,14 +855,13 @@ public class TL_phone {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-378390524);
-            int flag = BitwiseUtils.setFlag(this.flags, 2, this.reset_invite_hash);
-            this.flags = flag;
+            int flag = BitwiseUtils.setFlag(BitwiseUtils.setFlag(BitwiseUtils.setFlag(0, 1, this.join_muted != null), 2, this.reset_invite_hash), 4, this.messages_enabled != null);
             outputSerializedData.writeInt32(flag);
             this.call.serializeToStream(outputSerializedData);
-            if (BitwiseUtils.hasFlag(this.flags, 1)) {
+            if (BitwiseUtils.hasFlag(flag, 1)) {
                 outputSerializedData.writeBool(this.join_muted.booleanValue());
             }
-            if (BitwiseUtils.hasFlag(this.flags, 4)) {
+            if (BitwiseUtils.hasFlag(flag, 4)) {
                 outputSerializedData.writeBool(this.messages_enabled.booleanValue());
             }
         }

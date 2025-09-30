@@ -286,7 +286,27 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 return BottomSheetWithRecyclerListView.this.canHighlightChildAt(view, f, f2);
             }
         };
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
+            @Override
+            public void scrollToPositionWithOffset(int i, int i2) {
+                super.scrollToPositionWithOffset(i, i2);
+            }
+
+            @Override
+            public void scrollToPosition(int i) {
+                super.scrollToPosition(i);
+            }
+
+            @Override
+            public void scrollToPositionWithOffset(int i, int i2, boolean z5) {
+                super.scrollToPositionWithOffset(i, i2, z5);
+            }
+
+            @Override
+            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
+                super.smoothScrollToPosition(recyclerView, state, i);
+            }
+        };
         this.layoutManager = linearLayoutManager;
         if (z4) {
             linearLayoutManager.setStackFromEnd(true);

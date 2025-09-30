@@ -1080,8 +1080,11 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isForum(long j) {
-        TLRPC.Chat chat = getChat(Long.valueOf(-j));
-        return chat != null && chat.forum;
+        if (j < 0) {
+            TLRPC.Chat chat = getChat(Long.valueOf(-j));
+            return chat != null && chat.forum;
+        }
+        return UserObject.isBotForum(getUser(Long.valueOf(j)));
     }
 
     public boolean isMonoForum(long j) {
@@ -26143,6 +26146,25 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public boolean isFrozen() {
         return (this.freezeSinceDate == 0 || this.freezeUntilDate == 0) ? false : true;
+    }
+
+    public static <T extends TLRPC.Update> T findUpdateFirst(TLRPC.Updates updates, Class<T> cls) {
+        new ArrayList();
+        if (updates == null) {
+            return null;
+        }
+        if (cls.isInstance(updates.update)) {
+            return cls.cast(updates.update);
+        }
+        if (updates.updates != null) {
+            for (int i = 0; i < updates.updates.size(); i++) {
+                TLRPC.Update update = updates.updates.get(i);
+                if (cls.isInstance(update)) {
+                    return cls.cast(update);
+                }
+            }
+        }
+        return null;
     }
 
     public static <T extends TLRPC.Update> ArrayList<T> findUpdates(TLRPC.Updates updates, Class<T> cls) {

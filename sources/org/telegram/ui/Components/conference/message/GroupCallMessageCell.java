@@ -160,6 +160,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
     }
 
     public void set(GroupCallMessage groupCallMessage) {
+        SpannableStringBuilder spannableStringBuilder;
         this.groupCallMessage = groupCallMessage;
         TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(groupCallMessage.fromId));
         String firstName = UserObject.getFirstName(user);
@@ -169,24 +170,30 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
             this.animatedReactionDrawable.removeView(this);
         }
         this.animatedReactionDrawable = null;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(firstName);
-        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-        spannableStringBuilder.setSpan(this.senderNameSpan, 0, spannableStringBuilder.length(), 33);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(firstName);
+        spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(this.senderNameSpan, 0, spannableStringBuilder2.length(), 33);
         ReactionsLayoutInBubble.VisibleReaction visibleReaction = groupCallMessage.visibleReaction;
         if (visibleReaction == null) {
-            spannableStringBuilder.append((CharSequence) "  ");
-            spannableStringBuilder.append(MessageObject.formatTextWithEntities(groupCallMessage.message, false, this.messageTextView.getPaint()));
+            spannableStringBuilder = concat(spannableStringBuilder2, MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, this.messageTextView.getPaint()));
         } else if (visibleReaction.emojicon != null) {
             TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.emojicon);
+            spannableStringBuilder = spannableStringBuilder2;
             if (tL_availableReaction != null) {
                 this.animatedReactionReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
+                spannableStringBuilder = spannableStringBuilder2;
             }
-        } else if (visibleReaction.documentId != 0) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
-            this.animatedReactionDrawable = animatedEmojiDrawable;
-            animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            if (isAttachedToWindow()) {
-                this.animatedReactionDrawable.addView(this);
+        } else {
+            spannableStringBuilder = spannableStringBuilder2;
+            if (visibleReaction.documentId != 0) {
+                AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
+                this.animatedReactionDrawable = animatedEmojiDrawable;
+                animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                spannableStringBuilder = spannableStringBuilder2;
+                if (isAttachedToWindow()) {
+                    this.animatedReactionDrawable.addView(this);
+                    spannableStringBuilder = spannableStringBuilder2;
+                }
             }
         }
         this.messageReaction = groupCallMessage.visibleReaction;
@@ -382,19 +389,32 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
             layout.bubble.set(0.0f, 0.0f, i2, max);
             layout.bubble.offset((i - i2) / 2.0f, 0.0f);
             layout.bubblePath.addRoundRect(layout.bubble, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
+            boolean z = spoilersTextView.getLayout().getParagraphDirection(0) == -1;
             layout.avatar.set(0.0f, 0.0f, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
-            RectF rectF = layout.avatar;
-            RectF rectF2 = layout.bubble;
-            rectF.offset(rectF2.left, rectF2.top);
-            layout.avatar.offset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f));
+            if (z) {
+                RectF rectF = layout.avatar;
+                RectF rectF2 = layout.bubble;
+                rectF.offset(rectF2.right, rectF2.top);
+                layout.avatar.offset((-AndroidUtilities.dp(4.0f)) - layout.avatar.width(), AndroidUtilities.dp(3.0f));
+            } else {
+                RectF rectF3 = layout.avatar;
+                RectF rectF4 = layout.bubble;
+                rectF3.offset(rectF4.left, rectF4.top);
+                layout.avatar.offset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f));
+            }
             layout.reaction.set(0.0f, 0.0f, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
-            layout.reaction.offset(layout.bubble.right - AndroidUtilities.dp(33.0f), 0.0f);
+            if (z) {
+                layout.reaction.offset(layout.bubble.left + AndroidUtilities.dp(5.0f), 0.0f);
+            } else {
+                layout.reaction.offset(layout.bubble.right - AndroidUtilities.dp(33.0f), 0.0f);
+            }
             layout.reaction.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            layout.text.set(0.0f, 0.0f);
-            PointF pointF = layout.text;
-            RectF rectF3 = layout.bubble;
-            pointF.offset(rectF3.left, rectF3.top);
-            layout.text.offset(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(19.0f) - spoilersTextView.getLayout().getLineBaseline(0));
+            layout.text.set(0.0f, (layout.bubble.top + AndroidUtilities.dp(19.0f)) - spoilersTextView.getLayout().getLineBaseline(0));
+            if (z) {
+                layout.text.offset((layout.bubble.right - AndroidUtilities.dp(32.0f)) - measuredWidth, 0.0f);
+            } else {
+                layout.text.offset(layout.bubble.left + AndroidUtilities.dp(32.0f), 0.0f);
+            }
             return layout;
         }
     }
@@ -406,5 +426,38 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
             super(groupCallMessageCell);
             this.cell = groupCallMessageCell;
         }
+    }
+
+    public static CharSequence concat(CharSequence charSequence, CharSequence charSequence2) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        boolean isRtlByFirstStrong = isRtlByFirstStrong(charSequence);
+        boolean isRtlByFirstStrong2 = isRtlByFirstStrong(charSequence2);
+        if (isRtlByFirstStrong != isRtlByFirstStrong2) {
+            spannableStringBuilder.append(isRtlByFirstStrong2 ? (char) 8295 : (char) 8294);
+            spannableStringBuilder.append(charSequence);
+            spannableStringBuilder.append((char) 8297);
+        } else {
+            spannableStringBuilder.append(charSequence);
+        }
+        spannableStringBuilder.append((CharSequence) "  ");
+        spannableStringBuilder.append(charSequence2);
+        return spannableStringBuilder;
+    }
+
+    private static boolean isRtlByFirstStrong(CharSequence charSequence) {
+        int length = charSequence.length();
+        int i = 0;
+        while (i < length) {
+            int codePointAt = Character.codePointAt(charSequence, i);
+            i += Character.charCount(codePointAt);
+            byte directionality = Character.getDirectionality(codePointAt);
+            if (directionality == 0) {
+                break;
+            }
+            if (directionality == 1 || directionality == 2) {
+                return true;
+            }
+        }
+        return false;
     }
 }

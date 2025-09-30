@@ -66,7 +66,7 @@ public class GroupCallMessagesController extends BaseController {
         });
     }
 
-    public void lambda$processUpdate$3(final long r9, long r11, byte[] r13) {
+    public void lambda$processUpdate$3(final long r10, long r12, byte[] r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessagesController.lambda$processUpdate$3(long, long, byte[]):void");
     }
 
