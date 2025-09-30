@@ -8782,7 +8782,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject.getDialogId() == 489000 && (message = this.currentMessageObject.messageOwner) != null && message.fwd_from != null) {
             return true;
         }
-        if (this.currentMessageObject.isSponsored() || this.currentMessageObject.isGiveawayOrGiveawayResults() || this.isBotForum) {
+        if (this.currentMessageObject.isSponsored() || this.currentMessageObject.isGiveawayOrGiveawayResults()) {
+            return false;
+        }
+        if (this.isBotForum && !this.isPinnedChat) {
             return false;
         }
         if (this.isPinnedChat && this.currentMessageObject.type == 0) {
@@ -10012,7 +10015,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private boolean hasInlineBotButtons() {
         MessageObject messageObject = this.currentMessageObject;
-        return (messageObject != null && messageObject.hasInlineBotButtons()) || (this.lastInChatList && this.isAllChats && this.isBotForum);
+        return (messageObject != null && messageObject.hasInlineBotButtons()) || (this.lastInChatList && this.isAllChats && this.isBotForum && !this.isPinnedChat);
     }
 
     public boolean hasNameLayout() {

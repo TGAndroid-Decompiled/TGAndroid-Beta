@@ -63,7 +63,7 @@ public class AppGlobalConfig {
         this.storiesAlbumStoriesLimit = ofInt("stories_album_stories_limit", 100);
         this.messageTypingDraftTtl = ofTime("message_typing_draft_ttl", 30L, timeUnit);
         this.groupCallMessageTtl = ofTime("group_call_message_ttl", 10L, timeUnit);
-        this.groupCallMessageLengthLimit = ofInt("group_call_message_length_limit_", 128);
+        this.groupCallMessageLengthLimit = ofInt("group_call_message_length_limit", 128);
         this.contactNoteLengthLimit = ofInt("contact_note_length_limit", 128);
     }
 

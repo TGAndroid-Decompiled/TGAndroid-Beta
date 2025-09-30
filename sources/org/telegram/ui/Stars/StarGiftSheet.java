@@ -4320,7 +4320,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     StarGiftSheet.this.lambda$set$34(str3);
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
-            this.afterTableTextView.setVisibility(0);
+            this.beforeTableTextView.setVisibility(0);
             this.beforeTableTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray2, this.resourcesProvider));
         } else {
             this.beforeTableTextView.setVisibility(8);

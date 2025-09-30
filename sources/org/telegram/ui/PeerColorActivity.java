@@ -1755,6 +1755,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             });
             return;
         }
+        Page page2 = this.viewPager.getCurrentPosition() == 1 ? this.profilePage : this.namePage;
+        if (page2.selectedResaleGift != null) {
+            page2.setupValues();
+        }
         apply();
         lambda$onBackPressed$355();
         showBulletin();

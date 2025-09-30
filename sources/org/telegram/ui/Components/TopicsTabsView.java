@@ -796,8 +796,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             if (peerDialogId == 0 || !ChatObject.canManageMonoForum(this.currentAccount, chat2)) {
                 return false;
             }
+            itemOptions = makeOptions;
             final TLRPC.Chat chat3 = chat2;
-            makeOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
+            itemOptions.add(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new Runnable() {
                 @Override
                 public final void run() {
                     TopicsTabsView.this.lambda$onTabLongClick$7(makeOptions, peerDialogId, chat3);
@@ -811,45 +812,44 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
                     user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
                     if (user != null && ChatObject.canBlockUsers(chat)) {
-                        makeOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                        final ActionBarMenuSubItem last = makeOptions.getLast();
+                        itemOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
+                        final ActionBarMenuSubItem last = itemOptions.getLast();
                         last.setVisibility(8);
                         MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
                             @Override
                             public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                                TopicsTabsView.this.lambda$onTabLongClick$12(last, makeOptions, j, user, chat, z, tL_chatAdminRights, str);
+                                TopicsTabsView.this.lambda$onTabLongClick$12(last, itemOptions, j, user, chat, z, tL_chatAdminRights, str);
                             }
                         });
                     }
-                    itemOptions = makeOptions;
                 }
             }
             j = j4;
             chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
             user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
             if (user != null) {
-                makeOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
-                final ActionBarMenuSubItem last2 = makeOptions.getLast();
+                itemOptions.add(R.drawable.msg_remove, LocaleController.getString(R.string.BanUserMonoforum), (Runnable) null);
+                final ActionBarMenuSubItem last2 = itemOptions.getLast();
                 last2.setVisibility(8);
                 MessagesController.getInstance(this.currentAccount).checkIsInChat(true, chat, user, new MessagesController.IsInChatCheckedCallback() {
                     @Override
                     public final void run(boolean z, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-                        TopicsTabsView.this.lambda$onTabLongClick$12(last2, makeOptions, j, user, chat, z, tL_chatAdminRights, str);
+                        TopicsTabsView.this.lambda$onTabLongClick$12(last2, itemOptions, j, user, chat, z, tL_chatAdminRights, str);
                     }
                 });
             }
-            itemOptions = makeOptions;
         } else {
+            itemOptions = makeOptions;
             if (ChatObject.canManageTopics(chat2) || UserObject.isBotForum(user2)) {
                 boolean z = tL_forumTopic.pinned;
-                makeOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
+                itemOptions.add(z ? R.drawable.msg_unpin : R.drawable.msg_pin, LocaleController.getString(z ? R.string.DialogUnpin : R.string.DialogPin), new Runnable() {
                     @Override
                     public final void run() {
-                        TopicsTabsView.this.lambda$onTabLongClick$13(makeOptions, messagesController, tL_forumTopic);
+                        TopicsTabsView.this.lambda$onTabLongClick$13(itemOptions, messagesController, tL_forumTopic);
                     }
                 });
                 if (tL_forumTopic.pinned) {
-                    makeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.FilterReorder), new Runnable() {
+                    itemOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.FilterReorder), new Runnable() {
                         @Override
                         public final void run() {
                             TopicsTabsView.this.lambda$onTabLongClick$14();
@@ -857,7 +857,6 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     });
                 }
             }
-            itemOptions = makeOptions;
             final ItemOptions addAsItemOptions = ChatNotificationsPopupWrapper.addAsItemOptions(this.fragment, itemOptions, this.dialogId, tL_forumTopic.id);
             boolean isDialogMuted = messagesController.isDialogMuted(this.dialogId, tL_forumTopic.id);
             itemOptions.add(isDialogMuted ? R.drawable.msg_unmute : R.drawable.msg_mute, LocaleController.getString(isDialogMuted ? R.string.Unmute : R.string.Mute), new Runnable() {
@@ -866,7 +865,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     TopicsTabsView.this.lambda$onTabLongClick$15(messagesController, tL_forumTopic, itemOptions, addAsItemOptions);
                 }
             });
-            if (ChatObject.canManageTopic(this.currentAccount, chat2, tL_forumTopic)) {
+            if (ChatObject.canManageTopic(this.currentAccount, chat2, tL_forumTopic) && !UserObject.isBotForum(user2)) {
                 boolean z2 = tL_forumTopic.closed;
                 itemOptions.add(z2 ? R.drawable.msg_topic_restart : R.drawable.msg_topic_close, LocaleController.getString(z2 ? R.string.RestartTopic : R.string.CloseTopic), new Runnable() {
                     @Override
