@@ -22,14 +22,11 @@ public class TLJsonBuilder {
     }
 
     public <T extends Serializable> void writeVector(String str, List<T> list) {
+        JSONArray jSONArray = new JSONArray();
         Iterator<T> it = list.iterator();
-        JSONArray jSONArray = null;
         while (it.hasNext()) {
             JSONObject serialize = serialize(it.next());
             if (serialize != null) {
-                if (jSONArray == null) {
-                    jSONArray = new JSONArray();
-                }
                 jSONArray.put(serialize);
             }
         }

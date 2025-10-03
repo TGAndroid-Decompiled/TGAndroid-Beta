@@ -1,8 +1,14 @@
 package org.telegram.ui.Components.conference.message;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RenderNode;
+import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +26,13 @@ public class GroupCallMessagesListView extends RecyclerView {
     private final GroupCallMessagesAdapter adapter;
     private View blurRoot;
     private GroupCallMessageCell.Delegate cellDelegate;
+    private int clipBottom;
+    private int clipTop;
     private Delegate delegate;
+    private final Paint maskPaint;
     private RenderNode renderNode;
     private float renderNodeScale;
+    private int visibleHeight;
 
     public interface Delegate {
         void showReaction(GroupCallMessageCell groupCallMessageCell, ReactionsLayoutInBubble.VisibleReaction visibleReaction);
@@ -30,6 +40,12 @@ public class GroupCallMessagesListView extends RecyclerView {
 
     public GroupCallMessagesListView(Context context) {
         super(context);
+        Paint paint = new Paint(1);
+        this.maskPaint = paint;
+        this.clipTop = Integer.MIN_VALUE;
+        this.clipBottom = Integer.MIN_VALUE;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
         setLayoutManager(new LinearLayoutManager(context, 1, 1 == true ? 1 : 0) {
             @Override
             public boolean canScrollVertically() {
@@ -80,6 +96,68 @@ public class GroupCallMessagesListView extends RecyclerView {
         return defaultItemAnimator;
     }
 
+    public void setVisibleHeight(int i) {
+        if (this.visibleHeight != i) {
+            this.visibleHeight = i;
+            invalidate();
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        int measuredHeight = getMeasuredHeight() - this.visibleHeight;
+        int dp = AndroidUtilities.dp(16.0f);
+        int i = measuredHeight + dp;
+        int measuredHeight2 = getMeasuredHeight();
+        int measuredWidth = getMeasuredWidth();
+        float f = i;
+        if (f < getMinChildY()) {
+            super.dispatchDraw(canvas);
+            return;
+        }
+        float f2 = measuredHeight;
+        float f3 = measuredWidth;
+        int saveLayer = canvas.saveLayer(0.0f, f2, f3, f, null);
+        canvas.clipRect(0, measuredHeight, measuredWidth, i);
+        this.clipTop = measuredHeight;
+        this.clipBottom = i;
+        super.dispatchDraw(canvas);
+        canvas.translate(0.0f, f2);
+        canvas.drawRect(0.0f, 0.0f, f3, dp, this.maskPaint);
+        canvas.restoreToCount(saveLayer);
+        canvas.save();
+        canvas.clipRect(0, i, measuredWidth, measuredHeight2);
+        this.clipTop = i;
+        this.clipBottom = getMeasuredHeight();
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        this.clipTop = Integer.MIN_VALUE;
+        this.clipBottom = Integer.MIN_VALUE;
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        if (this.clipTop != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.clipTop) {
+            return true;
+        }
+        if (this.clipBottom == Integer.MIN_VALUE || view.getY() <= this.clipBottom) {
+            return super.drawChild(canvas, view, j);
+        }
+        return true;
+    }
+
+    private float getMinChildY() {
+        int childCount = getChildCount();
+        float f = 2.1474836E9f;
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt.getVisibility() == 0) {
+                f = Math.min(f, childAt.getY());
+            }
+        }
+        return f;
+    }
+
     public void setRenderNode(RenderNode renderNode, float f) {
         this.renderNode = renderNode;
         this.renderNodeScale = f;
@@ -99,11 +177,13 @@ public class GroupCallMessagesListView extends RecyclerView {
 
     @Override
     public void setTranslationY(float f) {
-        super.setTranslationY(f);
-        invalidate();
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            getChildAt(i).invalidate();
+        if (getTranslationY() != f) {
+            super.setTranslationY(f);
+            invalidate();
+            int childCount = getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                getChildAt(i).invalidate();
+            }
         }
     }
 
@@ -112,6 +192,9 @@ public class GroupCallMessagesListView extends RecyclerView {
         if (motionEvent.getAction() == 0) {
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
+            if (y < getMeasuredHeight() - this.visibleHeight) {
+                return false;
+            }
             int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
                 View childAt = getChildAt(i);

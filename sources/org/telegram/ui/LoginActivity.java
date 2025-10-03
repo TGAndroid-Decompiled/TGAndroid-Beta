@@ -3204,6 +3204,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didReceiveSmsCode);
                         this.waitingForEvent = false;
                         destroyCodeTimer();
+                        this.isResendingCode = false;
                         resendCode();
                         return;
                     }
@@ -3901,7 +3902,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     if (LoginActivitySmsView.this.nextType == 4) {
                         LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestCallButton", R.string.RequestCallButton));
                     } else if (LoginActivitySmsView.this.nextType == 11 || LoginActivitySmsView.this.nextType == 3) {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestMissedCall", R.string.RequestMissedCall));
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.getString(R.string.RequestMissedCall));
                     } else {
                         LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestSmsButton", R.string.RequestSmsButton));
                     }
@@ -9132,6 +9133,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     i = R.string.ReturnEnteringPhrase;
                 } else if (i2 == 16) {
                     i = R.string.ReturnEnteringWord;
+                } else if (i2 == 3) {
+                    i = R.string.ReturnPhoneCall;
                 } else {
                     i = R.string.ReturnEnteringSMS;
                 }

@@ -70,7 +70,7 @@ public class GroupCallMessagesController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessagesController.lambda$processUpdate$3(long, long, byte[]):void");
     }
 
-    public boolean sendCallMessage(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.InputGroupCall inputGroupCall) {
+    public boolean sendCallMessage(long j, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.InputGroupCall inputGroupCall) {
         TL_phone.sendGroupCallMessage sendgroupcallmessage;
         TLRPC.GroupCall groupCall;
         byte[] groupCallMessageEncryptImpl;
@@ -106,8 +106,9 @@ public class GroupCallMessagesController extends BaseController {
             sendgroupcallmessage2.random_id = nextRandomId;
             sendgroupcallmessage = sendgroupcallmessage2;
         }
-        lambda$processUpdate$2(inputGroupCall.id, new GroupCallMessage(this.currentAccount, getUserConfig().getClientUserId(), nextRandomId, tL_textWithEntities));
-        getConnectionsManager().sendRequestTyped(sendgroupcallmessage, new Utilities.Callback2() {
+        TL_phone.sendGroupCallMessage sendgroupcallmessage3 = sendgroupcallmessage;
+        lambda$processUpdate$2(inputGroupCall.id, new GroupCallMessage(this.currentAccount, j, nextRandomId, tL_textWithEntities));
+        getConnectionsManager().sendRequestTyped(sendgroupcallmessage3, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 GroupCallMessagesController.lambda$sendCallMessage$4((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);

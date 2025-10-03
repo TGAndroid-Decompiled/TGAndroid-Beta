@@ -4326,7 +4326,7 @@ public abstract class AlertsCreator {
         }
         if (z) {
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, resourcesProvider);
-            buttonWithCounterView.setText("Hide Year", false);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.DateOfBirthHideYear), false);
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

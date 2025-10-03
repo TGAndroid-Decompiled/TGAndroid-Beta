@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import me.vkryl.android.util.ClickHelper;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
@@ -27,8 +28,8 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -162,15 +163,17 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
     public void set(GroupCallMessage groupCallMessage) {
         SpannableStringBuilder spannableStringBuilder;
         this.groupCallMessage = groupCallMessage;
-        TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(groupCallMessage.fromId));
-        String firstName = UserObject.getFirstName(user);
-        this.avatarReceiver.setForUserOrChat(user, new AvatarDrawable(user));
+        TLObject userOrChat = MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(groupCallMessage.fromId);
+        String name = DialogObject.getName(userOrChat);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(groupCallMessage.currentAccount, userOrChat);
+        this.avatarReceiver.setForUserOrChat(userOrChat, avatarDrawable);
         this.animatedReactionReceiver.setImage(null, null, null, null, null, 0);
         if (this.animatedReactionDrawable != null && isAttachedToWindow()) {
             this.animatedReactionDrawable.removeView(this);
         }
         this.animatedReactionDrawable = null;
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(firstName);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(name);
         spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder2.length(), 33);
         spannableStringBuilder2.setSpan(this.senderNameSpan, 0, spannableStringBuilder2.length(), 33);
         ReactionsLayoutInBubble.VisibleReaction visibleReaction = groupCallMessage.visibleReaction;
