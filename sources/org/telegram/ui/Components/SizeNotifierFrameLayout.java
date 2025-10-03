@@ -1032,7 +1032,6 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
         float f2;
         RecordingCanvas beginRecording;
-        Shader.TileMode tileMode;
         RenderEffect createBlurEffect;
         RenderEffect createColorFilterEffect;
         RenderEffect createChainEffect;
@@ -1063,10 +1062,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                     ColorMatrix colorMatrix = new ColorMatrix();
                     colorMatrix.setSaturation(2.0f);
                     RenderNode renderNode = this.blurNodes[i];
-                    float blurRadius = getBlurRadius();
-                    float blurRadius2 = getBlurRadius();
-                    tileMode = Shader.TileMode.DECAL;
-                    createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius2, tileMode);
+                    createBlurEffect = RenderEffect.createBlurEffect(getBlurRadius(), getBlurRadius(), Shader.TileMode.DECAL);
                     createColorFilterEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
                     createChainEffect = RenderEffect.createChainEffect(createBlurEffect, createColorFilterEffect);
                     renderNode.setRenderEffect(createChainEffect);

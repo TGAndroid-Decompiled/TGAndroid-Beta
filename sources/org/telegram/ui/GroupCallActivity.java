@@ -2666,7 +2666,6 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 float f6;
                 float f7;
                 RecordingCanvas beginRecording;
-                Shader.TileMode tileMode;
                 RenderEffect createBlurEffect;
                 RenderEffect createColorFilterEffect;
                 RenderEffect createChainEffect;
@@ -2677,8 +2676,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                         ColorMatrix colorMatrix = new ColorMatrix(new float[]{0.5f, 0.0f, 0.0f, 0.0f, 8.5f, 0.0f, 0.5f, 0.0f, 0.0f, 8.5f, 0.0f, 0.0f, 0.5f, 0.0f, 8.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
                         float blurRadius = SizeNotifierFrameLayout.getBlurRadius();
                         RenderNode renderNode = GroupCallActivity.this.renderNodeBlur;
-                        tileMode = Shader.TileMode.DECAL;
-                        createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius, tileMode);
+                        createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius, Shader.TileMode.DECAL);
                         createColorFilterEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
                         createChainEffect = RenderEffect.createChainEffect(createBlurEffect, createColorFilterEffect);
                         renderNode.setRenderEffect(createChainEffect);

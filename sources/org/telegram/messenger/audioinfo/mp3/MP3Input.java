@@ -5,8 +5,11 @@ import java.io.InputStream;
 import org.telegram.messenger.audioinfo.util.PositionInputStream;
 
 public class MP3Input extends PositionInputStream {
+    public int exceptionsCount;
+
     public MP3Input(InputStream inputStream) {
         super(inputStream);
+        this.exceptionsCount = 0;
     }
 
     public final void readFully(byte[] bArr, int i, int i2) {

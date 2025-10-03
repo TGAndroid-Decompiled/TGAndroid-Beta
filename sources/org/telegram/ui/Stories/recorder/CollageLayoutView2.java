@@ -390,17 +390,13 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     }
 
     public Object getBlurRenderNode() {
-        Shader.TileMode tileMode;
         RenderEffect createBlurEffect;
         if (this.renderNode == null && Build.VERSION.SDK_INT >= 31) {
             this.renderNode = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNode");
             RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CameraViewRenderNodeBlur");
             this.blurRenderNode = m;
             BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(m);
-            float dp = AndroidUtilities.dp(32.0f);
-            float dp2 = AndroidUtilities.dp(32.0f);
-            tileMode = Shader.TileMode.DECAL;
-            createBlurEffect = RenderEffect.createBlurEffect(dp, dp2, tileMode);
+            createBlurEffect = RenderEffect.createBlurEffect(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Shader.TileMode.DECAL);
             m.setRenderEffect(createBlurEffect);
         }
         return this.blurRenderNode;

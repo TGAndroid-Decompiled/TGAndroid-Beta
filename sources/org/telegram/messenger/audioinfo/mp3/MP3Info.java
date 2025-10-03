@@ -100,7 +100,7 @@ public class MP3Info extends AudioInfo {
         }
     }
 
-    org.telegram.messenger.audioinfo.mp3.MP3Frame readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input r13, org.telegram.messenger.audioinfo.mp3.MP3Info.StopReadCondition r14) {
+    org.telegram.messenger.audioinfo.mp3.MP3Frame readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input r12, org.telegram.messenger.audioinfo.mp3.MP3Info.StopReadCondition r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.MP3Info.readFirstFrame(org.telegram.messenger.audioinfo.mp3.MP3Input, org.telegram.messenger.audioinfo.mp3.MP3Info$StopReadCondition):org.telegram.messenger.audioinfo.mp3.MP3Frame");
     }
 
@@ -114,27 +114,33 @@ public class MP3Info extends AudioInfo {
             if (read == 255 && (read2 & 224) == 224) {
                 int read3 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
                 int read4 = stopReadCondition.stopRead(mP3Input) ? -1 : mP3Input.read();
-                if (read3 != -1 && read4 != -1) {
-                    try {
-                        header = new MP3Frame.Header(read2, read3, read4);
-                    } catch (MP3Exception unused) {
-                        header = null;
+                if (read3 == -1 || read4 == -1) {
+                    return null;
+                }
+                try {
+                    header = new MP3Frame.Header(read2, read3, read4);
+                } catch (MP3Exception e) {
+                    int i = mP3Input.exceptionsCount + 1;
+                    mP3Input.exceptionsCount = i;
+                    if (i > 5) {
+                        throw e;
                     }
-                    if (header != null && header.isCompatible(header2)) {
-                        int frameSize = header.getFrameSize();
-                        byte[] bArr = new byte[frameSize];
-                        bArr[0] = (byte) read;
-                        bArr[1] = (byte) read2;
-                        bArr[2] = (byte) read3;
-                        bArr[3] = (byte) read4;
-                        try {
-                            mP3Input.readFully(bArr, 4, frameSize - 4);
-                            return new MP3Frame(header, bArr);
-                        } catch (EOFException unused2) {
-                        }
+                    header = null;
+                }
+                if (header != null && header.isCompatible(header2)) {
+                    int frameSize = header.getFrameSize();
+                    byte[] bArr = new byte[frameSize];
+                    bArr[0] = (byte) read;
+                    bArr[1] = (byte) read2;
+                    bArr[2] = (byte) read3;
+                    bArr[3] = (byte) read4;
+                    try {
+                        mP3Input.readFully(bArr, 4, frameSize - 4);
+                        return new MP3Frame(header, bArr);
+                    } catch (EOFException unused) {
+                        return null;
                     }
                 }
-                return null;
             }
             mP3Input.reset();
         }
