@@ -13968,7 +13968,8 @@ public class TLRPC {
             }
             SerializedData serializedData = new SerializedData(tL_chatAdminRights.getObjectSize());
             tL_chatAdminRights.serializeToStream(serializedData);
-            return TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            SerializedData serializedData2 = new SerializedData(serializedData.toByteArray());
+            return TLdeserialize(serializedData2, serializedData2.readInt32(false), false);
         }
 
         public boolean equals(Object obj) {
