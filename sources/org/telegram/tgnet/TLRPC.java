@@ -45397,7 +45397,7 @@ public class TLRPC {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
             this.live_story = TLObject.hasFlag(readInt32, 4);
-            if (TLObject.hasFlag(this.flags, 2)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 long readInt64 = inputSerializedData.readInt64(z);
                 TL_peerChannel tL_peerChannel = new TL_peerChannel();
                 this.peer = tL_peerChannel;
@@ -45412,7 +45412,7 @@ public class TLRPC {
             int flag = TLObject.setFlag(this.flags, 4, this.live_story);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            if (TLObject.hasFlag(this.flags, 2)) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(-DialogObject.getPeerDialogId(this.peer));
             }
             this.call.serializeToStream(outputSerializedData);
