@@ -5,6 +5,10 @@ import android.app.Dialog;
 public final class ChatActivityEnterView$30$$ExternalSyntheticLambda0 implements Runnable {
     public final Dialog f$0;
 
+    public ChatActivityEnterView$30$$ExternalSyntheticLambda0(Dialog dialog) {
+        this.f$0 = dialog;
+    }
+
     @Override
     public final void run() {
         this.f$0.dismiss();

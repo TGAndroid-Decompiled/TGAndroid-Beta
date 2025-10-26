@@ -99,6 +99,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private boolean fullHeight;
     protected boolean fullWidth;
     private float hideSystemVerticalInsetsProgress;
+    private int internalBackgroundColor;
     protected boolean isFullscreen;
     protected boolean isPortrait;
     private int[] itemIcons;
@@ -210,9 +211,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return false;
     }
 
-    public void onContainerTranslationYChanged(float f) {
-    }
-
     protected boolean onCustomCloseAnimation() {
         return false;
     }
@@ -301,6 +299,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         private boolean allowedSwipeToBack;
         private Paint backgroundPaint;
         private AnimatorSet currentAnimation;
+        private final Paint internalBackgroundPaint;
+        private int internalPaddingBottom;
         private boolean keyboardChanged;
         private boolean maybeStartTracking;
         private NestedScrollingParentHelper nestedScrollingParentHelper;
@@ -339,6 +339,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.backgroundPaint = new Paint();
             this.y = 0.0f;
             this.swipeBackX = 0.0f;
+            this.internalBackgroundPaint = new Paint(1);
             this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
             setWillNotDraw(false);
         }
@@ -657,7 +658,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
 
         @Override
-        protected void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
+        protected void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheet.ContainerView.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -1029,7 +1030,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         Rect rect = new Rect();
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
+        int themedColor = getThemedColor(i);
+        this.internalBackgroundColor = themedColor;
+        mutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
         this.backgroundPaddingLeft = rect.left;
         this.backgroundPaddingTop = rect.top;
@@ -1415,6 +1418,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     public void setBackgroundColor(int i) {
         this.shadowDrawable.setColorFilter(i, PorterDuff.Mode.MULTIPLY);
+        if (this.internalBackgroundColor != i) {
+            this.internalBackgroundColor = i;
+            ContainerView containerView = this.container;
+            if (containerView != null) {
+                containerView.invalidate(0, containerView.getMeasuredHeight() - this.container.internalPaddingBottom, this.container.getMeasuredWidth(), this.container.getMeasuredHeight());
+            }
+        }
     }
 
     @Override
@@ -1525,6 +1535,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     public TextView getTitleView() {
         return this.titleView;
+    }
+
+    public void onContainerTranslationYChanged(float f) {
+        ContainerView containerView = this.container;
+        if (containerView != null) {
+            containerView.invalidate();
+        }
     }
 
     protected void cancelSheetAnimation() {
@@ -1831,7 +1848,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1172getWindowView() {
+    public View mo1189getWindowView() {
         return this.container;
     }
 
@@ -2115,7 +2132,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-            AndroidUtilities.setLightNavigationBar(mo1172getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1189getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);

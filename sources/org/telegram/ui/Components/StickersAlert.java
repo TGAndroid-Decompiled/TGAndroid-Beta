@@ -174,7 +174,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         boolean isInScheduleMode();
 
-        void lambda$onStickerSelected$74(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i);
+        void lambda$onStickerSelected$73(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2);
     }
 
     public interface StickersAlertInstallDelegate {
@@ -296,8 +296,8 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         @Override
-        public void sendGif(Object obj, Object obj2, boolean z, int i) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendGif(this, obj, obj2, z, i);
+        public void sendGif(Object obj, Object obj2, boolean z, int i, int i2) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendGif(this, obj, obj2, z, i, i2);
         }
 
         @Override
@@ -331,11 +331,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         @Override
-        public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i) {
+        public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
             if (StickersAlert.this.delegate == null) {
                 return;
             }
-            StickersAlert.this.delegate.lambda$onStickerSelected$74(document, str, obj, null, StickersAlert.this.clearsInputField, z, i);
+            StickersAlert.this.delegate.lambda$onStickerSelected$73(document, str, obj, null, StickersAlert.this.clearsInputField, z, i, 0);
             StickersAlert.this.lambda$new$0();
         }
 
@@ -1379,7 +1379,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             hidePreview();
             this.selectedStickerPath = null;
         } else {
-            this.delegate.lambda$onStickerSelected$74(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0);
+            this.delegate.lambda$onStickerSelected$73(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0, 0);
             lambda$new$0();
         }
     }

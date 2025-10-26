@@ -107,7 +107,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     public void extendActionMode(ActionMode actionMode, Menu menu) {
     }
 
-    protected void onEmojiKeyboardUpdate() {
+    public void onEmojiKeyboardUpdate() {
     }
 
     public void onLineCountChanged(int i, int i2) {
@@ -928,8 +928,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
+        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
         }
 
         @Override
@@ -938,8 +938,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i, i2);
         }
 
         @Override

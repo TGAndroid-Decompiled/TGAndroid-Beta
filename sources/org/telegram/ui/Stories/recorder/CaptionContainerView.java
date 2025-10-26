@@ -283,7 +283,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
 
             @Override
-            protected void onEmojiKeyboardUpdate() {
+            public void onEmojiKeyboardUpdate() {
                 CaptionContainerView.this.keyboardNotifier.fire();
             }
 
@@ -593,7 +593,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     public void createMentionsContainer() {
-        MentionsContainerView mentionsContainerView = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0L, LaunchActivity.getLastFragment(), null, new DarkThemeResourceProvider()) {
+        MentionsContainerView mentionsContainerView = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0L, LaunchActivity.getLastFragment(), new DarkThemeResourceProvider()) {
             @Override
             protected boolean isStories() {
                 return true;

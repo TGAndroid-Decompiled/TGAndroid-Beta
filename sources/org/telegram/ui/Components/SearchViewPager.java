@@ -1063,11 +1063,11 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 long j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
                 if (charSequence != null) {
-                    AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
+                    AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
             }
-            dialogsActivity.lambda$onBackPressed$355();
+            dialogsActivity.lambda$onBackPressed$341();
         } else {
             long j2 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();

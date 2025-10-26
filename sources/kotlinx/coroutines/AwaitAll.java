@@ -108,7 +108,7 @@ public final class AwaitAll {
                 for (Deferred deferred : deferredArr) {
                     arrayList.add(deferred.getCompleted());
                 }
-                cancellableContinuation.resumeWith(Result.m211constructorimpl(arrayList));
+                cancellableContinuation.resumeWith(Result.m213constructorimpl(arrayList));
             }
         }
     }

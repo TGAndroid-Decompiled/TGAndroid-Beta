@@ -507,7 +507,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ManageLinksActivity.this.lambda$onBackPressed$355();
+                    ManageLinksActivity.this.lambda$onBackPressed$341();
                 }
             }
         });
@@ -1732,7 +1732,7 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
         if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.currentChatId)) {
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
             } else {
                 removeSelfFromStack();
             }

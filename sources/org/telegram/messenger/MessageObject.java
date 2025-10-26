@@ -3128,7 +3128,7 @@ public class MessageObject {
         updateMessageText(MessagesController.getInstance(this.currentAccount).getUsers(), MessagesController.getInstance(this.currentAccount).getChats(), null, null);
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r30, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r31, androidx.collection.LongSparseArray r32, androidx.collection.LongSparseArray r33) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r34, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r35, androidx.collection.LongSparseArray r36, androidx.collection.LongSparseArray r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
@@ -8431,20 +8431,20 @@ public class MessageObject {
         return false;
     }
 
-    public static void toggleTodo(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, boolean z, long j, int i2) {
-        int i3 = 0;
-        while (i3 < tL_messageMediaToDo.completions.size()) {
-            if (tL_messageMediaToDo.completions.get(i3).id == i) {
-                tL_messageMediaToDo.completions.remove(i3);
-                i3--;
+    public static void toggleTodo(int i, long j, TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i2, boolean z, int i3) {
+        int i4 = 0;
+        while (i4 < tL_messageMediaToDo.completions.size()) {
+            if (tL_messageMediaToDo.completions.get(i4).id == i2) {
+                tL_messageMediaToDo.completions.remove(i4);
+                i4--;
             }
-            i3++;
+            i4++;
         }
         if (z) {
             TLRPC.TodoCompletion todoCompletion = new TLRPC.TodoCompletion();
-            todoCompletion.id = i;
-            todoCompletion.completed_by = j;
-            todoCompletion.date = i2;
+            todoCompletion.id = i2;
+            todoCompletion.completed_by = MessagesController.getInstance(i).getSendAsSelectedPeer(j);
+            todoCompletion.date = i3;
             tL_messageMediaToDo.completions.add(todoCompletion);
         }
     }

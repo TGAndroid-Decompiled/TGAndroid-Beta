@@ -21,7 +21,7 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda298;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda309;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatNotificationsPopupWrapper;
 import org.telegram.ui.ProfileNotificationsActivity;
@@ -214,13 +214,13 @@ public class ChatNotificationsPopupWrapper {
         dismiss();
         AlertsCreator.createMuteForPickerDialog(context, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public final void didSelectDate(boolean z, int i2) {
-                ChatNotificationsPopupWrapper.lambda$new$5(i, callback, z, i2);
+            public final void didSelectDate(boolean z, int i2, int i3) {
+                ChatNotificationsPopupWrapper.lambda$new$5(i, callback, z, i2, i3);
             }
         });
     }
 
-    public static void lambda$new$5(final int i, final Callback callback, boolean z, final int i2) {
+    public static void lambda$new$5(final int i, final Callback callback, boolean z, final int i2, int i3) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -410,7 +410,7 @@ public class ChatNotificationsPopupWrapper {
             }
         };
         final ItemOptions makeSwipeback = itemOptions.makeSwipeback();
-        makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda298(itemOptions));
+        makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda309(itemOptions));
         makeSwipeback.add(R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), new Runnable() {
             @Override
             public final void run() {
@@ -479,13 +479,13 @@ public class ChatNotificationsPopupWrapper {
     public static void lambda$addAsItemOptions$16(ItemOptions itemOptions, Theme.ResourcesProvider resourcesProvider, final int i, final Utilities.Callback callback) {
         AlertsCreator.createMuteForPickerDialog(itemOptions.getContext(), resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public final void didSelectDate(boolean z, int i2) {
-                ChatNotificationsPopupWrapper.lambda$addAsItemOptions$15(i, callback, z, i2);
+            public final void didSelectDate(boolean z, int i2, int i3) {
+                ChatNotificationsPopupWrapper.lambda$addAsItemOptions$15(i, callback, z, i2, i3);
             }
         });
     }
 
-    public static void lambda$addAsItemOptions$15(final int i, final Utilities.Callback callback, boolean z, final int i2) {
+    public static void lambda$addAsItemOptions$15(final int i, final Utilities.Callback callback, boolean z, final int i2, int i3) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

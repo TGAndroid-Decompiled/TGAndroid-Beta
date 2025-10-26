@@ -1535,6 +1535,26 @@ public class StoriesController {
         return false;
     }
 
+    public int hasUnreadStoriesLive(long j) {
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.allStoriesMap.get(j);
+        if (peerStories == null) {
+            peerStories = getStoriesFromFullPeer(j);
+        }
+        if (peerStories == null) {
+            return 0;
+        }
+        if (j == UserConfig.getInstance(this.currentAccount).getClientUserId() && !Utilities.isNullOrEmpty((Collection) this.uploadingStoriesByDialogId.get(j))) {
+            return 1;
+        }
+        for (int size = peerStories.stories.size() - 1; size >= 0; size--) {
+            TL_stories.StoryItem storyItem = peerStories.stories.get(size);
+            if (storyItem != null && storyItem.id > peerStories.max_read_id) {
+                return storyItem.media instanceof TLRPC.TL_messageMediaVideoStream ? 2 : 1;
+            }
+        }
+        return 0;
+    }
+
     public int getUnreadState(long j) {
         return getUnreadState(j, 0);
     }
@@ -1557,6 +1577,9 @@ public class StoriesController {
         boolean z = false;
         for (int i2 = 0; i2 < peerStories.stories.size(); i2++) {
             if ((i == 0 || peerStories.stories.get(i2).id == i) && peerStories.stories.get(i2).id > max) {
+                if (peerStories.stories.get(i2).media instanceof TLRPC.TL_messageMediaVideoStream) {
+                    return 3;
+                }
                 if (peerStories.stories.get(i2).close_friends) {
                     return 2;
                 }
@@ -2541,7 +2564,7 @@ public class StoriesController {
             for (int i = 0; i < size; i++) {
                 long longValue = ((Long) this.entry.shareUserIds.get(i)).longValue();
                 if (this.entry.wouldBeVideo()) {
-                    SendMessagesHelper.prepareSendingVideo(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, null, longValue, null, null, null, null, entities, 0, null, !r8.silent, this.entry.scheduleDate, false, false, charSequence2, null, 0, 0L, 0L);
+                    SendMessagesHelper.prepareSendingVideo(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, null, longValue, null, null, null, null, entities, 0, null, !r8.silent, this.entry.scheduleDate, 0, false, false, charSequence2, null, 0, 0L, 0L);
                 } else {
                     SendMessagesHelper.prepareSendingPhoto(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, longValue, null, null, null, null, entities, null, null, 0, null, null, !r8.silent, this.entry.scheduleDate, 0, false, charSequence2, null, 0, 0L, 0L);
                 }

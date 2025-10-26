@@ -4,6 +4,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
@@ -17,7 +18,9 @@ public abstract class GroupCallMessagesAdapter extends RecyclerView.Adapter impl
 
     @Override
     public GroupCallMessageCell.VH onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new GroupCallMessageCell.VH(new GroupCallMessageCell(viewGroup.getContext()));
+        GroupCallMessageCell groupCallMessageCell = new GroupCallMessageCell(viewGroup.getContext());
+        groupCallMessageCell.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        return new GroupCallMessageCell.VH(groupCallMessageCell);
     }
 
     @Override
@@ -73,6 +76,7 @@ public abstract class GroupCallMessagesAdapter extends RecyclerView.Adapter impl
             return;
         }
         this.messages = GroupCallMessagesController.getInstance(i).getCallMessages(this.inputGroupCall.id);
+        notifyDataSetChanged();
         GroupCallMessagesController.getInstance(this.currentAccount).subscribeToCallMessages(this.inputGroupCall.id, this);
     }
 

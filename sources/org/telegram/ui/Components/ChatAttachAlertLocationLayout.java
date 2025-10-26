@@ -298,8 +298,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             if (chatActivity.isInScheduleMode()) {
                 AlertsCreator.createScheduleDatePickerDialog(ChatAttachAlertLocationLayout.this.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
-                    public final void didSelectDate(boolean z, int i) {
-                        ChatAttachAlertLocationLayout.MapOverlayView.this.lambda$addInfoView$0(venueLocation, z, i);
+                    public final void didSelectDate(boolean z, int i, int i2) {
+                        ChatAttachAlertLocationLayout.MapOverlayView.this.lambda$addInfoView$0(venueLocation, z, i, i2);
                     }
                 }, ChatAttachAlertLocationLayout.this.resourcesProvider);
             } else {
@@ -313,7 +313,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
         }
 
-        public void lambda$addInfoView$0(VenueLocation venueLocation, boolean z, int i) {
+        public void lambda$addInfoView$0(VenueLocation venueLocation, boolean z, int i, int i2) {
             ChatAttachAlertLocationLayout.this.delegate.didSelectLocation(venueLocation.venue, ChatAttachAlertLocationLayout.this.locationType, z, i, 0L);
             ChatAttachAlertLocationLayout.this.parentAlert.dismiss(true);
         }
@@ -1365,8 +1365,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$5(tL_messageMediaGeo, l, z, i);
+                public final void didSelectDate(boolean z, int i, int i2) {
+                    ChatAttachAlertLocationLayout.this.lambda$new$5(tL_messageMediaGeo, l, z, i, i2);
                 }
             }, resourcesProvider);
         } else {
@@ -1375,7 +1375,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$5(TLRPC.TL_messageMediaGeo tL_messageMediaGeo, Long l, boolean z, int i) {
+    public void lambda$new$5(TLRPC.TL_messageMediaGeo tL_messageMediaGeo, Long l, boolean z, int i, int i2) {
         this.delegate.didSelectLocation(tL_messageMediaGeo, this.locationType, z, i, l.longValue());
         this.parentAlert.dismiss(true);
     }
@@ -1384,8 +1384,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$7(obj, z, i);
+                public final void didSelectDate(boolean z, int i, int i2) {
+                    ChatAttachAlertLocationLayout.this.lambda$new$7(obj, z, i, i2);
                 }
             }, resourcesProvider);
         } else {
@@ -1394,7 +1394,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$7(Object obj, boolean z, int i) {
+    public void lambda$new$7(Object obj, boolean z, int i, int i2) {
         this.delegate.didSelectLocation((TLRPC.TL_messageMediaVenue) obj, this.locationType, z, i, 0L);
         this.parentAlert.dismiss(true);
     }
@@ -1536,8 +1536,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i2) {
-                    ChatAttachAlertLocationLayout.this.lambda$new$18(item, z, i2);
+                public final void didSelectDate(boolean z, int i2, int i3) {
+                    ChatAttachAlertLocationLayout.this.lambda$new$18(item, z, i2, i3);
                 }
             }, resourcesProvider);
         } else {
@@ -1546,7 +1546,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$18(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, boolean z, int i) {
+    public void lambda$new$18(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, boolean z, int i, int i2) {
         this.delegate.didSelectLocation(tL_messageMediaVenue, this.locationType, z, i, 0L);
         this.parentAlert.dismiss(true);
     }

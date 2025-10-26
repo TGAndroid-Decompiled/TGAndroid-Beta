@@ -27,7 +27,7 @@
     <string name="abc_shareactionprovider_share_with">Бөлісу</string>
     <string name="abc_shareactionprovider_share_with_application">%s қолданбасымен бөлісу</string>
     <string name="abc_toolbar_collapse_description">Жию</string>
-    <string name="call_notification_answer_action">Жауап</string>
+    <string name="call_notification_answer_action">Жауап беру</string>
     <string name="call_notification_answer_video_action">Бейне</string>
     <string name="call_notification_decline_action">Қабылдамау</string>
     <string name="call_notification_hang_up_action">Тұтқаны қою</string>

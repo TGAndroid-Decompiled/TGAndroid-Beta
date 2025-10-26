@@ -5,7 +5,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.Rational;
-import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticApiModelOutline20;
+import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticApiModelOutline25;
 
 public class PipSourceParams {
     private final Rect position = new Rect();
@@ -53,7 +53,7 @@ public class PipSourceParams {
     public PictureInPictureParams.Builder build() {
         int i;
         Rational rational;
-        PictureInPictureParams.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline20.m();
+        PictureInPictureParams.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline25.m();
         Point point = this.ratio;
         int i2 = point.x;
         if (i2 > 0 && (i = point.y) > 0) {

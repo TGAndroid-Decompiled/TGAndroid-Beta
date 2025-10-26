@@ -136,7 +136,7 @@ public class StarReactionsOverlay extends View {
         ArrayList<TLRPC.MessageReactor> arrayList2 = arrayList;
         StarsController.getInstance(messageObject.currentAccount).commitPaidReaction();
         TLRPC.ChatFull currentChatInfo = chatActivity.getCurrentChatInfo();
-        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, messageObject, arrayList2, currentChatInfo == null || currentChatInfo.paid_reactions_available, chatActivity.getResourceProvider());
+        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), chatActivity.getCurrentAccount(), chatActivity.getDialogId(), chatActivity, messageObject, arrayList2, currentChatInfo == null || currentChatInfo.paid_reactions_available, false, chatActivity.getResourceProvider());
         starsReactionsSheet.setMessageCell(chatActivity, messageObject.getId(), this.cell);
         starsReactionsSheet.show();
     }

@@ -484,7 +484,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                     if (channelColorActivity.currentLevel >= channelColorActivity.minLevelRequired() && ChannelColorActivity.this.hasUnsavedChanged()) {
                         ChannelColorActivity.this.showUnsavedAlert();
                     } else {
-                        ChannelColorActivity.this.lambda$onBackPressed$355();
+                        ChannelColorActivity.this.lambda$onBackPressed$341();
                     }
                 }
             }
@@ -938,7 +938,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             });
         }
         if (iArr[r2] == 0) {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
             this.button.setLoading(r2);
             return;
         }
@@ -978,7 +978,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         int i2 = i + 1;
         iArr[0] = i2;
         if (i2 == iArr2[0]) {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
             showBulletin();
             this.button.setLoading(false);
         }
@@ -1057,7 +1057,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$showUnsavedAlert$14(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void lambda$showUnsavedAlert$15(AlertDialog alertDialog, int i) {
@@ -2840,7 +2840,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             if (this.dialogId == ((Long) objArr[0]).longValue()) {
                 INavigationLayout iNavigationLayout = this.parentLayout;
                 if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                    lambda$onBackPressed$355();
+                    lambda$onBackPressed$341();
                 } else {
                     removeSelfFromStack();
                 }

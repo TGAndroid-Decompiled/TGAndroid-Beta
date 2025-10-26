@@ -13592,7 +13592,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1172getWindowView() {
+        public WindowView mo1189getWindowView() {
             return this.windowView;
         }
 
@@ -13652,9 +13652,6 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     chatActivity.getChatActivityEnterView().closeKeyboard();
                     chatActivity.getChatActivityEnterView().hidePopup(true, false);
                 }
-            }
-            if (baseFragment.getParentActivity() instanceof LaunchActivity) {
-                ((LaunchActivity) baseFragment.getParentActivity()).requestCustomNavigationBar();
             }
             BottomSheetTabDialog bottomSheetTabDialog = this.dialog;
             if (bottomSheetTabDialog != null) {
@@ -13988,7 +13985,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo1172getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1189getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

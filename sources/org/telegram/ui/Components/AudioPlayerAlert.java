@@ -91,7 +91,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CastSync;
 import org.telegram.ui.Cells.AudioPlayerCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda298;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda309;
 import org.telegram.ui.ChooseQualityLayout$QualityIcon;
 import org.telegram.ui.Components.AudioPlayerAlert;
 import org.telegram.ui.Components.Bulletin;
@@ -2884,7 +2884,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             TLRPC.Document document = messageObject.getDocument();
             long j = document != null ? document.id : 0L;
             final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-            makeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda298(makeOptions));
+            makeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda309(makeOptions));
             makeSwipeback.addGap();
             makeSwipeback.addIf(!savedMusicIds.ids.contains(Long.valueOf(j)), R.drawable.left_status_profile, LocaleController.getString(R.string.AudioSaveToMyProfile), new Runnable() {
                 @Override
@@ -3122,7 +3122,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         if (arrayList != null) {
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(arrayList, j, false, false, true, 0, 0L);
         } else {
-            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, messageObject.messageOwner.attachPath, j, null, null, null, null, null, null, true, 0, 0, this.savedMusicList, null, false, false));
+            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, messageObject.messageOwner.attachPath, j, null, null, null, null, null, null, true, 0, 0, 0, this.savedMusicList, null, false, false));
         }
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null) {
@@ -3194,18 +3194,18 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             while (i3 < arrayList2.size()) {
                 long j = ((MessagesStorage.TopicKey) arrayList2.get(i3)).dialogId;
                 if (charSequence != null) {
-                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
+                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
                 if (arrayList != null) {
                     i2 = i3;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(arrayList, j, false, false, true, 0, 0L);
                 } else {
                     i2 = i3;
-                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, messageObject.messageOwner.attachPath, j, null, null, null, null, null, null, z2, i, 0, this.savedMusicList, null, false, false));
+                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, messageObject.messageOwner.attachPath, j, null, null, null, null, null, null, z2, i, 0, 0, this.savedMusicList, null, false, false));
                 }
                 i3 = i2 + 1;
             }
-            dialogsActivity.lambda$onBackPressed$355();
+            dialogsActivity.lambda$onBackPressed$341();
             BaseFragment lastFragment = LaunchActivity.getLastFragment();
             if (lastFragment == null) {
                 return true;
@@ -3245,7 +3245,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 dialogsActivity.removeSelfFromStack();
             }
         } else {
-            dialogsActivity.lambda$onBackPressed$355();
+            dialogsActivity.lambda$onBackPressed$341();
         }
         return true;
     }

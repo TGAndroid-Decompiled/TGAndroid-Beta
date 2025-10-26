@@ -951,10 +951,14 @@ public class ChatObject {
                 this.selfPeer = null;
                 return;
             }
-            if (inputPeer instanceof TLRPC.TL_inputPeerUser) {
+            if (inputPeer instanceof TLRPC.TL_inputPeerSelf) {
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 this.selfPeer = tL_peerUser;
-                tL_peerUser.user_id = inputPeer.user_id;
+                tL_peerUser.user_id = this.currentAccount.getUserConfig().getClientUserId();
+            } else if (inputPeer instanceof TLRPC.TL_inputPeerUser) {
+                TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
+                this.selfPeer = tL_peerUser2;
+                tL_peerUser2.user_id = inputPeer.user_id;
             } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
                 TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
                 this.selfPeer = tL_peerChat;

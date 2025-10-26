@@ -23,11 +23,11 @@ public final class ResumeAwaitOnCompletion extends JobNode {
         if (state$kotlinx_coroutines_core instanceof CompletedExceptionally) {
             CancellableContinuationImpl cancellableContinuationImpl = this.continuation;
             Result.Companion companion = Result.Companion;
-            cancellableContinuationImpl.resumeWith(Result.m211constructorimpl(ResultKt.createFailure(((CompletedExceptionally) state$kotlinx_coroutines_core).cause)));
+            cancellableContinuationImpl.resumeWith(Result.m213constructorimpl(ResultKt.createFailure(((CompletedExceptionally) state$kotlinx_coroutines_core).cause)));
         } else {
             CancellableContinuationImpl cancellableContinuationImpl2 = this.continuation;
             Result.Companion companion2 = Result.Companion;
-            cancellableContinuationImpl2.resumeWith(Result.m211constructorimpl(JobSupportKt.unboxState(state$kotlinx_coroutines_core)));
+            cancellableContinuationImpl2.resumeWith(Result.m213constructorimpl(JobSupportKt.unboxState(state$kotlinx_coroutines_core)));
         }
     }
 }

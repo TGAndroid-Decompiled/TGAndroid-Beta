@@ -327,6 +327,7 @@ public class MotionBackgroundDrawable extends Drawable {
 
     public void switchToNextPosition(boolean z) {
         if (this.posAnimationProgress < 1.0f || !LiteMode.isEnabled(32)) {
+            invalidateParent();
             return;
         }
         this.rotatingPreview = false;

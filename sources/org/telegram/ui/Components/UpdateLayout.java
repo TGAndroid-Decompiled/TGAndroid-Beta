@@ -178,11 +178,11 @@ public class UpdateLayout extends IUpdateLayout {
             this.updateLayout.setTag(1);
             if (z) {
                 this.updateLayout.animate().translationY(0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT).setListener(null).setDuration(180L).start();
+                return;
             } else {
                 this.updateLayout.setTranslationY(0.0f);
+                return;
             }
-            this.sideMenu.setPadding(0, 0, 0, AndroidUtilities.dp(44.0f));
-            return;
         }
         FrameLayout frameLayout = this.updateLayout;
         if (frameLayout == null || frameLayout.getTag() == null) {
@@ -202,7 +202,6 @@ public class UpdateLayout extends IUpdateLayout {
             this.updateLayout.setTranslationY(AndroidUtilities.dp(44.0f));
             this.updateLayout.setVisibility(4);
         }
-        this.sideMenu.setPadding(0, 0, 0, 0);
     }
 
     private void setUpdateText(String str, boolean z) {

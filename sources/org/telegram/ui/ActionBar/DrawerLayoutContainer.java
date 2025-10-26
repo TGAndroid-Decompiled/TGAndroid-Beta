@@ -8,23 +8,24 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Insets;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-import android.view.DisplayCutout;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowInsets;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
-import java.util.List;
+import androidx.core.graphics.Insets;
+import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
@@ -48,8 +49,9 @@ public class DrawerLayoutContainer extends FrameLayout {
     private boolean hasCutout;
     private int imeHeight;
     private boolean inLayout;
+    private final Paint internalNavbarPaint;
     private boolean keyboardVisibility;
-    private Object lastInsets;
+    private WindowInsetsCompat lastWindowInsetsCompat;
     private boolean maybeStartTracking;
     private int minDrawerMargin;
     private INavigationLayout parentActionBarLayout;
@@ -79,15 +81,15 @@ public class DrawerLayoutContainer extends FrameLayout {
         this.allowOpenDrawerBySwipe = true;
         this.allowDrawContent = true;
         this.firstLayout = true;
+        this.internalNavbarPaint = new Paint(1);
         this.minDrawerMargin = (int) ((AndroidUtilities.density * 64.0f) + 0.5f);
         setDescendantFocusability(262144);
         setFocusableInTouchMode(true);
-        setFitsSystemWindows(Build.VERSION.SDK_INT < 35);
-        setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
             @Override
-            public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                WindowInsets lambda$new$0;
-                lambda$new$0 = DrawerLayoutContainer.this.lambda$new$0(view, windowInsets);
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                WindowInsetsCompat lambda$new$0;
+                lambda$new$0 = DrawerLayoutContainer.this.lambda$new$0(view, windowInsetsCompat);
                 return lambda$new$0;
             }
         });
@@ -95,79 +97,37 @@ public class DrawerLayoutContainer extends FrameLayout {
         this.shadowLeft = getResources().getDrawable(R.drawable.menu_shadow);
     }
 
-    public WindowInsets lambda$new$0(View view, WindowInsets windowInsets) {
-        WindowInsets windowInsets2;
-        DisplayCutout displayCutout;
-        List boundingRects;
-        int ime;
-        boolean isVisible;
-        int ime2;
-        Insets insets;
-        int i;
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 30) {
-            ime = WindowInsets.Type.ime();
-            isVisible = windowInsets.isVisible(ime);
-            ime2 = WindowInsets.Type.ime();
-            insets = windowInsets.getInsets(ime2);
-            i = insets.bottom;
-            if (this.keyboardVisibility != isVisible || this.imeHeight != i) {
+    public WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 30) {
+            boolean isVisible = windowInsetsCompat.isVisible(WindowInsetsCompat.Type.ime());
+            int i2 = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom;
+            if (this.keyboardVisibility != isVisible || this.imeHeight != i2) {
                 this.keyboardVisibility = isVisible;
-                this.imeHeight = i;
+                this.imeHeight = i2;
                 requestLayout();
             }
         }
         DrawerLayoutContainer drawerLayoutContainer = (DrawerLayoutContainer) view;
-        if (AndroidUtilities.statusBarHeight != windowInsets.getSystemWindowInsetTop()) {
+        if (AndroidUtilities.statusBarHeight != windowInsetsCompat.getSystemWindowInsetTop()) {
             drawerLayoutContainer.requestLayout();
         }
-        int systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
+        int systemWindowInsetTop = windowInsetsCompat.getSystemWindowInsetTop();
         if ((systemWindowInsetTop != 0 || AndroidUtilities.isInMultiwindow || this.firstLayout) && AndroidUtilities.statusBarHeight != systemWindowInsetTop) {
             AndroidUtilities.statusBarHeight = systemWindowInsetTop;
         }
         boolean z = false;
         this.firstLayout = false;
-        this.lastInsets = windowInsets;
-        drawerLayoutContainer.setWillNotDraw(windowInsets.getSystemWindowInsetTop() <= 0 && getBackground() == null);
-        if (i2 >= 28) {
-            displayCutout = windowInsets.getDisplayCutout();
-            if (displayCutout != null) {
-                boundingRects = displayCutout.getBoundingRects();
-                if (boundingRects.size() != 0) {
-                    z = true;
-                }
+        drawerLayoutContainer.setWillNotDraw(windowInsetsCompat.getSystemWindowInsetTop() <= 0 && getBackground() == null);
+        if (i >= 28) {
+            DisplayCutoutCompat displayCutout = windowInsetsCompat.getDisplayCutout();
+            if (displayCutout != null && displayCutout.getBoundingRects().size() != 0) {
+                z = true;
             }
             this.hasCutout = z;
         }
         invalidate();
-        if (i2 >= 30) {
-            windowInsets2 = WindowInsets.CONSUMED;
-            return windowInsets2;
-        }
-        return windowInsets.consumeSystemWindowInsets();
-    }
-
-    private void dispatchChildInsets(View view, Object obj, int i) {
-        WindowInsets windowInsets = (WindowInsets) obj;
-        if (i == 3) {
-            windowInsets = windowInsets.replaceSystemWindowInsets(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), 0, windowInsets.getSystemWindowInsetBottom());
-        } else if (i == 5) {
-            windowInsets = windowInsets.replaceSystemWindowInsets(0, windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
-        }
-        view.dispatchApplyWindowInsets(windowInsets);
-    }
-
-    private void applyMarginInsets(ViewGroup.MarginLayoutParams marginLayoutParams, Object obj, int i, boolean z) {
-        WindowInsets windowInsets = (WindowInsets) obj;
-        if (i == 3) {
-            windowInsets = windowInsets.replaceSystemWindowInsets(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), 0, windowInsets.getSystemWindowInsetBottom());
-        } else if (i == 5) {
-            windowInsets = windowInsets.replaceSystemWindowInsets(0, windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
-        }
-        marginLayoutParams.leftMargin = windowInsets.getSystemWindowInsetLeft();
-        marginLayoutParams.topMargin = z ? 0 : windowInsets.getSystemWindowInsetTop();
-        marginLayoutParams.rightMargin = windowInsets.getSystemWindowInsetRight();
-        marginLayoutParams.bottomMargin = windowInsets.getSystemWindowInsetBottom();
+        return onApplyWindowInsets(view, windowInsetsCompat);
     }
 
     public void setDrawerLayout(FrameLayout frameLayout, final View view) {
@@ -509,26 +469,15 @@ public class DrawerLayoutContainer extends FrameLayout {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
         setMeasuredDimension(size, size2);
-        int i3 = size2 - AndroidUtilities.statusBarHeight;
-        if (Build.VERSION.SDK_INT >= 35) {
-            i3 -= AndroidUtilities.navigationBarHeight;
-        }
+        int i3 = (size2 - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight;
         if (i3 > 0 && i3 < 4096) {
             AndroidUtilities.displaySize.y = i3;
         }
-        boolean z = this.lastInsets != null;
         int childCount = getChildCount();
         for (int i4 = 0; i4 < childCount; i4++) {
             View childAt = getChildAt(i4);
             if (childAt.getVisibility() != 8) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-                if (z) {
-                    if (childAt.getFitsSystemWindows()) {
-                        dispatchChildInsets(childAt, this.lastInsets, layoutParams.gravity);
-                    } else if (childAt.getTag() == null) {
-                        applyMarginInsets(layoutParams, this.lastInsets, layoutParams.gravity, true);
-                    }
-                }
                 if (this.drawerLayout != childAt) {
                     int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - layoutParams.leftMargin) - layoutParams.rightMargin, 1073741824);
                     int i5 = layoutParams.height;
@@ -623,23 +572,24 @@ public class DrawerLayoutContainer extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Object obj = this.lastInsets;
-        if (obj != null) {
-            WindowInsets windowInsets = (WindowInsets) obj;
-            if (windowInsets.getSystemWindowInsetBottom() > 0) {
-                this.backgroundPaint.setColor(this.behindKeyboardColor);
-                canvas.drawRect(0.0f, getMeasuredHeight() - r1, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
+        WindowInsetsCompat windowInsetsCompat = this.lastWindowInsetsCompat;
+        if (windowInsetsCompat == null) {
+            return;
+        }
+        Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+        if (insets.bottom > 0) {
+            this.backgroundPaint.setColor(this.behindKeyboardColor);
+            canvas.drawRect(0.0f, getMeasuredHeight() - insets.bottom, getMeasuredWidth(), getMeasuredHeight(), this.internalNavbarPaint);
+        }
+        if (this.hasCutout) {
+            this.backgroundPaint.setColor(-16777216);
+            int i = insets.left;
+            if (i != 0) {
+                canvas.drawRect(0.0f, 0.0f, i, getMeasuredHeight(), this.backgroundPaint);
             }
-            if (this.hasCutout) {
-                this.backgroundPaint.setColor(-16777216);
-                int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
-                if (systemWindowInsetLeft != 0) {
-                    canvas.drawRect(0.0f, 0.0f, systemWindowInsetLeft, getMeasuredHeight(), this.backgroundPaint);
-                }
-                int systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
-                if (systemWindowInsetRight != 0) {
-                    canvas.drawRect(systemWindowInsetRight, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
-                }
+            int i2 = insets.right;
+            if (i2 != 0) {
+                canvas.drawRect(i2, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
             }
         }
     }
@@ -703,5 +653,54 @@ public class DrawerLayoutContainer extends FrameLayout {
             this.topDrawable.setAlpha(i);
             this.bottomDrawable.setAlpha(i);
         }
+    }
+
+    public Paint getInternalNavbarPaint() {
+        return this.internalNavbarPaint;
+    }
+
+    public void setInternalNavigationBarColor(int i) {
+        if (this.internalNavbarPaint.getColor() != i) {
+            this.internalNavbarPaint.setColor(i);
+            invalidate();
+            int childCount = getChildCount();
+            for (int i2 = 0; i2 < childCount; i2++) {
+                getChildAt(i2).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public void addView(View view, int i, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i, layoutParams);
+        WindowInsetsCompat windowInsetsCompat = this.lastWindowInsetsCompat;
+        if (windowInsetsCompat != null) {
+            dispatchApplyWindowInsetsInternal(view, windowInsetsCompat);
+        }
+    }
+
+    private void dispatchApplyWindowInsetsInternal(View view, WindowInsetsCompat windowInsetsCompat) {
+        if ((view instanceof ActionBarLayout) || view == this.drawerLayout || view.getTag() == null) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+            if (marginLayoutParams.topMargin != 0 || marginLayoutParams.bottomMargin != 0 || marginLayoutParams.leftMargin != insets.left || marginLayoutParams.rightMargin != insets.right) {
+                marginLayoutParams.leftMargin = insets.left;
+                marginLayoutParams.topMargin = 0;
+                marginLayoutParams.rightMargin = insets.right;
+                marginLayoutParams.bottomMargin = 0;
+                view.requestLayout();
+            }
+            ViewCompat.dispatchApplyWindowInsets(view, windowInsetsCompat.inset(marginLayoutParams.leftMargin, marginLayoutParams.topMargin, marginLayoutParams.rightMargin, marginLayoutParams.bottomMargin));
+        }
+    }
+
+    private WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        this.lastWindowInsetsCompat = windowInsetsCompat;
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            dispatchApplyWindowInsetsInternal(getChildAt(i), windowInsetsCompat);
+        }
+        invalidate();
+        return WindowInsetsCompat.CONSUMED;
     }
 }

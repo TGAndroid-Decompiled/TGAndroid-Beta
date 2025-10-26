@@ -2571,7 +2571,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             }
             ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
-            if (visibleReaction2 != null && visibleReaction2.isStar && this.particles != null && LiteMode.isEnabled(8200)) {
+            if (visibleReaction2 != null && visibleReaction2.isStar && this.particles != null && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072)) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 float height = ((int) (getHeight() * 0.7f)) / 2.0f;
                 rectF.set((getWidth() / 2.0f) - height, (getHeight() / 2.0f) - height, (getWidth() / 2.0f) + height, (getHeight() / 2.0f) + height);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="62119"
-    android:versionName="12.1.1"
+    android:versionCode="62349"
+    android:versionName="12.2.0"
     android:installLocation="auto"
     android:compileSdkVersion="35"
     android:compileSdkVersionCodename="15"
@@ -824,54 +824,13 @@
         <service
             android:name="com.google.android.gms.cast.framework.ReconnectionService"
             android:exported="false"/>
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false"/>
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-            android:exported="false"
-            android:excludeFromRecents="true"/>
         <service
-            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-            android:exported="true"
-            android:visibleToInstantApps="true"/>
-        <meta-data
-            android:name="com.google.android.play.billingclient.version"
-            android:value="7.1.1"/>
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.android.billingclient.api.ProxyBillingActivity"
-            android:exported="false"
-            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
-        <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name="com.android.billingclient.api.ProxyBillingActivityV2"
-            android:exported="false"
-            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
-        <service
-            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
-            android:exported="false"
-            android:directBootAware="true">
-            <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.vision.segmentation.subject.internal.SubjectSegmentationRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.vision.label.defaults.thin.ThinLabelRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.internal.LanguageIdRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            android:name="androidx.sharetarget.ChooserTargetServiceCompat"
+            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.chooser.ChooserTargetService"/>
+            </intent-filter>
         </service>
         <receiver
             android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
@@ -936,6 +895,55 @@
                 android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
         </service>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"/>
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+            android:exported="true"
+            android:visibleToInstantApps="true"/>
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+        <meta-data
+            android:name="com.google.android.play.billingclient.version"
+            android:value="7.1.1"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.android.billingclient.api.ProxyBillingActivity"
+            android:exported="false"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="com.android.billingclient.api.ProxyBillingActivityV2"
+            android:exported="false"
+            android:configChanges="screenSize|screenLayout|orientation|keyboardHidden|keyboard"/>
+        <service
+            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+            android:exported="false"
+            android:directBootAware="true">
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.vision.segmentation.subject.internal.SubjectSegmentationRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.vision.label.defaults.thin.ThinLabelRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.nl.languageid.internal.LanguageIdRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+            <meta-data
+                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
         <provider
             android:name="com.google.mlkit.common.internal.MlKitInitProvider"
             android:exported="false"
@@ -955,17 +963,6 @@
             android:authorities="org.telegram.messenger.beta.firebaseinitprovider"
             android:initOrder="100"
             android:directBootAware="true"/>
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-        <service
-            android:name="androidx.sharetarget.ChooserTargetServiceCompat"
-            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.chooser.ChooserTargetService"/>
-            </intent-filter>
-        </service>
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:exported="false"
@@ -976,7 +973,13 @@
             <meta-data
                 android:name="androidx.lifecycle.ProcessLifecycleInitializer"
                 android:value="androidx.startup"/>
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                android:value="androidx.startup"/>
         </provider>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
         <service
             android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
             android:exported="false">
@@ -991,6 +994,25 @@
         <receiver
             android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
             android:exported="false"/>
+        <receiver
+            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+            android:permission="android.permission.DUMP"
+            android:enabled="true"
+            android:exported="true"
+            android:directBootAware="false">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
+            </intent-filter>
+        </receiver>
         <activity
             android:theme="@style/Theme.PlayCore.Transparent"
             android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"

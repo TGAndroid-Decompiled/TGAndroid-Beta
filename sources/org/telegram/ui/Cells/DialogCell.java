@@ -730,7 +730,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     private boolean isOnline() {
         TLRPC.User user;
-        if (!isForumCell() && (user = this.user) != null && !user.self) {
+        if (!isForumCell() && !this.storyParams.drawnLive && (user = this.user) != null && !user.self) {
             TLRPC.UserStatus userStatus = user.status;
             if (userStatus != null && userStatus.expires <= 0 && MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.id))) {
                 return true;
@@ -752,7 +752,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     private void checkTtl() {
         CheckBox2 checkBox2;
-        boolean z = this.ttlPeriod > 0 && !this.hasCall && !isOnline() && ((checkBox2 = this.checkBox) == null || !checkBox2.isChecked());
+        boolean z = this.ttlPeriod > 0 && !this.hasCall && !isOnline() && ((checkBox2 = this.checkBox) == null || !checkBox2.isChecked()) && !this.storyParams.drawnLive;
         this.showTtl = z;
         this.ttlProgress = z ? 1.0f : 0.0f;
     }

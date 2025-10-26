@@ -273,7 +273,7 @@ public abstract class Browser {
         openUrl(context, uri, z, z2, false, progress, null, false, true, false);
     }
 
-    public static void openUrl(final android.content.Context r21, final android.net.Uri r22, boolean r23, boolean r24, boolean r25, final org.telegram.messenger.browser.Browser.Progress r26, java.lang.String r27, boolean r28, boolean r29, boolean r30) {
+    public static void openUrl(final android.content.Context r20, final android.net.Uri r21, boolean r22, boolean r23, boolean r24, final org.telegram.messenger.browser.Browser.Progress r25, java.lang.String r26, boolean r27, boolean r28, boolean r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean, boolean, boolean):void");
     }
 

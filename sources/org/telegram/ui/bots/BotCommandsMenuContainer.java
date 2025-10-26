@@ -6,24 +6,22 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import androidx.core.view.NestedScrollingParentHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
 public abstract class BotCommandsMenuContainer extends FrameLayout {
-    Paint backgroundPaint;
+    private BlurredBackgroundDrawable backgroundDrawable;
     private float containerY;
     private ObjectAnimator currentAnimation;
     boolean dismissed;
@@ -31,7 +29,6 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
     public RecyclerListView listView;
     private NestedScrollingParentHelper nestedScrollingParentHelper;
     float scrollYOffset;
-    Drawable shadowDrawable;
     Paint topBackground;
 
     public void onDismiss() {
@@ -50,11 +47,9 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
     public BotCommandsMenuContainer(Context context) {
         super(context);
         this.currentAnimation = null;
-        this.backgroundPaint = new Paint();
         this.topBackground = new Paint(1);
         this.dismissed = true;
         this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
-        this.shadowDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void dispatchDraw(Canvas canvas) {
@@ -62,20 +57,11 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
                     super.dispatchDraw(canvas);
                     return;
                 }
-                View findViewByPosition = BotCommandsMenuContainer.this.listView.getLayoutManager().findViewByPosition(0);
-                float y = findViewByPosition != null ? findViewByPosition.getY() : 0.0f;
-                if (y < 0.0f) {
-                    y = 0.0f;
-                }
-                BotCommandsMenuContainer.this.scrollYOffset = y;
-                float dp = y - AndroidUtilities.dp(8.0f);
-                if (dp > 0.0f) {
-                    int i = (int) dp;
-                    BotCommandsMenuContainer.this.shadowDrawable.setBounds(-AndroidUtilities.dp(8.0f), i - AndroidUtilities.dp(24.0f), getMeasuredWidth() + AndroidUtilities.dp(8.0f), i);
-                    BotCommandsMenuContainer.this.shadowDrawable.draw(canvas);
-                }
+                float dp = BotCommandsMenuContainer.this.scrollYOffset - AndroidUtilities.dp(8.0f);
                 BotCommandsMenuContainer.this.containerY = dp - AndroidUtilities.dp(16.0f);
-                canvas.drawRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.dp(16.0f), BotCommandsMenuContainer.this.backgroundPaint);
+                if (BotCommandsMenuContainer.this.backgroundDrawable != null) {
+                    BotCommandsMenuContainer.this.backgroundDrawable.draw(canvas);
+                }
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set((getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(12.0f), dp - AndroidUtilities.dp(4.0f), (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(12.0f), dp);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), BotCommandsMenuContainer.this.topBackground);
@@ -85,6 +71,19 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
         this.listView = recyclerListView;
         recyclerListView.setOverScrollMode(2);
         this.listView.setClipToPadding(false);
+        this.listView.setClipToOutline(true);
+        this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                super.onScrolled(recyclerView, i, i2);
+                View findViewByPosition = BotCommandsMenuContainer.this.listView.getLayoutManager().findViewByPosition(0);
+                float y = findViewByPosition != null ? findViewByPosition.getY() : 0.0f;
+                float f = y >= 0.0f ? y : 0.0f;
+                BotCommandsMenuContainer botCommandsMenuContainer = BotCommandsMenuContainer.this;
+                botCommandsMenuContainer.scrollYOffset = f;
+                botCommandsMenuContainer.checkBackgroundBounds();
+            }
+        });
         addView(this.listView);
         updateColors();
         setClipChildren(false);
@@ -195,12 +194,16 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        if (!this.entering || this.dismissed) {
-            return;
+        if (this.entering && !this.dismissed) {
+            this.listView.setTranslationY((r2.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.dp(16.0f));
+            playEnterAnim(true);
+            this.entering = false;
         }
-        this.listView.setTranslationY((r2.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.dp(16.0f));
-        playEnterAnim(true);
-        this.entering = false;
+        checkBackgroundBounds();
+    }
+
+    public RecyclerListView getListView() {
+        return this.listView;
     }
 
     private void playEnterAnim(boolean z) {
@@ -252,10 +255,26 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
 
     public void updateColors() {
         this.topBackground.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
-        Paint paint = this.backgroundPaint;
-        int i = Theme.key_windowBackgroundWhite;
-        paint.setColor(Theme.getColor(i));
-        this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.updateColors();
+        }
         invalidate();
+    }
+
+    public void setBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.backgroundDrawable = blurredBackgroundDrawable;
+        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(22.0f));
+        this.backgroundDrawable.setPadding(AndroidUtilities.dp(5.0f));
+        this.listView.setOutlineProvider(blurredBackgroundDrawable.getViewOutlineProvider());
+    }
+
+    public void checkBackgroundBounds() {
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.setBounds(0, ((int) this.scrollYOffset) - AndroidUtilities.dp(25.0f), getMeasuredWidth(), getMeasuredHeight() + AndroidUtilities.dp(5.0f));
+            this.listView.invalidateOutline();
+            this.listView.invalidate();
+        }
     }
 }

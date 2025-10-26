@@ -195,6 +195,6 @@ public class StarRatingView extends View {
         } else {
             adaptHSV = Theme.adaptHSV(ColorUtils.blendARGB(i, i2, 0.75f), 0.08f, -0.08f);
         }
-        return ColorUtils.blendARGB(-1342177280, adaptHSV, 1.0f - f);
+        return ColorUtils.blendARGB(603979776, adaptHSV, 1.0f - f);
     }
 }

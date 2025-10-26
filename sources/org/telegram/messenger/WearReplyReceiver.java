@@ -105,7 +105,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         } else {
             messageObject2 = null;
         }
-        accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, messageObject, messageObject2, null, true, null, null, null, true, 0, null, false));
+        accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, messageObject, messageObject2, null, true, null, null, null, true, 0, 0, null, false));
         if (j2 == 0) {
             accountInstance.getMessagesController().markDialogAsRead(j, i, i, 0, false, j2, 0, true, 0);
         }

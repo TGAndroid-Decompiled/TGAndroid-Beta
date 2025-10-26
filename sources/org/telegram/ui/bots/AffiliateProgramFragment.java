@@ -279,13 +279,13 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
                 for (int size2 = fragmentStack.size() - 1; size2 > size; size2--) {
                     parentLayout.removeFragmentFromStack((BaseFragment) fragmentStack.get(size2));
                 }
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
             } else {
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
                 baseFragment = parentLayout.getBackgroundFragment();
             }
         } else {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
         if (baseFragment != null) {
             if (z) {

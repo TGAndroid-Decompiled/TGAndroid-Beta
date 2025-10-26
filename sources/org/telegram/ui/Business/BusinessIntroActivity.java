@@ -238,7 +238,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (BusinessIntroActivity.this.onBackPressed()) {
-                        BusinessIntroActivity.this.lambda$onBackPressed$355();
+                        BusinessIntroActivity.this.lambda$onBackPressed$341();
                     }
                 } else if (i2 == 1) {
                     BusinessIntroActivity.this.processDone();
@@ -549,7 +549,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             if (this.inputSticker != null) {
                 getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
             }
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
     }
 
@@ -582,7 +582,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     public void lambda$onBackPressed$6(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void openCustomStickerEditor() {
@@ -638,7 +638,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         this.chatAttachAlert = chatAttachAlert;
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
-            public void didPressedButton(int i, boolean z2, boolean z3, int i2, long j, boolean z4, boolean z5, long j2) {
+            public void didPressedButton(int i, boolean z2, boolean z3, int i2, int i3, long j, boolean z4, boolean z5, long j2) {
             }
 
             @Override
@@ -672,8 +672,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, long j, boolean z3, long j2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i, j, z3, j2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i, i2, j, z3, j2);
             }
 
             @Override

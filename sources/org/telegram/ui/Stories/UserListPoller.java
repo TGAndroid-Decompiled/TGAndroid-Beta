@@ -3,14 +3,14 @@ package org.telegram.ui.Stories;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
@@ -55,35 +55,25 @@ public class UserListPoller {
             for (int i = 0; i < arrayList.size(); i++) {
                 tL_stories_getPeerMaxIDs.id.add(MessagesController.getInstance(UserListPoller.this.currentAccount).getInputPeer(((Long) arrayList.get(i)).longValue()));
             }
-            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequest(tL_stories_getPeerMaxIDs, new RequestDelegate() {
+            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequestTyped(tL_stories_getPeerMaxIDs, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    UserListPoller.AnonymousClass1.this.lambda$run$1(arrayList, tLObject, tL_error);
+                public final void run(Object obj, Object obj2) {
+                    UserListPoller.AnonymousClass1.this.lambda$run$0(arrayList, (Vector) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
 
-        public void lambda$run$1(final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    UserListPoller.AnonymousClass1.this.lambda$run$0(tLObject, arrayList);
-                }
-            });
-        }
-
-        public void lambda$run$0(TLObject tLObject, ArrayList arrayList) {
-            if (tLObject instanceof Vector) {
-                Vector vector = (Vector) tLObject;
+        public void lambda$run$0(ArrayList arrayList, Vector vector, TLRPC.TL_error tL_error) {
+            if (vector != null) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 for (int i = 0; i < vector.objects.size(); i++) {
                     if (((Long) arrayList.get(i)).longValue() > 0) {
                         TLRPC.User user = MessagesController.getInstance(UserListPoller.this.currentAccount).getUser((Long) arrayList.get(i));
                         if (user != null) {
-                            int i2 = ((Vector.Int) vector.objects.get(i)).value;
-                            user.stories_max_id = i2;
-                            if (i2 != 0) {
+                            TLRPC.TL_recentStory tL_recentStory = (TLRPC.TL_recentStory) vector.objects.get(i);
+                            user.stories_max_id = tL_recentStory;
+                            if (tL_recentStory != null) {
                                 user.flags2 |= 32;
                             } else {
                                 user.flags2 &= -33;
@@ -93,9 +83,9 @@ public class UserListPoller {
                     } else {
                         TLRPC.Chat chat = MessagesController.getInstance(UserListPoller.this.currentAccount).getChat((Long) arrayList.get(i));
                         if (chat != null) {
-                            int i3 = ((Vector.Int) vector.objects.get(i)).value;
-                            chat.stories_max_id = i3;
-                            if (i3 != 0) {
+                            TLRPC.TL_recentStory tL_recentStory2 = (TLRPC.TL_recentStory) vector.objects.get(i);
+                            chat.stories_max_id = tL_recentStory2;
+                            if (tL_recentStory2 != null) {
                                 chat.flags2 |= 16;
                             } else {
                                 chat.flags2 &= -17;

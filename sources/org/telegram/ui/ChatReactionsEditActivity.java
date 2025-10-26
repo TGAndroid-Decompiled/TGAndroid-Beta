@@ -74,7 +74,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatReactionsEditActivity.this.lambda$onBackPressed$355();
+                    ChatReactionsEditActivity.this.lambda$onBackPressed$341();
                 }
             }
         });
@@ -446,7 +446,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         } else if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
             } else {
                 removeSelfFromStack();
             }

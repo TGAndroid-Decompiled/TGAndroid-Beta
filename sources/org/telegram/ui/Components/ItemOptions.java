@@ -110,12 +110,6 @@ public class ItemOptions {
     public boolean useScrollView;
     private android.graphics.Rect viewAdditionalOffsets;
 
-    public interface ScrimView {
-        void drawScrim(Canvas canvas, float f);
-
-        void getBounds(RectF rectF);
-    }
-
     public void updateColors() {
     }
 
@@ -1375,6 +1369,21 @@ public class ItemOptions {
                 this.cachedBitmapPaint.setAlpha(255);
                 canvas.drawBitmap(this.cachedBitmap, -ItemOptions.this.viewAdditionalOffsets.left, -ItemOptions.this.viewAdditionalOffsets.top, this.cachedBitmapPaint);
                 canvas.restore();
+            }
+        }
+    }
+
+    public interface ScrimView {
+        void drawScrim(Canvas canvas, float f);
+
+        void getBounds(RectF rectF);
+
+        public abstract class CC {
+            public static void $default$getBounds(ScrimView scrimView, RectF rectF) {
+                if (scrimView instanceof View) {
+                    View view = (View) scrimView;
+                    rectF.set(0.0f, 0.0f, view.getWidth(), view.getHeight());
+                }
             }
         }
     }

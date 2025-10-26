@@ -36,7 +36,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.Window;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -115,7 +114,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
-import org.telegram.ui.ActionBar.CustomNavigationBar;
+import org.telegram.ui.ActionBar.DrawerContainer;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
@@ -158,6 +157,7 @@ import org.telegram.ui.Components.StickersAlert;
 import org.telegram.ui.Components.TermsOfServiceView;
 import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.inset.WindowRootInsetsListener;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
 import org.telegram.ui.Components.voip.VoIPHelper;
@@ -202,7 +202,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private Uri contactsToSendUri;
     private int currentConnectionState;
     private ISuperRipple currentRipple;
-    private CustomNavigationBar customNavigationBar;
     private String documentsMimeType;
     private ArrayList documentsOriginalPathsArray;
     private ArrayList documentsPathsArray;
@@ -269,6 +268,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private ImageView themeSwitchImageView;
     private RLottieDrawable themeSwitchSunDrawable;
     private View themeSwitchSunView;
+    private AlertDialog tlErrorAlertDialog;
     private IUpdateLayout updateLayout;
     private String videoPath;
     private ActionMode visibleActionMode;
@@ -276,6 +276,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private String voicePath;
     private boolean wasMutedByAdminRaisedHand;
     private Utilities.Callback webviewShareAPIDoneListener;
+    public final WindowRootInsetsListener windowRootInsetsListener;
     public static final Pattern PREFIX_T_ME_PATTERN = Pattern.compile("^(?:http(?:s|)://|)([A-z0-9-]+?)\\.t\\.me");
     private static final ArrayList mainFragmentsStack = new ArrayList();
     private static final ArrayList layerFragmentsStack = new ArrayList();
@@ -315,6 +316,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         };
         this.batteryReceiver = new LiteMode.BatteryReceiver();
+        this.windowRootInsetsListener = new WindowRootInsetsListener();
         this.firstAppUpdateCheck = true;
     }
 
@@ -364,10 +366,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             setTaskDescription(new ActivityManager.TaskDescription((String) null, (Bitmap) null, Theme.getColor(Theme.key_actionBarDefault) | (-16777216)));
         } catch (Throwable unused) {
         }
-        try {
-            getWindow().setNavigationBarColor(-16777216);
-        } catch (Throwable unused2) {
-        }
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
         FlagSecureReason flagSecureReason = new FlagSecureReason(getWindow(), new FlagSecureReason.FlagSecureCondition() {
             @Override
@@ -396,6 +394,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 LaunchActivity.this.drawRippleAbove(canvas, this);
+            }
+
+            @Override
+            public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
+                return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
             }
         };
         this.frameLayout = frameLayout;
@@ -472,7 +475,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.fireworksOverlay = fireworksOverlay;
         frameLayout3.addView(fireworksOverlay);
         setupActionBarLayout();
-        this.sideMenuContainer = new FrameLayout(this);
+        this.sideMenuContainer = new DrawerContainer(this);
         RecyclerListView recyclerListView = new RecyclerListView(this) {
             @Override
             public boolean drawChild(Canvas canvas, View view2, long j) {
@@ -496,6 +499,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         SideMenultItemAnimator sideMenultItemAnimator = new SideMenultItemAnimator(recyclerListView);
         this.itemAnimator = sideMenultItemAnimator;
         this.sideMenu.setItemAnimator(sideMenultItemAnimator);
+        this.sideMenu.setClipToPadding(false);
         RecyclerListView recyclerListView2 = this.sideMenu;
         int i2 = Theme.key_chats_menuBackground;
         recyclerListView2.setBackgroundColor(Theme.getColor(i2));
@@ -650,6 +654,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateLoading);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingConfirmPurchaseError);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.tlSchemeParseException);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         Utilities.Callback callback = new Utilities.Callback() {
             @Override
@@ -773,10 +778,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
             this.drawerLayoutContainer.setAllowOpenDrawer(z, false);
         }
-        int i4 = Build.VERSION.SDK_INT;
-        if (i4 >= 35) {
-            requestCustomNavigationBar();
-        }
         checkLayout();
         checkSystemBarColors();
         handleIntent(getIntent(), false, bundle != null, false, null, true, true);
@@ -788,7 +789,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("OS name " + lowerCase2 + " " + lowerCase3);
             }
-            if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && i4 <= 24) {
+            if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 AndroidUtilities.incorrectDisplaySizeFix = true;
                 final View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
@@ -810,18 +811,18 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (iUpdateLayout != null) {
             iUpdateLayout.updateAppUpdateViews(this.currentAccount, false);
         }
-        int i5 = Build.VERSION.SDK_INT;
-        if (i5 >= 23) {
+        int i4 = Build.VERSION.SDK_INT;
+        if (i4 >= 23) {
             FingerprintController.checkKeyReady();
         }
-        if (i5 >= 28) {
+        if (i4 >= 28) {
             isBackgroundRestricted = ((ActivityManager) getSystemService("activity")).isBackgroundRestricted();
             if (isBackgroundRestricted && System.currentTimeMillis() - SharedConfig.BackgroundActivityPrefs.getLastCheckedBackgroundActivity() >= 86400000 && SharedConfig.BackgroundActivityPrefs.getDismissedCount() < 3) {
                 AlertsCreator.createBackgroundActivityDialog(this).show();
                 SharedConfig.BackgroundActivityPrefs.setLastCheckedBackgroundActivity(System.currentTimeMillis());
             }
         }
-        if (i5 >= 31) {
+        if (i4 >= 31) {
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
                 @Override
                 public void onViewAttachedToWindow(View view2) {
@@ -834,50 +835,50 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
             });
         }
-        if (i5 >= 35) {
-            getWindow().setNavigationBarContrastEnforced(false);
-            Bulletin.addDelegate(this.frameLayout, new Bulletin.Delegate() {
-                @Override
-                public boolean allowLayoutChanges() {
-                    return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-                }
+        Bulletin.addDelegate(this.frameLayout, new Bulletin.Delegate() {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
 
-                @Override
-                public boolean bottomOffsetAnimated() {
-                    return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
-                }
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
 
-                @Override
-                public boolean clipWithGradient(int i6) {
-                    return Bulletin.Delegate.CC.$default$clipWithGradient(this, i6);
-                }
+            @Override
+            public boolean clipWithGradient(int i5) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i5);
+            }
 
-                @Override
-                public int getTopOffset(int i6) {
-                    return Bulletin.Delegate.CC.$default$getTopOffset(this, i6);
-                }
+            @Override
+            public int getTopOffset(int i5) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i5);
+            }
 
-                @Override
-                public void onBottomOffsetChange(float f) {
-                    Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-                }
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
 
-                @Override
-                public void onHide(Bulletin bulletin) {
-                    Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-                }
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
 
-                @Override
-                public void onShow(Bulletin bulletin) {
-                    Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-                }
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
 
-                @Override
-                public int getBottomOffset(int i6) {
-                    return AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(16.0f);
-                }
-            });
-        }
+            @Override
+            public int getBottomOffset(int i5) {
+                return AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(16.0f);
+            }
+        });
+        getWindow().getDecorView().setSystemUiVisibility(1792);
+        AndroidUtilities.enableEdgeToEdge(this);
+        this.windowRootInsetsListener.attach(getWindow());
         BackupAgent.requestBackup(this);
         RestrictedLanguagesSelectActivity.checkRestrictedLanguages(false);
     }
@@ -1199,7 +1200,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public static void lambda$onCreate$9(View view) {
         int measuredHeight = view.getMeasuredHeight();
         FileLog.d("height = " + measuredHeight + " displayHeight = " + AndroidUtilities.displaySize.y);
-        int i = measuredHeight - AndroidUtilities.statusBarHeight;
+        int i = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
         if (i <= AndroidUtilities.dp(100.0f) || i >= AndroidUtilities.displaySize.y) {
             return;
         }
@@ -2175,7 +2176,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public static void lambda$handleIntent$21(int[] iArr, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j2) {
-        SendMessagesHelper.getInstance(iArr[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
+        SendMessagesHelper.getInstance(iArr[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2, 0));
     }
 
     public void lambda$handleIntent$23() {
@@ -4833,7 +4834,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r43, final java.util.ArrayList r44, final java.lang.CharSequence r45, final boolean r46, boolean r47, int r48, org.telegram.ui.TopicsFragment r49) {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r44, final java.util.ArrayList r45, final java.lang.CharSequence r46, final boolean r47, boolean r48, int r49, org.telegram.ui.TopicsFragment r50) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
@@ -4884,14 +4885,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 messageObject2.isTopicMainMessage = true;
                 messageObject = messageObject2;
             }
-            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(user, j3, messageObject, messageObject, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z2, i3 != 0 ? i3 : i);
+            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(user, j3, messageObject, messageObject, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z2, i3 != 0 ? i3 : i, 0);
             if (TextUtils.isEmpty(charSequence)) {
                 of.effect_id = j;
             }
             of.invert_media = z3;
             SendMessagesHelper.getInstance(i2).sendMessage(of);
             if (!TextUtils.isEmpty(charSequence)) {
-                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j3, z, i3 != 0 ? i3 : i, j);
+                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j3, z, i3 != 0 ? i3 : i, 0, j);
             }
         }
     }
@@ -4944,6 +4945,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateLoading);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.billingConfirmPurchaseError);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.tlSchemeParseException);
         Utilities.Callback callback = this.onPowerSaverCallback;
         if (callback != null) {
             LiteMode.removeOnPowerSaverAppliedListener(callback);
@@ -5550,7 +5552,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         Iterator it = hashMap.entrySet().iterator();
         while (it.hasNext()) {
             MessageObject messageObject = (MessageObject) ((Map.Entry) it.next()).getValue();
-            SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, messageObject.getDialogId(), messageObject, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i3));
+            SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, messageObject.getDialogId(), messageObject, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i3, 0));
         }
     }
 
@@ -5619,6 +5621,19 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             lambda$runLinkRequest$95(new ThemePreviewActivity(applyThemeFile, true, 0, false, false));
         }
         onThemeLoadFinish();
+    }
+
+    public void lambda$didReceivedNotification$158(DialogInterface dialogInterface) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LaunchActivity.this.lambda$didReceivedNotification$157();
+            }
+        }, 30000L);
+    }
+
+    public void lambda$didReceivedNotification$157() {
+        this.tlErrorAlertDialog = null;
     }
 
     private void invalidateCachedViews(View view) {
@@ -5734,13 +5749,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.this.lambda$checkFreeDiscSpace$158(i);
+                    LaunchActivity.this.lambda$checkFreeDiscSpace$161(i);
                 }
             }, 2000L);
         }
     }
 
-    public void lambda$checkFreeDiscSpace$158(int i) {
+    public void lambda$checkFreeDiscSpace$161(int i) {
         File directory;
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
@@ -5756,7 +5771,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                LaunchActivity.this.lambda$checkFreeDiscSpace$157();
+                                LaunchActivity.this.lambda$checkFreeDiscSpace$160();
                             }
                         });
                     }
@@ -5766,7 +5781,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkFreeDiscSpace$157() {
+    public void lambda$checkFreeDiscSpace$160() {
         if (this.checkFreeDiscSpaceShown) {
             return;
         }
@@ -5775,7 +5790,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             createFreeSpaceDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    LaunchActivity.this.lambda$checkFreeDiscSpace$156(dialogInterface);
+                    LaunchActivity.this.lambda$checkFreeDiscSpace$159(dialogInterface);
                 }
             });
             this.checkFreeDiscSpaceShown = true;
@@ -5784,7 +5799,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkFreeDiscSpace$156(DialogInterface dialogInterface) {
+    public void lambda$checkFreeDiscSpace$159(DialogInterface dialogInterface) {
         this.checkFreeDiscSpaceShown = false;
     }
 
@@ -5799,7 +5814,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.showLanguageAlertInternal(org.telegram.messenger.LocaleController$LocaleInfo, org.telegram.messenger.LocaleController$LocaleInfo, java.lang.String):void");
     }
 
-    public static void lambda$showLanguageAlertInternal$159(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
+    public static void lambda$showLanguageAlertInternal$162(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
         Integer num = (Integer) view.getTag();
         localeInfoArr[0] = ((LanguageCell) view).getCurrentLocale();
         int i = 0;
@@ -5809,7 +5824,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$showLanguageAlertInternal$160(View view) {
+    public void lambda$showLanguageAlertInternal$163(View view) {
         this.localeDialog = null;
         this.drawerLayoutContainer.closeDrawer(true);
         lambda$runLinkRequest$95(new LanguageSelectActivity());
@@ -5821,7 +5836,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.visibleDialogs.clear();
     }
 
-    public void lambda$showLanguageAlertInternal$161(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
+    public void lambda$showLanguageAlertInternal$164(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
         LocaleController.getInstance().applyLanguage(localeInfoArr[0], true, false, this.currentAccount);
         rebuildAllFragments(true);
     }
@@ -5901,7 +5916,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                LaunchActivity.this.lambda$showLanguageAlert$163(localeInfoArr, str2, tLObject, tL_error);
+                                LaunchActivity.this.lambda$showLanguageAlert$166(localeInfoArr, str2, tLObject, tL_error);
                             }
                         }, 8);
                         TLRPC.TL_langpack_getStrings tL_langpack_getStrings2 = new TLRPC.TL_langpack_getStrings();
@@ -5913,7 +5928,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings2, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                LaunchActivity.this.lambda$showLanguageAlert$165(localeInfoArr, str2, tLObject, tL_error);
+                                LaunchActivity.this.lambda$showLanguageAlert$168(localeInfoArr, str2, tLObject, tL_error);
                             }
                         }, 8);
                     }
@@ -5924,7 +5939,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$showLanguageAlert$163(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$showLanguageAlert$166(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
         final HashMap hashMap = new HashMap();
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;
@@ -5936,12 +5951,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$showLanguageAlert$162(hashMap, localeInfoArr, str);
+                LaunchActivity.this.lambda$showLanguageAlert$165(hashMap, localeInfoArr, str);
             }
         });
     }
 
-    public void lambda$showLanguageAlert$162(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
+    public void lambda$showLanguageAlert$165(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
         this.systemLocaleStrings = hashMap;
         if (this.englishLocaleStrings == null || hashMap == null) {
             return;
@@ -5949,7 +5964,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
     }
 
-    public void lambda$showLanguageAlert$165(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$showLanguageAlert$168(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
         final HashMap hashMap = new HashMap();
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;
@@ -5961,12 +5976,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$showLanguageAlert$164(hashMap, localeInfoArr, str);
+                LaunchActivity.this.lambda$showLanguageAlert$167(hashMap, localeInfoArr, str);
             }
         });
     }
 
-    public void lambda$showLanguageAlert$164(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
+    public void lambda$showLanguageAlert$167(HashMap hashMap, LocaleController.LocaleInfo[] localeInfoArr, String str) {
         this.englishLocaleStrings = hashMap;
         if (hashMap == null || this.systemLocaleStrings == null) {
             return;
@@ -6078,12 +6093,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.actionBarLayout.setTitleOverlayText(str, i2, (connectionState == 1 || connectionState == 4) ? new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$updateCurrentConnectionState$166();
+                LaunchActivity.this.lambda$updateCurrentConnectionState$169();
             }
         } : null);
     }
 
-    public void lambda$updateCurrentConnectionState$166() {
+    public void lambda$updateCurrentConnectionState$169() {
         BaseFragment baseFragment;
         if (AndroidUtilities.isTablet()) {
             ArrayList arrayList = layerFragmentsStack;
@@ -6159,7 +6174,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (actionBarLayout2 != null && actionBarLayout2.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
                     if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$355();
+                        baseFragment.lambda$onBackPressed$341();
                         return;
                     }
                     return;
@@ -6443,30 +6458,22 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return instance.getActionBarLayout().getSafeLastFragment();
     }
 
-    public void requestCustomNavigationBar() {
-        if (this.customNavigationBar != null || Build.VERSION.SDK_INT < 26) {
-            return;
-        }
-        CustomNavigationBar customNavigationBar = new CustomNavigationBar(this);
-        this.customNavigationBar = customNavigationBar;
-        customNavigationBar.setActivityContentView(this.frameLayout);
-        ((FrameLayout) getWindow().getDecorView()).addView(this.customNavigationBar, LayoutHelper.createFrame(-1, -2, 80));
-    }
-
     public int getNavigationBarColor() {
-        if (Build.VERSION.SDK_INT < 26) {
-            return 0;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return getWindow().getNavigationBarColor();
         }
-        Window window = getWindow();
-        CustomNavigationBar customNavigationBar = this.customNavigationBar;
-        if (customNavigationBar != null) {
-            return customNavigationBar.getColor();
-        }
-        return window.getNavigationBarColor();
+        return 0;
     }
 
-    public void setNavigationBarColor(int r3, boolean r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.setNavigationBarColor(int, boolean):void");
+    public void setNavigationBarColor(int i, boolean z) {
+        this.drawerLayoutContainer.setInternalNavigationBarColor(i);
+        if (Build.VERSION.SDK_INT >= 26) {
+            getWindow();
+        }
+        BottomSheetTabs bottomSheetTabs = getBottomSheetTabs();
+        if (bottomSheetTabs != null) {
+            bottomSheetTabs.setNavigationBarColor(i);
+        }
     }
 
     public BottomSheetTabs getBottomSheetTabs() {
@@ -6495,7 +6502,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ofArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                LaunchActivity.this.lambda$animateNavigationBarColor$167(valueAnimator2);
+                LaunchActivity.this.lambda$animateNavigationBarColor$170(valueAnimator2);
             }
         });
         this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
@@ -6509,7 +6516,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.navBarAnimator.start();
     }
 
-    public void lambda$animateNavigationBarColor$167(ValueAnimator valueAnimator) {
+    public void lambda$animateNavigationBarColor$170(ValueAnimator valueAnimator) {
         setNavigationBarColor(((Integer) valueAnimator.getAnimatedValue()).intValue(), false);
     }
 
@@ -6527,16 +6534,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openMyStory(int, boolean):void");
     }
 
-    public void lambda$openMyStory$169(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openMyStory$172(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$openMyStory$168(tLObject, i, j, z);
+                LaunchActivity.this.lambda$openMyStory$171(tLObject, i, j, z);
             }
         });
     }
 
-    public void lambda$openMyStory$168(TLObject tLObject, int i, long j, boolean z) {
+    public void lambda$openMyStory$171(TLObject tLObject, int i, long j, boolean z) {
         StoriesListPlaceProvider storiesListPlaceProvider;
         TL_stories.StoryItem storyItem;
         if (tLObject instanceof TL_stories.TL_stories_stories) {
@@ -6631,7 +6638,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.this.lambda$openStories$170(iArr, jArr2);
+                    LaunchActivity.this.lambda$openStories$173(iArr, jArr2);
                 }
             };
             for (int i3 = 0; i3 < arrayList3.size(); i3++) {
@@ -6647,7 +6654,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getPeerStories, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LaunchActivity.lambda$openStories$172(MessagesController.this, longValue, runnable, tLObject, tL_error);
+                            LaunchActivity.lambda$openStories$175(MessagesController.this, longValue, runnable, tLObject, tL_error);
                         }
                     });
                 }
@@ -6679,7 +6686,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, storiesListPlaceProvider2, false);
     }
 
-    public void lambda$openStories$170(int[] iArr, long[] jArr) {
+    public void lambda$openStories$173(int[] iArr, long[] jArr) {
         int i = iArr[0] - 1;
         iArr[0] = i;
         if (i == 0) {
@@ -6688,16 +6695,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$openStories$172(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$openStories$175(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$openStories$171(TLObject.this, messagesController, j, runnable);
+                LaunchActivity.lambda$openStories$174(TLObject.this, messagesController, j, runnable);
             }
         });
     }
 
-    public static void lambda$openStories$171(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
+    public static void lambda$openStories$174(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
         if (tLObject instanceof TL_stories.TL_stories_peerStories) {
             TL_stories.TL_stories_peerStories tL_stories_peerStories = (TL_stories.TL_stories_peerStories) tLObject;
             messagesController.putUsers(tL_stories_peerStories.users, false);

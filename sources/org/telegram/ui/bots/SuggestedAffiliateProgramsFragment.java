@@ -53,7 +53,7 @@ public class SuggestedAffiliateProgramsFragment extends BaseFragment implements 
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    SuggestedAffiliateProgramsFragment.this.lambda$onBackPressed$355();
+                    SuggestedAffiliateProgramsFragment.this.lambda$onBackPressed$341();
                 }
             }
         });

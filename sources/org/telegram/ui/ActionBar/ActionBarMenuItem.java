@@ -593,23 +593,6 @@ public class ActionBarMenuItem extends FrameLayout {
         return addSubItem(i, i2, null, charSequence, true, z);
     }
 
-    public View addGap(int i) {
-        createPopupLayout();
-        View view = new View(getContext());
-        view.setMinimumWidth(AndroidUtilities.dp(196.0f));
-        view.setTag(Integer.valueOf(i));
-        view.setTag(R.id.object_tag, 1);
-        this.popupLayout.addView(view);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
-        if (LocaleController.isRTL) {
-            layoutParams.gravity = 5;
-        }
-        layoutParams.width = -1;
-        layoutParams.height = AndroidUtilities.dp(6.0f);
-        view.setLayoutParams(layoutParams);
-        return view;
-    }
-
     public ActionBarMenuSubItem addSubItem(int i, int i2, Drawable drawable, CharSequence charSequence, boolean z, boolean z2) {
         return addSubItem(i, i2, drawable, charSequence, z, z2, this.resourcesProvider);
     }

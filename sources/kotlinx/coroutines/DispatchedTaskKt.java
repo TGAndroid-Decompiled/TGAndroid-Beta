@@ -47,7 +47,7 @@ public abstract class DispatchedTaskKt {
             Result.Companion companion2 = Result.Companion;
             successfulResult$kotlinx_coroutines_core = dispatchedTask.getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
         }
-        Object m211constructorimpl = Result.m211constructorimpl(successfulResult$kotlinx_coroutines_core);
+        Object m213constructorimpl = Result.m213constructorimpl(successfulResult$kotlinx_coroutines_core);
         if (z) {
             Intrinsics.checkNotNull(continuation, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<T of kotlinx.coroutines.DispatchedTaskKt.resume>");
             DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
@@ -57,7 +57,7 @@ public abstract class DispatchedTaskKt {
             Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
             UndispatchedCoroutine updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
             try {
-                dispatchedContinuation.continuation.resumeWith(m211constructorimpl);
+                dispatchedContinuation.continuation.resumeWith(m213constructorimpl);
                 Unit unit = Unit.INSTANCE;
                 if (updateUndispatchedCompletion != null) {
                     if (!clearThreadContext) {
@@ -71,7 +71,7 @@ public abstract class DispatchedTaskKt {
                 }
             }
         }
-        continuation.resumeWith(m211constructorimpl);
+        continuation.resumeWith(m213constructorimpl);
     }
 
     private static final void resumeUnconfined(DispatchedTask dispatchedTask) {

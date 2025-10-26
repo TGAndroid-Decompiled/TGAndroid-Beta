@@ -18,7 +18,6 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.view.ViewGroup;
-import androidx.multidex.MultiDex;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
 import java.util.ArrayList;
@@ -184,7 +183,6 @@ public class ApplicationLoader extends Application {
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
-        MultiDex.install(this);
     }
 
     public static ILocationServiceProvider getLocationServiceProvider() {

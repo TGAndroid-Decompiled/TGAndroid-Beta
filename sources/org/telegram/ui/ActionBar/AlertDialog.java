@@ -278,7 +278,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.dismissDialogByButtons = true;
         this.containerViewLocation = new int[2];
         this.checkFocusable = true;
-        this.dismissRunnable = new AlertDialog$$ExternalSyntheticLambda3(this);
+        this.dismissRunnable = new AlertDialog$$ExternalSyntheticLambda2(this);
         this.showRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -1449,7 +1449,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     public void dismissUnless(long j) {
         long currentTimeMillis = System.currentTimeMillis() - this.shownAt;
         if (currentTimeMillis < j) {
-            AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda3(this), currentTimeMillis - j);
+            AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda2(this), currentTimeMillis - j);
         } else {
             dismiss();
         }
@@ -1461,7 +1461,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         Utilities.Callback callback = this.overridenDissmissListener;
         if (callback != null) {
             this.overridenDissmissListener = null;
-            callback.run(new AlertDialog$$ExternalSyntheticLambda3(this));
+            callback.run(new AlertDialog$$ExternalSyntheticLambda2(this));
             return;
         }
         if (this.dismissed) {

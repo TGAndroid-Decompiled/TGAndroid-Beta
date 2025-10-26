@@ -647,4 +647,12 @@ public class Utilities {
         list.set(i, list.get(i2));
         list.set(i2, t);
     }
+
+    public static long tryParseLong(String str, long j) {
+        try {
+            return Long.parseLong(str);
+        } catch (Exception unused) {
+            return j;
+        }
+    }
 }

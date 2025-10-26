@@ -310,7 +310,7 @@ public class ReactionsLayoutInBubble {
     }
 
     public boolean hasOverlay() {
-        return this.hasPaidReaction && !(this.isEmpty && this.outButtons.isEmpty()) && LiteMode.isEnabled(8200);
+        return this.hasPaidReaction && !(this.isEmpty && this.outButtons.isEmpty()) && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072);
     }
 
     public void drawOverlay(Canvas canvas, float f) {
@@ -864,7 +864,7 @@ public class ReactionsLayoutInBubble {
         }
 
         public void drawOverlay(Canvas canvas, float f, float f2, float f3, float f4, boolean z) {
-            if (this.particles != null && LiteMode.isEnabled(8200)) {
+            if (this.particles != null && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072)) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(f, f2, this.width + f, this.height + f2);
                 float f5 = this.height / 2.0f;

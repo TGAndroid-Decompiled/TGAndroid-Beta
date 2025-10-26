@@ -26,15 +26,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_stories_storyViews TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-560009955 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stories_storyViews", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_stories_storyViews tL_stories_storyViews = new TL_stories_storyViews();
-            tL_stories_storyViews.readParams(inputSerializedData, z);
-            return tL_stories_storyViews;
+            return (TL_stories_storyViews) TLObject.TLdeserialize(TL_stories_storyViews.class, -560009955 != i ? null : new TL_stories_storyViews(), inputSerializedData, i, z);
         }
 
         @Override
@@ -68,7 +60,7 @@ public class TL_stories {
         public long user_id;
 
         public static StoryView TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StoryView tL_storyViewPublicForward;
+            TLObject tL_storyViewPublicForward;
             if (i == -1870436597) {
                 tL_storyViewPublicForward = new TL_storyViewPublicForward();
             } else if (i == -1329730875) {
@@ -76,13 +68,7 @@ public class TL_stories {
             } else {
                 tL_storyViewPublicForward = i != -1116418231 ? null : new TL_storyViewPublicRepost();
             }
-            if (tL_storyViewPublicForward == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryView", Integer.valueOf(i)));
-            }
-            if (tL_storyViewPublicForward != null) {
-                tL_storyViewPublicForward.readParams(inputSerializedData, z);
-            }
-            return tL_storyViewPublicForward;
+            return (StoryView) TLObject.TLdeserialize(StoryView.class, tL_storyViewPublicForward, inputSerializedData, i, z);
         }
     }
 
@@ -176,19 +162,13 @@ public class TL_stories {
         public ArrayList<StoryItem> stories = new ArrayList<>();
 
         public static PeerStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PeerStories tL_peerStories_layer162;
+            TLObject tL_peerStories_layer162;
             if (i != -2045664768) {
                 tL_peerStories_layer162 = i != -1707742823 ? null : new TL_peerStories();
             } else {
                 tL_peerStories_layer162 = new TL_peerStories_layer162();
             }
-            if (tL_peerStories_layer162 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PeerStories", Integer.valueOf(i)));
-            }
-            if (tL_peerStories_layer162 != null) {
-                tL_peerStories_layer162.readParams(inputSerializedData, z);
-            }
-            return tL_peerStories_layer162;
+            return (PeerStories) TLObject.TLdeserialize(PeerStories.class, tL_peerStories_layer162, inputSerializedData, i, z);
         }
     }
 
@@ -252,15 +232,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_stories_peerStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-890861720 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stories_peerStories", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_stories_peerStories tL_stories_peerStories = new TL_stories_peerStories();
-            tL_stories_peerStories.readParams(inputSerializedData, z);
-            return tL_stories_peerStories;
+            return (TL_stories_peerStories) TLObject.TLdeserialize(TL_stories_peerStories.class, -890861720 != i ? null : new TL_stories_peerStories(), inputSerializedData, i, z);
         }
 
         @Override
@@ -281,19 +253,13 @@ public class TL_stories {
 
     public static abstract class stories_AllStories extends TLObject {
         public static stories_AllStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            stories_AllStories tL_stories_allStoriesNotModified;
+            TLObject tL_stories_allStoriesNotModified;
             if (i == 291044926) {
                 tL_stories_allStoriesNotModified = new TL_stories_allStoriesNotModified();
             } else {
                 tL_stories_allStoriesNotModified = i != 1862033025 ? null : new TL_stories_allStories();
             }
-            if (tL_stories_allStoriesNotModified == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in stories_AllStories", Integer.valueOf(i)));
-            }
-            if (tL_stories_allStoriesNotModified != null) {
-                tL_stories_allStoriesNotModified.readParams(inputSerializedData, z);
-            }
-            return tL_stories_allStoriesNotModified;
+            return (stories_AllStories) TLObject.TLdeserialize(stories_AllStories.class, tL_stories_allStoriesNotModified, inputSerializedData, i, z);
         }
     }
 
@@ -368,15 +334,7 @@ public class TL_stories {
         public int count_remains;
 
         public static canSendStoryCount TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1014513586 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in canSendStoryCount", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            canSendStoryCount cansendstorycount = new canSendStoryCount();
-            cansendstorycount.readParams(inputSerializedData, z);
-            return cansendstorycount;
+            return (canSendStoryCount) TLObject.TLdeserialize(canSendStoryCount.class, -1014513586 != i ? null : new canSendStoryCount(), inputSerializedData, i, z);
         }
 
         @Override
@@ -602,15 +560,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_stories_stories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1673780490 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stories_stories", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_stories_stories tL_stories_stories = new TL_stories_stories();
-            tL_stories_stories.readParams(inputSerializedData, z);
-            return tL_stories_stories;
+            return (TL_stories_stories) TLObject.TLdeserialize(TL_stories_stories.class, 1673780490 != i ? null : new TL_stories_stories(), inputSerializedData, i, z);
         }
 
         @Override
@@ -745,19 +695,13 @@ public class TL_stories {
         public String next_offset = "";
 
         public static StoryViewsList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StoryViewsList tL_storyViewsList_layer167;
+            TLObject tL_storyViewsList_layer167;
             if (i != 1189722604) {
                 tL_storyViewsList_layer167 = i != 1507299269 ? null : new TL_storyViewsList();
             } else {
                 tL_storyViewsList_layer167 = new TL_storyViewsList_layer167();
             }
-            if (tL_storyViewsList_layer167 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryViewsList", Integer.valueOf(i)));
-            }
-            if (tL_storyViewsList_layer167 != null) {
-                tL_storyViewsList_layer167.readParams(inputSerializedData, z);
-            }
-            return tL_storyViewsList_layer167;
+            return (StoryViewsList) TLObject.TLdeserialize(StoryViewsList.class, tL_storyViewsList_layer167, inputSerializedData, i, z);
         }
     }
 
@@ -922,15 +866,7 @@ public class TL_stories {
         public StoryItem storyItem;
 
         public static TL_foundStory TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-394605632 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_foundStory", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_foundStory tL_foundStory = new TL_foundStory();
-            tL_foundStory.readParams(inputSerializedData, z);
-            return tL_foundStory;
+            return (TL_foundStory) TLObject.TLdeserialize(TL_foundStory.class, -394605632 != i ? null : new TL_foundStory(), inputSerializedData, i, z);
         }
 
         @Override
@@ -957,15 +893,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_foundStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-488736969 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_foundStories", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_foundStories tL_foundStories = new TL_foundStories();
-            tL_foundStories.readParams(inputSerializedData, z);
-            return tL_foundStories;
+            return (TL_foundStories) TLObject.TLdeserialize(TL_foundStories.class, -488736969 != i ? null : new TL_foundStories(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1054,15 +982,7 @@ public class TL_stories {
         public String link;
 
         public static TL_exportedStoryLink TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1070138683 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_exportedStoryLink", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_exportedStoryLink tL_exportedStoryLink = new TL_exportedStoryLink();
-            tL_exportedStoryLink.readParams(inputSerializedData, z);
-            return tL_exportedStoryLink;
+            return (TL_exportedStoryLink) TLObject.TLdeserialize(TL_exportedStoryLink.class, 1070138683 != i ? null : new TL_exportedStoryLink(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1131,18 +1051,23 @@ public class TL_stories {
         }
     }
 
-    public static class TL_stories_getPeerMaxIDs extends TLObject {
-        public static final int constructor = 1398375363;
+    public static class TL_stories_getPeerMaxIDs extends TLMethod<Vector<TLRPC.TL_recentStory>> {
+        public static final int constructor = 2018087280;
         public ArrayList<TLRPC.InputPeer> id = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserializeInt(inputSerializedData, i, z);
+        public Vector<TLRPC.TL_recentStory> deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Vector.TLDeserialize(inputSerializedData, i, z, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i2, boolean z2) {
+                    return TLRPC.TL_recentStory.TLdeserialize(inputSerializedData2, i2, z2);
+                }
+            });
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1398375363);
+            outputSerializedData.writeInt32(2018087280);
             Vector.serialize(outputSerializedData, this.id);
         }
     }
@@ -1170,15 +1095,7 @@ public class TL_stories {
         public int flags;
 
         public static TL_storiesStealthMode TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1898850301 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_storiesStealthMode", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_storiesStealthMode tL_storiesStealthMode = new TL_storiesStealthMode();
-            tL_storiesStealthMode.readParams(inputSerializedData, z);
-            return tL_storiesStealthMode;
+            return (TL_storiesStealthMode) TLObject.TLdeserialize(TL_storiesStealthMode.class, 1898850301 != i ? null : new TL_storiesStealthMode(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1277,15 +1194,7 @@ public class TL_stories {
         public int slot;
 
         public static TL_myBoost TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (constructor != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_myBoost", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_myBoost tL_myBoost = new TL_myBoost();
-            tL_myBoost.readParams(inputSerializedData, z);
-            return tL_myBoost;
+            return (TL_myBoost) TLObject.TLdeserialize(TL_myBoost.class, constructor != i ? null : new TL_myBoost(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1325,15 +1234,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_premium_myBoosts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (constructor != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_premium_myBoosts", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_premium_myBoosts tL_premium_myBoosts = new TL_premium_myBoosts();
-            tL_premium_myBoosts.readParams(inputSerializedData, z);
-            return tL_premium_myBoosts;
+            return (TL_premium_myBoosts) TLObject.TLdeserialize(TL_premium_myBoosts.class, constructor != i ? null : new TL_premium_myBoosts(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1386,15 +1287,7 @@ public class TL_stories {
         public ArrayList<Integer> my_boost_slots = new ArrayList<>();
 
         public static TL_premium_boostsStatus TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (constructor != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_premium_boostsStatus", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_premium_boostsStatus tL_premium_boostsStatus = new TL_premium_boostsStatus();
-            tL_premium_boostsStatus.readParams(inputSerializedData, z);
-            return tL_premium_boostsStatus;
+            return (TL_premium_boostsStatus) TLObject.TLdeserialize(TL_premium_boostsStatus.class, constructor != i ? null : new TL_premium_boostsStatus(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1510,19 +1403,13 @@ public class TL_stories {
         public long user_id = -1;
 
         public static Boost TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            Boost tL_boost_layer186;
+            TLObject tL_boost_layer186;
             if (i != 706514033) {
                 tL_boost_layer186 = i != 1262359766 ? null : new TL_boost();
             } else {
                 tL_boost_layer186 = new TL_boost_layer186();
             }
-            if (tL_boost_layer186 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in Boost", Integer.valueOf(i)));
-            }
-            if (tL_boost_layer186 != null) {
-                tL_boost_layer186.readParams(inputSerializedData, z);
-            }
-            return tL_boost_layer186;
+            return (Boost) TLObject.TLdeserialize(Boost.class, tL_boost_layer186, inputSerializedData, i, z);
         }
     }
 
@@ -1651,15 +1538,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_premium_boostsList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (constructor != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_premium_boostsList", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_premium_boostsList tL_premium_boostsList = new TL_premium_boostsList();
-            tL_premium_boostsList.readParams(inputSerializedData, z);
-            return tL_premium_boostsList;
+            return (TL_premium_boostsList) TLObject.TLdeserialize(TL_premium_boostsList.class, constructor != i ? null : new TL_premium_boostsList(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1755,7 +1634,7 @@ public class TL_stories {
         public ArrayList<TLRPC.PrivacyRule> privacy = new ArrayList<>();
 
         public static StoryItem TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StoryItem tL_storyItem_layer174;
+            TLObject tL_storyItem_layer174;
             switch (i) {
                 case -1352440415:
                     tL_storyItem_layer174 = new TL_storyItem_layer174();
@@ -1782,13 +1661,7 @@ public class TL_stories {
                     tL_storyItem_layer174 = null;
                     break;
             }
-            if (tL_storyItem_layer174 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryItem", Integer.valueOf(i)));
-            }
-            if (tL_storyItem_layer174 != null) {
-                tL_storyItem_layer174.readParams(inputSerializedData, z);
-            }
-            return tL_storyItem_layer174;
+            return (StoryItem) TLObject.TLdeserialize(StoryItem.class, tL_storyItem_layer174, inputSerializedData, i, z);
         }
     }
 
@@ -1802,7 +1675,7 @@ public class TL_stories {
         public ArrayList<TLRPC.ReactionCount> reactions = new ArrayList<>();
 
         public static StoryViews TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StoryViews tL_storyViews;
+            TLObject tL_storyViews;
             if (i == -1923523370) {
                 tL_storyViews = new TL_storyViews();
             } else if (i != -968094825) {
@@ -1810,13 +1683,7 @@ public class TL_stories {
             } else {
                 tL_storyViews = new TL_storyViews_layer161();
             }
-            if (tL_storyViews == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryViews", Integer.valueOf(i)));
-            }
-            if (tL_storyViews != null) {
-                tL_storyViews.readParams(inputSerializedData, z);
-            }
-            return tL_storyViews;
+            return (StoryViews) TLObject.TLdeserialize(StoryViews.class, tL_storyViews, inputSerializedData, i, z);
         }
     }
 
@@ -1940,14 +1807,7 @@ public class TL_stories {
         public int story_id;
 
         public static StoryFwdHeader TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TL_storyFwdHeader tL_storyFwdHeader = i != -1205411504 ? null : new TL_storyFwdHeader();
-            if (tL_storyFwdHeader == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryFwdHeader", Integer.valueOf(i)));
-            }
-            if (tL_storyFwdHeader != null) {
-                tL_storyFwdHeader.readParams(inputSerializedData, z);
-            }
-            return tL_storyFwdHeader;
+            return (StoryFwdHeader) TLObject.TLdeserialize(StoryFwdHeader.class, i != -1205411504 ? null : new TL_storyFwdHeader(), inputSerializedData, i, z);
         }
     }
 
@@ -1993,19 +1853,13 @@ public class TL_stories {
         public long hash;
 
         public static Albums TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            Albums tL_albums;
+            TLObject tL_albums;
             if (i == -1013417414) {
                 tL_albums = new TL_albums();
             } else {
                 tL_albums = i != 1448008427 ? null : new TL_albumsNotModified();
             }
-            if (tL_albums == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in Albums", Integer.valueOf(i)));
-            }
-            if (tL_albums != null) {
-                tL_albums.readParams(inputSerializedData, z);
-            }
-            return tL_albums;
+            return (Albums) TLObject.TLdeserialize(Albums.class, tL_albums, inputSerializedData, i, z);
         }
     }
 
@@ -2052,14 +1906,7 @@ public class TL_stories {
         public String title;
 
         public static TL_storyAlbum TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TL_storyAlbum tL_storyAlbum = i != -1826262950 ? null : new TL_storyAlbum();
-            if (tL_storyAlbum == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryAlbum", Integer.valueOf(i)));
-            }
-            if (tL_storyAlbum != null) {
-                tL_storyAlbum.readParams(inputSerializedData, z);
-            }
-            return tL_storyAlbum;
+            return (TL_storyAlbum) TLObject.TLdeserialize(TL_storyAlbum.class, i != -1826262950 ? null : new TL_storyAlbum(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2599,19 +2446,13 @@ public class TL_stories {
         public double y;
 
         public static MediaAreaCoordinates TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            MediaAreaCoordinates tL_mediaAreaCoordinates;
+            TLObject tL_mediaAreaCoordinates;
             if (i == -808853502) {
                 tL_mediaAreaCoordinates = new TL_mediaAreaCoordinates();
             } else {
                 tL_mediaAreaCoordinates = i != 64088654 ? null : new TL_mediaAreaCoordinates_layer181();
             }
-            if (tL_mediaAreaCoordinates == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in MediaAreaCoordinates", Integer.valueOf(i)));
-            }
-            if (tL_mediaAreaCoordinates != null) {
-                tL_mediaAreaCoordinates.readParams(inputSerializedData, z);
-            }
-            return tL_mediaAreaCoordinates;
+            return (MediaAreaCoordinates) TLObject.TLdeserialize(MediaAreaCoordinates.class, tL_mediaAreaCoordinates, inputSerializedData, i, z);
         }
     }
 
@@ -2677,7 +2518,7 @@ public class TL_stories {
         public TLRPC.Reaction reaction;
 
         public static MediaArea TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            MediaArea tL_mediaAreaWeather2;
+            TLObject tL_mediaAreaWeather2;
             switch (i) {
                 case -2057362882:
                     tL_mediaAreaWeather2 = new TL_mediaAreaWeather2();
@@ -2719,13 +2560,7 @@ public class TL_stories {
                     tL_mediaAreaWeather2 = null;
                     break;
             }
-            if (tL_mediaAreaWeather2 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in MediaArea", Integer.valueOf(i)));
-            }
-            if (tL_mediaAreaWeather2 != null) {
-                tL_mediaAreaWeather2.readParams(inputSerializedData, z);
-            }
-            return tL_mediaAreaWeather2;
+            return (MediaArea) TLObject.TLdeserialize(MediaArea.class, tL_mediaAreaWeather2, inputSerializedData, i, z);
         }
     }
 
@@ -3002,15 +2837,7 @@ public class TL_stories {
         }
 
         public static TL_geoPointAddress TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-565420653 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_geoPointAddress", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_geoPointAddress tL_geoPointAddress = new TL_geoPointAddress();
-            tL_geoPointAddress.readParams(inputSerializedData, z);
-            return tL_geoPointAddress;
+            return (TL_geoPointAddress) TLObject.TLdeserialize(TL_geoPointAddress.class, -565420653 != i ? null : new TL_geoPointAddress(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3096,19 +2923,13 @@ public class TL_stories {
         public int quantity;
 
         public static PrepaidGiveaway TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PrepaidGiveaway tL_prepaidStarsGiveaway;
+            TLObject tL_prepaidStarsGiveaway;
             if (i != -1700956192) {
                 tL_prepaidStarsGiveaway = i != -1303143084 ? null : new TL_prepaidGiveaway();
             } else {
                 tL_prepaidStarsGiveaway = new TL_prepaidStarsGiveaway();
             }
-            if (tL_prepaidStarsGiveaway == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PrepaidGiveaway", Integer.valueOf(i)));
-            }
-            if (tL_prepaidStarsGiveaway != null) {
-                tL_prepaidStarsGiveaway.readParams(inputSerializedData, z);
-            }
-            return tL_prepaidStarsGiveaway;
+            return (PrepaidGiveaway) TLObject.TLdeserialize(PrepaidGiveaway.class, tL_prepaidStarsGiveaway, inputSerializedData, i, z);
         }
     }
 
@@ -3164,15 +2985,7 @@ public class TL_stories {
         public TL_stats.StatsGraph views_graph;
 
         public static TL_stats_storyStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1355613820 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_storyStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_stats_storyStats tL_stats_storyStats = new TL_stats_storyStats();
-            tL_stats_storyStats.readParams(inputSerializedData, z);
-            return tL_stats_storyStats;
+            return (TL_stats_storyStats) TLObject.TLdeserialize(TL_stats_storyStats.class, 1355613820 != i ? null : new TL_stats_storyStats(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3218,7 +3031,7 @@ public class TL_stories {
         public StoryItem story;
 
         public static StoryReaction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StoryReaction tL_storyReactionPublicForward;
+            TLObject tL_storyReactionPublicForward;
             if (i == -1146411453) {
                 tL_storyReactionPublicForward = new TL_storyReactionPublicForward();
             } else if (i != -808644845) {
@@ -3226,13 +3039,7 @@ public class TL_stories {
             } else {
                 tL_storyReactionPublicForward = new TL_storyReactionPublicRepost();
             }
-            if (tL_storyReactionPublicForward == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StoryReaction", Integer.valueOf(i)));
-            }
-            if (tL_storyReactionPublicForward != null) {
-                tL_storyReactionPublicForward.readParams(inputSerializedData, z);
-            }
-            return tL_storyReactionPublicForward;
+            return (StoryReaction) TLObject.TLdeserialize(StoryReaction.class, tL_storyReactionPublicForward, inputSerializedData, i, z);
         }
     }
 
@@ -3303,15 +3110,7 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_storyReactionsList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1436583780 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_storyReactionsList", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_storyReactionsList tL_storyReactionsList = new TL_storyReactionsList();
-            tL_storyReactionsList.readParams(inputSerializedData, z);
-            return tL_storyReactionsList;
+            return (TL_storyReactionsList) TLObject.TLdeserialize(TL_storyReactionsList.class, -1436583780 != i ? null : new TL_storyReactionsList(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3525,6 +3324,59 @@ public class TL_stories {
         @Override
         public TL_stories_stories deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return TL_stories_stories.TLdeserialize(inputSerializedData, i, z);
+        }
+    }
+
+    public static class TL_startLive extends TLMethod<TLRPC.Updates> {
+        public static final int constructor = -798372642;
+        public String caption;
+        public int flags;
+        public Boolean messages_enabled;
+        public boolean noforwards;
+        public TLRPC.InputPeer peer;
+        public boolean pinned;
+        public long random_id;
+        public boolean rtmp_stream;
+        public Long send_paid_messages_stars;
+        public ArrayList<TLRPC.MessageEntity> entities = new ArrayList<>();
+        public ArrayList<TLRPC.InputPrivacyRule> privacy_rules = new ArrayList<>();
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-798372642);
+            int flag = TLObject.setFlag(this.flags, 4, this.pinned);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.noforwards);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 32, this.rtmp_stream);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 64, this.messages_enabled != null);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 128, this.send_paid_messages_stars != null);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            this.peer.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeString(this.caption);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                Vector.serialize(outputSerializedData, this.entities);
+            }
+            Vector.serialize(outputSerializedData, this.privacy_rules);
+            outputSerializedData.writeInt64(this.random_id);
+            Boolean bool = this.messages_enabled;
+            if (bool != null) {
+                outputSerializedData.writeBool(bool.booleanValue());
+            }
+            Long l = this.send_paid_messages_stars;
+            if (l != null) {
+                outputSerializedData.writeInt64(l.longValue());
+            }
+        }
+
+        @Override
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
         }
     }
 }

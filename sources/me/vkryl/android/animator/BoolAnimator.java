@@ -27,14 +27,6 @@ public class BoolAnimator implements FactorAnimator.Target {
         this.floatValue = z ? 1.0f : 0.0f;
     }
 
-    public void setInterpolator(Interpolator interpolator) {
-        this.interpolator = interpolator;
-        FactorAnimator factorAnimator = this.animator;
-        if (factorAnimator != null) {
-            factorAnimator.setInterpolator(interpolator);
-        }
-    }
-
     public boolean isAnimating() {
         FactorAnimator factorAnimator = this.animator;
         return factorAnimator != null && factorAnimator.isAnimating();

@@ -31,9 +31,9 @@
     <string name="call_notification_answer_video_action">Bideoa</string>
     <string name="call_notification_decline_action">Baztertu</string>
     <string name="call_notification_hang_up_action">Amaitu deia</string>
-    <string name="call_notification_incoming_text">Jasotako deia</string>
+    <string name="call_notification_incoming_text">Sarrerako deia</string>
     <string name="call_notification_ongoing_text">Deia abian da</string>
-    <string name="call_notification_screening_text">Jasotako dei bat bistaratzen</string>
+    <string name="call_notification_screening_text">Sarrerako dei bat bistaratzen</string>
     <string name="cast_ad_label">Iragarkia</string>
     <string name="cast_casting_to_device">%1$s gailura igortzen</string>
     <string name="cast_closed_captions">Azpitituluak</string>

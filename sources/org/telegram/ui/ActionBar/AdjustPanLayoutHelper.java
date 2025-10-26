@@ -15,6 +15,7 @@ import android.view.WindowInsets;
 import android.view.WindowInsetsAnimation;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
+import androidx.core.view.WindowInsetsAnimationCompat$Impl30$ProxyCallback$$ExternalSyntheticApiModelOutline0;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import java.util.ArrayList;
@@ -355,7 +356,7 @@ public abstract class AdjustPanLayoutHelper {
                             windowInsetsAnimation = null;
                             break;
                         }
-                        windowInsetsAnimation = AdjustPanLayoutHelper$4$$ExternalSyntheticApiModelOutline0.m(it.next());
+                        windowInsetsAnimation = WindowInsetsAnimationCompat$Impl30$ProxyCallback$$ExternalSyntheticApiModelOutline0.m(it.next());
                         typeMask = windowInsetsAnimation.getTypeMask();
                         if ((typeMask & WindowInsetsCompat.Type.ime()) != 0) {
                             break;

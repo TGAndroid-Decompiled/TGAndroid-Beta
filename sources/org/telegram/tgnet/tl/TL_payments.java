@@ -25,15 +25,7 @@ public class TL_payments {
         public String url;
 
         public static connectedBotStarRef TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (429997937 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.connectedBotStarRef", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            connectedBotStarRef connectedbotstarref = new connectedBotStarRef();
-            connectedbotstarref.readParams(inputSerializedData, z);
-            return connectedbotstarref;
+            return (connectedBotStarRef) TLObject.TLdeserialize(connectedBotStarRef.class, 429997937 != i ? null : new connectedBotStarRef(), inputSerializedData, i, z);
         }
 
         @Override
@@ -77,15 +69,7 @@ public class TL_payments {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static connectedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1730811363 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.connectedStarRefBots", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            connectedStarRefBots connectedstarrefbots = new connectedStarRefBots();
-            connectedstarrefbots.readParams(inputSerializedData, z);
-            return connectedstarrefbots;
+            return (connectedStarRefBots) TLObject.TLdeserialize(connectedStarRefBots.class, -1730811363 != i ? null : new connectedStarRefBots(), inputSerializedData, i, z);
         }
 
         @Override
@@ -118,15 +102,7 @@ public class TL_payments {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1261053863 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.suggestedStarRefBots", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            suggestedStarRefBots suggestedstarrefbots = new suggestedStarRefBots();
-            suggestedstarrefbots.readParams(inputSerializedData, z);
-            return suggestedstarrefbots;
+            return (suggestedStarRefBots) TLObject.TLdeserialize(suggestedStarRefBots.class, -1261053863 != i ? null : new suggestedStarRefBots(), inputSerializedData, i, z);
         }
 
         @Override
@@ -168,15 +144,7 @@ public class TL_payments {
         public int flags;
 
         public static starRefProgram TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-586389774 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.starRefProgram", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            starRefProgram starrefprogram = new starRefProgram();
-            starrefprogram.readParams(inputSerializedData, z);
-            return starrefprogram;
+            return (starRefProgram) TLObject.TLdeserialize(starRefProgram.class, -586389774 != i ? null : new starRefProgram(), inputSerializedData, i, z);
         }
 
         @Override

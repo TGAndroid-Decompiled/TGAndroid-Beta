@@ -77,10 +77,6 @@ public class FactorAnimator {
         this.startDelay = j;
     }
 
-    public void setInterpolator(Interpolator interpolator) {
-        this.interpolator = interpolator;
-    }
-
     public void animateTo(float f) {
         animateTo(f, null);
     }
@@ -146,6 +142,14 @@ public class FactorAnimator {
             }
         });
         this.animator.addListener(new AnimatorListenerAdapter() {
+            final float val$factorDiff;
+            final float val$fromFactor;
+
+            AnonymousClass1(final float f22, final float f32) {
+                r2 = f22;
+                r3 = f32;
+            }
+
             @Override
             public void onAnimationStart(Animator animator) {
                 FactorAnimator.this.invokeStartRunnable();
@@ -153,7 +157,7 @@ public class FactorAnimator {
 
             private void finishAnimation() {
                 if (FactorAnimator.this.isAnimating) {
-                    FactorAnimator.this.setFactor(f2 + f3, 1.0f);
+                    FactorAnimator.this.setFactor(r2 + r3, 1.0f);
                     FactorAnimator.this.setAnimating(false);
                     FactorAnimator.this.target.onFactorChangeFinished(FactorAnimator.this.id, FactorAnimator.this.factor, FactorAnimator.this);
                 }
@@ -190,6 +194,43 @@ public class FactorAnimator {
             float fraction = AnimatorUtils.getFraction(valueAnimator);
             setFactor(f + (f2 * fraction), fraction);
         }
+    }
+
+    public class AnonymousClass1 extends AnimatorListenerAdapter {
+        final float val$factorDiff;
+        final float val$fromFactor;
+
+        AnonymousClass1(final float f22, final float f32) {
+            r2 = f22;
+            r3 = f32;
+        }
+
+        @Override
+        public void onAnimationStart(Animator animator) {
+            FactorAnimator.this.invokeStartRunnable();
+        }
+
+        private void finishAnimation() {
+            if (FactorAnimator.this.isAnimating) {
+                FactorAnimator.this.setFactor(r2 + r3, 1.0f);
+                FactorAnimator.this.setAnimating(false);
+                FactorAnimator.this.target.onFactorChangeFinished(FactorAnimator.this.id, FactorAnimator.this.factor, FactorAnimator.this);
+            }
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animator) {
+            finishAnimation();
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            finishAnimation();
+        }
+    }
+
+    public float getToFactor() {
+        return this.isAnimating ? this.toFactor : this.factor;
     }
 
     public float getFactor() {

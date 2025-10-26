@@ -1788,8 +1788,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, i2, j, z2, j2);
             }
 
             @Override
@@ -1799,7 +1799,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             }
 
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
+            public void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
                 try {
                     HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
                     if (selectedPhotos.isEmpty()) {
@@ -3730,8 +3730,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
+        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
         }
 
         @Override
@@ -3745,8 +3745,8 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i, i2);
         }
 
         @Override

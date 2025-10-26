@@ -16,6 +16,14 @@ import kotlin.ranges.RangesKt;
 import kotlin.text.StringsKt;
 
 public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___CollectionsJvmKt {
+    public static boolean contains(Iterable iterable, Object obj) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        if (iterable instanceof Collection) {
+            return ((Collection) iterable).contains(obj);
+        }
+        return indexOf(iterable, obj) >= 0;
+    }
+
     public static final Object first(Iterable iterable) {
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (iterable instanceof List) {
@@ -34,6 +42,40 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             throw new NoSuchElementException("List is empty.");
         }
         return list.get(0);
+    }
+
+    public static Object firstOrNull(Iterable iterable) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        if (iterable instanceof List) {
+            List list = (List) iterable;
+            if (list.isEmpty()) {
+                return null;
+            }
+            return list.get(0);
+        }
+        Iterator it = iterable.iterator();
+        if (it.hasNext()) {
+            return it.next();
+        }
+        return null;
+    }
+
+    public static final int indexOf(Iterable iterable, Object obj) {
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        if (iterable instanceof List) {
+            return ((List) iterable).indexOf(obj);
+        }
+        int i = 0;
+        for (Object obj2 : iterable) {
+            if (i < 0) {
+                CollectionsKt.throwIndexOverflow();
+            }
+            if (Intrinsics.areEqual(obj, obj2)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
 
     public static Object single(Iterable iterable) {

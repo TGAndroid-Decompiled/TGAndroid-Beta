@@ -781,7 +781,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public boolean isClipboardAvailable() {
-            return MediaDataController.getInstance(ChatAttachAlert.this.currentAccount).botInAttachMenu(this.val$id);
+            return MediaDataController.getInstance(ChatAttachAlert.this.currentAccount).botInAttachMenu(this.val$id) || MessagesController.getInstance(ChatAttachAlert.this.currentAccount).whitelistedBots.contains(Long.valueOf(this.val$id));
         }
     }
 
@@ -845,7 +845,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public interface ChatAttachViewDelegate {
-        void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2);
+        void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2);
 
         void didSelectBot(TLRPC.User user);
 
@@ -861,7 +861,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         boolean selectItemOnClicking();
 
-        void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2);
+        void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2);
 
         public abstract class CC {
             public static void $default$didSelectBot(ChatAttachViewDelegate chatAttachViewDelegate, TLRPC.User user) {
@@ -884,7 +884,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 return false;
             }
 
-            public static void $default$sendAudio(ChatAttachViewDelegate chatAttachViewDelegate, ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+            public static void $default$sendAudio(ChatAttachViewDelegate chatAttachViewDelegate, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
             }
 
             public static void $default$doOnIdle(ChatAttachViewDelegate chatAttachViewDelegate, Runnable runnable) {
@@ -1105,7 +1105,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         public void scrollToTop() {
         }
 
-        public boolean sendSelectedItems(boolean z, int i, long j, boolean z2) {
+        public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
             return false;
         }
 
@@ -2516,7 +2516,6 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         };
         this.writeButton = anonymousClass18;
-        anonymousClass18.center = true;
         anonymousClass18.setImportantForAccessibility(2);
         this.writeButtonContainer.addView(this.writeButton, LayoutHelper.createFrame(110, 110, 119));
         this.writeButton.setTranslationX(this.backgroundPaddingLeft);
@@ -3524,14 +3523,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public void actionButtonPressed(boolean z2, boolean z3, int i) {
+            public void actionButtonPressed(boolean z2, boolean z3, int i, int i2) {
                 if (z2 || r2.isEmpty() || this.sendPressed) {
                     return;
                 }
                 this.sendPressed = true;
                 ArrayList arrayList2 = new ArrayList();
-                for (int i2 = 0; i2 < r3.size(); i2++) {
-                    Object obj = r2.get(r3.get(i2));
+                for (int i3 = 0; i3 < r3.size(); i3++) {
+                    Object obj = r2.get(r3.get(i3));
                     SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                     arrayList2.add(sendingMediaInfo);
                     MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
@@ -3596,14 +3595,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void actionButtonPressed(boolean z2, boolean z3, int i) {
+        public void actionButtonPressed(boolean z2, boolean z3, int i, int i2) {
             if (z2 || r2.isEmpty() || this.sendPressed) {
                 return;
             }
             this.sendPressed = true;
             ArrayList arrayList2 = new ArrayList();
-            for (int i2 = 0; i2 < r3.size(); i2++) {
-                Object obj = r2.get(r3.get(i2));
+            for (int i3 = 0; i3 < r3.size(); i3++) {
+                Object obj = r2.get(r3.get(i3));
                 SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                 arrayList2.add(sendingMediaInfo);
                 MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
@@ -3681,18 +3680,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, final boolean z, final int i2, final boolean z2) {
+        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, final boolean z, final int i2, int i3, final boolean z2) {
             ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
             chatAttachAlert.sent = true;
             if (chatAttachAlert.delegate == null) {
                 return;
             }
             this.val$entry.editedInfo = videoEditedInfo;
-            int i3 = chatAttachAlert.currentAccount;
+            int i4 = chatAttachAlert.currentAccount;
             long dialogId = getDialogId();
             int additionalMessagesCount = ChatAttachAlert.this.getAdditionalMessagesCount() + 1;
             final MediaController.PhotoEntry photoEntry = this.val$entry;
-            AlertsCreator.ensurePaidMessageConfirmation(i3, dialogId, additionalMessagesCount, new Utilities.Callback() {
+            AlertsCreator.ensurePaidMessageConfirmation(i4, dialogId, additionalMessagesCount, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     ChatAttachAlert.AnonymousClass8.this.lambda$sendButtonPressed$0(photoEntry, z, i2, z2, (Long) obj);
@@ -3705,7 +3704,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             ChatAttachAlertPhotoLayout.selectedPhotos.clear();
             ChatAttachAlertPhotoLayout.selectedPhotosOrder.add(0);
             ChatAttachAlertPhotoLayout.selectedPhotos.put(0, photoEntry);
-            ChatAttachAlert.this.delegate.didPressedButton(7, true, z, i, 0L, isCaptionAbove(), z2, l.longValue());
+            ChatAttachAlert.this.delegate.didPressedButton(7, true, z, i, 0, 0L, isCaptionAbove(), z2, l.longValue());
         }
     }
 
@@ -3797,7 +3796,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$new$13(org.telegram.ui.ActionBar.Theme.ResourcesProvider r18, android.view.View r19, int r20) {
+    public void lambda$new$13(org.telegram.ui.ActionBar.Theme.ResourcesProvider r19, android.view.View r20, int r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.lambda$new$13(org.telegram.ui.ActionBar.Theme$ResourcesProvider, android.view.View, int):void");
     }
 
@@ -4386,8 +4385,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if ((baseFragment3 instanceof ChatActivity) && ((ChatActivity) baseFragment3).isInScheduleMode()) {
                 AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
-                    public final void didSelectDate(boolean z, int i) {
-                        ChatAttachAlert.this.lambda$new$19(z, i);
+                    public final void didSelectDate(boolean z, int i, int i2) {
+                        ChatAttachAlert.this.lambda$new$19(z, i, i2);
                     }
                 }, resourcesProvider);
                 return;
@@ -4395,9 +4394,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
-            sendPressed(true, 0, this.effectId, isCaptionAbove());
+            sendPressed(true, 0, 0, this.effectId, isCaptionAbove());
         } else {
-            if (attachAlertLayout.sendSelectedItems(true, 0, this.effectId, isCaptionAbove())) {
+            if (attachAlertLayout.sendSelectedItems(true, 0, 0, this.effectId, isCaptionAbove())) {
                 return;
             }
             this.allowPassConfirmationAlert = true;
@@ -4405,12 +4404,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$new$19(boolean z, int i) {
+    public void lambda$new$19(boolean z, int i, int i2) {
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
-            sendPressed(z, i, this.effectId, isCaptionAbove());
+            sendPressed(z, i, 0, this.effectId, isCaptionAbove());
         } else {
-            if (attachAlertLayout.sendSelectedItems(z, i, 0L, isCaptionAbove())) {
+            if (attachAlertLayout.sendSelectedItems(z, i, i2, 0L, isCaptionAbove())) {
                 return;
             }
             this.allowPassConfirmationAlert = true;
@@ -4465,8 +4464,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if ((baseFragment2 instanceof ChatActivity) && ((ChatActivity) baseFragment2).isInScheduleMode()) {
                 AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
-                    public final void didSelectDate(boolean z, int i) {
-                        ChatAttachAlert.this.lambda$new$21(selectedEffect, z, i);
+                    public final void didSelectDate(boolean z, int i, int i2) {
+                        ChatAttachAlert.this.lambda$new$21(selectedEffect, z, i, i2);
                     }
                 }, resourcesProvider);
                 setCaptionAbove(false, false);
@@ -4474,9 +4473,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
-            sendPressed = sendPressed(true, 0, selectedEffect, isCaptionAbove());
+            sendPressed = sendPressed(true, 0, 0, selectedEffect, isCaptionAbove());
         } else {
-            if (!attachAlertLayout.sendSelectedItems(true, 0, selectedEffect, isCaptionAbove())) {
+            if (!attachAlertLayout.sendSelectedItems(true, 0, 0, selectedEffect, isCaptionAbove())) {
                 this.allowPassConfirmationAlert = true;
                 lambda$new$0();
             }
@@ -4490,13 +4489,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         setCaptionAbove(false, false);
     }
 
-    public void lambda$new$21(long j, boolean z, int i) {
+    public void lambda$new$21(long j, boolean z, int i, int i2) {
         boolean sendPressed;
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
-            sendPressed = sendPressed(z, i, j, isCaptionAbove());
+            sendPressed = sendPressed(z, i, i2, j, isCaptionAbove());
         } else {
-            if (!attachAlertLayout.sendSelectedItems(z, i, j, isCaptionAbove())) {
+            if (!attachAlertLayout.sendSelectedItems(z, i, i2, j, isCaptionAbove())) {
                 this.allowPassConfirmationAlert = true;
                 lambda$new$0();
             }
@@ -4527,13 +4526,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     public void lambda$new$25(long j, Theme.ResourcesProvider resourcesProvider) {
         AlertsCreator.createScheduleDatePickerDialog(getContext(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public final void didSelectDate(boolean z, int i) {
-                ChatAttachAlert.this.lambda$new$24(z, i);
+            public final void didSelectDate(boolean z, int i, int i2) {
+                ChatAttachAlert.this.lambda$new$24(z, i, i2);
             }
         }, resourcesProvider);
     }
 
-    public void lambda$new$24(boolean z, int i) {
+    public void lambda$new$24(boolean z, int i, int i2) {
         boolean sendPressed;
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         long selectedEffect = messageSendPreview != null ? messageSendPreview.getSelectedEffect() : 0L;
@@ -4542,9 +4541,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         sendButton.setEffect(selectedEffect);
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
-            sendPressed = sendPressed(z, i, selectedEffect, isCaptionAbove());
+            sendPressed = sendPressed(z, i, i2, selectedEffect, isCaptionAbove());
         } else {
-            if (!attachAlertLayout.sendSelectedItems(z, i, selectedEffect, isCaptionAbove())) {
+            if (!attachAlertLayout.sendSelectedItems(z, i, i2, selectedEffect, isCaptionAbove())) {
                 lambda$new$0();
             }
             sendPressed = false;
@@ -4573,7 +4572,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void lambda$new$26(ChatActivity chatActivity, MessageSuggestionParams messageSuggestionParams) {
         chatActivity.messageSuggestionParams = messageSuggestionParams;
-        boolean sendPressed = sendPressed(true, 0, this.effectId, isCaptionAbove());
+        boolean sendPressed = sendPressed(true, 0, 0, this.effectId, isCaptionAbove());
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
             messageSendPreview.dismiss(!sendPressed);
@@ -4590,9 +4589,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         sendButton.setEffect(selectedEffect);
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
         if (attachAlertLayout == this.photoLayout || attachAlertLayout == this.photoPreviewLayout) {
-            sendPressed = sendPressed(false, 0, selectedEffect, isCaptionAbove());
+            sendPressed = sendPressed(false, 0, 0, selectedEffect, isCaptionAbove());
         } else {
-            if (!attachAlertLayout.sendSelectedItems(false, 0, selectedEffect, isCaptionAbove())) {
+            if (!attachAlertLayout.sendSelectedItems(false, 0, 0, selectedEffect, isCaptionAbove())) {
                 lambda$new$0();
             }
             sendPressed = false;
@@ -4892,7 +4891,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.currentAttachLayout.applyCaption(getCommentView().getText());
     }
 
-    private boolean sendPressed(final boolean z, final int i, final long j, final boolean z2) {
+    private boolean sendPressed(final boolean z, final int i, final int i2, final long j, final boolean z2) {
         if (this.buttonPressed) {
             return false;
         }
@@ -4908,20 +4907,20 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             return true;
         }
         applyCaption();
-        int i2 = this.currentAccount;
+        int i3 = this.currentAccount;
         long dialogId = getDialogId();
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
-        return AlertsCreator.ensurePaidMessageConfirmation(i2, dialogId, (attachAlertLayout != null ? attachAlertLayout.getSelectedItemsCount() : 1) + getAdditionalMessagesCount(), new Utilities.Callback() {
+        return AlertsCreator.ensurePaidMessageConfirmation(i3, dialogId, (attachAlertLayout != null ? attachAlertLayout.getSelectedItemsCount() : 1) + getAdditionalMessagesCount(), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatAttachAlert.this.lambda$sendPressed$36(z, i, j, z2, (Long) obj);
+                ChatAttachAlert.this.lambda$sendPressed$36(z, i, i2, j, z2, (Long) obj);
             }
         });
     }
 
-    public void lambda$sendPressed$36(boolean z, int i, long j, boolean z2, Long l) {
+    public void lambda$sendPressed$36(boolean z, int i, int i2, long j, boolean z2, Long l) {
         setButtonPressed(true);
-        this.delegate.didPressedButton(7, true, z, i, j, z2, false, l.longValue());
+        this.delegate.didPressedButton(7, true, z, i, i2, j, z2, false, l.longValue());
     }
 
     public void setButtonPressed(boolean z) {
@@ -5338,8 +5337,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             attachAlertLayoutArr[3] = chatAttachAlertAudioLayout;
             chatAttachAlertAudioLayout.setDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
                 @Override
-                public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, long j, boolean z3, long j2) {
-                    ChatAttachAlert.this.lambda$openAudioLayout$41(arrayList, charSequence, z2, i, j, z3, j2);
+                public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) {
+                    ChatAttachAlert.this.lambda$openAudioLayout$41(arrayList, charSequence, z2, i, i2, j, z3, j2);
                 }
             });
         }
@@ -5353,15 +5352,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$openAudioLayout$41(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
+    public void lambda$openAudioLayout$41(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         BaseFragment baseFragment = this.baseFragment;
         if (baseFragment != null && (baseFragment instanceof ChatActivity)) {
-            ((ChatActivity) baseFragment).sendAudio(arrayList, charSequence, z, i, j, z2, j2);
+            ((ChatActivity) baseFragment).sendAudio(arrayList, charSequence, z, i, i2, j, z2, j2);
             return;
         }
         ChatAttachViewDelegate chatAttachViewDelegate = this.delegate;
         if (chatAttachViewDelegate != null) {
-            chatAttachViewDelegate.sendAudio(arrayList, charSequence, z, i, j, z2, j2);
+            chatAttachViewDelegate.sendAudio(arrayList, charSequence, z, i, i2, j, z2, j2);
         }
     }
 
@@ -5404,28 +5403,28 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
 
                 @Override
-                public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z3, int i2, long j, boolean z4, long j2) {
+                public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z3, int i2, int i3, long j, boolean z4, long j2) {
                     if (ChatAttachAlert.this.documentsDelegate != null) {
-                        ChatAttachAlert.this.documentsDelegate.didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, j, z4, j2);
+                        ChatAttachAlert.this.documentsDelegate.didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, i3, j, z4, j2);
                         return;
                     }
                     Object obj = ChatAttachAlert.this.baseFragment;
                     if (obj instanceof ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate) {
-                        ((ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate) obj).didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, j, z4, j2);
+                        ((ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate) obj).didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, i3, j, z4, j2);
                     } else if (obj instanceof PassportActivity) {
                         ((PassportActivity) obj).didSelectFiles(arrayList, str, z3, i2, j, z4);
                     }
                 }
 
                 @Override
-                public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, long j) {
+                public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, int i3, long j) {
                     if (ChatAttachAlert.this.documentsDelegate != null) {
-                        ChatAttachAlert.this.documentsDelegate.didSelectPhotos(arrayList, z3, i2, j);
+                        ChatAttachAlert.this.documentsDelegate.didSelectPhotos(arrayList, z3, i2, i3, j);
                         return;
                     }
                     BaseFragment baseFragment = ChatAttachAlert.this.baseFragment;
                     if (baseFragment instanceof ChatActivity) {
-                        ((ChatActivity) baseFragment).didSelectPhotos(arrayList, z3, i2, j);
+                        ((ChatActivity) baseFragment).didSelectPhotos(arrayList, z3, i2, i3, j);
                     } else if (baseFragment instanceof PassportActivity) {
                         ((PassportActivity) baseFragment).didSelectPhotos(arrayList, z3, i2);
                     }
@@ -5480,28 +5479,28 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z3, int i2, long j, boolean z4, long j2) {
+        public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z3, int i2, int i3, long j, boolean z4, long j2) {
             if (ChatAttachAlert.this.documentsDelegate != null) {
-                ChatAttachAlert.this.documentsDelegate.didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, j, z4, j2);
+                ChatAttachAlert.this.documentsDelegate.didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, i3, j, z4, j2);
                 return;
             }
             Object obj = ChatAttachAlert.this.baseFragment;
             if (obj instanceof ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate) {
-                ((ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate) obj).didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, j, z4, j2);
+                ((ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate) obj).didSelectFiles(arrayList, str, arrayList2, arrayList3, z3, i2, i3, j, z4, j2);
             } else if (obj instanceof PassportActivity) {
                 ((PassportActivity) obj).didSelectFiles(arrayList, str, z3, i2, j, z4);
             }
         }
 
         @Override
-        public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, long j) {
+        public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, int i3, long j) {
             if (ChatAttachAlert.this.documentsDelegate != null) {
-                ChatAttachAlert.this.documentsDelegate.didSelectPhotos(arrayList, z3, i2, j);
+                ChatAttachAlert.this.documentsDelegate.didSelectPhotos(arrayList, z3, i2, i3, j);
                 return;
             }
             BaseFragment baseFragment = ChatAttachAlert.this.baseFragment;
             if (baseFragment instanceof ChatActivity) {
-                ((ChatActivity) baseFragment).didSelectPhotos(arrayList, z3, i2, j);
+                ((ChatActivity) baseFragment).didSelectPhotos(arrayList, z3, i2, i3, j);
             } else if (baseFragment instanceof PassportActivity) {
                 ((PassportActivity) baseFragment).didSelectPhotos(arrayList, z3, i2);
             }
@@ -7125,8 +7124,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public class AnonymousClass29 extends MentionsContainerView {
-        AnonymousClass29(Context context, long j, long j2, BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider) {
-            super(context, j, j2, baseFragment, sizeNotifierFrameLayout, resourcesProvider);
+        AnonymousClass29(Context context, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+            super(context, j, j2, baseFragment, resourcesProvider);
         }
 
         @Override
@@ -7145,9 +7144,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void createMentionsContainer() {
-        AnonymousClass29 anonymousClass29 = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0L, LaunchActivity.getLastFragment(), null, this.resourcesProvider) {
-            AnonymousClass29(Context context, long j, long j2, BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider) {
-                super(context, j, j2, baseFragment, sizeNotifierFrameLayout, resourcesProvider);
+        AnonymousClass29 anonymousClass29 = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0L, LaunchActivity.getLastFragment(), this.resourcesProvider) {
+            AnonymousClass29(Context context, long j, long j2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+                super(context, j, j2, baseFragment, resourcesProvider);
             }
 
             @Override

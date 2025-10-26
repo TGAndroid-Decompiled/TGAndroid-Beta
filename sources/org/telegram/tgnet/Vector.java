@@ -22,9 +22,7 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static <T extends TLObject> Vector<T> TLDeserialize(InputSerializedData inputSerializedData, int i, boolean z, TLDeserializer<T> tLDeserializer) {
         if (i != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in Vector", Integer.valueOf(i)));
-            }
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i, z);
             return null;
         }
         Vector<T> vector = new Vector<>(tLDeserializer);
@@ -69,9 +67,7 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static Vector<Int> TLDeserializeInt(InputSerializedData inputSerializedData, int i, boolean z) {
         if (i != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGift", Integer.valueOf(i)));
-            }
+            TLParseException.doThrowOrLog(inputSerializedData, "StarGift", i, z);
             return null;
         }
         Vector<Int> vector = new Vector<>(new Vector$$ExternalSyntheticLambda5());
@@ -115,9 +111,7 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static Vector<Int> TLDeserializeLong(InputSerializedData inputSerializedData, int i, boolean z) {
         if (i != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGift", Integer.valueOf(i)));
-            }
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", i, z);
             return null;
         }
         Vector<Int> vector = new Vector<>(new Vector$$ExternalSyntheticLambda5());
@@ -181,9 +175,7 @@ public class Vector<T extends TLObject> extends TLObject {
     public static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, Utilities.CallbackReturn<Boolean, T> callbackReturn, boolean z) {
         int readInt32 = inputSerializedData.readInt32(z);
         if (readInt32 != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in Vector", Integer.valueOf(readInt32)));
-            }
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z);
             return new ArrayList<>();
         }
         int readInt322 = inputSerializedData.readInt32(z);
@@ -237,9 +229,7 @@ public class Vector<T extends TLObject> extends TLObject {
     public static <T extends TLObject> ArrayList<T> deserialize(InputSerializedData inputSerializedData, TLDeserializer<T> tLDeserializer, boolean z) {
         int readInt32 = inputSerializedData.readInt32(z);
         if (readInt32 != 481674261) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in Vector", Integer.valueOf(readInt32)));
-            }
+            TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z);
             return new ArrayList<>();
         }
         int readInt322 = inputSerializedData.readInt32(z);

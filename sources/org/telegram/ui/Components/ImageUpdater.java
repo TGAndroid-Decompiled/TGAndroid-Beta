@@ -378,14 +378,14 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
 
             @Override
-            public void actionButtonPressed(boolean z, boolean z2, int i) {
+            public void actionButtonPressed(boolean z, boolean z2, int i, int i2) {
                 if (r2.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
                     return;
                 }
                 this.sendPressed = true;
                 ArrayList arrayList2 = new ArrayList();
-                for (int i2 = 0; i2 < r3.size(); i2++) {
-                    Object obj = r2.get(r3.get(i2));
+                for (int i3 = 0; i3 < r3.size(); i3++) {
+                    Object obj = r2.get(r3.get(i3));
                     SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                     arrayList2.add(sendingMediaInfo);
                     if (obj instanceof MediaController.SearchImage) {
@@ -446,14 +446,14 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void actionButtonPressed(boolean z, boolean z2, int i) {
+        public void actionButtonPressed(boolean z, boolean z2, int i, int i2) {
             if (r2.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
                 return;
             }
             this.sendPressed = true;
             ArrayList arrayList2 = new ArrayList();
-            for (int i2 = 0; i2 < r3.size(); i2++) {
-                Object obj = r2.get(r3.get(i2));
+            for (int i3 = 0; i3 < r3.size(); i3++) {
+                Object obj = r2.get(r3.get(i3));
                 SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                 arrayList2.add(sendingMediaInfo);
                 if (obj instanceof MediaController.SearchImage) {
@@ -552,15 +552,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 }
 
                 @Override
-                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, long j, boolean z3, long j2) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i2, j, z3, j2);
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, int i3, long j, boolean z3, long j2) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i2, i3, j, z3, j2);
                 }
 
                 AnonymousClass2() {
                 }
 
                 @Override
-                public void didPressedButton(int i2, boolean z2, boolean z3, int i3, long j, boolean z4, boolean z5, long j2) {
+                public void didPressedButton(int i2, boolean z2, boolean z3, int i3, int i4, long j, boolean z4, boolean z5, long j2) {
                     BaseFragment baseFragment2 = ImageUpdater.this.parentFragment;
                     if (baseFragment2 == null || baseFragment2.getParentActivity() == null || ImageUpdater.this.chatAttachAlert == null) {
                         return;
@@ -570,8 +570,8 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                         ArrayList<Object> selectedPhotosOrder = ImageUpdater.this.chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
                         ArrayList arrayList = new ArrayList();
                         boolean z6 = false;
-                        for (int i4 = 0; i4 < selectedPhotosOrder.size(); i4++) {
-                            Object obj = selectedPhotos.get(selectedPhotosOrder.get(i4));
+                        for (int i5 = 0; i5 < selectedPhotosOrder.size(); i5++) {
+                            Object obj = selectedPhotos.get(selectedPhotosOrder.get(i5));
                             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                             arrayList.add(sendingMediaInfo);
                             if (obj instanceof MediaController.PhotoEntry) {
@@ -681,15 +681,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, long j, boolean z3, long j2) {
-            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i2, j, z3, j2);
+        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i2, int i3, long j, boolean z3, long j2) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i2, i3, j, z3, j2);
         }
 
         AnonymousClass2() {
         }
 
         @Override
-        public void didPressedButton(int i2, boolean z2, boolean z3, int i3, long j, boolean z4, boolean z5, long j2) {
+        public void didPressedButton(int i2, boolean z2, boolean z3, int i3, int i4, long j, boolean z4, boolean z5, long j2) {
             BaseFragment baseFragment2 = ImageUpdater.this.parentFragment;
             if (baseFragment2 == null || baseFragment2.getParentActivity() == null || ImageUpdater.this.chatAttachAlert == null) {
                 return;
@@ -699,8 +699,8 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 ArrayList<Object> selectedPhotosOrder = ImageUpdater.this.chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
                 ArrayList arrayList = new ArrayList();
                 boolean z6 = false;
-                for (int i4 = 0; i4 < selectedPhotosOrder.size(); i4++) {
-                    Object obj = selectedPhotos.get(selectedPhotosOrder.get(i4));
+                for (int i5 = 0; i5 < selectedPhotosOrder.size(); i5++) {
+                    Object obj = selectedPhotos.get(selectedPhotosOrder.get(i5));
                     SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                     arrayList.add(sendingMediaInfo);
                     if (obj instanceof MediaController.PhotoEntry) {
@@ -1019,7 +1019,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
 
             @Override
-            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, boolean z3) {
+            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, int i3, boolean z3) {
                 ImageUpdater.this.processEntry((MediaController.PhotoEntry) r2.get(0));
             }
 
@@ -1052,7 +1052,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, boolean z3) {
+        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, int i3, boolean z3) {
             ImageUpdater.this.processEntry((MediaController.PhotoEntry) r2.get(0));
         }
 

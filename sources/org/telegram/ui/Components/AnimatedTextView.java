@@ -1201,4 +1201,8 @@ public class AnimatedTextView extends View {
     public void setIncludeFontPadding(boolean z) {
         this.drawable.setIncludeFontPadding(z);
     }
+
+    public void setAllowCancel(boolean z) {
+        this.drawable.setAllowCancel(z);
+    }
 }

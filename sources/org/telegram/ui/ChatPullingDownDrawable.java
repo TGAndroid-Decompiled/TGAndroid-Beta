@@ -75,7 +75,6 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     float progressToBottomPanel;
     boolean recommendedChannel;
     private final Theme.ResourcesProvider resourcesProvider;
-    boolean showBottomPanel;
     AnimatorSet showReleaseAnimator;
     float swipeToReleaseProgress;
     private final long topicId;
@@ -791,17 +790,40 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         return this.nextTopic;
     }
 
-    public void drawBottomPanel(android.graphics.Canvas r17, int r18, int r19, int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatPullingDownDrawable.drawBottomPanel(android.graphics.Canvas, int, int, int):void");
-    }
-
-    public void showBottomPanel(boolean z) {
-        this.showBottomPanel = z;
-        this.fragmentView.invalidate();
+    public void drawBottomPanel(Canvas canvas, int i, int i2, int i3) {
+        this.textPaint2.setColor(getThemedColor(Theme.key_glass_defaultText));
+        Paint themedPaint = getThemedPaint("paintChatComposeBackground");
+        int alpha = themedPaint.getAlpha();
+        int alpha2 = this.textPaint2.getAlpha();
+        themedPaint.setAlpha((int) (alpha * this.progressToBottomPanel));
+        if (this.layout1 != null) {
+            float f = this.swipeToReleaseProgress;
+            if (f < 1.0f) {
+                this.textPaint2.setAlpha((int) (alpha2 * (1.0f - f) * this.progressToBottomPanel));
+                float height = (i + (((i2 - i) - this.layout1.getHeight()) / 2.0f)) - (AndroidUtilities.dp(10.0f) * this.swipeToReleaseProgress);
+                canvas.save();
+                canvas.translate((this.lastWidth - this.layout1Width) / 2.0f, height);
+                this.layout1.draw(canvas);
+                canvas.restore();
+            }
+        }
+        if (this.layout2 != null) {
+            float f2 = this.swipeToReleaseProgress;
+            if (f2 > 0.0f) {
+                this.textPaint2.setAlpha((int) (alpha2 * f2 * this.progressToBottomPanel));
+                float height2 = i + (((i2 - i) - this.layout2.getHeight()) / 2.0f) + (AndroidUtilities.dp(10.0f) * (1.0f - this.swipeToReleaseProgress));
+                canvas.save();
+                canvas.translate((this.lastWidth - this.layout2Width) / 2.0f, height2);
+                this.layout2.draw(canvas);
+                canvas.restore();
+            }
+        }
+        this.textPaint2.setAlpha(alpha2);
+        themedPaint.setAlpha(alpha);
     }
 
     public boolean needDrawBottomPanel() {
-        return (this.showBottomPanel || this.progressToBottomPanel > 0.0f) && !this.emptyStub;
+        return this.progressToBottomPanel > 0.0f && !this.emptyStub;
     }
 
     public boolean animationIsRunning() {

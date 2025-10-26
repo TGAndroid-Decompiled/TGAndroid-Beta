@@ -551,7 +551,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             int i2;
             if (i == -1) {
                 if (PollCreateActivity.this.checkDiscard()) {
-                    PollCreateActivity.this.lambda$onBackPressed$355();
+                    PollCreateActivity.this.lambda$onBackPressed$341();
                     return;
                 }
                 return;
@@ -633,14 +633,14 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     if (PollCreateActivity.this.parentFragment.isInScheduleMode()) {
                         AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.parentFragment.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
-                            public final void didSelectDate(boolean z, int i8) {
-                                PollCreateActivity.AnonymousClass2.this.lambda$onItemClick$1(tL_messageMediaPoll, hashMap, z, i8);
+                            public final void didSelectDate(boolean z, int i8, int i9) {
+                                PollCreateActivity.AnonymousClass2.this.lambda$onItemClick$1(tL_messageMediaPoll, hashMap, z, i8, i9);
                             }
                         });
                         return;
                     } else {
                         PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, hashMap, true, 0);
-                        PollCreateActivity.this.lambda$onBackPressed$355();
+                        PollCreateActivity.this.lambda$onBackPressed$341();
                         return;
                     }
                 }
@@ -699,25 +699,25 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 if (PollCreateActivity.this.parentFragment.isInScheduleMode()) {
                     AlertsCreator.createScheduleDatePickerDialog(PollCreateActivity.this.parentFragment.getParentActivity(), PollCreateActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z, int i12) {
-                            PollCreateActivity.AnonymousClass2.this.lambda$onItemClick$0(tL_messageMediaToDo, z, i12);
+                        public final void didSelectDate(boolean z, int i12, int i13) {
+                            PollCreateActivity.AnonymousClass2.this.lambda$onItemClick$0(tL_messageMediaToDo, z, i12, i13);
                         }
                     });
                 } else {
                     PollCreateActivity.this.delegate.sendPoll(tL_messageMediaToDo, null, true, 0);
-                    PollCreateActivity.this.lambda$onBackPressed$355();
+                    PollCreateActivity.this.lambda$onBackPressed$341();
                 }
             }
         }
 
-        public void lambda$onItemClick$0(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i) {
+        public void lambda$onItemClick$0(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaToDo, null, z, i);
-            PollCreateActivity.this.lambda$onBackPressed$355();
+            PollCreateActivity.this.lambda$onBackPressed$341();
         }
 
-        public void lambda$onItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
+        public void lambda$onItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i);
-            PollCreateActivity.this.lambda$onBackPressed$355();
+            PollCreateActivity.this.lambda$onBackPressed$341();
         }
     }
 
@@ -1060,7 +1060,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void setDelegate(PollCreateActivityDelegate pollCreateActivityDelegate) {
@@ -1499,8 +1499,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
+        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
         }
 
         @Override
@@ -1509,8 +1509,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i, i2);
         }
 
         @Override

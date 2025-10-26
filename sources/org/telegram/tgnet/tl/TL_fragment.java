@@ -8,19 +8,13 @@ public class TL_fragment {
 
     public static class InputCollectible extends TLObject {
         public static InputCollectible TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            InputCollectible tL_inputCollectiblePhone;
+            TLObject tL_inputCollectiblePhone;
             if (i != -1562241884) {
                 tL_inputCollectiblePhone = i != -476815191 ? null : new TL_inputCollectibleUsername();
             } else {
                 tL_inputCollectiblePhone = new TL_inputCollectiblePhone();
             }
-            if (tL_inputCollectiblePhone == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in InputCollectible", Integer.valueOf(i)));
-            }
-            if (tL_inputCollectiblePhone != null) {
-                tL_inputCollectiblePhone.readParams(inputSerializedData, z);
-            }
-            return tL_inputCollectiblePhone;
+            return (InputCollectible) TLObject.TLdeserialize(InputCollectible.class, tL_inputCollectiblePhone, inputSerializedData, i, z);
         }
     }
 
@@ -66,15 +60,7 @@ public class TL_fragment {
         public String url;
 
         public static TL_collectibleInfo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1857945489 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_collectibleInfo", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_collectibleInfo tL_collectibleInfo = new TL_collectibleInfo();
-            tL_collectibleInfo.readParams(inputSerializedData, z);
-            return tL_collectibleInfo;
+            return (TL_collectibleInfo) TLObject.TLdeserialize(TL_collectibleInfo.class, 1857945489 != i ? null : new TL_collectibleInfo(), inputSerializedData, i, z);
         }
 
         @Override

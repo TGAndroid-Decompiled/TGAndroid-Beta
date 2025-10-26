@@ -72,13 +72,11 @@ public class TLObject {
     }
 
     public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
-        if (t != null) {
-            t.readParams(inputSerializedData, z);
-            return t;
+        if (t == null) {
+            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i, z);
+            return null;
         }
-        if (z) {
-            throw new RuntimeException(String.format("can't parse magic %x in %s", Integer.valueOf(i), cls.getName()));
-        }
-        return null;
+        t.readParams(inputSerializedData, z);
+        return t;
     }
 }

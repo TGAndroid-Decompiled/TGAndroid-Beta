@@ -922,7 +922,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$onItemClick$4() {
-            PassportActivity.this.lambda$onBackPressed$355();
+            PassportActivity.this.lambda$onBackPressed$341();
         }
 
         public void lambda$onItemClick$6(final Runnable runnable, final ErrorRunnable errorRunnable, final TL_account.verifyEmail verifyemail, TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -2136,7 +2136,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         if (tL_error == null) {
             this.ignoreOnFailure = true;
             callCallback(true);
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         } else {
             showEditDoneProgress(false, false);
             if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
@@ -3352,7 +3352,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
         this.currentDocumentValues.clear();
         this.delegate.deleteValue(this.currentType, this.currentDocumentsType, this.availableDocumentTypes, zArr[0], null, null);
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public static void lambda$createDocumentDeleteAlert$39(boolean[] zArr, View view) {
@@ -6498,12 +6498,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }
 
                 @Override
-                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2, long j2) {
-                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2, j2);
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, i2, j, z2, j2);
                 }
 
                 @Override
-                public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4, long j2) {
+                public void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
                     if (PassportActivity.this.getParentActivity() == null || PassportActivity.this.chatAttachAlert == null) {
                         return;
                     }
@@ -6517,8 +6517,8 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                             return;
                         }
                         ArrayList arrayList = new ArrayList();
-                        for (int i3 = 0; i3 < selectedPhotosOrder.size(); i3++) {
-                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i3));
+                        for (int i4 = 0; i4 < selectedPhotosOrder.size(); i4++) {
+                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i4));
                             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
                             String str = photoEntry.imagePath;
                             if (str != null) {
@@ -6695,7 +6695,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$checkDiscard$69(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void processSelectedFiles(final ArrayList arrayList) {
@@ -7263,7 +7263,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$resendCode$1(AlertDialog alertDialog, int i) {
             onBackPressed(true);
-            PassportActivity.this.lambda$onBackPressed$355();
+            PassportActivity.this.lambda$onBackPressed$341();
         }
 
         @Override
@@ -7725,7 +7725,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 passportActivityDelegate.saveValue(tL_secureRequiredType, str, null, null, null, null, null, null, null, null, new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.this.lambda$onBackPressed$355();
+                        PassportActivity.this.lambda$onBackPressed$341();
                     }
                 }, null);
                 return;

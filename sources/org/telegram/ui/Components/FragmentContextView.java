@@ -34,8 +34,13 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import me.vkryl.android.animator.ListAnimator;
+import me.vkryl.android.animator.ReplaceAnimator;
+import me.vkryl.core.lambda.Destroyable;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
@@ -53,6 +58,8 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -68,6 +75,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AudioPlayerAlert;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.SharingLocationsAlert;
+import org.telegram.ui.Components.conference.message.GroupCallMessageCell;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.DialogsActivity;
@@ -75,13 +83,14 @@ import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.LocationActivity;
 
-public class FragmentContextView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
+public class FragmentContextView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener, GroupCallMessagesController.CallMessageListener {
     private static final float[] speeds = {0.5f, 1.0f, 1.2f, 1.5f, 1.7f, 2.0f};
     private final int account;
     private FragmentContextView additionalContextView;
     private AnimatorSet animatorSet;
     private View applyingView;
     private AvatarsImageView avatars;
+    private final ReplaceAnimator callMessagesAnimator;
     private ChatActivityInterface chatActivity;
     private boolean checkCallAfterAnimation;
     private boolean checkImportAfterAnimation;
@@ -102,6 +111,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     private Paint gradientPaint;
     private TextPaint gradientTextPaint;
     private int gradientWidth;
+    private int groupCallMessageCounter;
+    private FrameLayout groupCallMessagesContainer;
     private RLottieImageView importingImageView;
     private boolean isLocation;
     private boolean isMusic;
@@ -261,6 +272,38 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.notificationsLocker2 = new AnimationNotificationsLocker(new int[]{NotificationCenter.messagesDidLoad});
         this.toggleGroupCallStartSubscriptionReqId = 0;
+        this.callMessagesAnimator = new ReplaceAnimator(new ReplaceAnimator.Callback() {
+            @Override
+            public boolean hasChanges(ReplaceAnimator replaceAnimator) {
+                return ReplaceAnimator.Callback.CC.$default$hasChanges(this, replaceAnimator);
+            }
+
+            @Override
+            public boolean onApplyMetadataAnimation(ReplaceAnimator replaceAnimator, float f) {
+                return ReplaceAnimator.Callback.CC.$default$onApplyMetadataAnimation(this, replaceAnimator, f);
+            }
+
+            @Override
+            public void onFinishMetadataAnimation(ReplaceAnimator replaceAnimator, boolean z3) {
+                ReplaceAnimator.Callback.CC.$default$onFinishMetadataAnimation(this, replaceAnimator, z3);
+            }
+
+            @Override
+            public void onForceApplyChanges(ReplaceAnimator replaceAnimator) {
+                ReplaceAnimator.Callback.CC.$default$onForceApplyChanges(this, replaceAnimator);
+            }
+
+            @Override
+            public final void onItemChanged(ReplaceAnimator replaceAnimator) {
+                FragmentContextView.this.onItemChanged(replaceAnimator);
+            }
+
+            @Override
+            public void onPrepareMetadataAnimation(ReplaceAnimator replaceAnimator) {
+                ReplaceAnimator.Callback.CC.$default$onPrepareMetadataAnimation(this, replaceAnimator);
+            }
+        }, CubicBezierInterpolator.EASE_OUT_QUINT, 450L);
+        this.groupCallMessageCounter = 0;
         this.resourcesProvider = resourcesProvider;
         this.isSideMenued = z2;
         this.fragment = baseFragment;
@@ -590,6 +633,14 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 FragmentContextView.this.lambda$checkCreateView$6(view3);
             }
         });
+        FrameLayout frameLayout = new FrameLayout(getContext()) {
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                return false;
+            }
+        };
+        this.groupCallMessagesContainer = frameLayout;
+        addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -1151,7 +1202,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     }
 
     public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j2) {
-        SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
+        SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z, i2, 0));
     }
 
     public float getTopPadding() {
@@ -1441,6 +1492,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.groupCallUpdated);
                 NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.groupCallTypingsUpdated);
                 NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.historyImportProgressChanged);
+                GroupCallMessagesController.getInstance(i).unsubscribeFromCallMessages(0L, this);
             }
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.messagePlayingSpeedChanged);
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didStartedCall);
@@ -1478,6 +1530,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.groupCallUpdated);
                 NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.groupCallTypingsUpdated);
                 NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.historyImportProgressChanged);
+                GroupCallMessagesController.getInstance(i).subscribeToCallMessages(0L, this);
             }
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.messagePlayingSpeedChanged);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didStartedCall);
@@ -2546,6 +2599,66 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         AvatarsImageView avatarsImageView = this.avatars;
         if (avatarsImageView != null) {
             avatarsImageView.setTranslationX(f);
+        }
+    }
+
+    public static class CallMessageItem implements Destroyable {
+        private final GroupCallMessageCell cell;
+        private final ViewGroup parent;
+
+        public CallMessageItem(ViewGroup viewGroup, GroupCallMessage groupCallMessage) {
+            GroupCallMessageCell groupCallMessageCell = new GroupCallMessageCell(viewGroup.getContext());
+            this.cell = groupCallMessageCell;
+            groupCallMessageCell.setBackgroundColor(ColorUtils.setAlphaComponent(-16777216, 34));
+            groupCallMessageCell.setSingleLine();
+            groupCallMessageCell.set(groupCallMessage);
+            groupCallMessageCell.setAlpha(0.0f);
+            this.parent = viewGroup;
+            viewGroup.addView(groupCallMessageCell);
+        }
+
+        @Override
+        public void performDestroy() {
+            this.parent.removeView(this.cell);
+        }
+    }
+
+    public void onItemChanged(ReplaceAnimator replaceAnimator) {
+        float totalVisibility = 1.0f - this.callMessagesAnimator.getMetadata().getTotalVisibility();
+        this.titleTextView.setAlpha(totalVisibility);
+        this.titleTextView.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, totalVisibility));
+        this.titleTextView.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, totalVisibility));
+        Iterator it = this.callMessagesAnimator.iterator();
+        while (it.hasNext()) {
+            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, entry.getVisibility());
+            ((CallMessageItem) entry.item).cell.setAlpha(entry.getVisibility());
+            ((CallMessageItem) entry.item).cell.setScaleX(lerp);
+            ((CallMessageItem) entry.item).cell.setScaleY(lerp);
+        }
+    }
+
+    @Override
+    public void onNewGroupCallMessage(GroupCallMessage groupCallMessage) {
+        if (this.groupCallMessagesContainer == null) {
+            return;
+        }
+        this.groupCallMessageCounter++;
+        if (groupCallMessage.isOut()) {
+            return;
+        }
+        this.callMessagesAnimator.replace(new CallMessageItem(this.groupCallMessagesContainer, groupCallMessage), true);
+    }
+
+    @Override
+    public void onPopGroupCallMessage() {
+        int i = this.groupCallMessageCounter;
+        if (i > 0) {
+            int i2 = i - 1;
+            this.groupCallMessageCounter = i2;
+            if (i2 == 0) {
+                this.callMessagesAnimator.replace(null, true);
+            }
         }
     }
 }

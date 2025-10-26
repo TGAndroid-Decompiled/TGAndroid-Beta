@@ -131,13 +131,13 @@ public class AutoDeletePopupWrapper {
         dismiss();
         AlertsCreator.createAutoDeleteDatePickerDialog(context, i, resourcesProvider, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public final void didSelectDate(boolean z, int i2) {
-                AutoDeletePopupWrapper.lambda$new$4(AutoDeletePopupWrapper.Callback.this, z, i2);
+            public final void didSelectDate(boolean z, int i2, int i3) {
+                AutoDeletePopupWrapper.lambda$new$4(AutoDeletePopupWrapper.Callback.this, z, i2, i3);
             }
         });
     }
 
-    public static void lambda$new$4(Callback callback, boolean z, int i) {
+    public static void lambda$new$4(Callback callback, boolean z, int i, int i2) {
         callback.setAutoDeleteHistory(i * 60, i == 0 ? 71 : 70);
     }
 

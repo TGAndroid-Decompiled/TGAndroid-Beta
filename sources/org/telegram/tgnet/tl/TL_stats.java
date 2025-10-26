@@ -34,15 +34,7 @@ public class TL_stats {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_megagroupStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-276825834 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_megagroupStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_megagroupStats tL_megagroupStats = new TL_megagroupStats();
-            tL_megagroupStats.readParams(inputSerializedData, z);
-            return tL_megagroupStats;
+            return (TL_megagroupStats) TLObject.TLdeserialize(TL_megagroupStats.class, -276825834 != i ? null : new TL_megagroupStats(), inputSerializedData, i, z);
         }
 
         @Override
@@ -108,7 +100,7 @@ public class TL_stats {
         public float rate;
 
         public static StatsGraph TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StatsGraph tL_statsGraph;
+            TLObject tL_statsGraph;
             if (i == -1901828938) {
                 tL_statsGraph = new TL_statsGraph();
             } else if (i != -1092839390) {
@@ -116,13 +108,7 @@ public class TL_stats {
             } else {
                 tL_statsGraph = new TL_statsGraphError();
             }
-            if (tL_statsGraph == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StatsGraph", Integer.valueOf(i)));
-            }
-            if (tL_statsGraph != null) {
-                tL_statsGraph.readParams(inputSerializedData, z);
-            }
-            return tL_statsGraph;
+            return (StatsGraph) TLObject.TLdeserialize(StatsGraph.class, tL_statsGraph, inputSerializedData, i, z);
         }
     }
 
@@ -186,19 +172,13 @@ public class TL_stats {
 
     public static abstract class PostInteractionCounters extends TLObject {
         public static PostInteractionCounters TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PostInteractionCounters tL_postInteractionCountersStory;
+            TLObject tL_postInteractionCountersStory;
             if (i == -1974989273) {
                 tL_postInteractionCountersStory = new TL_postInteractionCountersStory();
             } else {
                 tL_postInteractionCountersStory = i != -419066241 ? null : new TL_postInteractionCountersMessage();
             }
-            if (tL_postInteractionCountersStory == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PostInteractionCounters", Integer.valueOf(i)));
-            }
-            if (tL_postInteractionCountersStory != null) {
-                tL_postInteractionCountersStory.readParams(inputSerializedData, z);
-            }
-            return tL_postInteractionCountersStory;
+            return (PostInteractionCounters) TLObject.TLdeserialize(PostInteractionCounters.class, tL_postInteractionCountersStory, inputSerializedData, i, z);
         }
     }
 
@@ -258,15 +238,7 @@ public class TL_stats {
         public StatsGraph views_graph;
 
         public static TL_messageStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (2145983508 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_messageStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_messageStats tL_messageStats = new TL_messageStats();
-            tL_messageStats.readParams(inputSerializedData, z);
-            return tL_messageStats;
+            return (TL_messageStats) TLObject.TLdeserialize(TL_messageStats.class, 2145983508 != i ? null : new TL_messageStats(), inputSerializedData, i, z);
         }
 
         @Override
@@ -290,15 +262,7 @@ public class TL_stats {
         public long user_id;
 
         public static TL_statsGroupTopPoster TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1660637285 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopPoster", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsGroupTopPoster tL_statsGroupTopPoster = new TL_statsGroupTopPoster();
-            tL_statsGroupTopPoster.readParams(inputSerializedData, z);
-            return tL_statsGroupTopPoster;
+            return (TL_statsGroupTopPoster) TLObject.TLdeserialize(TL_statsGroupTopPoster.class, -1660637285 != i ? null : new TL_statsGroupTopPoster(), inputSerializedData, i, z);
         }
 
         @Override
@@ -323,15 +287,7 @@ public class TL_stats {
         public int min_date;
 
         public static TL_statsDateRangeDays TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1237848657 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsDateRangeDays", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsDateRangeDays tL_statsDateRangeDays = new TL_statsDateRangeDays();
-            tL_statsDateRangeDays.readParams(inputSerializedData, z);
-            return tL_statsDateRangeDays;
+            return (TL_statsDateRangeDays) TLObject.TLdeserialize(TL_statsDateRangeDays.class, -1237848657 != i ? null : new TL_statsDateRangeDays(), inputSerializedData, i, z);
         }
 
         @Override
@@ -374,15 +330,7 @@ public class TL_stats {
         public TL_statsAbsValueAndPrev views_per_story;
 
         public static TL_broadcastStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (constructor != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastStats tL_broadcastStats = new TL_broadcastStats();
-            tL_broadcastStats.readParams(inputSerializedData, z);
-            return tL_broadcastStats;
+            return (TL_broadcastStats) TLObject.TLdeserialize(TL_broadcastStats.class, constructor != i ? null : new TL_broadcastStats(), inputSerializedData, i, z);
         }
 
         @Override
@@ -585,15 +533,7 @@ public class TL_stats {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_publicForwards TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1828487648 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_publicForwards", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_publicForwards tL_publicForwards = new TL_publicForwards();
-            tL_publicForwards.readParams(inputSerializedData, z);
-            return tL_publicForwards;
+            return (TL_publicForwards) TLObject.TLdeserialize(TL_publicForwards.class, -1828487648 != i ? null : new TL_publicForwards(), inputSerializedData, i, z);
         }
 
         @Override
@@ -629,19 +569,13 @@ public class TL_stats {
 
     public static abstract class PublicForward extends TLObject {
         public static PublicForward TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PublicForward tL_publicForwardStory;
+            TLObject tL_publicForwardStory;
             if (i != -302797360) {
                 tL_publicForwardStory = i != 32685898 ? null : new TL_publicForwardMessage();
             } else {
                 tL_publicForwardStory = new TL_stories.TL_publicForwardStory();
             }
-            if (tL_publicForwardStory == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PublicForward", Integer.valueOf(i)));
-            }
-            if (tL_publicForwardStory != null) {
-                tL_publicForwardStory.readParams(inputSerializedData, z);
-            }
-            return tL_publicForwardStory;
+            return (PublicForward) TLObject.TLdeserialize(PublicForward.class, tL_publicForwardStory, inputSerializedData, i, z);
         }
     }
 
@@ -669,15 +603,7 @@ public class TL_stats {
         public double usd_rate;
 
         public static TL_broadcastRevenueStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1409802903 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueStats", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastRevenueStats tL_broadcastRevenueStats = new TL_broadcastRevenueStats();
-            tL_broadcastRevenueStats.readParams(inputSerializedData, z);
-            return tL_broadcastRevenueStats;
+            return (TL_broadcastRevenueStats) TLObject.TLdeserialize(TL_broadcastRevenueStats.class, 1409802903 != i ? null : new TL_broadcastRevenueStats(), inputSerializedData, i, z);
         }
 
         @Override
@@ -703,15 +629,7 @@ public class TL_stats {
         public String url;
 
         public static TL_broadcastRevenueWithdrawalUrl TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-328886473 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueWithdrawalUrl", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastRevenueWithdrawalUrl tL_broadcastRevenueWithdrawalUrl = new TL_broadcastRevenueWithdrawalUrl();
-            tL_broadcastRevenueWithdrawalUrl.readParams(inputSerializedData, z);
-            return tL_broadcastRevenueWithdrawalUrl;
+            return (TL_broadcastRevenueWithdrawalUrl) TLObject.TLdeserialize(TL_broadcastRevenueWithdrawalUrl.class, -328886473 != i ? null : new TL_broadcastRevenueWithdrawalUrl(), inputSerializedData, i, z);
         }
 
         @Override
@@ -728,7 +646,7 @@ public class TL_stats {
 
     public static class BroadcastRevenueTransaction extends TLObject {
         public static BroadcastRevenueTransaction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            BroadcastRevenueTransaction tL_broadcastRevenueTransactionRefund;
+            TLObject tL_broadcastRevenueTransactionRefund;
             if (i == 1121127726) {
                 tL_broadcastRevenueTransactionRefund = new TL_broadcastRevenueTransactionRefund();
             } else if (i == 1434332356) {
@@ -736,13 +654,7 @@ public class TL_stats {
             } else {
                 tL_broadcastRevenueTransactionRefund = i != 1515784568 ? null : new TL_broadcastRevenueTransactionWithdrawal();
             }
-            if (tL_broadcastRevenueTransactionRefund == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in BroadcastRevenueTransaction", Integer.valueOf(i)));
-            }
-            if (tL_broadcastRevenueTransactionRefund != null) {
-                tL_broadcastRevenueTransactionRefund.readParams(inputSerializedData, z);
-            }
-            return tL_broadcastRevenueTransactionRefund;
+            return (BroadcastRevenueTransaction) TLObject.TLdeserialize(BroadcastRevenueTransaction.class, tL_broadcastRevenueTransactionRefund, inputSerializedData, i, z);
         }
     }
 
@@ -838,15 +750,7 @@ public class TL_stats {
         public ArrayList<BroadcastRevenueTransaction> transactions = new ArrayList<>();
 
         public static TL_broadcastRevenueTransactions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-2028632986 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastRevenueTransactions", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_broadcastRevenueTransactions tL_broadcastRevenueTransactions = new TL_broadcastRevenueTransactions();
-            tL_broadcastRevenueTransactions.readParams(inputSerializedData, z);
-            return tL_broadcastRevenueTransactions;
+            return (TL_broadcastRevenueTransactions) TLObject.TLdeserialize(TL_broadcastRevenueTransactions.class, -2028632986 != i ? null : new TL_broadcastRevenueTransactions(), inputSerializedData, i, z);
         }
 
         @Override
@@ -874,15 +778,7 @@ public class TL_stats {
         public double previous;
 
         public static TL_statsAbsValueAndPrev TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-884757282 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsAbsValueAndPrev", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev = new TL_statsAbsValueAndPrev();
-            tL_statsAbsValueAndPrev.readParams(inputSerializedData, z);
-            return tL_statsAbsValueAndPrev;
+            return (TL_statsAbsValueAndPrev) TLObject.TLdeserialize(TL_statsAbsValueAndPrev.class, -884757282 != i ? null : new TL_statsAbsValueAndPrev(), inputSerializedData, i, z);
         }
 
         @Override
@@ -907,15 +803,7 @@ public class TL_stats {
         public long user_id;
 
         public static TL_statsGroupTopAdmin TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-682079097 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopAdmin", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsGroupTopAdmin tL_statsGroupTopAdmin = new TL_statsGroupTopAdmin();
-            tL_statsGroupTopAdmin.readParams(inputSerializedData, z);
-            return tL_statsGroupTopAdmin;
+            return (TL_statsGroupTopAdmin) TLObject.TLdeserialize(TL_statsGroupTopAdmin.class, -682079097 != i ? null : new TL_statsGroupTopAdmin(), inputSerializedData, i, z);
         }
 
         @Override
@@ -942,15 +830,7 @@ public class TL_stats {
         public long user_id;
 
         public static TL_statsGroupTopInviter TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1398765469 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopInviter", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsGroupTopInviter tL_statsGroupTopInviter = new TL_statsGroupTopInviter();
-            tL_statsGroupTopInviter.readParams(inputSerializedData, z);
-            return tL_statsGroupTopInviter;
+            return (TL_statsGroupTopInviter) TLObject.TLdeserialize(TL_statsGroupTopInviter.class, 1398765469 != i ? null : new TL_statsGroupTopInviter(), inputSerializedData, i, z);
         }
 
         @Override
@@ -973,15 +853,7 @@ public class TL_stats {
         public double total;
 
         public static TL_statsPercentValue TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-875679776 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_statsPercentValue", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_statsPercentValue tL_statsPercentValue = new TL_statsPercentValue();
-            tL_statsPercentValue.readParams(inputSerializedData, z);
-            return tL_statsPercentValue;
+            return (TL_statsPercentValue) TLObject.TLdeserialize(TL_statsPercentValue.class, -875679776 != i ? null : new TL_statsPercentValue(), inputSerializedData, i, z);
         }
 
         @Override

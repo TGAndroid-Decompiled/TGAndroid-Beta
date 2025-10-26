@@ -499,6 +499,8 @@
     </attr>
     <attr name="fontProviderCerts" format="reference">
     </attr>
+    <attr name="fontProviderFallbackQuery" format="string">
+    </attr>
     <attr name="fontProviderFetchStrategy">
         <enum name="blocking" value="0" />
         <enum name="async" value="1" />

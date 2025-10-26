@@ -506,7 +506,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
-        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, final boolean z, final int i2, final boolean z2) {
+        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, final boolean z, final int i2, int i3, final boolean z2) {
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
             chatAttachAlertPhotoLayout.parentAlert.sent = true;
             MediaController.PhotoEntry photoEntryAtPosition = chatAttachAlertPhotoLayout.getPhotoEntryAtPosition(i);
@@ -525,11 +525,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 HashMap selectedPhotos = getSelectedPhotos();
                 ArrayList selectedPhotosOrder = getSelectedPhotosOrder();
                 if (!selectedPhotos.isEmpty()) {
-                    for (int i3 = 0; i3 < selectedPhotosOrder.size(); i3++) {
-                        Object obj = selectedPhotos.get(selectedPhotosOrder.get(i3));
+                    for (int i4 = 0; i4 < selectedPhotosOrder.size(); i4++) {
+                        Object obj = selectedPhotos.get(selectedPhotosOrder.get(i4));
                         if (obj instanceof MediaController.PhotoEntry) {
                             MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                            if (i3 == 0) {
+                            if (i4 == 0) {
                                 CharSequence[] charSequenceArr = {PhotoViewer.getInstance().captionForAllMedia};
                                 photoEntry.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, false);
                                 CharSequence charSequence = charSequenceArr[0];
@@ -567,7 +567,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 chatAttachAlert.setButtonPressed(true);
             }
             ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayout.this.parentAlert;
-            chatAttachAlert2.delegate.didPressedButton(7, true, z, i, 0L, chatAttachAlert2.isCaptionAbove(), z2, l.longValue());
+            chatAttachAlert2.delegate.didPressedButton(7, true, z, i, 0, 0L, chatAttachAlert2.isCaptionAbove(), z2, l.longValue());
             ChatAttachAlertPhotoLayout.selectedPhotos.clear();
             ChatAttachAlertPhotoLayout.cameraPhotos.clear();
             ChatAttachAlertPhotoLayout.selectedPhotosOrder.clear();
@@ -1249,7 +1249,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     this.parentAlert.applyCaption();
                     ChatAttachAlert chatAttachAlert2 = this.parentAlert;
-                    chatAttachAlert2.delegate.didPressedButton(7, true, true, 0, 0L, chatAttachAlert2.isCaptionAbove(), false, 0L);
+                    chatAttachAlert2.delegate.didPressedButton(7, true, true, 0, 0, 0L, chatAttachAlert2.isCaptionAbove(), false, 0L);
                     selectedPhotos.clear();
                     cameraPhotos.clear();
                     selectedPhotosOrder.clear();
@@ -1316,7 +1316,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             ChatAttachAlert chatAttachAlert5 = this.parentAlert;
             ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate2 = chatAttachAlert5.delegate;
             if (chatAttachViewDelegate2 != null) {
-                chatAttachViewDelegate2.didPressedButton(0, false, true, 0, 0L, chatAttachAlert5.isCaptionAbove(), false, 0L);
+                chatAttachViewDelegate2.didPressedButton(0, false, true, 0, 0, 0L, chatAttachAlert5.isCaptionAbove(), false, 0L);
             }
         }
     }
@@ -1356,7 +1356,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (i == 0 && this.selectedAlbumEntry == this.galleryAlbumEntry) {
             ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate = chatAttachAlert.delegate;
             if (chatAttachViewDelegate != null) {
-                chatAttachViewDelegate.didPressedButton(0, false, true, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
+                chatAttachViewDelegate.didPressedButton(0, false, true, 0, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
             }
             return true;
         }
@@ -1852,7 +1852,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         selectedPhotos.put(-1, photoEntry);
         selectedPhotosOrder.add(-1);
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        chatAttachAlert.delegate.didPressedButton(7, true, false, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
+        chatAttachAlert.delegate.didPressedButton(7, true, false, 0, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
         if (avatarConstructorFragment.finishOnDone) {
             return;
         }
@@ -1860,7 +1860,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (baseFragment != null) {
             baseFragment.removeSelfFromStack();
         }
-        avatarConstructorFragment.lambda$onBackPressed$355();
+        avatarConstructorFragment.lambda$onBackPressed$341();
     }
 
     public boolean checkSendMediaEnabled(MediaController.PhotoEntry photoEntry) {
@@ -2359,7 +2359,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             ChatAttachAlertPhotoLayout.this.cancelTakingPhotos = false;
             if (ChatAttachAlertPhotoLayout.mediaFromExternalCamera) {
                 ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
-                chatAttachAlert.delegate.didPressedButton(0, true, true, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
+                chatAttachAlert.delegate.didPressedButton(0, true, true, 0, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
                 return;
             }
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
@@ -2373,7 +2373,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
-        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, final boolean z, final int i2, final boolean z2) {
+        public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, final boolean z, final int i2, int i3, final boolean z2) {
             if (ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() || ChatAttachAlertPhotoLayout.this.parentAlert.destroyed) {
                 return;
             }
@@ -2383,8 +2383,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             BaseFragment baseFragment = ChatAttachAlertPhotoLayout.this.parentAlert.baseFragment;
             if (!(baseFragment instanceof ChatActivity) || !((ChatActivity) baseFragment).isSecretChat()) {
                 int size = ChatAttachAlertPhotoLayout.cameraPhotos.size();
-                for (int i3 = 0; i3 < size; i3++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.cameraPhotos.get(i3);
+                for (int i4 = 0; i4 < size; i4++) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.cameraPhotos.get(i4);
                     if (photoEntry.ttl <= 0) {
                         AndroidUtilities.addMediaToGallery(photoEntry.path);
                     }
@@ -2414,7 +2414,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             chatAttachAlert.setButtonPressed(true);
             ChatAttachAlertPhotoLayout.this.closeCamera(false);
             ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayout.this.parentAlert;
-            chatAttachAlert2.delegate.didPressedButton(z ? 4 : 8, true, z2, i, 0L, chatAttachAlert2.isCaptionAbove(), z, l.longValue());
+            chatAttachAlert2.delegate.didPressedButton(z ? 4 : 8, true, z2, i, 0, 0L, chatAttachAlert2.isCaptionAbove(), z, l.longValue());
             ChatAttachAlertPhotoLayout.cameraPhotos.clear();
             ChatAttachAlertPhotoLayout.selectedPhotosOrder.clear();
             ChatAttachAlertPhotoLayout.selectedPhotos.clear();
@@ -3602,8 +3602,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).isInScheduleMode()) {
                     AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.parentAlert.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z3, int i2) {
-                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$19(z3, i2);
+                        public final void didSelectDate(boolean z3, int i2, int i3) {
+                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$19(z3, i2, i3);
                         }
                     }, this.resourcesProvider);
                     return;
@@ -3625,8 +3625,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 if ((baseFragment2 instanceof ChatActivity) && ((ChatActivity) baseFragment2).isInScheduleMode()) {
                     AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.parentAlert.baseFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z3, int i2) {
-                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$21(z3, i2);
+                        public final void didSelectDate(boolean z3, int i2, int i3) {
+                            ChatAttachAlertPhotoLayout.this.lambda$onMenuItemClick$21(z3, i2, i3);
                         }
                     }, this.resourcesProvider);
                     return;
@@ -3800,28 +3800,28 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public void lambda$onMenuItemClick$19(boolean z, int i) {
+    public void lambda$onMenuItemClick$19(boolean z, int i, int i2) {
         this.parentAlert.applyCaption();
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        chatAttachAlert.delegate.didPressedButton(7, false, z, i, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
+        chatAttachAlert.delegate.didPressedButton(7, false, z, i, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
     }
 
     public void lambda$onMenuItemClick$20(Long l) {
         this.parentAlert.applyCaption();
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        chatAttachAlert.delegate.didPressedButton(7, false, true, 0, 0L, chatAttachAlert.isCaptionAbove(), false, l.longValue());
+        chatAttachAlert.delegate.didPressedButton(7, false, true, 0, 0, 0L, chatAttachAlert.isCaptionAbove(), false, l.longValue());
     }
 
-    public void lambda$onMenuItemClick$21(boolean z, int i) {
+    public void lambda$onMenuItemClick$21(boolean z, int i, int i2) {
         this.parentAlert.applyCaption();
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        chatAttachAlert.delegate.didPressedButton(4, true, z, i, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
+        chatAttachAlert.delegate.didPressedButton(4, true, z, i, 0, 0L, chatAttachAlert.isCaptionAbove(), false, 0L);
     }
 
     public void lambda$onMenuItemClick$22(Long l) {
         this.parentAlert.applyCaption();
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        chatAttachAlert.delegate.didPressedButton(4, true, true, 0, 0L, chatAttachAlert.isCaptionAbove(), false, l.longValue());
+        chatAttachAlert.delegate.didPressedButton(4, true, true, 0, 0, 0L, chatAttachAlert.isCaptionAbove(), false, l.longValue());
     }
 
     public void lambda$onMenuItemClick$23(boolean z) {

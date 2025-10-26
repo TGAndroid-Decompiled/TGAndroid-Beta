@@ -476,7 +476,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_recordedVoiceProgress] = -5120257;
         iArr[Theme.key_chat_recordedVoiceProgressInner] = -1;
         iArr[Theme.key_chat_recordVoiceCancel] = -12937772;
-        iArr[Theme.key_chat_messagePanelSend] = -10309397;
+        iArr[Theme.key_chat_messagePanelSend] = -14509328;
         iArr[Theme.key_chat_messagePanelVoiceLock] = -5987164;
         iArr[Theme.key_chat_messagePanelVoiceLockBackground] = -1;
         iArr[Theme.key_chat_messagePanelVoiceLockShadow] = -16777216;
@@ -740,6 +740,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_stories_circle_dialog2] = -11680769;
         iArr[Theme.key_stories_circle_closeFriends1] = -3544264;
         iArr[Theme.key_stories_circle_closeFriends2] = -16137881;
+        iArr[Theme.key_stories_circle_live1] = -51084;
+        iArr[Theme.key_stories_circle_live2] = -51084;
         iArr[Theme.key_chat_inCodeBackground] = -9467746;
         iArr[Theme.key_chat_outCodeBackground] = 305952003;
         iArr[Theme.key_code_keyword] = -2075818;
@@ -754,6 +756,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_iv_ab_progress] = -11491093;
         iArr[Theme.key_iv_navigationBackground] = -986896;
         iArr[Theme.key_reactionStarSelector] = 1089514271;
+        iArr[Theme.key_glass_defaultIcon] = -261066640;
+        iArr[Theme.key_glass_defaultText] = -261066640;
         return iArr;
     }
 
@@ -1498,6 +1502,8 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_stories_circle_dialog2, "stories_circle_dialog2");
         sparseArray.put(Theme.key_stories_circle_closeFriends1, "stories_circle_closeFriends1");
         sparseArray.put(Theme.key_stories_circle_closeFriends2, "stories_circle_closeFriends2");
+        sparseArray.put(Theme.key_stories_circle_live1, "stories_circle_live1");
+        sparseArray.put(Theme.key_stories_circle_live2, "stories_circle_live2");
         sparseArray.put(Theme.key_chat_inCodeBackground, "chat_inCodeBackground");
         sparseArray.put(Theme.key_chat_outCodeBackground, "chat_outCodeBackground");
         sparseArray.put(Theme.key_code_keyword, "code_keyword");
@@ -1518,6 +1524,8 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_share_icon, "share_icon");
         sparseArray.put(Theme.key_share_linkText, "share_linkText");
         sparseArray.put(Theme.key_share_linkBackground, "share_linkBackground");
+        sparseArray.put(Theme.key_glass_defaultIcon, "glass_defaultIcon");
+        sparseArray.put(Theme.key_glass_defaultText, "glass_defaultText");
         return sparseArray;
     }
 

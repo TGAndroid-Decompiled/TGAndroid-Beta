@@ -131,14 +131,7 @@ public abstract class BillingUtilities {
         public TLRPC.InputStorePaymentPurpose purpose;
 
         public static TL_savedPurpose TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TL_savedPurpose tL_savedPurpose = i != 495638674 ? null : new TL_savedPurpose();
-            if (tL_savedPurpose == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_savedPurpose", Integer.valueOf(i)));
-            }
-            if (tL_savedPurpose != null) {
-                tL_savedPurpose.readParams(inputSerializedData, z);
-            }
-            return tL_savedPurpose;
+            return (TL_savedPurpose) TLObject.TLdeserialize(TL_savedPurpose.class, i != 495638674 ? null : new TL_savedPurpose(), inputSerializedData, i, z);
         }
 
         @Override

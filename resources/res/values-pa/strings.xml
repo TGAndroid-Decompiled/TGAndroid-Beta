@@ -29,7 +29,7 @@
     <string name="abc_toolbar_collapse_description">ਸਮੇਟੋ</string>
     <string name="call_notification_answer_action">ਜਵਾਬ ਦਿਓ</string>
     <string name="call_notification_answer_video_action">ਵੀਡੀਓ</string>
-    <string name="call_notification_decline_action">ਅਸਵੀਕਾਰ ਕਰੋ</string>
+    <string name="call_notification_decline_action">ਕਾਲ ਕੱਟੋ</string>
     <string name="call_notification_hang_up_action">ਸਮਾਪਤ ਕਰੋ</string>
     <string name="call_notification_incoming_text">ਇਨਕਮਿੰਗ ਕਾਲ</string>
     <string name="call_notification_ongoing_text">ਜਾਰੀ ਕਾਲ</string>

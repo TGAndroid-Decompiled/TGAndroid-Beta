@@ -331,8 +331,8 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
-                public void sendGif(Object obj, Object obj2, boolean z, int i) {
-                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendGif(this, obj, obj2, z, i);
+                public void sendGif(Object obj, Object obj2, boolean z, int i, int i2) {
+                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendGif(this, obj, obj2, z, i, i2);
                 }
 
                 @Override
@@ -341,8 +341,8 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
-                public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i) {
-                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, document, str, obj, z, i);
+                public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
+                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, document, str, obj, z, i, i2);
                 }
 
                 @Override

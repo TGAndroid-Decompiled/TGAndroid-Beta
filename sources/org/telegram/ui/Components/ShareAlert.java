@@ -962,7 +962,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
 
         @Override
-        protected Theme.ResourcesProvider getResourceProvider() {
+        public Theme.ResourcesProvider getResourceProvider() {
             return ((BottomSheet) ShareAlert.this).resourcesProvider;
         }
 
@@ -2508,7 +2508,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 } else {
                     CharSequence charSequence = charSequenceArr[0];
                     j5 = keyAt;
-                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(charSequence == null ? null : charSequence.toString(), keyAt, messageObject2, messageObject2, null, true, arrayList, null, null, z, 0, null, false);
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(charSequence == null ? null : charSequence.toString(), keyAt, messageObject2, messageObject2, null, true, arrayList, null, null, z, 0, 0, null, false);
                     of2.payStars = l3 == null ? 0L : l3.longValue();
                     of2.monoForumPeer = j6;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
@@ -2559,10 +2559,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                             CharSequence charSequence2 = charSequenceArr[r8];
                             ?? charSequence3 = charSequence2 == null ? r3 : charSequence2.toString();
                             j3 = peerDialogId;
-                            of = SendMessagesHelper.SendMessageParams.of(charSequence3, keyAt2, messageObject3, messageObject3, null, true, arrayList, null, null, z, 0, null, false);
+                            of = SendMessagesHelper.SendMessageParams.of(charSequence3, keyAt2, messageObject3, messageObject3, null, true, arrayList, null, null, z, 0, 0, null, false);
                         } else {
                             j3 = peerDialogId;
-                            of = SendMessagesHelper.SendMessageParams.of(this.sendingText[i3], keyAt2, messageObject3, messageObject3, null, true, null, null, null, z, 0, null, false);
+                            of = SendMessagesHelper.SendMessageParams.of(this.sendingText[i3], keyAt2, messageObject3, messageObject3, null, true, null, null, null, z, 0, 0, null, false);
                         }
                     } else {
                         j3 = peerDialogId;
@@ -2570,9 +2570,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                             j4 = keyAt2;
                         } else {
                             j4 = keyAt2;
-                            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[r8].toString(), keyAt2, null, messageObject3, null, true, null, null, null, z, 0, null, false));
+                            SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[r8].toString(), keyAt2, null, messageObject3, null, true, null, null, null, z, 0, 0, null, false));
                         }
-                        of = SendMessagesHelper.SendMessageParams.of(null, j4, messageObject3, messageObject3, null, true, null, null, null, z, 0, null, false);
+                        of = SendMessagesHelper.SendMessageParams.of(null, j4, messageObject3, messageObject3, null, true, null, null, null, z, 0, 0, null, false);
                         of.sendingStory = this.storyItem;
                     }
                     of.payStars = l4 == null ? 0L : l4.longValue();
@@ -2615,12 +2615,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         z3 = z2;
                         l = l2;
                         j2 = peerDialogId2;
-                        SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(charSequence4 == null ? null : charSequence4.toString(), keyAt3, messageObject, messageObject, null, true, arrayList, null, null, z, 0, null, false);
+                        SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(charSequence4 == null ? null : charSequence4.toString(), keyAt3, messageObject, messageObject, null, true, arrayList, null, null, z, 0, 0, null, false);
                         of3.payStars = l5 == null ? j : l5.longValue();
                         of3.monoForumPeer = j2;
                         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of3);
                     }
-                    SendMessagesHelper.SendMessageParams of4 = SendMessagesHelper.SendMessageParams.of(this.sendingText[i3], keyAt3, messageObject, messageObject, null, true, null, null, null, z, 0, null, false);
+                    SendMessagesHelper.SendMessageParams of4 = SendMessagesHelper.SendMessageParams.of(this.sendingText[i3], keyAt3, messageObject, messageObject, null, true, null, null, null, z, 0, 0, null, false);
                     of4.payStars = l5 == null ? j : l5.longValue();
                     of4.monoForumPeer = j2;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of4);

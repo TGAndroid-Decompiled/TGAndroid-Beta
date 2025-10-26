@@ -295,7 +295,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void needStartRecordVideo(int i2, boolean z, int i3, int i4, long j, long j2) {
+            public void needStartRecordVideo(int i2, boolean z, int i3, int i4, int i5, long j, long j2) {
             }
 
             @Override
@@ -404,7 +404,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void onMessageSend(CharSequence charSequence, boolean z, int i2, long j) {
+            public void onMessageSend(CharSequence charSequence, boolean z, int i2, int i3, long j) {
                 if (PopupNotificationActivity.this.currentMessageObject == null) {
                     return;
                 }

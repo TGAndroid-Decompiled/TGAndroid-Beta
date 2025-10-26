@@ -175,15 +175,15 @@ public class LinkEditActivity extends BaseFragment {
         Browser.openUrl(getContext(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
     }
 
-    public void lambda$createView$5(boolean z, int i) {
+    public void lambda$createView$5(boolean z, int i, int i2) {
         chooseDate(i);
     }
 
     public void lambda$createView$6(Context context, View view) {
         AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public final void didSelectDate(boolean z, int i) {
-                LinkEditActivity.this.lambda$createView$5(z, i);
+            public final void didSelectDate(boolean z, int i, int i2) {
+                LinkEditActivity.this.lambda$createView$5(z, i, i2);
             }
         });
     }
@@ -223,7 +223,7 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$9(AlertDialog alertDialog, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void onCreateClicked(android.view.View r11) {
@@ -250,7 +250,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkCreated(tLObject);
             }
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tL_error.text);
@@ -279,7 +279,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkEdited(this.inviteToEdit, tLObject);
             }
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tL_error.text);
@@ -471,10 +471,10 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public void lambda$onBackPressed$355() {
+    public void lambda$onBackPressed$341() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
         this.finished = true;
-        super.lambda$onBackPressed$355();
+        super.lambda$onBackPressed$341();
     }
 
     @Override

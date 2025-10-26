@@ -374,7 +374,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$3(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
     }
 
@@ -1350,7 +1350,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
                 this.pendingSwitchingAccount = false;
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
                 return;
             }
             if (z && z2) {
@@ -2857,7 +2857,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (UserConfig.selectedAccount != i) {
                 ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
             }
-            LoginActivity.this.lambda$onBackPressed$355();
+            LoginActivity.this.lambda$onBackPressed$341();
         }
 
         public void lambda$onNextPressed$23(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLObject tLObject2, final TLRPC.TL_error tL_error) {
@@ -4145,7 +4145,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$22(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$355();
+            LoginActivity.this.lambda$onBackPressed$341();
         }
 
         public void lambda$onNextPressed$29(final TL_account.confirmPhone confirmphone, TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -4213,7 +4213,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$26(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$355();
+            LoginActivity.this.lambda$onBackPressed$341();
         }
 
         public void lambda$onNextPressed$37(final TLRPC.TL_auth_signIn tL_auth_signIn, final TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -4493,7 +4493,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         @Override
         public boolean onBackPressed(boolean z) {
             if (LoginActivity.this.activityMode != 0) {
-                LoginActivity.this.lambda$onBackPressed$355();
+                LoginActivity.this.lambda$onBackPressed$341();
                 return false;
             }
             int i = this.prevType;
@@ -5588,7 +5588,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$5(TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error, TL_account.verifyEmail verifyemail) {
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$355();
+                LoginActivity.this.lambda$onBackPressed$341();
                 LoginActivity.this.emailChangeFinishCallback.run();
                 return;
             }
@@ -6390,7 +6390,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(TLObject tLObject, Bundle bundle) {
             if ((tLObject instanceof TL_account.TL_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$355();
+                LoginActivity.this.lambda$onBackPressed$341();
                 LoginActivity.this.emailChangeFinishCallback.run();
             } else if (tLObject instanceof TL_account.TL_emailVerifiedLogin) {
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, ((TL_account.TL_emailVerifiedLogin) tLObject).sent_code);
@@ -9675,13 +9675,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             addView(frameLayout, LayoutHelper.createLinear(-1, 200));
             StarParticlesView starParticlesView = new StarParticlesView(context) {
                 @Override
-                public void onMeasure(int i, int i2) {
+                protected void onMeasure(int i, int i2) {
                     super.onMeasure(i, i2);
                     this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                 }
 
                 @Override
-                public void configure() {
+                protected void configure() {
                     StarParticlesView.Drawable drawable = this.drawable;
                     drawable.useGradient = true;
                     drawable.useBlur = false;
@@ -9711,13 +9711,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             frameLayout.addView(this.optionsButton, LayoutHelper.createFrame(32, 32.0f, 53, 0.0f, 16.0f, -2.0f, 0.0f));
             GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 1) {
                 @Override
-                public void onAttachedToWindow() {
+                protected void onAttachedToWindow() {
                     super.onAttachedToWindow();
                     setPaused(false);
                 }
 
                 @Override
-                public void onDetachedFromWindow() {
+                protected void onDetachedFromWindow() {
                     super.onDetachedFromWindow();
                     setPaused(true);
                 }
@@ -10103,7 +10103,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$setParams$3(PaymentFormActivity paymentFormActivity, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, TLRPC.PaymentForm paymentForm) {
-            paymentFormActivity.lambda$onBackPressed$355();
+            paymentFormActivity.lambda$onBackPressed$341();
             startPoll(tL_inputStorePaymentAuthCode.phone_number, tL_inputStorePaymentAuthCode.phone_code_hash, paymentForm.form_id);
         }
 

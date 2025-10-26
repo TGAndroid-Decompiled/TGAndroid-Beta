@@ -559,11 +559,11 @@ public class AvatarConstructorFragment extends BaseFragment {
             create.redPositive();
             return;
         }
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void lambda$discardEditor$2(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void createKeyboardVisibleAnimator(final boolean z) {
@@ -632,7 +632,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             delegate.onDone(previewView.backgroundGradient, previewView.documentId, previewView.document, previewView);
         }
         if (this.finishOnDone) {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
     }
 

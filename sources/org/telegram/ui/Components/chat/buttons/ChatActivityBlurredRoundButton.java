@@ -1,0 +1,188 @@
+package org.telegram.ui.Components.chat.buttons;
+
+import android.content.Context;
+import android.graphics.BlendMode;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.os.Build;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.CircularProgressDrawable;
+import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline0;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline1;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
+
+public class ChatActivityBlurredRoundButton extends FrameLayout implements FactorAnimator.Target {
+    private final BoolAnimator animatorIsEnabled;
+    private final BoolAnimator animatorLoadingVisibility;
+    private BlurredBackgroundDrawable backgroundDrawable;
+    private float buttonScaleY;
+    private ImageView imageView;
+    private CircularProgressDrawable loadingIndicatorDrawable;
+    private ImageView loadingIndicatorView;
+
+    @Override
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+    }
+
+    public ChatActivityBlurredRoundButton(Context context) {
+        super(context);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.animatorLoadingVisibility = new BoolAnimator(0, this, cubicBezierInterpolator, 320L);
+        this.animatorIsEnabled = new BoolAnimator(1, this, cubicBezierInterpolator, 320L, true);
+        this.buttonScaleY = 1.0f;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824);
+        super.onMeasure(makeMeasureSpec, makeMeasureSpec);
+        this.backgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        this.backgroundDrawable.draw(canvas);
+        super.draw(canvas);
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+    }
+
+    public void setIcon(int i) {
+        if (this.imageView == null) {
+            ImageView imageView = new ImageView(getContext());
+            this.imageView = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(this.imageView, LayoutHelper.createFrame(48, 48, 17));
+            checkUi_IconViewVisibility();
+        }
+        this.imageView.setImageResource(i);
+    }
+
+    public void reverseIconByY() {
+        this.buttonScaleY = -1.0f;
+        checkUi_IconViewVisibility();
+    }
+
+    public void setIconColor(int i) {
+        BlendMode blendMode;
+        ImageView imageView = this.imageView;
+        if (imageView == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 29) {
+            BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline1.m();
+            blendMode = BlendMode.SRC_IN;
+            imageView.setColorFilter(BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline0.m(i, blendMode));
+            return;
+        }
+        imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+    }
+
+    @Override
+    public void setEnabled(boolean z) {
+        setEnabled(z, false);
+    }
+
+    public void setEnabled(boolean z, boolean z2) {
+        super.setEnabled(z);
+        this.animatorIsEnabled.setValue(z, z2);
+    }
+
+    public void setBlurredBackgroundDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.backgroundDrawable = blurredBackgroundDrawable;
+        blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(6.0f));
+        this.backgroundDrawable.setRadius(AndroidUtilities.dp(22.0f));
+    }
+
+    public void showLoading(boolean z, boolean z2) {
+        if (this.loadingIndicatorView == null) {
+            if (!z) {
+                return;
+            }
+            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
+            this.loadingIndicatorDrawable = circularProgressDrawable;
+            circularProgressDrawable.setAngleOffset(90.0f);
+            ImageView imageView = new ImageView(getContext());
+            this.loadingIndicatorView = imageView;
+            imageView.setBackground(this.loadingIndicatorDrawable);
+            this.loadingIndicatorView.setVisibility(8);
+            addView(this.loadingIndicatorView, LayoutHelper.createFrame(46, 46, 17));
+        }
+        if (!this.animatorLoadingVisibility.getValue() && this.animatorLoadingVisibility.getFloatValue() == 0.0f) {
+            this.loadingIndicatorDrawable.reset();
+        }
+        this.animatorLoadingVisibility.setValue(z, z2);
+    }
+
+    @Override
+    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        if (i == 0) {
+            checkUi_IconViewVisibility();
+            checkUi_LoadingViewVisibility();
+        }
+        if (i == 1) {
+            checkUi_IconViewVisibility();
+            checkUi_LoadingViewVisibility();
+        }
+    }
+
+    public static ChatActivityBlurredRoundButton create(Context context, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, int i, int i2) {
+        ChatActivityBlurredRoundButton chatActivityBlurredRoundButton = new ChatActivityBlurredRoundButton(context);
+        chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, blurredBackgroundColorProvider));
+        chatActivityBlurredRoundButton.setIcon(i);
+        chatActivityBlurredRoundButton.setIconColor(i2);
+        chatActivityBlurredRoundButton.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(i2, 0.1f), 6, AndroidUtilities.dp(22.0f)));
+        return chatActivityBlurredRoundButton;
+    }
+
+    public void updateColors() {
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.updateColors();
+            invalidate();
+        }
+    }
+
+    private void checkUi_IconViewVisibility() {
+        float floatValue = 1.0f - this.animatorLoadingVisibility.getFloatValue();
+        float lerp = AndroidUtilities.lerp(floatValue / 2.0f, floatValue, this.animatorIsEnabled.getFloatValue());
+        ImageView imageView = this.imageView;
+        if (imageView != null) {
+            imageView.setAlpha(lerp);
+            this.imageView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
+            this.imageView.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue) * this.buttonScaleY);
+            this.imageView.setVisibility(floatValue > 0.0f ? 0 : 8);
+        }
+    }
+
+    private void checkUi_LoadingViewVisibility() {
+        float floatValue = this.animatorLoadingVisibility.getFloatValue();
+        float lerp = AndroidUtilities.lerp(floatValue / 2.0f, floatValue, this.animatorIsEnabled.getFloatValue());
+        ImageView imageView = this.loadingIndicatorView;
+        if (imageView != null) {
+            imageView.setAlpha(lerp);
+            this.loadingIndicatorView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
+            this.loadingIndicatorView.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, floatValue));
+            int i = floatValue > 0.0f ? 0 : 8;
+            if (this.loadingIndicatorView.getVisibility() != i) {
+                this.loadingIndicatorView.setVisibility(i);
+                this.loadingIndicatorDrawable.reset();
+            }
+        }
+    }
+}

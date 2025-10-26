@@ -56,7 +56,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     private Drawable backgroundDrawable;
     private boolean backgroundMotion;
     private int backgroundTranslationY;
-    protected View backgroundView;
+    public View backgroundView;
     private float bgAngle;
     final BlurBackgroundTask blurBackgroundTask;
     public ArrayList blurBehindViews;
@@ -139,7 +139,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         return 0.0f;
     }
 
-    protected Theme.ResourcesProvider getResourceProvider() {
+    public Theme.ResourcesProvider getResourceProvider() {
         return null;
     }
 
@@ -157,6 +157,9 @@ public class SizeNotifierFrameLayout extends FrameLayout {
 
     public boolean isStatusBarVisible() {
         return true;
+    }
+
+    public void onUpdateBackgroundDrawable(Drawable drawable) {
     }
 
     protected boolean useRootView() {
@@ -257,10 +260,12 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 }
                 SizeNotifierFrameLayout.this.backgroundMotion = newDrawableMotion;
                 SizeNotifierFrameLayout.this.themeAnimationValue = 0.0f;
+                SizeNotifierFrameLayout sizeNotifierFrameLayout5 = SizeNotifierFrameLayout.this;
+                sizeNotifierFrameLayout5.onUpdateBackgroundDrawable(sizeNotifierFrameLayout5.backgroundDrawable);
                 SizeNotifierFrameLayout.this.checkMotion();
             }
-            SizeNotifierFrameLayout sizeNotifierFrameLayout5 = SizeNotifierFrameLayout.this;
-            sizeNotifierFrameLayout5.themeAnimationValue = Utilities.clamp(sizeNotifierFrameLayout5.themeAnimationValue + (AndroidUtilities.screenRefreshTime / 200.0f), 1.0f, 0.0f);
+            SizeNotifierFrameLayout sizeNotifierFrameLayout6 = SizeNotifierFrameLayout.this;
+            sizeNotifierFrameLayout6.themeAnimationValue = Utilities.clamp(sizeNotifierFrameLayout6.themeAnimationValue + (AndroidUtilities.screenRefreshTime / 200.0f), 1.0f, 0.0f);
             int i = 0;
             while (i < 2) {
                 Drawable drawable = i == 0 ? SizeNotifierFrameLayout.this.oldBackgroundDrawable : SizeNotifierFrameLayout.this.backgroundDrawable;
@@ -376,12 +381,12 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                         canvas.restore();
                     }
                     if (i == 0 && SizeNotifierFrameLayout.this.oldBackgroundDrawable != null && SizeNotifierFrameLayout.this.themeAnimationValue >= 1.0f) {
-                        SizeNotifierFrameLayout sizeNotifierFrameLayout6 = SizeNotifierFrameLayout.this;
-                        if (sizeNotifierFrameLayout6.attached && (sizeNotifierFrameLayout6.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
+                        SizeNotifierFrameLayout sizeNotifierFrameLayout7 = SizeNotifierFrameLayout.this;
+                        if (sizeNotifierFrameLayout7.attached && (sizeNotifierFrameLayout7.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
                             ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow(SizeNotifierFrameLayout.this.backgroundView);
                         }
-                        SizeNotifierFrameLayout sizeNotifierFrameLayout7 = SizeNotifierFrameLayout.this;
-                        if (sizeNotifierFrameLayout7.attached && (sizeNotifierFrameLayout7.oldBackgroundDrawable instanceof MotionBackgroundDrawable)) {
+                        SizeNotifierFrameLayout sizeNotifierFrameLayout8 = SizeNotifierFrameLayout.this;
+                        if (sizeNotifierFrameLayout8.attached && (sizeNotifierFrameLayout8.oldBackgroundDrawable instanceof MotionBackgroundDrawable)) {
                             ((MotionBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow();
                         }
                         SizeNotifierFrameLayout.this.oldBackgroundDrawable = null;
@@ -1032,6 +1037,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
         float f2;
         RecordingCanvas beginRecording;
+        Shader.TileMode tileMode;
         RenderEffect createBlurEffect;
         RenderEffect createColorFilterEffect;
         RenderEffect createChainEffect;
@@ -1062,7 +1068,10 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                     ColorMatrix colorMatrix = new ColorMatrix();
                     colorMatrix.setSaturation(2.0f);
                     RenderNode renderNode = this.blurNodes[i];
-                    createBlurEffect = RenderEffect.createBlurEffect(getBlurRadius(), getBlurRadius(), Shader.TileMode.DECAL);
+                    float blurRadius = getBlurRadius();
+                    float blurRadius2 = getBlurRadius();
+                    tileMode = Shader.TileMode.DECAL;
+                    createBlurEffect = RenderEffect.createBlurEffect(blurRadius, blurRadius2, tileMode);
                     createColorFilterEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
                     createChainEffect = RenderEffect.createChainEffect(createBlurEffect, createColorFilterEffect);
                     renderNode.setRenderEffect(createChainEffect);

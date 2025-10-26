@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -36,6 +37,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EmptyStubSpan;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.MessageEnterTransitionContainer;
 
 public class TextMessageEnterTransition implements MessageEnterTransitionContainer.Transition {
@@ -47,6 +49,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     boolean crossfade;
     Bitmap crossfadeTextBitmap;
     float crossfadeTextOffset;
+    private final int currentAccount;
     MessageObject currentMessageObject;
     boolean drawBitmaps;
     private float drawableFromBottom;
@@ -66,6 +69,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     StaticLayout layout;
     RecyclerListView listView;
     private int messageId;
+    private final RectF messageReplySelectorRect;
     ChatMessageCell messageView;
     float progress;
     int replayFromColor;
@@ -75,6 +79,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     float replyFromStartX;
     float replyFromStartY;
     float replyNameDx;
+    private final RectF replySelectorRect;
     private final Theme.ResourcesProvider resourcesProvider;
     private float[] roundRectRadii;
     StaticLayout rtlLayout;
@@ -85,20 +90,19 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     MessageObject.TextLayoutBlock textLayoutBlock;
     float textX;
     float textY;
+    private final PointF tmpPointF;
     int toColor;
     float toXOffset;
     float toXOffsetRtl;
     Paint bitmapPaint = new Paint(1);
     boolean initBitmaps = false;
     private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
-    private final RectF replySelectorRect = new RectF();
-    private final RectF messageReplySelectorRect = new RectF();
-    private final int currentAccount = UserConfig.selectedAccount;
 
     public TextMessageEnterTransition(final ChatMessageCell chatMessageCell, final ChatActivity chatActivity, RecyclerListView recyclerListView, final MessageEnterTransitionContainer messageEnterTransitionContainer, Theme.ResourcesProvider resourcesProvider) {
         int i;
         int i2;
         int i3;
+        int i4;
         Theme.MessageDrawable currentBackgroundDrawable;
         StaticLayout.Builder obtain;
         StaticLayout.Builder breakStrategy;
@@ -110,6 +114,8 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         StaticLayout.Builder hyphenationFrequency2;
         StaticLayout.Builder alignment2;
         StaticLayout build2;
+        int i5;
+        ?? r1;
         StaticLayout.Builder obtain3;
         StaticLayout.Builder breakStrategy3;
         StaticLayout.Builder hyphenationFrequency3;
@@ -118,7 +124,12 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         Object[] spans;
         TextPaint textPaint;
         this.drawBitmaps = false;
+        PointF pointF = new PointF();
+        this.tmpPointF = pointF;
+        this.replySelectorRect = new RectF();
+        this.messageReplySelectorRect = new RectF();
         this.resourcesProvider = resourcesProvider;
+        this.currentAccount = UserConfig.selectedAccount;
         if (chatMessageCell.getMessageObject().textLayoutBlocks == null || chatMessageCell.getMessageObject().textLayoutBlocks.size() > 1 || chatMessageCell.getMessageObject().textLayoutBlocks.isEmpty() || chatMessageCell.getMessageObject().textLayoutBlocks.get(0).textLayout.getLineCount() > 10) {
             return;
         }
@@ -230,74 +241,85 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
             this.layout = new StaticLayout(charSequence, textPaint2, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
         this.animatedEmojiStack = AnimatedEmojiSpan.update(2, (View) null, this.animatedEmojiStack, this.layout);
-        float y = chatActivityEnterView.getY() + chatActivityEnterView.getEditField().getY() + ((View) chatActivityEnterView.getEditField().getParent()).getY() + ((View) chatActivityEnterView.getEditField().getParent().getParent()).getY();
-        this.fromStartX = chatActivityEnterView.getX() + chatActivityEnterView.getEditField().getX() + ((View) chatActivityEnterView.getEditField().getParent()).getX() + ((View) chatActivityEnterView.getEditField().getParent().getParent()).getX();
-        this.fromStartY = ((AndroidUtilities.dp(10.0f) + y) - chatActivityEnterView.getEditField().getScrollY()) + i;
+        ViewPositionWatcher.computeCoordinatesInParent(chatActivityEnterView.getEditField(), chatActivity.contentView, pointF);
+        float f = pointF.y;
+        this.fromStartX = pointF.x;
+        this.fromStartY = ((AndroidUtilities.dp(10.0f) + f) - chatActivityEnterView.getEditField().getScrollY()) + i;
         this.toXOffset = 0.0f;
-        float f = Float.MAX_VALUE;
-        for (int i4 = 0; i4 < this.layout.getLineCount(); i4++) {
-            float lineLeft = this.layout.getLineLeft(i4);
-            if (lineLeft < f) {
-                f = lineLeft;
+        float f2 = Float.MAX_VALUE;
+        for (int i6 = 0; i6 < this.layout.getLineCount(); i6++) {
+            float lineLeft = this.layout.getLineLeft(i6);
+            if (lineLeft < f2) {
+                f2 = lineLeft;
             }
         }
-        if (f != Float.MAX_VALUE) {
-            this.toXOffset = f;
+        if (f2 != Float.MAX_VALUE) {
+            this.toXOffset = f2;
         }
         this.scaleY = height / (this.layout.getHeight() * this.scaleFrom);
-        this.drawableFromTop = AndroidUtilities.dp(4.0f) + y;
+        this.drawableFromTop = AndroidUtilities.dp(4.0f) + f;
         if (this.enterView.isTopViewVisible()) {
             this.drawableFromTop -= AndroidUtilities.dp(12.0f);
         }
-        this.drawableFromBottom = y + chatActivityEnterView.getEditField().getMeasuredHeight();
+        this.drawableFromBottom = f + chatActivityEnterView.getEditField().getMeasuredHeight();
         MessageObject.TextLayoutBlock textLayoutBlock = chatMessageCell.getMessageObject().textLayoutBlocks.get(0);
         this.textLayoutBlock = textLayoutBlock;
         StaticLayout staticLayout = textLayoutBlock.textLayout;
-        int i5 = Theme.key_chat_messageTextOut;
-        double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i5));
-        int i6 = Theme.key_chat_messagePanelText;
-        if (Math.abs(calculateLuminance - ColorUtils.calculateLuminance(getThemedColor(i6))) > 0.20000000298023224d) {
+        int i7 = Theme.key_chat_messageTextOut;
+        double calculateLuminance = ColorUtils.calculateLuminance(getThemedColor(i7));
+        int i8 = Theme.key_chat_messagePanelText;
+        if (Math.abs(calculateLuminance - ColorUtils.calculateLuminance(getThemedColor(i8))) > 0.20000000298023224d) {
             this.crossfade = true;
             this.changeColor = true;
         }
-        this.fromColor = getThemedColor(i6);
-        this.toColor = getThemedColor(i5);
+        this.fromColor = getThemedColor(i8);
+        this.toColor = getThemedColor(i7);
         if (staticLayout.getLineCount() == this.layout.getLineCount()) {
-            lineCount = staticLayout.getLineCount();
-            int i7 = 0;
-            i2 = 0;
+            i2 = staticLayout.getLineCount();
+            int i9 = 0;
             i3 = 0;
+            i4 = 0;
             while (true) {
-                if (i7 < lineCount) {
-                    if (isRtlLine(this.layout, i7)) {
+                if (i9 < i2) {
+                    if (isRtlLine(this.layout, i9)) {
+                        r1 = 1;
+                        i4++;
+                    } else {
+                        r1 = 1;
                         i3++;
-                    } else {
-                        i2++;
                     }
-                    if (staticLayout.getLineEnd(i7) != this.layout.getLineEnd(i7)) {
-                        this.crossfade = true;
+                    if (staticLayout.getLineEnd(i9) != this.layout.getLineEnd(i9)) {
+                        this.crossfade = r1;
                     } else {
-                        i7++;
+                        i9 += r1;
                     }
                 }
             }
         } else {
             this.crossfade = true;
-            i2 = 0;
+            i2 = lineCount;
             i3 = 0;
+            i4 = 0;
         }
-        if (!this.crossfade && i3 > 0 && i2 > 0) {
+        if (!this.crossfade && i4 > 0 && i3 > 0) {
             SpannableString spannableString = new SpannableString(charSequence);
             SpannableString spannableString2 = new SpannableString(charSequence);
-            float f2 = Float.MAX_VALUE;
-            for (int i8 = 0; i8 < lineCount; i8++) {
-                if (isRtlLine(this.layout, i8)) {
-                    spannableString.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i8), this.layout.getLineEnd(i8), 0);
-                    float lineLeft2 = this.layout.getLineLeft(i8);
-                    f2 = lineLeft2 < f2 ? lineLeft2 : f2;
+            int i10 = 0;
+            float f3 = Float.MAX_VALUE;
+            while (i10 < i2) {
+                if (isRtlLine(this.layout, i10)) {
+                    spannableString.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i10), this.layout.getLineEnd(i10), 0);
+                    float lineLeft2 = this.layout.getLineLeft(i10);
+                    if (lineLeft2 < f3) {
+                        f3 = lineLeft2;
+                        i5 = 1;
+                        i10 += i5;
+                    }
                 } else {
-                    spannableString2.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i8), this.layout.getLineEnd(i8), 0);
+                    spannableString2.setSpan(new EmptyStubSpan(), this.layout.getLineStart(i10), this.layout.getLineEnd(i10), 0);
                 }
+                i5 = 1;
+                i10 += i5;
             }
             if (Build.VERSION.SDK_INT >= 24) {
                 obtain = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint2, width);
@@ -350,13 +372,16 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         this.hasReply = z3;
         if (z3) {
             SimpleTextView replyNameTextView = chatActivity.getReplyNameTextView();
-            this.replyFromStartX = replyNameTextView.getX() + ((View) replyNameTextView.getParent()).getX();
+            ViewPositionWatcher.computeCoordinatesInParent(replyNameTextView, chatActivity.contentView, this.tmpPointF);
+            PointF pointF2 = this.tmpPointF;
+            this.replyFromStartX = pointF2.x;
+            this.replyFromStartY = pointF2.y;
             this.replyFromStartWidth = ((View) replyNameTextView.getParent()).getWidth();
-            this.replyFromStartY = replyNameTextView.getY() + ((View) replyNameTextView.getParent().getParent()).getY() + ((View) replyNameTextView.getParent().getParent().getParent()).getY();
             SimpleTextView replyObjectTextView = chatActivity.getReplyObjectTextView();
-            this.replyFromObjectStartY = replyObjectTextView.getY() + ((View) replyObjectTextView.getParent().getParent()).getY() + ((View) replyObjectTextView.getParent().getParent().getParent()).getY();
-            this.replayFromColor = chatActivity.getReplyNameTextView().getTextColor();
-            this.replayObjectFromColor = chatActivity.getReplyObjectTextView().getTextColor();
+            ViewPositionWatcher.computeCoordinatesInParent(replyObjectTextView, chatActivity.contentView, this.tmpPointF);
+            this.replyFromObjectStartY = this.tmpPointF.y;
+            this.replayFromColor = replyNameTextView.getTextColor();
+            this.replayObjectFromColor = replyObjectTextView.getTextColor();
             this.drawableFromTop -= AndroidUtilities.dp(46.0f);
         }
         this.gradientMatrix = new Matrix();

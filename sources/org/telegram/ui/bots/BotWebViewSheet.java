@@ -90,7 +90,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda298;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda309;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -1216,7 +1216,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
         @Override
         public boolean isClipboardAvailable() {
-            return MediaDataController.getInstance(BotWebViewSheet.this.currentAccount).botInAttachMenu(BotWebViewSheet.this.botId);
+            return MediaDataController.getInstance(BotWebViewSheet.this.currentAccount).botInAttachMenu(BotWebViewSheet.this.botId) || MessagesController.getInstance(BotWebViewSheet.this.currentAccount).whitelistedBots.contains(Long.valueOf(BotWebViewSheet.this.botId));
         }
 
         @Override
@@ -2099,7 +2099,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fileItems.clear();
         if (botDownloads.hasFiles()) {
             final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda298(makeOptions));
+            makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda309(makeOptions));
             makeSwipeback.addGap();
             Iterator it2 = botDownloads.getFiles().iterator();
             while (it2.hasNext()) {
@@ -2973,7 +2973,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1172getWindowView() {
+    public WindowView mo1189getWindowView() {
         return this.windowView;
     }
 
@@ -3199,7 +3199,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 if (LaunchActivity.instance == null || !BotWebViewSheet.this.fullscreen) {
                     return;
                 }
-                LaunchActivity.instance.requestCustomNavigationBar();
                 LaunchActivity.instance.setNavigationBarColor(BotWebViewSheet.this.navBarColor, false);
             }
         }

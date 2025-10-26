@@ -25,15 +25,7 @@ public class TL_account {
         public boolean sensitive_enabled;
 
         public static contentSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1474462241 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account.contentSettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            contentSettings contentsettings = new contentSettings();
-            contentsettings.readParams(inputSerializedData, z);
-            return contentsettings;
+            return (contentSettings) TLObject.TLdeserialize(contentSettings.class, 1474462241 != i ? null : new contentSettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -90,19 +82,13 @@ public class TL_account {
 
     public static class EmailVerified extends TLObject {
         public static EmailVerified TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            EmailVerified tL_emailVerifiedLogin;
+            TLObject tL_emailVerifiedLogin;
             if (i != -507835039) {
                 tL_emailVerifiedLogin = i != 731303195 ? null : new TL_emailVerified();
             } else {
                 tL_emailVerifiedLogin = new TL_emailVerifiedLogin();
             }
-            if (tL_emailVerifiedLogin == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in account_EmailVerified", Integer.valueOf(i)));
-            }
-            if (tL_emailVerifiedLogin != null) {
-                tL_emailVerifiedLogin.readParams(inputSerializedData, z);
-            }
-            return tL_emailVerifiedLogin;
+            return (EmailVerified) TLObject.TLdeserialize(EmailVerified.class, tL_emailVerifiedLogin, inputSerializedData, i, z);
         }
     }
 
@@ -148,15 +134,7 @@ public class TL_account {
         public TLRPC.TL_secureSecretSettings secure_settings;
 
         public static passwordSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1705233435 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_passwordSettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            passwordSettings passwordsettings = new passwordSettings();
-            passwordsettings.readParams(inputSerializedData, z);
-            return passwordsettings;
+            return (passwordSettings) TLObject.TLdeserialize(passwordSettings.class, -1705233435 != i ? null : new passwordSettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -191,15 +169,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static privacyRules TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1352683077 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_privacyRules", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            privacyRules privacyrules = new privacyRules();
-            privacyrules.readParams(inputSerializedData, z);
-            return privacyrules;
+            return (privacyRules) TLObject.TLdeserialize(privacyRules.class, 1352683077 != i ? null : new privacyRules(), inputSerializedData, i, z);
         }
 
         @Override
@@ -223,20 +193,13 @@ public class TL_account {
         public ArrayList<TLRPC.EmojiStatus> statuses = new ArrayList<>();
 
         public static EmojiStatuses TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            EmojiStatuses tL_emojiStatuses;
-            if (i == -1866176559) {
-                tL_emojiStatuses = new TL_emojiStatuses();
+            TLObject tL_emojiStatuses;
+            if (i != -1866176559) {
+                tL_emojiStatuses = i != -796072379 ? null : new TL_emojiStatusesNotModified();
             } else {
-                if (i != -796072379) {
-                    if (z) {
-                        throw new RuntimeException(String.format("can't parse magic %x in account_EmojiStatuses", Integer.valueOf(i)));
-                    }
-                    return null;
-                }
-                tL_emojiStatuses = new TL_emojiStatusesNotModified();
+                tL_emojiStatuses = new TL_emojiStatuses();
             }
-            tL_emojiStatuses.readParams(inputSerializedData, z);
-            return tL_emojiStatuses;
+            return (EmojiStatuses) TLObject.TLdeserialize(EmojiStatuses.class, tL_emojiStatuses, inputSerializedData, i, z);
         }
     }
 
@@ -273,20 +236,13 @@ public class TL_account {
 
     public static class Themes extends TLObject {
         public static Themes TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            Themes tL_themes;
+            TLObject tL_themes;
             if (i == -1707242387) {
                 tL_themes = new TL_themes();
             } else {
-                if (i != -199313886) {
-                    if (z) {
-                        throw new RuntimeException(String.format("can't parse magic %x in account_Themes", Integer.valueOf(i)));
-                    }
-                    return null;
-                }
-                tL_themes = new TL_themesNotModified();
+                tL_themes = i != -199313886 ? null : new TL_themesNotModified();
             }
-            tL_themes.readParams(inputSerializedData, z);
-            return tL_themes;
+            return (Themes) TLObject.TLdeserialize(Themes.class, tL_themes, inputSerializedData, i, z);
         }
     }
 
@@ -325,19 +281,13 @@ public class TL_account {
 
     public static class WallPapers extends TLObject {
         public static WallPapers TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            WallPapers tL_wallPapers;
+            TLObject tL_wallPapers;
             if (i != -842824308) {
                 tL_wallPapers = i != 471437699 ? null : new TL_wallPapersNotModified();
             } else {
                 tL_wallPapers = new TL_wallPapers();
             }
-            if (tL_wallPapers == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in account_WallPapers", Integer.valueOf(i)));
-            }
-            if (tL_wallPapers != null) {
-                tL_wallPapers.readParams(inputSerializedData, z);
-            }
-            return tL_wallPapers;
+            return (WallPapers) TLObject.TLdeserialize(WallPapers.class, tL_wallPapers, inputSerializedData, i, z);
         }
     }
 
@@ -386,19 +336,13 @@ public class TL_account {
         public long srp_id;
 
         public static Password TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            Password tL_password;
+            TLObject tL_password;
             if (i == -1787080453) {
                 tL_password = new TL_password();
             } else {
                 tL_password = i != 408623183 ? null : new TL_password_layer144();
             }
-            if (tL_password == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in account_Password", Integer.valueOf(i)));
-            }
-            if (tL_password != null) {
-                tL_password.readParams(inputSerializedData, z);
-            }
-            return tL_password;
+            return (Password) TLObject.TLdeserialize(Password.class, tL_password, inputSerializedData, i, z);
         }
     }
 
@@ -550,15 +494,7 @@ public class TL_account {
         public int valid_until;
 
         public static tmpPassword TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-614138572 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_tmpPassword", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            tmpPassword tmppassword = new tmpPassword();
-            tmppassword.readParams(inputSerializedData, z);
-            return tmppassword;
+            return (tmpPassword) TLObject.TLdeserialize(tmpPassword.class, -614138572 != i ? null : new tmpPassword(), inputSerializedData, i, z);
         }
 
         @Override
@@ -585,15 +521,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static authorizationForm TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1389486888 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_authorizationForm", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            authorizationForm authorizationform = new authorizationForm();
-            authorizationform.readParams(inputSerializedData, z);
-            return authorizationform;
+            return (authorizationForm) TLObject.TLdeserialize(authorizationForm.class, -1389486888 != i ? null : new authorizationForm(), inputSerializedData, i, z);
         }
 
         @Override
@@ -634,15 +562,7 @@ public class TL_account {
         public TLRPC.TL_autoDownloadSettings medium;
 
         public static autoDownloadSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1674235686 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_autoDownloadSettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            autoDownloadSettings autodownloadsettings = new autoDownloadSettings();
-            autodownloadsettings.readParams(inputSerializedData, z);
-            return autodownloadsettings;
+            return (autoDownloadSettings) TLObject.TLdeserialize(autoDownloadSettings.class, 1674235686 != i ? null : new autoDownloadSettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -667,15 +587,7 @@ public class TL_account {
         public int length;
 
         public static sentEmailCode TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-2128640689 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_sentEmailCode", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            sentEmailCode sentemailcode = new sentEmailCode();
-            sentemailcode.readParams(inputSerializedData, z);
-            return sentemailcode;
+            return (sentEmailCode) TLObject.TLdeserialize(sentEmailCode.class, -2128640689 != i ? null : new sentEmailCode(), inputSerializedData, i, z);
         }
 
         @Override
@@ -698,15 +610,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static webAuthorizations TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-313079300 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_webAuthorizations", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            webAuthorizations webauthorizations = new webAuthorizations();
-            webauthorizations.readParams(inputSerializedData, z);
-            return webauthorizations;
+            return (webAuthorizations) TLObject.TLdeserialize(webAuthorizations.class, -313079300 != i ? null : new webAuthorizations(), inputSerializedData, i, z);
         }
 
         @Override
@@ -738,15 +642,7 @@ public class TL_account {
         public TLRPC.TL_secureSecretSettings new_secure_settings;
 
         public static passwordInputSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1036572727 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_passwordInputSettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            passwordInputSettings passwordinputsettings = new passwordInputSettings();
-            passwordinputsettings.readParams(inputSerializedData, z);
-            return passwordinputsettings;
+            return (passwordInputSettings) TLObject.TLdeserialize(passwordInputSettings.class, -1036572727 != i ? null : new passwordInputSettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -794,7 +690,7 @@ public class TL_account {
 
     public static class ResetPasswordResult extends TLObject {
         public static ResetPasswordResult TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            ResetPasswordResult resetpasswordfailedwait;
+            TLObject resetpasswordfailedwait;
             if (i == -478701471) {
                 resetpasswordfailedwait = new resetPasswordFailedWait();
             } else if (i != -383330754) {
@@ -802,13 +698,7 @@ public class TL_account {
             } else {
                 resetpasswordfailedwait = new resetPasswordOk();
             }
-            if (resetpasswordfailedwait == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in account_ResetPasswordResult", Integer.valueOf(i)));
-            }
-            if (resetpasswordfailedwait != null) {
-                resetpasswordfailedwait.readParams(inputSerializedData, z);
-            }
-            return resetpasswordfailedwait;
+            return (ResetPasswordResult) TLObject.TLdeserialize(ResetPasswordResult.class, resetpasswordfailedwait, inputSerializedData, i, z);
         }
     }
 
@@ -859,15 +749,7 @@ public class TL_account {
         public ArrayList<TLRPC.TL_authorization> authorizations = new ArrayList<>();
 
         public static authorizations TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1275039392 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_authorizations", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            authorizations authorizationsVar = new authorizations();
-            authorizationsVar.readParams(inputSerializedData, z);
-            return authorizationsVar;
+            return (authorizations) TLObject.TLdeserialize(authorizations.class, 1275039392 != i ? null : new authorizations(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2112,15 +1994,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static webPagePreview TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1936029524 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in webPagePreview", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            webPagePreview webpagepreview = new webPagePreview();
-            webpagepreview.readParams(inputSerializedData, z);
-            return webpagepreview;
+            return (webPagePreview) TLObject.TLdeserialize(webPagePreview.class, -1936029524 != i ? null : new webPagePreview(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2295,19 +2169,13 @@ public class TL_account {
 
     public static class SavedRingtones extends TLObject {
         public static SavedRingtones TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            SavedRingtones tL_savedRingtones;
+            TLObject tL_savedRingtones;
             if (i != -1041683259) {
                 tL_savedRingtones = i != -67704655 ? null : new TL_savedRingtonesNotModified();
             } else {
                 tL_savedRingtones = new TL_savedRingtones();
             }
-            if (tL_savedRingtones == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in account_SavedRingtones", Integer.valueOf(i)));
-            }
-            if (tL_savedRingtones != null) {
-                tL_savedRingtones.readParams(inputSerializedData, z);
-            }
-            return tL_savedRingtones;
+            return (SavedRingtones) TLObject.TLdeserialize(SavedRingtones.class, tL_savedRingtones, inputSerializedData, i, z);
         }
     }
 
@@ -2429,19 +2297,13 @@ public class TL_account {
 
     public static class SavedRingtone extends TLObject {
         public static SavedRingtone TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            SavedRingtone tL_savedRingtone;
+            TLObject tL_savedRingtone;
             if (i != -1222230163) {
                 tL_savedRingtone = i != 523271863 ? null : new TL_savedRingtoneConverted();
             } else {
                 tL_savedRingtone = new TL_savedRingtone();
             }
-            if (tL_savedRingtone == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in account_SavedRingtone", Integer.valueOf(i)));
-            }
-            if (tL_savedRingtone != null) {
-                tL_savedRingtone.readParams(inputSerializedData, z);
-            }
-            return tL_savedRingtone;
+            return (SavedRingtone) TLObject.TLdeserialize(SavedRingtone.class, tL_savedRingtone, inputSerializedData, i, z);
         }
     }
 
@@ -2547,15 +2409,7 @@ public class TL_account {
         public int start_minute;
 
         public static TL_businessWeeklyOpen TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 302717625) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessWeeklyOpen", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessWeeklyOpen tL_businessWeeklyOpen = new TL_businessWeeklyOpen();
-            tL_businessWeeklyOpen.readParams(inputSerializedData, z);
-            return tL_businessWeeklyOpen;
+            return (TL_businessWeeklyOpen) TLObject.TLdeserialize(TL_businessWeeklyOpen.class, i != 302717625 ? null : new TL_businessWeeklyOpen(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2580,15 +2434,7 @@ public class TL_account {
         public ArrayList<TL_businessWeeklyOpen> weekly_open = new ArrayList<>();
 
         public static TL_businessWorkHours TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -1936543592) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessWorkHours", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessWorkHours tL_businessWorkHours = new TL_businessWorkHours();
-            tL_businessWorkHours.readParams(inputSerializedData, z);
-            return tL_businessWorkHours;
+            return (TL_businessWorkHours) TLObject.TLdeserialize(TL_businessWorkHours.class, i != -1936543592 ? null : new TL_businessWorkHours(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2662,7 +2508,7 @@ public class TL_account {
 
     public static class BusinessAwayMessageSchedule extends TLObject {
         public static BusinessAwayMessageSchedule TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            BusinessAwayMessageSchedule tL_businessAwayMessageScheduleOutsideWorkHours;
+            TLObject tL_businessAwayMessageScheduleOutsideWorkHours;
             if (i == -1007487743) {
                 tL_businessAwayMessageScheduleOutsideWorkHours = new TL_businessAwayMessageScheduleOutsideWorkHours();
             } else if (i == -910564679) {
@@ -2670,13 +2516,7 @@ public class TL_account {
             } else {
                 tL_businessAwayMessageScheduleOutsideWorkHours = i != -867328308 ? null : new TL_businessAwayMessageScheduleCustom();
             }
-            if (tL_businessAwayMessageScheduleOutsideWorkHours == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in BusinessAwayMessageSchedule", Integer.valueOf(i)));
-            }
-            if (tL_businessAwayMessageScheduleOutsideWorkHours != null) {
-                tL_businessAwayMessageScheduleOutsideWorkHours.readParams(inputSerializedData, z);
-            }
-            return tL_businessAwayMessageScheduleOutsideWorkHours;
+            return (BusinessAwayMessageSchedule) TLObject.TLdeserialize(BusinessAwayMessageSchedule.class, tL_businessAwayMessageScheduleOutsideWorkHours, inputSerializedData, i, z);
         }
     }
 
@@ -2746,15 +2586,7 @@ public class TL_account {
         public int shortcut_id;
 
         public static TL_businessGreetingMessage TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -451302485) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessGreetingMessage", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessGreetingMessage tL_businessGreetingMessage = new TL_businessGreetingMessage();
-            tL_businessGreetingMessage.readParams(inputSerializedData, z);
-            return tL_businessGreetingMessage;
+            return (TL_businessGreetingMessage) TLObject.TLdeserialize(TL_businessGreetingMessage.class, i != -451302485 ? null : new TL_businessGreetingMessage(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2812,15 +2644,7 @@ public class TL_account {
         public int shortcut_id;
 
         public static TL_businessAwayMessage TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -283809188) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessAwayMessage", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessAwayMessage tL_businessAwayMessage = new TL_businessAwayMessage();
-            tL_businessAwayMessage.readParams(inputSerializedData, z);
-            return tL_businessAwayMessage;
+            return (TL_businessAwayMessage) TLObject.TLdeserialize(TL_businessAwayMessage.class, i != -283809188 ? null : new TL_businessAwayMessage(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2897,15 +2721,7 @@ public class TL_account {
         public ArrayList<TLRPC.InputUser> exclude_users = new ArrayList<>();
 
         public static TL_inputBusinessBotRecipients TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -991587810) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputBusinessBotRecipients", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_inputBusinessBotRecipients tL_inputBusinessBotRecipients = new TL_inputBusinessBotRecipients();
-            tL_inputBusinessBotRecipients.readParams(inputSerializedData, z);
-            return tL_inputBusinessBotRecipients;
+            return (TL_inputBusinessBotRecipients) TLObject.TLdeserialize(TL_inputBusinessBotRecipients.class, i != -991587810 ? null : new TL_inputBusinessBotRecipients(), inputSerializedData, i, z);
         }
 
         @Override
@@ -2960,15 +2776,7 @@ public class TL_account {
         public ArrayList<Long> exclude_users = new ArrayList<>();
 
         public static TL_businessBotRecipients TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -1198722189) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessBotRecipients", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessBotRecipients tL_businessBotRecipients = new TL_businessBotRecipients();
-            tL_businessBotRecipients.readParams(inputSerializedData, z);
-            return tL_businessBotRecipients;
+            return (TL_businessBotRecipients) TLObject.TLdeserialize(TL_businessBotRecipients.class, i != -1198722189 ? null : new TL_businessBotRecipients(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3022,15 +2830,7 @@ public class TL_account {
         public ArrayList<TLRPC.InputUser> users = new ArrayList<>();
 
         public static TL_inputBusinessRecipients TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 1871393450) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputBusinessRecipients", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_inputBusinessRecipients tL_inputBusinessRecipients = new TL_inputBusinessRecipients();
-            tL_inputBusinessRecipients.readParams(inputSerializedData, z);
-            return tL_inputBusinessRecipients;
+            return (TL_inputBusinessRecipients) TLObject.TLdeserialize(TL_inputBusinessRecipients.class, i != 1871393450 ? null : new TL_inputBusinessRecipients(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3078,15 +2878,7 @@ public class TL_account {
         public ArrayList<Long> users = new ArrayList<>();
 
         public static TL_businessRecipients TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 554733559) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessRecipients", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessRecipients tL_businessRecipients = new TL_businessRecipients();
-            tL_businessRecipients.readParams(inputSerializedData, z);
-            return tL_businessRecipients;
+            return (TL_businessRecipients) TLObject.TLdeserialize(TL_businessRecipients.class, i != 554733559 ? null : new TL_businessRecipients(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3142,15 +2934,7 @@ public class TL_account {
         public boolean view_gifts;
 
         public static TL_businessBotRights TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -1604170505) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessBotRights", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessBotRights tL_businessBotRights = new TL_businessBotRights();
-            tL_businessBotRights.readParams(inputSerializedData, z);
-            return tL_businessBotRights;
+            return (TL_businessBotRights) TLObject.TLdeserialize(TL_businessBotRights.class, i != -1604170505 ? null : new TL_businessBotRights(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3281,15 +3065,7 @@ public class TL_account {
         public TL_businessBotRights rights;
 
         public static TL_connectedBot TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != -849058964) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_connectedBot", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_connectedBot tL_connectedBot = new TL_connectedBot();
-            tL_connectedBot.readParams(inputSerializedData, z);
-            return tL_connectedBot;
+            return (TL_connectedBot) TLObject.TLdeserialize(TL_connectedBot.class, i != -849058964 ? null : new TL_connectedBot(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3316,15 +3092,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static connectedBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 400029819) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_connectedBots", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            connectedBots connectedbots = new connectedBots();
-            connectedbots.readParams(inputSerializedData, z);
-            return connectedbots;
+            return (connectedBots) TLObject.TLdeserialize(connectedBots.class, i != 400029819 ? null : new connectedBots(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3431,15 +3199,7 @@ public class TL_account {
         public int year;
 
         public static TL_birthday TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 1821253126) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_birthday", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_birthday tL_birthday = new TL_birthday();
-            tL_birthday.readParams(inputSerializedData, z);
-            return tL_birthday;
+            return (TL_birthday) TLObject.TLdeserialize(TL_birthday.class, i != 1821253126 ? null : new TL_birthday(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3470,15 +3230,7 @@ public class TL_account {
         public long contact_id;
 
         public static TL_contactBirthday TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 496600883) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_contactBirthday", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_contactBirthday tL_contactBirthday = new TL_contactBirthday();
-            tL_contactBirthday.readParams(inputSerializedData, z);
-            return tL_contactBirthday;
+            return (TL_contactBirthday) TLObject.TLdeserialize(TL_contactBirthday.class, i != 496600883 ? null : new TL_contactBirthday(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3501,15 +3253,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static contactBirthdays TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 290452237) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_contacts_contactBirthdays", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            contactBirthdays contactbirthdays = new contactBirthdays();
-            contactbirthdays.readParams(inputSerializedData, z);
-            return contactbirthdays;
+            return (contactBirthdays) TLObject.TLdeserialize(contactBirthdays.class, i != 290452237 ? null : new contactBirthdays(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3575,15 +3319,7 @@ public class TL_account {
         public String title;
 
         public static TL_inputBusinessChatLink TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (292003751 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputBusinessChatLink", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_inputBusinessChatLink();
-            tL_inputBusinessChatLink.readParams(inputSerializedData, z);
-            return tL_inputBusinessChatLink;
+            return (TL_inputBusinessChatLink) TLObject.TLdeserialize(TL_inputBusinessChatLink.class, 292003751 != i ? null : new TL_inputBusinessChatLink(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3622,15 +3358,7 @@ public class TL_account {
         public int views;
 
         public static TL_businessChatLink TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1263638929 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessChatLink", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessChatLink tL_businessChatLink = new TL_businessChatLink();
-            tL_businessChatLink.readParams(inputSerializedData, z);
-            return tL_businessChatLink;
+            return (TL_businessChatLink) TLObject.TLdeserialize(TL_businessChatLink.class, -1263638929 != i ? null : new TL_businessChatLink(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3670,15 +3398,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static businessChatLinks TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-331111727 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_businessChatLinks", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            businessChatLinks businesschatlinks = new businessChatLinks();
-            businesschatlinks.readParams(inputSerializedData, z);
-            return businesschatlinks;
+            return (businessChatLinks) TLObject.TLdeserialize(businessChatLinks.class, -331111727 != i ? null : new businessChatLinks(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3712,15 +3432,7 @@ public class TL_account {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static resolvedBusinessChatLinks TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1708937439 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_account_businessChatLinks", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            resolvedBusinessChatLinks resolvedbusinesschatlinks = new resolvedBusinessChatLinks();
-            resolvedbusinesschatlinks.readParams(inputSerializedData, z);
-            return resolvedbusinesschatlinks;
+            return (resolvedBusinessChatLinks) TLObject.TLdeserialize(resolvedBusinessChatLinks.class, -1708937439 != i ? null : new resolvedBusinessChatLinks(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3853,15 +3565,7 @@ public class TL_account {
         public String title;
 
         public static TL_businessIntro TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 1510606445) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_businessIntro", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_businessIntro tL_businessIntro = new TL_businessIntro();
-            tL_businessIntro.readParams(inputSerializedData, z);
-            return tL_businessIntro;
+            return (TL_businessIntro) TLObject.TLdeserialize(TL_businessIntro.class, i != 1510606445 ? null : new TL_businessIntro(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3894,15 +3598,7 @@ public class TL_account {
         public String title;
 
         public static TL_inputBusinessIntro TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 163867085) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputBusinessIntro", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_inputBusinessIntro tL_inputBusinessIntro = new TL_inputBusinessIntro();
-            tL_inputBusinessIntro.readParams(inputSerializedData, z);
-            return tL_inputBusinessIntro;
+            return (TL_inputBusinessIntro) TLObject.TLdeserialize(TL_inputBusinessIntro.class, i != 163867085 ? null : new TL_inputBusinessIntro(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3965,19 +3661,13 @@ public class TL_account {
 
     public static class ReactionNotificationsFrom extends TLObject {
         public static ReactionNotificationsFrom TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            ReactionNotificationsFrom tL_reactionNotificationsFromContacts;
+            TLObject tL_reactionNotificationsFromContacts;
             if (i == -1161583078) {
                 tL_reactionNotificationsFromContacts = new TL_reactionNotificationsFromContacts();
             } else {
                 tL_reactionNotificationsFromContacts = i != 1268654752 ? null : new TL_reactionNotificationsFromAll();
             }
-            if (tL_reactionNotificationsFromContacts == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in ReactionNotificationsFrom", Integer.valueOf(i)));
-            }
-            if (tL_reactionNotificationsFromContacts != null) {
-                tL_reactionNotificationsFromContacts.readParams(inputSerializedData, z);
-            }
-            return tL_reactionNotificationsFromContacts;
+            return (ReactionNotificationsFrom) TLObject.TLdeserialize(ReactionNotificationsFrom.class, tL_reactionNotificationsFromContacts, inputSerializedData, i, z);
         }
     }
 
@@ -4016,15 +3706,7 @@ public class TL_account {
         public ReactionNotificationsFrom stories_notify_from;
 
         public static TL_reactionsNotifySettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1457736048 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_reactionsNotifySettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_reactionsNotifySettings tL_reactionsNotifySettings = new TL_reactionsNotifySettings();
-            tL_reactionsNotifySettings.readParams(inputSerializedData, z);
-            return tL_reactionsNotifySettings;
+            return (TL_reactionsNotifySettings) TLObject.TLdeserialize(TL_reactionsNotifySettings.class, 1457736048 != i ? null : new TL_reactionsNotifySettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -4091,15 +3773,7 @@ public class TL_account {
         public long stars_amount;
 
         public static paidMessagesRevenue TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 504403720) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in paidMessagesRevenue", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            paidMessagesRevenue paidmessagesrevenue = new paidMessagesRevenue();
-            paidmessagesrevenue.readParams(inputSerializedData, z);
-            return paidmessagesrevenue;
+            return (paidMessagesRevenue) TLObject.TLdeserialize(paidMessagesRevenue.class, i != 504403720 ? null : new paidMessagesRevenue(), inputSerializedData, i, z);
         }
 
         @Override
@@ -4170,7 +3844,7 @@ public class TL_account {
 
     public static class RequirementToContact extends TLObject {
         public static RequirementToContact TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            RequirementToContact requirementtocontactpaidmessages;
+            TLObject requirementtocontactpaidmessages;
             if (i == -1258914157) {
                 requirementtocontactpaidmessages = new requirementToContactPaidMessages();
             } else if (i != -444472087) {
@@ -4178,13 +3852,7 @@ public class TL_account {
             } else {
                 requirementtocontactpaidmessages = new requirementToContactPremium();
             }
-            if (requirementtocontactpaidmessages == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in RequirementToContact", Integer.valueOf(i)));
-            }
-            if (requirementtocontactpaidmessages != null) {
-                requirementtocontactpaidmessages.readParams(inputSerializedData, z);
-            }
-            return requirementtocontactpaidmessages;
+            return (RequirementToContact) TLObject.TLdeserialize(RequirementToContact.class, requirementtocontactpaidmessages, inputSerializedData, i, z);
         }
     }
 
@@ -4252,19 +3920,13 @@ public class TL_account {
         public ArrayList<Long> ids = new ArrayList<>();
 
         public static SavedMusicIds TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            SavedMusicIds tL_savedMusicIds;
+            TLObject tL_savedMusicIds;
             if (i != -1718786506) {
                 tL_savedMusicIds = i != 1338514798 ? null : new TL_savedMusicIdsNotModified();
             } else {
                 tL_savedMusicIds = new TL_savedMusicIds();
             }
-            if (tL_savedMusicIds == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in SavedMusicIds", Integer.valueOf(i)));
-            }
-            if (tL_savedMusicIds != null) {
-                tL_savedMusicIds.readParams(inputSerializedData, z);
-            }
-            return tL_savedMusicIds;
+            return (SavedMusicIds) TLObject.TLdeserialize(SavedMusicIds.class, tL_savedMusicIds, inputSerializedData, i, z);
         }
     }
 

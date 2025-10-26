@@ -204,68 +204,6 @@ public class BlurBehindDrawable {
         return Math.max(7, Math.max(this.lastH, this.lastW) / 180);
     }
 
-    public void clear() {
-        this.invalidate = true;
-        this.wasDraw = false;
-        this.error = false;
-        this.blurAlpha = 0.0f;
-        this.lastW = 0;
-        this.lastH = 0;
-        DispatchQueue dispatchQueue = this.queue;
-        if (dispatchQueue != null) {
-            dispatchQueue.cleanupQueue();
-            this.queue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    BlurBehindDrawable.this.lambda$clear$2();
-                }
-            });
-        }
-    }
-
-    public void lambda$clear$2() {
-        Bitmap[] bitmapArr = this.renderingBitmap;
-        if (bitmapArr != null) {
-            Bitmap bitmap = bitmapArr[0];
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-            Bitmap bitmap2 = this.renderingBitmap[1];
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-            }
-            this.renderingBitmap = null;
-        }
-        Bitmap[] bitmapArr2 = this.backgroundBitmap;
-        if (bitmapArr2 != null) {
-            Bitmap bitmap3 = bitmapArr2[0];
-            if (bitmap3 != null) {
-                bitmap3.recycle();
-            }
-            Bitmap bitmap4 = this.backgroundBitmap[1];
-            if (bitmap4 != null) {
-                bitmap4.recycle();
-            }
-            this.backgroundBitmap = null;
-        }
-        this.renderingBitmapCanvas = null;
-        this.skipDraw = false;
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BlurBehindDrawable.this.lambda$clear$1();
-            }
-        });
-    }
-
-    public void lambda$clear$1() {
-        DispatchQueue dispatchQueue = this.queue;
-        if (dispatchQueue != null) {
-            dispatchQueue.recycle();
-            this.queue = null;
-        }
-    }
-
     public void invalidate() {
         this.invalidate = true;
         View view = this.parentView;

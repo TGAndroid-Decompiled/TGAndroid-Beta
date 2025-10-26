@@ -85,7 +85,7 @@ public class TL_stars {
         }
 
         public static StarGift TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarGift tL_starGift;
+            TLObject tL_starGift;
             switch (i) {
                 case -2136190013:
                     tL_starGift = new TL_starGift();
@@ -145,13 +145,7 @@ public class TL_stars {
                     tL_starGift = null;
                     break;
             }
-            if (tL_starGift == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGift", Integer.valueOf(i)));
-            }
-            if (tL_starGift != null) {
-                tL_starGift.readParams(inputSerializedData, z);
-            }
-            return tL_starGift;
+            return (StarGift) TLObject.TLdeserialize(StarGift.class, tL_starGift, inputSerializedData, i, z);
         }
 
         public TLRPC.Document getDocument() {
@@ -1443,19 +1437,13 @@ public class TL_stars {
 
     public static class StarGifts extends TLObject {
         public static StarGifts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarGifts tL_starGiftsNotModified;
+            TLObject tL_starGiftsNotModified;
             if (i != -1551326360) {
                 tL_starGiftsNotModified = i != 785918357 ? null : new TL_starGifts();
             } else {
                 tL_starGiftsNotModified = new TL_starGiftsNotModified();
             }
-            if (tL_starGiftsNotModified == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGifts", Integer.valueOf(i)));
-            }
-            if (tL_starGiftsNotModified != null) {
-                tL_starGiftsNotModified.readParams(inputSerializedData, z);
-            }
-            return tL_starGiftsNotModified;
+            return (StarGifts) TLObject.TLdeserialize(StarGifts.class, tL_starGiftsNotModified, inputSerializedData, i, z);
         }
     }
 
@@ -1661,15 +1649,7 @@ public class TL_stars {
         public long upgrade_stars;
 
         public static StarGiftUpgradePrice TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1712704739 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in StarGiftUpgradePrice", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            StarGiftUpgradePrice starGiftUpgradePrice = new StarGiftUpgradePrice();
-            starGiftUpgradePrice.readParams(inputSerializedData, z);
-            return starGiftUpgradePrice;
+            return (StarGiftUpgradePrice) TLObject.TLdeserialize(StarGiftUpgradePrice.class, -1712704739 != i ? null : new StarGiftUpgradePrice(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1693,15 +1673,7 @@ public class TL_stars {
         public ArrayList<StarGiftUpgradePrice> next_prices = new ArrayList<>();
 
         public static starGiftUpgradePreview TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1038213101 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in starGiftUpgradePreview", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            starGiftUpgradePreview stargiftupgradepreview = new starGiftUpgradePreview();
-            stargiftupgradepreview.readParams(inputSerializedData, z);
-            return stargiftupgradepreview;
+            return (starGiftUpgradePreview) TLObject.TLdeserialize(starGiftUpgradePreview.class, 1038213101 != i ? null : new starGiftUpgradePreview(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1758,15 +1730,7 @@ public class TL_stars {
         public String store_product;
 
         public static TL_starsTopupOption TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (198776256 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_starsTopupOption", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_starsTopupOption tL_starsTopupOption = new TL_starsTopupOption();
-            tL_starsTopupOption.readParams(inputSerializedData, z);
-            return tL_starsTopupOption;
+            return (TL_starsTopupOption) TLObject.TLdeserialize(TL_starsTopupOption.class, 198776256 != i ? null : new TL_starsTopupOption(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1809,15 +1773,7 @@ public class TL_stars {
         public String store_product;
 
         public static TL_starsGiftOption TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1577421297 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_starsGiftOption", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_starsGiftOption tL_starsGiftOption = new TL_starsGiftOption();
-            tL_starsGiftOption.readParams(inputSerializedData, z);
-            return tL_starsGiftOption;
+            return (TL_starsGiftOption) TLObject.TLdeserialize(TL_starsGiftOption.class, 1577421297 != i ? null : new TL_starsGiftOption(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1856,15 +1812,7 @@ public class TL_stars {
         public int users;
 
         public static TL_starsGiveawayWinnersOption TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1411605001 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_starsGiveawayWinnersOption", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_starsGiveawayWinnersOption tL_starsGiveawayWinnersOption = new TL_starsGiveawayWinnersOption();
-            tL_starsGiveawayWinnersOption.readParams(inputSerializedData, z);
-            return tL_starsGiveawayWinnersOption;
+            return (TL_starsGiveawayWinnersOption) TLObject.TLdeserialize(TL_starsGiveawayWinnersOption.class, 1411605001 != i ? null : new TL_starsGiveawayWinnersOption(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1902,15 +1850,7 @@ public class TL_stars {
         public int yearly_boosts;
 
         public static TL_starsGiveawayOption TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1798404822 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_starsGiveawayOption", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_starsGiveawayOption tL_starsGiveawayOption = new TL_starsGiveawayOption();
-            tL_starsGiveawayOption.readParams(inputSerializedData, z);
-            return tL_starsGiveawayOption;
+            return (TL_starsGiveawayOption) TLObject.TLdeserialize(TL_starsGiveawayOption.class, -1798404822 != i ? null : new TL_starsGiveawayOption(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1957,7 +1897,7 @@ public class TL_stars {
         public TLRPC.Peer peer;
 
         public static StarsTransactionPeer TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarsTransactionPeer tL_starsTransactionPeerUnsupported;
+            TLObject tL_starsTransactionPeerUnsupported;
             switch (i) {
                 case -1779253276:
                     tL_starsTransactionPeerUnsupported = new TL_starsTransactionPeerUnsupported();
@@ -1987,13 +1927,7 @@ public class TL_stars {
                     tL_starsTransactionPeerUnsupported = null;
                     break;
             }
-            if (tL_starsTransactionPeerUnsupported == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarsTransactionPeer", Integer.valueOf(i)));
-            }
-            if (tL_starsTransactionPeerUnsupported != null) {
-                tL_starsTransactionPeerUnsupported.readParams(inputSerializedData, z);
-            }
-            return tL_starsTransactionPeerUnsupported;
+            return (StarsTransactionPeer) TLObject.TLdeserialize(StarsTransactionPeer.class, tL_starsTransactionPeerUnsupported, inputSerializedData, i, z);
         }
     }
 
@@ -2147,7 +2081,7 @@ public class TL_stars {
         public ArrayList<TLRPC.MessageMedia> extended_media = new ArrayList<>();
 
         public static StarsTransaction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarsTransaction tL_starsTransaction_layer205;
+            TLObject tL_starsTransaction_layer205;
             switch (i) {
                 case -1549805238:
                     tL_starsTransaction_layer205 = new TL_starsTransaction_layer205();
@@ -2186,13 +2120,7 @@ public class TL_stars {
                     tL_starsTransaction_layer205 = null;
                     break;
             }
-            if (tL_starsTransaction_layer205 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarsTransaction", Integer.valueOf(i)));
-            }
-            if (tL_starsTransaction_layer205 != null) {
-                tL_starsTransaction_layer205.readParams(inputSerializedData, z);
-            }
-            return tL_starsTransaction_layer205;
+            return (StarsTransaction) TLObject.TLdeserialize(StarsTransaction.class, tL_starsTransaction_layer205, inputSerializedData, i, z);
         }
     }
 
@@ -2307,19 +2235,13 @@ public class TL_stars {
         public abstract AmountUtils$Currency getCurrency();
 
         public static StarsAmount TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarsAmount tL_starsAmount;
+            TLObject tL_starsAmount;
             if (i == -1145654109) {
                 tL_starsAmount = new TL_starsAmount();
             } else {
                 tL_starsAmount = i != 1957618656 ? null : new TL_starsTonAmount();
             }
-            if (tL_starsAmount == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarsAmount", Integer.valueOf(i)));
-            }
-            if (tL_starsAmount != null) {
-                tL_starsAmount.readParams(inputSerializedData, z);
-            }
-            return tL_starsAmount;
+            return (StarsAmount) TLObject.TLdeserialize(StarsAmount.class, tL_starsAmount, inputSerializedData, i, z);
         }
 
         public static StarsAmount ofStars(long j) {
@@ -3485,19 +3407,13 @@ public class TL_stars {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static StarsStatus TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarsStatus tL_payments_starsStatus_layer194;
+            TLObject tL_payments_starsStatus_layer194;
             if (i == -1141231252) {
                 tL_payments_starsStatus_layer194 = new TL_payments_starsStatus_layer194();
             } else {
                 tL_payments_starsStatus_layer194 = i != 1822222573 ? null : new TL_payments_starsStatus();
             }
-            if (tL_payments_starsStatus_layer194 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarsStatus", Integer.valueOf(i)));
-            }
-            if (tL_payments_starsStatus_layer194 != null) {
-                tL_payments_starsStatus_layer194.readParams(inputSerializedData, z);
-            }
-            return tL_payments_starsStatus_layer194;
+            return (StarsStatus) TLObject.TLdeserialize(StarsStatus.class, tL_payments_starsStatus_layer194, inputSerializedData, i, z);
         }
     }
 
@@ -3758,7 +3674,7 @@ public class TL_stars {
         public int until_date;
 
         public static StarsSubscription TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarsSubscription tL_starsSubscription_old;
+            TLObject tL_starsSubscription_old;
             if (i == -797707802) {
                 tL_starsSubscription_old = new TL_starsSubscription_old();
             } else if (i == 779004698) {
@@ -3766,13 +3682,7 @@ public class TL_stars {
             } else {
                 tL_starsSubscription_old = i != 1401868056 ? null : new TL_starsSubscription_layer193();
             }
-            if (tL_starsSubscription_old == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarsTransaction", Integer.valueOf(i)));
-            }
-            if (tL_starsSubscription_old != null) {
-                tL_starsSubscription_old.readParams(inputSerializedData, z);
-            }
-            return tL_starsSubscription_old;
+            return (StarsSubscription) TLObject.TLdeserialize(StarsSubscription.class, tL_starsSubscription_old, inputSerializedData, i, z);
         }
     }
 
@@ -3914,15 +3824,7 @@ public class TL_stars {
         public int period;
 
         public static TL_starsSubscriptionPricing TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (88173912 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_starsSubscriptionPricing", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_starsSubscriptionPricing tL_starsSubscriptionPricing = new TL_starsSubscriptionPricing();
-            tL_starsSubscriptionPricing.readParams(inputSerializedData, z);
-            return tL_starsSubscriptionPricing;
+            return (TL_starsSubscriptionPricing) TLObject.TLdeserialize(TL_starsSubscriptionPricing.class, 88173912 != i ? null : new TL_starsSubscriptionPricing(), inputSerializedData, i, z);
         }
 
         @Override
@@ -4012,15 +3914,7 @@ public class TL_stars {
         public int count;
 
         public static starGiftAttributeCounter TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (constructor != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in starGiftAttributeCounter", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            starGiftAttributeCounter stargiftattributecounter = new starGiftAttributeCounter();
-            stargiftattributecounter.readParams(inputSerializedData, z);
-            return stargiftattributecounter;
+            return (starGiftAttributeCounter) TLObject.TLdeserialize(starGiftAttributeCounter.class, constructor != i ? null : new starGiftAttributeCounter(), inputSerializedData, i, z);
         }
 
         @Override
@@ -4042,7 +3936,7 @@ public class TL_stars {
         public long document_id;
 
         public static StarGiftAttributeId TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarGiftAttributeId stargiftattributeidbackdrop;
+            TLObject stargiftattributeidbackdrop;
             if (i == 520210263) {
                 stargiftattributeidbackdrop = new starGiftAttributeIdBackdrop();
             } else if (i == 1219145276) {
@@ -4050,13 +3944,7 @@ public class TL_stars {
             } else {
                 stargiftattributeidbackdrop = i != 1242965043 ? null : new starGiftAttributeIdPattern();
             }
-            if (stargiftattributeidbackdrop == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGiftAttributeId", Integer.valueOf(i)));
-            }
-            if (stargiftattributeidbackdrop != null) {
-                stargiftattributeidbackdrop.readParams(inputSerializedData, z);
-            }
-            return stargiftattributeidbackdrop;
+            return (StarGiftAttributeId) TLObject.TLdeserialize(StarGiftAttributeId.class, stargiftattributeidbackdrop, inputSerializedData, i, z);
         }
     }
 
@@ -4110,7 +3998,7 @@ public class TL_stars {
         public int rarity_permille;
 
         public static StarGiftAttribute TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarGiftAttribute stargiftattributebackdrop_layer202;
+            TLObject stargiftattributebackdrop_layer202;
             switch (i) {
                 case -1809377438:
                     stargiftattributebackdrop_layer202 = new starGiftAttributeBackdrop_layer202();
@@ -4134,13 +4022,7 @@ public class TL_stars {
                     stargiftattributebackdrop_layer202 = null;
                     break;
             }
-            if (stargiftattributebackdrop_layer202 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGiftAttribute", Integer.valueOf(i)));
-            }
-            if (stargiftattributebackdrop_layer202 != null) {
-                stargiftattributebackdrop_layer202.readParams(inputSerializedData, z);
-            }
-            return stargiftattributebackdrop_layer202;
+            return (StarGiftAttribute) TLObject.TLdeserialize(StarGiftAttribute.class, stargiftattributebackdrop_layer202, inputSerializedData, i, z);
         }
     }
 
@@ -4321,15 +4203,7 @@ public class TL_stars {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_payments_uniqueStarGift TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (1097619176 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments_uniqueStarGift", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_payments_uniqueStarGift tL_payments_uniqueStarGift = new TL_payments_uniqueStarGift();
-            tL_payments_uniqueStarGift.readParams(inputSerializedData, z);
-            return tL_payments_uniqueStarGift;
+            return (TL_payments_uniqueStarGift) TLObject.TLdeserialize(TL_payments_uniqueStarGift.class, 1097619176 != i ? null : new TL_payments_uniqueStarGift(), inputSerializedData, i, z);
         }
 
         @Override
@@ -4389,7 +4263,7 @@ public class TL_stars {
         public long upgrade_stars;
 
         public static SavedStarGift TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            SavedStarGift tL_savedStarGift;
+            TLObject tL_savedStarGift;
             switch (i) {
                 case -1987861422:
                     tL_savedStarGift = new TL_savedStarGift();
@@ -4410,13 +4284,7 @@ public class TL_stars {
                     tL_savedStarGift = null;
                     break;
             }
-            if (tL_savedStarGift == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in SavedStarGift", Integer.valueOf(i)));
-            }
-            if (tL_savedStarGift != null) {
-                tL_savedStarGift.readParams(inputSerializedData, z);
-            }
-            return tL_savedStarGift;
+            return (SavedStarGift) TLObject.TLdeserialize(SavedStarGift.class, tL_savedStarGift, inputSerializedData, i, z);
         }
     }
 
@@ -4936,15 +4804,7 @@ public class TL_stars {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_payments_savedStarGifts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1779201615 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments_savedStarGifts", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_payments_savedStarGifts tL_payments_savedStarGifts = new TL_payments_savedStarGifts();
-            tL_payments_savedStarGifts.readParams(inputSerializedData, z);
-            return tL_payments_savedStarGifts;
+            return (TL_payments_savedStarGifts) TLObject.TLdeserialize(TL_payments_savedStarGifts.class, -1779201615 != i ? null : new TL_payments_savedStarGifts(), inputSerializedData, i, z);
         }
 
         @Override
@@ -4986,7 +4846,7 @@ public class TL_stars {
 
     public static class InputSavedStarGift extends TLObject {
         public static InputSavedStarGift TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            InputSavedStarGift tL_inputSavedStarGiftChat;
+            TLObject tL_inputSavedStarGiftChat;
             if (i == -251549057) {
                 tL_inputSavedStarGiftChat = new TL_inputSavedStarGiftChat();
             } else if (i != 545636920) {
@@ -4994,13 +4854,7 @@ public class TL_stars {
             } else {
                 tL_inputSavedStarGiftChat = new TL_inputSavedStarGiftSlug();
             }
-            if (tL_inputSavedStarGiftChat == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in InputSavedStarGift", Integer.valueOf(i)));
-            }
-            if (tL_inputSavedStarGiftChat != null) {
-                tL_inputSavedStarGiftChat.readParams(inputSerializedData, z);
-            }
-            return tL_inputSavedStarGiftChat;
+            return (InputSavedStarGift) TLObject.TLdeserialize(InputSavedStarGift.class, tL_inputSavedStarGiftChat, inputSerializedData, i, z);
         }
     }
 
@@ -5081,15 +4935,7 @@ public class TL_stars {
         public String url;
 
         public static starGiftWithdrawalUrl TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-2069218660 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in starGiftWithdrawalUrl", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            starGiftWithdrawalUrl stargiftwithdrawalurl = new starGiftWithdrawalUrl();
-            stargiftwithdrawalurl.readParams(inputSerializedData, z);
-            return stargiftwithdrawalurl;
+            return (starGiftWithdrawalUrl) TLObject.TLdeserialize(starGiftWithdrawalUrl.class, -2069218660 != i ? null : new starGiftWithdrawalUrl(), inputSerializedData, i, z);
         }
 
         @Override
@@ -5126,7 +4972,7 @@ public class TL_stars {
         public TLRPC.InputPeer peer;
 
         public static PaidReactionPrivacy TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            PaidReactionPrivacy paidreactionprivacypeer;
+            TLObject paidreactionprivacypeer;
             if (i == -596837136) {
                 paidreactionprivacypeer = new paidReactionPrivacyPeer();
             } else if (i != 520887001) {
@@ -5134,13 +4980,7 @@ public class TL_stars {
             } else {
                 paidreactionprivacypeer = new paidReactionPrivacyAnonymous();
             }
-            if (paidreactionprivacypeer == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in PaidReactionPrivacy", Integer.valueOf(i)));
-            }
-            if (paidreactionprivacypeer != null) {
-                paidreactionprivacypeer.readParams(inputSerializedData, z);
-            }
-            return paidreactionprivacypeer;
+            return (PaidReactionPrivacy) TLObject.TLdeserialize(PaidReactionPrivacy.class, paidreactionprivacypeer, inputSerializedData, i, z);
         }
 
         public long getDialogId() {
@@ -5262,15 +5102,7 @@ public class TL_stars {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static resaleStarGifts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1803939105 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_payments.starRefProgram", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            resaleStarGifts resalestargifts = new resaleStarGifts();
-            resalestargifts.readParams(inputSerializedData, z);
-            return resalestargifts;
+            return (resaleStarGifts) TLObject.TLdeserialize(resaleStarGifts.class, -1803939105 != i ? null : new resaleStarGifts(), inputSerializedData, i, z);
         }
 
         @Override
@@ -5363,15 +5195,7 @@ public class TL_stars {
         public long stars;
 
         public static Tl_starsRating TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (453922567 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_stars.Tl_starsRating", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            Tl_starsRating tl_starsRating = new Tl_starsRating();
-            tl_starsRating.readParams(inputSerializedData, z);
-            return tl_starsRating;
+            return (Tl_starsRating) TLObject.TLdeserialize(Tl_starsRating.class, 453922567 != i ? null : new Tl_starsRating(), inputSerializedData, i, z);
         }
 
         @Override
@@ -5408,14 +5232,7 @@ public class TL_stars {
         public String title;
 
         public static TL_starGiftCollection TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TL_starGiftCollection tL_starGiftCollection = i == -1653926992 ? new TL_starGiftCollection() : null;
-            if (tL_starGiftCollection == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_starGiftCollection", Integer.valueOf(i)));
-            }
-            if (tL_starGiftCollection != null) {
-                tL_starGiftCollection.readParams(inputSerializedData, z);
-            }
-            return tL_starGiftCollection;
+            return (TL_starGiftCollection) TLObject.TLdeserialize(TL_starGiftCollection.class, i == -1653926992 ? new TL_starGiftCollection() : null, inputSerializedData, i, z);
         }
 
         @Override
@@ -5448,19 +5265,13 @@ public class TL_stars {
         public ArrayList<TL_starGiftCollection> collections = new ArrayList<>();
 
         public static StarGiftCollections TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            StarGiftCollections tL_starGiftCollections;
+            TLObject tL_starGiftCollections;
             if (i != -1977011469) {
                 tL_starGiftCollections = i != -1598402793 ? null : new TL_starGiftCollectionsNotModified();
             } else {
                 tL_starGiftCollections = new TL_starGiftCollections();
             }
-            if (tL_starGiftCollections == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in StarGiftCollections", Integer.valueOf(i)));
-            }
-            if (tL_starGiftCollections != null) {
-                tL_starGiftCollections.readParams(inputSerializedData, z);
-            }
-            return tL_starGiftCollections;
+            return (StarGiftCollections) TLObject.TLdeserialize(StarGiftCollections.class, tL_starGiftCollections, inputSerializedData, i, z);
         }
     }
 
@@ -5622,14 +5433,7 @@ public class TL_stars {
         public boolean value_is_average;
 
         public static UniqueStarGiftValueInfo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            UniqueStarGiftValueInfo uniqueStarGiftValueInfo = i == 1362093126 ? new UniqueStarGiftValueInfo() : null;
-            if (uniqueStarGiftValueInfo == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in UniqueStarGiftValueInfo", Integer.valueOf(i)));
-            }
-            if (uniqueStarGiftValueInfo != null) {
-                uniqueStarGiftValueInfo.readParams(inputSerializedData, z);
-            }
-            return uniqueStarGiftValueInfo;
+            return (UniqueStarGiftValueInfo) TLObject.TLdeserialize(UniqueStarGiftValueInfo.class, i == 1362093126 ? new UniqueStarGiftValueInfo() : null, inputSerializedData, i, z);
         }
 
         @Override
@@ -5713,19 +5517,13 @@ public class TL_stars {
 
     public static class CheckCanSendGiftResult extends TLObject {
         public static CheckCanSendGiftResult TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            CheckCanSendGiftResult checkcansendgiftresultfail;
+            TLObject checkcansendgiftresultfail;
             if (i != -706379148) {
                 checkcansendgiftresultfail = i != 927967149 ? null : new checkCanSendGiftResultOk();
             } else {
                 checkcansendgiftresultfail = new checkCanSendGiftResultFail();
             }
-            if (checkcansendgiftresultfail == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in CheckCanSendGiftResult", Integer.valueOf(i)));
-            }
-            if (checkcansendgiftresultfail != null) {
-                checkcansendgiftresultfail.readParams(inputSerializedData, z);
-            }
-            return checkcansendgiftresultfail;
+            return (CheckCanSendGiftResult) TLObject.TLdeserialize(CheckCanSendGiftResult.class, checkcansendgiftresultfail, inputSerializedData, i, z);
         }
     }
 

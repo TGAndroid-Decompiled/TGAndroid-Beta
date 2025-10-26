@@ -380,7 +380,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             public void onItemClick(int i4) {
                 if (i4 == -1) {
                     if (ChatUsersActivity.this.checkDiscard()) {
-                        ChatUsersActivity.this.lambda$onBackPressed$355();
+                        ChatUsersActivity.this.lambda$onBackPressed$341();
                     }
                 } else if (i4 == 1) {
                     ChatUsersActivity.this.processDone();
@@ -1383,11 +1383,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 ChatEditActivity chatEditActivity = new ChatEditActivity(bundle);
                 chatEditActivity.setInfo(ChatUsersActivity.this.info);
                 ((BaseFragment) ChatUsersActivity.this).parentLayout.addFragmentToStack(chatEditActivity, ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 1);
-                ChatUsersActivity.this.lambda$onBackPressed$355();
+                ChatUsersActivity.this.lambda$onBackPressed$341();
                 chatEditActivity.showConvertTooltip();
                 return;
             }
-            ChatUsersActivity.this.lambda$onBackPressed$355();
+            ChatUsersActivity.this.lambda$onBackPressed$341();
         }
     }
 
@@ -1758,7 +1758,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (chatUsersActivityDelegate != null) {
                 chatUsersActivityDelegate.didKickParticipant(j);
             }
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
     }
 
@@ -2178,7 +2178,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
             } else {
                 removeSelfFromStack();
             }
@@ -2270,7 +2270,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public boolean hasSelectType() {

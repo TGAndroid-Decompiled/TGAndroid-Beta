@@ -1358,7 +1358,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$32(long j, long j2, int i) {
-        getMessagesController().lambda$checkDeletingTask$78(j, j2, i);
+        getMessagesController().lambda$checkDeletingTask$80(j, j2, i);
     }
 
     public void saveChannelPts(final long j, final int i) {
@@ -2899,7 +2899,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$toggleTodo$95(long r19, int r21, long r22, int r24, boolean r25, int r26) {
+    public void lambda$toggleTodo$95(long r20, int r22, long r23, int r25, boolean r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$toggleTodo$95(long, int, long, int, boolean, int):void");
     }
 
@@ -7356,12 +7356,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(216);
+                messageMedia.bytes = Utilities.intToBytes(217);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(216);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(217);
             message.flags |= 512;
         }
     }

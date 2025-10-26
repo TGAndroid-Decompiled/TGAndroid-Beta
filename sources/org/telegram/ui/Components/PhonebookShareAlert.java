@@ -737,8 +737,8 @@ public class PhonebookShareAlert extends BottomSheet {
         if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getContext(), ((ChatActivity) this.parentFragment).getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i2) {
-                    PhonebookShareAlert.this.lambda$new$4(z, i2);
+                public final void didSelectDate(boolean z, int i2, int i3) {
+                    PhonebookShareAlert.this.lambda$new$4(z, i2, i3);
                 }
             }, resourcesProvider);
         } else {
@@ -752,7 +752,7 @@ public class PhonebookShareAlert extends BottomSheet {
         }
     }
 
-    public void lambda$new$4(boolean z, int i) {
+    public void lambda$new$4(boolean z, int i, int i2) {
         this.delegate.didSelectContact(this.currentUser, z, i, 0L, false, 0L);
         lambda$new$0();
     }

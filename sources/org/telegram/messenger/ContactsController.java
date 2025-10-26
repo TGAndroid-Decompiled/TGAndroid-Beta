@@ -43,12 +43,13 @@ public class ContactsController extends BaseController {
     public static final int PRIVACY_RULES_TYPE_BIO = 9;
     public static final int PRIVACY_RULES_TYPE_BIRTHDAY = 11;
     public static final int PRIVACY_RULES_TYPE_CALLS = 2;
-    public static final int PRIVACY_RULES_TYPE_COUNT = 14;
+    public static final int PRIVACY_RULES_TYPE_COUNT = 15;
     public static final int PRIVACY_RULES_TYPE_FORWARDS = 5;
     public static final int PRIVACY_RULES_TYPE_GIFTS = 12;
     public static final int PRIVACY_RULES_TYPE_INVITE = 1;
     public static final int PRIVACY_RULES_TYPE_LASTSEEN = 0;
     public static final int PRIVACY_RULES_TYPE_MESSAGES = 10;
+    public static final int PRIVACY_RULES_TYPE_MUSIC = 14;
     public static final int PRIVACY_RULES_TYPE_NO_PAID_MESSAGES = 13;
     public static final int PRIVACY_RULES_TYPE_P2P = 3;
     public static final int PRIVACY_RULES_TYPE_PHONE = 6;
@@ -87,6 +88,7 @@ public class ContactsController extends BaseController {
     private int loadingGlobalSettings;
     private int[] loadingPrivacyInfo;
     private boolean migratingContacts;
+    private ArrayList<TLRPC.PrivacyRule> musicPrivacyRules;
     private ArrayList<TLRPC.PrivacyRule> noPaidMessagesPrivacyRules;
     private final Object observerLock;
     private ArrayList<TLRPC.PrivacyRule> p2pPrivacyRules;
@@ -255,7 +257,7 @@ public class ContactsController extends BaseController {
         this.lastContactsVersions = "";
         this.delayedContactsUpdate = new ArrayList<>();
         this.sectionsToReplace = new HashMap<>();
-        this.loadingPrivacyInfo = new int[14];
+        this.loadingPrivacyInfo = new int[15];
         this.projectionPhones = new String[]{"lookup", "data1", "data2", "data3", "display_name", "account_type"};
         this.projectionNames = new String[]{"lookup", "data2", "data3", "data5"};
         this.contactsBook = new HashMap<>();
@@ -347,6 +349,7 @@ public class ContactsController extends BaseController {
         this.p2pPrivacyRules = null;
         this.profilePhotoPrivacyRules = null;
         this.bioPrivacyRules = null;
+        this.musicPrivacyRules = null;
         this.birthdayPrivacyRules = null;
         this.giftsPrivacyRules = null;
         this.forwardsPrivacyRules = null;
@@ -2423,6 +2426,9 @@ public class ContactsController extends BaseController {
                 case 13:
                     this.noPaidMessagesPrivacyRules = privacyrules.rules;
                     break;
+                case 14:
+                    this.musicPrivacyRules = privacyrules.rules;
+                    break;
             }
             this.loadingPrivacyInfo[i] = 2;
         } else {
@@ -2486,6 +2492,8 @@ public class ContactsController extends BaseController {
                 return this.giftsPrivacyRules;
             case 13:
                 return this.noPaidMessagesPrivacyRules;
+            case 14:
+                return this.musicPrivacyRules;
         }
     }
 
@@ -2529,6 +2537,9 @@ public class ContactsController extends BaseController {
                 break;
             case 13:
                 this.noPaidMessagesPrivacyRules = arrayList;
+                break;
+            case 14:
+                this.musicPrivacyRules = arrayList;
                 break;
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);

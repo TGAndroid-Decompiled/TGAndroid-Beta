@@ -161,6 +161,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.clipParent = (View) dialogCell.getParent();
                     if (this.isHiddenArchive) {
                         transitionViewHolder.crossfadeToAvatarImage = dialogCell.avatarImage;
+                        transitionViewHolder.isLive = dialogCell.storyParams.drawnLive;
                     }
                     transitionViewHolder.alpha = 1.0f;
                     updateClip(transitionViewHolder);

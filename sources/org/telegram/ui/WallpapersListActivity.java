@@ -509,7 +509,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     WallpapersListActivity.this.updateRowsSelection();
                     return;
                 }
-                WallpapersListActivity.this.lambda$onBackPressed$355();
+                WallpapersListActivity.this.lambda$onBackPressed$341();
                 return;
             }
             if (i != 4) {
@@ -663,15 +663,15 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
                     if (charSequence != null) {
                         j = j2;
-                        SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, null, false));
+                        SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     } else {
                         j = j2;
                     }
                     if (!TextUtils.isEmpty(sb)) {
-                        SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
+                        SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     }
                 }
-                dialogsActivity.lambda$onBackPressed$355();
+                dialogsActivity.lambda$onBackPressed$341();
             } else {
                 long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle bundle = new Bundle();
@@ -690,7 +690,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 }
                 NotificationCenter.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                 WallpapersListActivity.this.presentFragment(new ChatActivity(bundle), true);
-                SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j3, null, null, null, true, null, null, null, true, 0, null, false));
+                SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
             }
             return true;
         }

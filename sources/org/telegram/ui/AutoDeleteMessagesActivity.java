@@ -74,7 +74,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    AutoDeleteMessagesActivity.this.lambda$onBackPressed$355();
+                    AutoDeleteMessagesActivity.this.lambda$onBackPressed$341();
                 }
             }
         });
@@ -199,7 +199,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         }
 
         @Override
-        public void didSelectDate(boolean z, final int i) {
+        public void didSelectDate(boolean z, final int i, int i2) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

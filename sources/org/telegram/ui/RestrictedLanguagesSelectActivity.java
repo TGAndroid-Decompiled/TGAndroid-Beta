@@ -150,7 +150,7 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    RestrictedLanguagesSelectActivity.this.lambda$onBackPressed$355();
+                    RestrictedLanguagesSelectActivity.this.lambda$onBackPressed$341();
                 }
             }
         });

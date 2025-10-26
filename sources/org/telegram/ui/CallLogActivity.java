@@ -666,7 +666,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         CallLogActivity.this.hideActionMode(true);
                         return;
                     } else {
-                        CallLogActivity.this.lambda$onBackPressed$355();
+                        CallLogActivity.this.lambda$onBackPressed$341();
                         return;
                     }
                 }
@@ -1996,7 +1996,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     }
                 });
             }
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
 
         public void lambda$onCallUsersSelected$1(final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {

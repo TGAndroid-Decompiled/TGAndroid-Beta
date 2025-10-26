@@ -349,11 +349,9 @@ public class WebRtcAudioTrack {
     }
 
     private static AudioAttributes.Builder applyAttributesOnQOrHigher(AudioAttributes.Builder builder, AudioAttributes audioAttributes) {
-        int allowedCapturePolicy;
-        AudioAttributes.Builder allowedCapturePolicy2;
-        allowedCapturePolicy = audioAttributes.getAllowedCapturePolicy();
-        allowedCapturePolicy2 = builder.setAllowedCapturePolicy(allowedCapturePolicy);
-        return allowedCapturePolicy2;
+        AudioAttributes.Builder allowedCapturePolicy;
+        allowedCapturePolicy = builder.setAllowedCapturePolicy(WebRtcAudioTrack$$ExternalSyntheticApiModelOutline0.m(audioAttributes));
+        return allowedCapturePolicy;
     }
 
     private void logBufferSizeInFrames() {

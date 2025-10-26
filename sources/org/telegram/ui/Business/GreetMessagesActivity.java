@@ -69,7 +69,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (GreetMessagesActivity.this.onBackPressed()) {
-                        GreetMessagesActivity.this.lambda$onBackPressed$355();
+                        GreetMessagesActivity.this.lambda$onBackPressed$341();
                     }
                 } else if (i == 1) {
                     GreetMessagesActivity.this.processDone();
@@ -186,7 +186,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
             return;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
@@ -249,7 +249,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
     }
 
@@ -286,7 +286,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     }
 
     public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {

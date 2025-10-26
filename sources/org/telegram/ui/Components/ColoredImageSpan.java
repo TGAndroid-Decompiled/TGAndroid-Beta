@@ -11,21 +11,22 @@ public class ColoredImageSpan extends ReplacementSpan {
     private float alpha;
     private Runnable checkColorDelegate;
     int colorKey;
+    public boolean draw;
     public Drawable drawable;
     int drawableColor;
     private Paint.FontMetricsInt fontMetrics;
     private boolean isRelativeSize;
     private int overrideColor;
     public boolean recolorDrawable;
-    private float rotate;
+    public float rotate;
     private float scaleX;
     private float scaleY;
     private int size;
     private int sizeWidth;
     public float spaceScaleX;
     private int topOffset;
-    private float translateX;
-    private float translateY;
+    public float translateX;
+    public float translateY;
     public boolean useLinkPaintColor;
     boolean usePaintColor;
     private final int verticalAlignment;
@@ -43,6 +44,7 @@ public class ColoredImageSpan extends ReplacementSpan {
     }
 
     public ColoredImageSpan(Drawable drawable, int i) {
+        this.draw = true;
         this.recolorDrawable = true;
         this.usePaintColor = true;
         this.useLinkPaintColor = false;

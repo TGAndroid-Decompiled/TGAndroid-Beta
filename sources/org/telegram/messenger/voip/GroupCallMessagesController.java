@@ -13,6 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BaseController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonBuilder;
 import org.telegram.tgnet.tl.TL_phone;
@@ -32,17 +34,14 @@ public class GroupCallMessagesController extends BaseController {
 
     private static native byte[] groupCallMessageEncryptImpl(long j, byte[] bArr);
 
-    public static void lambda$sendCallMessage$4(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
-    }
-
     public void processUpdate(TLRPC.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
         final long j = tL_updateGroupCallMessage.call.id;
-        long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallMessage.from_id);
-        long j2 = tL_updateGroupCallMessage.random_id;
+        long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallMessage.message.from_id);
+        long j2 = tL_updateGroupCallMessage.message.id;
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
-        final GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, peerDialogId, j2, tL_updateGroupCallMessage.message);
+        final GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, peerDialogId, j2, tL_updateGroupCallMessage.message.message);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -70,7 +69,7 @@ public class GroupCallMessagesController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessagesController.lambda$processUpdate$3(long, long, byte[]):void");
     }
 
-    public boolean sendCallMessage(long j, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.InputGroupCall inputGroupCall) {
+    public boolean sendCallMessage(long j, TLRPC.TL_textWithEntities tL_textWithEntities, long j2, TLRPC.InputGroupCall inputGroupCall) {
         TL_phone.sendGroupCallMessage sendgroupcallmessage;
         TLRPC.GroupCall groupCall;
         byte[] groupCallMessageEncryptImpl;
@@ -81,7 +80,7 @@ public class GroupCallMessagesController extends BaseController {
         long nextRandomId = getSendMessagesHelper().getNextRandomId();
         if (sharedInstance.isConference()) {
             ConferenceCall conferenceCall = sharedInstance.conference;
-            if (conferenceCall == null || (groupCall = conferenceCall.groupCall) == null || groupCall.id != inputGroupCall.id) {
+            if (conferenceCall == null || (groupCall = conferenceCall.groupCall) == null || groupCall.id != j2) {
                 return false;
             }
             long callId = conferenceCall.getCallId();
@@ -107,14 +106,44 @@ public class GroupCallMessagesController extends BaseController {
             sendgroupcallmessage = sendgroupcallmessage2;
         }
         TL_phone.sendGroupCallMessage sendgroupcallmessage3 = sendgroupcallmessage;
-        lambda$processUpdate$2(inputGroupCall.id, new GroupCallMessage(this.currentAccount, j, nextRandomId, tL_textWithEntities));
-        getConnectionsManager().sendRequestTyped(sendgroupcallmessage3, new Utilities.Callback2() {
+        final GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j, nextRandomId, tL_textWithEntities);
+        groupCallMessage.setIsOut(true);
+        lambda$processUpdate$2(j2, groupCallMessage);
+        final Runnable runnable = new Runnable() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                GroupCallMessagesController.lambda$sendCallMessage$4((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+            public final void run() {
+                GroupCallMessagesController.lambda$sendCallMessage$4(GroupCallMessage.this);
+            }
+        };
+        AndroidUtilities.runOnUIThread(runnable, 1000L);
+        getConnectionsManager().sendRequest(sendgroupcallmessage3, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                GroupCallMessagesController.this.lambda$sendCallMessage$5(runnable, groupCallMessage, tLObject, tL_error);
             }
         });
         return true;
+    }
+
+    public static void lambda$sendCallMessage$4(GroupCallMessage groupCallMessage) {
+        groupCallMessage.setIsSendDelayed(true);
+        groupCallMessage.notifyStateUpdate();
+    }
+
+    public void lambda$sendCallMessage$5(Runnable runnable, GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.cancelRunOnUIThread(runnable);
+        groupCallMessage.setIsSendDelayed(false);
+        if (tLObject instanceof TLRPC.Bool) {
+            if (tLObject instanceof TLRPC.TL_boolTrue) {
+                groupCallMessage.setIsSendConfirmed(true);
+            } else {
+                groupCallMessage.setIsSendError(true);
+            }
+        } else if (tLObject instanceof TLRPC.Updates) {
+            groupCallMessage.setIsSendConfirmed(true);
+            getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+        }
+        groupCallMessage.notifyStateUpdate();
     }
 
     public List<GroupCallMessage> getCallMessages(long j) {
@@ -166,13 +195,13 @@ public class GroupCallMessagesController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    GroupCallMessagesController.this.lambda$pushMessageToList$5(j);
+                    GroupCallMessagesController.this.lambda$pushMessageToList$6(j);
                 }
             }, getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
         }
     }
 
-    public void lambda$pushMessageToList$5(long j) {
+    public void lambda$pushMessageToList$6(long j) {
         MessagesList messagesList = this.callMessagesList.get(j);
         if (messagesList == null) {
             return;

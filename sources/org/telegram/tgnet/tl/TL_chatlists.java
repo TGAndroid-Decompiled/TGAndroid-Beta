@@ -18,15 +18,7 @@ public class TL_chatlists {
         public int filter_id;
 
         public static TL_inputChatlistDialogFilter TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-203367885 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_inputChatlistDialogFilter", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_inputChatlistDialogFilter();
-            tL_inputChatlistDialogFilter.readParams(inputSerializedData, z);
-            return tL_inputChatlistDialogFilter;
+            return (TL_inputChatlistDialogFilter) TLObject.TLdeserialize(TL_inputChatlistDialogFilter.class, -203367885 != i ? null : new TL_inputChatlistDialogFilter(), inputSerializedData, i, z);
         }
 
         @Override
@@ -47,15 +39,7 @@ public class TL_chatlists {
         public TL_exportedChatlistInvite invite;
 
         public static TL_chatlists_exportedChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (283567014 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_chatlists_exportedChatlistInvite", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_chatlists_exportedChatlistInvite tL_chatlists_exportedChatlistInvite = new TL_chatlists_exportedChatlistInvite();
-            tL_chatlists_exportedChatlistInvite.readParams(inputSerializedData, z);
-            return tL_chatlists_exportedChatlistInvite;
+            return (TL_chatlists_exportedChatlistInvite) TLObject.TLdeserialize(TL_chatlists_exportedChatlistInvite.class, 283567014 != i ? null : new TL_chatlists_exportedChatlistInvite(), inputSerializedData, i, z);
         }
 
         @Override
@@ -81,15 +65,7 @@ public class TL_chatlists {
         public String url;
 
         public static TL_exportedChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (206668204 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_exportedChatlistInvite", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_exportedChatlistInvite tL_exportedChatlistInvite = new TL_exportedChatlistInvite();
-            tL_exportedChatlistInvite.readParams(inputSerializedData, z);
-            return tL_exportedChatlistInvite;
+            return (TL_exportedChatlistInvite) TLObject.TLdeserialize(TL_exportedChatlistInvite.class, 206668204 != i ? null : new TL_exportedChatlistInvite(), inputSerializedData, i, z);
         }
 
         @Override
@@ -121,15 +97,7 @@ public class TL_chatlists {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_chatlists_exportedInvites TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (279670215 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_chatlists_exportedInvites", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_chatlists_exportedInvites tL_chatlists_exportedInvites = new TL_chatlists_exportedInvites();
-            tL_chatlists_exportedInvites.readParams(inputSerializedData, z);
-            return tL_chatlists_exportedInvites;
+            return (TL_chatlists_exportedInvites) TLObject.TLdeserialize(TL_chatlists_exportedInvites.class, 279670215 != i ? null : new TL_chatlists_exportedInvites(), inputSerializedData, i, z);
         }
 
         @Override
@@ -155,7 +123,7 @@ public class TL_chatlists {
 
     public static abstract class chatlist_ChatlistInvite extends TLObject {
         public static chatlist_ChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            chatlist_ChatlistInvite tL_chatlists_chatlistInvite;
+            TLObject tL_chatlists_chatlistInvite;
             if (i == -250687953) {
                 tL_chatlists_chatlistInvite = new TL_chatlists_chatlistInvite();
             } else if (i == -91752871) {
@@ -163,13 +131,7 @@ public class TL_chatlists {
             } else {
                 tL_chatlists_chatlistInvite = i != 500007837 ? null : new TL_chatlists_chatlistInvite_layer195();
             }
-            if (tL_chatlists_chatlistInvite == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in chatlist_ChatlistInvite", Integer.valueOf(i)));
-            }
-            if (tL_chatlists_chatlistInvite != null) {
-                tL_chatlists_chatlistInvite.readParams(inputSerializedData, z);
-            }
-            return tL_chatlists_chatlistInvite;
+            return (chatlist_ChatlistInvite) TLObject.TLdeserialize(chatlist_ChatlistInvite.class, tL_chatlists_chatlistInvite, inputSerializedData, i, z);
         }
     }
 
@@ -279,15 +241,7 @@ public class TL_chatlists {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static TL_chatlists_chatlistUpdates TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1816295539 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_chatlists_chatlistUpdates", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_chatlists_chatlistUpdates tL_chatlists_chatlistUpdates = new TL_chatlists_chatlistUpdates();
-            tL_chatlists_chatlistUpdates.readParams(inputSerializedData, z);
-            return tL_chatlists_chatlistUpdates;
+            return (TL_chatlists_chatlistUpdates) TLObject.TLdeserialize(TL_chatlists_chatlistUpdates.class, -1816295539 != i ? null : new TL_chatlists_chatlistUpdates(), inputSerializedData, i, z);
         }
 
         @Override

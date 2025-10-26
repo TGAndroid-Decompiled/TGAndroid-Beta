@@ -75,7 +75,7 @@ import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda251;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda244;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -105,6 +105,8 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline0;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline1;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
@@ -832,7 +834,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     lambda$fillItems$23 = GiftSheet.this.lambda$fillItems$23((TL_stars.StarGift) obj);
                     return lambda$fillItems$23;
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda251()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda244()));
         }
         if (this.dialogId != UserConfig.getInstance(this.currentAccount).getClientUserId() && (giftsList3 = this.myGifts) != null) {
             Iterator it2 = giftsList3.gifts.iterator();
@@ -2247,9 +2249,9 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                         this.lastDrawnColor = i2;
                         if (Build.VERSION.SDK_INT >= 29) {
                             Paint paint = this.lastDrawnBitmapPaint;
-                            GiftSheet$CardBackground$$ExternalSyntheticApiModelOutline1.m();
+                            BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline1.m();
                             blendMode = BlendMode.SRC_IN;
-                            paint.setColorFilter(GiftSheet$CardBackground$$ExternalSyntheticApiModelOutline0.m(i2, blendMode));
+                            paint.setColorFilter(BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline0.m(i2, blendMode));
                         } else {
                             this.lastDrawnBitmapPaint.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
                         }

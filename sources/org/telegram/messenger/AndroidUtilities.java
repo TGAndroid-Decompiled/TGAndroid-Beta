@@ -15,6 +15,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -97,6 +98,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import androidx.core.view.WindowCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -109,6 +111,7 @@ import com.google.android.exoplayer2.ExoPlayerImpl$$ExternalSyntheticThrowCCEIfN
 import com.google.android.exoplayer2.util.Consumer;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.tasks.OnSuccessListener;
+import j$.util.Objects;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -259,7 +262,11 @@ public class AndroidUtilities {
     private static boolean waitingForCall = false;
     private static final Object smsLock = new Object();
     private static final Object callLock = new Object();
+
+    @Deprecated
     public static int statusBarHeight = 0;
+
+    @Deprecated
     public static int navigationBarHeight = 0;
     public static float density = 1.0f;
     public static Point displaySize = new Point();
@@ -879,7 +886,7 @@ public class AndroidUtilities {
                 }
                 if (user != null) {
                     ContactsController.getInstance(i).markAsContacted(stringExtra2);
-                    SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(stringExtra, user.id, null, null, null, true, null, null, null, true, 0, null, false));
+                    SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(stringExtra, user.id, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
             }
         } catch (Exception e) {
@@ -2348,8 +2355,8 @@ public class AndroidUtilities {
                 if (!hashtable.containsKey(str)) {
                     try {
                         if (Build.VERSION.SDK_INT >= 26) {
-                            AndroidUtilities$$ExternalSyntheticApiModelOutline22.m();
-                            Typeface.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline21.m(ApplicationLoader.applicationContext.getAssets(), str);
+                            AndroidUtilities$$ExternalSyntheticApiModelOutline27.m();
+                            Typeface.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline26.m(ApplicationLoader.applicationContext.getAssets(), str);
                             if (str.contains("medium")) {
                                 m.setWeight(700);
                             }
@@ -4096,9 +4103,17 @@ public class AndroidUtilities {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.handleProxyIntent(android.app.Activity, android.content.Intent):boolean");
     }
 
+    public static float getAnimatorDurationScale() {
+        try {
+            return Settings.Global.getFloat(ApplicationLoader.applicationContext.getContentResolver(), "animator_duration_scale", 1.0f);
+        } catch (Exception unused) {
+            return 1.0f;
+        }
+    }
+
     public static boolean shouldEnableAnimation() {
         int i = Build.VERSION.SDK_INT;
-        return i < 26 || i >= 28 || (!((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).isPowerSaveMode() && Settings.Global.getFloat(ApplicationLoader.applicationContext.getContentResolver(), "animator_duration_scale", 1.0f) > 0.0f);
+        return i < 26 || i >= 28 || (!((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).isPowerSaveMode() && getAnimatorDurationScale() > 0.0f);
     }
 
     public static void showProxyAlert(final Activity activity, final String str, final String str2, final String str3, final String str4, final String str5) {
@@ -4957,7 +4972,7 @@ public class AndroidUtilities {
         PictureInPictureParams build;
         int i = Build.VERSION.SDK_INT;
         if (i >= 26) {
-            PictureInPictureParams.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline20.m();
+            PictureInPictureParams.Builder m = AndroidUtilities$$ExternalSyntheticApiModelOutline25.m();
             m.setSourceRectHint(null);
             m.setAspectRatio(null);
             if (i >= 31) {
@@ -5974,7 +5989,28 @@ public class AndroidUtilities {
         }
     }
 
-    private static void printStackTrace(String str) {
+    public static String getBuildVersionInfo() {
+        String str;
+        try {
+            PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
+            int i = packageInfo.versionCode;
+            int i2 = i / 10;
+            int i3 = i % 10;
+            if (i3 == 1 || i3 == 2) {
+                str = "store bundled " + Build.CPU_ABI + " " + Build.CPU_ABI2;
+            } else if (ApplicationLoader.isStandaloneBuild()) {
+                str = "direct " + Build.CPU_ABI + " " + Build.CPU_ABI2;
+            } else {
+                str = "universal " + Build.CPU_ABI + " " + Build.CPU_ABI2;
+            }
+            return LocaleController.formatString("TelegramVersion", R.string.TelegramVersion, String.format(Locale.US, "v%s (%d) %s", packageInfo.versionName, Integer.valueOf(i2), str));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public static void printStackTrace(String str) {
         for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace()) {
             FileLog.d("[" + str + "] " + stackTraceElement);
         }
@@ -5990,5 +6026,48 @@ public class AndroidUtilities {
             return null;
         }
         return arrayList.get(Math.abs(Utilities.fastRandom.nextInt() % arrayList.size()));
+    }
+
+    public static WindowInsets fixedDispatchApplyWindowInsets(WindowInsets windowInsets, ViewGroup viewGroup) {
+        int childCount = viewGroup.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            viewGroup.getChildAt(i).dispatchApplyWindowInsets(windowInsets);
+        }
+        return windowInsets;
+    }
+
+    public static void enableEdgeToEdge(Activity activity) {
+        Window window = activity.getWindow();
+        try {
+            enableEdgeToEdge(window);
+            if (Build.VERSION.SDK_INT >= 28) {
+                window.setNavigationBarDividerColor(0);
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    public static void enableEdgeToEdge(Window window) {
+        int i;
+        Objects.requireNonNull(window);
+        window.getDecorView();
+        WindowCompat.setDecorFitsSystemWindows(window, false);
+        window.setStatusBarColor(0);
+        window.setNavigationBarColor(0);
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 28) {
+            int i3 = i2 >= 30 ? 3 : 1;
+            WindowManager.LayoutParams attributes = window.getAttributes();
+            i = attributes.layoutInDisplayCutoutMode;
+            if (i != i3) {
+                attributes.layoutInDisplayCutoutMode = i3;
+                window.setAttributes(attributes);
+            }
+        }
+        if (i2 >= 29) {
+            window.setStatusBarContrastEnforced(false);
+            window.setNavigationBarContrastEnforced(false);
+        }
     }
 }

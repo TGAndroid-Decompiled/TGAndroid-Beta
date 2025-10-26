@@ -989,7 +989,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -1146,7 +1146,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
                 return;
             } else {
                 removeSelfFromStack();
@@ -1181,7 +1181,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 if (i == NotificationCenter.dialogDeleted && (-this.chatId) == ((Long) objArr[0]).longValue()) {
                     INavigationLayout iNavigationLayout2 = this.parentLayout;
                     if (iNavigationLayout2 != null && iNavigationLayout2.getLastFragment() == this) {
-                        lambda$onBackPressed$355();
+                        lambda$onBackPressed$341();
                         return;
                     } else {
                         removeSelfFromStack();
@@ -1433,7 +1433,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$55(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void lambda$checkDiscard$56(AlertDialog alertDialog, int i) {
@@ -1441,7 +1441,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$57(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     private int getAdminCount() {
@@ -1573,7 +1573,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 updatePastFragmentsOnTabs();
             }
         }
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void lambda$processDone$59(TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1592,7 +1592,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$processDone$58() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void lambda$processDone$60(int i, DialogInterface dialogInterface) {

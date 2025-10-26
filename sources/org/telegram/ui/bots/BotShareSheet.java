@@ -787,9 +787,9 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                 hashMap.put("query_id", "" + tL_messages_preparedInlineMessage.query_id);
                 hashMap.put("id", "" + tL_messages_preparedInlineMessage.result.id);
                 hashMap.put("bot", "" + j);
-                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, null, 0, 0L);
+                SendMessagesHelper.prepareSendingBotContextResult(baseFragment, AccountInstance.getInstance(i), tL_messages_preparedInlineMessage.result, hashMap, j2, messageObject, messageObject, null, null, z2, i2, 0, null, 0, 0L);
                 if (charSequence != null) {
-                    SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, messageObject, messageObject, null, true, null, null, null, true, 0, null, false));
+                    SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, messageObject, messageObject, null, true, null, null, null, true, 0, 0, null, false));
                 }
                 arrayList2.add(Long.valueOf(j2));
             }
@@ -801,10 +801,10 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
         }
         if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$355();
+            topicsFragment.lambda$onBackPressed$341();
             dialogsActivity.removeSelfFromStack();
         } else {
-            dialogsActivity.lambda$onBackPressed$355();
+            dialogsActivity.lambda$onBackPressed$341();
         }
         return true;
     }

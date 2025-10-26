@@ -376,7 +376,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ProxyListActivity.this.lambda$onBackPressed$355();
+                    ProxyListActivity.this.lambda$onBackPressed$341();
                 }
             }
         });
@@ -634,7 +634,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                     ProxyListActivity.this.listAdapter.clearSelected();
                     return;
                 } else {
-                    ProxyListActivity.this.lambda$onBackPressed$355();
+                    ProxyListActivity.this.lambda$onBackPressed$341();
                     return;
                 }
             }

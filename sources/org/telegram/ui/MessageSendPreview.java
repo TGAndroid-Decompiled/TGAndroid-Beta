@@ -1509,9 +1509,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         };
         this.sendButton = sendButton2;
         this.anchorSendButton.copyTo(sendButton2);
-        ChatActivityEnterView.SendButton sendButton3 = this.sendButton;
-        sendButton3.center = sendButton.center;
-        sendButton3.open.set(sendButton.open.get(), true);
+        this.sendButton.open.set(sendButton.open.get(), true);
         this.sendButton.setOnClickListener(onClickListener);
         this.containerView.addView(this.sendButton, new ViewGroup.LayoutParams(sendButton.getWidth(), sendButton.getHeight()));
         this.sendButtonWidth = this.anchorSendButton.width(sendButton.getHeight());
@@ -1896,6 +1894,20 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     public void dismiss(boolean z) {
         this.sent = z;
         dismiss();
+    }
+
+    public void dismissInstant() {
+        if (this.dismissing) {
+            return;
+        }
+        this.dismissing = true;
+        SpoilerEffect2.pause(0, false);
+        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
+        if (spoilerEffect2 != null) {
+            spoilerEffect2.detach(this.windowView);
+        }
+        super.dismiss();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
     }
 
     @Override

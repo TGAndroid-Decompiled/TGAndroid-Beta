@@ -164,6 +164,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private boolean useRoundRadius;
     public boolean useSharedAnimationQueue;
     private boolean videoThumbIsSame;
+    private Runnable visibleInvalidate;
 
     public static abstract class Decorator {
         public void onAttachedToWindow(ImageReceiver imageReceiver) {
@@ -1555,7 +1556,15 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.isVisible = z;
         if (z2) {
             invalidate();
+            Runnable runnable = this.visibleInvalidate;
+            if (runnable != null) {
+                runnable.run();
+            }
         }
+    }
+
+    public void setVisibleInvalidate(Runnable runnable) {
+        this.visibleInvalidate = runnable;
     }
 
     public void invalidate() {

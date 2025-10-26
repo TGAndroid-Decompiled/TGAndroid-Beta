@@ -564,15 +564,7 @@ public class LinkPreview extends View {
         public TLRPC.WebPage webpage;
 
         public static WebPagePreview TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-625858389 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in WebPagePreview", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            WebPagePreview webPagePreview = new WebPagePreview();
-            webPagePreview.readParams(inputSerializedData, z);
-            return webPagePreview;
+            return (WebPagePreview) TLObject.TLdeserialize(WebPagePreview.class, -625858389 != i ? null : new WebPagePreview(), inputSerializedData, i, z);
         }
 
         @Override

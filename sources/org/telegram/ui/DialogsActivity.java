@@ -2842,7 +2842,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.searchString == null) {
                 return true;
             }
-            DialogsActivity.this.lambda$onBackPressed$355();
+            DialogsActivity.this.lambda$onBackPressed$341();
             return false;
         }
 
@@ -3183,7 +3183,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             ((BaseFragment) DialogsActivity.this).parentLayout.getDrawerLayoutContainer().openDrawer(false);
                             return;
                         }
-                        DialogsActivity.this.lambda$onBackPressed$355();
+                        DialogsActivity.this.lambda$onBackPressed$341();
                         return;
                     }
                     DialogsActivity.this.filterTabsView.setIsEditing(false);
@@ -4116,7 +4116,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void needStartRecordVideo(int i, boolean z, int i2, int i3, long j, long j2) {
+        public void needStartRecordVideo(int i, boolean z, int i2, int i3, int i4, long j, long j2) {
         }
 
         @Override
@@ -4224,13 +4224,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onMessageSend(CharSequence charSequence, boolean z, int i, long j) {
+        public void onMessageSend(CharSequence charSequence, boolean z, int i, int i2, long j) {
             if (DialogsActivity.this.delegate == null || DialogsActivity.this.selectedDialogs.isEmpty()) {
                 return;
             }
             ArrayList arrayList = new ArrayList();
-            for (int i2 = 0; i2 < DialogsActivity.this.selectedDialogs.size(); i2++) {
-                arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
+            for (int i3 = 0; i3 < DialogsActivity.this.selectedDialogs.size(); i3++) {
+                arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i3)).longValue(), 0L));
             }
             DialogsActivity.this.delegate.didSelectDialogs(DialogsActivity.this, arrayList, charSequence, false, z, i, null);
         }
@@ -5697,7 +5697,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createGroupForThis$57(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$355();
+        baseFragment.lambda$onBackPressed$341();
     }
 
     public void lambda$createGroupForThis$60(AlertDialog alertDialog, Long l, final Runnable runnable) {
@@ -5774,7 +5774,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$355();
+        baseFragment.lambda$onBackPressed$341();
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
@@ -5873,9 +5873,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.removeSelfFromStack();
             if (baseFragmentArr[1] != null) {
                 baseFragmentArr[0].removeSelfFromStack();
-                baseFragmentArr[1].lambda$onBackPressed$355();
+                baseFragmentArr[1].lambda$onBackPressed$341();
             } else {
-                baseFragmentArr[0].lambda$onBackPressed$355();
+                baseFragmentArr[0].lambda$onBackPressed$341();
             }
         }
 
@@ -5951,9 +5951,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.removeSelfFromStack();
             if (baseFragmentArr[1] != null) {
                 baseFragmentArr[0].removeSelfFromStack();
-                baseFragmentArr[1].lambda$onBackPressed$355();
+                baseFragmentArr[1].lambda$onBackPressed$341();
             } else {
-                baseFragmentArr[0].lambda$onBackPressed$355();
+                baseFragmentArr[0].lambda$onBackPressed$341();
             }
             if (dialogsActivityDelegate != null) {
                 ArrayList arrayList = new ArrayList();
@@ -6536,8 +6536,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void lambda$onBackPressed$355() {
-        super.lambda$onBackPressed$355();
+    public void lambda$onBackPressed$341() {
+        super.lambda$onBackPressed$341();
         ItemOptions itemOptions = this.filterOptions;
         if (itemOptions != null) {
             itemOptions.dismiss();
@@ -8664,7 +8664,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             this.viewPages[0].listView.setEmptyView(null);
             this.viewPages[0].progressView.setVisibility(4);
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
             return;
         }
         performSelectedDialogsAction(arrayList, i, false, false);
@@ -9927,7 +9927,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 if (i9 != intValue || i9 == 0) {
                     return;
                 }
-                lambda$onBackPressed$355();
+                lambda$onBackPressed$341();
                 return;
             }
             if (i == NotificationCenter.dialogFiltersUpdated) {
@@ -10734,7 +10734,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             return;
         }
-        lambda$onBackPressed$355();
+        lambda$onBackPressed$341();
     }
 
     public void lambda$didSelectResult$125(long j, final Runnable runnable) {
@@ -10967,15 +10967,15 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void didSelectDate(boolean z2, int i) {
+            public void didSelectDate(boolean z2, int i, int i2) {
                 DialogsActivity dialogsActivity = DialogsActivity.this;
                 dialogsActivity.scheduleDate = i;
                 if (dialogsActivity.delegate == null || DialogsActivity.this.selectedDialogs.isEmpty()) {
                     return;
                 }
                 ArrayList arrayList = new ArrayList();
-                for (int i2 = 0; i2 < DialogsActivity.this.selectedDialogs.size(); i2++) {
-                    arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
+                for (int i3 = 0; i3 < DialogsActivity.this.selectedDialogs.size(); i3++) {
+                    arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i3)).longValue(), 0L));
                 }
                 DialogsActivityDelegate dialogsActivityDelegate = DialogsActivity.this.delegate;
                 DialogsActivity dialogsActivity2 = DialogsActivity.this;
@@ -10989,15 +10989,15 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void didSelectDate(boolean z2, int i) {
+        public void didSelectDate(boolean z2, int i, int i2) {
             DialogsActivity dialogsActivity = DialogsActivity.this;
             dialogsActivity.scheduleDate = i;
             if (dialogsActivity.delegate == null || DialogsActivity.this.selectedDialogs.isEmpty()) {
                 return;
             }
             ArrayList arrayList = new ArrayList();
-            for (int i2 = 0; i2 < DialogsActivity.this.selectedDialogs.size(); i2++) {
-                arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
+            for (int i3 = 0; i3 < DialogsActivity.this.selectedDialogs.size(); i3++) {
+                arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i3)).longValue(), 0L));
             }
             DialogsActivityDelegate dialogsActivityDelegate = DialogsActivity.this.delegate;
             DialogsActivity dialogsActivity2 = DialogsActivity.this;

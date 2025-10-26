@@ -89,7 +89,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda71;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda82;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -916,6 +916,8 @@ public abstract class Theme {
     public static final int key_fill_RedNormal;
     public static final int key_gift_ribbon;
     public static final int key_gift_ribbon_soldout;
+    public static final int key_glass_defaultIcon;
+    public static final int key_glass_defaultText;
     public static final int key_graySection;
     public static final int key_graySectionText;
     public static final int key_groupcreate_cursor;
@@ -1045,6 +1047,8 @@ public abstract class Theme {
     public static final int key_stories_circle_closeFriends2;
     public static final int key_stories_circle_dialog1;
     public static final int key_stories_circle_dialog2;
+    public static final int key_stories_circle_live1;
+    public static final int key_stories_circle_live2;
     public static final int key_switch2Track;
     public static final int key_switch2TrackChecked;
     public static final int key_switchTrack;
@@ -1286,7 +1290,7 @@ public abstract class Theme {
         return i | (-16777216);
     }
 
-    static long access$3000() {
+    static long access$2900() {
         return getAutoNightSwitchThemeDelay();
     }
 
@@ -1636,8 +1640,67 @@ public abstract class Theme {
             draw(canvas, null);
         }
 
-        public void draw(android.graphics.Canvas r17, android.graphics.Paint r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.draw(android.graphics.Canvas, android.graphics.Paint):void");
+        public void draw(Canvas canvas, Paint paint) {
+            int dp;
+            int dp2;
+            int i;
+            int i2;
+            Path path;
+            boolean z;
+            Drawable backgroundDrawable;
+            Rect bounds = getBounds();
+            if (paint == null && this.gradientShader == null && this.overrideRoundRadius == 0 && this.overrideRounding <= 0.0f && (backgroundDrawable = getBackgroundDrawable()) != null) {
+                backgroundDrawable.setBounds(bounds);
+                backgroundDrawable.draw(canvas);
+                return;
+            }
+            int dp3 = dp(2.0f);
+            int i3 = this.overrideRoundRadius;
+            if (i3 != 0) {
+                i2 = i3;
+                i = i2;
+            } else {
+                if (this.overrideRounding > 0.0f) {
+                    dp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                    dp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                } else if (this.currentType == 2) {
+                    dp = dp(6.0f);
+                    dp2 = dp(6.0f);
+                } else {
+                    dp = dp(SharedConfig.bubbleRadius);
+                    dp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
+                }
+                i = dp2;
+                i2 = dp;
+            }
+            int dp4 = dp(6.0f);
+            Paint paint2 = paint == null ? this.paint : paint;
+            if (paint == null && this.gradientShader != null) {
+                this.matrix.reset();
+                applyMatrixScale();
+                this.matrix.postTranslate(0.0f, -this.topY);
+                this.gradientShader.setLocalMatrix(this.matrix);
+            }
+            int max = Math.max(bounds.top, 0);
+            if (this.pathDrawCacheParams != null) {
+                bounds.height();
+            }
+            PathDrawParams pathDrawParams = this.pathDrawCacheParams;
+            if (pathDrawParams != null) {
+                path = pathDrawParams.path;
+                z = pathDrawParams.invalidatePath(bounds, true, true);
+            } else {
+                path = this.path;
+                z = true;
+            }
+            if (z || this.overrideRoundRadius != 0) {
+                generatePath(path, bounds, dp3, i2, dp4, i, max, true, true, paint != null);
+            }
+            canvas.drawPath(path, paint2);
+            if (this.gradientShader != null && this.isSelected && paint == null) {
+                this.selectedPaint.setColor(ColorUtils.setAlphaComponent(getColor(Theme.key_chat_outBubbleGradientSelectedOverlay), (int) ((Color.alpha(r0) * this.alpha) / 255.0f)));
+                canvas.drawPath(path, this.selectedPaint);
+            }
         }
 
         public Path makePath() {
@@ -4069,6 +4132,13 @@ public abstract class Theme {
         return shapeDrawable;
     }
 
+    public static GradientDrawable createRoundRectGradientDrawable(int i, int i2, int i3) {
+        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{i2, i3});
+        gradientDrawable.setShape(0);
+        gradientDrawable.setCornerRadius(i);
+        return gradientDrawable;
+    }
+
     public static ShapeDrawable createRoundRectDrawable(int i, int i2, int i3, int i4, int i5) {
         float f = i;
         float f2 = i2;
@@ -4212,12 +4282,23 @@ public abstract class Theme {
     }
 
     public static Drawable createSimpleSelectorRoundRectDrawable(int i, int i2, int i3, int i4) {
+        return createSimpleSelectorRoundRectDrawable(i, i, i, i, i2, i3, i4);
+    }
+
+    public static Drawable createSimpleSelectorRoundRectDrawable(int i, int i2, int i3, int i4, int i5, int i6, int i7) {
         float f = i;
-        ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f, f, f, f}, null, null));
-        shapeDrawable.getPaint().setColor(i2);
-        ShapeDrawable shapeDrawable2 = new ShapeDrawable(new RoundRectShape(new float[]{f, f, f, f, f, f, f, f}, null, null));
-        shapeDrawable2.getPaint().setColor(i4);
-        return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i3}), shapeDrawable, shapeDrawable2);
+        float f2 = i2;
+        float f3 = i3;
+        float f4 = i4;
+        return createSimpleSelectorRoundRectDrawable(new float[]{f, f, f2, f2, f3, f3, f4, f4}, i5, i6, i7);
+    }
+
+    public static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3) {
+        ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(fArr, null, null));
+        shapeDrawable.getPaint().setColor(i);
+        ShapeDrawable shapeDrawable2 = new ShapeDrawable(new RoundRectShape(fArr, null, null));
+        shapeDrawable2.getPaint().setColor(i3);
+        return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), shapeDrawable, shapeDrawable2);
     }
 
     public static Drawable createSelectorDrawableFromDrawables(Drawable drawable, Drawable drawable2) {
@@ -4278,7 +4359,7 @@ public abstract class Theme {
         return createSelectorDrawable(i, i2, -1);
     }
 
-    public static android.graphics.drawable.Drawable createSelectorDrawable(int r11, int r12, int r13) {
+    public static android.graphics.drawable.Drawable createSelectorDrawable(int r10, int r11, int r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.createSelectorDrawable(int, int, int):android.graphics.drawable.Drawable");
     }
 
@@ -5034,7 +5115,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda71(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda82(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -5441,7 +5522,7 @@ public abstract class Theme {
                     return;
                 }
                 boolean unused4 = Theme.switchDayRunnableScheduled = true;
-                AndroidUtilities.runOnUIThread(Theme.switchDayBrightnessRunnable, Theme.access$3000());
+                AndroidUtilities.runOnUIThread(Theme.switchDayBrightnessRunnable, Theme.access$2900());
                 return;
             }
             if (MediaController.getInstance().isRecordingOrListeningByProximity()) {
@@ -5455,7 +5536,7 @@ public abstract class Theme {
                 return;
             }
             boolean unused6 = Theme.switchNightRunnableScheduled = true;
-            AndroidUtilities.runOnUIThread(Theme.switchNightBrightnessRunnable, Theme.access$3000());
+            AndroidUtilities.runOnUIThread(Theme.switchNightBrightnessRunnable, Theme.access$2900());
         }
     }
 

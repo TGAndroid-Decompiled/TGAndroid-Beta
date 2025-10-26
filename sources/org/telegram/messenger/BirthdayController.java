@@ -296,15 +296,7 @@ public class BirthdayController {
         }
 
         public static TL_birthdays TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (i != 290452237) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_birthdays", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            TL_birthdays tL_birthdays = new TL_birthdays();
-            tL_birthdays.readParams(inputSerializedData, z);
-            return tL_birthdays;
+            return (TL_birthdays) TLObject.TLdeserialize(TL_birthdays.class, i != 290452237 ? null : new TL_birthdays(), inputSerializedData, i, z);
         }
 
         @Override

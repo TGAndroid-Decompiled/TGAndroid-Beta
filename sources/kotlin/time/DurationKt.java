@@ -28,14 +28,14 @@ public abstract class DurationKt {
     }
 
     private static final long durationOfNanos(long j) {
-        return Duration.m223constructorimpl(j << 1);
+        return Duration.m225constructorimpl(j << 1);
     }
 
     public static final long durationOfMillis(long j) {
-        return Duration.m223constructorimpl((j << 1) + 1);
+        return Duration.m225constructorimpl((j << 1) + 1);
     }
 
     public static final long durationOf(long j, int i) {
-        return Duration.m223constructorimpl((j << 1) + i);
+        return Duration.m225constructorimpl((j << 1) + i);
     }
 }

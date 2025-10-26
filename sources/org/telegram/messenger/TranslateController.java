@@ -1843,15 +1843,7 @@ public class TranslateController extends BaseController {
         public TLRPC.TL_textWithEntities solution;
 
         public static PollText TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (613759672 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TranslatedPoll", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            PollText pollText = new PollText();
-            pollText.readParams(inputSerializedData, z);
-            return pollText;
+            return (PollText) TLObject.TLdeserialize(PollText.class, 613759672 != i ? null : new PollText(), inputSerializedData, i, z);
         }
 
         @Override

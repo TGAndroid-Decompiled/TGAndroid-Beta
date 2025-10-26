@@ -215,7 +215,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatEditTypeActivity.this.lambda$onBackPressed$355();
+                    ChatEditTypeActivity.this.lambda$onBackPressed$341();
                 } else if (i == 1) {
                     if (ChatEditTypeActivity.this.doneButtonDrawable == null || ChatEditTypeActivity.this.doneButtonDrawable.getProgress() <= 0.0f) {
                         ChatEditTypeActivity.this.processDone();
@@ -703,7 +703,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             if ((-this.chatId) == ((Long) objArr[0]).longValue()) {
                 INavigationLayout iNavigationLayout = this.parentLayout;
                 if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                    lambda$onBackPressed$355();
+                    lambda$onBackPressed$341();
                 } else {
                     removeSelfFromStack();
                 }
@@ -726,7 +726,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     public void processDone() {
         AndroidUtilities.runOnUIThread(this.enableDoneLoading, 200L);
         if (trySetUsername() && trySetRestrict() && tryUpdateJoinSettings()) {
-            lambda$onBackPressed$355();
+            lambda$onBackPressed$341();
         }
     }
 

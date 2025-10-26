@@ -465,7 +465,7 @@ public abstract class BoostDialogs {
         calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
         calendar.set(11, numberPicker2.getValue());
         calendar.set(12, numberPicker3.getValue() * 5);
-        scheduleDatePickerDelegate.didSelectDate(true, (int) (calendar.getTimeInMillis() / 1000));
+        scheduleDatePickerDelegate.didSelectDate(true, (int) (calendar.getTimeInMillis() / 1000), 0);
         builder.getDismissRunnable().run();
     }
 

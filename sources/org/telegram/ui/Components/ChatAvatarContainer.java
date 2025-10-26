@@ -213,7 +213,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 ImageReceiver imageReceiver = anonymousClass1.imageReceiver;
                 transitionViewHolder.storyImage = imageReceiver;
                 transitionViewHolder.crossfadeToAvatarImage = imageReceiver;
-                transitionViewHolder.params = anonymousClass1.params;
+                StoriesUtilities.AvatarStoryParams avatarStoryParams = anonymousClass1.params;
+                transitionViewHolder.params = avatarStoryParams;
+                transitionViewHolder.isLive = avatarStoryParams.drawnLive;
                 BackupImageView backupImageView = ChatAvatarContainer.this.avatarImageView;
                 transitionViewHolder.view = backupImageView;
                 transitionViewHolder.alpha = backupImageView.getAlpha();

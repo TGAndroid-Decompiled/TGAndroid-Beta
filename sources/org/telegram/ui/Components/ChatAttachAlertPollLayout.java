@@ -706,8 +706,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i) {
-                    ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$1(tL_messageMediaToDo, l, z, i);
+                public final void didSelectDate(boolean z, int i, int i2) {
+                    ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$1(tL_messageMediaToDo, l, z, i, i2);
                 }
             });
         } else {
@@ -716,7 +716,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onMenuItemClick$1(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, Long l, boolean z, int i) {
+    public void lambda$onMenuItemClick$1(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, Long l, boolean z, int i, int i2) {
         this.delegate.sendPoll(tL_messageMediaToDo, null, z, i, l.longValue());
         this.parentAlert.dismiss(true);
     }
@@ -725,8 +725,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i) {
-                    ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$3(tL_messageMediaPoll, hashMap, l, z, i);
+                public final void didSelectDate(boolean z, int i, int i2) {
+                    ChatAttachAlertPollLayout.this.lambda$onMenuItemClick$3(tL_messageMediaPoll, hashMap, l, z, i, i2);
                 }
             });
         } else {
@@ -735,7 +735,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onMenuItemClick$3(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, Long l, boolean z, int i) {
+    public void lambda$onMenuItemClick$3(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, Long l, boolean z, int i, int i2) {
         this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i, l.longValue());
         this.parentAlert.dismiss(true);
     }
@@ -1507,8 +1507,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i);
+        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
         }
 
         @Override
@@ -1517,8 +1517,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i) {
-            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i);
+        public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i, i2);
         }
 
         @Override

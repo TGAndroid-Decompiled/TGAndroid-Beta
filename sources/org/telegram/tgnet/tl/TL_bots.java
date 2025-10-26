@@ -20,15 +20,7 @@ public class TL_bots {
         public TLRPC.MessageMedia media;
 
         public static botPreviewMedia TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (602479523 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in botPreviewMedia", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            botPreviewMedia botpreviewmedia = new botPreviewMedia();
-            botpreviewmedia.readParams(inputSerializedData, z);
-            return botpreviewmedia;
+            return (botPreviewMedia) TLObject.TLdeserialize(botPreviewMedia.class, 602479523 != i ? null : new botPreviewMedia(), inputSerializedData, i, z);
         }
 
         @Override
@@ -167,15 +159,7 @@ public class TL_bots {
         public ArrayList<String> lang_codes = new ArrayList<>();
 
         public static previewInfo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (212278628 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in previewInfo", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            previewInfo previewinfo = new previewInfo();
-            previewinfo.readParams(inputSerializedData, z);
-            return previewinfo;
+            return (previewInfo) TLObject.TLdeserialize(previewInfo.class, 212278628 != i ? null : new previewInfo(), inputSerializedData, i, z);
         }
 
         @Override
@@ -301,7 +285,7 @@ public class TL_bots {
         public int version;
 
         public static BotInfo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            BotInfo tL_botInfo_layer192;
+            TLObject tL_botInfo_layer192;
             switch (i) {
                 case -2109505932:
                     tL_botInfo_layer192 = new TL_botInfo_layer192();
@@ -334,13 +318,7 @@ public class TL_bots {
                     tL_botInfo_layer192 = null;
                     break;
             }
-            if (tL_botInfo_layer192 == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in BotInfo", Integer.valueOf(i)));
-            }
-            if (tL_botInfo_layer192 != null) {
-                tL_botInfo_layer192.readParams(inputSerializedData, z);
-            }
-            return tL_botInfo_layer192;
+            return (BotInfo) TLObject.TLdeserialize(BotInfo.class, tL_botInfo_layer192, inputSerializedData, i, z);
         }
     }
 
@@ -693,7 +671,7 @@ public class TL_bots {
 
     public static abstract class BotMenuButton extends TLObject {
         public static BotMenuButton TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            BotMenuButton tL_botMenuButton;
+            TLObject tL_botMenuButton;
             if (i == -944407322) {
                 tL_botMenuButton = new TL_botMenuButton();
             } else if (i != 1113113093) {
@@ -701,13 +679,7 @@ public class TL_bots {
             } else {
                 tL_botMenuButton = new TL_botMenuButtonCommands();
             }
-            if (tL_botMenuButton == null && z) {
-                throw new RuntimeException(String.format("can't parse magic %x in BotMenuButton", Integer.valueOf(i)));
-            }
-            if (tL_botMenuButton != null) {
-                tL_botMenuButton.readParams(inputSerializedData, z);
-            }
-            return tL_botMenuButton;
+            return (BotMenuButton) TLObject.TLdeserialize(BotMenuButton.class, tL_botMenuButton, inputSerializedData, i, z);
         }
     }
 
@@ -878,15 +850,7 @@ public class TL_bots {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         public static popularAppBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (428978491 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_bots_popularAppBots", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            popularAppBots popularappbots = new popularAppBots();
-            popularappbots.readParams(inputSerializedData, z);
-            return popularappbots;
+            return (popularAppBots) TLObject.TLdeserialize(popularAppBots.class, 428978491 != i ? null : new popularAppBots(), inputSerializedData, i, z);
         }
 
         @Override
@@ -921,15 +885,7 @@ public class TL_bots {
         public Path placeholder_svg_path;
 
         public static botAppSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-912582320 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in botAppSettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            botAppSettings botappsettings = new botAppSettings();
-            botappsettings.readParams(inputSerializedData, z);
-            return botappsettings;
+            return (botAppSettings) TLObject.TLdeserialize(botAppSettings.class, -912582320 != i ? null : new botAppSettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1062,15 +1018,7 @@ public class TL_bots {
         public long icon;
 
         public static botVerifierSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-1328716265 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_bots.botVerifierSettings", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            botVerifierSettings botverifiersettings = new botVerifierSettings();
-            botverifiersettings.readParams(inputSerializedData, z);
-            return botverifiersettings;
+            return (botVerifierSettings) TLObject.TLdeserialize(botVerifierSettings.class, -1328716265 != i ? null : new botVerifierSettings(), inputSerializedData, i, z);
         }
 
         @Override
@@ -1106,15 +1054,7 @@ public class TL_bots {
         public long icon;
 
         public static botVerification TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            if (-113453988 != i) {
-                if (z) {
-                    throw new RuntimeException(String.format("can't parse magic %x in TL_bots.botVerification", Integer.valueOf(i)));
-                }
-                return null;
-            }
-            botVerification botverification = new botVerification();
-            botverification.readParams(inputSerializedData, z);
-            return botverification;
+            return (botVerification) TLObject.TLdeserialize(botVerification.class, -113453988 != i ? null : new botVerification(), inputSerializedData, i, z);
         }
 
         @Override

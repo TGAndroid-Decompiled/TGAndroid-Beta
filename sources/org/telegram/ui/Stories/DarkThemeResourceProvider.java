@@ -100,7 +100,6 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_featuredStickers_addedIcon, -1);
         this.sparseIntArray.put(Theme.key_actionBarDefault, -1);
         this.sparseIntArray.put(Theme.key_chat_gifSaveHintText, -1);
-        this.sparseIntArray.put(Theme.key_chat_messagePanelSend, -1);
         this.sparseIntArray.put(Theme.key_chat_emojiSearchBackground, ColorUtils.setAlphaComponent(-1, 30));
         this.sparseIntArray.put(Theme.key_chat_emojiPanelBackground, -1073741824);
         this.sparseIntArray.put(Theme.key_actionBarActionModeDefaultIcon, -1);
@@ -116,11 +115,11 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_chat_recordTime, 2030043135);
         this.sparseIntArray.put(Theme.key_chat_recordVoiceCancel, -10638868);
         this.sparseIntArray.put(Theme.key_chat_messagePanelCursor, -1);
-        this.sparseIntArray.put(Theme.key_chat_messagePanelHint, 1694498815);
+        this.sparseIntArray.put(Theme.key_chat_messagePanelHint, Theme.multAlpha(-1, 0.6f));
         this.sparseIntArray.put(Theme.key_chat_inTextSelectionHighlight, -1515107571);
         this.sparseIntArray.put(Theme.key_chat_messageLinkOut, -5316609);
         this.sparseIntArray.put(Theme.key_chat_messagePanelText, -1);
-        this.sparseIntArray.put(Theme.key_chat_messagePanelIcons, -1);
+        this.sparseIntArray.put(Theme.key_chat_messagePanelIcons, Theme.multAlpha(-1, 0.75f));
         this.sparseIntArray.put(Theme.key_chat_messagePanelBackground, ColorUtils.setAlphaComponent(-16777216, 122));
         this.sparseIntArray.put(Theme.key_dialogBackground, -14737633);
         this.sparseIntArray.put(Theme.key_dialogBackgroundGray, -16777216);

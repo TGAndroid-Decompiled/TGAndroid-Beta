@@ -243,13 +243,13 @@ public class ContentPreviewViewer {
             public static void $default$sendEmoji(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document) {
             }
 
-            public static void $default$sendGif(ContentPreviewViewerDelegate contentPreviewViewerDelegate, Object obj, Object obj2, boolean z, int i) {
+            public static void $default$sendGif(ContentPreviewViewerDelegate contentPreviewViewerDelegate, Object obj, Object obj2, boolean z, int i, int i2) {
             }
 
             public static void $default$sendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
             }
 
-            public static void $default$sendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, String str, Object obj, boolean z, int i) {
+            public static void $default$sendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
             }
 
             public static void $default$setAsEmojiStatus(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, Integer num) {
@@ -320,11 +320,11 @@ public class ContentPreviewViewer {
 
         void sendEmoji(TLRPC.Document document);
 
-        void sendGif(Object obj, Object obj2, boolean z, int i);
+        void sendGif(Object obj, Object obj2, boolean z, int i, int i2);
 
         void sendSticker();
 
-        void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i);
+        void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2);
 
         void setAsEmojiStatus(TLRPC.Document document, Integer num);
 
@@ -459,7 +459,7 @@ public class ContentPreviewViewer {
                 int intValue = ((Integer) view.getTag()).intValue();
                 if (((Integer) this.val$actions.get(intValue)).intValue() == 0 || ((Integer) this.val$actions.get(intValue)).intValue() == 6) {
                     if (ContentPreviewViewer.this.delegate != null) {
-                        ContentPreviewViewer.this.delegate.sendSticker(ContentPreviewViewer.this.currentDocument, ContentPreviewViewer.this.currentQuery, ContentPreviewViewer.this.parentObject, ((Integer) this.val$actions.get(intValue)).intValue() == 0, 0);
+                        ContentPreviewViewer.this.delegate.sendSticker(ContentPreviewViewer.this.currentDocument, ContentPreviewViewer.this.currentQuery, ContentPreviewViewer.this.parentObject, ((Integer) this.val$actions.get(intValue)).intValue() == 0, 0, 0);
                     }
                 } else if (((Integer) this.val$actions.get(intValue)).intValue() == 1) {
                     if (ContentPreviewViewer.this.delegate != null) {
@@ -477,8 +477,8 @@ public class ContentPreviewViewer {
                     } else {
                         AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                             @Override
-                            public final void didSelectDate(boolean z, int i) {
-                                ContentPreviewViewer.ContentPreviewViewerDelegate.this.sendSticker(document, str, obj, z, i);
+                            public final void didSelectDate(boolean z, int i, int i2) {
+                                ContentPreviewViewer.ContentPreviewViewerDelegate.this.sendSticker(document, str, obj, z, i, i2);
                             }
                         });
                     }
@@ -573,9 +573,9 @@ public class ContentPreviewViewer {
             }
             int intValue = ((Integer) view.getTag()).intValue();
             if (((Integer) arrayList.get(intValue)).intValue() == 0) {
-                ContentPreviewViewer.this.delegate.sendGif(ContentPreviewViewer.this.currentDocument != null ? ContentPreviewViewer.this.currentDocument : ContentPreviewViewer.this.inlineResult, ContentPreviewViewer.this.parentObject, true, 0);
+                ContentPreviewViewer.this.delegate.sendGif(ContentPreviewViewer.this.currentDocument != null ? ContentPreviewViewer.this.currentDocument : ContentPreviewViewer.this.inlineResult, ContentPreviewViewer.this.parentObject, true, 0, 0);
             } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
-                ContentPreviewViewer.this.delegate.sendGif(ContentPreviewViewer.this.currentDocument != null ? ContentPreviewViewer.this.currentDocument : ContentPreviewViewer.this.inlineResult, ContentPreviewViewer.this.parentObject, false, 0);
+                ContentPreviewViewer.this.delegate.sendGif(ContentPreviewViewer.this.currentDocument != null ? ContentPreviewViewer.this.currentDocument : ContentPreviewViewer.this.inlineResult, ContentPreviewViewer.this.parentObject, false, 0, 0);
             } else if (((Integer) arrayList.get(intValue)).intValue() == 1) {
                 MediaDataController.getInstance(ContentPreviewViewer.this.currentAccount).removeRecentGif(ContentPreviewViewer.this.currentDocument);
                 ContentPreviewViewer.this.delegate.gifAddedOrDeleted();
@@ -590,19 +590,16 @@ public class ContentPreviewViewer {
                 final ContentPreviewViewerDelegate contentPreviewViewerDelegate = ContentPreviewViewer.this.delegate;
                 AlertsCreator.createScheduleDatePickerDialog(ContentPreviewViewer.this.parentActivity, contentPreviewViewerDelegate.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
-                    public final void didSelectDate(boolean z, int i) {
-                        ContentPreviewViewer.AnonymousClass1.lambda$run$7(ContentPreviewViewer.ContentPreviewViewerDelegate.this, document, botInlineResult, obj, z, i);
+                    public final void didSelectDate(boolean z, int i, int i2) {
+                        ContentPreviewViewer.AnonymousClass1.lambda$run$7(ContentPreviewViewer.ContentPreviewViewerDelegate.this, document, botInlineResult, obj, z, i, i2);
                     }
                 }, ContentPreviewViewer.this.resourcesProvider);
             }
             ContentPreviewViewer.this.dismissPopupWindow();
         }
 
-        public static void lambda$run$7(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, TLRPC.BotInlineResult botInlineResult, Object obj, boolean z, int i) {
-            if (document == null) {
-                document = botInlineResult;
-            }
-            contentPreviewViewerDelegate.sendGif(document, obj, z, i);
+        public static void lambda$run$7(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, TLRPC.BotInlineResult botInlineResult, Object obj, boolean z, int i, int i2) {
+            contentPreviewViewerDelegate.sendGif(document != null ? document : botInlineResult, obj, z, i, i2);
         }
 
         class AnonymousClass4 extends ActionBarPopupWindow {
