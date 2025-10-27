@@ -271,7 +271,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur2"), 256));
             }
-            if (i >= 33 && (SharedConfig.getDevicePerformanceClass() >= 2 || BuildVars.DEBUG_PRIVATE_VERSION)) {
+            if (i >= 33 && (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION)) {
                 this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsLiquidGlass"), 262144));
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), 32768));
@@ -631,7 +631,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.countTextView.setText(String.format("%d/%d", Integer.valueOf(this.enabled), Integer.valueOf(this.all)), z && !LocaleController.isRTL);
         }
 
-        private int preprocessFlagsCount(int r4) {
+        private int preprocessFlagsCount(int r5) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LiteModeSettingsActivity.SwitchCell.preprocessFlagsCount(int):int");
         }
 

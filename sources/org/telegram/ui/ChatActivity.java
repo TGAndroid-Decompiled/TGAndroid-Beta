@@ -3174,7 +3174,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (LiteMode.isEnabled(262144)) {
                 BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode3 = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceBitmap);
                 this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = blurredBackgroundSourceRenderNode3;
-                blurredBackgroundSourceRenderNode3.setBlur(AndroidUtilities.dp(12.0f));
+                blurredBackgroundSourceRenderNode3.setBlur(24.0f);
                 this.blurredBackgroundSourceWithSaturationAndFrosted = blurredBackgroundSourceRenderNode3;
                 return;
             }

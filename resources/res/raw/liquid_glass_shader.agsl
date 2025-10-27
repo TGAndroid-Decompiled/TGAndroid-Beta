@@ -41,10 +41,9 @@ half4 main(in float2 fragCoord) {
 
   float3 normal = getNormal(sd, sdX, sdY, thickness);
 
-  float index = 1.5;
-  float3 refract_vec = refract(incident, normal, 1.0 / index);
+  float3 refract_vec = refract(incident, normal, 0.666);
   float h = height(sd, thickness);
-  float refract_length = (h + base_height) / dot(float3(0.0, 0.0, -1.0), refract_vec);
+  float refract_length = (h + base_height) / dot(float3(0.0, 0.0, -1.0), refract_vec) * 0.75;
 
   return img.eval(fragCoord + refract_vec.xy * refract_length);
 }
