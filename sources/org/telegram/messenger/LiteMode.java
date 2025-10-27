@@ -20,7 +20,7 @@ public class LiteMode {
     private static int BATTERY_MEDIUM = 10;
     public static final int FLAGS_ANIMATED_EMOJI = 28700;
     public static final int FLAGS_ANIMATED_STICKERS = 3;
-    public static final int FLAGS_CHAT = 98784;
+    public static final int FLAGS_CHAT = 360928;
     public static final int FLAG_ANIMATED_EMOJI_CHAT = 4112;
     public static final int FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM = 4096;
     public static final int FLAG_ANIMATED_EMOJI_CHAT_PREMIUM = 16;
@@ -41,8 +41,9 @@ public class LiteMode {
     public static final int FLAG_CHAT_SCALE = 32768;
     public static final int FLAG_CHAT_SPOILER = 128;
     public static final int FLAG_CHAT_THANOS = 65536;
+    public static final int FLAG_LIQUID_GLASS = 262144;
     public static final int FLAG_PARTICLES = 131072;
-    public static int PRESET_HIGH = 262143;
+    public static int PRESET_HIGH = 524287;
     public static int PRESET_LOW = 198684;
     public static int PRESET_MEDIUM = 204383;
     public static int PRESET_POWER_SAVER = 0;
@@ -171,10 +172,17 @@ public class LiteMode {
             i2 = BATTERY_MEDIUM;
         }
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        if (!globalMainSettings.contains("lite_mode4")) {
-            if (globalMainSettings.contains("lite_mode3")) {
-                i = globalMainSettings.getInt("lite_mode3", i) | 131072;
-                globalMainSettings.edit().putInt("lite_mode4", i).apply();
+        if (!globalMainSettings.contains("lite_mode5")) {
+            if (globalMainSettings.contains("lite_mode4")) {
+                i = globalMainSettings.getInt("lite_mode4", i);
+                if (BuildVars.DEBUG_VERSION && SharedConfig.getDevicePerformanceClass() == 2) {
+                    i |= 262144;
+                }
+                globalMainSettings.edit().putInt("lite_mode5", i).apply();
+            } else if (globalMainSettings.contains("lite_mode3")) {
+                int i3 = globalMainSettings.getInt("lite_mode3", i);
+                i = SharedConfig.getDevicePerformanceClass() == 2 ? i3 | 393216 : 131072 | i3;
+                globalMainSettings.edit().putInt("lite_mode5", i).apply();
             } else if (globalMainSettings.contains("lite_mode2")) {
                 i = globalMainSettings.getInt("lite_mode2", i) | 65536;
                 globalMainSettings.edit().putInt("lite_mode3", i).apply();
@@ -205,11 +213,11 @@ public class LiteMode {
                 }
             }
         }
-        int i3 = value;
-        int i4 = globalMainSettings.getInt("lite_mode4", i);
-        value = i4;
+        int i4 = value;
+        int i5 = globalMainSettings.getInt("lite_mode5", i);
+        value = i5;
         if (loaded) {
-            onFlagsUpdate(i3, i4);
+            onFlagsUpdate(i4, i5);
         }
         powerSaverLevel = globalMainSettings.getInt("lite_mode_battery_level", i2);
         loaded = true;

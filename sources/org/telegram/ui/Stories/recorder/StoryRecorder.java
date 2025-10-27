@@ -4622,7 +4622,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.fromRounding = sourceView2.rounding;
                 sourceView2.hide();
                 if (SharedConfig.getDevicePerformanceClass() > 1) {
-                    LiteMode.isEnabled(98784);
+                    LiteMode.isEnabled(360928);
                 }
             }
             this.closingSourceProvider = null;

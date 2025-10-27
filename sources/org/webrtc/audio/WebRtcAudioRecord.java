@@ -503,6 +503,7 @@ public class WebRtcAudioRecord {
     }
 
     private static boolean logActiveRecordingConfigs(int i, List<AudioRecordingConfiguration> list) {
+        int clientAudioSource;
         int clientAudioSessionId;
         AudioFormat format;
         int channelCount;
@@ -510,6 +511,7 @@ public class WebRtcAudioRecord {
         AudioFormat clientFormat;
         int channelCount2;
         int channelIndexMask2;
+        AudioDeviceInfo audioDevice;
         boolean isSource;
         int type;
         int id;
@@ -519,9 +521,9 @@ public class WebRtcAudioRecord {
         while (it.hasNext()) {
             AudioRecordingConfiguration m = WebRtcAudioRecord$$ExternalSyntheticApiModelOutline5.m(it.next());
             StringBuilder sb = new StringBuilder();
-            int m2 = WebRtcAudioRecord$$ExternalSyntheticApiModelOutline9.m(m);
+            clientAudioSource = m.getClientAudioSource();
             sb.append("  client audio source=");
-            sb.append(WebRtcAudioUtils.audioSourceToString(m2));
+            sb.append(WebRtcAudioUtils.audioSourceToString(clientAudioSource));
             sb.append(", client session id=");
             clientAudioSessionId = m.getClientAudioSessionId();
             sb.append(clientAudioSessionId);
@@ -559,16 +561,16 @@ public class WebRtcAudioRecord {
             sb.append(", sample rate=");
             sb.append(clientFormat.getSampleRate());
             sb.append("\n");
-            AudioDeviceInfo m3 = WebRtcAudioRecord$$ExternalSyntheticApiModelOutline8.m(m);
-            if (m3 != null) {
-                isSource = m3.isSource();
+            audioDevice = m.getAudioDevice();
+            if (audioDevice != null) {
+                isSource = audioDevice.isSource();
                 assertTrue(isSource);
                 sb.append("  AudioDevice: ");
                 sb.append("type=");
-                type = m3.getType();
+                type = audioDevice.getType();
                 sb.append(WebRtcAudioUtils.deviceTypeToString(type));
                 sb.append(", id=");
-                id = m3.getId();
+                id = audioDevice.getId();
                 sb.append(id);
             }
             Logging.d("WebRtcAudioRecordExternal", sb.toString());
@@ -577,6 +579,8 @@ public class WebRtcAudioRecord {
     }
 
     private static boolean verifyAudioConfig(int i, int i2, AudioFormat audioFormat, AudioDeviceInfo audioDeviceInfo, List<AudioRecordingConfiguration> list) {
+        AudioDeviceInfo audioDevice;
+        int clientAudioSource;
         int clientAudioSessionId;
         AudioFormat clientFormat;
         AudioFormat clientFormat2;
@@ -593,35 +597,40 @@ public class WebRtcAudioRecord {
         Iterator<AudioRecordingConfiguration> it = list.iterator();
         while (it.hasNext()) {
             AudioRecordingConfiguration m = WebRtcAudioRecord$$ExternalSyntheticApiModelOutline5.m(it.next());
-            AudioDeviceInfo m2 = WebRtcAudioRecord$$ExternalSyntheticApiModelOutline8.m(m);
-            if (m2 != null && WebRtcAudioRecord$$ExternalSyntheticApiModelOutline9.m(m) == i) {
-                clientAudioSessionId = m.getClientAudioSessionId();
-                if (clientAudioSessionId == i2) {
-                    clientFormat = m.getClientFormat();
-                    if (clientFormat.getEncoding() == audioFormat.getEncoding()) {
-                        clientFormat2 = m.getClientFormat();
-                        if (clientFormat2.getSampleRate() == audioFormat.getSampleRate()) {
-                            clientFormat3 = m.getClientFormat();
-                            if (clientFormat3.getChannelMask() == audioFormat.getChannelMask()) {
-                                clientFormat4 = m.getClientFormat();
-                                channelIndexMask = clientFormat4.getChannelIndexMask();
-                                channelIndexMask2 = audioFormat.getChannelIndexMask();
-                                if (channelIndexMask == channelIndexMask2) {
-                                    format = m.getFormat();
-                                    if (format.getEncoding() != 0) {
-                                        format2 = m.getFormat();
-                                        if (format2.getSampleRate() > 0) {
-                                            format3 = m.getFormat();
-                                            if (format3.getChannelMask() == 0) {
-                                                format4 = m.getFormat();
-                                                channelIndexMask3 = format4.getChannelIndexMask();
-                                                if (channelIndexMask3 == 0) {
-                                                    continue;
+            audioDevice = m.getAudioDevice();
+            if (audioDevice != null) {
+                clientAudioSource = m.getClientAudioSource();
+                if (clientAudioSource == i) {
+                    clientAudioSessionId = m.getClientAudioSessionId();
+                    if (clientAudioSessionId == i2) {
+                        clientFormat = m.getClientFormat();
+                        if (clientFormat.getEncoding() == audioFormat.getEncoding()) {
+                            clientFormat2 = m.getClientFormat();
+                            if (clientFormat2.getSampleRate() == audioFormat.getSampleRate()) {
+                                clientFormat3 = m.getClientFormat();
+                                if (clientFormat3.getChannelMask() == audioFormat.getChannelMask()) {
+                                    clientFormat4 = m.getClientFormat();
+                                    channelIndexMask = clientFormat4.getChannelIndexMask();
+                                    channelIndexMask2 = audioFormat.getChannelIndexMask();
+                                    if (channelIndexMask == channelIndexMask2) {
+                                        format = m.getFormat();
+                                        if (format.getEncoding() != 0) {
+                                            format2 = m.getFormat();
+                                            if (format2.getSampleRate() > 0) {
+                                                format3 = m.getFormat();
+                                                if (format3.getChannelMask() == 0) {
+                                                    format4 = m.getFormat();
+                                                    channelIndexMask3 = format4.getChannelIndexMask();
+                                                    if (channelIndexMask3 == 0) {
+                                                        continue;
+                                                    }
                                                 }
-                                            }
-                                            if (checkDeviceMatch(m2, audioDeviceInfo)) {
-                                                Logging.d("WebRtcAudioRecordExternal", "verifyAudioConfig: PASS");
-                                                return true;
+                                                if (checkDeviceMatch(audioDevice, audioDeviceInfo)) {
+                                                    Logging.d("WebRtcAudioRecordExternal", "verifyAudioConfig: PASS");
+                                                    return true;
+                                                }
+                                            } else {
+                                                continue;
                                             }
                                         } else {
                                             continue;

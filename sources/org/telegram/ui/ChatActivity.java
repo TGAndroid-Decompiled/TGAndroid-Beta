@@ -454,12 +454,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private BlurredBackgroundColorProviderThemed blurredBackgroundColorProvider;
     private BlurredBackgroundColorProviderThemed blurredBackgroundColorProviderWhite;
     private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactory;
+    private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactoryFrosted;
     private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactoryOut;
     private final BlurredBackgroundSource blurredBackgroundSource;
     private final BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap;
     private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode;
     private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNodeWithSaturation;
+    private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNodeWithSaturationAndFrosted;
     private final BlurredBackgroundSource blurredBackgroundSourceWithSaturation;
+    private final BlurredBackgroundSource blurredBackgroundSourceWithSaturationAndFrosted;
     private BluredView blurredView;
     public int blurredViewBottomOffset;
     public int blurredViewTopOffset;
@@ -1226,11 +1229,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i2;
     }
 
-    public static void access$53100(ChatActivity chatActivity) {
+    public static void access$53300(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$57610(ChatActivity chatActivity) {
+    static int access$57810(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -3152,7 +3155,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         });
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.chatBlurEnabled()) {
-            float dp = AndroidUtilities.dp(24.0f);
+            float dp = LiteMode.isEnabled(262144) ? AndroidUtilities.dp(2.0f) : AndroidUtilities.dp(24.0f);
             double d = dp / 2.595f;
             int ceil = (int) Math.ceil(d);
             int ceil2 = (int) Math.ceil(d);
@@ -3168,6 +3171,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode2 = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceBitmap);
             this.blurredBackgroundSourceRenderNodeWithSaturation = blurredBackgroundSourceRenderNode2;
             this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceRenderNode2;
+            if (LiteMode.isEnabled(262144)) {
+                BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode3 = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceBitmap);
+                this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = blurredBackgroundSourceRenderNode3;
+                blurredBackgroundSourceRenderNode3.setBlur(AndroidUtilities.dp(12.0f));
+                this.blurredBackgroundSourceWithSaturationAndFrosted = blurredBackgroundSourceRenderNode3;
+                return;
+            }
+            this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = null;
+            this.blurredBackgroundSourceWithSaturationAndFrosted = null;
             return;
         }
         this.recommendedAdditionalSizeY = 0;
@@ -3176,6 +3188,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.blurredBackgroundSourceRenderNodeWithSaturation = null;
         this.blurredBackgroundSource = blurredBackgroundSourceBitmap;
         this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceBitmap;
+        this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = null;
+        this.blurredBackgroundSourceWithSaturationAndFrosted = null;
     }
 
     @Override
@@ -11804,7 +11818,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private boolean getLiteModeChat() {
         if (this.liteModeChat == null) {
-            this.liteModeChat = Boolean.valueOf(LiteMode.isEnabled(98784));
+            this.liteModeChat = Boolean.valueOf(LiteMode.isEnabled(360928));
         }
         return this.liteModeChat.booleanValue();
     }
@@ -16573,10 +16587,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public void drawBlurRect(Canvas canvas, float f, Rect rect, Paint paint, boolean z) {
             int alpha = Color.alpha(Theme.getColor(SharedConfig.getDevicePerformanceClass() == 2 ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow, getResourceProvider()));
-            if (ChatActivity.this.blurredBackgroundSourceWithSaturation != null && alpha < 255) {
+            BlurredBackgroundSource blurredBackgroundSource = ChatActivity.this.blurredBackgroundSourceWithSaturationAndFrosted != null ? ChatActivity.this.blurredBackgroundSourceWithSaturationAndFrosted : ChatActivity.this.blurredBackgroundSourceWithSaturation;
+            if (blurredBackgroundSource != null && alpha < 255) {
                 canvas.save();
                 canvas.translate(0.0f, -f);
-                ChatActivity.this.blurredBackgroundSourceWithSaturation.draw(canvas, rect.left, rect.top + f, rect.right, rect.bottom + f);
+                blurredBackgroundSource.draw(canvas, rect.left, rect.top + f, rect.right, rect.bottom + f);
                 canvas.restore();
             }
             int alpha2 = paint.getAlpha();
@@ -27538,15 +27553,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return chatActivityAdapter.loadingUpRow;
         }
 
-        static int access$49100(ChatActivityAdapter chatActivityAdapter) {
+        static int access$49300(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingDownRow;
         }
 
-        static void access$49200(ChatActivityAdapter chatActivityAdapter) {
+        static void access$49400(ChatActivityAdapter chatActivityAdapter) {
             chatActivityAdapter.updateRowsInternal();
         }
 
-        static int access$49300(ChatActivityAdapter chatActivityAdapter) {
+        static int access$49500(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.userInfoRow;
         }
 
@@ -28751,7 +28766,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             if (!((BaseFragment) ChatActivity.this).inPreviewMode && ChatActivity.this.chatMode == 0 && !messageObject2.isVoice() && !messageObject2.isRoundVideo()) {
-                ChatActivity.access$57610(ChatActivity.this);
+                ChatActivity.access$57810(ChatActivity.this);
                 if (ChatActivity.this.newMentionsCount <= 0) {
                     ChatActivity.this.newMentionsCount = 0;
                     ChatActivity.this.hasAllMentionsLocal = true;
@@ -31066,7 +31081,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31103,7 +31118,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31331,7 +31346,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31371,7 +31386,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31573,7 +31588,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31603,7 +31618,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31633,7 +31648,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31704,7 +31719,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31734,7 +31749,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53100(ChatActivity.this);
+                        ChatActivity.access$53300(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -33572,11 +33587,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return isCurrentThemeDark;
         }
 
-        static TLRPC.WallPaper access$48400(ThemeDelegate themeDelegate) {
+        static TLRPC.WallPaper access$48600(ThemeDelegate themeDelegate) {
             return themeDelegate.wallpaper;
         }
 
-        static EmojiThemes access$49400(ThemeDelegate themeDelegate) {
+        static EmojiThemes access$49600(ThemeDelegate themeDelegate) {
             return themeDelegate.chatTheme;
         }
 

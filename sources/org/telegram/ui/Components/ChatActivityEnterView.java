@@ -1769,8 +1769,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
         public RecordCircle(Context context) {
             super(context);
-            this.tinyWaveDrawable = new BlobDrawable(11, 98784);
-            this.bigWaveDrawable = new BlobDrawable(12, 98784);
+            this.tinyWaveDrawable = new BlobDrawable(11, 360928);
+            this.bigWaveDrawable = new BlobDrawable(12, 360928);
             this.circleRadius = AndroidUtilities.dpf2(41.0f);
             this.circleRadiusAmplitude = AndroidUtilities.dp(30.0f);
             this.rectF = new RectF();
@@ -14195,8 +14195,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             int i;
             float f;
             float f2;
-            int i2;
             float f3;
+            int i2;
             float f4;
             float f5;
             int save = canvas.save();
@@ -14234,7 +14234,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (f7 < 1.0f) {
                 canvas.save();
                 float f10 = 1.0f - f9;
-                canvas.translate((-AndroidUtilities.dp(16.0f)) * f10, AndroidUtilities.dp(16.0f) * f10);
+                canvas.translate((-AndroidUtilities.dp(24.0f)) * f10, AndroidUtilities.dp(24.0f) * f10);
                 float lerp = AndroidUtilities.lerp(0.35f, 1.0f, f9);
                 float f11 = i3;
                 float f12 = i4;
@@ -14272,48 +14272,47 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     rectF3.set(f13 - dp, lerp3 - dp, f13 + dp, dp + lerp3);
                     if (this.infiniteLoading) {
                         long currentTimeMillis = System.currentTimeMillis() % 5400;
-                        float f15 = f13;
-                        float f16 = ((float) (currentTimeMillis * 1520)) / 5400.0f;
-                        float max = Math.max(0.0f, f16 - 20.0f);
+                        float f15 = ((float) (1520 * currentTimeMillis)) / 5400.0f;
+                        float max = Math.max(0.0f, f15 - 20.0f);
                         int i6 = 0;
                         while (i6 < 4) {
-                            float f17 = f15;
-                            f16 += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (i6 * 1350))) / 667.0f) * 250.0f;
-                            max += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (r6 + 667))) / 667.0f) * 250.0f;
+                            int i7 = save;
+                            f15 += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (i6 * 1350))) / 667.0f) * 250.0f;
+                            max += this.loadingInterpolator.getInterpolation(((float) (currentTimeMillis - (r9 + 667))) / 667.0f) * 250.0f;
                             i6++;
-                            f15 = f17;
-                            save = save;
+                            save = i7;
                             lerp2 = lerp2;
+                            i5 = i5;
                         }
                         i = save;
                         f = lerp2;
-                        f3 = f15;
-                        f2 = f8;
-                        canvas.drawArc(AndroidUtilities.rectTmp, max, f16 - max, false, this.loadingPaint);
                         i2 = i5;
-                        f4 = lerp3;
+                        f2 = 0.0f;
+                        f4 = f13;
+                        f3 = f8;
+                        canvas.drawArc(AndroidUtilities.rectTmp, max, f15 - max, false, this.loadingPaint);
                     } else {
                         i = save;
                         f = lerp2;
-                        f2 = f8;
-                        f3 = f13;
                         i2 = i5;
-                        f4 = lerp3;
+                        f3 = f8;
+                        f2 = 0.0f;
+                        f4 = f13;
                         canvas.drawArc(rectF3, (-90.0f) + (((((float) (System.currentTimeMillis() % 3000)) / 1000.0f) * 120.0f) % 360.0f), this.loadingAnimatedProgress.set(this.loadingProgress) * 360.0f, false, this.loadingPaint);
                     }
                     canvas.save();
                     float lerp6 = AndroidUtilities.lerp(1.0f, 0.6f, f6);
-                    canvas.scale(lerp6, lerp6, f3, f4);
+                    canvas.scale(lerp6, lerp6, f4, lerp3);
                     invalidate();
                 } else {
                     i = save;
                     f = lerp2;
                     i2 = i5;
-                    f3 = f13;
-                    f4 = lerp3;
-                    f2 = f8;
+                    f2 = 0.0f;
+                    f4 = f13;
+                    f3 = f8;
                 }
-                if (f2 > 0.0f) {
+                if (f3 > f2) {
                     if (this.isNewDesignSendButton) {
                         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.priceText;
                         float dp2 = this.backgroundRect.left + AndroidUtilities.dp(10.0f);
@@ -14323,14 +14322,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         this.priceText.setBounds((getMeasuredWidth() - this.priceText.getAnimateToWidth()) - AndroidUtilities.dp(20.0f), getMeasuredHeight() - AndroidUtilities.dp(48.0f), getMeasuredWidth() - AndroidUtilities.dp(20.0f), getMeasuredHeight());
                     }
                     f5 = 1.0f;
-                    this.priceText.setAlpha((int) (f2 * 255.0f * (1.0f - f6)));
+                    this.priceText.setAlpha((int) (f3 * 255.0f * (1.0f - f6)));
                     this.priceText.draw(canvas);
                 } else {
                     f5 = 1.0f;
                 }
-                this.drawableInverse.setAlpha((int) ((f5 - f6) * 255.0f * (f5 - f2)));
+                this.drawableInverse.setAlpha((int) ((f5 - f6) * 255.0f * (f5 - f3)));
                 if (this.circleSize > 0) {
-                    this.drawableInverse.setBounds((int) (f3 - (r1.getIntrinsicWidth() / 2.0f)), (int) (f4 - (this.drawableInverse.getIntrinsicHeight() / 2.0f)), (int) ((this.drawableInverse.getIntrinsicWidth() / 2.0f) + f3), (int) (f4 + (this.drawableInverse.getIntrinsicHeight() / 2.0f)));
+                    this.drawableInverse.setBounds((int) (f4 - (r1.getIntrinsicWidth() / 2.0f)), (int) (lerp3 - (this.drawableInverse.getIntrinsicHeight() / 2.0f)), (int) ((this.drawableInverse.getIntrinsicWidth() / 2.0f) + f4), (int) (lerp3 + (this.drawableInverse.getIntrinsicHeight() / 2.0f)));
                 } else {
                     this.drawableInverse.setBounds(i3, i4, drawable.getIntrinsicWidth() + i3, drawable.getIntrinsicHeight() + i4);
                 }
@@ -14342,14 +14341,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             } else {
                 i = save;
                 f = lerp2;
-                f2 = f8;
+                f2 = 0.0f;
+                f3 = f8;
             }
-            float isNotEmpty = this.count.isNotEmpty() * (1.0f - f2);
+            float isNotEmpty = this.count.isNotEmpty() * (1.0f - f3);
             float max2 = Math.max(AndroidUtilities.dp(12.0f) + this.count.getCurrentWidth(), AndroidUtilities.dp(24.0f)) / 2.0f;
             float measuredWidth2 = (getMeasuredWidth() - this.circlePadX) - max2;
             float measuredHeight2 = (getMeasuredHeight() - this.circlePadY) - max2;
             this.count.setBounds((int) (measuredWidth2 - max2), (int) (measuredHeight2 - max2), (int) (measuredWidth2 + max2), (int) (measuredHeight2 + max2));
-            if (isNotEmpty > 0.0f) {
+            if (isNotEmpty > f2) {
                 if (!this.isNewDesignSendButton) {
                     canvas.drawCircle(measuredWidth2, measuredHeight2, (AndroidUtilities.dp(2.0f) + max2) * isNotEmpty * this.countBounceScale, this.countClearPaint);
                     canvas.drawCircle(measuredWidth2, measuredHeight2, max2 * isNotEmpty * this.countBounceScale, this.backgroundPaint);
@@ -14359,8 +14359,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
             if (isNotEmpty < 1.0f) {
                 int dp3 = AndroidUtilities.dp(8.0f);
-                int lerp7 = (int) AndroidUtilities.lerp(((getMeasuredWidth() - (getCircleSize() / 2.0f)) - this.circlePadX) + AndroidUtilities.dp(12.0f), f - AndroidUtilities.dp(2.0f), f2);
-                int lerp8 = (int) AndroidUtilities.lerp(((getMeasuredHeight() - (getCircleSize() / 2.0f)) - this.circlePadY) + AndroidUtilities.dp(10.0f), getMeasuredHeight() - AndroidUtilities.dp(12.0f), f2);
+                int lerp7 = (int) AndroidUtilities.lerp(((getMeasuredWidth() - (getCircleSize() / 2.0f)) - this.circlePadX) + AndroidUtilities.dp(12.0f), f - AndroidUtilities.dp(2.0f), f3);
+                int lerp8 = (int) AndroidUtilities.lerp(((getMeasuredHeight() - (getCircleSize() / 2.0f)) - this.circlePadY) + AndroidUtilities.dp(10.0f), getMeasuredHeight() - AndroidUtilities.dp(12.0f), f3);
                 this.emojiDrawable.setBounds(lerp7 - dp3, lerp8 - dp3, lerp7 + dp3, lerp8 + dp3);
                 this.emojiDrawable.setAlpha((int) ((1.0f - isNotEmpty) * 255.0f));
                 this.emojiDrawable.draw(canvas);

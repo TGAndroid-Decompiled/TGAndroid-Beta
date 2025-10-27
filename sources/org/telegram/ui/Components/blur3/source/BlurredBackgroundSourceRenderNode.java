@@ -2,7 +2,9 @@ package org.telegram.ui.Components.blur3.source;
 
 import android.graphics.Canvas;
 import android.graphics.RecordingCanvas;
+import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
+import android.graphics.Shader;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
@@ -17,6 +19,10 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundSourceRenderNode");
         this.renderNode = m;
         m.setClipToBounds(true);
+    }
+
+    public void setBlur(float f) {
+        this.renderNode.setRenderEffect(f > 0.0f ? RenderEffect.createBlurEffect(f, f, Shader.TileMode.CLAMP) : null);
     }
 
     public Canvas beginRecording(int i, int i2) {

@@ -16,7 +16,6 @@ import org.telegram.ui.Components.inset.InAppKeyboardInsetView;
 import org.telegram.ui.Components.inset.WindowInsetsProvider;
 
 public class ChatInputViewsContainer extends FrameLayout {
-    private BlurredBackgroundWithFadeDrawable backgroundWithFadeDrawable;
     private BlurredBackgroundDrawable blurredBackgroundDrawable;
     private float blurredBottomHeight;
     private int currentBlurredHeight;
@@ -34,6 +33,12 @@ public class ChatInputViewsContainer extends FrameLayout {
     private BlurredBackgroundDrawable underKeyboardBackgroundDrawable;
     private final Path underKeyboardPath;
     private WindowInsetsProvider windowInsetsProvider;
+
+    private void checkDrawableBounds() {
+    }
+
+    public void setBackgroundWithFadeDrawable(BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable) {
+    }
 
     public ChatInputViewsContainer(Context context) {
         super(context);
@@ -184,12 +189,6 @@ public class ChatInputViewsContainer extends FrameLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         this.underKeyboardBackgroundDrawable.setBounds(0, getMeasuredHeight() - ((int) this.imeBottomInset), getMeasuredWidth(), Math.max(getMeasuredHeight(), (getMeasuredHeight() - ((int) this.imeBottomInset)) + AndroidUtilities.dp(58.0f)));
-        if (this.backgroundWithFadeDrawable != null) {
-            canvas.save();
-            canvas.clipRect(0, 0, getMeasuredWidth(), this.needDrawInAppKeyboard ? this.underKeyboardBackgroundDrawable.getBounds().top + AndroidUtilities.dp(29.0f) : getMeasuredHeight());
-            this.backgroundWithFadeDrawable.draw(canvas);
-            canvas.restore();
-        }
         int measuredHeight = getMeasuredHeight() - this.currentBlurredHeight;
         this.tmpRect.set(Math.round(this.inputBubbleOffsetLeft), 0, getMeasuredWidth() - Math.round(this.inputBubbleOffsetRight), this.inputBubbleHeightRound);
         this.tmpRect.inset(0, -AndroidUtilities.dp(7.0f));
@@ -216,25 +215,10 @@ public class ChatInputViewsContainer extends FrameLayout {
         return drawChild;
     }
 
-    public void setBackgroundWithFadeDrawable(BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable) {
-        this.backgroundWithFadeDrawable = blurredBackgroundWithFadeDrawable;
-    }
-
     public void setBlurredBottomHeight(float f) {
         if (this.blurredBottomHeight != f) {
             this.blurredBottomHeight = f;
             checkDrawableBounds();
         }
-    }
-
-    private void checkDrawableBounds() {
-        int i;
-        int measuredHeight;
-        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable = this.backgroundWithFadeDrawable;
-        if (blurredBackgroundWithFadeDrawable == null || (i = blurredBackgroundWithFadeDrawable.getBounds().top) == (measuredHeight = getMeasuredHeight() - Math.round(this.blurredBottomHeight))) {
-            return;
-        }
-        this.backgroundWithFadeDrawable.setBounds(0, measuredHeight, getMeasuredWidth(), getMeasuredHeight());
-        invalidate(0, Math.max(0, Math.min(i, measuredHeight)), getMeasuredWidth(), getMeasuredHeight());
     }
 }

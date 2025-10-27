@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -123,7 +124,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
         });
         this.fragmentView = this.contentView;
-        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 98720 : 98784;
+        this.FLAGS_CHAT = AndroidUtilities.isTablet() ? 360864 : 360928;
         updateItems();
         return this.fragmentView;
     }
@@ -237,6 +238,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
+        int i = Build.VERSION.SDK_INT;
         this.items.add(Item.asSlider());
         ArrayList arrayList = this.items;
         if (LiteMode.getPowerSaverLevel() <= 0) {
@@ -267,7 +269,10 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsSpoiler"), 128));
             if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
-                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur"), 256));
+                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsBlur2"), 256));
+            }
+            if (i >= 33 && (SharedConfig.getDevicePerformanceClass() >= 2 || BuildVars.DEBUG_PRIVATE_VERSION)) {
+                this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsLiquidGlass"), 262144));
             }
             this.items.add(Item.asCheckbox(LocaleController.getString("LiteOptionsScale"), 32768));
             if (ThanosEffect.supports()) {

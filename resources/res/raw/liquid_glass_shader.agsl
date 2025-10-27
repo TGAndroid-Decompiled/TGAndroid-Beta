@@ -1,0 +1,50 @@
+uniform shader img;
+
+uniform float2 resolution;
+uniform float2 center;
+uniform float2 size;
+uniform float radius;
+uniform float thickness;
+
+vec3 getNormal(float sd, float sdX, float sdY, float thickness) {
+    float dx = sdX - sd;
+    float dy = sdY - sd;
+
+    float n_cos = max(thickness + sd, 0.0) / thickness;
+    float n_sin = sqrt(1.0 - n_cos * n_cos);
+
+    return normalize(vec3(dx * n_cos, dy * n_cos, n_sin));
+}
+float height(float sd, float thickness) {
+    if (sd >= 0.0)
+        return 0.0;
+    if (sd < -thickness)
+        return thickness;
+    float x = thickness + sd;
+    return sqrt(thickness * thickness - x * x);
+}
+
+float sdfRect(half2 p, half2 size, float r) {
+    half2 q = abs(p) - size;
+    return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;
+}
+
+half4 main(in float2 fragCoord) {
+  float sd = sdfRect(fragCoord - center, size / 2 - radius, radius);
+  float sdX = sdfRect(fragCoord + float2(1.0, 0.0) - center, size / 2 - radius, radius);
+  float sdY = sdfRect(fragCoord + float2(0.0, 1.0) - center, size / 2 - radius, radius);
+
+  float3 incident = float3(0.0, 0.0, -1.0);
+  float4 color_base = float4(0.0, 0.0, 0.0, 0.0);
+  float color_mix = 0.0;
+  float base_height = thickness * 8.0;
+
+  float3 normal = getNormal(sd, sdX, sdY, thickness);
+
+  float index = 1.5;
+  float3 refract_vec = refract(incident, normal, 1.0 / index);
+  float h = height(sd, thickness);
+  float refract_length = (h + base_height) / dot(float3(0.0, 0.0, -1.0), refract_vec);
+
+  return img.eval(fragCoord + refract_vec.xy * refract_length);
+}

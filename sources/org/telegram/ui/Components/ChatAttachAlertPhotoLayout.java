@@ -2779,7 +2779,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             cameraView4.setImportantForAccessibility(2);
         }
         this.gridView.setImportantForAccessibility(4);
-        if (LiteMode.isEnabled(98784) || (cameraView = this.cameraView) == null || !cameraView.isInited()) {
+        if (LiteMode.isEnabled(360928) || (cameraView = this.cameraView) == null || !cameraView.isInited()) {
             return;
         }
         this.cameraView.showTexture(true, z);
@@ -2807,7 +2807,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return;
         }
         if (this.cameraView == null) {
-            boolean isEnabled = LiteMode.isEnabled(98784);
+            boolean isEnabled = LiteMode.isEnabled(360928);
             boolean z = !isEnabled;
             Context context = getContext();
             Boolean bool = this.isCameraFrontfaceBeforeEnteringEditMode;
@@ -3267,7 +3267,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             cameraView3.setImportantForAccessibility(0);
         }
         this.gridView.setImportantForAccessibility(0);
-        if (LiteMode.isEnabled(98784) || (cameraView = this.cameraView) == null) {
+        if (LiteMode.isEnabled(360928) || (cameraView = this.cameraView) == null) {
             return;
         }
         cameraView.showTexture(false, z);

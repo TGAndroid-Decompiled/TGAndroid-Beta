@@ -988,7 +988,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     this.currentPhoto = null;
                 }
                 this.avatarDrawable.setInfo(this.currentAccount, user);
-                this.avatarImage.setForUserOrChat(this.currentUser, this.avatarDrawable, null, LiteMode.isEnabled(98784), 1, false);
+                this.avatarImage.setForUserOrChat(this.currentUser, this.avatarDrawable, null, LiteMode.isEnabled(360928), 1, false);
                 return;
             }
             TLRPC.Chat chat = this.currentChat;

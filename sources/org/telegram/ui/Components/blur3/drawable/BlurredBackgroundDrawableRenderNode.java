@@ -12,12 +12,15 @@ import android.graphics.RenderNode;
 import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
+import org.telegram.messenger.LiteMode;
+import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 
 public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawable {
     private final BlurredBackgroundDrawable fallbackDrawable;
     private int lastBackgroundColor;
+    private final LiquidGlassEffect liquidGlassEffect;
     private final Outline outline = new Outline();
     private final Rect outlineRect = new Rect();
     private final Paint paintFill;
@@ -40,7 +43,8 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         this.paintStrokeBottom = paint3;
         RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode");
         this.renderNode = m;
-        this.renderNodeFill = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Fill");
+        RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Fill");
+        this.renderNodeFill = m2;
         this.renderNodeStroke = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Stroke");
         m.setClipToOutline(true);
         m.setClipToBounds(true);
@@ -50,6 +54,11 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint3.setStyle(style);
+        if (Build.VERSION.SDK_INT >= 33 && LiteMode.isEnabled(262144)) {
+            this.liquidGlassEffect = new LiquidGlassEffect(m2);
+        } else {
+            this.liquidGlassEffect = null;
+        }
     }
 
     @Override
@@ -84,13 +93,14 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         beginRecording.save();
         Rect rect = this.boundProps.boundsWithPadding;
         beginRecording.translate(-(rect.left + f), -(rect.top + f2));
+        LiquidGlassEffect liquidGlassEffect = this.liquidGlassEffect;
+        if (liquidGlassEffect != null && Build.VERSION.SDK_INT >= 33) {
+            liquidGlassEffect.update(0.0f, 0.0f, this.boundProps.boundsWithPadding.width(), this.boundProps.boundsWithPadding.height(), this.boundProps.radii[0], AndroidUtilities.dp(10.0f));
+        }
         BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = this.source;
         Rect rect2 = this.boundProps.boundsWithPadding;
         blurredBackgroundSourceRenderNode.draw(beginRecording, rect2.left + f, rect2.top + f2, rect2.right + f, rect2.bottom + f2);
         beginRecording.restore();
-        if (Build.VERSION.SDK_INT < 31 && this.backgroundColor != 0) {
-            beginRecording.drawRect(this.boundProps.boundsWithPadding, this.paintFill);
-        }
         this.renderNodeFill.endRecording();
         boolean z = (this.strokeColorTop == 0 && this.strokeColorBottom == 0) ? false : true;
         if (z) {
@@ -111,6 +121,9 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         }
         beginRecording2 = this.renderNode.beginRecording();
         beginRecording2.drawRenderNode(this.renderNodeFill);
+        if ((Build.VERSION.SDK_INT < 31 || this.liquidGlassEffect != null) && this.backgroundColor != 0) {
+            beginRecording2.drawPaint(this.paintFill);
+        }
         if (z) {
             beginRecording2.drawRenderNode(this.renderNodeStroke);
         }
@@ -130,7 +143,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         int i2 = this.backgroundColor;
         if (i != i2) {
             this.lastBackgroundColor = i2;
-            if (Build.VERSION.SDK_INT >= 31) {
+            if (this.liquidGlassEffect == null && Build.VERSION.SDK_INT >= 31) {
                 if (Color.alpha(i2) != 0) {
                     RenderNode renderNode = this.renderNodeFill;
                     BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline1.m();

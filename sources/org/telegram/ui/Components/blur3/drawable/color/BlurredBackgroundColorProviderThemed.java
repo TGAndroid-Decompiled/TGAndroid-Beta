@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.blur3.drawable.color;
 
-import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
 
 public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundColorProvider {
@@ -21,7 +21,7 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
     public void updateColors() {
         int color = Theme.getColor(this.backgroundColorId, this.resourcesProvider);
         boolean z = AndroidUtilities.computePerceivedBrightness(color) < 0.721f;
-        this.backgroundColor = ColorUtils.setAlphaComponent(color, 195);
+        this.backgroundColor = Theme.multAlpha(color, LiteMode.isEnabled(262144) ? 0.84f : 0.76f);
         if (z) {
             this.strokeColorTop = 687865855;
             this.strokeColorBottom = 352321535;

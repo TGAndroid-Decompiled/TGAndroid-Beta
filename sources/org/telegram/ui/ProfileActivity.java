@@ -15757,7 +15757,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$130();
                 }
             });
-            SearchResult searchResult131 = SharedConfig.getDevicePerformanceClass() >= 1 ? new SearchResult(326, LocaleController.getString(R.string.LiteOptionsBlur), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+            SearchResult searchResult131 = SharedConfig.getDevicePerformanceClass() >= 1 ? new SearchResult(326, LocaleController.getString(R.string.LiteOptionsBlur2), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$131();
@@ -16384,41 +16384,41 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         public void lambda$onCreateSearchArray$127() {
             LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
             ProfileActivity.this.presentFragment(liteModeSettingsActivity);
-            liteModeSettingsActivity.scrollToFlags(98784);
+            liteModeSettingsActivity.scrollToFlags(360928);
         }
 
         public void lambda$onCreateSearchArray$128() {
             LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
             ProfileActivity.this.presentFragment(liteModeSettingsActivity);
-            liteModeSettingsActivity.setExpanded(98784, true);
+            liteModeSettingsActivity.setExpanded(360928, true);
             liteModeSettingsActivity.scrollToFlags(32);
         }
 
         public void lambda$onCreateSearchArray$129() {
             LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
             ProfileActivity.this.presentFragment(liteModeSettingsActivity);
-            liteModeSettingsActivity.setExpanded(98784, true);
+            liteModeSettingsActivity.setExpanded(360928, true);
             liteModeSettingsActivity.scrollToFlags(64);
         }
 
         public void lambda$onCreateSearchArray$130() {
             LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
             ProfileActivity.this.presentFragment(liteModeSettingsActivity);
-            liteModeSettingsActivity.setExpanded(98784, true);
+            liteModeSettingsActivity.setExpanded(360928, true);
             liteModeSettingsActivity.scrollToFlags(128);
         }
 
         public void lambda$onCreateSearchArray$131() {
             LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
             ProfileActivity.this.presentFragment(liteModeSettingsActivity);
-            liteModeSettingsActivity.setExpanded(98784, true);
+            liteModeSettingsActivity.setExpanded(360928, true);
             liteModeSettingsActivity.scrollToFlags(256);
         }
 
         public void lambda$onCreateSearchArray$132() {
             LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
             ProfileActivity.this.presentFragment(liteModeSettingsActivity);
-            liteModeSettingsActivity.setExpanded(98784, true);
+            liteModeSettingsActivity.setExpanded(360928, true);
             liteModeSettingsActivity.scrollToFlags(32768);
         }
 

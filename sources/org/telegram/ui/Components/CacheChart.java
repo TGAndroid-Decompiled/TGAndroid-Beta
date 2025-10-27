@@ -239,7 +239,7 @@ public abstract class CacheChart extends View {
         }
 
         private void drawParticles(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10) {
-            if (f10 <= 0.0f || !LiteMode.isEnabled(98784)) {
+            if (f10 <= 0.0f || !LiteMode.isEnabled(360928)) {
                 return;
             }
             long currentTimeMillis = System.currentTimeMillis();

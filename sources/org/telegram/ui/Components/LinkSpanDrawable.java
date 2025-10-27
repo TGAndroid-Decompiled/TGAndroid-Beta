@@ -69,7 +69,7 @@ public class LinkSpanDrawable {
         this.mReleaseStart = -1L;
         this.selectionAlpha = 0.2f;
         this.rippleAlpha = 0.8f;
-        this.isLite = !LiteMode.isEnabled(98784);
+        this.isLite = !LiteMode.isEnabled(360928);
         this.mSpan = characterStyle;
         this.mResourcesProvider = resourcesProvider;
         setColor(Theme.getColor(Theme.key_chat_linkSelectBackground, resourcesProvider));

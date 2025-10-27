@@ -26,6 +26,8 @@ public class DownscaleScrollableNoiseSuppressor {
         this.renderNodeOriginal = m;
         this.renderNodesDownsampled = new RenderNode[3];
         this.renderNodesRestored = new RenderNode[3];
+        this.scaleX = 1;
+        this.scaleY = 1;
         m.setClipToBounds(true);
         ColorMatrix colorMatrix = new ColorMatrix();
         colorMatrix.setSaturation(2.0f);
