@@ -106,8 +106,14 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     }
 
     private void checkButtonsPositionsAndVisibility() {
+        int i = 0;
         float f = 0.0f;
-        for (ButtonHolder buttonHolder : this.buttonHolders) {
+        while (true) {
+            ButtonHolder[] buttonHolderArr = this.buttonHolders;
+            if (i >= buttonHolderArr.length) {
+                return;
+            }
+            ButtonHolder buttonHolder = buttonHolderArr[i];
             if (buttonHolder != null) {
                 float floatValue = buttonHolder.visibilityAnimator.getFloatValue();
                 buttonHolder.button.setVisibility(floatValue > 0.0f ? 0 : 8);
@@ -115,8 +121,9 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
                 buttonHolder.button.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 buttonHolder.button.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 buttonHolder.button.setTranslationY((AndroidUtilities.dp(100.0f) * (1.0f - floatValue)) - f);
-                f += AndroidUtilities.dp(54.0f) * floatValue;
+                f += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((i == 4 || i == 3) ? 10.0f : 12.0f)) * floatValue;
             }
+            i++;
         }
     }
 

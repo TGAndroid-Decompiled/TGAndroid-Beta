@@ -39,8 +39,8 @@ public class LiquidGlassEffect {
         float f8 = height;
         float f9 = (f + f3) / 2.0f;
         float f10 = (f2 + f4) / 2.0f;
-        float f11 = f3 - f;
-        float f12 = f4 - f2;
+        float f11 = (f3 - f) / 2.0f;
+        float f12 = (f4 - f2) / 2.0f;
         if (Math.abs(this.resolutionX - f7) > 0.1f || Math.abs(this.resolutionY - f8) > 0.1f || Math.abs(this.centerX - f9) > 0.1f || Math.abs(this.centerY - f10) > 0.1f || Math.abs(this.sizeX - f11) > 0.1f || Math.abs(this.sizeY - f12) > 0.1f || Math.abs(this.radius - f5) > 0.1f || Math.abs(this.thickness - f6) > 0.1f) {
             RuntimeShader runtimeShader = this.shader;
             this.resolutionX = f7;

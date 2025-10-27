@@ -224,7 +224,7 @@ public class LiteMode {
     }
 
     public static void savePreference() {
-        MessagesController.getGlobalMainSettings().edit().putInt("lite_mode4", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
+        MessagesController.getGlobalMainSettings().edit().putInt("lite_mode5", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
     }
 
     public static int getPowerSaverLevel() {

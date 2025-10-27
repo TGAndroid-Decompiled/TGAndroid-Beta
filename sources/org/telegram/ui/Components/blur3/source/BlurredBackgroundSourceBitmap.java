@@ -7,11 +7,12 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
-import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableBitmap;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource;
 
 public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
     protected int actionBarHeight;
     private Bitmap bitmap;
+    private Bitmap bitmapInternal;
     private final Matrix bitmapMatrix;
     private final Paint bitmapPaint;
     private BitmapShader bitmapShader;
@@ -65,7 +66,32 @@ public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
 
     @Override
     public BlurredBackgroundDrawable createDrawable() {
-        return new BlurredBackgroundDrawableBitmap(this);
+        return new BlurredBackgroundDrawableSource(this);
+    }
+
+    public Canvas beginRecording(int i, int i2) {
+        return beginRecording(i, i2, 1.0f);
+    }
+
+    public Canvas beginRecording(int i, int i2, float f) {
+        float f2 = i;
+        float f3 = f2 / f;
+        int round = Math.round(f3);
+        int round2 = Math.round(f3);
+        Bitmap bitmap = this.bitmapInternal;
+        if (bitmap == null || bitmap.isRecycled() || this.bitmapInternal.getWidth() != round2 || this.bitmapInternal.getHeight() != round2) {
+            this.bitmapInternal = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
+        } else {
+            this.bitmapInternal.eraseColor(0);
+        }
+        Canvas canvas = new Canvas(this.bitmapInternal);
+        canvas.scale(f2 / round, i2 / round2);
+        return canvas;
+    }
+
+    public void endRecording() {
+        setBitmap(this.bitmapInternal);
+        this.bitmapInternal = null;
     }
 
     public final void setParentSize(int i, int i2, int i3) {

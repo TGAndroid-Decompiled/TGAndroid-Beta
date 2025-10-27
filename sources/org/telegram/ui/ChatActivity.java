@@ -361,8 +361,8 @@ import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
-import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
 import org.telegram.ui.Components.chat.ChatActivityBottomViewsVisibilityController;
 import org.telegram.ui.Components.chat.ChatInputViewsContainer;
 import org.telegram.ui.Components.chat.ChatListViewPaddingsAnimator;
@@ -456,8 +456,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactory;
     private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactoryFrosted;
     private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactoryOut;
-    private final BlurredBackgroundSource blurredBackgroundSource;
-    private final BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap;
     private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode;
     private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNodeWithSaturation;
     private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNodeWithSaturationAndFrosted;
@@ -1112,6 +1110,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean waitingForReplyMessageLoad;
     private boolean waitingForSendingMessageLoad;
     int waitingForWebpageId;
+    private final BlurredBackgroundSourceWrapped wallpaperBackgroundSource;
     private WallpaperBitmapProvider wallpaperBitmapProvider;
     private long wallpaperRandomSeed;
     private boolean wasManualScroll;
@@ -2849,8 +2848,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.checkInsets();
             }
         });
-        BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = new BlurredBackgroundSourceBitmap();
-        this.blurredBackgroundSourceBitmap = blurredBackgroundSourceBitmap;
+        BlurredBackgroundSourceWrapped blurredBackgroundSourceWrapped = new BlurredBackgroundSourceWrapped();
+        this.wallpaperBackgroundSource = blurredBackgroundSourceWrapped;
         this.wallpaperBitmapProvider = new WallpaperBitmapProvider();
         this.actionModeViews = new ArrayList();
         this.pinnedMessageImageView = new BackupImageView[2];
@@ -3155,7 +3154,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         });
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.chatBlurEnabled()) {
-            float dp = LiteMode.isEnabled(262144) ? AndroidUtilities.dp(2.0f) : AndroidUtilities.dp(24.0f);
+            float dp = LiteMode.isEnabled(262144) ? AndroidUtilities.dp(1.66f) : AndroidUtilities.dp(24.0f);
             double d = dp / 2.595f;
             int ceil = (int) Math.ceil(d);
             int ceil2 = (int) Math.ceil(d);
@@ -3165,17 +3164,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             downscaleScrollableNoiseSuppressor.setScale(ceil, ceil2);
             createBlurEffect = RenderEffect.createBlurEffect(2.595f, 2.595f, Shader.TileMode.CLAMP);
             downscaleScrollableNoiseSuppressor.setRenderEffect(createBlurEffect);
-            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceBitmap);
-            this.blurredBackgroundSourceRenderNode = blurredBackgroundSourceRenderNode;
-            this.blurredBackgroundSource = blurredBackgroundSourceRenderNode;
-            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode2 = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceBitmap);
-            this.blurredBackgroundSourceRenderNodeWithSaturation = blurredBackgroundSourceRenderNode2;
-            this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceRenderNode2;
+            this.blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceWrapped);
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceWrapped);
+            this.blurredBackgroundSourceRenderNodeWithSaturation = blurredBackgroundSourceRenderNode;
+            this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceRenderNode;
             if (LiteMode.isEnabled(262144)) {
-                BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode3 = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceBitmap);
-                this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = blurredBackgroundSourceRenderNode3;
-                blurredBackgroundSourceRenderNode3.setBlur(24.0f);
-                this.blurredBackgroundSourceWithSaturationAndFrosted = blurredBackgroundSourceRenderNode3;
+                BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode2 = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceWrapped);
+                this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = blurredBackgroundSourceRenderNode2;
+                blurredBackgroundSourceRenderNode2.setBlur(AndroidUtilities.dp(24.0f));
+                this.blurredBackgroundSourceWithSaturationAndFrosted = blurredBackgroundSourceRenderNode2;
                 return;
             }
             this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = null;
@@ -3186,8 +3183,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.scrollableViewNoiseSuppressor = null;
         this.blurredBackgroundSourceRenderNode = null;
         this.blurredBackgroundSourceRenderNodeWithSaturation = null;
-        this.blurredBackgroundSource = blurredBackgroundSourceBitmap;
-        this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceBitmap;
+        this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceWrapped;
         this.blurredBackgroundSourceRenderNodeWithSaturationAndFrosted = null;
         this.blurredBackgroundSourceWithSaturationAndFrosted = null;
     }
@@ -7194,7 +7190,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     super.initChatActivity();
                 }
             };
-            anonymousClass1.chatActivity.blurredBackgroundSourceBitmap.setBitmap(ChatActivity.this.blurredBackgroundSourceBitmap.getBitmap());
+            anonymousClass1.chatActivity.wallpaperBackgroundSource.setSource(ChatActivity.this.wallpaperBackgroundSource);
             anonymousClass1.chatActivity.parentThemeDelegate = ChatActivity.this.themeDelegate;
             anonymousClass1.chatActivity.parentChatActivity = ChatActivity.this;
             anonymousClass1.chatActivity.chatActivityDelegate = new ChatActivityDelegate() {
@@ -12040,12 +12036,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         if (i3 >= childCount) {
                             break;
                         }
-                        View childAt2 = this.chatListView.getChildAt(i3);
-                        if (this.chatListView.getChildAdapterPosition(childAt2) == this.chatAdapter.getItemCount() - 1) {
-                            childAt2.getTop();
-                            break;
+                        if (this.chatListView.getChildAdapterPosition(this.chatListView.getChildAt(i3)) == this.chatAdapter.getItemCount() - 1) {
+                            float f7 = this.chatListViewPaddingTop;
+                            if (r2.getTop() > f7) {
+                                this.chatListView.scrollBy(0, (int) (r2.getTop() - f7));
+                            }
+                        } else {
+                            i3++;
                         }
-                        i3++;
                     }
                 }
                 if (!isThreadChat() && !this.wasManualScroll && this.unreadMessageObject != null && this.chatListView != null && ((translateButton = this.translateButton) == null || translateButton.getVisibility() != 0)) {
@@ -12054,6 +12052,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             this.invalidateChatListViewTopPadding = false;
             Bulletin.updateCurrentPosition();
+            checkUi_chatListViewPaddings();
         }
     }
 
@@ -12063,7 +12062,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         int dp = (int) (this.blurredViewBottomOffset + AndroidUtilities.dp(16.0f) + this.inputIslandHeightTarget + this.windowInsetsStateHolder.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars()).bottom);
         float dp2 = this.blurredViewBottomOffset + AndroidUtilities.dp(16.0f) + this.inputIslandHeightCurrent + this.windowInsetsStateHolder.getAnimatedMaxBottomInset();
-        int i = this.blurredViewTopOffset;
+        int i = (int) this.chatListViewPaddingTop;
+        TopicsTabsView topicsTabsView = this.topicsTabs;
+        if (topicsTabsView != null) {
+            topicsTabsView.setSideMenuBackgroundMarginTop(Math.max(0, (i - this.blurredViewTopOffset) - AndroidUtilities.dp(5.0f)));
+        }
         if (this.chatListView.getPaddingTop() == i) {
             this.chatListView.getPaddingBottom();
         }
@@ -12111,19 +12114,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.pendingRequestsDelegate;
         View view = chatActivityMemberRequestsDelegate != null ? chatActivityMemberRequestsDelegate.getView() : null;
         if (view != null) {
-            max3 += this.pendingRequestsDelegate.getViewEnterOffset();
-            view.setTranslationY(max3);
+            view.setTranslationY(max3 + this.pendingRequestsDelegate.getViewEnterOffset());
         }
-        float dp = (this.topicsTabs != null ? (AndroidUtilities.dp(48.0f) * (1.0f - this.topicsTabs.sidemenuT)) + 0.0f : 0.0f) + (this.actionBarSearchTags != null ? r8.getCurrentHeight() : 0.0f) + (this.hashtagSearchTabs != null ? r8.getCurrentHeight() : 0.0f);
+        float dp = (this.topicsTabs != null ? (AndroidUtilities.dp(48.0f) * (1.0f - this.topicsTabs.sidemenuT)) + 0.0f : 0.0f) + (this.actionBarSearchTags != null ? r5.getCurrentHeight() : 0.0f) + (this.hashtagSearchTabs != null ? r5.getCurrentHeight() : 0.0f);
         if (this.fragmentContextView != null) {
             FragmentContextView fragmentContextView = this.fragmentLocationContextView;
             float dp2 = (fragmentContextView == null || fragmentContextView.getVisibility() != 0) ? 0.0f : AndroidUtilities.dp(36.0f) + 0.0f;
             FragmentContextView fragmentContextView2 = this.fragmentContextView;
             fragmentContextView2.setTranslationY(this.contentPanTranslation + dp + dp2 + fragmentContextView2.getTopPadding());
-        }
-        TopicsTabsView topicsTabsView = this.topicsTabs;
-        if (topicsTabsView != null) {
-            topicsTabsView.setSideMenuBackgroundMarginTop(Math.max(0.0f, max3));
         }
         if (this.fragmentLocationContextView != null) {
             FragmentContextView fragmentContextView3 = this.fragmentContextView;
@@ -16603,7 +16601,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public void onUpdateBackgroundDrawable(Drawable drawable) {
             super.onUpdateBackgroundDrawable(drawable);
-            ChatActivity.this.blurredBackgroundSourceBitmap.setBitmap(ChatActivity.this.wallpaperBitmapProvider.bitmapFromDrawable(drawable));
+            ChatActivity.this.wallpaperBackgroundSource.setSource(ChatActivity.this.wallpaperBitmapProvider.updateSourceFromBackgroundViewDrawable(drawable));
         }
 
         @Override
@@ -34550,9 +34548,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         if (this.themeDelegate.backgroundDrawable == null || this.contentView.getBackgroundImage() == null) {
             if (this.contentView.getBackgroundImage() == null || AndroidUtilities.isTablet()) {
-                Drawable cachedWallpaper = Theme.getCachedWallpaper();
-                this.contentView.setBackgroundImage(cachedWallpaper, Theme.isWallpaperMotion());
-                this.blurredBackgroundSourceBitmap.setBitmap(this.wallpaperBitmapProvider.bitmapFromDrawable(cachedWallpaper));
+                this.contentView.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion());
             }
         }
     }
@@ -36034,7 +36030,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void checkUi_BlurHeight() {
-        float lerp = AndroidUtilities.lerp(this.windowInsetsStateHolder.getAnimatedMaxBottomInset() + AndroidUtilities.dp(9.0f) + this.chatInputViewsContainer.getInputBubbleHeight(), this.chatInputViewsContainer.getMeasuredHeight() + AndroidUtilities.dp(36.0f), this.animatorRoundMessageCameraVisibility.getFloatValue());
+        float lerp = AndroidUtilities.lerp(this.windowInsetsStateHolder.getAnimatedMaxBottomInset() + AndroidUtilities.dp(9.0f) + this.chatInputViewsContainer.getInputBubbleHeight() + AndroidUtilities.dp(7.0f), this.chatInputViewsContainer.getMeasuredHeight() + AndroidUtilities.dp(36.0f), this.animatorRoundMessageCameraVisibility.getFloatValue());
         this.chatInputViewsContainer.setBlurredBottomHeight(lerp);
         int i = (int) lerp;
         int clamp = MathUtils.clamp((this.contentView.getMeasuredHeight() - i) + AndroidUtilities.dp(36.0f), 0, this.contentView.getMeasuredHeight());

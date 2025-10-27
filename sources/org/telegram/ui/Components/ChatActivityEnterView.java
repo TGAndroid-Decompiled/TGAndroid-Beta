@@ -2808,7 +2808,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 ChatActivityEnterView.this.lambda$new$4(view);
             }
         });
-        this.sendButton.setOnLongClickListener(new ChatActivityEnterView$$ExternalSyntheticLambda7(this));
+        this.sendButton.setOnLongClickListener(new ChatActivityEnterView$$ExternalSyntheticLambda6(this));
         SlowModeBtn slowModeBtn = new SlowModeBtn(activity2);
         this.slowModeButton = slowModeBtn;
         slowModeBtn.setTextSize(18);
@@ -3496,7 +3496,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public void setOnSendButtonLongClick(View.OnLongClickListener onLongClickListener) {
         SendButton sendButton = this.sendButton;
         if (onLongClickListener == null) {
-            onLongClickListener = new ChatActivityEnterView$$ExternalSyntheticLambda7(this);
+            onLongClickListener = new ChatActivityEnterView$$ExternalSyntheticLambda6(this);
         }
         sendButton.setOnLongClickListener(onLongClickListener);
     }

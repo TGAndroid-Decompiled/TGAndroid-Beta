@@ -63,8 +63,12 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         }
     }
 
+    public BlurredBackgroundSource getFallbackSource() {
+        return this.fallbackSource;
+    }
+
     @Override
     public BlurredBackgroundDrawable createDrawable() {
-        return new BlurredBackgroundDrawableRenderNode(this, this.fallbackSource.createDrawable());
+        return new BlurredBackgroundDrawableRenderNode(this);
     }
 }

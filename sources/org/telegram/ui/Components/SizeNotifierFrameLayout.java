@@ -438,6 +438,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 ((MotionBackgroundDrawable) drawable4).onAttachedToWindow();
             }
         }
+        onUpdateBackgroundDrawable(this.backgroundDrawable);
         checkMotion();
         this.backgroundView.invalidate();
         checkLayerType();

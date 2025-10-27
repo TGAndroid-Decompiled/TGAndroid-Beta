@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -89,6 +90,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private boolean beginTrackingSent;
     private BottomSheetTabs bottomSheetTabs;
     private BottomSheetTabs.ClipTools bottomSheetTabsClip;
+    private Path clipPath;
     public LayoutContainer containerView;
     public LayoutContainer containerViewBack;
     private ActionBar currentActionBar;
@@ -133,6 +135,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private ActionBarPopupWindow.ActionBarPopupWindowLayout previewMenu;
     private boolean previewOpenAnimationInProgress;
     private List pulledDialogs;
+    private float[] radii;
     private boolean rebuildAfterAnimation;
     private boolean rebuildLastAfterAnimation;
     private Rect rect;
@@ -566,6 +569,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.rect = new Rect();
         this.overrideWidthOffset = -1;
+        this.clipPath = new Path();
+        this.radii = new float[8];
         this.measureSpec = new int[2];
         this.lastActions = new ArrayList();
         this.debugBlackScreenRunnable = new Runnable() {
@@ -870,7 +875,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r17, android.view.View r18, long r19) {
+    protected boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 

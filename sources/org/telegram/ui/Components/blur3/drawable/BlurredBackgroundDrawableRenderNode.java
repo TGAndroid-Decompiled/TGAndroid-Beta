@@ -15,10 +15,10 @@ import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOut
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 
 public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawable {
-    private final BlurredBackgroundDrawable fallbackDrawable;
     private int lastBackgroundColor;
     private final LiquidGlassEffect liquidGlassEffect;
     private final Outline outline = new Outline();
@@ -33,7 +33,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     private final RenderNode renderNodeStroke;
     private final BlurredBackgroundSourceRenderNode source;
 
-    public BlurredBackgroundDrawableRenderNode(BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode, BlurredBackgroundDrawable blurredBackgroundDrawable) {
+    public BlurredBackgroundDrawableRenderNode(BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode) {
         Paint paint = new Paint(1);
         this.paintShadow = paint;
         this.paintFill = new Paint(1);
@@ -48,7 +48,6 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         this.renderNodeStroke = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Stroke");
         m.setClipToOutline(true);
         m.setClipToBounds(true);
-        this.fallbackDrawable = blurredBackgroundDrawable;
         this.source = blurredBackgroundSourceRenderNode;
         paint.setColor(0);
         Paint.Style style = Paint.Style.STROKE;
@@ -59,6 +58,11 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         } else {
             this.liquidGlassEffect = null;
         }
+    }
+
+    @Override
+    public BlurredBackgroundSource getSource() {
+        return this.source;
     }
 
     @Override
@@ -135,10 +139,6 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         BlendMode blendMode;
         RenderEffect createColorFilterEffect;
         super.updateColors();
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.updateColors();
-        }
         int i = this.lastBackgroundColor;
         int i2 = this.backgroundColor;
         if (i != i2) {
@@ -169,57 +169,8 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     }
 
     @Override
-    public void setBounds(int i, int i2, int i3, int i4) {
-        super.setBounds(i, i2, i3, i4);
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setBounds(i, i2, i3, i4);
-        }
-    }
-
-    @Override
-    public void setRadius(float f) {
-        super.setRadius(f);
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setRadius(f);
-        }
-    }
-
-    @Override
-    public void setRadius(float f, float f2, float f3, float f4) {
-        super.setRadius(f, f2, f3, f4);
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setRadius(f, f2, f3, f4);
-        }
-    }
-
-    @Override
-    public void setPadding(int i) {
-        super.setPadding(i);
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setPadding(i);
-        }
-    }
-
-    @Override
     public void setAlpha(int i) {
         this.renderNode.setAlpha(i);
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setAlpha(i);
-        }
         this.renderNodeInvalidated = true;
-    }
-
-    @Override
-    public void setSourceOffset(float f, float f2) {
-        super.setSourceOffset(f, f2);
-        BlurredBackgroundDrawable blurredBackgroundDrawable = this.fallbackDrawable;
-        if (blurredBackgroundDrawable != null) {
-            blurredBackgroundDrawable.setSourceOffset(f, f2);
-        }
     }
 }

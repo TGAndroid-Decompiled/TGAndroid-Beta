@@ -345,7 +345,34 @@ public class TLRPC {
         public int top_msg_id;
 
         public static InputReplyTo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (InputReplyTo) TLObject.TLdeserialize(InputReplyTo.class, i != -2036351472 ? i != 1484862010 ? i != 1775660101 ? null : new TL_inputReplyToMonoForum() : new TL_inputReplyToStory() : new TL_inputReplyToMessage(), inputSerializedData, i, z);
+            TLObject tL_inputReplyToMessage;
+            switch (i) {
+                case -2036351472:
+                    tL_inputReplyToMessage = new TL_inputReplyToMessage();
+                    break;
+                case -1334822736:
+                    tL_inputReplyToMessage = new TL_inputReplyToMessage_layer207();
+                    break;
+                case 121554949:
+                    tL_inputReplyToMessage = new TL_inputReplyToMessage_layer166();
+                    break;
+                case 363917955:
+                    tL_inputReplyToMessage = new TL_inputReplyToStory_layer173();
+                    break;
+                case 583071445:
+                    tL_inputReplyToMessage = new TL_inputReplyToMessage_layer203();
+                    break;
+                case 1484862010:
+                    tL_inputReplyToMessage = new TL_inputReplyToStory();
+                    break;
+                case 1775660101:
+                    tL_inputReplyToMessage = new TL_inputReplyToMonoForum();
+                    break;
+                default:
+                    tL_inputReplyToMessage = null;
+                    break;
+            }
+            return (InputReplyTo) TLObject.TLdeserialize(InputReplyTo.class, tL_inputReplyToMessage, inputSerializedData, i, z);
         }
     }
 
@@ -2967,6 +2994,149 @@ public class TLRPC {
         }
     }
 
+    public static class TL_inputReplyToMessage_layer166 extends TL_inputReplyToMessage {
+        public static final int constructor = 121554949;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.reply_to_msg_id = inputSerializedData.readInt32(z);
+            if ((this.flags & 1) != 0) {
+                this.top_msg_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_peer_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.quote_text = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 8) != 0) {
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(121554949);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.reply_to_msg_id);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt32(this.top_msg_id);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_peer_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeString(this.quote_text);
+            }
+            if ((this.flags & 8) != 0) {
+                Vector.serialize(outputSerializedData, this.quote_entities);
+            }
+        }
+    }
+
+    public static class TL_inputReplyToMessage_layer203 extends TL_inputReplyToMessage {
+        public static final int constructor = 583071445;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.reply_to_msg_id = inputSerializedData.readInt32(z);
+            if ((this.flags & 1) != 0) {
+                this.top_msg_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_peer_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.quote_text = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 8) != 0) {
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.quote_offset = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(583071445);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(this.reply_to_msg_id);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt32(this.top_msg_id);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_peer_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeString(this.quote_text);
+            }
+            if ((this.flags & 8) != 0) {
+                Vector.serialize(outputSerializedData, this.quote_entities);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt32(this.quote_offset);
+            }
+        }
+    }
+
+    public static class TL_inputReplyToMessage_layer207 extends TL_inputReplyToMessage {
+        public static final int constructor = -1334822736;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.reply_to_msg_id = inputSerializedData.readInt32(z);
+            if ((this.flags & 1) != 0) {
+                this.top_msg_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_peer_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 4) != 0) {
+                this.quote_text = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 8) != 0) {
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda42(), z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.quote_offset = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 32) != 0) {
+                this.monoforum_peer_id = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1334822736);
+            int flag = TLObject.setFlag(this.flags, 32, this.monoforum_peer_id != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeInt32(this.reply_to_msg_id);
+            if ((this.flags & 1) != 0) {
+                outputSerializedData.writeInt32(this.top_msg_id);
+            }
+            if ((this.flags & 2) != 0) {
+                this.reply_to_peer_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeString(this.quote_text);
+            }
+            if ((this.flags & 8) != 0) {
+                Vector.serialize(outputSerializedData, this.quote_entities);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt32(this.quote_offset);
+            }
+            if (TLObject.hasFlag(this.flags, 32)) {
+                this.monoforum_peer_id.serializeToStream(outputSerializedData);
+            }
+        }
+    }
+
     public static class TL_inputReplyToStory extends InputReplyTo {
         public static final int constructor = 1484862010;
 
@@ -2980,6 +3150,31 @@ public class TLRPC {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1484862010);
             this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.story_id);
+        }
+    }
+
+    public static class TL_inputReplyToStory_layer173 extends TL_inputReplyToStory {
+        public static final int constructor = 363917955;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            InputUser TLdeserialize = InputUser.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            TL_inputPeerUser tL_inputPeerUser = new TL_inputPeerUser();
+            this.peer = tL_inputPeerUser;
+            tL_inputPeerUser.user_id = TLdeserialize.user_id;
+            tL_inputPeerUser.access_hash = TLdeserialize.access_hash;
+            this.story_id = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(363917955);
+            TL_inputPeerUser tL_inputPeerUser = new TL_inputPeerUser();
+            InputPeer inputPeer = this.peer;
+            tL_inputPeerUser.user_id = inputPeer.user_id;
+            tL_inputPeerUser.access_hash = inputPeer.access_hash;
+            tL_inputPeerUser.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.story_id);
         }
     }
@@ -9861,7 +10056,8 @@ public class TLRPC {
             }
             SerializedData serializedData = new SerializedData(tL_chatBannedRights.getObjectSize());
             tL_chatBannedRights.serializeToStream(serializedData);
-            return TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            SerializedData serializedData2 = new SerializedData(serializedData.toByteArray());
+            return TLdeserialize(serializedData2, serializedData2.readInt32(false), false);
         }
 
         public boolean equals(Object obj) {
@@ -81035,6 +81231,18 @@ public class TLRPC {
         public static final int constructor = -1618124613;
 
         @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1618124613);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32((int) this.from_id.user_id);
+            this.peer_id.serializeToStream(outputSerializedData);
+            outputSerializedData.writeBool(this.out);
+            outputSerializedData.writeBool(this.unread);
+            outputSerializedData.writeInt32(this.date);
+            this.action.serializeToStream(outputSerializedData);
+        }
+
+        @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.id = inputSerializedData.readInt32(z);
             TL_peerUser tL_peerUser = new TL_peerUser();
@@ -81046,18 +81254,6 @@ public class TLRPC {
             this.flags |= 256;
             this.date = inputSerializedData.readInt32(z);
             this.action = MessageAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1618124613);
-            outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt32((int) this.from_id.user_id);
-            this.peer_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeBool(this.out);
-            outputSerializedData.writeBool(this.unread);
-            outputSerializedData.writeInt32(this.date);
-            this.action.serializeToStream(outputSerializedData);
         }
     }
 }

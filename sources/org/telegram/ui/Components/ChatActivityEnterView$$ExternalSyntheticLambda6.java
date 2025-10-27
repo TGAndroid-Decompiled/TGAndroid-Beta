@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 
-public final class ChatActivityEnterView$$ExternalSyntheticLambda7 implements View.OnLongClickListener {
+public final class ChatActivityEnterView$$ExternalSyntheticLambda6 implements View.OnLongClickListener {
     public final ChatActivityEnterView f$0;
 
-    public ChatActivityEnterView$$ExternalSyntheticLambda7(ChatActivityEnterView chatActivityEnterView) {
+    public ChatActivityEnterView$$ExternalSyntheticLambda6(ChatActivityEnterView chatActivityEnterView) {
         this.f$0 = chatActivityEnterView;
     }
 
