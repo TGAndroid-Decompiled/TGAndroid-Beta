@@ -1417,22 +1417,28 @@ public class TL_phone {
     }
 
     public static class sendGroupCallMessage extends TLMethod<TLRPC.Updates> {
-        public static final int constructor = 445465039;
+        public static final int constructor = -1311697904;
         public long allow_paid_stars;
         public TLRPC.InputGroupCall call;
         public int flags;
         public TLRPC.TL_textWithEntities message;
         public long random_id;
+        public TLRPC.InputPeer send_as;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(445465039);
-            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeInt32(-1311697904);
+            int flag = TLObject.setFlag(this.flags, 2, this.send_as != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.call.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.random_id);
             this.message.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.allow_paid_stars);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.send_as.serializeToStream(outputSerializedData);
             }
         }
 
@@ -1596,6 +1602,24 @@ public class TL_phone {
         @Override
         public groupCallStars deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return groupCallStars.TLdeserialize(inputSerializedData, i, z);
+        }
+    }
+
+    public static class saveDefaultSendAs extends TLMethod<TLRPC.Bool> {
+        public static final int constructor = 1097313745;
+        public TLRPC.InputGroupCall call;
+        public TLRPC.InputPeer send_as;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1097313745);
+            this.call.serializeToStream(outputSerializedData);
+            this.send_as.serializeToStream(outputSerializedData);
+        }
+
+        @Override
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
         }
     }
 }

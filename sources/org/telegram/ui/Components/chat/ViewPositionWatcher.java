@@ -122,6 +122,11 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
         return true;
     }
 
+    public static float computeYCoordinateInParent(View view, ViewGroup viewGroup) {
+        computeRectInParent(view, viewGroup, tmpRectF2);
+        return tmpRectF2.top;
+    }
+
     public static boolean computeCoordinatesInParent(View view, ViewGroup viewGroup, PointF pointF) {
         boolean computeRectInParent = computeRectInParent(view, viewGroup, tmpRectF2);
         if (computeRectInParent) {

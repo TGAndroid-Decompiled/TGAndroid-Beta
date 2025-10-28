@@ -196,19 +196,15 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
         boolean z4 = (arrayList == null || arrayList.isEmpty()) ? false : true;
         if (z2) {
-            int i2 = 0;
-            while (true) {
-                if (i2 >= arrayList.size()) {
-                    messageReactor2 = null;
-                    break;
-                } else {
+            if (arrayList != null) {
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
                     if (((TLRPC.MessageReactor) arrayList.get(i2)).my) {
                         messageReactor2 = (TLRPC.MessageReactor) arrayList.get(i2);
                         break;
                     }
-                    i2++;
                 }
             }
+            messageReactor2 = null;
             this.peer = messageReactor2 != null ? DialogObject.getPeerDialogId(messageReactor2.peer_id) : UserConfig.getInstance(i).getClientUserId();
         } else {
             this.peer = StarsController.getInstance(i).getPaidReactionsDialogId(messageObject);
@@ -888,6 +884,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         final ReactionsLayoutInBubble reactionsLayoutInBubble;
         ReactionsLayoutInBubble.ReactionButton reactionButton;
         View view;
+        LiveCommentsView liveCommentsView;
         View view2;
         ReactionsLayoutInBubble reactionsLayoutInBubble2;
         ReactionsLayoutInBubble.ReactionButton reactionButton2;
@@ -966,7 +963,10 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         if (view != null) {
             view.invalidate();
         }
-        final LiveCommentsView.LiveCommentView[] liveCommentViewArr = {this.commentsView.findComment(this.sentMessageId)};
+        final LiveCommentsView.LiveCommentView[] liveCommentViewArr = new LiveCommentsView.LiveCommentView[1];
+        if (this.liveStories && (liveCommentsView = this.commentsView) != null) {
+            liveCommentViewArr[0] = liveCommentsView.findComment(this.sentMessageId);
+        }
         final RectF rectF2 = new RectF();
         final View view4 = view;
         final ReactionsLayoutInBubble.ReactionButton reactionButton3 = reactionButton;
@@ -1825,7 +1825,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.liveStories = z;
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
             paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-            paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+            paint.setColor(Theme.getColor(Theme.key_dialogBackground, StarsReactionsSheet.this.resourcesProvider));
         }
 
         @Override

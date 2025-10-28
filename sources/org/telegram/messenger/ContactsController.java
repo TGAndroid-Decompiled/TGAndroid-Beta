@@ -415,12 +415,12 @@ public class ContactsController extends BaseController {
             str = "https://telegram.org/dl";
         }
         if (i <= 1) {
-            return LocaleController.formatString("InviteText2", R.string.InviteText2, str);
+            return LocaleController.formatString(R.string.InviteText2, str);
         }
         try {
             return String.format(LocaleController.getPluralString("InviteTextNum", i), Integer.valueOf(i), str);
         } catch (Exception unused) {
-            return LocaleController.formatString("InviteText2", R.string.InviteText2, str);
+            return LocaleController.formatString(R.string.InviteText2, str);
         }
     }
 

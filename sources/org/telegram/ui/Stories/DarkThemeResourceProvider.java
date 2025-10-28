@@ -120,7 +120,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_chat_messageLinkOut, -5316609);
         this.sparseIntArray.put(Theme.key_chat_messagePanelText, -1);
         this.sparseIntArray.put(Theme.key_chat_messagePanelIcons, Theme.multAlpha(-1, 0.75f));
-        this.sparseIntArray.put(Theme.key_chat_messagePanelBackground, ColorUtils.setAlphaComponent(-16777216, 122));
+        this.sparseIntArray.put(Theme.key_chat_messagePanelBackground, -14670806);
         this.sparseIntArray.put(Theme.key_dialogBackground, -14737633);
         this.sparseIntArray.put(Theme.key_dialogBackgroundGray, -16777216);
         this.sparseIntArray.put(Theme.key_dialog_inlineProgressBackground, -15393241);

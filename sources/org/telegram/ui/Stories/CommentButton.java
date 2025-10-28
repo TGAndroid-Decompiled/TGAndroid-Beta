@@ -17,11 +17,12 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.blur3.StrokeDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 
 public class CommentButton extends FrameLayout {
     private final ImageView arrowImage;
@@ -35,7 +36,7 @@ public class CommentButton extends FrameLayout {
     private int lastCount;
     private final FrameLayout layout;
 
-    public CommentButton(Context context) {
+    public CommentButton(Context context, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         super(context);
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
@@ -50,25 +51,29 @@ public class CommentButton extends FrameLayout {
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
         animatedTextDrawable.setAllowCancel(true);
-        paint.setColor(-14933463);
+        paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         FrameLayout frameLayout = new FrameLayout(context);
         this.layout = frameLayout;
-        frameLayout.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(48.0f), -14933463));
-        addView(frameLayout, LayoutHelper.createFrame(48, 48, 17));
+        StrokeDrawable strokeDrawable = new StrokeDrawable();
+        strokeDrawable.setColorProvider(blurredBackgroundColorProvider);
+        strokeDrawable.setBackgroundColor(-14670806);
+        strokeDrawable.setPadding(AndroidUtilities.dp(1.0f));
+        frameLayout.setBackground(strokeDrawable);
+        addView(frameLayout, LayoutHelper.createFrame(40, 40, 17));
         ImageView imageView = new ImageView(context);
         this.commentImage = imageView;
         imageView.setImageResource(R.drawable.menu_comments);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView, LayoutHelper.createFrame(24, 24, 17));
+        frameLayout.addView(imageView, LayoutHelper.createFrame(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
         this.arrowImage = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView2, LayoutHelper.createFrame(24, 24, 17));
-        imageView2.setPivotX(AndroidUtilities.dp(12.33f));
-        imageView2.setPivotY(AndroidUtilities.dp(11.5f));
+        frameLayout.addView(imageView2, LayoutHelper.createFrame(20, 20, 17));
+        imageView2.setPivotX(AndroidUtilities.dp(10.27f));
+        imageView2.setPivotY(AndroidUtilities.dp(9.58f));
     }
 
     @Override

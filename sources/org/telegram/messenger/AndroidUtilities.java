@@ -5358,7 +5358,7 @@ public class AndroidUtilities {
             try {
                 if (view == null) {
                     width = (int) (r7.x / f);
-                    height = displaySize.y + statusBarHeight;
+                    height = displaySize.y + statusBarHeight + navigationBarHeight;
                 } else {
                     width = (int) (view.getWidth() / f);
                     height = view.getHeight();

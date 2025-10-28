@@ -4,12 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.blur3.StrokeDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.PaidReactionButton;
@@ -33,15 +37,19 @@ public class PaidReactionButton extends View {
     private float accumulatedRippleIntensity;
     private final AnimatedFloat animatedFilled;
     private final Paint backgroundPaint;
+    private final Paint clearPaint;
     private final Path clipPath;
+    private float countScale;
+    private final AnimatedTextView.AnimatedTextDrawable countText;
     private final PaidReactionButtonEffectsView effectsView;
     private boolean filled;
+    private final Drawable iconDrawable;
     private long lastRippleTime;
     private final StarsReactionsSheet.Particles particles;
     private final int[] pos;
     private final RectF rect;
     private final ColoredImageSpan span;
-    private final AnimatedTextView.AnimatedTextDrawable text;
+    private final StrokeDrawable strokeDrawable;
 
     public static class PaidReactionButtonEffectsView extends View {
         private final AnimatedTextView.AnimatedTextDrawable counter;
@@ -214,24 +222,35 @@ public class PaidReactionButton extends View {
         }
     }
 
-    public PaidReactionButton(Context context, PaidReactionButtonEffectsView paidReactionButtonEffectsView) {
+    public PaidReactionButton(Context context, PaidReactionButtonEffectsView paidReactionButtonEffectsView, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         super(context);
         this.rect = new RectF();
         this.clipPath = new Path();
-        this.backgroundPaint = new Paint(1);
         this.animatedFilled = new AnimatedFloat(this, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        Paint paint = new Paint(1);
+        this.backgroundPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.clearPaint = paint2;
         this.pos = new int[2];
+        this.countScale = 1.0f;
         this.effectsView = paidReactionButtonEffectsView;
         ScaleStateListAnimator.apply(this);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, false);
-        this.text = animatedTextDrawable;
+        Resources resources = context.getResources();
+        int i = R.drawable.star;
+        this.iconDrawable = resources.getDrawable(i).mutate();
+        StrokeDrawable strokeDrawable = new StrokeDrawable();
+        this.strokeDrawable = strokeDrawable;
+        strokeDrawable.setColorProvider(blurredBackgroundColorProvider);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        this.countText = animatedTextDrawable;
+        animatedTextDrawable.setTextColor(-9866632);
+        animatedTextDrawable.setTextSize(AndroidUtilities.dp(9.0f));
         animatedTextDrawable.setCallback(this);
-        animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.0f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
         animatedTextDrawable.setAllowCancel(true);
-        animatedTextDrawable.setGravity(17);
-        animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x / 2);
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.star);
+        paint.setColor(-14670806);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(i);
         this.span = coloredImageSpan;
         coloredImageSpan.setScale(1.8f, 1.8f);
         setCount(0);
@@ -240,12 +259,19 @@ public class PaidReactionButton extends View {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float dp = AndroidUtilities.dp(12.33f) + this.text.getCurrentWidth() + AndroidUtilities.dp(12.33f);
+        float dp = AndroidUtilities.dp(38.0f);
         float f = this.animatedFilled.set(this.filled);
-        this.rect.set(getWidth() - dp, 0.0f, getWidth(), getHeight());
-        this.backgroundPaint.setColor(ColorUtils.blendARGB(-14933463, -548067, f));
+        this.rect.set((getWidth() - dp) / 2.0f, (getHeight() - dp) / 2.0f, (getWidth() + dp) / 2.0f, (getHeight() + dp) / 2.0f);
+        int blendARGB = ColorUtils.blendARGB(-14670806, -548067, f);
+        this.backgroundPaint.setColor(blendARGB);
+        StrokeDrawable strokeDrawable = this.strokeDrawable;
         RectF rectF = this.rect;
-        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.backgroundPaint);
+        strokeDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        this.strokeDrawable.setBackgroundColor(blendARGB);
+        this.strokeDrawable.draw(canvas);
+        int dp2 = AndroidUtilities.dp(20.0f);
+        this.iconDrawable.setBounds((getWidth() - dp2) / 2, (getHeight() - dp2) / 2, (getWidth() + dp2) / 2, (getHeight() + dp2) / 2);
+        this.iconDrawable.draw(canvas);
         canvas.save();
         this.clipPath.rewind();
         Path path = this.clipPath;
@@ -257,21 +283,24 @@ public class PaidReactionButton extends View {
         this.particles.process();
         this.particles.draw(canvas, -1, AndroidUtilities.lerp(0.5f, 1.0f, f));
         invalidate();
-        this.text.setTextColor(ColorUtils.blendARGB(-2960171, -1, f));
-        this.text.setBounds(AndroidUtilities.dp(12.33f), 0, getWidth() - AndroidUtilities.dp(12.33f), getHeight());
-        this.text.draw(canvas);
+        canvas.restore();
+        float isNotEmpty = this.countScale * this.countText.isNotEmpty();
+        canvas.save();
+        RectF rectF3 = AndroidUtilities.rectTmp;
+        rectF3.set(getWidth() - dp, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+        canvas.scale(isNotEmpty, isNotEmpty, rectF3.centerX(), rectF3.centerY());
+        rectF3.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
+        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.clearPaint);
+        rectF3.set(getWidth() - dp, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.backgroundPaint);
+        canvas.translate(rectF3.left + ((dp - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(7.0f));
+        this.countText.setTextColor(ColorUtils.blendARGB(-9866632, -1, f));
+        this.countText.draw(canvas);
         canvas.restore();
     }
 
     public void setCount(int i) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "S");
-        spannableStringBuilder.setSpan(this.span, 0, 1, 33);
-        if (i > 0) {
-            spannableStringBuilder.append((CharSequence) " ");
-            spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i, ','));
-        }
-        this.text.setText(spannableStringBuilder);
+        this.countText.setText(LocaleController.formatNumber(i, ','));
         requestLayout();
     }
 
@@ -285,17 +314,13 @@ public class PaidReactionButton extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(width(), AndroidUtilities.dp(46.0f));
+        super.onMeasure(i, i2);
         this.effectsView.updatePosition(this);
-    }
-
-    public int width() {
-        return Math.max(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(12.33f) + ((int) this.text.getAnimateToWidth()) + AndroidUtilities.dp(12.33f));
     }
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        return this.text == drawable || super.verifyDrawable(drawable);
+        return this.countText == drawable || super.verifyDrawable(drawable);
     }
 
     public void playEffect(long j) {

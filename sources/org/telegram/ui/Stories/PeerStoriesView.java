@@ -19,7 +19,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.RenderNode;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -66,7 +65,6 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline2;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
@@ -163,7 +161,13 @@ import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.URLSpanUserMention;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
+import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.LaunchActivity;
@@ -207,6 +211,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     private boolean attachedToWindow;
     private final AvatarDrawable avatarDrawable;
     private final BitmapShaderTools bitmapShaderTools;
+    private BlurredBackgroundColorProviderThemed blurredBackgroundColorProvider;
+    private BlurredBackgroundColorProviderThemed blurredBackgroundColorProviderWhite;
+    private BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableFactory;
+    private final BlurredBackgroundSourceColor blurredBackgroundSourceFallback;
+    private final BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNodeWithSaturation;
+    private final BlurredBackgroundSource blurredBackgroundSourceWithSaturation;
     private TL_stories.TL_premium_boostsStatus boostsStatus;
     private final LinearLayout bottomActionsLinearLayout;
     private ChannelBoostsController.CanApplyBoost canApplyBoost;
@@ -233,6 +243,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     ActionBarMenuSubItem editStoryItem;
     private boolean editedPrivacy;
     private EmojiAnimationsOverlay emojiAnimationsOverlay;
+    BlurredBackgroundDrawable emojiKeyboardBackground;
     private AnimatedEmojiEffect emojiReactionEffect;
     private int enterViewBottomOffset;
     private StoryFailView failView;
@@ -245,6 +256,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     boolean inBlackoutMode;
     Paint inputBackgroundPaint;
     Paint inputBottomBorderPaint;
+    BlurredBackgroundDrawable inputFieldBackground;
     Paint inputTopBorderPaint;
     private InstantCameraView instantCameraView;
     boolean isActive;
@@ -356,8 +368,6 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     private StoryMediaAreasView storyAreasView;
     private final StoryCaptionView storyCaptionView;
     public FrameLayout storyContainer;
-    private Object storyContainerBlurRenderNode;
-    private Object storyContainerRenderNode;
     private CaptionContainerView storyEditCaptionView;
     final ArrayList storyItems;
     private final StoryLinesDrawable storyLines;
@@ -449,7 +459,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public abstract boolean isSelectedPeer();
 
-    static long access$3114(PeerStoriesView peerStoriesView, long j) {
+    static long access$2814(PeerStoriesView peerStoriesView, long j) {
         long j2 = peerStoriesView.currentImageTime + j;
         peerStoriesView.currentImageTime = j2;
         return j2;
@@ -457,6 +467,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public PeerStoriesView(final Context context, final StoryViewer storyViewer, final SharedResources sharedResources, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        ?? r14;
         this.allowDrawSurface = true;
         this.preloadReactionHolders = new ArrayList();
         this.shiftDp = -5;
@@ -612,9 +623,32 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 return PeerStoriesView.this.getPlayingBitmap();
             }
         };
+        this.blurredBackgroundColorProvider = new BlurredBackgroundColorProviderThemed(resourcesProvider, Theme.key_chat_messagePanelBackground, 0.8f);
+        this.blurredBackgroundColorProviderWhite = new BlurredBackgroundColorProviderThemed(resourcesProvider, Theme.key_windowBackgroundWhite);
+        BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
+        this.blurredBackgroundSourceFallback = blurredBackgroundSourceColor;
+        blurredBackgroundSourceColor.setColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+        if (Build.VERSION.SDK_INT >= 31 && SharedConfig.canBlurChat()) {
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceColor);
+            this.blurredBackgroundSourceRenderNodeWithSaturation = blurredBackgroundSourceRenderNode;
+            r14 = 0;
+            blurredBackgroundSourceRenderNode.allowLiquid = false;
+            blurredBackgroundSourceRenderNode.setBlur(AndroidUtilities.dp(8.0f));
+            this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceRenderNode;
+        } else {
+            r14 = 0;
+            this.blurredBackgroundSourceRenderNodeWithSaturation = null;
+            this.blurredBackgroundSourceWithSaturation = blurredBackgroundSourceColor;
+        }
+        BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(new ViewPositionWatcher(this), this, this.blurredBackgroundSourceWithSaturation);
+        this.blurredBackgroundDrawableFactory = blurredBackgroundDrawableViewFactory;
+        this.inputFieldBackground = blurredBackgroundDrawableViewFactory.create(this, this.blurredBackgroundColorProvider);
+        BlurredBackgroundDrawable create = this.blurredBackgroundDrawableFactory.create(this, this.blurredBackgroundColorProvider);
+        this.emojiKeyboardBackground = create;
+        create.setThickness(AndroidUtilities.dp(32.0f));
         AnonymousClass4 anonymousClass4 = new AnonymousClass4(context, sharedResources, storyViewer);
         this.storyContainer = anonymousClass4;
-        anonymousClass4.setClipChildren(false);
+        anonymousClass4.setClipChildren(r14);
         this.emojiAnimationsOverlay = new EmojiAnimationsOverlay(this.storyContainer, this.currentAccount);
         this.storyContainer.addView(this.storyAreasView, LayoutHelper.createFrame(-1, -1.0f));
         AnonymousClass5 anonymousClass5 = new AnonymousClass5(getContext(), storyViewer.resourcesProvider, storyViewer, resourcesProvider);
@@ -669,7 +703,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (animatedTextDrawable != null) {
                 animatedTextDrawable.setCallback(frameLayout);
             }
-            this.repostButtonContainer.setWillNotDraw(false);
+            this.repostButtonContainer.setWillNotDraw(r14);
             this.repostButtonContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -704,7 +738,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (animatedTextDrawable2 != null) {
             animatedTextDrawable2.setCallback(frameLayout2);
         }
-        frameLayout2.setWillNotDraw(false);
+        frameLayout2.setWillNotDraw(r14);
         frameLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -755,7 +789,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         layoutTransition.enableTransitionType(4);
         LinearLayout linearLayout = new LinearLayout(context);
         this.bottomActionsLinearLayout = linearLayout;
-        linearLayout.setOrientation(0);
+        linearLayout.setOrientation(r14);
         linearLayout.setLayoutTransition(layoutTransition);
         linearLayout.addView(imageView, LayoutHelper.createLinear(40, 40, 5));
         FrameLayout frameLayout5 = this.repostButtonContainer;
@@ -825,7 +859,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             @Override
             protected void onStarsCountUpdated() {
                 PeerStoriesView.this.starsButton.setCount((int) getStarsCount());
-                PeerStoriesView.this.starsButton.setFilled(didSendStars());
+                PeerStoriesView.this.starsButton.setFilled(areSendingStars());
             }
 
             @Override
@@ -845,13 +879,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.liveCommentsView = liveCommentsView;
         this.storyContainer.addView(liveCommentsView, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 64.0f, 0.0f, 0.0f));
         this.storyContainer.addView(this.topBulletinContainer, LayoutHelper.createFrame(-1, 100.0f, 0, 0.0f, 55.0f, 0.0f, 0.0f));
-        frameLayout6.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
-        imageView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
-        imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
-        frameLayout2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+        frameLayout6.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), r14, ColorUtils.setAlphaComponent(-1, 100)));
+        imageView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), r14, ColorUtils.setAlphaComponent(-1, 100)));
+        imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), r14, ColorUtils.setAlphaComponent(-1, 100)));
+        frameLayout2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), r14, ColorUtils.setAlphaComponent(-1, 100)));
         FrameLayout frameLayout7 = this.repostButtonContainer;
         if (frameLayout7 != null) {
-            frameLayout7.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
+            frameLayout7.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), r14, ColorUtils.setAlphaComponent(-1, 100)));
         }
         View overlayView = anonymousClass5.textSelectionHelper.getOverlayView(context);
         if (overlayView != null) {
@@ -2975,7 +3009,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (this.commentButton != null || getContext() == null) {
             return;
         }
-        CommentButton commentButton = new CommentButton(getContext());
+        CommentButton commentButton = new CommentButton(getContext(), this.blurredBackgroundColorProvider);
         this.commentButton = commentButton;
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2983,7 +3017,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 PeerStoriesView.this.lambda$createCommentButton$24(view);
             }
         });
-        addView(this.commentButton, LayoutHelper.createFrame(56, 52.0f, 83, 7.0f, 0.0f, 7.0f, -2.0f));
+        addView(this.commentButton, LayoutHelper.createFrame(46, 42.0f, 83, 7.0f, 0.0f, 7.0f, 3.0f));
     }
 
     public void lambda$createCommentButton$24(View view) {
@@ -2995,7 +3029,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             return;
         }
         this.starsButtonEffectsView = new PaidReactionButton.PaidReactionButtonEffectsView(getContext());
-        PaidReactionButton paidReactionButton = new PaidReactionButton(getContext(), this.starsButtonEffectsView);
+        PaidReactionButton paidReactionButton = new PaidReactionButton(getContext(), this.starsButtonEffectsView, this.blurredBackgroundColorProvider);
         this.starsButton = paidReactionButton;
         paidReactionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3011,7 +3045,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 return lambda$createPaidReactionsButton$26;
             }
         });
-        addView(this.starsButton, LayoutHelper.createFrame(-2, 46.0f, 85, 7.0f, 0.0f, 7.0f, 0.0f));
+        addView(this.starsButton, LayoutHelper.createFrame(46, 42.0f, 85, 7.0f, 0.0f, 7.0f, 3.0f));
         addView(this.starsButtonEffectsView, LayoutHelper.createFrame(100, 100.0f, 85, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
@@ -3065,6 +3099,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         });
         this.chatActivityEnterView = anonymousClass18;
         anonymousClass18.getEditField().useAnimatedTextDrawable();
+        this.chatActivityEnterView.getEditField().setScaleX(0.0f);
         this.chatActivityEnterView.setOverrideKeyboardAnimation(true);
         this.chatActivityEnterView.setClipChildren(false);
         this.chatActivityEnterView.setDelegate(new AnonymousClass19());
@@ -3072,7 +3107,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         chatActivityEnterView.shouldDrawBackground = false;
         chatActivityEnterView.shouldDrawRecordedAudioPanelInParent = true;
-        chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+        if (this.currentStory.isLive) {
+            this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+        } else {
+            this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+        }
         this.chatActivityEnterView.updateColors();
         ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
         chatActivityEnterView2.isStories = true;
@@ -6504,7 +6543,6 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public void updateViewOffsets() {
         float f;
-        float dp;
         StoryItemHolder storyItemHolder;
         ReactionsContainerLayout reactionsContainerLayout;
         StoryItemHolder storyItemHolder2;
@@ -6525,6 +6563,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 this.highlightMessageHintView.setJointPx(1.0f, -(AndroidUtilities.dp(74.0f) - suggestButton.getTranslationX()));
             }
             this.highlightMessageHintView.setTranslationY(-((getHeight() - this.chatActivityEnterView.getY()) + AndroidUtilities.dp(6.0f)));
+        }
+        if (this.chatActivityEnterView != null) {
+            float lerp = AndroidUtilities.lerp(0.88f, 1.0f, f);
+            this.chatActivityEnterView.getEditField().setScaleX(lerp);
+            this.chatActivityEnterView.getEditField().setScaleY(lerp);
         }
         this.liveCommentsView.setKeyboardOffset((AndroidUtilities.dp(6.0f) * f) + max);
         StoryViewer storyViewer = this.storyViewer;
@@ -6600,16 +6643,16 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         f6 = 0.0f;
                     }
                     float f7 = 1.0f - f6;
-                    float dp2 = (((((-this.enterViewBottomOffset) * f7) - (AndroidUtilities.dp(7.0f) * f6)) - this.animatingKeyboardHeight) - (AndroidUtilities.dp(8.0f) * f7)) - (AndroidUtilities.dp(20.0f) * this.storyViewer.swipeToReplyProgress);
+                    float dp = (((((-this.enterViewBottomOffset) * f7) - (AndroidUtilities.dp(7.0f) * f6)) - this.animatingKeyboardHeight) - (AndroidUtilities.dp(8.0f) * f7)) - (AndroidUtilities.dp(20.0f) * this.storyViewer.swipeToReplyProgress);
                     if (childAt == this.commentButton || childAt == this.starsButton || childAt == this.starsButtonEffectsView) {
-                        dp2 += this.animatingKeyboardHeight;
+                        dp += this.animatingKeyboardHeight;
                     }
                     float f8 = this.BIG_SCREEN ? (1.0f - this.progressToDismiss) * hideInterfaceAlpha : hideInterfaceAlpha * 1.0f;
                     if (childAt == this.replyDisabledTextView) {
-                        dp2 = this.storyViewer.swipeToReplyProgress * (-AndroidUtilities.dp(20.0f));
+                        dp = this.storyViewer.swipeToReplyProgress * (-AndroidUtilities.dp(20.0f));
                     }
                     if (childAt == this.mentionContainer) {
-                        dp2 -= this.chatActivityEnterView.getMeasuredHeight() - this.chatActivityEnterView.getAnimatedTop();
+                        dp -= this.chatActivityEnterView.getMeasuredHeight() - this.chatActivityEnterView.getAnimatedTop();
                         f8 = this.progressToKeyboard;
                         childAt.invalidate();
                     }
@@ -6624,7 +6667,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                         childAt.setScaleX(f11);
                         childAt.setScaleY(f11);
                     } else {
-                        childAt.setTranslationY(dp2);
+                        childAt.setTranslationY(dp);
                         ChatActivityEnterView chatActivityEnterView6 = this.chatActivityEnterView;
                         if (chatActivityEnterView6 == null || childAt != chatActivityEnterView6.controlsView) {
                             childAt.setAlpha(f8);
@@ -6656,30 +6699,25 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
         if (this.chatActivityEnterView != null) {
-            float dp3 = AndroidUtilities.dp(40.0f);
+            float dp2 = AndroidUtilities.dp(40.0f);
             if (!this.currentStory.isLive) {
                 if (this.allowShare) {
-                    dp3 += AndroidUtilities.dp(46.0f);
+                    dp2 += AndroidUtilities.dp(46.0f);
                 }
                 if (this.allowRepost && this.isChannel) {
-                    dp3 += AndroidUtilities.dp(46.0f);
+                    dp2 += AndroidUtilities.dp(46.0f);
                 }
                 FrameLayout frameLayout2 = this.likeButtonContainer;
                 if (frameLayout2 != null && frameLayout2.getVisibility() == 0) {
-                    dp3 = (dp3 - AndroidUtilities.dp(40.0f)) + this.likeButtonContainer.getLayoutParams().width;
+                    dp2 = (dp2 - AndroidUtilities.dp(40.0f)) + this.likeButtonContainer.getLayoutParams().width;
                 }
-                f2 = dp3;
-                dp = 0.0f;
             } else {
-                dp = AndroidUtilities.dp(56.0f);
-                PaidReactionButton paidReactionButton = this.starsButton;
-                if (paidReactionButton != null) {
-                    f2 = paidReactionButton.width() + AndroidUtilities.dp(4.0f);
-                }
+                f2 = AndroidUtilities.dp(46.0f);
+                dp2 = AndroidUtilities.dp(46.0f);
             }
             ChatActivityEnterView chatActivityEnterView7 = this.chatActivityEnterView;
             float f14 = -AndroidUtilities.dp(10.0f);
-            float f15 = -(AndroidUtilities.dp(10.0f) + f2 + dp);
+            float f15 = -(AndroidUtilities.dp(10.0f) + dp2 + f2);
             float f16 = this.progressToKeyboard;
             if ((!this.allowShare && !this.isGroup) || ((storyItemHolder = this.currentStory) != null && storyItemHolder.isLive)) {
                 z = false;
@@ -6697,6 +6735,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
+        BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode;
         float dp;
         if (view == this.mentionContainer) {
             canvas.save();
@@ -6726,41 +6765,23 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 dp = 0.0f;
             } else {
-                dp = AndroidUtilities.dp(56.0f);
-                dp2 = this.starsButton != null ? r2.width() + AndroidUtilities.dp(4.0f) : 0.0f;
+                dp = AndroidUtilities.dp(46.0f);
+                dp2 = AndroidUtilities.dp(46.0f);
             }
-            this.sharedResources.rect2.set(AndroidUtilities.dp(10.0f) + dp, (this.chatActivityEnterView.getBottom() - AndroidUtilities.dp(48.0f)) + this.chatActivityEnterView.getTranslationY() + AndroidUtilities.dp(2.0f), (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - dp2, (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
+            this.sharedResources.rect2.set(AndroidUtilities.dp(10.0f) + dp, ((this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(5.0f)) - AndroidUtilities.dp(38.0f), (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - dp2, (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getMeasuredHeight()) - AndroidUtilities.dp(5.0f));
             this.chatActivityEnterView.setTranslationX(dp * (1.0f - this.progressToKeyboard));
-            this.chatActivityEnterView.getEditField().setTranslationY((this.chatActivityEnterView.getMeasuredHeight() > AndroidUtilities.dp(50.0f) ? ((1.0f - this.progressToKeyboard) * (this.chatActivityEnterView.getMeasuredHeight() - AndroidUtilities.dp(50.0f))) + 0.0f : 0.0f) + ((-AndroidUtilities.dp(2.0f)) * (1.0f - this.progressToKeyboard)));
+            this.chatActivityEnterView.getEditField().setTranslationY((this.chatActivityEnterView.getMeasuredHeight() > AndroidUtilities.dp(50.0f) ? 0.0f + ((1.0f - this.progressToKeyboard) * (this.chatActivityEnterView.getMeasuredHeight() - AndroidUtilities.dp(50.0f))) : 0.0f) + ((-AndroidUtilities.dp(2.0f)) * (1.0f - this.progressToKeyboard)));
             float dp3 = AndroidUtilities.dp(50.0f) / 2.0f;
             AndroidUtilities.lerp(this.sharedResources.rect2, this.sharedResources.rect1, this.progressToKeyboard, this.sharedResources.finalRect);
-            if (this.storyContainerBlurRenderNode != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated()) {
-                RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.storyContainerBlurRenderNode);
-                if (this.progressToKeyboard > 0.0f) {
-                    this.clipPath.rewind();
-                    this.clipPath.addRoundRect(this.sharedResources.finalRect, dp3, dp3, Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(this.clipPath);
-                    canvas.translate(this.storyContainer.getX(), this.storyContainer.getY());
-                    m.setAlpha(this.progressToKeyboard);
-                    canvas.drawRenderNode(m);
-                    canvas.restore();
-                }
+            BlurredBackgroundDrawable blurredBackgroundDrawable = this.inputFieldBackground;
+            if (blurredBackgroundDrawable != null) {
+                blurredBackgroundDrawable.setBounds((int) this.sharedResources.finalRect.left, (int) this.sharedResources.finalRect.top, (int) this.sharedResources.finalRect.right, (int) this.sharedResources.finalRect.bottom);
+                this.inputFieldBackground.setRadius(dp3);
+                this.inputFieldBackground.setAlpha(255);
+                this.inputFieldBackground.draw(canvas);
             } else {
-                this.bitmapShaderTools.setBounds(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                float f = this.progressToKeyboard;
-                if (f > 0.0f) {
-                    this.bitmapShaderTools.paint.setAlpha((int) (f * 255.0f));
-                    canvas.drawRoundRect(this.sharedResources.finalRect, dp3, dp3, this.bitmapShaderTools.paint);
-                }
+                canvas.drawRoundRect(this.sharedResources.finalRect, dp3, dp3, this.inputBackgroundPaint);
             }
-            canvas.drawRoundRect(this.sharedResources.finalRect, dp3, dp3, this.inputBackgroundPaint);
-            this.sharedResources.borderRect.set(this.sharedResources.finalRect);
-            this.sharedResources.borderRect.inset(AndroidUtilities.dp(1.0f), 0.0f);
-            this.inputTopBorderPaint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-            this.inputBottomBorderPaint.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
-            BlurredBackgroundDrawable.drawStroke(canvas, this.sharedResources.borderRect, dp3, AndroidUtilities.dpf2(1.0f), true, this.inputTopBorderPaint);
-            BlurredBackgroundDrawable.drawStroke(canvas, this.sharedResources.borderRect, dp3, AndroidUtilities.dpf2(0.6666667f), false, this.inputBottomBorderPaint);
             if (this.progressToKeyboard < 0.5f) {
                 canvas.save();
                 canvas.clipRect(this.sharedResources.finalRect);
@@ -6776,40 +6797,29 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 this.clipPath.addRoundRect(this.sharedResources.popupRect, dp4, dp4, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(this.clipPath);
-                canvas.drawColor(-16777216);
-                if (this.storyContainerBlurRenderNode != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated()) {
-                    RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.storyContainerBlurRenderNode);
-                    if (this.progressToKeyboard > 0.0f) {
-                        canvas.save();
-                        canvas.translate(this.storyContainer.getX(), this.storyContainer.getY());
-                        m2.setAlpha(this.progressToKeyboard);
-                        canvas.drawRenderNode(m2);
-                        canvas.restore();
-                    }
+                BlurredBackgroundDrawable blurredBackgroundDrawable2 = this.emojiKeyboardBackground;
+                if (blurredBackgroundDrawable2 != null) {
+                    blurredBackgroundDrawable2.setBounds((int) this.sharedResources.popupRect.left, (int) this.sharedResources.popupRect.top, (int) this.sharedResources.popupRect.right, (int) this.sharedResources.popupRect.bottom);
+                    this.emojiKeyboardBackground.setRadius(dp4, dp4, dp4, dp4);
+                    this.emojiKeyboardBackground.draw(canvas);
                 } else {
-                    this.bitmapShaderTools.setBounds(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    float f2 = this.progressToKeyboard;
-                    if (f2 > 0.0f) {
-                        this.bitmapShaderTools.paint.setAlpha((int) (f2 * 255.0f));
-                        canvas.drawRoundRect(this.sharedResources.popupRect, dp4, dp4, this.bitmapShaderTools.paint);
-                    }
+                    canvas.drawRoundRect(this.sharedResources.popupRect, dp4, dp4, this.inputBackgroundPaint);
                 }
-                canvas.drawPaint(this.inputBackgroundPaint);
-                this.sharedResources.borderRect.set(this.sharedResources.popupRect);
-                this.sharedResources.borderRect.inset(0.0f, AndroidUtilities.dp(1.0f) / 2.0f);
-                this.inputTopBorderPaint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-                this.inputBottomBorderPaint.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
-                BlurredBackgroundDrawable.drawStroke(canvas, this.sharedResources.borderRect, dp4, AndroidUtilities.dpf2(1.0f), true, this.inputTopBorderPaint);
-                BlurredBackgroundDrawable.drawStroke(canvas, this.sharedResources.borderRect, dp4, AndroidUtilities.dpf2(0.6666667f), false, this.inputBottomBorderPaint);
                 boolean drawChild3 = super.drawChild(canvas, view, j);
                 canvas.restore();
                 return drawChild3;
             }
             if (view == this.reactionsContainerLayout && this.chatActivityEnterView != null) {
-                view.setTranslationY(((-r1.getMeasuredHeight()) + (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop())) - AndroidUtilities.dp(18.0f));
+                view.setTranslationY(((-r0.getMeasuredHeight()) + (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop())) - AndroidUtilities.dp(18.0f));
             } else {
                 if (view == this.likesReactionLayout) {
-                    view.setTranslationY((((-(r1.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
+                    view.setTranslationY((((-(r0.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
+                } else if (view == this.storyContainer && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (blurredBackgroundSourceRenderNode = this.blurredBackgroundSourceRenderNodeWithSaturation) != null && !blurredBackgroundSourceRenderNode.inRecording()) {
+                    Canvas beginRecording = this.blurredBackgroundSourceRenderNodeWithSaturation.beginRecording(getMeasuredWidth(), getMeasuredHeight());
+                    beginRecording.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+                    beginRecording.translate(this.storyContainer.getX(), this.storyContainer.getY());
+                    super.drawChild(beginRecording, view, j);
+                    this.blurredBackgroundSourceRenderNodeWithSaturation.endRecording();
                 }
             }
         }

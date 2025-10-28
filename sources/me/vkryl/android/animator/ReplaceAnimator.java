@@ -84,6 +84,10 @@ public class ReplaceAnimator implements Iterable {
         return this.list.getMetadata();
     }
 
+    public void clear(boolean z) {
+        this.list.clear(z);
+    }
+
     @Override
     public Iterator iterator() {
         return this.list.iterator();

@@ -68,6 +68,8 @@ public class ChatInputViewsContainer extends FrameLayout {
         this.underKeyboardBackgroundDrawable = blurredBackgroundDrawable;
         blurredBackgroundDrawable.enableInAppKeyboardOptimization();
         this.underKeyboardBackgroundDrawable.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), 0.0f, 0.0f);
+        this.underKeyboardBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
+        this.underKeyboardBackgroundDrawable.setIntensity(0.4f);
     }
 
     public void updateColors() {
@@ -101,10 +103,10 @@ public class ChatInputViewsContainer extends FrameLayout {
         }
     }
 
-    private void checkBlurredHeight() {
+    private void checkBlurredHeight(boolean z) {
         checkViewsPositions();
         int dp = this.inputBubbleHeightRound + AndroidUtilities.dp(9.0f) + Math.round(this.maxBottomInset);
-        if (this.currentBlurredHeight != dp) {
+        if (this.currentBlurredHeight != dp || z) {
             this.currentBlurredHeight = dp;
             int dp2 = AndroidUtilities.dp(29.0f);
             this.tmpRectF.set(0.0f, getMeasuredHeight() - this.imeBottomInset, getMeasuredWidth(), getMeasuredHeight());
@@ -117,17 +119,7 @@ public class ChatInputViewsContainer extends FrameLayout {
     }
 
     public void checkInsets() {
-        this.maxBottomInset = this.windowInsetsProvider.getAnimatedMaxBottomInset();
-        this.imeBottomInset = this.windowInsetsProvider.getAnimatedImeBottomInset();
-        this.needDrawInAppKeyboard = this.windowInsetsProvider.inAppViewIsVisible();
-        boolean z = this.inAppKeyboardBubbleContainer.getVisibility() == 0;
-        boolean z2 = this.needDrawInAppKeyboard;
-        if (z != z2) {
-            this.inAppKeyboardBubbleContainer.setVisibility(z2 ? 0 : 8);
-        }
-        checkInAppKeyboardViewHeight();
-        checkBlurredHeight();
-        checkInAppKeyboardChild();
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.chat.ChatInputViewsContainer.checkInsets():void");
     }
 
     public void checkViewsPositions() {
@@ -152,7 +144,7 @@ public class ChatInputViewsContainer extends FrameLayout {
     public void setInputBubbleHeight(float f) {
         this.inputBubbleHeight = f;
         this.inputBubbleHeightRound = Math.round(f);
-        checkBlurredHeight();
+        checkBlurredHeight(false);
     }
 
     public void setInputBubbleOffsets(float f, float f2) {
@@ -176,6 +168,7 @@ public class ChatInputViewsContainer extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
+        checkBlurredHeight(true);
         checkDrawableBounds();
         checkViewsPositions();
         checkInAppKeyboardChild();
@@ -207,7 +200,7 @@ public class ChatInputViewsContainer extends FrameLayout {
         boolean z = view == this.inAppKeyboardBubbleContainer;
         if (z) {
             canvas.save();
-            canvas.clipPath(this.underKeyboardPath);
+            canvas.clipPath(this.underKeyboardBackgroundDrawable.getPath());
         }
         boolean drawChild = super.drawChild(canvas, view, j);
         if (z) {

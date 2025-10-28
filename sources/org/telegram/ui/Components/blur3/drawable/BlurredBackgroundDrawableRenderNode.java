@@ -13,6 +13,7 @@ import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.LiteMode;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
@@ -53,7 +54,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint3.setStyle(style);
-        if (Build.VERSION.SDK_INT >= 33 && LiteMode.isEnabled(262144)) {
+        if (Build.VERSION.SDK_INT >= 33 && blurredBackgroundSourceRenderNode.allowLiquid && LiteMode.isEnabled(262144)) {
             this.liquidGlassEffect = new LiquidGlassEffect(m2);
         } else {
             this.liquidGlassEffect = null;
@@ -99,7 +100,21 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         beginRecording.translate(-(rect.left + f), -(rect.top + f2));
         LiquidGlassEffect liquidGlassEffect = this.liquidGlassEffect;
         if (liquidGlassEffect != null && Build.VERSION.SDK_INT >= 33) {
-            liquidGlassEffect.update(0.0f, 0.0f, this.boundProps.boundsWithPadding.width(), this.boundProps.boundsWithPadding.height(), this.boundProps.radii[0], AndroidUtilities.dp(10.0f));
+            float width = this.boundProps.boundsWithPadding.width();
+            float height = this.boundProps.boundsWithPadding.height();
+            BlurredBackgroundDrawable.Props props = this.boundProps;
+            float[] fArr = props.radii;
+            float f3 = fArr[0];
+            float f4 = fArr[2];
+            float f5 = fArr[4];
+            float f6 = fArr[6];
+            int i = props.liquidThickness;
+            if (i <= 0) {
+                i = AndroidUtilities.dp(11.0f);
+            }
+            float f7 = i;
+            BlurredBackgroundDrawable.Props props2 = this.boundProps;
+            liquidGlassEffect.update(0.0f, 0.0f, width, height, f3, f4, f5, f6, f7, props2.liquidIntensity, props2.liquidIndex);
         }
         BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = this.source;
         Rect rect2 = this.boundProps.boundsWithPadding;
@@ -110,16 +125,16 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         if (z) {
             beginRecording3 = this.renderNodeStroke.beginRecording();
             if (this.strokeColorTop != 0) {
-                float width = this.boundProps.boundsWithPadding.width();
-                float height = this.boundProps.boundsWithPadding.height();
-                BlurredBackgroundDrawable.Props props = this.boundProps;
-                BlurredBackgroundDrawable.drawStroke((Canvas) beginRecording3, 0.0f, 0.0f, width, height, props.radii, props.strokeWidthTop, true, this.paintStrokeTop);
-            }
-            if (this.strokeColorBottom != 0) {
                 float width2 = this.boundProps.boundsWithPadding.width();
                 float height2 = this.boundProps.boundsWithPadding.height();
-                BlurredBackgroundDrawable.Props props2 = this.boundProps;
-                BlurredBackgroundDrawable.drawStroke((Canvas) beginRecording3, 0.0f, 0.0f, width2, height2, props2.radii, props2.strokeWidthBottom, false, this.paintStrokeBottom);
+                BlurredBackgroundDrawable.Props props3 = this.boundProps;
+                BlurredBackgroundDrawable.drawStroke((Canvas) beginRecording3, 0.0f, 0.0f, width2, height2, props3.radii, props3.strokeWidthTop, true, this.paintStrokeTop);
+            }
+            if (this.strokeColorBottom != 0) {
+                float width3 = this.boundProps.boundsWithPadding.width();
+                float height3 = this.boundProps.boundsWithPadding.height();
+                BlurredBackgroundDrawable.Props props4 = this.boundProps;
+                BlurredBackgroundDrawable.drawStroke((Canvas) beginRecording3, 0.0f, 0.0f, width3, height3, props4.radii, props4.strokeWidthBottom, false, this.paintStrokeBottom);
             }
             this.renderNodeStroke.endRecording();
         }
@@ -157,7 +172,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
             }
         }
         this.paintShadow.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
-        this.paintFill.setColor(this.backgroundColor);
+        this.paintFill.setColor(Theme.multAlpha(this.backgroundColor, this.boundProps.fillAlpha));
         this.paintStrokeTop.setColor(this.strokeColorTop);
         this.paintStrokeBottom.setColor(this.strokeColorBottom);
         this.renderNodeInvalidated = true;

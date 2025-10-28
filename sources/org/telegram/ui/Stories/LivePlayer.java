@@ -391,18 +391,15 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             NativeInstance nativeInstance = this.instance;
             NativeByteBuffer nativeByteBuffer = ((TLRPC.TL_upload_file) tLObject).bytes;
             nativeInstance.onStreamPartAvailable(j, nativeByteBuffer.buffer, nativeByteBuffer.limit(), j2, i, i2);
+        } else if ("GROUPCALL_JOIN_MISSING".equals(tL_error.text)) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LivePlayer.this.lambda$init$10();
+                }
+            });
         } else {
-            if ("GROUPCALL_JOIN_MISSING".equals(tL_error.text)) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        LivePlayer.this.lambda$init$10();
-                    }
-                });
-            } else if (!"TIME_TOO_BIG".equals(tL_error.text)) {
-                tL_error.text.startsWith("FLOOD_WAIT");
-            }
-            this.instance.onStreamPartAvailable(j, null, 0, j2, i, i2);
+            this.instance.onStreamPartAvailable(j, null, ("TIME_TOO_BIG".equals(tL_error.text) || tL_error.text.startsWith("FLOOD_WAIT")) ? 0 : -1, j2, i, i2);
         }
     }
 

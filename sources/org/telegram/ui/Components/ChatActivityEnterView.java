@@ -3733,7 +3733,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (!isPopupShowing() || this.currentPopupContentType != 1) {
                 showPopup(1, 1);
             } else if (isPopupShowing() && this.currentPopupContentType == 1) {
-                showPopup(0, 1);
+                showPopup(0, 1, true, false);
             }
         } else if (this.hasBotCommands || this.hasQuickReplies) {
             setFieldText("/");
@@ -11591,10 +11591,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     public void showPopup(int i, int i2) {
-        showPopup(i, i2, true);
+        showPopup(i, i2, true, true);
     }
 
-    private void showPopup(final int i, int i2, boolean z) {
+    private void showPopup(int i, int i2, boolean z) {
+        showPopup(i, i2, z, true);
+    }
+
+    public void showPopup(final int i, int i2, boolean z, boolean z2) {
         int i3;
         int i4;
         if (i == 2) {
@@ -11753,7 +11757,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                             AnimatorSet animatorSet2 = new AnimatorSet();
                             this.panelAnimation = animatorSet2;
                             if (this.windowInsetsInAppController != null) {
-                                animatorSet2.playTogether(ValueAnimator.ofFloat(this.emojiView.getMeasuredHeight()));
+                                animatorSet2.playTogether(ValueAnimator.ofFloat(this.emojiView.getMeasuredHeight()), ValueAnimator.ofFloat(0.0f, 1.0f));
                             } else {
                                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this.emojiView, (Property<EmojiView, Float>) View.TRANSLATION_Y, r9.getMeasuredHeight()));
                             }
@@ -11852,7 +11856,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             updateBotButton(true);
             WindowInsetsInAppController windowInsetsInAppController2 = this.windowInsetsInAppController;
             if (windowInsetsInAppController2 != null) {
-                windowInsetsInAppController2.resetInAppKeyboardHeight(true);
+                windowInsetsInAppController2.resetInAppKeyboardHeight(z2);
             }
         }
         if (this.stickersTabOpen || this.emojiTabOpen) {
@@ -12066,7 +12070,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         } else if (this.stickersExpanded) {
             setStickersExpanded(false, true, false);
         } else {
-            showPopup(0, 0);
+            showPopup(0, 0, true, !z);
         }
         return true;
     }
@@ -12298,6 +12302,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             BotKeyboardView botKeyboardView = this.botKeyboardView;
             if (botKeyboardView != null) {
                 botKeyboardView.setPanelHeight(i2);
+                WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
+                if (windowInsetsInAppController != null && i2 > 0) {
+                    windowInsetsInAppController.requestInAppKeyboardHeight(AndroidUtilities.navigationBarHeight + i2);
+                }
             }
             if (view != null) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();

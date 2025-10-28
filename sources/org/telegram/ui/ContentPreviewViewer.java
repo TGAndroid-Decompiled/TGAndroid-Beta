@@ -1051,7 +1051,7 @@ public class ContentPreviewViewer {
         this.windowView = anonymousClass3;
         anonymousClass3.setFocusable(true);
         this.windowView.setFocusableInTouchMode(true);
-        this.windowView.setFitsSystemWindows(true);
+        this.windowView.setSystemUiVisibility(1792);
         this.windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
@@ -1100,6 +1100,10 @@ public class ContentPreviewViewer {
         layoutParams.gravity = 48;
         layoutParams.type = 99;
         layoutParams.flags = -2147286784;
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 28) {
+            layoutParams.layoutInDisplayCutoutMode = i2 >= 30 ? 3 : 1;
+        }
         this.centerImage.setAspectFit(true);
         this.centerImage.setInvalidateAll(true);
         this.centerImage.setParentView(this.containerView);

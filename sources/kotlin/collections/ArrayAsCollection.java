@@ -6,7 +6,7 @@ import kotlin.jvm.internal.ArrayIteratorKt;
 import kotlin.jvm.internal.CollectionToArray;
 import kotlin.jvm.internal.Intrinsics;
 
-final class ArrayAsCollection implements Collection {
+public final class ArrayAsCollection implements Collection {
     private final boolean isVarargs;
     private final Object[] values;
 

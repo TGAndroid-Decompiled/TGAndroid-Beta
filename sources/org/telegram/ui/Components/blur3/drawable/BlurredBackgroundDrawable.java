@@ -126,6 +126,16 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         onBoundPropsChanged();
     }
 
+    public void setThickness(int i) {
+        this.boundProps.liquidThickness = i;
+        onBoundPropsChanged();
+    }
+
+    public void setIntensity(float f) {
+        this.boundProps.liquidIntensity = f;
+        onBoundPropsChanged();
+    }
+
     public Rect getPaddedBounds() {
         return this.boundProps.boundsWithPadding;
     }
@@ -167,11 +177,15 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     }
 
     public static class Props {
+        public int liquidThickness;
         public int padding;
         public float strokeWidthBottom;
         public float strokeWidthTop;
         public final Rect bounds = new Rect();
         public final float[] radii = new float[8];
+        public float liquidIntensity = 0.75f;
+        public float liquidIndex = 1.5f;
+        public float fillAlpha = 1.0f;
         public final Path path = new Path();
         public boolean radiiAreSame = true;
         public final Rect boundsWithPadding = new Rect();
@@ -252,11 +266,17 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         float f7 = f6 / 2.0f;
         canvas.save();
         if (z) {
-            if (canvas.clipRect(f, f2, f3, MathUtils.clamp((2.0f * f5) + f2, f2, f4))) {
-                canvas.drawRoundRect(f - f6, f2 + f7, f3 + f6, f7 + f4, f5, f5, paint);
+            float f8 = f - f7;
+            float f9 = f3 + f7;
+            if (canvas.clipRect(f8, f2, f9, MathUtils.clamp(f2 + f5, f2, f4))) {
+                canvas.drawRoundRect(f8, f2 + f7, f9, f4 + f7, f5, f5, paint);
             }
-        } else if (canvas.clipRect(f, MathUtils.clamp(f4 - (2.0f * f5), f2, f4), f3, f4)) {
-            canvas.drawRoundRect(f - f6, f2 - f7, f3 + f6, f4 - f7, f5, f5, paint);
+        } else {
+            float f10 = f - f7;
+            float f11 = f3 + f7;
+            if (canvas.clipRect(f10, MathUtils.clamp(f4 - f5, f2, f4), f11, f4)) {
+                canvas.drawRoundRect(f10, f2 - f7, f11, f4 - f7, f5, f5, paint);
+            }
         }
         canvas.restore();
     }
@@ -323,14 +343,14 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         canvas.save();
         canvas.clipPath(this.boundProps.path);
         int i = this.strokeColorTop;
-        if (i > 0) {
+        if (i != 0) {
             this.paintStrokeTop.setColor(i);
             this.paintStrokeTop.setStrokeWidth(this.boundProps.strokeWidthTop);
             Props props = this.boundProps;
             drawStroke(canvas, props.boundsWithPadding, props.radii, props.strokeWidthTop, true, this.paintStrokeTop);
         }
         int i2 = this.strokeColorBottom;
-        if (i2 > 0) {
+        if (i2 != 0) {
             this.paintStrokeBottom.setColor(i2);
             this.paintStrokeBottom.setStrokeWidth(this.boundProps.strokeWidthBottom);
             Props props2 = this.boundProps;

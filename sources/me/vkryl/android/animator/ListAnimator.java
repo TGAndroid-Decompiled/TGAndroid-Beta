@@ -254,6 +254,10 @@ public final class ListAnimator implements Iterable {
         return -1;
     }
 
+    public void clear(boolean z) {
+        reset(null, z);
+    }
+
     private void onBeforeListChanged() {
         if (this.foundListChanges) {
             return;
