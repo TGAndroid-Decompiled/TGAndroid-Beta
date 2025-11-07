@@ -1045,7 +1045,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         layoutParams2.width = -1;
         layoutParams2.gravity = 48;
         layoutParams2.type = 99;
-        layoutParams2.flags = (-2147417848) | 8192;
+        layoutParams2.flags = -2147409656;
         AndroidUtilities.logFlagSecure();
         this.centerImage.setParentView(this.containerView);
         this.centerImage.setForceCrossfade(true);
@@ -1573,7 +1573,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.isVisible = i;
         Window window = this.parentActivity.getWindow();
         this.wasLightNavigationBar = AndroidUtilities.getLightNavigationBar(window);
-        AndroidUtilities.setLightNavigationBar(window, false);
+        AndroidUtilities.setLightNavigationBar(this.parentActivity, false);
         AndroidUtilities.setLightNavigationBar((View) this.windowView, false);
         Activity activity = this.parentActivity;
         if (activity instanceof LaunchActivity) {
@@ -1581,7 +1581,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             ((LaunchActivity) this.parentActivity).animateNavigationBarColor(-16777216);
         } else {
             this.wasNavigationBarColor = window.getNavigationBarColor();
-            AndroidUtilities.setNavigationBarColor(window, -16777216);
+            AndroidUtilities.setNavigationBarColor(this.parentActivity, -16777216);
         }
         AnimatorSet animatorSet = new AnimatorSet();
         this.imageMoveAnimation = animatorSet;

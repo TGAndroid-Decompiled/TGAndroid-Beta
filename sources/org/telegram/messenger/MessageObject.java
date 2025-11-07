@@ -213,6 +213,7 @@ public class MessageObject {
     public boolean isDateObject;
     public boolean isDownloadingFile;
     private Boolean isEmbedVideoCached;
+    public boolean isLiveStoryPush;
     public boolean isMediaSpoilersRevealed;
     public boolean isMediaSpoilersRevealedInSharedMedia;
     public Boolean isOutOwnerCached;

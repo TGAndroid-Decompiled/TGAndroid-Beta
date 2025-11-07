@@ -190,7 +190,7 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
         this.inAppKeyboardState = z ? 3 : 2;
         setInsets(this.lastInsets);
         if (z) {
-            AndroidUtilities.runOnUIThread(this.closeInAppKeyboard, 600L);
+            AndroidUtilities.runOnUIThread(this.closeInAppKeyboard, 1000L);
         }
     }
 }

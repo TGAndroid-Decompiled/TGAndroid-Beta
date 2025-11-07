@@ -27,8 +27,10 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
 import android.widget.OverScroller;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -42,7 +44,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.GradientClip;
 
-public class BottomSheetTabsOverlay extends FrameLayout {
+public class BottomSheetTabsOverlay extends View {
     private View actionBarLayout;
     private final AnimatedFloat animatedCount;
     private ValueAnimator animator;
@@ -65,6 +67,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
     private float lastY;
     private final int maximumVelocity;
     private final int minimumVelocity;
+    private int navigationBarInset;
     public float offset;
     private ValueAnimator openAnimator;
     private float openProgress;
@@ -102,7 +105,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo1189getWindowView();
+        SheetView mo1191getWindowView();
 
         boolean hadDialog();
 
@@ -125,11 +128,6 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         void setDrawingFromOverlay(boolean z);
     }
 
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        return false;
-    }
-
     public BottomSheetTabsOverlay(Context context) {
         super(context);
         this.animatedCount = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -147,11 +145,20 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
         this.maximumVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
         this.minimumVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
+        ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                WindowInsetsCompat onApplyWindowInsets;
+                onApplyWindowInsets = BottomSheetTabsOverlay.this.onApplyWindowInsets(view, windowInsetsCompat);
+                return onApplyWindowInsets;
+            }
+        });
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) + (Build.VERSION.SDK_INT < 35 ? AndroidUtilities.navigationBarHeight : 0), 1073741824));
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        this.navigationBarInset = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+        invalidate();
+        return WindowInsetsCompat.CONSUMED;
     }
 
     public void setTabsView(BottomSheetTabs bottomSheetTabs) {
@@ -515,10 +522,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
     }
 
     public static void lambda$dismissSheet$3(Sheet sheet) {
-        if (sheet == null || sheet.mo1189getWindowView() == null) {
+        if (sheet == null || sheet.mo1191getWindowView() == null) {
             return;
         }
-        sheet.mo1189getWindowView().setDrawingFromOverlay(true);
+        sheet.mo1191getWindowView().setDrawingFromOverlay(true);
     }
 
     public void lambda$dismissSheet$4(ValueAnimator valueAnimator) {
@@ -563,7 +570,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
                 canvas.translate(0.0f, -this.val$tab.viewScroll);
                 view.draw(canvas);
             }
-            this.val$sheet.mo1189getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo1191getWindowView().setDrawingFromOverlay(false);
             this.val$sheet.release();
             BottomSheetTabsOverlay.this.dismissingSheet = null;
             BottomSheetTabsOverlay.this.invalidate();
@@ -571,7 +578,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         public static void lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData webTabData, Sheet sheet, Bitmap bitmap) {
             webTabData.previewBitmap = bitmap;
-            sheet.mo1189getWindowView().setDrawingFromOverlay(false);
+            sheet.mo1191getWindowView().setDrawingFromOverlay(false);
             sheet.release();
         }
     }
@@ -740,10 +747,12 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             int i = this.pos[0];
             int[] iArr = this.pos2;
             rectF.offset(i - iArr[0], r1[1] - iArr[1]);
-            SheetView mo1189getWindowView = this.dismissingSheet.mo1189getWindowView();
+            canvas.save();
+            canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - this.navigationBarInset);
+            SheetView mo1191getWindowView = this.dismissingSheet.mo1191getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float drawInto = mo1189getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float drawInto = mo1191getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, drawInto, drawInto, Path.Direction.CW);
@@ -757,6 +766,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
                 this.dismissingTab.draw(canvas, this.rect, drawInto, this.dismissProgress, 1.0f);
                 canvas.restore();
             }
+            canvas.restore();
         }
     }
 
@@ -1028,16 +1038,20 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         surface.unlockCanvasAndPost(lockHardwareCanvas);
         PixelCopy.request(surface, createBitmap, new PixelCopy.OnPixelCopyFinishedListener() {
             @Override
-            public void onPixelCopyFinished(int i) {
-                if (i == 0) {
-                    Utilities.Callback.this.run(createBitmap);
-                } else {
-                    createBitmap.recycle();
-                    Utilities.Callback.this.run(null);
-                }
-                surface.release();
-                m.release();
+            public final void onPixelCopyFinished(int i) {
+                BottomSheetTabsOverlay.lambda$renderHardwareViewToBitmap$8(Utilities.Callback.this, createBitmap, surface, m, i);
             }
         }, new Handler());
+    }
+
+    public static void lambda$renderHardwareViewToBitmap$8(Utilities.Callback callback, Bitmap bitmap, Surface surface, SurfaceTexture surfaceTexture, int i) {
+        if (i == 0) {
+            callback.run(bitmap);
+        } else {
+            bitmap.recycle();
+            callback.run(null);
+        }
+        surface.release();
+        surfaceTexture.release();
     }
 }

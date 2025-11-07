@@ -501,13 +501,22 @@ public class EglRenderer implements VideoSink {
 
     public void lambda$clearImage$6(float f, float f2, float f3, float f4) {
         EglBase eglBase = this.eglBase;
-        if (eglBase == null || !eglBase.hasSurface()) {
+        if (eglBase != null && eglBase.hasSurface()) {
+            logD("clearSurface");
+            GLES20.glClearColor(f, f2, f3, f4);
+            GLES20.glClear(16384);
+            this.eglBase.swapBuffers(false);
+        }
+        EglBase eglBase2 = this.eglBase;
+        if (eglBase2 == null || !eglBase2.hasBackgroundSurface()) {
             return;
         }
-        logD("clearSurface");
+        this.eglBase.makeBackgroundCurrent();
+        logD("clearSurface in background");
         GLES20.glClearColor(f, f2, f3, f4);
         GLES20.glClear(16384);
-        this.eglBase.swapBuffers(false);
+        this.eglBase.swapBuffers(true);
+        this.eglBase.makeCurrent();
     }
 
     public void clearImage() {

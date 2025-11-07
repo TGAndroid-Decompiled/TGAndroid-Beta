@@ -14,6 +14,7 @@ import android.view.Surface;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.telegram.ui.Stories.LivePlayer;
 import org.webrtc.Camera2Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
@@ -340,7 +341,7 @@ public class Camera2Session implements CameraSession {
     }
 
     public int getFrameOrientation() {
-        int orientation = this.orientationHelper.getOrientation();
+        int orientation = LivePlayer.recording != null ? 0 : this.orientationHelper.getOrientation();
         OrientationHelper.cameraOrientation = orientation;
         if (this.isCameraFrontFacing) {
             orientation = 360 - orientation;

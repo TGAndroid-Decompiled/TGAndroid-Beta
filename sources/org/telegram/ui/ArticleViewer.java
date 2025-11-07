@@ -3773,9 +3773,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.navigationBarPaint.setColor(color);
         WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
         layoutParams2.systemUiVisibility = i4;
-        int i5 = Build.VERSION.SDK_INT;
         layoutParams2.flags |= -2147417856;
-        if (i5 >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             layoutParams2.layoutInDisplayCutoutMode = 1;
         }
         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = new TextSelectionHelper.ArticleTextSelectionHelper();
@@ -5252,10 +5251,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
             }
             try {
-                int i5 = Build.VERSION.SDK_INT;
                 WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
                 layoutParams.flags = -2013200384;
-                if (i5 >= 28) {
+                if (Build.VERSION.SDK_INT >= 28) {
                     layoutParams.layoutInDisplayCutoutMode = 1;
                 }
                 this.windowView.setFocusable(false);
@@ -13592,7 +13590,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1189getWindowView() {
+        public WindowView mo1191getWindowView() {
             return this.windowView;
         }
 
@@ -13984,8 +13982,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (bottomSheetTabDialog2 != null) {
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
-                LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo1189getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                LaunchActivity.instance.checkSystemBarColors(true, true, true);
+                AndroidUtilities.setLightNavigationBar(mo1191getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

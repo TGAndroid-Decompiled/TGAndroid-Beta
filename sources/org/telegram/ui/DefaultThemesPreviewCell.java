@@ -11,7 +11,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import androidx.core.graphics.ColorUtils;
@@ -234,8 +233,8 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             ofFloat.setDuration(350L);
             ofFloat.start();
             final int color2 = Theme.getColor(Theme.key_windowBackgroundGray);
-            final Window window = context instanceof Activity ? ((Activity) context).getWindow() : null;
-            if (window != null) {
+            final Activity activity = context instanceof Activity ? (Activity) context : null;
+            if ((activity != null ? activity.getWindow() : null) != null) {
                 if (DefaultThemesPreviewCell.this.navBarAnimator != null && DefaultThemesPreviewCell.this.navBarAnimator.isRunning()) {
                     DefaultThemesPreviewCell.this.navBarAnimator.cancel();
                 }
@@ -244,19 +243,20 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 final float f = z ? 50.0f : 200.0f;
                 final float f2 = 350.0f;
                 final float f3 = 150.0f;
+                final Activity activity2 = activity;
                 DefaultThemesPreviewCell.this.navBarAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         DefaultThemesPreviewCell.this.navBarColor = ColorUtils.blendARGB(i3, color2, Math.max(0.0f, Math.min(1.0f, ((((Float) valueAnimator.getAnimatedValue()).floatValue() * f2) - f) / f3)));
-                        AndroidUtilities.setNavigationBarColor(window, DefaultThemesPreviewCell.this.navBarColor, false);
-                        AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(DefaultThemesPreviewCell.this.navBarColor) >= 0.721f);
+                        AndroidUtilities.setNavigationBarColor(activity2, DefaultThemesPreviewCell.this.navBarColor, false);
+                        AndroidUtilities.setLightNavigationBar(activity2, AndroidUtilities.computePerceivedBrightness(DefaultThemesPreviewCell.this.navBarColor) >= 0.721f);
                     }
                 });
                 DefaultThemesPreviewCell.this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        AndroidUtilities.setNavigationBarColor(window, color2, false);
-                        AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(color2) >= 0.721f);
+                        AndroidUtilities.setNavigationBarColor(activity, color2, false);
+                        AndroidUtilities.setLightNavigationBar(activity, AndroidUtilities.computePerceivedBrightness(color2) >= 0.721f);
                     }
                 });
                 DefaultThemesPreviewCell.this.navBarAnimator.setDuration(350L);

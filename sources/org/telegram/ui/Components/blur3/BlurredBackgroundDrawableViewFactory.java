@@ -1,33 +1,65 @@
 package org.telegram.ui.Components.blur3;
 
 import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import me.vkryl.core.reference.ReferenceList;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
 public class BlurredBackgroundDrawableViewFactory {
-    private final ViewGroup parent;
+    private boolean isLiquidGlassEffectAllowed;
+    private ReferenceList linkedViews;
+    private ViewGroup parent;
     private final BlurredBackgroundSource source;
-    private final ViewPositionWatcher viewPositionWatcher;
+    private ViewPositionWatcher viewPositionWatcher;
+
+    public BlurredBackgroundDrawableViewFactory(BlurredBackgroundSource blurredBackgroundSource) {
+        this.source = blurredBackgroundSource;
+    }
 
     public BlurredBackgroundDrawableViewFactory(ViewPositionWatcher viewPositionWatcher, ViewGroup viewGroup, BlurredBackgroundSource blurredBackgroundSource) {
+        this(blurredBackgroundSource);
+        setSourceRootView(viewPositionWatcher, viewGroup);
+    }
+
+    public void setSourceRootView(ViewPositionWatcher viewPositionWatcher, ViewGroup viewGroup) {
         this.viewPositionWatcher = viewPositionWatcher;
-        this.source = blurredBackgroundSource;
         this.parent = viewGroup;
     }
 
+    public void setLinkedViewsRef(ReferenceList referenceList) {
+        this.linkedViews = referenceList;
+    }
+
+    public void setLiquidGlassEffectAllowed(boolean z) {
+        this.isLiquidGlassEffectAllowed = z;
+    }
+
     public BlurredBackgroundDrawable create(final View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+        ViewGroup viewGroup;
         final BlurredBackgroundDrawable createDrawable = this.source.createDrawable();
+        if (this.isLiquidGlassEffectAllowed && Build.VERSION.SDK_INT >= 33 && (createDrawable instanceof BlurredBackgroundDrawableRenderNode)) {
+            ((BlurredBackgroundDrawableRenderNode) createDrawable).setLiquidGlassEffectAllowed();
+        }
         createDrawable.setColorProvider(blurredBackgroundColorProvider);
-        this.viewPositionWatcher.subscribe(view, this.parent, new ViewPositionWatcher.OnChangedListener() {
-            @Override
-            public final void onPositionChanged(View view2, RectF rectF) {
-                BlurredBackgroundDrawableViewFactory.lambda$create$0(BlurredBackgroundDrawable.this, view, view2, rectF);
-            }
-        });
+        ReferenceList referenceList = this.linkedViews;
+        if (referenceList != null && view != null) {
+            referenceList.add(view);
+        }
+        ViewPositionWatcher viewPositionWatcher = this.viewPositionWatcher;
+        if (viewPositionWatcher != null && (viewGroup = this.parent) != null) {
+            viewPositionWatcher.subscribe(view, viewGroup, new ViewPositionWatcher.OnChangedListener() {
+                @Override
+                public final void onPositionChanged(View view2, RectF rectF) {
+                    BlurredBackgroundDrawableViewFactory.lambda$create$0(BlurredBackgroundDrawable.this, view, view2, rectF);
+                }
+            });
+        }
         return createDrawable;
     }
 

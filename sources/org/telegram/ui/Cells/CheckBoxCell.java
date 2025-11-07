@@ -2,6 +2,7 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -550,13 +551,15 @@ public class CheckBoxCell extends FrameLayout {
             if (this.currentType == 7) {
                 dp += AndroidUtilities.dp(39.0f);
             }
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : Theme.dividerPaint;
             float f = LocaleController.isRTL ? 0.0f : dp;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (!LocaleController.isRTL) {
                 dp = 0;
             }
-            canvas.drawLine(f, measuredHeight, measuredWidth - dp, getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(f, measuredHeight, measuredWidth - dp, getMeasuredHeight() - 1, paint);
         }
     }
 

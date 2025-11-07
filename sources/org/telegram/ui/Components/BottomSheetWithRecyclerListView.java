@@ -627,7 +627,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
     public void updateStatusBar() {
         if (this.attachedFragment != null) {
-            LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
+            LaunchActivity.instance.checkSystemBarColors(true, true, true);
             return;
         }
         ActionBar actionBar = this.actionBar;

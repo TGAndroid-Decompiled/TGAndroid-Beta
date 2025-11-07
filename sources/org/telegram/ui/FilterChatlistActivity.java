@@ -152,7 +152,7 @@ public class FilterChatlistActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterChatlistActivity.this.checkDiscard()) {
-                        FilterChatlistActivity.this.lambda$onBackPressed$341();
+                        FilterChatlistActivity.this.lambda$onBackPressed$340();
                     }
                 } else if (i == 1) {
                     if (Math.abs(FilterChatlistActivity.this.doneButtonAlpha - 1.0f) < 0.1f) {
@@ -377,7 +377,7 @@ public class FilterChatlistActivity extends BaseFragment {
         } else if (tL_error != null && "CHATLISTS_TOO_MUCH".equals(tL_error.text)) {
             showDialog(new LimitReachedBottomSheet(this, getContext(), 13, this.currentAccount, null));
         } else {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 
@@ -581,7 +581,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 if (FilterChatlistActivity.this.onDelete != null) {
                     FilterChatlistActivity.this.onDelete.run(FilterChatlistActivity.this.invite);
                 }
-                FilterChatlistActivity.this.lambda$onBackPressed$341();
+                FilterChatlistActivity.this.lambda$onBackPressed$340();
             }
 
             @Override
@@ -1020,7 +1020,7 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$10(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public static class InviteLinkCell extends FrameLayout {

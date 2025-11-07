@@ -90,6 +90,7 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.SecretMediaViewer;
 import org.telegram.ui.Stars.StarsController;
+import org.telegram.ui.Stories.HighlightMessageSheet;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.ThemeActivity;
 import org.telegram.ui.TopicsFragment;
@@ -109,6 +110,9 @@ public class MessagesController extends BaseController implements NotificationCe
     public static int DIALOG_FILTER_FLAG_GROUPS = 4;
     public static int DIALOG_FILTER_FLAG_NON_CONTACTS = 2;
     public static int DIALOG_FILTER_FLAG_ONLY_ARCHIVED = 256;
+    public static final int EMAIL_SUGGESTION_FALSE = 0;
+    public static final int EMAIL_SUGGESTION_TRUE = 1;
+    public static final int EMAIL_SUGGESTION_TRUE_FORCED = 2;
     public static final int LOAD_AROUND_DATE = 4;
     public static final int LOAD_AROUND_MESSAGE = 3;
     public static final int LOAD_BACKWARD = 0;
@@ -267,6 +271,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean disableBotFullscreenBlur;
     public Set<String> dismissedSuggestions;
     private final CacheFetcher<Integer, TLRPC.messages_AvailableEffects> effectsFetcher;
+    private boolean emailSuggestionWasShown;
     public HashMap<Long, ArrayList<TLRPC.TL_sendMessageEmojiInteraction>> emojiInteractions;
     private final SharedPreferences emojiPreferences;
     public HashMap<String, EmojiSound> emojiSounds;
@@ -333,6 +338,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean keepAliveService;
     public int largeQueueMaxActiveOperations;
     private int lastCheckPromoId;
+    private long lastCheckPromoInfoTime;
     public int lastKnownSessionsCount;
     private int lastPrintingStringCount;
     private long lastPushRegisterSendTime;
@@ -484,6 +490,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int secretWebpagePreview;
     public DialogFilter[] selectedDialogFilter;
     private LongSparseArray sendAsPeers;
+    private LongSparseArray sendAsPeersLiveStories;
     private final Runnable sendReportMessageDeliver;
     private final HashMap<String, Boolean> sendingSuggestedMessageApprovalMap;
     public LongSparseArray[] sendingTypings;
@@ -508,6 +515,8 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean starrefProgramAllowed;
     public Set<String> starrefStartParamPrefixes;
     public boolean starsGiftsEnabled;
+    public int starsGroupcallMessageAmountMax;
+    public int[] starsGroupcallMessageLimits;
     public boolean starsLocked;
     public long starsPaidMessageAmountMax;
     public int starsPaidMessageCommissionPermille;
@@ -1700,6 +1709,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.migratedChats = new SparseIntArray();
         this.sponsoredMessages = new LongSparseArray();
         this.sendAsPeers = new LongSparseArray();
+        this.sendAsPeersLiveStories = new LongSparseArray();
         this.reloadingWebpages = new HashMap<>();
         this.reloadingWebpagesPending = new LongSparseArray();
         this.reloadingScheduledWebpages = new HashMap<>();
@@ -2010,6 +2020,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 return Function$CC.$default$compose(this, function);
             }
         }).collect(Collectors.toCollection(new MessagesController$$ExternalSyntheticLambda84()));
+        this.starsGroupcallMessageAmountMax = this.mainPreferences.getInt("starsGroupcallMessageAmountMax", 10000);
+        this.starsGroupcallMessageLimits = HighlightMessageSheet.parseTiersString(this.mainPreferences.getString("starsGroupcallMessageLimits", null));
         this.freezeAppealUrl = this.mainPreferences.getString("freezeAppealUrl", "t.me/spambot");
         this.enableGiftsInProfile = this.mainPreferences.getBoolean("enableGiftsInProfile", true);
         this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");
@@ -3180,107 +3192,107 @@ public class MessagesController extends BaseController implements NotificationCe
                         break;
                     }
                     break;
-                case -1841535911:
-                    i2 = i8;
-                    if (str34.equals("dismissed_suggestions")) {
-                        c = 16;
-                        break;
-                    }
-                    break;
                 case -1802366185:
                     i2 = i8;
                     if (str34.equals("pm_read_date_expire_period")) {
-                        c = 17;
+                        c = 16;
                         break;
                     }
                     break;
                 case -1766766859:
                     i2 = i8;
                     if (str34.equals("starref_min_commission_permille")) {
-                        c = 18;
+                        c = 17;
                         break;
                     }
                     break;
                 case -1741981325:
                     i2 = i8;
                     if (str34.equals("smsjobs_sticky_notification_enabled")) {
-                        c = 19;
+                        c = 18;
                         break;
                     }
                     break;
                 case -1736722060:
                     i2 = i8;
                     if (str34.equals("upload_premium_speedup_notify_period")) {
-                        c = 20;
+                        c = 19;
                         break;
                     }
                     break;
                 case -1730760944:
                     i2 = i8;
                     if (str34.equals("stories_sent_monthly_limit_default")) {
-                        c = 21;
+                        c = 20;
                         break;
                     }
                     break;
                 case -1727638397:
                     i2 = i8;
                     if (str34.equals("bot_preview_medias_max")) {
-                        c = 22;
+                        c = 21;
                         break;
                     }
                     break;
                 case -1688620344:
                     i2 = i8;
                     if (str34.equals("dialog_filters_tooltip")) {
-                        c = 23;
+                        c = 22;
                         break;
                     }
                     break;
                 case -1683918311:
                     i2 = i8;
                     if (str34.equals("qr_login_camera")) {
-                        c = 24;
+                        c = 23;
                         break;
                     }
                     break;
                 case -1631139636:
                     i2 = i8;
                     if (str34.equals("stars_purchase_blocked")) {
-                        c = 25;
+                        c = 24;
                         break;
                     }
                     break;
                 case -1560863476:
                     i2 = i8;
                     if (str34.equals("group_custom_wallpaper_level_min")) {
-                        c = 26;
+                        c = 25;
                         break;
                     }
                     break;
                 case -1557626216:
                     i2 = i8;
                     if (str34.equals(str33)) {
-                        c = 27;
+                        c = 26;
                         break;
                     }
                     break;
                 case -1547147298:
                     i2 = i8;
                     if (str34.equals("channel_wallpaper_level_min")) {
-                        c = 28;
+                        c = 27;
                         break;
                     }
                     break;
                 case -1547044498:
                     i2 = i8;
                     if (str34.equals("chatlist_update_period")) {
-                        c = 29;
+                        c = 28;
                         break;
                     }
                     break;
                 case -1512224895:
                     i2 = i8;
                     if (str34.equals("stars_subscription_amount_max")) {
+                        c = 29;
+                        break;
+                    }
+                    break;
+                case -1505291915:
+                    i2 = i8;
+                    if (str34.equals("stars_groupcall_message_amount_max")) {
                         c = 30;
                         break;
                     }
@@ -3306,772 +3318,772 @@ public class MessagesController extends BaseController implements NotificationCe
                         break;
                     }
                     break;
-                case -1391086521:
-                    i2 = i8;
-                    if (str34.equals("pending_suggestions")) {
-                        c = '\"';
-                        break;
-                    }
-                    break;
                 case -1385240692:
                     i2 = i8;
                     if (str34.equals("channels_public_limit_premium")) {
-                        c = '#';
+                        c = '\"';
                         break;
                     }
                     break;
                 case -1379354758:
                     i2 = i8;
                     if (str34.equals("story_expiring_limit_premium")) {
-                        c = '$';
+                        c = '#';
                         break;
                     }
                     break;
                 case -1354971637:
                     i2 = i8;
                     if (str34.equals("stars_paid_messages_available")) {
-                        c = '%';
+                        c = '$';
                         break;
                     }
                     break;
                 case -1351431371:
                     i2 = i8;
                     if (str34.equals("group_profile_bg_icon_level_min")) {
-                        c = '&';
+                        c = '%';
                         break;
                     }
                     break;
                 case -1340158869:
                     i2 = i8;
                     if (str34.equals("upload_premium_speedup_download")) {
-                        c = '\'';
+                        c = '&';
                         break;
                     }
                     break;
                 case -1318497457:
                     i2 = i8;
                     if (str34.equals("ignore_restriction_reasons")) {
-                        c = '(';
+                        c = '\'';
                         break;
                     }
                     break;
                 case -1304621435:
                     i2 = i8;
                     if (str34.equals("new_noncontact_peers_require_premium_without_ownpremium")) {
-                        c = ')';
+                        c = '(';
                         break;
                     }
                     break;
                 case -1289139185:
                     i2 = i8;
                     if (str34.equals("quick_reply_messages_limit")) {
-                        c = '*';
+                        c = ')';
                         break;
                     }
                     break;
                 case -1287877531:
                     i2 = i8;
                     if (str34.equals("stickers_faved_limit_premium")) {
-                        c = '+';
+                        c = '*';
                         break;
                     }
                     break;
                 case -1276977346:
                     i2 = i8;
                     if (str34.equals("todo_item_length_max")) {
-                        c = ',';
+                        c = '+';
                         break;
                     }
                     break;
                 case -1253023507:
                     i2 = i8;
                     if (str34.equals(str32)) {
-                        c = '-';
+                        c = ',';
                         break;
                     }
                     break;
                 case -1241485120:
                     i2 = i8;
                     if (str34.equals("stargifts_convert_period_max")) {
-                        c = '.';
+                        c = '-';
                         break;
                     }
                     break;
                 case -1133154193:
                     i2 = i8;
                     if (str34.equals("lite_app_options")) {
-                        c = '/';
+                        c = '.';
                         break;
                     }
                     break;
                 case -1086302656:
                     i2 = i8;
                     if (str34.equals("lite_device_class")) {
-                        c = '0';
+                        c = '/';
                         break;
                     }
                     break;
                 case -1071072567:
                     i2 = i8;
                     if (str34.equals("premium_gift_text_field_icon")) {
-                        c = '1';
+                        c = '0';
                         break;
                     }
                     break;
                 case -1056002991:
                     i2 = i8;
                     if (str34.equals("chat_read_mark_expire_period")) {
-                        c = '2';
+                        c = '1';
                         break;
                     }
                     break;
                 case -1049689381:
                     i2 = i8;
                     if (str34.equals("reactions_uniq_max")) {
-                        c = '3';
+                        c = '2';
                         break;
                     }
                     break;
                 case -1032177933:
                     i2 = i8;
                     if (str34.equals("emojies_send_dice")) {
-                        c = '4';
+                        c = '3';
                         break;
                     }
                     break;
                 case -980397720:
                     i2 = i8;
                     if (str34.equals("url_auth_domains")) {
-                        c = '5';
+                        c = '4';
                         break;
                     }
                     break;
                 case -973235223:
                     i2 = i8;
                     if (str34.equals("stars_revenue_withdrawal_min")) {
-                        c = '6';
+                        c = '5';
                         break;
                     }
                     break;
                 case -947423642:
                     i2 = i8;
                     if (str34.equals(str31)) {
-                        c = '7';
+                        c = '6';
                         break;
                     }
                     break;
                 case -915535880:
                     i2 = i8;
                     if (str34.equals("saved_dialogs_pinned_limit_premium")) {
-                        c = '8';
+                        c = '7';
                         break;
                     }
                     break;
                 case -896467099:
                     i2 = i8;
                     if (str34.equals("saved_gifs_limit_default")) {
-                        c = '9';
+                        c = '8';
                         break;
                     }
                     break;
                 case -736509977:
                     i2 = i8;
                     if (str34.equals("story_caption_length_limit_default")) {
-                        c = ':';
+                        c = '9';
                         break;
                     }
                     break;
                 case -728445056:
                     i2 = i8;
                     if (str34.equals("show_annual_per_month")) {
-                        c = ';';
+                        c = ':';
                         break;
                     }
                     break;
                 case -581904190:
                     i2 = i8;
                     if (str34.equals("dialog_filters_limit_default")) {
-                        c = '<';
+                        c = ';';
                         break;
                     }
                     break;
                 case -561040027:
                     i2 = i8;
                     if (str34.equals("premium_invoice_slug")) {
-                        c = '=';
+                        c = '<';
                         break;
                     }
                     break;
                 case -542518288:
                     i2 = i8;
                     if (str34.equals("stories_sent_weekly_limit_premium")) {
-                        c = '>';
+                        c = '=';
                         break;
                     }
                     break;
                 case -533076272:
                     i2 = i8;
                     if (str34.equals("stories_export_nopublic_link")) {
-                        c = '?';
+                        c = '>';
                         break;
                     }
                     break;
                 case -528676601:
                     i2 = i8;
                     if (str34.equals("starref_max_commission_permille")) {
-                        c = '@';
+                        c = '?';
                         break;
                     }
                     break;
                 case -519548682:
                     i2 = i8;
                     if (str34.equals("call_requests_disabled")) {
-                        c = 'A';
+                        c = '@';
                         break;
                     }
                     break;
                 case -515715076:
                     i2 = i8;
                     if (str34.equals("export_regex")) {
-                        c = 'B';
+                        c = 'A';
                         break;
                     }
                     break;
                 case -507953835:
                     i2 = i8;
                     if (str34.equals("chatlist_invites_limit_premium")) {
-                        c = 'C';
+                        c = 'B';
                         break;
                     }
                     break;
                 case -505523666:
                     i2 = i8;
                     if (str34.equals("stars_usd_sell_rate_x1000")) {
-                        c = 'D';
+                        c = 'C';
                         break;
                     }
                     break;
                 case -488472170:
                     i2 = i8;
                     if (str34.equals("about_length_limit_default")) {
-                        c = 'E';
+                        c = 'D';
                         break;
                     }
                     break;
                 case -473866179:
                     i2 = i8;
                     if (str34.equals("reactions_user_max_premium")) {
-                        c = 'F';
+                        c = 'E';
                         break;
                     }
                     break;
                 case -416504589:
                     i2 = i8;
                     if (str34.equals("caption_length_limit_premium")) {
-                        c = 'G';
+                        c = 'F';
                         break;
                     }
                     break;
                 case -413597349:
                     i2 = i8;
                     if (str34.equals("conference_call_size_limit")) {
-                        c = 'H';
+                        c = 'G';
                         break;
                     }
                     break;
                 case -413144568:
                     i2 = i8;
                     if (str34.equals("recommended_channels_limit_premium")) {
-                        c = 'I';
+                        c = 'H';
                         break;
                     }
                     break;
                 case -404170231:
                     i2 = i8;
                     if (str34.equals("keep_alive_service")) {
-                        c = 'J';
+                        c = 'I';
                         break;
                     }
                     break;
                 case -381432266:
                     i2 = i8;
                     if (str34.equals("premium_promo_order")) {
-                        c = 'K';
+                        c = 'J';
                         break;
                     }
                     break;
                 case -377047005:
                     i2 = i8;
                     if (str34.equals("ringtone_size_max")) {
-                        c = 'L';
+                        c = 'K';
                         break;
                     }
                     break;
                 case -350971916:
                     i2 = i8;
                     if (str34.equals("dialog_filters_chats_limit_premium")) {
-                        c = 'M';
+                        c = 'L';
                         break;
                     }
                     break;
                 case -298029137:
                     i2 = i8;
                     if (str34.equals("starref_program_allowed")) {
-                        c = 'N';
+                        c = 'M';
                         break;
                     }
                     break;
                 case -297801185:
                     i2 = i8;
                     if (str34.equals("business_promo_order")) {
-                        c = 'O';
+                        c = 'N';
                         break;
                     }
                     break;
                 case -281358583:
                     i2 = i8;
                     if (str34.equals("chatlists_joined_limit_default")) {
-                        c = 'P';
+                        c = 'O';
                         break;
                     }
                     break;
                 case -273604959:
                     i2 = i8;
                     if (str34.equals("stories_pinned_to_top_count_max")) {
-                        c = 'Q';
+                        c = 'P';
                         break;
                     }
                     break;
                 case -256319580:
                     i2 = i8;
                     if (str34.equals("channels_limit_premium")) {
-                        c = 'R';
+                        c = 'Q';
                         break;
                     }
                     break;
                 case -255781220:
                     i2 = i8;
                     if (str34.equals("bot_fullscreen_blur_disable")) {
-                        c = 'S';
+                        c = 'R';
                         break;
                     }
                     break;
                 case -253815153:
                     i2 = i8;
                     if (str34.equals("background_connection")) {
-                        c = 'T';
+                        c = 'S';
                         break;
                     }
                     break;
                 case -253729626:
                     i2 = i8;
                     if (str34.equals(str30)) {
-                        c = 'U';
+                        c = 'T';
                         break;
                     }
                     break;
                 case -232883529:
                     i2 = i8;
                     if (str34.equals("emojies_send_dice_success")) {
-                        c = 'V';
+                        c = 'U';
                         break;
                     }
                     break;
                 case -223170831:
                     i2 = i8;
                     if (str34.equals("dialog_filters_pinned_limit_default")) {
-                        c = 'W';
+                        c = 'V';
                         break;
                     }
                     break;
                 case -191129361:
                     i2 = i8;
                     if (str34.equals("hidden_members_group_size_min")) {
-                        c = 'X';
+                        c = 'W';
                         break;
                     }
                     break;
                 case -130123113:
                     i2 = i8;
                     if (str34.equals("freeze_until_date")) {
-                        c = 'Y';
+                        c = 'X';
                         break;
                     }
                     break;
                 case -111779186:
                     i2 = i8;
                     if (str34.equals("autoarchive_setting_available")) {
-                        c = 'Z';
+                        c = 'Y';
                         break;
                     }
                     break;
                 case -100192526:
                     i2 = i8;
                     if (str34.equals("quick_replies_limit")) {
-                        c = '[';
+                        c = 'Z';
                         break;
                     }
                     break;
                 case -76561797:
                     i2 = i8;
                     if (str34.equals("youtube_pip")) {
-                        c = '\\';
+                        c = '[';
                         break;
                     }
                     break;
                 case -44956361:
                     i2 = i8;
                     if (str34.equals("ton_proxy_address")) {
-                        c = ']';
+                        c = '\\';
                         break;
                     }
                     break;
                 case -24016028:
                     i2 = i8;
                     if (str34.equals("emojies_animated_zoom")) {
-                        c = '^';
+                        c = ']';
                         break;
                     }
                     break;
                 case -14783830:
                     i2 = i8;
                     if (str34.equals("telegram_antispam_group_size_min")) {
-                        c = '_';
+                        c = '^';
                         break;
                     }
                     break;
                 case 11698566:
                     i2 = i8;
                     if (str34.equals("stargifts_pinned_to_top_limit")) {
-                        c = '`';
+                        c = '_';
                         break;
                     }
                     break;
                 case 22533614:
                     i2 = i8;
                     if (str34.equals("translations_auto_enabled")) {
-                        c = 'a';
+                        c = '`';
                         break;
                     }
                     break;
                 case 81433671:
                     i2 = i8;
                     if (str34.equals("giveaway_gifts_purchase_available")) {
-                        c = 'b';
+                        c = 'a';
                         break;
                     }
                     break;
                 case 141709566:
                     i2 = i8;
                     if (str34.equals("stars_paid_reaction_amount_max")) {
-                        c = 'c';
+                        c = 'b';
                         break;
                     }
                     break;
                 case 169095108:
                     i2 = i8;
                     if (str34.equals("stickers_emoji_suggest_only_api")) {
-                        c = 'd';
+                        c = 'c';
                         break;
                     }
                     break;
                 case 222975416:
                     i2 = i8;
                     if (str34.equals("gif_search_emojies")) {
-                        c = 'e';
+                        c = 'd';
                         break;
                     }
                     break;
                 case 227342346:
                     i2 = i8;
                     if (str34.equals("autologin_domains")) {
-                        c = 'f';
+                        c = 'e';
                         break;
                     }
                     break;
                 case 246778895:
                     i2 = i8;
                     if (str34.equals("export_group_urls")) {
-                        c = 'g';
+                        c = 'f';
                         break;
                     }
                     break;
                 case 280936278:
                     i2 = i8;
                     if (str34.equals("stories_posting")) {
-                        c = 'h';
+                        c = 'g';
                         break;
                     }
                     break;
                 case 284177841:
                     i2 = i8;
                     if (str34.equals("bot_verification_description_length_limit")) {
-                        c = 'i';
+                        c = 'h';
                         break;
                     }
                     break;
                 case 296645817:
                     i2 = i8;
                     if (str34.equals("channel_profile_bg_icon_level_min")) {
-                        c = 'j';
+                        c = 'i';
                         break;
                     }
                     break;
                 case 329993876:
                     i2 = i8;
                     if (str34.equals("verify_age_bot_username")) {
-                        c = 'k';
+                        c = 'j';
                         break;
                     }
                     break;
                 case 357521218:
                     i2 = i8;
                     if (str34.equals("weather_search_username")) {
-                        c = 'l';
+                        c = 'k';
                         break;
                     }
                     break;
                 case 365723077:
                     i2 = i8;
                     if (str34.equals("translations_manual_enabled")) {
-                        c = 'm';
+                        c = 'l';
                         break;
                     }
                     break;
                 case 396402384:
                     i2 = i8;
                     if (str34.equals("getfile_experimental_params")) {
-                        c = 'n';
+                        c = 'm';
                         break;
                     }
                     break;
                 case 411331190:
                     i2 = i8;
                     if (str34.equals("can_edit_factcheck")) {
-                        c = 'o';
+                        c = 'n';
                         break;
                     }
                     break;
                 case 428604605:
                     i2 = i8;
                     if (str34.equals("premium_playmarket_direct_currency_list")) {
-                        c = 'p';
+                        c = 'o';
                         break;
                     }
                     break;
                 case 450843102:
                     i2 = i8;
                     if (str34.equals("android_check_reset_langpack")) {
-                        c = 'q';
+                        c = 'p';
                         break;
                     }
                     break;
                 case 478015350:
                     i2 = i8;
                     if (str34.equals("channels_public_limit_default")) {
-                        c = 'r';
+                        c = 'q';
                         break;
                     }
                     break;
                 case 483901284:
                     i2 = i8;
                     if (str34.equals("story_expiring_limit_default")) {
-                        c = 's';
+                        c = 'r';
                         break;
                     }
                     break;
                 case 511041306:
                     i2 = i8;
                     if (str34.equals("sponsored_links_inapp_allow")) {
-                        c = 't';
+                        c = 's';
                         break;
                     }
                     break;
                 case 517315989:
                     i2 = i8;
                     if (str34.equals(str29)) {
-                        c = 'u';
+                        c = 't';
                         break;
                     }
                     break;
                 case 525494819:
                     i2 = i8;
                     if (str34.equals("upload_max_fileparts_premium")) {
-                        c = 'v';
+                        c = 'u';
                         break;
                     }
                     break;
                 case 526669457:
                     i2 = i8;
                     if (str34.equals("pinned_dialogs_count_max_premium")) {
-                        c = 'w';
+                        c = 'v';
                         break;
                     }
                     break;
                 case 552754102:
                     i2 = i8;
                     if (str34.equals("stories_suggested_reactions_limit_premium")) {
-                        c = 'x';
+                        c = 'w';
                         break;
                     }
                     break;
                 case 575378511:
                     i2 = i8;
                     if (str34.equals("stickers_faved_limit_default")) {
-                        c = 'y';
+                        c = 'x';
                         break;
                     }
                     break;
                 case 670122854:
                     i2 = i8;
                     if (str34.equals(str28)) {
-                        c = 'z';
+                        c = 'y';
                         break;
                     }
                     break;
                 case 676199595:
                     i2 = i8;
                     if (str34.equals("groupcall_video_participants_max")) {
-                        c = '{';
+                        c = 'z';
                         break;
                     }
                     break;
                 case 684764449:
                     i2 = i8;
                     if (str34.equals("save_gifs_with_stickers")) {
-                        c = '|';
+                        c = '{';
                         break;
                     }
                     break;
                 case 700206086:
                     i2 = i8;
                     if (str34.equals(str27)) {
-                        c = '}';
+                        c = '|';
                         break;
                     }
                     break;
                 case 700950310:
                     i2 = i8;
                     if (str34.equals("stories_sent_monthly_limit_premium")) {
-                        c = '~';
+                        c = '}';
                         break;
                     }
                     break;
                 case 805025045:
                     i2 = i8;
                     if (str34.equals("android_disable_round_camera2")) {
-                        c = 127;
+                        c = '~';
                         break;
                     }
                     break;
                 case 812427767:
                     i2 = i8;
                     if (str34.equals("login_google_oauth_client_id")) {
-                        c = 128;
+                        c = 127;
                         break;
                     }
                     break;
                 case 856667894:
                     i2 = i8;
                     if (str34.equals("stars_usd_withdraw_rate_x1000")) {
-                        c = 129;
+                        c = 128;
                         break;
                     }
                     break;
                 case 878681646:
                     i2 = i8;
                     if (str34.equals("quote_length_max")) {
-                        c = 130;
+                        c = 129;
                         break;
                     }
                     break;
                 case 917364150:
                     i2 = i8;
                     if (str34.equals("ringtone_duration_max")) {
-                        c = 131;
+                        c = 130;
                         break;
                     }
                     break;
                 case 947720162:
                     i2 = i8;
                     if (str34.equals("saved_dialogs_pinned_limit_default")) {
-                        c = 132;
+                        c = 131;
                         break;
                     }
                     break;
                 case 950283923:
                     i2 = i8;
                     if (str34.equals("stars_paid_message_commission_permille")) {
-                        c = 133;
+                        c = 132;
                         break;
                     }
                     break;
                 case 992898905:
                     i2 = i8;
                     if (str34.equals("inapp_update_check_delay")) {
-                        c = 134;
+                        c = 133;
                         break;
                     }
                     break;
                 case 1012863815:
                     i2 = i8;
                     if (str34.equals("group_emoji_stickers_level_min")) {
-                        c = 135;
+                        c = 134;
                         break;
                     }
                     break;
                 case 1021871313:
                     i2 = i8;
                     if (str34.equals("stories_venue_search_username")) {
-                        c = 136;
+                        c = 135;
                         break;
                     }
                     break;
                 case 1022209700:
                     i2 = i8;
                     if (str34.equals("upload_premium_speedup_upload")) {
-                        c = 137;
+                        c = 136;
                         break;
                     }
                     break;
                 case 1022591658:
                     i2 = i8;
                     if (str34.equals("stars_paid_message_amount_max")) {
-                        c = 138;
+                        c = 137;
                         break;
                     }
                     break;
                 case 1029490603:
                     i2 = i8;
                     if (str34.equals("todo_title_length_max")) {
-                        c = 139;
+                        c = 138;
                         break;
                     }
                     break;
                 case 1052355894:
                     i2 = i8;
                     if (str34.equals("premium_bot_username")) {
-                        c = 140;
+                        c = 139;
                         break;
                     }
                     break;
                 case 1085221270:
                     i2 = i8;
                     if (str34.equals("premium_purchase_blocked")) {
-                        c = 141;
+                        c = 140;
                         break;
                     }
                     break;
                 case 1143898023:
                     i2 = i8;
                     if (str34.equals("stars_paid_post_amount_max")) {
-                        c = 142;
+                        c = 141;
                         break;
                     }
                     break;
                 case 1155587444:
                     i2 = i8;
                     if (str34.equals("story_weather_preload")) {
+                        c = 142;
+                        break;
+                    }
+                    break;
+                case 1181024400:
+                    i2 = i8;
+                    if (str34.equals("stars_groupcall_message_limits")) {
                         c = 143;
                         break;
                     }
@@ -4773,26 +4785,18 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    HashSet hashSet = new HashSet();
                     TLRPC.JSONValue jSONValue17 = tL_jsonObjectValue.value;
-                    if (jSONValue17 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray = (TLRPC.TL_jsonArray) jSONValue17;
-                        int size2 = tL_jsonArray.value.size();
-                        for (int i22 = 0; i22 < size2; i22++) {
-                            TLRPC.JSONValue jSONValue18 = tL_jsonArray.value.get(i22);
-                            if (jSONValue18 instanceof TLRPC.TL_jsonString) {
-                                hashSet.add(((TLRPC.TL_jsonString) jSONValue18).value);
-                            }
+                    if (jSONValue17 instanceof TLRPC.TL_jsonNumber) {
+                        double d11 = ((TLRPC.TL_jsonNumber) jSONValue17).value;
+                        if (d11 != this.pmReadDateExpirePeriod) {
+                            int i22 = (int) d11;
+                            this.pmReadDateExpirePeriod = i22;
+                            edit.putInt("pmReadDateExpirePeriod", i22);
+                            z14 = true;
+                            z28 = z14;
                         }
                     }
-                    if (!this.dismissedSuggestions.equals(hashSet)) {
-                        this.dismissedSuggestions = hashSet;
-                        edit.putStringSet("dismissedSuggestions", hashSet);
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-                        z14 = true;
-                        z28 = z14;
-                        break;
-                    }
+                    break;
                 case 17:
                     str = str25;
                     str2 = str26;
@@ -4803,19 +4807,37 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue19 = tL_jsonObjectValue.value;
-                    if (jSONValue19 instanceof TLRPC.TL_jsonNumber) {
-                        double d11 = ((TLRPC.TL_jsonNumber) jSONValue19).value;
-                        if (d11 != this.pmReadDateExpirePeriod) {
-                            int i23 = (int) d11;
-                            this.pmReadDateExpirePeriod = i23;
-                            edit.putInt("pmReadDateExpirePeriod", i23);
+                    TLRPC.JSONValue jSONValue18 = tL_jsonObjectValue.value;
+                    if (jSONValue18 instanceof TLRPC.TL_jsonNumber) {
+                        double d12 = ((TLRPC.TL_jsonNumber) jSONValue18).value;
+                        if (d12 != this.starrefMinCommissionPermille) {
+                            int i23 = (int) d12;
+                            this.starrefMinCommissionPermille = i23;
+                            edit.putInt("starrefMinCommissionPermille", i23);
                             z14 = true;
                             z28 = z14;
-                            break;
                         }
                     }
+                    break;
                 case 18:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue19 = tL_jsonObjectValue.value;
+                    if ((jSONValue19 instanceof TLRPC.TL_jsonBool) && (z5 = ((TLRPC.TL_jsonBool) jSONValue19).value) != this.smsjobsStickyNotificationEnabled) {
+                        this.smsjobsStickyNotificationEnabled = z5;
+                        edit.putBoolean("smsjobsStickyNotificationEnabled", z5);
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 19:
                     str = str25;
                     str2 = str26;
                     str3 = str27;
@@ -4827,33 +4849,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str9 = str33;
                     TLRPC.JSONValue jSONValue20 = tL_jsonObjectValue.value;
                     if (jSONValue20 instanceof TLRPC.TL_jsonNumber) {
-                        double d12 = ((TLRPC.TL_jsonNumber) jSONValue20).value;
-                        if (d12 != this.starrefMinCommissionPermille) {
-                            int i24 = (int) d12;
-                            this.starrefMinCommissionPermille = i24;
-                            edit.putInt("starrefMinCommissionPermille", i24);
+                        double d13 = ((TLRPC.TL_jsonNumber) jSONValue20).value;
+                        if (d13 != this.uploadPremiumSpeedupNotifyPeriod) {
+                            int i24 = (int) d13;
+                            this.uploadPremiumSpeedupNotifyPeriod = i24;
+                            edit.putInt("uploadPremiumSpeedupNotifyPeriod2", i24);
                             z14 = true;
                             z28 = z14;
-                            break;
                         }
-                    }
-                case 19:
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str7 = str31;
-                    str8 = str32;
-                    str9 = str33;
-                    TLRPC.JSONValue jSONValue21 = tL_jsonObjectValue.value;
-                    if ((jSONValue21 instanceof TLRPC.TL_jsonBool) && (z5 = ((TLRPC.TL_jsonBool) jSONValue21).value) != this.smsjobsStickyNotificationEnabled) {
-                        this.smsjobsStickyNotificationEnabled = z5;
-                        edit.putBoolean("smsjobsStickyNotificationEnabled", z5);
-                        z14 = true;
-                        z28 = z14;
-                        break;
                     }
                     break;
                 case 20:
@@ -4866,18 +4869,18 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue22 = tL_jsonObjectValue.value;
-                    if (jSONValue22 instanceof TLRPC.TL_jsonNumber) {
-                        double d13 = ((TLRPC.TL_jsonNumber) jSONValue22).value;
-                        if (d13 != this.uploadPremiumSpeedupNotifyPeriod) {
-                            int i25 = (int) d13;
-                            this.uploadPremiumSpeedupNotifyPeriod = i25;
-                            edit.putInt("uploadPremiumSpeedupNotifyPeriod2", i25);
+                    TLRPC.JSONValue jSONValue21 = tL_jsonObjectValue.value;
+                    if (jSONValue21 instanceof TLRPC.TL_jsonNumber) {
+                        double d14 = ((TLRPC.TL_jsonNumber) jSONValue21).value;
+                        if (d14 != this.storiesSentMonthlyLimitDefault) {
+                            int i25 = (int) d14;
+                            this.storiesSentMonthlyLimitDefault = i25;
+                            edit.putInt("storiesSentMonthlyLimitDefault", i25);
                             z14 = true;
                             z28 = z14;
-                            break;
                         }
                     }
+                    break;
                 case 21:
                     str = str25;
                     str2 = str26;
@@ -4888,18 +4891,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue23 = tL_jsonObjectValue.value;
-                    if (jSONValue23 instanceof TLRPC.TL_jsonNumber) {
-                        double d14 = ((TLRPC.TL_jsonNumber) jSONValue23).value;
-                        if (d14 != this.storiesSentMonthlyLimitDefault) {
-                            int i26 = (int) d14;
-                            this.storiesSentMonthlyLimitDefault = i26;
-                            edit.putInt("storiesSentMonthlyLimitDefault", i26);
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
+                    TLRPC.JSONValue jSONValue22 = tL_jsonObjectValue.value;
+                    if ((jSONValue22 instanceof TLRPC.TL_jsonNumber) && (i3 = (int) ((TLRPC.TL_jsonNumber) jSONValue22).value) != this.botPreviewMediasMax) {
+                        this.botPreviewMediasMax = i3;
+                        edit.putInt("botPreviewMediasMax", i3);
+                        z14 = true;
+                        z28 = z14;
                     }
+                    break;
                 case 22:
                     str = str25;
                     str2 = str26;
@@ -4910,12 +4909,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue24 = tL_jsonObjectValue.value;
-                    if ((jSONValue24 instanceof TLRPC.TL_jsonNumber) && (i3 = (int) ((TLRPC.TL_jsonNumber) jSONValue24).value) != this.botPreviewMediasMax) {
-                        this.botPreviewMediasMax = i3;
-                        edit.putInt("botPreviewMediasMax", i3);
-                        z14 = true;
-                        z28 = z14;
+                    TLRPC.JSONValue jSONValue23 = tL_jsonObjectValue.value;
+                    if ((jSONValue23 instanceof TLRPC.TL_jsonBool) && (z6 = ((TLRPC.TL_jsonBool) jSONValue23).value) != this.showFiltersTooltip) {
+                        this.showFiltersTooltip = z6;
+                        edit.putBoolean("showFiltersTooltip", z6);
+                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.filterSettingsUpdated, new Object[0]);
+                        z28 = true;
                         break;
                     }
                     break;
@@ -4929,12 +4928,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue25 = tL_jsonObjectValue.value;
-                    if ((jSONValue25 instanceof TLRPC.TL_jsonBool) && (z6 = ((TLRPC.TL_jsonBool) jSONValue25).value) != this.showFiltersTooltip) {
-                        this.showFiltersTooltip = z6;
-                        edit.putBoolean("showFiltersTooltip", z6);
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.filterSettingsUpdated, new Object[0]);
-                        z28 = true;
+                    TLRPC.JSONValue jSONValue24 = tL_jsonObjectValue.value;
+                    if ((jSONValue24 instanceof TLRPC.TL_jsonBool) && (z7 = ((TLRPC.TL_jsonBool) jSONValue24).value) != this.qrLoginCamera) {
+                        this.qrLoginCamera = z7;
+                        edit.putBoolean("qrLoginCamera", z7);
+                        z14 = true;
+                        z28 = z14;
                         break;
                     }
                     break;
@@ -4948,15 +4947,18 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue26 = tL_jsonObjectValue.value;
-                    if ((jSONValue26 instanceof TLRPC.TL_jsonBool) && (z7 = ((TLRPC.TL_jsonBool) jSONValue26).value) != this.qrLoginCamera) {
-                        this.qrLoginCamera = z7;
-                        edit.putBoolean("qrLoginCamera", z7);
-                        z14 = true;
-                        z28 = z14;
-                        break;
+                    TLRPC.JSONValue jSONValue25 = tL_jsonObjectValue.value;
+                    if (jSONValue25 instanceof TLRPC.TL_jsonBool) {
+                        boolean z33 = this.starsLocked;
+                        boolean z34 = ((TLRPC.TL_jsonBool) jSONValue25).value;
+                        if (z33 != z34) {
+                            this.starsLocked = z34;
+                            edit.putBoolean("starsLocked", z34);
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
                     }
-                    break;
                 case 25:
                     str = str25;
                     str2 = str26;
@@ -4967,13 +4969,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str9 = str33;
-                    TLRPC.JSONValue jSONValue27 = tL_jsonObjectValue.value;
-                    if (jSONValue27 instanceof TLRPC.TL_jsonBool) {
-                        boolean z33 = this.starsLocked;
-                        boolean z34 = ((TLRPC.TL_jsonBool) jSONValue27).value;
-                        if (z33 != z34) {
-                            this.starsLocked = z34;
-                            edit.putBoolean("starsLocked", z34);
+                    TLRPC.JSONValue jSONValue26 = tL_jsonObjectValue.value;
+                    if (jSONValue26 instanceof TLRPC.TL_jsonNumber) {
+                        double d15 = ((TLRPC.TL_jsonNumber) jSONValue26).value;
+                        if (d15 != this.groupCustomWallpaperLevelMin) {
+                            int i26 = (int) d15;
+                            this.groupCustomWallpaperLevelMin = i26;
+                            edit.putInt("groupCustomWallpaperLevelMin", i26);
                             z14 = true;
                             z28 = z14;
                             break;
@@ -4988,19 +4990,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str6 = str30;
                     str7 = str31;
                     str8 = str32;
-                    str9 = str33;
-                    TLRPC.JSONValue jSONValue28 = tL_jsonObjectValue.value;
-                    if (jSONValue28 instanceof TLRPC.TL_jsonNumber) {
-                        double d15 = ((TLRPC.TL_jsonNumber) jSONValue28).value;
-                        if (d15 != this.groupCustomWallpaperLevelMin) {
-                            int i27 = (int) d15;
-                            this.groupCustomWallpaperLevelMin = i27;
-                            edit.putInt("groupCustomWallpaperLevelMin", i27);
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue27 = tL_jsonObjectValue.value;
+                    if (jSONValue27 instanceof TLRPC.TL_jsonNumber) {
+                        long j = (long) ((TLRPC.TL_jsonNumber) jSONValue27).value;
+                        if (j != this.giveawayAddPeersMax) {
+                            this.giveawayAddPeersMax = j;
+                            str9 = str10;
+                            edit.putLong(str9, j);
                             z14 = true;
                             z28 = z14;
                             break;
                         }
                     }
+                    str9 = str10;
                 case 27:
                     str = str25;
                     str2 = str26;
@@ -5011,13 +5014,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue29 = tL_jsonObjectValue.value;
-                    if (jSONValue29 instanceof TLRPC.TL_jsonNumber) {
-                        long j = (long) ((TLRPC.TL_jsonNumber) jSONValue29).value;
-                        if (j != this.giveawayAddPeersMax) {
-                            this.giveawayAddPeersMax = j;
+                    TLRPC.JSONValue jSONValue28 = tL_jsonObjectValue.value;
+                    if (jSONValue28 instanceof TLRPC.TL_jsonNumber) {
+                        double d16 = ((TLRPC.TL_jsonNumber) jSONValue28).value;
+                        if (d16 != this.channelWallpaperLevelMin) {
+                            int i27 = (int) d16;
+                            this.channelWallpaperLevelMin = i27;
+                            edit.putInt("channelWallpaperLevelMin", i27);
                             str9 = str10;
-                            edit.putLong(str9, j);
                             z14 = true;
                             z28 = z14;
                             break;
@@ -5034,13 +5038,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue30 = tL_jsonObjectValue.value;
-                    if (jSONValue30 instanceof TLRPC.TL_jsonNumber) {
-                        double d16 = ((TLRPC.TL_jsonNumber) jSONValue30).value;
-                        if (d16 != this.channelWallpaperLevelMin) {
-                            int i28 = (int) d16;
-                            this.channelWallpaperLevelMin = i28;
-                            edit.putInt("channelWallpaperLevelMin", i28);
+                    TLRPC.JSONValue jSONValue29 = tL_jsonObjectValue.value;
+                    if (jSONValue29 instanceof TLRPC.TL_jsonNumber) {
+                        double d17 = ((TLRPC.TL_jsonNumber) jSONValue29).value;
+                        if (d17 != this.chatlistUpdatePeriod) {
+                            int i28 = (int) d17;
+                            this.chatlistUpdatePeriod = i28;
+                            edit.putInt("chatlistUpdatePeriod", i28);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5058,13 +5062,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue31 = tL_jsonObjectValue.value;
-                    if (jSONValue31 instanceof TLRPC.TL_jsonNumber) {
-                        double d17 = ((TLRPC.TL_jsonNumber) jSONValue31).value;
-                        if (d17 != this.chatlistUpdatePeriod) {
-                            int i29 = (int) d17;
-                            this.chatlistUpdatePeriod = i29;
-                            edit.putInt("chatlistUpdatePeriod", i29);
+                    TLRPC.JSONValue jSONValue30 = tL_jsonObjectValue.value;
+                    if (jSONValue30 instanceof TLRPC.TL_jsonNumber) {
+                        long j2 = (long) ((TLRPC.TL_jsonNumber) jSONValue30).value;
+                        if (j2 != this.starsSubscriptionAmountMax) {
+                            this.starsSubscriptionAmountMax = j2;
+                            edit.putLong("starsSubscriptionAmountMax", j2);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5082,12 +5085,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue32 = tL_jsonObjectValue.value;
-                    if (jSONValue32 instanceof TLRPC.TL_jsonNumber) {
-                        long j2 = (long) ((TLRPC.TL_jsonNumber) jSONValue32).value;
-                        if (j2 != this.starsSubscriptionAmountMax) {
-                            this.starsSubscriptionAmountMax = j2;
-                            edit.putLong("starsSubscriptionAmountMax", j2);
+                    TLRPC.JSONValue jSONValue31 = tL_jsonObjectValue.value;
+                    if (jSONValue31 instanceof TLRPC.TL_jsonNumber) {
+                        int i29 = this.starsGroupcallMessageAmountMax;
+                        int i30 = (int) ((TLRPC.TL_jsonNumber) jSONValue31).value;
+                        if (i29 != i30) {
+                            this.starsGroupcallMessageAmountMax = i30;
+                            edit.putInt("starsGroupcallMessageAmountMax", i30);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5105,13 +5109,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue33 = tL_jsonObjectValue.value;
-                    if (jSONValue33 instanceof TLRPC.TL_jsonNumber) {
-                        double d18 = ((TLRPC.TL_jsonNumber) jSONValue33).value;
+                    TLRPC.JSONValue jSONValue32 = tL_jsonObjectValue.value;
+                    if (jSONValue32 instanceof TLRPC.TL_jsonNumber) {
+                        double d18 = ((TLRPC.TL_jsonNumber) jSONValue32).value;
                         if (d18 != this.groupWallpaperLevelMin) {
-                            int i30 = (int) d18;
-                            this.groupWallpaperLevelMin = i30;
-                            edit.putInt("groupWallpaperLevelMin", i30);
+                            int i31 = (int) d18;
+                            this.groupWallpaperLevelMin = i31;
+                            edit.putInt("groupWallpaperLevelMin", i31);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5129,8 +5133,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue34 = tL_jsonObjectValue.value;
-                    if ((jSONValue34 instanceof TLRPC.TL_jsonBool) && (z8 = ((TLRPC.TL_jsonBool) jSONValue34).value) != this.videoIgnoreAltDocuments) {
+                    TLRPC.JSONValue jSONValue33 = tL_jsonObjectValue.value;
+                    if ((jSONValue33 instanceof TLRPC.TL_jsonBool) && (z8 = ((TLRPC.TL_jsonBool) jSONValue33).value) != this.videoIgnoreAltDocuments) {
                         this.videoIgnoreAltDocuments = z8;
                         edit.putBoolean("videoIgnoreAltDocuments", z8);
                         str9 = str10;
@@ -5150,13 +5154,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue35 = tL_jsonObjectValue.value;
-                    if (jSONValue35 instanceof TLRPC.TL_jsonNumber) {
-                        double d19 = ((TLRPC.TL_jsonNumber) jSONValue35).value;
+                    TLRPC.JSONValue jSONValue34 = tL_jsonObjectValue.value;
+                    if (jSONValue34 instanceof TLRPC.TL_jsonNumber) {
+                        double d19 = ((TLRPC.TL_jsonNumber) jSONValue34).value;
                         if (d19 != this.channelEmojiStatusLevelMin) {
-                            int i31 = (int) d19;
-                            this.channelEmojiStatusLevelMin = i31;
-                            edit.putInt("channelEmojiStatusLevelMin", i31);
+                            int i32 = (int) d19;
+                            this.channelEmojiStatusLevelMin = i32;
+                            edit.putInt("channelEmojiStatusLevelMin", i32);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5174,26 +5178,18 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    HashSet hashSet2 = new HashSet();
-                    TLRPC.JSONValue jSONValue36 = tL_jsonObjectValue.value;
-                    if (jSONValue36 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray2 = (TLRPC.TL_jsonArray) jSONValue36;
-                        int size3 = tL_jsonArray2.value.size();
-                        for (int i32 = 0; i32 < size3; i32++) {
-                            TLRPC.JSONValue jSONValue37 = tL_jsonArray2.value.get(i32);
-                            if (jSONValue37 instanceof TLRPC.TL_jsonString) {
-                                hashSet2.add(((TLRPC.TL_jsonString) jSONValue37).value);
-                            }
+                    TLRPC.JSONValue jSONValue35 = tL_jsonObjectValue.value;
+                    if (jSONValue35 instanceof TLRPC.TL_jsonNumber) {
+                        double d20 = ((TLRPC.TL_jsonNumber) jSONValue35).value;
+                        if (d20 != this.publicLinksLimitPremium) {
+                            int i33 = (int) d20;
+                            this.publicLinksLimitPremium = i33;
+                            edit.putInt("publicLinksLimitPremium", i33);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                            break;
                         }
-                    }
-                    if (!this.pendingSuggestions.equals(hashSet2)) {
-                        this.pendingSuggestions = hashSet2;
-                        edit.putStringSet("pendingSuggestions", hashSet2);
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-                        str9 = str10;
-                        z14 = true;
-                        z28 = z14;
-                        break;
                     }
                     str9 = str10;
                 case '#':
@@ -5206,13 +5202,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue38 = tL_jsonObjectValue.value;
-                    if (jSONValue38 instanceof TLRPC.TL_jsonNumber) {
-                        double d20 = ((TLRPC.TL_jsonNumber) jSONValue38).value;
-                        if (d20 != this.publicLinksLimitPremium) {
-                            int i33 = (int) d20;
-                            this.publicLinksLimitPremium = i33;
-                            edit.putInt("publicLinksLimitPremium", i33);
+                    TLRPC.JSONValue jSONValue36 = tL_jsonObjectValue.value;
+                    if (jSONValue36 instanceof TLRPC.TL_jsonNumber) {
+                        double d21 = ((TLRPC.TL_jsonNumber) jSONValue36).value;
+                        if (d21 != this.storyExpiringLimitPremium) {
+                            int i34 = (int) d21;
+                            this.storyExpiringLimitPremium = i34;
+                            edit.putInt("storyExpiringLimitPremium", i34);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5230,13 +5226,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue39 = tL_jsonObjectValue.value;
-                    if (jSONValue39 instanceof TLRPC.TL_jsonNumber) {
-                        double d21 = ((TLRPC.TL_jsonNumber) jSONValue39).value;
-                        if (d21 != this.storyExpiringLimitPremium) {
-                            int i34 = (int) d21;
-                            this.storyExpiringLimitPremium = i34;
-                            edit.putInt("storyExpiringLimitPremium", i34);
+                    TLRPC.JSONValue jSONValue37 = tL_jsonObjectValue.value;
+                    if (jSONValue37 instanceof TLRPC.TL_jsonBool) {
+                        boolean z35 = this.starsPaidMessagesAvailable;
+                        boolean z36 = ((TLRPC.TL_jsonBool) jSONValue37).value;
+                        if (z35 != z36) {
+                            this.starsPaidMessagesAvailable = z36;
+                            edit.putBoolean("starsPaidMessagesAvailable", z36);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5254,13 +5250,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue40 = tL_jsonObjectValue.value;
-                    if (jSONValue40 instanceof TLRPC.TL_jsonBool) {
-                        boolean z35 = this.starsPaidMessagesAvailable;
-                        boolean z36 = ((TLRPC.TL_jsonBool) jSONValue40).value;
-                        if (z35 != z36) {
-                            this.starsPaidMessagesAvailable = z36;
-                            edit.putBoolean("starsPaidMessagesAvailable", z36);
+                    TLRPC.JSONValue jSONValue38 = tL_jsonObjectValue.value;
+                    if (jSONValue38 instanceof TLRPC.TL_jsonNumber) {
+                        double d22 = ((TLRPC.TL_jsonNumber) jSONValue38).value;
+                        if (d22 != this.groupProfileBgIconLevelMin) {
+                            int i35 = (int) d22;
+                            this.groupProfileBgIconLevelMin = i35;
+                            edit.putInt("groupProfileBgIconLevelMin", i35);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5278,13 +5274,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue41 = tL_jsonObjectValue.value;
-                    if (jSONValue41 instanceof TLRPC.TL_jsonNumber) {
-                        double d22 = ((TLRPC.TL_jsonNumber) jSONValue41).value;
-                        if (d22 != this.groupProfileBgIconLevelMin) {
-                            int i35 = (int) d22;
-                            this.groupProfileBgIconLevelMin = i35;
-                            edit.putInt("groupProfileBgIconLevelMin", i35);
+                    TLRPC.JSONValue jSONValue39 = tL_jsonObjectValue.value;
+                    if (jSONValue39 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber = (TLRPC.TL_jsonNumber) jSONValue39;
+                        if (Math.abs(tL_jsonNumber.value - this.uploadPremiumSpeedupDownload) >= 0.009999999776482582d) {
+                            float f = (float) tL_jsonNumber.value;
+                            this.uploadPremiumSpeedupDownload = f;
+                            edit.putFloat("uploadPremiumSpeedupDownload", f);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5302,18 +5298,25 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue42 = tL_jsonObjectValue.value;
-                    if (jSONValue42 instanceof TLRPC.TL_jsonNumber) {
-                        TLRPC.TL_jsonNumber tL_jsonNumber = (TLRPC.TL_jsonNumber) jSONValue42;
-                        if (Math.abs(tL_jsonNumber.value - this.uploadPremiumSpeedupDownload) >= 0.009999999776482582d) {
-                            float f = (float) tL_jsonNumber.value;
-                            this.uploadPremiumSpeedupDownload = f;
-                            edit.putFloat("uploadPremiumSpeedupDownload", f);
-                            str9 = str10;
-                            z14 = true;
-                            z28 = z14;
-                            break;
+                    HashSet hashSet = new HashSet();
+                    TLRPC.JSONValue jSONValue40 = tL_jsonObjectValue.value;
+                    if (jSONValue40 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray = (TLRPC.TL_jsonArray) jSONValue40;
+                        int size2 = tL_jsonArray.value.size();
+                        for (int i36 = 0; i36 < size2; i36++) {
+                            TLRPC.JSONValue jSONValue41 = tL_jsonArray.value.get(i36);
+                            if (jSONValue41 instanceof TLRPC.TL_jsonString) {
+                                hashSet.add(((TLRPC.TL_jsonString) jSONValue41).value.toLowerCase());
+                            }
                         }
+                    }
+                    if (!this.ignoreRestrictionReasons.equals(hashSet)) {
+                        this.ignoreRestrictionReasons = hashSet;
+                        edit.putStringSet("ignoreRestrictionReasons", hashSet);
+                        str9 = str10;
+                        z14 = true;
+                        z28 = z14;
+                        break;
                     }
                     str9 = str10;
                 case '(':
@@ -5326,27 +5329,17 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    HashSet hashSet3 = new HashSet();
-                    TLRPC.JSONValue jSONValue43 = tL_jsonObjectValue.value;
-                    if (jSONValue43 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray3 = (TLRPC.TL_jsonArray) jSONValue43;
-                        int size4 = tL_jsonArray3.value.size();
-                        for (int i36 = 0; i36 < size4; i36++) {
-                            TLRPC.JSONValue jSONValue44 = tL_jsonArray3.value.get(i36);
-                            if (jSONValue44 instanceof TLRPC.TL_jsonString) {
-                                hashSet3.add(((TLRPC.TL_jsonString) jSONValue44).value.toLowerCase());
-                            }
-                        }
-                    }
-                    if (!this.ignoreRestrictionReasons.equals(hashSet3)) {
-                        this.ignoreRestrictionReasons = hashSet3;
-                        edit.putStringSet("ignoreRestrictionReasons", hashSet3);
+                    TLRPC.JSONValue jSONValue42 = tL_jsonObjectValue.value;
+                    if ((jSONValue42 instanceof TLRPC.TL_jsonBool) && (z9 = ((TLRPC.TL_jsonBool) jSONValue42).value) != this.newNoncontactPeersRequirePremiumWithoutOwnpremium) {
+                        this.newNoncontactPeersRequirePremiumWithoutOwnpremium = z9;
+                        edit.putBoolean("newNoncontactPeersRequirePremiumWithoutOwnpremium", z9);
                         str9 = str10;
                         z14 = true;
                         z28 = z14;
                         break;
                     }
                     str9 = str10;
+                    break;
                 case ')':
                     str = str25;
                     str2 = str26;
@@ -5357,17 +5350,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue45 = tL_jsonObjectValue.value;
-                    if ((jSONValue45 instanceof TLRPC.TL_jsonBool) && (z9 = ((TLRPC.TL_jsonBool) jSONValue45).value) != this.newNoncontactPeersRequirePremiumWithoutOwnpremium) {
-                        this.newNoncontactPeersRequirePremiumWithoutOwnpremium = z9;
-                        edit.putBoolean("newNoncontactPeersRequirePremiumWithoutOwnpremium", z9);
-                        str9 = str10;
-                        z14 = true;
-                        z28 = z14;
-                        break;
+                    TLRPC.JSONValue jSONValue43 = tL_jsonObjectValue.value;
+                    if (jSONValue43 instanceof TLRPC.TL_jsonNumber) {
+                        double d23 = ((TLRPC.TL_jsonNumber) jSONValue43).value;
+                        if (d23 != this.quickReplyMessagesLimit) {
+                            int i37 = (int) d23;
+                            this.quickReplyMessagesLimit = i37;
+                            edit.putInt("quickReplyMessagesLimit", i37);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
                     }
                     str9 = str10;
-                    break;
                 case '*':
                     str = str25;
                     str2 = str26;
@@ -5378,13 +5374,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue46 = tL_jsonObjectValue.value;
-                    if (jSONValue46 instanceof TLRPC.TL_jsonNumber) {
-                        double d23 = ((TLRPC.TL_jsonNumber) jSONValue46).value;
-                        if (d23 != this.quickReplyMessagesLimit) {
-                            int i37 = (int) d23;
-                            this.quickReplyMessagesLimit = i37;
-                            edit.putInt("quickReplyMessagesLimit", i37);
+                    TLRPC.JSONValue jSONValue44 = tL_jsonObjectValue.value;
+                    if (jSONValue44 instanceof TLRPC.TL_jsonNumber) {
+                        double d24 = ((TLRPC.TL_jsonNumber) jSONValue44).value;
+                        if (d24 != this.stickersFavedLimitPremium) {
+                            int i38 = (int) d24;
+                            this.stickersFavedLimitPremium = i38;
+                            edit.putInt("stickersFavedLimitPremium", i38);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5402,13 +5398,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str8 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue47 = tL_jsonObjectValue.value;
-                    if (jSONValue47 instanceof TLRPC.TL_jsonNumber) {
-                        double d24 = ((TLRPC.TL_jsonNumber) jSONValue47).value;
-                        if (d24 != this.stickersFavedLimitPremium) {
-                            int i38 = (int) d24;
-                            this.stickersFavedLimitPremium = i38;
-                            edit.putInt("stickersFavedLimitPremium", i38);
+                    TLRPC.JSONValue jSONValue45 = tL_jsonObjectValue.value;
+                    if (jSONValue45 instanceof TLRPC.TL_jsonNumber) {
+                        double d25 = ((TLRPC.TL_jsonNumber) jSONValue45).value;
+                        if (d25 != this.todoItemLengthMax) {
+                            int i39 = (int) d25;
+                            this.todoItemLengthMax = i39;
+                            edit.putInt("todoItemLengthMax", i39);
                             str9 = str10;
                             z14 = true;
                             z28 = z14;
@@ -5424,35 +5420,11 @@ public class MessagesController extends BaseController implements NotificationCe
                     str5 = str29;
                     str6 = str30;
                     str7 = str31;
-                    str8 = str32;
-                    str10 = str33;
-                    TLRPC.JSONValue jSONValue48 = tL_jsonObjectValue.value;
-                    if (jSONValue48 instanceof TLRPC.TL_jsonNumber) {
-                        double d25 = ((TLRPC.TL_jsonNumber) jSONValue48).value;
-                        if (d25 != this.todoItemLengthMax) {
-                            int i39 = (int) d25;
-                            this.todoItemLengthMax = i39;
-                            edit.putInt("todoItemLengthMax", i39);
-                            str9 = str10;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str9 = str10;
-                case '-':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str7 = str31;
                     String str36 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue49 = tL_jsonObjectValue.value;
-                    if (jSONValue49 instanceof TLRPC.TL_jsonNumber) {
-                        int i40 = (int) ((TLRPC.TL_jsonNumber) jSONValue49).value;
+                    TLRPC.JSONValue jSONValue46 = tL_jsonObjectValue.value;
+                    if (jSONValue46 instanceof TLRPC.TL_jsonNumber) {
+                        int i40 = (int) ((TLRPC.TL_jsonNumber) jSONValue46).value;
                         this.stealthModeCooldown = i40;
                         str8 = str36;
                         edit.putInt(str8, i40);
@@ -5461,7 +5433,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     str9 = str10;
                     break;
-                case '.':
+                case '-':
                     str = str25;
                     str2 = str26;
                     str3 = str27;
@@ -5471,9 +5443,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue50 = tL_jsonObjectValue.value;
-                    if (jSONValue50 instanceof TLRPC.TL_jsonNumber) {
-                        double d26 = ((TLRPC.TL_jsonNumber) jSONValue50).value;
+                    TLRPC.JSONValue jSONValue47 = tL_jsonObjectValue.value;
+                    if (jSONValue47 instanceof TLRPC.TL_jsonNumber) {
+                        double d26 = ((TLRPC.TL_jsonNumber) jSONValue47).value;
                         if (d26 != this.stargiftsConvertPeriodMax) {
                             int i41 = (int) d26;
                             this.stargiftsConvertPeriodMax = i41;
@@ -5487,6 +5459,26 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     str9 = str12;
                     str8 = str11;
+                case '.':
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue48 = tL_jsonObjectValue.value;
+                    if (jSONValue48 instanceof TLRPC.TL_jsonObject) {
+                        tL_jsonObject4 = (TLRPC.TL_jsonObject) jSONValue48;
+                        str9 = str12;
+                        str8 = str11;
+                        break;
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
                 case '/':
                     str = str25;
                     str2 = str26;
@@ -5497,12 +5489,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue51 = tL_jsonObjectValue.value;
-                    if (jSONValue51 instanceof TLRPC.TL_jsonObject) {
-                        tL_jsonObject4 = (TLRPC.TL_jsonObject) jSONValue51;
-                        str9 = str12;
-                        str8 = str11;
-                        break;
+                    TLRPC.JSONValue jSONValue49 = tL_jsonObjectValue.value;
+                    if ((jSONValue49 instanceof TLRPC.TL_jsonNumber) && (i4 = (int) ((TLRPC.TL_jsonNumber) jSONValue49).value) > 0) {
+                        SharedConfig.overrideDevicePerformanceClass(i4 - 1);
                     }
                     str9 = str12;
                     str8 = str11;
@@ -5517,9 +5506,19 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue52 = tL_jsonObjectValue.value;
-                    if ((jSONValue52 instanceof TLRPC.TL_jsonNumber) && (i4 = (int) ((TLRPC.TL_jsonNumber) jSONValue52).value) > 0) {
-                        SharedConfig.overrideDevicePerformanceClass(i4 - 1);
+                    TLRPC.JSONValue jSONValue50 = tL_jsonObjectValue.value;
+                    if (jSONValue50 instanceof TLRPC.TL_jsonBool) {
+                        boolean z37 = this.giftTextFieldIcon;
+                        boolean z38 = ((TLRPC.TL_jsonBool) jSONValue50).value;
+                        if (z37 != z38) {
+                            this.giftTextFieldIcon = z38;
+                            edit.putBoolean("giftTextFieldIcon", z38);
+                            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePremiumGiftFieldIcon, new Object[0]);
+                            str9 = str12;
+                            str8 = str11;
+                            z28 = true;
+                            break;
+                        }
                     }
                     str9 = str12;
                     str8 = str11;
@@ -5534,23 +5533,22 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue53 = tL_jsonObjectValue.value;
-                    if (jSONValue53 instanceof TLRPC.TL_jsonBool) {
-                        boolean z37 = this.giftTextFieldIcon;
-                        boolean z38 = ((TLRPC.TL_jsonBool) jSONValue53).value;
-                        if (z37 != z38) {
-                            this.giftTextFieldIcon = z38;
-                            edit.putBoolean("giftTextFieldIcon", z38);
-                            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePremiumGiftFieldIcon, new Object[0]);
+                    TLRPC.JSONValue jSONValue51 = tL_jsonObjectValue.value;
+                    if (jSONValue51 instanceof TLRPC.TL_jsonNumber) {
+                        double d27 = ((TLRPC.TL_jsonNumber) jSONValue51).value;
+                        if (d27 != this.chatReadMarkExpirePeriod) {
+                            int i42 = (int) d27;
+                            this.chatReadMarkExpirePeriod = i42;
+                            edit.putInt("chatReadMarkExpirePeriod", i42);
                             str9 = str12;
                             str8 = str11;
-                            z28 = true;
+                            z14 = true;
+                            z28 = z14;
                             break;
                         }
                     }
                     str9 = str12;
                     str8 = str11;
-                    break;
                 case '2':
                     str = str25;
                     str2 = str26;
@@ -5561,13 +5559,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue54 = tL_jsonObjectValue.value;
-                    if (jSONValue54 instanceof TLRPC.TL_jsonNumber) {
-                        double d27 = ((TLRPC.TL_jsonNumber) jSONValue54).value;
-                        if (d27 != this.chatReadMarkExpirePeriod) {
-                            int i42 = (int) d27;
-                            this.chatReadMarkExpirePeriod = i42;
-                            edit.putInt("chatReadMarkExpirePeriod", i42);
+                    TLRPC.JSONValue jSONValue52 = tL_jsonObjectValue.value;
+                    if (jSONValue52 instanceof TLRPC.TL_jsonBool) {
+                        double d28 = ((TLRPC.TL_jsonNumber) jSONValue52).value;
+                        if (d28 != this.reactionsUniqMax) {
+                            int i43 = (int) d28;
+                            this.reactionsUniqMax = i43;
+                            edit.putInt("reactionsUniqMax", i43);
                             str9 = str12;
                             str8 = str11;
                             z14 = true;
@@ -5587,19 +5585,26 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue55 = tL_jsonObjectValue.value;
-                    if (jSONValue55 instanceof TLRPC.TL_jsonBool) {
-                        double d28 = ((TLRPC.TL_jsonNumber) jSONValue55).value;
-                        if (d28 != this.reactionsUniqMax) {
-                            int i43 = (int) d28;
-                            this.reactionsUniqMax = i43;
-                            edit.putInt("reactionsUniqMax", i43);
-                            str9 = str12;
-                            str8 = str11;
-                            z14 = true;
-                            z28 = z14;
-                            break;
+                    HashSet<String> hashSet2 = new HashSet<>();
+                    TLRPC.JSONValue jSONValue53 = tL_jsonObjectValue.value;
+                    if (jSONValue53 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray2 = (TLRPC.TL_jsonArray) jSONValue53;
+                        int size3 = tL_jsonArray2.value.size();
+                        for (int i44 = 0; i44 < size3; i44++) {
+                            TLRPC.JSONValue jSONValue54 = tL_jsonArray2.value.get(i44);
+                            if (jSONValue54 instanceof TLRPC.TL_jsonString) {
+                                hashSet2.add(((TLRPC.TL_jsonString) jSONValue54).value.replace("️", ""));
+                            }
                         }
+                    }
+                    if (!this.diceEmojies.equals(hashSet2)) {
+                        this.diceEmojies = hashSet2;
+                        edit.putStringSet("diceEmojies", hashSet2);
+                        str9 = str12;
+                        str8 = str11;
+                        z14 = true;
+                        z28 = z14;
+                        break;
                     }
                     str9 = str12;
                     str8 = str11;
@@ -5613,21 +5618,21 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    HashSet<String> hashSet4 = new HashSet<>();
-                    TLRPC.JSONValue jSONValue56 = tL_jsonObjectValue.value;
-                    if (jSONValue56 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray4 = (TLRPC.TL_jsonArray) jSONValue56;
-                        int size5 = tL_jsonArray4.value.size();
-                        for (int i44 = 0; i44 < size5; i44++) {
-                            TLRPC.JSONValue jSONValue57 = tL_jsonArray4.value.get(i44);
-                            if (jSONValue57 instanceof TLRPC.TL_jsonString) {
-                                hashSet4.add(((TLRPC.TL_jsonString) jSONValue57).value.replace("️", ""));
+                    HashSet hashSet3 = new HashSet();
+                    TLRPC.JSONValue jSONValue55 = tL_jsonObjectValue.value;
+                    if (jSONValue55 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray3 = (TLRPC.TL_jsonArray) jSONValue55;
+                        int size4 = tL_jsonArray3.value.size();
+                        for (int i45 = 0; i45 < size4; i45++) {
+                            TLRPC.JSONValue jSONValue56 = tL_jsonArray3.value.get(i45);
+                            if (jSONValue56 instanceof TLRPC.TL_jsonString) {
+                                hashSet3.add(((TLRPC.TL_jsonString) jSONValue56).value);
                             }
                         }
                     }
-                    if (!this.diceEmojies.equals(hashSet4)) {
-                        this.diceEmojies = hashSet4;
-                        edit.putStringSet("diceEmojies", hashSet4);
+                    if (!this.authDomains.equals(hashSet3)) {
+                        this.authDomains = hashSet3;
+                        edit.putStringSet("authDomains", hashSet3);
                         str9 = str12;
                         str8 = str11;
                         z14 = true;
@@ -5646,42 +5651,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str31;
                     str11 = str32;
                     str12 = str33;
-                    HashSet hashSet5 = new HashSet();
-                    TLRPC.JSONValue jSONValue58 = tL_jsonObjectValue.value;
-                    if (jSONValue58 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray5 = (TLRPC.TL_jsonArray) jSONValue58;
-                        int size6 = tL_jsonArray5.value.size();
-                        for (int i45 = 0; i45 < size6; i45++) {
-                            TLRPC.JSONValue jSONValue59 = tL_jsonArray5.value.get(i45);
-                            if (jSONValue59 instanceof TLRPC.TL_jsonString) {
-                                hashSet5.add(((TLRPC.TL_jsonString) jSONValue59).value);
-                            }
-                        }
-                    }
-                    if (!this.authDomains.equals(hashSet5)) {
-                        this.authDomains = hashSet5;
-                        edit.putStringSet("authDomains", hashSet5);
-                        str9 = str12;
-                        str8 = str11;
-                        z14 = true;
-                        z28 = z14;
-                        break;
-                    }
-                    str9 = str12;
-                    str8 = str11;
-                case '6':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str7 = str31;
-                    str11 = str32;
-                    str12 = str33;
-                    TLRPC.JSONValue jSONValue60 = tL_jsonObjectValue.value;
-                    if (jSONValue60 instanceof TLRPC.TL_jsonNumber) {
-                        long j3 = (long) ((TLRPC.TL_jsonNumber) jSONValue60).value;
+                    TLRPC.JSONValue jSONValue57 = tL_jsonObjectValue.value;
+                    if (jSONValue57 instanceof TLRPC.TL_jsonNumber) {
+                        long j3 = (long) ((TLRPC.TL_jsonNumber) jSONValue57).value;
                         if (j3 != this.starsRevenueWithdrawalMin) {
                             this.starsRevenueWithdrawalMin = j3;
                             edit.putLong("starsRevenueWithdrawalMin", j3);
@@ -5694,7 +5666,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     str9 = str12;
                     str8 = str11;
-                case '7':
+                case '6':
                     str = str25;
                     str2 = str26;
                     str3 = str27;
@@ -5704,9 +5676,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     String str37 = str31;
                     str11 = str32;
                     str12 = str33;
-                    TLRPC.JSONValue jSONValue61 = tL_jsonObjectValue.value;
-                    if (jSONValue61 instanceof TLRPC.TL_jsonNumber) {
-                        int i46 = (int) ((TLRPC.TL_jsonNumber) jSONValue61).value;
+                    TLRPC.JSONValue jSONValue58 = tL_jsonObjectValue.value;
+                    if (jSONValue58 instanceof TLRPC.TL_jsonNumber) {
+                        int i46 = (int) ((TLRPC.TL_jsonNumber) jSONValue58).value;
                         this.stealthModePast = i46;
                         str7 = str37;
                         edit.putInt(str7, i46);
@@ -5716,6 +5688,34 @@ public class MessagesController extends BaseController implements NotificationCe
                     str9 = str12;
                     str8 = str11;
                     break;
+                case '7':
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue59 = tL_jsonObjectValue.value;
+                    if (jSONValue59 instanceof TLRPC.TL_jsonNumber) {
+                        double d29 = ((TLRPC.TL_jsonNumber) jSONValue59).value;
+                        if (d29 != this.savedDialogsPinnedLimitPremium) {
+                            int i47 = (int) d29;
+                            this.savedDialogsPinnedLimitPremium = i47;
+                            edit.putInt("savedDialogsPinnedLimitPremium", i47);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
                 case '8':
                     str = str25;
                     str2 = str26;
@@ -5726,13 +5726,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue62 = tL_jsonObjectValue.value;
-                    if (jSONValue62 instanceof TLRPC.TL_jsonNumber) {
-                        double d29 = ((TLRPC.TL_jsonNumber) jSONValue62).value;
-                        if (d29 != this.savedDialogsPinnedLimitPremium) {
-                            int i47 = (int) d29;
-                            this.savedDialogsPinnedLimitPremium = i47;
-                            edit.putInt("savedDialogsPinnedLimitPremium", i47);
+                    TLRPC.JSONValue jSONValue60 = tL_jsonObjectValue.value;
+                    if (jSONValue60 instanceof TLRPC.TL_jsonNumber) {
+                        double d30 = ((TLRPC.TL_jsonNumber) jSONValue60).value;
+                        if (d30 != this.savedGifsLimitDefault) {
+                            int i48 = (int) d30;
+                            this.savedGifsLimitDefault = i48;
+                            edit.putInt("savedGifsLimitDefault", i48);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -5754,13 +5754,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue63 = tL_jsonObjectValue.value;
-                    if (jSONValue63 instanceof TLRPC.TL_jsonNumber) {
-                        double d30 = ((TLRPC.TL_jsonNumber) jSONValue63).value;
-                        if (d30 != this.savedGifsLimitDefault) {
-                            int i48 = (int) d30;
-                            this.savedGifsLimitDefault = i48;
-                            edit.putInt("savedGifsLimitDefault", i48);
+                    TLRPC.JSONValue jSONValue61 = tL_jsonObjectValue.value;
+                    if (jSONValue61 instanceof TLRPC.TL_jsonNumber) {
+                        double d31 = ((TLRPC.TL_jsonNumber) jSONValue61).value;
+                        if (d31 != this.storyCaptionLengthLimitDefault) {
+                            int i49 = (int) d31;
+                            this.storyCaptionLengthLimitDefault = i49;
+                            edit.putInt("storyCaptionLengthLimit", i49);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -5782,36 +5782,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue64 = tL_jsonObjectValue.value;
-                    if (jSONValue64 instanceof TLRPC.TL_jsonNumber) {
-                        double d31 = ((TLRPC.TL_jsonNumber) jSONValue64).value;
-                        if (d31 != this.storyCaptionLengthLimitDefault) {
-                            int i49 = (int) d31;
-                            this.storyCaptionLengthLimitDefault = i49;
-                            edit.putInt("storyCaptionLengthLimit", i49);
-                            str9 = str15;
-                            str8 = str14;
-                            str7 = str13;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str9 = str15;
-                    str8 = str14;
-                    str7 = str13;
-                case ';':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str13 = str31;
-                    str14 = str32;
-                    str15 = str33;
-                    TLRPC.JSONValue jSONValue65 = tL_jsonObjectValue.value;
-                    if ((jSONValue65 instanceof TLRPC.TL_jsonBool) && (z10 = ((TLRPC.TL_jsonBool) jSONValue65).value) != this.showAnnualPerMonth) {
+                    TLRPC.JSONValue jSONValue62 = tL_jsonObjectValue.value;
+                    if ((jSONValue62 instanceof TLRPC.TL_jsonBool) && (z10 = ((TLRPC.TL_jsonBool) jSONValue62).value) != this.showAnnualPerMonth) {
                         this.showAnnualPerMonth = z10;
                         edit.putBoolean("showAnnualPerMonth", z10);
                         str9 = str15;
@@ -5825,6 +5797,34 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str14;
                     str7 = str13;
                     break;
+                case ';':
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue63 = tL_jsonObjectValue.value;
+                    if (jSONValue63 instanceof TLRPC.TL_jsonNumber) {
+                        double d32 = ((TLRPC.TL_jsonNumber) jSONValue63).value;
+                        if (d32 != this.dialogFiltersLimitDefault) {
+                            int i50 = (int) d32;
+                            this.dialogFiltersLimitDefault = i50;
+                            edit.putInt("dialogFiltersLimitDefault", i50);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
                 case '<':
                     str = str25;
                     str2 = str26;
@@ -5835,13 +5835,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue66 = tL_jsonObjectValue.value;
-                    if (jSONValue66 instanceof TLRPC.TL_jsonNumber) {
-                        double d32 = ((TLRPC.TL_jsonNumber) jSONValue66).value;
-                        if (d32 != this.dialogFiltersLimitDefault) {
-                            int i50 = (int) d32;
-                            this.dialogFiltersLimitDefault = i50;
-                            edit.putInt("dialogFiltersLimitDefault", i50);
+                    TLRPC.JSONValue jSONValue64 = tL_jsonObjectValue.value;
+                    if (jSONValue64 instanceof TLRPC.TL_jsonString) {
+                        String str38 = ((TLRPC.TL_jsonString) jSONValue64).value;
+                        if (!str38.equals(this.premiumInvoiceSlug)) {
+                            this.premiumInvoiceSlug = str38;
+                            edit.putString("premiumInvoiceSlug", str38);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -5863,12 +5862,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue67 = tL_jsonObjectValue.value;
-                    if (jSONValue67 instanceof TLRPC.TL_jsonString) {
-                        String str38 = ((TLRPC.TL_jsonString) jSONValue67).value;
-                        if (!str38.equals(this.premiumInvoiceSlug)) {
-                            this.premiumInvoiceSlug = str38;
-                            edit.putString("premiumInvoiceSlug", str38);
+                    TLRPC.JSONValue jSONValue65 = tL_jsonObjectValue.value;
+                    if (jSONValue65 instanceof TLRPC.TL_jsonNumber) {
+                        double d33 = ((TLRPC.TL_jsonNumber) jSONValue65).value;
+                        if (d33 != this.storiesSentWeeklyLimitPremium) {
+                            int i51 = (int) d33;
+                            this.storiesSentWeeklyLimitPremium = i51;
+                            edit.putInt("storiesSentWeeklyLimitPremium", i51);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -5890,13 +5890,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue68 = tL_jsonObjectValue.value;
-                    if (jSONValue68 instanceof TLRPC.TL_jsonNumber) {
-                        double d33 = ((TLRPC.TL_jsonNumber) jSONValue68).value;
-                        if (d33 != this.storiesSentWeeklyLimitPremium) {
-                            int i51 = (int) d33;
-                            this.storiesSentWeeklyLimitPremium = i51;
-                            edit.putInt("storiesSentWeeklyLimitPremium", i51);
+                    TLRPC.JSONValue jSONValue66 = tL_jsonObjectValue.value;
+                    if (jSONValue66 instanceof TLRPC.TL_jsonBool) {
+                        boolean z39 = this.storiesExportNopublicLink;
+                        boolean z40 = ((TLRPC.TL_jsonBool) jSONValue66).value;
+                        if (z39 != z40) {
+                            this.storiesExportNopublicLink = z40;
+                            edit.putBoolean("storiesExportNopublicLink", z40);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -5918,13 +5918,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue69 = tL_jsonObjectValue.value;
-                    if (jSONValue69 instanceof TLRPC.TL_jsonBool) {
-                        boolean z39 = this.storiesExportNopublicLink;
-                        boolean z40 = ((TLRPC.TL_jsonBool) jSONValue69).value;
-                        if (z39 != z40) {
-                            this.storiesExportNopublicLink = z40;
-                            edit.putBoolean("storiesExportNopublicLink", z40);
+                    TLRPC.JSONValue jSONValue67 = tL_jsonObjectValue.value;
+                    if (jSONValue67 instanceof TLRPC.TL_jsonNumber) {
+                        double d34 = ((TLRPC.TL_jsonNumber) jSONValue67).value;
+                        if (d34 != this.starrefMaxCommissionPermille) {
+                            int i52 = (int) d34;
+                            this.starrefMaxCommissionPermille = i52;
+                            edit.putInt("starrefMaxCommissionPermille", i52);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -5946,36 +5946,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue70 = tL_jsonObjectValue.value;
-                    if (jSONValue70 instanceof TLRPC.TL_jsonNumber) {
-                        double d34 = ((TLRPC.TL_jsonNumber) jSONValue70).value;
-                        if (d34 != this.starrefMaxCommissionPermille) {
-                            int i52 = (int) d34;
-                            this.starrefMaxCommissionPermille = i52;
-                            edit.putInt("starrefMaxCommissionPermille", i52);
-                            str9 = str15;
-                            str8 = str14;
-                            str7 = str13;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str9 = str15;
-                    str8 = str14;
-                    str7 = str13;
-                case 'A':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str13 = str31;
-                    str14 = str32;
-                    str15 = str33;
-                    TLRPC.JSONValue jSONValue71 = tL_jsonObjectValue.value;
-                    if ((jSONValue71 instanceof TLRPC.TL_jsonBool) && (z11 = ((TLRPC.TL_jsonBool) jSONValue71).value) != this.callRequestsDisabled) {
+                    TLRPC.JSONValue jSONValue68 = tL_jsonObjectValue.value;
+                    if ((jSONValue68 instanceof TLRPC.TL_jsonBool) && (z11 = ((TLRPC.TL_jsonBool) jSONValue68).value) != this.callRequestsDisabled) {
                         this.callRequestsDisabled = z11;
                         edit.putBoolean("callRequestsDisabled", z11);
                         str9 = str15;
@@ -5989,6 +5961,41 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str14;
                     str7 = str13;
                     break;
+                case 'A':
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    HashSet hashSet4 = new HashSet();
+                    TLRPC.JSONValue jSONValue69 = tL_jsonObjectValue.value;
+                    if (jSONValue69 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray4 = (TLRPC.TL_jsonArray) jSONValue69;
+                        int size5 = tL_jsonArray4.value.size();
+                        for (int i53 = 0; i53 < size5; i53++) {
+                            TLRPC.JSONValue jSONValue70 = tL_jsonArray4.value.get(i53);
+                            if (jSONValue70 instanceof TLRPC.TL_jsonString) {
+                                hashSet4.add(((TLRPC.TL_jsonString) jSONValue70).value);
+                            }
+                        }
+                    }
+                    if (!this.exportUri.equals(hashSet4)) {
+                        this.exportUri = hashSet4;
+                        edit.putStringSet("exportUri2", hashSet4);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z14 = true;
+                        z28 = z14;
+                        break;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
                 case 'B':
                     str = str25;
                     str2 = str26;
@@ -5999,27 +6006,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    HashSet hashSet6 = new HashSet();
-                    TLRPC.JSONValue jSONValue72 = tL_jsonObjectValue.value;
-                    if (jSONValue72 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray6 = (TLRPC.TL_jsonArray) jSONValue72;
-                        int size7 = tL_jsonArray6.value.size();
-                        for (int i53 = 0; i53 < size7; i53++) {
-                            TLRPC.JSONValue jSONValue73 = tL_jsonArray6.value.get(i53);
-                            if (jSONValue73 instanceof TLRPC.TL_jsonString) {
-                                hashSet6.add(((TLRPC.TL_jsonString) jSONValue73).value);
-                            }
+                    TLRPC.JSONValue jSONValue71 = tL_jsonObjectValue.value;
+                    if (jSONValue71 instanceof TLRPC.TL_jsonNumber) {
+                        double d35 = ((TLRPC.TL_jsonNumber) jSONValue71).value;
+                        if (d35 != this.chatlistInvitesLimitPremium) {
+                            int i54 = (int) d35;
+                            this.chatlistInvitesLimitPremium = i54;
+                            edit.putInt("chatlistInvitesLimitPremium", i54);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                            break;
                         }
-                    }
-                    if (!this.exportUri.equals(hashSet6)) {
-                        this.exportUri = hashSet6;
-                        edit.putStringSet("exportUri2", hashSet6);
-                        str9 = str15;
-                        str8 = str14;
-                        str7 = str13;
-                        z14 = true;
-                        z28 = z14;
-                        break;
                     }
                     str9 = str15;
                     str8 = str14;
@@ -6034,13 +6034,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue74 = tL_jsonObjectValue.value;
-                    if (jSONValue74 instanceof TLRPC.TL_jsonNumber) {
-                        double d35 = ((TLRPC.TL_jsonNumber) jSONValue74).value;
-                        if (d35 != this.chatlistInvitesLimitPremium) {
-                            int i54 = (int) d35;
-                            this.chatlistInvitesLimitPremium = i54;
-                            edit.putInt("chatlistInvitesLimitPremium", i54);
+                    TLRPC.JSONValue jSONValue72 = tL_jsonObjectValue.value;
+                    if (jSONValue72 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber2 = (TLRPC.TL_jsonNumber) jSONValue72;
+                        if (Math.abs(tL_jsonNumber2.value - this.starsUsdSellRate1000) > 0.0010000000474974513d) {
+                            float f2 = (float) tL_jsonNumber2.value;
+                            this.starsUsdSellRate1000 = f2;
+                            edit.putFloat("starsUsdSellRate1000", f2);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6062,13 +6062,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue75 = tL_jsonObjectValue.value;
-                    if (jSONValue75 instanceof TLRPC.TL_jsonNumber) {
-                        TLRPC.TL_jsonNumber tL_jsonNumber2 = (TLRPC.TL_jsonNumber) jSONValue75;
-                        if (Math.abs(tL_jsonNumber2.value - this.starsUsdSellRate1000) > 0.0010000000474974513d) {
-                            float f2 = (float) tL_jsonNumber2.value;
-                            this.starsUsdSellRate1000 = f2;
-                            edit.putFloat("starsUsdSellRate1000", f2);
+                    TLRPC.JSONValue jSONValue73 = tL_jsonObjectValue.value;
+                    if (jSONValue73 instanceof TLRPC.TL_jsonNumber) {
+                        double d36 = ((TLRPC.TL_jsonNumber) jSONValue73).value;
+                        if (d36 != this.aboutLengthLimitDefault) {
+                            int i55 = (int) d36;
+                            this.aboutLengthLimitDefault = i55;
+                            edit.putInt("aboutLengthLimitDefault", i55);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6090,13 +6090,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue76 = tL_jsonObjectValue.value;
-                    if (jSONValue76 instanceof TLRPC.TL_jsonNumber) {
-                        double d36 = ((TLRPC.TL_jsonNumber) jSONValue76).value;
-                        if (d36 != this.aboutLengthLimitDefault) {
-                            int i55 = (int) d36;
-                            this.aboutLengthLimitDefault = i55;
-                            edit.putInt("aboutLengthLimitDefault", i55);
+                    TLRPC.JSONValue jSONValue74 = tL_jsonObjectValue.value;
+                    if (jSONValue74 instanceof TLRPC.TL_jsonNumber) {
+                        double d37 = ((TLRPC.TL_jsonNumber) jSONValue74).value;
+                        if (d37 != this.reactionsUserMaxPremium) {
+                            int i56 = (int) d37;
+                            this.reactionsUserMaxPremium = i56;
+                            edit.putInt("reactionsUserMaxPremium", i56);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6118,13 +6118,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue77 = tL_jsonObjectValue.value;
-                    if (jSONValue77 instanceof TLRPC.TL_jsonNumber) {
-                        double d37 = ((TLRPC.TL_jsonNumber) jSONValue77).value;
-                        if (d37 != this.reactionsUserMaxPremium) {
-                            int i56 = (int) d37;
-                            this.reactionsUserMaxPremium = i56;
-                            edit.putInt("reactionsUserMaxPremium", i56);
+                    TLRPC.JSONValue jSONValue75 = tL_jsonObjectValue.value;
+                    if (jSONValue75 instanceof TLRPC.TL_jsonNumber) {
+                        double d38 = ((TLRPC.TL_jsonNumber) jSONValue75).value;
+                        if (d38 != this.captionLengthLimitPremium) {
+                            int i57 = (int) d38;
+                            this.captionLengthLimitPremium = i57;
+                            edit.putInt("captionLengthLimitPremium", i57);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6146,13 +6146,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue78 = tL_jsonObjectValue.value;
-                    if (jSONValue78 instanceof TLRPC.TL_jsonNumber) {
-                        double d38 = ((TLRPC.TL_jsonNumber) jSONValue78).value;
-                        if (d38 != this.captionLengthLimitPremium) {
-                            int i57 = (int) d38;
-                            this.captionLengthLimitPremium = i57;
-                            edit.putInt("captionLengthLimitPremium", i57);
+                    TLRPC.JSONValue jSONValue76 = tL_jsonObjectValue.value;
+                    if (jSONValue76 instanceof TLRPC.TL_jsonNumber) {
+                        double d39 = ((TLRPC.TL_jsonNumber) jSONValue76).value;
+                        if (d39 != this.conferenceCallSizeLimit) {
+                            int i58 = (int) d39;
+                            this.conferenceCallSizeLimit = i58;
+                            edit.putInt("conferenceCallSizeLimit", i58);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6174,13 +6174,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue79 = tL_jsonObjectValue.value;
-                    if (jSONValue79 instanceof TLRPC.TL_jsonNumber) {
-                        double d39 = ((TLRPC.TL_jsonNumber) jSONValue79).value;
-                        if (d39 != this.conferenceCallSizeLimit) {
-                            int i58 = (int) d39;
-                            this.conferenceCallSizeLimit = i58;
-                            edit.putInt("conferenceCallSizeLimit", i58);
+                    TLRPC.JSONValue jSONValue77 = tL_jsonObjectValue.value;
+                    if (jSONValue77 instanceof TLRPC.TL_jsonNumber) {
+                        double d40 = this.recommendedChannelsLimitPremium;
+                        double d41 = ((TLRPC.TL_jsonNumber) jSONValue77).value;
+                        if (d40 != d41) {
+                            int i59 = (int) d41;
+                            this.recommendedChannelsLimitPremium = i59;
+                            edit.putInt("recommendedChannelsLimitPremium", i59);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6202,37 +6203,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue80 = tL_jsonObjectValue.value;
-                    if (jSONValue80 instanceof TLRPC.TL_jsonNumber) {
-                        double d40 = this.recommendedChannelsLimitPremium;
-                        double d41 = ((TLRPC.TL_jsonNumber) jSONValue80).value;
-                        if (d40 != d41) {
-                            int i59 = (int) d41;
-                            this.recommendedChannelsLimitPremium = i59;
-                            edit.putInt("recommendedChannelsLimitPremium", i59);
-                            str9 = str15;
-                            str8 = str14;
-                            str7 = str13;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str9 = str15;
-                    str8 = str14;
-                    str7 = str13;
-                case 'J':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str13 = str31;
-                    str14 = str32;
-                    str15 = str33;
-                    TLRPC.JSONValue jSONValue81 = tL_jsonObjectValue.value;
-                    if ((jSONValue81 instanceof TLRPC.TL_jsonBool) && (z12 = ((TLRPC.TL_jsonBool) jSONValue81).value) != this.keepAliveService) {
+                    TLRPC.JSONValue jSONValue78 = tL_jsonObjectValue.value;
+                    if ((jSONValue78 instanceof TLRPC.TL_jsonBool) && (z12 = ((TLRPC.TL_jsonBool) jSONValue78).value) != this.keepAliveService) {
                         this.keepAliveService = z12;
                         edit.putBoolean("keepAliveService", z12);
                         str9 = str15;
@@ -6246,6 +6218,29 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str14;
                     str7 = str13;
                     break;
+                case 'J':
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue79 = tL_jsonObjectValue.value;
+                    if (jSONValue79 instanceof TLRPC.TL_jsonArray) {
+                        savePremiumFeaturesPreviewOrder = savePremiumFeaturesPreviewOrder("premiumFeaturesTypesToPosition", this.premiumFeaturesTypesToPosition, edit, ((TLRPC.TL_jsonArray) jSONValue79).value);
+                        z14 = savePremiumFeaturesPreviewOrder;
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z28 = z14;
+                        break;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
                 case 'K':
                     str = str25;
                     str2 = str26;
@@ -6256,15 +6251,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue82 = tL_jsonObjectValue.value;
-                    if (jSONValue82 instanceof TLRPC.TL_jsonArray) {
-                        savePremiumFeaturesPreviewOrder = savePremiumFeaturesPreviewOrder("premiumFeaturesTypesToPosition", this.premiumFeaturesTypesToPosition, edit, ((TLRPC.TL_jsonArray) jSONValue82).value);
-                        z14 = savePremiumFeaturesPreviewOrder;
-                        str9 = str15;
-                        str8 = str14;
-                        str7 = str13;
-                        z28 = z14;
-                        break;
+                    TLRPC.JSONValue jSONValue80 = tL_jsonObjectValue.value;
+                    if (jSONValue80 instanceof TLRPC.TL_jsonNumber) {
+                        double d42 = ((TLRPC.TL_jsonNumber) jSONValue80).value;
+                        if (d42 != this.ringtoneSizeMax) {
+                            int i60 = (int) d42;
+                            this.ringtoneSizeMax = i60;
+                            edit.putInt("ringtoneSizeMax", i60);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
                     }
                     str9 = str15;
                     str8 = str14;
@@ -6279,13 +6279,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue83 = tL_jsonObjectValue.value;
-                    if (jSONValue83 instanceof TLRPC.TL_jsonNumber) {
-                        double d42 = ((TLRPC.TL_jsonNumber) jSONValue83).value;
-                        if (d42 != this.ringtoneSizeMax) {
-                            int i60 = (int) d42;
-                            this.ringtoneSizeMax = i60;
-                            edit.putInt("ringtoneSizeMax", i60);
+                    TLRPC.JSONValue jSONValue81 = tL_jsonObjectValue.value;
+                    if (jSONValue81 instanceof TLRPC.TL_jsonNumber) {
+                        double d43 = ((TLRPC.TL_jsonNumber) jSONValue81).value;
+                        if (d43 != this.dialogFiltersChatsLimitPremium) {
+                            int i61 = (int) d43;
+                            this.dialogFiltersChatsLimitPremium = i61;
+                            edit.putInt("dialogFiltersChatsLimitPremium", i61);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6307,36 +6307,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue84 = tL_jsonObjectValue.value;
-                    if (jSONValue84 instanceof TLRPC.TL_jsonNumber) {
-                        double d43 = ((TLRPC.TL_jsonNumber) jSONValue84).value;
-                        if (d43 != this.dialogFiltersChatsLimitPremium) {
-                            int i61 = (int) d43;
-                            this.dialogFiltersChatsLimitPremium = i61;
-                            edit.putInt("dialogFiltersChatsLimitPremium", i61);
-                            str9 = str15;
-                            str8 = str14;
-                            str7 = str13;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str9 = str15;
-                    str8 = str14;
-                    str7 = str13;
-                case 'N':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str13 = str31;
-                    str14 = str32;
-                    str15 = str33;
-                    TLRPC.JSONValue jSONValue85 = tL_jsonObjectValue.value;
-                    if ((jSONValue85 instanceof TLRPC.TL_jsonBool) && (z13 = ((TLRPC.TL_jsonBool) jSONValue85).value) != this.starrefProgramAllowed) {
+                    TLRPC.JSONValue jSONValue82 = tL_jsonObjectValue.value;
+                    if ((jSONValue82 instanceof TLRPC.TL_jsonBool) && (z13 = ((TLRPC.TL_jsonBool) jSONValue82).value) != this.starrefProgramAllowed) {
                         this.starrefProgramAllowed = z13;
                         edit.putBoolean("starrefProgramAllowed", z13);
                         str9 = str15;
@@ -6350,6 +6322,29 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str14;
                     str7 = str13;
                     break;
+                case 'N':
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue83 = tL_jsonObjectValue.value;
+                    if (jSONValue83 instanceof TLRPC.TL_jsonArray) {
+                        savePremiumFeaturesPreviewOrder = savePremiumFeaturesPreviewOrder("businessFeaturesTypesToPosition", this.businessFeaturesTypesToPosition, edit, ((TLRPC.TL_jsonArray) jSONValue83).value);
+                        z14 = savePremiumFeaturesPreviewOrder;
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z28 = z14;
+                        break;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
                 case 'O':
                     str = str25;
                     str2 = str26;
@@ -6360,15 +6355,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue86 = tL_jsonObjectValue.value;
-                    if (jSONValue86 instanceof TLRPC.TL_jsonArray) {
-                        savePremiumFeaturesPreviewOrder = savePremiumFeaturesPreviewOrder("businessFeaturesTypesToPosition", this.businessFeaturesTypesToPosition, edit, ((TLRPC.TL_jsonArray) jSONValue86).value);
-                        z14 = savePremiumFeaturesPreviewOrder;
-                        str9 = str15;
-                        str8 = str14;
-                        str7 = str13;
-                        z28 = z14;
-                        break;
+                    TLRPC.JSONValue jSONValue84 = tL_jsonObjectValue.value;
+                    if (jSONValue84 instanceof TLRPC.TL_jsonNumber) {
+                        double d44 = ((TLRPC.TL_jsonNumber) jSONValue84).value;
+                        if (d44 != this.chatlistJoinedLimitDefault) {
+                            int i62 = (int) d44;
+                            this.chatlistJoinedLimitDefault = i62;
+                            edit.putInt("chatlistJoinedLimitDefault", i62);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
                     }
                     str9 = str15;
                     str8 = str14;
@@ -6383,13 +6383,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue87 = tL_jsonObjectValue.value;
-                    if (jSONValue87 instanceof TLRPC.TL_jsonNumber) {
-                        double d44 = ((TLRPC.TL_jsonNumber) jSONValue87).value;
-                        if (d44 != this.chatlistJoinedLimitDefault) {
-                            int i62 = (int) d44;
-                            this.chatlistJoinedLimitDefault = i62;
-                            edit.putInt("chatlistJoinedLimitDefault", i62);
+                    TLRPC.JSONValue jSONValue85 = tL_jsonObjectValue.value;
+                    if (jSONValue85 instanceof TLRPC.TL_jsonNumber) {
+                        double d45 = ((TLRPC.TL_jsonNumber) jSONValue85).value;
+                        if (d45 != this.storiesPinnedToTopCountMax) {
+                            int i63 = (int) d45;
+                            this.storiesPinnedToTopCountMax = i63;
+                            edit.putInt("storiesPinnedToTopCountMax", i63);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6411,13 +6411,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue88 = tL_jsonObjectValue.value;
-                    if (jSONValue88 instanceof TLRPC.TL_jsonNumber) {
-                        double d45 = ((TLRPC.TL_jsonNumber) jSONValue88).value;
-                        if (d45 != this.storiesPinnedToTopCountMax) {
-                            int i63 = (int) d45;
-                            this.storiesPinnedToTopCountMax = i63;
-                            edit.putInt("storiesPinnedToTopCountMax", i63);
+                    TLRPC.JSONValue jSONValue86 = tL_jsonObjectValue.value;
+                    if (jSONValue86 instanceof TLRPC.TL_jsonNumber) {
+                        double d46 = ((TLRPC.TL_jsonNumber) jSONValue86).value;
+                        if (d46 != this.channelsLimitPremium) {
+                            int i64 = (int) d46;
+                            this.channelsLimitPremium = i64;
+                            edit.putInt("channelsLimitPremium", i64);
                             str9 = str15;
                             str8 = str14;
                             str7 = str13;
@@ -6439,36 +6439,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue89 = tL_jsonObjectValue.value;
-                    if (jSONValue89 instanceof TLRPC.TL_jsonNumber) {
-                        double d46 = ((TLRPC.TL_jsonNumber) jSONValue89).value;
-                        if (d46 != this.channelsLimitPremium) {
-                            int i64 = (int) d46;
-                            this.channelsLimitPremium = i64;
-                            edit.putInt("channelsLimitPremium", i64);
-                            str9 = str15;
-                            str8 = str14;
-                            str7 = str13;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str9 = str15;
-                    str8 = str14;
-                    str7 = str13;
-                case 'S':
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str6 = str30;
-                    str13 = str31;
-                    str14 = str32;
-                    str15 = str33;
-                    TLRPC.JSONValue jSONValue90 = tL_jsonObjectValue.value;
-                    if ((jSONValue90 instanceof TLRPC.TL_jsonBool) && (z15 = ((TLRPC.TL_jsonBool) jSONValue90).value) != this.disableBotFullscreenBlur) {
+                    TLRPC.JSONValue jSONValue87 = tL_jsonObjectValue.value;
+                    if ((jSONValue87 instanceof TLRPC.TL_jsonBool) && (z15 = ((TLRPC.TL_jsonBool) jSONValue87).value) != this.disableBotFullscreenBlur) {
                         this.disableBotFullscreenBlur = z15;
                         edit.putBoolean("disableBotFullscreenBlur", z15);
                         str9 = str15;
@@ -6482,7 +6454,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str14;
                     str7 = str13;
                     break;
-                case 'T':
+                case 'S':
                     str = str25;
                     str2 = str26;
                     str3 = str27;
@@ -6492,8 +6464,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue91 = tL_jsonObjectValue.value;
-                    if ((jSONValue91 instanceof TLRPC.TL_jsonBool) && (z16 = ((TLRPC.TL_jsonBool) jSONValue91).value) != this.backgroundConnection) {
+                    TLRPC.JSONValue jSONValue88 = tL_jsonObjectValue.value;
+                    if ((jSONValue88 instanceof TLRPC.TL_jsonBool) && (z16 = ((TLRPC.TL_jsonBool) jSONValue88).value) != this.backgroundConnection) {
                         this.backgroundConnection = z16;
                         edit.putBoolean("backgroundConnection", z16);
                         str9 = str15;
@@ -6507,7 +6479,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str14;
                     str7 = str13;
                     break;
-                case 'U':
+                case 'T':
                     str = str25;
                     str2 = str26;
                     str3 = str27;
@@ -6517,9 +6489,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str13 = str31;
                     str14 = str32;
                     str15 = str33;
-                    TLRPC.JSONValue jSONValue92 = tL_jsonObjectValue.value;
-                    if (jSONValue92 instanceof TLRPC.TL_jsonNumber) {
-                        long j4 = (long) ((TLRPC.TL_jsonNumber) jSONValue92).value;
+                    TLRPC.JSONValue jSONValue89 = tL_jsonObjectValue.value;
+                    if (jSONValue89 instanceof TLRPC.TL_jsonNumber) {
+                        long j4 = (long) ((TLRPC.TL_jsonNumber) jSONValue89).value;
                         if (j4 != this.giveawayPeriodMax) {
                             this.giveawayPeriodMax = j4;
                             str6 = str39;
@@ -6536,31 +6508,31 @@ public class MessagesController extends BaseController implements NotificationCe
                     str9 = str15;
                     str8 = str14;
                     str7 = str13;
-                case 'V':
+                case 'U':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
                     try {
                         hashMap = new HashMap<>();
-                        TLRPC.JSONValue jSONValue93 = tL_jsonObjectValue.value;
-                        if (jSONValue93 instanceof TLRPC.TL_jsonObject) {
-                            TLRPC.TL_jsonObject tL_jsonObject5 = (TLRPC.TL_jsonObject) jSONValue93;
-                            int size8 = tL_jsonObject5.value.size();
+                        TLRPC.JSONValue jSONValue90 = tL_jsonObjectValue.value;
+                        if (jSONValue90 instanceof TLRPC.TL_jsonObject) {
+                            TLRPC.TL_jsonObject tL_jsonObject5 = (TLRPC.TL_jsonObject) jSONValue90;
+                            int size6 = tL_jsonObject5.value.size();
                             int i65 = 0;
-                            while (i65 < size8) {
+                            while (i65 < size6) {
                                 TLRPC.TL_jsonObjectValue tL_jsonObjectValue2 = tL_jsonObject5.value.get(i65);
-                                TLRPC.JSONValue jSONValue94 = tL_jsonObjectValue2.value;
-                                if (jSONValue94 instanceof TLRPC.TL_jsonObject) {
-                                    TLRPC.TL_jsonObject tL_jsonObject6 = (TLRPC.TL_jsonObject) jSONValue94;
-                                    int size9 = tL_jsonObject6.value.size();
+                                TLRPC.JSONValue jSONValue91 = tL_jsonObjectValue2.value;
+                                if (jSONValue91 instanceof TLRPC.TL_jsonObject) {
+                                    TLRPC.TL_jsonObject tL_jsonObject6 = (TLRPC.TL_jsonObject) jSONValue91;
+                                    int size7 = tL_jsonObject6.value.size();
                                     tL_jsonObject2 = tL_jsonObject5;
                                     str = str25;
                                     str2 = str26;
                                     int i66 = 0;
                                     int i67 = Integer.MAX_VALUE;
                                     int i68 = Integer.MAX_VALUE;
-                                    while (i66 < size9) {
+                                    while (i66 < size7) {
                                         str3 = str27;
                                         try {
                                             TLRPC.TL_jsonObjectValue tL_jsonObjectValue3 = tL_jsonObject6.value.get(i66);
@@ -6702,18 +6674,53 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str18;
                     str7 = str17;
                     str6 = str16;
+                case 'V':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue92 = tL_jsonObjectValue.value;
+                    if (jSONValue92 instanceof TLRPC.TL_jsonNumber) {
+                        double d47 = ((TLRPC.TL_jsonNumber) jSONValue92).value;
+                        if (d47 != this.dialogFiltersPinnedLimitDefault) {
+                            int i69 = (int) d47;
+                            this.dialogFiltersPinnedLimitDefault = i69;
+                            edit.putInt("dialogFiltersPinnedLimitDefault", i69);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 'W':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue95 = tL_jsonObjectValue.value;
-                    if (jSONValue95 instanceof TLRPC.TL_jsonNumber) {
-                        double d47 = ((TLRPC.TL_jsonNumber) jSONValue95).value;
-                        if (d47 != this.dialogFiltersPinnedLimitDefault) {
-                            int i69 = (int) d47;
-                            this.dialogFiltersPinnedLimitDefault = i69;
-                            edit.putInt("dialogFiltersPinnedLimitDefault", i69);
+                    TLRPC.JSONValue jSONValue93 = tL_jsonObjectValue.value;
+                    if (jSONValue93 instanceof TLRPC.TL_jsonNumber) {
+                        double d48 = ((TLRPC.TL_jsonNumber) jSONValue93).value;
+                        if (d48 != this.hiddenMembersGroupSizeMin) {
+                            int i70 = (int) d48;
+                            this.hiddenMembersGroupSizeMin = i70;
+                            edit.putInt("hiddenMembersGroupSizeMin", i70);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -6742,13 +6749,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue96 = tL_jsonObjectValue.value;
-                    if (jSONValue96 instanceof TLRPC.TL_jsonNumber) {
-                        double d48 = ((TLRPC.TL_jsonNumber) jSONValue96).value;
-                        if (d48 != this.hiddenMembersGroupSizeMin) {
-                            int i70 = (int) d48;
-                            this.hiddenMembersGroupSizeMin = i70;
-                            edit.putInt("hiddenMembersGroupSizeMin", i70);
+                    TLRPC.JSONValue jSONValue94 = tL_jsonObjectValue.value;
+                    if (jSONValue94 instanceof TLRPC.TL_jsonNumber) {
+                        double d49 = ((TLRPC.TL_jsonNumber) jSONValue94).value;
+                        if (d49 != this.freezeUntilDate) {
+                            long j5 = (long) d49;
+                            this.freezeUntilDate = j5;
+                            edit.putLong("freezeUntilDate", j5);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -6777,43 +6784,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue97 = tL_jsonObjectValue.value;
-                    if (jSONValue97 instanceof TLRPC.TL_jsonNumber) {
-                        double d49 = ((TLRPC.TL_jsonNumber) jSONValue97).value;
-                        if (d49 != this.freezeUntilDate) {
-                            long j5 = (long) d49;
-                            this.freezeUntilDate = j5;
-                            edit.putLong("freezeUntilDate", j5);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 'Z':
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue98 = tL_jsonObjectValue.value;
-                    if ((jSONValue98 instanceof TLRPC.TL_jsonBool) && (z17 = ((TLRPC.TL_jsonBool) jSONValue98).value) != this.autoarchiveAvailable) {
+                    TLRPC.JSONValue jSONValue95 = tL_jsonObjectValue.value;
+                    if ((jSONValue95 instanceof TLRPC.TL_jsonBool) && (z17 = ((TLRPC.TL_jsonBool) jSONValue95).value) != this.autoarchiveAvailable) {
                         this.autoarchiveAvailable = z17;
                         edit.putBoolean("autoarchiveAvailable", z17);
                         str = str25;
@@ -6839,18 +6811,53 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
+                case 'Z':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue96 = tL_jsonObjectValue.value;
+                    if (jSONValue96 instanceof TLRPC.TL_jsonNumber) {
+                        double d50 = ((TLRPC.TL_jsonNumber) jSONValue96).value;
+                        if (d50 != this.quickRepliesLimit) {
+                            int i71 = (int) d50;
+                            this.quickRepliesLimit = i71;
+                            edit.putInt("quickRepliesLimit", i71);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case '[':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue99 = tL_jsonObjectValue.value;
-                    if (jSONValue99 instanceof TLRPC.TL_jsonNumber) {
-                        double d50 = ((TLRPC.TL_jsonNumber) jSONValue99).value;
-                        if (d50 != this.quickRepliesLimit) {
-                            int i71 = (int) d50;
-                            this.quickRepliesLimit = i71;
-                            edit.putInt("quickRepliesLimit", i71);
+                    TLRPC.JSONValue jSONValue97 = tL_jsonObjectValue.value;
+                    if (jSONValue97 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString2 = (TLRPC.TL_jsonString) jSONValue97;
+                        if (!tL_jsonString2.value.equals(this.youtubePipType)) {
+                            String str40 = tL_jsonString2.value;
+                            this.youtubePipType = str40;
+                            edit.putString("youtubePipType", str40);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -6879,13 +6886,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue100 = tL_jsonObjectValue.value;
-                    if (jSONValue100 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString2 = (TLRPC.TL_jsonString) jSONValue100;
-                        if (!tL_jsonString2.value.equals(this.youtubePipType)) {
-                            String str40 = tL_jsonString2.value;
-                            this.youtubePipType = str40;
-                            edit.putString("youtubePipType", str40);
+                    TLRPC.JSONValue jSONValue98 = tL_jsonObjectValue.value;
+                    if (jSONValue98 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString3 = (TLRPC.TL_jsonString) jSONValue98;
+                        if (!TextUtils.equals(tL_jsonString3.value, this.tonProxyAddress)) {
+                            String str41 = tL_jsonString3.value;
+                            this.tonProxyAddress = str41;
+                            edit.putString("tonProxyAddress", str41);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -6914,13 +6921,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue101 = tL_jsonObjectValue.value;
-                    if (jSONValue101 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString3 = (TLRPC.TL_jsonString) jSONValue101;
-                        if (!TextUtils.equals(tL_jsonString3.value, this.tonProxyAddress)) {
-                            String str41 = tL_jsonString3.value;
-                            this.tonProxyAddress = str41;
-                            edit.putString("tonProxyAddress", str41);
+                    TLRPC.JSONValue jSONValue99 = tL_jsonObjectValue.value;
+                    if (jSONValue99 instanceof TLRPC.TL_jsonNumber) {
+                        double d51 = this.animatedEmojisZoom;
+                        double d52 = ((TLRPC.TL_jsonNumber) jSONValue99).value;
+                        if (d51 != d52) {
+                            float f3 = (float) d52;
+                            this.animatedEmojisZoom = f3;
+                            edit.putFloat("animatedEmojisZoom", f3);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -6949,14 +6957,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue102 = tL_jsonObjectValue.value;
-                    if (jSONValue102 instanceof TLRPC.TL_jsonNumber) {
-                        double d51 = this.animatedEmojisZoom;
-                        double d52 = ((TLRPC.TL_jsonNumber) jSONValue102).value;
-                        if (d51 != d52) {
-                            float f3 = (float) d52;
-                            this.animatedEmojisZoom = f3;
-                            edit.putFloat("animatedEmojisZoom", f3);
+                    TLRPC.JSONValue jSONValue100 = tL_jsonObjectValue.value;
+                    if (jSONValue100 instanceof TLRPC.TL_jsonNumber) {
+                        double d53 = ((TLRPC.TL_jsonNumber) jSONValue100).value;
+                        if (d53 != this.telegramAntispamGroupSizeMin) {
+                            int i72 = (int) d53;
+                            this.telegramAntispamGroupSizeMin = i72;
+                            edit.putInt("telegramAntispamGroupSizeMin", i72);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -6985,13 +6992,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue103 = tL_jsonObjectValue.value;
-                    if (jSONValue103 instanceof TLRPC.TL_jsonNumber) {
-                        double d53 = ((TLRPC.TL_jsonNumber) jSONValue103).value;
-                        if (d53 != this.telegramAntispamGroupSizeMin) {
-                            int i72 = (int) d53;
-                            this.telegramAntispamGroupSizeMin = i72;
-                            edit.putInt("telegramAntispamGroupSizeMin", i72);
+                    TLRPC.JSONValue jSONValue101 = tL_jsonObjectValue.value;
+                    if (jSONValue101 instanceof TLRPC.TL_jsonNumber) {
+                        int i73 = this.stargiftsPinnedToTopLimit;
+                        int i74 = (int) ((TLRPC.TL_jsonNumber) jSONValue101).value;
+                        if (i73 != i74) {
+                            this.stargiftsPinnedToTopLimit = i74;
+                            edit.putInt("stargiftsPinnedToTopLimit", i74);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7020,13 +7027,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue104 = tL_jsonObjectValue.value;
-                    if (jSONValue104 instanceof TLRPC.TL_jsonNumber) {
-                        int i73 = this.stargiftsPinnedToTopLimit;
-                        int i74 = (int) ((TLRPC.TL_jsonNumber) jSONValue104).value;
-                        if (i73 != i74) {
-                            this.stargiftsPinnedToTopLimit = i74;
-                            edit.putInt("stargiftsPinnedToTopLimit", i74);
+                    TLRPC.JSONValue jSONValue102 = tL_jsonObjectValue.value;
+                    if (jSONValue102 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString4 = (TLRPC.TL_jsonString) jSONValue102;
+                        if (!TextUtils.equals(this.translationsAutoEnabled, tL_jsonString4.value)) {
+                            String str42 = tL_jsonString4.value;
+                            this.translationsAutoEnabled = str42;
+                            edit.putString("translationsAutoEnabled", str42);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7055,13 +7062,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue105 = tL_jsonObjectValue.value;
-                    if (jSONValue105 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString4 = (TLRPC.TL_jsonString) jSONValue105;
-                        if (!TextUtils.equals(this.translationsAutoEnabled, tL_jsonString4.value)) {
-                            String str42 = tL_jsonString4.value;
-                            this.translationsAutoEnabled = str42;
-                            edit.putString("translationsAutoEnabled", str42);
+                    TLRPC.JSONValue jSONValue103 = tL_jsonObjectValue.value;
+                    if (jSONValue103 instanceof TLRPC.TL_jsonBool) {
+                        boolean z41 = this.giveawayGiftsPurchaseAvailable;
+                        boolean z42 = ((TLRPC.TL_jsonBool) jSONValue103).value;
+                        if (z41 != z42) {
+                            this.giveawayGiftsPurchaseAvailable = z42;
+                            edit.putBoolean("giveawayGiftsPurchaseAvailable", z42);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7090,13 +7097,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue106 = tL_jsonObjectValue.value;
-                    if (jSONValue106 instanceof TLRPC.TL_jsonBool) {
-                        boolean z41 = this.giveawayGiftsPurchaseAvailable;
-                        boolean z42 = ((TLRPC.TL_jsonBool) jSONValue106).value;
-                        if (z41 != z42) {
-                            this.giveawayGiftsPurchaseAvailable = z42;
-                            edit.putBoolean("giveawayGiftsPurchaseAvailable", z42);
+                    TLRPC.JSONValue jSONValue104 = tL_jsonObjectValue.value;
+                    if (jSONValue104 instanceof TLRPC.TL_jsonNumber) {
+                        long j6 = (long) ((TLRPC.TL_jsonNumber) jSONValue104).value;
+                        if (j6 != this.starsPaidReactionAmountMax) {
+                            this.starsPaidReactionAmountMax = j6;
+                            edit.putLong("starsPaidReactionAmountMax", j6);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7125,42 +7131,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue107 = tL_jsonObjectValue.value;
-                    if (jSONValue107 instanceof TLRPC.TL_jsonNumber) {
-                        long j6 = (long) ((TLRPC.TL_jsonNumber) jSONValue107).value;
-                        if (j6 != this.starsPaidReactionAmountMax) {
-                            this.starsPaidReactionAmountMax = j6;
-                            edit.putLong("starsPaidReactionAmountMax", j6);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 'd':
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue108 = tL_jsonObjectValue.value;
-                    if ((jSONValue108 instanceof TLRPC.TL_jsonBool) && (z18 = ((TLRPC.TL_jsonBool) jSONValue108).value) != this.suggestStickersApiOnly) {
+                    TLRPC.JSONValue jSONValue105 = tL_jsonObjectValue.value;
+                    if ((jSONValue105 instanceof TLRPC.TL_jsonBool) && (z18 = ((TLRPC.TL_jsonBool) jSONValue105).value) != this.suggestStickersApiOnly) {
                         this.suggestStickersApiOnly = z18;
                         edit.putBoolean("suggestStickersApiOnly", z18);
                         str = str25;
@@ -7186,20 +7158,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
-                case 'e':
+                case 'd':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
                     ArrayList<String> arrayList = new ArrayList<>();
-                    TLRPC.JSONValue jSONValue109 = tL_jsonObjectValue.value;
-                    if (jSONValue109 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray7 = (TLRPC.TL_jsonArray) jSONValue109;
-                        int size10 = tL_jsonArray7.value.size();
-                        for (int i75 = 0; i75 < size10; i75++) {
-                            TLRPC.JSONValue jSONValue110 = tL_jsonArray7.value.get(i75);
-                            if (jSONValue110 instanceof TLRPC.TL_jsonString) {
-                                arrayList.add(((TLRPC.TL_jsonString) jSONValue110).value.replace("️", ""));
+                    TLRPC.JSONValue jSONValue106 = tL_jsonObjectValue.value;
+                    if (jSONValue106 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray5 = (TLRPC.TL_jsonArray) jSONValue106;
+                        int size8 = tL_jsonArray5.value.size();
+                        for (int i75 = 0; i75 < size8; i75++) {
+                            TLRPC.JSONValue jSONValue107 = tL_jsonArray5.value.get(i75);
+                            if (jSONValue107 instanceof TLRPC.TL_jsonString) {
+                                arrayList.add(((TLRPC.TL_jsonString) jSONValue107).value.replace("️", ""));
                             }
                         }
                     }
@@ -7207,12 +7179,54 @@ public class MessagesController extends BaseController implements NotificationCe
                         this.gifSearchEmojies = arrayList;
                         SerializedData serializedData2 = new SerializedData();
                         serializedData2.writeInt32(this.gifSearchEmojies.size());
-                        int size11 = this.gifSearchEmojies.size();
-                        for (int i76 = 0; i76 < size11; i76++) {
+                        int size9 = this.gifSearchEmojies.size();
+                        for (int i76 = 0; i76 < size9; i76++) {
                             serializedData2.writeString(this.gifSearchEmojies.get(i76));
                         }
                         edit.putString("gifSearchEmojies", Base64.encodeToString(serializedData2.toByteArray(), 0));
                         serializedData2.cleanup();
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                        break;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                case 'e':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    HashSet hashSet5 = new HashSet();
+                    TLRPC.JSONValue jSONValue108 = tL_jsonObjectValue.value;
+                    if (jSONValue108 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray6 = (TLRPC.TL_jsonArray) jSONValue108;
+                        int size10 = tL_jsonArray6.value.size();
+                        for (int i77 = 0; i77 < size10; i77++) {
+                            TLRPC.JSONValue jSONValue109 = tL_jsonArray6.value.get(i77);
+                            if (jSONValue109 instanceof TLRPC.TL_jsonString) {
+                                hashSet5.add(((TLRPC.TL_jsonString) jSONValue109).value);
+                            }
+                        }
+                    }
+                    if (!this.autologinDomains.equals(hashSet5)) {
+                        this.autologinDomains = hashSet5;
+                        edit.putStringSet("autologinDomains", hashSet5);
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -7240,21 +7254,21 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    HashSet hashSet7 = new HashSet();
-                    TLRPC.JSONValue jSONValue111 = tL_jsonObjectValue.value;
-                    if (jSONValue111 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray8 = (TLRPC.TL_jsonArray) jSONValue111;
-                        int size12 = tL_jsonArray8.value.size();
-                        for (int i77 = 0; i77 < size12; i77++) {
-                            TLRPC.JSONValue jSONValue112 = tL_jsonArray8.value.get(i77);
-                            if (jSONValue112 instanceof TLRPC.TL_jsonString) {
-                                hashSet7.add(((TLRPC.TL_jsonString) jSONValue112).value);
+                    HashSet hashSet6 = new HashSet();
+                    TLRPC.JSONValue jSONValue110 = tL_jsonObjectValue.value;
+                    if (jSONValue110 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray7 = (TLRPC.TL_jsonArray) jSONValue110;
+                        int size11 = tL_jsonArray7.value.size();
+                        for (int i78 = 0; i78 < size11; i78++) {
+                            TLRPC.JSONValue jSONValue111 = tL_jsonArray7.value.get(i78);
+                            if (jSONValue111 instanceof TLRPC.TL_jsonString) {
+                                hashSet6.add(((TLRPC.TL_jsonString) jSONValue111).value);
                             }
                         }
                     }
-                    if (!this.autologinDomains.equals(hashSet7)) {
-                        this.autologinDomains = hashSet7;
-                        edit.putStringSet("autologinDomains", hashSet7);
+                    if (!this.exportGroupUri.equals(hashSet6)) {
+                        this.exportGroupUri = hashSet6;
+                        edit.putStringSet("exportGroupUri", hashSet6);
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -7282,51 +7296,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    HashSet hashSet8 = new HashSet();
-                    TLRPC.JSONValue jSONValue113 = tL_jsonObjectValue.value;
-                    if (jSONValue113 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray9 = (TLRPC.TL_jsonArray) jSONValue113;
-                        int size13 = tL_jsonArray9.value.size();
-                        for (int i78 = 0; i78 < size13; i78++) {
-                            TLRPC.JSONValue jSONValue114 = tL_jsonArray9.value.get(i78);
-                            if (jSONValue114 instanceof TLRPC.TL_jsonString) {
-                                hashSet8.add(((TLRPC.TL_jsonString) jSONValue114).value);
-                            }
-                        }
-                    }
-                    if (!this.exportGroupUri.equals(hashSet8)) {
-                        this.exportGroupUri = hashSet8;
-                        edit.putStringSet("exportGroupUri", hashSet8);
-                        str = str25;
-                        str2 = str26;
-                        str3 = str27;
-                        str4 = str28;
-                        str5 = str29;
-                        str9 = str19;
-                        str8 = str18;
-                        str7 = str17;
-                        str6 = str16;
-                        z14 = true;
-                        z28 = z14;
-                        break;
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 'h':
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue115 = tL_jsonObjectValue.value;
-                    if (jSONValue115 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString5 = (TLRPC.TL_jsonString) jSONValue115;
+                    TLRPC.JSONValue jSONValue112 = tL_jsonObjectValue.value;
+                    if (jSONValue112 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString5 = (TLRPC.TL_jsonString) jSONValue112;
                         if (!TextUtils.equals(tL_jsonString5.value, this.storiesPosting)) {
                             String str43 = tL_jsonString5.value;
                             this.storiesPosting = str43;
@@ -7355,18 +7327,53 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
+                case 'h':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue113 = tL_jsonObjectValue.value;
+                    if (jSONValue113 instanceof TLRPC.TL_jsonNumber) {
+                        double d54 = ((TLRPC.TL_jsonNumber) jSONValue113).value;
+                        if (d54 != this.botVerificationDescriptionLengthLimit) {
+                            int i79 = (int) d54;
+                            this.botVerificationDescriptionLengthLimit = i79;
+                            edit.putInt("botVerificationDescriptionLengthLimit", i79);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 'i':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue116 = tL_jsonObjectValue.value;
-                    if (jSONValue116 instanceof TLRPC.TL_jsonNumber) {
-                        double d54 = ((TLRPC.TL_jsonNumber) jSONValue116).value;
-                        if (d54 != this.botVerificationDescriptionLengthLimit) {
-                            int i79 = (int) d54;
-                            this.botVerificationDescriptionLengthLimit = i79;
-                            edit.putInt("botVerificationDescriptionLengthLimit", i79);
+                    TLRPC.JSONValue jSONValue114 = tL_jsonObjectValue.value;
+                    if (jSONValue114 instanceof TLRPC.TL_jsonNumber) {
+                        double d55 = ((TLRPC.TL_jsonNumber) jSONValue114).value;
+                        if (d55 != this.channelProfileIconLevelMin) {
+                            int i80 = (int) d55;
+                            this.channelProfileIconLevelMin = i80;
+                            edit.putInt("channelProfileIconLevelMin", i80);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7395,13 +7402,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue117 = tL_jsonObjectValue.value;
-                    if (jSONValue117 instanceof TLRPC.TL_jsonNumber) {
-                        double d55 = ((TLRPC.TL_jsonNumber) jSONValue117).value;
-                        if (d55 != this.channelProfileIconLevelMin) {
-                            int i80 = (int) d55;
-                            this.channelProfileIconLevelMin = i80;
-                            edit.putInt("channelProfileIconLevelMin", i80);
+                    TLRPC.JSONValue jSONValue115 = tL_jsonObjectValue.value;
+                    if (jSONValue115 instanceof TLRPC.TL_jsonString) {
+                        String str44 = ((TLRPC.TL_jsonString) jSONValue115).value;
+                        if (!str44.equals(this.verifyAgeBotUsername)) {
+                            this.verifyAgeBotUsername = str44;
+                            edit.putString("verifyAgeBotUsername", str44);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7430,12 +7436,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue118 = tL_jsonObjectValue.value;
-                    if (jSONValue118 instanceof TLRPC.TL_jsonString) {
-                        String str44 = ((TLRPC.TL_jsonString) jSONValue118).value;
-                        if (!str44.equals(this.verifyAgeBotUsername)) {
-                            this.verifyAgeBotUsername = str44;
-                            edit.putString("verifyAgeBotUsername", str44);
+                    TLRPC.JSONValue jSONValue116 = tL_jsonObjectValue.value;
+                    if (jSONValue116 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString6 = (TLRPC.TL_jsonString) jSONValue116;
+                        if (!TextUtils.equals(tL_jsonString6.value, this.weatherSearchUsername)) {
+                            String str45 = tL_jsonString6.value;
+                            this.weatherSearchUsername = str45;
+                            edit.putString("weatherSearchUsername", str45);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7464,13 +7471,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue119 = tL_jsonObjectValue.value;
-                    if (jSONValue119 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString6 = (TLRPC.TL_jsonString) jSONValue119;
-                        if (!TextUtils.equals(tL_jsonString6.value, this.weatherSearchUsername)) {
-                            String str45 = tL_jsonString6.value;
-                            this.weatherSearchUsername = str45;
-                            edit.putString("weatherSearchUsername", str45);
+                    TLRPC.JSONValue jSONValue117 = tL_jsonObjectValue.value;
+                    if (jSONValue117 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString7 = (TLRPC.TL_jsonString) jSONValue117;
+                        if (!TextUtils.equals(this.translationsManualEnabled, tL_jsonString7.value)) {
+                            String str46 = tL_jsonString7.value;
+                            this.translationsManualEnabled = str46;
+                            edit.putString("translationsManualEnabled", str46);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7499,26 +7506,22 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue120 = tL_jsonObjectValue.value;
-                    if (jSONValue120 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString7 = (TLRPC.TL_jsonString) jSONValue120;
-                        if (!TextUtils.equals(this.translationsManualEnabled, tL_jsonString7.value)) {
-                            String str46 = tL_jsonString7.value;
-                            this.translationsManualEnabled = str46;
-                            edit.putString("translationsManualEnabled", str46);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
+                    TLRPC.JSONValue jSONValue118 = tL_jsonObjectValue.value;
+                    if ((jSONValue118 instanceof TLRPC.TL_jsonBool) && (z19 = ((TLRPC.TL_jsonBool) jSONValue118).value) != this.getfileExperimentalParams) {
+                        this.getfileExperimentalParams = z19;
+                        edit.putBoolean("getfileExperimentalParams", z19);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                        break;
                     }
                     str = str25;
                     str2 = str26;
@@ -7529,15 +7532,16 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str18;
                     str7 = str17;
                     str6 = str16;
+                    break;
                 case 'n':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue121 = tL_jsonObjectValue.value;
-                    if ((jSONValue121 instanceof TLRPC.TL_jsonBool) && (z19 = ((TLRPC.TL_jsonBool) jSONValue121).value) != this.getfileExperimentalParams) {
-                        this.getfileExperimentalParams = z19;
-                        edit.putBoolean("getfileExperimentalParams", z19);
+                    TLRPC.JSONValue jSONValue119 = tL_jsonObjectValue.value;
+                    if ((jSONValue119 instanceof TLRPC.TL_jsonBool) && (z20 = ((TLRPC.TL_jsonBool) jSONValue119).value) != this.canEditFactcheck) {
+                        this.canEditFactcheck = z20;
+                        edit.putBoolean("canEditFactcheck", z20);
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -7566,52 +7570,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue122 = tL_jsonObjectValue.value;
-                    if ((jSONValue122 instanceof TLRPC.TL_jsonBool) && (z20 = ((TLRPC.TL_jsonBool) jSONValue122).value) != this.canEditFactcheck) {
-                        this.canEditFactcheck = z20;
-                        edit.putBoolean("canEditFactcheck", z20);
-                        str = str25;
-                        str2 = str26;
-                        str3 = str27;
-                        str4 = str28;
-                        str5 = str29;
-                        str9 = str19;
-                        str8 = str18;
-                        str7 = str17;
-                        str6 = str16;
-                        z14 = true;
-                        z28 = z14;
-                        break;
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                    break;
-                case 'p':
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue123 = tL_jsonObjectValue.value;
-                    if (jSONValue123 instanceof TLRPC.TL_jsonArray) {
-                        HashSet hashSet9 = new HashSet();
-                        Iterator<TLRPC.JSONValue> it = ((TLRPC.TL_jsonArray) jSONValue123).value.iterator();
+                    TLRPC.JSONValue jSONValue120 = tL_jsonObjectValue.value;
+                    if (jSONValue120 instanceof TLRPC.TL_jsonArray) {
+                        HashSet hashSet7 = new HashSet();
+                        Iterator<TLRPC.JSONValue> it = ((TLRPC.TL_jsonArray) jSONValue120).value.iterator();
                         while (it.hasNext()) {
                             TLRPC.JSONValue next = it.next();
                             if (next instanceof TLRPC.TL_jsonString) {
-                                hashSet9.add(((TLRPC.TL_jsonString) next).value);
+                                hashSet7.add(((TLRPC.TL_jsonString) next).value);
                             }
                         }
-                        if (!this.directPaymentsCurrency.containsAll(hashSet9) || !hashSet9.containsAll(this.directPaymentsCurrency)) {
+                        if (!this.directPaymentsCurrency.containsAll(hashSet7) || !hashSet7.containsAll(this.directPaymentsCurrency)) {
                             this.directPaymentsCurrency.clear();
-                            this.directPaymentsCurrency.addAll(hashSet9);
-                            edit.putStringSet("directPaymentsCurrency", hashSet9);
+                            this.directPaymentsCurrency.addAll(hashSet7);
+                            edit.putStringSet("directPaymentsCurrency", hashSet7);
                             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
                             str = str25;
                             str2 = str26;
@@ -7636,14 +7608,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
-                case 'q':
+                case 'p':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue124 = tL_jsonObjectValue.value;
-                    if (jSONValue124 instanceof TLRPC.TL_jsonNumber) {
-                        double d56 = ((TLRPC.TL_jsonNumber) jSONValue124).value;
+                    TLRPC.JSONValue jSONValue121 = tL_jsonObjectValue.value;
+                    if (jSONValue121 instanceof TLRPC.TL_jsonNumber) {
+                        double d56 = ((TLRPC.TL_jsonNumber) jSONValue121).value;
                         if (d56 != this.checkResetLangpack) {
                             int i81 = (int) d56;
                             this.checkResetLangpack = i81;
@@ -7672,18 +7644,53 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str18;
                     str7 = str17;
                     str6 = str16;
+                case 'q':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue122 = tL_jsonObjectValue.value;
+                    if (jSONValue122 instanceof TLRPC.TL_jsonNumber) {
+                        double d57 = ((TLRPC.TL_jsonNumber) jSONValue122).value;
+                        if (d57 != this.publicLinksLimitDefault) {
+                            int i82 = (int) d57;
+                            this.publicLinksLimitDefault = i82;
+                            edit.putInt("publicLinksLimit", i82);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 'r':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue125 = tL_jsonObjectValue.value;
-                    if (jSONValue125 instanceof TLRPC.TL_jsonNumber) {
-                        double d57 = ((TLRPC.TL_jsonNumber) jSONValue125).value;
-                        if (d57 != this.publicLinksLimitDefault) {
-                            int i82 = (int) d57;
-                            this.publicLinksLimitDefault = i82;
-                            edit.putInt("publicLinksLimit", i82);
+                    TLRPC.JSONValue jSONValue123 = tL_jsonObjectValue.value;
+                    if (jSONValue123 instanceof TLRPC.TL_jsonNumber) {
+                        double d58 = ((TLRPC.TL_jsonNumber) jSONValue123).value;
+                        if (d58 != this.storyExpiringLimitDefault) {
+                            int i83 = (int) d58;
+                            this.storyExpiringLimitDefault = i83;
+                            edit.putInt("storyExpiringLimitDefault", i83);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7712,43 +7719,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue126 = tL_jsonObjectValue.value;
-                    if (jSONValue126 instanceof TLRPC.TL_jsonNumber) {
-                        double d58 = ((TLRPC.TL_jsonNumber) jSONValue126).value;
-                        if (d58 != this.storyExpiringLimitDefault) {
-                            int i83 = (int) d58;
-                            this.storyExpiringLimitDefault = i83;
-                            edit.putInt("storyExpiringLimitDefault", i83);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 't':
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue127 = tL_jsonObjectValue.value;
-                    if ((jSONValue127 instanceof TLRPC.TL_jsonBool) && (z21 = ((TLRPC.TL_jsonBool) jSONValue127).value) != this.sponsoredLinksInappAllow) {
+                    TLRPC.JSONValue jSONValue124 = tL_jsonObjectValue.value;
+                    if ((jSONValue124 instanceof TLRPC.TL_jsonBool) && (z21 = ((TLRPC.TL_jsonBool) jSONValue124).value) != this.sponsoredLinksInappAllow) {
                         this.sponsoredLinksInappAllow = z21;
                         edit.putBoolean("sponsoredLinksInappAllow", z21);
                         str = str25;
@@ -7774,14 +7746,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
-                case 'u':
+                case 't':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue128 = tL_jsonObjectValue.value;
-                    if (jSONValue128 instanceof TLRPC.TL_jsonNumber) {
-                        int i84 = (int) ((TLRPC.TL_jsonNumber) jSONValue128).value;
+                    TLRPC.JSONValue jSONValue125 = tL_jsonObjectValue.value;
+                    if (jSONValue125 instanceof TLRPC.TL_jsonNumber) {
+                        int i84 = (int) ((TLRPC.TL_jsonNumber) jSONValue125).value;
                         this.stealthModeFuture = i84;
                         edit.putInt(str29, i84);
                     }
@@ -7795,18 +7767,53 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
+                case 'u':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue126 = tL_jsonObjectValue.value;
+                    if (jSONValue126 instanceof TLRPC.TL_jsonNumber) {
+                        double d59 = ((TLRPC.TL_jsonNumber) jSONValue126).value;
+                        if (d59 != this.uploadMaxFilePartsPremium) {
+                            int i85 = (int) d59;
+                            this.uploadMaxFilePartsPremium = i85;
+                            edit.putInt("uploadMaxFilePartsPremium", i85);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 'v':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue129 = tL_jsonObjectValue.value;
-                    if (jSONValue129 instanceof TLRPC.TL_jsonNumber) {
-                        double d59 = ((TLRPC.TL_jsonNumber) jSONValue129).value;
-                        if (d59 != this.uploadMaxFilePartsPremium) {
-                            int i85 = (int) d59;
-                            this.uploadMaxFilePartsPremium = i85;
-                            edit.putInt("uploadMaxFilePartsPremium", i85);
+                    TLRPC.JSONValue jSONValue127 = tL_jsonObjectValue.value;
+                    if (jSONValue127 instanceof TLRPC.TL_jsonNumber) {
+                        double d60 = ((TLRPC.TL_jsonNumber) jSONValue127).value;
+                        if (d60 != this.maxPinnedDialogsCountPremium) {
+                            int i86 = (int) d60;
+                            this.maxPinnedDialogsCountPremium = i86;
+                            edit.putInt("maxPinnedDialogsCountPremium", i86);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7835,13 +7842,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue130 = tL_jsonObjectValue.value;
-                    if (jSONValue130 instanceof TLRPC.TL_jsonNumber) {
-                        double d60 = ((TLRPC.TL_jsonNumber) jSONValue130).value;
-                        if (d60 != this.maxPinnedDialogsCountPremium) {
-                            int i86 = (int) d60;
-                            this.maxPinnedDialogsCountPremium = i86;
-                            edit.putInt("maxPinnedDialogsCountPremium", i86);
+                    TLRPC.JSONValue jSONValue128 = tL_jsonObjectValue.value;
+                    if (jSONValue128 instanceof TLRPC.TL_jsonNumber) {
+                        double d61 = ((TLRPC.TL_jsonNumber) jSONValue128).value;
+                        if (d61 != this.storiesSuggestedReactionsLimitPremium) {
+                            int i87 = (int) d61;
+                            this.storiesSuggestedReactionsLimitPremium = i87;
+                            edit.putInt("storiesSuggestedReactionsLimitPremium", i87);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7870,13 +7877,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue131 = tL_jsonObjectValue.value;
-                    if (jSONValue131 instanceof TLRPC.TL_jsonNumber) {
-                        double d61 = ((TLRPC.TL_jsonNumber) jSONValue131).value;
-                        if (d61 != this.storiesSuggestedReactionsLimitPremium) {
-                            int i87 = (int) d61;
-                            this.storiesSuggestedReactionsLimitPremium = i87;
-                            edit.putInt("storiesSuggestedReactionsLimitPremium", i87);
+                    TLRPC.JSONValue jSONValue129 = tL_jsonObjectValue.value;
+                    if (jSONValue129 instanceof TLRPC.TL_jsonNumber) {
+                        double d62 = ((TLRPC.TL_jsonNumber) jSONValue129).value;
+                        if (d62 != this.stickersFavedLimitDefault) {
+                            int i88 = (int) d62;
+                            this.stickersFavedLimitDefault = i88;
+                            edit.putInt("stickersFavedLimitDefault", i88);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7905,13 +7912,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue132 = tL_jsonObjectValue.value;
-                    if (jSONValue132 instanceof TLRPC.TL_jsonNumber) {
-                        double d62 = ((TLRPC.TL_jsonNumber) jSONValue132).value;
-                        if (d62 != this.stickersFavedLimitDefault) {
-                            int i88 = (int) d62;
-                            this.stickersFavedLimitDefault = i88;
-                            edit.putInt("stickersFavedLimitDefault", i88);
+                    TLRPC.JSONValue jSONValue130 = tL_jsonObjectValue.value;
+                    if (jSONValue130 instanceof TLRPC.TL_jsonNumber) {
+                        long j7 = (long) ((TLRPC.TL_jsonNumber) jSONValue130).value;
+                        if (j7 != this.giveawayBoostsPerPremium) {
+                            this.giveawayBoostsPerPremium = j7;
+                            edit.putLong(str28, j7);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7940,12 +7946,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue133 = tL_jsonObjectValue.value;
-                    if (jSONValue133 instanceof TLRPC.TL_jsonNumber) {
-                        long j7 = (long) ((TLRPC.TL_jsonNumber) jSONValue133).value;
-                        if (j7 != this.giveawayBoostsPerPremium) {
-                            this.giveawayBoostsPerPremium = j7;
-                            edit.putLong(str28, j7);
+                    TLRPC.JSONValue jSONValue131 = tL_jsonObjectValue.value;
+                    if (jSONValue131 instanceof TLRPC.TL_jsonNumber) {
+                        double d63 = ((TLRPC.TL_jsonNumber) jSONValue131).value;
+                        if (d63 != this.groupCallVideoMaxParticipants) {
+                            int i89 = (int) d63;
+                            this.groupCallVideoMaxParticipants = i89;
+                            edit.putInt("groipCallVideoMaxParticipants", i89);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -7974,43 +7981,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue134 = tL_jsonObjectValue.value;
-                    if (jSONValue134 instanceof TLRPC.TL_jsonNumber) {
-                        double d63 = ((TLRPC.TL_jsonNumber) jSONValue134).value;
-                        if (d63 != this.groupCallVideoMaxParticipants) {
-                            int i89 = (int) d63;
-                            this.groupCallVideoMaxParticipants = i89;
-                            edit.putInt("groipCallVideoMaxParticipants", i89);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case '|':
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue135 = tL_jsonObjectValue.value;
-                    if ((jSONValue135 instanceof TLRPC.TL_jsonBool) && (z22 = ((TLRPC.TL_jsonBool) jSONValue135).value) != this.saveGifsWithStickers) {
+                    TLRPC.JSONValue jSONValue132 = tL_jsonObjectValue.value;
+                    if ((jSONValue132 instanceof TLRPC.TL_jsonBool) && (z22 = ((TLRPC.TL_jsonBool) jSONValue132).value) != this.saveGifsWithStickers) {
                         this.saveGifsWithStickers = z22;
                         edit.putBoolean("saveGifsWithStickers", z22);
                         str = str25;
@@ -8036,17 +8008,52 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
+                case '|':
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue133 = tL_jsonObjectValue.value;
+                    if (jSONValue133 instanceof TLRPC.TL_jsonNumber) {
+                        long j8 = (long) ((TLRPC.TL_jsonNumber) jSONValue133).value;
+                        if (j8 != this.boostsPerSentGift) {
+                            this.boostsPerSentGift = j8;
+                            edit.putLong(str27, j8);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case '}':
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue136 = tL_jsonObjectValue.value;
-                    if (jSONValue136 instanceof TLRPC.TL_jsonNumber) {
-                        long j8 = (long) ((TLRPC.TL_jsonNumber) jSONValue136).value;
-                        if (j8 != this.boostsPerSentGift) {
-                            this.boostsPerSentGift = j8;
-                            edit.putLong(str27, j8);
+                    TLRPC.JSONValue jSONValue134 = tL_jsonObjectValue.value;
+                    if (jSONValue134 instanceof TLRPC.TL_jsonNumber) {
+                        double d64 = ((TLRPC.TL_jsonNumber) jSONValue134).value;
+                        if (d64 != this.storiesSentMonthlyLimitPremium) {
+                            int i90 = (int) d64;
+                            this.storiesSentMonthlyLimitPremium = i90;
+                            edit.putInt("storiesSentMonthlyLimitPremium", i90);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8075,43 +8082,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue137 = tL_jsonObjectValue.value;
-                    if (jSONValue137 instanceof TLRPC.TL_jsonNumber) {
-                        double d64 = ((TLRPC.TL_jsonNumber) jSONValue137).value;
-                        if (d64 != this.storiesSentMonthlyLimitPremium) {
-                            int i90 = (int) d64;
-                            this.storiesSentMonthlyLimitPremium = i90;
-                            edit.putInt("storiesSentMonthlyLimitPremium", i90);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 127:
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue138 = tL_jsonObjectValue.value;
-                    if ((jSONValue138 instanceof TLRPC.TL_jsonBool) && (z23 = ((TLRPC.TL_jsonBool) jSONValue138).value) != this.androidDisableRoundCamera2) {
+                    TLRPC.JSONValue jSONValue135 = tL_jsonObjectValue.value;
+                    if ((jSONValue135 instanceof TLRPC.TL_jsonBool) && (z23 = ((TLRPC.TL_jsonBool) jSONValue135).value) != this.androidDisableRoundCamera2) {
                         this.androidDisableRoundCamera2 = z23;
                         edit.putBoolean("androidDisableRoundCamera2", z23);
                         str = str25;
@@ -8137,17 +8109,52 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
+                case 127:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue136 = tL_jsonObjectValue.value;
+                    if (jSONValue136 instanceof TLRPC.TL_jsonString) {
+                        String str47 = ((TLRPC.TL_jsonString) jSONValue136).value;
+                        if (!Objects.equals(BuildVars.GOOGLE_AUTH_CLIENT_ID, str47)) {
+                            BuildVars.GOOGLE_AUTH_CLIENT_ID = str47;
+                            edit.putString("googleAuthClientId", str47);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 128:
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue139 = tL_jsonObjectValue.value;
-                    if (jSONValue139 instanceof TLRPC.TL_jsonString) {
-                        String str47 = ((TLRPC.TL_jsonString) jSONValue139).value;
-                        if (!Objects.equals(BuildVars.GOOGLE_AUTH_CLIENT_ID, str47)) {
-                            BuildVars.GOOGLE_AUTH_CLIENT_ID = str47;
-                            edit.putString("googleAuthClientId", str47);
+                    TLRPC.JSONValue jSONValue137 = tL_jsonObjectValue.value;
+                    if (jSONValue137 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber3 = (TLRPC.TL_jsonNumber) jSONValue137;
+                        if (Math.abs(tL_jsonNumber3.value - this.starsUsdWithdrawRate1000) > 0.0010000000474974513d) {
+                            float f4 = (float) tL_jsonNumber3.value;
+                            this.starsUsdWithdrawRate1000 = f4;
+                            edit.putFloat("starsUsdWithdrawRate1000", f4);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8176,13 +8183,14 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue140 = tL_jsonObjectValue.value;
-                    if (jSONValue140 instanceof TLRPC.TL_jsonNumber) {
-                        TLRPC.TL_jsonNumber tL_jsonNumber3 = (TLRPC.TL_jsonNumber) jSONValue140;
-                        if (Math.abs(tL_jsonNumber3.value - this.starsUsdWithdrawRate1000) > 0.0010000000474974513d) {
-                            float f4 = (float) tL_jsonNumber3.value;
-                            this.starsUsdWithdrawRate1000 = f4;
-                            edit.putFloat("starsUsdWithdrawRate1000", f4);
+                    TLRPC.JSONValue jSONValue138 = tL_jsonObjectValue.value;
+                    if (jSONValue138 instanceof TLRPC.TL_jsonNumber) {
+                        double d65 = this.quoteLengthMax;
+                        double d66 = ((TLRPC.TL_jsonNumber) jSONValue138).value;
+                        if (d65 != d66) {
+                            int i91 = (int) d66;
+                            this.quoteLengthMax = i91;
+                            edit.putInt("quoteLengthMax", i91);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8211,14 +8219,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue141 = tL_jsonObjectValue.value;
-                    if (jSONValue141 instanceof TLRPC.TL_jsonNumber) {
-                        double d65 = this.quoteLengthMax;
-                        double d66 = ((TLRPC.TL_jsonNumber) jSONValue141).value;
-                        if (d65 != d66) {
-                            int i91 = (int) d66;
-                            this.quoteLengthMax = i91;
-                            edit.putInt("quoteLengthMax", i91);
+                    TLRPC.JSONValue jSONValue139 = tL_jsonObjectValue.value;
+                    if (jSONValue139 instanceof TLRPC.TL_jsonNumber) {
+                        double d67 = ((TLRPC.TL_jsonNumber) jSONValue139).value;
+                        if (d67 != this.ringtoneDurationMax) {
+                            int i92 = (int) d67;
+                            this.ringtoneDurationMax = i92;
+                            edit.putInt("ringtoneDurationMax", i92);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8247,13 +8254,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue142 = tL_jsonObjectValue.value;
-                    if (jSONValue142 instanceof TLRPC.TL_jsonNumber) {
-                        double d67 = ((TLRPC.TL_jsonNumber) jSONValue142).value;
-                        if (d67 != this.ringtoneDurationMax) {
-                            int i92 = (int) d67;
-                            this.ringtoneDurationMax = i92;
-                            edit.putInt("ringtoneDurationMax", i92);
+                    TLRPC.JSONValue jSONValue140 = tL_jsonObjectValue.value;
+                    if (jSONValue140 instanceof TLRPC.TL_jsonNumber) {
+                        double d68 = ((TLRPC.TL_jsonNumber) jSONValue140).value;
+                        if (d68 != this.savedDialogsPinnedLimitDefault) {
+                            int i93 = (int) d68;
+                            this.savedDialogsPinnedLimitDefault = i93;
+                            edit.putInt("savedDialogsPinnedLimitDefault", i93);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8282,13 +8289,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue143 = tL_jsonObjectValue.value;
-                    if (jSONValue143 instanceof TLRPC.TL_jsonNumber) {
-                        double d68 = ((TLRPC.TL_jsonNumber) jSONValue143).value;
-                        if (d68 != this.savedDialogsPinnedLimitDefault) {
-                            int i93 = (int) d68;
-                            this.savedDialogsPinnedLimitDefault = i93;
-                            edit.putInt("savedDialogsPinnedLimitDefault", i93);
+                    TLRPC.JSONValue jSONValue141 = tL_jsonObjectValue.value;
+                    if (jSONValue141 instanceof TLRPC.TL_jsonNumber) {
+                        int i94 = this.starsPaidMessageCommissionPermille;
+                        int i95 = (int) ((TLRPC.TL_jsonNumber) jSONValue141).value;
+                        if (i94 != i95) {
+                            this.starsPaidMessageCommissionPermille = i95;
+                            edit.putInt("starsPaidMessageCommissionPermille", i95);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8317,44 +8324,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue144 = tL_jsonObjectValue.value;
-                    if (jSONValue144 instanceof TLRPC.TL_jsonNumber) {
-                        int i94 = this.starsPaidMessageCommissionPermille;
-                        int i95 = (int) ((TLRPC.TL_jsonNumber) jSONValue144).value;
-                        if (i94 != i95) {
-                            this.starsPaidMessageCommissionPermille = i95;
-                            edit.putInt("starsPaidMessageCommissionPermille", i95);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 134:
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue145 = tL_jsonObjectValue.value;
-                    if (jSONValue145 instanceof TLRPC.TL_jsonNumber) {
-                        double d69 = ((TLRPC.TL_jsonNumber) jSONValue145).value;
+                    TLRPC.JSONValue jSONValue142 = tL_jsonObjectValue.value;
+                    if (jSONValue142 instanceof TLRPC.TL_jsonNumber) {
+                        double d69 = ((TLRPC.TL_jsonNumber) jSONValue142).value;
                         if (d69 != this.updateCheckDelay) {
                             int i96 = (int) d69;
                             this.updateCheckDelay = i96;
@@ -8380,7 +8352,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         str6 = str16;
                         break;
                     } else {
-                        if ((jSONValue145 instanceof TLRPC.TL_jsonString) && (intValue = Utilities.parseInt((CharSequence) ((TLRPC.TL_jsonString) jSONValue145).value).intValue()) != this.updateCheckDelay) {
+                        if ((jSONValue142 instanceof TLRPC.TL_jsonString) && (intValue = Utilities.parseInt((CharSequence) ((TLRPC.TL_jsonString) jSONValue142).value).intValue()) != this.updateCheckDelay) {
                             this.updateCheckDelay = intValue;
                             edit.putInt("updateCheckDelay", intValue);
                             str = str25;
@@ -8406,18 +8378,53 @@ public class MessagesController extends BaseController implements NotificationCe
                     z14 = true;
                     z28 = z14;
                     break;
+                case 134:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue143 = tL_jsonObjectValue.value;
+                    if (jSONValue143 instanceof TLRPC.TL_jsonNumber) {
+                        double d70 = ((TLRPC.TL_jsonNumber) jSONValue143).value;
+                        if (d70 != this.groupEmojiStickersLevelMin) {
+                            int i97 = (int) d70;
+                            this.groupEmojiStickersLevelMin = i97;
+                            edit.putInt("groupEmojiStickersLevelMin", i97);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 135:
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue146 = tL_jsonObjectValue.value;
-                    if (jSONValue146 instanceof TLRPC.TL_jsonNumber) {
-                        double d70 = ((TLRPC.TL_jsonNumber) jSONValue146).value;
-                        if (d70 != this.groupEmojiStickersLevelMin) {
-                            int i97 = (int) d70;
-                            this.groupEmojiStickersLevelMin = i97;
-                            edit.putInt("groupEmojiStickersLevelMin", i97);
+                    TLRPC.JSONValue jSONValue144 = tL_jsonObjectValue.value;
+                    if (jSONValue144 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString8 = (TLRPC.TL_jsonString) jSONValue144;
+                        if (!TextUtils.equals(this.storyVenueSearchBot, tL_jsonString8.value)) {
+                            String str48 = tL_jsonString8.value;
+                            this.storyVenueSearchBot = str48;
+                            edit.putString("storyVenueSearchBot", str48);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8446,13 +8453,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue147 = tL_jsonObjectValue.value;
-                    if (jSONValue147 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString8 = (TLRPC.TL_jsonString) jSONValue147;
-                        if (!TextUtils.equals(this.storyVenueSearchBot, tL_jsonString8.value)) {
-                            String str48 = tL_jsonString8.value;
-                            this.storyVenueSearchBot = str48;
-                            edit.putString("storyVenueSearchBot", str48);
+                    TLRPC.JSONValue jSONValue145 = tL_jsonObjectValue.value;
+                    if (jSONValue145 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber4 = (TLRPC.TL_jsonNumber) jSONValue145;
+                        if (Math.abs(tL_jsonNumber4.value - this.uploadPremiumSpeedupUpload) >= 0.009999999776482582d) {
+                            float f5 = (float) tL_jsonNumber4.value;
+                            this.uploadPremiumSpeedupUpload = f5;
+                            edit.putFloat("uploadPremiumSpeedupUpload", f5);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8481,13 +8488,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue148 = tL_jsonObjectValue.value;
-                    if (jSONValue148 instanceof TLRPC.TL_jsonNumber) {
-                        TLRPC.TL_jsonNumber tL_jsonNumber4 = (TLRPC.TL_jsonNumber) jSONValue148;
-                        if (Math.abs(tL_jsonNumber4.value - this.uploadPremiumSpeedupUpload) >= 0.009999999776482582d) {
-                            float f5 = (float) tL_jsonNumber4.value;
-                            this.uploadPremiumSpeedupUpload = f5;
-                            edit.putFloat("uploadPremiumSpeedupUpload", f5);
+                    TLRPC.JSONValue jSONValue146 = tL_jsonObjectValue.value;
+                    if (jSONValue146 instanceof TLRPC.TL_jsonNumber) {
+                        long j9 = this.starsPaidMessageAmountMax;
+                        long j10 = (long) ((TLRPC.TL_jsonNumber) jSONValue146).value;
+                        if (j9 != j10) {
+                            this.starsPaidMessageAmountMax = j10;
+                            edit.putLong("starsPaidMessageAmountMax", j10);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8516,13 +8523,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue149 = tL_jsonObjectValue.value;
-                    if (jSONValue149 instanceof TLRPC.TL_jsonNumber) {
-                        long j9 = this.starsPaidMessageAmountMax;
-                        long j10 = (long) ((TLRPC.TL_jsonNumber) jSONValue149).value;
-                        if (j9 != j10) {
-                            this.starsPaidMessageAmountMax = j10;
-                            edit.putLong("starsPaidMessageAmountMax", j10);
+                    TLRPC.JSONValue jSONValue147 = tL_jsonObjectValue.value;
+                    if (jSONValue147 instanceof TLRPC.TL_jsonNumber) {
+                        double d71 = ((TLRPC.TL_jsonNumber) jSONValue147).value;
+                        if (d71 != this.todoTitleLengthMax) {
+                            int i98 = (int) d71;
+                            this.todoTitleLengthMax = i98;
+                            edit.putInt("todoTitleLengthMax", i98);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8551,13 +8558,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue150 = tL_jsonObjectValue.value;
-                    if (jSONValue150 instanceof TLRPC.TL_jsonNumber) {
-                        double d71 = ((TLRPC.TL_jsonNumber) jSONValue150).value;
-                        if (d71 != this.todoTitleLengthMax) {
-                            int i98 = (int) d71;
-                            this.todoTitleLengthMax = i98;
-                            edit.putInt("todoTitleLengthMax", i98);
+                    TLRPC.JSONValue jSONValue148 = tL_jsonObjectValue.value;
+                    if (jSONValue148 instanceof TLRPC.TL_jsonString) {
+                        String str49 = ((TLRPC.TL_jsonString) jSONValue148).value;
+                        if (!str49.equals(this.premiumBotUsername)) {
+                            this.premiumBotUsername = str49;
+                            edit.putString("premiumBotUsername", str49);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8586,12 +8592,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue151 = tL_jsonObjectValue.value;
-                    if (jSONValue151 instanceof TLRPC.TL_jsonString) {
-                        String str49 = ((TLRPC.TL_jsonString) jSONValue151).value;
-                        if (!str49.equals(this.premiumBotUsername)) {
-                            this.premiumBotUsername = str49;
-                            edit.putString("premiumBotUsername", str49);
+                    TLRPC.JSONValue jSONValue149 = tL_jsonObjectValue.value;
+                    if (jSONValue149 instanceof TLRPC.TL_jsonBool) {
+                        boolean z43 = this.premiumLocked;
+                        boolean z44 = ((TLRPC.TL_jsonBool) jSONValue149).value;
+                        if (z43 != z44) {
+                            this.premiumLocked = z44;
+                            edit.putBoolean("premiumLocked", z44);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8620,13 +8627,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue152 = tL_jsonObjectValue.value;
-                    if (jSONValue152 instanceof TLRPC.TL_jsonBool) {
-                        boolean z43 = this.premiumLocked;
-                        boolean z44 = ((TLRPC.TL_jsonBool) jSONValue152).value;
-                        if (z43 != z44) {
-                            this.premiumLocked = z44;
-                            edit.putBoolean("premiumLocked", z44);
+                    TLRPC.JSONValue jSONValue150 = tL_jsonObjectValue.value;
+                    if (jSONValue150 instanceof TLRPC.TL_jsonNumber) {
+                        long j11 = (long) ((TLRPC.TL_jsonNumber) jSONValue150).value;
+                        if (j11 != this.starsPaidPostAmountMax) {
+                            this.starsPaidPostAmountMax = j11;
+                            edit.putLong("starsPaidPostAmountMax", j11);
                             str = str25;
                             str2 = str26;
                             str3 = str27;
@@ -8655,42 +8661,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue153 = tL_jsonObjectValue.value;
-                    if (jSONValue153 instanceof TLRPC.TL_jsonNumber) {
-                        long j11 = (long) ((TLRPC.TL_jsonNumber) jSONValue153).value;
-                        if (j11 != this.starsPaidPostAmountMax) {
-                            this.starsPaidPostAmountMax = j11;
-                            edit.putLong("starsPaidPostAmountMax", j11);
-                            str = str25;
-                            str2 = str26;
-                            str3 = str27;
-                            str4 = str28;
-                            str5 = str29;
-                            str9 = str19;
-                            str8 = str18;
-                            str7 = str17;
-                            str6 = str16;
-                            z14 = true;
-                            z28 = z14;
-                            break;
-                        }
-                    }
-                    str = str25;
-                    str2 = str26;
-                    str3 = str27;
-                    str4 = str28;
-                    str5 = str29;
-                    str9 = str19;
-                    str8 = str18;
-                    str7 = str17;
-                    str6 = str16;
-                case 143:
-                    str16 = str30;
-                    str17 = str31;
-                    str18 = str32;
-                    str19 = str33;
-                    TLRPC.JSONValue jSONValue154 = tL_jsonObjectValue.value;
-                    if ((jSONValue154 instanceof TLRPC.TL_jsonBool) && (z24 = ((TLRPC.TL_jsonBool) jSONValue154).value) != this.storyWeatherPreload) {
+                    TLRPC.JSONValue jSONValue151 = tL_jsonObjectValue.value;
+                    if ((jSONValue151 instanceof TLRPC.TL_jsonBool) && (z24 = ((TLRPC.TL_jsonBool) jSONValue151).value) != this.storyWeatherPreload) {
                         this.storyWeatherPreload = z24;
                         edit.putBoolean("storyWeatherPreload", z24);
                         str = str25;
@@ -8716,14 +8688,48 @@ public class MessagesController extends BaseController implements NotificationCe
                     str7 = str17;
                     str6 = str16;
                     break;
+                case 143:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue152 = tL_jsonObjectValue.value;
+                    if (jSONValue152 instanceof TLRPC.TL_jsonArray) {
+                        int[] parseTiers = HighlightMessageSheet.parseTiers((TLRPC.TL_jsonArray) jSONValue152);
+                        if (!HighlightMessageSheet.tiersEqual(parseTiers, this.starsGroupcallMessageLimits)) {
+                            this.starsGroupcallMessageLimits = parseTiers;
+                            edit.putString("starsGroupcallMessageLimits", HighlightMessageSheet.tiersToString(parseTiers));
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                            break;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
                 case 144:
                     str16 = str30;
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue155 = tL_jsonObjectValue.value;
-                    if (jSONValue155 instanceof TLRPC.TL_jsonNumber) {
-                        double d72 = ((TLRPC.TL_jsonNumber) jSONValue155).value;
+                    TLRPC.JSONValue jSONValue153 = tL_jsonObjectValue.value;
+                    if (jSONValue153 instanceof TLRPC.TL_jsonNumber) {
+                        double d72 = ((TLRPC.TL_jsonNumber) jSONValue153).value;
                         if (d72 != this.introTitleLengthLimit) {
                             int i99 = (int) d72;
                             this.introTitleLengthLimit = i99;
@@ -8756,9 +8762,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue156 = tL_jsonObjectValue.value;
-                    if (jSONValue156 instanceof TLRPC.TL_jsonString) {
-                        String str50 = ((TLRPC.TL_jsonString) jSONValue156).value;
+                    TLRPC.JSONValue jSONValue154 = tL_jsonObjectValue.value;
+                    if (jSONValue154 instanceof TLRPC.TL_jsonString) {
+                        String str50 = ((TLRPC.TL_jsonString) jSONValue154).value;
                         if (!str50.equals(this.verifyAgeCountry)) {
                             this.verifyAgeCountry = str50;
                             edit.putString("verifyAgeCountry", str50);
@@ -8790,9 +8796,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue157 = tL_jsonObjectValue.value;
-                    if (jSONValue157 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString9 = (TLRPC.TL_jsonString) jSONValue157;
+                    TLRPC.JSONValue jSONValue155 = tL_jsonObjectValue.value;
+                    if (jSONValue155 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString9 = (TLRPC.TL_jsonString) jSONValue155;
                         if (!TextUtils.equals(tL_jsonString9.value, this.premiumManageSubscriptionUrl)) {
                             String str51 = tL_jsonString9.value;
                             this.premiumManageSubscriptionUrl = str51;
@@ -8825,10 +8831,10 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue158 = tL_jsonObjectValue.value;
-                    if (jSONValue158 instanceof TLRPC.TL_jsonNumber) {
+                    TLRPC.JSONValue jSONValue156 = tL_jsonObjectValue.value;
+                    if (jSONValue156 instanceof TLRPC.TL_jsonNumber) {
                         double d73 = this.authorizationAutoconfirmPeriod;
-                        double d74 = ((TLRPC.TL_jsonNumber) jSONValue158).value;
+                        double d74 = ((TLRPC.TL_jsonNumber) jSONValue156).value;
                         if (d73 != d74) {
                             int i100 = (int) d74;
                             this.authorizationAutoconfirmPeriod = i100;
@@ -8861,10 +8867,10 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue159 = tL_jsonObjectValue.value;
-                    if (jSONValue159 instanceof TLRPC.TL_jsonBool) {
+                    TLRPC.JSONValue jSONValue157 = tL_jsonObjectValue.value;
+                    if (jSONValue157 instanceof TLRPC.TL_jsonBool) {
                         boolean z45 = this.giftAttachMenuIcon;
-                        boolean z46 = ((TLRPC.TL_jsonBool) jSONValue159).value;
+                        boolean z46 = ((TLRPC.TL_jsonBool) jSONValue157).value;
                         if (z45 != z46) {
                             this.giftAttachMenuIcon = z46;
                             edit.putBoolean("giftAttachMenuIcon", z46);
@@ -8896,9 +8902,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue160 = tL_jsonObjectValue.value;
-                    if (jSONValue160 instanceof TLRPC.TL_jsonNumber) {
-                        double d75 = ((TLRPC.TL_jsonNumber) jSONValue160).value;
+                    TLRPC.JSONValue jSONValue158 = tL_jsonObjectValue.value;
+                    if (jSONValue158 instanceof TLRPC.TL_jsonNumber) {
+                        double d75 = ((TLRPC.TL_jsonNumber) jSONValue158).value;
                         if (d75 != this.storiesSentWeeklyLimitDefault) {
                             int i101 = (int) d75;
                             this.storiesSentWeeklyLimitDefault = i101;
@@ -8931,12 +8937,12 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue161 = tL_jsonObjectValue.value;
-                    if (jSONValue161 instanceof TLRPC.TL_jsonObject) {
-                        TLRPC.TL_jsonObject tL_jsonObject7 = (TLRPC.TL_jsonObject) jSONValue161;
-                        int size14 = tL_jsonObject7.value.size();
+                    TLRPC.JSONValue jSONValue159 = tL_jsonObjectValue.value;
+                    if (jSONValue159 instanceof TLRPC.TL_jsonObject) {
+                        TLRPC.TL_jsonObject tL_jsonObject7 = (TLRPC.TL_jsonObject) jSONValue159;
+                        int size12 = tL_jsonObject7.value.size();
                         int i102 = 0;
-                        while (i102 < size14) {
+                        while (i102 < size12) {
                             TLRPC.TL_jsonObjectValue tL_jsonObjectValue4 = tL_jsonObject7.value.get(i102);
                             String str52 = tL_jsonObjectValue4.key;
                             str52.hashCode();
@@ -8963,9 +8969,9 @@ public class MessagesController extends BaseController implements NotificationCe
                             c2 = 65535;
                             switch (c2) {
                                 case 0:
-                                    TLRPC.JSONValue jSONValue162 = tL_jsonObjectValue4.value;
-                                    if (jSONValue162 instanceof TLRPC.TL_jsonNumber) {
-                                        double d76 = ((TLRPC.TL_jsonNumber) jSONValue162).value;
+                                    TLRPC.JSONValue jSONValue160 = tL_jsonObjectValue4.value;
+                                    if (jSONValue160 instanceof TLRPC.TL_jsonNumber) {
+                                        double d76 = ((TLRPC.TL_jsonNumber) jSONValue160).value;
                                         if (d76 != this.roundVideoSize) {
                                             int i103 = (int) d76;
                                             this.roundVideoSize = i103;
@@ -8978,9 +8984,9 @@ public class MessagesController extends BaseController implements NotificationCe
                                     i5 = 1;
                                     break;
                                 case 1:
-                                    TLRPC.JSONValue jSONValue163 = tL_jsonObjectValue4.value;
-                                    if (jSONValue163 instanceof TLRPC.TL_jsonNumber) {
-                                        double d77 = ((TLRPC.TL_jsonNumber) jSONValue163).value;
+                                    TLRPC.JSONValue jSONValue161 = tL_jsonObjectValue4.value;
+                                    if (jSONValue161 instanceof TLRPC.TL_jsonNumber) {
+                                        double d77 = ((TLRPC.TL_jsonNumber) jSONValue161).value;
                                         if (d77 != this.roundAudioBitrate) {
                                             int i104 = (int) d77;
                                             this.roundAudioBitrate = i104;
@@ -8993,9 +8999,9 @@ public class MessagesController extends BaseController implements NotificationCe
                                     i5 = 1;
                                     break;
                                 case 2:
-                                    TLRPC.JSONValue jSONValue164 = tL_jsonObjectValue4.value;
-                                    if (jSONValue164 instanceof TLRPC.TL_jsonNumber) {
-                                        double d78 = ((TLRPC.TL_jsonNumber) jSONValue164).value;
+                                    TLRPC.JSONValue jSONValue162 = tL_jsonObjectValue4.value;
+                                    if (jSONValue162 instanceof TLRPC.TL_jsonNumber) {
+                                        double d78 = ((TLRPC.TL_jsonNumber) jSONValue162).value;
                                         if (d78 != this.roundVideoBitrate) {
                                             int i105 = (int) d78;
                                             this.roundVideoBitrate = i105;
@@ -9039,9 +9045,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue165 = tL_jsonObjectValue.value;
-                    if (jSONValue165 instanceof TLRPC.TL_jsonNumber) {
-                        double d79 = ((TLRPC.TL_jsonNumber) jSONValue165).value;
+                    TLRPC.JSONValue jSONValue163 = tL_jsonObjectValue.value;
+                    if (jSONValue163 instanceof TLRPC.TL_jsonNumber) {
+                        double d79 = ((TLRPC.TL_jsonNumber) jSONValue163).value;
                         if (d79 != this.chatlistInvitesLimitDefault) {
                             int i106 = (int) d79;
                             this.chatlistInvitesLimitDefault = i106;
@@ -9074,9 +9080,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue166 = tL_jsonObjectValue.value;
-                    if (jSONValue166 instanceof TLRPC.TL_jsonNumber) {
-                        i10 = (int) ((TLRPC.TL_jsonNumber) jSONValue166).value;
+                    TLRPC.JSONValue jSONValue164 = tL_jsonObjectValue.value;
+                    if (jSONValue164 instanceof TLRPC.TL_jsonNumber) {
+                        i10 = (int) ((TLRPC.TL_jsonNumber) jSONValue164).value;
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -9103,9 +9109,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue167 = tL_jsonObjectValue.value;
-                    if (jSONValue167 instanceof TLRPC.TL_jsonNumber) {
-                        double d80 = ((TLRPC.TL_jsonNumber) jSONValue167).value;
+                    TLRPC.JSONValue jSONValue165 = tL_jsonObjectValue.value;
+                    if (jSONValue165 instanceof TLRPC.TL_jsonNumber) {
+                        double d80 = ((TLRPC.TL_jsonNumber) jSONValue165).value;
                         if (d80 != this.reactionsUserMaxDefault) {
                             int i107 = (int) d80;
                             this.reactionsUserMaxDefault = i107;
@@ -9138,9 +9144,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue168 = tL_jsonObjectValue.value;
-                    if (jSONValue168 instanceof TLRPC.TL_jsonNumber) {
-                        double d81 = ((TLRPC.TL_jsonNumber) jSONValue168).value;
+                    TLRPC.JSONValue jSONValue166 = tL_jsonObjectValue.value;
+                    if (jSONValue166 instanceof TLRPC.TL_jsonNumber) {
+                        double d81 = ((TLRPC.TL_jsonNumber) jSONValue166).value;
                         if (d81 != this.captionLengthLimitDefault) {
                             int i108 = (int) d81;
                             this.captionLengthLimitDefault = i108;
@@ -9173,10 +9179,10 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue169 = tL_jsonObjectValue.value;
-                    if (jSONValue169 instanceof TLRPC.TL_jsonNumber) {
+                    TLRPC.JSONValue jSONValue167 = tL_jsonObjectValue.value;
+                    if (jSONValue167 instanceof TLRPC.TL_jsonNumber) {
                         double d82 = this.recommendedChannelsLimitDefault;
-                        double d83 = ((TLRPC.TL_jsonNumber) jSONValue169).value;
+                        double d83 = ((TLRPC.TL_jsonNumber) jSONValue167).value;
                         if (d82 != d83) {
                             int i109 = (int) d83;
                             this.recommendedChannelsLimitDefault = i109;
@@ -9209,10 +9215,10 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue170 = tL_jsonObjectValue.value;
-                    if (jSONValue170 instanceof TLRPC.TL_jsonNumber) {
+                    TLRPC.JSONValue jSONValue168 = tL_jsonObjectValue.value;
+                    if (jSONValue168 instanceof TLRPC.TL_jsonNumber) {
                         double d84 = this.transcribeAudioTrialDurationMax;
-                        double d85 = ((TLRPC.TL_jsonNumber) jSONValue170).value;
+                        double d85 = ((TLRPC.TL_jsonNumber) jSONValue168).value;
                         if (d84 != d85) {
                             int i110 = (int) d85;
                             this.transcribeAudioTrialDurationMax = i110;
@@ -9245,9 +9251,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue171 = tL_jsonObjectValue.value;
-                    if (jSONValue171 instanceof TLRPC.TL_jsonNumber) {
-                        i9 = (int) ((TLRPC.TL_jsonNumber) jSONValue171).value;
+                    TLRPC.JSONValue jSONValue169 = tL_jsonObjectValue.value;
+                    if (jSONValue169 instanceof TLRPC.TL_jsonNumber) {
+                        i9 = (int) ((TLRPC.TL_jsonNumber) jSONValue169).value;
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -9274,10 +9280,10 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue172 = tL_jsonObjectValue.value;
-                    if (jSONValue172 instanceof TLRPC.TL_jsonBool) {
+                    TLRPC.JSONValue jSONValue170 = tL_jsonObjectValue.value;
+                    if (jSONValue170 instanceof TLRPC.TL_jsonBool) {
                         boolean z47 = this.uploadMarkupVideo;
-                        boolean z48 = ((TLRPC.TL_jsonBool) jSONValue172).value;
+                        boolean z48 = ((TLRPC.TL_jsonBool) jSONValue170).value;
                         if (z47 != z48) {
                             this.uploadMarkupVideo = z48;
                             edit.putBoolean("uploadMarkupVideo", z48);
@@ -9309,9 +9315,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue173 = tL_jsonObjectValue.value;
-                    if (jSONValue173 instanceof TLRPC.TL_jsonNumber) {
-                        double d86 = ((TLRPC.TL_jsonNumber) jSONValue173).value;
+                    TLRPC.JSONValue jSONValue171 = tL_jsonObjectValue.value;
+                    if (jSONValue171 instanceof TLRPC.TL_jsonNumber) {
+                        double d86 = ((TLRPC.TL_jsonNumber) jSONValue171).value;
                         if (d86 != this.pollAnswersMax) {
                             int i111 = (int) d86;
                             this.pollAnswersMax = i111;
@@ -9344,9 +9350,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue174 = tL_jsonObjectValue.value;
-                    if (jSONValue174 instanceof TLRPC.TL_jsonNumber) {
-                        double d87 = ((TLRPC.TL_jsonNumber) jSONValue174).value;
+                    TLRPC.JSONValue jSONValue172 = tL_jsonObjectValue.value;
+                    if (jSONValue172 instanceof TLRPC.TL_jsonNumber) {
+                        double d87 = ((TLRPC.TL_jsonNumber) jSONValue172).value;
                         if (d87 != this.chatReadMarkSizeThreshold) {
                             int i112 = (int) d87;
                             this.chatReadMarkSizeThreshold = i112;
@@ -9379,9 +9385,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue175 = tL_jsonObjectValue.value;
-                    if (jSONValue175 instanceof TLRPC.TL_jsonNumber) {
-                        double d88 = ((TLRPC.TL_jsonNumber) jSONValue175).value;
+                    TLRPC.JSONValue jSONValue173 = tL_jsonObjectValue.value;
+                    if (jSONValue173 instanceof TLRPC.TL_jsonNumber) {
+                        double d88 = ((TLRPC.TL_jsonNumber) jSONValue173).value;
                         if (d88 != this.dialogFiltersChatsLimitDefault) {
                             int i113 = (int) d88;
                             this.dialogFiltersChatsLimitDefault = i113;
@@ -9414,19 +9420,19 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    HashSet<Long> hashSet10 = new HashSet<>();
-                    TLRPC.JSONValue jSONValue176 = tL_jsonObjectValue.value;
-                    if (jSONValue176 instanceof TLRPC.TL_jsonArray) {
-                        ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue176).value;
+                    HashSet<Long> hashSet8 = new HashSet<>();
+                    TLRPC.JSONValue jSONValue174 = tL_jsonObjectValue.value;
+                    if (jSONValue174 instanceof TLRPC.TL_jsonArray) {
+                        ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue174).value;
                         for (int i114 = 0; i114 < arrayList2.size(); i114++) {
                             if (arrayList2.get(i114) instanceof TLRPC.TL_jsonNumber) {
-                                hashSet10.add(Long.valueOf((long) ((TLRPC.TL_jsonNumber) arrayList2.get(i114)).value));
+                                hashSet8.add(Long.valueOf((long) ((TLRPC.TL_jsonNumber) arrayList2.get(i114)).value));
                             }
                         }
                     }
-                    if (!hashSet10.equals(this.whitelistedBots)) {
-                        this.whitelistedBots = hashSet10;
-                        edit.putStringSet("whitelistedBots", (Set) Collection.EL.stream(hashSet10).map(new Function() {
+                    if (!hashSet8.equals(this.whitelistedBots)) {
+                        this.whitelistedBots = hashSet8;
+                        edit.putStringSet("whitelistedBots", (Set) Collection.EL.stream(hashSet8).map(new Function() {
                             public Function andThen(Function function) {
                                 return Function$CC.$default$andThen(this, function);
                             }
@@ -9469,9 +9475,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue177 = tL_jsonObjectValue.value;
-                    if (jSONValue177 instanceof TLRPC.TL_jsonNumber) {
-                        double d89 = ((TLRPC.TL_jsonNumber) jSONValue177).value;
+                    TLRPC.JSONValue jSONValue175 = tL_jsonObjectValue.value;
+                    if (jSONValue175 instanceof TLRPC.TL_jsonNumber) {
+                        double d89 = ((TLRPC.TL_jsonNumber) jSONValue175).value;
                         if (d89 != this.savedGifsLimitPremium) {
                             int i115 = (int) d89;
                             this.savedGifsLimitPremium = i115;
@@ -9504,8 +9510,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue178 = tL_jsonObjectValue.value;
-                    if ((jSONValue178 instanceof TLRPC.TL_jsonBool) && (z25 = ((TLRPC.TL_jsonBool) jSONValue178).value) != this.stargiftsBlocked) {
+                    TLRPC.JSONValue jSONValue176 = tL_jsonObjectValue.value;
+                    if ((jSONValue176 instanceof TLRPC.TL_jsonBool) && (z25 = ((TLRPC.TL_jsonBool) jSONValue176).value) != this.stargiftsBlocked) {
                         this.stargiftsBlocked = z25;
                         edit.putBoolean("stargiftsBlocked", z25);
                         str = str25;
@@ -9536,9 +9542,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue179 = tL_jsonObjectValue.value;
-                    if (jSONValue179 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString10 = (TLRPC.TL_jsonString) jSONValue179;
+                    TLRPC.JSONValue jSONValue177 = tL_jsonObjectValue.value;
+                    if (jSONValue177 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString10 = (TLRPC.TL_jsonString) jSONValue177;
                         if (!TextUtils.equals(tL_jsonString10.value, this.storiesEntities)) {
                             String str53 = tL_jsonString10.value;
                             this.storiesEntities = str53;
@@ -9571,9 +9577,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue180 = tL_jsonObjectValue.value;
-                    if (jSONValue180 instanceof TLRPC.TL_jsonNumber) {
-                        double d90 = ((TLRPC.TL_jsonNumber) jSONValue180).value;
+                    TLRPC.JSONValue jSONValue178 = tL_jsonObjectValue.value;
+                    if (jSONValue178 instanceof TLRPC.TL_jsonNumber) {
+                        double d90 = ((TLRPC.TL_jsonNumber) jSONValue178).value;
                         if (d90 != this.channelBgIconLevelMin) {
                             int i116 = (int) d90;
                             this.channelBgIconLevelMin = i116;
@@ -9606,9 +9612,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue181 = tL_jsonObjectValue.value;
-                    if (jSONValue181 instanceof TLRPC.TL_jsonNumber) {
-                        long j12 = (long) ((TLRPC.TL_jsonNumber) jSONValue181).value;
+                    TLRPC.JSONValue jSONValue179 = tL_jsonObjectValue.value;
+                    if (jSONValue179 instanceof TLRPC.TL_jsonNumber) {
+                        long j12 = (long) ((TLRPC.TL_jsonNumber) jSONValue179).value;
                         if (j12 != this.giveawayCountriesMax) {
                             this.giveawayCountriesMax = j12;
                             edit.putLong(str26, j12);
@@ -9640,9 +9646,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue182 = tL_jsonObjectValue.value;
-                    if (jSONValue182 instanceof TLRPC.TL_jsonNumber) {
-                        long j13 = (long) ((TLRPC.TL_jsonNumber) jSONValue182).value;
+                    TLRPC.JSONValue jSONValue180 = tL_jsonObjectValue.value;
+                    if (jSONValue180 instanceof TLRPC.TL_jsonNumber) {
+                        long j13 = (long) ((TLRPC.TL_jsonNumber) jSONValue180).value;
                         this.storiesChangelogUserId = j13;
                         edit.putLong(str25, j13);
                     }
@@ -9661,9 +9667,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue183 = tL_jsonObjectValue.value;
-                    if (jSONValue183 instanceof TLRPC.TL_jsonNumber) {
-                        double d91 = ((TLRPC.TL_jsonNumber) jSONValue183).value;
+                    TLRPC.JSONValue jSONValue181 = tL_jsonObjectValue.value;
+                    if (jSONValue181 instanceof TLRPC.TL_jsonNumber) {
+                        double d91 = ((TLRPC.TL_jsonNumber) jSONValue181).value;
                         if (d91 != this.topicsPinnedLimit) {
                             int i117 = (int) d91;
                             this.topicsPinnedLimit = i117;
@@ -9696,9 +9702,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue184 = tL_jsonObjectValue.value;
-                    if (jSONValue184 instanceof TLRPC.TL_jsonNumber) {
-                        double d92 = ((TLRPC.TL_jsonNumber) jSONValue184).value;
+                    TLRPC.JSONValue jSONValue182 = tL_jsonObjectValue.value;
+                    if (jSONValue182 instanceof TLRPC.TL_jsonNumber) {
+                        double d92 = ((TLRPC.TL_jsonNumber) jSONValue182).value;
                         if (d92 != this.channelsLimitDefault) {
                             int i118 = (int) d92;
                             this.channelsLimitDefault = i118;
@@ -9731,9 +9737,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue185 = tL_jsonObjectValue.value;
-                    if (jSONValue185 instanceof TLRPC.TL_jsonNumber) {
-                        double d93 = ((TLRPC.TL_jsonNumber) jSONValue185).value;
+                    TLRPC.JSONValue jSONValue183 = tL_jsonObjectValue.value;
+                    if (jSONValue183 instanceof TLRPC.TL_jsonNumber) {
+                        double d93 = ((TLRPC.TL_jsonNumber) jSONValue183).value;
                         if (d93 != this.groupEmojiStatusLevelMin) {
                             int i119 = (int) d93;
                             this.groupEmojiStatusLevelMin = i119;
@@ -9766,21 +9772,21 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    HashSet hashSet11 = new HashSet();
-                    TLRPC.JSONValue jSONValue186 = tL_jsonObjectValue.value;
-                    if (jSONValue186 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray10 = (TLRPC.TL_jsonArray) jSONValue186;
-                        int size15 = tL_jsonArray10.value.size();
-                        for (int i120 = 0; i120 < size15; i120++) {
-                            TLRPC.JSONValue jSONValue187 = tL_jsonArray10.value.get(i120);
-                            if (jSONValue187 instanceof TLRPC.TL_jsonString) {
-                                hashSet11.add(((TLRPC.TL_jsonString) jSONValue187).value.toLowerCase());
+                    HashSet hashSet9 = new HashSet();
+                    TLRPC.JSONValue jSONValue184 = tL_jsonObjectValue.value;
+                    if (jSONValue184 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray8 = (TLRPC.TL_jsonArray) jSONValue184;
+                        int size13 = tL_jsonArray8.value.size();
+                        for (int i120 = 0; i120 < size13; i120++) {
+                            TLRPC.JSONValue jSONValue185 = tL_jsonArray8.value.get(i120);
+                            if (jSONValue185 instanceof TLRPC.TL_jsonString) {
+                                hashSet9.add(((TLRPC.TL_jsonString) jSONValue185).value.toLowerCase());
                             }
                         }
                     }
-                    if (!this.webAppAllowedProtocols.equals(hashSet11)) {
-                        this.webAppAllowedProtocols = hashSet11;
-                        edit.putStringSet("webAppAllowedProtocols", hashSet11);
+                    if (!this.webAppAllowedProtocols.equals(hashSet9)) {
+                        this.webAppAllowedProtocols = hashSet9;
+                        edit.putStringSet("webAppAllowedProtocols", hashSet9);
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -9808,9 +9814,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue188 = tL_jsonObjectValue.value;
-                    if (jSONValue188 instanceof TLRPC.TL_jsonNumber) {
-                        int i121 = (int) ((TLRPC.TL_jsonNumber) jSONValue188).value;
+                    TLRPC.JSONValue jSONValue186 = tL_jsonObjectValue.value;
+                    if (jSONValue186 instanceof TLRPC.TL_jsonNumber) {
+                        int i121 = (int) ((TLRPC.TL_jsonNumber) jSONValue186).value;
                         this.smallQueueMaxActiveOperations = i121;
                         edit.putInt("smallQueueMaxActiveOperations", i121);
                     }
@@ -9829,9 +9835,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue189 = tL_jsonObjectValue.value;
-                    if (jSONValue189 instanceof TLRPC.TL_jsonNumber) {
-                        double d94 = ((TLRPC.TL_jsonNumber) jSONValue189).value;
+                    TLRPC.JSONValue jSONValue187 = tL_jsonObjectValue.value;
+                    if (jSONValue187 instanceof TLRPC.TL_jsonNumber) {
+                        double d94 = ((TLRPC.TL_jsonNumber) jSONValue187).value;
                         if (d94 != this.storyCaptionLengthLimitPremium) {
                             int i122 = (int) d94;
                             this.storyCaptionLengthLimitPremium = i122;
@@ -9864,8 +9870,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue190 = tL_jsonObjectValue.value;
-                    if ((jSONValue190 instanceof TLRPC.TL_jsonBool) && (z26 = ((TLRPC.TL_jsonBool) jSONValue190).value) != this.starrefConnectAllowed) {
+                    TLRPC.JSONValue jSONValue188 = tL_jsonObjectValue.value;
+                    if ((jSONValue188 instanceof TLRPC.TL_jsonBool) && (z26 = ((TLRPC.TL_jsonBool) jSONValue188).value) != this.starrefConnectAllowed) {
                         this.starrefConnectAllowed = z26;
                         edit.putBoolean("starrefConnectAllowed", z26);
                         str = str25;
@@ -9896,8 +9902,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue191 = tL_jsonObjectValue.value;
-                    if ((jSONValue191 instanceof TLRPC.TL_jsonNumber) && (i6 = (int) ((TLRPC.TL_jsonNumber) jSONValue191).value) != this.factcheckLengthLimit) {
+                    TLRPC.JSONValue jSONValue189 = tL_jsonObjectValue.value;
+                    if ((jSONValue189 instanceof TLRPC.TL_jsonNumber) && (i6 = (int) ((TLRPC.TL_jsonNumber) jSONValue189).value) != this.factcheckLengthLimit) {
                         this.factcheckLengthLimit = i6;
                         edit.putInt("factcheckLengthLimit", i6);
                         str = str25;
@@ -9928,9 +9934,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue192 = tL_jsonObjectValue.value;
-                    if (jSONValue192 instanceof TLRPC.TL_jsonNumber) {
-                        double d95 = ((TLRPC.TL_jsonNumber) jSONValue192).value;
+                    TLRPC.JSONValue jSONValue190 = tL_jsonObjectValue.value;
+                    if (jSONValue190 instanceof TLRPC.TL_jsonNumber) {
+                        double d95 = ((TLRPC.TL_jsonNumber) jSONValue190).value;
                         if (d95 != this.reactionsInChatMax) {
                             int i123 = (int) d95;
                             this.reactionsInChatMax = i123;
@@ -9963,8 +9969,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue193 = tL_jsonObjectValue.value;
-                    if ((jSONValue193 instanceof TLRPC.TL_jsonNumber) && (i7 = (int) ((TLRPC.TL_jsonNumber) jSONValue193).value) != this.verifyAgeMin) {
+                    TLRPC.JSONValue jSONValue191 = tL_jsonObjectValue.value;
+                    if ((jSONValue191 instanceof TLRPC.TL_jsonNumber) && (i7 = (int) ((TLRPC.TL_jsonNumber) jSONValue191).value) != this.verifyAgeMin) {
                         this.verifyAgeMin = i7;
                         edit.putInt("verifyAgeMin", i7);
                         str = str25;
@@ -9995,9 +10001,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str17 = str31;
                     str18 = str32;
                     str19 = str33;
-                    TLRPC.JSONValue jSONValue194 = tL_jsonObjectValue.value;
-                    if (jSONValue194 instanceof TLRPC.TL_jsonNumber) {
-                        double d96 = ((TLRPC.TL_jsonNumber) jSONValue194).value;
+                    TLRPC.JSONValue jSONValue192 = tL_jsonObjectValue.value;
+                    if (jSONValue192 instanceof TLRPC.TL_jsonNumber) {
+                        double d96 = ((TLRPC.TL_jsonNumber) jSONValue192).value;
                         if (d96 != this.dialogFiltersLimitPremium) {
                             int i124 = (int) d96;
                             this.dialogFiltersLimitPremium = i124;
@@ -10030,28 +10036,28 @@ public class MessagesController extends BaseController implements NotificationCe
                     str19 = str33;
                     try {
                         hashMap2 = new HashMap<>();
-                        TLRPC.JSONValue jSONValue195 = tL_jsonObjectValue.value;
-                        if (jSONValue195 instanceof TLRPC.TL_jsonObject) {
-                            TLRPC.TL_jsonObject tL_jsonObject8 = (TLRPC.TL_jsonObject) jSONValue195;
-                            int size16 = tL_jsonObject8.value.size();
+                        TLRPC.JSONValue jSONValue193 = tL_jsonObjectValue.value;
+                        if (jSONValue193 instanceof TLRPC.TL_jsonObject) {
+                            TLRPC.TL_jsonObject tL_jsonObject8 = (TLRPC.TL_jsonObject) jSONValue193;
+                            int size14 = tL_jsonObject8.value.size();
                             int i125 = 0;
-                            while (i125 < size16) {
-                                int i126 = size16;
+                            while (i125 < size14) {
+                                int i126 = size14;
                                 TLRPC.TL_jsonObjectValue tL_jsonObjectValue5 = tL_jsonObject8.value.get(i125);
                                 TLRPC.TL_jsonObject tL_jsonObject9 = tL_jsonObject8;
-                                TLRPC.JSONValue jSONValue196 = tL_jsonObjectValue5.value;
+                                TLRPC.JSONValue jSONValue194 = tL_jsonObjectValue5.value;
                                 str18 = str54;
                                 try {
-                                    if (jSONValue196 instanceof TLRPC.TL_jsonObject) {
-                                        TLRPC.TL_jsonObject tL_jsonObject10 = (TLRPC.TL_jsonObject) jSONValue196;
-                                        int size17 = tL_jsonObject10.value.size();
+                                    if (jSONValue194 instanceof TLRPC.TL_jsonObject) {
+                                        TLRPC.TL_jsonObject tL_jsonObject10 = (TLRPC.TL_jsonObject) jSONValue194;
+                                        int size15 = tL_jsonObject10.value.size();
                                         str17 = str31;
                                         String str55 = null;
                                         long j14 = 0;
                                         long j15 = 0;
                                         int i127 = 0;
-                                        while (i127 < size17) {
-                                            int i128 = size17;
+                                        while (i127 < size15) {
+                                            int i128 = size15;
                                             try {
                                                 TLRPC.TL_jsonObjectValue tL_jsonObjectValue6 = tL_jsonObject10.value.get(i127);
                                                 TLRPC.TL_jsonObject tL_jsonObject11 = tL_jsonObject10;
@@ -10094,7 +10100,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     str16 = str30;
                                                 }
                                                 i127++;
-                                                size17 = i128;
+                                                size15 = i128;
                                                 tL_jsonObject10 = tL_jsonObject11;
                                                 str30 = str16;
                                             } catch (Exception e7) {
@@ -10111,7 +10117,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                         str17 = str31;
                                     }
                                     i125++;
-                                    size16 = i126;
+                                    size14 = i126;
                                     tL_jsonObject8 = tL_jsonObject9;
                                     str54 = str18;
                                     str31 = str17;
@@ -10170,9 +10176,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 181:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue197 = tL_jsonObjectValue.value;
-                    if (jSONValue197 instanceof TLRPC.TL_jsonNumber) {
-                        double d97 = ((TLRPC.TL_jsonNumber) jSONValue197).value;
+                    TLRPC.JSONValue jSONValue195 = tL_jsonObjectValue.value;
+                    if (jSONValue195 instanceof TLRPC.TL_jsonNumber) {
+                        double d97 = ((TLRPC.TL_jsonNumber) jSONValue195).value;
                         if (d97 != this.groupTranscribeLevelMin) {
                             int i129 = (int) d97;
                             this.groupTranscribeLevelMin = i129;
@@ -10203,9 +10209,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 182:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue198 = tL_jsonObjectValue.value;
-                    if (jSONValue198 instanceof TLRPC.TL_jsonNumber) {
-                        double d98 = ((TLRPC.TL_jsonNumber) jSONValue198).value;
+                    TLRPC.JSONValue jSONValue196 = tL_jsonObjectValue.value;
+                    if (jSONValue196 instanceof TLRPC.TL_jsonNumber) {
+                        double d98 = ((TLRPC.TL_jsonNumber) jSONValue196).value;
                         if (d98 != this.freezeSinceDate) {
                             long j16 = (long) d98;
                             this.freezeSinceDate = j16;
@@ -10236,9 +10242,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 183:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue199 = tL_jsonObjectValue.value;
-                    if (jSONValue199 instanceof TLRPC.TL_jsonNumber) {
-                        double d99 = ((TLRPC.TL_jsonNumber) jSONValue199).value;
+                    TLRPC.JSONValue jSONValue197 = tL_jsonObjectValue.value;
+                    if (jSONValue197 instanceof TLRPC.TL_jsonNumber) {
+                        double d99 = ((TLRPC.TL_jsonNumber) jSONValue197).value;
                         if (d99 != this.aboutLengthLimitPremium) {
                             int i130 = (int) d99;
                             this.aboutLengthLimitPremium = i130;
@@ -10269,21 +10275,21 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 184:
                     str24 = str32;
                     str10 = str33;
-                    HashSet hashSet12 = new HashSet();
-                    TLRPC.JSONValue jSONValue200 = tL_jsonObjectValue.value;
-                    if (jSONValue200 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray11 = (TLRPC.TL_jsonArray) jSONValue200;
-                        int size18 = tL_jsonArray11.value.size();
-                        for (int i131 = 0; i131 < size18; i131++) {
-                            TLRPC.JSONValue jSONValue201 = tL_jsonArray11.value.get(i131);
-                            if (jSONValue201 instanceof TLRPC.TL_jsonString) {
-                                hashSet12.add(((TLRPC.TL_jsonString) jSONValue201).value.toLowerCase());
+                    HashSet hashSet10 = new HashSet();
+                    TLRPC.JSONValue jSONValue198 = tL_jsonObjectValue.value;
+                    if (jSONValue198 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray9 = (TLRPC.TL_jsonArray) jSONValue198;
+                        int size16 = tL_jsonArray9.value.size();
+                        for (int i131 = 0; i131 < size16; i131++) {
+                            TLRPC.JSONValue jSONValue199 = tL_jsonArray9.value.get(i131);
+                            if (jSONValue199 instanceof TLRPC.TL_jsonString) {
+                                hashSet10.add(((TLRPC.TL_jsonString) jSONValue199).value.toLowerCase());
                             }
                         }
                     }
-                    if (!this.starrefStartParamPrefixes.equals(hashSet12)) {
-                        this.starrefStartParamPrefixes = hashSet12;
-                        edit.putStringSet("starrefStartParamPrefixes", hashSet12);
+                    if (!this.starrefStartParamPrefixes.equals(hashSet10)) {
+                        this.starrefStartParamPrefixes = hashSet10;
+                        edit.putStringSet("starrefStartParamPrefixes", hashSet10);
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -10309,10 +10315,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 185:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue202 = tL_jsonObjectValue.value;
-                    if (jSONValue202 instanceof TLRPC.TL_jsonNumber) {
+                    TLRPC.JSONValue jSONValue200 = tL_jsonObjectValue.value;
+                    if (jSONValue200 instanceof TLRPC.TL_jsonNumber) {
                         double d100 = this.boostsChannelLevelMax;
-                        double d101 = ((TLRPC.TL_jsonNumber) jSONValue202).value;
+                        double d101 = ((TLRPC.TL_jsonNumber) jSONValue200).value;
                         if (d100 != d101) {
                             int i132 = (int) d101;
                             this.boostsChannelLevelMax = i132;
@@ -10343,9 +10349,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 186:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue203 = tL_jsonObjectValue.value;
-                    if (jSONValue203 instanceof TLRPC.TL_jsonNumber) {
-                        double d102 = ((TLRPC.TL_jsonNumber) jSONValue203).value;
+                    TLRPC.JSONValue jSONValue201 = tL_jsonObjectValue.value;
+                    if (jSONValue201 instanceof TLRPC.TL_jsonNumber) {
+                        double d102 = ((TLRPC.TL_jsonNumber) jSONValue201).value;
                         if (d102 != this.introDescriptionLengthLimit) {
                             int i133 = (int) d102;
                             this.introDescriptionLengthLimit = i133;
@@ -10376,9 +10382,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 187:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue204 = tL_jsonObjectValue.value;
-                    if (jSONValue204 instanceof TLRPC.TL_jsonString) {
-                        TLRPC.TL_jsonString tL_jsonString11 = (TLRPC.TL_jsonString) jSONValue204;
+                    TLRPC.JSONValue jSONValue202 = tL_jsonObjectValue.value;
+                    if (jSONValue202 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString11 = (TLRPC.TL_jsonString) jSONValue202;
                         if (!TextUtils.equals(tL_jsonString11.value, this.tonBlockchainExplorerUrl)) {
                             String str56 = tL_jsonString11.value;
                             this.tonBlockchainExplorerUrl = str56;
@@ -10409,21 +10415,21 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 188:
                     str24 = str32;
                     str10 = str33;
-                    HashSet hashSet13 = new HashSet();
-                    TLRPC.JSONValue jSONValue205 = tL_jsonObjectValue.value;
-                    if (jSONValue205 instanceof TLRPC.TL_jsonArray) {
-                        TLRPC.TL_jsonArray tL_jsonArray12 = (TLRPC.TL_jsonArray) jSONValue205;
-                        int size19 = tL_jsonArray12.value.size();
-                        for (int i134 = 0; i134 < size19; i134++) {
-                            TLRPC.JSONValue jSONValue206 = tL_jsonArray12.value.get(i134);
-                            if (jSONValue206 instanceof TLRPC.TL_jsonString) {
-                                hashSet13.add(((TLRPC.TL_jsonString) jSONValue206).value);
+                    HashSet hashSet11 = new HashSet();
+                    TLRPC.JSONValue jSONValue203 = tL_jsonObjectValue.value;
+                    if (jSONValue203 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray10 = (TLRPC.TL_jsonArray) jSONValue203;
+                        int size17 = tL_jsonArray10.value.size();
+                        for (int i134 = 0; i134 < size17; i134++) {
+                            TLRPC.JSONValue jSONValue204 = tL_jsonArray10.value.get(i134);
+                            if (jSONValue204 instanceof TLRPC.TL_jsonString) {
+                                hashSet11.add(((TLRPC.TL_jsonString) jSONValue204).value);
                             }
                         }
                     }
-                    if (!this.exportPrivateUri.equals(hashSet13)) {
-                        this.exportPrivateUri = hashSet13;
-                        edit.putStringSet("exportPrivateUri", hashSet13);
+                    if (!this.exportPrivateUri.equals(hashSet11)) {
+                        this.exportPrivateUri = hashSet11;
+                        edit.putStringSet("exportPrivateUri", hashSet11);
                         str = str25;
                         str2 = str26;
                         str3 = str27;
@@ -10449,9 +10455,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 189:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue207 = tL_jsonObjectValue.value;
-                    if (jSONValue207 instanceof TLRPC.TL_jsonNumber) {
-                        double d103 = ((TLRPC.TL_jsonNumber) jSONValue207).value;
+                    TLRPC.JSONValue jSONValue205 = tL_jsonObjectValue.value;
+                    if (jSONValue205 instanceof TLRPC.TL_jsonNumber) {
+                        double d103 = ((TLRPC.TL_jsonNumber) jSONValue205).value;
                         if (d103 != this.todoItemsMax) {
                             int i135 = (int) d103;
                             this.todoItemsMax = i135;
@@ -10482,10 +10488,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 190:
                     str24 = str32;
                     str10 = str33;
-                    TLRPC.JSONValue jSONValue208 = tL_jsonObjectValue.value;
-                    if (jSONValue208 instanceof TLRPC.TL_jsonNumber) {
+                    TLRPC.JSONValue jSONValue206 = tL_jsonObjectValue.value;
+                    if (jSONValue206 instanceof TLRPC.TL_jsonNumber) {
                         double d104 = this.channelAutotranslationLevelMin;
-                        double d105 = ((TLRPC.TL_jsonNumber) jSONValue208).value;
+                        double d105 = ((TLRPC.TL_jsonNumber) jSONValue206).value;
                         if (d104 != d105) {
                             int i136 = (int) d105;
                             this.channelAutotranslationLevelMin = i136;
@@ -10514,9 +10520,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str24;
                     str9 = str10;
                 case 191:
-                    TLRPC.JSONValue jSONValue209 = tL_jsonObjectValue.value;
-                    if (jSONValue209 instanceof TLRPC.TL_jsonNumber) {
-                        double d106 = ((TLRPC.TL_jsonNumber) jSONValue209).value;
+                    TLRPC.JSONValue jSONValue207 = tL_jsonObjectValue.value;
+                    if (jSONValue207 instanceof TLRPC.TL_jsonNumber) {
+                        double d106 = ((TLRPC.TL_jsonNumber) jSONValue207).value;
                         str24 = str32;
                         str10 = str33;
                         if (d106 != this.forumUpgradeParticipantsMin) {
@@ -10556,8 +10562,8 @@ public class MessagesController extends BaseController implements NotificationCe
                     str8 = str32;
                     str9 = str33;
                 case 192:
-                    TLRPC.JSONValue jSONValue210 = tL_jsonObjectValue.value;
-                    if ((jSONValue210 instanceof TLRPC.TL_jsonBool) && (z27 = ((TLRPC.TL_jsonBool) jSONValue210).value) != this.filtersEnabled) {
+                    TLRPC.JSONValue jSONValue208 = tL_jsonObjectValue.value;
+                    if ((jSONValue208 instanceof TLRPC.TL_jsonBool) && (z27 = ((TLRPC.TL_jsonBool) jSONValue208).value) != this.filtersEnabled) {
                         this.filtersEnabled = z27;
                         edit.putBoolean("filtersEnabled", z27);
                         str = str25;
@@ -12286,6 +12292,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.reloadingSavedWebpagesPending.clear();
         this.sponsoredMessages.clear();
         this.sendAsPeers.clear();
+        this.sendAsPeersLiveStories.clear();
         this.dialogs_dict.clear();
         this.dialogs_read_inbox_max.clear();
         this.loadingPinnedDialogs.clear();
@@ -16435,6 +16442,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$checkPromoInfoInternal$160(final long j, final TLRPC.TL_help_promoData tL_help_promoData, final int i) {
+        this.lastCheckPromoInfoTime = getConnectionsManager().getCurrentTime();
         TLRPC.Dialog dialog = this.promoDialog;
         if (dialog != null && j != dialog.id) {
             removePromoDialog();
@@ -16444,6 +16452,10 @@ public class MessagesController extends BaseController implements NotificationCe
         this.dismissedSuggestions = new HashSet(tL_help_promoData.dismissed_suggestions);
         this.customPendingSuggestion = tL_help_promoData.custom_pending_suggestion;
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+        SharedPreferences.Editor edit = this.mainPreferences.edit();
+        edit.putStringSet("pendingSuggestions", this.pendingSuggestions);
+        edit.putStringSet("dismissedSuggestions", this.dismissedSuggestions);
+        edit.commit();
         if (this.promoDialog != null) {
             this.checkingPromoInfo = false;
             sortDialogs(null);
@@ -23022,31 +23034,39 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void clearSendAsPeers() {
         this.sendAsPeers.clear();
+        this.sendAsPeersLiveStories.clear();
     }
 
-    public TLRPC.TL_channels_sendAsPeers getSendAsPeers(final long j) {
-        SendAsPeersInfo sendAsPeersInfo = (SendAsPeersInfo) this.sendAsPeers.get(j);
+    public TLRPC.TL_channels_sendAsPeers getSendAsPeers(long j) {
+        return getSendAsPeers(j, false);
+    }
+
+    public TLRPC.TL_channels_sendAsPeers getSendAsPeers(final long j, final boolean z) {
+        TLRPC.Chat chat;
+        final LongSparseArray longSparseArray = z ? this.sendAsPeersLiveStories : this.sendAsPeers;
+        SendAsPeersInfo sendAsPeersInfo = (SendAsPeersInfo) longSparseArray.get(j);
         if (sendAsPeersInfo != null && (sendAsPeersInfo.loading || Math.abs(SystemClock.elapsedRealtime() - sendAsPeersInfo.loadTime) <= 300000)) {
             return sendAsPeersInfo.sendAsPeers;
         }
-        TLRPC.Chat chat = getChat(Long.valueOf(-j));
-        if (chat != null && ChatObject.canSendAsPeers(chat)) {
-            final SendAsPeersInfo sendAsPeersInfo2 = new SendAsPeersInfo(this, null);
-            sendAsPeersInfo2.loading = true;
-            this.sendAsPeers.put(j, sendAsPeersInfo2);
-            TLRPC.TL_channels_getSendAs tL_channels_getSendAs = new TLRPC.TL_channels_getSendAs();
-            tL_channels_getSendAs.peer = getInputPeer(j);
-            getConnectionsManager().sendRequest(tL_channels_getSendAs, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MessagesController.this.lambda$getSendAsPeers$400(j, sendAsPeersInfo2, tLObject, tL_error);
-                }
-            });
+        if (!z && ((chat = getChat(Long.valueOf(-j))) == null || !ChatObject.canSendAsPeers(chat))) {
+            return null;
         }
+        final SendAsPeersInfo sendAsPeersInfo2 = new SendAsPeersInfo(this, null);
+        sendAsPeersInfo2.loading = true;
+        longSparseArray.put(j, sendAsPeersInfo2);
+        TLRPC.TL_channels_getSendAs tL_channels_getSendAs = new TLRPC.TL_channels_getSendAs();
+        tL_channels_getSendAs.peer = getInputPeer(j);
+        tL_channels_getSendAs.for_live_stories = z;
+        getConnectionsManager().sendRequest(tL_channels_getSendAs, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                MessagesController.this.lambda$getSendAsPeers$400(longSparseArray, j, sendAsPeersInfo2, z, tLObject, tL_error);
+            }
+        });
         return null;
     }
 
-    public void lambda$getSendAsPeers$400(final long j, final SendAsPeersInfo sendAsPeersInfo, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$getSendAsPeers$400(final LongSparseArray longSparseArray, final long j, final SendAsPeersInfo sendAsPeersInfo, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         final TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers;
         if (tLObject != null) {
             tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) tLObject;
@@ -23061,7 +23081,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesController.this.lambda$getSendAsPeers$399(tL_channels_sendAsPeers2, j, sendAsPeersInfo);
+                        MessagesController.this.lambda$getSendAsPeers$399(tL_channels_sendAsPeers2, longSparseArray, j, sendAsPeersInfo, z);
                     }
                 });
             }
@@ -23071,7 +23091,7 @@ public class MessagesController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$getSendAsPeers$399(tL_channels_sendAsPeers22, j, sendAsPeersInfo);
+                MessagesController.this.lambda$getSendAsPeers$399(tL_channels_sendAsPeers22, longSparseArray, j, sendAsPeersInfo, z);
             }
         });
     }
@@ -23081,14 +23101,14 @@ public class MessagesController extends BaseController implements NotificationCe
         putChats(tL_channels_sendAsPeers.chats, false);
     }
 
-    public void lambda$getSendAsPeers$399(TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, long j, SendAsPeersInfo sendAsPeersInfo) {
+    public void lambda$getSendAsPeers$399(TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, LongSparseArray longSparseArray, long j, SendAsPeersInfo sendAsPeersInfo, boolean z) {
         if (tL_channels_sendAsPeers != null) {
             sendAsPeersInfo.loadTime = SystemClock.elapsedRealtime();
             sendAsPeersInfo.sendAsPeers = tL_channels_sendAsPeers;
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadSendAsPeers, Long.valueOf(j), tL_channels_sendAsPeers);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadSendAsPeers, Long.valueOf(j), tL_channels_sendAsPeers, Boolean.valueOf(z));
             return;
         }
-        this.sendAsPeers.remove(j);
+        longSparseArray.remove(j);
     }
 
     public TLRPC.Peer getSendAsSelectedPeer(long j) {
@@ -26590,5 +26610,20 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.ids.remove(Long.valueOf(j));
             }
         }
+    }
+
+    public int checkEmailSuggestion() {
+        if (this.emailSuggestionWasShown || this.lastCheckPromoInfoTime + 10 < getConnectionsManager().getCurrentTime()) {
+            return 0;
+        }
+        boolean contains = this.pendingSuggestions.contains("SETUP_LOGIN_EMAIL");
+        if (this.pendingSuggestions.contains("SETUP_LOGIN_EMAIL_NOSKIP")) {
+            return 2;
+        }
+        return contains ? 1 : 0;
+    }
+
+    public void markEmailSuggestionAsShown() {
+        this.emailSuggestionWasShown = true;
     }
 }

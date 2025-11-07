@@ -1,6 +1,6 @@
 package org.telegram.ui.Stars;
 
-public final class StarsReactionsSheet$$ExternalSyntheticLambda12 implements Runnable {
+public final class StarsReactionsSheet$$ExternalSyntheticLambda14 implements Runnable {
     public final StarsReactionsSheet f$0;
 
     @Override

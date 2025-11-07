@@ -4277,6 +4277,11 @@ public abstract class Theme {
         };
     }
 
+    public static Drawable createSimpleSelectorRoundRectDrawableWithInset(int i, int i2, int i3, int i4) {
+        float f = i;
+        return createSimpleSelectorRoundRectDrawable(new float[]{f, f, f, f, f, f, f, f}, i2, i3, i3, i4);
+    }
+
     public static Drawable createSimpleSelectorRoundRectDrawable(int i, int i2, int i3) {
         return createSimpleSelectorRoundRectDrawable(i, i2, i3, i3);
     }
@@ -4294,10 +4299,16 @@ public abstract class Theme {
     }
 
     public static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3) {
+        return createSimpleSelectorRoundRectDrawable(fArr, i, i2, i3, 0);
+    }
+
+    public static Drawable createSimpleSelectorRoundRectDrawable(float[] fArr, int i, int i2, int i3, int i4) {
         ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(fArr, null, null));
+        shapeDrawable.setPadding(i4, i4, i4, i4);
         shapeDrawable.getPaint().setColor(i);
         ShapeDrawable shapeDrawable2 = new ShapeDrawable(new RoundRectShape(fArr, null, null));
         shapeDrawable2.getPaint().setColor(i3);
+        shapeDrawable2.setPadding(i4, i4, i4, i4);
         return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i2}), shapeDrawable, shapeDrawable2);
     }
 

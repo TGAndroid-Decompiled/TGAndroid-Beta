@@ -20,7 +20,9 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
     private int colorStaticLast;
     private final Paint colorStaticPaint;
     private final BlurredBackgroundDrawable drawable;
+    private int fadeHeight;
     private final Paint maskFadeGradientPaint;
+    private boolean opacity;
 
     @Override
     public int getOpacity() {
@@ -41,7 +43,14 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
         this.colorStaticPaint = new Paint(1);
         this.drawable = blurredBackgroundDrawable;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        paint.setShader(createGradient(-16777216));
+        setFadeHeight(AndroidUtilities.dp(40.0f), false);
+    }
+
+    public void setFadeHeight(int i, boolean z) {
+        this.fadeHeight = i;
+        this.opacity = z;
+        this.maskFadeGradientPaint.setShader(createGradient(-16777216, i, z));
+        this.colorStaticPaint.setShader(null);
     }
 
     @Override
@@ -58,9 +67,9 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
         BlurredBackgroundSource unwrappedSource = this.drawable.getUnwrappedSource();
         if (unwrappedSource instanceof BlurredBackgroundSourceColor) {
             int color = ((BlurredBackgroundSourceColor) unwrappedSource).getColor();
-            if (this.colorStaticLast != color) {
+            if (this.colorStaticLast != color || this.colorStaticPaint.getShader() == null) {
                 this.colorStaticLast = color;
-                this.colorStaticPaint.setShader(createGradient(color));
+                this.colorStaticPaint.setShader(createGradient(color, this.fadeHeight, this.opacity));
             }
             canvas.save();
             canvas.translate(r0.left, r0.top);
@@ -68,6 +77,7 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
             canvas.restore();
             return;
         }
+        this.colorStaticPaint.setShader(null);
         int saveLayer = canvas.saveLayer(r0.left, r0.top, r0.right, r0.bottom, null);
         this.drawable.draw(canvas);
         canvas.translate(r0.left, r0.top);
@@ -75,8 +85,11 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
         canvas.restoreToCount(saveLayer);
     }
 
-    private static LinearGradient createGradient(int i) {
+    private static LinearGradient createGradient(int i, int i2, boolean z) {
         int alpha = Color.alpha(i);
-        return new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(84.0f), new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (alpha * 96) / 255), ColorUtils.setAlphaComponent(i, (alpha * 176) / 255), ColorUtils.setAlphaComponent(i, (alpha * 232) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
+        if (z) {
+            return new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (alpha * 96) / 255), ColorUtils.setAlphaComponent(i, (alpha * 176) / 255), ColorUtils.setAlphaComponent(i, (alpha * 232) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
+        }
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{ColorUtils.setAlphaComponent(i, 0), ColorUtils.setAlphaComponent(i, (alpha * 96) / 255), ColorUtils.setAlphaComponent(i, (alpha * 176) / 255), ColorUtils.setAlphaComponent(i, (alpha * 232) / 255), ColorUtils.setAlphaComponent(i, (alpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
     }
 }

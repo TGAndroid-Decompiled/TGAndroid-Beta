@@ -241,7 +241,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1189getWindowView();
+        View mo1191getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -564,7 +564,7 @@ public abstract class BaseFragment {
         }
     }
 
-    public void lambda$onBackPressed$341() {
+    public void lambda$onBackPressed$340() {
         PreviewDelegate previewDelegate;
         Dialog dialog = this.parentDialog;
         if (dialog != null) {
@@ -842,9 +842,17 @@ public abstract class BaseFragment {
             runnable.run();
         }
         updateSheetsVisibility();
+        checkSystemBarColors();
     }
 
-    private void updateSheetsVisibility() {
+    public void checkSystemBarColors() {
+        Activity parentActivity = getParentActivity();
+        if (parentActivity instanceof LaunchActivity) {
+            ((LaunchActivity) parentActivity).checkSystemBarColors(true, true, true);
+        }
+    }
+
+    public void updateSheetsVisibility() {
         if (this.sheetsStack == null) {
             return;
         }
@@ -1095,7 +1103,7 @@ public abstract class BaseFragment {
             if (bottomSheetParams == null || !bottomSheetParams.occupyNavigationBar) {
                 fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
             } else {
-                AndroidUtilities.setLightNavigationBar(this.val$bottomSheet[0].getWindow(), true);
+                AndroidUtilities.setLightNavigationBar((Dialog) this.val$bottomSheet[0], true);
             }
             AndroidUtilities.setLightStatusBar(getWindow(), this.val$fragment.isLightStatusBar());
             this.val$fragment.onBottomSheetCreated();
@@ -1184,15 +1192,19 @@ public abstract class BaseFragment {
     }
 
     public void setNavigationBarColor(int i) {
+        if (isSupportEdgeToEdge()) {
+            return;
+        }
         Activity parentActivity = getParentActivity();
         if (parentActivity instanceof LaunchActivity) {
-            ((LaunchActivity) parentActivity).setNavigationBarColor(i, true);
+            ((LaunchActivity) parentActivity).setNavigationBarColor(i);
         } else if (parentActivity != null) {
             Window window = parentActivity.getWindow();
-            if (Build.VERSION.SDK_INT >= 26 && window != null && window.getNavigationBarColor() != i) {
-                AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(i) >= 0.721f);
+            if (Build.VERSION.SDK_INT >= 26 && window != null) {
+                window.getNavigationBarColor();
             }
         }
+        AndroidUtilities.setLightNavigationBar(parentActivity, AndroidUtilities.computePerceivedBrightness(i) >= 0.721f);
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout != null) {
             iNavigationLayout.setNavigationBarColor(i);
@@ -1262,8 +1274,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1189getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1189getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1191getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1191getWindowView());
                 }
             }
         }
@@ -1274,7 +1286,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1189getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1191getWindowView());
                 }
             }
         }
@@ -1284,7 +1296,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1189getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1191getWindowView()) {
                     return true;
                 }
             }
@@ -1314,6 +1326,10 @@ public abstract class BaseFragment {
 
     public org.telegram.ui.Stories.StoryViewer getOrCreateStoryViewer() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BaseFragment.getOrCreateStoryViewer():org.telegram.ui.Stories.StoryViewer");
+    }
+
+    public org.telegram.ui.Stories.StoryViewer getOrCreateStoryViewer(int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BaseFragment.getOrCreateStoryViewer(int):org.telegram.ui.Stories.StoryViewer");
     }
 
     public void removeSheet(AttachedSheet attachedSheet) {

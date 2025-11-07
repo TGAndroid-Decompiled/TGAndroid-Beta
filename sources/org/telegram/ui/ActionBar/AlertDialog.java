@@ -537,7 +537,6 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             this.containerView.setBackgroundDrawable(this.shadowDrawable);
             this.drawBackground = false;
         }
-        this.containerView.setFitsSystemWindows(Build.VERSION.SDK_INT < 35);
         View view = this.containerView;
         if (this.needStarsBalance) {
             if (this.fullscreenContainerView == null) {

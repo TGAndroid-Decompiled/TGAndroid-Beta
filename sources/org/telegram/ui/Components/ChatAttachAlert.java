@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
@@ -4846,9 +4847,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.openTransitionFinished = false;
         if (Build.VERSION.SDK_INT >= 30) {
             this.navBarColorKey = -1;
-            this.navBarColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), 0);
-            AndroidUtilities.setNavigationBarColor(getWindow(), this.navBarColor, false);
-            AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
+            int alphaComponent = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), 0);
+            this.navBarColor = alphaComponent;
+            AndroidUtilities.setNavigationBarColor((Dialog) this, alphaComponent, false);
+            AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
         }
     }
 
@@ -6029,9 +6031,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     private void setNavBarAlpha(float f) {
-        this.navBarColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), Math.min(255, Math.max(0, (int) (f * 255.0f))));
-        AndroidUtilities.setNavigationBarColor(getWindow(), this.navBarColor, false);
-        AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
+        int alphaComponent = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), Math.min(255, Math.max(0, (int) (f * 255.0f))));
+        this.navBarColor = alphaComponent;
+        AndroidUtilities.setNavigationBarColor((Dialog) this, alphaComponent, false);
+        AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
         getContainer().invalidate();
     }
 
@@ -6155,8 +6158,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (Build.VERSION.SDK_INT >= 30) {
             this.navBarColorKey = -1;
             this.navBarColor = getThemedColor(Theme.key_dialogBackgroundGray);
-            AndroidUtilities.setNavigationBarColor(getWindow(), getThemedColor(Theme.key_dialogBackground), false);
-            AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
+            AndroidUtilities.setNavigationBarColor((Dialog) this, getThemedColor(Theme.key_dialogBackground), false);
+            AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
             return;
         }
         fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
@@ -7036,7 +7039,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
             i++;
         }
-        AndroidUtilities.setNavigationBarColor(getWindow(), ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), 0), true, new AndroidUtilities.IntColorCallback() {
+        AndroidUtilities.setNavigationBarColor((Dialog) this, ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundGray), 0), true, new AndroidUtilities.IntColorCallback() {
             @Override
             public final void run(int i2) {
                 ChatAttachAlert.this.lambda$dismiss$54(i2);

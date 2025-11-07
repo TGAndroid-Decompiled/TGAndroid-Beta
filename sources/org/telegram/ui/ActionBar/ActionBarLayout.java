@@ -57,6 +57,7 @@ import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BackButtonMenu;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlert;
@@ -104,12 +105,14 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private INavigationLayout.INavigationLayoutDelegate delegate;
     private DrawerLayoutContainer drawerLayoutContainer;
     private List fragmentsStack;
+    private final AnimatedFloat hasSheetsAnimator;
     public boolean highlightActionButtons;
     private boolean inActionMode;
     private boolean inBubbleMode;
     private boolean inPreviewMode;
     public float innerTranslationX;
     public boolean isKeyboardVisible;
+    private boolean isLayersLayout;
     private boolean isSheet;
     ArrayList lastActions;
     private long lastFrameTime;
@@ -120,6 +123,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private int[] measureSpec;
     public Theme.MessageDrawable messageDrawableOutMediaStart;
     public Theme.MessageDrawable messageDrawableOutStart;
+    private int navigationBarInsetHeight;
     private BaseFragment newFragment;
     AnimationNotificationsLocker notificationsLocker;
     private BaseFragment oldFragment;
@@ -149,6 +153,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private int startedTrackingPointerId;
     private int startedTrackingX;
     private int startedTrackingY;
+    private int statusBarInsetHeight;
     private boolean tabsEvents;
     private float themeAnimationValue;
     private ArrayList themeAnimatorDelegate;
@@ -337,7 +342,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1189getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1191getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -536,7 +541,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             return null;
         }
         if (this.sheetFragment == null) {
-            EmptyBaseFragment emptyBaseFragment = new EmptyBaseFragment();
+            EmptyBaseFragment emptyBaseFragment = new EmptyBaseFragment() {
+                @Override
+                public void updateSheetsVisibility() {
+                    super.updateSheetsVisibility();
+                    ActionBarLayout.this.invalidate();
+                }
+            };
             this.sheetFragment = emptyBaseFragment;
             emptyBaseFragment.setParentLayout(this);
             EmptyBaseFragment emptyBaseFragment2 = this.sheetFragment;
@@ -572,6 +583,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.clipPath = new Path();
         this.radii = new float[8];
         this.measureSpec = new int[2];
+        this.hasSheetsAnimator = new AnimatedFloat(this, 280L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.lastActions = new ArrayList();
         this.debugBlackScreenRunnable = new Runnable() {
             @Override
@@ -597,6 +609,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 return onApplyWindowInsets;
             }
         });
+    }
+
+    public void setIsLayersLayout() {
+        this.isLayersLayout = true;
     }
 
     @Override
@@ -875,7 +891,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
+    protected boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
@@ -1359,7 +1375,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 }
                 Integer valueOf = ActionBarLayout.this.oldFragment != null ? Integer.valueOf(ActionBarLayout.this.oldFragment.getNavigationBarColor()) : null;
                 Integer valueOf2 = ActionBarLayout.this.newFragment != null ? Integer.valueOf(ActionBarLayout.this.newFragment.getNavigationBarColor()) : null;
-                if (ActionBarLayout.this.newFragment != null && valueOf != null) {
+                if (ActionBarLayout.this.oldFragment != null && ActionBarLayout.this.oldFragment.isSupportEdgeToEdge() && valueOf2 != null) {
+                    valueOf = valueOf2;
+                }
+                if (ActionBarLayout.this.newFragment != null && ActionBarLayout.this.newFragment.isSupportEdgeToEdge() && valueOf != null) {
+                    valueOf2 = valueOf;
+                }
+                if (ActionBarLayout.this.newFragment != null && valueOf != null && valueOf2 != null) {
                     int blendARGB = ColorUtils.blendARGB(valueOf.intValue(), valueOf2.intValue(), MathUtils.clamp(ActionBarLayout.this.animationProgress * 4.0f, 0.0f, 1.0f));
                     if (ActionBarLayout.this.sheetFragment != null && ActionBarLayout.this.sheetFragment.sheetsStack != null) {
                         for (int i = 0; i < ActionBarLayout.this.sheetFragment.sheetsStack.size(); i++) {
@@ -2327,7 +2349,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             if (z) {
                 List list = this.fragmentsStack;
                 if (list.get(list.size() - 1) == baseFragment) {
-                    baseFragment.lambda$onBackPressed$341();
+                    baseFragment.lambda$onBackPressed$340();
                     return;
                 }
             }
@@ -3025,6 +3047,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     private void dispatchApplyWindowInsetsInternal(View view, WindowInsetsCompat windowInsetsCompat) {
+        if (this.isLayersLayout) {
+            ViewCompat.dispatchApplyWindowInsets(view, WindowInsetsCompat.CONSUMED);
+            return;
+        }
         Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars());
         Insets insets2 = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.displayCutout());
         if (view instanceof BottomSheetTabs) {
@@ -3061,7 +3087,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars());
         this.lastWindowInsetsCompat = windowInsetsCompat;
+        this.navigationBarInsetHeight = insets.bottom;
+        this.statusBarInsetHeight = insets.top;
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             dispatchApplyWindowInsetsInternal(getChildAt(i), windowInsetsCompat);

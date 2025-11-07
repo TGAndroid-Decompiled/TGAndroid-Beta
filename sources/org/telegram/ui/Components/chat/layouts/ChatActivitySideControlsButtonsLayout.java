@@ -121,7 +121,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
                 buttonHolder.button.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 buttonHolder.button.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 buttonHolder.button.setTranslationY((AndroidUtilities.dp(100.0f) * (1.0f - floatValue)) - f);
-                f += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((i == 4 || i == 3) ? 10.0f : 12.0f)) * floatValue;
+                f += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((i == 4 || i == 3) ? 10.0f : 16.0f)) * floatValue;
             }
             i++;
         }
@@ -141,11 +141,9 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     private ButtonHolder getOrCreateButtonHolder(final int i) {
         if (this.buttonHolders[i] == null) {
             BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, AnimatorUtils.DECELERATE_INTERPOLATOR, 280L);
-            Context context = getContext();
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            ChatActivityBlurredRoundPageDownButton create = ChatActivityBlurredRoundPageDownButton.create(context, resourcesProvider, this.blurredBackgroundDrawableViewFactory, this.colorProvider, buttonIcons[i], Theme.getColor(Theme.key_glass_defaultIcon, resourcesProvider));
+            ChatActivityBlurredRoundPageDownButton create = ChatActivityBlurredRoundPageDownButton.create(getContext(), this.resourcesProvider, this.blurredBackgroundDrawableViewFactory, this.colorProvider, buttonIcons[i]);
             create.setPivotX(AndroidUtilities.dp(28.0f));
-            create.setPivotY(AndroidUtilities.dp(33.0f));
+            create.setPivotY(AndroidUtilities.dp(36.0f));
             create.setVisibility(8);
             create.setContentDescription(this.buttonDescriptions[i]);
             create.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +166,7 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
             if (i == 0) {
                 create.reverseCounter();
             }
-            addView(create, LayoutHelper.createFrame(56, 61, 83));
+            addView(create, LayoutHelper.createFrame(56, 64, 83));
             this.buttonHolders[i] = new ButtonHolder(create, boolAnimator);
             checkButtonsPositionsAndVisibility();
         }

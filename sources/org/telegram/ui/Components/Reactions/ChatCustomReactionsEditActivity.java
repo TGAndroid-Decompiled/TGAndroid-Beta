@@ -195,7 +195,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$341();
+                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$340();
             }
         });
     }
@@ -206,7 +206,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
         this.actionButton.setLoading(false);
         if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -598,7 +598,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$checkChangesBeforeExit$15(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void checkMaxCustomReactions(boolean z) {
@@ -725,7 +725,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
             } else {
                 removeSelfFromStack();
             }

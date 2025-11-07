@@ -248,6 +248,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
+            public TLRPC.Peer getDefaultSendAs() {
+                return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getDefaultSendAs(this);
+            }
+
+            @Override
             public ChatActivity.ReplyQuote getReplyQuote() {
                 return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getReplyQuote(this);
             }
@@ -397,6 +402,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             @Override
             public void scrollToSendingMessage() {
                 ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$scrollToSendingMessage(this);
+            }
+
+            @Override
+            public boolean setDefaultSendAs(long j, long j2) {
+                return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$setDefaultSendAs(this, j, j2);
             }
 
             @Override

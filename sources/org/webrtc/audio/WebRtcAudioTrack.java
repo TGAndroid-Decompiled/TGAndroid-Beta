@@ -334,6 +334,7 @@ public class WebRtcAudioTrack {
         AudioTrack.Builder audioAttributes2;
         AudioTrack.Builder audioFormat;
         AudioTrack.Builder bufferSizeInBytes;
+        AudioTrack.Builder performanceMode;
         AudioTrack.Builder transferMode;
         AudioTrack.Builder sessionId;
         AudioTrack build;
@@ -342,16 +343,19 @@ public class WebRtcAudioTrack {
         audioAttributes2 = DefaultAudioSink$Configuration$$ExternalSyntheticApiModelOutline0.m().setAudioAttributes(getAudioAttributes(audioAttributes));
         audioFormat = audioAttributes2.setAudioFormat(new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build());
         bufferSizeInBytes = audioFormat.setBufferSizeInBytes(i3);
-        transferMode = WebRtcAudioTrack$$ExternalSyntheticApiModelOutline2.m(bufferSizeInBytes, 1).setTransferMode(1);
+        performanceMode = bufferSizeInBytes.setPerformanceMode(1);
+        transferMode = performanceMode.setTransferMode(1);
         sessionId = transferMode.setSessionId(0);
         build = sessionId.build();
         return build;
     }
 
     private static AudioAttributes.Builder applyAttributesOnQOrHigher(AudioAttributes.Builder builder, AudioAttributes audioAttributes) {
-        AudioAttributes.Builder allowedCapturePolicy;
-        allowedCapturePolicy = builder.setAllowedCapturePolicy(WebRtcAudioTrack$$ExternalSyntheticApiModelOutline0.m(audioAttributes));
-        return allowedCapturePolicy;
+        int allowedCapturePolicy;
+        AudioAttributes.Builder allowedCapturePolicy2;
+        allowedCapturePolicy = audioAttributes.getAllowedCapturePolicy();
+        allowedCapturePolicy2 = builder.setAllowedCapturePolicy(allowedCapturePolicy);
+        return allowedCapturePolicy2;
     }
 
     private void logBufferSizeInFrames() {

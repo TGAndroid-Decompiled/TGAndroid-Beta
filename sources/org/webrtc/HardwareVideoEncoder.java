@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.FileLog;
 import org.webrtc.EglBase14;
 import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
@@ -332,6 +333,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     }
 
     private VideoCodecStatus resetCodec(int i, int i2, boolean z) {
+        FileLog.d("resetCodec " + i + "x" + i2);
         this.encodeThreadChecker.checkIsOnValidThread();
         VideoCodecStatus release = release();
         if (release != VideoCodecStatus.OK) {

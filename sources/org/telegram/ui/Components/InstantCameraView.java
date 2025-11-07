@@ -133,6 +133,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     private boolean flashing;
     private boolean flipAnimationInProgress;
     private boolean frontFlashing;
+    private int internalPaddingBottom;
     private boolean isFrontface;
     boolean isInPinchToZoomTouchMode;
     private boolean isMessageTransition;
@@ -661,11 +662,16 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
     }
 
+    public void setInternalPadding(int i) {
+        this.internalPaddingBottom = i;
+        setPadding(0, 0, 0, i);
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         int i3;
         if (this.updateTextureViewSize) {
-            if (View.MeasureSpec.getSize(i2) > View.MeasureSpec.getSize(i) * 1.3f) {
+            if (View.MeasureSpec.getSize(i2) - getPaddingBottom() > View.MeasureSpec.getSize(i) * 1.3f) {
                 i3 = AndroidUtilities.roundPlayingMessageSize;
             } else {
                 i3 = AndroidUtilities.roundMessageSize;
@@ -689,6 +695,10 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.updateTextureViewSize = false;
         }
         super.onMeasure(i, i2);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
+        this.flashViews.backgroundView.measure(makeMeasureSpec, makeMeasureSpec2);
+        this.flashViews.foregroundView.measure(makeMeasureSpec, makeMeasureSpec2);
     }
 
     private boolean checkPointerIds(MotionEvent motionEvent) {
@@ -711,7 +721,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         if (getVisibility() != 0) {
-            this.animationTranslationY = getMeasuredHeight() / 2;
+            this.animationTranslationY = getMeasuredHeight() / 2.0f;
             updateTranslationY();
         }
     }
@@ -3751,6 +3761,9 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         VideoPlayer videoPlayer;
+        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - getPaddingBottom()) {
+            return false;
+        }
         if (motionEvent.getAction() == 0 && this.delegate != null && (videoPlayer = this.videoPlayer) != null) {
             boolean isMuted = videoPlayer.isMuted();
             this.videoPlayer.setMute(!isMuted);

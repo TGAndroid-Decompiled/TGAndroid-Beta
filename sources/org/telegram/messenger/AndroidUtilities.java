@@ -156,6 +156,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPOutputStream;
+import me.vkryl.core.BitwiseUtils;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -4725,21 +4726,7 @@ public class AndroidUtilities {
 
     public static void setLightStatusBar(Window window, boolean z, boolean z2) {
         if (Build.VERSION.SDK_INT >= 23) {
-            View decorView = window.getDecorView();
-            int systemUiVisibility = decorView.getSystemUiVisibility();
-            if (z) {
-                if ((systemUiVisibility & 8192) == 0) {
-                    decorView.setSystemUiVisibility(systemUiVisibility | 8192);
-                }
-                if (window.getStatusBarColor() != 0) {
-                    window.setStatusBarColor(0);
-                    return;
-                }
-                return;
-            }
-            if ((systemUiVisibility & 8192) != 0) {
-                decorView.setSystemUiVisibility(systemUiVisibility & (-8193));
-            }
+            changeSetSystemUiVisibility(window.getDecorView(), 8192, z);
             if (window.getStatusBarColor() != 0) {
                 window.setStatusBarColor(0);
             }
@@ -4747,44 +4734,79 @@ public class AndroidUtilities {
     }
 
     public static boolean getLightNavigationBar(Window window) {
-        return Build.VERSION.SDK_INT >= 26 && (window.getDecorView().getSystemUiVisibility() & 16) > 0;
+        if (Build.VERSION.SDK_INT >= 26) {
+            return BitwiseUtils.hasFlag(window.getDecorView().getSystemUiVisibility(), 16);
+        }
+        return false;
+    }
+
+    public static void setLightNavigationBar(Dialog dialog, boolean z) {
+        if (dialog != null) {
+            setLightNavigationBar(dialog.getWindow(), z);
+        }
+    }
+
+    public static void setLightNavigationBar(Activity activity, boolean z) {
+        if (activity != null) {
+            setLightNavigationBar(activity.getWindow(), z);
+        }
+    }
+
+    private static void setLightNavigationBar(Window window, boolean z) {
+        if (window != null) {
+            setLightNavigationBar(window.getDecorView(), z);
+        }
     }
 
     public static void setLightNavigationBar(View view, boolean z) {
         if (view == null || Build.VERSION.SDK_INT < 26) {
             return;
         }
-        int systemUiVisibility = view.getSystemUiVisibility();
-        if (((systemUiVisibility & 16) > 0) != z) {
-            view.setSystemUiVisibility(z ? systemUiVisibility | 16 : systemUiVisibility & (-17));
-        }
+        changeSetSystemUiVisibility(view, 16, z);
     }
 
     public static void setLightStatusBar(View view, boolean z) {
         if (view == null || Build.VERSION.SDK_INT < 26) {
             return;
         }
+        changeSetSystemUiVisibility(view, 8192, z);
+    }
+
+    private static void changeSetSystemUiVisibility(View view, int i, boolean z) {
         int systemUiVisibility = view.getSystemUiVisibility();
-        if (((systemUiVisibility & 8192) > 0) != z) {
-            view.setSystemUiVisibility(z ? systemUiVisibility | 8192 : systemUiVisibility & (-8193));
+        int flag = BitwiseUtils.setFlag(systemUiVisibility, i, z);
+        if (systemUiVisibility != flag) {
+            view.setSystemUiVisibility(flag);
         }
     }
 
-    public static void setLightNavigationBar(Window window, boolean z) {
-        if (window != null) {
-            setLightNavigationBar(window.getDecorView(), z);
+    public static void setNavigationBarColor(Dialog dialog, int i) {
+        setNavigationBarColor(dialog, i, true);
+    }
+
+    public static void setNavigationBarColor(Dialog dialog, int i, boolean z) {
+        setNavigationBarColor(dialog, i, z, (IntColorCallback) null);
+    }
+
+    public static void setNavigationBarColor(Dialog dialog, int i, boolean z, IntColorCallback intColorCallback) {
+        if (dialog != null) {
+            setNavigationBarColor(dialog.getWindow(), i, z, intColorCallback);
         }
     }
 
-    public static void setNavigationBarColor(Window window, int i) {
-        setNavigationBarColor(window, i, true);
+    @Deprecated
+    public static void setNavigationBarColor(Activity activity, int i) {
+        setNavigationBarColor(activity, i, true);
     }
 
-    public static void setNavigationBarColor(Window window, int i, boolean z) {
-        setNavigationBarColor(window, i, z, null);
+    @Deprecated
+    public static void setNavigationBarColor(Activity activity, int i, boolean z) {
+        if (activity != null) {
+            setNavigationBarColor(activity.getWindow(), i, z, (IntColorCallback) null);
+        }
     }
 
-    public static void setNavigationBarColor(final Window window, int i, boolean z, final IntColorCallback intColorCallback) {
+    private static void setNavigationBarColor(final Window window, int i, boolean z, final IntColorCallback intColorCallback) {
         ValueAnimator valueAnimator;
         if (window == null) {
             return;
@@ -6011,9 +6033,11 @@ public class AndroidUtilities {
     }
 
     public static void printStackTrace(String str) {
+        String str2 = "[" + str + "]";
         for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace()) {
-            FileLog.d("[" + str + "] " + stackTraceElement);
+            FileLog.d(str2 + " " + stackTraceElement);
         }
+        FileLog.d(str2);
     }
 
     public static void logFlagSecure() {
@@ -6026,6 +6050,10 @@ public class AndroidUtilities {
             return null;
         }
         return arrayList.get(Math.abs(Utilities.fastRandom.nextInt() % arrayList.size()));
+    }
+
+    public static float getNavigationBarThirdButtonsFactor(int i) {
+        return MathUtils.clamp((i - dp(24.0f)) / dp(24.0f), 0.0f, 1.0f);
     }
 
     public static WindowInsets fixedDispatchApplyWindowInsets(WindowInsets windowInsets, ViewGroup viewGroup) {

@@ -94,7 +94,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
             if (buttonHolder != null || z) {
                 if (buttonHolder == null) {
                     BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, CubicBezierInterpolator.EASE_OUT_QUINT, 300L);
-                    ChatActivityBlurredRoundButton create = ChatActivityBlurredRoundButton.create(getContext(), this.blurredBackgroundDrawableViewFactory, this.colorProvider, buttonIcons[i], Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider));
+                    ChatActivityBlurredRoundButton create = ChatActivityBlurredRoundButton.create(getContext(), this.blurredBackgroundDrawableViewFactory, this.colorProvider, this.resourcesProvider, buttonIcons[i]);
                     ScaleStateListAnimator.apply(create, 0.13f, 2.0f);
                     create.setVisibility(8);
                     create.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
                             ChatActivityChannelButtonsLayout.this.lambda$showButton$0(i, view);
                         }
                     });
-                    addView(create);
+                    addView(create, LayoutHelper.createFrame(56, 56.0f));
                     this.buttonHolders[i] = new ButtonHolder(create, boolAnimator);
                     checkButtonsPositionsAndVisibility();
                 }

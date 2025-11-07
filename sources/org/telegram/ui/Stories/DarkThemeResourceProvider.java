@@ -101,7 +101,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_actionBarDefault, -1);
         this.sparseIntArray.put(Theme.key_chat_gifSaveHintText, -1);
         this.sparseIntArray.put(Theme.key_chat_emojiSearchBackground, ColorUtils.setAlphaComponent(-1, 30));
-        this.sparseIntArray.put(Theme.key_chat_emojiPanelBackground, -1073741824);
+        this.sparseIntArray.put(Theme.key_chat_emojiPanelBackground, -14670806);
         this.sparseIntArray.put(Theme.key_actionBarActionModeDefaultIcon, -1);
         this.sparseIntArray.put(i, ColorUtils.blendARGB(-16777216, -1, 0.5f));
         this.sparseIntArray.put(i2, ColorUtils.setAlphaComponent(-1, 17));
@@ -119,7 +119,8 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_chat_inTextSelectionHighlight, -1515107571);
         this.sparseIntArray.put(Theme.key_chat_messageLinkOut, -5316609);
         this.sparseIntArray.put(Theme.key_chat_messagePanelText, -1);
-        this.sparseIntArray.put(Theme.key_chat_messagePanelIcons, Theme.multAlpha(-1, 0.75f));
+        this.sparseIntArray.put(Theme.key_chat_messagePanelIcons, Theme.multAlpha(-1, 0.9f));
+        this.sparseIntArray.put(Theme.key_glass_defaultIcon, Theme.multAlpha(-1, 0.8f));
         this.sparseIntArray.put(Theme.key_chat_messagePanelBackground, -14670806);
         this.sparseIntArray.put(Theme.key_dialogBackground, -14737633);
         this.sparseIntArray.put(Theme.key_dialogBackgroundGray, -16777216);
@@ -206,6 +207,10 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_share_icon, -1);
         this.sparseIntArray.put(Theme.key_share_linkText, -1207959553);
         this.sparseIntArray.put(Theme.key_share_linkBackground, 352321535);
+        this.sparseIntArray.put(Theme.key_player_time, -8553091);
+        this.sparseIntArray.put(Theme.key_player_progress, -11292689);
+        this.sparseIntArray.put(Theme.key_player_progressBackground, -12829636);
+        this.sparseIntArray.put(Theme.key_player_progressCachedBackground, -11184811);
         appendColors();
         this.dividerPaint.setColor(getColor(i4));
     }

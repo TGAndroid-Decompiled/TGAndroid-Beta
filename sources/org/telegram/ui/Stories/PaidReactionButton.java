@@ -12,21 +12,27 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.Theme;
+import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.blur3.StrokeDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.LaunchActivity;
@@ -36,6 +42,7 @@ import org.telegram.ui.Stories.PaidReactionButton;
 public class PaidReactionButton extends View {
     private float accumulatedRippleIntensity;
     private final AnimatedFloat animatedFilled;
+    private final AnimatedFloat animatedShowCounter;
     private final Paint backgroundPaint;
     private final Paint clearPaint;
     private final Path clipPath;
@@ -49,12 +56,15 @@ public class PaidReactionButton extends View {
     private final int[] pos;
     private final RectF rect;
     private final ColoredImageSpan span;
+    private int stars;
     private final StrokeDrawable strokeDrawable;
 
     public static class PaidReactionButtonEffectsView extends View {
+        private final ArrayList chips;
         private final AnimatedTextView.AnimatedTextDrawable counter;
         private final AnimatedFloat counterAlpha;
         private boolean counterShown;
+        public final int currentAccount;
         private final int[] effectAssets;
         private final ArrayList effects;
         private float focus;
@@ -112,7 +122,7 @@ public class PaidReactionButton extends View {
             focusTo(1.0f, null);
         }
 
-        public PaidReactionButtonEffectsView(Context context) {
+        public PaidReactionButtonEffectsView(Context context, int i) {
             super(context);
             this.reactionBounds = new RectF();
             this.counterAlpha = new AnimatedFloat(this, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -120,7 +130,9 @@ public class PaidReactionButton extends View {
             this.counter = animatedTextDrawable;
             this.effects = new ArrayList();
             this.effectAssets = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
+            this.chips = new ArrayList();
             this.hidden = true;
+            this.currentAccount = i;
             animatedTextDrawable.setCallback(this);
             animatedTextDrawable.setHacks(false, true, true);
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(40.0f));
@@ -152,30 +164,32 @@ public class PaidReactionButton extends View {
             float lerp = AndroidUtilities.lerp(1.0f, 1.8f, this.focus);
             int dp = (int) (AndroidUtilities.dp(90.0f) * lerp);
             int i = 0;
-            while (i < this.effects.size()) {
-                RLottieDrawable rLottieDrawable = (RLottieDrawable) this.effects.get(i);
+            int i2 = 0;
+            while (i2 < this.effects.size()) {
+                RLottieDrawable rLottieDrawable = (RLottieDrawable) this.effects.get(i2);
                 if (rLottieDrawable.getCurrentFrame() >= rLottieDrawable.getFramesCount()) {
-                    this.effects.remove(i);
-                    i--;
+                    this.effects.remove(i2);
+                    i2--;
                 } else {
                     float f = dp / 2.0f;
                     rLottieDrawable.setBounds((int) ((this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * lerp)) - f), (int) (this.reactionBounds.centerY() - f), (int) (this.reactionBounds.left + (AndroidUtilities.dp(15.0f) * lerp) + f), (int) (this.reactionBounds.centerY() + f));
                     rLottieDrawable.setAlpha((int) (this.focus * 255.0f));
                     rLottieDrawable.draw(canvas);
                 }
-                i++;
+                i2++;
             }
             float centerX = this.reactionBounds.centerX();
-            float dp2 = this.reactionBounds.top - AndroidUtilities.dp(36.0f);
+            float dp2 = this.reactionBounds.top - AndroidUtilities.dp(1.0f);
             canvas.save();
-            float f2 = this.counterAlpha.set(this.counterShown);
-            canvas.translate(0.0f, (this.counterShown ? AndroidUtilities.dp(60.0f) : -AndroidUtilities.dp(30.0f)) * (1.0f - f2));
-            float lerp2 = AndroidUtilities.lerp(this.counterShown ? 1.8f : 1.3f, 1.0f, f2);
-            canvas.scale(lerp2, lerp2, centerX, dp2);
-            this.counter.setAlpha((int) (255.0f * f2));
-            this.counter.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(3.5f), Theme.multAlpha(-1442840576, f2));
-            this.counter.setBounds(centerX - AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(48.0f), centerX + AndroidUtilities.dp(100.0f), this.reactionBounds.top - AndroidUtilities.dp(24.0f));
-            this.counter.draw(canvas);
+            canvas.translate(centerX, dp2);
+            while (i < this.chips.size()) {
+                if (((Chip) this.chips.get(i)).draw(canvas)) {
+                    ((Chip) this.chips.get(i)).detach();
+                    this.chips.remove(i);
+                    i--;
+                }
+                i++;
+            }
             canvas.restore();
         }
 
@@ -220,13 +234,150 @@ public class PaidReactionButton extends View {
                 }
             });
         }
+
+        public class Chip {
+            private final AvatarDrawable avatarDrawable;
+            private final Paint backgroundPaint;
+            public final long dialogId;
+            private RLottieDrawable effect;
+            private final ImageReceiver imageReceiver;
+            private boolean isKilled;
+            public final AnimatedFloat killProgress;
+            public final AnimatedFloat progress;
+            private final float randomRotation;
+            private final float randomTranslation;
+            public final int stars;
+            private final Text text;
+
+            public Chip(View view, int i, long j, int i2, int i3, boolean z) {
+                Paint paint = new Paint(1);
+                this.backgroundPaint = paint;
+                this.dialogId = j;
+                this.stars = i2;
+                this.randomTranslation = Utilities.clamp01(Utilities.fastRandom.nextFloat());
+                this.randomRotation = Utilities.clamp01(Utilities.fastRandom.nextFloat());
+                if (z) {
+                    int i4 = PaidReactionButtonEffectsView.this.effectAssets[Utilities.fastRandom.nextInt(PaidReactionButtonEffectsView.this.effectAssets.length)];
+                    RLottieDrawable rLottieDrawable = new RLottieDrawable(i4, "" + i4, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+                    this.effect = rLottieDrawable;
+                    rLottieDrawable.setMasterParent(view);
+                    this.effect.setAllowDecodeSingleFrame(true);
+                    this.effect.setAutoRepeat(0);
+                    this.effect.start();
+                }
+                TLObject userOrChat = MessagesController.getInstance(i).getUserOrChat(j);
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
+                this.avatarDrawable = avatarDrawable;
+                avatarDrawable.setInfo(userOrChat);
+                ImageReceiver imageReceiver = new ImageReceiver(view);
+                this.imageReceiver = imageReceiver;
+                imageReceiver.setImageCoords(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
+                imageReceiver.setForUserOrChat(userOrChat, avatarDrawable);
+                view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                    @Override
+                    public void onViewAttachedToWindow(View view2) {
+                        Chip.this.imageReceiver.onAttachedToWindow();
+                    }
+
+                    @Override
+                    public void onViewDetachedFromWindow(View view2) {
+                        Chip.this.imageReceiver.onDetachedFromWindow();
+                    }
+                });
+                if (view.isAttachedToWindow()) {
+                    imageReceiver.onAttachedToWindow();
+                }
+                paint.setColor(-1135603);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("⭐️");
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.star);
+                coloredImageSpan.spaceScaleX = 0.875f;
+                spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.append((CharSequence) " ");
+                spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i2, ','));
+                this.text = new Text(spannableStringBuilder, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+                AnimatedFloat animatedFloat = new AnimatedFloat(view, 2000L, new LinearInterpolator());
+                this.progress = animatedFloat;
+                animatedFloat.force(0.0f);
+                animatedFloat.set(1.0f);
+                this.killProgress = new AnimatedFloat(view, 350L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            }
+
+            public boolean draw(Canvas canvas) {
+                float f = this.progress.set(1.0f);
+                float f2 = this.killProgress.set(this.isKilled);
+                float dp = AndroidUtilities.dp(23.0f) + this.text.getCurrentWidth();
+                float dp2 = AndroidUtilities.dp(18.0f);
+                float lerp = AndroidUtilities.lerp(0.0f, AndroidUtilities.lerp(1.0f, 0.0f, f2), Utilities.clamp01(Math.min(AndroidUtilities.ilerp(f, 1.0f, 0.85f), AndroidUtilities.ilerp(f, 0.0f, 0.12f))));
+                int i = (int) (255.0f * lerp);
+                this.backgroundPaint.setAlpha(i);
+                RLottieDrawable rLottieDrawable = this.effect;
+                if (rLottieDrawable != null) {
+                    rLottieDrawable.setAlpha(i);
+                }
+                this.imageReceiver.setAlpha(lerp);
+                canvas.save();
+                double d = f;
+                float sin = (float) Math.sin(Math.pow(d, 0.44999998807907104d) * 3.141592653589793d * 3.0d);
+                canvas.translate(AndroidUtilities.dp(4.0f) * ((this.randomTranslation * 2.0f) - 1.0f), 0.0f);
+                canvas.rotate(((this.randomRotation * 2.0f) - 1.0f) * 1.5f);
+                canvas.translate(0.0f, (-AndroidUtilities.dp(200.0f)) * ((float) Math.pow(d, 0.800000011920929d)));
+                canvas.translate(AndroidUtilities.dp(5.0f) * sin * ((float) Math.pow(d, 0.5d)), 0.0f);
+                canvas.rotate(((float) (Math.sin((Math.pow(d, 0.44999998807907104d) - 0.15000000596046448d) * 3.141592653589793d * 3.0d) * Utilities.clamp01((float) Math.pow(d, 0.20000000298023224d)))) * (-6.0f));
+                float lerp2 = AndroidUtilities.lerp(0.4f, 1.0f, lerp);
+                canvas.scale(lerp2, lerp2);
+                canvas.translate((-dp) / 2.0f, (-dp2) / 2.0f);
+                float f3 = dp2 / 2.0f;
+                canvas.drawRoundRect(0.0f, 0.0f, dp, dp2, f3, f3, this.backgroundPaint);
+                this.imageReceiver.draw(canvas);
+                this.text.draw(canvas, AndroidUtilities.dp(18.0f), f3, -1, lerp);
+                canvas.restore();
+                if (this.effect != null) {
+                    canvas.save();
+                    canvas.translate(AndroidUtilities.dp(4.0f) * ((this.randomTranslation * 2.0f) - 1.0f), 0.0f);
+                    canvas.rotate(((this.randomRotation * 2.0f) - 1.0f) * 1.5f);
+                    canvas.translate(0.0f, (-AndroidUtilities.dp(200.0f)) * ((float) Math.pow(d, 0.800000011920929d)));
+                    canvas.translate(sin * AndroidUtilities.dp(5.0f) * ((float) Math.pow(d, 0.5d)), 0.0f);
+                    int dp3 = AndroidUtilities.dp(90.0f);
+                    int i2 = (-dp3) / 2;
+                    int i3 = dp3 / 2;
+                    this.effect.setBounds(i2, AndroidUtilities.dp(8.0f) + i2, i3, AndroidUtilities.dp(8.0f) + i3);
+                    this.effect.draw(canvas);
+                    canvas.restore();
+                }
+                return f >= 1.0f || f2 >= 1.0f;
+            }
+
+            public void detach() {
+                this.imageReceiver.onDetachedFromWindow();
+            }
+
+            public void kill() {
+                this.isKilled = true;
+            }
+        }
+
+        public void pushChip(long j, int i, int i2) {
+            this.chips.add(new Chip(this, this.currentAccount, j, i2, i, this.chips.size() < 5));
+            invalidate();
+        }
+
+        public void removeChipsFrom(long j) {
+            for (int i = 0; i < this.chips.size(); i++) {
+                if (((Chip) this.chips.get(i)).dialogId == j) {
+                    ((Chip) this.chips.get(i)).kill();
+                }
+            }
+        }
     }
 
     public PaidReactionButton(Context context, PaidReactionButtonEffectsView paidReactionButtonEffectsView, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         super(context);
         this.rect = new RectF();
         this.clipPath = new Path();
-        this.animatedFilled = new AnimatedFloat(this, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.animatedFilled = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
+        this.animatedShowCounter = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
         Paint paint2 = new Paint(1);
@@ -261,6 +412,7 @@ public class PaidReactionButton extends View {
     protected void dispatchDraw(Canvas canvas) {
         float dp = AndroidUtilities.dp(38.0f);
         float f = this.animatedFilled.set(this.filled);
+        float f2 = this.animatedShowCounter.set(this.stars > 0);
         this.rect.set((getWidth() - dp) / 2.0f, (getHeight() - dp) / 2.0f, (getWidth() + dp) / 2.0f, (getHeight() + dp) / 2.0f);
         int blendARGB = ColorUtils.blendARGB(-14670806, -548067, f);
         this.backgroundPaint.setColor(blendARGB);
@@ -284,23 +436,32 @@ public class PaidReactionButton extends View {
         this.particles.draw(canvas, -1, AndroidUtilities.lerp(0.5f, 1.0f, f));
         invalidate();
         canvas.restore();
-        float isNotEmpty = this.countScale * this.countText.isNotEmpty();
-        canvas.save();
-        RectF rectF3 = AndroidUtilities.rectTmp;
-        rectF3.set(getWidth() - dp, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.scale(isNotEmpty, isNotEmpty, rectF3.centerX(), rectF3.centerY());
-        rectF3.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
-        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.clearPaint);
-        rectF3.set(getWidth() - dp, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.backgroundPaint);
-        canvas.translate(rectF3.left + ((dp - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(7.0f));
-        this.countText.setTextColor(ColorUtils.blendARGB(-9866632, -1, f));
-        this.countText.draw(canvas);
-        canvas.restore();
+        if (f2 > 0.0f) {
+            float max = Math.max(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f) + this.countText.getCurrentWidth());
+            float isNotEmpty = this.countScale * this.countText.isNotEmpty() * f2;
+            canvas.save();
+            RectF rectF3 = AndroidUtilities.rectTmp;
+            rectF3.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+            canvas.scale(isNotEmpty, isNotEmpty, rectF3.centerX(), rectF3.centerY());
+            rectF3.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
+            canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.clearPaint);
+            rectF3.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
+            canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, this.backgroundPaint);
+            canvas.translate(rectF3.left + ((max - this.countText.getCurrentWidth()) / 2.0f), AndroidUtilities.dp(6.33f));
+            this.countText.setTextColor(ColorUtils.blendARGB(-9866632, -1, f));
+            this.countText.draw(canvas);
+            canvas.restore();
+        }
     }
 
     public void setCount(int i) {
-        this.countText.setText(LocaleController.formatNumber(i, ','));
+        this.stars = i;
+        if (i > 50000) {
+            this.countText.setText(AndroidUtilities.formatWholeNumber(i, 0));
+        } else {
+            this.countText.setText(LocaleController.formatNumber(i, ','));
+        }
+        invalidate();
         requestLayout();
     }
 

@@ -935,7 +935,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (PrivacyControlActivity.this.checkDiscard()) {
-                        PrivacyControlActivity.this.lambda$onBackPressed$341();
+                        PrivacyControlActivity.this.lambda$onBackPressed$340();
                     }
                 } else if (i2 == 1) {
                     PrivacyControlActivity.this.processDone();
@@ -1407,7 +1407,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         }
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void lambda$finished$11(int i, AlertDialog alertDialog, int i2) {
@@ -1415,7 +1415,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$finished$12(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     private void applyCurrentPrivacySettings() {
@@ -2451,7 +2451,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$28(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     @Override

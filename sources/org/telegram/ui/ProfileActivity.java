@@ -167,6 +167,7 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -4105,7 +4106,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         hintView.setAlpha(f2);
         anonymousClass7.addView(this.fwdRestrictedHint, LayoutHelper.createFrame(-2, -2.0f, 51, 12.0f, 0.0f, 12.0f, 0.0f));
         this.sharedMediaLayout.setForwardRestrictedHint(this.fwdRestrictedHint);
-        int i13 = Build.VERSION.SDK_INT;
         AnonymousClass29 anonymousClass29 = new PinchToZoomHelper((ViewGroup) getParentActivity().getWindow().getDecorView(), anonymousClass7) {
             AnonymousClass29(ViewGroup viewGroup, ViewGroup anonymousClass72) {
                 super(viewGroup, anonymousClass72);
@@ -4115,8 +4115,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             public void invalidateViews() {
                 super.invalidateViews();
                 ProfileActivity.this.fragmentView.invalidate();
-                for (int i14 = 0; i14 < ProfileActivity.this.avatarsViewPager.getChildCount(); i14++) {
-                    ProfileActivity.this.avatarsViewPager.getChildAt(i14).invalidate();
+                for (int i13 = 0; i13 < ProfileActivity.this.avatarsViewPager.getChildCount(); i13++) {
+                    ProfileActivity.this.avatarsViewPager.getChildAt(i13).invalidate();
                 }
                 if (ProfileActivity.this.writeButton != null) {
                     ProfileActivity.this.writeButton.invalidate();
@@ -4201,7 +4201,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         };
         this.blurredView = anonymousClass31;
-        if (i13 >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             anonymousClass31.setForeground(new ColorDrawable(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_windowBackgroundWhite), 100)));
         }
         this.blurredView.setFocusable(false);
@@ -4276,7 +4276,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.stopTabsReorder();
                     return;
                 } else {
-                    ProfileActivity.this.lambda$onBackPressed$341();
+                    ProfileActivity.this.lambda$onBackPressed$340();
                     return;
                 }
             }
@@ -4678,7 +4678,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                 }
             }
-            ProfileActivity.this.lambda$onBackPressed$341();
+            ProfileActivity.this.lambda$onBackPressed$340();
             Context context = ProfileActivity.this.getContext();
             if (context != null) {
                 BulletinFactory.of(Bulletin.BulletinWindow.make(context), ProfileActivity.this.resourcesProvider).createSimpleBulletin(R.raw.ic_delete, LocaleController.getPluralString("TopicsDeleted", 1)).show();
@@ -6536,7 +6536,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 String str7 = z ? "Reset suggestions" : null;
                 String string11 = z ? LocaleController.getString(R.string.DebugMenuClearWebViewCache) : null;
                 String string12 = LocaleController.getString(R.string.DebugMenuClearWebViewCookies);
-                int i5 = Build.VERSION.SDK_INT;
                 String string13 = LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug);
                 String str8 = (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) ? SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode" : null;
                 if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -6557,10 +6556,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 String str17 = !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API";
                 String str18 = BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null;
                 String str19 = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
-                String str20 = (!SharedConfig.canBlurChat() || i5 < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
+                String str20 = (!SharedConfig.canBlurChat() || Build.VERSION.SDK_INT < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
                 String str21 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
                 String str22 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
-                if (i5 >= 28) {
+                if (Build.VERSION.SDK_INT >= 28) {
                     str4 = LocaleController.getString(SharedConfig.useSystemBoldFont ? R.string.DebugMenuDontUseSystemBoldFont : R.string.DebugMenuUseSystemBoldFont);
                 } else {
                     str4 = null;
@@ -6569,8 +6568,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i6) {
-                        ProfileActivity.AnonymousClass14.this.lambda$onItemClick$3(context, dialogInterface, i6);
+                    public final void onClick(DialogInterface dialogInterface, int i5) {
+                        ProfileActivity.AnonymousClass14.this.lambda$onItemClick$3(context, dialogInterface, i5);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -7668,8 +7667,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         public void invalidateViews() {
             super.invalidateViews();
             ProfileActivity.this.fragmentView.invalidate();
-            for (int i14 = 0; i14 < ProfileActivity.this.avatarsViewPager.getChildCount(); i14++) {
-                ProfileActivity.this.avatarsViewPager.getChildAt(i14).invalidate();
+            for (int i13 = 0; i13 < ProfileActivity.this.avatarsViewPager.getChildCount(); i13++) {
+                ProfileActivity.this.avatarsViewPager.getChildAt(i13).invalidate();
             }
             if (ProfileActivity.this.writeButton != null) {
                 ProfileActivity.this.writeButton.invalidate();
@@ -7866,9 +7865,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 frameLayout.setVisibility(0);
                 NestedFrameLayout nestedFrameLayout = this.contentView;
                 FrameLayout frameLayout2 = this.floatingButtonContainer;
-                float f = 56;
                 boolean z = LocaleController.isRTL;
-                nestedFrameLayout.addView(frameLayout2, LayoutHelper.createFrame(56, f, (z ? 3 : 5) | 80, z ? 14.0f : 0.0f, 0.0f, z ? 0.0f : 14.0f, 14.0f));
+                nestedFrameLayout.addView(frameLayout2, LayoutHelper.createFrame(56, 56.0f, (z ? 3 : 5) | 80, z ? 14.0f : 0.0f, 0.0f, z ? 0.0f : 14.0f, 14.0f));
                 this.floatingButtonContainer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -8103,7 +8101,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.this.lambda$onBlockContactClicked$48();
                 }
             });
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 
@@ -8114,7 +8112,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             notificationCenter.removeObserver(this, i2);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
             this.playProfileAnimation = 0;
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
             return;
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(this.userId));
@@ -8135,7 +8133,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
         this.disableProfileAnimation = true;
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(this.dialogId), user, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -9079,7 +9077,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         INavigationLayout iNavigationLayout;
         if (this.userId != 0) {
             if (this.playProfileAnimation != 0 && (iNavigationLayout = this.parentLayout) != null && iNavigationLayout.getFragmentStack() != null && this.parentLayout.getFragmentStack().size() >= 2 && (this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.userId));
@@ -9104,7 +9102,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 chatActivity.setPreloadedSticker(getMediaDataController().getGreetingsSticker(), false);
                 presentFragment(chatActivity, z);
                 if (AndroidUtilities.isTablet()) {
-                    lambda$onBackPressed$341();
+                    lambda$onBackPressed$340();
                 }
             }
         }
@@ -9115,13 +9113,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (!this.isTopic || this.playProfileAnimation == 0 || (iNavigationLayout = this.parentLayout) == null || iNavigationLayout.getFragmentStack() == null || this.parentLayout.getFragmentStack().size() < 2 || !(this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
             return;
         }
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     private void openGroup() {
         INavigationLayout iNavigationLayout;
         if (this.playProfileAnimation != 0 && (iNavigationLayout = this.parentLayout) != null && iNavigationLayout.getFragmentStack() != null && this.parentLayout.getFragmentStack().size() >= 2 && (this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2) instanceof ChatActivity)) {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
             return;
         }
         Bundle bundle = new Bundle();
@@ -10261,7 +10259,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         int i = NotificationCenter.closeChats;
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -11682,7 +11680,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (longValue2 == getDialogId()) {
                 if (booleanValue2 || this.parentLayout.getLastFragment() != this) {
                     if (this.parentLayout.getLastFragment() == this) {
-                        lambda$onBackPressed$341();
+                        lambda$onBackPressed$340();
                         return;
                     } else {
                         removeSelfFromStack(true);
@@ -11908,7 +11906,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (getDialogId() == ((Long) objArr[0]).longValue()) {
                 INavigationLayout iNavigationLayout = this.parentLayout;
                 if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                    lambda$onBackPressed$341();
+                    lambda$onBackPressed$340();
                     return;
                 } else {
                     removeSelfFromStack();
@@ -12305,6 +12303,22 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         checkPhotoDescriptionAlpha();
     }
 
+    public float getInternalTranslationX() {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView != null) {
+            return recyclerListView.getTranslationX();
+        }
+        return 0.0f;
+    }
+
+    public float getInternalVisibility() {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView != null) {
+            return recyclerListView.getAlpha();
+        }
+        return 0.0f;
+    }
+
     @Override
     public void onTransitionAnimationEnd(boolean z, boolean z2) {
         if (z) {
@@ -12444,6 +12458,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$onCustomTransitionAnimation$89(ValueAnimator valueAnimator) {
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout instanceof ActionBarLayout) {
+            ((ActionBarLayout) iNavigationLayout).invalidate();
+        }
         View view = this.fragmentView;
         if (view != null) {
             view.invalidate();
@@ -12721,7 +12739,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         getMessagesController().deleteParticipantFromChat(this.chatId, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())));
         this.playProfileAnimation = 0;
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public boolean isChat() {
@@ -16843,7 +16861,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             BaseFragment baseFragment = (BaseFragment) this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2);
             if (baseFragment instanceof ChatActivity) {
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 ((ChatActivity) baseFragment).chatActivityEnterView.setCommand(null, str, false, false);
             }
         }

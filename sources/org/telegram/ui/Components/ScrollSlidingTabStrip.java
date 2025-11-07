@@ -851,7 +851,8 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
             this.tabBounds.set(f - lerp3, lerp2 - lerp4, f + lerp3, lerp2 + lerp4);
             this.selectorPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_emojiPanelIcon), 46));
             this.selectorPaint.setAlpha((int) (r2.getAlpha() * f5));
-            canvas.drawRoundRect(this.tabBounds, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectorPaint);
+            RectF rectF = this.tabBounds;
+            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.tabBounds.height() / 2.0f, this.selectorPaint);
         }
         super.dispatchDraw(canvas);
         if (isInEditMode() || this.tabCount == 0 || this.underlineHeight <= 0) {

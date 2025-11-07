@@ -39,7 +39,7 @@ public class BotBiometrySettings extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    BotBiometrySettings.this.lambda$onBackPressed$341();
+                    BotBiometrySettings.this.lambda$onBackPressed$340();
                 }
             }
         });

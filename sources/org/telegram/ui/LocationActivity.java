@@ -351,7 +351,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         public void lambda$addInfoView$1(final VenueLocation venueLocation, View view) {
             if (LocationActivity.this.parentFragment == null || !LocationActivity.this.parentFragment.isInScheduleMode()) {
                 LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, true, 0, 0L);
-                LocationActivity.this.lambda$onBackPressed$341();
+                LocationActivity.this.lambda$onBackPressed$340();
             } else {
                 AlertsCreator.createScheduleDatePickerDialog(LocationActivity.this.getParentActivity(), LocationActivity.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                     @Override
@@ -364,7 +364,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$addInfoView$0(VenueLocation venueLocation, boolean z, int i, int i2) {
             LocationActivity.this.delegate.didSelectLocation(venueLocation.venue, LocationActivity.this.locationType, z, i, 0L);
-            LocationActivity.this.lambda$onBackPressed$341();
+            LocationActivity.this.lambda$onBackPressed$340();
         }
 
         public void removeInfoView(IMapsProvider.IMarker iMarker) {
@@ -675,7 +675,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
             if (this.dialogId == 0) {
                 this.delegate.didSelectLocation(tL_messageMediaVenue, 4, true, 0, 0L);
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
             final AlertDialog[] alertDialogArr = {new AlertDialog(getParentActivity(), 3)};
@@ -747,14 +747,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 return;
             } else {
                 this.delegate.didSelectLocation(tL_messageMediaGeo, this.locationType, true, 0, 0L);
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
         }
         if (this.locationType == 2 && getLocationController().isSharingLocation(this.dialogId) && this.adapter.getItemViewType(i) == 7) {
             getLocationController().removeSharingLocation(this.dialogId);
             this.adapter.notifyDataSetChanged();
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
             return;
         }
         if (this.locationType == 2 && getLocationController().isSharingLocation(this.dialogId) && this.adapter.getItemViewType(i) == 6) {
@@ -765,7 +765,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             if (getLocationController().isSharingLocation(this.dialogId)) {
                 getLocationController().removeSharingLocation(this.dialogId);
                 this.adapter.notifyDataSetChanged();
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
             openShareLiveLocation(false, 0);
@@ -784,7 +784,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 return;
             } else {
                 this.delegate.didSelectLocation((TLRPC.TL_messageMediaVenue) item, this.locationType, true, 0, 0L);
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
         }
@@ -811,7 +811,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
         alertDialogArr[0] = null;
         this.delegate.didSelectLocation(tL_messageMediaVenue, 4, true, 0, 0L);
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void lambda$createView$14(int i, DialogInterface dialogInterface) {
@@ -820,12 +820,12 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
 
     public void lambda$createView$15(TLRPC.TL_messageMediaGeo tL_messageMediaGeo, boolean z, int i, int i2) {
         this.delegate.didSelectLocation(tL_messageMediaGeo, this.locationType, z, i, 0L);
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void lambda$createView$16(Object obj, boolean z, int i, int i2) {
         this.delegate.didSelectLocation((TLRPC.TL_messageMediaVenue) obj, this.locationType, z, i, 0L);
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public boolean lambda$createView$18(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
@@ -999,13 +999,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             });
         } else {
             this.delegate.didSelectLocation(item, this.locationType, true, 0, 0L);
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 
     public void lambda$createView$26(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, boolean z, int i, int i2) {
         this.delegate.didSelectLocation(tL_messageMediaVenue, this.locationType, z, i, 0L);
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     private boolean isActiveThemeDark() {
@@ -1400,7 +1400,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             getUndoView().showWithAction(0L, 24, Integer.valueOf(i2), user, (Runnable) null, (Runnable) null);
             return;
         }
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     private Bitmap createPlaceBitmap(int i) {
@@ -2527,7 +2527,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             FileLog.e(e);
         }
         this.hasScreenshot = true;
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     @Override

@@ -104,6 +104,92 @@ public abstract class PermissionRequest {
         }
     }
 
+    public static void ensureAllPermissions(int i, int i2, String[] strArr, Utilities.Callback callback) {
+        ensureAllPermissions(i, i2, strArr, strArr, callback);
+    }
+
+    public static void ensureAllPermissions(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback callback) {
+        int checkSelfPermission;
+        boolean shouldShowRequestPermissionRationale;
+        final Activity activity = LaunchActivity.instance;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT < 23) {
+            if (callback != null) {
+                callback.run(Boolean.TRUE);
+                return;
+            }
+            return;
+        }
+        for (String str : strArr) {
+            checkSelfPermission = activity.checkSelfPermission(str);
+            if (checkSelfPermission != 0) {
+                for (String str2 : strArr) {
+                    shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str2);
+                    if (shouldShowRequestPermissionRationale) {
+                        new AlertDialog.Builder(activity, null).setTopAnimation(i, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(i2))).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
+                            @Override
+                            public final void onClick(AlertDialog alertDialog, int i3) {
+                                PermissionRequest.lambda$ensureAllPermissions$2(activity, alertDialog, i3);
+                            }
+                        }).setNegativeButton(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null).create().show();
+                        if (callback != null) {
+                            callback.run(Boolean.FALSE);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                requestPermissions(strArr2, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        PermissionRequest.lambda$ensureAllPermissions$3(strArr2, activity, callback, (int[]) obj);
+                    }
+                });
+                return;
+            }
+        }
+        if (callback != null) {
+            callback.run(Boolean.TRUE);
+        }
+    }
+
+    public static void lambda$ensureAllPermissions$2(Activity activity, AlertDialog alertDialog, int i) {
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            activity.startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static void lambda$ensureAllPermissions$3(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
+        int checkSelfPermission;
+        int length = strArr.length;
+        boolean z = false;
+        int i = 0;
+        while (true) {
+            if (i >= length) {
+                z = true;
+                break;
+            }
+            checkSelfPermission = activity.checkSelfPermission(strArr[i]);
+            if (checkSelfPermission != 0) {
+                break;
+            } else {
+                i++;
+            }
+        }
+        if (callback != null) {
+            callback.run(Boolean.valueOf(z));
+        }
+    }
+
     public static void requestPermission(String str, final Utilities.Callback callback) {
         requestPermissions(new String[]{str}, callback != null ? new Utilities.Callback() {
             @Override

@@ -801,10 +801,10 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
         }
         if (topicsFragment != null) {
-            topicsFragment.lambda$onBackPressed$341();
+            topicsFragment.lambda$onBackPressed$340();
             dialogsActivity.removeSelfFromStack();
         } else {
-            dialogsActivity.lambda$onBackPressed$341();
+            dialogsActivity.lambda$onBackPressed$340();
         }
         return true;
     }

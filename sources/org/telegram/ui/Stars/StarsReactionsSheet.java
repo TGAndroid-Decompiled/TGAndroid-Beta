@@ -124,6 +124,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
     public long peer;
     private final ArrayList reactors;
     private final Theme.ResourcesProvider resourcesProvider;
+    private final boolean sendEnabled;
     private boolean sending;
     private int sentMessageId;
     private final View separatorView;
@@ -150,12 +151,18 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         return false;
     }
 
-    public StarsReactionsSheet(final Context context, final int i, final long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList arrayList, boolean z, final boolean z2, final Theme.ResourcesProvider resourcesProvider) {
+    public StarsReactionsSheet(final Context context, final int i, final long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList arrayList, boolean z, final boolean z2, long j2, final Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         TLRPC.MessageReactor messageReactor;
+        FrameLayout frameLayout;
         boolean z3;
         String formatString;
+        Theme.ResourcesProvider resourcesProvider2;
         TLRPC.MessageReactor messageReactor2;
+        FrameLayout frameLayout2;
+        long j3;
+        int i2;
+        int i3 = 9;
         this.starRef = new ColoredImageSpan[1];
         this.checkedVisiblity = false;
         this.resourcesProvider = resourcesProvider;
@@ -163,6 +170,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         this.messageObject = messageObject;
         this.reactors = arrayList;
         this.liveStories = z2;
+        this.sendEnabled = z;
         BalanceCloud balanceCloud = new BalanceCloud(context, i, resourcesProvider);
         this.balanceCloud = balanceCloud;
         balanceCloud.setScaleX(0.6f);
@@ -197,78 +205,84 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         boolean z4 = (arrayList == null || arrayList.isEmpty()) ? false : true;
         if (z2) {
             if (arrayList != null) {
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    if (((TLRPC.MessageReactor) arrayList.get(i2)).my) {
-                        messageReactor2 = (TLRPC.MessageReactor) arrayList.get(i2);
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= arrayList.size()) {
                         break;
                     }
+                    if (((TLRPC.MessageReactor) arrayList.get(i4)).my) {
+                        break;
+                    }
+                    i4++;
                 }
             }
-            messageReactor2 = null;
-            this.peer = messageReactor2 != null ? DialogObject.getPeerDialogId(messageReactor2.peer_id) : UserConfig.getInstance(i).getClientUserId();
+            this.peer = j2;
         } else {
             this.peer = StarsController.getInstance(i).getPaidReactionsDialogId(messageObject);
         }
-        long j2 = this.peer;
-        this.lastSelectedPeer = j2 != 2666000 ? j2 : clientUserId;
+        long j4 = this.peer;
+        this.lastSelectedPeer = j4 != 2666000 ? j4 : clientUserId;
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
         this.layout = linearLayout;
         linearLayout.setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.topLayout = frameLayout;
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
-        this.slider = new StarsSlider(context) {
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.topLayout = frameLayout3;
+        linearLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, -2));
+        TLRPC.MessageReactor messageReactor5 = messageReactor;
+        this.slider = new StarsSlider(context, resourcesProvider) {
             @Override
-            public void onValueChanged(int i3) {
-                long j3 = i3;
-                StarsReactionsSheet.this.updateSenders(j3);
+            public void onValueChanged(int i5) {
+                long j5 = i5;
+                StarsReactionsSheet.this.updateSenders(j5);
                 if (StarsReactionsSheet.this.buttonView != null) {
-                    StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j3, ',')), StarsReactionsSheet.this.starRef), true);
+                    StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j5, ',')), StarsReactionsSheet.this.starRef), true);
                 }
                 if (z2) {
-                    StarsReactionsSheet.this.commentMessage.stars = j3;
-                    StarsReactionsSheet.this.commentView.set(0L, StarsReactionsSheet.this.commentMessage);
-                    setColor(HighlightMessageSheet.getTierOption(i3, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i3, HighlightMessageSheet.TIER_COLOR2), true);
+                    StarsReactionsSheet.this.commentMessage.stars = j5;
+                    StarsReactionsSheet.this.commentView.set(StarsReactionsSheet.this.commentMessage);
+                    setColor(HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR2), true);
                 }
             }
 
             @Override
-            public void setValue(int i3) {
-                super.setValue(i3);
+            public void setValue(int i5) {
+                super.setValue(i5);
                 if (z2) {
-                    setColor(HighlightMessageSheet.getTierOption(i3, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i3, HighlightMessageSheet.TIER_COLOR2), true);
+                    setColor(HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR2), true);
                 }
             }
         };
-        int i3 = 9;
         int[] iArr = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
-        long j3 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
+        long j5 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
         ArrayList arrayList2 = new ArrayList();
-        int i4 = 0;
+        int i5 = 0;
         while (true) {
-            if (i4 >= i3) {
+            if (i5 >= i3) {
                 break;
             }
-            int i5 = iArr[i4];
-            if (i5 > j3) {
-                arrayList2.add(Integer.valueOf((int) j3));
+            int i6 = iArr[i5];
+            if (i6 > j5) {
+                arrayList2.add(Integer.valueOf((int) j5));
                 break;
             }
-            arrayList2.add(Integer.valueOf(i5));
-            if (iArr[i4] == j3) {
+            arrayList2.add(Integer.valueOf(i6));
+            if (iArr[i5] == j5) {
                 break;
             }
-            i4++;
+            i5++;
             i3 = 9;
         }
         int[] iArr2 = new int[arrayList2.size()];
-        for (int i6 = 0; i6 < arrayList2.size(); i6++) {
-            iArr2[i6] = ((Integer) arrayList2.get(i6)).intValue();
+        for (int i7 = 0; i7 < arrayList2.size(); i7++) {
+            iArr2[i7] = ((Integer) arrayList2.get(i7)).intValue();
         }
         this.slider.setSteps(100, iArr2);
-        if (z) {
-            this.topLayout.addView(this.slider, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, z2 ? -50.0f : 0.0f, 0.0f, 0.0f));
+        if (z || z2) {
+            if (!z) {
+                this.slider.setAlpha(0.5f);
+            }
+            this.topLayout.addView(this.slider, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, z2 ? -50.0f : 0.0f, 0.0f, (!z2 || z4) ? 0.0f : -40.0f));
         }
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.toptopLayout = linearLayout2;
@@ -276,17 +290,17 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         if (!z2) {
             this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
         }
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.dialogSelectorLayout = frameLayout2;
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.dialogSelectorInnerLayout = frameLayout3;
-        frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider)));
+        FrameLayout frameLayout4 = new FrameLayout(context);
+        this.dialogSelectorLayout = frameLayout4;
+        FrameLayout frameLayout5 = new FrameLayout(context);
+        this.dialogSelectorInnerLayout = frameLayout5;
+        frameLayout5.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
         this.dialogImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
         backupImageView.getImageReceiver().setCrossfadeWithOldImage(true);
         updatePeerDialog();
-        frameLayout3.addView(backupImageView, LayoutHelper.createFrame(28, 28, 115));
+        frameLayout5.addView(backupImageView, LayoutHelper.createFrame(28, 28, 115));
         ImageView imageView = new ImageView(context);
         this.dialogSelectorIconView = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -295,21 +309,21 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
         imageView.setImageResource(R.drawable.arrows_select);
-        frameLayout3.addView(imageView, LayoutHelper.createFrame(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
-        frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(52, 28, 17));
-        frameLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), 0);
-        linearLayout2.addView(frameLayout2, LayoutHelper.createLinear(-2, -1, 0.0f, 115, 6, 4, 6, 0));
-        ScaleStateListAnimator.apply(frameLayout2);
+        frameLayout5.addView(imageView, LayoutHelper.createFrame(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
+        frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(52, 28, 17));
+        frameLayout4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), 0);
+        linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(-2, -1, 0.0f, 115, 6, 4, 6, 0));
+        ScaleStateListAnimator.apply(frameLayout4);
         BotStarsController.getInstance(i).loadAdminedChannels();
         TextView textView = new TextView(context) {
             @Override
-            protected void onMeasure(int i7, int i8) {
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
+            protected void onMeasure(int i8, int i9) {
+                super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
             }
         };
         this.titleView = textView;
-        int i7 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i7));
+        int i8 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i8, resourcesProvider));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.StarsReactionTitle2));
@@ -336,15 +350,17 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         final TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         TextView textView2 = new TextView(context);
         this.statusView = textView2;
-        textView2.setTextColor(Theme.getColor(i7));
+        textView2.setTextColor(Theme.getColor(i8, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
         textView2.setSingleLine(false);
         textView2.setMaxLines(3);
-        if (messageReactor != null) {
-            formatString = LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor.count);
+        if (messageReactor5 != null) {
+            formatString = LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor5.count);
+            frameLayout = frameLayout4;
             z3 = false;
         } else {
+            frameLayout = frameLayout4;
             z3 = false;
             formatString = LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title);
         }
@@ -395,7 +411,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             View view2 = new View(context);
             this.checkSeparatorView = view2;
             view2.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-            if (!z2 && (z || messageReactor != null)) {
+            if (!z2 && (z || messageReactor5 != null)) {
                 this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
             }
         } else {
@@ -404,23 +420,30 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.checkSeparatorView = null;
         }
         if (z2) {
-            int i8 = Theme.key_dialogTextBlack;
-            TextView makeTextView = TextHelper.makeTextView(context, 20.0f, i8, true, resourcesProvider);
+            int i9 = Theme.key_dialogTextBlack;
+            TextView makeTextView = TextHelper.makeTextView(context, 20.0f, i9, true, resourcesProvider);
             makeTextView.setGravity(17);
-            makeTextView.setText("React with Stars");
+            makeTextView.setText(LocaleController.getString(z ? R.string.LiveStoryReactTitle : R.string.LiveStoryReactAdminTitle));
             this.layout.addView(makeTextView, LayoutHelper.createLinear(-1, -2, 7, 32, 6, 32, 9));
-            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, i8, false, resourcesProvider);
+            TextView makeTextView2 = TextHelper.makeTextView(context, 14.0f, i9, false, resourcesProvider);
             makeTextView2.setGravity(17);
-            makeTextView2.setText(AndroidUtilities.replaceTags("Highlight and pin your message by sending Stars to **" + DialogObject.getName(j) + "**"));
+            if (z) {
+                i2 = R.string.LiveStoryReactText;
+            } else {
+                i2 = z4 ? R.string.LiveStoryReactAdminText : R.string.LiveStoryReactAdminEmptyText;
+            }
+            makeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, DialogObject.getName(j))));
             this.layout.addView(makeTextView2, LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 20));
+        }
+        if (z2) {
             LiveCommentsView.Message message = new LiveCommentsView.Message();
             this.commentMessage = message;
             message.dialogId = this.peer;
             message.stars = 50L;
             message.isReaction = true;
-            LiveCommentsView.LiveCommentView liveCommentView = new LiveCommentsView.LiveCommentView(context, true);
+            LiveCommentsView.LiveCommentView liveCommentView = new LiveCommentsView.LiveCommentView(context, i, true);
             this.commentView = liveCommentView;
-            liveCommentView.set(0L, this.commentMessage);
+            liveCommentView.set(this.commentMessage);
             this.layout.addView(this.commentView, LayoutHelper.createLinear(-2, -2, 17, 32, 0, 32, 20));
         }
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
@@ -435,7 +458,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         checkBox2.setDrawBackgroundAsArc(10);
         TextView textView3 = new TextView(context);
         this.checkTextView = textView3;
-        textView3.setTextColor(Theme.getColor(i7, resourcesProvider));
+        textView3.setTextColor(Theme.getColor(i8, resourcesProvider));
         textView3.setTextSize(1, 14.0f);
         textView3.setText(LocaleController.getString(R.string.StarsReactionShowMeInTopSenders));
         LinearLayout linearLayout4 = new LinearLayout(context);
@@ -452,44 +475,64 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         });
         ScaleStateListAnimator.apply(linearLayout4, 0.05f, 1.2f);
         linearLayout4.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        if (!z2 && (z || messageReactor != null)) {
+        if (!z2 && (z || messageReactor5 != null)) {
             this.layout.addView(linearLayout4, LayoutHelper.createLinear(-2, -2, 1, 0, z4 ? 10 : 4, 0, 10));
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
-        if (z) {
+        if (z || z2) {
+            if (!z) {
+                buttonWithCounterView.setAlpha(0.5f);
+                buttonWithCounterView.setEnabled(false);
+            }
             this.layout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
         }
         updateSenders(0L);
         buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(50L, ',')), this.starRef), true);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view3) {
-                StarsReactionsSheet.this.lambda$new$7(messageObject, chatActivity, i, context, resourcesProvider, chat, view3);
-            }
-        });
+        if (z) {
+            j3 = 0;
+            frameLayout2 = frameLayout;
+            resourcesProvider2 = resourcesProvider;
+            messageReactor2 = messageReactor5;
+            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view3) {
+                    StarsReactionsSheet.this.lambda$new$7(messageObject, chatActivity, i, z2, context, resourcesProvider, j, chat, view3);
+                }
+            });
+        } else {
+            resourcesProvider2 = resourcesProvider;
+            messageReactor2 = messageReactor5;
+            frameLayout2 = frameLayout;
+            j3 = 0;
+        }
         frameLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 StarsReactionsSheet.this.lambda$new$9(i, resourcesProvider, j, z2, view3);
             }
         });
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider2);
+        int i10 = 1;
         linksTextView.setTextSize(1, 13.0f);
-        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsReactionTerms), new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.lambda$new$10(context);
-            }
-        }));
+        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider2));
+        if (z2 && !z) {
+            linksTextView.setText(LocaleController.getString(R.string.LiveStoryReactAdminCant));
+        } else {
+            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsReactionTerms), new Runnable() {
+                @Override
+                public final void run() {
+                    StarsReactionsSheet.lambda$new$10(context);
+                }
+            }));
+        }
         linksTextView.setGravity(17);
         linksTextView.setLinkTextColor(getThemedColor(Theme.key_dialogTextLink));
-        if (z) {
+        if (z || z2) {
             this.layout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 14, 8, 14, 12));
         }
         setCustomView(this.layout);
-        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 2) {
+        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, i10, 2) {
             @Override
             protected void startIdleAnimation() {
             }
@@ -505,16 +548,16 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         this.container.addView(gLIconTextureView, LayoutHelper.createFrame(150, 150.0f));
         this.slider.setValue(50);
         if (arrayList != null) {
-            long j4 = 0;
-            for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                long j5 = ((TLRPC.MessageReactor) arrayList.get(i9)).count;
-                if (j5 > j4) {
-                    j4 = j5;
+            long j6 = j3;
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                long j7 = ((TLRPC.MessageReactor) arrayList.get(i11)).count;
+                if (j7 > j6) {
+                    j6 = j7;
                 }
             }
-            j4 = messageReactor != null ? j4 - messageReactor.count : j4;
-            if (j4 > 0) {
-                this.slider.setStarsTop(j4 + 1);
+            j6 = messageReactor2 != null ? j6 - r1.count : j6;
+            if (j6 > j3) {
+                this.slider.setStarsTop(j6 + 1);
             }
         }
     }
@@ -576,50 +619,51 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
     }
 
-    public void lambda$new$7(final MessageObject messageObject, final ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC.Chat chat, View view) {
+    public void lambda$new$7(final MessageObject messageObject, final ChatActivity chatActivity, int i, boolean z, Context context, Theme.ResourcesProvider resourcesProvider, long j, TLRPC.Chat chat, View view) {
         if (this.sending) {
             return;
         }
         final long value = this.slider.getValue();
-        Utilities.Callback2Return callback2Return = this.onSendListener;
-        if (callback2Return != null) {
-            this.sentMessageId = ((Integer) callback2Return.run(Long.valueOf(this.peer), Long.valueOf(value))).intValue();
-            AndroidUtilities.runOnUIThread(new Runnable() {
+        if (!(this.onSendListener == null && (messageObject == null || chatActivity == null)) && this.iconAnimator == null) {
+            if (MessagesController.getInstance(i).isFrozen()) {
+                AccountFrozenAlert.show(i);
+                return;
+            }
+            final StarsController starsController = StarsController.getInstance(i);
+            Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    StarsReactionsSheet.this.lambda$new$4();
+                    StarsReactionsSheet.this.lambda$new$6(value, starsController, messageObject, chatActivity);
                 }
-            });
-            return;
-        }
-        if (messageObject == null || chatActivity == null || this.iconAnimator != null) {
-            return;
-        }
-        if (MessagesController.getInstance(i).isFrozen()) {
-            AccountFrozenAlert.show(i);
-            return;
-        }
-        final StarsController starsController = StarsController.getInstance(i);
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.this.lambda$new$6(starsController, messageObject, chatActivity, value);
+            };
+            if (!starsController.balanceAvailable() || starsController.getBalance().amount >= value) {
+                runnable.run();
+            } else if (z) {
+                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 17, DialogObject.getShortName(i, j), runnable, 0L).show();
+            } else {
+                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable, 0L).show();
             }
-        };
-        if (starsController.balanceAvailable() && starsController.getBalance().amount < value) {
-            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable, 0L).show();
-        } else {
-            runnable.run();
         }
     }
 
-    public void lambda$new$4() {
-        this.sending = true;
-        animate3dIcon(null);
-        AndroidUtilities.runOnUIThread(new StarsReactionsSheet$$ExternalSyntheticLambda12(this), 240L);
-    }
-
-    public void lambda$new$6(StarsController starsController, MessageObject messageObject, ChatActivity chatActivity, long j) {
+    public void lambda$new$6(long j, StarsController starsController, MessageObject messageObject, ChatActivity chatActivity) {
+        Utilities.Callback2Return callback2Return = this.onSendListener;
+        if (callback2Return != null) {
+            int intValue = ((Integer) callback2Return.run(Long.valueOf(this.peer), Long.valueOf(j))).intValue();
+            this.sentMessageId = intValue;
+            if (intValue == Integer.MIN_VALUE) {
+                dismiss();
+                return;
+            } else {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StarsReactionsSheet.this.lambda$new$4();
+                    }
+                });
+                return;
+            }
+        }
         final StarsController.PendingPaidReactions sendPaidReaction = starsController.sendPaidReaction(messageObject, chatActivity, j, false, true, Long.valueOf(this.peer));
         if (sendPaidReaction == null) {
             return;
@@ -632,6 +676,12 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         });
     }
 
+    public void lambda$new$4() {
+        this.sending = true;
+        animate3dIcon(null);
+        AndroidUtilities.runOnUIThread(new StarsReactionsSheet$$ExternalSyntheticLambda14(this), 240L);
+    }
+
     public void lambda$new$5(final StarsController.PendingPaidReactions pendingPaidReactions) {
         this.sending = true;
         Objects.requireNonNull(pendingPaidReactions);
@@ -641,7 +691,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 StarsController.PendingPaidReactions.this.apply();
             }
         });
-        AndroidUtilities.runOnUIThread(new StarsReactionsSheet$$ExternalSyntheticLambda12(this), 240L);
+        AndroidUtilities.runOnUIThread(new StarsReactionsSheet$$ExternalSyntheticLambda14(this), 240L);
     }
 
     public void lambda$new$9(int i, Theme.ResourcesProvider resourcesProvider, long j, final boolean z, View view) {
@@ -679,7 +729,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         if (z) {
             LiveCommentsView.Message message = this.commentMessage;
             message.dialogId = j;
-            this.commentView.set(0L, message);
+            this.commentView.set(message);
         }
         updatePeerDialog();
         this.checkBox.setChecked(true, true);
@@ -710,7 +760,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         if (j == 2666000) {
             avatarDrawable.setAvatarType(21);
             int i = Theme.key_avatar_backgroundGray;
-            avatarDrawable.setColor(Theme.getColor(i), Theme.getColor(i));
+            avatarDrawable.setColor(Theme.getColor(i, this.resourcesProvider), Theme.getColor(i, this.resourcesProvider));
             this.dialogImageView.setForUserOrChat(null, avatarDrawable);
             return;
         }
@@ -777,7 +827,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
 
     public void updateSenders(long j) {
         long j2;
-        if (this.topSendersView != null) {
+        if ((!this.liveStories || this.sendEnabled || j <= 0) && this.topSendersView != null) {
             ArrayList arrayList = new ArrayList();
             long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
             long j3 = 0;
@@ -1136,6 +1186,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         private long pressTime;
         public float progress;
         private ValueAnimator progressAnimator;
+        private final Theme.ResourcesProvider resourcesProvider;
         private final Paint sliderCirclePaint;
         private final RectF sliderCircleRect;
         private final Paint sliderInnerPaint;
@@ -1160,7 +1211,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
 
         protected abstract void onValueChanged(int i);
 
-        public StarsSlider(Context context) {
+        public StarsSlider(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.sliderInnerPaint = new Paint(1);
             this.sliderPaint = new Paint(1);
@@ -1194,6 +1245,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.textRect = new RectF();
             this.textPath = new Path();
             this.progress = 0.0f;
+            this.resourcesProvider = resourcesProvider;
             Drawable mutate = context.getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
             this.counterImage = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
@@ -1203,7 +1255,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             animatedTextDrawable.setCallback(this);
             animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             animatedTextDrawable.setGravity(17);
-            paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+            paint.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         }
@@ -1396,7 +1448,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp4) < ((float) AndroidUtilities.dp(12.0f))));
                 float currentWidth2 = (this.topText.getCurrentWidth() + dp4) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp4 - lerp3) - this.topText.getCurrentWidth() : lerp3 + dp4;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-                this.topPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground), 0.4f));
+                this.topPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider), 0.4f));
                 RectF rectF5 = this.sliderInnerRect;
                 float lerp4 = AndroidUtilities.lerp(rectF5.top, rectF5.centerY(), f3);
                 RectF rectF6 = this.sliderInnerRect;
@@ -1961,13 +2013,16 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                     this.senders.add(sender);
                     sender.animatedPosition.set((arrayList.size() - 1) - i3, true);
                 }
+                sender.index = (arrayList.size() - 1) - i3;
                 sender.setStars(senderData3.stars);
+                if (this.liveStories) {
+                    sender.setPlace(i3 + 1);
+                }
                 if (senderData3.my) {
                     sender.setPrivacy(StarsReactionsSheet.this.peer);
                 } else {
                     sender.setAnonymous(senderData3.anonymous);
                 }
-                sender.index = (arrayList.size() - 1) - i3;
             }
             invalidate();
         }
@@ -1985,6 +2040,9 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             public final AvatarDrawable avatarDrawable;
             public final ButtonBounce bounce;
             public final RectF clickBounds = new RectF();
+            private Drawable crown;
+            private Drawable crownOutline;
+            private int currentColor;
             public long did;
             public LinearGradient gradient;
             public Matrix gradientMatrix;
@@ -1992,6 +2050,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             public int index;
             public final boolean my;
             public final Paint paint;
+            private int place;
+            private Text placeText;
             public Text starsText;
             public Text text;
 
@@ -2028,7 +2088,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 imageReceiver.onAttachedToWindow();
                 imageReceiver.setCrossfadeWithOldImage(true);
                 avatarDrawable2.setAvatarType(21);
-                avatarDrawable2.setColor(Theme.getColor(Theme.key_avatar_backgroundGray));
+                avatarDrawable2.setColor(Theme.getColor(Theme.key_avatar_backgroundGray, StarsReactionsSheet.this.resourcesProvider));
                 this.text = new Text(str, 12.0f);
             }
 
@@ -2091,13 +2151,35 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 this.starsText = new Text(StarsIntroActivity.replaceStars("⭐️" + LocaleController.formatNumber(j, ','), 0.85f), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
                 if (TopSendersView.this.liveStories) {
                     int i = (int) j;
-                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), new int[]{HighlightMessageSheet.getTierOption(i, HighlightMessageSheet.TIER_COLOR2), HighlightMessageSheet.getTierOption(i, HighlightMessageSheet.TIER_COLOR1)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.gradient = linearGradient;
-                    this.paint.setShader(linearGradient);
+                    this.gradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), new int[]{HighlightMessageSheet.getTierOption(StarsReactionsSheet.this.currentAccount, i, HighlightMessageSheet.TIER_COLOR2), HighlightMessageSheet.getTierOption(StarsReactionsSheet.this.currentAccount, i, HighlightMessageSheet.TIER_COLOR1)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.currentColor = ColorUtils.blendARGB(HighlightMessageSheet.getTierOption(StarsReactionsSheet.this.currentAccount, i, HighlightMessageSheet.TIER_COLOR2), HighlightMessageSheet.getTierOption(StarsReactionsSheet.this.currentAccount, i, HighlightMessageSheet.TIER_COLOR1), 0.5f);
+                    this.paint.setShader(this.gradient);
+                } else {
+                    this.paint.setShader(null);
+                    Paint paint = this.paint;
+                    this.currentColor = -1002750;
+                    paint.setColor(-1002750);
+                }
+                Drawable drawable = this.crown;
+                if (drawable != null) {
+                    drawable.setColorFilter(new PorterDuffColorFilter(this.currentColor, PorterDuff.Mode.SRC_IN));
+                }
+            }
+
+            public void setPlace(int i) {
+                this.place = i;
+                this.placeText = new Text("" + i, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+                if (i <= 0 || this.crown != null) {
                     return;
                 }
-                this.paint.setShader(null);
-                this.paint.setColor(-1002750);
+                Drawable mutate = TopSendersView.this.getContext().getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
+                this.crown = mutate;
+                int i2 = this.currentColor;
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                mutate.setColorFilter(new PorterDuffColorFilter(i2, mode));
+                Drawable mutate2 = TopSendersView.this.getContext().getResources().getDrawable(R.drawable.filled_stream_crown_outline).mutate();
+                this.crownOutline = mutate2;
+                mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground, StarsReactionsSheet.this.resourcesProvider), mode));
             }
 
             public void draw(Canvas canvas) {
@@ -2135,7 +2217,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set((dp - (this.starsText.getCurrentWidth() / 2.0f)) - AndroidUtilities.dp(5.66f), (AndroidUtilities.dp(23.0f) + dp2) - (AndroidUtilities.dp(16.0f) / 2.0f), (this.starsText.getCurrentWidth() / 2.0f) + dp + AndroidUtilities.dp(5.66f), AndroidUtilities.dp(23.0f) + dp2 + (AndroidUtilities.dp(16.0f) / 2.0f));
                 canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, TopSendersView.this.backgroundPaint);
-                this.paint.setAlpha((int) (255.0f * f2));
+                int i4 = (int) (255.0f * f2);
+                this.paint.setAlpha(i4);
                 if (this.gradient != null) {
                     this.gradientMatrix.reset();
                     this.gradientMatrix.postTranslate(0.0f, rectF.top);
@@ -2145,6 +2228,18 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 Text text = this.starsText;
                 text.draw(canvas, dp - (text.getCurrentWidth() / 2.0f), dp2 + AndroidUtilities.dp(23.0f), -1, f2);
                 this.text.ellipsize(width - AndroidUtilities.dp(4.0f)).draw(canvas, dp - (this.text.getWidth() / 2.0f), dp2 + AndroidUtilities.dp(42.0f), Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, StarsReactionsSheet.this.resourcesProvider), f2);
+                if (this.place > 0) {
+                    int i5 = (int) dp;
+                    int i6 = (int) dp2;
+                    this.crownOutline.setBounds(i5 - AndroidUtilities.dp(12.0f), i6 - AndroidUtilities.dp(40.0f), AndroidUtilities.dp(12.0f) + i5, i6 - AndroidUtilities.dp(16.0f));
+                    this.crown.setBounds(i5 - AndroidUtilities.dp(12.0f), i6 - AndroidUtilities.dp(40.0f), i5 + AndroidUtilities.dp(12.0f), i6 - AndroidUtilities.dp(16.0f));
+                    this.crownOutline.setAlpha(i4);
+                    this.crown.setAlpha(i4);
+                    this.crownOutline.draw(canvas);
+                    this.crown.draw(canvas);
+                    Text text2 = this.placeText;
+                    text2.draw(canvas, dp - (text2.getCurrentWidth() / 2.0f), dp2 - AndroidUtilities.dp(27.0f), -1, f2);
+                }
                 canvas.restore();
             }
         }

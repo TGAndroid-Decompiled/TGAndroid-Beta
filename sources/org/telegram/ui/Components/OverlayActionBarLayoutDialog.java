@@ -158,7 +158,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
             }
         });
         if (i >= 26) {
-            AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d);
+            AndroidUtilities.setLightNavigationBar(this, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d);
         }
     }
 

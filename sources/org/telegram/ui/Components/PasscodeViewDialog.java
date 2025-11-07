@@ -92,7 +92,7 @@ public class PasscodeViewDialog extends Dialog {
         }
         window.setAttributes(attributes);
         this.windowView.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(window, false);
+        AndroidUtilities.setLightNavigationBar((Dialog) this, false);
     }
 
     @Override

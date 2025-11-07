@@ -35,6 +35,7 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView {
     private UniversalAdapter adapter;
+    private boolean hasButton;
     private final boolean hasFewPeers;
     private final JoinCallAlert.JoinCallAlertDelegate joinCallDelegate;
     private String rtmpKey;
@@ -56,8 +57,9 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         this.joinCallDelegate = null;
         this.hasFewPeers = false;
         if (callback != null) {
+            this.hasButton = true;
             final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-            buttonWithCounterView.setText(LocaleController.getString(R.string.VoipChannelStartStreaming), false);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryRTMPEnable), false);
             this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,7 +102,9 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         this.topPadding = 0.26f;
         this.joinCallDelegate = joinCallAlertDelegate;
         this.hasFewPeers = z;
-        TextView textView = new TextView(this.containerView.getContext());
+        Context context = this.containerView.getContext();
+        this.hasButton = true;
+        TextView textView = new TextView(context);
         textView.setGravity(17);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setSingleLine(true);
@@ -190,7 +194,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.VoipChatStreamSettings)));
         arrayList.add(TextDetailCellFactory.of(this.rtmpUrl, LocaleController.getString(R.string.VoipChatStreamServerUrl), true));
         arrayList.add(TextDetailCellFactory.of(this.rtmpKey, LocaleController.getString(R.string.VoipChatStreamKey), false));
-        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.VoipChatStreamWithAnotherAppDescription)));
+        arrayList.add(UItem.asShadow(this.hasButton ? LocaleController.getString(R.string.VoipChatStreamWithAnotherAppDescription) : null));
     }
 
     public static class TopCell extends LinearLayout {
@@ -225,10 +229,10 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
 
         @Override
         public TextDetailCell createView(final Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            final TextDetailCell textDetailCell = new TextDetailCell(context);
+            final TextDetailCell textDetailCell = new TextDetailCell(context, resourcesProvider);
             textDetailCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
             Drawable mutate = ContextCompat.getDrawable(context, R.drawable.msg_copy).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider), PorterDuff.Mode.MULTIPLY));
             textDetailCell.setImage(mutate);
             textDetailCell.setImageClickListener(new View.OnClickListener() {
                 @Override

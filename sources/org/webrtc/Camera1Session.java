@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.telegram.ui.Stories.LivePlayer;
 import org.webrtc.Camera1Session;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
@@ -282,7 +283,7 @@ public class Camera1Session implements CameraSession {
     }
 
     public int getFrameOrientation() {
-        int orientation = this.orientationHelper.getOrientation();
+        int orientation = LivePlayer.recording != null ? 0 : this.orientationHelper.getOrientation();
         OrientationHelper.cameraOrientation = orientation;
         if (this.info.facing == 1) {
             orientation = 360 - orientation;

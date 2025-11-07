@@ -327,7 +327,7 @@ public class WebRtcAudioTrack {
         if (usageAttribute != DEFAULT_USAGE) {
             Logging.w("WebRtcAudioTrack", "A non default usage attribute is used: " + usageAttribute);
         }
-        return new AudioTrack(new AudioAttributes.Builder().setUsage(1).setContentType(3).build(), new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build(), i3, 1, 0);
+        return new AudioTrack(new AudioAttributes.Builder().setUsage(usageAttribute).setContentType(1).build(), new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build(), i3, 1, 0);
     }
 
     private static AudioTrack createAudioTrackOnLowerThanLollipop(int i, int i2, int i3) {

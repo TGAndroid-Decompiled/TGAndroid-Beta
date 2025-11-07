@@ -74,10 +74,12 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
+import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.InstantCameraView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Stories.LivePlayer;
 
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
@@ -484,6 +486,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             return;
         }
         this.cameraThread.sendMessage(handler.obtainMessage(7, this.dualMatrix), 0);
+    }
+
+    public static boolean isCameraAllowed() {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        return (sharedInstance == null || !sharedInstance.hasVideoCapturer()) && LivePlayer.recording == null;
     }
 
     public CameraView(Context context, boolean z) {

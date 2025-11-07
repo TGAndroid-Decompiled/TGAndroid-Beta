@@ -2832,7 +2832,7 @@ public class Bulletin {
                 if (AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundGray)) <= 0.721f) {
                     z = false;
                 }
-                AndroidUtilities.setLightNavigationBar(window, z);
+                AndroidUtilities.setLightNavigationBar(this, z);
             } catch (Exception unused) {
             }
         }

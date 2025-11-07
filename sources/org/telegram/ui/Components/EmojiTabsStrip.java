@@ -107,10 +107,18 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     }
 
     public EmojiTabsStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, boolean z3, boolean z4, int i, Runnable runnable) {
-        this(context, resourcesProvider, z, z2, z3, z4, i, runnable, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider));
+        this(context, resourcesProvider, z, z2, z3, z4, i, runnable, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider), false);
     }
 
-    public EmojiTabsStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, boolean z3, final boolean z4, int i, Runnable runnable, int i2) {
+    public EmojiTabsStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, boolean z3, boolean z4, int i, Runnable runnable, boolean z5) {
+        this(context, resourcesProvider, z, z2, z3, z4, i, runnable, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider), z5);
+    }
+
+    public EmojiTabsStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, boolean z3, boolean z4, int i, Runnable runnable, int i2) {
+        this(context, resourcesProvider, z, z2, z3, z4, i, runnable, i2, false);
+    }
+
+    public EmojiTabsStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, boolean z3, final boolean z4, int i, Runnable runnable, int i2, final boolean z5) {
         super(context);
         this.recentDrawableId = R.drawable.msg_emoji_recent;
         this.giftsDrawableId = R.drawable.msg_emoji_gem;
@@ -146,7 +154,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             private final Path path = new Path();
 
             @Override
-            protected void onLayout(boolean z5, int i3, int i4, int i5, int i6) {
+            protected void onLayout(boolean z6, int i3, int i4, int i5, int i6) {
                 int i7 = (i6 - i4) / 2;
                 if (z4) {
                     int paddingLeft = getPaddingLeft();
@@ -154,9 +162,9 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                         View childAt = getChildAt(i8);
                         if (childAt != EmojiTabsStrip.this.settingsTab && !EmojiTabsStrip.this.removingViews.containsKey(childAt) && childAt != null) {
                             childAt.layout(paddingLeft, i7 - (childAt.getMeasuredHeight() / 2), childAt.getMeasuredWidth() + paddingLeft, (childAt.getMeasuredHeight() / 2) + i7);
-                            boolean z6 = childAt instanceof EmojiTabButton;
-                            Long id = z6 ? ((EmojiTabButton) childAt).id() : childAt instanceof EmojiTabsView ? Long.valueOf(((EmojiTabsView) childAt).id) : null;
-                            if (EmojiTabsStrip.this.animateAppear && z6) {
+                            boolean z7 = childAt instanceof EmojiTabButton;
+                            Long id = z7 ? ((EmojiTabButton) childAt).id() : childAt instanceof EmojiTabsView ? Long.valueOf(((EmojiTabsView) childAt).id) : null;
+                            if (EmojiTabsStrip.this.animateAppear && z7) {
                                 EmojiTabButton emojiTabButton = (EmojiTabButton) childAt;
                                 if (emojiTabButton.newly) {
                                     emojiTabButton.newly = false;
@@ -281,8 +289,12 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                 this.path.rewind();
                 Path path = this.path;
                 RectF rectF2 = this.rect;
+                float height2 = z5 ? rectF2.height() / 2.0f : dp;
+                if (z5) {
+                    dp = this.rect.height() / 2.0f;
+                }
                 Path.Direction direction = Path.Direction.CW;
-                path.addRoundRect(rectF2, dp, dp, direction);
+                path.addRoundRect(rectF2, height2, dp, direction);
                 canvas.drawPath(this.path, this.paint);
                 if (EmojiTabsStrip.this.forceTabsShow) {
                     this.path.rewind();

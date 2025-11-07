@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -200,7 +201,7 @@ public class CameraScanActivity extends BaseFragment {
                 }
 
                 @Override
-                public void lambda$onBackPressed$341() {
+                public void lambda$onBackPressed$340() {
                     setFinishing(true);
                     AnonymousClass1.this.lambda$new$0();
                 }
@@ -239,7 +240,7 @@ public class CameraScanActivity extends BaseFragment {
             }
 
             @Override
-            public void lambda$onBackPressed$341() {
+            public void lambda$onBackPressed$340() {
                 setFinishing(true);
                 AnonymousClass1.this.lambda$new$0();
             }
@@ -278,8 +279,8 @@ public class CameraScanActivity extends BaseFragment {
         }
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(activity, false, new INavigationLayout[]{INavigationLayout.CC.newLayout(activity, false)}, i, z, cameraScanActivityDelegate);
         anonymousClass1.setUseLightStatusBar(false);
-        AndroidUtilities.setLightNavigationBar(anonymousClass1.getWindow(), false);
-        AndroidUtilities.setNavigationBarColor(anonymousClass1.getWindow(), -16777216, false);
+        AndroidUtilities.setLightNavigationBar((Dialog) anonymousClass1, false);
+        AndroidUtilities.setNavigationBarColor((Dialog) anonymousClass1, -16777216, false);
         anonymousClass1.setUseLightStatusBar(false);
         anonymousClass1.getWindow().addFlags(512);
         anonymousClass1.show();
@@ -369,7 +370,7 @@ public class CameraScanActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    CameraScanActivity.this.lambda$onBackPressed$341();
+                    CameraScanActivity.this.lambda$onBackPressed$340();
                 }
             }
         });
@@ -785,7 +786,7 @@ public class CameraScanActivity extends BaseFragment {
         @Override
         public void onItemClick(int i) {
             if (i == -1) {
-                CameraScanActivity.this.lambda$onBackPressed$341();
+                CameraScanActivity.this.lambda$onBackPressed$340();
             }
         }
     }
@@ -1279,7 +1280,7 @@ public class CameraScanActivity extends BaseFragment {
 
     public void initCameraView() {
         TextView textView;
-        if (this.fragmentView == null) {
+        if (this.fragmentView == null || !CameraView.isCameraAllowed()) {
             return;
         }
         CameraController.getInstance().initCamera(null);
@@ -1400,7 +1401,7 @@ public class CameraScanActivity extends BaseFragment {
                 if (cameraScanActivityDelegate != null) {
                     cameraScanActivityDelegate.didFindQr(tryReadQr.text);
                 }
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -1587,7 +1588,7 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CameraScanActivity.this.lambda$onBackPressed$341();
+                CameraScanActivity.this.lambda$onBackPressed$340();
             }
         }, 1200L);
     }
@@ -1610,7 +1611,7 @@ public class CameraScanActivity extends BaseFragment {
         if (cameraScanActivityDelegate != null) {
             cameraScanActivityDelegate.didFindQr(this.recognizedText);
         }
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void lambda$processShot$14(QrResult qrResult) {
@@ -1623,7 +1624,7 @@ public class CameraScanActivity extends BaseFragment {
             cameraScanActivityDelegate.didFindQr(str);
         }
         if (this.currentType != 3) {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 

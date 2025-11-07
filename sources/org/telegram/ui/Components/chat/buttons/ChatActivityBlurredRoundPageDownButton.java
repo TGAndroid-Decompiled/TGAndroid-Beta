@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.chat.buttons;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -22,14 +21,10 @@ public class ChatActivityBlurredRoundPageDownButton extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(61.0f), 1073741824));
-    }
-
     public void addButtonView(ChatActivityBlurredRoundButton chatActivityBlurredRoundButton) {
         this.buttonView = chatActivityBlurredRoundButton;
         addView(chatActivityBlurredRoundButton, LayoutHelper.createFrame(56, 56, 80));
+        chatActivityBlurredRoundButton.setIconPadding(AndroidUtilities.dp(2.0f));
     }
 
     public void reverseCounter() {
@@ -76,9 +71,9 @@ public class ChatActivityBlurredRoundPageDownButton extends FrameLayout {
         }
     }
 
-    public static ChatActivityBlurredRoundPageDownButton create(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, int i, int i2) {
+    public static ChatActivityBlurredRoundPageDownButton create(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider, int i) {
         ChatActivityBlurredRoundPageDownButton chatActivityBlurredRoundPageDownButton = new ChatActivityBlurredRoundPageDownButton(context, resourcesProvider);
-        chatActivityBlurredRoundPageDownButton.addButtonView(ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, i, i2));
+        chatActivityBlurredRoundPageDownButton.addButtonView(ChatActivityBlurredRoundButton.create(context, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider, resourcesProvider, i));
         ScaleStateListAnimator.apply(chatActivityBlurredRoundPageDownButton, 0.13f, 2.0f);
         return chatActivityBlurredRoundPageDownButton;
     }

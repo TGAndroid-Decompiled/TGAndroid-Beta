@@ -2413,12 +2413,14 @@ public class TL_stories {
 
     public static class TL_storyItemSkipped extends StoryItem {
         public static final int constructor = -5388013;
+        public boolean live;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            this.close_friends = (readInt32 & 256) != 0;
+            this.close_friends = TLObject.hasFlag(readInt32, 256);
+            this.live = TLObject.hasFlag(this.flags, 512);
             this.id = inputSerializedData.readInt32(z);
             this.date = inputSerializedData.readInt32(z);
             this.expire_date = inputSerializedData.readInt32(z);
@@ -2427,9 +2429,11 @@ public class TL_stories {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-5388013);
-            int i = this.close_friends ? this.flags | 256 : this.flags & (-257);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 256, this.close_friends);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 512, this.live);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeInt32(this.id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);

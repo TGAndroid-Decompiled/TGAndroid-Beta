@@ -701,7 +701,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 if (baseFragment3 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(baseFragment3, chat, true);
                 }
@@ -711,7 +711,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 }
                 return;
             }
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
             if ((baseFragment2 instanceof ProfileActivity) || (baseFragment2 instanceof ChatActivity)) {
                 BoostDialogs.showBulletin(baseFragment2, chat, false);
                 return;
@@ -1000,7 +1000,9 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     int i2 = boost.date;
                     tL_payments_checkedGiftCode.date = i2;
                     tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
-                    tL_payments_checkedGiftCode.months = ((boost.expires - i2) / 30) / 86400;
+                    int i3 = boost.expires - i2;
+                    tL_payments_checkedGiftCode.days = i3 / 86400;
+                    tL_payments_checkedGiftCode.months = (i3 / 30) / 86400;
                     if (boost.unclaimed) {
                         tL_payments_checkedGiftCode.to_id = -1L;
                         tL_payments_checkedGiftCode.flags = -1;

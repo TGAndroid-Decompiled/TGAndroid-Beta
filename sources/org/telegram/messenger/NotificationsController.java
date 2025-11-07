@@ -858,36 +858,48 @@ public class NotificationsController extends BaseController {
         });
     }
 
-    public void lambda$processDeleteStory$14(long j, int i) {
-        StoryNotification storyNotification = (StoryNotification) this.storyPushMessagesDict.get(j);
-        if (storyNotification != null) {
-            storyNotification.dateByIds.remove(Integer.valueOf(i));
-            if (storyNotification.dateByIds.isEmpty()) {
-                this.storyPushMessagesDict.remove(j);
-                this.storyPushMessages.remove(storyNotification);
-                getMessagesStorage().deleteStoryPushMessage(j);
-                showOrUpdateNotification(false);
-                return;
-            }
-            getMessagesStorage().putStoryPushMessage(storyNotification);
-        }
+    public void lambda$processDeleteStory$14(long r6, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processDeleteStory$14(long, int):void");
     }
 
-    public void processReadStories(final long j, int i) {
+    public void processReadStories(final long j, final int i) {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.this.lambda$processReadStories$15(j);
+                NotificationsController.this.lambda$processReadStories$15(j, i);
             }
         });
     }
 
-    public void lambda$processReadStories$15(long j) {
+    public void lambda$processReadStories$15(long j, int i) {
+        boolean z;
         StoryNotification storyNotification = (StoryNotification) this.storyPushMessagesDict.get(j);
         if (storyNotification != null) {
             this.storyPushMessagesDict.remove(j);
             this.storyPushMessages.remove(storyNotification);
             getMessagesStorage().deleteStoryPushMessage(j);
+            z = true;
+        } else {
+            z = false;
+        }
+        int i2 = 0;
+        while (i2 < this.pushMessages.size()) {
+            MessageObject messageObject = this.pushMessages.get(i2);
+            if (messageObject != null && messageObject.isLiveStoryPush && messageObject.getId() <= i) {
+                this.pushMessages.remove(i2);
+                i2--;
+                SparseArray sparseArray = (SparseArray) this.pushMessagesDict.get(messageObject.getDialogId());
+                if (sparseArray != null) {
+                    sparseArray.remove(messageObject.getId());
+                }
+                if (sparseArray != null && sparseArray.size() <= 0) {
+                    this.pushMessagesDict.remove(messageObject.getDialogId());
+                }
+                z = true;
+            }
+            i2++;
+        }
+        if (z) {
             showOrUpdateNotification(false);
             updateStoryPushesRunnable();
         }
@@ -2181,7 +2193,7 @@ public class NotificationsController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.validateChannelId(long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):java.lang.String");
     }
 
-    private void showOrUpdateNotification(boolean r56) {
+    private void showOrUpdateNotification(boolean r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showOrUpdateNotification(boolean):void");
     }
 
@@ -2242,7 +2254,7 @@ public class NotificationsController extends BaseController {
         notificationManager.notify(this.notificationId, builder.build());
     }
 
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r84, java.lang.String r85, long r86, long r88, java.lang.String r90, long[] r91, int r92, android.net.Uri r93, int r94, boolean r95, boolean r96, boolean r97, int r98) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r87, java.lang.String r88, long r89, long r91, java.lang.String r93, long[] r94, int r95, android.net.Uri r96, int r97, boolean r98, boolean r99, boolean r100, int r101) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 

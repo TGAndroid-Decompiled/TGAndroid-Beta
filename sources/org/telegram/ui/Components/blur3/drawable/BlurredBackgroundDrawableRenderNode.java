@@ -12,7 +12,6 @@ import android.graphics.RenderNode;
 import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
-import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
@@ -21,7 +20,7 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode
 
 public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawable {
     private int lastBackgroundColor;
-    private final LiquidGlassEffect liquidGlassEffect;
+    private LiquidGlassEffect liquidGlassEffect;
     private final Outline outline = new Outline();
     private final Rect outlineRect = new Rect();
     private final Paint paintFill;
@@ -44,8 +43,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         this.paintStrokeBottom = paint3;
         RenderNode m = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode");
         this.renderNode = m;
-        RenderNode m2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Fill");
-        this.renderNodeFill = m2;
+        this.renderNodeFill = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Fill");
         this.renderNodeStroke = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredBackgroundDrawableRenderNode.Stroke");
         m.setClipToOutline(true);
         m.setClipToBounds(true);
@@ -54,11 +52,10 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint3.setStyle(style);
-        if (Build.VERSION.SDK_INT >= 33 && blurredBackgroundSourceRenderNode.allowLiquid && LiteMode.isEnabled(262144)) {
-            this.liquidGlassEffect = new LiquidGlassEffect(m2);
-        } else {
-            this.liquidGlassEffect = null;
-        }
+    }
+
+    public void setLiquidGlassEffectAllowed() {
+        this.liquidGlassEffect = new LiquidGlassEffect(this.renderNodeFill);
     }
 
     @Override
@@ -103,7 +100,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
             float width = this.boundProps.boundsWithPadding.width();
             float height = this.boundProps.boundsWithPadding.height();
             BlurredBackgroundDrawable.Props props = this.boundProps;
-            float[] fArr = props.radii;
+            float[] fArr = props.shaderRadii;
             float f3 = fArr[0];
             float f4 = fArr[2];
             float f5 = fArr[4];
@@ -185,7 +182,8 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
 
     @Override
     public void setAlpha(int i) {
-        this.renderNode.setAlpha(i);
+        super.setAlpha(i);
+        this.renderNode.setAlpha(i / 255.0f);
         this.renderNodeInvalidated = true;
     }
 }

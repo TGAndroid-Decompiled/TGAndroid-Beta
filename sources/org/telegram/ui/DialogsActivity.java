@@ -2707,7 +2707,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r40) {
+    public android.view.View createView(final android.content.Context r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -2842,7 +2842,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.searchString == null) {
                 return true;
             }
-            DialogsActivity.this.lambda$onBackPressed$341();
+            DialogsActivity.this.lambda$onBackPressed$340();
             return false;
         }
 
@@ -3183,7 +3183,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                             ((BaseFragment) DialogsActivity.this).parentLayout.getDrawerLayoutContainer().openDrawer(false);
                             return;
                         }
-                        DialogsActivity.this.lambda$onBackPressed$341();
+                        DialogsActivity.this.lambda$onBackPressed$340();
                         return;
                     }
                     DialogsActivity.this.filterTabsView.setIsEditing(false);
@@ -4065,6 +4065,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
+        public TLRPC.Peer getDefaultSendAs() {
+            return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getDefaultSendAs(this);
+        }
+
+        @Override
         public ChatActivity.ReplyQuote getReplyQuote() {
             return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getReplyQuote(this);
         }
@@ -4214,6 +4219,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         @Override
         public void scrollToSendingMessage() {
             ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$scrollToSendingMessage(this);
+        }
+
+        @Override
+        public boolean setDefaultSendAs(long j, long j2) {
+            return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$setDefaultSendAs(this, j, j2);
         }
 
         @Override
@@ -4368,7 +4378,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 boolean areStoriesNotMuted = NotificationsCustomSettingsActivity.areStoriesNotMuted(((BaseFragment) DialogsActivity.this).currentAccount, j);
                 boolean premiumFeaturesBlocked = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).premiumFeaturesBlocked();
                 boolean isPremium = UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).isPremium();
-                boolean hasUnreadStories = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasUnreadStories(j);
+                boolean hasUnreadStories = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getStoriesController().hasUnreadStories(j);
+                boolean z = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getStoriesController().hasLiveStory(j) == 2;
                 if (premiumFeaturesBlocked || j <= 0 || isPremium || (drawable = ContextCompat.getDrawable(getContext(), R.drawable.msg_gallery_locked2)) == null) {
                     combinedDrawable = null;
                 } else {
@@ -4388,7 +4399,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         }
                     });
                 }
-                boolean z = (user == null || user.contact || !MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).containsTopPeer(j)) ? false : true;
+                boolean z2 = (user == null || user.contact || !MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).containsTopPeer(j)) ? false : true;
                 ItemOptions makeMultiline = DialogsActivity.this.filterOptions.addIf(j > 0, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
                     @Override
                     public final void run() {
@@ -4415,31 +4426,31 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$8(sharedPrefKey, j, user);
                     }
                 }).makeMultiline(false);
-                boolean z2 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories;
+                boolean z3 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories && !z;
                 int i4 = R.drawable.msg_stories_stealth2;
                 int i5 = R.string.ViewAnonymously;
                 anonymousClass23 = this;
-                makeMultiline.addIf(z2, i4, LocaleController.getString(i5), new Runnable() {
+                makeMultiline.addIf(z3, i4, LocaleController.getString(i5), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$10(view);
                     }
-                }).makeMultiline(false).addIf(!premiumFeaturesBlocked && j > 0 && !isPremium && hasUnreadStories, i4, combinedDrawable2, LocaleController.getString(i5), new Runnable() {
+                }).makeMultiline(false).addIf((premiumFeaturesBlocked || j <= 0 || isPremium || !hasUnreadStories || z) ? false : true, i4, combinedDrawable2, LocaleController.getString(i5), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$12(view);
                     }
-                }).makeMultiline(false).addIf((z || DialogsActivity.this.isArchive()) ? false : true, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), new Runnable() {
+                }).makeMultiline(false).addIf((z2 || DialogsActivity.this.isArchive()) ? false : true, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$13(j);
                     }
-                }).makeMultiline(false).addIf(!z && DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), new Runnable() {
+                }).makeMultiline(false).addIf(!z2 && DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$14(j);
                     }
-                }).makeMultiline(false).addIf(z, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), new Runnable() {
+                }).makeMultiline(false).addIf(z2, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$15(j);
@@ -5697,7 +5708,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createGroupForThis$57(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$341();
+        baseFragment.lambda$onBackPressed$340();
     }
 
     public void lambda$createGroupForThis$60(AlertDialog alertDialog, Long l, final Runnable runnable) {
@@ -5774,7 +5785,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$341();
+        baseFragment.lambda$onBackPressed$340();
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
@@ -5873,9 +5884,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.removeSelfFromStack();
             if (baseFragmentArr[1] != null) {
                 baseFragmentArr[0].removeSelfFromStack();
-                baseFragmentArr[1].lambda$onBackPressed$341();
+                baseFragmentArr[1].lambda$onBackPressed$340();
             } else {
-                baseFragmentArr[0].lambda$onBackPressed$341();
+                baseFragmentArr[0].lambda$onBackPressed$340();
             }
         }
 
@@ -5951,9 +5962,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.removeSelfFromStack();
             if (baseFragmentArr[1] != null) {
                 baseFragmentArr[0].removeSelfFromStack();
-                baseFragmentArr[1].lambda$onBackPressed$341();
+                baseFragmentArr[1].lambda$onBackPressed$340();
             } else {
-                baseFragmentArr[0].lambda$onBackPressed$341();
+                baseFragmentArr[0].lambda$onBackPressed$340();
             }
             if (dialogsActivityDelegate != null) {
                 ArrayList arrayList = new ArrayList();
@@ -6089,37 +6100,38 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    int i = Build.VERSION.SDK_INT;
                     AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) DialogsActivity.this.speedItem.getIconView().getDrawable();
-                    if (!r2) {
-                        if (i >= 23) {
-                            animatedVectorDrawable.reset();
-                            return;
-                        } else {
-                            animatedVectorDrawable.setVisible(false, true);
-                            return;
-                        }
-                    }
-                    animatedVectorDrawable.start();
-                    if (SharedConfig.getDevicePerformanceClass() != 0) {
-                        TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getPremiumPromo();
-                        String featureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(2);
-                        if (premiumPromo != null) {
-                            int i2 = 0;
-                            while (true) {
-                                if (i2 >= premiumPromo.video_sections.size()) {
-                                    i2 = -1;
-                                    break;
-                                } else if (premiumPromo.video_sections.get(i2).equals(featureTypeToServerString)) {
-                                    break;
-                                } else {
-                                    i2++;
+                    if (r2) {
+                        animatedVectorDrawable.start();
+                        if (SharedConfig.getDevicePerformanceClass() != 0) {
+                            TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getPremiumPromo();
+                            String featureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(2);
+                            if (premiumPromo != null) {
+                                int i = 0;
+                                while (true) {
+                                    if (i >= premiumPromo.video_sections.size()) {
+                                        i = -1;
+                                        break;
+                                    } else if (premiumPromo.video_sections.get(i).equals(featureTypeToServerString)) {
+                                        break;
+                                    } else {
+                                        i++;
+                                    }
                                 }
+                                if (i != -1) {
+                                    FileLoader.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).loadFile(premiumPromo.videos.get(i), premiumPromo, 3, 0);
+                                    return;
+                                }
+                                return;
                             }
-                            if (i2 != -1) {
-                                FileLoader.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).loadFile(premiumPromo.videos.get(i2), premiumPromo, 3, 0);
-                            }
+                            return;
                         }
+                        return;
+                    }
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        animatedVectorDrawable.reset();
+                    } else {
+                        animatedVectorDrawable.setVisible(false, true);
                     }
                 }
             });
@@ -6137,37 +6149,38 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         @Override
         public void onAnimationEnd(Animator animator) {
-            int i = Build.VERSION.SDK_INT;
             AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) DialogsActivity.this.speedItem.getIconView().getDrawable();
-            if (!r2) {
-                if (i >= 23) {
-                    animatedVectorDrawable.reset();
-                    return;
-                } else {
-                    animatedVectorDrawable.setVisible(false, true);
-                    return;
-                }
-            }
-            animatedVectorDrawable.start();
-            if (SharedConfig.getDevicePerformanceClass() != 0) {
-                TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getPremiumPromo();
-                String featureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(2);
-                if (premiumPromo != null) {
-                    int i2 = 0;
-                    while (true) {
-                        if (i2 >= premiumPromo.video_sections.size()) {
-                            i2 = -1;
-                            break;
-                        } else if (premiumPromo.video_sections.get(i2).equals(featureTypeToServerString)) {
-                            break;
-                        } else {
-                            i2++;
+            if (r2) {
+                animatedVectorDrawable.start();
+                if (SharedConfig.getDevicePerformanceClass() != 0) {
+                    TLRPC.TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getPremiumPromo();
+                    String featureTypeToServerString = PremiumPreviewFragment.featureTypeToServerString(2);
+                    if (premiumPromo != null) {
+                        int i = 0;
+                        while (true) {
+                            if (i >= premiumPromo.video_sections.size()) {
+                                i = -1;
+                                break;
+                            } else if (premiumPromo.video_sections.get(i).equals(featureTypeToServerString)) {
+                                break;
+                            } else {
+                                i++;
+                            }
                         }
+                        if (i != -1) {
+                            FileLoader.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).loadFile(premiumPromo.videos.get(i), premiumPromo, 3, 0);
+                            return;
+                        }
+                        return;
                     }
-                    if (i2 != -1) {
-                        FileLoader.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).loadFile(premiumPromo.videos.get(i2), premiumPromo, 3, 0);
-                    }
+                    return;
                 }
+                return;
+            }
+            if (Build.VERSION.SDK_INT >= 23) {
+                animatedVectorDrawable.reset();
+            } else {
+                animatedVectorDrawable.setVisible(false, true);
             }
         }
     }
@@ -6536,8 +6549,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void lambda$onBackPressed$341() {
-        super.lambda$onBackPressed$341();
+    public void lambda$onBackPressed$340() {
+        super.lambda$onBackPressed$340();
         ItemOptions itemOptions = this.filterOptions;
         if (itemOptions != null) {
             itemOptions.dismiss();
@@ -8664,7 +8677,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             this.viewPages[0].listView.setEmptyView(null);
             this.viewPages[0].progressView.setVisibility(4);
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
             return;
         }
         performSelectedDialogsAction(arrayList, i, false, false);
@@ -9927,7 +9940,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 if (i9 != intValue || i9 == 0) {
                     return;
                 }
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
             if (i == NotificationCenter.dialogFiltersUpdated) {
@@ -9941,6 +9954,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (i == NotificationCenter.newSuggestionsAvailable) {
                 showNextSupportedSuggestion();
                 lambda$updateDialogsHint$32();
+                checkEmailConfig();
                 return;
             }
             if (i == NotificationCenter.forceImportContactsStart) {
@@ -10734,7 +10748,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             return;
         }
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void lambda$didSelectResult$125(long j, final Runnable runnable) {
@@ -13133,5 +13147,40 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogStoriesCell dialogStoriesCell = DialogsActivity.this.dialogStoriesCell;
             return StoryRecorder.SourceView.fromStoryCell(dialogStoriesCell != null ? dialogStoriesCell.findStoryCell(j) : null);
         }
+    }
+
+    private void checkEmailConfig() {
+        if (getMessagesController().checkEmailSuggestion() != 0) {
+            presentFragment(new LoginActivity().changeEmail(new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.this.lambda$checkEmailConfig$149();
+                }
+            }, new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.this.lambda$checkEmailConfig$150();
+                }
+            }, false));
+            getMessagesController().markEmailSuggestionAsShown();
+        }
+    }
+
+    public void lambda$checkEmailConfig$149() {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourceProvider);
+        lottieLayout.setAnimation(R.raw.email_check_inbox, new String[0]);
+        lottieLayout.textView.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            Bulletin.make(lastFragment, lottieLayout, 1500).show();
+            try {
+                lastFragment.fragmentView.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    public void lambda$checkEmailConfig$150() {
+        getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
     }
 }

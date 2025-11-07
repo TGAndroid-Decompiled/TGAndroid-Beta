@@ -2,16 +2,16 @@ package org.telegram.ui.Components.chat;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.android.animator.ReplaceAnimator;
 import me.vkryl.core.BitwiseUtils;
-import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public class ChatActivityBottomViewsVisibilityController implements ReplaceAnimator.Callback {
     private final Runnable onValuesChanged;
     private final float[] visibilityValues = new float[32];
     private int visibilityFlags = 1;
-    private final ReplaceAnimator replaceAnimator = new ReplaceAnimator(this, CubicBezierInterpolator.EASE_OUT_QUINT, 320);
+    private final ReplaceAnimator replaceAnimator = new ReplaceAnimator(this, AnimatorUtils.DECELERATE_INTERPOLATOR, 320);
 
     @Override
     public boolean hasChanges(ReplaceAnimator replaceAnimator) {

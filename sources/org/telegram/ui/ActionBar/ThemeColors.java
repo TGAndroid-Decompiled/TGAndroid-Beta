@@ -441,9 +441,9 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_emojiPanelStickerSetNameHighlight] = -14184997;
         iArr[Theme.key_chat_emojiPanelStickerSetNameIcon] = -5130564;
         iArr[Theme.key_chat_emojiPanelTrendingDescription] = -7697782;
-        iArr[Theme.key_chat_botKeyboardButtonText] = -13220017;
-        iArr[Theme.key_chat_botKeyboardButtonBackground] = -1775639;
-        iArr[Theme.key_chat_botKeyboardButtonBackgroundPressed] = -3354156;
+        iArr[Theme.key_chat_botKeyboardButtonText] = -263961532;
+        iArr[Theme.key_chat_botKeyboardButtonBackground] = 1723646920;
+        iArr[Theme.key_chat_botKeyboardButtonBackgroundPressed] = 1719700628;
         iArr[Theme.key_chat_unreadMessagesStartArrowIcon] = -6113849;
         iArr[Theme.key_chat_unreadMessagesStartText] = -11102772;
         iArr[Theme.key_chat_unreadMessagesStartBackground] = -1;
@@ -740,8 +740,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_stories_circle_dialog2] = -11680769;
         iArr[Theme.key_stories_circle_closeFriends1] = -3544264;
         iArr[Theme.key_stories_circle_closeFriends2] = -16137881;
-        iArr[Theme.key_stories_circle_live1] = -51084;
-        iArr[Theme.key_stories_circle_live2] = -51084;
+        iArr[Theme.key_stories_circle_live1] = -38053;
+        iArr[Theme.key_stories_circle_live2] = -374668;
         iArr[Theme.key_chat_inCodeBackground] = -9467746;
         iArr[Theme.key_chat_outCodeBackground] = 305952003;
         iArr[Theme.key_code_keyword] = -2075818;

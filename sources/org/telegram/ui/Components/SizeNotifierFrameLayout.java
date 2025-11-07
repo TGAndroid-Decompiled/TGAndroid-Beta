@@ -645,18 +645,6 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         }
     }
 
-    public void setEmojiOffset(boolean z, float f) {
-        if (this.emojiOffset == f && this.animationInProgress == z) {
-            return;
-        }
-        this.emojiOffset = f;
-        this.animationInProgress = z;
-        View view = this.backgroundView;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
     public void checkSnowflake(Canvas canvas) {
         if (this.backgroundView != null && Theme.canStartHolidayAnimation() && LiteMode.isEnabled(32)) {
             if (this.snowflakesEffect == null) {

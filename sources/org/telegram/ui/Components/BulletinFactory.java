@@ -87,15 +87,19 @@ public final class BulletinFactory {
     }
 
     public void showForError(TLRPC.TL_error tL_error) {
+        showForError(tL_error, false);
+    }
+
+    public void showForError(TLRPC.TL_error tL_error, boolean z) {
         if (LaunchActivity.isActive) {
             if (tL_error == null) {
                 Bulletin createErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
                 createErrorBulletin.hideAfterBottomSheet = false;
-                createErrorBulletin.show();
+                createErrorBulletin.show(z);
             } else {
                 Bulletin createErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text));
                 createErrorBulletin2.hideAfterBottomSheet = false;
-                createErrorBulletin2.show();
+                createErrorBulletin2.show(z);
             }
         }
     }

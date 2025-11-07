@@ -1768,6 +1768,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                         this.subtitleTextView.setVisibility(0);
                         this.subtitleTextView.setText(String.format(Locale.US, "%s subscription fee", str3));
                     }
+                } else if (starsTransaction.phonegroup_message) {
+                    this.titleTextView.setText(str2);
+                    this.subtitleTextView.setVisibility(z4 ? 8 : 0);
+                    this.subtitleTextView.setText(LocaleController.getString(R.string.StarsTransactionLiveStoryMessageFee));
                 } else if (starsTransaction.paid_message) {
                     this.titleTextView.setText(str2);
                     this.subtitleTextView.setVisibility(z4 ? 8 : 0);

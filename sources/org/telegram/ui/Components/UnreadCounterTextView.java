@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import android.view.MotionEvent;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -46,10 +45,6 @@ public class UnreadCounterTextView extends View {
 
     protected float getTopOffset() {
         return 0.0f;
-    }
-
-    protected boolean isTouchFullWidth() {
-        return false;
     }
 
     public UnreadCounterTextView(Context context) {
@@ -157,30 +152,6 @@ public class UnreadCounterTextView extends View {
         if (drawable != null) {
             drawable.jumpToCurrentState();
         }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        StaticLayout staticLayout;
-        int dp;
-        if (motionEvent.getAction() == 0 && (staticLayout = this.textLayout) != null) {
-            int ceil = (int) Math.ceil(staticLayout.getLineWidth(0));
-            if (getMeasuredWidth() == ((View) getParent()).getMeasuredWidth()) {
-                dp = getMeasuredWidth() - AndroidUtilities.dp(96.0f);
-            } else if (isTouchFullWidth()) {
-                dp = getMeasuredWidth();
-            } else {
-                int i = this.circleWidth;
-                dp = ceil + (i > 0 ? i + AndroidUtilities.dp(8.0f) : 0) + AndroidUtilities.dp(48.0f);
-            }
-            float f = dp / 2.0f;
-            this.rect.set((getMeasuredWidth() - dp) / 2, (getMeasuredHeight() / 2.0f) - f, r2 + dp, (getMeasuredHeight() / 2.0f) + f);
-            if (!this.rect.contains(motionEvent.getX(), motionEvent.getY())) {
-                setPressed(false);
-                return false;
-            }
-        }
-        return super.onTouchEvent(motionEvent);
     }
 
     public void setCounter(int i) {

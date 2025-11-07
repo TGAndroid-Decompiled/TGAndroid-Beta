@@ -277,7 +277,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         ContactsActivity.this.hideActionMode();
                         return;
                     } else {
-                        ContactsActivity.this.lambda$onBackPressed$341();
+                        ContactsActivity.this.lambda$onBackPressed$340();
                         return;
                     }
                 }
@@ -537,10 +537,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         if (!this.createSecretChat && !this.returnAsResult) {
             FrameLayout frameLayout2 = new FrameLayout(context);
             this.floatingButtonContainer = frameLayout2;
-            int i3 = 56 + 20;
-            float f = 56 + 20;
-            boolean z = LocaleController.isRTL;
-            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(i3, f, (z ? 3 : 5) | 80, z ? 4.0f : 0.0f, 0.0f, z ? 0.0f : 4.0f, 0.0f));
+            frameLayout.addView(frameLayout2, makeLayoutParamsForFloatingContainer(0));
             this.floatingButtonContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -552,11 +549,11 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             this.floatingButton.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground)));
             this.floatingButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
-            boolean z2 = MessagesController.getGlobalMainSettings().getBoolean("view_animations", true);
+            boolean z = MessagesController.getGlobalMainSettings().getBoolean("view_animations", true);
             if (getMessagesController().storiesEnabled()) {
-                this.floatingButton.setAnimation(z2 ? R.raw.write_contacts_fab_icon_camera : R.raw.write_contacts_fab_icon_reverse_camera, 56, 56);
+                this.floatingButton.setAnimation(z ? R.raw.write_contacts_fab_icon_camera : R.raw.write_contacts_fab_icon_reverse_camera, 56, 56);
             } else {
-                this.floatingButton.setAnimation(z2 ? R.raw.write_contacts_fab_icon : R.raw.write_contacts_fab_icon_reverse, 52, 52);
+                this.floatingButton.setAnimation(z ? R.raw.write_contacts_fab_icon : R.raw.write_contacts_fab_icon_reverse, 52, 52);
             }
             this.floatingButtonContainer.setContentDescription(LocaleController.getString(R.string.CreateNewContact));
             StateListAnimator stateListAnimator = new StateListAnimator();
@@ -571,7 +568,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
                 }
             });
-            this.floatingButtonContainer.addView(this.floatingButton, LayoutHelper.createFrame(56, 56, 51, 10.0f, 6.0f, 10.0f, 0.0f));
+            this.floatingButtonContainer.addView(this.floatingButton, LayoutHelper.createFrame(56, 56.0f, 51, 10.0f, 6.0f, 10.0f, 0.0f));
         }
         String str = this.initialSearchString;
         if (str != null) {
@@ -1176,7 +1173,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             }
         }
         if (this.needFinishFragment) {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 
@@ -1512,7 +1509,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         FrameLayout frameLayout = this.floatingButtonContainer;
         if (frameLayout != null) {
             ((ViewGroup) this.fragmentView).removeView(frameLayout);
-            this.parentLayout.getOverlayContainerView().addView(this.floatingButtonContainer);
+            this.parentLayout.getOverlayContainerView().addView(this.floatingButtonContainer, makeLayoutParamsForFloatingContainer(AndroidUtilities.navigationBarHeight));
         }
         ofFloat.setDuration(150L);
         ofFloat.setInterpolator(new DecelerateInterpolator(1.5f));
@@ -1526,7 +1523,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         ((ViewGroup) ContactsActivity.this.floatingButtonContainer.getParent()).removeView(ContactsActivity.this.floatingButtonContainer);
                     }
                     ContactsActivity contactsActivity = ContactsActivity.this;
-                    ((ViewGroup) contactsActivity.fragmentView).addView(contactsActivity.floatingButtonContainer);
+                    ((ViewGroup) contactsActivity.fragmentView).addView(contactsActivity.floatingButtonContainer, ContactsActivity.makeLayoutParamsForFloatingContainer(0));
                     view2.setVisibility(0);
                     if (!z) {
                         if (z2) {
@@ -1788,5 +1785,12 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
             }
         }
+    }
+
+    public static ViewGroup.LayoutParams makeLayoutParamsForFloatingContainer(int i) {
+        boolean z = LocaleController.isRTL;
+        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(76, 76.0f, (z ? 3 : 5) | 80, z ? 4.0f : 0.0f, 0.0f, z ? 0.0f : 4.0f, 0.0f);
+        createFrame.bottomMargin = i;
+        return createFrame;
     }
 }

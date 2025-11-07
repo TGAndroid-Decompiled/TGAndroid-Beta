@@ -1,16 +1,14 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.ScrimOptions;
-
 public final class ChatActivity$$ExternalSyntheticLambda100 implements Runnable {
-    public final ScrimOptions f$0;
+    public final ChatActivity f$0;
 
-    public ChatActivity$$ExternalSyntheticLambda100(ScrimOptions scrimOptions) {
-        this.f$0 = scrimOptions;
+    public ChatActivity$$ExternalSyntheticLambda100(ChatActivity chatActivity) {
+        this.f$0 = chatActivity;
     }
 
     @Override
     public final void run() {
-        this.f$0.dismissFast();
+        ChatActivity.m1449$r8$lambda$9RTBMRKI2ADE4kbCy0hU6dA7gc(this.f$0);
     }
 }

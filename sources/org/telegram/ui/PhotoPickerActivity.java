@@ -331,7 +331,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$341();
+            PhotoPickerActivity.this.lambda$onBackPressed$340();
             return true;
         }
 
@@ -588,7 +588,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$341();
+            PhotoPickerActivity.this.lambda$onBackPressed$340();
             return true;
         }
 
@@ -704,7 +704,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoPickerActivity.this.lambda$onBackPressed$341();
+                    PhotoPickerActivity.this.lambda$onBackPressed$340();
                     return;
                 }
                 if (i3 != 1) {
@@ -712,7 +712,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                         if (PhotoPickerActivity.this.delegate != null) {
                             PhotoPickerActivity.this.delegate.onOpenInPressed();
                         }
-                        PhotoPickerActivity.this.lambda$onBackPressed$341();
+                        PhotoPickerActivity.this.lambda$onBackPressed$340();
                         return;
                     }
                     return;
@@ -1078,7 +1078,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public void onItemClick(int i3) {
             if (i3 == -1) {
-                PhotoPickerActivity.this.lambda$onBackPressed$341();
+                PhotoPickerActivity.this.lambda$onBackPressed$340();
                 return;
             }
             if (i3 != 1) {
@@ -1086,7 +1086,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     if (PhotoPickerActivity.this.delegate != null) {
                         PhotoPickerActivity.this.delegate.onOpenInPressed();
                     }
-                    PhotoPickerActivity.this.lambda$onBackPressed$341();
+                    PhotoPickerActivity.this.lambda$onBackPressed$340();
                     return;
                 }
                 return;
@@ -1136,7 +1136,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean canCollapseSearch() {
-            PhotoPickerActivity.this.lambda$onBackPressed$341();
+            PhotoPickerActivity.this.lambda$onBackPressed$340();
             return false;
         }
 
@@ -2317,7 +2317,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         if (this.selectPhotoType != PhotoAlbumPickerActivity.SELECT_TYPE_WALLPAPER) {
             PhotoPickerActivityDelegate photoPickerActivityDelegate = this.delegate;
             if (photoPickerActivityDelegate == null || photoPickerActivityDelegate.canFinishFragment()) {
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
             }
         }
     }

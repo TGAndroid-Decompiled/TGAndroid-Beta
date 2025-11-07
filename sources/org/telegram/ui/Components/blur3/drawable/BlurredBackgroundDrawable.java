@@ -21,6 +21,7 @@ import androidx.core.math.MathUtils;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
@@ -29,9 +30,10 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
 
 public abstract class BlurredBackgroundDrawable extends Drawable {
-    private static Path tmpPath = new Path();
     protected int alpha;
+    private final Paint backgroundBitmapFill;
     private final Paint backgroundBitmapPaint;
+    private final Paint backgroundBitmapShadowPaint;
     protected int backgroundColor;
     private final Paint backgroundColorPaint;
     private final WeakReference bitmapInShader;
@@ -40,14 +42,15 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     protected final Props boundProps;
     protected BlurredBackgroundColorProvider colorProvider;
     protected boolean inAppKeyboardOptimization;
-    private final Paint paintStrokeBottom;
-    private final Paint paintStrokeTop;
+    private final Paint paintStrokeFill;
     protected int shadowColor;
     protected float sourceOffsetX;
     protected float sourceOffsetY;
     protected int strokeColorBottom;
     protected int strokeColorTop;
     private ViewOutlineProvider viewOutlineProvider;
+    private static final float[] tmpRadii = new float[8];
+    private static Path tmpPath = new Path();
 
     @Override
     public int getOpacity() {
@@ -71,18 +74,16 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         this.boundProps = props;
         this.alpha = 255;
         this.backgroundColorPaint = new Paint(1);
+        this.paintStrokeFill = new Paint(1);
         Paint paint = new Paint(1);
-        this.paintStrokeTop = paint;
+        this.backgroundBitmapPaint = paint;
+        this.backgroundBitmapFill = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.paintStrokeBottom = paint2;
-        Paint paint3 = new Paint(1);
-        this.backgroundBitmapPaint = paint3;
+        this.backgroundBitmapShadowPaint = paint2;
         this.bitmapShaderMatrix = new Matrix();
         this.bitmapInShader = new WeakReference(null);
-        paint3.setFilterBitmap(true);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
+        paint2.setColor(0);
+        paint.setFilterBitmap(true);
         props.strokeWidthTop = AndroidUtilities.dpf2(1.0f);
         props.strokeWidthBottom = AndroidUtilities.dpf2(0.6666667f);
     }
@@ -107,6 +108,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
 
     public void setRadius(float f) {
         Arrays.fill(this.boundProps.radii, f);
+        Arrays.fill(this.boundProps.shaderRadii, f);
         this.boundProps.build();
         onBoundPropsChanged();
     }
@@ -122,6 +124,32 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         fArr[4] = f3;
         fArr[7] = f4;
         fArr[6] = f4;
+        props.build();
+        onBoundPropsChanged();
+    }
+
+    public void setRadius(float f, float f2, float f3, float f4, boolean z) {
+        Props props = this.boundProps;
+        float[] fArr = props.radii;
+        fArr[1] = f;
+        fArr[0] = f;
+        fArr[3] = f2;
+        fArr[2] = f2;
+        float f5 = z ? 0.0f : f3;
+        fArr[5] = f5;
+        fArr[4] = f5;
+        float f6 = z ? 0.0f : f4;
+        fArr[7] = f6;
+        fArr[6] = f6;
+        float[] fArr2 = props.shaderRadii;
+        fArr2[1] = f;
+        fArr2[0] = f;
+        fArr2[3] = f2;
+        fArr2[2] = f2;
+        fArr2[5] = f3;
+        fArr2[4] = f3;
+        fArr2[7] = f4;
+        fArr2[6] = f4;
         props.build();
         onBoundPropsChanged();
     }
@@ -183,12 +211,15 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         public float strokeWidthTop;
         public final Rect bounds = new Rect();
         public final float[] radii = new float[8];
+        public final float[] shaderRadii = new float[8];
         public float liquidIntensity = 0.75f;
         public float liquidIndex = 1.5f;
         public float fillAlpha = 1.0f;
         public final Path path = new Path();
         public boolean radiiAreSame = true;
         public final Rect boundsWithPadding = new Rect();
+        public final Path strokePathTop = new Path();
+        public final Path strokePathBottom = new Path();
 
         protected Props() {
         }
@@ -202,8 +233,67 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             this.path.rewind();
             Path path = this.path;
             Rect rect2 = this.boundsWithPadding;
-            path.addRoundRect(rect2.left, rect2.top, rect2.right, rect2.bottom, this.radii, Path.Direction.CW);
+            float f = rect2.left;
+            float f2 = rect2.top;
+            float f3 = rect2.right;
+            float f4 = rect2.bottom;
+            float[] fArr = this.radii;
+            Path.Direction direction = Path.Direction.CW;
+            path.addRoundRect(f, f2, f3, f4, fArr, direction);
             this.path.close();
+            Arrays.fill(BlurredBackgroundDrawable.tmpRadii, 0.0f);
+            BlurredBackgroundDrawable.tmpRadii[0] = this.radii[0];
+            BlurredBackgroundDrawable.tmpRadii[1] = this.radii[1];
+            BlurredBackgroundDrawable.tmpRadii[2] = this.radii[2];
+            BlurredBackgroundDrawable.tmpRadii[3] = this.radii[3];
+            this.strokePathTop.rewind();
+            Path path2 = this.strokePathTop;
+            Rect rect3 = this.boundsWithPadding;
+            float f5 = rect3.left;
+            float f6 = rect3.top;
+            path2.addRoundRect(f5, f6, rect3.right, Math.min(this.radii[0] + f6, rect3.bottom), BlurredBackgroundDrawable.tmpRadii, direction);
+            Path path3 = this.strokePathTop;
+            Rect rect4 = this.boundsWithPadding;
+            float f7 = rect4.left;
+            float f8 = rect4.top;
+            float f9 = f8 + this.strokeWidthTop;
+            float f10 = rect4.right;
+            float min = Math.min(f8 + this.radii[0], rect4.bottom);
+            float[] fArr2 = BlurredBackgroundDrawable.tmpRadii;
+            Path.Direction direction2 = Path.Direction.CCW;
+            path3.addRoundRect(f7, f9, f10, min, fArr2, direction2);
+            this.strokePathTop.close();
+            Arrays.fill(BlurredBackgroundDrawable.tmpRadii, 0.0f);
+            BlurredBackgroundDrawable.tmpRadii[4] = this.radii[4];
+            BlurredBackgroundDrawable.tmpRadii[5] = this.radii[5];
+            BlurredBackgroundDrawable.tmpRadii[6] = this.radii[6];
+            BlurredBackgroundDrawable.tmpRadii[7] = this.radii[7];
+            this.strokePathBottom.rewind();
+            Path path4 = this.strokePathBottom;
+            float f11 = this.boundsWithPadding.left;
+            float max = Math.max(r3.bottom - this.radii[4], r3.top);
+            Rect rect5 = this.boundsWithPadding;
+            path4.addRoundRect(f11, max, rect5.right, rect5.bottom, BlurredBackgroundDrawable.tmpRadii, direction);
+            Path path5 = this.strokePathBottom;
+            float f12 = this.boundsWithPadding.left;
+            float max2 = Math.max(r1.bottom - this.radii[4], r1.top);
+            Rect rect6 = this.boundsWithPadding;
+            path5.addRoundRect(f12, max2, rect6.right, rect6.bottom - this.strokeWidthBottom, BlurredBackgroundDrawable.tmpRadii, direction2);
+            this.strokePathBottom.close();
+        }
+
+        public void draw(Canvas canvas, Paint paint) {
+            if (this.radiiAreSame) {
+                Rect rect = this.boundsWithPadding;
+                float f = rect.left;
+                float f2 = rect.top;
+                float f3 = rect.right;
+                float f4 = rect.bottom;
+                float f5 = this.radii[0];
+                canvas.drawRoundRect(f, f2, f3, f4, f5, f5, paint);
+                return;
+            }
+            canvas.drawPath(this.path, paint);
         }
     }
 
@@ -250,10 +340,6 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this.alpha;
     }
 
-    public static void drawStroke(Canvas canvas, Rect rect, float[] fArr, float f, boolean z, Paint paint) {
-        drawStroke(canvas, rect.left, rect.top, rect.right, rect.bottom, fArr, f, z, paint);
-    }
-
     public static void drawStroke(android.graphics.Canvas r11, float r12, float r13, float r14, float r15, float[] r16, float r17, boolean r18, android.graphics.Paint r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable.drawStroke(android.graphics.Canvas, float, float, float, float, float[], float, boolean, android.graphics.Paint):void");
     }
@@ -286,6 +372,9 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     }
 
     public void drawSource(Canvas canvas, BlurredBackgroundSource blurredBackgroundSource) {
+        if (this.boundProps.boundsWithPadding.isEmpty()) {
+            return;
+        }
         if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
             drawSourceColor(canvas, (BlurredBackgroundSourceColor) blurredBackgroundSource);
             return;
@@ -302,61 +391,56 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     }
 
     private void drawSourceColor(Canvas canvas, BlurredBackgroundSourceColor blurredBackgroundSourceColor) {
-        int compositeColors = ColorUtils.compositeColors(this.backgroundColor, blurredBackgroundSourceColor.getColor());
-        this.backgroundColorPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
-        this.backgroundColorPaint.setColor(compositeColors);
-        this.backgroundColorPaint.setAlpha(this.alpha);
-        canvas.drawPath(this.boundProps.path, this.backgroundColorPaint);
+        int multAlpha = Theme.multAlpha(ColorUtils.compositeColors(this.backgroundColor, blurredBackgroundSourceColor.getColor()), this.alpha / 255.0f);
+        this.backgroundColorPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), Theme.multAlpha(this.shadowColor, this.alpha / 255.0f));
+        this.backgroundColorPaint.setColor(multAlpha);
+        this.boundProps.draw(canvas, this.backgroundColorPaint);
         drawStrokeInternalIfNeeded(canvas);
     }
 
     private void drawSourceBitmap(Canvas canvas, BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap) {
         Bitmap bitmap = blurredBackgroundSourceBitmap.getBitmap();
-        Bitmap bitmap2 = (Bitmap) this.bitmapInShader.get();
-        if (bitmap == null || bitmap.isRecycled()) {
-            return;
+        if (bitmap != ((Bitmap) this.bitmapInShader.get())) {
+            if (bitmap != null && !bitmap.isRecycled()) {
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                this.bitmapShader = bitmapShader;
+                this.backgroundBitmapPaint.setShader(bitmapShader);
+            } else {
+                this.bitmapShader = null;
+                this.backgroundBitmapPaint.setShader(null);
+            }
         }
-        if (this.bitmapShader == null || bitmap != bitmap2) {
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-            this.bitmapShader = bitmapShader;
-            this.backgroundBitmapPaint.setShader(bitmapShader);
+        if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
+            this.backgroundBitmapShadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
+            this.boundProps.draw(canvas, this.backgroundBitmapShadowPaint);
         }
-        this.backgroundBitmapPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
-        this.backgroundBitmapPaint.setAlpha(this.alpha);
-        this.backgroundColorPaint.setColor(this.backgroundColor);
-        this.backgroundColorPaint.setAlpha(this.alpha);
-        this.bitmapShaderMatrix.set(blurredBackgroundSourceBitmap.getMatrix());
-        this.bitmapShaderMatrix.postTranslate(-this.sourceOffsetX, -this.sourceOffsetY);
-        this.bitmapShader.setLocalMatrix(this.bitmapShaderMatrix);
-        canvas.drawPath(this.boundProps.path, this.backgroundBitmapPaint);
-        if (Color.alpha(this.backgroundColor) > 0) {
-            canvas.drawPath(this.boundProps.path, this.backgroundColorPaint);
+        if (this.bitmapShader != null && bitmap != null && !bitmap.isRecycled() && this.alpha > 0) {
+            this.bitmapShaderMatrix.set(blurredBackgroundSourceBitmap.getMatrix());
+            this.bitmapShaderMatrix.postTranslate(-this.sourceOffsetX, -this.sourceOffsetY);
+            this.bitmapShader.setLocalMatrix(this.bitmapShaderMatrix);
+            this.backgroundBitmapPaint.setAlpha(this.alpha);
+            this.boundProps.draw(canvas, this.backgroundBitmapPaint);
+        }
+        int multAlpha = Theme.multAlpha(this.backgroundColor, this.alpha / 255.0f);
+        if (Color.alpha(multAlpha) > 0) {
+            this.backgroundBitmapFill.setColor(multAlpha);
+            this.boundProps.draw(canvas, this.backgroundBitmapFill);
         }
         drawStrokeInternalIfNeeded(canvas);
     }
 
     private void drawStrokeInternalIfNeeded(Canvas canvas) {
-        if (this.strokeColorTop == 0 && this.strokeColorBottom == 0) {
-            return;
+        int multAlpha = Theme.multAlpha(this.strokeColorTop, this.alpha / 255.0f);
+        int multAlpha2 = Theme.multAlpha(this.strokeColorBottom, this.alpha / 255.0f);
+        if (Color.alpha(multAlpha) > 0) {
+            this.paintStrokeFill.setColor(multAlpha);
+            canvas.drawPath(this.boundProps.strokePathTop, this.paintStrokeFill);
         }
-        canvas.save();
-        canvas.clipPath(this.boundProps.path);
-        int i = this.strokeColorTop;
-        if (i != 0) {
-            this.paintStrokeTop.setColor(i);
-            this.paintStrokeTop.setStrokeWidth(this.boundProps.strokeWidthTop);
-            Props props = this.boundProps;
-            drawStroke(canvas, props.boundsWithPadding, props.radii, props.strokeWidthTop, true, this.paintStrokeTop);
+        if (Color.alpha(multAlpha2) > 0) {
+            this.paintStrokeFill.setColor(multAlpha2);
+            canvas.drawPath(this.boundProps.strokePathBottom, this.paintStrokeFill);
         }
-        int i2 = this.strokeColorBottom;
-        if (i2 != 0) {
-            this.paintStrokeBottom.setColor(i2);
-            this.paintStrokeBottom.setStrokeWidth(this.boundProps.strokeWidthBottom);
-            Props props2 = this.boundProps;
-            drawStroke(canvas, props2.boundsWithPadding, props2.radii, props2.strokeWidthBottom, false, this.paintStrokeBottom);
-        }
-        canvas.restore();
     }
 
     private void drawSourceRenderNode(Canvas canvas, BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode) {

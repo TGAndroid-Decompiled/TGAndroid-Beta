@@ -1205,7 +1205,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.container.setSystemUiVisibility(this.container.getSystemUiVisibility() | 8192);
         }
         if (this.useLightNavBar && Build.VERSION.SDK_INT >= 26) {
-            AndroidUtilities.setLightNavigationBar(getWindow(), false);
+            AndroidUtilities.setLightNavigationBar((Dialog) this, false);
         }
         if (this.containerView == null) {
             FrameLayout frameLayout = new FrameLayout(getContext()) {
@@ -1382,7 +1382,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.container.setSystemUiVisibility((this.useLightStatusBar && color == -1) ? systemUiVisibility | 8192 : systemUiVisibility & (-8193));
         }
         if (this.attachedFragment != null) {
-            LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
+            LaunchActivity.instance.checkSystemBarColors(true, true, true);
         }
     }
 
@@ -1573,7 +1573,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.containerView.setAlpha(0.0f);
             this.containerView.setTranslationY(0.0f);
         } else {
-            this.containerView.setTranslationY(getContainerViewHeight() + this.keyboardHeight + AndroidUtilities.dp(10.0f) + (this.scrollNavBar ? Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset())) : 0));
+            this.containerView.setTranslationY(getContainerViewHeight() + this.keyboardHeight + AndroidUtilities.dp(10.0f) + Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset())));
         }
         this.currentSheetAnimationType = 1;
         ValueAnimator valueAnimator = this.navigationBarAnimation;
@@ -1733,7 +1733,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.currentSheetAnimationType = 2;
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, getContainerViewHeight() + this.keyboardHeight + AndroidUtilities.dp(10.0f) + (this.scrollNavBar ? Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset())) : 0)), ObjectAnimator.ofInt(this.backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, getContainerViewHeight() + this.keyboardHeight + AndroidUtilities.dp(10.0f) + Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset()))), ObjectAnimator.ofInt(this.backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
         this.currentSheetAnimation.setDuration(this.cellType == Builder.CELL_TYPE_CALL ? 330L : 180L);
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.currentSheetAnimation.addListener(new AnonymousClass7(i));
@@ -1848,7 +1848,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1189getWindowView() {
+    public View mo1191getWindowView() {
         return this.container;
     }
 
@@ -2131,11 +2131,11 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             containerView.invalidate();
         }
         if (this.attachedFragment != null) {
-            LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-            AndroidUtilities.setLightNavigationBar(mo1189getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            LaunchActivity.instance.checkSystemBarColors(true, true, true);
+            AndroidUtilities.setLightNavigationBar(mo1191getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
-            AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
-            AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
+            AndroidUtilities.setNavigationBarColor(this, this.overlayDrawNavBarColor);
+            AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
         }
     }
 

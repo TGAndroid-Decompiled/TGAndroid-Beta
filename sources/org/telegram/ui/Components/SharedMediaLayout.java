@@ -111,7 +111,7 @@ import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda307;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda361;
 import org.telegram.ui.ChatActivityContainer;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -1712,7 +1712,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         public void lambda$onClick$10(TLRPC.User user, boolean z) {
-            SharedMediaLayout.this.profileActivity.lambda$onBackPressed$341();
+            SharedMediaLayout.this.profileActivity.lambda$onBackPressed$340();
             if (SharedMediaLayout.this.profileActivity instanceof NotificationCenter.NotificationCenterDelegate) {
                 SharedMediaLayout.this.profileActivity.getNotificationCenter().removeObserver((NotificationCenter.NotificationCenterDelegate) SharedMediaLayout.this.profileActivity, NotificationCenter.closeChats);
             }
@@ -2252,7 +2252,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                                     public void onTransitionAnimationStart(boolean z, boolean z2) {
                                                         if (this.firstCreateView) {
                                                             if (this.searchItem != null) {
-                                                                lambda$openSearchWithText$344("");
+                                                                lambda$openSearchWithText$343("");
                                                                 this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                                             }
                                                             SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -4057,7 +4057,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
                 this.profileActivity.getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0, 0L);
             }
-            dialogsActivity.lambda$onBackPressed$341();
+            dialogsActivity.lambda$onBackPressed$340();
             BaseFragment baseFragment = this.profileActivity;
             UndoView undoView = baseFragment instanceof ProfileActivity ? ((ProfileActivity) baseFragment).getUndoView() : null;
             if (undoView != null) {
@@ -5617,7 +5617,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             boolean isStoryAlbumPageType = isStoryAlbumPageType(getClosestTab());
             final ItemOptions makeOptions = ItemOptions.makeOptions(this.profileActivity, view, true);
             final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
-            makeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda307(makeOptions));
+            makeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda361(makeOptions));
             makeSwipeback.addGap();
             ItemOptions.addAlbumsItemOptions(makeSwipeback, getStoriesController().getStoryAlbumsList(this.dialog_id), hashSet, true, new Runnable() {
                 @Override

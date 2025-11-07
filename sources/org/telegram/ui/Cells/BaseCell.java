@@ -15,7 +15,6 @@ import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOut
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 
 public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLayout.IViewWithInvalidateCallback {
     private boolean cachingBottom;
@@ -252,17 +251,15 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
 
         @Override
         public void draw(Canvas canvas) {
-            if (Build.VERSION.SDK_INT < 31 || !DownscaleScrollableNoiseSuppressor.isRecordingCanvas(canvas)) {
-                int save = canvas.save();
+            int save = canvas.save();
+            try {
                 try {
-                    try {
-                        super.draw(canvas);
-                    } catch (Exception e) {
-                        FileLog.e("probably forgot to put setCallback", e);
-                    }
-                } finally {
-                    canvas.restoreToCount(save);
+                    super.draw(canvas);
+                } catch (Exception e) {
+                    FileLog.e("probably forgot to put setCallback", e);
                 }
+            } finally {
+                canvas.restoreToCount(save);
             }
         }
     }

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -154,8 +155,8 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             this.navBarColorKey = -1;
             int i = Theme.key_dialogBackgroundGray;
             this.navBarColor = getThemedColor(i);
-            AndroidUtilities.setNavigationBarColor(getWindow(), getThemedColor(i), false);
-            AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
+            AndroidUtilities.setNavigationBarColor((Dialog) this, getThemedColor(i), false);
+            AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.navBarColor)) > 0.721d);
         } else {
             fixNavigationBar(getThemedColor(Theme.key_dialogBackgroundGray));
         }

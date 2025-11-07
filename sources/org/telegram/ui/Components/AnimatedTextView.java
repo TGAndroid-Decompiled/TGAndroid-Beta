@@ -268,6 +268,9 @@ public class AnimatedTextView extends View {
                 i = this.bounds.width();
             }
             if (z) {
+                if (TextUtils.equals(charSequence, this.currentText)) {
+                    return;
+                }
                 if (this.allowCancel) {
                     ValueAnimator valueAnimator = this.animator;
                     if (valueAnimator != null) {
@@ -277,9 +280,6 @@ public class AnimatedTextView extends View {
                 } else if (isAnimating()) {
                     this.toSetText = charSequence;
                     this.toSetTextMoveDown = z2;
-                    return;
-                }
-                if (charSequence.equals(this.currentText)) {
                     return;
                 }
                 this.oldText = this.currentText;
@@ -1075,7 +1075,7 @@ public class AnimatedTextView extends View {
     public void setText(CharSequence charSequence, boolean z, boolean z2) {
         boolean z3 = !this.first && z;
         this.first = false;
-        if (z3) {
+        if (z3 && !TextUtils.equals(charSequence, this.drawable.getText())) {
             if (this.drawable.allowCancel) {
                 if (this.drawable.animator != null) {
                     this.drawable.animator.cancel();

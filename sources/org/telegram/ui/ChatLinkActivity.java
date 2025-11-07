@@ -279,7 +279,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             if ((-this.currentChatId) == ((Long) objArr[0]).longValue()) {
                 INavigationLayout iNavigationLayout = this.parentLayout;
                 if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                    lambda$onBackPressed$341();
+                    lambda$onBackPressed$340();
                 } else {
                     removeSelfFromStack();
                 }
@@ -298,7 +298,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatLinkActivity.this.lambda$onBackPressed$341();
+                    ChatLinkActivity.this.lambda$onBackPressed$340();
                 }
             }
         });
@@ -522,7 +522,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (this.isChannel) {
             return;
         }
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     public void lambda$createView$0() {
@@ -707,9 +707,9 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         }, 1000L);
         if (baseFragment != null) {
             removeSelfFromStack();
-            baseFragment.lambda$onBackPressed$341();
+            baseFragment.lambda$onBackPressed$340();
         } else {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 

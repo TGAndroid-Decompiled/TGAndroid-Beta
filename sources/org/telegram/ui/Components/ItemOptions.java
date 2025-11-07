@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
@@ -32,6 +33,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -215,8 +217,26 @@ public class ItemOptions {
         this.resourcesProvider = resourcesProvider;
     }
 
+    public class AnonymousClass1 extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
+        AnonymousClass1(Context context, int i, Theme.ResourcesProvider resourcesProvider, int i2) {
+            super(context, i, resourcesProvider, i2);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            if (this == ItemOptions.this.layout && ItemOptions.this.maxHeight > 0) {
+                i2 = View.MeasureSpec.makeMeasureSpec(Math.min(ItemOptions.this.maxHeight, View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2));
+            }
+            super.onMeasure(i, i2);
+        }
+    }
+
     private void init() {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, R.drawable.popup_fixed_alert2, this.resourcesProvider, (this.useScrollView ? 0 : 4) | (this.swipeback ? 1 : 0) | (this.shownFromBottom ? 2 : 0)) {
+        AnonymousClass1 anonymousClass1 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, R.drawable.popup_fixed_alert2, this.resourcesProvider, (this.useScrollView ? 0 : 4) | (this.swipeback ? 1 : 0) | (this.shownFromBottom ? 2 : 0)) {
+            AnonymousClass1(Context context, int i, Theme.ResourcesProvider resourcesProvider, int i2) {
+                super(context, i, resourcesProvider, i2);
+            }
+
             @Override
             public void onMeasure(int i, int i2) {
                 if (this == ItemOptions.this.layout && ItemOptions.this.maxHeight > 0) {
@@ -225,8 +245,8 @@ public class ItemOptions {
                 super.onMeasure(i, i2);
             }
         };
-        this.lastLayout = actionBarPopupWindowLayout;
-        actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
+        this.lastLayout = anonymousClass1;
+        anonymousClass1.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
                 ItemOptions.this.lambda$init$0(keyEvent);
@@ -695,6 +715,19 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions addDialog(int i, long j, Runnable runnable) {
+        int i2;
+        TLObject userOrChat = MessagesController.getInstance(i).getUserOrChat(j);
+        boolean z = userOrChat instanceof TLRPC.User;
+        boolean z2 = (userOrChat instanceof TLRPC.Chat) && ChatObject.isChannelAndNotMegaGroup((TLRPC.Chat) userOrChat);
+        if (z) {
+            i2 = R.string.ViewProfile;
+        } else {
+            i2 = z2 ? R.string.ViewChannelProfile : R.string.ViewGroupProfile;
+        }
+        return addProfile(userOrChat, LocaleController.getString(i2), runnable);
+    }
+
     public ItemOptions addProfile(TLObject tLObject, CharSequence charSequence, final Runnable runnable) {
         FrameLayout frameLayout = new FrameLayout(this.context);
         frameLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 0, 6));
@@ -723,14 +756,15 @@ public class ItemOptions {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ItemOptions.lambda$addProfile$9(runnable, view);
+                ItemOptions.this.lambda$addProfile$9(runnable, view);
             }
         });
         addView(frameLayout, LayoutHelper.createLinear(-1, 52));
         return this;
     }
 
-    public static void lambda$addProfile$9(Runnable runnable, View view) {
+    public void lambda$addProfile$9(Runnable runnable, View view) {
+        dismiss();
         if (runnable != null) {
             runnable.run();
         }
@@ -744,24 +778,39 @@ public class ItemOptions {
         return addText(charSequence, i, null, i2);
     }
 
+    public class AnonymousClass2 extends TextView {
+        AnonymousClass2(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+        }
+    }
+
     public ItemOptions addText(CharSequence charSequence, int i, Typeface typeface, int i2) {
-        TextView textView = new TextView(this.context) {
+        AnonymousClass2 anonymousClass2 = new TextView(this.context) {
+            AnonymousClass2(Context context) {
+                super(context);
+            }
+
             @Override
-            protected void onMeasure(int i3, int i4) {
-                super.onMeasure(i3, i4);
+            protected void onMeasure(int i3, int i22) {
+                super.onMeasure(i3, i22);
             }
         };
-        textView.setTextSize(1, i);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
-        textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), false));
-        textView.setTag(R.id.fit_width_tag, 1);
-        textView.setTypeface(typeface);
-        NotificationCenter.listenEmojiLoading(textView);
+        anonymousClass2.setTextSize(1, i);
+        anonymousClass2.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
+        anonymousClass2.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
+        anonymousClass2.setText(Emoji.replaceEmoji(charSequence, anonymousClass2.getPaint().getFontMetricsInt(), false));
+        anonymousClass2.setTag(R.id.fit_width_tag, 1);
+        anonymousClass2.setTypeface(typeface);
+        NotificationCenter.listenEmojiLoading(anonymousClass2);
         if (i2 > 0) {
-            textView.setMaxWidth(i2);
+            anonymousClass2.setMaxWidth(i2);
         }
-        addView(textView, LayoutHelper.createLinear(-1, -2));
+        addView(anonymousClass2, LayoutHelper.createLinear(-1, -2));
         return this;
     }
 
@@ -990,6 +1039,58 @@ public class ItemOptions {
         }
     }
 
+    public class AnonymousClass3 extends AnimatorListenerAdapter {
+        AnonymousClass3() {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            if (ItemOptions.this.dimView != null) {
+                ItemOptions.this.dimView.setProgress(1.0f);
+                ItemOptions.this.dimView.invalidate();
+            }
+            ItemOptions.this.dimAnimator = null;
+        }
+    }
+
+    public class AnonymousClass4 extends ActionBarPopupWindow {
+        final ViewGroup val$container;
+
+        AnonymousClass4(View view, int i, int i2, ViewGroup viewGroup) {
+            super(view, i, i2);
+            r5 = viewGroup;
+        }
+
+        @Override
+        public void dismiss() {
+            super.dismiss();
+            ItemOptions.this.dismissDim(r5);
+            if (ItemOptions.this.dismissListener != null) {
+                ItemOptions.this.dismissListener.run();
+                ItemOptions.this.dismissListener = null;
+            }
+        }
+    }
+
+    public class AnonymousClass5 implements PopupWindow.OnDismissListener {
+        final ViewGroup val$container;
+
+        AnonymousClass5(ViewGroup viewGroup) {
+            r2 = viewGroup;
+        }
+
+        @Override
+        public void onDismiss() {
+            ItemOptions itemOptions = ItemOptions.this;
+            itemOptions.actionBarPopupWindow = null;
+            itemOptions.dismissDim(r2);
+            if (ItemOptions.this.dismissListener != null) {
+                ItemOptions.this.dismissListener.run();
+                ItemOptions.this.dismissListener = null;
+            }
+        }
+    }
+
     public void setTranslationY(float f) {
         ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
         if (actionBarPopupWindow != null) {
@@ -1073,7 +1174,7 @@ public class ItemOptions {
         return this;
     }
 
-    public void dismissDim(final ViewGroup viewGroup) {
+    public void dismissDim(ViewGroup viewGroup) {
         final DimView dimView = this.dimView;
         if (dimView == null) {
             return;
@@ -1092,12 +1193,20 @@ public class ItemOptions {
             }
         });
         this.dimAnimator.addListener(new AnimatorListenerAdapter() {
+            final ViewGroup val$container;
+            final DimView val$dimViewFinal;
+
+            AnonymousClass6(final DimView dimView2, ViewGroup viewGroup2) {
+                r2 = dimView2;
+                r3 = viewGroup2;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
-                dimView.setProgress(0.0f);
-                dimView.invalidate();
-                AndroidUtilities.removeFromParent(dimView);
-                viewGroup.getViewTreeObserver().removeOnPreDrawListener(ItemOptions.this.preDrawListener);
+                r2.setProgress(0.0f);
+                r2.invalidate();
+                AndroidUtilities.removeFromParent(r2);
+                r3.getViewTreeObserver().removeOnPreDrawListener(ItemOptions.this.preDrawListener);
                 if (ItemOptions.this.hideScrimUnder) {
                     ItemOptions.this.scrimView.setVisibility(0);
                     if (ItemOptions.this.scrimView instanceof GiftSheet.GiftCell) {
@@ -1117,6 +1226,30 @@ public class ItemOptions {
 
     public static void lambda$dismissDim$12(DimView dimView, ValueAnimator valueAnimator) {
         dimView.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    }
+
+    public class AnonymousClass6 extends AnimatorListenerAdapter {
+        final ViewGroup val$container;
+        final DimView val$dimViewFinal;
+
+        AnonymousClass6(final DimView dimView2, ViewGroup viewGroup2) {
+            r2 = dimView2;
+            r3 = viewGroup2;
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            r2.setProgress(0.0f);
+            r2.invalidate();
+            AndroidUtilities.removeFromParent(r2);
+            r3.getViewTreeObserver().removeOnPreDrawListener(ItemOptions.this.preDrawListener);
+            if (ItemOptions.this.hideScrimUnder) {
+                ItemOptions.this.scrimView.setVisibility(0);
+                if (ItemOptions.this.scrimView instanceof GiftSheet.GiftCell) {
+                    ((GiftSheet.GiftCell) ItemOptions.this.scrimView).invalidateCustom();
+                }
+            }
+        }
     }
 
     public boolean isShown() {
@@ -1388,18 +1521,33 @@ public class ItemOptions {
         }
     }
 
+    public class AnonymousClass7 extends ScrollView {
+        AnonymousClass7(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
+        }
+    }
+
     public static void addAlbumsItemOptions(ItemOptions itemOptions, StoriesController.StoriesCollections storiesCollections, final HashSet hashSet, boolean z, final Runnable runnable, final Utilities.Callback callback) {
         ArrayList<TLRPC.PhotoSize> arrayList;
-        ScrollView scrollView = new ScrollView(itemOptions.getContext()) {
+        AnonymousClass7 anonymousClass7 = new ScrollView(itemOptions.getContext()) {
+            AnonymousClass7(Context context) {
+                super(context);
+            }
+
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)));
             }
         };
         LinearLayout linearLayout = new LinearLayout(itemOptions.getContext());
-        scrollView.addView(linearLayout);
+        anonymousClass7.addView(linearLayout);
         linearLayout.setOrientation(1);
-        itemOptions.addView(scrollView, LayoutHelper.createLinear(-1, -2));
+        itemOptions.addView(anonymousClass7, LayoutHelper.createLinear(-1, -2));
         float f = 18.0f;
         if (z && runnable != null) {
             ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(itemOptions.getContext(), 2, false, false, itemOptions.resourcesProvider);

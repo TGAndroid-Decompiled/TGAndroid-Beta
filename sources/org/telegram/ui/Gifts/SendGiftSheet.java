@@ -985,7 +985,7 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$341();
+                        baseFragment.lambda$onBackPressed$340();
                     } else {
                         baseFragment.removeSelfFromStack();
                     }

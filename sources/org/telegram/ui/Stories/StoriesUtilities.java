@@ -45,6 +45,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedColor;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -107,12 +108,12 @@ public abstract class StoriesUtilities {
         Text text;
         if (z2) {
             if (liveLargeText == null) {
-                liveLargeText = new Text("LIVE", 14.0f, AndroidUtilities.bold());
+                liveLargeText = new Text(LocaleController.getString(R.string.LiveStoryBadge), 14.0f, AndroidUtilities.bold());
             }
             text = liveLargeText;
         } else {
             if (liveText == null) {
-                liveText = new Text("LIVE", 9.66f, AndroidUtilities.bold());
+                liveText = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.66f, AndroidUtilities.bold());
             }
             text = liveText;
         }
@@ -167,13 +168,23 @@ public abstract class StoriesUtilities {
             if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || user == null || (tL_recentStory2 = user.stories_max_id) == null || tL_recentStory2.max_id <= 0 || user.stories_unavailable) {
                 return 0;
             }
-            return user.stories_max_id.max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
+            int i = storiesController.dialogIdToMaxReadId.get(j, 0);
+            TLRPC.TL_recentStory tL_recentStory3 = user.stories_max_id;
+            if (tL_recentStory3.live) {
+                return 3;
+            }
+            return tL_recentStory3.max_id > i ? 1 : 2;
         }
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
         if (chat == null || (tL_recentStory = chat.stories_max_id) == null || tL_recentStory.max_id <= 0 || chat.stories_unavailable) {
             return 0;
         }
-        return chat.stories_max_id.max_id > storiesController.dialogIdToMaxReadId.get(j, 0) ? 1 : 2;
+        int i2 = storiesController.dialogIdToMaxReadId.get(j, 0);
+        TLRPC.TL_recentStory tL_recentStory4 = chat.stories_max_id;
+        if (tL_recentStory4.live) {
+            return 3;
+        }
+        return tL_recentStory4.max_id > i2 ? 1 : 2;
     }
 
     private static void drawProgress(Canvas canvas, AvatarStoryParams avatarStoryParams, View view, Paint paint) {
@@ -298,7 +309,7 @@ public abstract class StoriesUtilities {
         }
     }
 
-    private static int getInset(int i, int i2) {
+    public static int getInset(int i, int i2) {
         if (i == 3) {
             i = i2;
         }
@@ -482,10 +493,16 @@ public abstract class StoriesUtilities {
         }
     }
 
-    public static void setThumbImage(ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, int i, int i2) {
+    public static void setThumbImage(AvatarDrawable avatarDrawable, ImageReceiver imageReceiver, TL_stories.StoryItem storyItem, int i, int i2) {
         ArrayList<TLRPC.PhotoSize> arrayList;
         TLRPC.Document document;
         TLRPC.MessageMedia messageMedia = storyItem.media;
+        if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
+            TLObject userOrChat = MessagesController.getInstance(imageReceiver.getCurrentAccount()).getUserOrChat(storyItem.dialogId);
+            avatarDrawable.setInfo(userOrChat);
+            imageReceiver.setForUserOrChat(userOrChat, avatarDrawable);
+            return;
+        }
         if (messageMedia != null && (document = messageMedia.document) != null) {
             imageReceiver.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(Math.max(i, i2)), false, null, true), storyItem.media.document), i + "_" + i2, null, null, ImageLoader.createStripedBitmap(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
             return;
@@ -793,7 +810,7 @@ public abstract class StoriesUtilities {
         public boolean isDialogStoriesCell;
         public boolean isFirst;
         public boolean isLast;
-        private final boolean isStoryCell;
+        public final boolean isStoryCell;
         Runnable longPressRunnable;
         UserStoriesLoadOperation operation;
         public RectF originalAvatarRect;

@@ -10,9 +10,9 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
 
 public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSource {
-    public boolean allowLiquid = true;
     private final BlurredBackgroundSource fallbackSource;
     private boolean inRecording;
+    private RecordingCanvas recordingCanvas;
     private final RenderNode renderNode;
 
     public BlurredBackgroundSourceRenderNode(BlurredBackgroundSource blurredBackgroundSource) {
@@ -26,7 +26,7 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         this.renderNode.setRenderEffect(f > 0.0f ? RenderEffect.createBlurEffect(f, f, Shader.TileMode.CLAMP) : null);
     }
 
-    public Canvas beginRecording(int i, int i2) {
+    public RecordingCanvas beginRecording(int i, int i2) {
         RecordingCanvas beginRecording;
         if (this.inRecording) {
             throw new IllegalStateException();
@@ -34,6 +34,7 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         this.inRecording = true;
         this.renderNode.setPosition(0, 0, i, i2);
         beginRecording = this.renderNode.beginRecording(i, i2);
+        this.recordingCanvas = beginRecording;
         return beginRecording;
     }
 
@@ -43,6 +44,11 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         }
         this.renderNode.endRecording();
         this.inRecording = false;
+        this.recordingCanvas = null;
+    }
+
+    public boolean isRecordingCanvas(Canvas canvas) {
+        return canvas != null && canvas == this.recordingCanvas;
     }
 
     public boolean inRecording() {

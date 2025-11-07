@@ -86,7 +86,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (LocationActivity.this.onBackPressed()) {
-                        LocationActivity.this.lambda$onBackPressed$341();
+                        LocationActivity.this.lambda$onBackPressed$340();
                     }
                 } else if (i == 1) {
                     LocationActivity.this.processDone();
@@ -414,7 +414,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         boolean z = this.geo == null && TextUtils.isEmpty(this.address);
         if (!z) {
             if (!hasChanges()) {
-                lambda$onBackPressed$341();
+                lambda$onBackPressed$340();
                 return;
             }
             String str = this.address;
@@ -486,7 +486,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 
@@ -520,7 +520,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$onBackPressed$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$341();
+        lambda$onBackPressed$340();
     }
 
     @Override
@@ -608,7 +608,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$341();
+            lambda$onBackPressed$340();
         }
     }
 

@@ -6882,13 +6882,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$341();
+                twoStepVerificationActivity.lambda$onBackPressed$340();
             }
             BulletinFactory.showError(tL_error);
             return;
         }
         twoStepVerificationActivity.needHideProgress();
-        twoStepVerificationActivity.lambda$onBackPressed$341();
+        twoStepVerificationActivity.lambda$onBackPressed$340();
         if (tLObject instanceof TL_stars.starGiftWithdrawalUrl) {
             Browser.openUrlInSystemBrowser(getContext(), ((TL_stars.starGiftWithdrawalUrl) tLObject).url);
         }
