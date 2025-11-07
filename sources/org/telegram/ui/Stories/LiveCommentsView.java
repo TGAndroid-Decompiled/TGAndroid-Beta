@@ -589,7 +589,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         if (bool2.booleanValue()) {
             TL_phone.deleteGroupCallParticipantMessages deletegroupcallparticipantmessages = new TL_phone.deleteGroupCallParticipantMessages();
             deletegroupcallparticipantmessages.call = this.inputCall;
-            deletegroupcallparticipantmessages.participant = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            deletegroupcallparticipantmessages.participant = MessagesController.getInstance(this.currentAccount).getInputPeer(message.dialogId);
             deletegroupcallparticipantmessages.report_spam = bool.booleanValue();
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(deletegroupcallparticipantmessages, null);
             deleteAllFrom(message.dialogId);

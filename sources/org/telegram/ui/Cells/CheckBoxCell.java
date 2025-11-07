@@ -552,14 +552,18 @@ public class CheckBoxCell extends FrameLayout {
                 dp += AndroidUtilities.dp(39.0f);
             }
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : Theme.dividerPaint;
+            Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : null;
+            if (paint == null) {
+                paint = Theme.dividerPaint;
+            }
+            Paint paint2 = paint;
             float f = LocaleController.isRTL ? 0.0f : dp;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (!LocaleController.isRTL) {
                 dp = 0;
             }
-            canvas.drawLine(f, measuredHeight, measuredWidth - dp, getMeasuredHeight() - 1, paint);
+            canvas.drawLine(f, measuredHeight, measuredWidth - dp, getMeasuredHeight() - 1, paint2);
         }
     }
 

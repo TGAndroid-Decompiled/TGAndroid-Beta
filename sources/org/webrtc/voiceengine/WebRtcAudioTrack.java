@@ -119,9 +119,10 @@ public class WebRtcAudioTrack {
             Logging.d("WebRtcAudioTrack", "AudioTrackThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioTrack.assertTrue(WebRtcAudioTrack.this.audioTrack.getPlayState() == 3);
             int capacity = WebRtcAudioTrack.this.byteBuffer.capacity();
-            int channelCount = WebRtcAudioTrack.this.audioTrack.getChannelCount() * 2;
-            int sampleRate = WebRtcAudioTrack.this.audioTrack.getSampleRate();
+            WebRtcAudioTrack.this.audioTrack.getChannelCount();
+            WebRtcAudioTrack.this.audioTrack.getSampleRate();
             this.targetTimeNs = System.nanoTime();
+            boolean z = false;
             while (this.keepAlive && WebRtcAudioTrack.this.audioTrack != null) {
                 try {
                     WebRtcAudioTrack webRtcAudioTrack = WebRtcAudioTrack.this;
@@ -132,7 +133,7 @@ public class WebRtcAudioTrack {
                         WebRtcAudioTrack.this.byteBuffer.put(WebRtcAudioTrack.this.emptyBytes);
                         WebRtcAudioTrack.this.byteBuffer.position(0);
                     }
-                    int writeBytes = writeBytes(WebRtcAudioTrack.this.audioTrack, WebRtcAudioTrack.this.byteBuffer, capacity);
+                    int writeBytes = writeBytes(WebRtcAudioTrack.this.audioTrack, WebRtcAudioTrack.this.byteBuffer, capacity, z);
                     if (writeBytes != capacity) {
                         Logging.e("WebRtcAudioTrack", "AudioTrack.write played invalid number of bytes: " + writeBytes);
                         if (writeBytes < 0) {
@@ -141,8 +142,7 @@ public class WebRtcAudioTrack {
                         }
                     }
                     WebRtcAudioTrack.this.byteBuffer.rewind();
-                    this.writtenFrames += writeBytes / channelCount;
-                    long playbackHeadPosition = ((this.writtenFrames - (WebRtcAudioTrack.this.audioTrack == null ? 0L : WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition())) * 1000) / sampleRate;
+                    z = !z;
                     WebRtcAudioTrack.this.byteBuffer.rewind();
                     this.targetTimeNs += 10000000;
                     long nanoTime = this.targetTimeNs - System.nanoTime();
@@ -170,11 +170,11 @@ public class WebRtcAudioTrack {
             }
         }
 
-        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i) {
+        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i, boolean z) {
             if (audioTrack == null) {
                 return 0;
             }
-            return audioTrack.write(byteBuffer, i, 0);
+            return audioTrack.write(byteBuffer, i, !z ? 1 : 0);
         }
 
         public void stopThread() {

@@ -26612,6 +26612,10 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
+    public boolean hasSetupEmailSuggestion() {
+        return this.pendingSuggestions.contains("SETUP_LOGIN_EMAIL") || this.pendingSuggestions.contains("SETUP_LOGIN_EMAIL_NOSKIP");
+    }
+
     public int checkEmailSuggestion() {
         if (this.emailSuggestionWasShown || this.lastCheckPromoInfoTime + 10 < getConnectionsManager().getCurrentTime()) {
             return 0;

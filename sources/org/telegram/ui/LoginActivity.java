@@ -350,11 +350,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
         getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateConnectionState);
+        getNotificationCenter().removeObserver(this, NotificationCenter.newSuggestionsAvailable);
     }
 
     @Override
     public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.didUpdateConnectionState);
+        getNotificationCenter().addObserver(this, NotificationCenter.newSuggestionsAvailable);
         return super.onFragmentCreate();
     }
 
@@ -8873,6 +8875,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.didUpdateConnectionState) {
             updateProxyButton(true, false);
+        } else if (i == NotificationCenter.newSuggestionsAvailable && this.emailChangeIsSuggestion && !getMessagesController().hasSetupEmailSuggestion()) {
+            lambda$onBackPressed$340();
         }
     }
 
