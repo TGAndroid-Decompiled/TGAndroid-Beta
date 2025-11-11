@@ -2316,7 +2316,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             public void extendActionMode(ActionMode actionMode, Menu menu) {
                 BaseFragment baseFragment2 = ChatAttachAlert.this.baseFragment;
                 if (baseFragment2 instanceof ChatActivity) {
-                    ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment2).getCurrentEncryptedChat(), true);
+                    ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment2).getCurrentEncryptedChat(), true, true);
                 }
                 super.extendActionMode(actionMode, menu);
             }
@@ -4044,7 +4044,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         public void extendActionMode(ActionMode actionMode, Menu menu) {
             BaseFragment baseFragment = ChatAttachAlert.this.baseFragment;
             if (baseFragment instanceof ChatActivity) {
-                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment).getCurrentEncryptedChat(), true);
+                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment).getCurrentEncryptedChat(), true, true);
             }
             super.extendActionMode(actionMode, menu);
         }
@@ -4181,7 +4181,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         public void extendActionMode(ActionMode actionMode, Menu menu) {
             BaseFragment baseFragment2 = ChatAttachAlert.this.baseFragment;
             if (baseFragment2 instanceof ChatActivity) {
-                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment2).getCurrentEncryptedChat(), true);
+                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) baseFragment2).getCurrentEncryptedChat(), true, true);
             }
             super.extendActionMode(actionMode, menu);
         }

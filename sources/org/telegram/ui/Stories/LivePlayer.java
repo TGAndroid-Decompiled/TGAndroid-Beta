@@ -1073,21 +1073,21 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(checkgroupcall, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                LivePlayer.this.lambda$poll$32(tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$poll$32(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
                 LivePlayer.this.lambda$poll$31(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$poll$31(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                LivePlayer.this.lambda$poll$30(tLObject, tL_error);
-            }
-        });
-    }
-
-    public void lambda$poll$30(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$poll$31(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (this.destroyed) {
             return;
         }
@@ -1109,6 +1109,14 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
             this.call = groupcall.call;
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(this.call.id));
+        } else if (tL_error != null && "GROUPCALL_JOIN_MISSING".equals(tL_error.text)) {
+            FileLog.d("[LivePlayer] received GROUPCALL_JOIN_MISSING on checkGroupCall => rejoining");
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LivePlayer.this.lambda$poll$29();
+                }
+            });
         }
         if (this.polling) {
             Runnable runnable = this.pollRunnable;
@@ -1118,12 +1126,24 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    LivePlayer.this.lambda$poll$29();
+                    LivePlayer.this.lambda$poll$30();
                 }
             };
             this.pollRunnable = runnable2;
             AndroidUtilities.runOnUIThread(runnable2, 4000L);
         }
+    }
+
+    public void lambda$poll$29() {
+        if (this.instance != null) {
+            DispatchQueue dispatchQueue = Utilities.globalQueue;
+            NativeInstance nativeInstance = this.instance;
+            Objects.requireNonNull(nativeInstance);
+            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+            this.srcs.clear();
+            this.instance = null;
+        }
+        init();
     }
 
     public void switchCamera() {

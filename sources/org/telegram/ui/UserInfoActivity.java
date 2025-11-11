@@ -98,7 +98,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         boolean z = false;
         EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.EditProfileFirstName), z, false, -1, this.resourceProvider) {
             @Override
-            protected void onTextChanged(CharSequence charSequence) {
+            public void onTextChanged(CharSequence charSequence) {
                 super.onTextChanged(charSequence);
                 UserInfoActivity.this.checkDone(true);
             }
@@ -112,7 +112,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         boolean z3 = false;
         EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileLastName), z3, z2, -1, this.resourceProvider) {
             @Override
-            protected void onTextChanged(CharSequence charSequence) {
+            public void onTextChanged(CharSequence charSequence) {
                 super.onTextChanged(charSequence);
                 UserInfoActivity.this.checkDone(true);
             }
@@ -122,7 +122,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         this.lastNameEdit.hideKeyboardOnEnter();
         EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileBioHint), true, z2, getMessagesController().getAboutLimit(), this.resourceProvider) {
             @Override
-            protected void onTextChanged(CharSequence charSequence) {
+            public void onTextChanged(CharSequence charSequence) {
                 super.onTextChanged(charSequence);
                 UserInfoActivity.this.checkDone(true);
             }

@@ -513,6 +513,9 @@ public class ImageLoader {
             for (int i = 0; i < arrayList.size(); i++) {
                 ((ImageReceiver) arrayList.get(i)).setImageBitmapByKey(bitmapDrawable, str, 0, false, ((Integer) arrayList2.get(i)).intValue());
             }
+            if (str.contains("nocache")) {
+                return;
+            }
             ImageLoader.this.memCache.put(str, bitmapDrawable);
         }
     }
@@ -698,10 +701,10 @@ public class ImageLoader {
                     if (this.cacheImage.key.endsWith("_f")) {
                         ImageLoader.this.wallpaperMemCache.put(this.cacheImage.key, bitmapDrawable);
                     } else {
-                        if (this.cacheImage.key.endsWith("_isc") || bitmapDrawable.getBitmap().getWidth() > AndroidUtilities.density * 80.0f || bitmapDrawable.getBitmap().getHeight() > AndroidUtilities.density * 80.0f) {
-                            ImageLoader.this.memCache.put(this.cacheImage.key, bitmapDrawable);
-                        } else {
+                        if (!this.cacheImage.key.endsWith("_isc") && !this.cacheImage.key.endsWith("_nocache") && bitmapDrawable.getBitmap().getWidth() <= AndroidUtilities.density * 80.0f && bitmapDrawable.getBitmap().getHeight() <= AndroidUtilities.density * 80.0f) {
                             ImageLoader.this.smallImagesMemCache.put(this.cacheImage.key, bitmapDrawable);
+                        } else if (!this.cacheImage.key.endsWith("_nocache")) {
+                            ImageLoader.this.memCache.put(this.cacheImage.key, bitmapDrawable);
                         }
                         z = true;
                     }
@@ -1869,6 +1872,9 @@ public class ImageLoader {
     }
 
     public void putImageToCache(BitmapDrawable bitmapDrawable, String str, boolean z) {
+        if (str.endsWith("_nocache")) {
+            return;
+        }
         if (z) {
             this.smallImagesMemCache.put(str, bitmapDrawable);
         } else {

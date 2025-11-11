@@ -65,7 +65,6 @@ public abstract class StoriesUtilities {
     public static Paint grayPaint;
     public static Paint liveCutPaint;
     public static GradientTools liveGradientTools;
-    public static Text liveLargeText;
     public static Paint livePaint;
     public static RectF liveRect;
     public static Text liveText;
@@ -104,18 +103,9 @@ public abstract class StoriesUtilities {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.drawAvatarWithStory(long, android.graphics.Canvas, org.telegram.messenger.ImageReceiver, boolean, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams):void");
     }
 
-    public static void drawLive(Canvas canvas, RectF rectF, float f, boolean z, boolean z2) {
-        Text text;
-        if (z2) {
-            if (liveLargeText == null) {
-                liveLargeText = new Text(LocaleController.getString(R.string.LiveStoryBadge), 14.0f, AndroidUtilities.bold());
-            }
-            text = liveLargeText;
-        } else {
-            if (liveText == null) {
-                liveText = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.66f, AndroidUtilities.bold());
-            }
-            text = liveText;
+    public static void drawLive(Canvas canvas, RectF rectF, float f, boolean z, float f2) {
+        if (liveText == null) {
+            liveText = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.66f, AndroidUtilities.bold());
         }
         if (liveCutPaint == null) {
             Paint paint = new Paint(1);
@@ -129,26 +119,27 @@ public abstract class StoriesUtilities {
             liveRect = new RectF();
         }
         livePaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_stories_circle_live2), f));
-        float dp = AndroidUtilities.dp(z2 ? 7.0f : 4.66f);
-        float width = text.getWidth() + dp + dp;
-        float dp2 = AndroidUtilities.dp(z2 ? 18.0f : 15.0f);
-        float dp3 = AndroidUtilities.dp(2.0f);
+        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(7.0f), f2);
+        float width = liveText.getWidth() + lerp + lerp;
+        float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(18.0f), f2);
+        float dp = AndroidUtilities.dp(2.0f);
         canvas.save();
-        float f2 = width / 2.0f;
-        float f3 = 0.8f * dp2;
-        float f4 = dp2 * 0.2f;
-        liveRect.set((rectF.centerX() - f2) - dp3, (rectF.bottom - f3) - dp3, rectF.centerX() + f2 + dp3, rectF.bottom + f4 + dp3);
-        float lerp = AndroidUtilities.lerp(0.7f, 1.0f, f);
-        canvas.scale(lerp, lerp, liveRect.centerX(), liveRect.centerY());
+        float f3 = width / 2.0f;
+        float f4 = 0.8f * lerp2;
+        float f5 = lerp2 * 0.2f;
+        liveRect.set((rectF.centerX() - f3) - dp, (rectF.bottom - f4) - dp, rectF.centerX() + f3 + dp, rectF.bottom + f5 + dp);
+        float lerp3 = AndroidUtilities.lerp(0.7f, 1.0f, f);
+        canvas.scale(lerp3, lerp3, liveRect.centerX(), liveRect.centerY());
         AndroidUtilities.scaleRect(liveRect, f);
         RectF rectF2 = liveRect;
         canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, liveRect.height() / 2.0f, liveCutPaint);
         if (z) {
-            liveRect.set(rectF.centerX() - f2, rectF.bottom - f3, rectF.centerX() + f2, rectF.bottom + f4);
+            liveRect.set(rectF.centerX() - f3, rectF.bottom - f4, rectF.centerX() + f3, rectF.bottom + f5);
             RectF rectF3 = liveRect;
             canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, liveRect.height() / 2.0f, livePaint);
+            Text text = liveText;
             RectF rectF4 = liveRect;
-            text.draw(canvas, dp + rectF4.left, rectF4.centerY(), -1, f);
+            text.draw(canvas, rectF4.left + lerp, rectF4.centerY(), -1, f);
         }
         canvas.restore();
     }

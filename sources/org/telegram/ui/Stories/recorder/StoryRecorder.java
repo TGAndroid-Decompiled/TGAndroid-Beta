@@ -9360,12 +9360,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.recordControl.setCollageProgress(this.collageLayoutView.hasLayout() ? this.collageLayoutView.getFilledProgress() : 0.0f, z);
         this.removeCollageHint.show(this.collageListView.isVisible());
         animateRecording(this.animatedRecording, z);
-        setActionBarButtonVisible(this.liveSettingsButton, this.mode == -1 && this.currentPage == 0, z);
+        AndroidUtilities.updateViewShow(this.liveSettingsButton, this.mode == -1 && this.currentPage == 0);
         FlashViews.ImageViewInvertable imageViewInvertable2 = this.rotateButton;
         if (this.mode == -1 && this.currentPage == 0) {
             z2 = true;
         }
-        setActionBarButtonVisible(imageViewInvertable2, z2, z);
+        AndroidUtilities.updateViewShow(imageViewInvertable2, z2);
     }
 
     public void updateActionBarButtonsOffsets() {

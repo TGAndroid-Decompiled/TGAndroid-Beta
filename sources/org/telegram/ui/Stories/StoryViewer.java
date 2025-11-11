@@ -649,7 +649,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         storyViewer5.storiesViewPager.setTranslationY((storyViewer5.selfStoryViewsView.toY - top) * f);
                     }
                     if (currentPeerView != null) {
-                        StoryViewer.this.volumeControl.setTranslationY(currentPeerView.storyContainer.getY() - AndroidUtilities.dp(4.0f));
+                        StoryViewer.this.volumeControl.setTranslationY(((currentPeerView.getY() + currentPeerView.storyContainer.getY()) - StoryViewer.this.volumeControl.getTop()) - AndroidUtilities.dp(4.0f));
                     }
                     super.dispatchDraw(canvas);
                 }

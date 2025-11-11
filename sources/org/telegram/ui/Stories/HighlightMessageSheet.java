@@ -303,7 +303,7 @@ public abstract class HighlightMessageSheet {
             }
             liveCommentView = liveCommentView2;
             if (iArr2[i9] >= j2) {
-                if (i9 > 0 && arrayList.isEmpty() && iArr2[i9] >= j2) {
+                if (i9 > 0 && arrayList.isEmpty() && iArr2[i9] > j2) {
                     arrayList.add(Integer.valueOf((int) j2));
                 }
                 int i10 = iArr2[i9];

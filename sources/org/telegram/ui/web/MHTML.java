@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilterInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -194,6 +193,19 @@ public class MHTML {
     }
 
     public static class QuotedPrintableInputStream extends FilterInputStream {
+        private int hexDigitToInt(int i) {
+            if (i >= 48 && i <= 57) {
+                return i - 48;
+            }
+            if (i >= 65 && i <= 70) {
+                return i - 55;
+            }
+            if (i < 97 || i > 102) {
+                return 0;
+            }
+            return i - 87;
+        }
+
         public QuotedPrintableInputStream(InputStream inputStream) {
             super(inputStream);
         }
@@ -207,7 +219,7 @@ public class MHTML {
             int read2 = ((FilterInputStream) this).in.read();
             int read3 = ((FilterInputStream) this).in.read();
             if (read2 == -1 || read3 == -1) {
-                throw new IOException("Invalid quoted-printable encoding");
+                return -1;
             }
             if (read2 == 13 && read3 == 10) {
                 return read();
@@ -237,19 +249,6 @@ public class MHTML {
 
         private int hexToByte(int i, int i2) {
             return (hexDigitToInt(i) << 4) | hexDigitToInt(i2);
-        }
-
-        private int hexDigitToInt(int i) {
-            if (i >= 48 && i <= 57) {
-                return i - 48;
-            }
-            if (i >= 65 && i <= 70) {
-                return i - 55;
-            }
-            if (i < 97 || i > 102) {
-                throw new IllegalArgumentException("Invalid hexadecimal digit");
-            }
-            return i - 87;
         }
     }
 

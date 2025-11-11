@@ -6645,7 +6645,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
-            ChatActivity.this.chatActivityEnterView.lambda$onStickerSelected$73(document, str, obj, null, true, z, i, i2);
+            ChatActivity.this.chatActivityEnterView.lambda$onStickerSelected$74(document, str, obj, null, true, z, i, i2);
         }
 
         @Override
@@ -20179,7 +20179,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.extendActionMode(android.view.Menu):boolean");
     }
 
-    public static void fillActionModeMenu(Menu menu, TLRPC.EncryptedChat encryptedChat, boolean z) {
+    public static void fillActionModeMenu(Menu menu, TLRPC.EncryptedChat encryptedChat, boolean z, boolean z2) {
         int i;
         int i2 = R.id.menu_bold;
         if (menu.findItem(i2) != null) {
@@ -20219,8 +20219,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             i4 = i + 6;
             menu.add(i3, R.id.menu_underline, i + 5, spannableStringBuilder5);
         }
-        menu.add(i3, R.id.menu_link, i4, LocaleController.getString(R.string.CreateLink));
-        menu.add(i3, R.id.menu_regular, i4 + 1, LocaleController.getString(R.string.Regular));
+        if (z2) {
+            menu.add(i3, R.id.menu_link, i4, LocaleController.getString(R.string.CreateLink));
+            i4++;
+        }
+        menu.add(i3, R.id.menu_regular, i4, LocaleController.getString(R.string.Regular));
     }
 
     public void updateScheduledInterface(boolean z) {

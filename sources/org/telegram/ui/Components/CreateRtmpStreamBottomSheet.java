@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -39,12 +40,14 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
     private UniversalAdapter adapter;
     private boolean hasButton;
     private final boolean hasFewPeers;
+    private boolean hasRevokeButton;
     private final JoinCallAlert.JoinCallAlertDelegate joinCallDelegate;
     private String rtmpKey;
     private SpannableStringBuilder rtmpKeySpoiled;
     private String rtmpUrl;
     private TLRPC.InputPeer selectAfterDismiss;
     private final boolean story;
+    private TopCell topCell;
 
     public static void show(TLRPC.Peer peer, BaseFragment baseFragment, long j, boolean z, JoinCallAlert.JoinCallAlertDelegate joinCallAlertDelegate) {
         CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet = new CreateRtmpStreamBottomSheet(baseFragment, peer, j, z, joinCallAlertDelegate);
@@ -55,27 +58,47 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         }
     }
 
-    public CreateRtmpStreamBottomSheet(Context context, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+    public CreateRtmpStreamBottomSheet(Context context, final int i, final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
         super(context, null, false, false, false, resourcesProvider);
+        int i2;
         this.story = true;
-        this.topPadding = 0.26f;
+        this.topPadding = 0.126f;
         this.joinCallDelegate = null;
         this.hasFewPeers = false;
         if (callback != null) {
             this.hasButton = true;
+            this.hasRevokeButton = getgroupcallstreamrtmpurl != null;
             final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
             buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryRTMPEnable), false);
-            this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+            this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (this.hasRevokeButton ? 52 : 0) + 12));
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     CreateRtmpStreamBottomSheet.this.lambda$new$2(callback, buttonWithCounterView, view);
                 }
             });
+            if (getgroupcallstreamrtmpurl != null) {
+                final ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
+                buttonWithCounterView2.setColor(Theme.getColor(Theme.key_fill_RedNormal));
+                buttonWithCounterView2.text.setTypeface(AndroidUtilities.bold());
+                buttonWithCounterView2.setText(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false);
+                buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        CreateRtmpStreamBottomSheet.this.lambda$new$5(buttonWithCounterView2, getgroupcallstreamrtmpurl, i, view);
+                    }
+                });
+                this.containerView.addView(buttonWithCounterView2, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+            }
         }
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, callback != null ? AndroidUtilities.dp(72.0f) : 0);
+        int i3 = this.backgroundPaddingLeft;
+        if (this.hasButton) {
+            i2 = AndroidUtilities.dp(this.hasRevokeButton ? 124.0f : 72.0f);
+        } else {
+            i2 = 0;
+        }
+        recyclerListView.setPadding(i3, 0, i3, i2);
         fixNavigationBar();
         updateTitle();
         this.rtmpUrl = groupcallstreamrtmpurl.url;
@@ -108,7 +131,41 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         lambda$new$0();
     }
 
-    public CreateRtmpStreamBottomSheet(BaseFragment baseFragment, final TLRPC.Peer peer, long j, boolean z, JoinCallAlert.JoinCallAlertDelegate joinCallAlertDelegate) {
+    public void lambda$new$5(final ButtonWithCounterView buttonWithCounterView, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, int i, View view) {
+        if (buttonWithCounterView.isLoading()) {
+            return;
+        }
+        buttonWithCounterView.setLoading(true);
+        getgroupcallstreamrtmpurl.revoke = true;
+        ConnectionsManager.getInstance(i).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                CreateRtmpStreamBottomSheet.this.lambda$new$4(buttonWithCounterView, tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$new$4(final ButtonWithCounterView buttonWithCounterView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CreateRtmpStreamBottomSheet.this.lambda$new$3(buttonWithCounterView, tLObject);
+            }
+        });
+    }
+
+    public void lambda$new$3(ButtonWithCounterView buttonWithCounterView, TLObject tLObject) {
+        buttonWithCounterView.setLoading(false);
+        if (tLObject instanceof TL_phone.groupCallStreamRtmpUrl) {
+            TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject;
+            this.rtmpUrl = groupcallstreamrtmpurl.url;
+            this.rtmpKey = groupcallstreamrtmpurl.key;
+            this.rtmpKeySpoiled = new SpannableStringBuilder(this.rtmpKey);
+            this.adapter.update(true);
+        }
+    }
+
+    public CreateRtmpStreamBottomSheet(BaseFragment baseFragment, final TLRPC.Peer peer, final long j, boolean z, JoinCallAlert.JoinCallAlertDelegate joinCallAlertDelegate) {
         super(baseFragment, false, false);
         this.story = false;
         this.topPadding = 0.26f;
@@ -125,16 +182,33 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         textView.setText(LocaleController.getString(R.string.VoipChannelStartStreaming));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, this.resourcesProvider));
         textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+        this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 64.0f));
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$3(peer, view);
+                CreateRtmpStreamBottomSheet.this.lambda$new$6(peer, view);
             }
         });
+        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, this.resourcesProvider);
+        buttonWithCounterView.setColor(Theme.getColor(Theme.key_fill_RedNormal));
+        buttonWithCounterView.text.setTypeface(AndroidUtilities.bold());
+        buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false);
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                CreateRtmpStreamBottomSheet.this.lambda$new$9(buttonWithCounterView, j, view);
+            }
+        });
+        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(72.0f));
+        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(124.0f));
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDurations(350L);
+        this.recyclerListView.setItemAnimator(defaultItemAnimator);
         fixNavigationBar();
         updateTitle();
         TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
@@ -143,26 +217,63 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$5(tLObject, tL_error);
+                CreateRtmpStreamBottomSheet.this.lambda$new$11(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$3(TLRPC.Peer peer, View view) {
+    public void lambda$new$6(TLRPC.Peer peer, View view) {
         this.selectAfterDismiss = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(peer));
         lambda$new$0();
     }
 
-    public void lambda$new$5(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
+    public void lambda$new$9(final ButtonWithCounterView buttonWithCounterView, long j, View view) {
+        if (buttonWithCounterView.isLoading()) {
+            return;
+        }
+        buttonWithCounterView.setLoading(true);
+        TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
+        getgroupcallstreamrtmpurl.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        getgroupcallstreamrtmpurl.revoke = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
-            public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$4(tLObject);
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                CreateRtmpStreamBottomSheet.this.lambda$new$8(buttonWithCounterView, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$4(TLObject tLObject) {
+    public void lambda$new$8(final ButtonWithCounterView buttonWithCounterView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CreateRtmpStreamBottomSheet.this.lambda$new$7(buttonWithCounterView, tLObject);
+            }
+        });
+    }
+
+    public void lambda$new$7(ButtonWithCounterView buttonWithCounterView, TLObject tLObject) {
+        buttonWithCounterView.setLoading(false);
+        if (tLObject == null || !(tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
+            return;
+        }
+        TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject;
+        this.rtmpUrl = groupcallstreamrtmpurl.url;
+        this.rtmpKey = groupcallstreamrtmpurl.key;
+        this.rtmpKeySpoiled = new SpannableStringBuilder(this.rtmpKey);
+        this.adapter.update(true);
+    }
+
+    public void lambda$new$11(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CreateRtmpStreamBottomSheet.this.lambda$new$10(tLObject);
+            }
+        });
+    }
+
+    public void lambda$new$10(TLObject tLObject) {
         if (tLObject == null || !(tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
             return;
         }
@@ -207,7 +318,10 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asCustom(new TopCell(getContext(), this.resourcesProvider)));
+        if (this.topCell == null) {
+            this.topCell = new TopCell(getContext(), this.resourcesProvider);
+        }
+        arrayList.add(UItem.asCustom(this.topCell));
         String str = null;
         arrayList.add(UItem.asShadow(null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.VoipChatStreamSettings)));

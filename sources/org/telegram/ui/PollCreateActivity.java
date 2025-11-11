@@ -1947,7 +1947,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                             if (menu.findItem(16908321) == null) {
                                 return;
                             }
-                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false);
+                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false, true);
                         }
                     }
 
@@ -2102,7 +2102,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                             if (menu.findItem(16908321) == null) {
                                 return;
                             }
-                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false);
+                            ChatActivity.fillActionModeMenu(menu, PollCreateActivity.this.parentFragment.getCurrentEncryptedChat(), false, true);
                         }
                     }
 

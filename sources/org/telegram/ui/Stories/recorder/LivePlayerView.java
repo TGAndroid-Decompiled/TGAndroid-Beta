@@ -229,12 +229,12 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
                     ImageLocation forUser = ImageLocation.getForUser(user, 1);
                     int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
-                    this.thumb.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_isc", forUser, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)}), 0L, null, user, 0);
+                    this.thumb.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forUser, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)}), 0L, null, user, 0);
                 } else {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
                     ImageLocation forChat = ImageLocation.getForChat(chat, 1);
                     int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
-                    this.thumb.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_isc", forChat, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)}), 0L, null, chat, 0);
+                    this.thumb.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forChat, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)}), 0L, null, chat, 0);
                 }
             }
         }

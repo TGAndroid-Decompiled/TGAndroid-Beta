@@ -229,7 +229,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             @Override
             public void extendActionMode(ActionMode actionMode, Menu menu) {
                 if (EditTextEmoji.this.allowEntities()) {
-                    ChatActivity.fillActionModeMenu(menu, null, EditTextEmoji.this.currentStyle == 3);
+                    ChatActivity.fillActionModeMenu(menu, null, EditTextEmoji.this.currentStyle == 3, true);
                 } else {
                     EditTextEmoji.this.extendActionMode(actionMode, menu);
                 }

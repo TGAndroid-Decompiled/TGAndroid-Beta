@@ -630,7 +630,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             delete(message.id);
         }
         if (bool3.booleanValue()) {
-            MessagesController.getInstance(this.currentAccount).blockPeer(this.dialogId);
+            if (this.dialogId >= 0) {
+                MessagesController.getInstance(this.currentAccount).blockPeer(this.dialogId);
+            } else {
+                MessagesController.getInstance(this.currentAccount).deleteParticipantFromChat(-this.dialogId, MessagesController.getInstance(this.currentAccount).getInputPeer(message.dialogId), false, true);
+            }
         }
     }
 
@@ -686,10 +690,21 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
+    public int getListViewContentTop() {
+        int height = this.listView.getHeight();
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            height = Math.min(this.listView.getChildAt(i).getTop(), height);
+        }
+        return height;
+    }
+
+    public float top() {
+        return this.listView.getY() + Math.max(Math.max(0.0f, this.keyboardOffset - this.listView.getTop()), getListViewContentTop());
+    }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        float y = this.listView.getY() + Math.max(0.0f, this.keyboardOffset - this.listView.getTop());
-        if (motionEvent.getAction() != 0 || motionEvent.getY() >= y) {
+        if (motionEvent.getAction() != 0 || motionEvent.getY() >= top()) {
             return super.onInterceptTouchEvent(motionEvent);
         }
         return false;
@@ -700,8 +715,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         if (!this.allowTouches) {
             return false;
         }
-        float y = this.listView.getY() + Math.max(0.0f, this.keyboardOffset - this.listView.getTop());
-        if (motionEvent.getAction() != 0 || motionEvent.getY() >= y) {
+        if (motionEvent.getAction() != 0 || motionEvent.getY() >= top()) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return false;
@@ -709,8 +723,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        float y = this.listView.getY() + Math.max(0.0f, this.keyboardOffset - this.listView.getTop());
-        if (motionEvent.getAction() != 0 || motionEvent.getY() >= y) {
+        if (motionEvent.getAction() != 0 || motionEvent.getY() >= top()) {
             return super.onTouchEvent(motionEvent);
         }
         return false;
@@ -1320,6 +1333,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
 
     public boolean isAdmin() {
         TLRPC.InputGroupCall inputGroupCall;
+        if (getDefaultPeerId() < 0 && getDefaultPeerId() != this.dialogId) {
+            return false;
+        }
         long j = this.dialogId;
         if (j >= 0) {
             return j == UserConfig.getInstance(this.currentAccount).getClientUserId();
@@ -1364,7 +1380,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 LiveCommentsView.this.lambda$send$17(sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
             }
         });
-        if (this.topDonors != null) {
+        if (this.topDonors != null && j2 > 0) {
             int i = 0;
             while (true) {
                 if (i >= this.topDonors.size()) {
@@ -1387,13 +1403,13 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 groupcalldonor2.peer_id = MessagesController.getInstance(this.currentAccount).getPeer(j3);
                 groupcalldonor2.stars = j2;
                 this.topDonors.add(groupcalldonor2);
-                push(ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime(), newMessageId, j3 != this.dialogId && isAdmin(), j, tL_textWithEntities, j2, false);
+                push(ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime(), newMessageId, j3 != this.dialogId || isAdmin(), j, tL_textWithEntities, j2, false);
                 setCollapsed(false, true);
                 return newMessageId;
             }
         }
         j3 = j;
-        push(ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime(), newMessageId, j3 != this.dialogId && isAdmin(), j, tL_textWithEntities, j2, false);
+        push(ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime(), newMessageId, j3 != this.dialogId || isAdmin(), j, tL_textWithEntities, j2, false);
         setCollapsed(false, true);
         return newMessageId;
     }
@@ -1587,6 +1603,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                         groupcalldonor.stars += ((TopSender) this.topMessages.get(i8)).max_stars;
                     }
                 }
+                this.topDonors.add(groupcalldonor);
             }
             long j4 = groupcalldonor.stars;
             long j5 = message.stars;
@@ -1803,6 +1820,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             spoilersTextView3.setTextColor(-1);
             spoilersTextView3.setTextSize(1, 14.0f);
             spoilersTextView3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(-16777216, 0.6f));
+            NotificationCenter.listenEmojiLoading(spoilersTextView3);
             linearLayout.addView(spoilersTextView3, LayoutHelper.createLinear(-2, -2));
             TextView textView = new TextView(context2);
             this.starsView = textView;

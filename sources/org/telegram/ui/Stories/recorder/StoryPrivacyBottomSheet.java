@@ -507,7 +507,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     }
                     final AlertDialog alertDialog = new AlertDialog(getContext(), 3, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider);
                     alertDialog.showDelayed(500L);
-                    TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
+                    final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
                     getgroupcallstreamrtmpurl.live_story = true;
                     TLRPC.InputPeer inputPeer = StoryPrivacyBottomSheet.this.selectedPeer;
                     if (inputPeer == null) {
@@ -517,7 +517,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     ConnectionsManager.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            StoryPrivacyBottomSheet.Page.this.lambda$new$13(alertDialog, tLObject, tL_error);
+                            StoryPrivacyBottomSheet.Page.this.lambda$new$13(alertDialog, getgroupcallstreamrtmpurl, tLObject, tL_error);
                         }
                     });
                     return;
@@ -787,20 +787,20 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$13(final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public void lambda$new$13(final AlertDialog alertDialog, final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryPrivacyBottomSheet.Page.this.lambda$new$12(alertDialog, tLObject, tL_error);
+                    StoryPrivacyBottomSheet.Page.this.lambda$new$12(alertDialog, tLObject, getgroupcallstreamrtmpurl, tL_error);
                 }
             });
         }
 
-        public void lambda$new$12(AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$new$12(AlertDialog alertDialog, TLObject tLObject, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TLRPC.TL_error tL_error) {
             alertDialog.dismiss();
             if (tLObject instanceof TL_phone.groupCallStreamRtmpUrl) {
                 final CreateRtmpStreamBottomSheet[] createRtmpStreamBottomSheetArr = new CreateRtmpStreamBottomSheet[1];
-                CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet = new CreateRtmpStreamBottomSheet(getContext(), (TL_phone.groupCallStreamRtmpUrl) tLObject, StoryPrivacyBottomSheet.this.liveSettings ? null : new Utilities.Callback() {
+                CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet = new CreateRtmpStreamBottomSheet(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, getgroupcallstreamrtmpurl, (TL_phone.groupCallStreamRtmpUrl) tLObject, StoryPrivacyBottomSheet.this.liveSettings ? null : new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
                         StoryPrivacyBottomSheet.Page.this.lambda$new$11(createRtmpStreamBottomSheetArr, (Browser.Progress) obj);
@@ -808,6 +808,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }, new DarkThemeResourceProvider());
                 createRtmpStreamBottomSheetArr[0] = createRtmpStreamBottomSheet;
                 createRtmpStreamBottomSheet.show();
+                return;
+            }
+            if (tL_error != null) {
+                StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+                BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).showForError(tL_error, true);
             }
         }
 

@@ -1301,12 +1301,18 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 return this.stops[0];
             }
             if (f >= 1.0f) {
-                return this.stops[r5.length - 1];
+                return this.stops[r7.length - 1];
             }
-            float length = f * (r0.length - 1);
+            int[] iArr = this.stops;
+            float length = f * (iArr.length - 1);
             int i = (int) length;
             float f2 = length - i;
-            return Math.round(this.stops[i] + (f2 * (r0[i + 1] - r2)));
+            float f3 = iArr[i];
+            int i2 = i + 1;
+            if (i2 < iArr.length) {
+                i = i2;
+            }
+            return Math.round(f3 + (f2 * (iArr[i] - r2)));
         }
 
         public float getProgress(int i) {
