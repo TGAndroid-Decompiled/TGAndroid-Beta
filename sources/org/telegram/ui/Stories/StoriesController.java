@@ -1428,7 +1428,7 @@ public class StoriesController {
         return false;
     }
 
-    public int hasLiveStory(long j) {
+    public int hasUnreadStoriesLive(long j) {
         TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.allStoriesMap.get(j);
         if (peerStories == null) {
             peerStories = getStoriesFromFullPeer(j);
@@ -1436,13 +1436,38 @@ public class StoriesController {
         if (peerStories == null) {
             return 0;
         }
-        for (int size = peerStories.stories.size() - 1; size >= 0; size--) {
-            TL_stories.StoryItem storyItem = peerStories.stories.get(size);
-            if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
-                return 2;
+        if (j == UserConfig.getInstance(this.currentAccount).getClientUserId() && !Utilities.isNullOrEmpty((Collection) this.uploadingStoriesByDialogId.get(j))) {
+            return 1;
+        }
+        for (int i = 0; i < peerStories.stories.size(); i++) {
+            TL_stories.StoryItem storyItem = peerStories.stories.get(i);
+            if (storyItem != null) {
+                if (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                    return 2;
+                }
+                if (storyItem.id > peerStories.max_read_id) {
+                    return 1;
+                }
             }
         }
         return 0;
+    }
+
+    public boolean hasLiveStory(long j) {
+        TL_stories.PeerStories peerStories = (TL_stories.PeerStories) this.allStoriesMap.get(j);
+        if (peerStories == null) {
+            peerStories = getStoriesFromFullPeer(j);
+        }
+        if (peerStories == null) {
+            return false;
+        }
+        for (int size = peerStories.stories.size() - 1; size >= 0; size--) {
+            TL_stories.StoryItem storyItem = peerStories.stories.get(size);
+            if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getUnreadState(long j) {
@@ -4224,6 +4249,11 @@ public class StoriesController {
         boolean hasUploadingStories2 = hasUploadingStories(peerDialogId2);
         boolean hasUnreadStories = hasUnreadStories(peerDialogId);
         boolean hasUnreadStories2 = hasUnreadStories(peerDialogId2);
+        boolean hasLiveStory = hasLiveStory(peerDialogId);
+        boolean hasLiveStory2 = hasLiveStory(peerDialogId2);
+        if (hasLiveStory != hasLiveStory2) {
+            return (hasLiveStory2 ? 1 : 0) - (hasLiveStory ? 1 : 0);
+        }
         if (hasUploadingStories != hasUploadingStories2) {
             return (hasUploadingStories2 ? 1 : 0) - (hasUploadingStories ? 1 : 0);
         }
@@ -4244,10 +4274,10 @@ public class StoriesController {
         if (peerStories.stories.isEmpty()) {
             i = 0;
         } else {
-            i = peerStories.stories.get(r9.size() - 1).date;
+            i = peerStories.stories.get(r11.size() - 1).date;
         }
         if (!peerStories2.stories.isEmpty()) {
-            i2 = peerStories2.stories.get(r10.size() - 1).date;
+            i2 = peerStories2.stories.get(r12.size() - 1).date;
         }
         return i2 - i;
     }

@@ -13,6 +13,7 @@ import android.graphics.Region;
 import android.text.Layout;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
@@ -28,6 +29,7 @@ import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
 
 public class SpoilersTextView extends TextView implements TextSelectionHelper.SimpleSelectabeleView {
@@ -37,6 +39,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     public int cacheType;
     private boolean clearLinkOnLongPress;
     private SpoilersClickDetector clickDetector;
+    private CharacterStyle currentLinkLoading;
     protected boolean disablePaddingInLinks;
     private boolean disablePaddingsOffset;
     private boolean disablePaddingsOffsetX;
@@ -125,6 +128,20 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     public void lambda$new$0() {
         this.isSpoilersRevealed = true;
         invalidateSpoilers();
+    }
+
+    public void setLoading(CharacterStyle characterStyle) {
+        if (this.currentLinkLoading != characterStyle) {
+            this.links.clearLoading(true);
+            this.currentLinkLoading = characterStyle;
+            LoadingDrawable makeLoading = LinkSpanDrawable.LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
+            if (makeLoading != null) {
+                int color = Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider);
+                makeLoading.setColors(Theme.multAlpha(color, 0.8f), Theme.multAlpha(color, 1.3f), Theme.multAlpha(color, 1.0f), Theme.multAlpha(color, 4.0f));
+                makeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                this.links.addLoading(makeLoading);
+            }
+        }
     }
 
     public void setOnLinkPressListener(LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress) {

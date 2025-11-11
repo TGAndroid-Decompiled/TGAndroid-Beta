@@ -12,13 +12,24 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.graphics.ColorUtils;
 import j$.util.Objects;
+import java.io.File;
+import java.io.FileOutputStream;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VideoCapturerDevice;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.LivePlayer;
@@ -32,13 +43,19 @@ import org.webrtc.VideoSink;
 public class LivePlayerView extends FrameLayout implements RendererCommon.RendererEvents, NotificationCenter.NotificationCenterDelegate {
     private final TextureView blurRenderer;
     private int currentAccount;
+    private long dialogId;
     public final EmptyView emptyView;
+    private Runnable firstFrameCallback;
     private boolean firstFrameRendered;
     private boolean ignoreLayout;
+    private boolean isEmptyViewVisible;
     private float keyboardOffset;
+    private View placeholderView;
     private PeerStoriesView.VideoPlayerSharedScope scope;
     public final SurfaceViewRenderer surfaceView;
     public final TextureViewRenderer textureView;
+    private boolean textureVisible;
+    public final BackupImageView thumb;
 
     @Override
     public void onFrameResolutionChanged(int i, int i2, int i3) {
@@ -47,6 +64,10 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
     public LivePlayerView(Context context, int i, boolean z) {
         super(context);
         this.currentAccount = i;
+        BackupImageView backupImageView = new BackupImageView(context);
+        this.thumb = backupImageView;
+        backupImageView.setAlpha(0.75f);
+        addView(backupImageView, LayoutHelper.createFrame(-1, -1, 119));
         TextureView textureView = new TextureView(context);
         this.blurRenderer = textureView;
         addView(textureView, LayoutHelper.createFrame(-1, -1, 119));
@@ -54,6 +75,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
             SurfaceViewRenderer surfaceViewRenderer = new SurfaceViewRenderer(context);
             this.surfaceView = surfaceViewRenderer;
             addView(surfaceViewRenderer, LayoutHelper.createFrame(-1, -1, 119));
+            surfaceViewRenderer.setAlpha(1.0f);
             this.textureView = null;
         } else {
             TextureViewRenderer textureViewRenderer = new TextureViewRenderer(context);
@@ -64,12 +86,23 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
             textureViewRenderer.setRotateTextureWithScreen(true);
             textureViewRenderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
             addView(textureViewRenderer, LayoutHelper.createFrame(-1, -1, 119));
+            textureViewRenderer.setAlpha(1.0f);
             this.surfaceView = null;
         }
         EmptyView emptyView = new EmptyView(context);
         this.emptyView = emptyView;
+        emptyView.setAlpha(0.0f);
         emptyView.setVisibility(8);
         addView(emptyView, LayoutHelper.createFrame(-1, -1, 119));
+    }
+
+    public View getPlaceholderView() {
+        if (this.placeholderView == null) {
+            View view = new View(getContext());
+            this.placeholderView = view;
+            addView(view, LayoutHelper.createFrameMatchParent());
+        }
+        return this.placeholderView;
     }
 
     public void setAccount(int i) {
@@ -106,6 +139,7 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.firstFrameRendered = false;
+        setTextureVisible(false, false);
         SurfaceViewRenderer surfaceViewRenderer = this.surfaceView;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.release();
@@ -117,23 +151,94 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.liveStoryUpdated);
     }
 
-    @Override
-    public void onFirstFrameRendered() {
-        if (this.firstFrameRendered) {
-            return;
-        }
-        PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = this.scope;
-        if (videoPlayerSharedScope != null && !videoPlayerSharedScope.firstFrameRendered) {
-            videoPlayerSharedScope.firstFrameRendered = true;
-            videoPlayerSharedScope.invalidate();
-        }
-        this.firstFrameRendered = true;
+    public void setOnFirstFrameCallback(Runnable runnable) {
+        this.firstFrameCallback = runnable;
     }
 
-    public void setScope(PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope) {
+    @Override
+    public void onFirstFrameRendered() {
+        if (!this.firstFrameRendered) {
+            PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = this.scope;
+            if (videoPlayerSharedScope != null && !videoPlayerSharedScope.firstFrameRendered) {
+                videoPlayerSharedScope.firstFrameRendered = true;
+                videoPlayerSharedScope.invalidate();
+            }
+            this.firstFrameRendered = true;
+        }
+        setTextureVisible(true, true);
+        Runnable runnable = this.firstFrameCallback;
+        if (runnable != null) {
+            runnable.run();
+            this.firstFrameCallback = null;
+        }
+    }
+
+    public void release() {
+        TextureViewRenderer textureViewRenderer = this.textureView;
+        if (textureViewRenderer != null) {
+            textureViewRenderer.release();
+        }
+        SurfaceViewRenderer surfaceViewRenderer = this.surfaceView;
+        if (surfaceViewRenderer != null) {
+            surfaceViewRenderer.release();
+        }
+        this.firstFrameRendered = false;
+        setTextureVisible(false, false);
+    }
+
+    public void setScope(long j, PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope) {
         LivePlayerView$$ExternalSyntheticLambda0 livePlayerView$$ExternalSyntheticLambda0;
         LivePlayer livePlayer;
         LivePlayer livePlayer2;
+        int dp;
+        int width;
+        if (videoPlayerSharedScope == null) {
+            long j2 = this.dialogId;
+            if (j2 != 0 && this.firstFrameRendered && this.textureView != null) {
+                File file = new File(FileLoader.getDirectory(4), "live" + j2 + ".jpg");
+                Bitmap bitmap = this.textureView.getBitmap();
+                if (bitmap != null) {
+                    Paint paint = new Paint(3);
+                    if (bitmap.getWidth() > bitmap.getHeight()) {
+                        width = AndroidUtilities.dp(100.0f);
+                        dp = (int) ((bitmap.getHeight() / bitmap.getWidth()) * AndroidUtilities.dp(100.0f));
+                    } else {
+                        dp = AndroidUtilities.dp(100.0f);
+                        width = (int) ((bitmap.getWidth() / bitmap.getHeight()) * AndroidUtilities.dp(100.0f));
+                    }
+                    Bitmap createBitmap = Bitmap.createBitmap(width, dp, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    float width2 = width / bitmap.getWidth();
+                    canvas.scale(width2, width2);
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                    Utilities.stackBlurBitmap(createBitmap, AndroidUtilities.dp(4.0f));
+                    try {
+                        createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+            }
+        }
+        if (this.dialogId != j) {
+            if (j == 0) {
+                this.thumb.clearImage();
+            } else {
+                String absolutePath = new File(FileLoader.getDirectory(4), "live" + j + ".jpg").getAbsolutePath();
+                if (j > 0) {
+                    TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+                    ImageLocation forUser = ImageLocation.getForUser(user, 1);
+                    int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
+                    this.thumb.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_isc", forUser, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)}), 0L, null, user, 0);
+                } else {
+                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+                    ImageLocation forChat = ImageLocation.getForChat(chat, 1);
+                    int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
+                    this.thumb.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_isc", forChat, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)}), 0L, null, chat, 0);
+                }
+            }
+        }
+        this.dialogId = j;
         this.scope = videoPlayerSharedScope;
         if (this.firstFrameRendered && videoPlayerSharedScope != null && !videoPlayerSharedScope.firstFrameRendered) {
             videoPlayerSharedScope.firstFrameRendered = true;
@@ -158,6 +263,34 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         SurfaceViewRenderer surfaceViewRenderer = this.surfaceView;
         if (surfaceViewRenderer != null) {
             return surfaceViewRenderer;
+        }
+        return null;
+    }
+
+    public View getTextureView() {
+        TextureViewRenderer textureViewRenderer = this.textureView;
+        if (textureViewRenderer != null) {
+            return textureViewRenderer;
+        }
+        SurfaceViewRenderer surfaceViewRenderer = this.surfaceView;
+        if (surfaceViewRenderer != null) {
+            return surfaceViewRenderer;
+        }
+        return null;
+    }
+
+    public boolean isAvailable() {
+        TextureViewRenderer textureViewRenderer = this.textureView;
+        if (textureViewRenderer != null) {
+            return textureViewRenderer.isAvailable();
+        }
+        return this.surfaceView != null;
+    }
+
+    public Bitmap getBitmap() {
+        TextureViewRenderer textureViewRenderer = this.textureView;
+        if (textureViewRenderer != null) {
+            return textureViewRenderer.getBitmap();
         }
         return null;
     }
@@ -193,6 +326,8 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         if (textureViewRenderer != null) {
             textureViewRenderer.clearImage();
         }
+        this.firstFrameRendered = false;
+        setTextureVisible(false, false);
     }
 
     public void setSecure(boolean z) {
@@ -235,14 +370,21 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        this.emptyView.layout(0, 0, i3 - i, i4 - i2);
+        int i5 = i3 - i;
+        int i6 = i4 - i2;
+        this.thumb.layout(0, 0, i5, i6);
+        this.emptyView.layout(0, 0, i5, i6);
+        View view = this.placeholderView;
+        if (view != null) {
+            view.layout(0, 0, i5, i6);
+        }
         TextureView textureView = this.blurRenderer;
         textureView.layout(0, 0, textureView.getMeasuredWidth(), this.blurRenderer.getMeasuredHeight());
-        View view = this.textureView;
-        if (view == null) {
-            view = this.surfaceView;
+        View view2 = this.textureView;
+        if (view2 == null) {
+            view2 = this.surfaceView;
         }
-        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        view2.layout(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight());
         updateTranslations();
     }
 
@@ -342,14 +484,19 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         super.onDraw(canvas);
     }
 
-    public void setIsEmpty(boolean z, final Runnable runnable) {
-        int i = 8;
-        this.emptyView.setVisibility(z ? 0 : 8);
-        ButtonWithCounterView buttonWithCounterView = this.emptyView.buttonView;
-        if (z && runnable != null) {
-            i = 0;
+    public void setIsEmpty(final boolean z, final Runnable runnable) {
+        if (this.isEmptyViewVisible == z) {
+            return;
         }
-        buttonWithCounterView.setVisibility(i);
+        this.isEmptyViewVisible = z;
+        this.emptyView.setVisibility(0);
+        this.emptyView.animate().alpha(this.isEmptyViewVisible ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(new Runnable() {
+            @Override
+            public final void run() {
+                LivePlayerView.this.lambda$setIsEmpty$0(z);
+            }
+        }).start();
+        this.emptyView.buttonView.setVisibility((!z || runnable == null) ? 8 : 0);
         this.emptyView.buttonView.setOnClickListener(runnable == null ? null : new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -358,8 +505,25 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         });
     }
 
+    public void lambda$setIsEmpty$0(boolean z) {
+        this.emptyView.setVisibility(z ? 0 : 8);
+    }
+
+    public void setTextureVisible(boolean z, boolean z2) {
+        if (this.textureVisible == z && z2) {
+            return;
+        }
+        if (z2) {
+            getTextureView().animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).start();
+        } else {
+            getTextureView().animate().cancel();
+            getTextureView().setAlpha(z ? 1.0f : 0.0f);
+        }
+    }
+
     public static class EmptyView extends FrameLayout {
         public final ButtonWithCounterView buttonView;
+        private boolean hasSetImage;
         public final BackupImageView imageView;
         public final LinearLayout layout;
         public final TextView textView;
@@ -399,9 +563,11 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
         @Override
         public void setVisibility(int i) {
             super.setVisibility(i);
-            if (i == 0 && this.imageView.getImageReceiver().getImageDrawable() == null) {
-                this.imageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty2, "utyan_empty2", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+            if (i != 0 || this.hasSetImage) {
+                return;
             }
+            this.imageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty2, "utyan_empty2", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+            this.hasSetImage = true;
         }
     }
 }

@@ -537,7 +537,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 if (i == 0) {
                     contextLinkCell = new View(GifPage.this.getContext());
                 } else if (i == 1) {
-                    ?? stickerSetNameCell = new StickerSetNameCell(GifPage.this.getContext(), false, ((BottomSheet) EmojiBottomSheet.this).resourcesProvider);
+                    ?? stickerSetNameCell = new StickerSetNameCell(GifPage.this.getContext(), false, ((BottomSheet) EmojiBottomSheet.this).resourcesProvider, false);
                     stickerSetNameCell.setText(LocaleController.getString(R.string.FeaturedGifs), 0);
                     RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -2);
                     ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(2.5f);
@@ -1402,7 +1402,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                     view = new View(Page.this.getContext());
                 } else {
                     if (i == 1) {
-                        noEmojiView = new StickerSetNameCell(Page.this.getContext(), true, ((BottomSheet) EmojiBottomSheet.this).resourcesProvider);
+                        noEmojiView = new StickerSetNameCell(Page.this.getContext(), true, ((BottomSheet) EmojiBottomSheet.this).resourcesProvider, false);
                     } else if (i == 3) {
                         noEmojiView = new NoEmojiView(Page.this.getContext(), Page.this.currentType == 0);
                     } else if (i == 4) {

@@ -656,6 +656,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private final BlurredBackgroundDrawableViewFactory glassBackgroundDrawableFactoryFrosted;
     private final BlurredBackgroundSourceRenderNode glassBackgroundSourceFrostedRenderNode;
     private final BlurredBackgroundSourceRenderNode glassBackgroundSourceRenderNode;
+    private boolean glassSourcesInvalidated;
     private boolean globalIgnoreLayout;
     private ChatActionCell greetingsInfo;
     private ChatGreetingsView greetingsViewContainer;
@@ -1225,11 +1226,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i2;
     }
 
-    public static void access$53000(ChatActivity chatActivity) {
+    public static void access$53100(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$57610(ChatActivity chatActivity) {
+    static int access$57710(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -16167,7 +16168,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public boolean isShouldHaveLightNavigationBarIcons() {
-        return this.shouldHaveLightNavigationBarIcons && !this.windowInsetsStateHolder.inAppViewIsVisible();
+        ThemeDelegate themeDelegate;
+        return this.shouldHaveLightNavigationBarIcons && (!this.windowInsetsStateHolder.inAppViewIsVisible() || ((themeDelegate = this.themeDelegate) != null && themeDelegate.isDark));
     }
 
     public class ChatActivityFragmentView extends SizeNotifierFrameLayout {
@@ -16546,7 +16548,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             BlurredBackgroundSource updateSourceFromBackgroundViewDrawable = ChatActivity.this.wallpaperBitmapProvider.updateSourceFromBackgroundViewDrawable(drawable);
             ChatActivity.this.shouldHaveLightNavigationBarIcons = AndroidUtilities.computePerceivedBrightness(ChatActivity.this.wallpaperBitmapProvider.getNavigationBarColor(updateSourceFromBackgroundViewDrawable)) <= 0.9f;
             ChatActivity.this.navbarContentSourceWallpaper.setSource(updateSourceFromBackgroundViewDrawable);
-            ChatActivity.this.contentView.invalidate();
             if (ChatActivity.this.chatInputViewsContainer != null) {
                 ChatActivity.this.chatInputViewsContainer.invalidate();
                 ChatActivity.this.chatInputViewsContainer.getFadeView().invalidate();
@@ -27423,15 +27424,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return chatActivityAdapter.loadingUpRow;
         }
 
-        static int access$49000(ChatActivityAdapter chatActivityAdapter) {
+        static int access$49100(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingDownRow;
         }
 
-        static void access$49100(ChatActivityAdapter chatActivityAdapter) {
+        static void access$49200(ChatActivityAdapter chatActivityAdapter) {
             chatActivityAdapter.updateRowsInternal();
         }
 
-        static int access$49200(ChatActivityAdapter chatActivityAdapter) {
+        static int access$49300(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.userInfoRow;
         }
 
@@ -28636,7 +28637,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             if (!((BaseFragment) ChatActivity.this).inPreviewMode && ChatActivity.this.chatMode == 0 && !messageObject2.isVoice() && !messageObject2.isRoundVideo()) {
-                ChatActivity.access$57610(ChatActivity.this);
+                ChatActivity.access$57710(ChatActivity.this);
                 if (ChatActivity.this.newMentionsCount <= 0) {
                     ChatActivity.this.newMentionsCount = 0;
                     ChatActivity.this.hasAllMentionsLocal = true;
@@ -30951,7 +30952,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -30988,7 +30989,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31216,7 +31217,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31256,7 +31257,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31458,7 +31459,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31488,7 +31489,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31518,7 +31519,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31589,7 +31590,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -31619,7 +31620,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$53000(ChatActivity.this);
+                        ChatActivity.access$53100(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -33448,11 +33449,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return isCurrentThemeDark;
         }
 
-        static TLRPC.WallPaper access$48500(ThemeDelegate themeDelegate) {
+        static TLRPC.WallPaper access$48600(ThemeDelegate themeDelegate) {
             return themeDelegate.wallpaper;
         }
 
-        static EmojiThemes access$49300(ThemeDelegate themeDelegate) {
+        static EmojiThemes access$49400(ThemeDelegate themeDelegate) {
             return themeDelegate.chatTheme;
         }
 
@@ -35982,6 +35983,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void invalidateAllGlassAttachedViews() {
+        this.glassSourcesInvalidated = true;
+        this.contentView.invalidate();
         Iterator it = this.glassAttachedViews.iterator();
         while (it.hasNext()) {
             ((View) it.next()).invalidate();

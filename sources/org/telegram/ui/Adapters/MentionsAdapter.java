@@ -1233,6 +1233,44 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.getItemCountInternal():int");
     }
 
+    public void clear(boolean z) {
+        if (!z || (this.channelReqId == 0 && this.contextQueryReqid == 0 && this.contextUsernameReqid == 0 && this.lastReqId == 0)) {
+            this.foundContextBot = null;
+            this.hintHashtag = null;
+            ArrayList arrayList = this.stickers;
+            if (arrayList != null) {
+                arrayList.clear();
+            }
+            ArrayList arrayList2 = this.searchResultBotContext;
+            if (arrayList2 != null) {
+                arrayList2.clear();
+            }
+            this.searchResultBotContextSwitch = null;
+            this.searchResultBotWebViewSwitch = null;
+            ArrayList arrayList3 = this.searchResultUsernames;
+            if (arrayList3 != null) {
+                arrayList3.clear();
+            }
+            ArrayList arrayList4 = this.searchResultHashtags;
+            if (arrayList4 != null) {
+                arrayList4.clear();
+            }
+            ArrayList arrayList5 = this.searchResultCommands;
+            if (arrayList5 != null) {
+                arrayList5.clear();
+            }
+            ArrayList arrayList6 = this.quickReplies;
+            if (arrayList6 != null) {
+                arrayList6.clear();
+            }
+            ArrayList arrayList7 = this.searchResultSuggestions;
+            if (arrayList7 != null) {
+                arrayList7.clear();
+            }
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public int getItemViewType(int i) {
         if (this.hintHashtag != null) {

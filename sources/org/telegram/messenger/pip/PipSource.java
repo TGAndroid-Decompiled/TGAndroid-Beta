@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import com.google.android.exoplayer2.Player;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.pip.activity.IPipActivity;
 import org.telegram.messenger.pip.activity.IPipActivityActionListener;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
@@ -17,7 +16,6 @@ import org.telegram.messenger.pip.source.PipSourceHandlerState2;
 import org.telegram.messenger.pip.utils.PipPositionObserver;
 import org.telegram.messenger.pip.utils.PipSourceParams;
 import org.telegram.messenger.pip.utils.PipUtils;
-import org.webrtc.TextureViewRenderer;
 
 public class PipSource {
     private static int sourceIdCounter;
@@ -104,22 +102,8 @@ public class PipSource {
         this.controller.dispatchSourceParamsChanged(this);
     }
 
-    private void updateContentPosition(View view) {
-        if (AndroidUtilities.isInPictureInPictureMode(this.controller.activity)) {
-            return;
-        }
-        Activity activity = this.controller.activity;
-        Rect rect = tmpRect;
-        PipUtils.getPipSourceRectHintPosition(activity, view, rect);
-        boolean position = this.params.setPosition(rect);
-        if (view instanceof TextureViewRenderer) {
-            TextureViewRenderer textureViewRenderer = (TextureViewRenderer) view;
-            position |= this.params.setRatio(textureViewRenderer.rotatedFrameWidth, textureViewRenderer.rotatedFrameHeight);
-        }
-        if (position) {
-            checkAvailable(true);
-            this.controller.dispatchSourceParamsChanged(this);
-        }
+    private void updateContentPosition(android.view.View r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pip.PipSource.updateContentPosition(android.view.View):void");
     }
 
     public void invalidatePosition() {

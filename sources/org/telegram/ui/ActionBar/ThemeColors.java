@@ -756,8 +756,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_iv_ab_progress] = -11491093;
         iArr[Theme.key_iv_navigationBackground] = -986896;
         iArr[Theme.key_reactionStarSelector] = 1089514271;
-        iArr[Theme.key_glass_defaultIcon] = -261066640;
-        iArr[Theme.key_glass_defaultText] = -261066640;
+        iArr[Theme.key_glass_defaultIcon] = -1726275033;
+        iArr[Theme.key_glass_defaultText] = -1726275033;
         return iArr;
     }
 

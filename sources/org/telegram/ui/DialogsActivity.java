@@ -4379,7 +4379,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 boolean premiumFeaturesBlocked = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).premiumFeaturesBlocked();
                 boolean isPremium = UserConfig.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).isPremium();
                 boolean hasUnreadStories = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getStoriesController().hasUnreadStories(j);
-                boolean z = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getStoriesController().hasLiveStory(j) == 2;
+                boolean hasLiveStory = MessagesController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).getStoriesController().hasLiveStory(j);
                 if (premiumFeaturesBlocked || j <= 0 || isPremium || (drawable = ContextCompat.getDrawable(getContext(), R.drawable.msg_gallery_locked2)) == null) {
                     combinedDrawable = null;
                 } else {
@@ -4399,7 +4399,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         }
                     });
                 }
-                boolean z2 = (user == null || user.contact || !MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).containsTopPeer(j)) ? false : true;
+                boolean z = (user == null || user.contact || !MediaDataController.getInstance(((BaseFragment) DialogsActivity.this).currentAccount).containsTopPeer(j)) ? false : true;
                 ItemOptions makeMultiline = DialogsActivity.this.filterOptions.addIf(j > 0, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
                     @Override
                     public final void run() {
@@ -4426,31 +4426,31 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$8(sharedPrefKey, j, user);
                     }
                 }).makeMultiline(false);
-                boolean z3 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories && !z;
+                boolean z2 = !premiumFeaturesBlocked && j > 0 && isPremium && hasUnreadStories && !hasLiveStory;
                 int i4 = R.drawable.msg_stories_stealth2;
                 int i5 = R.string.ViewAnonymously;
                 anonymousClass23 = this;
-                makeMultiline.addIf(z3, i4, LocaleController.getString(i5), new Runnable() {
+                makeMultiline.addIf(z2, i4, LocaleController.getString(i5), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$10(view);
                     }
-                }).makeMultiline(false).addIf((premiumFeaturesBlocked || j <= 0 || isPremium || !hasUnreadStories || z) ? false : true, i4, combinedDrawable2, LocaleController.getString(i5), new Runnable() {
+                }).makeMultiline(false).addIf((premiumFeaturesBlocked || j <= 0 || isPremium || !hasUnreadStories || hasLiveStory) ? false : true, i4, combinedDrawable2, LocaleController.getString(i5), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$12(view);
                     }
-                }).makeMultiline(false).addIf((z2 || DialogsActivity.this.isArchive()) ? false : true, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), new Runnable() {
+                }).makeMultiline(false).addIf((z || DialogsActivity.this.isArchive()) ? false : true, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$13(j);
                     }
-                }).makeMultiline(false).addIf(!z2 && DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), new Runnable() {
+                }).makeMultiline(false).addIf(!z && DialogsActivity.this.isArchive(), R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$14(j);
                     }
-                }).makeMultiline(false).addIf(z2, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), new Runnable() {
+                }).makeMultiline(false).addIf(z, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), new Runnable() {
                     @Override
                     public final void run() {
                         DialogsActivity.AnonymousClass23.this.lambda$onUserLongPressed$15(j);

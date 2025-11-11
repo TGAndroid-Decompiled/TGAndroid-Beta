@@ -174,6 +174,7 @@ import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.SuperRipple;
 import org.telegram.ui.Stars.SuperRippleFallback;
+import org.telegram.ui.Stories.LiveStoryPipOverlay;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoryViewer;
@@ -5331,6 +5332,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (RTMPStreamPipOverlay.isVisible()) {
             RTMPStreamPipOverlay.dismiss();
+        }
+        if (LiveStoryPipOverlay.isVisible()) {
+            LiveStoryPipOverlay.dismiss();
         }
         if (PipVideoOverlay.isVisible()) {
             PipVideoOverlay.dismiss();

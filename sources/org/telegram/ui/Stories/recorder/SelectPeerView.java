@@ -1,6 +1,7 @@
 package org.telegram.ui.Stories.recorder;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class SelectPeerView extends FrameLayout {
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
+        textView.setSingleLine();
+        textView.setLines(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 53.0f, 11.33f, 12.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.subtitleView = textView2;

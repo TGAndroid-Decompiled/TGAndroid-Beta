@@ -102,7 +102,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     protected boolean secondLoadingInBackground;
     protected volatile long secondNativePtr;
     protected volatile boolean setLastFrame;
-    private boolean shouldLimitFps;
+    public boolean shouldLimitFps;
     private boolean singleFrameDecoded;
     public boolean skipFrameUpdate;
     public android.graphics.Rect srcRect;

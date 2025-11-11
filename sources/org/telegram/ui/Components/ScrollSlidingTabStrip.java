@@ -71,6 +71,7 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
     private int indicatorColor;
     private GradientDrawable indicatorDrawable;
     private int indicatorHeight;
+    private final boolean isGlassDesign;
     private long lastAnimationTime;
     private int lastScrollX;
     private RectF leftTabBounds;
@@ -125,7 +126,7 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
     protected void updatePosition() {
     }
 
-    public ScrollSlidingTabStrip(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public ScrollSlidingTabStrip(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
         this.imageReceiversPlayingNum = 1;
         this.type = Type.LINE;
@@ -192,6 +193,7 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
             }
         };
         this.resourcesProvider = resourcesProvider;
+        this.isGlassDesign = z;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         setFillViewport(true);
         setWillNotDraw(false);
@@ -849,8 +851,12 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
             float lerp3 = AndroidUtilities.lerp(abs, textWidth + AndroidUtilities.dp(10.0f), interpolation) / 2.0f;
             float lerp4 = (abs2 * AndroidUtilities.lerp(1.0f, 0.55f, interpolation)) / 2.0f;
             this.tabBounds.set(f - lerp3, lerp2 - lerp4, f + lerp3, lerp2 + lerp4);
-            this.selectorPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_emojiPanelIcon), 46));
-            this.selectorPaint.setAlpha((int) (r2.getAlpha() * f5));
+            if (this.isGlassDesign) {
+                this.selectorPaint.setColor(getGlassIconColor(0.05f));
+            } else {
+                this.selectorPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_emojiPanelIcon), 46));
+                this.selectorPaint.setAlpha((int) (r2.getAlpha() * f5));
+            }
             RectF rectF = this.tabBounds;
             canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.tabBounds.height() / 2.0f, this.selectorPaint);
         }
@@ -860,6 +866,10 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
         this.rectPaint.setColor(this.underlineColor);
         canvas.drawRect(0.0f, f4 - this.underlineHeight, this.tabsContainer.getWidth(), f4, this.rectPaint);
+    }
+
+    private int getGlassIconColor(float f) {
+        return ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), (int) (f * 255.0f));
     }
 
     public void drawOverlays(Canvas canvas) {

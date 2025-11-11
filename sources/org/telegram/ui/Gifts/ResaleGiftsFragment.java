@@ -157,7 +157,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         int blendOver = Theme.blendOver(Theme.getColor(i, this.resourceProvider), Theme.multAlpha(Theme.getColor(i2, this.resourceProvider), 0.04f));
         sizeNotifierFrameLayout.setBackgroundColor(blendOver);
         this.fragmentView = sizeNotifierFrameLayout;
-        final StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context, this.currentAccount);
+        final StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context, this.currentAccount, this.resourceProvider);
         ScaleStateListAnimator.apply(starsBalanceView);
         starsBalanceView.setOnClickListener(new View.OnClickListener() {
             @Override

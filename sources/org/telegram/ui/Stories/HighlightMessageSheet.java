@@ -216,6 +216,19 @@ public abstract class HighlightMessageSheet {
         return 0;
     }
 
+    public static int getMaxLength(int i) {
+        int[] iArr = MessagesController.getInstance(i).starsGroupcallMessageLimits;
+        if (iArr == null) {
+            return 400;
+        }
+        int length = iArr.length;
+        int i2 = TIER_LENGTH + 1;
+        if (length <= i2) {
+            return 400;
+        }
+        return iArr[i2];
+    }
+
     public static void open(Context context, final int i, long j, String str, TLRPC.TL_textWithEntities tL_textWithEntities, long j2, long j3, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
         int i2;
         LiveCommentsView.LiveCommentView liveCommentView;

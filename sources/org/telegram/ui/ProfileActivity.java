@@ -13913,7 +13913,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                 }
                                 i = currentTimeMillis - file5.lastModified() > 86400000 ? i + 1 : 0;
                             }
-                            if (file5.exists()) {
+                            if (file5.exists() && !file5.isDirectory()) {
                                 BufferedInputStream bufferedInputStream2 = new BufferedInputStream(new FileInputStream(file5), 65536);
                                 try {
                                     zipOutputStream.putNextEntry(new ZipEntry(file5.getName()));

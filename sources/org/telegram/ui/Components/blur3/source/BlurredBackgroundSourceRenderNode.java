@@ -26,6 +26,23 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         this.renderNode.setRenderEffect(f > 0.0f ? RenderEffect.createBlurEffect(f, f, Shader.TileMode.CLAMP) : null);
     }
 
+    public boolean needUpdateDisplayList(int i, int i2) {
+        boolean hasDisplayList;
+        int width;
+        int height;
+        hasDisplayList = this.renderNode.hasDisplayList();
+        if (hasDisplayList) {
+            width = this.renderNode.getWidth();
+            if (width == i) {
+                height = this.renderNode.getHeight();
+                if (height == i2) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public RecordingCanvas beginRecording(int i, int i2) {
         RecordingCanvas beginRecording;
         if (this.inRecording) {

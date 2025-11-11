@@ -53,6 +53,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     private boolean giftsIsShown;
     public EmojiTabButton giftsTab;
     private boolean includeAnimated;
+    private final boolean isGlassDesign;
     private Runnable onSettingsOpenRunnable;
     private int packsIndexStart;
     private float paddingLeftDp;
@@ -145,6 +146,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         this.onSettingsOpenRunnable = runnable;
         this.currentType = i;
         this.accentColor = i2;
+        this.isGlassDesign = z5;
         LinearLayout linearLayout = new LinearLayout(context) {
             private final LongSparseArray lastX = new LongSparseArray();
             private final Paint paint = new Paint(1);
@@ -837,11 +839,18 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
     }
 
     public int selectorColor() {
+        if (this.isGlassDesign) {
+            return getGlassIconColor(0.05f);
+        }
         int i = this.currentType;
         if (i == 5 || i == 7) {
             return Theme.multAlpha(this.accentColor, 0.09f);
         }
         return Theme.multAlpha(Theme.getColor(Theme.key_chat_emojiPanelIcon, this.resourcesProvider), 0.18f);
+    }
+
+    public int getGlassIconColor(float f) {
+        return ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), (int) (f * 255.0f));
     }
 
     public void setAnimatedEmojiCacheType(int i) {
@@ -916,7 +925,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                 backupImageView.setImageDrawable(context.getResources().getDrawable(i).mutate());
                 addView(this.imageView);
             }
-            setColor(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider));
+            updateColor();
         }
 
         public EmojiTabButton(Context context, int i, boolean z, boolean z2) {
@@ -933,7 +942,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             this.imageView = backupImageView;
             backupImageView.applyAttach = false;
             backupImageView.setImageDrawable(context.getResources().getDrawable(i).mutate());
-            setColor(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider));
+            updateColor();
             addView(this.imageView);
         }
 
@@ -995,7 +1004,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             this.lockView.setScaleY(0.0f);
             updateLockImageReceiver();
             addView(this.lockView);
-            setColor(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider));
+            updateColor();
         }
 
         public EmojiTabButton(Context context, long j, boolean z, boolean z2, boolean z3) {
@@ -1056,7 +1065,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             this.lockView.setScaleY(0.0f);
             updateLockImageReceiver();
             addView(this.lockView);
-            setColor(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider));
+            updateColor();
         }
 
         @Override
@@ -1411,7 +1420,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
         public void updateSelect(final boolean z, boolean z2) {
             BackupImageView backupImageView = this.imageView;
-            if ((backupImageView == null || backupImageView.getImageReceiver().getImageDrawable() != null) && this.selected != z) {
+            if ((backupImageView == null || backupImageView.getImageReceiver().getImageDrawable() != null || EmojiTabsStrip.this.isGlassDesign) && this.selected != z) {
                 this.selected = z;
                 ValueAnimator valueAnimator = this.selectAnimator;
                 if (valueAnimator != null) {
@@ -1460,12 +1469,16 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
 
         public void lambda$updateSelect$1(ValueAnimator valueAnimator) {
             this.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider), Theme.getColor(Theme.key_chat_emojiPanelIconSelected, EmojiTabsStrip.this.resourcesProvider), this.selectT));
+            updateColor();
         }
 
         public void updateColor() {
             Theme.setSelectorDrawableColor(getBackground(), EmojiTabsStrip.this.selectorColor(), false);
-            setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider), Theme.getColor(Theme.key_chat_emojiPanelIconSelected, EmojiTabsStrip.this.resourcesProvider), this.selectT));
+            if (EmojiTabsStrip.this.isGlassDesign) {
+                setColor(EmojiTabsStrip.this.getGlassIconColor(AndroidUtilities.lerp(0.4f, 0.8f, this.selectT)));
+            } else {
+                setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_emojiPanelIcon, EmojiTabsStrip.this.resourcesProvider), Theme.getColor(Theme.key_chat_emojiPanelIconSelected, EmojiTabsStrip.this.resourcesProvider), this.selectT));
+            }
         }
 
         private void setColor(int i) {

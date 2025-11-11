@@ -4815,6 +4815,7 @@
     <string name="LiveStoryAlreadyStreamingTitle">Already Live</string>
     <string name="LiveStoryBadge">LIVE</string>
     <string name="LiveStoryCommentPlaceholder">Comment</string>
+    <string name="LiveStoryCommentsDisabled">Comments Disabled</string>
     <string name="LiveStoryDisconnected">No Stream</string>
     <string name="LiveStoryDisconnectedContinue">Continue Streaming</string>
     <string name="LiveStoryEnd">End Live Stream</string>
@@ -9466,6 +9467,7 @@
     <string name="VoipChatStreamSettings">Stream settings</string>
     <string name="VoipChatStreamWithAnotherApp">You can also stream with **another app &gt;**</string>
     <string name="VoipChatStreamWithAnotherAppDescription">Once you start broadcasting in your streaming app, tap Start Streaming below.</string>
+    <string name="VoipChatStreamWithAnotherAppDescriptionStory">Once you start broadcasting in your streaming app, tap Connect Stream below.</string>
     <string name="VoipChatUserJoined">**%1$s** joined the voice chat.</string>
     <string name="VoipConference">Ongoing Video Chat</string>
     <string name="VoipConferenceAddPeople">Add Member</string>
@@ -9916,7 +9918,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f26d2_com_google_firebase_crashlytics_mapping_file_id">21509275a9724213801f1e1a808fc2f0</string>
+    <string name="res_0x7f0f26d4_com_google_firebase_crashlytics_mapping_file_id">54ee08cdbf7d4fa9accbb04e390350f8</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

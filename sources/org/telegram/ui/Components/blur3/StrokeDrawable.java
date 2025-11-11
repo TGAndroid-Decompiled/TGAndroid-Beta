@@ -32,6 +32,7 @@ public class StrokeDrawable extends Drawable {
 
     public void setBackgroundColor(int i) {
         this.paintFill.setColor(i);
+        invalidateSelf();
     }
 
     public void setPadding(int i) {

@@ -23,9 +23,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Cells.TextDetailCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.ProfileBirthdayEffect;
 
 public class ProfileBirthdayEffect extends View {
@@ -171,8 +171,8 @@ public class ProfileBirthdayEffect extends View {
         for (int i2 = 0; i2 < listView.getChildCount(); i2++) {
             View childAt = listView.getChildAt(i2);
             if (i == listView.getChildAdapterPosition(childAt) && (childAt instanceof TextDetailCell)) {
-                LinkSpanDrawable.LinksTextView linksTextView = ((TextDetailCell) childAt).textView;
-                this.sourcePoint.set(listView.getX() + childAt.getX() + linksTextView.getX() + AndroidUtilities.dp(12.0f), listView.getY() + childAt.getY() + linksTextView.getY() + (linksTextView.getMeasuredHeight() / 2.0f));
+                SpoilersTextView spoilersTextView = ((TextDetailCell) childAt).textView;
+                this.sourcePoint.set(listView.getX() + childAt.getX() + spoilersTextView.getX() + AndroidUtilities.dp(12.0f), listView.getY() + childAt.getY() + spoilersTextView.getY() + (spoilersTextView.getMeasuredHeight() / 2.0f));
                 return;
             }
         }

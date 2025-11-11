@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.graphics.ColorUtils;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -27,8 +28,8 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 
 public class StickerSetNameCell extends FrameLayout {
-    private ImageView buttonView;
-    private TextView editView;
+    private final ImageView buttonView;
+    private final TextView editView;
     private boolean empty;
     private boolean isEmoji;
     public int position;
@@ -36,16 +37,16 @@ public class StickerSetNameCell extends FrameLayout {
     private CharSequence stickerSetName;
     private int stickerSetNameSearchIndex;
     private int stickerSetNameSearchLength;
-    private TextView textView;
+    private final TextView textView;
     private CharSequence url;
     private int urlSearchLength;
-    private TextView urlTextView;
+    private final TextView urlTextView;
 
-    public StickerSetNameCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        this(context, z, false, resourcesProvider);
+    public StickerSetNameCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
+        this(context, z, false, resourcesProvider, z2);
     }
 
-    public StickerSetNameCell(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+    public StickerSetNameCell(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider, boolean z3) {
         super(context);
         ViewGroup.LayoutParams createFrame;
         ViewGroup.LayoutParams createFrame2;
@@ -57,17 +58,15 @@ public class StickerSetNameCell extends FrameLayout {
         linearLayout.setGravity(17);
         TextView textView = new TextView(context);
         this.textView = textView;
-        int i = Theme.key_chat_emojiPanelStickerSetName;
-        textView.setTextColor(getThemedColor(i));
-        this.textView.setTextSize(1, 15.0f);
-        this.textView.setTypeface(AndroidUtilities.bold());
-        TextView textView2 = this.textView;
+        textView.setTextColor(z3 ? getGlassIconColor(0.6f) : getThemedColor(Theme.key_chat_emojiPanelStickerSetName));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(AndroidUtilities.bold());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView2.setEllipsize(truncateAt);
-        this.textView.setSingleLine(true);
+        textView.setEllipsize(truncateAt);
+        textView.setSingleLine(true);
         if (z) {
-            this.textView.setGravity(17);
-            this.textView.setTextAlignment(4);
+            textView.setGravity(17);
+            textView.setTextAlignment(4);
         }
         if (z2) {
             createFrame = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
@@ -75,45 +74,45 @@ public class StickerSetNameCell extends FrameLayout {
             createFrame = LayoutHelper.createFrame(-2, -2.0f, 51, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
         }
         addView(linearLayout, createFrame);
-        linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
+        TextView textView2 = new TextView(context);
+        this.editView = textView2;
+        textView2.setTextColor(z3 ? getGlassIconColor(0.6f) : getThemedColor(Theme.key_chat_emojiPanelStickerSetName));
+        textView2.setTextSize(1, 11.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setEllipsize(truncateAt);
+        textView2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.33f), 0);
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(9.0f), z3 ? getGlassIconColor(0.05f) : Theme.multAlpha(getThemedColor(Theme.key_chat_emojiPanelStickerSetName), 0.1f), z3 ? getGlassIconColor(0.08f) : Theme.multAlpha(getThemedColor(Theme.key_chat_emojiPanelStickerSetName), 0.24f)));
+        textView2.setGravity(17);
+        textView2.setSingleLine(true);
+        ScaleStateListAnimator.apply(textView2);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 5, 1, 0, 0));
+        textView2.setVisibility(8);
         TextView textView3 = new TextView(context);
-        this.editView = textView3;
-        textView3.setTextColor(getThemedColor(i));
-        this.editView.setTextSize(1, 11.0f);
-        this.editView.setTypeface(AndroidUtilities.bold());
-        this.editView.setEllipsize(truncateAt);
-        this.editView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.33f), 0);
-        this.editView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(9.0f), Theme.multAlpha(getThemedColor(i), 0.1f), Theme.multAlpha(getThemedColor(i), 0.24f)));
-        this.editView.setGravity(17);
-        this.editView.setSingleLine(true);
-        ScaleStateListAnimator.apply(this.editView);
-        linearLayout.addView(this.editView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 5, 1, 0, 0));
-        this.editView.setVisibility(8);
-        TextView textView4 = new TextView(context);
-        this.urlTextView = textView4;
-        textView4.setTextColor(getThemedColor(i));
-        this.urlTextView.setTextSize(1, 12.0f);
-        this.urlTextView.setEllipsize(truncateAt);
-        this.urlTextView.setSingleLine(true);
-        this.urlTextView.setVisibility(4);
+        this.urlTextView = textView3;
+        textView3.setTextColor(z3 ? getGlassIconColor(0.6f) : getThemedColor(Theme.key_chat_emojiPanelStickerSetName));
+        textView3.setTextSize(1, 12.0f);
+        textView3.setEllipsize(truncateAt);
+        textView3.setSingleLine(true);
+        textView3.setVisibility(4);
         if (z2) {
             createFrame2 = LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388661, 12.0f, 6.0f, 17.0f, 0.0f);
         } else {
             createFrame2 = LayoutHelper.createFrame(-2, -2.0f, 53, 12.0f, 6.0f, 17.0f, 0.0f);
         }
-        addView(this.urlTextView, createFrame2);
+        addView(textView3, createFrame2);
         ImageView imageView = new ImageView(context);
         this.buttonView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.buttonView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_emojiPanelStickerSetNameIcon), PorterDuff.Mode.MULTIPLY));
-        this.buttonView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 3));
+        imageView.setColorFilter(new PorterDuffColorFilter(z3 ? getGlassIconColor(0.6f) : getThemedColor(Theme.key_chat_emojiPanelStickerSetNameIcon), PorterDuff.Mode.MULTIPLY));
+        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 3));
         if (z2) {
             createFrame3 = LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388661, 0.0f, 0.0f, this.isEmoji ? 0.0f : 10.0f, 0.0f);
         } else {
             createFrame3 = LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 0.0f, this.isEmoji ? 0.0f : 10.0f, 0.0f);
         }
-        this.buttonView.setTranslationY(AndroidUtilities.dp(4.0f));
-        addView(this.buttonView, createFrame3);
+        imageView.setTranslationY(AndroidUtilities.dp(4.0f));
+        addView(imageView, createFrame3);
     }
 
     public void setUrl(CharSequence charSequence, int i) {
@@ -250,5 +249,9 @@ public class StickerSetNameCell extends FrameLayout {
 
     public TextView getTextView() {
         return this.textView;
+    }
+
+    private int getGlassIconColor(float f) {
+        return ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_glass_defaultIcon, this.resourcesProvider), (int) (f * 255.0f));
     }
 }

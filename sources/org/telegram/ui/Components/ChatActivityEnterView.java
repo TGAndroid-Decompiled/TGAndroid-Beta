@@ -173,6 +173,7 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.StickersActivity;
+import org.telegram.ui.Stories.HighlightMessageSheet;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.TopicsFragment;
@@ -244,7 +245,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private boolean canceledByGesture;
     private boolean captionAbove;
     private boolean captionLimitBulletinShown;
-    private NumberTextView captionLimitView;
+    public NumberTextView captionLimitView;
     private boolean clearBotButtonsOnKeyboardOpen;
     private final LinearGradient clipGradient;
     private final Matrix clipMatrix;
@@ -406,7 +407,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private int searchingType;
     private SendButton sendButton;
     private int sendButtonBackgroundColor;
-    private FrameLayout sendButtonContainer;
+    public FrameLayout sendButtonContainer;
     private boolean sendButtonEnabled;
     private boolean sendButtonVisible;
     private boolean sendByEnter;
@@ -453,6 +454,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private float stickersExpansionProgress;
     private boolean stickersTabOpen;
     private ImageView suggestButton;
+    private boolean suggestButtonVisible;
     private FrameLayout textFieldContainer;
     boolean textTransitionIsRunning;
     private float tooltipAlpha;
@@ -3536,7 +3538,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.captionLimitView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
         this.captionLimitView.setTypeface(AndroidUtilities.bold());
         this.captionLimitView.setCenterAlign(true);
-        addView(this.captionLimitView, 2, LayoutHelper.createFrame(44, 20.0f, 85, 3.0f, 0.0f, 0.0f, 44.0f));
+        addView(this.captionLimitView, Math.min(2, getChildCount()), LayoutHelper.createFrame(44, 20.0f, 85, 3.0f, 0.0f, 0.0f, 44.0f));
     }
 
     private void createScheduledButton() {
@@ -3689,6 +3691,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     public void setSuggestionButtonVisible(boolean z, boolean z2) {
+        if (this.suggestButtonVisible == z && z2) {
+            return;
+        }
         if (this.suggestButton == null) {
             if (!z) {
                 return;
@@ -3696,17 +3701,19 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 createSuggestionButton();
             }
         }
+        this.suggestButtonVisible = z;
         float f = z ? 1.0f : 0.6f;
         float f2 = z ? 1.0f : 0.0f;
         this.suggestButton.setEnabled(z);
         this.suggestButton.setClickable(z);
         if (z2) {
             this.suggestButton.animate().scaleX(f).scaleY(f).alpha(f2).setDuration(180L).start();
-            return;
+        } else {
+            this.suggestButton.setScaleX(f);
+            this.suggestButton.setScaleY(f);
+            this.suggestButton.setAlpha(f2);
         }
-        this.suggestButton.setScaleX(f);
-        this.suggestButton.setScaleY(f);
-        this.suggestButton.setAlpha(f2);
+        updateFieldRight(this.lastAttachVisible);
     }
 
     private void createBotButton() {
@@ -4071,7 +4078,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
     public void lambda$createSenderSelectView$21(View view) {
         final TLRPC.ChatFull chatFull;
-        ViewGroup overlayContainerView;
         int i;
         int i2;
         if (!this.isLiveComment ? getTranslationY() != 0.0f : isPopupShowing()) {
@@ -4081,8 +4087,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     ChatActivityEnterView.this.lambda$createSenderSelectView$15();
                 }
             };
-            hidePopup(true, true);
-            return;
+            if (this.isLiveComment) {
+                hidePopup(true, false);
+                return;
+            } else {
+                hidePopup(true, true);
+                return;
+            }
         }
         if (this.delegate.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
             int contentViewHeight = this.delegate.getContentViewHeight();
@@ -4133,22 +4144,17 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             TLRPC.Peer peer2 = peer;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(messagesController.getChat(Long.valueOf(-this.dialog_id)));
             if (this.isLiveComment) {
-                overlayContainerView = (ViewGroup) getParent();
             } else {
-                overlayContainerView = this.parentFragment.getParentLayout().getOverlayContainerView();
+                this.parentFragment.getParentLayout().getOverlayContainerView();
             }
-            ViewGroup viewGroup = overlayContainerView;
             AnonymousClass28 anonymousClass28 = new SenderSelectPopup(getContext(), this.parentFragment, messagesController, isChannelAndNotMegaGroup, peer2, this.delegate.getSendAsPeers(), new SenderSelectPopup.OnSelectCallback() {
                 @Override
                 public final void onPeerSelected(RecyclerView recyclerView, SenderSelectPopup.SenderView senderView, TLRPC.Peer peer3) {
                     ChatActivityEnterView.this.lambda$createSenderSelectView$20(chatFull, messagesController, recyclerView, senderView, peer3);
                 }
             }, this.resourcesProvider) {
-                final ViewGroup val$fl;
-
-                AnonymousClass28(Context context, ChatActivity chatActivity, final MessagesController messagesController2, boolean isChannelAndNotMegaGroup2, TLRPC.Peer peer22, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, SenderSelectPopup.OnSelectCallback onSelectCallback, Theme.ResourcesProvider resourcesProvider, ViewGroup viewGroup2) {
+                AnonymousClass28(Context context, ChatActivity chatActivity, final MessagesController messagesController2, boolean isChannelAndNotMegaGroup2, TLRPC.Peer peer22, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, SenderSelectPopup.OnSelectCallback onSelectCallback, Theme.ResourcesProvider resourcesProvider) {
                     super(context, chatActivity, messagesController2, isChannelAndNotMegaGroup2, peer22, tL_channels_sendAsPeers, onSelectCallback, resourcesProvider);
-                    r20 = viewGroup2;
                 }
 
                 @Override
@@ -4168,7 +4174,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         super.dismiss();
                         return;
                     }
-                    r20.removeView(this.dimView);
                     super.dismiss();
                 }
             };
@@ -4200,19 +4205,16 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (this.emojiViewVisible) {
                 contentViewHeight2 -= getEmojiPadding();
             }
-            int dp = AndroidUtilities.dp(1.0f);
+            AndroidUtilities.dp(1.0f);
             int i4 = (i3 * 2) + contentViewHeight2;
             ChatActivity chatActivity = this.parentFragment;
             if (measuredHeight < (i4 - ((chatActivity == null || !chatActivity.isInBubbleMode()) ? AndroidUtilities.statusBarHeight : 0)) - this.senderSelectPopupWindow.headerText.getMeasuredHeight()) {
                 getLocationInWindow(iArr);
                 i2 = ((iArr[1] - measuredHeight) - i3) - AndroidUtilities.dp(2.0f);
-                viewGroup2.addView(this.senderSelectPopupWindow.dimView, new FrameLayout.LayoutParams(-1, i3 + i2 + measuredHeight + dp + AndroidUtilities.dp(2.0f)));
             } else {
                 ChatActivity chatActivity2 = this.parentFragment;
                 int i5 = (chatActivity2 == null || !chatActivity2.isInBubbleMode()) ? AndroidUtilities.statusBarHeight : 0;
-                int dp2 = AndroidUtilities.dp(14.0f);
-                this.senderSelectPopupWindow.recyclerContainer.getLayoutParams().height = ((contentViewHeight2 - i5) - dp2) - getHeightWithTopView();
-                viewGroup2.addView(this.senderSelectPopupWindow.dimView, new FrameLayout.LayoutParams(-1, dp2 + i5 + this.senderSelectPopupWindow.recyclerContainer.getLayoutParams().height + dp));
+                this.senderSelectPopupWindow.recyclerContainer.getLayoutParams().height = ((contentViewHeight2 - i5) - AndroidUtilities.dp(14.0f)) - getHeightWithTopView();
                 i2 = i5;
             }
             this.senderSelectPopupWindow.startShowAnimation();
@@ -4505,11 +4507,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     public class AnonymousClass28 extends SenderSelectPopup {
-        final ViewGroup val$fl;
-
-        AnonymousClass28(Context context, ChatActivity chatActivity, final MessagesController messagesController2, boolean isChannelAndNotMegaGroup2, TLRPC.Peer peer22, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, SenderSelectPopup.OnSelectCallback onSelectCallback, Theme.ResourcesProvider resourcesProvider, ViewGroup viewGroup2) {
+        AnonymousClass28(Context context, ChatActivity chatActivity, final MessagesController messagesController2, boolean isChannelAndNotMegaGroup2, TLRPC.Peer peer22, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, SenderSelectPopup.OnSelectCallback onSelectCallback, Theme.ResourcesProvider resourcesProvider) {
             super(context, chatActivity, messagesController2, isChannelAndNotMegaGroup2, peer22, tL_channels_sendAsPeers, onSelectCallback, resourcesProvider);
-            r20 = viewGroup2;
         }
 
         @Override
@@ -4529,7 +4528,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 super.dismiss();
                 return;
             }
-            r20.removeView(this.dimView);
             super.dismiss();
         }
     }
@@ -8923,7 +8921,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.messageEditText.getLayoutParams();
                 int i2 = layoutParams.rightMargin;
                 if (this.isStories && this.isLiveComment) {
-                    layoutParams.rightMargin = AndroidUtilities.dp(50.0f) + Math.max(0, this.sendButton.width() - AndroidUtilities.dp(44.0f));
+                    layoutParams.rightMargin = AndroidUtilities.dp(this.suggestButtonVisible ? 50.0f : 2.0f) + Math.max(0, this.sendButton.width() - AndroidUtilities.dp(44.0f));
                 } else if (i == 1 || i == 2) {
                     ImageView imageView4 = this.botButton;
                     if (imageView4 != null && imageView4.getVisibility() == 0 && (imageView3 = this.scheduledButton) != null && imageView3.getVisibility() == 0 && (linearLayout = this.attachLayout) != null && linearLayout.getVisibility() == 0) {
@@ -10903,9 +10901,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (this.emojiView != null) {
             return;
         }
-        AnonymousClass68 anonymousClass68 = new EmojiView(this.parentFragment, this.allowAnimatedEmoji, true, true, getContext(), true, this.info, this.sizeNotifierLayout, this.shouldDrawBackground, this.resourcesProvider, this.emojiViewFrozen) {
-            AnonymousClass68(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6) {
-                super(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6);
+        AnonymousClass68 anonymousClass68 = new EmojiView(this.parentFragment, this.allowAnimatedEmoji, true, true, getContext(), true, this.info, this.sizeNotifierLayout, this.shouldDrawBackground, this.resourcesProvider, this.emojiViewFrozen, this.windowInsetsInAppController != null) {
+            AnonymousClass68(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
+                super(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, z7);
             }
 
             @Override
@@ -11022,8 +11020,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     public class AnonymousClass68 extends EmojiView {
-        AnonymousClass68(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6) {
-            super(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6);
+        AnonymousClass68(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
+            super(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, z7);
         }
 
         @Override
@@ -14690,5 +14688,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             reset();
         }
         checkSendButton(false);
+        this.currentLimit = z ? HighlightMessageSheet.getMaxLength(this.currentAccount) : -1;
     }
 }

@@ -752,12 +752,15 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 if (BottomSheet.this.overlayDrawNavBarColor != 0) {
                     this.backgroundPaint.setColor(BottomSheet.this.overlayDrawNavBarColor);
                     int alpha2 = this.backgroundPaint.getAlpha();
+                    float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(bottomInset);
                     if (f < 1.0f) {
-                        this.backgroundPaint.setAlpha((int) (alpha2 * f));
+                        this.backgroundPaint.setAlpha((int) (alpha2 * f * navigationBarThirdButtonsFactor));
                     } else {
                         f2 = max;
                     }
-                    canvas.drawRect(x + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f2) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f2, this.backgroundPaint);
+                    if (this.backgroundPaint.getAlpha() > 0) {
+                        canvas.drawRect(x + BottomSheet.this.backgroundPaddingLeft, ((getMeasuredHeight() - bottomInset) + f2) - BottomSheet.this.currentPanTranslationY, BottomSheet.this.containerView.getRight() - BottomSheet.this.backgroundPaddingLeft, getMeasuredHeight() + f2, this.backgroundPaint);
+                    }
                     this.backgroundPaint.setAlpha(alpha2);
                 }
             }

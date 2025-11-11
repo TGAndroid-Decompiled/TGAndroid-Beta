@@ -334,6 +334,24 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         @Override
+        public void setTranslationX(float f) {
+            boolean z = (getTranslationX() == f || this.isSupportEdgeToEdge) ? false : true;
+            super.setTranslationX(f);
+            if (z) {
+                ActionBarLayout.this.invalidate();
+            }
+        }
+
+        @Override
+        public void setAlpha(float f) {
+            boolean z = (getAlpha() == f || this.isSupportEdgeToEdge) ? false : true;
+            super.setAlpha(f);
+            if (z) {
+                ActionBarLayout.this.invalidate();
+            }
+        }
+
+        @Override
         protected boolean drawChild(Canvas canvas, View view, long j) {
             int i;
             int i2;
