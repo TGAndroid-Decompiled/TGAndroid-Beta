@@ -1,5 +1,7 @@
 package org.telegram.tgnet;
 
+import me.vkryl.core.BitwiseUtils;
+
 public class TLObject {
     public static final int FLAG_0 = 1;
     public static final int FLAG_1 = 2;
@@ -42,14 +44,6 @@ public class TLObject {
     public boolean disableFree = false;
     public int networkType;
 
-    public static boolean hasFlag(int i, int i2) {
-        return (i & i2) != 0;
-    }
-
-    public static int setFlag(int i, int i2, boolean z) {
-        return z ? i | i2 : i & (~i2);
-    }
-
     public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
         return null;
     }
@@ -61,6 +55,14 @@ public class TLObject {
     }
 
     public void serializeToStream(OutputSerializedData outputSerializedData) {
+    }
+
+    public static int setFlag(int i, int i2, boolean z) {
+        return BitwiseUtils.setFlag(i, i2, z);
+    }
+
+    public static boolean hasFlag(int i, int i2) {
+        return BitwiseUtils.hasFlag(i, i2);
     }
 
     public int getObjectSize() {

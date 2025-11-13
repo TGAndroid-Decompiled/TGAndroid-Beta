@@ -33,6 +33,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
@@ -241,7 +242,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1191getWindowView();
+        View mo1196getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -951,6 +952,10 @@ public abstract class BaseFragment {
         return getAccountInstance().getMessagesController();
     }
 
+    public GiftAuctionController getGiftAuctionsController() {
+        return getAccountInstance().getGiftAuctionsController();
+    }
+
     public ContactsController getContactsController() {
         return getAccountInstance().getContactsController();
     }
@@ -1274,8 +1279,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1191getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1191getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1196getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1196getWindowView());
                 }
             }
         }
@@ -1286,7 +1291,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1191getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1196getWindowView());
                 }
             }
         }
@@ -1296,7 +1301,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1191getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1196getWindowView()) {
                     return true;
                 }
             }

@@ -61,10 +61,8 @@ public class DownscaleScrollableNoiseSuppressor {
         } else {
             this.renderNodesForGlass = null;
             int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-            if (devicePerformanceClass == 2) {
-                i = 2;
-            } else if (devicePerformanceClass != 1) {
-                i = 6;
+            if (devicePerformanceClass != 2) {
+                i = devicePerformanceClass == 1 ? 6 : 8;
             }
         }
         float downscaleRadius2 = downscaleRadius(AndroidUtilities.dpf2(28.34f), i);

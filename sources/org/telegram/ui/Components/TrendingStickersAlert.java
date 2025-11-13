@@ -79,8 +79,8 @@ public class TrendingStickersAlert extends BottomSheet {
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
+    public void lambda$new$3() {
+        super.lambda$new$3();
         this.layout.recycle();
         setHeavyOperationsEnabled(true);
     }
@@ -180,7 +180,7 @@ public class TrendingStickersAlert extends BottomSheet {
         @Override
         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
             if (motionEvent.getAction() == 0 && TrendingStickersAlert.this.scrollOffsetY != 0 && motionEvent.getY() < TrendingStickersAlert.this.scrollOffsetY) {
-                TrendingStickersAlert.this.dismiss();
+                TrendingStickersAlert.this.lambda$new$3();
                 return true;
             }
             return super.onInterceptTouchEvent(motionEvent);

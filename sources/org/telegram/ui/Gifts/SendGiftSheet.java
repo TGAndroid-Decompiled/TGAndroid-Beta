@@ -26,6 +26,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -64,6 +65,7 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Gifts.AuctionBidSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
@@ -72,12 +74,13 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.PreviewView;
 
-public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+public class SendGiftSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate, GiftAuctionController.OnAuctionUpdateListener {
     private final TLRPC.MessageAction action;
     private final ChatActionCell actionCell;
     private UniversalAdapter adapter;
     public final AnimationNotificationsLocker animationsLock;
     public boolean anonymous;
+    private GiftAuctionController.Auction auction;
     private final ButtonWithCounterView button;
     private final LinearLayout buttonContainer;
     private final ColoredImageSpan[] cachedStarSpan;
@@ -88,6 +91,7 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
     private final long dialogId;
     private final boolean forceNotUpgrade;
     private final boolean forceUpgrade;
+    boolean isDismissed;
     private final TextView leftTextView;
     private final TextView leftTextView2;
     private final FrameLayout limitContainer;
@@ -106,8 +110,6 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
     public boolean useStars;
     private final FrameLayout valueContainerView;
 
-    protected abstract BulletinFactory getParentBulletinFactory();
-
     public SendGiftSheet(Context context, int i, TL_stars.StarGift starGift, long j, Runnable runnable, boolean z, boolean z2) {
         this(context, i, starGift, null, j, runnable, z, z2);
     }
@@ -116,7 +118,7 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
         this(context, i, null, giftPremiumBottomSheet$GiftTier, j, runnable, false, false);
     }
 
-    private SendGiftSheet(Context context, final int i, final TL_stars.StarGift starGift, final GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, long j, Runnable runnable, final boolean z, final boolean z2) {
+    private SendGiftSheet(final Context context, final int i, final TL_stars.StarGift starGift, final GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, final long j, Runnable runnable, final boolean z, final boolean z2) {
         super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         ChatActionCell chatActionCell;
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
@@ -126,6 +128,7 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
         this.shakeDp = -2;
         this.animationsLock = new AnimationNotificationsLocker();
         this.cachedStarSpan = new ColoredImageSpan[1];
+        this.isDismissed = false;
         boolean z3 = j == UserConfig.getInstance(i).getClientUserId();
         this.self = z3;
         setImageReceiverNumLevel(0, 4);
@@ -138,6 +141,9 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
         this.currentAccount = i;
         this.dialogId = j;
         this.starGift = starGift;
+        if (starGift != null && starGift.auction) {
+            this.auction = GiftAuctionController.getInstance(i).subscribeToGiftAuction(starGift.id, this);
+        }
         this.premiumTier = giftPremiumBottomSheet$GiftTier;
         this.closeParentSheet = runnable;
         this.forceUpgrade = z;
@@ -519,7 +525,7 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                SendGiftSheet.this.lambda$new$0(starGift, view3);
+                SendGiftSheet.this.lambda$new$0(j, context, starGift, view3);
             }
         });
         LinearLayoutManager linearLayoutManager = this.layoutManager;
@@ -536,8 +542,22 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
         this.actionBar.setTitle(getTitle());
     }
 
-    public void lambda$new$0(TL_stars.StarGift starGift, View view) {
+    public void lambda$new$0(long j, Context context, TL_stars.StarGift starGift, View view) {
         if (this.button.isLoading()) {
+            return;
+        }
+        if (this.auction != null) {
+            new AuctionBidSheet(context, this.resourcesProvider, new AuctionBidSheet.Params(j, this.anonymous, getMessage()), this.auction).show();
+            lambda$new$0();
+            if (this.isDismissed) {
+                return;
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    SendGiftSheet.this.lambda$new$0();
+                }
+            }, 500L);
             return;
         }
         this.button.setLoading(true);
@@ -660,6 +680,12 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
     }
 
     public void setButtonText(boolean z) {
+        if (this.auction != null) {
+            this.button.setText(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z);
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
+            this.button.setSubText(LocaleController.formatString(R.string.Gift2AuctionTimeLeft, LocaleController.formatTTLString(tL_starGiftAuctionState != null ? Math.max(0, tL_starGiftAuctionState.end_date - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) : 0)), z);
+            return;
+        }
         if (this.starGift != null) {
             long j = StarsController.getInstance(this.currentAccount).getBalance().amount;
             TL_stars.StarGift starGift = this.starGift;
@@ -683,6 +709,19 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
             }
             this.button.setSubText(null, z);
         }
+    }
+
+    @Override
+    public void onUpdate(GiftAuctionController.Auction auction) {
+        this.auction = auction;
+    }
+
+    protected BulletinFactory getParentBulletinFactory() {
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return null;
+        }
+        return BulletinFactory.of(safeLastFragment);
     }
 
     private TLRPC.TL_textWithEntities getMessage() {
@@ -1118,6 +1157,10 @@ public abstract class SendGiftSheet extends BottomSheetWithRecyclerListView impl
         if (editEmojiTextCell != null) {
             editEmojiTextCell.editTextEmoji.onPause();
         }
+        if (this.auction != null) {
+            GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromGiftAuction(this.auction.giftId, this);
+        }
+        this.isDismissed = true;
         super.lambda$new$0();
     }
 

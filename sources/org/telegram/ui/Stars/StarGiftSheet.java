@@ -71,6 +71,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.CountdownTimer;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
@@ -94,6 +95,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetLayouted;
@@ -121,6 +123,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.TableView;
+import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
@@ -7493,6 +7496,75 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
+    public static class UserToUserTransferTopView extends View {
+        private final Paint arrowPaint;
+        private final Path arrowPath;
+        private final ImageReceiver fromUserImageReceiver;
+        private final ImageReceiver toUserImageReceiver;
+
+        public UserToUserTransferTopView(Context context, TLObject tLObject, TLObject tLObject2) {
+            super(context);
+            Path path = new Path();
+            this.arrowPath = path;
+            Paint paint = new Paint(1);
+            this.arrowPaint = paint;
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            avatarDrawable.setInfo(tLObject);
+            ImageReceiver imageReceiver = new ImageReceiver(this);
+            this.fromUserImageReceiver = imageReceiver;
+            imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
+            imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
+            AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+            avatarDrawable2.setInfo(tLObject2);
+            ImageReceiver imageReceiver2 = new ImageReceiver(this);
+            this.toUserImageReceiver = imageReceiver2;
+            imageReceiver2.setRoundRadius(AndroidUtilities.dp(30.0f));
+            imageReceiver2.setForUserOrChat(tLObject2, avatarDrawable2);
+            paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText7));
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            path.rewind();
+            path.moveTo(0.0f, -AndroidUtilities.dp(8.0f));
+            path.lineTo(AndroidUtilities.dp(6.166f), 0.0f);
+            path.lineTo(0.0f, AndroidUtilities.dp(8.0f));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
+            float height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
+            this.fromUserImageReceiver.setImageCoords(width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+            this.fromUserImageReceiver.draw(canvas);
+            canvas.save();
+            canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
+            canvas.drawPath(this.arrowPath, this.arrowPaint);
+            canvas.restore();
+            this.toUserImageReceiver.setImageCoords(width + AndroidUtilities.dp(96.0f), height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+            this.toUserImageReceiver.draw(canvas);
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            this.fromUserImageReceiver.onAttachedToWindow();
+            this.toUserImageReceiver.onAttachedToWindow();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            this.fromUserImageReceiver.onDetachedFromWindow();
+            this.toUserImageReceiver.onDetachedFromWindow();
+        }
+    }
+
     public static class GiftThemeReuseTopView extends View {
         private final Drawable drawable;
         private final StarGiftDrawableIcon giftDrawable;
@@ -7548,9 +7620,16 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public static class StarGiftDrawableIcon extends CompatDrawable {
+        private final Paint countdownPaint;
+        private AnimatedTextView.AnimatedTextDrawable countdownText;
+        private CountdownTimer countdownTimer;
+        private int endTime;
+        private Text giftName;
+        private Text giftStatus;
         private RadialGradient gradient;
         private final ImageReceiver imageReceiver;
         private final Matrix matrix;
+        private StarsReactionsSheet.Particles particles;
         private final Path path;
         private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable pattern;
         private float patternsScale;
@@ -7558,21 +7637,49 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         private final RectF rect;
         private int rounding;
         private final int sizeDp;
+        private final TL_stars.StarGift starGift;
+        private final View view;
 
         public StarGiftDrawableIcon(View view, TL_stars.StarGift starGift, int i, float f) {
             super(view);
             this.path = new Path();
             this.rect = new RectF();
             this.matrix = new Matrix();
+            this.countdownPaint = new Paint(1);
             this.rounding = AndroidUtilities.dp(16.0f);
             this.patternsType = 0;
+            this.starGift = starGift;
+            this.view = view;
             this.patternsScale = f;
             ImageReceiver imageReceiver = new ImageReceiver(view);
             this.imageReceiver = imageReceiver;
             AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, false, AndroidUtilities.dp(i > 180 ? 24.0f : 18.0f));
             this.pattern = swapAnimatedEmojiDrawable;
             this.sizeDp = i;
-            if (starGift != null) {
+            if (starGift instanceof TL_stars.TL_starGift) {
+                float f2 = i;
+                StarsIntroActivity.setGiftImage(imageReceiver, starGift.sticker, (int) (0.75f * f2));
+                String str = starGift.title;
+                Text text = new Text(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
+                this.giftName = text;
+                text.setColor(-1);
+                float f3 = i - 30;
+                this.giftName.setMaxWidth(AndroidUtilities.dp(f3));
+                Text text2 = this.giftName;
+                Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                text2.align(alignment);
+                this.giftName.multiline(1);
+                Text text3 = new Text(starGift.sold_out ? LocaleController.getString(R.string.Gift2SoldOutTitle) : LocaleController.formatPluralString("Gift2AvailabilityLeft", starGift.availability_remains, new Object[0]), 13.0f);
+                this.giftStatus = text3;
+                text3.setMaxWidth(AndroidUtilities.dp(f3));
+                this.giftStatus.align(alignment);
+                this.giftStatus.multiline(1);
+                StarsReactionsSheet.Particles particles = new StarsReactionsSheet.Particles(1, 40);
+                this.particles = particles;
+                float f4 = 0.45f * f2;
+                particles.setBounds(-AndroidUtilities.dp(f4), -AndroidUtilities.dp(f4), AndroidUtilities.dp(f4), AndroidUtilities.dp(f2 * 0.25f));
+                this.particles.generateGrid();
+            } else if (starGift != null) {
                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributePattern.class);
                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributeModel.class);
@@ -7591,6 +7698,97 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             if (view.isAttachedToWindow()) {
                 onAttachedToWindow();
             }
+        }
+
+        public void setGradient(int i, int i2) {
+            RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.sizeDp) / 2.0f, new int[]{i | (-16777216), i2 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = radialGradient;
+            this.paint.setShader(radialGradient);
+        }
+
+        public void setAuctionStateTextColor(int i) {
+            Text text = this.giftStatus;
+            if (text != null) {
+                text.setColor(i | (-16777216));
+            }
+        }
+
+        public void setCountdownRemainingTime(int i) {
+            this.endTime = i;
+            if (this.countdownTimer == null) {
+                this.countdownTimer = new CountdownTimer(new CountdownTimer.Callback() {
+                    @Override
+                    public final void onTimerUpdate(long j) {
+                        StarGiftSheet.StarGiftDrawableIcon.this.lambda$setCountdownRemainingTime$0(j);
+                    }
+                });
+            }
+            long currentTime = i - ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
+            this.countdownTimer.start(currentTime);
+            if (this.countdownText == null) {
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
+                this.countdownText = animatedTextDrawable;
+                animatedTextDrawable.setTextColor(-1);
+                this.countdownText.setTextSize(AndroidUtilities.dp(12.0f));
+                this.countdownText.setCallback(new Drawable.Callback() {
+                    @Override
+                    public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+                    }
+
+                    @Override
+                    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                    }
+
+                    AnonymousClass1() {
+                    }
+
+                    @Override
+                    public void invalidateDrawable(Drawable drawable) {
+                        StarGiftDrawableIcon.this.view.invalidate();
+                    }
+                });
+            }
+            updateCountdownText(currentTime, false);
+        }
+
+        public void lambda$setCountdownRemainingTime$0(long j) {
+            updateCountdownText(j, true);
+        }
+
+        public class AnonymousClass1 implements Drawable.Callback {
+            @Override
+            public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+            }
+
+            @Override
+            public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+            }
+
+            AnonymousClass1() {
+            }
+
+            @Override
+            public void invalidateDrawable(Drawable drawable) {
+                StarGiftDrawableIcon.this.view.invalidate();
+            }
+        }
+
+        private void updateCountdownText(long j, boolean z) {
+            Text text;
+            String string;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countdownText;
+            if (animatedTextDrawable != null) {
+                if (j > 0) {
+                    string = AndroidUtilities.formatDuration((int) j, true);
+                } else {
+                    string = LocaleController.getString(R.string.Gift2AuctionCountdownFinished);
+                }
+                animatedTextDrawable.setText(string, z);
+            }
+            if (j > 0 || (text = this.giftStatus) == null) {
+                return;
+            }
+            text.setText(LocaleController.getString(R.string.Gift2SoldOutTitle));
         }
 
         public StarGiftDrawableIcon setRounding(int i) {
@@ -7623,11 +7821,34 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             canvas.save();
             canvas.translate(this.rect.centerX(), this.rect.centerY());
             StarGiftPatterns.drawPattern(canvas, this.patternsType, this.pattern, this.rect.width(), this.rect.height(), 1.0f, this.patternsScale);
+            StarsReactionsSheet.Particles particles = this.particles;
+            if (particles != null) {
+                particles.draw(canvas, -1, 1.0f);
+            }
             canvas.restore();
-            float min = Math.min(this.rect.width(), this.rect.height()) * 0.75f;
-            float f2 = min / 2.0f;
-            this.imageReceiver.setImageCoords(this.rect.centerX() - f2, this.rect.centerY() - f2, min, min);
-            this.imageReceiver.draw(canvas);
+            if (this.giftName != null && this.giftStatus != null) {
+                if (this.countdownText != null) {
+                    this.countdownPaint.setColor(1342177280);
+                    canvas.drawRoundRect(this.rect.left + AndroidUtilities.dp(6.0f), this.rect.top + AndroidUtilities.dp(6.0f), this.rect.left + AndroidUtilities.dp(20.0f) + Math.max(this.countdownText.getCurrentWidth(), AndroidUtilities.dp(3.0f)), this.rect.top + AndroidUtilities.dp(23.0f), AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), this.countdownPaint);
+                    canvas.save();
+                    canvas.translate(this.rect.left + AndroidUtilities.dp(13.0f), this.rect.top + AndroidUtilities.dp(14.0f));
+                    this.countdownText.draw(canvas);
+                    canvas.restore();
+                }
+                float min = Math.min(this.rect.width(), this.rect.height()) * 0.6f;
+                ImageReceiver imageReceiver = this.imageReceiver;
+                float centerX = this.rect.centerX() - (min / 2.0f);
+                RectF rectF2 = this.rect;
+                imageReceiver.setImageCoords(centerX, rectF2.top + (rectF2.height() * 0.12f), min, min);
+                this.imageReceiver.draw(canvas);
+                this.giftName.draw(canvas, this.rect.centerX() - (this.giftName.getWidth() / 2.0f), this.rect.bottom - AndroidUtilities.dp(50.0f));
+                this.giftStatus.draw(canvas, this.rect.centerX() - (this.giftStatus.getWidth() / 2.0f), this.rect.bottom - AndroidUtilities.dp(30.0f));
+            } else {
+                float min2 = Math.min(this.rect.width(), this.rect.height()) * 0.75f;
+                float f2 = min2 / 2.0f;
+                this.imageReceiver.setImageCoords(this.rect.centerX() - f2, this.rect.centerY() - f2, min2, min2);
+                this.imageReceiver.draw(canvas);
+            }
             canvas.restore();
         }
 
@@ -7635,12 +7856,19 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         public void onAttachedToWindow() {
             this.pattern.attach();
             this.imageReceiver.onAttachedToWindow();
+            if (this.countdownTimer != null) {
+                this.countdownTimer.start(this.endTime - ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime());
+            }
         }
 
         @Override
         public void onDetachedToWindow() {
             this.pattern.detach();
             this.imageReceiver.onDetachedFromWindow();
+            CountdownTimer countdownTimer = this.countdownTimer;
+            if (countdownTimer != null) {
+                countdownTimer.stop();
+            }
         }
 
         @Override

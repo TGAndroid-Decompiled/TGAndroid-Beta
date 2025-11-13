@@ -89,6 +89,7 @@ public class ActionBar extends FrameLayout {
     private boolean ignoreLayoutRequest;
     private View.OnTouchListener interceptTouchEventListener;
     private boolean interceptTouches;
+    private boolean isCenterTitle;
     private boolean isMenuOffsetSuppressed;
     protected boolean isSearchFieldVisible;
     protected int itemsActionModeBackgroundColor;
@@ -439,7 +440,7 @@ public class ActionBar extends FrameLayout {
             return;
         }
         simpleTextViewArr[i] = new SimpleTextView(getContext());
-        this.titleTextView[i].setGravity(19);
+        this.titleTextView[i].setGravity(this.isCenterTitle ? 17 : 19);
         int i2 = this.titleColorToSet;
         if (i2 != 0) {
             this.titleTextView[i].setTextColor(i2);

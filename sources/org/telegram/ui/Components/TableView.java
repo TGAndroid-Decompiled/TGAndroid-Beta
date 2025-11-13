@@ -343,6 +343,10 @@ public class TableView extends android.widget.TableLayout {
     }
 
     public TableRow addRow(CharSequence charSequence, CharSequence charSequence2) {
+        return addRow(charSequence, charSequence2, null);
+    }
+
+    public TableRow addRow(CharSequence charSequence, CharSequence charSequence2, ButtonSpan.TextViewButtons[] textViewButtonsArr) {
         ButtonSpan.TextViewButtons textViewButtons = new ButtonSpan.TextViewButtons(getContext());
         textViewButtons.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         textViewButtons.setTextSize(1, 14.0f);
@@ -352,6 +356,9 @@ public class TableView extends android.widget.TableLayout {
         tableRow.addView(new TableRowTitle(this, charSequence), new TableRow.LayoutParams(-2, -1));
         tableRow.addView(new TableRowContent(this, textViewButtons), new TableRow.LayoutParams(0, -1, 1.0f));
         addView(tableRow);
+        if (textViewButtonsArr != null) {
+            textViewButtonsArr[0] = textViewButtons;
+        }
         return tableRow;
     }
 

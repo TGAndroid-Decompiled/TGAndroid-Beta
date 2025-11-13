@@ -3,6 +3,7 @@ package org.telegram.messenger.utils.tlutils;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -92,6 +93,17 @@ public abstract class TlUtils {
             tL_messages_sendMultiMedia.reply_to = inputReplyTo;
             tL_messages_sendMultiMedia.flags |= 1;
         }
+    }
+
+    public static Object findFirstInstance(List list, Class cls) {
+        if (list != null && cls != null) {
+            for (Object obj : list) {
+                if (cls.isInstance(obj)) {
+                    return cls.cast(obj);
+                }
+            }
+        }
+        return null;
     }
 
     public static long getOrCalculateRandomIdFromSendMessageRequest(TLObject tLObject) {

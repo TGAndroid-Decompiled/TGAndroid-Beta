@@ -68,15 +68,17 @@ public class WallpaperBitmapProvider {
         if (drawable instanceof ChatBackgroundDrawable) {
             return updateSourceFromBackgroundViewDrawable(((ChatBackgroundDrawable) drawable).getDrawable(false));
         }
-        Canvas beginRecording = this.sourceBitmap.beginRecording(120, 160);
-        Rect rect = tmpRect;
-        rect.set(drawable.getBounds());
-        drawable.setBounds(0, 0, 120, 160);
-        drawable.draw(beginRecording);
-        drawable.setBounds(rect);
-        this.sourceBitmap.endRecording();
-        BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = this.sourceBitmap;
-        blurredBackgroundSourceBitmap.setBitmap((Bitmap) this.blurredFromBitmap.get(blurredBackgroundSourceBitmap.getBitmap()));
+        if (drawable != null) {
+            Canvas beginRecording = this.sourceBitmap.beginRecording(120, 160);
+            Rect rect = tmpRect;
+            rect.set(drawable.getBounds());
+            drawable.setBounds(0, 0, 120, 160);
+            drawable.draw(beginRecording);
+            drawable.setBounds(rect);
+            this.sourceBitmap.endRecording();
+            BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = this.sourceBitmap;
+            blurredBackgroundSourceBitmap.setBitmap((Bitmap) this.blurredFromBitmap.get(blurredBackgroundSourceBitmap.getBitmap()));
+        }
         return this.sourceBitmap;
     }
 

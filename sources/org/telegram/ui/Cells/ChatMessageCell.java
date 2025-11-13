@@ -101,6 +101,7 @@ import org.telegram.messenger.video.OldVideoPlayerRewinder;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Cells.BaseCell;
@@ -117,6 +118,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.AvatarsDrawable;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CheckBoxBase;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FloatSeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.ForwardBackground;
@@ -503,6 +505,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private StaticLayout instantViewLayout;
     private float instantViewLayoutLeft;
     private float instantViewLayoutWidth;
+    private TL_stars.StarGift instantViewTypeIsGiftAuction;
     private int instantWidth;
     private Runnable invalidateListener;
     private Runnable invalidateRunnable;
@@ -5082,7 +5085,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContent(org.telegram.messenger.MessageObject r84, org.telegram.messenger.MessageObject.GroupedMessages r85, boolean r86, boolean r87, boolean r88, boolean r89) {
+    private void setMessageContent(org.telegram.messenger.MessageObject r87, org.telegram.messenger.MessageObject.GroupedMessages r88, boolean r89, boolean r90, boolean r91, boolean r92) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContent(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean, boolean, boolean):void");
     }
 
@@ -6281,86 +6284,101 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     private void createInstantViewButton() {
         int measureText;
+        CharSequence string;
+        String string2;
         if (this.drawInstantView) {
             createSelectorDrawable(0);
         }
         if (this.drawInstantView && this.instantViewLayout == null) {
             this.instantWidth = AndroidUtilities.dp(33.0f);
-            String str = this.instantViewButtonText;
-            if (str == null) {
+            CharSequence charSequence = this.instantViewButtonText;
+            if (charSequence == null) {
                 int i = this.drawInstantViewType;
                 if (i == 12) {
-                    str = LocaleController.getString(R.string.OpenChannelPost);
+                    string = LocaleController.getString(R.string.OpenChannelPost);
                 } else if (i == 1) {
-                    str = LocaleController.getString(R.string.OpenChannel);
+                    string = LocaleController.getString(R.string.OpenChannel);
                 } else if (i == 29) {
-                    str = LocaleController.getString(R.string.OpenChannelDirect);
+                    string = LocaleController.getString(R.string.OpenChannelDirect);
                 } else if (i == 13) {
-                    str = LocaleController.getString(R.string.SendMessage).toUpperCase();
+                    string = LocaleController.getString(R.string.SendMessage).toUpperCase();
                 } else if (i == 32) {
-                    str = LocaleController.getString(R.string.OpenProfile).toUpperCase();
+                    string = LocaleController.getString(R.string.OpenProfile).toUpperCase();
                 } else if (i == 10) {
-                    str = LocaleController.getString(R.string.OpenBot);
+                    string = LocaleController.getString(R.string.OpenBot);
                 } else if (i == 2) {
-                    str = LocaleController.getString(R.string.OpenGroup);
+                    string = LocaleController.getString(R.string.OpenGroup);
                 } else if (i == 3) {
-                    str = LocaleController.getString(R.string.OpenMessage);
+                    string = LocaleController.getString(R.string.OpenMessage);
                 } else if (i == 5) {
-                    str = LocaleController.getString(R.string.ViewContact);
+                    string = LocaleController.getString(R.string.ViewContact);
                 } else if (i == 6) {
-                    str = LocaleController.getString(R.string.OpenBackground);
+                    string = LocaleController.getString(R.string.OpenBackground);
                 } else if (i == 7) {
-                    str = LocaleController.getString(R.string.OpenTheme);
+                    string = LocaleController.getString(R.string.OpenTheme);
                 } else if (i == 8) {
                     if (this.pollVoted || this.pollClosed) {
-                        str = LocaleController.getString(R.string.PollViewResults);
+                        string = LocaleController.getString(R.string.PollViewResults);
                     } else {
-                        str = LocaleController.getString(R.string.PollSubmitVotes);
+                        string = LocaleController.getString(R.string.PollSubmitVotes);
                     }
                 } else if (i == 9 || i == 11) {
                     TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) MessageObject.getMedia(this.currentMessageObject.messageOwner).webpage;
                     if (tL_webPage != null && tL_webPage.url.contains("voicechat=")) {
-                        str = LocaleController.getString(R.string.VoipGroupJoinAsSpeaker);
+                        string = LocaleController.getString(R.string.VoipGroupJoinAsSpeaker);
                     } else {
-                        str = LocaleController.getString(R.string.VoipGroupJoinAsLinstener);
+                        string = LocaleController.getString(R.string.VoipGroupJoinAsLinstener);
                     }
                 } else if (i == 25) {
-                    str = LocaleController.getString(R.string.VoipGroupJoinAsLinstener);
+                    string = LocaleController.getString(R.string.VoipGroupJoinAsLinstener);
                 } else if (i == 14) {
-                    str = LocaleController.getString(R.string.ViewChatList).toUpperCase();
+                    string = LocaleController.getString(R.string.ViewChatList).toUpperCase();
                 } else if (i == 15) {
-                    str = LocaleController.getString(R.string.BotWebAppInstantViewOpen).toUpperCase();
+                    string = LocaleController.getString(R.string.BotWebAppInstantViewOpen).toUpperCase();
                 } else if (i == 16) {
-                    str = LocaleController.getString(R.string.OpenLink).toUpperCase();
+                    string = LocaleController.getString(R.string.OpenLink).toUpperCase();
                 } else if (i == 17) {
-                    str = LocaleController.getString(R.string.ViewStory).toUpperCase();
+                    string = LocaleController.getString(R.string.ViewStory).toUpperCase();
                 } else if (i == 18 || i == 22) {
-                    str = LocaleController.getString(R.string.BoostLinkButton);
+                    string = LocaleController.getString(R.string.BoostLinkButton);
                 } else if (i == 19) {
-                    str = LocaleController.getString(R.string.BoostingHowItWork);
+                    string = LocaleController.getString(R.string.BoostingHowItWork);
                 } else if (i == 20) {
-                    str = LocaleController.getString(R.string.OpenGift);
+                    string = LocaleController.getString(R.string.OpenGift);
                 } else if (i == 21) {
-                    str = LocaleController.getString(R.string.AppUpdate);
+                    string = LocaleController.getString(R.string.AppUpdate);
                 } else if (i == 23) {
-                    str = LocaleController.getString(R.string.OpenStickerSet);
+                    string = LocaleController.getString(R.string.OpenStickerSet);
                 } else if (i == 24) {
-                    str = LocaleController.getString(R.string.OpenEmojiSet);
+                    string = LocaleController.getString(R.string.OpenEmojiSet);
                 } else if (i == 26) {
-                    str = LocaleController.getString(R.string.OpenUniqueGift);
+                    TL_stars.StarGift starGift = this.instantViewTypeIsGiftAuction;
+                    if (starGift != null) {
+                        if (starGift.sold_out) {
+                            string2 = LocaleController.getString(R.string.OpenGiftAuctionResults);
+                        } else {
+                            string2 = LocaleController.getString(R.string.OpenGiftAuctionActive);
+                        }
+                        SpannableString spannableString = new SpannableString("*");
+                        spannableString.setSpan(new ColoredImageSpan(R.drawable.filled_gift_sell_24), 0, spannableString.length(), 33);
+                        string = TextUtils.concat(spannableString, " ", string2);
+                    } else {
+                        string = LocaleController.getString(R.string.OpenUniqueGift);
+                    }
                 } else if (i == 27) {
-                    str = LocaleController.getString(R.string.JoinCall).toUpperCase();
+                    string = LocaleController.getString(R.string.JoinCall).toUpperCase();
                 } else if (i == 28) {
-                    str = LocaleController.getString(R.string.ViewCollection);
+                    string = LocaleController.getString(R.string.ViewCollection);
                 } else {
-                    str = LocaleController.getString(R.string.InstantView);
+                    string = LocaleController.getString(R.string.InstantView);
                 }
+                charSequence = string;
             }
-            if (this.currentMessageObject.isSponsored() && this.backgroundWidth < (measureText = (int) (Theme.chat_instantViewPaint.measureText(str) + AndroidUtilities.dp(75.0f)))) {
+            if (this.currentMessageObject.isSponsored() && this.backgroundWidth < (measureText = (int) (Theme.chat_instantViewPaint.measureText(charSequence, 0, charSequence.length()) + AndroidUtilities.dp(75.0f)))) {
                 this.backgroundWidth = measureText;
             }
             int dp = this.backgroundWidth - AndroidUtilities.dp(75.0f);
-            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(str, Theme.chat_instantViewPaint, dp, TextUtils.TruncateAt.END), Theme.chat_instantViewPaint, dp + AndroidUtilities.dp(2.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(charSequence, Theme.chat_instantViewPaint, dp, TextUtils.TruncateAt.END), Theme.chat_instantViewPaint, dp + AndroidUtilities.dp(2.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.instantViewLayout = staticLayout;
             this.instantViewLayoutWidth = staticLayout.getLineCount() > 0 ? this.instantViewLayout.getLineWidth(0) : 0.0f;
             this.instantViewLayoutLeft = this.instantViewLayout.getLineCount() > 0 ? this.instantViewLayout.getLineLeft(0) : 0.0f;

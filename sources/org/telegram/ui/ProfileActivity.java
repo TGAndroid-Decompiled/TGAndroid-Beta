@@ -6634,7 +6634,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i == 6) {
                 ProfileActivity.this.getMessagesStorage().clearSentMedia();
                 SharedConfig.setNoSoundHintShowed(false);
-                MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").apply();
+                MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").remove("taptostoryhighlighthint").apply();
                 MessagesController.getEmojiSettings(((BaseFragment) ProfileActivity.this).currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
                 SharedConfig.textSelectionHintShows = 0;
                 SharedConfig.lockRecordAudioVideoHint = 0;
@@ -18696,7 +18696,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public void showStarRatingBottomSheet(View view) {
         Context context;
         BottomSheet.Builder builder;
-        Runnable runnable;
         int i;
         float f;
         char c;
@@ -18706,7 +18705,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         BottomSheet.Builder builder2 = new BottomSheet.Builder(getContext());
-        Runnable dismissRunnable = builder2.getDismissRunnable();
+        final Runnable dismissRunnable = builder2.getDismissRunnable();
         LinearLayout linearLayout = new LinearLayout(context2);
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
@@ -18716,24 +18715,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         limitPreviewView.setStarRating(userInfo.stars_rating);
         limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
         linearLayout.addView(limitPreviewView, LayoutHelper.createLinear(-1, -2, 17, 0, 20, 0, 10));
-        if (BuildVars.DEBUG_PRIVATE_VERSION && userInfo.stars_my_pending_rating == null) {
-            TL_stars.Tl_starsRating tl_starsRating = new TL_stars.Tl_starsRating();
-            userInfo.stars_my_pending_rating = tl_starsRating;
-            TL_stars.Tl_starsRating tl_starsRating2 = userInfo.stars_rating;
-            tl_starsRating.current_level_stars = tl_starsRating2.stars < 0 ? 0L : tl_starsRating2.current_level_stars;
-            tl_starsRating.next_level_stars = tl_starsRating2.next_level_stars + 1000;
-            tl_starsRating.level = tl_starsRating2.level + 1;
-            tl_starsRating.stars = tl_starsRating2.next_level_stars + 500;
-            userInfo.stars_my_pending_rating_date = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + 1814400;
-        }
         int i2 = 17;
         if (userInfo.stars_my_pending_rating != null) {
             FrameLayout frameLayout = new FrameLayout(context2);
             linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 17, 40, -12, 40, 20));
             final LinkSpanDrawable.LinksTextView[] linksTextViewArr = new LinkSpanDrawable.LinksTextView[2];
             int i3 = 0;
-            for (int i4 = 2; i3 < i4; i4 = 2) {
-                int i5 = i3;
+            while (i3 < 2) {
                 AnonymousClass58 anonymousClass58 = new LinkSpanDrawable.LinksTextView(context2) {
                     AnonymousClass58(Context context22) {
                         super(context22);
@@ -18747,16 +18735,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         return super.dispatchTouchEvent(motionEvent);
                     }
                 };
-                linksTextViewArr[i5] = anonymousClass58;
+                linksTextViewArr[i3] = anonymousClass58;
                 anonymousClass58.setGravity(i2);
-                linksTextViewArr[i5].setTextSize(1, 12.0f);
-                linksTextViewArr[i5].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-                linksTextViewArr[i5].setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
-                frameLayout.addView(linksTextViewArr[i5], LayoutHelper.createFrame(-1, -1, 119));
-                linksTextViewArr[i5].setAlpha(i5 == 0 ? 1.0f : 0.0f);
-                linksTextViewArr[i5].setScaleX(i5 == 0 ? 1.0f : 0.8f);
-                linksTextViewArr[i5].setScaleY(i5 == 0 ? 1.0f : 0.8f);
-                i3 = i5 + 1;
+                linksTextViewArr[i3].setTextSize(1, 12.0f);
+                linksTextViewArr[i3].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+                linksTextViewArr[i3].setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
+                frameLayout.addView(linksTextViewArr[i3], LayoutHelper.createFrame(-1, -1, 119));
+                linksTextViewArr[i3].setAlpha(i3 == 0 ? 1.0f : 0.0f);
+                linksTextViewArr[i3].setScaleX(i3 == 0 ? 1.0f : 0.8f);
+                linksTextViewArr[i3].setScaleY(i3 == 0 ? 1.0f : 0.8f);
+                i3++;
                 i2 = 17;
             }
             final Utilities.Callback callback = new Utilities.Callback() {
@@ -18767,25 +18755,26 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             };
             boolean z = getDialogId() == UserConfig.getInstance(this.currentAccount).getClientUserId();
             long j = userInfo.stars_rating.stars;
-            TL_stars.Tl_starsRating tl_starsRating3 = userInfo.stars_my_pending_rating;
-            long j2 = (-j) - (tl_starsRating3 != null ? tl_starsRating3.stars - j : 0L);
+            TL_stars.Tl_starsRating tl_starsRating = userInfo.stars_my_pending_rating;
+            long j2 = (-j) - (tl_starsRating != null ? tl_starsRating.stars - j : 0L);
             int max = Math.max(1, (userInfo.stars_my_pending_rating_date - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) / 86400);
             context = context22;
             long j3 = userInfo.stars_my_pending_rating.stars;
-            builder = builder2;
-            runnable = dismissRunnable;
             long j4 = userInfo.stars_rating.stars;
             long j5 = j3 - j4;
             if ((j4 < 0 && !z) || (z && j2 > 0)) {
-                c = 0;
                 linksTextViewArr[0].setTextColor(Theme.getColor(Theme.key_text_RedBold));
                 if (z) {
+                    c = 0;
                     linksTextViewArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarRatingLevelNegativeYou", (int) j2)));
+                    builder = builder2;
                 } else {
+                    builder = builder2;
                     linksTextViewArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarRatingLevelNegativeOther, DialogObject.getName(getDialogId()))));
                     c = 0;
                 }
             } else {
+                builder = builder2;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append(TextUtils.concat(LocaleController.formatPluralStringComma("StarRatingFuture", max), "\n", LocaleController.formatPluralStringComma("StarRatingFuturePendingPoints", (int) j5)));
                 spannableStringBuilder.append((CharSequence) " ");
@@ -18829,7 +18818,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         } else {
             context = context22;
             builder = builder2;
-            runnable = dismissRunnable;
         }
         Context context3 = context;
         TextView textView = new TextView(context3);
@@ -18837,8 +18825,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.StarRatingTitle));
         textView.setTextSize(1, 20.0f);
-        int i6 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i6, this.resourcesProvider));
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i4, this.resourcesProvider));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 6));
         TextView textView2 = new TextView(context3);
         textView2.setGravity(17);
@@ -18852,40 +18840,39 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             f = 14.0f;
         }
         textView2.setTextSize(i, f);
-        textView2.setTextColor(Theme.getColor(i6, this.resourcesProvider));
+        textView2.setTextColor(Theme.getColor(i4, this.resourcesProvider));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 12));
         PremiumFeatureCell premiumFeatureCell = new PremiumFeatureCell(context3, this.resourcesProvider);
         premiumFeatureCell.title.setText(LocaleController.getString(R.string.StarRatingTitle1));
         TextView textView3 = premiumFeatureCell.description;
-        int i7 = R.string.StarRatingDescription1;
-        int i8 = R.string.StarRatingAdded;
-        String string = LocaleController.getString(i8);
-        int i9 = Theme.key_featuredStickers_addButton;
-        textView3.setText(LocaleController.formatSpannable(i7, createNewSpan(string, Theme.getColor(i9, this.resourcesProvider))));
+        int i5 = R.string.StarRatingDescription1;
+        int i6 = R.string.StarRatingAdded;
+        String string = LocaleController.getString(i6);
+        int i7 = Theme.key_featuredStickers_addButton;
+        textView3.setText(LocaleController.formatSpannable(i5, createNewSpan(string, Theme.getColor(i7, this.resourcesProvider))));
         premiumFeatureCell.nextIcon.setVisibility(8);
         premiumFeatureCell.imageView.setImageResource(R.drawable.menu_gift);
-        premiumFeatureCell.imageView.setColorFilter(Theme.getColor(i6, this.resourcesProvider));
+        premiumFeatureCell.imageView.setColorFilter(Theme.getColor(i4, this.resourcesProvider));
         linearLayout.addView(premiumFeatureCell, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, -2.0f));
         PremiumFeatureCell premiumFeatureCell2 = new PremiumFeatureCell(context3, this.resourcesProvider);
         premiumFeatureCell2.title.setText(LocaleController.getString(R.string.StarRatingTitle2));
-        premiumFeatureCell2.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription2, createNewSpan(LocaleController.getString(i8), Theme.getColor(i9, this.resourcesProvider))));
+        premiumFeatureCell2.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription2, createNewSpan(LocaleController.getString(i6), Theme.getColor(i7, this.resourcesProvider))));
         premiumFeatureCell2.nextIcon.setVisibility(8);
         premiumFeatureCell2.imageView.setImageResource(R.drawable.menu_stars_gift);
-        premiumFeatureCell2.imageView.setColorFilter(Theme.getColor(i6, this.resourcesProvider));
+        premiumFeatureCell2.imageView.setColorFilter(Theme.getColor(i4, this.resourcesProvider));
         linearLayout.addView(premiumFeatureCell2, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, -2.0f));
         PremiumFeatureCell premiumFeatureCell3 = new PremiumFeatureCell(context3, this.resourcesProvider);
         premiumFeatureCell3.title.setText(LocaleController.getString(R.string.StarRatingTitle3));
         premiumFeatureCell3.description.setText(LocaleController.formatSpannable(R.string.StarRatingDescription3, createNewSpan(LocaleController.getString(R.string.StarRatingDeduces), Theme.isCurrentThemeDark() ? ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, this.resourcesProvider), -16777216, 0.25f) : Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider))));
         premiumFeatureCell3.nextIcon.setVisibility(8);
         premiumFeatureCell3.imageView.setImageResource(R.drawable.menu_refund);
-        premiumFeatureCell3.imageView.setColorFilter(Theme.getColor(i6, this.resourcesProvider));
+        premiumFeatureCell3.imageView.setColorFilter(Theme.getColor(i4, this.resourcesProvider));
         linearLayout.addView(premiumFeatureCell3, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, 8.0f));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context3, this.resourcesProvider);
-        final Runnable runnable2 = runnable;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                runnable2.run();
+                dismissRunnable.run();
             }
         });
         buttonWithCounterView.setText(StarGiftSheet.replaceUnderstood(LocaleController.getString(R.string.Understood)), false);

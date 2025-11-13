@@ -43,6 +43,7 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -65,6 +66,7 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.Gifts.ResaleGiftsFragment;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -1016,7 +1018,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         } else {
             bundle.putLong("chat_id", -l.longValue());
         }
-        presentFragment(new ChatActivity(bundle) {
+        ChatActivity chatActivity = new ChatActivity(bundle) {
             private boolean shownToast = false;
 
             @Override
@@ -1032,7 +1034,17 @@ public class ResaleGiftsFragment extends BaseFragment {
                     fireworksOverlay.start(true);
                 }
             }
-        }, true);
+        };
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
+            lambda$onBackPressed$340();
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment != null) {
+                safeLastFragment.presentFragment(chatActivity);
+            }
+        } else {
+            presentFragment(chatActivity, true);
+        }
         Runnable runnable = this.closeParentSheet;
         if (runnable != null) {
             runnable.run();

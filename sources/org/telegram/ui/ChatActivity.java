@@ -8056,6 +8056,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$createView$58(View view) {
+        if (getContext() == null) {
+            return;
+        }
         float f = this.windowInsetsStateHolder.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom / AndroidUtilities.density;
         float width = ((this.contentView.getWidth() - (view.getX() + view.getWidth())) + (view.getWidth() / 2.0f)) / AndroidUtilities.density;
         HintView2 hintView2 = new HintView2(getContext(), 3);
@@ -8091,6 +8094,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$createView$61(View view) {
+        if (getContext() == null) {
+            return;
+        }
         float f = this.windowInsetsStateHolder.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom / AndroidUtilities.density;
         float width = ((this.contentView.getWidth() - (view.getX() + view.getWidth())) + (view.getWidth() / 2.0f)) / AndroidUtilities.density;
         HintView2 hintView2 = new HintView2(getContext(), 3);
@@ -19647,60 +19653,61 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void checkConversionDateTimeToast() {
         ChatMessageCell chatMessageCell;
-        if (!this.shownConversionDateTimeToast && this.isFullyVisible && this.chatListView.isAttachedToWindow()) {
-            int[] iArr = new int[2];
-            int childCount = this.chatListView.getChildCount() - 1;
-            while (true) {
-                if (childCount < 0) {
-                    chatMessageCell = null;
-                    break;
-                }
-                View childAt = this.chatListView.getChildAt(childCount);
-                if (childAt instanceof ChatMessageCell) {
-                    chatMessageCell = (ChatMessageCell) childAt;
-                    if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().messageOwner != null && chatMessageCell.getMessageObject().messageOwner.video_processing_pending) {
-                        if (chatMessageCell.getCurrentPosition() != null) {
-                            if (chatMessageCell.getMessageObject() != null && (chatMessageCell.getCurrentPosition().flags & 8) != 0) {
-                                if ((chatMessageCell.getCurrentPosition().flags & (chatMessageCell.getMessageObject().isOutOwner() ? 1 : 2)) == 0) {
-                                    continue;
-                                }
+        if (this.shownConversionDateTimeToast || !this.isFullyVisible || !this.chatListView.isAttachedToWindow() || getContext() == null) {
+            return;
+        }
+        int[] iArr = new int[2];
+        int childCount = this.chatListView.getChildCount() - 1;
+        while (true) {
+            if (childCount < 0) {
+                chatMessageCell = null;
+                break;
+            }
+            View childAt = this.chatListView.getChildAt(childCount);
+            if (childAt instanceof ChatMessageCell) {
+                chatMessageCell = (ChatMessageCell) childAt;
+                if (chatMessageCell.getMessageObject() != null && chatMessageCell.getMessageObject().messageOwner != null && chatMessageCell.getMessageObject().messageOwner.video_processing_pending) {
+                    if (chatMessageCell.getCurrentPosition() != null) {
+                        if (chatMessageCell.getMessageObject() != null && (chatMessageCell.getCurrentPosition().flags & 8) != 0) {
+                            if ((chatMessageCell.getCurrentPosition().flags & (chatMessageCell.getMessageObject().isOutOwner() ? 1 : 2)) == 0) {
+                                continue;
                             }
                         }
-                        chatMessageCell.getLocationInWindow(iArr);
-                        float timeY = iArr[1] + chatMessageCell.getTimeY();
-                        if (timeY >= AndroidUtilities.dp(240.0f) && timeY <= (AndroidUtilities.displaySize.y - AndroidUtilities.dp(25.0f)) - AndroidUtilities.navigationBarHeight) {
-                            break;
-                        }
+                    }
+                    chatMessageCell.getLocationInWindow(iArr);
+                    float timeY = iArr[1] + chatMessageCell.getTimeY();
+                    if (timeY >= AndroidUtilities.dp(240.0f) && timeY <= (AndroidUtilities.displaySize.y - AndroidUtilities.dp(25.0f)) - AndroidUtilities.navigationBarHeight) {
+                        break;
                     }
                 }
-                childCount--;
             }
-            if (chatMessageCell != null) {
-                this.shownConversionDateTimeToast = true;
-                HintView2 rounding = new HintView2(getContext(), 3) {
-                    AnonymousClass90(Context context, int i) {
-                        super(context, i);
-                    }
-
-                    @Override
-                    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                        super.onLayout(z, i, i2, i3, i4);
-                        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + ChatActivity.this.videoConversionTimeHintY);
-                    }
-                }.setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setDuration(3500L).setHideByTouch(true).useScale(true).setMaxWidth(150.0f).setRounding(8.0f);
-                this.videoConversionTimeHint = rounding;
-                rounding.setText(LocaleController.getString(R.string.VideoConversionTimeInfo));
-                this.contentView.addView(this.videoConversionTimeHint, LayoutHelper.createFrame(-1, 120.0f, 55, 16.0f, 0.0f, 16.0f, 0.0f));
-                chatMessageCell.getLocationInWindow(iArr);
-                this.videoConversionTimeHintY = iArr[1] + chatMessageCell.getTimeY();
-                this.videoConversionTimeHint.setTranslationY(((-r0.getTop()) - AndroidUtilities.dp(120.0f)) + this.videoConversionTimeHintY);
-                this.videoConversionTimeHint.setJointPx(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + chatMessageCell.timeX + (chatMessageCell.timeWidth / 2.0f));
-                this.videoConversionTimeHint.show();
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(new ChatActivity$$ExternalSyntheticLambda100(this));
-            AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda100(this), 2000L);
+            childCount--;
         }
+        if (chatMessageCell != null) {
+            this.shownConversionDateTimeToast = true;
+            HintView2 rounding = new HintView2(getContext(), 3) {
+                AnonymousClass90(Context context, int i) {
+                    super(context, i);
+                }
+
+                @Override
+                protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                    super.onLayout(z, i, i2, i3, i4);
+                    setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + ChatActivity.this.videoConversionTimeHintY);
+                }
+            }.setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setDuration(3500L).setHideByTouch(true).useScale(true).setMaxWidth(150.0f).setRounding(8.0f);
+            this.videoConversionTimeHint = rounding;
+            rounding.setText(LocaleController.getString(R.string.VideoConversionTimeInfo));
+            this.contentView.addView(this.videoConversionTimeHint, LayoutHelper.createFrame(-1, 120.0f, 55, 16.0f, 0.0f, 16.0f, 0.0f));
+            chatMessageCell.getLocationInWindow(iArr);
+            this.videoConversionTimeHintY = iArr[1] + chatMessageCell.getTimeY();
+            this.videoConversionTimeHint.setTranslationY(((-r0.getTop()) - AndroidUtilities.dp(120.0f)) + this.videoConversionTimeHintY);
+            this.videoConversionTimeHint.setJointPx(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + chatMessageCell.timeX + (chatMessageCell.timeWidth / 2.0f));
+            this.videoConversionTimeHint.show();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(new ChatActivity$$ExternalSyntheticLambda100(this));
+        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda100(this), 2000L);
     }
 
     public class AnonymousClass90 extends HintView2 {
@@ -19902,7 +19909,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (j == 0 && (groupStickerSetById = getMediaDataController().getGroupStickerSetById(stickerSet)) != null && !groupStickerSetById.documents.isEmpty()) {
                 j = groupStickerSetById.documents.get(0).id;
             }
-            if (j == 0) {
+            if (j == 0 || getContext() == null) {
                 return;
             }
             MessagesController.getGlobalMainSettings().edit().putBoolean("groupEmojiPackHintShown", true).apply();

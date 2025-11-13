@@ -358,6 +358,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     safeLastFragment.showAsSheet(resaleGiftsFragment, bottomSheetParams);
                     return;
                 }
+                if (starGift.auction) {
+                    AuctionJoinSheet.show(context, this.resourcesProvider, i, j, starGift.id);
+                    return;
+                }
                 if (starGift.sold_out) {
                     StarsIntroActivity.showSoldOutGiftSheet(context, i, starGift, this.resourcesProvider);
                     return;
@@ -989,6 +993,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final StarsBackgroundView priceBackground;
         private final FrameLayout priceLayout;
         private final TextView priceView;
+        private boolean priotityAuction;
         private boolean reordering;
         private final Theme.ResourcesProvider resourcesProvider;
         private final Ribbon ribbon;
@@ -1107,6 +1112,20 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             imageView2.setVisibility(8);
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             frameLayout.addView(imageView2, LayoutHelper.createFrame(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
+        }
+
+        public void setImageSize(int i) {
+            FrameLayout.LayoutParams layoutParams = this.imageViewLayoutParams;
+            layoutParams.width = i;
+            layoutParams.height = i;
+        }
+
+        public void setImageLayer(int i) {
+            this.imageView.setLayerNum(i);
+        }
+
+        public void hidePrice() {
+            this.priceLayout.setVisibility(8);
         }
 
         public void setSelected(boolean z, boolean z2) {
@@ -1331,6 +1350,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
 
         public TL_stars.SavedStarGift getSavedGift() {
             return this.userGift;
+        }
+
+        public void setPriorityAuction() {
+            this.priotityAuction = true;
         }
 
         public boolean setPremiumGift(GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier) {
@@ -1647,6 +1670,14 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     this.ribbon.setStrokeColor(0);
                     this.ribbon.setBackdrop(null);
                     this.ribbon.setText(LocaleController.getString(R.string.Gift2SoldOut), true);
+                    return;
+                }
+                if (starGift2.auction) {
+                    this.ribbon.setVisibility(0);
+                    this.ribbon.setBackdrop(null);
+                    this.ribbon.setColors(-2650077, -4227818);
+                    this.ribbon.setStrokeColor(0);
+                    this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedAuction), true);
                     return;
                 }
                 if (starGift2.require_premium) {

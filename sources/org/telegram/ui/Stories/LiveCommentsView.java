@@ -6,8 +6,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -15,7 +13,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -40,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
@@ -72,6 +70,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
@@ -81,6 +80,7 @@ import org.telegram.ui.GradientClip;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
+import org.telegram.ui.Stories.LiveCommentsView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class LiveCommentsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -89,6 +89,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     public final ImageView arrowButton;
     private Bulletin.UndoButton bulletinButton;
     private Bulletin.TwoLineAnimatedLottieLayout bulletinLayout;
+    private boolean callHighlight;
     private Runnable closeBulletin;
     private ValueAnimator collapseAnimator;
     private boolean collapsed;
@@ -96,6 +97,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     private long dialogId;
     private final GradientClip gradientClip;
     private boolean hasTopMessages;
+    private long highlightingDialog;
+    private int highlightingMessageId;
     private TLRPC.InputGroupCall inputCall;
     private float keyboardFinalOffset;
     private float keyboardOffset;
@@ -112,9 +115,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     private boolean polling;
     private Runnable removeTopSendersRunnable;
     private boolean sentStars;
-    private final LinearGradient shadowGradient;
-    private final Matrix shadowGradientMatrix;
-    private final Paint shadowGradientPaint;
+    private final View shadowView;
     private Bulletin starsBulletin;
     private final StoryViewer storyViewer;
     private Bulletin.TimerView timerView;
@@ -126,7 +127,6 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     private final ArrayList topMessages;
     private final HashMap topPlaces;
     private long totalStars;
-    private final AnimatedFloat unfold;
     private final Runnable updateAdapters;
 
     public static class Message {
@@ -288,18 +288,13 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         AndroidUtilities.runOnUIThread(runnable2, j);
     }
 
-    public LiveCommentsView(Context context, final StoryViewer storyViewer, final ViewGroup viewGroup, FrameLayout frameLayout) {
+    public LiveCommentsView(Context context, final StoryViewer storyViewer, final ViewGroup viewGroup, View view, FrameLayout frameLayout) {
         super(context);
         this.messages = new ArrayList();
         this.topMessages = new ArrayList();
         this.topPlaces = new HashMap();
         this.maxReadId = -1;
         this.allowTouches = true;
-        this.shadowGradientPaint = new Paint(1);
-        this.shadowGradient = new LinearGradient(0.0f, -255.0f, 0.0f, 0.0f, new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.shadowGradientMatrix = new Matrix();
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.unfold = new AnimatedFloat(this, 420L, cubicBezierInterpolator);
         this.gradientClip = new GradientClip();
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
@@ -307,24 +302,26 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         this.pollStarsRunnable = new Runnable() {
             @Override
             public final void run() {
-                LiveCommentsView.this.lambda$new$10();
+                LiveCommentsView.this.lambda$new$9();
             }
         };
         this.closeBulletin = new Runnable() {
             @Override
             public final void run() {
-                LiveCommentsView.this.lambda$new$13();
+                LiveCommentsView.this.lambda$new$12();
             }
         };
         this.collapsed = false;
         this.updateAdapters = new Runnable() {
             @Override
             public final void run() {
-                LiveCommentsView.this.lambda$new$18();
+                LiveCommentsView.this.lambda$new$17();
             }
         };
+        this.shadowView = view;
         this.storyViewer = storyViewer;
         this.topBulletinContainer = frameLayout;
+        view.setAlpha(0.5f);
         AnonymousClass1 anonymousClass1 = new RecyclerListView(context) {
             AnonymousClass1(Context context2) {
                 super(context2);
@@ -388,31 +385,67 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context2, 1, true);
         this.layoutManager = linearLayoutManager;
         anonymousClass1.setLayoutManager(linearLayoutManager);
-        UniversalAdapter universalAdapter = new UniversalAdapter(anonymousClass1, context2, i, 0, false, new Utilities.Callback2() {
+        AnonymousClass2 anonymousClass2 = new UniversalAdapter(anonymousClass1, context2, i, 0, false, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 LiveCommentsView.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
-        }, new DarkThemeResourceProvider());
-        this.adapter = universalAdapter;
-        anonymousClass1.setAdapter(universalAdapter);
-        universalAdapter.setApplyBackground(false);
-        anonymousClass1.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
-        anonymousClass1.setClipToPadding(false);
-        addView(anonymousClass1, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
-        anonymousClass1.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        }, new DarkThemeResourceProvider()) {
+            AnonymousClass2(RecyclerListView anonymousClass12, Context context2, int i2, int i3, boolean z, Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
+                super(anonymousClass12, context2, i2, i3, z, callback2, resourcesProvider);
+            }
+
             @Override
-            public final void onItemClick(View view, int i2) {
-                LiveCommentsView.this.lambda$new$5(viewGroup, storyViewer, view, i2);
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
+                super.onBindViewHolder(viewHolder, i2);
+                if (LiveCommentsView.this.callHighlight) {
+                    View view2 = viewHolder.itemView;
+                    if (view2 instanceof LiveCommentView) {
+                        LiveCommentView liveCommentView = (LiveCommentView) view2;
+                        if (liveCommentView.message == null || liveCommentView.message.id != LiveCommentsView.this.highlightingMessageId) {
+                            return;
+                        }
+                        liveCommentView.highlight();
+                        LiveCommentsView.this.callHighlight = false;
+                    }
+                }
+            }
+
+            @Override
+            public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+                super.onViewAttachedToWindow(viewHolder);
+                if (LiveCommentsView.this.callHighlight) {
+                    View view2 = viewHolder.itemView;
+                    if (view2 instanceof LiveCommentView) {
+                        LiveCommentView liveCommentView = (LiveCommentView) view2;
+                        if (liveCommentView.message == null || liveCommentView.message.id != LiveCommentsView.this.highlightingMessageId) {
+                            return;
+                        }
+                        liveCommentView.highlight();
+                        LiveCommentsView.this.callHighlight = false;
+                    }
+                }
+            }
+        };
+        this.adapter = anonymousClass2;
+        anonymousClass12.setAdapter(anonymousClass2);
+        anonymousClass2.setApplyBackground(false);
+        anonymousClass12.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
+        anonymousClass12.setClipToPadding(false);
+        addView(anonymousClass12, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
+        anonymousClass12.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view2, int i2) {
+                LiveCommentsView.this.lambda$new$5(viewGroup, storyViewer, view2, i2);
             }
         });
-        AnonymousClass2 anonymousClass2 = new DefaultItemAnimator() {
+        AnonymousClass3 anonymousClass3 = new DefaultItemAnimator() {
             @Override
-            protected float animateByScale(View view) {
+            protected float animateByScale(View view2) {
                 return 0.5f;
             }
 
-            AnonymousClass2() {
+            AnonymousClass3() {
             }
 
             @Override
@@ -427,12 +460,13 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 LiveCommentsView.this.listView.invalidate();
             }
         };
-        anonymousClass2.setSupportsChangeAnimations(false);
-        anonymousClass2.setDelayAnimations(false);
-        anonymousClass2.setInterpolator(cubicBezierInterpolator);
-        anonymousClass2.setDurations(280L);
-        anonymousClass2.setDelayIncrement(14L);
-        anonymousClass1.setItemAnimator(anonymousClass2);
+        anonymousClass3.setSupportsChangeAnimations(false);
+        anonymousClass3.setDelayAnimations(false);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        anonymousClass3.setInterpolator(cubicBezierInterpolator);
+        anonymousClass3.setDurations(280L);
+        anonymousClass3.setDelayIncrement(14L);
+        anonymousClass12.setItemAnimator(anonymousClass3);
         ImageView imageView = new ImageView(context2);
         this.arrowButton = imageView;
         imageView.setImageResource(R.drawable.msg_arrowright);
@@ -441,58 +475,67 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         imageView.setBackground(Theme.createSelectorDrawable(1090519039));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
-                LiveCommentsView.this.lambda$new$6(view);
+            public final void onClick(View view2) {
+                LiveCommentsView.this.lambda$new$6(view2);
             }
         });
-        RecyclerListView recyclerListView = new RecyclerListView(context2);
-        this.topListView = recyclerListView;
-        recyclerListView.setWillNotDraw(false);
+        AnonymousClass4 anonymousClass4 = new RecyclerListView(context2) {
+            AnonymousClass4(Context context2) {
+                super(context2);
+            }
+
+            @Override
+            public Integer getSelectorColor(int i2) {
+                return 0;
+            }
+        };
+        this.topListView = anonymousClass4;
+        anonymousClass4.setWillNotDraw(false);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context2, 0, false);
         this.topLayoutManager = linearLayoutManager2;
-        recyclerListView.setLayoutManager(linearLayoutManager2);
-        UniversalAdapter universalAdapter2 = new UniversalAdapter(recyclerListView, context2, i, 0, new Utilities.Callback2() {
+        anonymousClass4.setLayoutManager(linearLayoutManager2);
+        UniversalAdapter universalAdapter = new UniversalAdapter(anonymousClass4, context2, i2, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 LiveCommentsView.this.fillTopItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         }, null);
-        this.topAdapter = universalAdapter2;
-        recyclerListView.setAdapter(universalAdapter2);
-        universalAdapter2.setApplyBackground(false);
-        recyclerListView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        recyclerListView.setClipToPadding(false);
-        addView(recyclerListView, LayoutHelper.createFrame(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
-        recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
+        this.topAdapter = universalAdapter;
+        anonymousClass4.setAdapter(universalAdapter);
+        universalAdapter.setApplyBackground(false);
+        anonymousClass4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        anonymousClass4.setClipToPadding(false);
+        addView(anonymousClass4, LayoutHelper.createFrame(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
+        anonymousClass4.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view, int i2) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i2);
+            public boolean hasDoubleTap(View view2, int i2) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i2);
             }
 
             @Override
-            public void onDoubleTap(View view, int i2, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i2, f, f2);
+            public void onDoubleTap(View view2, int i2, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i2, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) {
-                LiveCommentsView.this.lambda$new$8(viewGroup, storyViewer, view, i2, f, f2);
+            public final void onItemClick(View view2, int i2, float f, float f2) {
+                LiveCommentsView.this.lambda$new$7(view2, i2, f, f2);
             }
         });
-        AnonymousClass3 anonymousClass3 = new DefaultItemAnimator() {
+        AnonymousClass5 anonymousClass5 = new DefaultItemAnimator() {
             @Override
-            protected float animateByScale(View view) {
+            protected float animateByScale(View view2) {
                 return 0.5f;
             }
 
-            AnonymousClass3() {
+            AnonymousClass5() {
             }
         };
-        anonymousClass3.setSupportsChangeAnimations(false);
-        anonymousClass3.setDelayAnimations(false);
-        anonymousClass3.setInterpolator(cubicBezierInterpolator);
-        anonymousClass3.setDurations(350L);
-        recyclerListView.setItemAnimator(anonymousClass3);
+        anonymousClass5.setSupportsChangeAnimations(false);
+        anonymousClass5.setDelayAnimations(false);
+        anonymousClass5.setInterpolator(cubicBezierInterpolator);
+        anonymousClass5.setDurations(350L);
+        anonymousClass4.setItemAnimator(anonymousClass5);
         updateTopMessages(false);
     }
 
@@ -552,6 +595,44 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             int size = View.MeasureSpec.getSize(i2);
             View.MeasureSpec.getSize(i3);
             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i3)));
+        }
+    }
+
+    public class AnonymousClass2 extends UniversalAdapter {
+        AnonymousClass2(RecyclerListView anonymousClass12, Context context2, int i2, int i3, boolean z, Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
+            super(anonymousClass12, context2, i2, i3, z, callback2, resourcesProvider);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
+            super.onBindViewHolder(viewHolder, i2);
+            if (LiveCommentsView.this.callHighlight) {
+                View view2 = viewHolder.itemView;
+                if (view2 instanceof LiveCommentView) {
+                    LiveCommentView liveCommentView = (LiveCommentView) view2;
+                    if (liveCommentView.message == null || liveCommentView.message.id != LiveCommentsView.this.highlightingMessageId) {
+                        return;
+                    }
+                    liveCommentView.highlight();
+                    LiveCommentsView.this.callHighlight = false;
+                }
+            }
+        }
+
+        @Override
+        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            super.onViewAttachedToWindow(viewHolder);
+            if (LiveCommentsView.this.callHighlight) {
+                View view2 = viewHolder.itemView;
+                if (view2 instanceof LiveCommentView) {
+                    LiveCommentView liveCommentView = (LiveCommentView) view2;
+                    if (liveCommentView.message == null || liveCommentView.message.id != LiveCommentsView.this.highlightingMessageId) {
+                        return;
+                    }
+                    liveCommentView.highlight();
+                    LiveCommentsView.this.callHighlight = false;
+                }
+            }
         }
     }
 
@@ -638,13 +719,13 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
-    public class AnonymousClass2 extends DefaultItemAnimator {
+    public class AnonymousClass3 extends DefaultItemAnimator {
         @Override
-        protected float animateByScale(View view) {
+        protected float animateByScale(View view2) {
             return 0.5f;
         }
 
-        AnonymousClass2() {
+        AnonymousClass3() {
         }
 
         @Override
@@ -664,29 +745,95 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         setCollapsed(!this.collapsed, true);
     }
 
-    public void lambda$new$8(ViewGroup viewGroup, final StoryViewer storyViewer, View view, int i, float f, float f2) {
-        final TopSender topSender = ((LiveTopSenderView) view).sender;
-        ItemOptions makeOptions = ItemOptions.makeOptions(viewGroup, new DarkThemeResourceProvider(), view);
-        makeOptions.addDialog(this.currentAccount, topSender.dialogId, new Runnable() {
-            @Override
-            public final void run() {
-                LiveCommentsView.lambda$new$7(StoryViewer.this, topSender);
-            }
-        });
-        makeOptions.show();
-    }
+    public class AnonymousClass4 extends RecyclerListView {
+        AnonymousClass4(Context context2) {
+            super(context2);
+        }
 
-    public static void lambda$new$7(StoryViewer storyViewer, TopSender topSender) {
-        storyViewer.presentFragment(ProfileActivity.of(topSender.dialogId));
-    }
-
-    public class AnonymousClass3 extends DefaultItemAnimator {
         @Override
-        protected float animateByScale(View view) {
+        public Integer getSelectorColor(int i2) {
+            return 0;
+        }
+    }
+
+    public void lambda$new$7(View view, int i, float f, float f2) {
+        int i2;
+        int i3;
+        int i4;
+        TopSender topSender = ((LiveTopSenderView) view).sender;
+        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+        HashSet hashSet = new HashSet();
+        int i5 = 0;
+        int i6 = 0;
+        while (true) {
+            if (i6 >= topSender.messages.size()) {
+                break;
+            }
+            Message message = (Message) topSender.messages.get(i6);
+            long j = message.stars;
+            if (j > 0 && currentTime - message.date <= HighlightMessageSheet.getTierOption(this.currentAccount, (int) j, HighlightMessageSheet.TIER_PERIOD)) {
+                hashSet.add(Integer.valueOf(message.id));
+            }
+            i6++;
+        }
+        LivePlayer livePlayer = this.livePlayer;
+        long sendPaidMessagesStars = livePlayer != null ? livePlayer.getSendPaidMessagesStars() : 0L;
+        int i7 = 0;
+        int i8 = 0;
+        while (true) {
+            i2 = -1;
+            if (i7 >= this.messages.size()) {
+                i3 = -1;
+                break;
+            }
+            Message message2 = (Message) this.messages.get(i7);
+            if (message2.fromAdmin || !message2.isReaction || message2.stars >= sendPaidMessagesStars) {
+                if (!hashSet.contains(Integer.valueOf(message2.id)) || (this.highlightingDialog == topSender.dialogId && (i4 = this.highlightingMessageId) != 0 && message2.id >= i4)) {
+                    i8++;
+                }
+            }
+            i7++;
+        }
+        if (i3 < 0) {
+            int i9 = 0;
+            while (true) {
+                if (i5 >= this.messages.size()) {
+                    break;
+                }
+                Message message3 = (Message) this.messages.get(i5);
+                if (message3.fromAdmin || !message3.isReaction || message3.stars >= sendPaidMessagesStars) {
+                    if (hashSet.contains(Integer.valueOf(message3.id))) {
+                        i2 = message3.id;
+                        break;
+                    }
+                    i9++;
+                }
+                i5++;
+            }
+            i8 = i9;
+        } else {
+            i2 = i3;
+        }
+        if (i2 < 0) {
+            return;
+        }
+        this.highlightingDialog = topSender.dialogId;
+        this.highlightingMessageId = i2;
+        this.callHighlight = true;
+        RecyclerView.ItemAnimator itemAnimator = this.listView.getItemAnimator();
+        this.listView.setItemAnimator(null);
+        this.layoutManager.scrollToPositionWithOffset(i8, this.listView.getHeight() / 2, true);
+        this.adapter.notifyItemChanged(i8);
+        this.listView.setItemAnimator(itemAnimator);
+    }
+
+    public class AnonymousClass5 extends DefaultItemAnimator {
+        @Override
+        protected float animateByScale(View view2) {
             return 0.5f;
         }
 
-        AnonymousClass3() {
+        AnonymousClass5() {
         }
     }
 
@@ -769,16 +916,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             return true;
         }
         float y = this.listView.getY() + Math.max(0.0f, this.keyboardOffset - this.listView.getTop());
-        if (this.keyboardT < 1.0f) {
-            this.shadowGradientMatrix.reset();
-            this.shadowGradientMatrix.postScale(1.0f, (this.listView.getMeasuredHeight() / 2.0f) / 255.0f);
-            this.shadowGradientMatrix.postTranslate(0.0f, getHeight());
-            this.shadowGradient.setLocalMatrix(this.shadowGradientMatrix);
-            this.shadowGradientPaint.setShader(this.shadowGradient);
-            this.shadowGradientPaint.setAlpha((int) ((1.0f - this.keyboardT) * 89.25f * this.listView.getAlpha()));
-            canvas.drawRect(0.0f, getHeight() - (this.listView.getMeasuredHeight() / 2.0f), getWidth(), getHeight(), this.shadowGradientPaint);
-        }
-        canvas.saveLayerAlpha(this.listView.getX(), this.listView.getY(), this.listView.getWidth() + this.listView.getX(), this.listView.getHeight() + this.listView.getY(), 255, 31);
+        canvas.saveLayerAlpha(this.listView.getX(), this.listView.getY(), this.listView.getX() + this.listView.getWidth(), this.listView.getY() + this.listView.getHeight(), 255, 31);
         canvas.save();
         canvas.translate(0.0f, (1.0f - this.listView.getAlpha()) * Math.min((this.listView.getY() + this.listView.getHeight()) - y, getListViewTop()));
         canvas.clipRect(0.0f, y, getWidth(), getHeight());
@@ -805,7 +943,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             translationY.setInterpolator(cubicBezierInterpolator).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    LiveCommentsView.this.lambda$updateTopMessages$9(valueAnimator);
+                    LiveCommentsView.this.lambda$updateTopMessages$8(valueAnimator);
                 }
             }).setDuration(420L).start();
             this.topListView.animate().translationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f)).alpha(this.hasTopMessages ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).start();
@@ -817,7 +955,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         invalidate();
     }
 
-    public void lambda$updateTopMessages$9(ValueAnimator valueAnimator) {
+    public void lambda$updateTopMessages$8(ValueAnimator valueAnimator) {
         invalidate();
     }
 
@@ -912,7 +1050,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
-    public void lambda$new$10() {
+    public void lambda$new$9() {
         if (this.inputCall == null || this.polling) {
             return;
         }
@@ -923,12 +1061,12 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(getgroupcallstars, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                LiveCommentsView.this.lambda$pollStars$11(getgroupcallstars, (TL_phone.groupCallStars) obj, (TLRPC.TL_error) obj2);
+                LiveCommentsView.this.lambda$pollStars$10(getgroupcallstars, (TL_phone.groupCallStars) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$pollStars$11(TL_phone.getGroupCallStars getgroupcallstars, TL_phone.groupCallStars groupcallstars, TLRPC.TL_error tL_error) {
+    public void lambda$pollStars$10(TL_phone.getGroupCallStars getgroupcallstars, TL_phone.groupCallStars groupcallstars, TLRPC.TL_error tL_error) {
         boolean z;
         this.polling = false;
         TLRPC.InputGroupCall inputGroupCall = this.inputCall;
@@ -1051,7 +1189,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             clientUserId = DialogObject.getPeerDialogId(defaultSendAs);
         }
         StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), this.currentAccount, this.dialogId, null, null, arrayList, !z, true, clientUserId, new DarkThemeResourceProvider() {
-            AnonymousClass4() {
+            AnonymousClass6() {
             }
 
             @Override
@@ -1063,16 +1201,16 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         starsReactionsSheet.setOnSend(new Utilities.Callback2Return() {
             @Override
             public final Object run(Object obj, Object obj2) {
-                Integer lambda$openStarsSheet$12;
-                lambda$openStarsSheet$12 = LiveCommentsView.this.lambda$openStarsSheet$12((Long) obj, (Long) obj2);
-                return lambda$openStarsSheet$12;
+                Integer lambda$openStarsSheet$11;
+                lambda$openStarsSheet$11 = LiveCommentsView.this.lambda$openStarsSheet$11((Long) obj, (Long) obj2);
+                return lambda$openStarsSheet$11;
             }
         });
         starsReactionsSheet.show();
     }
 
-    public class AnonymousClass4 extends DarkThemeResourceProvider {
-        AnonymousClass4() {
+    public class AnonymousClass6 extends DarkThemeResourceProvider {
+        AnonymousClass6() {
         }
 
         @Override
@@ -1081,7 +1219,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
-    public Integer lambda$openStarsSheet$12(Long l, Long l2) {
+    public Integer lambda$openStarsSheet$11(Long l, Long l2) {
         this.closeBulletin.run();
         this.localStars = l2.longValue();
         Bulletin createSimpleBulletin = BulletinFactory.of(this.topBulletinContainer, new DarkThemeResourceProvider()).createSimpleBulletin(R.raw.stars_topup, getStarsToastTitle(), getStarsToastSubtitle());
@@ -1102,7 +1240,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return Integer.valueOf(send);
     }
 
-    public void lambda$new$13() {
+    public void lambda$new$12() {
         AndroidUtilities.cancelRunOnUIThread(this.closeBulletin);
         Bulletin bulletin = this.starsBulletin;
         if (bulletin != null) {
@@ -1155,19 +1293,20 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    LiveCommentsView.this.lambda$setCollapsed$14(valueAnimator2);
+                    LiveCommentsView.this.lambda$setCollapsed$13(valueAnimator2);
                 }
             });
             this.collapseAnimator.addListener(new AnimatorListenerAdapter() {
                 final boolean val$collapsed;
 
-                AnonymousClass5(boolean z3) {
+                AnonymousClass7(boolean z3) {
                     r2 = z3;
                 }
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     LiveCommentsView.this.listView.setAlpha(r2 ? 0.0f : 1.0f);
+                    LiveCommentsView.this.shadowView.setAlpha(r2 ? 0.0f : 0.5f);
                     LiveCommentsView.this.invalidate();
                 }
             });
@@ -1175,26 +1314,30 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             this.collapseAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.collapseAnimator.start();
         } else {
+            this.shadowView.setAlpha(z3 ? 0.0f : 0.5f);
             this.listView.setAlpha(z3 ? 0.0f : 1.0f);
         }
         invalidate();
     }
 
-    public void lambda$setCollapsed$14(ValueAnimator valueAnimator) {
-        this.listView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+    public void lambda$setCollapsed$13(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.listView.setAlpha(floatValue);
+        this.shadowView.setAlpha(AndroidUtilities.lerp(0.0f, 0.5f, floatValue));
         invalidate();
     }
 
-    public class AnonymousClass5 extends AnimatorListenerAdapter {
+    public class AnonymousClass7 extends AnimatorListenerAdapter {
         final boolean val$collapsed;
 
-        AnonymousClass5(boolean z3) {
+        AnonymousClass7(boolean z3) {
             r2 = z3;
         }
 
         @Override
         public void onAnimationEnd(Animator animator) {
             LiveCommentsView.this.listView.setAlpha(r2 ? 0.0f : 1.0f);
+            LiveCommentsView.this.shadowView.setAlpha(r2 ? 0.0f : 0.5f);
             LiveCommentsView.this.invalidate();
         }
     }
@@ -1357,10 +1500,10 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     public int send(TLRPC.TL_textWithEntities tL_textWithEntities, long j) {
-        return lambda$send$15(getDefaultPeerId(), tL_textWithEntities, j);
+        return lambda$send$14(getDefaultPeerId(), tL_textWithEntities, j);
     }
 
-    public int lambda$send$15(final long j, final TLRPC.TL_textWithEntities tL_textWithEntities, final long j2) {
+    public int lambda$send$14(final long j, final TLRPC.TL_textWithEntities tL_textWithEntities, final long j2) {
         long j3;
         TL_phone.groupCallDonor groupcalldonor;
         final int newMessageId = UserConfig.getInstance(this.currentAccount).getNewMessageId();
@@ -1377,7 +1520,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                LiveCommentsView.this.lambda$send$17(sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
+                LiveCommentsView.this.lambda$send$16(sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
             }
         });
         if (this.topDonors != null && j2 > 0) {
@@ -1414,13 +1557,13 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return newMessageId;
     }
 
-    public void lambda$send$17(TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$send$16(TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (!(tLObject instanceof TLRPC.Updates)) {
             if (tL_error != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LiveCommentsView.this.lambda$send$16(i, tL_error, j, j2, tL_textWithEntities);
+                        LiveCommentsView.this.lambda$send$15(i, tL_error, j, j2, tL_textWithEntities);
                     }
                 });
                 return;
@@ -1438,13 +1581,13 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
     }
 
-    public void lambda$send$16(int i, TLRPC.TL_error tL_error, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public void lambda$send$15(int i, TLRPC.TL_error tL_error, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities) {
         delete(i);
         if ("BALANCE_TOO_LOW".equalsIgnoreCase(tL_error.text)) {
             new StarsIntroActivity.StarsNeededSheet(getContext(), new DarkThemeResourceProvider(), j, 17, "", new Runnable() {
                 @Override
                 public final void run() {
-                    LiveCommentsView.this.lambda$send$15(j2, tL_textWithEntities, j);
+                    LiveCommentsView.this.lambda$send$14(j2, tL_textWithEntities, j);
                 }
             }, this.dialogId).show();
         } else {
@@ -1502,6 +1645,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     public void push(int i, int i2, boolean z, long j, TLRPC.TL_textWithEntities tL_textWithEntities, long j2, boolean z2) {
         int i3;
         TopSender topSender;
+        boolean z3;
         for (int i4 = 0; i4 < this.messages.size(); i4++) {
             if (((Message) this.messages.get(i4)).id == i2) {
                 return;
@@ -1538,9 +1682,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 topSender.dialogId = j;
                 topSender.messages.add(message);
                 this.topMessages.add(0, topSender);
+                z3 = true;
             } else {
                 topSender.messages.add(message);
                 this.topListView.invalidateViews();
+                z3 = false;
             }
             topSender.updateLastSentDate();
             updateTopMessages(true);
@@ -1549,6 +1695,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             Collections.sort(this.topMessages, new LiveCommentsView$$ExternalSyntheticLambda0(this));
             if (!z2) {
                 this.topAdapter.update(true);
+            }
+            if (z3) {
+                this.topLayoutManager.scrollToPosition(0);
             }
         }
         if (!z2 && message.isReaction) {
@@ -1619,7 +1768,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         saveHistory();
     }
 
-    public void lambda$new$18() {
+    public void lambda$new$17() {
         this.adapter.update(true);
         this.topAdapter.update(true);
     }
@@ -1636,9 +1785,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$updateMessagesPlaces$19;
-                lambda$updateMessagesPlaces$19 = LiveCommentsView.lambda$updateMessagesPlaces$19((TL_phone.groupCallDonor) obj, (TL_phone.groupCallDonor) obj2);
-                return lambda$updateMessagesPlaces$19;
+                int lambda$updateMessagesPlaces$18;
+                lambda$updateMessagesPlaces$18 = LiveCommentsView.lambda$updateMessagesPlaces$18((TL_phone.groupCallDonor) obj, (TL_phone.groupCallDonor) obj2);
+                return lambda$updateMessagesPlaces$18;
             }
         });
         int i = Integer.MIN_VALUE;
@@ -1691,7 +1840,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
-    public static int lambda$updateMessagesPlaces$19(TL_phone.groupCallDonor groupcalldonor, TL_phone.groupCallDonor groupcalldonor2) {
+    public static int lambda$updateMessagesPlaces$18(TL_phone.groupCallDonor groupcalldonor, TL_phone.groupCallDonor groupcalldonor2) {
         return (int) (groupcalldonor2.stars - groupcalldonor.stars);
     }
 
@@ -1699,17 +1848,21 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return ((Integer) Map.EL.getOrDefault(this.topPlaces, Long.valueOf(j), 0)).intValue();
     }
 
-    public static class LiveCommentView extends LinearLayout implements ItemOptions.ScrimView {
+    public static class LiveCommentView extends FrameLayout implements ItemOptions.ScrimView {
         public final LinearLayout adminLayout;
         public final SpoilersTextView adminNameView;
         public final SpoilersTextView adminRoleView;
         public final AvatarDrawable avatarDrawable;
         public final BackupImageView avatarView;
+        public Drawable background;
         private final Paint backgroundPaint;
+        public float backgroundViewAlpha;
         private final int currentAccount;
         private boolean drawParticles;
         private boolean drawStar;
         private final boolean filled;
+        private ValueAnimator highlightAnimator;
+        private int highlightingMessageId;
         public final LinearLayout layout;
         private Message message;
         public final TextView smallStarsView;
@@ -1748,12 +1901,12 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             super(context);
             this.drawParticles = false;
             this.drawStar = true;
+            this.backgroundViewAlpha = 0.5f;
             this.starsViewCache = new ColoredImageSpan[1];
             this.smallStarsViewCache = new ColoredImageSpan[1];
             this.backgroundPaint = new Paint(1);
             this.currentAccount = i;
             this.filled = z;
-            setOrientation(0);
             AnonymousClass1 anonymousClass1 = new LinearLayout(context) {
                 Path clipPath = new Path();
                 StarsReactionsSheet.Particles particles;
@@ -1787,7 +1940,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             };
             this.layout = anonymousClass1;
             anonymousClass1.setOrientation(0);
-            addView(anonymousClass1, LayoutHelper.createLinear(-2, -2, 51, 0.0f, 0.5f, 0.0f, 0.5f));
+            addView(anonymousClass1, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
             this.avatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView = new BackupImageView(context2);
             this.avatarView = backupImageView;
@@ -1870,20 +2023,92 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             }
         }
 
-        public void set(org.telegram.ui.Stories.LiveCommentsView.Message r19) {
+        public void highlight() {
+            ValueAnimator valueAnimator = this.highlightAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.highlightAnimator = null;
+                Drawable drawable = this.background;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (this.backgroundViewAlpha * 255.0f));
+                    this.layout.invalidate();
+                }
+            }
+            Message message = this.message;
+            if (message == null || this.background == null) {
+                return;
+            }
+            this.highlightingMessageId = message.id;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.highlightAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    LiveCommentsView.LiveCommentView.this.lambda$highlight$0(valueAnimator2);
+                }
+            });
+            this.highlightAnimator.addListener(new AnonymousClass2());
+            this.highlightAnimator.setDuration(350L);
+            this.highlightAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.highlightAnimator.start();
+        }
+
+        public void lambda$highlight$0(ValueAnimator valueAnimator) {
+            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            Drawable drawable = this.background;
+            if (drawable != null) {
+                drawable.setAlpha((int) (AndroidUtilities.lerp(this.backgroundViewAlpha, 1.0f, floatValue) * 255.0f));
+                this.layout.invalidate();
+            }
+        }
+
+        public class AnonymousClass2 extends AnimatorListenerAdapter {
+            AnonymousClass2() {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (LiveCommentView.this.message == null || LiveCommentView.this.highlightingMessageId != LiveCommentView.this.message.id) {
+                    return;
+                }
+                LiveCommentView.this.highlightAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+                LiveCommentView.this.highlightAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        LiveCommentsView.LiveCommentView.AnonymousClass2.this.lambda$onAnimationEnd$0(valueAnimator);
+                    }
+                });
+                LiveCommentView.this.highlightAnimator.setStartDelay(3000L);
+                LiveCommentView.this.highlightAnimator.setDuration(550L);
+                LiveCommentView.this.highlightAnimator.setInterpolator(new LinearInterpolator());
+                LiveCommentView.this.highlightAnimator.start();
+            }
+
+            public void lambda$onAnimationEnd$0(ValueAnimator valueAnimator) {
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                LiveCommentView liveCommentView = LiveCommentView.this;
+                Drawable drawable = liveCommentView.background;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (AndroidUtilities.lerp(1.0f, liveCommentView.backgroundViewAlpha, floatValue) * 255.0f));
+                    LiveCommentView.this.layout.invalidate();
+                }
+            }
+        }
+
+        public void set(org.telegram.ui.Stories.LiveCommentsView.Message r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.LiveCommentsView.LiveCommentView.set(org.telegram.ui.Stories.LiveCommentsView$Message):void");
         }
 
-        public static int lambda$set$0(Pair pair, Pair pair2) {
+        public static int lambda$set$1(Pair pair, Pair pair2) {
             return ((Integer) pair.first).intValue() - ((Integer) pair2.first).intValue();
         }
 
-        public class AnonymousClass2 extends ReplacementSpan {
+        public class AnonymousClass3 extends ReplacementSpan {
             private final RectF rect = new RectF();
             private final Paint bg = new Paint(1);
             private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
 
-            AnonymousClass2() {
+            AnonymousClass3() {
             }
 
             @Override
@@ -1973,16 +2198,19 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
 
         public LiveTopSenderView(Context context) {
             super(context);
+            ScaleStateListAnimator.apply(this);
             AnonymousClass1 anonymousClass1 = new LinearLayout(context) {
                 StarsReactionsSheet.Particles particles;
                 final Path clipPath = new Path();
                 final Paint fillPaint = new Paint(1);
+                long lastDialogId = 0;
                 final AnimatedFloat animatedProgress = new AnimatedFloat(this, 0, 1000, new LinearInterpolator());
 
                 AnonymousClass1(Context context2) {
                     super(context2);
                     this.clipPath = new Path();
                     this.fillPaint = new Paint(1);
+                    this.lastDialogId = 0L;
                     this.animatedProgress = new AnimatedFloat(this, 0L, 1000L, new LinearInterpolator());
                 }
 
@@ -1998,7 +2226,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                         int tierOption = HighlightMessageSheet.getTierOption(LiveTopSenderView.this.sender.currentAccount, LiveTopSenderView.this.sender.getStars(), HighlightMessageSheet.TIER_COLOR1);
                         int tierOption2 = HighlightMessageSheet.getTierOption(LiveTopSenderView.this.sender.currentAccount, LiveTopSenderView.this.sender.getStars(), HighlightMessageSheet.TIER_COLOR_BACKGROUND);
                         canvas.drawColor(tierOption);
+                        if (this.lastDialogId != LiveTopSenderView.this.sender.dialogId) {
+                            this.animatedProgress.force(LiveTopSenderView.this.sender.getProgress());
+                        }
                         float f = this.animatedProgress.set(LiveTopSenderView.this.sender.getProgress());
+                        this.lastDialogId = LiveTopSenderView.this.sender.dialogId;
                         this.fillPaint.setColor(tierOption2);
                         this.fillPaint.setAlpha(127);
                         canvas.drawRect(getWidth() * f, 0.0f, getWidth(), getHeight(), this.fillPaint);
@@ -2027,24 +2259,52 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             this.crownView = imageView;
             imageView.setVisibility(8);
             anonymousClass1.addView(imageView, LayoutHelper.createLinear(18, 18, 19, 0, 0, 3, 0));
-            TextView textView = new TextView(context2);
-            this.textView = textView;
-            textView.setTextColor(-1);
-            textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            anonymousClass1.addView(textView, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 7, 0));
+            AnonymousClass2 anonymousClass2 = new TextView(context2) {
+                private final GradientClip clip = new GradientClip();
+
+                AnonymousClass2(Context context2) {
+                    super(context2);
+                    this.clip = new GradientClip();
+                }
+
+                @Override
+                protected void onMeasure(int i, int i2) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE), i2);
+                }
+
+                @Override
+                protected void onDraw(Canvas canvas) {
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                    super.onDraw(canvas);
+                    canvas.save();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
+                    this.clip.draw(canvas, rectF, 2, 1.0f);
+                    canvas.restore();
+                    canvas.restore();
+                }
+            };
+            this.textView = anonymousClass2;
+            anonymousClass2.setLines(1);
+            anonymousClass2.setSingleLine();
+            anonymousClass2.setTextColor(-1);
+            anonymousClass2.setTextSize(1, 14.0f);
+            anonymousClass2.setTypeface(AndroidUtilities.bold());
+            anonymousClass1.addView(anonymousClass2, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 7, 0));
         }
 
         public class AnonymousClass1 extends LinearLayout {
             StarsReactionsSheet.Particles particles;
             final Path clipPath = new Path();
             final Paint fillPaint = new Paint(1);
+            long lastDialogId = 0;
             final AnimatedFloat animatedProgress = new AnimatedFloat(this, 0, 1000, new LinearInterpolator());
 
             AnonymousClass1(Context context2) {
                 super(context2);
                 this.clipPath = new Path();
                 this.fillPaint = new Paint(1);
+                this.lastDialogId = 0L;
                 this.animatedProgress = new AnimatedFloat(this, 0L, 1000L, new LinearInterpolator());
             }
 
@@ -2060,7 +2320,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                     int tierOption = HighlightMessageSheet.getTierOption(LiveTopSenderView.this.sender.currentAccount, LiveTopSenderView.this.sender.getStars(), HighlightMessageSheet.TIER_COLOR1);
                     int tierOption2 = HighlightMessageSheet.getTierOption(LiveTopSenderView.this.sender.currentAccount, LiveTopSenderView.this.sender.getStars(), HighlightMessageSheet.TIER_COLOR_BACKGROUND);
                     canvas.drawColor(tierOption);
+                    if (this.lastDialogId != LiveTopSenderView.this.sender.dialogId) {
+                        this.animatedProgress.force(LiveTopSenderView.this.sender.getProgress());
+                    }
                     float f = this.animatedProgress.set(LiveTopSenderView.this.sender.getProgress());
+                    this.lastDialogId = LiveTopSenderView.this.sender.dialogId;
                     this.fillPaint.setColor(tierOption2);
                     this.fillPaint.setAlpha(127);
                     canvas.drawRect(getWidth() * f, 0.0f, getWidth(), getHeight(), this.fillPaint);
@@ -2075,6 +2339,32 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 invalidate();
                 canvas.restore();
                 super.dispatchDraw(canvas);
+            }
+        }
+
+        public class AnonymousClass2 extends TextView {
+            private final GradientClip clip = new GradientClip();
+
+            AnonymousClass2(Context context2) {
+                super(context2);
+                this.clip = new GradientClip();
+            }
+
+            @Override
+            protected void onMeasure(int i, int i2) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE), i2);
+            }
+
+            @Override
+            protected void onDraw(Canvas canvas) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                super.onDraw(canvas);
+                canvas.save();
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
+                this.clip.draw(canvas, rectF, 2, 1.0f);
+                canvas.restore();
+                canvas.restore();
             }
         }
 
@@ -2180,8 +2470,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
     }
 
-    public class AnonymousClass6 extends DarkThemeResourceProvider {
-        AnonymousClass6() {
+    public class AnonymousClass8 extends DarkThemeResourceProvider {
+        AnonymousClass8() {
         }
 
         @Override
@@ -2191,8 +2481,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     public static void openDeleteMessage(Context context, long j, final Utilities.Callback3 callback3) {
-        AnonymousClass6 anonymousClass6 = new DarkThemeResourceProvider() {
-            AnonymousClass6() {
+        AnonymousClass8 anonymousClass8 = new DarkThemeResourceProvider() {
+            AnonymousClass8() {
             }
 
             @Override
@@ -2200,20 +2490,20 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 this.sparseIntArray.append(Theme.key_dialogBackground, -14671840);
             }
         };
-        final BottomSheet bottomSheet = new BottomSheet(context, false, anonymousClass6);
+        final BottomSheet bottomSheet = new BottomSheet(context, false, anonymousClass8);
         bottomSheet.fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, anonymousClass6));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, anonymousClass8));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.DeleteSingleMessagesTitle));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 22.0f, 12.0f, 22.0f, 0.0f));
-        HeaderCell headerCell = new HeaderCell(context, anonymousClass6);
+        HeaderCell headerCell = new HeaderCell(context, anonymousClass8);
         headerCell.setText(LocaleController.getString(R.string.DeleteAdditionalActions));
         linearLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 4.0f));
-        final CheckBoxCell checkBoxCell = new CheckBoxCell(context, 4, 21, true, anonymousClass6);
+        final CheckBoxCell checkBoxCell = new CheckBoxCell(context, 4, 21, true, anonymousClass8);
         CheckBox2 checkBoxRound = checkBoxCell.getCheckBoxRound();
         int i = Theme.key_switch2TrackChecked;
         int i2 = Theme.key_radioBackground;
@@ -2223,51 +2513,55 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         checkBoxCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LiveCommentsView.lambda$openDeleteMessage$20(CheckBoxCell.this, view);
+                LiveCommentsView.lambda$openDeleteMessage$19(CheckBoxCell.this, view);
             }
         });
         int i4 = Theme.key_listSelector;
-        checkBoxCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4, anonymousClass6), 2));
+        checkBoxCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4, anonymousClass8), 2));
         linearLayout.addView(checkBoxCell, LayoutHelper.createLinear(-1, -2));
-        final CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 4, 21, true, anonymousClass6);
+        final CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 4, 21, true, anonymousClass8);
         checkBoxCell2.getCheckBoxRound().setColor(i, i2, i3);
         checkBoxCell2.setText(LocaleController.formatString(R.string.DeleteAllFrom, DialogObject.getName(j)), null, false, true);
         checkBoxCell2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LiveCommentsView.lambda$openDeleteMessage$21(CheckBoxCell.this, view);
+                LiveCommentsView.lambda$openDeleteMessage$20(CheckBoxCell.this, view);
             }
         });
-        checkBoxCell2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4, anonymousClass6), 2));
+        checkBoxCell2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4, anonymousClass8), 2));
         linearLayout.addView(checkBoxCell2, LayoutHelper.createLinear(-1, -2));
-        final CheckBoxCell checkBoxCell3 = new CheckBoxCell(context, 4, 21, true, anonymousClass6);
+        final CheckBoxCell checkBoxCell3 = new CheckBoxCell(context, 4, 21, true, anonymousClass8);
         checkBoxCell3.getCheckBoxRound().setColor(i, i2, i3);
         checkBoxCell3.setText(LocaleController.formatString(R.string.DeleteBan, DialogObject.getName(j)), null, false, false);
         checkBoxCell3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LiveCommentsView.lambda$openDeleteMessage$22(CheckBoxCell.this, view);
+                LiveCommentsView.lambda$openDeleteMessage$21(CheckBoxCell.this, view);
             }
         });
-        checkBoxCell3.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4, anonymousClass6), 2));
+        checkBoxCell3.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4, anonymousClass8), 2));
         linearLayout.addView(checkBoxCell3, LayoutHelper.createLinear(-1, -2));
-        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, anonymousClass6);
+        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, anonymousClass8);
         textInfoPrivacyCell.setBackgroundColor(-16777216);
         textInfoPrivacyCell.setFixedSize(12);
         linearLayout.addView(textInfoPrivacyCell, LayoutHelper.createLinear(-1, -2));
         FrameLayout frameLayout = new FrameLayout(context);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, anonymousClass6);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, anonymousClass8);
         buttonWithCounterView.setText(LocaleController.getString(R.string.DeleteProceedBtn), false);
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LiveCommentsView.lambda$openDeleteMessage$23(CheckBoxCell.this, checkBoxCell2, checkBoxCell3, callback3, bottomSheet, view);
+                LiveCommentsView.lambda$openDeleteMessage$22(CheckBoxCell.this, checkBoxCell2, checkBoxCell3, callback3, bottomSheet, view);
             }
         });
         frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
         bottomSheet.setCustomView(linearLayout);
         bottomSheet.show();
+    }
+
+    public static void lambda$openDeleteMessage$19(CheckBoxCell checkBoxCell, View view) {
+        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
     }
 
     public static void lambda$openDeleteMessage$20(CheckBoxCell checkBoxCell, View view) {
@@ -2278,11 +2572,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
     }
 
-    public static void lambda$openDeleteMessage$22(CheckBoxCell checkBoxCell, View view) {
-        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
-    }
-
-    public static void lambda$openDeleteMessage$23(CheckBoxCell checkBoxCell, CheckBoxCell checkBoxCell2, CheckBoxCell checkBoxCell3, Utilities.Callback3 callback3, BottomSheet bottomSheet, View view) {
+    public static void lambda$openDeleteMessage$22(CheckBoxCell checkBoxCell, CheckBoxCell checkBoxCell2, CheckBoxCell checkBoxCell3, Utilities.Callback3 callback3, BottomSheet bottomSheet, View view) {
         callback3.run(Boolean.valueOf(checkBoxCell.isChecked()), Boolean.valueOf(checkBoxCell2.isChecked()), Boolean.valueOf(checkBoxCell3.isChecked()));
         bottomSheet.lambda$new$0();
     }

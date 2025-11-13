@@ -11,6 +11,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -33,11 +34,13 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import com.google.zxing.common.detector.MathUtils;
 import j$.util.Objects;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -1170,9 +1173,11 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         public float aprogress;
         private final RectF arc;
         private final Drawable counterImage;
+        private final AnimatedTextView.AnimatedTextDrawable counterSubText;
         private final AnimatedTextView.AnimatedTextDrawable counterText;
         private long currentTop;
         public boolean drawCounterImage;
+        public boolean drawPlus;
         private LinearGradient gradient;
         private ValueAnimator gradientAnimator;
         private int gradientColor1;
@@ -1182,6 +1187,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         private float lastY;
         private final AnimatedFloat overTop;
         private final AnimatedFloat overTopText;
+        private final Paint plusPaint;
+        private final Path plusPath;
         private int pointerId;
         private long pressTime;
         public float progress;
@@ -1199,6 +1206,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         private final ColoredImageSpan[] starRef;
         public int steps;
         public int[] stops;
+        private final BoolAnimator subTextVisible;
         private final Paint textBackgroundPaint;
         private final Particles textParticles;
         private final Path textPath;
@@ -1209,12 +1217,18 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         private final Text topText;
         private boolean tracking;
 
-        protected abstract void onValueChanged(int i);
+        protected boolean onTapCustom(float f, float f2) {
+            return false;
+        }
+
+        public void onValueChanged(int i) {
+        }
 
         public StarsSlider(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.sliderInnerPaint = new Paint(1);
             this.sliderPaint = new Paint(1);
+            this.plusPaint = new Paint(1);
             this.sliderCirclePaint = new Paint(1);
             this.textBackgroundPaint = new Paint(1);
             this.sliderParticles = new Particles(0, 300);
@@ -1228,6 +1242,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.drawCounterImage = true;
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
             this.counterText = animatedTextDrawable;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable();
+            this.counterSubText = animatedTextDrawable2;
             this.starRef = new ColoredImageSpan[1];
             Paint paint = new Paint(1);
             this.topPaint = paint;
@@ -1242,9 +1258,11 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.arc = new RectF();
             this.sliderInnerPath = new Path();
             this.sliderPath = new Path();
+            this.plusPath = new Path();
             this.textRect = new RectF();
             this.textPath = new Path();
             this.progress = 0.0f;
+            this.subTextVisible = new BoolAnimator(this, cubicBezierInterpolator, 320L);
             this.resourcesProvider = resourcesProvider;
             Drawable mutate = context.getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
             this.counterImage = mutate;
@@ -1255,6 +1273,11 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             animatedTextDrawable.setCallback(this);
             animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             animatedTextDrawable.setGravity(17);
+            animatedTextDrawable2.setTextColor(-570425345);
+            animatedTextDrawable2.setTextSize(AndroidUtilities.dp(11.0f));
+            animatedTextDrawable2.setCallback(this);
+            animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            animatedTextDrawable2.setGravity(17);
             paint.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
@@ -1263,6 +1286,10 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         public void setStarsTop(long j) {
             this.currentTop = j;
             invalidate();
+        }
+
+        public void setTopText(String str) {
+            this.topText.setText(str);
         }
 
         @Override
@@ -1401,6 +1428,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         @Override
         protected void dispatchDraw(Canvas canvas) {
             float f;
+            float f2;
             super.dispatchDraw(canvas);
             this.gradientMatrix.reset();
             this.gradientMatrix.postTranslate(this.sliderInnerRect.left, 0.0f);
@@ -1433,15 +1461,15 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             long j = this.currentTop;
             if (j != -1 && getProgress((int) j) < 1.0f && getProgress((int) this.currentTop) > 0.0f) {
                 float dp3 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
-                float f2 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp3) < ((float) AndroidUtilities.dp(14.0f)));
+                float f3 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp3) < ((float) AndroidUtilities.dp(14.0f)));
                 float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp3) < ((float) AndroidUtilities.dp(12.0f))));
                 float currentWidth = (this.topText.getCurrentWidth() + dp3) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp3 - lerp) - this.topText.getCurrentWidth() : lerp + dp3;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 this.topPaint.setColor(Theme.multAlpha(blendARGB, 0.6f));
                 RectF rectF3 = this.sliderInnerRect;
-                float lerp2 = AndroidUtilities.lerp(rectF3.top, rectF3.centerY(), f2);
+                float lerp2 = AndroidUtilities.lerp(rectF3.top, rectF3.centerY(), f3);
                 RectF rectF4 = this.sliderInnerRect;
-                canvas.drawLine(dp3, lerp2, dp3, AndroidUtilities.lerp(rectF4.bottom, rectF4.centerY(), f2), this.topPaint);
+                canvas.drawLine(dp3, lerp2, dp3, AndroidUtilities.lerp(rectF4.bottom, rectF4.centerY(), f3), this.topPaint);
                 this.topText.draw(canvas, currentWidth, this.sliderInnerRect.centerY(), blendARGB, 0.6f);
             }
             canvas.drawPath(this.sliderPath, this.sliderPaint);
@@ -1450,87 +1478,101 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             long j2 = this.currentTop;
             if (j2 != -1 && getProgress((int) j2) < 1.0f && getProgress((int) this.currentTop) > 0.0f) {
                 float dp4 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
-                float f3 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp4) < ((float) AndroidUtilities.dp(14.0f)));
+                float f4 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp4) < ((float) AndroidUtilities.dp(14.0f)));
                 float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - dp4) < ((float) AndroidUtilities.dp(12.0f))));
                 float currentWidth2 = (this.topText.getCurrentWidth() + dp4) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (dp4 - lerp3) - this.topText.getCurrentWidth() : lerp3 + dp4;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 this.topPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider), 0.4f));
                 RectF rectF5 = this.sliderInnerRect;
-                float lerp4 = AndroidUtilities.lerp(rectF5.top, rectF5.centerY(), f3);
+                float lerp4 = AndroidUtilities.lerp(rectF5.top, rectF5.centerY(), f4);
                 RectF rectF6 = this.sliderInnerRect;
-                canvas.drawLine(dp4, lerp4, dp4, AndroidUtilities.lerp(rectF6.bottom, rectF6.centerY(), f3), this.topPaint);
+                canvas.drawLine(dp4, lerp4, dp4, AndroidUtilities.lerp(rectF6.bottom, rectF6.centerY(), f4), this.topPaint);
                 this.topText.draw(canvas, currentWidth2, this.sliderInnerRect.centerY(), -1, 0.75f);
             }
             canvas.restore();
             invalidate();
+            if (this.drawPlus) {
+                RectF rectF7 = this.sliderInnerRect;
+                float height = rectF7.right - (rectF7.height() / 2.0f);
+                float centerY = this.sliderInnerRect.centerY();
+                this.plusPaint.setColor(ColorUtils.blendARGB(this.sliderInnerPaint.getColor(), this.gradientColor2, 0.5f));
+                this.plusPath.rewind();
+                f = progress;
+                this.plusPath.addRoundRect(height - AndroidUtilities.dp(1.0f), centerY - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + height, centerY + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), direction);
+                this.plusPath.addRoundRect(height - AndroidUtilities.dp(6.0f), centerY - AndroidUtilities.dp(1.0f), height + AndroidUtilities.dp(6.0f), centerY + AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), direction);
+                canvas.drawPath(this.plusPath, this.plusPaint);
+            } else {
+                f = progress;
+            }
             this.sliderCircleRect.set((this.sliderRect.right - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f), this.sliderRect.centerY() - (AndroidUtilities.dp(16.0f) / 2.0f), this.sliderRect.right - AndroidUtilities.dp(4.0f), this.sliderRect.centerY() + (AndroidUtilities.dp(16.0f) / 2.0f));
             canvas.drawRoundRect(this.sliderCircleRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.sliderCirclePaint);
             float dp5 = AndroidUtilities.dp(9.0f) / this.sliderInnerRect.width();
-            RectF rectF7 = this.sliderCircleRect;
-            float lerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF7.left, rectF7.right, progress), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), progress), Math.min(Utilities.clamp01(progress / dp5), Utilities.clamp01((1.0f - progress) / dp5)));
+            RectF rectF8 = this.sliderCircleRect;
+            float f5 = f;
+            float lerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF8.left, rectF8.right, f5), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), f5), Math.min(Utilities.clamp01(f5 / dp5), Utilities.clamp01((1.0f - f5) / dp5)));
             float currentWidth3 = this.counterText.getCurrentWidth() + AndroidUtilities.dp(50.0f);
             float dp6 = AndroidUtilities.dp(44.0f);
             float clamp = Utilities.clamp(lerp5 - (currentWidth3 / 2.0f), (this.sliderInnerRect.right - currentWidth3) - AndroidUtilities.dp(4.0f), this.sliderInnerRect.left + AndroidUtilities.dp(4.0f));
             this.textRect.set(clamp, (this.sliderInnerRect.top - AndroidUtilities.dp(21.0f)) - dp6, currentWidth3 + clamp, this.sliderInnerRect.top - AndroidUtilities.dp(21.0f));
-            float height = this.textRect.height();
-            float f4 = height / 2.0f;
-            RectF rectF8 = this.textRect;
-            float clamp2 = Utilities.clamp(lerp5, rectF8.right, rectF8.left);
+            float height2 = this.textRect.height();
+            float f6 = height2 / 2.0f;
             RectF rectF9 = this.textRect;
-            float clamp3 = Utilities.clamp(clamp2 - AndroidUtilities.dp(9.0f), rectF9.right, rectF9.left);
+            float clamp2 = Utilities.clamp(lerp5, rectF9.right, rectF9.left);
             RectF rectF10 = this.textRect;
-            float clamp4 = Utilities.clamp(AndroidUtilities.dp(9.0f) + clamp2, rectF10.right, rectF10.left);
+            float clamp3 = Utilities.clamp(clamp2 - AndroidUtilities.dp(9.0f), rectF10.right, rectF10.left);
+            RectF rectF11 = this.textRect;
+            float clamp4 = Utilities.clamp(AndroidUtilities.dp(9.0f) + clamp2, rectF11.right, rectF11.left);
             float clamp5 = Utilities.clamp(this.progress - this.aprogress, 1.0f, -1.0f) * 60.0f;
             float dp7 = this.textRect.bottom + AndroidUtilities.dp(8.0f);
             this.textPath.rewind();
-            RectF rectF11 = this.arc;
-            RectF rectF12 = this.textRect;
-            float f5 = rectF12.left;
-            float f6 = rectF12.top;
-            rectF11.set(f5, f6, f5 + height, f6 + height);
+            RectF rectF12 = this.arc;
+            RectF rectF13 = this.textRect;
+            float f7 = rectF13.left;
+            float f8 = rectF13.top;
+            rectF12.set(f7, f8, f7 + height2, f8 + height2);
             this.textPath.arcTo(this.arc, -180.0f, 90.0f);
-            RectF rectF13 = this.arc;
-            RectF rectF14 = this.textRect;
-            float f7 = rectF14.right;
-            float f8 = rectF14.top;
-            rectF13.set(f7 - height, f8, f7, f8 + height);
+            RectF rectF14 = this.arc;
+            RectF rectF15 = this.textRect;
+            float f9 = rectF15.right;
+            float f10 = rectF15.top;
+            rectF14.set(f9 - height2, f10, f9, f10 + height2);
             this.textPath.arcTo(this.arc, -90.0f, 90.0f);
-            RectF rectF15 = this.arc;
-            RectF rectF16 = this.textRect;
-            float f9 = rectF16.right;
-            float f10 = rectF16.bottom;
-            rectF15.set(f9 - height, f10 - height, f9, f10);
-            this.textPath.arcTo(this.arc, 0.0f, (float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp4 - this.arc.centerX()) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d));
+            RectF rectF16 = this.arc;
             RectF rectF17 = this.textRect;
-            float f11 = 0.7f * height;
-            if (clamp3 < rectF17.right - f11) {
-                this.textPath.lineTo(clamp4, rectF17.bottom);
-                f = 8.0f;
+            float f11 = rectF17.right;
+            float f12 = rectF17.bottom;
+            rectF16.set(f11 - height2, f12 - height2, f11, f12);
+            this.textPath.arcTo(this.arc, 0.0f, (float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp4 - this.arc.centerX()) / f6)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d));
+            RectF rectF18 = this.textRect;
+            float f13 = 0.7f * height2;
+            if (clamp3 < rectF18.right - f13) {
+                this.textPath.lineTo(clamp4, rectF18.bottom);
+                f2 = 8.0f;
                 this.textPath.lineTo(clamp2 + 2.0f, this.textRect.bottom + AndroidUtilities.dp(8.0f));
             } else {
-                f = 8.0f;
+                f2 = 8.0f;
             }
-            this.textPath.lineTo(clamp2, this.textRect.bottom + AndroidUtilities.dp(f) + 1.0f);
-            RectF rectF18 = this.textRect;
-            if (clamp4 > rectF18.left + f11) {
-                this.textPath.lineTo(clamp2 - 2.0f, rectF18.bottom + AndroidUtilities.dp(8.0f));
+            this.textPath.lineTo(clamp2, this.textRect.bottom + AndroidUtilities.dp(f2) + 1.0f);
+            RectF rectF19 = this.textRect;
+            if (clamp4 > rectF19.left + f13) {
+                this.textPath.lineTo(clamp2 - 2.0f, rectF19.bottom + AndroidUtilities.dp(8.0f));
                 this.textPath.lineTo(clamp3, this.textRect.bottom);
             }
-            RectF rectF19 = this.arc;
-            RectF rectF20 = this.textRect;
-            float f12 = rectF20.left;
-            float f13 = rectF20.bottom;
-            rectF19.set(f12, f13 - height, height + f12, f13);
-            float clamp6 = ((float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp3 - this.arc.left) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d)) + 90.0f;
+            RectF rectF20 = this.arc;
+            RectF rectF21 = this.textRect;
+            float f14 = rectF21.left;
+            float f15 = rectF21.bottom;
+            rectF20.set(f14, f15 - height2, height2 + f14, f15);
+            float clamp6 = ((float) Utilities.clamp(((Math.acos(Utilities.clamp01((clamp3 - this.arc.left) / f6)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d)) + 90.0f;
             this.textPath.arcTo(this.arc, clamp6, 180.0f - clamp6);
             Path path2 = this.textPath;
-            RectF rectF21 = this.textRect;
-            path2.lineTo(rectF21.left, rectF21.bottom);
+            RectF rectF22 = this.textRect;
+            path2.lineTo(rectF22.left, rectF22.bottom);
             this.textPath.close();
-            RectF rectF22 = AndroidUtilities.rectTmp;
-            rectF22.set(this.textRect);
-            rectF22.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
-            this.textParticles.setBounds(rectF22);
+            RectF rectF23 = AndroidUtilities.rectTmp;
+            rectF23.set(this.textRect);
+            rectF23.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
+            this.textParticles.setBounds(rectF23);
             this.textParticles.setSpeed((this.progress * 15.0f) + 1.0f);
             this.textParticles.process();
             canvas.save();
@@ -1549,16 +1591,35 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             canvas.rotate(-clamp5, clamp2, dp7);
             this.textParticles.draw(canvas, -1);
             canvas.restore();
+            canvas.save();
+            float floatValue = 1.0f - (this.subTextVisible.getFloatValue() * 0.15f);
+            float centerX = this.textRect.centerX();
+            RectF rectF24 = this.textRect;
+            canvas.scale(floatValue, floatValue, centerX, rectF24.top - (rectF24.height() * 0.5f));
             this.counterImage.setBounds((int) (this.textRect.left + AndroidUtilities.dp(13.0f)), (int) (this.textRect.centerY() - AndroidUtilities.dp(10.0f)), (int) (this.textRect.left + AndroidUtilities.dp(33.0f)), (int) (this.textRect.centerY() + AndroidUtilities.dp(10.0f)));
             if (this.drawCounterImage) {
                 this.counterImage.draw(canvas);
             }
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.counterText;
             float dp8 = this.textRect.left + AndroidUtilities.dp(24.0f);
-            RectF rectF23 = this.textRect;
-            animatedTextDrawable.setBounds(dp8, rectF23.top, rectF23.right, rectF23.bottom);
+            RectF rectF25 = this.textRect;
+            animatedTextDrawable.setBounds(dp8, rectF25.top, rectF25.right, rectF25.bottom);
             this.counterText.draw(canvas);
             canvas.restore();
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.counterSubText;
+            RectF rectF26 = this.textRect;
+            float f16 = rectF26.left;
+            float dp9 = rectF26.top + AndroidUtilities.dp(10.0f);
+            RectF rectF27 = this.textRect;
+            animatedTextDrawable2.setBounds(f16, dp9, rectF27.right, rectF27.bottom + AndroidUtilities.dp(10.0f));
+            this.counterSubText.setAlpha((int) (this.subTextVisible.getFloatValue() * 255.0f));
+            this.counterSubText.draw(canvas);
+            canvas.restore();
+        }
+
+        public void setCounterSubText(String str, boolean z) {
+            this.subTextVisible.setValue(!TextUtils.isEmpty(str), z);
+            this.counterSubText.setText(str, z);
         }
 
         @Override
@@ -1590,7 +1651,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                     this.lastX = motionEvent.getX();
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (!this.tracking && motionEvent.getPointerId(0) == this.pointerId && MathUtils.distance(this.lastX, this.lastY, motionEvent.getX(), motionEvent.getY()) < AndroidUtilities.touchSlop && ((float) (System.currentTimeMillis() - this.pressTime)) <= ViewConfiguration.getTapTimeout() * 1.5f) {
+                if (!this.tracking && motionEvent.getPointerId(0) == this.pointerId && MathUtils.distance(this.lastX, this.lastY, motionEvent.getX(), motionEvent.getY()) < AndroidUtilities.touchSlop && ((float) (System.currentTimeMillis() - this.pressTime)) <= ViewConfiguration.getTapTimeout() * 1.5f && !onTapCustom(motionEvent.getX(), motionEvent.getY())) {
                     float x2 = motionEvent.getX();
                     RectF rectF = this.sliderInnerRect;
                     float clamp01 = Utilities.clamp01((x2 - rectF.left) / rectF.width());
@@ -1650,7 +1711,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
     public static class Particles {
         public final Bitmap b;
         private int bPaintColor;
-        private final BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
+        private BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
         private final Paint batchParticlesPaint;
         private long lastTime;
         public final ArrayList particles;
@@ -1758,6 +1819,129 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 }
                 this.lastTime = currentTimeMillis;
             }
+        }
+
+        public void generateGrid() {
+            ArrayList poissonDiskSampling = poissonDiskSampling(AndroidUtilities.dp(30.0f), (int) this.bounds.width(), (int) this.bounds.height(), 15);
+            int size = poissonDiskSampling.size() - this.particles.size();
+            for (int i = 0; i < size; i++) {
+                this.particles.add(new Particle());
+            }
+            int size2 = poissonDiskSampling.size();
+            this.visibleCount = size2;
+            if (this.batchParticlesBuffer != null) {
+                BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer = new BatchParticlesDrawHelper.BatchParticlesBuffer(size2);
+                this.batchParticlesBuffer = batchParticlesBuffer;
+                batchParticlesBuffer.fillParticleTextureCords(0.0f, 0.0f, this.b.getWidth(), this.b.getHeight());
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            for (int i2 = 0; i2 < this.visibleCount; i2++) {
+                Particle particle = (Particle) this.particles.get(i2);
+                PointF pointF = (PointF) poissonDiskSampling.get(i2);
+                gen(particle, currentTimeMillis, true);
+                float f = pointF.x;
+                RectF rectF = this.bounds;
+                particle.x = f + rectF.left;
+                particle.y = pointF.y + rectF.top;
+                particle.la = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
+                particle.s *= 1.25f;
+            }
+        }
+
+        static boolean isValidPoint(PointF[][] pointFArr, int i, int i2, float f, int i3, int i4, PointF pointF, float f2) {
+            int dp = AndroidUtilities.dp(15.0f) / 2;
+            float f3 = pointF.x;
+            float f4 = dp;
+            if (f3 >= f4 && f3 < i - dp) {
+                float f5 = pointF.y;
+                if (f5 >= f4 && f5 < i2 - dp) {
+                    int floor = (int) Math.floor(f3 / f);
+                    int floor2 = (int) Math.floor(pointF.y / f);
+                    int min = Math.min(floor + 1, i3 - 1);
+                    int max = Math.max(floor2 - 1, 0);
+                    int min2 = Math.min(floor2 + 1, i4 - 1);
+                    for (int max2 = Math.max(floor - 1, 0); max2 <= min; max2++) {
+                        for (int i5 = max; i5 <= min2; i5++) {
+                            PointF pointF2 = pointFArr[max2][i5];
+                            if (pointF2 != null && MathUtils.distance(pointF2.x, pointF2.y, pointF.x, pointF.y) < f2) {
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static void insertPoint(PointF[][] pointFArr, float f, PointF pointF) {
+            pointFArr[(int) Math.floor(pointF.x / f)][(int) Math.floor(pointF.y / f)] = pointF;
+        }
+
+        private static ArrayList poissonDiskSampling(float f, int i, int i2, int i3) {
+            float f2 = f;
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            int i4 = 0;
+            PointF pointF = new PointF(AndroidUtilities.lerp(0, i, Utilities.fastRandom.nextFloat()), AndroidUtilities.lerp(0, i2, Utilities.fastRandom.nextFloat()));
+            float floor = (float) Math.floor(f2 / Math.sqrt(2));
+            int i5 = 1;
+            int ceil = ((int) Math.ceil(i / floor)) + 1;
+            int ceil2 = ((int) Math.ceil(i2 / floor)) + 1;
+            PointF[][] pointFArr = (PointF[][]) Array.newInstance((Class<?>) PointF.class, ceil, ceil2);
+            for (int i6 = 0; i6 < ceil; i6++) {
+                for (int i7 = 0; i7 < ceil2; i7++) {
+                    pointFArr[i6][i7] = null;
+                }
+            }
+            insertPoint(pointFArr, floor, pointF);
+            arrayList.add(pointF);
+            arrayList2.add(pointF);
+            while (!arrayList2.isEmpty()) {
+                int nextInt = arrayList2.size() > i5 ? Utilities.fastRandom.nextInt(arrayList2.size() - i5) : 0;
+                PointF pointF2 = (PointF) arrayList2.get(nextInt);
+                int i8 = i3;
+                int i9 = 0;
+                while (true) {
+                    if (i9 < i8) {
+                        float lerp = AndroidUtilities.lerp(i4, 360, Utilities.fastRandom.nextFloat());
+                        int i10 = i9;
+                        double lerp2 = AndroidUtilities.lerp(1, 2, Utilities.fastRandom.nextFloat()) * f2;
+                        double d = lerp;
+                        PointF pointF3 = pointF2;
+                        PointF pointF4 = new PointF((float) (pointF2.x + (Math.cos(Math.toRadians(d)) * lerp2)), (float) (pointF2.y + (lerp2 * Math.sin(Math.toRadians(d)))));
+                        int i11 = nextInt;
+                        PointF[][] pointFArr2 = pointFArr;
+                        int i12 = ceil2;
+                        int i13 = ceil;
+                        if (isValidPoint(pointFArr, i, i2, floor, ceil, ceil2, pointF4, f)) {
+                            arrayList.add(pointF4);
+                            insertPoint(pointFArr2, floor, pointF4);
+                            arrayList2.add(pointF4);
+                            pointFArr = pointFArr2;
+                            ceil2 = i12;
+                            ceil = i13;
+                            break;
+                        }
+                        i9 = i10 + 1;
+                        i8 = i3;
+                        pointFArr = pointFArr2;
+                        pointF2 = pointF3;
+                        nextInt = i11;
+                        ceil2 = i12;
+                        ceil = i13;
+                        i4 = 0;
+                        f2 = f;
+                    } else {
+                        arrayList2.remove(nextInt);
+                        break;
+                    }
+                }
+                i5 = 1;
+                i4 = 0;
+                f2 = f;
+            }
+            return arrayList;
         }
 
         public void draw(Canvas canvas, int i) {

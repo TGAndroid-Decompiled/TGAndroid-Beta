@@ -1,0 +1,465 @@
+package org.telegram.ui.Gifts;
+
+import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.SimpleTextView;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.ButtonSpan;
+import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.ShareAlert;
+import org.telegram.ui.Components.TableView;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Gifts.GiftSheet;
+import org.telegram.ui.PremiumFeatureCell;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
+public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements GiftAuctionController.OnAuctionUpdateListener {
+    private static final ButtonSpan.TextViewButtons[] ref = new ButtonSpan.TextViewButtons[1];
+    private UniversalAdapter adapter;
+    private GiftAuctionController.Auction auction;
+    private final ButtonSpan.TextViewButtons auctionRowAvailabilityText;
+    private final TableRow auctionRowAveragePrice;
+    private final ButtonSpan.TextViewButtons auctionRowAveragePriceText;
+    private final TableRow auctionRowCurrentRound;
+    private final ButtonSpan.TextViewButtons auctionRowCurrentRoundText;
+    private final ButtonSpan.TextViewButtons auctionRowEndTimeText;
+    private final ButtonSpan.TextViewButtons auctionRowStartTimeText;
+    private final ButtonWithCounterView buttonView;
+    private CharSequence emojiGiftText;
+    private final long giftId;
+    private final LinkSpanDrawable.LinksTextView itemsBought;
+    private final LinearLayout linearLayout;
+    private final TL_stars.StarGift starGift;
+    private final LinkSpanDrawable.LinksTextView subtitleTextView;
+
+    private AuctionJoinSheet(final Context context, final Theme.ResourcesProvider resourcesProvider, final long j, final TL_stars.StarGift starGift) {
+        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.FADING, resourcesProvider);
+        this.starGift = starGift;
+        long j2 = starGift.id;
+        this.giftId = j2;
+        fixNavigationBar();
+        String str = starGift.title;
+        String str2 = str == null ? "Gift" : str;
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.linearLayout = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setClickable(true);
+        ActionBar actionBar = new ActionBar(context, resourcesProvider);
+        actionBar.setItemsColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon, resourcesProvider), false);
+        actionBar.setOccupyStatusBar(false);
+        initActionBar(actionBar, context, resourcesProvider, this.currentAccount, starGift);
+        linearLayout.addView(actionBar, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, -56.0f));
+        GiftSheet.GiftCell giftCell = new GiftSheet.GiftCell(context, this.currentAccount, resourcesProvider) {
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                return false;
+            }
+        };
+        giftCell.setPriorityAuction();
+        giftCell.setStarsGift(starGift, false, false, false, false);
+        giftCell.setImageSize(AndroidUtilities.dp(100.0f));
+        giftCell.setImageLayer(7);
+        giftCell.hidePrice();
+        linearLayout.addView(giftCell, LayoutHelper.createLinear(130, 130, 17, 0, 18, 0, 14));
+        TextView textView = new TextView(context);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        textView.setText(str2);
+        textView.setTextSize(1, 20.0f);
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 6));
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        this.subtitleTextView = linksTextView;
+        linksTextView.setGravity(17);
+        linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceTags(LocaleController.formatPluralString("Gift2AuctionInfo2", starGift.gifts_per_round, str2)), " ", AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2AuctionInfoLearnMore), new Runnable() {
+            @Override
+            public final void run() {
+                AuctionJoinSheet.showMoreInfo(context, resourcesProvider, starGift);
+            }
+        }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
+        linksTextView.setTextSize(1, 14.0f);
+        linksTextView.setTextColor(Theme.getColor(i, resourcesProvider));
+        int i2 = Theme.key_windowBackgroundWhiteLinkText;
+        linksTextView.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 20));
+        TableView tableView = new TableView(context, resourcesProvider);
+        String string = LocaleController.getString(R.string.Gift2AuctionTableStarted);
+        ButtonSpan.TextViewButtons[] textViewButtonsArr = ref;
+        tableView.addRow(string, "", textViewButtonsArr);
+        this.auctionRowStartTimeText = textViewButtonsArr[0];
+        tableView.addRow(LocaleController.getString(R.string.Gift2AuctionTableEnded), "", textViewButtonsArr);
+        this.auctionRowEndTimeText = textViewButtonsArr[0];
+        this.auctionRowCurrentRound = tableView.addRow(LocaleController.getString(R.string.Gift2AuctionTableCurrentRound), "", textViewButtonsArr);
+        this.auctionRowCurrentRoundText = textViewButtonsArr[0];
+        this.auctionRowAveragePrice = tableView.addRow(LocaleController.getString(R.string.GiftValueAveragePrice), "", textViewButtonsArr);
+        this.auctionRowAveragePriceText = textViewButtonsArr[0];
+        tableView.addRow(LocaleController.getString(R.string.Gift2AuctionTableCurrentAvailability), "", textViewButtonsArr);
+        this.auctionRowAvailabilityText = textViewButtonsArr[0];
+        linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 16.0f, 0.0f, 14.0f, 18.0f));
+        final boolean[] zArr = new boolean[1];
+        LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+        this.itemsBought = linksTextView2;
+        linksTextView2.setGravity(17);
+        linksTextView2.setTextSize(1, 16.0f);
+        linksTextView2.setTextColor(Theme.getColor(i2, resourcesProvider));
+        linksTextView2.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
+        linksTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AuctionJoinSheet.this.lambda$new$2(zArr, resourcesProvider, view);
+            }
+        });
+        ScaleStateListAnimator.apply(linksTextView2, 0.02f, 1.5f);
+        linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 16.0f, 0.0f, 14.0f, 18.0f));
+        if (starGift.sticker != null) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(starGift.sticker, linksTextView2.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+            this.emojiGiftText = spannableStringBuilder;
+        } else {
+            this.emojiGiftText = "";
+        }
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        this.buttonView = buttonWithCounterView;
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AuctionJoinSheet.this.lambda$new$4(context, j, view);
+            }
+        });
+        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i3 = createFrame.leftMargin;
+        int i4 = this.backgroundPaddingLeft;
+        createFrame.leftMargin = i3 + i4;
+        createFrame.rightMargin += i4;
+        this.containerView.addView(buttonWithCounterView, createFrame);
+        RecyclerListView recyclerListView = this.recyclerListView;
+        int i5 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i5, 0, i5, AndroidUtilities.dp(64.0f));
+        this.adapter.update(false);
+        this.auction = GiftAuctionController.getInstance(this.currentAccount).subscribeToGiftAuction(j2, this);
+        updateTable(false);
+    }
+
+    public void lambda$new$2(final boolean[] zArr, final Theme.ResourcesProvider resourcesProvider, View view) {
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        GiftAuctionController.getInstance(this.currentAccount).getOrRequestAcquiredGifts(this.giftId, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                AuctionJoinSheet.this.lambda$new$1(zArr, resourcesProvider, (List) obj);
+            }
+        });
+    }
+
+    public void lambda$new$1(boolean[] zArr, Theme.ResourcesProvider resourcesProvider, List list) {
+        zArr[0] = false;
+        if (this.auction != null) {
+            new AcquiredGiftsSheet(getContext(), resourcesProvider, this.auction, list).show();
+            lambda$new$0();
+        }
+    }
+
+    public void lambda$new$4(Context context, long j, View view) {
+        GiftAuctionController.Auction auction = this.auction;
+        if (auction != null && !auction.isFinished()) {
+            new SendGiftSheet(context, this.currentAccount, this.auction.gift, j, new Runnable() {
+                @Override
+                public final void run() {
+                    AuctionJoinSheet.this.lambda$new$3();
+                }
+            }, false, false) {
+                @Override
+                protected BulletinFactory getParentBulletinFactory() {
+                    return BulletinFactory.of(this.container, this.resourcesProvider);
+                }
+            }.show();
+        }
+        lambda$new$0();
+    }
+
+    private void updateTable(boolean z) {
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState;
+        TL_stars.TL_starGiftAuctionStateFinished tL_starGiftAuctionStateFinished;
+        GiftAuctionController.Auction auction = this.auction;
+        if (auction != null && (tL_starGiftAuctionStateFinished = auction.auctionStateFinished) != null) {
+            this.auctionRowStartTimeText.setText(LocaleController.formatDateTime(tL_starGiftAuctionStateFinished.start_date, true));
+            this.auctionRowEndTimeText.setText(LocaleController.formatDateTime(this.auction.auctionStateFinished.end_date, true));
+            this.auctionRowAveragePriceText.setText(StarsIntroActivity.replaceStarsWithPlain("⭐️ " + LocaleController.formatNumber(this.auction.auctionStateFinished.average_price, ','), 0.8f));
+        } else if (auction != null && (tL_starGiftAuctionState = auction.auctionStateActive) != null) {
+            this.auctionRowStartTimeText.setText(LocaleController.formatDateTime(tL_starGiftAuctionState.start_date, true));
+            this.auctionRowEndTimeText.setText(LocaleController.formatDateTime(this.auction.auctionStateActive.end_date, true));
+            this.auctionRowCurrentRoundText.setText(LocaleController.formatString(R.string.OfS, LocaleController.formatNumber(this.auction.auctionStateActive.current_round, ','), LocaleController.formatNumber(this.auction.auctionStateActive.total_rounds, ',')));
+            this.buttonView.setSubText(LocaleController.formatString(R.string.Gift2AuctionTimeLeft, LocaleController.formatTTLString(this.auction.auctionStateActive.end_date - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime())), z);
+        }
+        this.auctionRowAvailabilityText.setText(LocaleController.formatPluralString("Gift2Availability4Value", this.starGift.availability_remains, LocaleController.formatNumber(r4.availability_total, ',')));
+        int i = this.auction.auctionUserState.acquired_count;
+        if (i > 0) {
+            this.itemsBought.setVisibility(0);
+            this.itemsBought.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought", i, this.emojiGiftText), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
+        } else {
+            this.itemsBought.setVisibility(8);
+        }
+        GiftAuctionController.Auction auction2 = this.auction;
+        if ((auction2 != null && auction2.auctionStateFinished != null) || this.starGift.sold_out) {
+            this.subtitleTextView.setText(LocaleController.getString(R.string.Gift2AuctionEnded));
+            this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
+            this.auctionRowCurrentRound.setVisibility(8);
+            this.auctionRowAveragePrice.setVisibility(0);
+            this.buttonView.setText(LocaleController.getString(R.string.OK), z);
+            this.buttonView.setSubText(null, z);
+            return;
+        }
+        this.auctionRowCurrentRound.setVisibility(0);
+        this.auctionRowAveragePrice.setVisibility(8);
+        this.buttonView.setText(LocaleController.getString(R.string.Gift2AuctionJoin), z);
+    }
+
+    @Override
+    public void onUpdate(GiftAuctionController.Auction auction) {
+        this.auction = auction;
+        updateTable(true);
+    }
+
+    @Override
+    public void lambda$new$3() {
+        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromGiftAuction(this.giftId, this);
+        super.lambda$new$0();
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return "";
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                AuctionJoinSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, this.resourcesProvider);
+        this.adapter = universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        arrayList.add(UItem.asCustom(-1, this.linearLayout));
+    }
+
+    public static void showMoreInfo(Context context, Theme.ResourcesProvider resourcesProvider, TL_stars.StarGift starGift) {
+        if (context == null || starGift == null) {
+            return;
+        }
+        BottomSheet.Builder builder = new BottomSheet.Builder(context);
+        final Runnable dismissRunnable = builder.getDismissRunnable();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        ImageView imageView = new ImageView(context);
+        imageView.setPadding(AndroidUtilities.dp(17.0f), AndroidUtilities.dp(17.0f), AndroidUtilities.dp(17.0f), AndroidUtilities.dp(17.0f));
+        imageView.setImageResource(R.drawable.filled_gift_sell_24);
+        ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
+        shapeDrawable.getPaint().setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+        imageView.setBackground(shapeDrawable);
+        linearLayout.addView(imageView, LayoutHelper.createLinear(80, 80, 17, 0, 21, 0, 16));
+        TextView textView = new TextView(context);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        textView.setText(LocaleController.getString(R.string.GiftAuctionInfoHeader));
+        textView.setTextSize(1, 20.0f);
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 6));
+        TextView textView2 = new TextView(context);
+        textView2.setGravity(17);
+        textView2.setText(LocaleController.getString(R.string.GiftAuctionInfoText));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 16));
+        PremiumFeatureCell premiumFeatureCell = new PremiumFeatureCell(context, resourcesProvider);
+        SimpleTextView simpleTextView = premiumFeatureCell.title;
+        int i2 = starGift.gifts_per_round;
+        simpleTextView.setText(LocaleController.formatPluralString("GiftAuctionInfo1Header", i2, Integer.valueOf(i2)));
+        TextView textView3 = premiumFeatureCell.description;
+        int i3 = starGift.gifts_per_round;
+        textView3.setText(LocaleController.formatPluralString("GiftAuctionInfo1Text", i3, Integer.valueOf(i3)));
+        premiumFeatureCell.nextIcon.setVisibility(8);
+        premiumFeatureCell.imageView.setImageResource(R.drawable.menu_top_bidders_24);
+        premiumFeatureCell.imageView.setColorFilter(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(premiumFeatureCell, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, -2.0f));
+        PremiumFeatureCell premiumFeatureCell2 = new PremiumFeatureCell(context, resourcesProvider);
+        premiumFeatureCell2.title.setText(LocaleController.getString(R.string.GiftAuctionInfo2Header));
+        premiumFeatureCell2.description.setText(LocaleController.formatPluralString("GiftAuctionInfo2Text", starGift.gifts_per_round, new Object[0]));
+        premiumFeatureCell2.nextIcon.setVisibility(8);
+        premiumFeatureCell2.imageView.setImageResource(R.drawable.menu_carryover_24);
+        premiumFeatureCell2.imageView.setColorFilter(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(premiumFeatureCell2, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, -2.0f));
+        PremiumFeatureCell premiumFeatureCell3 = new PremiumFeatureCell(context, resourcesProvider);
+        premiumFeatureCell3.title.setText(LocaleController.getString(R.string.GiftAuctionInfo3Header));
+        premiumFeatureCell3.description.setText(LocaleController.getString(R.string.GiftAuctionInfo3Text));
+        premiumFeatureCell3.nextIcon.setVisibility(8);
+        premiumFeatureCell3.imageView.setImageResource(R.drawable.menu_bid_refund_24);
+        premiumFeatureCell3.imageView.setColorFilter(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(premiumFeatureCell3, LayoutHelper.createLinear(-1, -2, 6.0f, 0.0f, 6.0f, 8.0f));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                dismissRunnable.run();
+            }
+        });
+        buttonWithCounterView.setText(StarGiftSheet.replaceUnderstood(LocaleController.getString(R.string.Understood)), false);
+        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 16.0f, 10.0f, 16.0f, 8.0f));
+        builder.setCustomView(linearLayout);
+        builder.show();
+    }
+
+    public static void show(final Context context, final Theme.ResourcesProvider resourcesProvider, final int i, final long j, long j2) {
+        GiftAuctionController.getInstance(i).getOrRequestAuction(j2, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                AuctionJoinSheet.lambda$show$6(context, resourcesProvider, i, j, (GiftAuctionController.Auction) obj, (TLRPC.TL_error) obj2);
+            }
+        });
+    }
+
+    public static void lambda$show$6(Context context, Theme.ResourcesProvider resourcesProvider, int i, long j, GiftAuctionController.Auction auction, TLRPC.TL_error tL_error) {
+        if (auction != null) {
+            show(context, resourcesProvider, i, j, auction);
+        }
+    }
+
+    private static void show(final Context context, Theme.ResourcesProvider resourcesProvider, final int i, final long j, final GiftAuctionController.Auction auction) {
+        if (auction == null) {
+            return;
+        }
+        long j2 = UserConfig.getInstance(i).clientUserId;
+        long peerDialogId = DialogObject.getPeerDialogId(auction.auctionUserState.peer);
+        if (j != peerDialogId && j != 0 && peerDialogId != 0) {
+            openAuctionTransferAlert(context, resourcesProvider, i, peerDialogId, j, new Runnable() {
+                @Override
+                public final void run() {
+                    AuctionJoinSheet.lambda$show$7(context, i, auction, j);
+                }
+            });
+        } else if (auction.auctionUserState.bid_date > 0) {
+            new AuctionBidSheet(context, resourcesProvider, null, auction).show();
+        } else {
+            new AuctionJoinSheet(context, resourcesProvider, j, auction.gift).show();
+        }
+    }
+
+    public static void lambda$show$7(Context context, int i, GiftAuctionController.Auction auction, long j) {
+        new SendGiftSheet(context, i, auction.gift, j, null, false, false).show();
+    }
+
+    public static void initActionBar(ActionBar actionBar, final Context context, final Theme.ResourcesProvider resourcesProvider, int i, final TL_stars.StarGift starGift) {
+        actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i2) {
+                if (i2 != 3 && i2 != 2) {
+                    if (i2 == 4) {
+                        AuctionJoinSheet.showMoreInfo(context, resourcesProvider, TL_stars.StarGift.this);
+                        return;
+                    }
+                    return;
+                }
+                String str = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/auction/" + TL_stars.StarGift.this.auction_slug;
+                if (i2 == 3) {
+                    AndroidUtilities.addToClipboard(str);
+                } else {
+                    ShareAlert.createShareAlert(context, null, str, false, str, false).show();
+                }
+            }
+        });
+        ActionBarMenuItem addItem = actionBar.createMenu().addItem(0, R.drawable.ic_ab_other);
+        addItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+        addItem.addSubItem(4, R.drawable.msg_info, LocaleController.getString(R.string.MoreInfo));
+        addItem.addSubItem(3, R.drawable.menu_feature_links, LocaleController.getString(R.string.CopyLink));
+        addItem.addSubItem(2, R.drawable.msg_share, LocaleController.getString(R.string.ShareLink));
+    }
+
+    private static void openAuctionTransferAlert(Context context, Theme.ResourcesProvider resourcesProvider, int i, long j, long j2, final Runnable runnable) {
+        TLObject chat;
+        TLObject chat2;
+        if (j >= 0) {
+            chat = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+        } else {
+            chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+        }
+        if (j2 >= 0) {
+            chat2 = MessagesController.getInstance(i).getUser(Long.valueOf(j2));
+        } else {
+            chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
+        }
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.addView(new StarGiftSheet.UserToUserTransferTopView(context, chat, chat2), LayoutHelper.createLinear(-1, -2, 48, 0, -4, 0, 0));
+        TextView textView = new TextView(context);
+        NotificationCenter.listenEmojiLoading(textView);
+        textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
+        int i2 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(LocaleController.isRTL ? 5 : 3);
+        linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 19.0f, 24.0f, 2.0f));
+        TextView textView2 = new TextView(context);
+        textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
+        textView2.setTextSize(1, 16.0f);
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AuctionsChangeRecipient2, DialogObject.getShortName(j), DialogObject.getShortName(j2))));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 48, 24, 4, 24, 4));
+        new AlertDialog.Builder(context, resourcesProvider).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i3) {
+                runnable.run();
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().show();
+    }
+}

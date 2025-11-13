@@ -38,7 +38,7 @@ import org.telegram.ui.Stories.MessageMediaStoryFull;
 import org.telegram.ui.Stories.MessageMediaStoryFull_old;
 
 public class TLRPC {
-    public static final int LAYER = 217;
+    public static final int LAYER = 218;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -281,52 +281,42 @@ public class TLRPC {
 
     public static abstract class InputInvoice extends TLObject {
         public static InputInvoice TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TLObject tL_inputInvoicePremiumGiftCode;
+            return (InputInvoice) TLObject.TLdeserialize(InputInvoice.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static InputInvoice fromConstructor(int i) {
             switch (i) {
                 case -1734841331:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoicePremiumGiftCode();
-                    break;
+                    return new TL_inputInvoicePremiumGiftCode();
                 case -1710536520:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftPrepaidUpgrade();
-                    break;
+                    return new TL_inputInvoiceStarGiftPrepaidUpgrade();
                 case -1020867857:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceSlug();
-                    break;
+                    return new TL_inputInvoiceSlug();
                 case -1012968668:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftResale();
-                    break;
+                    return new TL_inputInvoiceStarGiftResale();
                 case -977967015:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceMessage();
-                    break;
+                    return new TL_inputInvoiceMessage();
                 case -625298705:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoicePremiumGiftStars();
-                    break;
+                    return new TL_inputInvoicePremiumGiftStars();
                 case -396206446:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGift();
-                    break;
+                    return new TL_inputInvoiceStarGift();
                 case 153344209:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftDropOriginalDetails();
-                    break;
+                    return new TL_inputInvoiceStarGiftDropOriginalDetails();
+                case 516618768:
+                    return new TL_inputInvoiceStarGiftAuctionBid();
                 case 887591921:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceChatInviteSubscription();
-                    break;
+                    return new TL_inputInvoiceChatInviteSubscription();
                 case 1048049172:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoicePremiumAuthCode();
-                    break;
+                    return new TL_inputInvoicePremiumAuthCode();
                 case 1247763417:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftTransfer();
-                    break;
+                    return new TL_inputInvoiceStarGiftTransfer();
                 case 1300335965:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStarGiftUpgrade();
-                    break;
+                    return new TL_inputInvoiceStarGiftUpgrade();
                 case 1710230755:
-                    tL_inputInvoicePremiumGiftCode = new TL_inputInvoiceStars();
-                    break;
+                    return new TL_inputInvoiceStars();
                 default:
-                    tL_inputInvoicePremiumGiftCode = null;
-                    break;
+                    return null;
             }
-            return (InputInvoice) TLObject.TLdeserialize(InputInvoice.class, tL_inputInvoicePremiumGiftCode, inputSerializedData, i, z);
         }
     }
 
@@ -2756,6 +2746,55 @@ public class TLRPC {
         }
     }
 
+    public static class TL_inputInvoiceStarGiftAuctionBid extends InputInvoice {
+        public static final int constructor = 516618768;
+        public long bid_amount;
+        public int flags;
+        public long gift_id;
+        public boolean hide_name;
+        public TL_textWithEntities message;
+        public InputPeer peer;
+        public boolean update_bid;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.hide_name = TLObject.hasFlag(readInt32, 1);
+            this.update_bid = TLObject.hasFlag(this.flags, 4);
+            if (TLObject.hasFlag(this.flags, 8)) {
+                this.peer = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.gift_id = inputSerializedData.readInt64(z);
+            this.bid_amount = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.message = TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(516618768);
+            int flag = TLObject.setFlag(this.flags, 1, this.hide_name);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.message != null);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.update_bid);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.peer != null);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
+            if (TLObject.hasFlag(this.flags, 8)) {
+                this.peer.serializeToStream(outputSerializedData);
+            }
+            outputSerializedData.writeInt64(this.gift_id);
+            outputSerializedData.writeInt64(this.bid_amount);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.message.serializeToStream(outputSerializedData);
+            }
+        }
+    }
+
     public static class TL_inputInvoiceStarGiftDropOriginalDetails extends InputInvoice {
         public static final int constructor = 153344209;
         public TL_stars.InputSavedStarGift stargift;
@@ -4032,7 +4071,8 @@ public class TLRPC {
     }
 
     public static class TL_messageActionStarGift extends MessageAction {
-        public static final int constructor = -229775366;
+        public static final int constructor = -614898352;
+        public boolean auction_acquired;
         public boolean can_upgrade;
         public long convert_stars;
         public boolean converted;
@@ -4047,6 +4087,7 @@ public class TLRPC {
         public boolean refunded;
         public boolean saved;
         public long saved_id;
+        public Peer to_id;
         public boolean transferred;
         public int upgrade_msg_id;
         public boolean upgrade_separate;
@@ -4065,7 +4106,8 @@ public class TLRPC {
             this.can_upgrade = (readInt32 & 1024) != 0;
             this.refunded = (readInt32 & 512) != 0;
             this.prepaid_upgrade = (readInt32 & 8192) != 0;
-            this.upgrade_separate = (readInt32 & 65536) != 0;
+            this.upgrade_separate = (65536 & readInt32) != 0;
+            this.auction_acquired = TLObject.hasFlag(readInt32, 131072);
             this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 2) != 0) {
                 this.message = TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -4092,11 +4134,14 @@ public class TLRPC {
             if ((this.flags & 32768) != 0) {
                 this.gift_msg_id = inputSerializedData.readInt32(z);
             }
+            if (TLObject.hasFlag(this.flags, 262144)) {
+                this.to_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-229775366);
+            outputSerializedData.writeInt32(-614898352);
             int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
             this.flags = i;
             int i2 = this.saved ? i | 4 : i & (-5);
@@ -4115,7 +4160,11 @@ public class TLRPC {
             this.flags = i8;
             int i9 = this.upgrade_separate ? i8 | 65536 : i8 & (-65537);
             this.flags = i9;
-            outputSerializedData.writeInt32(i9);
+            int flag = TLObject.setFlag(i9, 131072, this.auction_acquired);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 262144, this.to_id != null);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
             this.gift.serializeToStream(outputSerializedData);
             if ((this.flags & 2) != 0) {
                 this.message.serializeToStream(outputSerializedData);
@@ -4141,6 +4190,9 @@ public class TLRPC {
             }
             if ((this.flags & 32768) != 0) {
                 outputSerializedData.writeInt32(this.gift_msg_id);
+            }
+            if (TLObject.hasFlag(this.flags, 262144)) {
+                this.to_id.serializeToStream(outputSerializedData);
             }
         }
     }
@@ -4714,6 +4766,120 @@ public class TLRPC {
             if ((this.flags & 4096) != 0) {
                 this.peer.serializeToStream(outputSerializedData);
                 outputSerializedData.writeInt64(this.saved_id);
+            }
+        }
+    }
+
+    public static class TL_messageActionStarGift_layer217 extends TL_messageActionStarGift {
+        public static final int constructor = -229775366;
+        public boolean can_upgrade;
+        public long convert_stars;
+        public boolean converted;
+        public boolean forceIn;
+        public Peer from_id;
+        public TL_stars.StarGift gift;
+        public int gift_msg_id;
+        public TL_textWithEntities message;
+        public boolean name_hidden;
+        public boolean prepaid_upgrade;
+        public String prepaid_upgrade_hash;
+        public boolean refunded;
+        public boolean saved;
+        public long saved_id;
+        public boolean transferred;
+        public int upgrade_msg_id;
+        public boolean upgrade_separate;
+        public long upgrade_stars;
+        public boolean upgraded;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z);
+            this.flags = readInt32;
+            this.name_hidden = (readInt32 & 1) != 0;
+            this.saved = (readInt32 & 4) != 0;
+            this.converted = (readInt32 & 8) != 0;
+            this.upgraded = (readInt32 & 32) != 0;
+            this.transferred = (readInt32 & 64) != 0;
+            this.can_upgrade = (readInt32 & 1024) != 0;
+            this.refunded = (readInt32 & 512) != 0;
+            this.prepaid_upgrade = (readInt32 & 8192) != 0;
+            this.upgrade_separate = (readInt32 & 65536) != 0;
+            this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 2) != 0) {
+                this.message = TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.convert_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 32) != 0) {
+                this.upgrade_msg_id = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 256) != 0) {
+                this.upgrade_stars = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 2048) != 0) {
+                this.from_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if ((this.flags & 4096) != 0) {
+                this.peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.saved_id = inputSerializedData.readInt64(z);
+            }
+            if ((this.flags & 16384) != 0) {
+                this.prepaid_upgrade_hash = inputSerializedData.readString(z);
+            }
+            if ((this.flags & 32768) != 0) {
+                this.gift_msg_id = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-229775366);
+            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.saved ? i | 4 : i & (-5);
+            this.flags = i2;
+            int i3 = this.converted ? i2 | 8 : i2 & (-9);
+            this.flags = i3;
+            int i4 = this.upgraded ? i3 | 32 : i3 & (-33);
+            this.flags = i4;
+            int i5 = this.transferred ? i4 | 64 : i4 & (-65);
+            this.flags = i5;
+            int i6 = this.can_upgrade ? i5 | 1024 : i5 & (-1025);
+            this.flags = i6;
+            int i7 = this.refunded ? i6 | 512 : i6 & (-513);
+            this.flags = i7;
+            int i8 = this.prepaid_upgrade ? i7 | 8192 : i7 & (-8193);
+            this.flags = i8;
+            int i9 = this.upgrade_separate ? i8 | 65536 : i8 & (-65537);
+            this.flags = i9;
+            outputSerializedData.writeInt32(i9);
+            this.gift.serializeToStream(outputSerializedData);
+            if ((this.flags & 2) != 0) {
+                this.message.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 16) != 0) {
+                outputSerializedData.writeInt64(this.convert_stars);
+            }
+            if ((this.flags & 32) != 0) {
+                outputSerializedData.writeInt32(this.upgrade_msg_id);
+            }
+            if ((this.flags & 256) != 0) {
+                outputSerializedData.writeInt64(this.upgrade_stars);
+            }
+            if ((this.flags & 2048) != 0) {
+                this.from_id.serializeToStream(outputSerializedData);
+            }
+            if ((this.flags & 4096) != 0) {
+                this.peer.serializeToStream(outputSerializedData);
+                outputSerializedData.writeInt64(this.saved_id);
+            }
+            if ((this.flags & 16384) != 0) {
+                outputSerializedData.writeString(this.prepaid_upgrade_hash);
+            }
+            if ((this.flags & 32768) != 0) {
+                outputSerializedData.writeInt32(this.gift_msg_id);
             }
         }
     }
@@ -21244,32 +21410,57 @@ public class TLRPC {
     public static class WebPageAttribute extends TLObject {
         public int flags;
 
-        public static WebPageAttribute TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TLObject tL_webPageAttributeStory_layer162;
+        private static WebPageAttribute fromConstructor(int i) {
             switch (i) {
                 case -1818605967:
-                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStory_layer162();
-                    break;
+                    return new TL_webPageAttributeStory_layer162();
                 case -814781000:
-                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeUniqueStarGift();
-                    break;
+                    return new TL_webPageAttributeUniqueStarGift();
+                case 55150251:
+                    return new TL_webPageAttributeStarGiftAuction();
                 case 781501415:
-                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStory();
-                    break;
+                    return new TL_webPageAttributeStory();
                 case 835375875:
-                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStarGiftCollection();
-                    break;
+                    return new TL_webPageAttributeStarGiftCollection();
                 case 1355547603:
-                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeStickerSet();
-                    break;
+                    return new TL_webPageAttributeStickerSet();
                 case 1421174295:
-                    tL_webPageAttributeStory_layer162 = new TL_webPageAttributeTheme();
-                    break;
+                    return new TL_webPageAttributeTheme();
                 default:
-                    tL_webPageAttributeStory_layer162 = null;
-                    break;
+                    return null;
             }
-            return (WebPageAttribute) TLObject.TLdeserialize(WebPageAttribute.class, tL_webPageAttributeStory_layer162, inputSerializedData, i, z);
+        }
+
+        public static WebPageAttribute TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (WebPageAttribute) TLObject.TLdeserialize(WebPageAttribute.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+    }
+
+    public static class TL_webPageAttributeStarGiftAuction extends WebPageAttribute {
+        public static final int constructor = 55150251;
+        public int center_color;
+        public int edge_color;
+        public int end_date;
+        public TL_stars.StarGift gift;
+        public int text_color;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.end_date = inputSerializedData.readInt32(z);
+            this.center_color = inputSerializedData.readInt32(z);
+            this.edge_color = inputSerializedData.readInt32(z);
+            this.text_color = inputSerializedData.readInt32(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(55150251);
+            this.gift.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.end_date);
+            outputSerializedData.writeInt32(this.center_color);
+            outputSerializedData.writeInt32(this.edge_color);
+            outputSerializedData.writeInt32(this.text_color);
         }
     }
 
@@ -37227,308 +37418,213 @@ public class TLRPC {
         public boolean video;
         public WallPaper wallpaper;
 
-        public static MessageAction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TLObject tL_messageActionPhoneCall;
+        private static MessageAction fromConstructor(int i) {
             switch (i) {
                 case -2132731265:
-                    tL_messageActionPhoneCall = new TL_messageActionPhoneCall();
-                    break;
+                    return new TL_messageActionPhoneCall();
                 case -2068281992:
-                    tL_messageActionPhoneCall = new TL_messageActionPaidMessagesPrice();
-                    break;
+                    return new TL_messageActionPaidMessagesPrice();
                 case -2015170219:
-                    tL_messageActionPhoneCall = new TL_messageActionGiveawayResults();
-                    break;
+                    return new TL_messageActionGiveawayResults();
                 case -1892568281:
-                    tL_messageActionPhoneCall = new TL_messageActionPaymentSentMe_layer193();
-                    break;
+                    return new TL_messageActionPaymentSentMe_layer193();
                 case -1834538890:
-                    tL_messageActionPhoneCall = new TL_messageActionGameScore();
-                    break;
+                    return new TL_messageActionGameScore();
                 case -1799538451:
-                    tL_messageActionPhoneCall = new TL_messageActionPinMessage();
-                    break;
+                    return new TL_messageActionPinMessage();
                 case -1787656893:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique();
-                    break;
+                    return new TL_messageActionStarGiftUnique();
                 case -1781355374:
-                    tL_messageActionPhoneCall = new TL_messageActionChannelCreate();
-                    break;
+                    return new TL_messageActionChannelCreate();
                 case -1780625559:
-                    tL_messageActionPhoneCall = new TL_messageActionSuggestedPostSuccess();
-                    break;
+                    return new TL_messageActionSuggestedPostSuccess();
                 case -1780220945:
-                    tL_messageActionPhoneCall = new TL_messageActionChatDeletePhoto();
-                    break;
+                    return new TL_messageActionChatDeletePhoto();
                 case -1776926890:
-                    tL_messageActionPhoneCall = new TL_messageActionPaymentSent_layer193();
-                    break;
+                    return new TL_messageActionPaymentSent_layer193();
                 case -1730095465:
-                    tL_messageActionPhoneCall = new TL_messageActionGeoProximityReached();
-                    break;
+                    return new TL_messageActionGeoProximityReached();
                 case -1682706620:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGift_layer192();
-                    break;
+                    return new TL_messageActionStarGift_layer192();
                 case -1615153660:
-                    tL_messageActionPhoneCall = new TL_messageActionHistoryClear();
-                    break;
+                    return new TL_messageActionHistoryClear();
                 case -1539362612:
-                    tL_messageActionPhoneCall = new TL_messageActionChatDeleteUser();
-                    break;
+                    return new TL_messageActionChatDeleteUser();
                 case -1503425638:
-                    tL_messageActionPhoneCall = new TL_messageActionChatCreate_layer131();
-                    break;
+                    return new TL_messageActionChatCreate_layer131();
                 case -1475391004:
-                    tL_messageActionPhoneCall = new TL_messageActionGiveawayLaunch();
-                    break;
+                    return new TL_messageActionGiveawayLaunch();
                 case -1465661799:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftTon();
-                    break;
+                    return new TL_messageActionGiftTon();
                 case -1441072131:
-                    tL_messageActionPhoneCall = new TL_messageActionSetMessagesTTL_layer149();
-                    break;
+                    return new TL_messageActionSetMessagesTTL_layer149();
                 case -1434950843:
-                    tL_messageActionPhoneCall = new TL_messageActionSetChatTheme_layer213();
-                    break;
+                    return new TL_messageActionSetChatTheme_layer213();
                 case -1410748418:
-                    tL_messageActionPhoneCall = new TL_messageActionBotAllowed_layer153();
-                    break;
+                    return new TL_messageActionBotAllowed_layer153();
                 case -1407246387:
-                    tL_messageActionPhoneCall = new TL_messageActionPaidMessagesRefunded();
-                    break;
+                    return new TL_messageActionPaidMessagesRefunded();
                 case -1394619519:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique_layer202();
-                    break;
+                    return new TL_messageActionStarGiftUnique_layer202();
                 case -1341372510:
-                    tL_messageActionPhoneCall = new TL_messageActionPrizeStars();
-                    break;
+                    return new TL_messageActionPrizeStars();
                 case -1336546578:
-                    tL_messageActionPhoneCall = new TL_messageActionChannelMigrateFrom_layer131();
-                    break;
+                    return new TL_messageActionChannelMigrateFrom_layer131();
                 case -1316338916:
-                    tL_messageActionPhoneCall = new TL_messageActionTopicEdit_layer149();
-                    break;
+                    return new TL_messageActionTopicEdit_layer149();
                 case -1297179892:
-                    tL_messageActionPhoneCall = new TL_messageActionChatDeleteUser_layer131();
-                    break;
+                    return new TL_messageActionChatDeleteUser_layer131();
                 case -1281329567:
-                    tL_messageActionPhoneCall = new TL_messageActionGroupCallScheduled();
-                    break;
+                    return new TL_messageActionGroupCallScheduled();
                 case -1262252875:
-                    tL_messageActionPhoneCall = new TL_messageActionWebViewDataSent();
-                    break;
+                    return new TL_messageActionWebViewDataSent();
                 case -1247687078:
-                    tL_messageActionPhoneCall = new TL_messageActionChatEditTitle();
-                    break;
+                    return new TL_messageActionChatEditTitle();
                 case -1230047312:
-                    tL_messageActionPhoneCall = new TL_messageActionEmpty();
-                    break;
+                    return new TL_messageActionEmpty();
                 case -1189364422:
-                    tL_messageActionPhoneCall = new TL_messageActionSetChatTheme();
-                    break;
+                    return new TL_messageActionSetChatTheme();
                 case -1136350937:
-                    tL_messageActionPhoneCall = new TL_messageActionSetChatWallPaper_layer166();
-                    break;
+                    return new TL_messageActionSetChatWallPaper_layer166();
                 case -1126755303:
-                    tL_messageActionPhoneCall = new TL_messageActionPaidMessagesPrice_layer203();
-                    break;
+                    return new TL_messageActionPaidMessagesPrice_layer203();
                 case -1119368275:
-                    tL_messageActionPhoneCall = new TL_messageActionChatCreate();
-                    break;
+                    return new TL_messageActionChatCreate();
                 case -1065845395:
-                    tL_messageActionPhoneCall = new TL_messageActionSetSameChatWallPaper();
-                    break;
+                    return new TL_messageActionSetSameChatWallPaper();
                 case -1064024032:
-                    tL_messageActionPhoneCall = new TL_messageActionTopicEdit();
-                    break;
+                    return new TL_messageActionTopicEdit();
                 case -988359047:
-                    tL_messageActionPhoneCall = new TL_messageActionBotAllowed();
-                    break;
+                    return new TL_messageActionBotAllowed();
                 case -970673810:
-                    tL_messageActionPhoneCall = new TL_messageActionPaymentSent();
-                    break;
+                    return new TL_messageActionPaymentSent();
                 case -940721021:
-                    tL_messageActionPhoneCall = new TL_messageActionTodoAppendTasks();
-                    break;
+                    return new TL_messageActionTodoAppendTasks();
                 case -935499028:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftPremium_layer189();
-                    break;
+                    return new TL_messageActionGiftPremium_layer189();
                 case -872240531:
-                    tL_messageActionPhoneCall = new TL_messageActionBoostApply();
-                    break;
+                    return new TL_messageActionBoostApply();
                 case -864265079:
-                    tL_messageActionPhoneCall = new TL_messageActionTodoCompletions();
-                    break;
+                    return new TL_messageActionTodoCompletions();
                 case -758129906:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftCode_layer167();
-                    break;
+                    return new TL_messageActionGiftCode_layer167();
                 case -655036249:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGift_layer197();
-                    break;
+                    return new TL_messageActionStarGift_layer197();
                 case -648257196:
-                    tL_messageActionPhoneCall = new TL_messageActionSecureValuesSent();
-                    break;
+                    return new TL_messageActionSecureValuesSent();
+                case -614898352:
+                    return new TL_messageActionStarGift();
                 case -519864430:
-                    tL_messageActionPhoneCall = new TL_messageActionChatMigrateTo();
-                    break;
+                    return new TL_messageActionChatMigrateTo();
                 case -404267113:
-                    tL_messageActionPhoneCall = new TL_messageActionAttachMenuBotAllowed();
-                    break;
+                    return new TL_messageActionAttachMenuBotAllowed();
                 case -365344535:
-                    tL_messageActionPhoneCall = new TL_messageActionChannelMigrateFrom();
-                    break;
+                    return new TL_messageActionChannelMigrateFrom();
                 case -339958837:
-                    tL_messageActionPhoneCall = new TL_messageActionChatJoinedByRequest();
-                    break;
+                    return new TL_messageActionChatJoinedByRequest();
                 case -293988970:
-                    tL_messageActionPhoneCall = new TL_messageActionSuggestedPostApproval();
-                    break;
+                    return new TL_messageActionSuggestedPostApproval();
                 case -229775366:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGift();
-                    break;
+                    return new TL_messageActionStarGift_layer217();
                 case -202219658:
-                    tL_messageActionPhoneCall = new TL_messageActionContactSignUp();
-                    break;
+                    return new TL_messageActionContactSignUp();
                 case -123931160:
-                    tL_messageActionPhoneCall = new TL_messageActionChatJoinedByLink_layer131();
-                    break;
+                    return new TL_messageActionChatJoinedByLink_layer131();
                 case -85549226:
-                    tL_messageActionPhoneCall = new TL_messageActionCustomAction();
-                    break;
+                    return new TL_messageActionCustomAction();
                 case -25742243:
-                    tL_messageActionPhoneCall = new TL_messageActionRequestedPeer_layer168();
-                    break;
+                    return new TL_messageActionRequestedPeer_layer168();
                 case -6288180:
-                    tL_messageActionPhoneCall = new TL_messageActionPaymentSentMe();
-                    break;
+                    return new TL_messageActionPaymentSentMe();
                 case 29007925:
-                    tL_messageActionPhoneCall = new TL_messageActionPhoneNumberRequest();
-                    break;
+                    return new TL_messageActionPhoneNumberRequest();
                 case 51520707:
-                    tL_messageActionPhoneCall = new TL_messageActionChatJoinedByLink();
-                    break;
+                    return new TL_messageActionChatJoinedByLink();
                 case 139818551:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGift_layer195();
-                    break;
+                    return new TL_messageActionStarGift_layer195();
                 case 228168278:
-                    tL_messageActionPhoneCall = new TL_messageActionTopicCreate();
-                    break;
+                    return new TL_messageActionTopicCreate();
                 case 365886720:
-                    tL_messageActionPhoneCall = new TL_messageActionChatAddUser();
-                    break;
+                    return new TL_messageActionChatAddUser();
                 case 638024601:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique_layer197();
-                    break;
+                    return new TL_messageActionStarGiftUnique_layer197();
                 case 715107781:
-                    tL_messageActionPhoneCall = new TL_messageActionGiveawayResults_layer186();
-                    break;
+                    return new TL_messageActionGiveawayResults_layer186();
                 case 747579941:
-                    tL_messageActionPhoneCall = new TL_messageActionSuggestBirthday();
-                    break;
+                    return new TL_messageActionSuggestBirthday();
                 case 775611918:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique_layer210();
-                    break;
+                    return new TL_messageActionStarGiftUnique_layer210();
                 case 805187450:
-                    tL_messageActionPhoneCall = new TL_messageActionConferenceCall();
-                    break;
+                    return new TL_messageActionConferenceCall();
                 case 827428507:
-                    tL_messageActionPhoneCall = new TL_messageActionRequestedPeer();
-                    break;
+                    return new TL_messageActionRequestedPeer();
                 case 834962247:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftCode();
-                    break;
+                    return new TL_messageActionGiftCode();
                 case 858499565:
-                    tL_messageActionPhoneCall = new TL_messageActionGiveawayLaunch_layer186();
-                    break;
+                    return new TL_messageActionGiveawayLaunch_layer186();
                 case 888627955:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGiftUnique_layer214();
-                    break;
+                    return new TL_messageActionStarGiftUnique_layer214();
                 case 1007897979:
-                    tL_messageActionPhoneCall = new TL_messageActionSetMessagesTTL();
-                    break;
+                    return new TL_messageActionSetMessagesTTL();
                 case 1080663248:
-                    tL_messageActionPhoneCall = new TL_messageActionPaymentSent_layer140();
-                    break;
+                    return new TL_messageActionPaymentSent_layer140();
                 case 1102307842:
-                    tL_messageActionPhoneCall = new TL_messageActionPaymentRefunded();
-                    break;
+                    return new TL_messageActionPaymentRefunded();
                 case 1171632161:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftStars();
-                    break;
+                    return new TL_messageActionGiftStars();
                 case 1192749220:
-                    tL_messageActionPhoneCall = new TL_messageActionStarGift_layer211();
-                    break;
+                    return new TL_messageActionStarGift_layer211();
                 case 1200788123:
-                    tL_messageActionPhoneCall = new TL_messageActionScreenshotTaken();
-                    break;
+                    return new TL_messageActionScreenshotTaken();
                 case 1205698681:
-                    tL_messageActionPhoneCall = new TL_messageActionWebViewDataSentMe();
-                    break;
+                    return new TL_messageActionWebViewDataSentMe();
                 case 1217033015:
-                    tL_messageActionPhoneCall = new TL_messageActionChatAddUser_layer131();
-                    break;
+                    return new TL_messageActionChatAddUser_layer131();
                 case 1223234306:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftPremium();
-                    break;
+                    return new TL_messageActionGiftPremium();
                 case 1345295095:
-                    tL_messageActionPhoneCall = new TL_messageActionInviteToGroupCall();
-                    break;
+                    return new TL_messageActionInviteToGroupCall();
                 case 1348510708:
-                    tL_messageActionPhoneCall = new TL_messageActionSetChatWallPaper();
-                    break;
+                    return new TL_messageActionSetChatWallPaper();
                 case 1371385889:
-                    tL_messageActionPhoneCall = new TL_messageActionChatMigrateTo_layer131();
-                    break;
+                    return new TL_messageActionChatMigrateTo_layer131();
                 case 1431655760:
-                    tL_messageActionPhoneCall = new TL_messageActionUserJoined();
-                    break;
+                    return new TL_messageActionUserJoined();
                 case 1431655761:
-                    tL_messageActionPhoneCall = new TL_messageActionUserUpdatedPhoto();
-                    break;
+                    return new TL_messageActionUserUpdatedPhoto();
                 case 1431655762:
-                    tL_messageActionPhoneCall = new TL_messageActionTTLChange();
-                    break;
+                    return new TL_messageActionTTLChange();
                 case 1431655767:
-                    tL_messageActionPhoneCall = new TL_messageActionCreatedBroadcastList();
-                    break;
+                    return new TL_messageActionCreatedBroadcastList();
                 case 1431655925:
-                    tL_messageActionPhoneCall = new TL_messageActionLoginUnknownLocation();
-                    break;
+                    return new TL_messageActionLoginUnknownLocation();
                 case 1431655927:
-                    tL_messageActionPhoneCall = new TL_messageEncryptedAction();
-                    break;
+                    return new TL_messageEncryptedAction();
                 case 1456486804:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftCode_layer216();
-                    break;
+                    return new TL_messageActionGiftCode_layer216();
                 case 1474192222:
-                    tL_messageActionPhoneCall = new TL_messageActionSuggestProfilePhoto();
-                    break;
+                    return new TL_messageActionSuggestProfilePhoto();
                 case 1581055051:
-                    tL_messageActionPhoneCall = new TL_messageActionChatAddUser_old();
-                    break;
+                    return new TL_messageActionChatAddUser_old();
                 case 1737240073:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftCode_layer189();
-                    break;
+                    return new TL_messageActionGiftCode_layer189();
                 case 1777932024:
-                    tL_messageActionPhoneCall = new TL_messageActionSuggestedPostRefund();
-                    break;
+                    return new TL_messageActionSuggestedPostRefund();
                 case 1818391802:
-                    tL_messageActionPhoneCall = new TL_messageActionGiftPremium_layer216();
-                    break;
+                    return new TL_messageActionGiftPremium_layer216();
                 case 1991897370:
-                    tL_messageActionPhoneCall = new TL_messageActionInviteToGroupCall_layer131();
-                    break;
+                    return new TL_messageActionInviteToGroupCall_layer131();
                 case 2047704898:
-                    tL_messageActionPhoneCall = new TL_messageActionGroupCall();
-                    break;
+                    return new TL_messageActionGroupCall();
                 case 2144015272:
-                    tL_messageActionPhoneCall = new TL_messageActionChatEditPhoto();
-                    break;
+                    return new TL_messageActionChatEditPhoto();
                 default:
-                    tL_messageActionPhoneCall = null;
-                    break;
+                    return null;
             }
-            return (MessageAction) TLObject.TLdeserialize(MessageAction.class, tL_messageActionPhoneCall, inputSerializedData, i, z);
+        }
+
+        public static MessageAction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (MessageAction) TLObject.TLdeserialize(MessageAction.class, fromConstructor(i), inputSerializedData, i, z);
         }
     }
 
@@ -44637,6 +44733,9 @@ public class TLRPC {
                 case -667783411:
                     tL_updateTheme = new TL_updateGroupCallMessage();
                     break;
+                case -598150370:
+                    tL_updateTheme = new TL_updateStarGiftAuctionUserState();
+                    break;
                 case -554613808:
                     tL_updateTheme = new TL_updatePinnedForumTopics();
                     break;
@@ -44817,6 +44916,9 @@ public class TLRPC {
                 case 1180041828:
                     tL_updateTheme = new TL_updateLangPackTooLong();
                     break;
+                case 1222788802:
+                    tL_updateTheme = new TL_updateStarGiftAuctionState();
+                    break;
                 case 1299263278:
                     tL_updateTheme = new TL_updateBotCommands();
                     break;
@@ -44906,6 +45008,44 @@ public class TLRPC {
                 tL_updateTheme = applicationLoader.parseTLUpdate(i);
             }
             return (Update) TLObject.TLdeserialize(Update.class, tL_updateTheme, inputSerializedData, i, z);
+        }
+    }
+
+    public static class TL_updateStarGiftAuctionState extends Update {
+        public static final int constructor = 1222788802;
+        public long gift_id;
+        public TL_stars.StarGiftAuctionState state;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.gift_id = inputSerializedData.readInt64(z);
+            this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1222788802);
+            outputSerializedData.writeInt64(this.gift_id);
+            this.state.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateStarGiftAuctionUserState extends Update {
+        public static final int constructor = -598150370;
+        public long gift_id;
+        public TL_stars.TL_StarGiftAuctionUserState user_state;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.gift_id = inputSerializedData.readInt64(z);
+            this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-598150370);
+            outputSerializedData.writeInt64(this.gift_id);
+            this.user_state.serializeToStream(outputSerializedData);
         }
     }
 
@@ -75834,14 +75974,14 @@ public class TLRPC {
         }
     }
 
-    public static class TL_payments_getPaymentForm extends TLObject {
+    public static class TL_payments_getPaymentForm extends TLMethod<PaymentForm> {
         public static final int constructor = 924093883;
         public int flags;
         public InputInvoice invoice;
         public TL_dataJSON theme_params;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public PaymentForm deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return PaymentForm.TLdeserialize(inputSerializedData, i, z);
         }
 
@@ -77317,8 +77457,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 217;
-                this.params.put("legacy_layer", "217");
+                this.layer = 218;
+                this.params.put("legacy_layer", "218");
             }
             if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
                 for (Map.Entry<String, String> entry2 : this.params.entrySet()) {
@@ -81434,37 +81574,6 @@ public class TLRPC {
         public static final int constructor = -1023016155;
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1023016155);
-            int i = this.unread ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
-            this.flags = i3;
-            int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
-            outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt32((int) this.from_id.user_id);
-            this.peer_id.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
-                outputSerializedData.writeInt32((int) this.fwd_from.from_id.user_id);
-                outputSerializedData.writeInt32(this.fwd_from.date);
-            }
-            if ((this.flags & 8) != 0) {
-                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
-            }
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeString(this.message);
-            this.media.serializeToStream(outputSerializedData);
-            if ((this.flags & 64) != 0) {
-                this.reply_markup.serializeToStream(outputSerializedData);
-            }
-            writeAttachPath(outputSerializedData);
-        }
-
-        @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z) | 768;
             this.flags = readInt32;
@@ -81502,6 +81611,37 @@ public class TLRPC {
             if ((this.flags & 64) != 0) {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1023016155);
+            int i = this.unread ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.out ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
+            this.flags = i3;
+            int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
+            this.flags = i4;
+            outputSerializedData.writeInt32(i4);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32((int) this.from_id.user_id);
+            this.peer_id.serializeToStream(outputSerializedData);
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt32((int) this.fwd_from.from_id.user_id);
+                outputSerializedData.writeInt32(this.fwd_from.date);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
+            }
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeString(this.message);
+            this.media.serializeToStream(outputSerializedData);
+            if ((this.flags & 64) != 0) {
+                this.reply_markup.serializeToStream(outputSerializedData);
+            }
+            writeAttachPath(outputSerializedData);
         }
     }
 }

@@ -164,6 +164,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         updateColors();
     }
 
+    public void setTextHacks(boolean z, boolean z2, boolean z3, boolean z4) {
+        this.text.setHacks(z, z2, z3, z4);
+    }
+
     public void setSubTextHacks(boolean z, boolean z2, boolean z3, boolean z4) {
         this.subText.setHacks(z, z2, z3, z4);
     }

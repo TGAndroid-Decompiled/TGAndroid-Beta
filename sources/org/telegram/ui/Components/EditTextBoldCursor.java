@@ -98,6 +98,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private int hintColor;
     private long hintLastUpdateTime;
     private StaticLayout hintLayout;
+    public int hintLayoutOffset;
     public float hintLayoutX;
     public float hintLayoutY;
     public boolean hintLayoutYFix;
@@ -848,7 +849,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                         this.hintLayoutY = height;
                         canvas.translate(scrollX, height);
                     } else {
-                        float scrollX2 = i + getScrollX();
+                        float scrollX2 = i + getScrollX() + this.hintLayoutOffset;
                         this.hintLayoutX = scrollX2;
                         float height2 = (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp2(7.0f);
                         this.hintLayoutY = height2;

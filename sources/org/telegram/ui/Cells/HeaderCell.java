@@ -19,7 +19,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class HeaderCell extends FrameLayout {
-    private boolean animated;
+    private final boolean animated;
     private AnimatedTextView animatedTextView;
     protected int bottomMargin;
     private int height;
@@ -144,7 +144,14 @@ public class HeaderCell extends FrameLayout {
     }
 
     public void setTextColor(int i) {
-        this.textView.setTextColor(i);
+        TextView textView = this.textView;
+        if (textView != null) {
+            textView.setTextColor(i);
+        }
+        AnimatedTextView animatedTextView = this.animatedTextView;
+        if (animatedTextView != null) {
+            animatedTextView.setTextColor(i);
+        }
     }
 
     public void setText(CharSequence charSequence) {

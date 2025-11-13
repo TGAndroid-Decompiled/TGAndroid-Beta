@@ -5456,9 +5456,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
 
             @Override
-            public void dismiss() {
+            public void lambda$new$3() {
                 EmojiView.this.emojiPackAlertOpened = false;
-                super.dismiss();
+                super.lambda$new$3();
             }
 
             @Override
@@ -5484,9 +5484,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void dismiss() {
+        public void lambda$new$3() {
             EmojiView.this.emojiPackAlertOpened = false;
-            super.dismiss();
+            super.lambda$new$3();
         }
 
         @Override

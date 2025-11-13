@@ -60,6 +60,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BulletinFactory;
@@ -98,6 +99,7 @@ public class StoriesController {
     private boolean loadingFromServerHidden;
     private boolean loadingSendAs;
     SharedPreferences mainSettings;
+    private final HashSet requestingUnsupportedStories;
     public final ArrayList sendAs;
     final Runnable sortStoriesRunnable;
     String state;
@@ -109,6 +111,7 @@ public class StoriesController {
     private boolean storyLimitFetched;
     private int totalStoriesCount;
     private int totalStoriesCountHidden;
+    private final HashSet unsupportedStoriesChecked;
     private final LongSparseArray uploadingStoriesByDialogId = new LongSparseArray();
     private final LongSparseArray uploadingAndEditingStories = new LongSparseArray();
     public int uploadedStories = 0;
@@ -160,6 +163,7 @@ public class StoriesController {
         arrayList.add(new TLRPC.TL_inputPeerSelf());
         this.loadingSendAs = false;
         this.loadedSendAs = false;
+        this.requestingUnsupportedStories = new HashSet();
         this.currentAccount = i;
         this.storiesStorage = new StoriesStorage(i);
         SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
@@ -169,6 +173,7 @@ public class StoriesController {
         this.totalStoriesCountHidden = this.mainSettings.getInt("total_stores_hidden", 0);
         this.totalStoriesCount = this.mainSettings.getInt("total_stores", 0);
         this.storiesReadLoaded = this.mainSettings.getBoolean("read_loaded", false);
+        this.unsupportedStoriesChecked = new HashSet(this.mainSettings.getStringSet("unsupported_stories_checked", new HashSet()));
         this.stealthMode = readStealthMode(this.mainSettings.getString("stories_stealth_mode", null));
         this.storiesStorage.getMaxReadIds(new Consumer() {
             @Override
@@ -4540,49 +4545,57 @@ public class StoriesController {
         }
     }
 
-    public void canSendStoryFor(final long j, final Consumer consumer, final boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public void canSendStoryFor(final long j, final Consumer consumer, final boolean z, final Theme.ResourcesProvider resourcesProvider) {
         TL_stories.TL_stories_canSendStory tL_stories_canSendStory = new TL_stories.TL_stories_canSendStory();
         tL_stories_canSendStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_canSendStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                StoriesController.this.lambda$canSendStoryFor$34(z, j, consumer, tLObject, tL_error);
+                StoriesController.this.lambda$canSendStoryFor$34(z, j, consumer, resourcesProvider, tLObject, tL_error);
             }
         }, 1024);
     }
 
-    public void lambda$canSendStoryFor$34(final boolean z, final long j, final Consumer consumer, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$canSendStoryFor$34(final boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.this.lambda$canSendStoryFor$33(tL_error, z, j, consumer);
+                StoriesController.this.lambda$canSendStoryFor$33(tL_error, z, j, consumer, resourcesProvider);
             }
         });
     }
 
-    public void lambda$canSendStoryFor$33(TLRPC.TL_error tL_error, boolean z, final long j, final Consumer consumer) {
+    public void lambda$canSendStoryFor$33(TLRPC.TL_error tL_error, boolean z, final long j, final Consumer consumer, Theme.ResourcesProvider resourcesProvider) {
         if (tL_error != null) {
-            if (!tL_error.text.contains("BOOSTS_REQUIRED")) {
-                BulletinFactory global = BulletinFactory.global();
-                if (global != null) {
-                    global.createErrorBulletin(tL_error.text);
+            if (tL_error.text.contains("BOOSTS_REQUIRED")) {
+                if (z) {
+                    final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+                    messagesController.getBoostsController().getBoostsStats(j, new Consumer() {
+                        @Override
+                        public final void accept(Object obj) {
+                            StoriesController.this.lambda$canSendStoryFor$32(consumer, messagesController, j, (TL_stories.TL_premium_boostsStatus) obj);
+                        }
+                    });
+                    return;
+                } else {
+                    consumer.accept(Boolean.FALSE);
+                    return;
+                }
+            }
+            if (tL_error.text.startsWith("STORY_LIVE_ALREADY_")) {
+                BaseFragment lastFragment = LaunchActivity.getLastFragment();
+                if (z && lastFragment != null) {
+                    new AlertDialog.Builder(lastFragment.getContext(), resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle)).setMessage(LocaleController.getString(R.string.LiveStoryAlreadyStreaming)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                 }
                 consumer.accept(Boolean.FALSE);
                 return;
             }
-            if (z) {
-                final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-                messagesController.getBoostsController().getBoostsStats(j, new Consumer() {
-                    @Override
-                    public final void accept(Object obj) {
-                        StoriesController.this.lambda$canSendStoryFor$32(consumer, messagesController, j, (TL_stories.TL_premium_boostsStatus) obj);
-                    }
-                });
-                return;
-            } else {
-                consumer.accept(Boolean.FALSE);
-                return;
+            BulletinFactory global = BulletinFactory.global();
+            if (global != null) {
+                global.showForError(tL_error);
             }
+            consumer.accept(Boolean.FALSE);
+            return;
         }
         consumer.accept(Boolean.TRUE);
     }
@@ -5190,5 +5203,69 @@ public class StoriesController {
         boolean remove = z ? hashSet.remove(Integer.valueOf(i)) : hashSet.add(Integer.valueOf(i));
         storyItem.albums = !hashSet.isEmpty() ? new ArrayList<>(hashSet) : null;
         return remove;
+    }
+
+    public void checkUnsupportedStory(final long j, final int i) {
+        final String str = "218:" + j + ":" + i;
+        if (this.requestingUnsupportedStories.contains(str) || this.unsupportedStoriesChecked.contains(str)) {
+            return;
+        }
+        this.requestingUnsupportedStories.add(str);
+        TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
+        tL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tL_stories_getStoriesByID.id.add(Integer.valueOf(i));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                StoriesController.this.lambda$checkUnsupportedStory$38(i, str, j, tLObject, tL_error);
+            }
+        });
+    }
+
+    public void lambda$checkUnsupportedStory$38(final int i, final String str, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StoriesController.this.lambda$checkUnsupportedStory$37(tLObject, i, str, j);
+            }
+        });
+    }
+
+    public void lambda$checkUnsupportedStory$37(TLObject tLObject, int i, String str, long j) {
+        TL_stories.StoryItem storyItem;
+        if (tLObject != null) {
+            TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_stories_stories.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_stories_stories.chats, false);
+            for (int i2 = 0; i2 < tL_stories_stories.stories.size(); i2++) {
+                if (tL_stories_stories.stories.get(i2).id == i) {
+                    storyItem = tL_stories_stories.stories.get(i2);
+                    break;
+                }
+            }
+        }
+        storyItem = null;
+        this.requestingUnsupportedStories.remove(str);
+        if (storyItem != null) {
+            storyItem.dialogId = j;
+            TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
+            tL_updateStory.peer = MessagesController.getInstance(this.currentAccount).getPeer(j);
+            tL_updateStory.story = storyItem;
+            processUpdate(tL_updateStory);
+            return;
+        }
+        Iterator it = this.unsupportedStoriesChecked.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                break;
+            }
+            String str2 = (String) it.next();
+            if (str2.endsWith(":" + j + ":" + i)) {
+                this.unsupportedStoriesChecked.remove(str2);
+                break;
+            }
+        }
+        this.unsupportedStoriesChecked.add(str);
+        this.mainSettings.edit().putStringSet("unsupported_stories_checked", this.unsupportedStoriesChecked).apply();
     }
 }

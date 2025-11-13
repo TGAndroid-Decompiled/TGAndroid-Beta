@@ -22,6 +22,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -289,6 +290,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     private int linesCount;
     private int linesPosition;
     private int listPosition;
+    public final View liveCommentsShadowView;
     public final LiveCommentsView liveCommentsView;
     private HintView mediaBanTooltip;
     private MentionsContainerView mentionContainer;
@@ -859,7 +861,16 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         });
         this.storyLines = new StoryLinesDrawable(this, sharedResources);
         this.storyContainer.addView(anonymousClass5, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 64.0f, 0.0f, 0.0f));
-        LiveCommentsView liveCommentsView = new LiveCommentsView(context, storyViewer, storyViewer.containerView, this.topBulletinContainer) {
+        View view = new View(context);
+        this.liveCommentsShadowView = view;
+        view.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, -16777216}));
+        LiveCommentsView liveCommentsView = new LiveCommentsView(context, storyViewer, storyViewer.containerView, view, this.topBulletinContainer) {
+            @Override
+            public void setVisibility(int i) {
+                super.setVisibility(i);
+                PeerStoriesView.this.liveCommentsShadowView.setVisibility(i);
+            }
+
             @Override
             protected TLRPC.Peer getDefaultSendAs() {
                 LivePlayer livePlayer = storyViewer.livePlayer;
@@ -940,6 +951,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         };
         this.liveCommentsView = liveCommentsView;
+        this.storyContainer.addView(view, LayoutHelper.createFrame(-1, 200, 87));
         this.storyContainer.addView(liveCommentsView, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 64.0f, 0.0f, 0.0f));
         this.storyContainer.addView(this.topBulletinContainer, LayoutHelper.createFrame(-1, 100.0f, 0, 0.0f, 55.0f, 0.0f, 0.0f));
         frameLayout6.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(20.0f), 0, ColorUtils.setAlphaComponent(-1, 100)));
@@ -2217,7 +2229,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryPrivacyBottomSheet.this.dismiss();
+                    StoryPrivacyBottomSheet.this.lambda$new$3();
                 }
             });
         }
@@ -2626,7 +2638,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
     public void lambda$createQualityItem$14(BottomSheet bottomSheet, View view) {
         this.delegate.showDialog(new PremiumFeatureBottomSheet(this.storyViewer.fragment, 14, false));
-        bottomSheet.dismiss();
+        bottomSheet.lambda$new$3();
     }
 
     public void showLikesReaction(final boolean z) {
@@ -3242,9 +3254,10 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         LivePlayer livePlayer;
         TLRPC.Peer defaultSendAs;
         LivePlayer livePlayer2;
+        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         long j = this.dialogId;
         if (j >= 0 || (livePlayer2 = this.storyViewer.livePlayer) == null) {
-            return j >= 0 && (storyViewer = this.storyViewer) != null && (livePlayer = storyViewer.livePlayer) != null && livePlayer.isAdmin() && (!z || (defaultSendAs = this.storyViewer.livePlayer.getDefaultSendAs()) == null || this.dialogId == DialogObject.getPeerDialogId(defaultSendAs) || DialogObject.getPeerDialogId(defaultSendAs) == UserConfig.getInstance(this.currentAccount).getClientUserId());
+            return j >= 0 && (storyViewer = this.storyViewer) != null && (livePlayer = storyViewer.livePlayer) != null && livePlayer.isAdmin() && (!z || (defaultSendAs = this.storyViewer.livePlayer.getDefaultSendAs()) == null || this.dialogId == DialogObject.getPeerDialogId(defaultSendAs) || DialogObject.getPeerDialogId(defaultSendAs) == clientUserId || this.dialogId == clientUserId);
         }
         if (!z) {
             return false;
@@ -3262,23 +3275,23 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 removeView(this.highlightMessageHintView);
             }
         }
-        if (disabledPaidFeatures(true)) {
-            return;
+        if (!disabledPaidFeatures(true) && MessagesController.getGlobalMainSettings().getInt("taptostoryhighlighthint", 0) < 3) {
+            MessagesController.getGlobalMainSettings().edit().putInt("taptostoryhighlighthint", MessagesController.getGlobalMainSettings().getInt("taptostoryhighlighthint", 0) + 1).apply();
+            final HintView2 hintView22 = new HintView2(getContext(), 3);
+            this.highlightMessageHintView = hintView22;
+            hintView22.setText(LocaleController.getString(R.string.LiveStoryHighlightHint));
+            this.highlightMessageHintView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+            this.highlightMessageHintView.setTextAlign(Layout.Alignment.ALIGN_OPPOSITE);
+            this.highlightMessageHintView.setOnHiddenListener(new Runnable() {
+                @Override
+                public final void run() {
+                    PeerStoriesView.this.lambda$showPaidMessageHint$28(hintView22);
+                }
+            });
+            addView(this.highlightMessageHintView, LayoutHelper.createFrame(-1, 100, 87));
+            this.highlightMessageHintView.show();
+            updateViewOffsets();
         }
-        final HintView2 hintView22 = new HintView2(getContext(), 3);
-        this.highlightMessageHintView = hintView22;
-        hintView22.setText(LocaleController.getString(R.string.LiveStoryHighlightHint));
-        this.highlightMessageHintView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        this.highlightMessageHintView.setTextAlign(Layout.Alignment.ALIGN_OPPOSITE);
-        this.highlightMessageHintView.setOnHiddenListener(new Runnable() {
-            @Override
-            public final void run() {
-                PeerStoriesView.this.lambda$showPaidMessageHint$28(hintView22);
-            }
-        });
-        addView(this.highlightMessageHintView, LayoutHelper.createFrame(-1, 100, 87));
-        this.highlightMessageHintView.show();
-        updateViewOffsets();
     }
 
     public void lambda$showPaidMessageHint$28(HintView2 hintView2) {
@@ -3351,6 +3364,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         public boolean sendMessage() {
             int i;
             if (this.sendButtonContainer.getAlpha() < 0.5f) {
+                openKeyboard();
                 return false;
             }
             if (PeerStoriesView.this.currentStory.isLive) {
@@ -3375,6 +3389,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     this.messageEditText.setText("");
                     AndroidUtilities.hideKeyboard(this);
                     PeerStoriesView.this.messageStars = 0L;
+                    PeerStoriesView.this.checkStealthMode(true);
                     checkSendButton(true);
                     return true;
                 }
@@ -4237,7 +4252,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             if (path != null && path.exists()) {
                 ShareAlert shareAlert = this.shareAlert;
                 if (shareAlert != null) {
-                    shareAlert.dismiss();
+                    shareAlert.lambda$new$3();
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -5404,6 +5419,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public void lambda$updatePosition$45() {
+        MessagesController.getGlobalMainSettings().edit().putInt("taptostoryhighlighthint", 3).apply();
         TLRPC.TL_textWithEntities textWithEntities = this.chatActivityEnterView.getTextWithEntities();
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         TLRPC.Peer defaultSendAs = this.storyViewer.livePlayer.getDefaultSendAs();
@@ -5857,25 +5873,29 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 } else {
                     LiveCommentsView liveCommentsView = this.liveCommentsView;
                     if (childAt == liveCommentsView) {
-                        if (liveCommentsView.topListView.findChildViewUnder(f, (f2 - liveCommentsView.getY()) - this.liveCommentsView.topListView.getY()) == null) {
-                            if (this.liveCommentsView.isCollapsed()) {
-                                continue;
-                            } else if (!this.keyboardVisible && f2 <= this.liveCommentsView.getY() + this.liveCommentsView.top()) {
+                        liveCommentsView.topListView.getHitRect(rect2);
+                        if (rect2.contains((int) ((f - this.liveCommentsView.getX()) - this.liveCommentsView.topListView.getX()), (int) ((f2 - this.liveCommentsView.getY()) - this.liveCommentsView.topListView.getY()))) {
+                            return true;
+                        }
+                        if (!this.liveCommentsView.isCollapsed()) {
+                            if (!this.keyboardVisible && f2 <= this.liveCommentsView.getY() + this.liveCommentsView.top()) {
                                 LiveCommentsView liveCommentsView2 = this.liveCommentsView;
                                 if (liveCommentsView2.listView.findChildViewUnder(f, (f2 - liveCommentsView2.getY()) - this.liveCommentsView.listView.getY()) != null) {
                                 }
                             }
+                            return true;
                         }
-                        return true;
-                    }
-                    if (this.keyboardVisible && childAt == this.chatActivityEnterView && f2 > rect2.top) {
-                        return true;
-                    }
-                    if (!z && rect2.contains((int) f, (int) f2) && (((childAt.isClickable() || childAt == this.reactionsContainerLayout) && childAt.isEnabled()) || ((chatActivityEnterView = this.chatActivityEnterView) != null && childAt == chatActivityEnterView.getRecordCircle()))) {
-                        return true;
-                    }
-                    if (childAt.isEnabled() && (childAt instanceof ViewGroup) && findClickableView((ViewGroup) childAt, f - childAt.getX(), f2 - childAt.getY(), z)) {
-                        return true;
+                        continue;
+                    } else {
+                        if (this.keyboardVisible && childAt == this.chatActivityEnterView && f2 > rect2.top) {
+                            return true;
+                        }
+                        if (!z && rect2.contains((int) f, (int) f2) && (((childAt.isClickable() || childAt == this.reactionsContainerLayout) && childAt.isEnabled()) || ((chatActivityEnterView = this.chatActivityEnterView) != null && childAt == chatActivityEnterView.getRecordCircle()))) {
+                            return true;
+                        }
+                        if (childAt.isEnabled() && (childAt instanceof ViewGroup) && findClickableView((ViewGroup) childAt, f - childAt.getX(), f2 - childAt.getY(), z)) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -6003,7 +6023,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 ChatAttachAlert chatAttachAlert2 = this.chatAttachAlert;
                 if (chatAttachAlert2 != null) {
-                    chatAttachAlert2.dismiss();
+                    chatAttachAlert2.lambda$new$3();
                 }
                 afterMessageSend(true);
             }

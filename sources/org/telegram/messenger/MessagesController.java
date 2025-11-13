@@ -1023,6 +1023,18 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
+    public void putLastGiftAuctionUpdate() {
+        SharedPreferences sharedPreferences = this.mainPreferences;
+        if (sharedPreferences != null) {
+            sharedPreferences.edit().putLong("lastGiftAuctionTimeUpdate", System.currentTimeMillis()).apply();
+        }
+    }
+
+    public boolean giftAuctionUpdateWasRecently() {
+        SharedPreferences sharedPreferences = this.mainPreferences;
+        return System.currentTimeMillis() - (sharedPreferences != null ? sharedPreferences.getLong("lastGiftAuctionTimeUpdate", 0L) : 0L) < 86400000;
+    }
+
     public ArrayList<TLRPC.TL_messages_stickerSet> filterPremiumStickers(ArrayList<TLRPC.TL_messages_stickerSet> arrayList) {
         if (!premiumFeaturesBlocked()) {
             return arrayList;
@@ -22430,7 +22442,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return z;
     }
 
-    public boolean processUpdateArray(java.util.ArrayList<org.telegram.tgnet.TLRPC.Update> r81, final java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r82, final java.util.ArrayList<org.telegram.tgnet.TLRPC.Chat> r83, boolean r84, final int r85) {
+    public boolean processUpdateArray(java.util.ArrayList<org.telegram.tgnet.TLRPC.Update> r82, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r83, java.util.ArrayList<org.telegram.tgnet.TLRPC.Chat> r84, boolean r85, int r86) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.processUpdateArray(java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, boolean, int):boolean");
     }
 

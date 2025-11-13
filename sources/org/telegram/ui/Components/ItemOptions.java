@@ -33,7 +33,6 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -713,19 +712,6 @@ public class ItemOptions {
             this.lastLayout.addView(view, layoutParams);
         }
         return this;
-    }
-
-    public ItemOptions addDialog(int i, long j, Runnable runnable) {
-        int i2;
-        TLObject userOrChat = MessagesController.getInstance(i).getUserOrChat(j);
-        boolean z = userOrChat instanceof TLRPC.User;
-        boolean z2 = (userOrChat instanceof TLRPC.Chat) && ChatObject.isChannelAndNotMegaGroup((TLRPC.Chat) userOrChat);
-        if (z) {
-            i2 = R.string.ViewProfile;
-        } else {
-            i2 = z2 ? R.string.ViewChannelProfile : R.string.ViewGroupProfile;
-        }
-        return addProfile(userOrChat, LocaleController.getString(i2), runnable);
     }
 
     public ItemOptions addProfile(TLObject tLObject, CharSequence charSequence, final Runnable runnable) {

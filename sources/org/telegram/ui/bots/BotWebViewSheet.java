@@ -2174,7 +2174,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public void lambda$openOptions$35() {
         Activity activity = this.parentActivity;
         if (activity instanceof LaunchActivity) {
-            ((LaunchActivity) activity).lambda$runLinkRequest$100(ChatActivity.of(this.botId));
+            ((LaunchActivity) activity).lambda$runLinkRequest$101(ChatActivity.of(this.botId));
         }
         dismiss(true);
     }
@@ -2974,7 +2974,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1191getWindowView() {
+    public WindowView mo1196getWindowView() {
         return this.windowView;
     }
 
