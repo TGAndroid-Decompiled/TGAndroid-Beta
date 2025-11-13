@@ -4342,9 +4342,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.lambda$startLive$54(org.telegram.tgnet.TLObject, org.telegram.tgnet.tl.TL_stories$TL_startLive, boolean, long, boolean, org.telegram.tgnet.TLRPC$TL_error, java.lang.Runnable):void");
     }
 
-    public void lambda$startLive$53(boolean z, long j, TL_stories.StoryItem storyItem, TLRPC.InputGroupCall inputGroupCall, boolean z2) {
+    public void lambda$startLive$53(boolean z, TL_stories.StoryItem storyItem, long j, TLRPC.InputGroupCall inputGroupCall, boolean z2) {
         if (!z) {
-            LivePlayer.recording = new LivePlayer(getContext(), this.currentAccount, j, storyItem.id, z, inputGroupCall, true, z2);
+            LivePlayer.recording = new LivePlayer(getContext(), this.currentAccount, storyItem, j, storyItem.id, z, inputGroupCall, true, z2);
         }
         SourceView sourceView = this.fromSourceView;
         if (sourceView != null) {

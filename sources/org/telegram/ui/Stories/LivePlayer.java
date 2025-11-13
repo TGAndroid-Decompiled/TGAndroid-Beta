@@ -33,6 +33,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.Stories.LivePlayer;
@@ -72,6 +73,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     private long recordingVideoCapturer;
     private final HashSet srcs;
     public final int storyId;
+    public TL_stories.StoryItem storyItem;
     public ArrayList topMessages;
     private float volume;
 
@@ -146,11 +148,11 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public LivePlayer(Context context, int i, long j, int i2, boolean z, TLRPC.InputGroupCall inputGroupCall) {
-        this(context, i, j, i2, z, inputGroupCall, false, false);
+    public LivePlayer(Context context, int i, TL_stories.StoryItem storyItem, long j, int i2, boolean z, TLRPC.InputGroupCall inputGroupCall) {
+        this(context, i, storyItem, j, i2, z, inputGroupCall, false, false);
     }
 
-    public LivePlayer(Context context, int i, long j, int i2, boolean z, TLRPC.InputGroupCall inputGroupCall, boolean z2, boolean z3) {
+    public LivePlayer(Context context, int i, TL_stories.StoryItem storyItem, long j, int i2, boolean z, TLRPC.InputGroupCall inputGroupCall, boolean z2, boolean z3) {
         this.isMuted = false;
         this.emptyStream = false;
         this.destroyed = false;
@@ -163,6 +165,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         this.context = context;
         this.currentAccount = i;
         this.inputCall = inputGroupCall;
+        this.storyItem = storyItem;
         this.dialogId = j;
         this.storyId = i2;
         this.isRtmpStream = z;

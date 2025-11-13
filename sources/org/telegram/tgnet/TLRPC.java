@@ -4772,25 +4772,6 @@ public class TLRPC {
 
     public static class TL_messageActionStarGift_layer217 extends TL_messageActionStarGift {
         public static final int constructor = -229775366;
-        public boolean can_upgrade;
-        public long convert_stars;
-        public boolean converted;
-        public boolean forceIn;
-        public Peer from_id;
-        public TL_stars.StarGift gift;
-        public int gift_msg_id;
-        public TL_textWithEntities message;
-        public boolean name_hidden;
-        public boolean prepaid_upgrade;
-        public String prepaid_upgrade_hash;
-        public boolean refunded;
-        public boolean saved;
-        public long saved_id;
-        public boolean transferred;
-        public int upgrade_msg_id;
-        public boolean upgrade_separate;
-        public long upgrade_stars;
-        public boolean upgraded;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
@@ -4807,7 +4788,7 @@ public class TLRPC {
             this.upgrade_separate = (readInt32 & 65536) != 0;
             this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 2) != 0) {
-                this.message = TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                ((TL_messageActionStarGift) this).message = TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if ((this.flags & 16) != 0) {
                 this.convert_stars = inputSerializedData.readInt64(z);
@@ -4857,7 +4838,7 @@ public class TLRPC {
             outputSerializedData.writeInt32(i9);
             this.gift.serializeToStream(outputSerializedData);
             if ((this.flags & 2) != 0) {
-                this.message.serializeToStream(outputSerializedData);
+                ((TL_messageActionStarGift) this).message.serializeToStream(outputSerializedData);
             }
             if ((this.flags & 16) != 0) {
                 outputSerializedData.writeInt64(this.convert_stars);

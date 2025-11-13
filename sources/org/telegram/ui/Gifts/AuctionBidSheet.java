@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
@@ -54,6 +55,7 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.BalanceCloud;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -223,6 +225,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.topBidderCells[i3].setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
             int i4 = i3 + 1;
             this.topBidderCells[i3].setPlace(i4, true, false);
+            this.topBidderCells[i3].setBackground(Theme.getSelectorDrawable(false));
             this.topBidderCells[i3].drawDivider = i3 < 2;
             linearLayout.addView(this.topBidderCells[i3], LayoutHelper.createLinear(-1, -2));
             i3 = i4;
@@ -373,12 +376,18 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
                 while (i < min) {
                     int i2 = i + 1;
                     Long l = this.auction.auctionStateActive.top_bidders.get(i);
-                    l.longValue();
+                    final long longValue = l.longValue();
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(l);
                     if (user != null) {
                         this.topBidderCells[i].setUser(user, z);
                     }
                     this.topBidderCells[i].setBid(this.auction.approximateBidAmountFromPlace(i2), z);
+                    this.topBidderCells[i].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            AuctionBidSheet.this.lambda$updateTable$2(longValue, view);
+                        }
+                    });
                     i = i2;
                 }
             }
@@ -391,6 +400,29 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         updateSelfBidderHeader(z);
         updateButtonText(z);
         checkSliderSubText();
+    }
+
+    public void lambda$updateTable$2(long j, View view) {
+        openProfile(j);
+    }
+
+    private void openProfile(long j) {
+        lambda$new$0();
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null || UserObject.isService(j)) {
+            return;
+        }
+        Bundle bundle = new Bundle();
+        if (j > 0) {
+            bundle.putLong("user_id", j);
+            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                bundle.putBoolean("my_profile", true);
+            }
+        } else {
+            bundle.putLong("chat_id", -j);
+        }
+        bundle.putBoolean("open_gifts", true);
+        safeLastFragment.presentFragment(new ProfileActivity(bundle));
     }
 
     public void onColorFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
@@ -461,7 +493,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionBidSheet.this.lambda$updateButtonText$2(view);
+                    AuctionBidSheet.this.lambda$updateButtonText$3(view);
                 }
             });
         } else {
@@ -470,7 +502,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionBidSheet.this.lambda$updateButtonText$3(view);
+                    AuctionBidSheet.this.lambda$updateButtonText$4(view);
                 }
             });
             z2 = z3;
@@ -482,11 +514,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         this.buttonView.setClickable(z2);
     }
 
-    public void lambda$updateButtonText$2(View view) {
+    public void lambda$updateButtonText$3(View view) {
         lambda$new$0();
     }
 
-    public void lambda$updateButtonText$3(View view) {
+    public void lambda$updateButtonText$4(View view) {
         sendBid(this.slider.getValue());
     }
 
@@ -512,7 +544,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
 
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.Gift2AuctionPlaceABid);
+        return LocaleController.getString(R.string.Gift2AuctionPlaceABidTitle);
     }
 
     @Override
@@ -578,12 +610,12 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         GiftAuctionController.getInstance(this.currentAccount).sendBid(this.giftId, this.params, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionBidSheet.this.lambda$sendBid$4(j, (Boolean) obj, (String) obj2);
+                AuctionBidSheet.this.lambda$sendBid$5(j, (Boolean) obj, (String) obj2);
             }
         });
     }
 
-    public void lambda$sendBid$4(long j, Boolean bool, String str) {
+    public void lambda$sendBid$5(long j, Boolean bool, String str) {
         this.buttonView.setLoading(false);
         this.bidIsPending = false;
         if (bool != null) {
@@ -612,7 +644,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     private void updateBulletinContainerPosition() {
-        this.bulletinContainer.setTranslationY(Math.max(0, (this.shadowDrawable.getBounds().top - this.bulletinContainer.getMeasuredHeight()) + AndroidUtilities.dp(12.0f)));
+        FrameLayout frameLayout;
+        if (this.shadowDrawable == null || this.containerView == null || (frameLayout = this.bulletinContainer) == null) {
+            return;
+        }
+        frameLayout.setTranslationY(Math.max(0.0f, ((r0.getBounds().top + this.containerView.getY()) - this.bulletinContainer.getMeasuredHeight()) + AndroidUtilities.dp(10.0f)));
     }
 
     public void showCustomPlaceABid() {
@@ -677,7 +713,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         builder.setPositiveButton(LocaleController.getString(R.string.Gift2AuctionPlaceABid), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AuctionBidSheet.this.lambda$showCustomPlaceABid$5(editTextCaption, alertDialog, i);
+                AuctionBidSheet.this.lambda$showCustomPlaceABid$6(editTextCaption, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -693,13 +729,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AuctionBidSheet.lambda$showCustomPlaceABid$7(EditTextCaption.this, lastFragment, findActivity, dialogInterface);
+                AuctionBidSheet.lambda$showCustomPlaceABid$8(EditTextCaption.this, lastFragment, findActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                AuctionBidSheet.lambda$showCustomPlaceABid$8(EditTextCaption.this, dialogInterface);
+                AuctionBidSheet.lambda$showCustomPlaceABid$9(EditTextCaption.this, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -710,7 +746,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         editTextCaption.setSelection(editTextCaption.getText().length());
     }
 
-    public void lambda$showCustomPlaceABid$5(EditTextCaption editTextCaption, AlertDialog alertDialog, int i) {
+    public void lambda$showCustomPlaceABid$6(EditTextCaption editTextCaption, AlertDialog alertDialog, int i) {
         try {
             int parseInt = Integer.parseInt(editTextCaption.getText().toString().trim());
             sendBid(parseInt);
@@ -722,14 +758,14 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         }
     }
 
-    public static void lambda$showCustomPlaceABid$7(EditTextCaption editTextCaption, BaseFragment baseFragment, Activity activity, DialogInterface dialogInterface) {
+    public static void lambda$showCustomPlaceABid$8(EditTextCaption editTextCaption, BaseFragment baseFragment, Activity activity, DialogInterface dialogInterface) {
         AndroidUtilities.hideKeyboard(editTextCaption);
         if (baseFragment != null) {
             AndroidUtilities.requestAdjustResize(activity, baseFragment.getClassGuid());
         }
     }
 
-    public static void lambda$showCustomPlaceABid$8(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void lambda$showCustomPlaceABid$9(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }

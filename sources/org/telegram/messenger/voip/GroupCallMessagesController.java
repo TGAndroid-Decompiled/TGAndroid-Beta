@@ -130,7 +130,7 @@ public class GroupCallMessagesController extends BaseController {
         groupCallMessage.notifyStateUpdate();
     }
 
-    public void lambda$sendCallMessage$5(Runnable runnable, GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$sendCallMessage$5(Runnable runnable, final GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         groupCallMessage.setIsSendDelayed(false);
         if (tLObject instanceof TLRPC.Bool) {
@@ -143,7 +143,12 @@ public class GroupCallMessagesController extends BaseController {
             groupCallMessage.setIsSendConfirmed(true);
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
-        groupCallMessage.notifyStateUpdate();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                GroupCallMessage.this.notifyStateUpdate();
+            }
+        });
     }
 
     public List<GroupCallMessage> getCallMessages(long j) {

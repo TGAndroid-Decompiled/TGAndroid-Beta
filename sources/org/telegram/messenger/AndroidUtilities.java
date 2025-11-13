@@ -5232,6 +5232,25 @@ public class AndroidUtilities {
         return isAccessibilityTouchExplorationEnabled();
     }
 
+    public static boolean isWhitespace(char c) {
+        return Character.isWhitespace(c) || c == 10240 || c == 12644 || c == 65440;
+    }
+
+    public static CharSequence superTrim(CharSequence charSequence) {
+        if (charSequence == null) {
+            return null;
+        }
+        int length = charSequence.length();
+        int i = 0;
+        while (i < length && isWhitespace(charSequence.charAt(i))) {
+            i++;
+        }
+        while (i < length && isWhitespace(charSequence.charAt(length - 1))) {
+            length--;
+        }
+        return (i > 0 || length < charSequence.length()) ? charSequence.subSequence(i, length) : charSequence;
+    }
+
     public static CharSequence trim(CharSequence charSequence, int[] iArr) {
         if (charSequence == null) {
             return null;

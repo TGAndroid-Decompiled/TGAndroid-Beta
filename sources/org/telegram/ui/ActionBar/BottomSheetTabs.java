@@ -1009,7 +1009,10 @@ public class BottomSheetTabs extends FrameLayout {
             this.bottomTabsProgress = this.bottomTabsHeight;
             invalidate();
         }
-        ViewCompat.requestApplyInsets((View) getParent());
+        Object parent = getParent();
+        if (parent instanceof View) {
+            ViewCompat.requestApplyInsets((View) parent);
+        }
     }
 
     public void lambda$updateVisibility$7(ValueAnimator valueAnimator) {

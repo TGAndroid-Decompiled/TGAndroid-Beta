@@ -54,6 +54,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
@@ -2525,8 +2526,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.bottomGradientAlpha = new AnimatedFloat(this, 0L, 280L, cubicBezierInterpolator);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint.setShader(linearGradient);
-        this.animatorInputFieldHeight = new FactorAnimator(0, this, cubicBezierInterpolator, 320L);
-        this.animatorTopViewVisibility = new BoolAnimator(1, this, ChatListItemAnimator.DEFAULT_INTERPOLATOR, 270L);
+        Interpolator interpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
+        this.animatorInputFieldHeight = new FactorAnimator(0, this, interpolator, 250L);
+        this.animatorTopViewVisibility = new BoolAnimator(1, this, interpolator, 270L);
         this.resourcesProvider = resourcesProvider;
         this.isChat = z;
         this.smoothKeyboard = z && !AndroidUtilities.isInMultiwindow && (chatActivity == null || !chatActivity.isInBubbleMode());
@@ -8734,7 +8736,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     }
                 }
                 createExpandStickersButton();
-                this.expandStickersButton.setVisibility(0);
+                if (!this.isLiveComment) {
+                    this.expandStickersButton.setVisibility(0);
+                }
                 this.runningAnimation = new AnimatorSet();
                 this.runningAnimationType = 4;
                 ArrayList arrayList8 = new ArrayList();
@@ -8812,7 +8816,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 this.expandStickersButton.setScaleX(1.0f);
                 this.expandStickersButton.setScaleY(1.0f);
                 this.expandStickersButton.setAlpha(1.0f);
-                this.expandStickersButton.setVisibility(0);
+                if (!this.isLiveComment) {
+                    this.expandStickersButton.setVisibility(0);
+                }
                 if (this.attachLayout != null) {
                     if (getVisibility() == 0) {
                         this.delegate.onAttachButtonShow();

@@ -1720,7 +1720,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         if (!z2) {
             this.adapter.update(true);
         }
-        if (i3 <= 0 && !this.listView.canScrollVertically(1)) {
+        if (i3 <= 0 && !z2 && (!this.listView.canScrollVertically(1) || message.id < 0)) {
             this.layoutManager.scrollToPositionWithOffset(0, AndroidUtilities.dp(100.0f));
             int i6 = message.id;
             if (i6 > 0) {

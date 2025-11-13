@@ -1100,7 +1100,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void requestPlayer(long j, int i, boolean z, TLRPC.InputGroupCall inputGroupCall, PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope) {
+        public void requestPlayer(TL_stories.StoryItem storyItem, long j, int i, boolean z, TLRPC.InputGroupCall inputGroupCall, PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope) {
             switchToLive(true, true);
             LivePlayer livePlayer = StoryViewer.this.livePlayer;
             if (livePlayer != null && livePlayer.dialogId == j && livePlayer.equals(inputGroupCall)) {
@@ -1154,7 +1154,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     StoryViewer.this.livePlayer = LivePlayer.recording;
                 } else {
                     StoryViewer storyViewer = StoryViewer.this;
-                    storyViewer.livePlayer = new LivePlayer(this.val$context, storyViewer.currentAccount, j, i, z, inputGroupCall);
+                    storyViewer.livePlayer = new LivePlayer(this.val$context, storyViewer.currentAccount, storyItem, j, i, z, inputGroupCall);
                 }
             }
             StoryViewer storyViewer2 = StoryViewer.this;

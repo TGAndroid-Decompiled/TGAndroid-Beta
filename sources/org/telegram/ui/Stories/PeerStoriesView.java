@@ -414,9 +414,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
 
         void requestAdjust(boolean z);
 
-        void requestPlayer(long j, int i, boolean z, TLRPC.InputGroupCall inputGroupCall, VideoPlayerSharedScope videoPlayerSharedScope);
-
         void requestPlayer(TLRPC.Document document, Uri uri, long j, VideoPlayerSharedScope videoPlayerSharedScope);
+
+        void requestPlayer(TL_stories.StoryItem storyItem, long j, int i, boolean z, TLRPC.InputGroupCall inputGroupCall, VideoPlayerSharedScope videoPlayerSharedScope);
 
         void setAllowTouchesByViewPager(boolean z);
 

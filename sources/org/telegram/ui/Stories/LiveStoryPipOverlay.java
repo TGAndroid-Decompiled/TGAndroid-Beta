@@ -43,6 +43,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
 import org.telegram.messenger.pip.utils.PipUtils;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
@@ -685,7 +686,14 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         if (safeLastFragment == null || livePlayer == null) {
             return;
         }
-        safeLastFragment.getOrCreateStoryViewer().open(this.currentAccount, context, MessagesController.getInstance(this.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId), (StoryViewer.PlaceProvider) null);
+        TL_stories.StoryItem findStory = MessagesController.getInstance(this.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId);
+        if (findStory == null) {
+            findStory = livePlayer.storyItem;
+        }
+        if (findStory == null) {
+            return;
+        }
+        safeLastFragment.getOrCreateStoryViewer().open(this.currentAccount, context, findStory, (StoryViewer.PlaceProvider) null);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
