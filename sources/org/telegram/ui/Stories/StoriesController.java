@@ -554,7 +554,7 @@ public class StoriesController {
             int i3 = 0;
             while (i3 < peerStories.stories.size()) {
                 TL_stories.StoryItem storyItem = peerStories.stories.get(i3);
-                if ((storyItem instanceof TL_stories.TL_storyItemDeleted) || ((storyItem instanceof TL_stories.TL_storyItem) && currentTime > storyItem.expire_date)) {
+                if ((storyItem instanceof TL_stories.TL_storyItemDeleted) || ((storyItem instanceof TL_stories.TL_storyItem) && currentTime > storyItem.expire_date && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream))) {
                     NotificationsController.getInstance(this.currentAccount).processDeleteStory(peerDialogId, storyItem.id);
                     peerStories.stories.remove(i3);
                     i3--;

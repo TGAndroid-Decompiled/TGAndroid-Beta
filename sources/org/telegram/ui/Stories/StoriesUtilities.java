@@ -623,7 +623,7 @@ public abstract class StoriesUtilities {
     }
 
     public static boolean isExpired(int i, TL_stories.StoryItem storyItem) {
-        return ConnectionsManager.getInstance(i).getCurrentTime() > storyItem.expire_date;
+        return !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && ConnectionsManager.getInstance(i).getCurrentTime() > storyItem.expire_date;
     }
 
     public static String getStoryImageFilter() {

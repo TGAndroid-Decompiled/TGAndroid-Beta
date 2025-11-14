@@ -46,7 +46,7 @@ public class MuteButton extends FrameLayout {
         View view = new View(context);
         this.filledBackgroundView = view;
         view.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), -13522392));
-        frameLayout.addView(view, LayoutHelper.createFrame(-1, -1, 119));
+        frameLayout.addView(view, LayoutHelper.createFrame(38, 38, 17));
         view.setAlpha(0.0f);
         view.setScaleX(0.0f);
         view.setScaleY(0.0f);
