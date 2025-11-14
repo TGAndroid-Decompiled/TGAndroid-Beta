@@ -44,7 +44,7 @@ public abstract class DispatchedContinuationKt {
                         CancellationException cancellationException = job.getCancellationException();
                         dispatchedContinuation.cancelCompletedResult$kotlinx_coroutines_core(state, cancellationException);
                         Result.Companion companion = Result.Companion;
-                        dispatchedContinuation.resumeWith(Result.m213constructorimpl(ResultKt.createFailure(cancellationException)));
+                        dispatchedContinuation.resumeWith(Result.m228constructorimpl(ResultKt.createFailure(cancellationException)));
                     } else {
                         Continuation continuation2 = dispatchedContinuation.continuation;
                         Object obj2 = dispatchedContinuation.countOrElement;

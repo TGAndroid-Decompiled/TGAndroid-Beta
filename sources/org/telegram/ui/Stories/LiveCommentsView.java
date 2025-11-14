@@ -1718,6 +1718,10 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         i3 = 0;
         this.messages.add(i3, message);
         if (!z2) {
+            if (this.messages.size() > 2000) {
+                ArrayList arrayList = this.messages;
+                arrayList.subList(2000, arrayList.size()).clear();
+            }
             this.adapter.update(true);
         }
         if (i3 <= 0 && !z2 && (!this.listView.canScrollVertically(1) || message.id < 0)) {

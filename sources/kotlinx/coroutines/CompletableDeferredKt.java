@@ -4,8 +4,8 @@ import kotlin.Result;
 
 public abstract class CompletableDeferredKt {
     public static final boolean completeWith(CompletableDeferred completableDeferred, Object obj) {
-        Throwable m215exceptionOrNullimpl = Result.m215exceptionOrNullimpl(obj);
-        return m215exceptionOrNullimpl == null ? completableDeferred.complete(obj) : completableDeferred.completeExceptionally(m215exceptionOrNullimpl);
+        Throwable m230exceptionOrNullimpl = Result.m230exceptionOrNullimpl(obj);
+        return m230exceptionOrNullimpl == null ? completableDeferred.complete(obj) : completableDeferred.completeExceptionally(m230exceptionOrNullimpl);
     }
 
     public static final CompletableDeferred CompletableDeferred(Job job) {

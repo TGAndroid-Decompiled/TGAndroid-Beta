@@ -60,7 +60,7 @@ public class GiftAuctionController extends BaseController {
         if (auctionInternal == null) {
             return;
         }
-        auctionInternal.subscription = false;
+        auctionInternal.subscription = this.listeners.has(Long.valueOf(j));
         if (auctionInternal.resubscribe != null) {
             AndroidUtilities.cancelRunOnUIThread(auctionInternal.resubscribe);
             auctionInternal.resubscribe = null;
@@ -162,13 +162,6 @@ public class GiftAuctionController extends BaseController {
             return;
         }
         boolean hasBid = auctionInternal.hasBid();
-        if (!hasBid && params == null) {
-            if (callback2 != null) {
-                callback2.run(Boolean.FALSE, "NO_PARAMS");
-                return;
-            }
-            return;
-        }
         auctionInternal.pendingBid = true;
         final TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
         TLRPC.TL_inputInvoiceStarGiftAuctionBid tL_inputInvoiceStarGiftAuctionBid = new TLRPC.TL_inputInvoiceStarGiftAuctionBid();
@@ -183,6 +176,9 @@ public class GiftAuctionController extends BaseController {
             }
             tL_inputInvoiceStarGiftAuctionBid.message = params.message;
             tL_inputInvoiceStarGiftAuctionBid.hide_name = params.hideName;
+        } else if (!hasBid) {
+            tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
+            tL_inputInvoiceStarGiftAuctionBid.hide_name = false;
         }
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftAuctionBid;
         getConnectionsManager().sendRequestTyped(tL_payments_getPaymentForm, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {

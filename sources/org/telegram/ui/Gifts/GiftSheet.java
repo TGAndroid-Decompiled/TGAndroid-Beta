@@ -265,7 +265,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
     }
 
-    public void lambda$new$18(final Context context, final int i, final Runnable runnable, final long j, View view, int i2) {
+    public void lambda$new$19(final Context context, final int i, final Runnable runnable, final long j, View view, int i2) {
         TL_stars.SavedStarGift savedStarGift;
         UItem item = this.adapter.getItem(i2 - 1);
         if (item != null && item.instanceOf(GiftCell.Factory.class)) {
@@ -359,7 +359,12 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     return;
                 }
                 if (starGift.auction) {
-                    AuctionJoinSheet.show(context, this.resourcesProvider, i, j, starGift.id);
+                    AuctionJoinSheet.show(context, this.resourcesProvider, i, j, starGift.id, new Runnable() {
+                        @Override
+                        public final void run() {
+                            GiftSheet.this.lambda$new$13(runnable);
+                        }
+                    });
                     return;
                 }
                 if (starGift.sold_out) {
@@ -373,7 +378,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 final Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        GiftSheet.this.lambda$new$14(context, i, starGift, runnable);
+                        GiftSheet.this.lambda$new$15(context, i, starGift, runnable);
                     }
                 };
                 if (starGift.locked_until_date > ConnectionsManager.getInstance(i).getCurrentTime()) {
@@ -384,7 +389,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     ConnectionsManager.getInstance(i).sendRequest(checkcansendgift, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            GiftSheet.this.lambda$new$17(alertDialog, runnable2, runnable, tLObject, tL_error);
+                            GiftSheet.this.lambda$new$18(alertDialog, runnable2, runnable, tLObject, tL_error);
                         }
                     });
                     return;
@@ -466,14 +471,21 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         lambda$new$0();
     }
 
-    public void lambda$new$14(Context context, int i, TL_stars.StarGift starGift, final Runnable runnable) {
+    public void lambda$new$13(Runnable runnable) {
+        if (runnable != null) {
+            runnable.run();
+        }
+        lambda$new$0();
+    }
+
+    public void lambda$new$15(Context context, int i, TL_stars.StarGift starGift, final Runnable runnable) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
         long j = this.dialogId;
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                GiftSheet.this.lambda$new$13(runnable);
+                GiftSheet.this.lambda$new$14(runnable);
             }
         };
         boolean z = starGift.limited;
@@ -486,23 +498,23 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }.show();
     }
 
-    public void lambda$new$13(Runnable runnable) {
+    public void lambda$new$14(Runnable runnable) {
         if (runnable != null) {
             runnable.run();
         }
         lambda$new$0();
     }
 
-    public void lambda$new$17(final AlertDialog alertDialog, final Runnable runnable, final Runnable runnable2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$new$18(final AlertDialog alertDialog, final Runnable runnable, final Runnable runnable2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftSheet.this.lambda$new$16(alertDialog, tLObject, runnable, runnable2, tL_error);
+                GiftSheet.this.lambda$new$17(alertDialog, tLObject, runnable, runnable2, tL_error);
             }
         });
     }
 
-    public void lambda$new$16(AlertDialog alertDialog, TLObject tLObject, Runnable runnable, final Runnable runnable2, TLRPC.TL_error tL_error) {
+    public void lambda$new$17(AlertDialog alertDialog, TLObject tLObject, Runnable runnable, final Runnable runnable2, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (tLObject instanceof TL_stars.checkCanSendGiftResultOk) {
             runnable.run();
@@ -519,14 +531,14 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 ((EffectsTextView) messageTextView).setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
                     @Override
                     public final void run(ClickableSpan clickableSpan) {
-                        GiftSheet.this.lambda$new$15(show, runnable2, messageTextView, clickableSpan);
+                        GiftSheet.this.lambda$new$16(show, runnable2, messageTextView, clickableSpan);
                     }
                 });
             }
         }
     }
 
-    public void lambda$new$15(AlertDialog alertDialog, Runnable runnable, TextView textView, ClickableSpan clickableSpan) {
+    public void lambda$new$16(AlertDialog alertDialog, Runnable runnable, TextView textView, ClickableSpan clickableSpan) {
         alertDialog.dismiss();
         if (runnable != null) {
             runnable.run();
@@ -695,7 +707,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 BillingController.getInstance().queryProductDetails(arrayList, new ProductDetailsResponseListener() {
                     @Override
                     public final void onProductDetailsResponse(BillingResult billingResult, List list2) {
-                        GiftSheet.this.lambda$updatePremiumTiers$21(billingResult, list2);
+                        GiftSheet.this.lambda$updatePremiumTiers$22(billingResult, list2);
                     }
                 });
             }
@@ -704,13 +716,13 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             BoostRepository.loadGiftOptions(this.currentAccount, null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    GiftSheet.this.lambda$updatePremiumTiers$22((List) obj);
+                    GiftSheet.this.lambda$updatePremiumTiers$23((List) obj);
                 }
             });
         }
     }
 
-    public void lambda$updatePremiumTiers$21(BillingResult billingResult, List list) {
+    public void lambda$updatePremiumTiers$22(BillingResult billingResult, List list) {
         Iterator it = list.iterator();
         long j = 0;
         while (it.hasNext()) {
@@ -735,19 +747,19 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                GiftSheet.this.lambda$updatePremiumTiers$20();
+                GiftSheet.this.lambda$updatePremiumTiers$21();
             }
         });
     }
 
-    public void lambda$updatePremiumTiers$20() {
+    public void lambda$updatePremiumTiers$21() {
         UniversalAdapter universalAdapter = this.adapter;
         if (universalAdapter != null) {
             universalAdapter.update(false);
         }
     }
 
-    public void lambda$updatePremiumTiers$22(List list) {
+    public void lambda$updatePremiumTiers$23(List list) {
         if (getContext() == null || !isShown()) {
             return;
         }
@@ -834,9 +846,31 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
 
                 @Override
                 public final boolean test(Object obj) {
-                    boolean lambda$fillItems$23;
-                    lambda$fillItems$23 = GiftSheet.this.lambda$fillItems$23((TL_stars.StarGift) obj);
-                    return lambda$fillItems$23;
+                    boolean lambda$fillItems$24;
+                    lambda$fillItems$24 = GiftSheet.this.lambda$fillItems$24((TL_stars.StarGift) obj);
+                    return lambda$fillItems$24;
+                }
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda240()));
+        }
+        if (this.dialogId < 0) {
+            arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new Predicate() {
+                public Predicate and(Predicate predicate) {
+                    return Predicate$CC.$default$and(this, predicate);
+                }
+
+                public Predicate negate() {
+                    return Predicate$CC.$default$negate(this);
+                }
+
+                public Predicate or(Predicate predicate) {
+                    return Predicate$CC.$default$or(this, predicate);
+                }
+
+                @Override
+                public final boolean test(Object obj) {
+                    boolean lambda$fillItems$25;
+                    lambda$fillItems$25 = GiftSheet.lambda$fillItems$25((TL_stars.StarGift) obj);
+                    return lambda$fillItems$25;
                 }
             }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda240()));
         }
@@ -933,7 +967,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         arrayList.add(UItem.asSpace(AndroidUtilities.dp(300.0f)));
     }
 
-    public boolean lambda$fillItems$23(TL_stars.StarGift starGift) {
+    public boolean lambda$fillItems$24(TL_stars.StarGift starGift) {
         boolean z;
         if (starGift instanceof TL_stars.TL_starGiftUnique) {
             z = this.userSettings.disallow_unique_stargifts;
@@ -948,6 +982,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             z = this.userSettings.disallow_unlimited_stargifts;
         }
         return !z;
+    }
+
+    public static boolean lambda$fillItems$25(TL_stars.StarGift starGift) {
+        return !starGift.auction;
     }
 
     public void selectTab(int i) {

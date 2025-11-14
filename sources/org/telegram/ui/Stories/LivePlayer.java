@@ -262,13 +262,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             }
         }, false);
         this.instance = makeGroup;
-        makeGroup.setOnStateUpdatedListener(new Instance.OnStateUpdatedListener() {
-            @Override
-            public void onStateUpdated(int i, boolean z) {
-                LivePlayer.this.connectionState = i;
-                FileLog.d("[LivePlayer] connectionState = " + i);
-            }
-        });
+        makeGroup.setOnStateUpdatedListener(new AnonymousClass2());
         this.instance.resetGroupInstance(false, false);
     }
 
@@ -780,6 +774,35 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
 
     public void lambda$init$20() {
         setEmptyStream(true);
+    }
+
+    public class AnonymousClass2 implements Instance.OnStateUpdatedListener {
+        AnonymousClass2() {
+        }
+
+        @Override
+        public void onStateUpdated(int i, boolean z) {
+            boolean isConnected = LivePlayer.this.isConnected();
+            LivePlayer.this.connectionState = i;
+            FileLog.d("[LivePlayer] connectionState = " + i);
+            if (isConnected != LivePlayer.this.isConnected()) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        LivePlayer.AnonymousClass2.this.lambda$onStateUpdated$0();
+                    }
+                });
+            }
+        }
+
+        public void lambda$onStateUpdated$0() {
+            NotificationCenter.getInstance(LivePlayer.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(LivePlayer.this.getCallId()));
+        }
+    }
+
+    public boolean isConnected() {
+        int i = this.connectionState;
+        return i == 3 || i == 1 || i == 2;
     }
 
     public void setVolume(float f) {

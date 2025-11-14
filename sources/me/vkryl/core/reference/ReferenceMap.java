@@ -82,6 +82,18 @@ public class ReferenceMap {
         return add;
     }
 
+    public final boolean has(Object obj) {
+        boolean z;
+        synchronized (this.map) {
+            try {
+                ReferenceList referenceList = (ReferenceList) this.map.get(obj);
+                z = (referenceList == null || referenceList.isEmpty()) ? false : true;
+            } finally {
+            }
+        }
+        return z;
+    }
+
     public final void remove(Object obj, Object obj2) {
         synchronized (this.map) {
             try {

@@ -203,7 +203,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onNewIntent(Intent intent) {
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
     }

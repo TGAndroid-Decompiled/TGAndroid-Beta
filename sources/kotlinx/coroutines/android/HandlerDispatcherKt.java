@@ -29,14 +29,14 @@ public abstract class HandlerDispatcherKt {
     }
 
     static {
-        Object m213constructorimpl;
+        Object m228constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            m213constructorimpl = Result.m213constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
+            m228constructorimpl = Result.m228constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            m213constructorimpl = Result.m213constructorimpl(ResultKt.createFailure(th));
+            m228constructorimpl = Result.m228constructorimpl(ResultKt.createFailure(th));
         }
-        Main = (HandlerDispatcher) (Result.m217isFailureimpl(m213constructorimpl) ? null : m213constructorimpl);
+        Main = (HandlerDispatcher) (Result.m232isFailureimpl(m228constructorimpl) ? null : m228constructorimpl);
     }
 }

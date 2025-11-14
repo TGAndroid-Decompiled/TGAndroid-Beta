@@ -175,7 +175,7 @@ public class LiteMode {
         if (!globalMainSettings.contains("lite_mode5")) {
             if (globalMainSettings.contains("lite_mode4")) {
                 i = globalMainSettings.getInt("lite_mode4", i);
-                if (BuildVars.DEBUG_VERSION && SharedConfig.getDevicePerformanceClass() == 2) {
+                if (SharedConfig.getDevicePerformanceClass() == 2) {
                     i |= 262144;
                 }
                 globalMainSettings.edit().putInt("lite_mode5", i).apply();

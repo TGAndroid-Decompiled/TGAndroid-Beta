@@ -78,6 +78,14 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
         return -1;
     }
 
+    public static Object last(List list) {
+        Intrinsics.checkNotNullParameter(list, "<this>");
+        if (list.isEmpty()) {
+            throw new NoSuchElementException("List is empty.");
+        }
+        return list.get(CollectionsKt.getLastIndex(list));
+    }
+
     public static Object single(Iterable iterable) {
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (iterable instanceof List) {
@@ -223,7 +231,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
                 return CollectionsKt.emptyList();
             }
             if (size != 1) {
-                return toMutableList(collection);
+                return CollectionsKt.toMutableList(collection);
             }
             return CollectionsKt.listOf(iterable instanceof List ? ((List) iterable).get(0) : iterable.iterator().next());
         }
@@ -233,12 +241,12 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
     public static final List toMutableList(Iterable iterable) {
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (iterable instanceof Collection) {
-            return toMutableList((Collection) iterable);
+            return CollectionsKt.toMutableList((Collection) iterable);
         }
         return (List) toCollection(iterable, new ArrayList());
     }
 
-    public static final List toMutableList(Collection collection) {
+    public static List toMutableList(Collection collection) {
         Intrinsics.checkNotNullParameter(collection, "<this>");
         return new ArrayList(collection);
     }
@@ -249,7 +257,7 @@ public abstract class CollectionsKt___CollectionsKt extends CollectionsKt___Coll
             Collection collection = (Collection) iterable;
             int size = collection.size();
             if (size == 0) {
-                return SetsKt__SetsKt.emptySet();
+                return SetsKt.emptySet();
             }
             if (size != 1) {
                 return (Set) toCollection(iterable, new LinkedHashSet(MapsKt.mapCapacity(collection.size())));

@@ -14016,13 +14016,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         this.currentDeleteTaskRunnable = null;
         LongSparseArray longSparseArray = this.currentDeletingTaskMids;
-        final LongSparseArray m3clone = longSparseArray != null ? longSparseArray.m3clone() : null;
+        final LongSparseArray m9clone = longSparseArray != null ? longSparseArray.m9clone() : null;
         LongSparseArray longSparseArray2 = this.currentDeletingTaskMediaMids;
-        final LongSparseArray m3clone2 = longSparseArray2 != null ? longSparseArray2.m3clone() : null;
+        final LongSparseArray m9clone2 = longSparseArray2 != null ? longSparseArray2.m9clone() : null;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$checkDeletingTask$82(m3clone, m3clone2);
+                MessagesController.this.lambda$checkDeletingTask$82(m9clone, m9clone2);
             }
         });
         return true;

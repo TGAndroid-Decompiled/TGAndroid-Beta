@@ -45,6 +45,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         this.auction = auction;
         this.gifts = list;
+        this.topPadding = 0.2f;
         this.ignoreTouchActionBar = false;
         this.headerMoveTop = AndroidUtilities.dp(12.0f);
         this.actionBar.setTitle(getTitle());

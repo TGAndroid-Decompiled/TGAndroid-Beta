@@ -91,6 +91,12 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
                 this.containerView.addView(buttonWithCounterView2, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
             }
         }
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDurations(350L);
+        this.recyclerListView.setItemAnimator(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i3 = this.backgroundPaddingLeft;
         if (this.hasButton) {

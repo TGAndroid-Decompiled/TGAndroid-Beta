@@ -10,6 +10,8 @@ public abstract class Random {
 
     public abstract int nextInt();
 
+    public abstract int nextInt(int i);
+
     public static final class Default extends Random implements Serializable {
         public Default(DefaultConstructorMarker defaultConstructorMarker) {
             this();
@@ -21,6 +23,11 @@ public abstract class Random {
         @Override
         public int nextInt() {
             return Random.defaultRandom.nextInt();
+        }
+
+        @Override
+        public int nextInt(int i) {
+            return Random.defaultRandom.nextInt(i);
         }
     }
 }

@@ -340,7 +340,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         boolean z;
         boolean isBackgroundRestricted;
         ActionBarLayout actionBarLayout;
-        boolean isInMultiWindowMode;
         Intent intent;
         Uri data;
         int i = 0;
@@ -384,8 +383,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         flagSecureReason.attach();
         super.onCreate(bundle);
         if (Build.VERSION.SDK_INT >= 24) {
-            isInMultiWindowMode = isInMultiWindowMode();
-            AndroidUtilities.isInMultiwindow = isInMultiWindowMode;
+            AndroidUtilities.isInMultiwindow = LaunchActivity$$ExternalSyntheticApiModelOutline0.m(this);
         }
         Theme.createCommonChatResources();
         Theme.createDialogsResources(this);
@@ -2421,7 +2419,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         StoryRecorder.destroyInstance();
         GroupCallActivity groupCallActivity = GroupCallActivity.groupCallInstance;
         if (groupCallActivity != null) {
-            groupCallActivity.lambda$new$3();
+            groupCallActivity.dismiss();
         }
         if (z) {
             return;
@@ -2591,7 +2589,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             StoryRecorder.destroyInstance();
             GroupCallActivity groupCallActivity = GroupCallActivity.groupCallInstance;
             if (groupCallActivity != null) {
-                groupCallActivity.lambda$new$3();
+                groupCallActivity.dismiss();
             }
             this.drawerLayoutContainer.setAllowOpenDrawer(false, false);
             if (AndroidUtilities.isTablet()) {
@@ -2859,9 +2857,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public void lambda$runLinkRequest$56(Runnable runnable, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            BulletinFactory.of((BaseFragment) mainFragmentsStack.get(r9.size() - 1)).createSimpleBulletin(R.raw.error, getString(R.string.GiftAuctionNotFound)).show();
+            BulletinFactory.of((BaseFragment) mainFragmentsStack.get(r10.size() - 1)).createSimpleBulletin(R.raw.error, getString(R.string.GiftAuctionNotFound)).show();
         } else if (tL_StarGiftAuctionState != null) {
-            AuctionJoinSheet.show(this, (Theme.ResourcesProvider) null, this.currentAccount, 0L, tL_StarGiftAuctionState.gift.id);
+            AuctionJoinSheet.show(this, (Theme.ResourcesProvider) null, this.currentAccount, 0L, tL_StarGiftAuctionState.gift.id, (Runnable) null);
         }
         try {
             runnable.run();
@@ -3110,7 +3108,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         StoryRecorder.destroyInstance();
                         GroupCallActivity groupCallActivity = GroupCallActivity.groupCallInstance;
                         if (groupCallActivity != null) {
-                            groupCallActivity.lambda$new$3();
+                            groupCallActivity.dismiss();
                         }
                         this.drawerLayoutContainer.setAllowOpenDrawer(false, false);
                         if (AndroidUtilities.isTablet()) {
@@ -6267,7 +6265,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onSaveInstanceState(android.os.Bundle r7) {
+    protected void onSaveInstanceState(android.os.Bundle r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.onSaveInstanceState(android.os.Bundle):void");
     }
 

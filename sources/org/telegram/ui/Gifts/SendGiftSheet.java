@@ -118,11 +118,11 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this(context, i, null, giftPremiumBottomSheet$GiftTier, j, runnable, false, false);
     }
 
-    private SendGiftSheet(final Context context, final int i, final TL_stars.StarGift starGift, final GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, final long j, Runnable runnable, final boolean z, final boolean z2) {
+    private SendGiftSheet(final Context context, final int i, final TL_stars.StarGift starGift, final GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, final long j, final Runnable runnable, final boolean z, final boolean z2) {
         super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         ChatActionCell chatActionCell;
-        SizeNotifierFrameLayout sizeNotifierFrameLayout;
         LinearLayout linearLayout;
+        LinearLayout linearLayout2;
         this.upgrade = false;
         this.useStars = false;
         this.shakeDp = -2;
@@ -248,7 +248,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ChatActionCell.ChatActionCellDelegate.CC.$default$onTopicClick(this, chatActionCell3);
             }
         });
-        SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             int maxHeight = -1;
 
             @Override
@@ -290,11 +290,11 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                 SendGiftSheet.this.actionCell.setVisiblePart(SendGiftSheet.this.chatLinearLayout.getY() + SendGiftSheet.this.actionCell.getY(), getBackgroundSizeY());
             }
         };
-        this.chatView = sizeNotifierFrameLayout2;
-        sizeNotifierFrameLayout2.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) null, i, j, Theme.isCurrentThemeDark()), false);
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        this.chatLinearLayout = linearLayout2;
-        linearLayout2.setOrientation(1);
+        this.chatView = sizeNotifierFrameLayout;
+        sizeNotifierFrameLayout.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) null, i, j, Theme.isCurrentThemeDark()), false);
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        this.chatLinearLayout = linearLayout3;
+        linearLayout3.setOrientation(1);
         if (starGift != null) {
             TLRPC.TL_messageActionStarGift tL_messageActionStarGift = new TLRPC.TL_messageActionStarGift();
             tL_messageActionStarGift.gift = starGift;
@@ -304,8 +304,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             tL_messageActionStarGift.forceIn = true;
             this.action = tL_messageActionStarGift;
             chatActionCell = chatActionCell2;
-            sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
-            linearLayout = linearLayout2;
+            linearLayout = linearLayout3;
         } else if (giftPremiumBottomSheet$GiftTier != null && giftPremiumBottomSheet$GiftTier.giftCodeOption != null) {
             TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = new TLRPC.TL_messageActionGiftCode();
             tL_messageActionGiftCode.unclaimed = true;
@@ -316,22 +315,19 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
             long price = giftPremiumBottomSheet$GiftTier.getPrice();
             tL_messageActionGiftCode.amount = price;
             if (giftPremiumBottomSheet$GiftTier.googlePlayProductDetails != null) {
-                sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
-                linearLayout = linearLayout2;
+                linearLayout2 = linearLayout3;
                 chatActionCell = chatActionCell2;
                 tL_messageActionGiftCode.amount = (long) (price * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftCode.currency) - 6));
             } else {
                 chatActionCell = chatActionCell2;
-                sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
-                linearLayout = linearLayout2;
+                linearLayout2 = linearLayout3;
             }
             tL_messageActionGiftCode.flags |= 16;
             tL_messageActionGiftCode.message = new TLRPC.TL_textWithEntities();
             this.action = tL_messageActionGiftCode;
+            linearLayout = linearLayout2;
         } else {
             chatActionCell = chatActionCell2;
-            sizeNotifierFrameLayout = sizeNotifierFrameLayout2;
-            linearLayout = linearLayout2;
             if (giftPremiumBottomSheet$GiftTier != null && giftPremiumBottomSheet$GiftTier.giftOption != null) {
                 TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium = new TLRPC.TL_messageActionGiftPremium();
                 tL_messageActionGiftPremium.months = giftPremiumBottomSheet$GiftTier.getMonths();
@@ -339,7 +335,10 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
                 long price2 = giftPremiumBottomSheet$GiftTier.getPrice();
                 tL_messageActionGiftPremium.amount = price2;
                 if (giftPremiumBottomSheet$GiftTier.googlePlayProductDetails != null) {
+                    linearLayout = linearLayout3;
                     tL_messageActionGiftPremium.amount = (long) (price2 * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftPremium.currency) - 6));
+                } else {
+                    linearLayout = linearLayout3;
                 }
                 tL_messageActionGiftPremium.flags |= 2;
                 tL_messageActionGiftPremium.message = new TLRPC.TL_textWithEntities();
@@ -368,9 +367,8 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.messageObject = messageObject;
         ChatActionCell chatActionCell3 = chatActionCell;
         chatActionCell3.setMessageObject(messageObject, true);
-        LinearLayout linearLayout3 = linearLayout;
-        linearLayout3.addView(chatActionCell3, LayoutHelper.createLinear(-1, -1, 119, 0, sendPaidMessagesStars > 0 ? 0 : 8, 0, 8));
-        sizeNotifierFrameLayout.addView(linearLayout3, LayoutHelper.createFrame(-1, -1, 119));
+        linearLayout.addView(chatActionCell3, LayoutHelper.createLinear(-1, -1, 119, 0, sendPaidMessagesStars > 0 ? 0 : 8, 0, 8));
+        sizeNotifierFrameLayout.addView(linearLayout, LayoutHelper.createFrame(-1, -1, 119));
         EditEmojiTextCell editEmojiTextCell = new EditEmojiTextCell(context, (SizeNotifierFrameLayout) this.containerView, LocaleController.getString(starGift != null ? R.string.Gift2Message : R.string.Gift2MessageOptional), true, MessagesController.getInstance(i).stargiftsMessageLengthMax, 4, this.resourcesProvider) {
             @Override
             protected void onFocusChanged(boolean z5) {
@@ -525,7 +523,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                SendGiftSheet.this.lambda$new$0(j, context, starGift, view3);
+                SendGiftSheet.this.lambda$new$0(j, context, runnable, starGift, view3);
             }
         });
         LinearLayoutManager linearLayoutManager = this.layoutManager;
@@ -542,12 +540,15 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.actionBar.setTitle(getTitle());
     }
 
-    public void lambda$new$0(long j, Context context, TL_stars.StarGift starGift, View view) {
+    public void lambda$new$0(long j, Context context, Runnable runnable, TL_stars.StarGift starGift, View view) {
         if (this.button.isLoading()) {
             return;
         }
         if (this.auction != null) {
-            new AuctionBidSheet(context, this.resourcesProvider, new AuctionBidSheet.Params(j, this.anonymous, getMessage()), this.auction).show();
+            AuctionBidSheet auctionBidSheet = new AuctionBidSheet(context, this.resourcesProvider, new AuctionBidSheet.Params(j, this.anonymous, getMessage()), this.auction);
+            auctionBidSheet.show();
+            auctionBidSheet.setCloseParentSheet(runnable);
+            AndroidUtilities.hideKeyboard(this.messageEdit);
             lambda$new$0();
             if (this.isDismissed) {
                 return;

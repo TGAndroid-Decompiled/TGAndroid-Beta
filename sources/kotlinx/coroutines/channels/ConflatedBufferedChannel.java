@@ -30,28 +30,28 @@ public class ConflatedBufferedChannel extends BufferedChannel {
     }
 
     @Override
-    public Object mo252trySendJP2dKIU(Object obj) {
-        return m263trySendImplMj0NB7M(obj, false);
+    public Object mo267trySendJP2dKIU(Object obj) {
+        return m278trySendImplMj0NB7M(obj, false);
     }
 
-    private final Object m263trySendImplMj0NB7M(Object obj, boolean z) {
-        return this.onBufferOverflow == BufferOverflow.DROP_LATEST ? m261trySendDropLatestMj0NB7M(obj, z) : m262trySendDropOldestJP2dKIU(obj);
+    private final Object m278trySendImplMj0NB7M(Object obj, boolean z) {
+        return this.onBufferOverflow == BufferOverflow.DROP_LATEST ? m276trySendDropLatestMj0NB7M(obj, z) : m277trySendDropOldestJP2dKIU(obj);
     }
 
-    private final Object m261trySendDropLatestMj0NB7M(Object obj, boolean z) {
+    private final Object m276trySendDropLatestMj0NB7M(Object obj, boolean z) {
         Function1 function1;
         UndeliveredElementException callUndeliveredElementCatchingException$default;
-        Object mo252trySendJP2dKIU = super.mo252trySendJP2dKIU(obj);
-        if (ChannelResult.m257isSuccessimpl(mo252trySendJP2dKIU) || ChannelResult.m256isClosedimpl(mo252trySendJP2dKIU)) {
-            return mo252trySendJP2dKIU;
+        Object mo267trySendJP2dKIU = super.mo267trySendJP2dKIU(obj);
+        if (ChannelResult.m272isSuccessimpl(mo267trySendJP2dKIU) || ChannelResult.m271isClosedimpl(mo267trySendJP2dKIU)) {
+            return mo267trySendJP2dKIU;
         }
         if (z && (function1 = this.onUndeliveredElement) != null && (callUndeliveredElementCatchingException$default = OnUndeliveredElementKt.callUndeliveredElementCatchingException$default(function1, obj, null, 2, null)) != null) {
             throw callUndeliveredElementCatchingException$default;
         }
-        return ChannelResult.Companion.m260successJP2dKIU(Unit.INSTANCE);
+        return ChannelResult.Companion.m275successJP2dKIU(Unit.INSTANCE);
     }
 
-    private final Object m262trySendDropOldestJP2dKIU(Object obj) {
+    private final Object m277trySendDropOldestJP2dKIU(Object obj) {
         ChannelSegment channelSegment;
         Object obj2 = BufferedChannelKt.BUFFERED;
         ChannelSegment channelSegment2 = (ChannelSegment) BufferedChannel.sendSegment$FU.get(this);
@@ -67,7 +67,7 @@ public class ConflatedBufferedChannel extends BufferedChannel {
                 if (findSegmentSend != null) {
                     channelSegment = findSegmentSend;
                 } else if (isClosedForSend0) {
-                    return ChannelResult.Companion.m258closedJP2dKIU(getSendException());
+                    return ChannelResult.Companion.m273closedJP2dKIU(getSendException());
                 }
             } else {
                 channelSegment = channelSegment2;
@@ -75,22 +75,22 @@ public class ConflatedBufferedChannel extends BufferedChannel {
             int updateCellSend = updateCellSend(channelSegment, i2, obj, j, obj2, isClosedForSend0);
             if (updateCellSend == 0) {
                 channelSegment.cleanPrev();
-                return ChannelResult.Companion.m260successJP2dKIU(Unit.INSTANCE);
+                return ChannelResult.Companion.m275successJP2dKIU(Unit.INSTANCE);
             }
             if (updateCellSend == 1) {
-                return ChannelResult.Companion.m260successJP2dKIU(Unit.INSTANCE);
+                return ChannelResult.Companion.m275successJP2dKIU(Unit.INSTANCE);
             }
             if (updateCellSend == 2) {
                 if (isClosedForSend0) {
                     channelSegment.onSlotCleaned();
-                    return ChannelResult.Companion.m258closedJP2dKIU(getSendException());
+                    return ChannelResult.Companion.m273closedJP2dKIU(getSendException());
                 }
                 Waiter waiter = obj2 instanceof Waiter ? (Waiter) obj2 : null;
                 if (waiter != null) {
                     prepareSenderForSuspension(waiter, channelSegment, i2);
                 }
                 dropFirstElementUntilTheSpecifiedCellIsInTheBuffer((channelSegment.id * i) + i2);
-                return ChannelResult.Companion.m260successJP2dKIU(Unit.INSTANCE);
+                return ChannelResult.Companion.m275successJP2dKIU(Unit.INSTANCE);
             }
             if (updateCellSend == 3) {
                 throw new IllegalStateException("unexpected");
@@ -99,7 +99,7 @@ public class ConflatedBufferedChannel extends BufferedChannel {
                 if (j < getReceiversCounter$kotlinx_coroutines_core()) {
                     channelSegment.cleanPrev();
                 }
-                return ChannelResult.Companion.m258closedJP2dKIU(getSendException());
+                return ChannelResult.Companion.m273closedJP2dKIU(getSendException());
             }
             if (updateCellSend == 5) {
                 channelSegment.cleanPrev();

@@ -17,6 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
@@ -27,6 +28,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected AnimatedFloat actionBarSlideProgress;
     private ActionBarType actionBarType;
     private BaseFragment baseFragment;
+    protected boolean centerTitle;
     protected boolean clipToActionBar;
     protected int contentHeight;
     EditTextEmoji editTextEmoji;
@@ -565,7 +567,11 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             this.actionBar.backButtonImageView.setScaleX(f3);
             this.actionBar.backButtonImageView.setPivotY(r6.getMeasuredHeight() / 2.0f);
             this.actionBar.backButtonImageView.setScaleY(f3);
-            this.actionBar.getTitleTextView().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - r6.getLeft(), 0.0f, f3));
+            SimpleTextView titleTextView = this.actionBar.getTitleTextView();
+            titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, f3));
+            if (this.centerTitle) {
+                titleTextView.setTranslationX(((this.actionBar.getMeasuredWidth() - titleTextView.getTextWidth()) / 2.0f) - titleTextView.getLeft());
+            }
             this.actionBar.setTranslationY(max);
             i4 -= AndroidUtilities.lerp(0, (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom) + AndroidUtilities.dp(13.0f), f3);
             this.actionBar.getBackground().setBounds(0, AndroidUtilities.lerp(this.actionBar.getHeight(), 0, f3), this.actionBar.getWidth(), this.actionBar.getHeight());

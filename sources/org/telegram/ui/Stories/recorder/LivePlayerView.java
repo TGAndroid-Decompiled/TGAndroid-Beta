@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.Display;
 import android.view.TextureView;
 import android.view.View;
@@ -422,7 +421,6 @@ public class LivePlayerView extends FrameLayout implements RendererCommon.Render
     }
 
     public void setKeyboardOffset(float f) {
-        Log.i("lolkek", "setKeyboardOffset " + f);
         this.keyboardOffset = f;
         updateTranslations();
     }
