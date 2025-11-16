@@ -7669,7 +7669,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
                 text2.align(alignment);
                 this.giftName.multiline(1);
-                Text text3 = new Text(starGift.sold_out ? LocaleController.getString(R.string.Gift2SoldOutTitle) : LocaleController.formatPluralString("Gift2AvailabilityLeft", starGift.availability_remains, new Object[0]), 13.0f);
+                Text text3 = new Text(starGift.sold_out ? LocaleController.getString(R.string.Gift2SoldOutTitle) : LocaleController.formatPluralString("Gift2SoldAuctionPreviewGifts", starGift.availability_total, new Object[0]), 13.0f);
                 this.giftStatus = text3;
                 text3.setMaxWidth(AndroidUtilities.dp(f3));
                 this.giftStatus.align(alignment);

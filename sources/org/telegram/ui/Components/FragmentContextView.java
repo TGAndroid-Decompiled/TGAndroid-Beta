@@ -2872,11 +2872,14 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (this.groupCallMessagesContainer == null) {
             return;
         }
-        this.groupCallMessageCounter++;
-        if (groupCallMessage.isOut()) {
-            return;
+        int i = this.currentStyle;
+        if (i == 1 || i == 3 || i == 4) {
+            this.groupCallMessageCounter++;
+            if (groupCallMessage.isOut()) {
+                return;
+            }
+            this.callMessagesAnimator.replace(new CallMessageItem(this.groupCallMessagesContainer, groupCallMessage), true);
         }
-        this.callMessagesAnimator.replace(new CallMessageItem(this.groupCallMessagesContainer, groupCallMessage), true);
     }
 
     @Override

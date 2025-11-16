@@ -354,7 +354,6 @@ public abstract class HighlightMessageSheet {
     }
 
     public static void lambda$open$0(long[] jArr, ButtonWithCounterView buttonWithCounterView, ColoredImageSpan[] coloredImageSpanArr, LiveCommentsView.Message message, LiveCommentsView.LiveCommentView liveCommentView, int i, TierValueView tierValueView, TierValueView tierValueView2, TierValueView tierValueView3, StarsReactionsSheet.StarsSlider starsSlider, boolean[] zArr, Integer num) {
-        String str;
         long intValue = num.intValue();
         jArr[0] = intValue;
         buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsAddHighlightedMessage, LocaleController.formatNumber(intValue, ',')), coloredImageSpanArr), true);
@@ -363,12 +362,7 @@ public abstract class HighlightMessageSheet {
         int tierOption = getTierOption(i, num.intValue(), TIER_PERIOD);
         int tierOption2 = getTierOption(i, num.intValue(), TIER_LENGTH);
         int tierOption3 = getTierOption(i, num.intValue(), TIER_EMOJIS);
-        if (tierOption >= 60) {
-            str = (tierOption / 60) + "m";
-        } else {
-            str = tierOption + "s";
-        }
-        tierValueView.set(str);
+        tierValueView.set(tierOption >= 60 ? LocaleController.formatString(R.string.SlowmodeMinutes, Integer.valueOf(tierOption / 60)) : LocaleController.formatString(R.string.SlowmodeSeconds, Integer.valueOf(tierOption)));
         tierValueView2.set(LocaleController.formatNumber(tierOption2, ','));
         tierValueView3.set(LocaleController.formatNumber(tierOption3, ','));
         starsSlider.setColor(getTierOption(i, num.intValue(), TIER_COLOR1), getTierOption(i, num.intValue(), TIER_COLOR2), !zArr[0]);

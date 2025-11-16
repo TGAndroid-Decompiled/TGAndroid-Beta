@@ -43,7 +43,7 @@ public class LiteMode {
     public static final int FLAG_CHAT_THANOS = 65536;
     public static final int FLAG_LIQUID_GLASS = 262144;
     public static final int FLAG_PARTICLES = 131072;
-    public static int PRESET_HIGH = 524287;
+    public static int PRESET_HIGH = 262143;
     public static int PRESET_LOW = 198684;
     public static int PRESET_MEDIUM = 204383;
     public static int PRESET_POWER_SAVER = 0;
@@ -172,16 +172,15 @@ public class LiteMode {
             i2 = BATTERY_MEDIUM;
         }
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        if (!globalMainSettings.contains("lite_mode5")) {
-            if (globalMainSettings.contains("lite_mode4")) {
+        if (!globalMainSettings.contains("lite_mode6")) {
+            if (globalMainSettings.contains("lite_mode5")) {
+                i = globalMainSettings.getInt("lite_mode5", i) & (-262145);
+                globalMainSettings.edit().putInt("lite_mode6", i).apply();
+            } else if (globalMainSettings.contains("lite_mode4")) {
                 i = globalMainSettings.getInt("lite_mode4", i);
-                if (SharedConfig.getDevicePerformanceClass() == 2) {
-                    i |= 262144;
-                }
                 globalMainSettings.edit().putInt("lite_mode5", i).apply();
             } else if (globalMainSettings.contains("lite_mode3")) {
-                int i3 = globalMainSettings.getInt("lite_mode3", i);
-                i = SharedConfig.getDevicePerformanceClass() == 2 ? i3 | 393216 : 131072 | i3;
+                i = globalMainSettings.getInt("lite_mode3", i) | 131072;
                 globalMainSettings.edit().putInt("lite_mode5", i).apply();
             } else if (globalMainSettings.contains("lite_mode2")) {
                 i = globalMainSettings.getInt("lite_mode2", i) | 65536;
@@ -213,18 +212,18 @@ public class LiteMode {
                 }
             }
         }
-        int i4 = value;
-        int i5 = globalMainSettings.getInt("lite_mode5", i);
-        value = i5;
+        int i3 = value;
+        int i4 = globalMainSettings.getInt("lite_mode6", i);
+        value = i4;
         if (loaded) {
-            onFlagsUpdate(i4, i5);
+            onFlagsUpdate(i3, i4);
         }
         powerSaverLevel = globalMainSettings.getInt("lite_mode_battery_level", i2);
         loaded = true;
     }
 
     public static void savePreference() {
-        MessagesController.getGlobalMainSettings().edit().putInt("lite_mode5", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
+        MessagesController.getGlobalMainSettings().edit().putInt("lite_mode6", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
     }
 
     public static int getPowerSaverLevel() {

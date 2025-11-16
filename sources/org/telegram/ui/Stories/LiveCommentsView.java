@@ -1590,9 +1590,17 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                     LiveCommentsView.this.lambda$send$14(j2, tL_textWithEntities, j);
                 }
             }, this.dialogId).show();
-        } else {
-            BulletinFactory.of(this.topBulletinContainer, new DarkThemeResourceProvider()).showForError(tL_error, true);
+            return;
         }
+        if ("GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
+            LivePlayer livePlayer = this.livePlayer;
+            if (livePlayer != null) {
+                livePlayer.storyDeleted();
+                return;
+            }
+            return;
+        }
+        BulletinFactory.of(this.topBulletinContainer, new DarkThemeResourceProvider()).showForError(tL_error, true);
     }
 
     private void updateMessageId(int i, int i2) {
