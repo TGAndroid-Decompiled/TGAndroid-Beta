@@ -2836,7 +2836,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 ChatActivityEnterView.this.lambda$new$4(view);
             }
         });
-        this.sendButton.setOnLongClickListener(new ChatActivityEnterView$$ExternalSyntheticLambda6(this));
+        this.sendButton.setOnLongClickListener(new ChatActivityEnterView$$ExternalSyntheticLambda7(this));
         SlowModeBtn slowModeBtn = new SlowModeBtn(activity2);
         this.slowModeButton = slowModeBtn;
         slowModeBtn.setTextSize(18);
@@ -3581,7 +3581,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public void setOnSendButtonLongClick(View.OnLongClickListener onLongClickListener) {
         SendButton sendButton = this.sendButton;
         if (onLongClickListener == null) {
-            onLongClickListener = new ChatActivityEnterView$$ExternalSyntheticLambda6(this);
+            onLongClickListener = new ChatActivityEnterView$$ExternalSyntheticLambda7(this);
         }
         sendButton.setOnLongClickListener(onLongClickListener);
     }
@@ -5923,8 +5923,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         };
         this.messageEditText = anonymousClass43;
-        if (Build.VERSION.SDK_INT >= 28) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 28) {
             anonymousClass43.setFallbackLineSpacing(false);
+        }
+        if (i >= 35) {
+            this.messageEditText.setLocalePreferredLineHeightForMinimumUsed(false);
         }
         this.messageEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
@@ -5941,9 +5945,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         ChatActivity chatActivity2 = this.parentFragment;
         TLRPC.EncryptedChat currentEncryptedChat = chatActivity2 != null ? chatActivity2.getCurrentEncryptedChat() : null;
         this.messageEditText.setAllowTextEntitiesIntersection(supportsSendingNewEntities());
-        int i = (!isKeyboardSupportIncognitoMode() || currentEncryptedChat == null) ? 268435456 : 285212672;
+        int i2 = (!isKeyboardSupportIncognitoMode() || currentEncryptedChat == null) ? 268435456 : 285212672;
         this.messageEditText.setIncludeFontPadding(false);
-        this.messageEditText.setImeOptions(i);
+        this.messageEditText.setImeOptions(i2);
         EditTextCaption editTextCaption = this.messageEditText;
         int inputType = editTextCaption.getInputType() | 147456;
         this.commonInputType = inputType;
@@ -5959,9 +5963,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditText.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkOut));
         this.messageEditText.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
         EditTextCaption editTextCaption2 = this.messageEditText;
-        int i2 = Theme.key_chat_messagePanelHint;
-        editTextCaption2.setHintColor(getThemedColor(i2));
-        this.messageEditText.setHintTextColor(getThemedColor(i2));
+        int i3 = Theme.key_chat_messagePanelHint;
+        editTextCaption2.setHintColor(getThemedColor(i3));
+        this.messageEditText.setHintTextColor(getThemedColor(i3));
         this.messageEditText.setCursorColor(getThemedColor(Theme.key_chat_messagePanelCursor));
         this.messageEditText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
         this.messageEditTextContainer.addView(this.messageEditText, 1, LayoutHelper.createFrame(-1, -2.0f, 80, 52.0f, 0.0f, this.isChat ? 50.0f : 2.0f, 1.5f));
@@ -5979,12 +5983,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
 
             @Override
-            public boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                if (i3 == 4) {
+            public boolean onEditorAction(TextView textView, int i4, KeyEvent keyEvent) {
+                if (i4 == 4) {
                     ChatActivityEnterView.this.sendMessage();
                     return true;
                 }
-                if (keyEvent == null || i3 != 0 || keyEvent.isShiftPressed()) {
+                if (keyEvent == null || i4 != 0 || keyEvent.isShiftPressed()) {
                     return false;
                 }
                 if (ChatActivityEnterView.this.sendByEnter) {
@@ -6106,12 +6110,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-            if (i3 == 4) {
+        public boolean onEditorAction(TextView textView, int i4, KeyEvent keyEvent) {
+            if (i4 == 4) {
                 ChatActivityEnterView.this.sendMessage();
                 return true;
             }
-            if (keyEvent == null || i3 != 0 || keyEvent.isShiftPressed()) {
+            if (keyEvent == null || i4 != 0 || keyEvent.isShiftPressed()) {
                 return false;
             }
             if (ChatActivityEnterView.this.sendByEnter) {

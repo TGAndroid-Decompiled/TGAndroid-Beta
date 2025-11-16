@@ -1631,9 +1631,14 @@ public class StoriesController {
     }
 
     public void loadNextStories(boolean z) {
-        if (this.hasMore) {
-            loadFromServer(z);
+        if (z) {
+            if (!this.hasMoreHidden) {
+                return;
+            }
+        } else if (!this.hasMore) {
+            return;
         }
+        loadFromServer(z);
     }
 
     public void fillMessagesWithStories(LongSparseArray longSparseArray, Runnable runnable, int i, Timer timer) {

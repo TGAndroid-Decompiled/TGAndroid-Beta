@@ -1510,10 +1510,10 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             RectF rectF8 = this.sliderCircleRect;
             float f5 = f;
             float lerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF8.left, rectF8.right, f5), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), f5), Math.min(Utilities.clamp01(f5 / dp5), Utilities.clamp01((1.0f - f5) / dp5)));
-            float currentWidth3 = this.counterText.getCurrentWidth() + AndroidUtilities.dp(50.0f);
+            float max = Math.max(this.counterSubText.getCurrentWidth() + AndroidUtilities.dp(20.0f), this.counterText.getCurrentWidth() + AndroidUtilities.dp(50.0f));
             float dp6 = AndroidUtilities.dp(44.0f);
-            float clamp = Utilities.clamp(lerp5 - (currentWidth3 / 2.0f), (this.sliderInnerRect.right - currentWidth3) - AndroidUtilities.dp(4.0f), this.sliderInnerRect.left + AndroidUtilities.dp(4.0f));
-            this.textRect.set(clamp, (this.sliderInnerRect.top - AndroidUtilities.dp(21.0f)) - dp6, currentWidth3 + clamp, this.sliderInnerRect.top - AndroidUtilities.dp(21.0f));
+            float clamp = Utilities.clamp(lerp5 - (max / 2.0f), (this.sliderInnerRect.right - max) - AndroidUtilities.dp(4.0f), this.sliderInnerRect.left + AndroidUtilities.dp(4.0f));
+            this.textRect.set(clamp, (this.sliderInnerRect.top - AndroidUtilities.dp(21.0f)) - dp6, max + clamp, this.sliderInnerRect.top - AndroidUtilities.dp(21.0f));
             float height2 = this.textRect.height();
             float f6 = height2 / 2.0f;
             RectF rectF9 = this.textRect;
@@ -1596,7 +1596,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             float centerX = this.textRect.centerX();
             RectF rectF24 = this.textRect;
             canvas.scale(floatValue, floatValue, centerX, rectF24.top - (rectF24.height() * 0.5f));
-            this.counterImage.setBounds((int) (this.textRect.left + AndroidUtilities.dp(13.0f)), (int) (this.textRect.centerY() - AndroidUtilities.dp(10.0f)), (int) (this.textRect.left + AndroidUtilities.dp(33.0f)), (int) (this.textRect.centerY() + AndroidUtilities.dp(10.0f)));
+            this.counterImage.setBounds((int) ((this.textRect.centerX() - (this.counterText.getCurrentWidth() / 2.0f)) + AndroidUtilities.dp(-12.0f)), (int) (this.textRect.centerY() - AndroidUtilities.dp(10.0f)), (int) ((this.textRect.centerX() - (this.counterText.getCurrentWidth() / 2.0f)) + AndroidUtilities.dp(8.0f)), (int) (this.textRect.centerY() + AndroidUtilities.dp(10.0f)));
             if (this.drawCounterImage) {
                 this.counterImage.draw(canvas);
             }
@@ -1664,6 +1664,13 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 this.tracking = false;
             }
             return true;
+        }
+
+        public void setValueAnimated(int i) {
+            if (i == getValue()) {
+                return;
+            }
+            animateProgressTo(getProgress(i));
         }
 
         private void animateProgressTo(final float f) {

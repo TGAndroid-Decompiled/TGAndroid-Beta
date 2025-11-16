@@ -2545,6 +2545,9 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     linksTextView.setTextColor(Theme.blendOver(Theme.getColor(Theme.key_dialogGiftsBackground), Theme.getColor(Theme.key_dialogGiftsTabText)));
                     linksTextView.setTextSize(1, 14.0f);
                     linksTextView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                    linksTextView.setEllipsize(TextUtils.TruncateAt.END);
+                    linksTextView.setSingleLine();
+                    linksTextView.setMaxLines(1);
                     ScaleStateListAnimator.apply(linksTextView, 0.075f, 1.4f);
                     this.layout.addView(linksTextView, LayoutHelper.createLinear(-2, 26));
                     this.tabs.add(linksTextView);

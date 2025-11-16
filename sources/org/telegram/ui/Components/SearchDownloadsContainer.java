@@ -345,7 +345,8 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         final ArrayList arrayList3 = new ArrayList();
         final ArrayList arrayList4 = new ArrayList();
         for (int i = 0; i < arrayList.size(); i++) {
-            if (FileLoader.getDocumentFileName(((MessageObject) arrayList.get(i)).getDocument()).toLowerCase().contains(str)) {
+            String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList.get(i)).getDocument());
+            if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
                 MessageObject messageObject = new MessageObject(this.currentAccount, ((MessageObject) arrayList.get(i)).messageOwner, false, false);
                 messageObject.mediaExists = ((MessageObject) arrayList.get(i)).mediaExists;
                 messageObject.setQuery(this.searchQuery);
@@ -353,8 +354,8 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             }
         }
         for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-            String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList2.get(i2)).getDocument());
-            if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
+            String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList2.get(i2)).getDocument());
+            if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
                 MessageObject messageObject2 = new MessageObject(this.currentAccount, ((MessageObject) arrayList2.get(i2)).messageOwner, false, false);
                 messageObject2.mediaExists = ((MessageObject) arrayList2.get(i2)).mediaExists;
                 messageObject2.setQuery(this.searchQuery);

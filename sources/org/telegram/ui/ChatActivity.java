@@ -13250,7 +13250,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 this.replyingMessageObject = null;
             }
             this.replyingQuote = null;
-            this.chatActivityEnterView.setReplyingMessageObject(null, null);
+            ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+            if (chatActivityEnterView != null) {
+                chatActivityEnterView.setReplyingMessageObject(null, null);
+            }
         }
         hideFieldPanel(false);
         if (this.chatMode == 0) {

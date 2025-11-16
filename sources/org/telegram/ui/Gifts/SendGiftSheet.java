@@ -444,7 +444,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         View view = new View(context);
         view.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine, this.resourcesProvider));
         linearLayout4.addView(view, LayoutHelper.createLinear(-1.0f, 1.0f / AndroidUtilities.density, 55));
-        final float clamp = Utilities.clamp(starGift == null ? 0.0f : starGift.availability_remains / starGift.availability_total, 0.97f, 0.0f);
+        final float clamp = Utilities.clamp(starGift == null ? 0.0f : starGift.availability_remains / starGift.availability_total, 1.0f, 0.0f);
         FrameLayout frameLayout = new FrameLayout(context);
         this.limitContainer = frameLayout;
         frameLayout.setVisibility((starGift == null || !starGift.limited) ? 8 : 0);

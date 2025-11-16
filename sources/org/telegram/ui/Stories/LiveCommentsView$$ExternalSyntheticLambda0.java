@@ -12,6 +12,6 @@ public final class LiveCommentsView$$ExternalSyntheticLambda0 implements Compara
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        return LiveCommentsView.m3892$r8$lambda$K2eeh2_IZcO_1a95DDNILsVMUo(this.f$0, (LiveCommentsView.TopSender) obj, (LiveCommentsView.TopSender) obj2);
+        return LiveCommentsView.m3899$r8$lambda$K2eeh2_IZcO_1a95DDNILsVMUo(this.f$0, (LiveCommentsView.TopSender) obj, (LiveCommentsView.TopSender) obj2);
     }
 }
