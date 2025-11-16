@@ -4743,6 +4743,15 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return 0L;
     }
 
+    public long getGroupCallID() {
+        TLRPC.GroupCall groupCall;
+        ChatObject.Call call = this.groupCall;
+        if (call == null || (groupCall = call.call) == null) {
+            return 0L;
+        }
+        return groupCall.id;
+    }
+
     public void hangUp() {
         hangUp(0, null);
     }

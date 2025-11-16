@@ -638,12 +638,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         int value = this.slider.getValue();
         int minimumBid = (int) this.auction.getMinimumBid();
         if (value < minimumBid) {
-            this.slider.setValueAnimated(minimumBid);
             AndroidUtilities.shakeView(this.buttonView);
-            BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.formatPluralString("Gift2AuctionMinimumBidIncreased", minimumBid, new Object[0])).show();
-            return;
+            BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.info, AndroidUtilities.replaceTags(LocaleController.formatPluralString("Gift2AuctionMinimumBidIncreased", minimumBid, new Object[0]))).show();
+        } else {
+            sendBid(value);
         }
-        sendBid(value);
     }
 
     @Override

@@ -2868,12 +2868,12 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     }
 
     @Override
-    public void onNewGroupCallMessage(GroupCallMessage groupCallMessage) {
+    public void onNewGroupCallMessage(long j, GroupCallMessage groupCallMessage) {
         if (this.groupCallMessagesContainer == null) {
             return;
         }
         int i = this.currentStyle;
-        if (i == 1 || i == 3 || i == 4) {
+        if ((i == 1 || i == 3) && VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().getGroupCallID() == j) {
             this.groupCallMessageCounter++;
             if (groupCallMessage.isOut()) {
                 return;

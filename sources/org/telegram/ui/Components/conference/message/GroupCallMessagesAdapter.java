@@ -50,7 +50,7 @@ public abstract class GroupCallMessagesAdapter extends RecyclerView.Adapter impl
     }
 
     @Override
-    public void onNewGroupCallMessage(GroupCallMessage groupCallMessage) {
+    public void onNewGroupCallMessage(long j, GroupCallMessage groupCallMessage) {
         if (this.messages == null) {
             this.messages = new ArrayList();
         }

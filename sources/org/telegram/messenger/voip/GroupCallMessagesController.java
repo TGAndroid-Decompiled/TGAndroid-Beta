@@ -25,7 +25,7 @@ public class GroupCallMessagesController extends BaseController {
     private final LongSparseArray<List<CallMessageListener>> callMessagesListeners;
 
     public interface CallMessageListener {
-        void onNewGroupCallMessage(GroupCallMessage groupCallMessage);
+        void onNewGroupCallMessage(long j, GroupCallMessage groupCallMessage);
 
         void onPopGroupCallMessage();
     }
@@ -187,14 +187,14 @@ public class GroupCallMessagesController extends BaseController {
             if (list != null) {
                 Iterator<CallMessageListener> it = list.iterator();
                 while (it.hasNext()) {
-                    it.next().onNewGroupCallMessage(groupCallMessage);
+                    it.next().onNewGroupCallMessage(j, groupCallMessage);
                 }
             }
             List<CallMessageListener> list2 = this.callMessagesListeners.get(0L);
             if (list2 != null) {
                 Iterator<CallMessageListener> it2 = list2.iterator();
                 while (it2.hasNext()) {
-                    it2.next().onNewGroupCallMessage(groupCallMessage);
+                    it2.next().onNewGroupCallMessage(j, groupCallMessage);
                 }
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
