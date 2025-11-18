@@ -10466,7 +10466,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (indexOfChild < 0) {
                 indexOfChild = this.contentView.getChildCount();
             }
-            this.contentView.addView(this.instantCameraView, indexOfChild, LayoutHelper.createFrame(-1, -1, 51));
+            this.contentView.addView(this.instantCameraView, Math.min(indexOfChild + 1, this.contentView.getChildCount()), LayoutHelper.createFrame(-1, -1, 51));
         }
     }
 
@@ -15928,7 +15928,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private int getScrollOffsetForMessage(int i) {
-        return (int) Math.max(-AndroidUtilities.dp(2.0f), (((this.chatListView.getMeasuredHeight() - this.blurredViewBottomOffset) - this.chatListViewPaddingTop) - i) / 2.0f);
+        return (int) Math.max(-AndroidUtilities.dp(2.0f), (((((this.chatListView.getMeasuredHeight() - this.blurredViewBottomOffset) - this.chatListViewPaddingTop) - this.windowInsetsStateHolder.getCurrentMaxBottomInset()) - AndroidUtilities.dp(53.0f)) - i) / 2.0f);
     }
 
     private int scrollOffsetForQuote(MessageObject messageObject) {

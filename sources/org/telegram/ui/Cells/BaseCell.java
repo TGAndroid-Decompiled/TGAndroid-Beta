@@ -51,7 +51,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         return i;
     }
 
-    private final class CheckForTap implements Runnable {
+    public final class CheckForTap implements Runnable {
         private CheckForTap() {
         }
 
@@ -67,7 +67,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
     }
 
-    class CheckForLongPress implements Runnable {
+    public class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
         CheckForLongPress() {

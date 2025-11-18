@@ -350,7 +350,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
                 TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.lastSelectedArea.mediaArea.coordinates;
                 if ((mediaAreaCoordinates.flags & 1) != 0) {
-                    measuredHeight = (float) ((mediaAreaCoordinates.radius / 100.0d) * getWidth());
+                    measuredHeight = (float) ((mediaAreaCoordinates.radius / 100.0d) * r3.getMeasuredWidth());
                 } else {
                     measuredHeight = r3.getMeasuredHeight() * 0.2f;
                 }
@@ -562,7 +562,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
             if ((getParent() instanceof View) && (mediaArea = this.mediaArea) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
                 if ((mediaAreaCoordinates.flags & 1) != 0) {
-                    return (float) (((mediaAreaCoordinates.radius / 100.0d) * ((View) getParent()).getWidth()) / getScaleX());
+                    return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
                 }
                 return getMeasuredHeight() * 0.2f;
             }

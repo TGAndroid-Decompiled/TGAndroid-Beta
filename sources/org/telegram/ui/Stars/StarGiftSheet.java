@@ -5172,7 +5172,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return set(messageObject, (StarsController.IGiftsList) null);
     }
 
-    public org.telegram.ui.Stars.StarGiftSheet set(org.telegram.messenger.MessageObject r49, org.telegram.ui.Stars.StarsController.IGiftsList r50) {
+    public org.telegram.ui.Stars.StarGiftSheet set(org.telegram.messenger.MessageObject r47, org.telegram.ui.Stars.StarsController.IGiftsList r48) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.set(org.telegram.messenger.MessageObject, org.telegram.ui.Stars.StarsController$IGiftsList):org.telegram.ui.Stars.StarGiftSheet");
     }
 

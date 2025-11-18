@@ -115,7 +115,7 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
 
     private void update(boolean z) {
         String formatString;
-        String formatString2;
+        String formatPlace;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int size = this.activeAuctions.size();
         if (size == 0) {
@@ -148,17 +148,26 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         } else {
             int approximatedMyPlace = ((GiftAuctionController.Auction) this.activeAuctions.get(0)).getApproximatedMyPlace();
             if (approximatedMyPlace == 1) {
-                formatString2 = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning1Place);
+                formatPlace = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning1Place);
             } else if (approximatedMyPlace == 2) {
-                formatString2 = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning2Place);
+                formatPlace = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning2Place);
             } else if (approximatedMyPlace == 3) {
-                formatString2 = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning3Place);
+                formatPlace = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinning3Place);
             } else {
-                formatString2 = LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOtherPlace, Integer.valueOf(approximatedMyPlace));
+                formatPlace = formatPlace(approximatedMyPlace);
             }
-            this.messageTextView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOne, formatString2));
+            this.messageTextView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOne, formatPlace));
         }
         updateColors();
+    }
+
+    private static String formatPlace(int i) {
+        int i2 = i % 100;
+        if (i2 >= 11 && i2 <= 13) {
+            return LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOtherTh, Integer.valueOf(i));
+        }
+        int i3 = i % 10;
+        return i3 != 1 ? i3 != 2 ? i3 != 3 ? LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOtherTh, Integer.valueOf(i)) : LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOtherRd, Integer.valueOf(i)) : LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOtherNd, Integer.valueOf(i)) : LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOtherSt, Integer.valueOf(i));
     }
 
     public void onClick(View view) {

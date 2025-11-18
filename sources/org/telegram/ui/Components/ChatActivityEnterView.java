@@ -1484,7 +1484,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r34) {
+        protected void onDraw(android.graphics.Canvas r41) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.ControlsView.onDraw(android.graphics.Canvas):void");
         }
 
@@ -11070,6 +11070,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         };
         this.emojiView = anonymousClass70;
+        anonymousClass70.shouldDrawStickerSettings = true;
         if (!this.shouldDrawBackground) {
             anonymousClass70.updateColors();
         }
@@ -11167,7 +11168,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         });
         EmojiView emojiView3 = this.emojiView;
         if (emojiView3 != null) {
-            emojiView3.setStickersBanned(!this.sendPlainEnabled, !this.stickersEnabled, -this.dialog_id);
+            emojiView3.setStickersBanned(!this.sendPlainEnabled, true ^ this.stickersEnabled, -this.dialog_id);
         }
         attachEmojiView();
         checkChannelRights();

@@ -5301,7 +5301,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 this.chatActivityEnterView.setOverrideHint(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.TypeMessageForStars, LocaleController.formatNumber(this.starsPriceBlocked, ','))), z);
                 return;
             }
-            if (stealthMode != null) {
+            if (!this.currentStory.isLive && stealthMode != null) {
                 int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
                 int i = stealthMode.active_until_date;
                 if (currentTime < i) {
@@ -5311,12 +5311,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     int i3 = currentTime2 % 60;
                     int i4 = R.string.StealthModeActiveHintShort;
                     Locale locale = Locale.US;
-                    int measureText = (int) this.chatActivityEnterView.getEditField().getPaint().measureText(LocaleController.formatString("StealthModeActiveHint", i4, String.format(locale, "%02d:%02d", 99, 99)));
+                    int measureText = (int) this.chatActivityEnterView.getEditField().getPaint().measureText(LocaleController.formatString(i4, String.format(locale, "%02d:%02d", 99, 99)));
                     this.chatActivityEnterView.setEnabled(true);
                     if (measureText * 1.2f >= this.chatActivityEnterView.getEditField().getMeasuredWidth()) {
-                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHintShort", i4, ""), String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), z);
+                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString(i4, ""), String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3)), z);
                     } else {
-                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString("StealthModeActiveHint", R.string.StealthModeActiveHint, String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3))), z);
+                        this.chatActivityEnterView.setOverrideHint(LocaleController.formatString(R.string.StealthModeActiveHint, String.format(locale, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i3))), z);
                     }
                     AndroidUtilities.runOnUIThread(this.updateStealthModeTimer, 1000L);
                     return;
