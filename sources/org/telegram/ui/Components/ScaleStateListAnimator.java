@@ -16,7 +16,6 @@ public abstract class ScaleStateListAnimator {
         if (view == null) {
             return;
         }
-        view.setLayerType(2, null);
         AnimatorSet animatorSet = new AnimatorSet();
         Property property = View.SCALE_X;
         float f3 = 1.0f - f;

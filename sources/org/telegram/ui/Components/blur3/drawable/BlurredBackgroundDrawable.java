@@ -41,6 +41,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     private final Matrix bitmapShaderMatrix;
     protected final Props boundProps;
     protected BlurredBackgroundColorProvider colorProvider;
+    private final RectF drawablePositionRelativeSource = new RectF();
     protected boolean inAppKeyboardOptimization;
     private final Paint paintStrokeFill;
     protected int shadowColor;
@@ -52,18 +53,15 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     private static final float[] tmpRadii = new float[8];
     private static Path tmpPath = new Path();
 
+    private void dispatchSourceRelativePositionChange() {
+    }
+
     @Override
     public int getOpacity() {
         return -3;
     }
 
     public abstract BlurredBackgroundSource getSource();
-
-    protected void onBoundPropsChanged() {
-    }
-
-    protected void onSourceOffsetChange(float f, float f2) {
-    }
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
@@ -180,6 +178,14 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         onBoundPropsChanged();
     }
 
+    public void onBoundPropsChanged() {
+        dispatchSourceRelativePositionChange();
+    }
+
+    public void onSourceOffsetChange(float f, float f2) {
+        dispatchSourceRelativePositionChange();
+    }
+
     public BlurredBackgroundSource getUnwrappedSource() {
         BlurredBackgroundSource source = getSource();
         while (source instanceof BlurredBackgroundSourceWrapped) {
@@ -202,6 +208,11 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         this.shadowColor = this.colorProvider.getShadowColor();
         this.strokeColorTop = this.colorProvider.getStrokeColorTop();
         this.strokeColorBottom = this.colorProvider.getStrokeColorBottom();
+    }
+
+    public void getPositionRelativeSource(RectF rectF) {
+        rectF.set(this.boundProps.boundsWithPadding);
+        rectF.offset(this.sourceOffsetX, this.sourceOffsetY);
     }
 
     public static class Props {
@@ -392,7 +403,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
 
     private void drawSourceColor(Canvas canvas, BlurredBackgroundSourceColor blurredBackgroundSourceColor) {
         int multAlpha = Theme.multAlpha(ColorUtils.compositeColors(this.backgroundColor, blurredBackgroundSourceColor.getColor()), this.alpha / 255.0f);
-        this.backgroundColorPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), Theme.multAlpha(this.shadowColor, this.alpha / 255.0f));
+        Theme.multAlpha(this.shadowColor, this.alpha / 255.0f);
         this.backgroundColorPaint.setColor(multAlpha);
         this.boundProps.draw(canvas, this.backgroundColorPaint);
         drawStrokeInternalIfNeeded(canvas);
@@ -411,10 +422,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
                 this.backgroundBitmapPaint.setShader(null);
             }
         }
-        if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
-            this.backgroundBitmapShadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
-            this.boundProps.draw(canvas, this.backgroundBitmapShadowPaint);
-        }
+        Color.alpha(this.shadowColor);
         if (this.bitmapShader != null && bitmap != null && !bitmap.isRecycled() && this.alpha > 0) {
             this.bitmapShaderMatrix.set(blurredBackgroundSourceBitmap.getMatrix());
             this.bitmapShaderMatrix.postTranslate(-this.sourceOffsetX, -this.sourceOffsetY);

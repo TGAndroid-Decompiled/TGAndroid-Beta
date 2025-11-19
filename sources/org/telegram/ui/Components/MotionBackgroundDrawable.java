@@ -205,12 +205,17 @@ public class MotionBackgroundDrawable extends Drawable {
 
     private void init() {
         BlendMode blendMode;
-        this.currentBitmap = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
+        this.currentBitmap = createBitmap;
+        createBitmap.setHasAlpha(false);
         for (int i = 0; i < 3; i++) {
             this.gradientToBitmap[i] = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
+            this.gradientToBitmap[i].setHasAlpha(false);
         }
         this.gradientCanvas = new Canvas(this.currentBitmap);
-        this.gradientFromBitmap = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap2 = Bitmap.createBitmap(this.bitmapWidth, this.bitmapHeight, Bitmap.Config.ARGB_8888);
+        this.gradientFromBitmap = createBitmap2;
+        createBitmap2.setHasAlpha(false);
         this.gradientFromCanvas = new Canvas(this.gradientFromBitmap);
         Utilities.generateGradient(this.currentBitmap, true, this.phase, this.interpolator.getInterpolation(this.posAnimationProgress), this.currentBitmap.getWidth(), this.currentBitmap.getHeight(), this.currentBitmap.getRowBytes(), this.colors);
         if (useSoftLight) {

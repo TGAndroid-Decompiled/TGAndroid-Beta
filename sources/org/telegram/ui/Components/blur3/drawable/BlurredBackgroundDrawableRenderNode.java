@@ -1,25 +1,21 @@
 package org.telegram.ui.Components.blur3.drawable;
 
-import android.graphics.BlendMode;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.RecordingCanvas;
 import android.graphics.Rect;
-import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 
 public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawable {
-    private int lastBackgroundColor;
     private LiquidGlassEffect liquidGlassEffect;
     private final Outline outline = new Outline();
     private final Rect outlineRect = new Rect();
@@ -64,7 +60,8 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     }
 
     @Override
-    protected void onBoundPropsChanged() {
+    public void onBoundPropsChanged() {
+        super.onBoundPropsChanged();
         this.paintStrokeTop.setStrokeWidth(this.boundProps.strokeWidthTop);
         this.paintStrokeBottom.setStrokeWidth(this.boundProps.strokeWidthBottom);
         this.outlineRect.set(0, 0, this.boundProps.boundsWithPadding.width(), this.boundProps.boundsWithPadding.height());
@@ -81,8 +78,15 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     }
 
     @Override
-    protected void onSourceOffsetChange(float f, float f2) {
+    public void onSourceOffsetChange(float f, float f2) {
+        super.onSourceOffsetChange(f, f2);
         this.renderNodeInvalidated = true;
+    }
+
+    public boolean hasDisplayList() {
+        boolean hasDisplayList;
+        hasDisplayList = this.renderNode.hasDisplayList();
+        return hasDisplayList;
     }
 
     private void updateDisplayList() {
@@ -111,7 +115,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
             }
             float f7 = i;
             BlurredBackgroundDrawable.Props props2 = this.boundProps;
-            liquidGlassEffect.update(0.0f, 0.0f, width, height, f3, f4, f5, f6, f7, props2.liquidIntensity, props2.liquidIndex);
+            liquidGlassEffect.update(0.0f, 0.0f, width, height, f3, f4, f5, f6, f7, props2.liquidIntensity, props2.liquidIndex, this.backgroundColor);
         }
         BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = this.source;
         Rect rect2 = this.boundProps.boundsWithPadding;
@@ -137,7 +141,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         }
         beginRecording2 = this.renderNode.beginRecording();
         beginRecording2.drawRenderNode(this.renderNodeFill);
-        if ((Build.VERSION.SDK_INT < 31 || this.liquidGlassEffect != null) && this.backgroundColor != 0) {
+        if (this.liquidGlassEffect == null && Color.alpha(this.backgroundColor) != 0) {
             beginRecording2.drawPaint(this.paintFill);
         }
         if (z) {
@@ -148,35 +152,16 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
 
     @Override
     public void updateColors() {
-        BlendMode blendMode;
-        RenderEffect createColorFilterEffect;
         super.updateColors();
-        int i = this.lastBackgroundColor;
-        int i2 = this.backgroundColor;
-        if (i != i2) {
-            this.lastBackgroundColor = i2;
-            if (this.liquidGlassEffect == null && Build.VERSION.SDK_INT >= 31) {
-                if (Color.alpha(i2) != 0) {
-                    RenderNode renderNode = this.renderNodeFill;
-                    BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline1.m();
-                    int i3 = this.backgroundColor;
-                    blendMode = BlendMode.SRC_OVER;
-                    createColorFilterEffect = RenderEffect.createColorFilterEffect(BlurredBackgroundDrawableRenderNode$$ExternalSyntheticApiModelOutline0.m(i3, blendMode));
-                    renderNode.setRenderEffect(createColorFilterEffect);
-                } else {
-                    this.renderNodeFill.setRenderEffect(null);
-                }
-            }
-        }
         this.paintShadow.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), this.shadowColor);
-        this.paintFill.setColor(Theme.multAlpha(this.backgroundColor, this.boundProps.fillAlpha));
+        this.paintFill.setColor(this.backgroundColor);
         this.paintStrokeTop.setColor(this.strokeColorTop);
         this.paintStrokeBottom.setColor(this.strokeColorBottom);
         this.renderNodeInvalidated = true;
     }
 
     @Override
-    public void draw(android.graphics.Canvas r13) {
+    public void draw(android.graphics.Canvas r3) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode.draw(android.graphics.Canvas):void");
     }
 
