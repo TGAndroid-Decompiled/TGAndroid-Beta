@@ -4348,10 +4348,10 @@ public class MessageObject {
     }
 
     public static Spannable replaceAnimatedEmoji(CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z) {
-        return replaceAnimatedEmoji(charSequence, arrayList, fontMetricsInt, z, 1.2f);
+        return replaceAnimatedEmoji(charSequence, arrayList, fontMetricsInt, z, 1.2f, 0);
     }
 
-    public static Spannable replaceAnimatedEmoji(CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z, float f) {
+    public static Spannable replaceAnimatedEmoji(CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, Paint.FontMetricsInt fontMetricsInt, boolean z, float f, int i) {
         AnimatedEmojiSpan animatedEmojiSpan;
         if (charSequence == null) {
             return null;
@@ -4360,26 +4360,27 @@ public class MessageObject {
         if (arrayList == null) {
             return spannableString;
         }
+        int i2 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i;
         Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
-        for (int i = 0; i < arrayList.size(); i++) {
-            TLRPC.MessageEntity messageEntity = arrayList.get(i);
+        for (int i3 = 0; i3 < arrayList.size() && i2 > 0; i3++) {
+            TLRPC.MessageEntity messageEntity = arrayList.get(i3);
             if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
                 TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = (TLRPC.TL_messageEntityCustomEmoji) messageEntity;
-                for (int i2 = 0; i2 < emojiSpanArr.length; i2++) {
-                    Emoji.EmojiSpan emojiSpan = emojiSpanArr[i2];
+                for (int i4 = 0; i4 < emojiSpanArr.length; i4++) {
+                    Emoji.EmojiSpan emojiSpan = emojiSpanArr[i4];
                     if (emojiSpan != null) {
                         int spanStart = spannableString.getSpanStart(emojiSpan);
                         int spanEnd = spannableString.getSpanEnd(emojiSpan);
-                        int i3 = tL_messageEntityCustomEmoji.offset;
-                        if (AndroidUtilities.intersect1d(i3, tL_messageEntityCustomEmoji.length + i3, spanStart, spanEnd)) {
+                        int i5 = tL_messageEntityCustomEmoji.offset;
+                        if (AndroidUtilities.intersect1d(i5, tL_messageEntityCustomEmoji.length + i5, spanStart, spanEnd)) {
                             spannableString.removeSpan(emojiSpan);
-                            emojiSpanArr[i2] = null;
+                            emojiSpanArr[i4] = null;
                         }
                     }
                 }
                 if (messageEntity.offset + messageEntity.length <= spannableString.length()) {
-                    int i4 = messageEntity.offset;
-                    AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableString.getSpans(i4, messageEntity.length + i4, AnimatedEmojiSpan.class);
+                    int i6 = messageEntity.offset;
+                    AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableString.getSpans(i6, messageEntity.length + i6, AnimatedEmojiSpan.class);
                     if (animatedEmojiSpanArr != null && animatedEmojiSpanArr.length > 0) {
                         for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
                             spannableString.removeSpan(animatedEmojiSpan2);
@@ -4391,8 +4392,9 @@ public class MessageObject {
                         animatedEmojiSpan = new AnimatedEmojiSpan(tL_messageEntityCustomEmoji.document_id, f, fontMetricsInt);
                     }
                     animatedEmojiSpan.top = z;
-                    int i5 = messageEntity.offset;
-                    spannableString.setSpan(animatedEmojiSpan, i5, messageEntity.length + i5, 33);
+                    int i7 = messageEntity.offset;
+                    spannableString.setSpan(animatedEmojiSpan, i7, messageEntity.length + i7, 33);
+                    i2--;
                 }
             }
         }

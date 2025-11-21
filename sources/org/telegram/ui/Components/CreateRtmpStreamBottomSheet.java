@@ -15,6 +15,8 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -26,6 +28,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextDetailCell;
@@ -58,16 +61,17 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         }
     }
 
-    public CreateRtmpStreamBottomSheet(Context context, final int i, final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+    public CreateRtmpStreamBottomSheet(final Context context, final int i, final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
         super(context, null, false, false, false, resourcesProvider);
         int i2;
         this.story = true;
         this.topPadding = 0.126f;
         this.joinCallDelegate = null;
         this.hasFewPeers = false;
+        long peerDialogId = DialogObject.getPeerDialogId(getgroupcallstreamrtmpurl.peer);
+        this.hasRevokeButton = callback != null && (peerDialogId >= 0 || ChatObject.isCreator(MessagesController.getInstance(i).getChat(Long.valueOf(-peerDialogId))));
         if (callback != null) {
             this.hasButton = true;
-            this.hasRevokeButton = getgroupcallstreamrtmpurl != null;
             final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
             buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryRTMPEnable), false);
             this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (this.hasRevokeButton ? 52 : 0) + 12));
@@ -77,7 +81,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
                     CreateRtmpStreamBottomSheet.this.lambda$new$2(callback, buttonWithCounterView, view);
                 }
             });
-            if (getgroupcallstreamrtmpurl != null) {
+            if (this.hasRevokeButton) {
                 final ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
                 buttonWithCounterView2.setColor(Theme.getColor(Theme.key_fill_RedNormal));
                 buttonWithCounterView2.text.setTypeface(AndroidUtilities.bold());
@@ -85,7 +89,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
                 buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        CreateRtmpStreamBottomSheet.this.lambda$new$5(buttonWithCounterView2, getgroupcallstreamrtmpurl, i, view);
+                        CreateRtmpStreamBottomSheet.this.lambda$new$6(context, resourcesProvider, buttonWithCounterView2, getgroupcallstreamrtmpurl, i, view);
                     }
                 });
                 this.containerView.addView(buttonWithCounterView2, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
@@ -137,7 +141,16 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         lambda$new$0();
     }
 
-    public void lambda$new$5(final ButtonWithCounterView buttonWithCounterView, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, int i, View view) {
+    public void lambda$new$6(Context context, Theme.ResourcesProvider resourcesProvider, final ButtonWithCounterView buttonWithCounterView, final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, final int i, View view) {
+        new AlertDialog.Builder(context, resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle)).setMessage(LocaleController.getString(R.string.LiveStoryRTMPRevokeText)).setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i2) {
+                CreateRtmpStreamBottomSheet.this.lambda$new$5(buttonWithCounterView, getgroupcallstreamrtmpurl, i, alertDialog, i2);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+    }
+
+    public void lambda$new$5(final ButtonWithCounterView buttonWithCounterView, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, int i, AlertDialog alertDialog, int i2) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -177,7 +190,8 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         this.topPadding = 0.26f;
         this.joinCallDelegate = joinCallAlertDelegate;
         this.hasFewPeers = z;
-        Context context = this.containerView.getContext();
+        final Context context = this.containerView.getContext();
+        boolean isCreator = ChatObject.isCreator(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         this.hasButton = true;
         TextView textView = new TextView(context);
         textView.setGravity(17);
@@ -188,27 +202,29 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         textView.setText(LocaleController.getString(R.string.VoipChannelStartStreaming));
         textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, this.resourcesProvider));
         textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 64.0f));
+        this.containerView.addView(textView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (isCreator ? 52 : 0) + 12));
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$6(peer, view);
+                CreateRtmpStreamBottomSheet.this.lambda$new$7(peer, view);
             }
         });
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, this.resourcesProvider);
-        buttonWithCounterView.setColor(Theme.getColor(Theme.key_fill_RedNormal));
-        buttonWithCounterView.text.setTypeface(AndroidUtilities.bold());
-        buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$9(buttonWithCounterView, j, view);
-            }
-        });
-        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+        if (isCreator) {
+            final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, false, this.resourcesProvider);
+            buttonWithCounterView.setColor(Theme.getColor(Theme.key_fill_RedNormal));
+            buttonWithCounterView.text.setTypeface(AndroidUtilities.bold());
+            buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryRTMPRevoke), false);
+            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    CreateRtmpStreamBottomSheet.this.lambda$new$11(context, buttonWithCounterView, j, view);
+                }
+            });
+            this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
+        }
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(124.0f));
+        recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp((isCreator ? 52 : 0) + 72));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setSupportsChangeAnimations(false);
         defaultItemAnimator.setDelayAnimations(false);
@@ -223,17 +239,26 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$11(tLObject, tL_error);
+                CreateRtmpStreamBottomSheet.this.lambda$new$13(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$6(TLRPC.Peer peer, View view) {
+    public void lambda$new$7(TLRPC.Peer peer, View view) {
         this.selectAfterDismiss = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(peer));
         lambda$new$0();
     }
 
-    public void lambda$new$9(final ButtonWithCounterView buttonWithCounterView, long j, View view) {
+    public void lambda$new$11(Context context, final ButtonWithCounterView buttonWithCounterView, final long j, View view) {
+        new AlertDialog.Builder(context, this.resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryRTMPRevokeTitle)).setMessage(LocaleController.getString(R.string.LiveStoryRTMPRevokeText)).setPositiveButton(LocaleController.getString(R.string.RevokeButton), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) {
+                CreateRtmpStreamBottomSheet.this.lambda$new$10(buttonWithCounterView, j, alertDialog, i);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+    }
+
+    public void lambda$new$10(final ButtonWithCounterView buttonWithCounterView, long j, AlertDialog alertDialog, int i) {
         if (buttonWithCounterView.isLoading()) {
             return;
         }
@@ -244,21 +269,21 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                CreateRtmpStreamBottomSheet.this.lambda$new$8(buttonWithCounterView, tLObject, tL_error);
+                CreateRtmpStreamBottomSheet.this.lambda$new$9(buttonWithCounterView, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$new$8(final ButtonWithCounterView buttonWithCounterView, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$new$9(final ButtonWithCounterView buttonWithCounterView, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$7(buttonWithCounterView, tLObject);
+                CreateRtmpStreamBottomSheet.this.lambda$new$8(buttonWithCounterView, tLObject);
             }
         });
     }
 
-    public void lambda$new$7(ButtonWithCounterView buttonWithCounterView, TLObject tLObject) {
+    public void lambda$new$8(ButtonWithCounterView buttonWithCounterView, TLObject tLObject) {
         buttonWithCounterView.setLoading(false);
         if (tLObject == null || !(tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
             return;
@@ -270,16 +295,16 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         this.adapter.update(true);
     }
 
-    public void lambda$new$11(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$new$13(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CreateRtmpStreamBottomSheet.this.lambda$new$10(tLObject);
+                CreateRtmpStreamBottomSheet.this.lambda$new$12(tLObject);
             }
         });
     }
 
-    public void lambda$new$10(TLObject tLObject) {
+    public void lambda$new$12(TLObject tLObject) {
         if (tLObject == null || !(tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
             return;
         }
@@ -394,7 +419,8 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
             TextDetailCell textDetailCell = (TextDetailCell) view;
             textDetailCell.setTextAndValue(uItem.text, uItem.textValue, !uItem.hideDivider);
             if (uItem.text instanceof SpannableStringBuilder) {
-                textDetailCell.textView.setTextSize(1, 15.0f);
+                textDetailCell.textView.setTextSize(1, 13.0f);
+                textDetailCell.textView.setTranslationY(AndroidUtilities.dp(2.0f));
                 textDetailCell.textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
             }
         }

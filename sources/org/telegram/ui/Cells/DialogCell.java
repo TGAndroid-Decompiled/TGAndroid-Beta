@@ -200,6 +200,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean drawVerified;
     public boolean drawingForBlur;
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
+    private final View emojiStatusView;
     private TLRPC.EncryptedChat encryptedChat;
     private int errorLeft;
     private int errorTop;
@@ -655,7 +656,16 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             } else {
                 this.useForceThreeLines = z2;
                 this.currentAccount = i;
-                this.emojiStatus = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(22.0f));
+                View view = new View(context) {
+                    @Override
+                    protected void onDraw(Canvas canvas) {
+                        DialogCell.this.emojiStatus.setBounds(0, 0, getWidth(), getHeight());
+                        DialogCell.this.emojiStatus.draw(canvas);
+                    }
+                };
+                this.emojiStatusView = view;
+                addView(view);
+                this.emojiStatus = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(22.0f));
                 this.botVerification = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(17.0f));
                 this.avatarImage.setAllowLoadingOnAttachedOnly(true);
                 return;
@@ -905,6 +915,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     @Override
     protected void onMeasure(int i, int i2) {
+        View view = this.emojiStatusView;
+        if (view != null) {
+            view.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), 1073741824));
+        }
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
             checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
@@ -963,6 +977,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         int dp;
         if (this.currentDialogId == 0 && this.customDialog == null) {
             return;
+        }
+        View view = this.emojiStatusView;
+        if (view != null) {
+            view.layout(0, 0, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
         }
         if (this.checkBox != null) {
             int dp2 = AndroidUtilities.dp(this.messagePaddingStart - ((this.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? 29 : 27));

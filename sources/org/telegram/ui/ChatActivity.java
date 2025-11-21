@@ -16561,6 +16561,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public void onUpdateBackgroundDrawable(Drawable drawable) {
             super.onUpdateBackgroundDrawable(drawable);
+            if (drawable instanceof MotionBackgroundDrawable) {
+                ((MotionBackgroundDrawable) drawable).setFastRenderAllowed();
+            }
             BlurredBackgroundSource updateSourceFromBackgroundViewDrawable = ChatActivity.this.wallpaperBitmapProvider.updateSourceFromBackgroundViewDrawable(drawable);
             ChatActivity.this.shouldHaveLightNavigationBarIcons = AndroidUtilities.computePerceivedBrightness(ChatActivity.this.wallpaperBitmapProvider.getNavigationBarColor(updateSourceFromBackgroundViewDrawable)) <= 0.9f;
             ChatActivity.this.navbarContentSourceWallpaper.setSource(updateSourceFromBackgroundViewDrawable);

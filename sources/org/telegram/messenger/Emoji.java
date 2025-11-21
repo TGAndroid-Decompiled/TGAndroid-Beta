@@ -505,7 +505,7 @@ public class Emoji {
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z, float f) {
-        return replaceEmoji(charSequence, fontMetricsInt, z, null, 0, f);
+        return replaceEmoji(charSequence, fontMetricsInt, z, null, 0, f, 0);
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z, int[] iArr) {
@@ -513,13 +513,13 @@ public class Emoji {
     }
 
     public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z, int[] iArr, int i) {
-        return replaceEmoji(charSequence, fontMetricsInt, z, iArr, i, 1.0f);
+        return replaceEmoji(charSequence, fontMetricsInt, z, iArr, i, 1.0f, 0);
     }
 
-    public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z, int[] iArr, int i, float f) {
+    public static CharSequence replaceEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, boolean z, int[] iArr, int i, float f, int i2) {
         Spannable newSpannable;
-        int i2;
         int i3;
+        int i4;
         if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
             return charSequence;
         }
@@ -534,20 +534,20 @@ public class Emoji {
         }
         AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) newSpannable.getSpans(0, newSpannable.length(), AnimatedEmojiSpan.class);
         ColoredImageSpan[] coloredImageSpanArr = (ColoredImageSpan[]) newSpannable.getSpans(0, newSpannable.length(), ColoredImageSpan.class);
-        int i4 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
-        for (int i5 = 0; i5 < parseEmojis.size(); i5++) {
+        int i5 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i2;
+        for (int i6 = 0; i6 < parseEmojis.size(); i6++) {
             try {
-                EmojiSpanRange emojiSpanRange = parseEmojis.get(i5);
+                EmojiSpanRange emojiSpanRange = parseEmojis.get(i6);
                 if (animatedEmojiSpanArr != null && animatedEmojiSpanArr.length > 0) {
-                    while (i3 < animatedEmojiSpanArr.length) {
-                        AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i3];
-                        i3 = (animatedEmojiSpan != null && newSpannable.getSpanStart(animatedEmojiSpan) == emojiSpanRange.start && newSpannable.getSpanEnd(animatedEmojiSpan) == emojiSpanRange.end) ? 0 : i3 + 1;
+                    while (i4 < animatedEmojiSpanArr.length) {
+                        AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i4];
+                        i4 = (animatedEmojiSpan != null && newSpannable.getSpanStart(animatedEmojiSpan) == emojiSpanRange.start && newSpannable.getSpanEnd(animatedEmojiSpan) == emojiSpanRange.end) ? 0 : i4 + 1;
                     }
                 }
                 if (coloredImageSpanArr != null && coloredImageSpanArr.length > 0) {
-                    while (i2 < coloredImageSpanArr.length) {
-                        ColoredImageSpan coloredImageSpan = coloredImageSpanArr[i2];
-                        i2 = (coloredImageSpan != null && newSpannable.getSpanStart(coloredImageSpan) == emojiSpanRange.start && newSpannable.getSpanEnd(coloredImageSpan) == emojiSpanRange.end) ? 0 : i2 + 1;
+                    while (i3 < coloredImageSpanArr.length) {
+                        ColoredImageSpan coloredImageSpan = coloredImageSpanArr[i3];
+                        i3 = (coloredImageSpan != null && newSpannable.getSpanStart(coloredImageSpan) == emojiSpanRange.start && newSpannable.getSpanEnd(coloredImageSpan) == emojiSpanRange.end) ? 0 : i3 + 1;
                     }
                 }
                 EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);
@@ -561,8 +561,8 @@ public class Emoji {
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            int i6 = Build.VERSION.SDK_INT;
-            if ((i6 < 23 || i6 >= 29) && i5 + 1 >= i4) {
+            int i7 = Build.VERSION.SDK_INT;
+            if ((i7 < 23 || i7 >= 29) && i6 + 1 >= i5) {
                 break;
             }
         }

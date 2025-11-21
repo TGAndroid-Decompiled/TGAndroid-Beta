@@ -1,8 +1,8 @@
 package org.telegram.messenger.utils;
 
 import android.view.Choreographer;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 
 public abstract class FrameTickScheduler {
@@ -12,7 +12,7 @@ public abstract class FrameTickScheduler {
             FrameTickScheduler.doFrame(j);
         }
     };
-    private static final Map subs = new HashMap();
+    private static final Map subs = new WeakHashMap();
     private static boolean running = false;
     private static long frameCounter = 0;
 
@@ -20,11 +20,19 @@ public abstract class FrameTickScheduler {
         return normN(Math.round(AndroidUtilities.screenRefreshRate / i));
     }
 
+    public static void subscribe(Runnable runnable, int i) {
+        subscribe(runnable, getFrameSparseness(i), 0);
+    }
+
     public static void subscribe(Runnable runnable, int i, int i2) {
         if (runnable == null || i <= 0) {
             return;
         }
-        subs.put(runnable, new Sub(runnable, normN(i), normI(i2, i)));
+        Map map = subs;
+        if (map.containsKey(runnable)) {
+            return;
+        }
+        map.put(runnable, new Sub(runnable, normN(i), normI(i2, i)));
         ensureRunning();
     }
 

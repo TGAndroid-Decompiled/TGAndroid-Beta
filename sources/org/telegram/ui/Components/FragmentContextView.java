@@ -873,11 +873,24 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         int i2 = this.currentStyle;
         if (i2 == 6) {
             LivePlayer livePlayer = LivePlayer.recording;
-            if (livePlayer == null || (findStory = MessagesController.getInstance(livePlayer.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId)) == null) {
+            if (livePlayer == null) {
+                return;
+            }
+            int i3 = livePlayer.currentAccount;
+            if (i3 != UserConfig.selectedAccount) {
+                LaunchActivity launchActivity = LaunchActivity.instance;
+                if (launchActivity == null) {
+                    return;
+                } else {
+                    launchActivity.switchToAccount(i3, true);
+                }
+            }
+            BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment == null || (findStory = MessagesController.getInstance(livePlayer.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId)) == null) {
                 return;
             }
             findStory.dialogId = livePlayer.dialogId;
-            this.fragment.getOrCreateStoryViewer(livePlayer.currentAccount).open(livePlayer.currentAccount, getContext(), findStory, (StoryViewer.PlaceProvider) null);
+            safeLastFragment.getOrCreateStoryViewer(livePlayer.currentAccount).open(livePlayer.currentAccount, getContext(), findStory, (StoryViewer.PlaceProvider) null);
             return;
         }
         if (i2 == 0) {
@@ -915,16 +928,16 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             return;
         }
         if (i2 == 2) {
-            int i3 = UserConfig.selectedAccount;
+            int i4 = UserConfig.selectedAccount;
             ChatActivityInterface chatActivityInterface2 = this.chatActivity;
             if (chatActivityInterface2 != null) {
                 j = chatActivityInterface2.getDialogId();
                 i = this.fragment.getCurrentAccount();
             } else {
                 if (LocationController.getLocationsCount() == 1) {
-                    for (int i4 = 0; i4 < 4; i4++) {
-                        if (!LocationController.getInstance(i4).sharingLocationsUI.isEmpty()) {
-                            LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(i4).sharingLocationsUI.get(0);
+                    for (int i5 = 0; i5 < 4; i5++) {
+                        if (!LocationController.getInstance(i5).sharingLocationsUI.isEmpty()) {
+                            LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(i5).sharingLocationsUI.get(0);
                             long j2 = sharingLocationInfo.did;
                             i = sharingLocationInfo.messageObject.currentAccount;
                             j = j2;
@@ -932,7 +945,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         }
                     }
                 }
-                i = i3;
+                i = i4;
                 j = 0;
             }
             if (j != 0) {

@@ -313,10 +313,10 @@ public class ReactionsLayoutInBubble {
         return this.hasPaidReaction && !(this.isEmpty && this.outButtons.isEmpty()) && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072);
     }
 
-    public void drawOverlay(Canvas canvas, float f) {
+    public boolean drawOverlay(Canvas canvas, float f) {
         float f2;
         if (this.isEmpty && this.outButtons.isEmpty()) {
-            return;
+            return false;
         }
         float f3 = this.x;
         float f4 = this.y;
@@ -330,6 +330,7 @@ public class ReactionsLayoutInBubble {
         }
         float f6 = f3;
         float f7 = f4;
+        boolean z = false;
         for (int i = 0; i < this.reactionButtons.size(); i++) {
             ReactionButton reactionButton = (ReactionButton) this.reactionButtons.get(i);
             if (reactionButton.paid) {
@@ -348,20 +349,29 @@ public class ReactionsLayoutInBubble {
                     canvas.scale(f11, f11, f6 + f8 + (reactionButton.width / 2.0f), f7 + f9 + (reactionButton.height / 2.0f));
                     f2 = f;
                 }
-                reactionButton.drawOverlay(canvas, f6 + f8, f7 + f9, reactionButton.animationType == 3 ? f : 1.0f, f2, false);
+                if (!z) {
+                    if (!reactionButton.drawOverlay(canvas, f8 + f6, f9 + f7, reactionButton.animationType == 3 ? f : 1.0f, f2, false)) {
+                        z = false;
+                        canvas.restore();
+                    }
+                }
+                z = true;
                 canvas.restore();
             }
         }
         for (int i2 = 0; i2 < this.outButtons.size(); i2++) {
-            if (((ReactionButton) this.outButtons.get(i2)).paid) {
+            ReactionButton reactionButton2 = (ReactionButton) this.outButtons.get(i2);
+            if (reactionButton2.paid) {
                 float f12 = 1.0f - f;
                 float f13 = (f12 * 0.5f) + 0.5f;
                 canvas.save();
-                canvas.scale(f13, f13, r1.x + f6 + (r1.width / 2.0f), r1.y + f7 + (r1.height / 2.0f));
-                ((ReactionButton) this.outButtons.get(i2)).drawOverlay(canvas, r1.x + f6, f7 + r1.y, 1.0f, f12, false);
+                canvas.scale(f13, f13, reactionButton2.x + f6 + (reactionButton2.width / 2.0f), reactionButton2.y + f7 + (reactionButton2.height / 2.0f));
+                boolean z2 = z || ((ReactionButton) this.outButtons.get(i2)).drawOverlay(canvas, ((float) reactionButton2.x) + f6, f7 + ((float) reactionButton2.y), 1.0f, f12, false);
                 canvas.restore();
+                z = z2;
             }
         }
+        return z;
     }
 
     public void drawPreview(View view, Canvas canvas, int i, Integer num) {
@@ -662,6 +672,7 @@ public class ReactionsLayoutInBubble {
         public AnimatedTextView.AnimatedTextDrawable scrimPreviewCounterDrawable;
         int serviceBackgroundColor;
         int serviceTextColor;
+        private RLottieDrawable starDrawable;
         private final Drawable.Callback supercallback;
         int textColor;
         public AnimatedTextView.AnimatedTextDrawable textDrawable;
@@ -711,6 +722,7 @@ public class ReactionsLayoutInBubble {
 
         public ReactionButton(ReactionButton reactionButton, int i, View view, TLRPC.ReactionCount reactionCount, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
             StarsReactionsSheet.Particles particles;
+            RLottieDrawable rLottieDrawable;
             Drawable.Callback callback = new Drawable.Callback() {
                 @Override
                 public void invalidateDrawable(Drawable drawable) {
@@ -800,12 +812,17 @@ public class ReactionsLayoutInBubble {
                 if (visibleReaction.isStar) {
                     this.paid = true;
                     if (LiteMode.isEnabled(8200)) {
-                        this.imageReceiver.setImageBitmap(new RLottieDrawable(R.raw.star_reaction_click, "star_reaction_click", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f)));
+                        if (reactionButton != null && (rLottieDrawable = reactionButton.starDrawable) != null) {
+                            this.starDrawable = rLottieDrawable;
+                        } else {
+                            this.starDrawable = new RLottieDrawable(R.raw.star_reaction_click, "star_reaction_click", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+                        }
+                        this.imageReceiver.setImageBitmap(this.starDrawable);
                     } else {
                         this.imageReceiver.setImageBitmap(ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.star_reaction).mutate());
                     }
                     if (reactionButton == null || (particles = reactionButton.particles) == null) {
-                        particles = new StarsReactionsSheet.Particles(1, SharedConfig.getDevicePerformanceClass() == 2 ? 25 : 8);
+                        particles = new StarsReactionsSheet.Particles(1, SharedConfig.getDevicePerformanceClass() == 2 ? 18 : 8);
                     }
                     this.particles = particles;
                 } else if (visibleReaction.emojicon != null) {
@@ -863,28 +880,32 @@ public class ReactionsLayoutInBubble {
             return ((i == 0 || (this.isTag && !this.hasName && i == 1)) && this.counterDrawable.countChangeProgress == 1.0f) ? false : true;
         }
 
-        public void drawOverlay(Canvas canvas, float f, float f2, float f3, float f4, boolean z) {
-            if (this.particles != null && LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072)) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(f, f2, this.width + f, this.height + f2);
-                float f5 = this.height / 2.0f;
+        public boolean drawOverlay(Canvas canvas, float f, float f2, float f3, float f4, boolean z) {
+            if (this.particles == null || !LiteMode.isEnabled(8200) || !LiteMode.isEnabled(131072)) {
+                return false;
+            }
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(f, f2, this.width + f, this.height + f2);
+            float f5 = this.height / 2.0f;
+            this.particles.bounds.set(rectF);
+            this.particles.bounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+            StarsReactionsSheet.Particles particles = this.particles;
+            particles.setBounds(particles.bounds);
+            boolean process = this.particles.process();
+            View view = this.parentView;
+            if (view != null) {
+                view.invalidate();
+            }
+            this.particles.draw(canvas, ColorUtils.blendARGB(ColorUtils.setAlphaComponent(this.backgroundColor, 255), ColorUtils.blendARGB(this.serviceTextColor, ColorUtils.setAlphaComponent(this.backgroundColor, 255), 0.4f), getDrawServiceShaderBackground()));
+            if (this.isSelected) {
                 this.tagPath.rewind();
                 this.tagPath.addRoundRect(rectF, f5, f5, Path.Direction.CW);
-                this.particles.bounds.set(rectF);
-                this.particles.bounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
-                StarsReactionsSheet.Particles particles = this.particles;
-                particles.setBounds(particles.bounds);
-                this.particles.process();
-                View view = this.parentView;
-                if (view != null) {
-                    view.invalidate();
-                }
-                this.particles.draw(canvas, ColorUtils.blendARGB(ColorUtils.setAlphaComponent(this.backgroundColor, 255), ColorUtils.blendARGB(this.serviceTextColor, ColorUtils.setAlphaComponent(this.backgroundColor, 255), 0.4f), getDrawServiceShaderBackground()));
                 canvas.save();
                 canvas.clipPath(this.tagPath);
                 this.particles.draw(canvas, this.textColor);
                 canvas.restore();
             }
+            return process;
         }
 
         public void draw(android.graphics.Canvas r27, float r28, float r29, float r30, float r31, boolean r32, boolean r33, float r34) {

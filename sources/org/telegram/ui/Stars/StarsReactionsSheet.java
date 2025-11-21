@@ -1720,6 +1720,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         private int bPaintColor;
         private BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
         private final Paint batchParticlesPaint;
+        private long lastInvalidateTime;
         private long lastTime;
         public final ArrayList particles;
         public final int type;
@@ -1807,25 +1808,32 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.speed = f;
         }
 
-        public void process() {
-            if (LiteMode.isEnabled(131072)) {
-                long currentTimeMillis = System.currentTimeMillis();
-                float min = (((float) Math.min(this.lastTime - currentTimeMillis, 16L)) / 1000.0f) * this.speed;
-                for (int i = 0; i < Math.min(this.visibleCount, this.particles.size()); i++) {
-                    Particle particle = (Particle) this.particles.get(i);
-                    long j = particle.lifetime;
-                    float f = j <= 0 ? 2.0f : ((float) (currentTimeMillis - particle.start)) / ((float) j);
-                    if (f > 1.0f) {
-                        gen(particle, currentTimeMillis, this.firstDraw);
-                        f = 0.0f;
-                    }
-                    particle.x += particle.vx * min;
-                    particle.y += particle.vy * min;
-                    float f2 = 4.0f * f;
-                    particle.la = f2 - (f * f2);
-                }
-                this.lastTime = currentTimeMillis;
+        public boolean process() {
+            if (!LiteMode.isEnabled(131072)) {
+                return false;
             }
+            long currentTimeMillis = System.currentTimeMillis();
+            float min = (((float) Math.min(this.lastTime - currentTimeMillis, 16L)) / 1000.0f) * this.speed;
+            for (int i = 0; i < Math.min(this.visibleCount, this.particles.size()); i++) {
+                Particle particle = (Particle) this.particles.get(i);
+                long j = particle.lifetime;
+                float f = j <= 0 ? 2.0f : ((float) (currentTimeMillis - particle.start)) / ((float) j);
+                if (f > 1.0f) {
+                    gen(particle, currentTimeMillis, this.firstDraw);
+                    f = 0.0f;
+                }
+                particle.x += particle.vx * min;
+                particle.y += particle.vy * min;
+                float f2 = 4.0f * f;
+                particle.la = f2 - (f * f2);
+            }
+            this.lastTime = currentTimeMillis;
+            long j2 = this.lastInvalidateTime;
+            if (j2 != 0 && j2 - currentTimeMillis < 66) {
+                return false;
+            }
+            this.lastInvalidateTime = currentTimeMillis;
+            return true;
         }
 
         public void generateGrid() {

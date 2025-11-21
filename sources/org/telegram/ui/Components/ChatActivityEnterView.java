@@ -3970,7 +3970,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.expandStickersButton.setScaleX(0.1f);
         this.expandStickersButton.setScaleY(0.1f);
         this.expandStickersButton.setAlpha(0.0f);
-        this.expandStickersButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+        this.expandStickersButton.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
         this.sendButtonContainer.addView(this.expandStickersButton, LayoutHelper.createFrame(44, 44, 85));
         this.expandStickersButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -8465,7 +8465,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     return;
                 }
             }
-            if (this.emojiView == null || !this.emojiViewVisible || (!(this.stickersTabOpen || (this.emojiTabOpen && this.searchingType == 2)) || AndroidUtilities.isInMultiwindow)) {
+            if (this.emojiView == null || !this.emojiViewVisible || (!(this.stickersTabOpen || (this.emojiTabOpen && this.searchingType == 2)) || AndroidUtilities.isInMultiwindow || this.isLiveComment)) {
                 if (getSendButtonInternal().getVisibility() == 0 || this.cancelBotButton.getVisibility() == 0 || (((imageView3 = this.expandStickersButton) != null && imageView3.getVisibility() == 0) || this.slowModeButton.getVisibility() == 0)) {
                     if (z3) {
                         if (this.runningAnimationType == 2) {
@@ -8740,9 +8740,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     }
                 }
                 createExpandStickersButton();
-                if (!this.isLiveComment) {
-                    this.expandStickersButton.setVisibility(0);
-                }
+                this.expandStickersButton.setVisibility(0);
                 this.runningAnimation = new AnimatorSet();
                 this.runningAnimationType = 4;
                 ArrayList arrayList8 = new ArrayList();
@@ -8820,9 +8818,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 this.expandStickersButton.setScaleX(1.0f);
                 this.expandStickersButton.setScaleY(1.0f);
                 this.expandStickersButton.setAlpha(1.0f);
-                if (!this.isLiveComment) {
-                    this.expandStickersButton.setVisibility(0);
-                }
+                this.expandStickersButton.setVisibility(0);
                 if (this.attachLayout != null) {
                     if (getVisibility() == 0) {
                         this.delegate.onAttachButtonShow();

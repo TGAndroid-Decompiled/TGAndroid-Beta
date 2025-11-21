@@ -40,6 +40,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
 import org.telegram.messenger.pip.utils.PipUtils;
@@ -534,7 +535,7 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                LiveStoryPipOverlay.this.lambda$showInternal$8(livePlayer, context, view3);
+                LiveStoryPipOverlay.lambda$showInternal$8(LivePlayer.this, context, view3);
             }
         });
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
@@ -681,19 +682,31 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         }
     }
 
-    public void lambda$showInternal$8(LivePlayer livePlayer, Context context, View view) {
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment == null || livePlayer == null) {
+    public static void lambda$showInternal$8(LivePlayer livePlayer, Context context, View view) {
+        if (livePlayer == null) {
             return;
         }
-        TL_stories.StoryItem findStory = MessagesController.getInstance(this.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId);
+        int i = livePlayer.currentAccount;
+        if (i != UserConfig.selectedAccount) {
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity == null) {
+                return;
+            } else {
+                launchActivity.switchToAccount(i, true);
+            }
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return;
+        }
+        TL_stories.StoryItem findStory = MessagesController.getInstance(livePlayer.currentAccount).getStoriesController().findStory(livePlayer.dialogId, livePlayer.storyId);
         if (findStory == null) {
             findStory = livePlayer.storyItem;
         }
         if (findStory == null) {
             return;
         }
-        safeLastFragment.getOrCreateStoryViewer().open(this.currentAccount, context, findStory, (StoryViewer.PlaceProvider) null);
+        safeLastFragment.getOrCreateStoryViewer().open(livePlayer.currentAccount, context, findStory, (StoryViewer.PlaceProvider) null);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

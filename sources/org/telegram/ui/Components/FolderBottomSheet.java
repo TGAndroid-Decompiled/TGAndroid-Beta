@@ -1179,7 +1179,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.titleTextView.setLineSpacing(AndroidUtilities.dp(-1.0f), 1.0f);
             CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(charSequence), this.titleTextView.getPaint().getFontMetricsInt(), false, 0.8f);
             this.title = replaceEmoji;
-            this.title = MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, this.titleTextView.getPaint().getFontMetricsInt(), false, 0.8f);
+            this.title = MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, this.titleTextView.getPaint().getFontMetricsInt(), false, 0.8f, 0);
             this.titleTextView.setText(FolderBottomSheet.this.getTitle());
             this.titleTextView.setCacheType(z2 ? 26 : 0);
             this.titleTextView.setEmojiColor(Theme.getColor(Theme.key_featuredStickers_addButton, ((BottomSheet) FolderBottomSheet.this).resourcesProvider));

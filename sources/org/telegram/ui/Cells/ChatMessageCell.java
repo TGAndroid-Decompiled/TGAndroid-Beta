@@ -97,6 +97,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.FrameTickScheduler;
 import org.telegram.messenger.video.OldVideoPlayerRewinder;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
@@ -419,6 +420,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public boolean firstInChat;
     private boolean firstInChatToSet;
     private int firstVisibleBlockNum;
+    private int firstVisiblePollButton;
     private boolean fitPhotoImage;
     private FlagSecureReason flagSecure;
     private boolean flipImage;
@@ -508,6 +510,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private TL_stars.StarGift instantViewTypeIsGiftAuction;
     private int instantWidth;
     private Runnable invalidateListener;
+    private final Runnable invalidateOutboundsRunnable;
     private Runnable invalidateRunnable;
     private boolean invalidateSpoilersParent;
     private boolean invalidatesParent;
@@ -574,6 +577,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean lastTranslated;
     private int lastViewsCount;
     private int lastVisibleBlockNum;
+    private int lastVisiblePollButton;
     private WebFile lastWebFile;
     private int lastWidth;
     public int layoutHeight;
@@ -709,6 +713,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private RadialProgress2 radialProgress;
     protected float radialProgressAlpha;
     public final ReactionsLayoutInBubble reactionsLayoutInBubble;
+    private boolean reactionsVisible;
     private RectF rect;
     private Path rectPath;
     private StaticLayout repliesLayout;
@@ -1901,6 +1906,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.rectPath = new Path();
         this.oldPollButtons = new ArrayList();
         this.pollButtons = new ArrayList();
+        this.reactionsVisible = true;
         this.botButtons = new ArrayList();
         this.botButtonPath = new Path();
         this.botButtonRadii = new float[8];
@@ -1963,6 +1969,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.pressedEffect = false;
         this.overridenDuration = -1L;
         this.hadLongPress = false;
+        this.invalidateOutboundsRunnable = new ChatMessageCell$$ExternalSyntheticLambda9(this);
         this.showTopicSeparator = true;
         this.radialProgressAlpha = 1.0f;
         this.ANIMATION_OFFSET_X = new Property(Float.class, "animationOffsetX") {
@@ -4329,49 +4336,77 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             invalidate();
         }
         MessageObject messageObject2 = this.currentMessageObject;
-        if (messageObject2 == null || messageObject2.textLayoutBlocks == null) {
-            return;
-        }
-        int i8 = i - this.textY;
-        int i9 = 0;
-        for (int i10 = 0; i10 < this.currentMessageObject.textLayoutBlocks.size() && this.currentMessageObject.textLayoutBlocks.get(i10).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) <= i8; i10++) {
-            i9 = i10;
-        }
-        int i11 = -1;
-        int i12 = -1;
-        int i13 = 0;
-        while (i9 < this.currentMessageObject.textLayoutBlocks.size()) {
-            float textYOffset = this.currentMessageObject.textLayoutBlocks.get(i9).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams);
-            float height = r13.padTop + textYOffset + r13.height(this.transitionParams) + r13.padBottom;
-            float f3 = i8;
-            if (!intersect(textYOffset, height, f3, i8 + i2)) {
-                if (textYOffset > f3) {
-                    break;
-                }
-            } else {
-                if (i11 == -1) {
-                    i11 = i9;
-                }
-                i13++;
-                i12 = i9;
+        if (messageObject2 != null && messageObject2.textLayoutBlocks != null) {
+            int i8 = i - this.textY;
+            int i9 = 0;
+            for (int i10 = 0; i10 < this.currentMessageObject.textLayoutBlocks.size() && this.currentMessageObject.textLayoutBlocks.get(i10).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) <= i8; i10++) {
+                i9 = i10;
             }
-            i9++;
+            int i11 = -1;
+            int i12 = -1;
+            int i13 = 0;
+            while (i9 < this.currentMessageObject.textLayoutBlocks.size()) {
+                float textYOffset = this.currentMessageObject.textLayoutBlocks.get(i9).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams);
+                float height = r13.padTop + textYOffset + r13.height(this.transitionParams) + r13.padBottom;
+                float f3 = i8;
+                if (!intersect(textYOffset, height, f3, i8 + i2)) {
+                    if (textYOffset > f3) {
+                        break;
+                    }
+                } else {
+                    if (i11 == -1) {
+                        i11 = i9;
+                    }
+                    i13++;
+                    i12 = i9;
+                }
+                i9++;
+            }
+            if (this.lastVisibleBlockNum != i12 || this.firstVisibleBlockNum != i11 || this.totalVisibleBlocksCount != i13) {
+                this.lastVisibleBlockNum = i12;
+                this.firstVisibleBlockNum = i11;
+                this.totalVisibleBlocksCount = i13;
+                invalidate();
+            } else if (this.animatedEmojiStack != null) {
+                int i14 = 0;
+                while (true) {
+                    if (i14 >= this.animatedEmojiStack.holders.size()) {
+                        break;
+                    }
+                    AnimatedEmojiSpan.AnimatedEmojiHolder animatedEmojiHolder = (AnimatedEmojiSpan.AnimatedEmojiHolder) this.animatedEmojiStack.holders.get(i14);
+                    if (animatedEmojiHolder != null && animatedEmojiHolder.skipDraw && !animatedEmojiHolder.outOfBounds((this.parentBoundsTop - getY()) - animatedEmojiHolder.drawingYOffset, (this.parentBoundsBottom - getY()) - animatedEmojiHolder.drawingYOffset)) {
+                        invalidate();
+                        break;
+                    }
+                    i14++;
+                }
+            }
         }
-        if (this.lastVisibleBlockNum != i12 || this.firstVisibleBlockNum != i11 || this.totalVisibleBlocksCount != i13) {
-            this.lastVisibleBlockNum = i12;
-            this.firstVisibleBlockNum = i11;
-            this.totalVisibleBlocksCount = i13;
+        if (!this.pollButtons.isEmpty()) {
+            int i15 = -1;
+            int i16 = -1;
+            for (int i17 = 0; i17 < this.pollButtons.size(); i17++) {
+                PollButton pollButton = (PollButton) this.pollButtons.get(i17);
+                int i18 = pollButton.y + this.namesOffset;
+                if (intersect(i18, i18 + pollButton.height, this.childPosition, r10 + this.visibleHeight)) {
+                    if (i16 == -1) {
+                        i16 = i17;
+                    }
+                    i15 = i17;
+                }
+            }
+            if (this.lastVisiblePollButton != i15 || this.firstVisiblePollButton != i16) {
+                this.lastVisiblePollButton = i15;
+                this.firstVisiblePollButton = i16;
+                invalidate();
+            }
+        }
+        ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
+        int i19 = reactionsLayoutInBubble.y;
+        boolean intersect = intersect(i19, i19 + reactionsLayoutInBubble.height, this.childPosition, r6 + this.visibleHeight);
+        if (this.reactionsVisible != intersect) {
+            this.reactionsVisible = intersect;
             invalidate();
-            return;
-        }
-        if (this.animatedEmojiStack != null) {
-            for (int i14 = 0; i14 < this.animatedEmojiStack.holders.size(); i14++) {
-                AnimatedEmojiSpan.AnimatedEmojiHolder animatedEmojiHolder = (AnimatedEmojiSpan.AnimatedEmojiHolder) this.animatedEmojiStack.holders.get(i14);
-                if (animatedEmojiHolder != null && animatedEmojiHolder.skipDraw && !animatedEmojiHolder.outOfBounds((this.parentBoundsTop - getY()) - animatedEmojiHolder.drawingYOffset, (this.parentBoundsBottom - getY()) - animatedEmojiHolder.drawingYOffset)) {
-                    invalidate();
-                    return;
-                }
-            }
         }
     }
 
@@ -4771,6 +4806,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (channelRecommendationsCell != null) {
             channelRecommendationsCell.onDetachedFromWindow();
         }
+        FrameTickScheduler.unsubscribe(this.invalidateOutboundsRunnable);
     }
 
     @Override
@@ -10279,101 +10315,81 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawCommentLayout(android.graphics.Canvas, float):void");
     }
 
+    public boolean hasReactionsToDraw() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.hasReactionsToDraw():boolean");
+    }
+
     public void drawReactionsLayout(Canvas canvas, float f, Integer num) {
+        boolean z;
         if (this.isRoundVideo) {
             this.reactionsLayoutInBubble.drawServiceShaderBackground = 1.0f - getVideoTranscriptionProgress();
         }
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || !messageObject.shouldDrawReactions()) {
-            return;
-        }
-        MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
-        boolean z = true;
-        if (groupedMessagePosition != null) {
-            int i = groupedMessagePosition.flags;
-            if ((i & 8) == 0 || (i & 1) == 0) {
-                return;
+        if (this.reactionsVisible && hasReactionsToDraw()) {
+            if (this.reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
+                applyServiceShaderMatrix();
             }
-        }
-        ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
-        if (reactionsLayoutInBubble.isSmall) {
-            return;
-        }
-        if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
-            applyServiceShaderMatrix();
-        }
-        if (getAlpha() * f != 1.0f) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.saveLayerAlpha(rectF, (int) (f * 255.0f * getAlpha()), 31);
-        } else {
-            z = false;
-        }
-        ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
-        if (reactionsLayoutInBubble2.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
-            reactionsLayoutInBubble2.setScrimProgress(0.0f, false);
-            ReactionsLayoutInBubble reactionsLayoutInBubble3 = this.reactionsLayoutInBubble;
-            TransitionParams transitionParams = this.transitionParams;
-            reactionsLayoutInBubble3.draw(canvas, transitionParams.animateChange ? transitionParams.animateChangeProgress : 1.0f, num);
-        } else {
-            canvas.save();
-            canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), getBackgroundDrawableBottom() + this.transitionParams.deltaBottom);
-            this.reactionsLayoutInBubble.setScrimProgress(0.0f, false);
-            ReactionsLayoutInBubble reactionsLayoutInBubble4 = this.reactionsLayoutInBubble;
-            TransitionParams transitionParams2 = this.transitionParams;
-            reactionsLayoutInBubble4.draw(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f, num);
-            canvas.restore();
-        }
-        if (z) {
-            canvas.restore();
+            if (getAlpha() * f != 1.0f) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                canvas.saveLayerAlpha(rectF, (int) (f * 255.0f * getAlpha()), 31);
+                z = true;
+            } else {
+                z = false;
+            }
+            ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
+            if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
+                reactionsLayoutInBubble.setScrimProgress(0.0f, false);
+                ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
+                TransitionParams transitionParams = this.transitionParams;
+                reactionsLayoutInBubble2.draw(canvas, transitionParams.animateChange ? transitionParams.animateChangeProgress : 1.0f, num);
+            } else {
+                canvas.save();
+                canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), getBackgroundDrawableBottom() + this.transitionParams.deltaBottom);
+                this.reactionsLayoutInBubble.setScrimProgress(0.0f, false);
+                ReactionsLayoutInBubble reactionsLayoutInBubble3 = this.reactionsLayoutInBubble;
+                TransitionParams transitionParams2 = this.transitionParams;
+                reactionsLayoutInBubble3.draw(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f, num);
+                canvas.restore();
+            }
+            if (z) {
+                canvas.restore();
+            }
         }
     }
 
-    public void drawReactionsLayoutOverlay(Canvas canvas, float f) {
+    public boolean drawReactionsLayoutOverlay(Canvas canvas, float f) {
         if (this.isRoundVideo) {
             this.reactionsLayoutInBubble.drawServiceShaderBackground = 1.0f - getVideoTranscriptionProgress();
         }
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || !messageObject.shouldDrawReactions()) {
-            return;
+        boolean z = false;
+        if (!this.reactionsVisible || !hasReactionsToDraw()) {
+            return false;
         }
-        MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
-        boolean z = true;
-        if (groupedMessagePosition != null) {
-            int i = groupedMessagePosition.flags;
-            if ((i & 8) == 0 || (i & 1) == 0) {
-                return;
-            }
-        }
-        ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
-        if (reactionsLayoutInBubble.isSmall) {
-            return;
-        }
-        if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
+        if (this.reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f) {
             applyServiceShaderMatrix();
         }
         if (getAlpha() * f != 1.0f) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.saveLayerAlpha(rectF, (int) (f * 255.0f * getAlpha()), 31);
-        } else {
-            z = false;
+            z = true;
         }
-        ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
-        if (reactionsLayoutInBubble2.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
+        ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
+        if (reactionsLayoutInBubble.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
             TransitionParams transitionParams = this.transitionParams;
-            reactionsLayoutInBubble2.drawOverlay(canvas, transitionParams.animateChange ? transitionParams.animateChangeProgress : 1.0f);
+            reactionsLayoutInBubble.drawOverlay(canvas, transitionParams.animateChange ? transitionParams.animateChangeProgress : 1.0f);
         } else {
             canvas.save();
             canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), getBackgroundDrawableBottom() + this.transitionParams.deltaBottom);
-            ReactionsLayoutInBubble reactionsLayoutInBubble3 = this.reactionsLayoutInBubble;
+            ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
             TransitionParams transitionParams2 = this.transitionParams;
-            reactionsLayoutInBubble3.drawOverlay(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f);
+            reactionsLayoutInBubble2.drawOverlay(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f);
             canvas.restore();
         }
         if (z) {
             canvas.restore();
         }
+        return true;
     }
 
     private void drawCaptionLayout(android.graphics.Canvas r21, org.telegram.messenger.MessageObject.TextLayoutBlocks r22, boolean r23, boolean r24, float r25) {
@@ -10829,7 +10845,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void drawOverlays(android.graphics.Canvas r65) {
+    public void drawOverlays(android.graphics.Canvas r61) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 
@@ -11974,7 +11990,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             } else if (i == 495) {
                 obtain2.setClassName("android.widget.Button");
                 obtain2.setEnabled(true);
-                obtain2.setText(LocaleController.getString("AccDescrQuizExplanation", R.string.AccDescrQuizExplanation));
+                obtain2.setText(LocaleController.getString(R.string.AccDescrQuizExplanation));
                 obtain2.addAction(16);
                 this.rect.set(ChatMessageCell.this.pollHintX - AndroidUtilities.dp(8.0f), ChatMessageCell.this.pollHintY - AndroidUtilities.dp(8.0f), ChatMessageCell.this.pollHintX + AndroidUtilities.dp(32.0f), ChatMessageCell.this.pollHintY + AndroidUtilities.dp(32.0f));
                 obtain2.setBoundsInParent(this.rect);

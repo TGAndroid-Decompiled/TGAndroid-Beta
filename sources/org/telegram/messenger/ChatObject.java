@@ -1814,6 +1814,10 @@ public class ChatObject {
         return chat != null && (chat.creator || !((tL_chatAdminRights = chat.admin_rights) == null || tL_chatAdminRights.flags == 0));
     }
 
+    public static boolean isCreator(TLRPC.Chat chat) {
+        return chat != null && chat.creator;
+    }
+
     public static boolean canChangeChatInfo(TLRPC.Chat chat) {
         return canUserDoAction(chat, 1);
     }
