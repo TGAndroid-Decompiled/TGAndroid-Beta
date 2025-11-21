@@ -76,6 +76,7 @@ public class SharedConfig {
     public static boolean drawDialogIcons = false;
     public static int emojiInteractionsHintCount = 0;
     public static int fastScrollHintCount = 0;
+    public static boolean fastWallpaperDisabled = false;
     public static int fontSize = 0;
     public static boolean fontSizeIsDefault = false;
     public static boolean forceDisableTabletMode = false;
@@ -918,6 +919,13 @@ public class SharedConfig {
         forceForumTabs = !forceForumTabs;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("forceForumTabs", forceForumTabs);
+        edit.apply();
+    }
+
+    public static void toggleFastWallpaperDisabled() {
+        fastWallpaperDisabled = !fastWallpaperDisabled;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("fastWallpaperDisabled", fastWallpaperDisabled);
         edit.apply();
     }
 

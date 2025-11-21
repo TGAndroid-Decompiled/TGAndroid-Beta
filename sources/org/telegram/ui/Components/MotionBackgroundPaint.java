@@ -31,8 +31,8 @@ public class MotionBackgroundPaint {
         BlendMode blendMode;
         Paint paint = new Paint();
         this.paint = paint;
-        this.gradientShader = new BitmapShaderState();
-        this.patternShader = new BitmapShaderState();
+        this.gradientShader = new BitmapShaderState(Shader.TileMode.CLAMP);
+        this.patternShader = new BitmapShaderState(Shader.TileMode.REPEAT);
         this.tmpMatrix = new Matrix();
         this.tmpRectF = new RectF();
         if (Build.VERSION.SDK_INT >= 29) {
@@ -41,6 +41,7 @@ public class MotionBackgroundPaint {
         } else {
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         }
+        paint.setFilterBitmap(true);
     }
 
     public Paint getPaint(Bitmap bitmap, Bitmap bitmap2, int i, int i2) {
@@ -111,9 +112,11 @@ public class MotionBackgroundPaint {
         WeakReference bitmap;
         int height;
         BitmapShader shader;
+        final Shader.TileMode tileMode;
         int width;
 
-        private BitmapShaderState() {
+        public BitmapShaderState(Shader.TileMode tileMode) {
+            this.tileMode = tileMode;
         }
 
         public boolean setup(Bitmap bitmap) {
@@ -124,7 +127,7 @@ public class MotionBackgroundPaint {
                 return false;
             }
             this.bitmap = new WeakReference(bitmap);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            Shader.TileMode tileMode = this.tileMode;
             BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
             this.shader = bitmapShader;
             if (Build.VERSION.SDK_INT < 33) {

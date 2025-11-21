@@ -213,10 +213,6 @@ public interface VideoEncoder {
             return true;
         }
 
-        public static VideoCodecStatus $default$setRates(VideoEncoder videoEncoder, RateControlParameters rateControlParameters) {
-            return videoEncoder.setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
-        }
-
         public static ResolutionBitrateLimits[] $default$getResolutionBitrateLimits(VideoEncoder videoEncoder) {
             return new ResolutionBitrateLimits[0];
         }

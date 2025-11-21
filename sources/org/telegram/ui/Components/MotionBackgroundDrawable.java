@@ -30,6 +30,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.wallpaper.WallpaperGiftPatternPosition;
 import org.telegram.tgnet.TLRPC;
@@ -229,7 +230,7 @@ public class MotionBackgroundDrawable extends Drawable {
     }
 
     public void setFastRenderAllowed() {
-        if (this.motionBackgroundPaint != null || Build.VERSION.SDK_INT < 28) {
+        if (this.motionBackgroundPaint != null || SharedConfig.fastWallpaperDisabled || Build.VERSION.SDK_INT < 28) {
             return;
         }
         this.motionBackgroundPaint = new MotionBackgroundPaint();

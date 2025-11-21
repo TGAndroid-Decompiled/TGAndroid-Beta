@@ -6467,6 +6467,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             String str2;
             String str3;
             String str4;
+            String str5;
+            String str6;
             if (i != ProfileActivity.this.versionRow) {
                 if (i >= ProfileActivity.this.membersStartRow && i < ProfileActivity.this.membersEndRow) {
                     return ProfileActivity.this.onMemberClick(!ProfileActivity.this.sortedUsers.isEmpty() ? (TLRPC.ChatParticipant) ProfileActivity.this.visibleChatParticipants.get(((Integer) ProfileActivity.this.sortedUsers.get(i - ProfileActivity.this.membersStartRow)).intValue()) : (TLRPC.ChatParticipant) ProfileActivity.this.visibleChatParticipants.get(i - ProfileActivity.this.membersStartRow), true, view);
@@ -6530,41 +6532,49 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 String string8 = LocaleController.getString(R.string.DebugMenuCallSettings);
                 String string9 = (BuildVars.DEBUG_PRIVATE_VERSION || ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isBetaBuild()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
                 String string10 = LocaleController.getString("DebugMenuReadAllDialogs", R.string.DebugMenuReadAllDialogs);
-                String str5 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
+                String str7 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
                 boolean z = BuildVars.DEBUG_PRIVATE_VERSION;
-                String str6 = z ? "Clean app update" : null;
-                String str7 = z ? "Reset suggestions" : null;
+                String str8 = z ? "Clean app update" : null;
+                String str9 = z ? "Reset suggestions" : null;
                 String string11 = z ? LocaleController.getString(R.string.DebugMenuClearWebViewCache) : null;
                 String string12 = LocaleController.getString(R.string.DebugMenuClearWebViewCookies);
                 String string13 = LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug);
-                String str8 = (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) ? SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode" : null;
+                String str10 = (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) ? SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode" : null;
                 if (BuildVars.DEBUG_PRIVATE_VERSION) {
                     str3 = LocaleController.getString(SharedConfig.isFloatingDebugActive ? R.string.FloatingDebugDisable : R.string.FloatingDebugEnable);
                 } else {
                     str3 = null;
                 }
                 boolean z2 = BuildVars.DEBUG_PRIVATE_VERSION;
-                String str9 = z2 ? "Force remove premium suggestions" : null;
-                String str10 = z2 ? "Share device info" : null;
-                String str11 = z2 ? "Force performance class" : null;
-                String str12 = (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round";
+                String str11 = z2 ? "Force remove premium suggestions" : null;
+                String str12 = z2 ? "Share device info" : null;
+                String str13 = z2 ? "Force performance class" : null;
+                String str14 = (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round";
                 String string14 = LocaleController.getString(DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn");
-                String str13 = BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null;
-                String str14 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null;
-                String str15 = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
-                String str16 = BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null;
-                String str17 = !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API";
-                String str18 = BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null;
-                String str19 = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
-                String str20 = (!SharedConfig.canBlurChat() || Build.VERSION.SDK_INT < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
-                String str21 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
-                String str22 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
+                String str15 = BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null;
+                String str16 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null;
+                String str17 = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
+                String str18 = BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null;
+                String str19 = !SharedConfig.isUsingCamera2(((BaseFragment) ProfileActivity.this).currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API";
+                String str20 = BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null;
+                String str21 = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
+                String str22 = (!SharedConfig.canBlurChat() || Build.VERSION.SDK_INT < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
+                String str23 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
+                String str24 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
                 if (Build.VERSION.SDK_INT >= 28) {
                     str4 = LocaleController.getString(SharedConfig.useSystemBoldFont ? R.string.DebugMenuDontUseSystemBoldFont : R.string.DebugMenuUseSystemBoldFont);
                 } else {
                     str4 = null;
                 }
-                CharSequence[] charSequenceArr = {string2, string3, string4, string5, string, string6, string7, string8, null, string9, string10, str5, str6, str7, string11, string12, string13, str8, str3, str9, str10, str11, str12, string14, str13, str14, str15, str16, str17, str18, str19, str20, str21, str22, str4, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump"};
+                String str25 = !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs";
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    str6 = SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader";
+                    str5 = str25;
+                } else {
+                    str5 = str25;
+                    str6 = null;
+                }
+                CharSequence[] charSequenceArr = {string2, string3, string4, string5, string, string6, string7, string8, null, string9, string10, str7, str8, str9, string11, string12, string13, str10, str3, str11, str12, str13, str14, string14, str15, str16, str17, str18, str19, str20, str21, str22, str23, str24, str4, "Reload app config", str5, "Make Memory Dump", str6};
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -6843,12 +6853,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     if (i == 35) {
                         MessagesController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).loadAppConfig(true);
                         return;
-                    } else if (i == 36) {
+                    }
+                    if (i == 36) {
                         SharedConfig.toggleForceForumTabs();
                         return;
+                    } else if (i == 37) {
+                        FileLog.getInstance().dumpMemory(true);
+                        return;
                     } else {
-                        if (i == 37) {
-                            FileLog.getInstance().dumpMemory(true);
+                        if (i == 38) {
+                            SharedConfig.toggleFastWallpaperDisabled();
                             return;
                         }
                         return;
