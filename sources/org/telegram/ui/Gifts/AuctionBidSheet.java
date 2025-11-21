@@ -486,6 +486,9 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             }
             spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(this.auction.auctionStateActive.gifts_left, ','));
             this.giftsLeftCell.infoView.setText(spannableStringBuilder, z);
+            TextView textView = this.nextRoundCell.titleView;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.auction.auctionStateActive;
+            textView.setText(LocaleController.getString(tL_starGiftAuctionState2.current_round == tL_starGiftAuctionState2.total_rounds ? R.string.Gift2AuctionBidInfoUntilEndRound : R.string.Gift2AuctionBidInfoUntilNextRound));
             int min = Math.min(this.topBidderCells.length, this.auction.auctionStateActive.top_bidders.size());
             if (min > 0) {
                 int i = 0;
