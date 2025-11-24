@@ -44,21 +44,22 @@ public class MotionBackgroundPaint {
         paint.setFilterBitmap(true);
     }
 
-    public Paint getPaint(Bitmap bitmap, Bitmap bitmap2, int i, int i2) {
-        int i3;
+    public Paint getPaint(Bitmap bitmap, Bitmap bitmap2, int i, int i2, int i3) {
+        int i4;
+        int i5;
         boolean z;
         BlendMode blendMode;
-        int i4 = 255;
-        if (i2 >= 0) {
-            i3 = ColorUtils.setAlphaComponent(i, (Color.alpha(i) * i2) / 100);
+        if (i3 >= 0) {
+            i5 = ColorUtils.setAlphaComponent(i, ((Color.alpha(i) * i2) * i3) / 25500);
+            i4 = 255;
         } else {
-            i4 = ((-i2) * 255) / 100;
-            i3 = -16777216;
+            i4 = (i2 * (-i3)) / 100;
+            i5 = -16777216;
         }
         boolean z2 = true;
-        if (this.colorShaderLastColor != i3 || this.colorShader == null) {
-            this.colorShaderLastColor = i3;
-            this.colorShader = new ColorShader(i3);
+        if (this.colorShaderLastColor != i5 || this.colorShader == null) {
+            this.colorShaderLastColor = i5;
+            this.colorShader = new ColorShader(i5);
             z = true;
         } else {
             z = false;
@@ -70,7 +71,7 @@ public class MotionBackgroundPaint {
             z2 = z;
         }
         if (this.gradientShader.setup(bitmap) | z2 | this.patternShader.setup(bitmap2)) {
-            if (i2 >= 0) {
+            if (i3 >= 0) {
                 if (Build.VERSION.SDK_INT >= 29) {
                     Paint paint = this.paint;
                     MotionBackgroundPaint$$ExternalSyntheticApiModelOutline1.m();

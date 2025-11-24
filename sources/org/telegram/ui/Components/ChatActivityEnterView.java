@@ -11930,7 +11930,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
             WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
             if (windowInsetsInAppController != null) {
-                windowInsetsInAppController.requestInAppKeyboardHeight(i5 + AndroidUtilities.navigationBarHeight);
+                windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(i5);
             }
         } else {
             if (this.emojiButton != null) {
@@ -12501,7 +12501,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 botKeyboardView.setPanelHeight(i2);
                 WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
                 if (windowInsetsInAppController != null && i2 > 0) {
-                    windowInsetsInAppController.requestInAppKeyboardHeight(AndroidUtilities.navigationBarHeight + i2);
+                    windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(i2);
                 }
             }
             if (view != null) {
@@ -13064,7 +13064,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
         if (windowInsetsInAppController != null) {
-            windowInsetsInAppController.requestInAppKeyboardHeight(currentActionBarHeight + AndroidUtilities.navigationBarHeight);
+            windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(currentActionBarHeight);
         }
     }
 
@@ -13206,7 +13206,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
                 WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
                 if (windowInsetsInAppController != null) {
-                    windowInsetsInAppController.requestInAppKeyboardHeight(this.stickersExpandedHeight + AndroidUtilities.navigationBarHeight);
+                    windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(this.stickersExpandedHeight);
                 }
             } else {
                 if (z4) {
@@ -13286,7 +13286,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
                 WindowInsetsInAppController windowInsetsInAppController2 = this.windowInsetsInAppController;
                 if (windowInsetsInAppController2 != null) {
-                    windowInsetsInAppController2.requestInAppKeyboardHeight(i2 + AndroidUtilities.navigationBarHeight);
+                    windowInsetsInAppController2.requestInAppKeyboardHeightIncludeNavbar(i2);
                 }
             }
             ImageView imageView = this.expandStickersButton;

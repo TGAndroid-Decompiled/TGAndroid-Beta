@@ -608,17 +608,28 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
 
             @Override
             public void onDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
-                ViewPositionWatcher.computeCoordinatesInParent(SendGiftSheet.this.chatView, ((BottomSheetWithRecyclerListView) SendGiftSheet.this).recyclerListView, this.p);
-                PointF pointF = this.p;
-                int i9 = (int) pointF.y;
-                int i10 = (int) pointF.x;
-                int computeYCoordinateInParent = ((int) ViewPositionWatcher.computeYCoordinateInParent(SendGiftSheet.this.messageEdit, ((BottomSheetWithRecyclerListView) SendGiftSheet.this).recyclerListView)) + SendGiftSheet.this.messageEdit.getMeasuredHeight() + AndroidUtilities.dp(12.0f);
-                if (i9 < computeYCoordinateInParent && SendGiftSheet.this.chatView.backgroundView != null) {
-                    float height = (computeYCoordinateInParent - i9) / SendGiftSheet.this.chatView.backgroundView.getHeight();
+                float f;
+                float f2;
+                float height = recyclerView.getHeight();
+                if (ViewPositionWatcher.computeCoordinatesInParent(SendGiftSheet.this.chatView, ((BottomSheetWithRecyclerListView) SendGiftSheet.this).recyclerListView, this.p)) {
+                    PointF pointF = this.p;
+                    f2 = pointF.x;
+                    height = Math.min(height, pointF.y);
+                    f = Math.max(0.0f, this.p.y + SendGiftSheet.this.chatView.getMeasuredHeight());
+                } else {
+                    f = 0.0f;
+                    f2 = 0.0f;
+                }
+                if (ViewPositionWatcher.computeCoordinatesInParent(SendGiftSheet.this.messageEdit, ((BottomSheetWithRecyclerListView) SendGiftSheet.this).recyclerListView, this.p)) {
+                    height = Math.min(height, this.p.y);
+                    f = Math.max(f, this.p.y + SendGiftSheet.this.messageEdit.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
+                }
+                if (height < f && SendGiftSheet.this.chatView.backgroundView != null) {
+                    float height2 = (f - height) / SendGiftSheet.this.chatView.backgroundView.getHeight();
                     canvas.save();
-                    canvas.clipRect(0, i9, recyclerView.getWidth(), computeYCoordinateInParent);
-                    canvas.translate(i10, i9);
-                    canvas.scale(height, height);
+                    canvas.clipRect(0.0f, height, recyclerView.getWidth(), f);
+                    canvas.translate(f2, height);
+                    canvas.scale(height2, height2);
                     SendGiftSheet.this.chatView.backgroundView.draw(canvas);
                     canvas.restore();
                 }

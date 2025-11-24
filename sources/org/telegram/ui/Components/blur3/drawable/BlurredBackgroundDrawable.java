@@ -39,6 +39,8 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     private BitmapShader bitmapShader;
     private final Matrix bitmapShaderMatrix;
     protected final Props boundProps;
+    private final RectF cmpRectF1;
+    private final RectF cmpRectF2;
     protected BlurredBackgroundColorProvider colorProvider;
     protected boolean inAppKeyboardOptimization;
     private final Paint paintStrokeFill;
@@ -59,10 +61,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
 
     public abstract BlurredBackgroundSource getSource();
 
-    public void onBoundPropsChanged() {
-    }
-
-    public void onSourceOffsetChange(float f, float f2) {
+    public void onSourceRelativePositionChanged(RectF rectF) {
     }
 
     @Override
@@ -84,6 +83,8 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         this.bitmapInShader = new WeakReference(null);
         paint2.setColor(0);
         paint.setFilterBitmap(true);
+        this.cmpRectF1 = new RectF();
+        this.cmpRectF2 = new RectF();
         props.strokeWidthTop = AndroidUtilities.dpf2(1.0f);
         props.strokeWidthBottom = AndroidUtilities.dpf2(0.6666667f);
     }
@@ -180,6 +181,14 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         onBoundPropsChanged();
     }
 
+    public void onBoundPropsChanged() {
+        dispatchSourceRelativePositionChange();
+    }
+
+    public void onSourceOffsetChange(float f, float f2) {
+        dispatchSourceRelativePositionChange();
+    }
+
     public BlurredBackgroundSource getUnwrappedSource() {
         BlurredBackgroundSource source = getSource();
         while (source instanceof BlurredBackgroundSourceWrapped) {
@@ -214,7 +223,6 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         public final float[] shaderRadii = new float[8];
         public float liquidIntensity = 0.75f;
         public float liquidIndex = 1.5f;
-        public float fillAlpha = 1.0f;
         public final Path path = new Path();
         public boolean radiiAreSame = true;
         public final Rect boundsWithPadding = new Rect();
@@ -470,5 +478,19 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             return;
         }
         drawSource(canvas, blurredBackgroundSourceRenderNode.getFallbackSource());
+    }
+
+    private void dispatchSourceRelativePositionChange() {
+        getPositionRelativeSource(this.cmpRectF1);
+        if (this.cmpRectF1.equals(this.cmpRectF2)) {
+            return;
+        }
+        this.cmpRectF2.set(this.cmpRectF1);
+        onSourceRelativePositionChanged(this.cmpRectF1);
+    }
+
+    public void getPositionRelativeSource(RectF rectF) {
+        rectF.set(this.boundProps.boundsWithPadding);
+        rectF.offset(this.sourceOffsetX, this.sourceOffsetY);
     }
 }

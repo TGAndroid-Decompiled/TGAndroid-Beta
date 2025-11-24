@@ -133,7 +133,9 @@ import org.telegram.ui.ThemePreviewActivity;
 
 public abstract class Theme {
     public static Paint DEBUG_BLUE;
+    public static Paint DEBUG_GREEN_STROKE;
     public static Paint DEBUG_RED;
+    public static Paint DEBUG_RED_STROKE;
     private static Method StateListDrawable_getStateDrawableMethod;
     private static SensorEventListener ambientSensorListener;
     private static HashMap animatedOutVisualizerDrawables;

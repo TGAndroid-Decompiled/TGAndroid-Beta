@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 
-public final class ChatActivity$$ExternalSyntheticLambda162 implements Utilities.Callback {
+public final class ChatActivity$$ExternalSyntheticLambda164 implements Utilities.Callback {
     public final ChatActivity f$0;
 
-    public ChatActivity$$ExternalSyntheticLambda162(ChatActivity chatActivity) {
+    public ChatActivity$$ExternalSyntheticLambda164(ChatActivity chatActivity) {
         this.f$0 = chatActivity;
     }
 
