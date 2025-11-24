@@ -251,12 +251,14 @@ public class DownscaleScrollableNoiseSuppressor {
 
         public void setPosition(RectF rectF) {
             RectF rectF2 = this.position;
-            rectF2.left = rectF.left;
-            float f = rectF.top;
-            rectF2.top = f - (f % 16.0f);
-            rectF2.right = rectF.right;
-            float f2 = rectF.bottom;
-            rectF2.bottom = f2 + (16.0f - (f2 % 16.0f));
+            float f = rectF.left;
+            rectF2.left = f - (f % 16.0f);
+            float f2 = rectF.top;
+            rectF2.top = f2 - (f2 % 16.0f);
+            float f3 = rectF.right;
+            rectF2.right = f3 + (16.0f - (f3 % 16.0f));
+            float f4 = rectF.bottom;
+            rectF2.bottom = f4 + (16.0f - (f4 % 16.0f));
         }
 
         public void invalidate() {

@@ -11,6 +11,7 @@ import android.graphics.RenderNode;
 import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
@@ -159,15 +160,48 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     }
 
     @Override
-    public void draw(android.graphics.Canvas r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode.draw(android.graphics.Canvas):void");
+    public void draw(Canvas canvas) {
+        boolean hasDisplayList;
+        float alpha;
+        if (this.boundProps.boundsWithPadding.isEmpty()) {
+            return;
+        }
+        if (!canvas.isHardwareAccelerated()) {
+            drawSource(canvas, this.source);
+            return;
+        }
+        hasDisplayList = this.renderNode.hasDisplayList();
+        if (!hasDisplayList) {
+            this.source.dispatchOnDrawablesRelativePositionChange();
+            updateDisplayList();
+        } else if (this.renderNodeInvalidated) {
+            updateDisplayList();
+        }
+        this.renderNodeInvalidated = false;
+        int i = this.shadowColor;
+        alpha = this.renderNode.getAlpha();
+        int multAlpha = Theme.multAlpha(i, alpha);
+        if (Color.alpha(multAlpha) != 0) {
+            this.paintShadow.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f), multAlpha);
+            this.boundProps.drawShadows(canvas, this.paintShadow, this.inAppKeyboardOptimization);
+        }
+        canvas.save();
+        Rect rect = this.boundProps.boundsWithPadding;
+        canvas.translate(rect.left, rect.top);
+        canvas.drawRenderNode(this.renderNode);
+        canvas.restore();
     }
 
     @Override
     public void setAlpha(int i) {
+        int alpha = getAlpha();
         super.setAlpha(i);
         this.renderNode.setAlpha(i / 255.0f);
         this.renderNodeInvalidated = true;
+        if (alpha != 0 || i <= 0) {
+            return;
+        }
+        this.source.dispatchOnDrawablesRelativePositionChange();
     }
 
     @Override
