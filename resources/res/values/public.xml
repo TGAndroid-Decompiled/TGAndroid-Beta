@@ -7459,8 +7459,8 @@
     <public type="string" name="Gift2AuctionsBidHasBeenPlaced" id="0x7f0f0ed8" />
     <public type="string" name="Gift2AuctionsChangeRecipient" id="0x7f0f0ed9" />
     <public type="string" name="Gift2AuctionsChangeRecipient2" id="0x7f0f0eda" />
-    <public type="string" name="Gift2AuctionsItemsBought_one" id="0x7f0f0edb" />
-    <public type="string" name="Gift2AuctionsItemsBought_other" id="0x7f0f0edc" />
+    <public type="string" name="Gift2AuctionsItemsBought2_one" id="0x7f0f0edb" />
+    <public type="string" name="Gift2AuctionsItemsBought2_other" id="0x7f0f0edc" />
     <public type="string" name="Gift2Availability" id="0x7f0f0edd" />
     <public type="string" name="Gift2Availability2ValueNone_one" id="0x7f0f0ede" />
     <public type="string" name="Gift2Availability2ValueNone_other" id="0x7f0f0edf" />

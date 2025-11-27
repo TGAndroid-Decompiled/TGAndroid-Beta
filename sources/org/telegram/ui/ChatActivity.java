@@ -12017,10 +12017,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (topicsTabsView != null) {
             topicsTabsView.setSideMenuBackgroundMarginTop(Math.max(0, (i - this.blurredViewTopOffset) - AndroidUtilities.dp(5.0f)));
         }
-        if (this.chatListView.getPaddingTop() == i) {
-            this.chatListView.getPaddingBottom();
-        }
-        this.chatListViewPaddingsAnimator.setPaddings(i, dp2, dp);
+        this.chatListViewPaddingsAnimator.setPaddings(i, dp2, dp, this.wasManualScroll);
     }
 
     public void invalidateChatListViewTopPadding() {

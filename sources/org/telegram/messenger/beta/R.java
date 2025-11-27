@@ -7504,8 +7504,8 @@ public final class R {
         public static final int Gift2AuctionsBidHasBeenPlaced = 0x7f0f0ed8;
         public static final int Gift2AuctionsChangeRecipient = 0x7f0f0ed9;
         public static final int Gift2AuctionsChangeRecipient2 = 0x7f0f0eda;
-        public static final int Gift2AuctionsItemsBought_one = 0x7f0f0edb;
-        public static final int Gift2AuctionsItemsBought_other = 0x7f0f0edc;
+        public static final int Gift2AuctionsItemsBought2_one = 0x7f0f0edb;
+        public static final int Gift2AuctionsItemsBought2_other = 0x7f0f0edc;
         public static final int Gift2Availability = 0x7f0f0edd;
         public static final int Gift2Availability2ValueNone_one = 0x7f0f0ede;
         public static final int Gift2Availability2ValueNone_other = 0x7f0f0edf;

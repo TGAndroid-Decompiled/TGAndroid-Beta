@@ -248,7 +248,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             });
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
             spannableStringBuilder.setSpan(new AnimatedEmojiSpan(subscribeToGiftAuction.giftDocumentId, linksTextView.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
-            linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought", subscribeToGiftAuction.auctionUserState.acquired_count, spannableStringBuilder), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
+            linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought2", subscribeToGiftAuction.auctionUserState.acquired_count, spannableStringBuilder), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
             ScaleStateListAnimator.apply(linksTextView, 0.02f, 1.5f);
             linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 16.0f, 4.0f, 16.0f, 4.0f));
         }

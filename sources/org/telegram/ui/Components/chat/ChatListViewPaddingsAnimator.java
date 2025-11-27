@@ -12,7 +12,7 @@ public class ChatListViewPaddingsAnimator {
         this.recyclerView = recyclerView;
     }
 
-    public void setPaddings(int i, float f, int i2) {
+    public void setPaddings(int i, float f, int i2, boolean z) {
         int i3 = this.currentAdditionalHeight;
         if (i3 != 0) {
             this.currentAdditionalHeight = 0;
@@ -28,7 +28,7 @@ public class ChatListViewPaddingsAnimator {
             return;
         }
         final int i5 = paddingTop - i;
-        if (i5 != 0) {
+        if (z && i5 != 0) {
             AndroidUtilities.doOnLayout(this.recyclerView, new Runnable() {
                 @Override
                 public final void run() {

@@ -328,7 +328,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         int i2 = this.auction.auctionUserState.acquired_count;
         if (i2 > 0) {
             this.itemsBought.setVisibility(0);
-            this.itemsBought.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought", i2, this.emojiGiftText), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
+            this.itemsBought.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought2", i2, this.emojiGiftText), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
         } else {
             this.itemsBought.setVisibility(8);
         }
