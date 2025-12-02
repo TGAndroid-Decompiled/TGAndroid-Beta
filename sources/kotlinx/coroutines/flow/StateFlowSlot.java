@@ -1,7 +1,7 @@
 package kotlinx.coroutines.flow;
 
-import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import com.google.android.exoplayer2.mediacodec.AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1;
+import java.util.concurrent.atomic.AtomicReference;
 import kotlin.Result;
 import kotlin.Unit;
 import kotlin.coroutines.Continuation;
@@ -11,48 +11,47 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.CancellableContinuationImpl;
 import kotlinx.coroutines.flow.internal.AbstractSharedFlowKt;
 import kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot;
+import kotlinx.coroutines.internal.Concurrent_commonKt;
 
 public final class StateFlowSlot extends AbstractSharedFlowSlot {
-    private static final AtomicReferenceFieldUpdater _state$FU = AtomicReferenceFieldUpdater.newUpdater(StateFlowSlot.class, Object.class, "_state");
-    private volatile Object _state;
+    private final AtomicReference _state = new AtomicReference(null);
 
     @Override
     public boolean allocateLocked(StateFlowImpl stateFlowImpl) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$FU;
-        if (atomicReferenceFieldUpdater.get(this) != null) {
+        if (Concurrent_commonKt.getValue(this._state) != null) {
             return false;
         }
-        atomicReferenceFieldUpdater.set(this, StateFlowKt.access$getNONE$p());
+        Concurrent_commonKt.setValue(this._state, StateFlowKt.access$getNONE$p());
         return true;
     }
 
     @Override
     public Continuation[] freeLocked(StateFlowImpl stateFlowImpl) {
-        _state$FU.set(this, null);
+        Concurrent_commonKt.setValue(this._state, null);
         return AbstractSharedFlowKt.EMPTY_RESUMES;
     }
 
     public final void makePending() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$FU;
+        AtomicReference atomicReference = this._state;
         while (true) {
-            Object obj = atomicReferenceFieldUpdater.get(this);
-            if (obj == null || obj == StateFlowKt.access$getPENDING$p()) {
+            Object value = Concurrent_commonKt.getValue(atomicReference);
+            if (value == null || value == StateFlowKt.access$getPENDING$p()) {
                 return;
             }
-            if (obj == StateFlowKt.access$getNONE$p()) {
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, obj, StateFlowKt.access$getPENDING$p())) {
+            if (value == StateFlowKt.access$getNONE$p()) {
+                if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.access$getPENDING$p())) {
                     return;
                 }
-            } else if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, obj, StateFlowKt.access$getNONE$p())) {
+            } else if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.access$getNONE$p())) {
                 Result.Companion companion = Result.Companion;
-                ((CancellableContinuationImpl) obj).resumeWith(Result.m228constructorimpl(Unit.INSTANCE));
+                ((CancellableContinuationImpl) value).resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
                 return;
             }
         }
     }
 
     public final boolean takePending() {
-        Object andSet = _state$FU.getAndSet(this, StateFlowKt.access$getNONE$p());
+        Object andSet = this._state.getAndSet(StateFlowKt.access$getNONE$p());
         Intrinsics.checkNotNull(andSet);
         return andSet == StateFlowKt.access$getPENDING$p();
     }
@@ -60,9 +59,9 @@ public final class StateFlowSlot extends AbstractSharedFlowSlot {
     public final Object awaitPending(Continuation continuation) {
         CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(IntrinsicsKt.intercepted(continuation), 1);
         cancellableContinuationImpl.initCancellability();
-        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, StateFlowKt.access$getNONE$p(), cancellableContinuationImpl)) {
+        if (!AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, StateFlowKt.access$getNONE$p(), cancellableContinuationImpl)) {
             Result.Companion companion = Result.Companion;
-            cancellableContinuationImpl.resumeWith(Result.m228constructorimpl(Unit.INSTANCE));
+            cancellableContinuationImpl.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
         }
         Object result = cancellableContinuationImpl.getResult();
         if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {

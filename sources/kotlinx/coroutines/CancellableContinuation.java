@@ -10,6 +10,8 @@ public interface CancellableContinuation extends Continuation {
 
     void invokeOnCancellation(Function1 function1);
 
+    boolean isActive();
+
     boolean isCompleted();
 
     void resume(Object obj, Function1 function1);

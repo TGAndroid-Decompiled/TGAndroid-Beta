@@ -18,10 +18,6 @@ public final class IntRange extends IntProgression {
         return Integer.valueOf(getLast());
     }
 
-    public boolean contains(int i) {
-        return getFirst() <= i && i <= getLast();
-    }
-
     @Override
     public boolean isEmpty() {
         return getFirst() > getLast();

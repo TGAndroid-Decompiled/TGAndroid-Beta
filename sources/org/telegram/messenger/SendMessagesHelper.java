@@ -2083,7 +2083,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return this.waitingForTodoUpdate.get(Integer.valueOf(Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), Integer.valueOf(todoItem.id))));
     }
 
-    public int toggleTodo(final MessageObject messageObject, final TLRPC.TodoItem todoItem, final boolean z, final Runnable runnable) {
+    public int toggleTodo(final long j, final MessageObject messageObject, final TLRPC.TodoItem todoItem, final boolean z, final Runnable runnable) {
         if (messageObject == null) {
             return 0;
         }
@@ -2100,14 +2100,14 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return getConnectionsManager().sendRequest(tL_messages_toggleTodoCompleted, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                SendMessagesHelper.this.lambda$toggleTodo$27(messageObject, todoItem, z, hash, runnable, tLObject, tL_error);
+                SendMessagesHelper.this.lambda$toggleTodo$27(messageObject, todoItem, z, j, hash, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$toggleTodo$27(MessageObject messageObject, TLRPC.TodoItem todoItem, final boolean z, final int i, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$toggleTodo$27(MessageObject messageObject, TLRPC.TodoItem todoItem, final boolean z, long j, final int i, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            getMessagesStorage().toggleTodo(messageObject.getDialogId(), messageObject.getId(), todoItem.id, z);
+            getMessagesStorage().toggleTodo(messageObject.getDialogId(), messageObject.getId(), todoItem.id, z, j);
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {

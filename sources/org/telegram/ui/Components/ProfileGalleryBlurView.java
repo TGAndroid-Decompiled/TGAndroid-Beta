@@ -53,6 +53,7 @@ public class ProfileGalleryBlurView extends View {
     private boolean shouldBlurActions;
     public int size;
     private boolean sizeChanged;
+    private ProfileSuggestionView suggestionView;
     private boolean usingRenderNode;
     private ProfileGalleryView view;
 
@@ -144,6 +145,10 @@ public class ProfileGalleryBlurView extends View {
         this.actionsView = profileActionsView;
     }
 
+    public void setSuggestionView(ProfileSuggestionView profileSuggestionView) {
+        this.suggestionView = profileSuggestionView;
+    }
+
     public void setMusicView(ProfileMusicView profileMusicView) {
         this.musicView = profileMusicView;
     }
@@ -193,6 +198,23 @@ public class ProfileGalleryBlurView extends View {
     }
 
     public void setSize(int i) {
+        if (this.actionSize != i) {
+            invalidate();
+            requestLayout();
+            if (Build.VERSION.SDK_INT >= 29) {
+                RenderNode renderNode = this.blurNode;
+                if (renderNode != null) {
+                    renderNode.discardDisplayList();
+                    this.blurNode = null;
+                }
+                RenderNode renderNode2 = this.actionsBlurNode;
+                if (renderNode2 != null) {
+                    renderNode2.discardDisplayList();
+                    this.actionsBlurNode = null;
+                }
+            }
+            updateContent();
+        }
         this.actionSize = i;
         this.size = (int) (AndroidUtilities.dp(64.0f) * 1.5f);
     }
@@ -226,6 +248,8 @@ public class ProfileGalleryBlurView extends View {
             }
         }
         this.actionsView = null;
+        this.suggestionView = null;
+        this.musicView = null;
         synchronized (this.lock) {
             for (int i = 0; i < 3; i++) {
                 try {
@@ -455,6 +479,10 @@ public class ProfileGalleryBlurView extends View {
         if (profileActionsView != null) {
             profileActionsView.drawingBlur(false);
         }
+        ProfileSuggestionView profileSuggestionView = this.suggestionView;
+        if (profileSuggestionView != null) {
+            profileSuggestionView.drawingBlur(false);
+        }
         ProfileMusicView profileMusicView = this.musicView;
         if (profileMusicView != null) {
             profileMusicView.drawingBlur(false);
@@ -536,7 +564,7 @@ public class ProfileGalleryBlurView extends View {
 
     private void initActionsRenderNode() {
         RenderEffect createColorFilterEffect;
-        if (this.actionsView == null && this.musicView == null) {
+        if (this.actionsView == null && this.suggestionView == null && this.musicView == null) {
             this.shouldBlurActions = false;
             return;
         }
@@ -652,6 +680,10 @@ public class ProfileGalleryBlurView extends View {
             if (profileActionsView != null) {
                 profileActionsView.drawingBlur(false);
             }
+            ProfileSuggestionView profileSuggestionView = this.suggestionView;
+            if (profileSuggestionView != null) {
+                profileSuggestionView.drawingBlur(false);
+            }
             ProfileMusicView profileMusicView = this.musicView;
             if (profileMusicView != null) {
                 profileMusicView.drawingBlur(false);
@@ -660,7 +692,7 @@ public class ProfileGalleryBlurView extends View {
             return;
         }
         float renderNodeScale = getRenderNodeScale() * f2 * 8.0f;
-        this.actionsBlurNode.setPosition(0, 0, (int) (f / renderNodeScale), (int) ((this.actionSize + f3) / renderNodeScale));
+        this.actionsBlurNode.setPosition(0, 0, (int) Math.ceil(f / renderNodeScale), (int) ((this.actionSize + f3) / renderNodeScale));
         beginRecording = this.actionsBlurNode.beginRecording();
         beginRecording.scale(0.125f, 0.125f);
         beginRecording.drawRenderNode(this.blurNode);
@@ -672,6 +704,14 @@ public class ProfileGalleryBlurView extends View {
                 profileActionsView2.drawingBlur(this.actionsBlurNode, avatarImageView, renderNodeScale / f2, -f3);
             } else {
                 profileActionsView2.drawingBlur(this.actionsBlurNode, null, renderNodeScale, -f3);
+            }
+        }
+        ProfileSuggestionView profileSuggestionView2 = this.suggestionView;
+        if (profileSuggestionView2 != null) {
+            if (avatarImageView != null) {
+                profileSuggestionView2.drawingBlur(this.actionsBlurNode, avatarImageView, renderNodeScale / f2, -f3);
+            } else {
+                profileSuggestionView2.drawingBlur(this.actionsBlurNode, null, renderNodeScale, -f3);
             }
         }
         ProfileMusicView profileMusicView2 = this.musicView;

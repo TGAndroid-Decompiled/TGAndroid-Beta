@@ -12,6 +12,7 @@ import me.vkryl.core.reference.ReferenceList;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
 public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Callback {
+    private int activeAnimationsCounter;
     private final ReferenceList listeners;
     private final ViewGroup root;
     private final PointF tmpPointF;
@@ -34,6 +35,18 @@ public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Ca
     public WindowInsetsCompat onProgress(WindowInsetsCompat windowInsetsCompat, List list) {
         dispatchWindowInsetsAnimationChange(windowInsetsCompat);
         return windowInsetsCompat;
+    }
+
+    @Override
+    public WindowInsetsAnimationCompat.BoundsCompat onStart(WindowInsetsAnimationCompat windowInsetsAnimationCompat, WindowInsetsAnimationCompat.BoundsCompat boundsCompat) {
+        this.activeAnimationsCounter++;
+        return super.onStart(windowInsetsAnimationCompat, boundsCompat);
+    }
+
+    @Override
+    public void onEnd(WindowInsetsAnimationCompat windowInsetsAnimationCompat) {
+        super.onEnd(windowInsetsAnimationCompat);
+        this.activeAnimationsCounter--;
     }
 
     public void subscribeToWindowInsetsAnimation(Listener listener) {

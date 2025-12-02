@@ -31,7 +31,7 @@ public abstract class FilesKt__FileReadWriteKt extends FilesKt__FilePathComponen
             }
             if (i2 > 0) {
                 bArr = Arrays.copyOf(bArr, i3);
-                Intrinsics.checkNotNullExpressionValue(bArr, "copyOf(this, newSize)");
+                Intrinsics.checkNotNullExpressionValue(bArr, "copyOf(...)");
             } else {
                 int read2 = fileInputStream.read();
                 if (read2 != -1) {
@@ -44,7 +44,7 @@ public abstract class FilesKt__FileReadWriteKt extends FilesKt__FilePathComponen
                     }
                     byte[] buffer = exposingBufferByteArrayOutputStream.getBuffer();
                     byte[] copyOf = Arrays.copyOf(bArr, size);
-                    Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
+                    Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
                     bArr = ArraysKt.copyInto(buffer, copyOf, i, 0, exposingBufferByteArrayOutputStream.size());
                 }
             }

@@ -67,7 +67,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         return false;
     }
 
-    protected boolean canHighlightChildAt(View view, float f, float f2) {
+    public boolean canHighlightChildAt(View view, float f, float f2) {
         return true;
     }
 
@@ -276,18 +276,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
             };
         }
-        this.recyclerListView = new RecyclerListView(context, resourcesProvider) {
-            @Override
-            public void onLayout(boolean z5, int i, int i2, int i3, int i4) {
-                BottomSheetWithRecyclerListView.this.applyScrolledPosition();
-                super.onLayout(z5, i, i2, i3, i4);
-            }
-
-            @Override
-            public boolean canHighlightChildAt(View view, float f, float f2) {
-                return BottomSheetWithRecyclerListView.this.canHighlightChildAt(view, f, f2);
-            }
-        };
+        this.recyclerListView = createRecyclerView(context);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
             @Override
             public void scrollToPositionWithOffset(int i, int i2) {
@@ -398,6 +387,21 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         this.actionBarSlideProgress = new AnimatedFloat(this.containerView, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.actionBar.backButtonImageView.setPivotX(0.0f);
         this.recyclerListView.setClipToPadding(true);
+    }
+
+    protected RecyclerListView createRecyclerView(Context context) {
+        return new RecyclerListView(context, this.resourcesProvider) {
+            @Override
+            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                BottomSheetWithRecyclerListView.this.applyScrolledPosition();
+                super.onLayout(z, i, i2, i3, i4);
+            }
+
+            @Override
+            public boolean canHighlightChildAt(View view, float f, float f2) {
+                return BottomSheetWithRecyclerListView.this.canHighlightChildAt(view, f, f2);
+            }
+        };
     }
 
     private class PaddingView extends View {

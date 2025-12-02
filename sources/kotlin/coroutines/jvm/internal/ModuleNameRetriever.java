@@ -24,22 +24,16 @@ public final class ModuleNameRetriever {
     }
 
     public final String getModuleName(BaseContinuationImpl continuation) {
+        Method method;
+        Object invoke;
+        Method method2;
+        Object invoke2;
         Intrinsics.checkNotNullParameter(continuation, "continuation");
         Cache cache2 = cache;
         if (cache2 == null) {
             cache2 = buildCache(continuation);
         }
-        if (cache2 == notOnJava9) {
-            return null;
-        }
-        Method method = cache2.getModuleMethod;
-        Object invoke = method != null ? method.invoke(continuation.getClass(), null) : null;
-        if (invoke == null) {
-            return null;
-        }
-        Method method2 = cache2.getDescriptorMethod;
-        Object invoke2 = method2 != null ? method2.invoke(invoke, null) : null;
-        if (invoke2 == null) {
+        if (cache2 == notOnJava9 || (method = cache2.getModuleMethod) == null || (invoke = method.invoke(continuation.getClass(), null)) == null || (method2 = cache2.getDescriptorMethod) == null || (invoke2 = method2.invoke(invoke, null)) == null) {
             return null;
         }
         Method method3 = cache2.nameMethod;

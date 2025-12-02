@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">ចែករំលែក​ជា​មួយ</string>
     <string name="abc_shareactionprovider_share_with_application">ចែក​រំលែក​ជា​មួយ %s</string>
     <string name="abc_toolbar_collapse_description">បង្រួម</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">ពាក្យសម្ងាត់</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">កូដសម្ងាត់</string>
     <string name="call_notification_answer_action">ឆ្លើយ</string>
     <string name="call_notification_answer_video_action">វីដេអូ</string>
     <string name="call_notification_decline_action">បដិសេធ</string>

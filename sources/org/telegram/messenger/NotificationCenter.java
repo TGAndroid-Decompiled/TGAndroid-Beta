@@ -454,9 +454,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            NotificationCenter$$ExternalSyntheticLambda9 notificationCenter$$ExternalSyntheticLambda9 = new NotificationCenter$$ExternalSyntheticLambda9(this);
-            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda9;
-            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda9, 5017L);
+            NotificationCenter$$ExternalSyntheticLambda11 notificationCenter$$ExternalSyntheticLambda11 = new NotificationCenter$$ExternalSyntheticLambda11(this);
+            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda11;
+            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda11, 5017L);
         }
         return this.animationInProgressPointer;
     }
@@ -496,7 +496,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda9(this);
+        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda11(this);
     }
 
     public void updateAllowedNotifications(int i, int[] iArr) {
@@ -980,6 +980,34 @@ public class NotificationCenter {
         if (runnable != null) {
             runnable.run();
         }
+        removeObserver(notificationCenterDelegateArr[0], i);
+        notificationCenterDelegateArr[0] = null;
+    }
+
+    public void listenOnce(final int i, final Utilities.Callback3<Integer, Object[], Runnable> callback3) {
+        NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
+            @Override
+            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
+                NotificationCenter.this.lambda$listenOnce$12(i, r3, callback3, i2, i3, objArr);
+            }
+        };
+        final NotificationCenterDelegate[] notificationCenterDelegateArr = {notificationCenterDelegate};
+        addObserver(notificationCenterDelegate, i);
+    }
+
+    public void lambda$listenOnce$12(final int i, final NotificationCenterDelegate[] notificationCenterDelegateArr, Utilities.Callback3 callback3, int i2, int i3, Object[] objArr) {
+        if (i2 != i || notificationCenterDelegateArr[0] == null || callback3 == null) {
+            return;
+        }
+        callback3.run(Integer.valueOf(i3), objArr, new Runnable() {
+            @Override
+            public final void run() {
+                NotificationCenter.this.lambda$listenOnce$11(notificationCenterDelegateArr, i);
+            }
+        });
+    }
+
+    public void lambda$listenOnce$11(NotificationCenterDelegate[] notificationCenterDelegateArr, int i) {
         removeObserver(notificationCenterDelegateArr[0], i);
         notificationCenterDelegateArr[0] = null;
     }

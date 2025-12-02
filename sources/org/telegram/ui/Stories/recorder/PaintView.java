@@ -2451,109 +2451,18 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         onOpenCloseStickersAlert(false);
     }
 
-    private void showAudioAlert(final Utilities.Callback callback) {
-        ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new ChatActivity(null) {
+    private void showAudioAlert(Utilities.Callback callback) {
+        SelectAudioAlert selectAudioAlert = new SelectAudioAlert(getContext(), callback);
+        selectAudioAlert.setOnDismissListener(new Runnable() {
             @Override
-            public long getDialogId() {
-                return 0L;
-            }
-
-            @Override
-            public boolean isKeyboardVisible() {
-                return false;
-            }
-
-            @Override
-            public boolean isLightStatusBar() {
-                return false;
-            }
-
-            @Override
-            public Theme.ResourcesProvider getResourceProvider() {
-                return PaintView.this.resourcesProvider;
-            }
-
-            @Override
-            public Activity getParentActivity() {
-                return AndroidUtilities.findActivity(PaintView.this.getContext());
-            }
-
-            @Override
-            public TLRPC.User getCurrentUser() {
-                return UserConfig.getInstance(this.currentAccount).getCurrentUser();
-            }
-
-            @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
-                MessageObject messageObject;
-                if (arrayList.isEmpty() || (messageObject = (MessageObject) arrayList.get(0)) == null) {
-                    return;
-                }
-                callback.run(messageObject);
-                ChatAttachAlert chatAttachAlert2 = r4[0];
-                if (chatAttachAlert2 != null) {
-                    chatAttachAlert2.lambda$new$0();
-                }
-            }
-        }, false, true, false, this.resourcesProvider);
-        final ChatAttachAlert[] chatAttachAlertArr = {chatAttachAlert};
-        chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
-            @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
-            }
-
-            @Override
-            public void didSelectBot(TLRPC.User user) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
-            }
-
-            @Override
-            public void doOnIdle(Runnable runnable) {
-                runnable.run();
-            }
-
-            @Override
-            public boolean needEnterComment() {
-                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
-            }
-
-            @Override
-            public void onCameraOpened() {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
-            }
-
-            @Override
-            public void onWallpaperSelected(Object obj) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
-            }
-
-            @Override
-            public void openAvatarsSearch() {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
-            }
-
-            @Override
-            public boolean selectItemOnClicking() {
-                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
-            }
-
-            @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, i2, j, z2, j2);
+            public final void run() {
+                PaintView.this.lambda$showAudioAlert$31();
             }
         });
-        chatAttachAlertArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$showAudioAlert$31(dialogInterface);
-            }
-        });
-        chatAttachAlertArr[0].setStoryAudioPicker();
-        chatAttachAlertArr[0].init();
-        chatAttachAlertArr[0].show();
+        selectAudioAlert.show();
     }
 
-    public void lambda$showAudioAlert$31(DialogInterface dialogInterface) {
+    public void lambda$showAudioAlert$31() {
         onOpenCloseStickersAlert(false);
     }
 
@@ -4914,11 +4823,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         if (AndroidUtilities.isTablet()) {
             this.emojiView.setForseMultiwindowLayout(true);
         }
-        this.emojiView.setDelegate(new AnonymousClass33());
+        this.emojiView.setDelegate(new AnonymousClass31());
         this.parent.addView(this.emojiView);
     }
 
-    public class AnonymousClass33 implements EmojiView.EmojiViewDelegate {
+    public class AnonymousClass31 implements EmojiView.EmojiViewDelegate {
         int innerTextChange;
 
         @Override
@@ -5025,7 +4934,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             EmojiView.EmojiViewDelegate.CC.$default$showTrendingStickersAlert(this, trendingStickersLayout);
         }
 
-        AnonymousClass33() {
+        AnonymousClass31() {
         }
 
         @Override
@@ -5113,7 +5022,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    PaintView.AnonymousClass33.this.lambda$onClearEmojiRecent$0(alertDialog, i);
+                    PaintView.AnonymousClass31.this.lambda$onClearEmojiRecent$0(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);

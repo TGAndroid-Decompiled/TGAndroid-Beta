@@ -85,7 +85,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda10;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda8;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda10;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SessionCell;
 import org.telegram.ui.ChatActivity;
@@ -1780,7 +1780,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 } else if (starsTransaction.phonegroup_message) {
                     this.titleTextView.setText(str2);
                     this.subtitleTextView.setVisibility(z4 ? 8 : 0);
-                    this.subtitleTextView.setText(LocaleController.getString(R.string.StarsTransactionLiveStoryMessageFee));
+                    this.subtitleTextView.setText(LocaleController.getString(starsTransaction.reaction ? R.string.StarsTransactionLiveStoryReactionFee : R.string.StarsTransactionLiveStoryMessageFee));
                 } else if (starsTransaction.paid_message) {
                     this.titleTextView.setText(str2);
                     this.subtitleTextView.setVisibility(z4 ? 8 : 0);
@@ -3237,6 +3237,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return replaceStarsWithPlain(charSequence, f, (ColoredImageSpan[]) null);
     }
 
+    public static SpannableStringBuilder replaceStarsWithPlain(boolean z, CharSequence charSequence, float f) {
+        return replaceStarsWithPlain(z, charSequence, f, (ColoredImageSpan[]) null);
+    }
+
     public static SpannableStringBuilder replaceStarsWithPlain(TL_stars.StarsAmount starsAmount, CharSequence charSequence, float f) {
         return replaceStarsWithPlain(starsAmount instanceof TL_stars.TL_starsTonAmount, charSequence, f, (ColoredImageSpan[]) null);
     }
@@ -3523,7 +3527,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                         return;
                     }
                     lottieAnimation.setCurrentFrame(0, false);
-                    AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda8(lottieAnimation));
+                    AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda10(lottieAnimation));
                     zArr[0] = true;
                 }
             });

@@ -2890,6 +2890,31 @@ public class LocaleController {
         return formatPluralString + ", " + formatPluralString("Minutes", i2, new Object[0]);
     }
 
+    public static String formatShortDuration(int i) {
+        int i2 = i / 3600;
+        int i3 = (i / 60) % 60;
+        int i4 = i % 60;
+        StringBuilder sb = new StringBuilder();
+        if (i2 > 0) {
+            if (sb.length() > 0) {
+                sb.append(":");
+            }
+            sb.append(i2 > 10 ? "" : "0");
+            sb.append(i2);
+        }
+        if (sb.length() > 0) {
+            sb.append(":");
+        }
+        sb.append(i3 > 10 ? "" : "0");
+        sb.append(i3);
+        if (sb.length() > 0) {
+            sb.append(":");
+        }
+        sb.append(i4 > 10 ? "" : "0");
+        sb.append(i4);
+        return sb.toString();
+    }
+
     public void onDeviceConfigurationChange(Configuration configuration) {
         if (this.changingConfiguration) {
             return;
@@ -3095,6 +3120,15 @@ public class LocaleController {
             FileLog.e(e);
             return "LOC_ERR";
         }
+    }
+
+    public static String formatShortDuration2(int i) {
+        int i2 = i / 60;
+        int i3 = i / 3600;
+        if (i3 > 0) {
+            return formatPluralString("ShortHoursAgo", i3, new Object[0]) + " " + formatPluralString("ShortMinutesAgo", i2 % 60, new Object[0]);
+        }
+        return formatPluralString("ShortMinutesAgo", i2, new Object[0]);
     }
 
     public static String formatShortDate(long j) {

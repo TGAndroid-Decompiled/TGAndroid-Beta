@@ -106,6 +106,18 @@ public abstract class TlUtils {
         return null;
     }
 
+    public static ArrayList findAllInstances(List list, Class cls) {
+        ArrayList arrayList = new ArrayList();
+        if (list != null && cls != null) {
+            for (Object obj : list) {
+                if (cls.isInstance(obj)) {
+                    arrayList.add(cls.cast(obj));
+                }
+            }
+        }
+        return arrayList;
+    }
+
     public static long getOrCalculateRandomIdFromSendMessageRequest(TLObject tLObject) {
         if (tLObject instanceof TLRPC.TL_messages_sendMessage) {
             return ((TLRPC.TL_messages_sendMessage) tLObject).random_id;

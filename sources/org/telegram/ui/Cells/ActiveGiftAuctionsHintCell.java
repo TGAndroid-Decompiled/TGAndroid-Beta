@@ -116,31 +116,44 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
     private void update(boolean z) {
         String formatString;
         String formatPlace;
+        String formatString2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int size = this.activeAuctions.size();
         if (size == 0) {
             return;
         }
+        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
         boolean z2 = false;
+        boolean z3 = false;
         for (int i = 0; i < size; i++) {
             GiftAuctionController.Auction auction = (GiftAuctionController.Auction) this.activeAuctions.get(i);
+            z2 |= auction.isUpcoming(currentTime);
             if (auction.giftDocumentId != 0) {
                 spannableStringBuilder.append((CharSequence) "*");
                 spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction.giftDocumentId, this.titleTextView.getPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             }
             GiftAuctionController.Auction.BidStatus bidStatus = auction.getBidStatus();
-            z2 |= bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID || bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED;
+            z3 |= bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID || bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED;
         }
         spannableStringBuilder.append(' ');
-        if (size == 1) {
-            formatString = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveAuctionTitle);
+        if (z2) {
+            if (size == 1) {
+                formatString2 = LocaleController.getString(R.string.Gift2ActiveAuctionsUpcomingAuctionTitle);
+            } else {
+                formatString2 = LocaleController.formatString(R.string.Gift2ActiveAuctionsUpcomingAuctionsTitle, Integer.valueOf(size));
+            }
+            spannableStringBuilder.append((CharSequence) formatString2);
         } else {
-            formatString = LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(size));
+            if (size == 1) {
+                formatString = LocaleController.getString(R.string.Gift2ActiveAuctionsActiveAuctionTitle);
+            } else {
+                formatString = LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(size));
+            }
+            spannableStringBuilder.append((CharSequence) formatString);
         }
-        spannableStringBuilder.append((CharSequence) formatString);
         this.titleTextView.setText(spannableStringBuilder, z);
         this.isOutbid = false;
-        if (z2) {
+        if (z3) {
             this.messageTextView.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusOutbid));
             this.isOutbid = true;
         } else if (size > 1) {
@@ -232,7 +245,8 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
             if (j == 0) {
                 this.textView.setText(LocaleController.getString(R.string.Gift2AuctionPriceView));
             } else {
-                this.textView.setText(AndroidUtilities.formatDurationNoHours((int) j, false), isAttachedToWindow());
+                int i = (int) j;
+                this.textView.setText(j > 3600 ? AndroidUtilities.formatDuration(i, false) : AndroidUtilities.formatDurationNoHours(i, false), isAttachedToWindow());
             }
         }
 

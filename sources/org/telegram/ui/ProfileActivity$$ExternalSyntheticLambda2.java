@@ -9,6 +9,6 @@ public final class ProfileActivity$$ExternalSyntheticLambda2 implements Runnable
 
     @Override
     public final void run() {
-        ProfileActivity.m3502$r8$lambda$w8rO6ZmkolCrj34I0aad2OtBk(this.f$0);
+        ProfileActivity.m3542$r8$lambda$w8rO6ZmkolCrj34I0aad2OtBk(this.f$0);
     }
 }

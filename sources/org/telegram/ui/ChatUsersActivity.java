@@ -1852,6 +1852,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         final String str;
         final int i;
         boolean z2;
+        boolean z3;
         int i2;
         String str2;
         int i3;
@@ -1893,41 +1894,41 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
         if (this.type == 2) {
             final TLRPC.User user = getMessagesController().getUser(Long.valueOf(j));
-            boolean z3 = ChatObject.canAddAdmins(this.currentChat) && ((tLObject instanceof TLRPC.TL_channelParticipant) || (tLObject instanceof TLRPC.TL_channelParticipantBanned) || (tLObject instanceof TLRPC.TL_chatParticipant) || z2);
-            boolean z4 = tLObject instanceof TLRPC.TL_channelParticipantAdmin;
-            boolean z5 = !(z4 || (tLObject instanceof TLRPC.TL_channelParticipantCreator) || (tLObject instanceof TLRPC.TL_chatParticipantCreator) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) || z2;
-            boolean z6 = z4 || (tLObject instanceof TLRPC.TL_chatParticipantAdmin);
-            boolean z7 = ChatObject.canBlockUsers(this.currentChat) && z5 && !this.isChannel && ChatObject.isChannel(this.currentChat) && !this.currentChat.gigagroup;
+            boolean z4 = ChatObject.canAddAdmins(this.currentChat) && ((tLObject instanceof TLRPC.TL_channelParticipant) || (tLObject instanceof TLRPC.TL_channelParticipantBanned) || (tLObject instanceof TLRPC.TL_chatParticipant) || z2);
+            boolean z5 = tLObject instanceof TLRPC.TL_channelParticipantAdmin;
+            boolean z6 = !(z5 || (tLObject instanceof TLRPC.TL_channelParticipantCreator) || (tLObject instanceof TLRPC.TL_chatParticipantCreator) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) || z2;
+            boolean z7 = z5 || (tLObject instanceof TLRPC.TL_chatParticipantAdmin);
+            boolean z8 = ChatObject.canBlockUsers(this.currentChat) && z6 && !this.isChannel && ChatObject.isChannel(this.currentChat) && !this.currentChat.gigagroup;
             if (this.selectType == 0) {
-                z3 &= !UserObject.isDeleted(user);
+                z4 &= !UserObject.isDeleted(user);
             }
-            boolean z8 = z3;
-            boolean z9 = z8 || (ChatObject.canBlockUsers(this.currentChat) && z5);
-            if (z || !z9) {
-                return z9;
+            boolean z9 = z4;
+            boolean z10 = z9 || (ChatObject.canBlockUsers(this.currentChat) && z6);
+            if (z || !z10) {
+                return z10;
             }
             final long j3 = j;
             final long j4 = j;
-            boolean z10 = z7;
-            final boolean z11 = z5;
+            boolean z11 = z8;
+            final boolean z12 = z6;
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ChatUsersActivity.this.lambda$createMenuForParticipant$9(j3, i, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z11, (Integer) obj);
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$9(j3, i, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z12, (Integer) obj);
                 }
             };
-            ItemOptions addIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(z8, R.drawable.msg_admins, z6 ? LocaleController.getString("EditAdminRights", R.string.EditAdminRights) : LocaleController.getString("SetAsAdmin", R.string.SetAsAdmin), new Runnable() {
+            ItemOptions addIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(z9, R.drawable.msg_admins, LocaleController.getString(z7 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.lambda$createMenuForParticipant$10(Utilities.Callback.this);
                 }
-            }).addIf(z10, R.drawable.msg_permissions, LocaleController.getString("ChangePermissions", R.string.ChangePermissions), new Runnable() {
+            }).addIf(z11, R.drawable.msg_permissions, LocaleController.getString("ChangePermissions", R.string.ChangePermissions), new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$12(tLObject, user, callback);
                 }
             });
-            boolean z12 = ChatObject.canBlockUsers(this.currentChat) && z5;
+            boolean z13 = ChatObject.canBlockUsers(this.currentChat) && z6;
             int i5 = R.drawable.msg_remove;
             if (this.isChannel) {
                 i3 = R.string.ChannelRemoveUser;
@@ -1936,7 +1937,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 i3 = R.string.KickFromGroup;
                 str3 = "KickFromGroup";
             }
-            addIf.addIf(z12, i5, (CharSequence) LocaleController.getString(str3, i3), true, new Runnable() {
+            addIf.addIf(z13, i5, (CharSequence) LocaleController.getString(str3, i3), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$13(user, j4);
@@ -1955,61 +1956,65 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     ChatUsersActivity.this.lambda$createMenuForParticipant$14(j5, tL_chatBannedRights3, str4, tLObject);
                 }
             });
+            z3 = true;
             makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$15(j5);
                 }
             });
-        } else if (this.type == 0 && ChatObject.canBlockUsers(this.currentChat)) {
-            if (ChatObject.canAddUsers(this.currentChat) && j > 0) {
-                int i6 = R.drawable.msg_contact_add;
-                if (this.isChannel) {
-                    i2 = R.string.ChannelAddToChannel;
-                    str2 = "ChannelAddToChannel";
-                } else {
-                    i2 = R.string.ChannelAddToGroup;
-                    str2 = "ChannelAddToGroup";
+        } else {
+            z3 = true;
+            if (this.type == 0 && ChatObject.canBlockUsers(this.currentChat)) {
+                if (ChatObject.canAddUsers(this.currentChat) && j > 0) {
+                    int i6 = R.drawable.msg_contact_add;
+                    if (this.isChannel) {
+                        i2 = R.string.ChannelAddToChannel;
+                        str2 = "ChannelAddToChannel";
+                    } else {
+                        i2 = R.string.ChannelAddToGroup;
+                        str2 = "ChannelAddToGroup";
+                    }
+                    makeOptions.add(i6, LocaleController.getString(str2, i2), new Runnable() {
+                        @Override
+                        public final void run() {
+                            ChatUsersActivity.this.lambda$createMenuForParticipant$16(j5);
+                        }
+                    });
                 }
-                makeOptions.add(i6, LocaleController.getString(str2, i2), new Runnable() {
+                makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatUsersActivity.this.lambda$createMenuForParticipant$16(j5);
+                        ChatUsersActivity.this.lambda$createMenuForParticipant$17(j5);
+                    }
+                });
+            } else if (this.type == 1 && ChatObject.canAddAdmins(this.currentChat) && z2) {
+                if (this.currentChat.creator || !(tLObject instanceof TLRPC.TL_channelParticipantCreator)) {
+                    final TLRPC.TL_chatAdminRights tL_chatAdminRights3 = tL_chatAdminRights;
+                    final String str5 = str;
+                    makeOptions.add(R.drawable.msg_admins, LocaleController.getString("EditAdminRights", R.string.EditAdminRights), new Runnable() {
+                        @Override
+                        public final void run() {
+                            ChatUsersActivity.this.lambda$createMenuForParticipant$18(j5, tL_chatAdminRights3, str5, tLObject);
+                        }
+                    });
+                }
+                makeOptions.add(R.drawable.msg_remove, (CharSequence) LocaleController.getString("ChannelRemoveUserAdmin", R.string.ChannelRemoveUserAdmin), true, new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatUsersActivity.this.lambda$createMenuForParticipant$19(j5);
                     }
                 });
             }
-            makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
-                @Override
-                public final void run() {
-                    ChatUsersActivity.this.lambda$createMenuForParticipant$17(j5);
-                }
-            });
-        } else if (this.type == 1 && ChatObject.canAddAdmins(this.currentChat) && z2) {
-            if (this.currentChat.creator || !(tLObject instanceof TLRPC.TL_channelParticipantCreator)) {
-                final TLRPC.TL_chatAdminRights tL_chatAdminRights3 = tL_chatAdminRights;
-                final String str5 = str;
-                makeOptions.add(R.drawable.msg_admins, LocaleController.getString("EditAdminRights", R.string.EditAdminRights), new Runnable() {
-                    @Override
-                    public final void run() {
-                        ChatUsersActivity.this.lambda$createMenuForParticipant$18(j5, tL_chatAdminRights3, str5, tLObject);
-                    }
-                });
-            }
-            makeOptions.add(R.drawable.msg_remove, (CharSequence) LocaleController.getString("ChannelRemoveUserAdmin", R.string.ChannelRemoveUserAdmin), true, new Runnable() {
-                @Override
-                public final void run() {
-                    ChatUsersActivity.this.lambda$createMenuForParticipant$19(j5);
-                }
-            });
         }
         makeOptions.setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite)));
         makeOptions.setMinWidth(190);
-        boolean z13 = makeOptions.getItemsCount() > 0;
-        if (z || !z13) {
-            return z13;
+        boolean z14 = makeOptions.getItemsCount() > 0;
+        if (z || !z14) {
+            return z14;
         }
         makeOptions.show();
-        return true;
+        return z3;
     }
 
     public void lambda$createMenuForParticipant$9(long j, int i, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, Integer num) {
@@ -2022,7 +2027,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createMenuForParticipant$12(TLObject tLObject, TLRPC.User user, final Utilities.Callback callback) {
         if ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) {
-            showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(LocaleController.formatString("AdminWillBeRemoved", R.string.AdminWillBeRemoved, UserObject.getUserName(user))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new AlertDialog.OnButtonClickListener() {
+            showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(LocaleController.formatString(R.string.AdminWillBeRemoved, UserObject.getUserName(user))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
                     ChatUsersActivity.lambda$createMenuForParticipant$11(Utilities.Callback.this, alertDialog, i);

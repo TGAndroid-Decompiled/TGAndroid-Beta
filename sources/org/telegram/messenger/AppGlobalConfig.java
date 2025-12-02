@@ -13,6 +13,7 @@ public class AppGlobalConfig {
     public final ConfigTime groupCallMessageTtl;
     public final ConfigTime messageTypingDraftTtl;
     public final ConfigBoolean needAgeVideoVerification;
+    public final ConfigInt passkeysAccountPasskeysMax;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
     public final ConfigString starsRatingLearnMoreUrl;
@@ -65,6 +66,7 @@ public class AppGlobalConfig {
         this.groupCallMessageTtl = ofTime("group_call_message_ttl", 10L, timeUnit);
         this.groupCallMessageLengthLimit = ofInt("group_call_message_length_limit", 128);
         this.contactNoteLengthLimit = ofInt("contact_note_length_limit", 128);
+        this.passkeysAccountPasskeysMax = ofInt("passkeys_account_passkeys_max", 5);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

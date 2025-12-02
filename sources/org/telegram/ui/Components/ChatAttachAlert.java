@@ -6627,10 +6627,6 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.shadow.setVisibility(8);
     }
 
-    public void setStoryAudioPicker() {
-        this.isStoryAudioPicker = true;
-    }
-
     public void setMaxSelectedPhotos(int i, boolean z) {
         if (this.editingMessageObject != null) {
             return;

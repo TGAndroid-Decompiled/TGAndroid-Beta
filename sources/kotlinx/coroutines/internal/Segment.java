@@ -5,8 +5,8 @@ import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.NotCompleted;
 
 public abstract class Segment extends ConcurrentLinkedListNode implements NotCompleted {
-    private static final AtomicIntegerFieldUpdater cleanedAndPointers$FU = AtomicIntegerFieldUpdater.newUpdater(Segment.class, "cleanedAndPointers");
-    private volatile int cleanedAndPointers;
+    private static final AtomicIntegerFieldUpdater cleanedAndPointers$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(Segment.class, "cleanedAndPointers$volatile");
+    private volatile int cleanedAndPointers$volatile;
     public final long id;
 
     public abstract int getNumberOfSlots();
@@ -16,27 +16,27 @@ public abstract class Segment extends ConcurrentLinkedListNode implements NotCom
     public Segment(long j, Segment segment, int i) {
         super(segment);
         this.id = j;
-        this.cleanedAndPointers = i << 16;
+        this.cleanedAndPointers$volatile = i << 16;
     }
 
     @Override
     public boolean isRemoved() {
-        return cleanedAndPointers$FU.get(this) == getNumberOfSlots() && !isTail();
+        return cleanedAndPointers$volatile$FU.get(this) == getNumberOfSlots() && !isTail();
     }
 
     public final boolean decPointers$kotlinx_coroutines_core() {
-        return cleanedAndPointers$FU.addAndGet(this, -65536) == getNumberOfSlots() && !isTail();
+        return cleanedAndPointers$volatile$FU.addAndGet(this, -65536) == getNumberOfSlots() && !isTail();
     }
 
     public final void onSlotCleaned() {
-        if (cleanedAndPointers$FU.incrementAndGet(this) == getNumberOfSlots()) {
+        if (cleanedAndPointers$volatile$FU.incrementAndGet(this) == getNumberOfSlots()) {
             remove();
         }
     }
 
     public final boolean tryIncPointers$kotlinx_coroutines_core() {
         int i;
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = cleanedAndPointers$FU;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = cleanedAndPointers$volatile$FU;
         do {
             i = atomicIntegerFieldUpdater.get(this);
             if (i == getNumberOfSlots() && !isTail()) {

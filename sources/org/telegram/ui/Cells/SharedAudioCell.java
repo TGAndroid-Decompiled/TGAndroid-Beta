@@ -8,6 +8,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
@@ -30,8 +31,11 @@ import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 
-public abstract class SharedAudioCell extends FrameLayout implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
+public class SharedAudioCell extends FrameLayout implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private int TAG;
     private boolean buttonPressed;
     private int buttonState;
@@ -140,7 +144,7 @@ public abstract class SharedAudioCell extends FrameLayout implements DownloadCon
     }
 
     @Override
-    protected void onMeasure(int r22, int r23) {
+    protected void onMeasure(int r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedAudioCell.onMeasure(int, int):void");
     }
 
@@ -676,5 +680,31 @@ public abstract class SharedAudioCell extends FrameLayout implements DownloadCon
         }
         this.showName = z;
         invalidate();
+    }
+
+    public static final class Factory extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        @Override
+        public SharedAudioCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            SharedAudioCell sharedAudioCell = new SharedAudioCell(context, resourcesProvider);
+            sharedAudioCell.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+            return sharedAudioCell;
+        }
+
+        @Override
+        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            SharedAudioCell sharedAudioCell = (SharedAudioCell) view;
+            sharedAudioCell.setMessageObject((MessageObject) uItem.object, z);
+            sharedAudioCell.setChecked(uItem.checked, false);
+        }
+
+        public static UItem as(MessageObject messageObject) {
+            UItem ofFactory = UItem.ofFactory(Factory.class);
+            ofFactory.object = messageObject;
+            return ofFactory;
+        }
     }
 }

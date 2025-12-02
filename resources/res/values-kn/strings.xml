@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">ಇವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="abc_shareactionprovider_share_with_application">%s ನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="abc_toolbar_collapse_description">ಕುಗ್ಗಿಸಿ</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">ಪಾಸ್‌ವರ್ಡ್</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">ಪಾಸ್‌ಕೀ</string>
     <string name="call_notification_answer_action">ಉತ್ತರಿಸಿ</string>
     <string name="call_notification_answer_video_action">ವೀಡಿಯೊ</string>
     <string name="call_notification_decline_action">ನಿರಾಕರಿಸಿ</string>

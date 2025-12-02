@@ -272,6 +272,10 @@ public class DownscaleScrollableNoiseSuppressor {
         }
     }
 
+    public int getRenderNodesCount() {
+        return this.rectRenderNodesCount;
+    }
+
     public void setupRenderNodes(List list, int i) {
         this.rectRenderNodesCount = i;
         while (this.rectRenderNodesCount > this.rectRenderNodes.size()) {

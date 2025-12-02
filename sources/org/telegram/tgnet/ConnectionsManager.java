@@ -139,6 +139,8 @@ public class ConnectionsManager extends BaseController {
 
     public static native int native_getConnectionState(int i);
 
+    public static native long native_getCurrentAuthKeyId(int i);
+
     public static native int native_getCurrentDatacenterId(int i);
 
     public static native int native_getCurrentPingTime(int i);
@@ -154,6 +156,8 @@ public class ConnectionsManager extends BaseController {
     public static native boolean native_isGoodPrime(byte[] bArr, int i);
 
     public static native int native_isTestBackend(int i);
+
+    public static native void native_moveDatacenter(int i, int i2);
 
     public static native void native_onHostNameResolved(String str, long j, String str2);
 
@@ -339,7 +343,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 218, BuildVars.APP_ID, str3, str9, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 220, BuildVars.APP_ID, str3, str9, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -378,6 +382,10 @@ public class ConnectionsManager extends BaseController {
         return native_getCurrentDatacenterId(this.currentAccount);
     }
 
+    public long getCurrentAuthKeyId() {
+        return native_getCurrentAuthKeyId(this.currentAccount);
+    }
+
     public int getTimeDifference() {
         return native_getTimeDifference(this.currentAccount);
     }
@@ -386,13 +394,21 @@ public class ConnectionsManager extends BaseController {
         return sendRequestTyped(tLMethod, null, callback2);
     }
 
-    public <T extends TLObject> int sendRequestTyped(TLMethod<T> tLMethod, final Executor executor, final Utilities.Callback2<T, TLRPC.TL_error> callback2) {
+    public <T extends TLObject> int sendRequestTyped(TLMethod<T> tLMethod, Executor executor, Utilities.Callback2<T, TLRPC.TL_error> callback2) {
+        return sendRequestTyped(tLMethod, executor, callback2, Integer.MAX_VALUE, 0);
+    }
+
+    public <T extends TLObject> int sendRequestTyped(TLMethod<T> tLMethod, Executor executor, Utilities.Callback2<T, TLRPC.TL_error> callback2, int i) {
+        return sendRequestTyped(tLMethod, executor, callback2, Integer.MAX_VALUE, i);
+    }
+
+    public <T extends TLObject> int sendRequestTyped(TLMethod<T> tLMethod, final Executor executor, final Utilities.Callback2<T, TLRPC.TL_error> callback2, int i, int i2) {
         return sendRequest(tLMethod, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 ConnectionsManager.lambda$sendRequestTyped$3(executor, callback2, tLObject, tL_error);
             }
-        });
+        }, null, null, null, i2, i, 1, true);
     }
 
     public static void lambda$sendRequestTyped$3(Executor executor, final Utilities.Callback2 callback2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -797,6 +813,10 @@ public class ConnectionsManager extends BaseController {
 
     public void updateDcSettings() {
         native_updateDcSettings(this.currentAccount);
+    }
+
+    public void setDefaultDatacenterId(int i) {
+        native_moveDatacenter(this.currentAccount, i);
     }
 
     public long getPauseTime() {

@@ -35,4 +35,12 @@ public abstract class JobKt {
     public static final Job getJob(CoroutineContext coroutineContext) {
         return JobKt__JobKt.getJob(coroutineContext);
     }
+
+    public static final DisposableHandle invokeOnCompletion(Job job, boolean z, boolean z2, InternalCompletionHandler internalCompletionHandler) {
+        return JobKt__JobKt.invokeOnCompletion(job, z, z2, internalCompletionHandler);
+    }
+
+    public static DisposableHandle invokeOnCompletion$default(Job job, boolean z, boolean z2, InternalCompletionHandler internalCompletionHandler, int i, Object obj) {
+        return JobKt__JobKt.invokeOnCompletion$default(job, z, z2, internalCompletionHandler, i, obj);
+    }
 }

@@ -40,6 +40,10 @@ public class BlurredBackgroundDrawableViewFactory {
         this.isLiquidGlassEffectAllowed = z;
     }
 
+    public BlurredBackgroundDrawable create(View view) {
+        return create(view, null);
+    }
+
     public BlurredBackgroundDrawable create(final View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         ViewGroup viewGroup;
         final BlurredBackgroundDrawable createDrawable = this.source.createDrawable();

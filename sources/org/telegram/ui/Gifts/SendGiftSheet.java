@@ -787,10 +787,24 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
 
     public void setButtonText(boolean z) {
         if (this.auction != null) {
-            this.button.setText(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z);
+            int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+            if (this.auction.isUpcoming(currentTime)) {
+                int i = this.auction.gift.auction_start_date - currentTime;
+                this.button.setText(LocaleController.getString(R.string.Gift2AuctionPlaceAEarlyBid), z);
+                this.button.setSubText(LocaleController.formatString(R.string.Gift2AuctionStartsIn, LocaleController.formatTTLString(i)), z);
+                return;
+            }
             TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
-            this.button.setSubText(LocaleController.formatString(R.string.Gift2AuctionTimeLeft, LocaleController.formatTTLString(tL_starGiftAuctionState != null ? Math.max(0, tL_starGiftAuctionState.end_date - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) : 0)), z);
-            return;
+            if (tL_starGiftAuctionState != null) {
+                int i2 = tL_starGiftAuctionState.end_date - currentTime;
+                this.button.setText(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z);
+                this.button.setSubText(LocaleController.formatString(R.string.Gift2AuctionTimeLeft, LocaleController.formatTTLString(i2)), z);
+                return;
+            } else {
+                this.button.setText(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z);
+                this.button.setSubText(null, z);
+                return;
+            }
         }
         if (this.starGift != null) {
             long j = StarsController.getInstance(this.currentAccount).getBalance().amount;

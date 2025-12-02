@@ -8,7 +8,7 @@ import kotlin.jvm.internal.Intrinsics;
 public abstract class CollectionsKt__CollectionsJVMKt {
     public static List listOf(Object obj) {
         List singletonList = Collections.singletonList(obj);
-        Intrinsics.checkNotNullExpressionValue(singletonList, "singletonList(element)");
+        Intrinsics.checkNotNullExpressionValue(singletonList, "singletonList(...)");
         return singletonList;
     }
 
@@ -19,13 +19,21 @@ public abstract class CollectionsKt__CollectionsJVMKt {
         return mutableList;
     }
 
+    public static final Object[] terminateCollectionToArray(int i, Object[] array) {
+        Intrinsics.checkNotNullParameter(array, "array");
+        if (i < array.length) {
+            array[i] = null;
+        }
+        return array;
+    }
+
     public static final Object[] copyToArrayOfAny(Object[] objArr, boolean z) {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         if (z && Intrinsics.areEqual(objArr.getClass(), Object[].class)) {
             return objArr;
         }
         Object[] copyOf = Arrays.copyOf(objArr, objArr.length, Object[].class);
-        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, this.size, Array<Any?>::class.java)");
+        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
         return copyOf;
     }
 }

@@ -9,7 +9,7 @@ public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
     public static List asList(Object[] objArr) {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         List asList = ArraysUtilJVM.asList(objArr);
-        Intrinsics.checkNotNullExpressionValue(asList, "asList(this)");
+        Intrinsics.checkNotNullExpressionValue(asList, "asList(...)");
         return asList;
     }
 
@@ -71,7 +71,7 @@ public abstract class ArraysKt___ArraysJvmKt extends ArraysKt__ArraysKt {
         Intrinsics.checkNotNullParameter(objArr, "<this>");
         ArraysKt__ArraysJVMKt.copyOfRangeToIndexCheck(i2, objArr.length);
         Object[] copyOfRange = Arrays.copyOfRange(objArr, i, i2);
-        Intrinsics.checkNotNullExpressionValue(copyOfRange, "copyOfRange(this, fromIndex, toIndex)");
+        Intrinsics.checkNotNullExpressionValue(copyOfRange, "copyOfRange(...)");
         return copyOfRange;
     }
 

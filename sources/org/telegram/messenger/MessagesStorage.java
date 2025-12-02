@@ -2888,19 +2888,19 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void toggleTodo(final long j, final int i, final int i2, final boolean z) {
+    public void toggleTodo(final long j, final int i, final int i2, final boolean z, final long j2) {
         final long clientUserId = getUserConfig().getClientUserId();
         final int currentTime = getConnectionsManager().getCurrentTime();
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$toggleTodo$95(j, i, clientUserId, i2, z, currentTime);
+                MessagesStorage.this.lambda$toggleTodo$95(j, i, clientUserId, j2, i2, z, currentTime);
             }
         });
     }
 
-    public void lambda$toggleTodo$95(long r20, int r22, long r23, int r25, boolean r26, int r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$toggleTodo$95(long, int, long, int, boolean, int):void");
+    public void lambda$toggleTodo$95(long r25, int r27, long r28, long r30, int r32, boolean r33, int r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$toggleTodo$95(long, int, long, long, int, boolean, int):void");
     }
 
     public void updateMessagePollResults(final long j, final TLRPC.Poll poll, final TLRPC.PollResults pollResults) {
@@ -7356,12 +7356,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(218);
+                messageMedia.bytes = Utilities.intToBytes(220);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(218);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(220);
             message.flags |= 512;
         }
     }

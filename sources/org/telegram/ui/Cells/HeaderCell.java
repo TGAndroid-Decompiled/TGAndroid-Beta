@@ -99,6 +99,14 @@ public class HeaderCell extends FrameLayout {
         ViewCompat.setAccessibilityHeading(this, true);
     }
 
+    public void setOnWidthUpdateListener(Runnable runnable) {
+        this.animatedTextView.setOnWidthUpdatedListener(runnable);
+    }
+
+    public float getAnimatedWidth() {
+        return this.animatedTextView.getDrawable().getCurrentWidth();
+    }
+
     public void setHeight(int i) {
         this.height = i;
         int dp = AndroidUtilities.dp(i) - ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).topMargin;

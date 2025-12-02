@@ -10,23 +10,22 @@ import kotlinx.coroutines.flow.internal.NullSurrogateKt;
 import kotlinx.coroutines.internal.Symbol;
 
 public final class StateFlowImpl extends AbstractSharedFlow implements MutableStateFlow, Flow {
-    private static final AtomicReferenceFieldUpdater _state$FU = AtomicReferenceFieldUpdater.newUpdater(StateFlowImpl.class, Object.class, "_state");
-    private volatile Object _state;
+    private static final AtomicReferenceFieldUpdater _state$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(StateFlowImpl.class, Object.class, "_state$volatile");
+    private volatile Object _state$volatile;
     private int sequence;
 
     private final boolean updateState(Object obj, Object obj2) {
         int i;
         AbstractSharedFlowSlot[] slots;
         synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$FU;
-            Object obj3 = atomicReferenceFieldUpdater.get(this);
+            Object obj3 = _state$volatile$FU.get(this);
             if (obj != null && !Intrinsics.areEqual(obj3, obj)) {
                 return false;
             }
             if (Intrinsics.areEqual(obj3, obj2)) {
                 return true;
             }
-            atomicReferenceFieldUpdater.set(this, obj2);
+            _state$volatile$FU.set(this, obj2);
             int i2 = this.sequence;
             if ((i2 & 1) != 0) {
                 this.sequence = i2 + 2;
@@ -61,13 +60,13 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
     }
 
     public StateFlowImpl(Object obj) {
-        this._state = obj;
+        this._state$volatile = obj;
     }
 
     @Override
     public Object getValue() {
         Symbol symbol = NullSurrogateKt.NULL;
-        Object obj = _state$FU.get(this);
+        Object obj = _state$volatile$FU.get(this);
         if (obj == symbol) {
             return null;
         }

@@ -137,7 +137,7 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
         return computeRectInParent;
     }
 
-    private static boolean computeRectInParent(View view, ViewGroup viewGroup, RectF rectF) {
+    public static boolean computeRectInParent(View view, ViewGroup viewGroup, RectF rectF) {
         float f = 0.0f;
         float f2 = 0.0f;
         View view2 = view;

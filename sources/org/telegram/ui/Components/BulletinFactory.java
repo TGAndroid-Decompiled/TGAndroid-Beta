@@ -104,6 +104,24 @@ public final class BulletinFactory {
         }
     }
 
+    public void showForError(String str) {
+        showForError(str, false);
+    }
+
+    public void showForError(String str, boolean z) {
+        if (LaunchActivity.isActive) {
+            if (TextUtils.isEmpty(str)) {
+                Bulletin createErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
+                createErrorBulletin.hideAfterBottomSheet = false;
+                createErrorBulletin.show(z);
+            } else {
+                Bulletin createErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, str));
+                createErrorBulletin2.hideAfterBottomSheet = false;
+                createErrorBulletin2.show(z);
+            }
+        }
+    }
+
     public static void showError(TLRPC.TL_error tL_error) {
         if (LaunchActivity.isActive) {
             global().createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text)).show();

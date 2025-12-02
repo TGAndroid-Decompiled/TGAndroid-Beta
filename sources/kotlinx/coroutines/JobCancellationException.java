@@ -6,12 +6,6 @@ import kotlin.jvm.internal.Intrinsics;
 public final class JobCancellationException extends CancellationException {
     public final transient Job job;
 
-    @Override
-    public Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
-    }
-
     public JobCancellationException(String str, Throwable th, Job job) {
         super(str);
         this.job = job;
@@ -43,5 +37,11 @@ public final class JobCancellationException extends CancellationException {
         int hashCode = ((message.hashCode() * 31) + this.job.hashCode()) * 31;
         Throwable cause = getCause();
         return hashCode + (cause != null ? cause.hashCode() : 0);
+    }
+
+    @Override
+    public Throwable fillInStackTrace() {
+        setStackTrace(new StackTraceElement[0]);
+        return this;
     }
 }

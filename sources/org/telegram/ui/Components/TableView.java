@@ -347,13 +347,22 @@ public class TableView extends android.widget.TableLayout {
     }
 
     public TableRow addRow(CharSequence charSequence, CharSequence charSequence2, ButtonSpan.TextViewButtons[] textViewButtonsArr) {
+        return addRow(charSequence, charSequence2, (TableRowTitle[]) null, textViewButtonsArr);
+    }
+
+    public TableRow addRow(CharSequence charSequence, CharSequence charSequence2, TableRowTitle[] tableRowTitleArr, ButtonSpan.TextViewButtons[] textViewButtonsArr) {
         ButtonSpan.TextViewButtons textViewButtons = new ButtonSpan.TextViewButtons(getContext());
         textViewButtons.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         textViewButtons.setTextSize(1, 14.0f);
         textViewButtons.setText(Emoji.replaceEmoji(charSequence2, textViewButtons.getPaint().getFontMetricsInt(), false));
         NotificationCenter.listenEmojiLoading(textViewButtons);
         TableRow tableRow = new TableRow(getContext());
-        tableRow.addView(new TableRowTitle(this, charSequence), new TableRow.LayoutParams(-2, -1));
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(-2, -1);
+        TableRowTitle tableRowTitle = new TableRowTitle(this, charSequence);
+        if (tableRowTitleArr != null) {
+            tableRowTitleArr[0] = tableRowTitle;
+        }
+        tableRow.addView(tableRowTitle, layoutParams);
         tableRow.addView(new TableRowContent(this, textViewButtons), new TableRow.LayoutParams(0, -1, 1.0f));
         addView(tableRow);
         if (textViewButtonsArr != null) {

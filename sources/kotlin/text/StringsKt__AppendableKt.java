@@ -15,7 +15,7 @@ public abstract class StringsKt__AppendableKt {
         } else if (obj instanceof Character) {
             appendable.append(((Character) obj).charValue());
         } else {
-            appendable.append(String.valueOf(obj));
+            appendable.append(obj.toString());
         }
     }
 }

@@ -4076,4 +4076,298 @@ public class TL_account {
             }
         }
     }
+
+    public static class Passkey extends TLObject {
+        public static final int constructor = -1738457409;
+        public int date;
+        public int flags;
+        public String id;
+        public int last_usage_date;
+        public String name;
+        public long software_emoji_id;
+
+        public static Passkey TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (Passkey) TLObject.TLdeserialize(Passkey.class, i != -1738457409 ? null : new Passkey(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.id = inputSerializedData.readString(z);
+            this.name = inputSerializedData.readString(z);
+            this.date = inputSerializedData.readInt32(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.software_emoji_id = inputSerializedData.readInt64(z);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.last_usage_date = inputSerializedData.readInt32(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1738457409);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeString(this.id);
+            outputSerializedData.writeString(this.name);
+            outputSerializedData.writeInt32(this.date);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt64(this.software_emoji_id);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt32(this.last_usage_date);
+            }
+        }
+    }
+
+    public static class Passkeys extends TLObject {
+        public static final int constructor = -119494116;
+        public ArrayList<Passkey> passkeys = new ArrayList<>();
+
+        public static Passkeys TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (Passkeys) TLObject.TLdeserialize(Passkeys.class, i != -119494116 ? null : new Passkeys(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.passkeys = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_account.Passkey.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-119494116);
+            Vector.serialize(outputSerializedData, this.passkeys);
+        }
+    }
+
+    public static class passkeyRegistrationOptions extends TLObject {
+        public static final int constructor = -513057567;
+        public TLRPC.TL_dataJSON options;
+
+        public static passkeyRegistrationOptions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (passkeyRegistrationOptions) TLObject.TLdeserialize(passkeyRegistrationOptions.class, i != -513057567 ? null : new passkeyRegistrationOptions(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.options = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-513057567);
+            this.options.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class passkeyLoginOptions extends TLObject {
+        public static final int constructor = -503089271;
+        public TLRPC.TL_dataJSON options;
+
+        public static passkeyLoginOptions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (passkeyLoginOptions) TLObject.TLdeserialize(passkeyLoginOptions.class, i != -503089271 ? null : new passkeyLoginOptions(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.options = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-503089271);
+            this.options.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class InputPasskeyResponse extends TLObject {
+        public static InputPasskeyResponse TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            TLObject inputpasskeyresponselogin;
+            if (i != -1021329078) {
+                inputpasskeyresponselogin = i != 1046713180 ? null : new inputPasskeyResponseRegister();
+            } else {
+                inputpasskeyresponselogin = new inputPasskeyResponseLogin();
+            }
+            return (InputPasskeyResponse) TLObject.TLdeserialize(InputPasskeyResponse.class, inputpasskeyresponselogin, inputSerializedData, i, z);
+        }
+    }
+
+    public static class inputPasskeyResponseRegister extends InputPasskeyResponse {
+        public static final int constructor = 1046713180;
+        public byte[] attestation_object;
+        public TLRPC.TL_dataJSON client_data;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.client_data = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.attestation_object = inputSerializedData.readByteArray(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1046713180);
+            this.client_data.serializeToStream(outputSerializedData);
+            outputSerializedData.writeByteArray(this.attestation_object);
+        }
+    }
+
+    public static class inputPasskeyResponseLogin extends InputPasskeyResponse {
+        public static final int constructor = -1021329078;
+        public byte[] authenticator_data;
+        public TLRPC.TL_dataJSON client_data;
+        public byte[] signature;
+        public String user_handle;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.client_data = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.authenticator_data = inputSerializedData.readByteArray(z);
+            this.signature = inputSerializedData.readByteArray(z);
+            this.user_handle = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1021329078);
+            this.client_data.serializeToStream(outputSerializedData);
+            outputSerializedData.writeByteArray(this.authenticator_data);
+            outputSerializedData.writeByteArray(this.signature);
+            outputSerializedData.writeString(this.user_handle);
+        }
+    }
+
+    public static class inputPasskeyCredentialPublicKey extends TLObject {
+        public static final int constructor = 1009235855;
+        public String id;
+        public String raw_id;
+        public InputPasskeyResponse response;
+
+        public static inputPasskeyCredentialPublicKey TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (inputPasskeyCredentialPublicKey) TLObject.TLdeserialize(inputPasskeyCredentialPublicKey.class, i != 1009235855 ? null : new inputPasskeyCredentialPublicKey(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.id = inputSerializedData.readString(z);
+            this.raw_id = inputSerializedData.readString(z);
+            this.response = InputPasskeyResponse.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1009235855);
+            outputSerializedData.writeString(this.id);
+            outputSerializedData.writeString(this.raw_id);
+            this.response.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class initPasskeyRegistration extends TLMethod<passkeyRegistrationOptions> {
+        public static final int constructor = 1117079528;
+
+        @Override
+        public passkeyRegistrationOptions deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return passkeyRegistrationOptions.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1117079528);
+        }
+    }
+
+    public static class registerPasskey extends TLMethod<Passkey> {
+        public static final int constructor = 1437867990;
+        public inputPasskeyCredentialPublicKey credential;
+
+        @Override
+        public Passkey deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Passkey.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1437867990);
+            this.credential.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class getPasskeys extends TLMethod<Passkeys> {
+        public static final int constructor = -367063982;
+
+        @Override
+        public Passkeys deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Passkeys.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-367063982);
+        }
+    }
+
+    public static class deletePasskey extends TLMethod<TLRPC.Bool> {
+        public static final int constructor = -172665281;
+        public String id;
+
+        @Override
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-172665281);
+            outputSerializedData.writeString(this.id);
+        }
+    }
+
+    public static class initPasskeyLogin extends TLMethod<passkeyLoginOptions> {
+        public static final int constructor = 1368051895;
+        public String api_hash;
+        public int api_id;
+
+        @Override
+        public passkeyLoginOptions deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return passkeyLoginOptions.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1368051895);
+            outputSerializedData.writeInt32(this.api_id);
+            outputSerializedData.writeString(this.api_hash);
+        }
+    }
+
+    public static class finishPasskeyLogin extends TLMethod<TLRPC.auth_Authorization> {
+        public static final int constructor = -1739084537;
+        public inputPasskeyCredentialPublicKey credential;
+        public int flags;
+        public long from_auth_key_id;
+        public int from_dc_id;
+
+        @Override
+        public TLRPC.auth_Authorization deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.auth_Authorization.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1739084537);
+            outputSerializedData.writeInt32(this.flags);
+            this.credential.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt32(this.from_dc_id);
+            }
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt64(this.from_auth_key_id);
+            }
+        }
+    }
 }

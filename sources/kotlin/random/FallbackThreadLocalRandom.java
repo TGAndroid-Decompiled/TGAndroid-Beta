@@ -13,7 +13,7 @@ public final class FallbackThreadLocalRandom extends AbstractPlatformRandom {
     @Override
     public java.util.Random getImpl() {
         Object obj = get();
-        Intrinsics.checkNotNullExpressionValue(obj, "implStorage.get()");
+        Intrinsics.checkNotNullExpressionValue(obj, "get(...)");
         return (java.util.Random) obj;
     }
 }

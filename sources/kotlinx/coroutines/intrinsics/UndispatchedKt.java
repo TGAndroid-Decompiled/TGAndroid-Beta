@@ -5,6 +5,7 @@ import kotlin.ResultKt;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.intrinsics.IntrinsicsKt;
+import kotlin.coroutines.jvm.internal.BaseContinuationImpl;
 import kotlin.coroutines.jvm.internal.DebugProbesKt;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.TypeIntrinsics;
@@ -21,16 +22,18 @@ public abstract class UndispatchedKt {
             CoroutineContext context = continuation.getContext();
             Object updateThreadContext = ThreadContextKt.updateThreadContext(context, null);
             try {
-                Object invoke = ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, probeCoroutineCreated);
-                if (invoke != IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
-                    probeCoroutineCreated.resumeWith(Result.m228constructorimpl(invoke));
-                }
-            } finally {
+                Object wrapWithContinuationImpl = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, probeCoroutineCreated) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, probeCoroutineCreated);
                 ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                if (wrapWithContinuationImpl != IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+                    probeCoroutineCreated.resumeWith(Result.m275constructorimpl(wrapWithContinuationImpl));
+                }
+            } catch (Throwable th) {
+                ThreadContextKt.restoreThreadContext(context, updateThreadContext);
+                throw th;
             }
-        } catch (Throwable th) {
+        } catch (Throwable th2) {
             Result.Companion companion = Result.Companion;
-            probeCoroutineCreated.resumeWith(Result.m228constructorimpl(ResultKt.createFailure(th)));
+            probeCoroutineCreated.resumeWith(Result.m275constructorimpl(ResultKt.createFailure(th2)));
         }
     }
 
@@ -38,7 +41,7 @@ public abstract class UndispatchedKt {
         Object completedExceptionally;
         Object makeCompletingOnce$kotlinx_coroutines_core;
         try {
-            completedExceptionally = ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, scopeCoroutine);
+            completedExceptionally = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, scopeCoroutine) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, scopeCoroutine);
         } catch (Throwable th) {
             completedExceptionally = new CompletedExceptionally(th, false, 2, null);
         }
@@ -55,7 +58,7 @@ public abstract class UndispatchedKt {
         Object completedExceptionally;
         Object makeCompletingOnce$kotlinx_coroutines_core;
         try {
-            completedExceptionally = ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, scopeCoroutine);
+            completedExceptionally = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, scopeCoroutine) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, scopeCoroutine);
         } catch (Throwable th) {
             completedExceptionally = new CompletedExceptionally(th, false, 2, null);
         }

@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">አጋራ በ</string>
     <string name="abc_shareactionprovider_share_with_application">ለ%s አጋራ</string>
     <string name="abc_toolbar_collapse_description">ሰብስብ</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">የይለፍ ቃል</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">የይለፍ ቁልፍ</string>
     <string name="call_notification_answer_action">መልስ</string>
     <string name="call_notification_answer_video_action">ቪዲዮ</string>
     <string name="call_notification_decline_action">አትቀበል</string>

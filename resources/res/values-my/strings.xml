@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">နှင့် မျှဝေရန်</string>
     <string name="abc_shareactionprovider_share_with_application">%s ဖြင့် မျှဝေရန်</string>
     <string name="abc_toolbar_collapse_description">လျှော့ပြရန်</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">စကားဝှက်</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">လျှို့ဝှက်ကီး</string>
     <string name="call_notification_answer_action">ဖုန်းကိုင်ရန်</string>
     <string name="call_notification_answer_video_action">ဗီဒီယို</string>
     <string name="call_notification_decline_action">ငြင်းပယ်ရန်</string>

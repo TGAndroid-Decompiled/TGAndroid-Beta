@@ -37,6 +37,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -426,12 +427,11 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     public void setupAudio(MessageObject messageObject, boolean z) {
-        TLRPC.Message message;
         long j;
         StoryEntry storyEntry = this.entry;
         if (storyEntry != null) {
             storyEntry.editedMedia = true;
-            if (messageObject == null || (message = messageObject.messageOwner) == null) {
+            if (messageObject == null || messageObject.messageOwner == null) {
                 storyEntry.audioPath = null;
                 storyEntry.audioAuthor = null;
                 storyEntry.audioTitle = null;
@@ -440,10 +440,31 @@ public abstract class PreviewView extends FrameLayout {
                 storyEntry.audioLeft = 0.0f;
                 storyEntry.audioRight = 1.0f;
             } else {
-                storyEntry.audioPath = message.attachPath;
-                storyEntry.audioAuthor = null;
-                storyEntry.audioTitle = null;
                 TLRPC.Document document = messageObject.getDocument();
+                if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
+                    this.entry.audioPath = messageObject.messageOwner.attachPath;
+                } else {
+                    File pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(document, null, false, true);
+                    if (pathToAttach == null || !pathToAttach.exists()) {
+                        pathToAttach = FileLoader.getInstance(messageObject.currentAccount).getPathToAttach(document, null, true, true);
+                        if (pathToAttach == null || !pathToAttach.exists()) {
+                            StoryEntry storyEntry2 = this.entry;
+                            storyEntry2.audioPath = null;
+                            storyEntry2.audioAuthor = null;
+                            storyEntry2.audioTitle = null;
+                            storyEntry2.audioOffset = 0L;
+                            storyEntry2.audioDuration = 0L;
+                            storyEntry2.audioLeft = 0.0f;
+                            storyEntry2.audioRight = 1.0f;
+                            return;
+                        }
+                        this.entry.audioPath = pathToAttach.getAbsolutePath();
+                    }
+                    this.entry.audioPath = pathToAttach.getAbsolutePath();
+                }
+                StoryEntry storyEntry3 = this.entry;
+                storyEntry3.audioAuthor = null;
+                storyEntry3.audioTitle = null;
                 if (document != null) {
                     Iterator<TLRPC.DocumentAttribute> it = document.attributes.iterator();
                     while (true) {
@@ -462,26 +483,26 @@ public abstract class PreviewView extends FrameLayout {
                         }
                     }
                 }
-                StoryEntry storyEntry2 = this.entry;
-                storyEntry2.audioOffset = 0L;
-                if (storyEntry2.isVideo) {
-                    storyEntry2.audioOffset = storyEntry2.left * ((float) getDuration());
+                StoryEntry storyEntry4 = this.entry;
+                storyEntry4.audioOffset = 0L;
+                if (storyEntry4.isVideo) {
+                    storyEntry4.audioOffset = storyEntry4.left * ((float) getDuration());
                 }
                 this.entry.audioLeft = 0.0f;
                 if (isCollage() && this.collage.hasVideo()) {
                     j = this.collage.getDuration();
                 } else {
-                    StoryEntry storyEntry3 = this.entry;
-                    if (storyEntry3.isVideo) {
+                    StoryEntry storyEntry5 = this.entry;
+                    if (storyEntry5.isVideo) {
                         j = getDuration();
                     } else {
-                        j = storyEntry3.audioDuration;
+                        j = storyEntry5.audioDuration;
                     }
                 }
                 TimelineView timelineView = this.timelineView;
                 int maxCount = timelineView != null ? timelineView.getMaxCount() : 1;
-                StoryEntry storyEntry4 = this.entry;
-                storyEntry4.audioRight = storyEntry4.audioDuration != 0 ? Math.min(1.0f, ((float) Math.min(j, maxCount * 59000)) / ((float) this.entry.audioDuration)) : 1.0f;
+                StoryEntry storyEntry6 = this.entry;
+                storyEntry6.audioRight = storyEntry6.audioDuration != 0 ? Math.min(1.0f, ((float) Math.min(j, maxCount * 59000)) / ((float) this.entry.audioDuration)) : 1.0f;
             }
         }
         setupAudio(this.entry, z);

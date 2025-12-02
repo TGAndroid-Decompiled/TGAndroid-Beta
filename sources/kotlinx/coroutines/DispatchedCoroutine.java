@@ -8,15 +8,15 @@ import kotlinx.coroutines.internal.DispatchedContinuationKt;
 import kotlinx.coroutines.internal.ScopeCoroutine;
 
 public final class DispatchedCoroutine extends ScopeCoroutine {
-    private static final AtomicIntegerFieldUpdater _decision$FU = AtomicIntegerFieldUpdater.newUpdater(DispatchedCoroutine.class, "_decision");
-    private volatile int _decision;
+    private static final AtomicIntegerFieldUpdater _decision$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(DispatchedCoroutine.class, "_decision$volatile");
+    private volatile int _decision$volatile;
 
     public DispatchedCoroutine(CoroutineContext coroutineContext, Continuation continuation) {
         super(coroutineContext, continuation);
     }
 
     private final boolean trySuspend() {
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _decision$FU;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _decision$volatile$FU;
         do {
             int i = atomicIntegerFieldUpdater.get(this);
             if (i != 0) {
@@ -25,12 +25,12 @@ public final class DispatchedCoroutine extends ScopeCoroutine {
                 }
                 throw new IllegalStateException("Already suspended");
             }
-        } while (!_decision$FU.compareAndSet(this, 0, 1));
+        } while (!_decision$volatile$FU.compareAndSet(this, 0, 1));
         return true;
     }
 
     private final boolean tryResume() {
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _decision$FU;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = _decision$volatile$FU;
         do {
             int i = atomicIntegerFieldUpdater.get(this);
             if (i != 0) {
@@ -39,7 +39,7 @@ public final class DispatchedCoroutine extends ScopeCoroutine {
                 }
                 throw new IllegalStateException("Already resumed");
             }
-        } while (!_decision$FU.compareAndSet(this, 0, 2));
+        } while (!_decision$volatile$FU.compareAndSet(this, 0, 2));
         return true;
     }
 

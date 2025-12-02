@@ -23,29 +23,35 @@ public interface CoroutineContext {
             Intrinsics.checkNotNullParameter(context, "context");
             return context == EmptyCoroutineContext.INSTANCE ? coroutineContext : (CoroutineContext) context.fold(coroutineContext, new Function2() {
                 @Override
-                public final CoroutineContext invoke(CoroutineContext acc, CoroutineContext.Element element) {
-                    CombinedContext combinedContext;
-                    Intrinsics.checkNotNullParameter(acc, "acc");
-                    Intrinsics.checkNotNullParameter(element, "element");
-                    CoroutineContext minusKey = acc.minusKey(element.getKey());
-                    EmptyCoroutineContext emptyCoroutineContext = EmptyCoroutineContext.INSTANCE;
-                    if (minusKey == emptyCoroutineContext) {
-                        return element;
-                    }
-                    ContinuationInterceptor.Key key = ContinuationInterceptor.Key;
-                    ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) minusKey.get(key);
-                    if (continuationInterceptor == null) {
-                        combinedContext = new CombinedContext(minusKey, element);
-                    } else {
-                        CoroutineContext minusKey2 = minusKey.minusKey(key);
-                        if (minusKey2 == emptyCoroutineContext) {
-                            return new CombinedContext(element, continuationInterceptor);
-                        }
-                        combinedContext = new CombinedContext(new CombinedContext(minusKey2, element), continuationInterceptor);
-                    }
-                    return combinedContext;
+                public final Object invoke(Object obj, Object obj2) {
+                    CoroutineContext plus$lambda$0;
+                    plus$lambda$0 = CoroutineContext.DefaultImpls.plus$lambda$0((CoroutineContext) obj, (CoroutineContext.Element) obj2);
+                    return plus$lambda$0;
                 }
             });
+        }
+
+        public static CoroutineContext plus$lambda$0(CoroutineContext acc, Element element) {
+            CombinedContext combinedContext;
+            Intrinsics.checkNotNullParameter(acc, "acc");
+            Intrinsics.checkNotNullParameter(element, "element");
+            CoroutineContext minusKey = acc.minusKey(element.getKey());
+            EmptyCoroutineContext emptyCoroutineContext = EmptyCoroutineContext.INSTANCE;
+            if (minusKey == emptyCoroutineContext) {
+                return element;
+            }
+            ContinuationInterceptor.Key key = ContinuationInterceptor.Key;
+            ContinuationInterceptor continuationInterceptor = (ContinuationInterceptor) minusKey.get(key);
+            if (continuationInterceptor == null) {
+                combinedContext = new CombinedContext(minusKey, element);
+            } else {
+                CoroutineContext minusKey2 = minusKey.minusKey(key);
+                if (minusKey2 == emptyCoroutineContext) {
+                    return new CombinedContext(element, continuationInterceptor);
+                }
+                combinedContext = new CombinedContext(new CombinedContext(minusKey2, element), continuationInterceptor);
+            }
+            return combinedContext;
         }
     }
 

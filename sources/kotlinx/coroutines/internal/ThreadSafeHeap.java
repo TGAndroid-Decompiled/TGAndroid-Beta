@@ -5,8 +5,8 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.jvm.internal.Intrinsics;
 
 public class ThreadSafeHeap {
-    private static final AtomicIntegerFieldUpdater _size$FU = AtomicIntegerFieldUpdater.newUpdater(ThreadSafeHeap.class, "_size");
-    private volatile int _size;
+    private static final AtomicIntegerFieldUpdater _size$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(ThreadSafeHeap.class, "_size$volatile");
+    private volatile int _size$volatile;
     private ThreadSafeHeapNode[] a;
 
     public final ThreadSafeHeapNode peek() {
@@ -39,11 +39,11 @@ public class ThreadSafeHeap {
     }
 
     public final int getSize() {
-        return _size$FU.get(this);
+        return _size$volatile$FU.get(this);
     }
 
     private final void setSize(int i) {
-        _size$FU.set(this, i);
+        _size$volatile$FU.set(this, i);
     }
 
     public final boolean isEmpty() {
@@ -127,7 +127,7 @@ public class ThreadSafeHeap {
             return threadSafeHeapNodeArr;
         }
         Object[] copyOf = Arrays.copyOf(threadSafeHeapNodeArr, getSize() * 2);
-        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
+        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
         ThreadSafeHeapNode[] threadSafeHeapNodeArr3 = (ThreadSafeHeapNode[]) copyOf;
         this.a = threadSafeHeapNodeArr3;
         return threadSafeHeapNodeArr3;

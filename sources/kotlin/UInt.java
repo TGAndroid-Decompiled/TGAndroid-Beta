@@ -5,7 +5,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 public abstract class UInt implements Comparable {
     public static final Companion Companion = new Companion(null);
 
-    public static int m236constructorimpl(int i) {
+    public static int m283constructorimpl(int i) {
         return i;
     }
 

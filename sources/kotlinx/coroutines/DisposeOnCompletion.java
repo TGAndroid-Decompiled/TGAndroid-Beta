@@ -1,15 +1,7 @@
 package kotlinx.coroutines;
 
-import kotlin.Unit;
-
 public final class DisposeOnCompletion extends JobNode {
     private final DisposableHandle handle;
-
-    @Override
-    public Object invoke(Object obj) {
-        invoke((Throwable) obj);
-        return Unit.INSTANCE;
-    }
 
     public DisposeOnCompletion(DisposableHandle disposableHandle) {
         this.handle = disposableHandle;

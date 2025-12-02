@@ -1362,6 +1362,14 @@
         <item name="colorPrimary">#222222</item>
         <item name="dialogCornerRadius">16dp</item>
     </style>
+    <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
     <style name="Theme.MediaRouter" parent="@style/ThemeOverlay.AppCompat.Dark">
         <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
         <item name="mediaRouteBodyTextAppearance">@style/TextAppearance.MediaRouter.Dynamic.Body</item>

@@ -7,21 +7,24 @@ import kotlin.jvm.internal.PropertyReference0Impl;
 import kotlinx.coroutines.DebugStringsKt;
 
 public class LockFreeLinkedListNode {
-    private static final AtomicReferenceFieldUpdater _next$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_next");
-    private static final AtomicReferenceFieldUpdater _prev$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_prev");
-    private static final AtomicReferenceFieldUpdater _removedRef$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_removedRef");
-    private volatile Object _next = this;
-    private volatile Object _prev = this;
-    private volatile Object _removedRef;
+    private static final AtomicReferenceFieldUpdater _next$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_next$volatile");
+    private static final AtomicReferenceFieldUpdater _prev$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_prev$volatile");
+    private static final AtomicReferenceFieldUpdater _removedRef$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeLinkedListNode.class, Object.class, "_removedRef$volatile");
+    private volatile Object _next$volatile = this;
+    private volatile Object _prev$volatile = this;
+    private volatile Object _removedRef$volatile;
+
+    public static final AtomicReferenceFieldUpdater access$get_next$volatile$FU() {
+        return _next$volatile$FU;
+    }
 
     private final Removed removed() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _removedRef$FU;
-        Removed removed = (Removed) atomicReferenceFieldUpdater.get(this);
+        Removed removed = (Removed) _removedRef$volatile$FU.get(this);
         if (removed != null) {
             return removed;
         }
         Removed removed2 = new Removed(this);
-        atomicReferenceFieldUpdater.lazySet(this, removed2);
+        _removedRef$volatile$FU.set(this, removed2);
         return removed2;
     }
 
@@ -37,7 +40,7 @@ public class LockFreeLinkedListNode {
         public void complete(LockFreeLinkedListNode lockFreeLinkedListNode, Object obj) {
             boolean z = obj == null;
             LockFreeLinkedListNode lockFreeLinkedListNode2 = z ? this.newNode : this.oldNext;
-            if (lockFreeLinkedListNode2 != null && AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(LockFreeLinkedListNode._next$FU, lockFreeLinkedListNode, this, lockFreeLinkedListNode2) && z) {
+            if (lockFreeLinkedListNode2 != null && AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(LockFreeLinkedListNode.access$get_next$volatile$FU(), lockFreeLinkedListNode, this, lockFreeLinkedListNode2) && z) {
                 LockFreeLinkedListNode lockFreeLinkedListNode3 = this.newNode;
                 LockFreeLinkedListNode lockFreeLinkedListNode4 = this.oldNext;
                 Intrinsics.checkNotNull(lockFreeLinkedListNode4);
@@ -51,7 +54,7 @@ public class LockFreeLinkedListNode {
     }
 
     public final Object getNext() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _next$FU;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _next$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             if (!(obj instanceof OpDescriptor)) {
@@ -62,26 +65,33 @@ public class LockFreeLinkedListNode {
     }
 
     public final LockFreeLinkedListNode getNextNode() {
-        return LockFreeLinkedListKt.unwrap(getNext());
+        LockFreeLinkedListNode lockFreeLinkedListNode;
+        Object next = getNext();
+        Removed removed = next instanceof Removed ? (Removed) next : null;
+        if (removed != null && (lockFreeLinkedListNode = removed.ref) != null) {
+            return lockFreeLinkedListNode;
+        }
+        Intrinsics.checkNotNull(next, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
+        return (LockFreeLinkedListNode) next;
     }
 
     public final LockFreeLinkedListNode getPrevNode() {
         LockFreeLinkedListNode correctPrev = correctPrev(null);
-        return correctPrev == null ? findPrevNonRemoved((LockFreeLinkedListNode) _prev$FU.get(this)) : correctPrev;
+        return correctPrev == null ? findPrevNonRemoved((LockFreeLinkedListNode) _prev$volatile$FU.get(this)) : correctPrev;
     }
 
     private final LockFreeLinkedListNode findPrevNonRemoved(LockFreeLinkedListNode lockFreeLinkedListNode) {
         while (lockFreeLinkedListNode.isRemoved()) {
-            lockFreeLinkedListNode = (LockFreeLinkedListNode) _prev$FU.get(lockFreeLinkedListNode);
+            lockFreeLinkedListNode = (LockFreeLinkedListNode) _prev$volatile$FU.get(lockFreeLinkedListNode);
         }
         return lockFreeLinkedListNode;
     }
 
     public final boolean addOneIfEmpty(LockFreeLinkedListNode lockFreeLinkedListNode) {
-        _prev$FU.lazySet(lockFreeLinkedListNode, this);
-        _next$FU.lazySet(lockFreeLinkedListNode, this);
+        _prev$volatile$FU.set(lockFreeLinkedListNode, this);
+        _next$volatile$FU.set(lockFreeLinkedListNode, this);
         while (getNext() == this) {
-            if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$FU, this, this, lockFreeLinkedListNode)) {
+            if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, this, lockFreeLinkedListNode)) {
                 lockFreeLinkedListNode.finishAdd(this);
                 return true;
             }
@@ -90,11 +100,10 @@ public class LockFreeLinkedListNode {
     }
 
     public final int tryCondAddNext(LockFreeLinkedListNode lockFreeLinkedListNode, LockFreeLinkedListNode lockFreeLinkedListNode2, CondAddOp condAddOp) {
-        _prev$FU.lazySet(lockFreeLinkedListNode, this);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _next$FU;
-        atomicReferenceFieldUpdater.lazySet(lockFreeLinkedListNode, lockFreeLinkedListNode2);
+        _prev$volatile$FU.set(lockFreeLinkedListNode, this);
+        _next$volatile$FU.set(lockFreeLinkedListNode, lockFreeLinkedListNode2);
         condAddOp.oldNext = lockFreeLinkedListNode2;
-        if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, lockFreeLinkedListNode2, condAddOp)) {
+        if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, lockFreeLinkedListNode2, condAddOp)) {
             return condAddOp.perform(this) == null ? 1 : 2;
         }
         return 0;
@@ -117,26 +126,26 @@ public class LockFreeLinkedListNode {
             }
             Intrinsics.checkNotNull(next, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
             lockFreeLinkedListNode = (LockFreeLinkedListNode) next;
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$FU, this, next, lockFreeLinkedListNode.removed()));
+        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, this, next, lockFreeLinkedListNode.removed()));
         lockFreeLinkedListNode.correctPrev(null);
         return null;
     }
 
     public final void finishAdd(LockFreeLinkedListNode lockFreeLinkedListNode) {
         LockFreeLinkedListNode lockFreeLinkedListNode2;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _prev$FU;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _prev$volatile$FU;
         do {
             lockFreeLinkedListNode2 = (LockFreeLinkedListNode) atomicReferenceFieldUpdater.get(lockFreeLinkedListNode);
             if (getNext() != lockFreeLinkedListNode) {
                 return;
             }
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_prev$FU, lockFreeLinkedListNode, lockFreeLinkedListNode2, this));
+        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_prev$volatile$FU, lockFreeLinkedListNode, lockFreeLinkedListNode2, this));
         if (isRemoved()) {
             lockFreeLinkedListNode.correctPrev(null);
         }
     }
 
-    private final kotlinx.coroutines.internal.LockFreeLinkedListNode correctPrev(kotlinx.coroutines.internal.OpDescriptor r9) {
+    private final kotlinx.coroutines.internal.LockFreeLinkedListNode correctPrev(kotlinx.coroutines.internal.OpDescriptor r8) {
         throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LockFreeLinkedListNode.correctPrev(kotlinx.coroutines.internal.OpDescriptor):kotlinx.coroutines.internal.LockFreeLinkedListNode");
     }
 

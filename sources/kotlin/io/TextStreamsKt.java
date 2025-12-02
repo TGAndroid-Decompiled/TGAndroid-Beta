@@ -11,7 +11,7 @@ public abstract class TextStreamsKt {
         StringWriter stringWriter = new StringWriter();
         copyTo$default(reader, stringWriter, 0, 2, null);
         String stringWriter2 = stringWriter.toString();
-        Intrinsics.checkNotNullExpressionValue(stringWriter2, "buffer.toString()");
+        Intrinsics.checkNotNullExpressionValue(stringWriter2, "toString(...)");
         return stringWriter2;
     }
 

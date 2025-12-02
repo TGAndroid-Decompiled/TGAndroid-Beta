@@ -27,13 +27,13 @@ public final class Regex implements Serializable {
         Intrinsics.checkNotNullParameter(input, "input");
         Intrinsics.checkNotNullParameter(replacement, "replacement");
         String replaceAll = this.nativePattern.matcher(input).replaceAll(replacement);
-        Intrinsics.checkNotNullExpressionValue(replaceAll, "nativePattern.matcher(in…).replaceAll(replacement)");
+        Intrinsics.checkNotNullExpressionValue(replaceAll, "replaceAll(...)");
         return replaceAll;
     }
 
     public String toString() {
         String pattern = this.nativePattern.toString();
-        Intrinsics.checkNotNullExpressionValue(pattern, "nativePattern.toString()");
+        Intrinsics.checkNotNullExpressionValue(pattern, "toString(...)");
         return pattern;
     }
 

@@ -1006,8 +1006,8 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final FrameLayout.LayoutParams avatarViewLayout1;
         private final FrameLayout.LayoutParams avatarViewLayout2;
         private Runnable cancel;
-        private final FrameLayout card;
-        private final CardBackground cardBackground;
+        public final FrameLayout card;
+        public final CardBackground cardBackground;
         private final Rect cardBackgroundPadding;
         private CheckBox2 checkBox;
         private final int currentAccount;
@@ -1150,6 +1150,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             imageView2.setVisibility(8);
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             frameLayout.addView(imageView2, LayoutHelper.createFrame(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
+        }
+
+        public void removeImage() {
+            this.card.removeView(this.imageView);
         }
 
         public void setImageSize(int i) {
@@ -1715,8 +1719,13 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     this.ribbon.setBackdrop(null);
                     this.ribbon.setColors(-2650077, -4227818);
                     this.ribbon.setStrokeColor(0);
-                    this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedAuction), true);
-                    return;
+                    if (this.gift.auction_start_date > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
+                        this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedAuctionSoon), true);
+                        return;
+                    } else {
+                        this.ribbon.setText(LocaleController.getString(R.string.Gift2LimitedAuction), true);
+                        return;
+                    }
                 }
                 if (starGift2.require_premium) {
                     this.ribbon.setVisibility(0);
@@ -1753,6 +1762,23 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.ribbon.setBackdrop(null);
                 this.ribbon.setStrokeColor(0);
             }
+        }
+
+        public void setRibbonColor(int i) {
+            this.ribbon.setColor(i);
+            this.ribbon.invalidate();
+        }
+
+        public void setRibbonText(String str) {
+            this.ribbon.setText(str, true);
+        }
+
+        public void setRibbonTextOneOf(int i) {
+            this.ribbon.setVisibility(0);
+            this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
+            this.ribbon.setStrokeColor(0);
+            this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            this.ribbon.setText(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(i, 0)), true);
         }
 
         public static class Factory extends UItem.UItemFactory {
@@ -2304,8 +2330,6 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 int i2 = this.backdrop.pattern_color | (-16777216);
                 canvas.save();
                 canvas.translate(bounds.centerX(), bounds.centerY());
-                float lerp2 = AndroidUtilities.lerp(1.0f, 0.925f, f2);
-                canvas.scale(lerp2, lerp2);
                 if (BatchParticlesDrawHelper.isAvailable() && (stableBitmapFromPattern = getStableBitmapFromPattern(this.pattern)) != null) {
                     if (this.lastDrawnBitmap != stableBitmapFromPattern || this.lastDrawnBitmapPaint == null) {
                         this.lastDrawnBitmap = stableBitmapFromPattern;
@@ -2352,13 +2376,13 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
             if (f2 > 0.0f) {
                 this.selectedPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
-                this.selectedPaint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
+                this.selectedPaint.setStrokeWidth(AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(1.667f), f2));
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(this.rect);
-                float lerp3 = AndroidUtilities.lerp(-AndroidUtilities.dpf2(2.33f), AndroidUtilities.dp(5.166f), f2);
-                rectF.inset(lerp3, lerp3);
-                float lerp4 = AndroidUtilities.lerp(AndroidUtilities.dpf2(11.0f), AndroidUtilities.dpf2(6.66f), f2);
-                canvas.drawRoundRect(rectF, lerp4, lerp4, this.selectedPaint);
+                float lerp2 = AndroidUtilities.lerp(-AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(3.33f), f2);
+                rectF.inset(lerp2, lerp2);
+                float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dpf2(11.0f), AndroidUtilities.dpf2(7.33f), f2);
+                canvas.drawRoundRect(rectF, lerp3, lerp3, this.selectedPaint);
             }
         }
 

@@ -520,7 +520,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.containerView = alertDialogView;
         alertDialogView.setOrientation(1);
         if ((this.blurredBackground || this.progressViewStyle == 3) && this.progressViewStyle != 2) {
-            this.containerView.setBackgroundDrawable(null);
+            this.containerView.setBackground(null);
             this.containerView.setPadding(0, 0, 0, 0);
             if (this.blurredBackground && !this.blurredNativeBackground) {
                 this.containerView.setWillNotDraw(false);
@@ -532,9 +532,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             this.containerView.setPadding(rect.left, rect.top, rect.right, rect.bottom);
             this.drawBackground = true;
         } else {
-            this.containerView.setBackgroundDrawable(null);
+            this.containerView.setBackground(null);
             this.containerView.setPadding(0, 0, 0, 0);
-            this.containerView.setBackgroundDrawable(this.shadowDrawable);
+            this.containerView.setBackground(this.shadowDrawable);
             this.drawBackground = false;
         }
         View view = this.containerView;
@@ -835,6 +835,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             if (!this.verticalButtons) {
                 TextPaint textPaint = new TextPaint();
                 textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+                textPaint.setTypeface(AndroidUtilities.bold());
                 CharSequence charSequence2 = this.positiveButtonText;
                 int measureText = charSequence2 != null ? (int) (0 + textPaint.measureText(charSequence2, 0, charSequence2.length()) + AndroidUtilities.dp(24.0f)) : 0;
                 if (this.negativeButtonText != null) {
@@ -851,7 +852,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     CharSequence charSequence4 = this.neutralButtonText;
                     measureText = (int) (measureText + textPaint.measureText(charSequence4, 0, charSequence4.length()) + AndroidUtilities.dp(24.0f));
                 }
-                if (measureText > AndroidUtilities.displaySize.x - AndroidUtilities.dp(110.0f)) {
+                if (measureText > AndroidUtilities.displaySize.x - AndroidUtilities.dp(64.0f)) {
                     this.verticalButtons = true;
                 }
             }
@@ -963,7 +964,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     @Override
                     public void setTextColor(int i6) {
                         super.setTextColor(i6);
-                        setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), i6));
+                        setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), i6));
                     }
                 };
                 textViewWithLoading.setMinWidth(AndroidUtilities.dp(64.0f));
@@ -973,10 +974,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading.setGravity(17);
                 textViewWithLoading.setTypeface(AndroidUtilities.bold());
                 textViewWithLoading.setText(this.positiveButtonText);
-                textViewWithLoading.setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
+                textViewWithLoading.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
                 textViewWithLoading.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createLinear(-2, 36, LocaleController.isRTL ? 3 : 5));
+                    this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createLinear(-1, 36, 7));
                 } else {
                     this.buttonsLayout.addView(textViewWithLoading, LayoutHelper.createFrame(-2, 36, 53));
                 }
@@ -1010,10 +1011,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading2.setEllipsize(TextUtils.TruncateAt.END);
                 textViewWithLoading2.setSingleLine(true);
                 textViewWithLoading2.setText(this.negativeButtonText.toString());
-                textViewWithLoading2.setBackgroundDrawable(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
+                textViewWithLoading2.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
                 textViewWithLoading2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading2, 0, LayoutHelper.createLinear(-2, 36, LocaleController.isRTL ? 3 : 5));
+                    this.buttonsLayout.addView(textViewWithLoading2, 0, LayoutHelper.createLinear(-1, 36, 7));
                 } else {
                     this.buttonsLayout.addView(textViewWithLoading2, LayoutHelper.createFrame(-2, 36, 53));
                 }
@@ -1050,7 +1051,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 textViewWithLoading3.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), getThemedColor(this.dialogButtonColorKey)));
                 textViewWithLoading3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.verticalButtons) {
-                    this.buttonsLayout.addView(textViewWithLoading3, 1, LayoutHelper.createLinear(-2, 36, LocaleController.isRTL ? 3 : 5));
+                    this.buttonsLayout.addView(textViewWithLoading3, 1, LayoutHelper.createLinear(-1, 36, 7));
                 } else {
                     this.buttonsLayout.addView(textViewWithLoading3, LayoutHelper.createFrame(-2, 36, 51));
                 }

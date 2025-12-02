@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Del med</string>
     <string name="abc_shareactionprovider_share_with_application">Del med %s</string>
     <string name="abc_toolbar_collapse_description">Skjul</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Adgangskode</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Adgangsnøgle</string>
     <string name="call_notification_answer_action">Besvar</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Afvis</string>

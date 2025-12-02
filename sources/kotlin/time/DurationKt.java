@@ -1,7 +1,6 @@
 package kotlin.time;
 
 import kotlin.jvm.internal.Intrinsics;
-import kotlin.ranges.LongRange;
 import kotlin.ranges.RangesKt;
 
 public abstract class DurationKt {
@@ -21,21 +20,21 @@ public abstract class DurationKt {
         Intrinsics.checkNotNullParameter(unit, "unit");
         DurationUnit durationUnit = DurationUnit.NANOSECONDS;
         long convertDurationUnitOverflow = DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(4611686018426999999L, durationUnit, unit);
-        if (new LongRange(-convertDurationUnitOverflow, convertDurationUnitOverflow).contains(j)) {
+        if ((-convertDurationUnitOverflow) <= j && j <= convertDurationUnitOverflow) {
             return durationOfNanos(DurationUnitKt__DurationUnitJvmKt.convertDurationUnitOverflow(j, unit, durationUnit));
         }
         return durationOfMillis(RangesKt.coerceIn(DurationUnitKt__DurationUnitJvmKt.convertDurationUnit(j, unit, DurationUnit.MILLISECONDS), -4611686018427387903L, 4611686018427387903L));
     }
 
     private static final long durationOfNanos(long j) {
-        return Duration.m240constructorimpl(j << 1);
+        return Duration.m288constructorimpl(j << 1);
     }
 
     public static final long durationOfMillis(long j) {
-        return Duration.m240constructorimpl((j << 1) + 1);
+        return Duration.m288constructorimpl((j << 1) + 1);
     }
 
     public static final long durationOf(long j, int i) {
-        return Duration.m240constructorimpl((j << 1) + i);
+        return Duration.m288constructorimpl((j << 1) + i);
     }
 }

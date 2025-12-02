@@ -8,6 +8,11 @@ public abstract class SetsKt__SetsKt extends SetsKt__SetsJVMKt {
         return EmptySet.INSTANCE;
     }
 
+    public static Set setOf(Object... elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        return ArraysKt___ArraysKt.toSet(elements);
+    }
+
     public static final Set optimizeReadOnlySet(Set set) {
         Intrinsics.checkNotNullParameter(set, "<this>");
         int size = set.size();

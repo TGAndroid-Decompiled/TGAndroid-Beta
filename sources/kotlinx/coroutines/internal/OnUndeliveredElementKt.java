@@ -18,10 +18,11 @@ public abstract class OnUndeliveredElementKt {
         try {
             function1.invoke(obj);
         } catch (Throwable th) {
-            if (undeliveredElementException == null || undeliveredElementException.getCause() == th) {
+            if (undeliveredElementException != null && undeliveredElementException.getCause() != th) {
+                ExceptionsKt.addSuppressed(undeliveredElementException, th);
+            } else {
                 return new UndeliveredElementException("Exception in undelivered element handler for " + obj, th);
             }
-            ExceptionsKt.addSuppressed(undeliveredElementException, th);
         }
         return undeliveredElementException;
     }

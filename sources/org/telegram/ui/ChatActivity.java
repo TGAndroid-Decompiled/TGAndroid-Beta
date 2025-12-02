@@ -30765,7 +30765,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 })).show(true);
                 return false;
             }
-            ChatActivity.this.getSendMessagesHelper().toggleTodo(chatMessageCell.getMessageObject(), todoItem, z, null);
+            ChatActivity chatActivity = ChatActivity.this;
+            ChatActivity.this.getSendMessagesHelper().toggleTodo(ChatObject.getSendAsPeerId(chatActivity.currentChat, chatActivity.chatInfo, true), chatMessageCell.getMessageObject(), todoItem, z, null);
             return true;
         }
 

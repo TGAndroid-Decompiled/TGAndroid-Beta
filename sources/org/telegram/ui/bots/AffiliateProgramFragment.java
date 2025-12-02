@@ -678,6 +678,10 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         private TextView titleView;
 
         public FeatureCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+            this(context, false, resourcesProvider);
+        }
+
+        public FeatureCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.resourcesProvider = resourcesProvider;
             ImageView imageView = new ImageView(context);
@@ -690,7 +694,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             LinearLayout linearLayout = new LinearLayout(context);
             this.textLayout = linearLayout;
             linearLayout.setOrientation(1);
-            addView(this.textLayout, LayoutHelper.createFrame(-1, -2.0f, 23, 64.0f, 3.0f, 24.0f, 12.66f));
+            addView(this.textLayout, LayoutHelper.createFrame(-1, -2.0f, 23, 64.0f, z ? 2.0f : 3.0f, 24.0f, z ? 4.0f : 12.66f));
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextColor(Theme.getColor(i, resourcesProvider));

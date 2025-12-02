@@ -549,7 +549,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected boolean canHighlightChildAt(View view, float f, float f2) {
+    public boolean canHighlightChildAt(View view, float f, float f2) {
         return !(view instanceof CollapseTextCell);
     }
 

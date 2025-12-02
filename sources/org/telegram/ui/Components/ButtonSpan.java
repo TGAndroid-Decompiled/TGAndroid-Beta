@@ -19,6 +19,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 public class ButtonSpan extends ReplacementSpan {
     private final Paint backgroundPaint = new Paint(1);
     private ButtonBounce bounce;
+    public Integer forcedColor;
     private final Runnable onClickListener;
     private final Theme.ResourcesProvider resourcesProvider;
     private final Text text;
@@ -30,8 +31,14 @@ public class ButtonSpan extends ReplacementSpan {
     }
 
     public static CharSequence make(CharSequence charSequence, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+        return make(charSequence, runnable, resourcesProvider, null);
+    }
+
+    public static CharSequence make(CharSequence charSequence, Runnable runnable, Theme.ResourcesProvider resourcesProvider, Integer num) {
         SpannableString spannableString = new SpannableString("btn");
-        spannableString.setSpan(new ButtonSpan(charSequence, runnable, resourcesProvider), 0, spannableString.length(), 33);
+        ButtonSpan buttonSpan = new ButtonSpan(charSequence, runnable, resourcesProvider);
+        spannableString.setSpan(buttonSpan, 0, spannableString.length(), 33);
+        buttonSpan.forcedColor = num;
         return spannableString;
     }
 
@@ -55,10 +62,11 @@ public class ButtonSpan extends ReplacementSpan {
         float scale = buttonBounce == null ? 1.0f : buttonBounce.getScale(0.025f);
         canvas.save();
         canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
-        int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
-        this.backgroundPaint.setColor(Theme.multAlpha(color, 0.15f));
+        Integer num = this.forcedColor;
+        int intValue = num != null ? num.intValue() : Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+        this.backgroundPaint.setColor(Theme.multAlpha(intValue, 0.15f));
         canvas.drawRoundRect(rectF, f3, f3, this.backgroundPaint);
-        this.text.draw(canvas, f + AndroidUtilities.dp(7.0f), f2, color, 1.0f);
+        this.text.draw(canvas, f + AndroidUtilities.dp(7.0f), f2, intValue, 1.0f);
         canvas.restore();
     }
 

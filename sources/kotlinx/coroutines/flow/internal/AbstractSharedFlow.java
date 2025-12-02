@@ -25,7 +25,7 @@ public abstract class AbstractSharedFlow {
                     this.slots = abstractSharedFlowSlotArr;
                 } else if (this.nCollectors >= abstractSharedFlowSlotArr.length) {
                     Object[] copyOf = Arrays.copyOf(abstractSharedFlowSlotArr, abstractSharedFlowSlotArr.length * 2);
-                    Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(this, newSize)");
+                    Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(...)");
                     this.slots = (AbstractSharedFlowSlot[]) copyOf;
                     abstractSharedFlowSlotArr = (AbstractSharedFlowSlot[]) copyOf;
                 }
@@ -70,7 +70,7 @@ public abstract class AbstractSharedFlow {
         for (Continuation continuation : freeLocked) {
             if (continuation != null) {
                 Result.Companion companion = Result.Companion;
-                continuation.resumeWith(Result.m228constructorimpl(Unit.INSTANCE));
+                continuation.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
             }
         }
     }

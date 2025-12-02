@@ -67,15 +67,17 @@ public abstract class AbstractCollection implements Collection {
 
     public String toString() {
         return CollectionsKt.joinToString$default(this, ", ", "[", "]", 0, null, new Function1() {
-            {
-                super(1);
-            }
-
             @Override
-            public final CharSequence invoke(Object obj) {
-                return obj == AbstractCollection.this ? "(this Collection)" : String.valueOf(obj);
+            public final Object invoke(Object obj) {
+                CharSequence string$lambda$2;
+                string$lambda$2 = AbstractCollection.toString$lambda$2(AbstractCollection.this, obj);
+                return string$lambda$2;
             }
         }, 24, null);
+    }
+
+    public static final CharSequence toString$lambda$2(AbstractCollection abstractCollection, Object obj) {
+        return obj == abstractCollection ? "(this Collection)" : String.valueOf(obj);
     }
 
     @Override

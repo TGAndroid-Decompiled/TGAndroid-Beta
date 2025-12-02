@@ -1353,6 +1353,9 @@ public class TodoItemMenu extends Dialog {
         while (i3 < tL_messageMediaToDo.completions.size()) {
             if (tL_messageMediaToDo.completions.get(i3).id == i) {
                 tL_messageMediaToDo.completions.remove(i3);
+                if (tL_messageMediaToDo.completions.isEmpty()) {
+                    tL_messageMediaToDo.flags &= -2;
+                }
                 i3--;
             }
             i3++;

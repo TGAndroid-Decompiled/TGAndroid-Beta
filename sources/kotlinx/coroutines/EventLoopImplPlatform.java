@@ -9,7 +9,7 @@ public abstract class EventLoopImplPlatform extends EventLoop {
     public final void unpark() {
         Thread thread = getThread();
         if (Thread.currentThread() != thread) {
-            AbstractTimeSourceKt.getTimeSource();
+            AbstractTimeSourceKt.access$getTimeSource$p();
             LockSupport.unpark(thread);
         }
     }

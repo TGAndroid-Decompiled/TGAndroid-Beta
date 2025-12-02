@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">ଏହାଙ୍କ ସହ ସେୟାର୍‌ କରନ୍ତୁ</string>
     <string name="abc_shareactionprovider_share_with_application">%s ସହ ସେୟାର୍‍ କରନ୍ତୁ</string>
     <string name="abc_toolbar_collapse_description">ସଂକୁଚିତ କରନ୍ତୁ</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">ପାସୱାର୍ଡ</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">ପାସକୀ</string>
     <string name="call_notification_answer_action">ଉତ୍ତର ଦିଅନ୍ତୁ</string>
     <string name="call_notification_answer_video_action">ଭିଡିଓ</string>
     <string name="call_notification_decline_action">ଅଗ୍ରାହ୍ୟ କର</string>

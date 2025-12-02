@@ -27,6 +27,11 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
         return linkedHashMap;
     }
 
+    public static LinkedHashMap linkedMapOf(Pair... pairs) {
+        Intrinsics.checkNotNullParameter(pairs, "pairs");
+        return (LinkedHashMap) toMap(pairs, new LinkedHashMap(MapsKt.mapCapacity(pairs.length)));
+    }
+
     public static final void putAll(Map map, Pair[] pairs) {
         Intrinsics.checkNotNullParameter(map, "<this>");
         Intrinsics.checkNotNullParameter(pairs, "pairs");
@@ -56,7 +61,7 @@ public abstract class MapsKt__MapsKt extends MapsKt__MapsJVMKt {
             if (size != 1) {
                 return toMap(iterable, new LinkedHashMap(MapsKt.mapCapacity(collection.size())));
             }
-            return MapsKt__MapsJVMKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : iterable.iterator().next()));
+            return MapsKt__MapsJVMKt.mapOf((Pair) (iterable instanceof List ? ((List) iterable).get(0) : collection.iterator().next()));
         }
         return optimizeReadOnlyMap(toMap(iterable, new LinkedHashMap()));
     }

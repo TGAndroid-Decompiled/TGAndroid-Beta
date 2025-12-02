@@ -18,8 +18,8 @@ import kotlinx.coroutines.EventLoop;
 import kotlinx.coroutines.ThreadLocalEventLoop;
 
 public final class DispatchedContinuation extends DispatchedTask implements CoroutineStackFrame, Continuation {
-    private static final AtomicReferenceFieldUpdater _reusableCancellableContinuation$FU = AtomicReferenceFieldUpdater.newUpdater(DispatchedContinuation.class, Object.class, "_reusableCancellableContinuation");
-    private volatile Object _reusableCancellableContinuation;
+    private static final AtomicReferenceFieldUpdater _reusableCancellableContinuation$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(DispatchedContinuation.class, Object.class, "_reusableCancellableContinuation$volatile");
+    private volatile Object _reusableCancellableContinuation$volatile;
     public Object _state;
     public final Continuation continuation;
     public final Object countOrElement;
@@ -53,7 +53,7 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     }
 
     private final CancellableContinuationImpl getReusableCancellableContinuation() {
-        Object obj = _reusableCancellableContinuation$FU.get(this);
+        Object obj = _reusableCancellableContinuation$volatile$FU.get(this);
         if (obj instanceof CancellableContinuationImpl) {
             return (CancellableContinuationImpl) obj;
         }
@@ -61,12 +61,12 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     }
 
     public final boolean isReusable$kotlinx_coroutines_core() {
-        return _reusableCancellableContinuation$FU.get(this) != null;
+        return _reusableCancellableContinuation$volatile$FU.get(this) != null;
     }
 
     public final void awaitReusability$kotlinx_coroutines_core() {
         do {
-        } while (_reusableCancellableContinuation$FU.get(this) == DispatchedContinuationKt.REUSABLE_CLAIMED);
+        } while (_reusableCancellableContinuation$volatile$FU.get(this) == DispatchedContinuationKt.REUSABLE_CLAIMED);
     }
 
     public final void release$kotlinx_coroutines_core() {
@@ -78,15 +78,15 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     }
 
     public final CancellableContinuationImpl claimReusableCancellableContinuation$kotlinx_coroutines_core() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$FU;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             if (obj == null) {
-                _reusableCancellableContinuation$FU.set(this, DispatchedContinuationKt.REUSABLE_CLAIMED);
+                _reusableCancellableContinuation$volatile$FU.set(this, DispatchedContinuationKt.REUSABLE_CLAIMED);
                 return null;
             }
             if (obj instanceof CancellableContinuationImpl) {
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, obj, DispatchedContinuationKt.REUSABLE_CLAIMED)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, obj, DispatchedContinuationKt.REUSABLE_CLAIMED)) {
                     return (CancellableContinuationImpl) obj;
                 }
             } else if (obj != DispatchedContinuationKt.REUSABLE_CLAIMED && !(obj instanceof Throwable)) {
@@ -97,37 +97,37 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
 
     public final Throwable tryReleaseClaimedContinuation$kotlinx_coroutines_core(CancellableContinuation cancellableContinuation) {
         Symbol symbol;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$FU;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$volatile$FU;
         do {
             Object obj = atomicReferenceFieldUpdater.get(this);
             symbol = DispatchedContinuationKt.REUSABLE_CLAIMED;
             if (obj != symbol) {
                 if (obj instanceof Throwable) {
-                    if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, obj, null)) {
+                    if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, obj, null)) {
                         throw new IllegalArgumentException("Failed requirement.");
                     }
                     return (Throwable) obj;
                 }
                 throw new IllegalStateException(("Inconsistent state " + obj).toString());
             }
-        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, symbol, cancellableContinuation));
+        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, symbol, cancellableContinuation));
         return null;
     }
 
     public final boolean postponeCancellation$kotlinx_coroutines_core(Throwable th) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$FU;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _reusableCancellableContinuation$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             Symbol symbol = DispatchedContinuationKt.REUSABLE_CLAIMED;
             if (Intrinsics.areEqual(obj, symbol)) {
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, symbol, th)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, symbol, th)) {
                     return true;
                 }
             } else {
                 if (obj instanceof Throwable) {
                     return true;
                 }
-                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$FU, this, obj, null)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_reusableCancellableContinuation$volatile$FU, this, obj, null)) {
                     return false;
                 }
             }

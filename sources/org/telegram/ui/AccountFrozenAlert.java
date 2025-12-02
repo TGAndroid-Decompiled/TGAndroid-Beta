@@ -86,13 +86,13 @@ public abstract class AccountFrozenAlert {
         textView.setText(LocaleController.getString(R.string.AccountFrozenTitle));
         textView.setGravity(17);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 0, 0, 0, 23));
-        ExplainStarsSheet.FeatureCell featureCell = new ExplainStarsSheet.FeatureCell(context, 1);
+        ExplainStarsSheet.FeatureCell featureCell = new ExplainStarsSheet.FeatureCell(context, 1, resourcesProvider);
         featureCell.set(R.drawable.msg_block2, LocaleController.getString(R.string.AccountFrozen1Title), LocaleController.getString(R.string.AccountFrozen1Text));
         linearLayout.addView(featureCell, LayoutHelper.createLinear(-1, -2, 17, 0, 0, 0, 0));
-        ExplainStarsSheet.FeatureCell featureCell2 = new ExplainStarsSheet.FeatureCell(context, 1);
+        ExplainStarsSheet.FeatureCell featureCell2 = new ExplainStarsSheet.FeatureCell(context, 1, resourcesProvider);
         featureCell2.set(R.drawable.menu_privacy, LocaleController.getString(R.string.AccountFrozen2Title), LocaleController.getString(R.string.AccountFrozen2Text));
         linearLayout.addView(featureCell2, LayoutHelper.createLinear(-1, -2, 17, 0, 0, 0, 0));
-        ExplainStarsSheet.FeatureCell featureCell3 = new ExplainStarsSheet.FeatureCell(context, 1);
+        ExplainStarsSheet.FeatureCell featureCell3 = new ExplainStarsSheet.FeatureCell(context, 1, resourcesProvider);
         featureCell3.set(R.drawable.menu_feature_hourglass, LocaleController.getString(R.string.AccountFrozen3Title), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.AccountFrozen3Text, LocaleController.formatYearMonthDay(MessagesController.getInstance(i).freezeUntilDate, true)), new Runnable() {
             @Override
             public final void run() {

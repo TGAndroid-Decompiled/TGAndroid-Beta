@@ -77,7 +77,7 @@ final class RingBuffer extends AbstractList implements RandomAccess {
         Intrinsics.checkNotNullParameter(array, "array");
         if (array.length < size()) {
             array = Arrays.copyOf(array, size());
-            Intrinsics.checkNotNullExpressionValue(array, "copyOf(this, newSize)");
+            Intrinsics.checkNotNullExpressionValue(array, "copyOf(...)");
         }
         int size = size();
         int i = 0;
@@ -91,10 +91,7 @@ final class RingBuffer extends AbstractList implements RandomAccess {
             i2++;
             i++;
         }
-        if (array.length > size()) {
-            array[size()] = null;
-        }
-        return array;
+        return CollectionsKt__CollectionsJVMKt.terminateCollectionToArray(size, array);
     }
 
     @Override
@@ -108,7 +105,7 @@ final class RingBuffer extends AbstractList implements RandomAccess {
         int coerceAtMost = RangesKt.coerceAtMost(i2 + (i2 >> 1) + 1, i);
         if (this.startIndex == 0) {
             array = Arrays.copyOf(this.buffer, coerceAtMost);
-            Intrinsics.checkNotNullExpressionValue(array, "copyOf(this, newSize)");
+            Intrinsics.checkNotNullExpressionValue(array, "copyOf(...)");
         } else {
             array = toArray(new Object[coerceAtMost]);
         }

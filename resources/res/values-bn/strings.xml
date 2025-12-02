@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">শেয়ার করুন</string>
     <string name="abc_shareactionprovider_share_with_application">%s-এর সাথে শেয়ার করুন</string>
     <string name="abc_toolbar_collapse_description">সঙ্কুচিত করুন</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">পাসওয়ার্ড</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">পাসকী</string>
     <string name="call_notification_answer_action">উত্তর দিন</string>
     <string name="call_notification_answer_video_action">ভিডিও</string>
     <string name="call_notification_decline_action">বাতিল করুন</string>

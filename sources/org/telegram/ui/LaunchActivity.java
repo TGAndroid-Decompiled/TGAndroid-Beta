@@ -175,7 +175,6 @@ import org.telegram.ui.Stars.ISuperRipple;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.SuperRipple;
-import org.telegram.ui.Stars.SuperRippleFallback;
 import org.telegram.ui.Stories.LiveStoryPipOverlay;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
@@ -6890,18 +6889,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (decorView == null) {
             return;
         }
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 33) {
-            ISuperRipple iSuperRipple2 = this.currentRipple;
-            if (iSuperRipple2 == null || iSuperRipple2.view != decorView) {
-                this.currentRipple = new SuperRipple(decorView);
-            }
-        } else if (i >= 26 && ((iSuperRipple = this.currentRipple) == null || iSuperRipple.view != decorView)) {
-            this.currentRipple = new SuperRippleFallback(decorView);
+        if (Build.VERSION.SDK_INT >= 33 && ((iSuperRipple = this.currentRipple) == null || iSuperRipple.view != decorView)) {
+            this.currentRipple = new SuperRipple(decorView);
         }
-        ISuperRipple iSuperRipple3 = this.currentRipple;
-        if (iSuperRipple3 != null) {
-            iSuperRipple3.animate(f, f2, f3);
+        ISuperRipple iSuperRipple2 = this.currentRipple;
+        if (iSuperRipple2 != null) {
+            iSuperRipple2.animate(f, f2, f3);
         }
     }
 

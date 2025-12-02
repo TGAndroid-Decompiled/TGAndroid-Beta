@@ -30,7 +30,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (objArr == emptyElementData) {
             this.elementData = new Object[RangesKt.coerceAtLeast(i, 10)];
         } else {
-            copyElements(Companion.newCapacity$kotlin_stdlib(objArr.length, i));
+            copyElements(AbstractList.Companion.newCapacity$kotlin_stdlib(objArr.length, i));
         }
     }
 
@@ -72,6 +72,7 @@ public final class ArrayDeque extends AbstractMutableList {
     }
 
     public final void addFirst(Object obj) {
+        registerModification();
         ensureCapacity(size() + 1);
         int decremented = decremented(this.head);
         this.head = decremented;
@@ -80,6 +81,7 @@ public final class ArrayDeque extends AbstractMutableList {
     }
 
     public final void addLast(Object obj) {
+        registerModification();
         ensureCapacity(size() + 1);
         this.elementData[positiveMod(this.head + size())] = obj;
         this.size = size() + 1;
@@ -89,6 +91,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (isEmpty()) {
             throw new NoSuchElementException("ArrayDeque is empty.");
         }
+        registerModification();
         Object[] objArr = this.elementData;
         int i = this.head;
         Object obj = objArr[i];
@@ -109,6 +112,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (isEmpty()) {
             throw new NoSuchElementException("ArrayDeque is empty.");
         }
+        registerModification();
         int positiveMod = positiveMod(this.head + CollectionsKt.getLastIndex(this));
         Object[] objArr = this.elementData;
         Object obj = objArr[positiveMod];
@@ -134,6 +138,7 @@ public final class ArrayDeque extends AbstractMutableList {
             addFirst(obj);
             return;
         }
+        registerModification();
         ensureCapacity(size() + 1);
         int positiveMod = positiveMod(this.head + i);
         if (i < ((size() + 1) >> 1)) {
@@ -190,6 +195,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (elements.isEmpty()) {
             return false;
         }
+        registerModification();
         ensureCapacity(size() + elements.size());
         copyCollectionElements(positiveMod(this.head + size()), elements);
         return true;
@@ -205,6 +211,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (i == size()) {
             return addAll(elements);
         }
+        registerModification();
         ensureCapacity(size() + elements.size());
         int positiveMod = positiveMod(this.head + size());
         int positiveMod2 = positiveMod(this.head + i);
@@ -398,6 +405,7 @@ public final class ArrayDeque extends AbstractMutableList {
         if (i == 0) {
             return removeFirst();
         }
+        registerModification();
         int positiveMod = positiveMod(this.head + i);
         Object obj = this.elementData[positiveMod];
         if (i < (size() >> 1)) {
@@ -489,6 +497,7 @@ public final class ArrayDeque extends AbstractMutableList {
                 z = z2;
             }
             if (z) {
+                registerModification();
                 this.size = negativeMod(positiveMod - this.head);
             }
         }
@@ -549,6 +558,7 @@ public final class ArrayDeque extends AbstractMutableList {
                 z = z2;
             }
             if (z) {
+                registerModification();
                 this.size = negativeMod(positiveMod - this.head);
             }
         }
@@ -557,14 +567,9 @@ public final class ArrayDeque extends AbstractMutableList {
 
     @Override
     public void clear() {
-        int positiveMod = positiveMod(this.head + size());
-        int i = this.head;
-        if (i < positiveMod) {
-            ArraysKt___ArraysJvmKt.fill(this.elementData, null, i, positiveMod);
-        } else if (!isEmpty()) {
-            Object[] objArr = this.elementData;
-            ArraysKt___ArraysJvmKt.fill(objArr, null, this.head, objArr.length);
-            ArraysKt___ArraysJvmKt.fill(this.elementData, null, 0, positiveMod);
+        if (!isEmpty()) {
+            registerModification();
+            nullifyNonEmpty(this.head, positiveMod(this.head + size()));
         }
         this.head = 0;
         this.size = 0;
@@ -586,10 +591,7 @@ public final class ArrayDeque extends AbstractMutableList {
             Object[] objArr2 = this.elementData;
             ArraysKt.copyInto(objArr2, array, objArr2.length - this.head, 0, positiveMod);
         }
-        if (array.length > size()) {
-            array[size()] = null;
-        }
-        return array;
+        return CollectionsKt__CollectionsJVMKt.terminateCollectionToArray(size(), array);
     }
 
     @Override
@@ -597,17 +599,87 @@ public final class ArrayDeque extends AbstractMutableList {
         return toArray(new Object[size()]);
     }
 
+    @Override
+    protected void removeRange(int i, int i2) {
+        AbstractList.Companion.checkRangeIndexes$kotlin_stdlib(i, i2, size());
+        int i3 = i2 - i;
+        if (i3 == 0) {
+            return;
+        }
+        if (i3 == size()) {
+            clear();
+            return;
+        }
+        if (i3 == 1) {
+            remove(i);
+            return;
+        }
+        registerModification();
+        if (i < size() - i2) {
+            removeRangeShiftPreceding(i, i2);
+            int positiveMod = positiveMod(this.head + i3);
+            nullifyNonEmpty(this.head, positiveMod);
+            this.head = positiveMod;
+        } else {
+            removeRangeShiftSucceeding(i, i2);
+            int positiveMod2 = positiveMod(this.head + size());
+            nullifyNonEmpty(negativeMod(positiveMod2 - i3), positiveMod2);
+        }
+        this.size = size() - i3;
+    }
+
+    private final void removeRangeShiftPreceding(int i, int i2) {
+        int positiveMod = positiveMod(this.head + (i - 1));
+        int positiveMod2 = positiveMod(this.head + (i2 - 1));
+        while (i > 0) {
+            int i3 = positiveMod + 1;
+            int min = Math.min(i, Math.min(i3, positiveMod2 + 1));
+            Object[] objArr = this.elementData;
+            int i4 = positiveMod2 - min;
+            int i5 = positiveMod - min;
+            ArraysKt.copyInto(objArr, objArr, i4 + 1, i5 + 1, i3);
+            positiveMod = negativeMod(i5);
+            positiveMod2 = negativeMod(i4);
+            i -= min;
+        }
+    }
+
+    private final void removeRangeShiftSucceeding(int i, int i2) {
+        int positiveMod = positiveMod(this.head + i2);
+        int positiveMod2 = positiveMod(this.head + i);
+        int size = size();
+        while (true) {
+            size -= i2;
+            if (size <= 0) {
+                return;
+            }
+            Object[] objArr = this.elementData;
+            i2 = Math.min(size, Math.min(objArr.length - positiveMod, objArr.length - positiveMod2));
+            Object[] objArr2 = this.elementData;
+            int i3 = positiveMod + i2;
+            ArraysKt.copyInto(objArr2, objArr2, positiveMod2, positiveMod, i3);
+            positiveMod = positiveMod(i3);
+            positiveMod2 = positiveMod(positiveMod2 + i2);
+        }
+    }
+
+    private final void nullifyNonEmpty(int i, int i2) {
+        if (i < i2) {
+            ArraysKt___ArraysJvmKt.fill(this.elementData, null, i, i2);
+            return;
+        }
+        Object[] objArr = this.elementData;
+        ArraysKt___ArraysJvmKt.fill(objArr, null, i, objArr.length);
+        ArraysKt___ArraysJvmKt.fill(this.elementData, null, 0, i2);
+    }
+
+    private final void registerModification() {
+        ((java.util.AbstractList) this).modCount++;
+    }
+
     public static final class Companion {
         public Companion(DefaultConstructorMarker defaultConstructorMarker) {
             this();
-        }
-
-        public final int newCapacity$kotlin_stdlib(int i, int i2) {
-            int i3 = i + (i >> 1);
-            if (i3 - i2 < 0) {
-                i3 = i2;
-            }
-            return i3 - 2147483639 > 0 ? i2 > 2147483639 ? Integer.MAX_VALUE : 2147483639 : i3;
         }
 
         private Companion() {

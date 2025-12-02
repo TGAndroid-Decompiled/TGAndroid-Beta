@@ -22,7 +22,7 @@ public abstract class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
     public static final Map mapOf(Pair pair) {
         Intrinsics.checkNotNullParameter(pair, "pair");
         Map singletonMap = Collections.singletonMap(pair.getFirst(), pair.getSecond());
-        Intrinsics.checkNotNullExpressionValue(singletonMap, "singletonMap(pair.first, pair.second)");
+        Intrinsics.checkNotNullExpressionValue(singletonMap, "singletonMap(...)");
         return singletonMap;
     }
 
@@ -30,7 +30,7 @@ public abstract class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
         Intrinsics.checkNotNullParameter(map, "<this>");
         Map.Entry entry = (Map.Entry) map.entrySet().iterator().next();
         Map singletonMap = Collections.singletonMap(entry.getKey(), entry.getValue());
-        Intrinsics.checkNotNullExpressionValue(singletonMap, "with(entries.iterator().…ingletonMap(key, value) }");
+        Intrinsics.checkNotNullExpressionValue(singletonMap, "with(...)");
         return singletonMap;
     }
 }

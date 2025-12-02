@@ -23,7 +23,7 @@ import org.telegram.messenger.utils.tlutils.TlUtils;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda106;
+import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda105;
 import org.telegram.messenger.voip.VoipAudioManager;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
@@ -138,7 +138,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 NativeInstance nativeInstance = this.instance;
                 Objects.requireNonNull(nativeInstance);
-                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
                 this.srcs.clear();
                 this.instance = null;
             }
@@ -604,7 +604,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     }
 
     public void lambda$init$16(final String str, long j, long j2, long j3, int i, int i2, TLObject tLObject, TLRPC.TL_error tL_error, long j4) {
-        if (this.destroyed) {
+        if (this.destroyed || this.instance == null) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -690,7 +690,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             DispatchQueue dispatchQueue = Utilities.globalQueue;
             NativeInstance nativeInstance = this.instance;
             Objects.requireNonNull(nativeInstance);
-            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
             this.srcs.clear();
             this.instance = null;
         }
@@ -937,7 +937,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             DispatchQueue dispatchQueue = Utilities.globalQueue;
             NativeInstance nativeInstance = this.instance;
             Objects.requireNonNull(nativeInstance);
-            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
             this.srcs.clear();
             this.instance = null;
         }
@@ -1162,7 +1162,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                     DispatchQueue dispatchQueue = Utilities.globalQueue;
                     NativeInstance nativeInstance = this.instance;
                     Objects.requireNonNull(nativeInstance);
-                    dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+                    dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
                     this.srcs.clear();
                     this.instance = null;
                 }
@@ -1208,7 +1208,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             DispatchQueue dispatchQueue = Utilities.globalQueue;
             NativeInstance nativeInstance = this.instance;
             Objects.requireNonNull(nativeInstance);
-            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+            dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
             this.srcs.clear();
             this.instance = null;
         }

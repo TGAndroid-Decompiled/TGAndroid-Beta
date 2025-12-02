@@ -1,8 +1,9 @@
 package kotlinx.coroutines;
 
 import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.internal.LockFreeLinkedListNode;
 
-public abstract class JobNode extends CompletionHandlerBase implements DisposableHandle, Incomplete {
+public abstract class JobNode extends LockFreeLinkedListNode implements InternalCompletionHandler, DisposableHandle, Incomplete {
     public JobSupport job;
 
     @Override

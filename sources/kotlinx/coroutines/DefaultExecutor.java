@@ -78,7 +78,7 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
     public void run() {
         boolean isEmpty;
         ThreadLocalEventLoop.INSTANCE.setEventLoop$kotlinx_coroutines_core(this);
-        AbstractTimeSourceKt.getTimeSource();
+        AbstractTimeSourceKt.access$getTimeSource$p();
         try {
             if (!notifyStartup()) {
                 if (isEmpty) {
@@ -92,7 +92,7 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                 Thread.interrupted();
                 long processNextEvent = processNextEvent();
                 if (processNextEvent == Long.MAX_VALUE) {
-                    AbstractTimeSourceKt.getTimeSource();
+                    AbstractTimeSourceKt.access$getTimeSource$p();
                     long nanoTime = System.nanoTime();
                     if (j == Long.MAX_VALUE) {
                         j = KEEP_ALIVE_NANOS + nanoTime;
@@ -101,7 +101,7 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                     if (j2 <= 0) {
                         _thread = null;
                         acknowledgeShutdownIfNeeded();
-                        AbstractTimeSourceKt.getTimeSource();
+                        AbstractTimeSourceKt.access$getTimeSource$p();
                         if (isEmpty()) {
                             return;
                         }
@@ -116,21 +116,21 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                     if (isShutdownRequested()) {
                         _thread = null;
                         acknowledgeShutdownIfNeeded();
-                        AbstractTimeSourceKt.getTimeSource();
+                        AbstractTimeSourceKt.access$getTimeSource$p();
                         if (isEmpty()) {
                             return;
                         }
                         getThread();
                         return;
                     }
-                    AbstractTimeSourceKt.getTimeSource();
+                    AbstractTimeSourceKt.access$getTimeSource$p();
                     LockSupport.parkNanos(this, processNextEvent);
                 }
             }
         } finally {
             _thread = null;
             acknowledgeShutdownIfNeeded();
-            AbstractTimeSourceKt.getTimeSource();
+            AbstractTimeSourceKt.access$getTimeSource$p();
             if (!isEmpty()) {
                 getThread();
             }
@@ -143,6 +143,7 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
         if (thread == null) {
             thread = new Thread(this, "kotlinx.coroutines.DefaultExecutor");
             _thread = thread;
+            thread.setContextClassLoader(DefaultExecutor.class.getClassLoader());
             thread.setDaemon(true);
             thread.start();
         }

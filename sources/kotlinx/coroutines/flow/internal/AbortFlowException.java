@@ -1,14 +1,13 @@
 package kotlinx.coroutines.flow.internal;
 
 import java.util.concurrent.CancellationException;
-import kotlinx.coroutines.flow.FlowCollector;
 
 public final class AbortFlowException extends CancellationException {
-    public final transient FlowCollector owner;
+    public final transient Object owner;
 
-    public AbortFlowException(FlowCollector flowCollector) {
+    public AbortFlowException(Object obj) {
         super("Flow was aborted, no more elements needed");
-        this.owner = flowCollector;
+        this.owner = obj;
     }
 
     @Override

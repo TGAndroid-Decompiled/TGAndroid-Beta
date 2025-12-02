@@ -14,7 +14,6 @@ import kotlinx.coroutines.JobKt;
 import kotlinx.coroutines.NonDisposableHandle;
 
 public final class HandlerContext extends HandlerDispatcher implements Delay {
-    private volatile HandlerContext _immediate;
     private final Handler handler;
     private final HandlerContext immediate;
     private final boolean invokeImmediately;
@@ -25,13 +24,7 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
         this.handler = handler;
         this.name = str;
         this.invokeImmediately = z;
-        this._immediate = z ? this : null;
-        HandlerContext handlerContext = this._immediate;
-        if (handlerContext == null) {
-            handlerContext = new HandlerContext(handler, str, true);
-            this._immediate = handlerContext;
-        }
-        this.immediate = handlerContext;
+        this.immediate = z ? this : new HandlerContext(handler, str, true);
     }
 
     public HandlerContext(Handler handler, String str, int i, DefaultConstructorMarker defaultConstructorMarker) {
@@ -66,7 +59,7 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
             return new DisposableHandle() {
                 @Override
                 public final void dispose() {
-                    HandlerContext.invokeOnTimeout$lambda$3(HandlerContext.this, runnable);
+                    HandlerContext.invokeOnTimeout$lambda$2(HandlerContext.this, runnable);
                 }
             };
         }
@@ -74,7 +67,7 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
         return NonDisposableHandle.INSTANCE;
     }
 
-    public static final void invokeOnTimeout$lambda$3(HandlerContext handlerContext, Runnable runnable) {
+    public static final void invokeOnTimeout$lambda$2(HandlerContext handlerContext, Runnable runnable) {
         handlerContext.handler.removeCallbacks(runnable);
     }
 
@@ -100,10 +93,16 @@ public final class HandlerContext extends HandlerDispatcher implements Delay {
     }
 
     public boolean equals(Object obj) {
-        return (obj instanceof HandlerContext) && ((HandlerContext) obj).handler == this.handler;
+        if (obj instanceof HandlerContext) {
+            HandlerContext handlerContext = (HandlerContext) obj;
+            if (handlerContext.handler == this.handler && handlerContext.invokeImmediately == this.invokeImmediately) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int hashCode() {
-        return System.identityHashCode(this.handler);
+        return System.identityHashCode(this.handler) ^ (this.invokeImmediately ? 1231 : 1237);
     }
 }

@@ -91,6 +91,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     private final Params params;
     private final ColoredImageSpan[] refS;
     private final BidderCell selfBidderCell;
+    private final AnimatedTextView selfBidderFutureGift;
     private final HeaderCell selfBidderHeader;
     private final StarsReactionsSheet.StarsSlider slider;
     private final ColoredImageSpan[] spanRefStars;
@@ -98,10 +99,10 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     private final BidderCell[] topBidderCells;
     private final BoolAnimator winningColor;
 
-    public static void lambda$new$3(View view) {
+    public static void lambda$new$4(View view) {
     }
 
-    public static void lambda$new$4(View view, int i) {
+    public static void lambda$new$5(View view, int i) {
     }
 
     public static class Params {
@@ -256,6 +257,19 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         HeaderCell headerCell = new HeaderCell(context, i3, 21, 0, 0, false, true, resourcesProvider);
         this.selfBidderHeader = headerCell;
         linearLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2, 0.0f, 5.0f, 0.0f, 0.0f));
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
+        this.selfBidderFutureGift = animatedTextView;
+        animatedTextView.setTextSize(AndroidUtilities.dp(12.5f));
+        animatedTextView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        animatedTextView.setSizeableBackground(Theme.createRadSelectorDrawable(0, 0, 9, 9));
+        animatedTextView.setHideBackgroundIfEmpty(true);
+        headerCell.setOnWidthUpdateListener(new Runnable() {
+            @Override
+            public final void run() {
+                AuctionBidSheet.this.lambda$new$3();
+            }
+        });
+        headerCell.addView(animatedTextView, LayoutHelper.createFrame(-1, 17.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         BidderCell bidderCell = new BidderCell(context, resourcesProvider);
         this.selfBidderCell = bidderCell;
         bidderCell.placeTextView.setTextColor(getThemedColor(i3));
@@ -278,7 +292,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.topBidderCells[i4].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionBidSheet.lambda$new$3(view);
+                    AuctionBidSheet.lambda$new$4(view);
                 }
             });
             linearLayout.addView(this.topBidderCells[i4], LayoutHelper.createLinear(-1, -2));
@@ -306,7 +320,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i9) {
-                AuctionBidSheet.lambda$new$4(view, i9);
+                AuctionBidSheet.lambda$new$5(view, i9);
             }
         });
         long j2 = subscribeToGiftAuction.auctionUserState.bid_amount;
@@ -329,12 +343,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         balanceCloud.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                AuctionBidSheet.lambda$new$5(context, resourcesProvider, view);
+                AuctionBidSheet.lambda$new$6(context, resourcesProvider, view);
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.bulletinContainer = frameLayout;
         this.container.addView(frameLayout, LayoutHelper.createFrame(-1, 100, 48));
+        updateColors();
         this.adapter.update(false);
     }
 
@@ -360,7 +375,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         new AcquiredGiftsSheet(getContext(), resourcesProvider, this.auction, list).show();
     }
 
-    public static void lambda$new$5(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+    public void lambda$new$3() {
+        this.selfBidderFutureGift.setTranslationX(this.selfBidderHeader.getAnimatedWidth() + AndroidUtilities.dp(28.0f));
+    }
+
+    public static void lambda$new$6(Context context, Theme.ResourcesProvider resourcesProvider, View view) {
         new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
     }
 
@@ -376,11 +395,25 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         int value = this.slider.getValue();
         if (this.slider.getProgress() > 0.99f) {
             this.slider.setCounterSubText(LocaleController.getString(R.string.Gift2AuctionTapToBidMore), true);
-        } else if (value == this.auction.auctionUserState.bid_amount) {
-            this.slider.setCounterSubText(LocaleController.getString(R.string.Gift2AuctionYourBid), true);
-        } else {
-            this.slider.setCounterSubText(null, true);
+            return;
         }
+        long j = value;
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.auction.auctionUserState;
+        long j2 = tL_StarGiftAuctionUserState.bid_amount;
+        if (j == j2) {
+            this.slider.setCounterSubText(LocaleController.getString(R.string.Gift2AuctionYourBid), true);
+            return;
+        }
+        if (j2 <= 0 || tL_StarGiftAuctionUserState.returned) {
+            this.slider.setCounterSubText(null, true);
+            return;
+        }
+        long j3 = j - j2;
+        if (j3 > 0) {
+            this.slider.setCounterSubText("+" + LocaleController.formatNumber(j3, ','), true);
+            return;
+        }
+        this.slider.setCounterSubText(null, true);
     }
 
     private void setSliderValues() {
@@ -470,6 +503,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     private void updateTable(boolean z) {
+        int i;
         this.minimumBidCell.infoView.setText(StarsIntroActivity.replaceStarsWithPlain("⭐️" + LocaleController.formatNumberWithMillion((int) this.auction.getMinimumBid(), ','), 0.78f, this.refS), z);
         TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
         if (tL_starGiftAuctionState != null) {
@@ -487,27 +521,32 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(this.auction.auctionStateActive.gifts_left, ','));
             this.giftsLeftCell.infoView.setText(spannableStringBuilder, z);
             TextView textView = this.nextRoundCell.titleView;
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.auction.auctionStateActive;
-            textView.setText(LocaleController.getString(tL_starGiftAuctionState2.current_round == tL_starGiftAuctionState2.total_rounds ? R.string.Gift2AuctionBidInfoUntilEndRound : R.string.Gift2AuctionBidInfoUntilNextRound));
+            if (this.auction.isUpcoming()) {
+                i = R.string.Gift2AuctionBidInfoUntilStart;
+            } else {
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.auction.auctionStateActive;
+                i = tL_starGiftAuctionState2.current_round == tL_starGiftAuctionState2.total_rounds ? R.string.Gift2AuctionBidInfoUntilEndRound : R.string.Gift2AuctionBidInfoUntilNextRound;
+            }
+            textView.setText(LocaleController.getString(i));
             int min = Math.min(this.topBidderCells.length, this.auction.auctionStateActive.top_bidders.size());
             if (min > 0) {
-                int i = 0;
-                while (i < min) {
-                    int i2 = i + 1;
-                    Long l = this.auction.auctionStateActive.top_bidders.get(i);
+                int i2 = 0;
+                while (i2 < min) {
+                    int i3 = i2 + 1;
+                    Long l = this.auction.auctionStateActive.top_bidders.get(i2);
                     final long longValue = l.longValue();
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(l);
                     if (user != null) {
-                        this.topBidderCells[i].setUser(user, z);
+                        this.topBidderCells[i2].setUser(user, z);
                     }
-                    this.topBidderCells[i].setBid(this.auction.approximateBidAmountFromPlace(i2), z);
-                    this.topBidderCells[i].setOnClickListener(new View.OnClickListener() {
+                    this.topBidderCells[i2].setBid(this.auction.approximateBidAmountFromPlace(i3), z);
+                    this.topBidderCells[i2].setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            AuctionBidSheet.this.lambda$updateTable$6(longValue, view);
+                            AuctionBidSheet.this.lambda$updateTable$7(longValue, view);
                         }
                     });
-                    i = i2;
+                    i2 = i3;
                 }
             }
         }
@@ -522,7 +561,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         checkAuctionParams();
     }
 
-    public void lambda$updateTable$6(long j, View view) {
+    public void lambda$updateTable$7(long j, View view) {
         openProfile(j);
     }
 
@@ -552,9 +591,17 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     public void onColorFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        updateColors();
+    }
+
+    private void updateColors() {
         int blendARGB = ColorUtils.blendARGB(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader), getThemedColor(Theme.key_text_RedBold), this.outbidColor.getFloatValue()), getThemedColor(Theme.key_color_green), this.winningColor.getFloatValue());
         this.selfBidderHeader.setTextColor(blendARGB);
+        this.selfBidderFutureGift.setTextColor(blendARGB);
         this.selfBidderCell.placeTextView.setTextColor(blendARGB);
+        if (Theme.setSelectorDrawableColor(this.selfBidderFutureGift.getSizeableBackground(), Theme.multAlpha(blendARGB, 0.15f), false)) {
+            this.selfBidderFutureGift.invalidate();
+        }
     }
 
     private void updateSelfBidderHeader(boolean z) {
@@ -585,15 +632,25 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     private void updateSelfBidderCell(boolean z) {
+        int i;
         long value = this.slider.getValue();
         int approximatedMyPlace = this.auction.getApproximatedMyPlace();
         int approximatePlaceFromStars = this.auction.approximatePlaceFromStars(value);
         this.selfBidderCell.setBid(Math.max(value, this.auction.getCurrentMyBid()), false);
-        BidderCell bidderCell = this.selfBidderCell;
         if (approximatedMyPlace > 0) {
             approximatePlaceFromStars = Math.min(approximatedMyPlace, approximatePlaceFromStars);
         }
-        bidderCell.setPlace(approximatePlaceFromStars, false, z);
+        this.selfBidderCell.setPlace(approximatePlaceFromStars, false, z);
+        GiftAuctionController.Auction auction = this.auction;
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
+        if (tL_starGiftAuctionState != null && approximatePlaceFromStars > 0) {
+            TL_stars.StarGift starGift = auction.gift;
+            if (starGift.title != null && (i = tL_starGiftAuctionState.last_gift_num + approximatePlaceFromStars) <= starGift.availability_total) {
+                this.selfBidderFutureGift.setText(this.auction.gift.title + " #" + LocaleController.formatNumber(i, ','));
+                return;
+            }
+        }
+        this.selfBidderFutureGift.setText(null);
     }
 
     public void updateCountdownCell(long j) {
@@ -619,25 +676,31 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             this.buttonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    AuctionBidSheet.this.lambda$updateButtonText$7(view);
-                }
-            });
-        } else {
-            this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.Gift2AuctionPlaceBid, LocaleController.formatNumber(value, ',')), this.spanRefStars), z);
-            this.buttonView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
                     AuctionBidSheet.this.lambda$updateButtonText$8(view);
                 }
             });
+            return;
         }
-    }
-
-    public void lambda$updateButtonText$7(View view) {
-        lambda$new$0();
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.auction.auctionUserState;
+        long j = tL_StarGiftAuctionUserState.bid_amount;
+        if (j < value && !tL_StarGiftAuctionUserState.returned) {
+            this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.Gift2AuctionPlaceBidAdd, LocaleController.formatNumber(value - j, ',')), this.spanRefStars), z);
+        } else {
+            this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.Gift2AuctionPlaceBid, LocaleController.formatNumber(value, ',')), this.spanRefStars), z);
+        }
+        this.buttonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AuctionBidSheet.this.lambda$updateButtonText$9(view);
+            }
+        });
     }
 
     public void lambda$updateButtonText$8(View view) {
+        lambda$new$0();
+    }
+
+    public void lambda$updateButtonText$9(View view) {
         int value = this.slider.getValue();
         int minimumBid = (int) this.auction.getMinimumBid();
         if (value < minimumBid) {
@@ -777,12 +840,12 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         GiftAuctionController.getInstance(this.currentAccount).sendBid(this.giftId, this.params, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                AuctionBidSheet.this.lambda$sendBid$9(j, (Boolean) obj, (String) obj2);
+                AuctionBidSheet.this.lambda$sendBid$10(j, (Boolean) obj, (String) obj2);
             }
         });
     }
 
-    public void lambda$sendBid$9(long j, Boolean bool, String str) {
+    public void lambda$sendBid$10(long j, Boolean bool, String str) {
         this.buttonView.setLoading(false);
         this.bidIsPending = false;
         if (bool != null) {
@@ -880,7 +943,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         builder.setPositiveButton(LocaleController.getString(R.string.Gift2AuctionPlaceABid), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                AuctionBidSheet.this.lambda$showCustomPlaceABid$10(editTextCaption, alertDialog, i);
+                AuctionBidSheet.this.lambda$showCustomPlaceABid$11(editTextCaption, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -896,13 +959,13 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                AuctionBidSheet.lambda$showCustomPlaceABid$12(EditTextCaption.this, lastFragment, findActivity, dialogInterface);
+                AuctionBidSheet.lambda$showCustomPlaceABid$13(EditTextCaption.this, lastFragment, findActivity, dialogInterface);
             }
         });
         alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public final void onShow(DialogInterface dialogInterface) {
-                AuctionBidSheet.lambda$showCustomPlaceABid$13(EditTextCaption.this, dialogInterface);
+                AuctionBidSheet.lambda$showCustomPlaceABid$14(EditTextCaption.this, dialogInterface);
             }
         });
         alertDialogArr[0].show();
@@ -913,7 +976,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         editTextCaption.setSelection(editTextCaption.getText().length());
     }
 
-    public void lambda$showCustomPlaceABid$10(EditTextCaption editTextCaption, AlertDialog alertDialog, int i) {
+    public void lambda$showCustomPlaceABid$11(EditTextCaption editTextCaption, AlertDialog alertDialog, int i) {
         try {
             int parseInt = Integer.parseInt(editTextCaption.getText().toString().trim());
             sendBid(parseInt);
@@ -925,14 +988,14 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         }
     }
 
-    public static void lambda$showCustomPlaceABid$12(EditTextCaption editTextCaption, BaseFragment baseFragment, Activity activity, DialogInterface dialogInterface) {
+    public static void lambda$showCustomPlaceABid$13(EditTextCaption editTextCaption, BaseFragment baseFragment, Activity activity, DialogInterface dialogInterface) {
         AndroidUtilities.hideKeyboard(editTextCaption);
         if (baseFragment != null) {
             AndroidUtilities.requestAdjustResize(activity, baseFragment.getClassGuid());
         }
     }
 
-    public static void lambda$showCustomPlaceABid$13(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
+    public static void lambda$showCustomPlaceABid$14(EditTextCaption editTextCaption, DialogInterface dialogInterface) {
         editTextCaption.requestFocus();
         AndroidUtilities.showKeyboard(editTextCaption);
     }

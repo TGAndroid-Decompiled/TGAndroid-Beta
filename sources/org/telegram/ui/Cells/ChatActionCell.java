@@ -22,13 +22,16 @@ import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
+import android.util.StateSet;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.ColorUtils;
 import j$.util.Objects;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +39,7 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.Emoji;
@@ -51,11 +55,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -80,6 +87,7 @@ import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stars.GiftOfferSheet;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarGiftUniqueActionLayout;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -100,10 +108,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private int backgroundHeight;
     private int backgroundLeft;
     private Path backgroundPath;
+    private final Path backgroundPath2;
     private RectF backgroundRect;
     private int backgroundRectHeight;
     private int backgroundRight;
     public SuggestBirthdayActionLayout birthdayLayout;
+    private final Path botButtonPath;
+    private final float[] botButtonRadii;
+    private ArrayList botButtons;
     private final ButtonBounce bounce;
     private boolean buttonClickableAsImage;
     private boolean canDrawInParent;
@@ -175,11 +187,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private Paint overrideBackgroundPaint;
     private int overrideText;
     private TextPaint overrideTextPaint;
+    private int pressedBotButton;
     private URLSpan pressedLink;
+    private final int[] pressedState;
     private int previousWidth;
     float progressToProgress;
     RadialProgressView progressView;
     private RadialProgress2 radialProgress;
+    private final float[] radii;
     public final ReactionsLayoutInBubble reactionsLayoutInBubble;
     private RectF rect;
     private View rippleView;
@@ -437,7 +452,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (messageObject != null && !messageObject.playedGiftAnimation) {
             messageObject.playedGiftAnimation = true;
             lottieAnimation.setCurrentFrame(0, false);
-            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda8(lottieAnimation));
+            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda10(lottieAnimation));
             if (messageObject.wasUnread || this.forceWasUnread) {
                 messageObject.wasUnread = false;
                 this.forceWasUnread = false;
@@ -510,7 +525,13 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             }
         };
         this.starsPath = new Path();
+        this.botButtons = new ArrayList();
         this.dimPaint = new Paint(1);
+        this.backgroundPath2 = new Path();
+        this.radii = new float[8];
+        this.botButtonRadii = new float[8];
+        this.botButtonPath = new Path();
+        this.pressedState = new int[]{16842910, 16842919};
         this.transitionParams = new TransitionParams();
         this.avatarStoryParams.drawSegments = false;
         this.canDrawInParent = z;
@@ -957,6 +978,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         TextPaint textPaint;
         ChatActionCellDelegate chatActionCellDelegate;
         TLRPC.Message message;
+        MessageObject messageObject;
         CharSequence charSequence2 = charSequence;
         int dp = i - AndroidUtilities.dp(30.0f);
         if (this.isSideMenued) {
@@ -974,15 +996,12 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
         int i3 = dp;
         this.invalidatePath = true;
-        if (isMessageActionSuggestedPostApproval()) {
+        if (isMessageActionSuggestedPostApproval() || ((messageObject = this.currentMessageObject) != null && messageObject.type == 34)) {
             textPaint = (TextPaint) getThemedPaint("paintChatActionText3");
+        } else if (messageObject != null && messageObject.drawServiceWithDefaultTypeface) {
+            textPaint = (TextPaint) getThemedPaint("paintChatActionText2");
         } else {
-            MessageObject messageObject = this.currentMessageObject;
-            if (messageObject != null && messageObject.drawServiceWithDefaultTypeface) {
-                textPaint = (TextPaint) getThemedPaint("paintChatActionText2");
-            } else {
-                textPaint = (TextPaint) getThemedPaint("paintChatActionText");
-            }
+            textPaint = (TextPaint) getThemedPaint("paintChatActionText");
         }
         TextPaint textPaint2 = textPaint;
         textPaint2.linkColor = textPaint2.getColor();
@@ -1058,14 +1077,14 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    protected void onMeasure(int r22, int r23) {
+    protected void onMeasure(int r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onMeasure(int, int):void");
     }
 
     private boolean isNewStyleButtonLayout() {
         MessageObject messageObject;
         int i;
-        if (!this.starGiftLayout.has() && this.birthdayLayout == null && (i = (messageObject = this.currentMessageObject).type) != 31 && i != 21 && i != 22 && !messageObject.isStoryMention()) {
+        if (!this.starGiftLayout.has() && this.birthdayLayout == null && (i = (messageObject = this.currentMessageObject).type) != 31 && i != 33 && i != 34 && i != 21 && i != 22 && !messageObject.isStoryMention()) {
             TLRPC.Message message = this.currentMessageObject.messageOwner;
             if (message != null) {
                 TLRPC.MessageAction messageAction = message.action;
@@ -1085,7 +1104,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (messageObject.type == 21 || isNewStyleButtonLayout()) {
             i = AndroidUtilities.dp(78.0f);
         }
-        if (isMessageActionSuggestedPostApproval()) {
+        if (isMessageActionSuggestedPostApproval() || messageObject.type == 34) {
             return 0;
         }
         return i;
@@ -1192,7 +1211,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         } else {
             this.giftPremiumReleasedText = r6;
         }
-        if (this.currentMessageObject != null && (isNewStyleButtonLayout() || (i4 = this.currentMessageObject.type) == 30 || i4 == 18 || i4 == 31)) {
+        if (this.currentMessageObject != null && (isNewStyleButtonLayout() || (i4 = this.currentMessageObject.type) == 30 || i4 == 18 || i4 == 31 || i4 == 33)) {
             this.giftTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         } else {
             this.giftTextPaint.setTextSize(AndroidUtilities.dp(15.0f));
@@ -1208,9 +1227,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 textLayout.detach();
                 this.giftPremiumText = r6;
             }
-            this.giftPremiumTextCollapsed = false;
             i3 = 0;
+            this.giftPremiumTextCollapsed = false;
         } else {
+            i3 = 0;
             if (this.giftPremiumText == null) {
                 this.giftPremiumText = new TextLayout();
             }
@@ -1227,15 +1247,13 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 this.giftPremiumTextMoreY = lineBottom;
                 this.giftPremiumTextMoreH = lineBottom - this.giftPremiumText.layout.getLineTop(2);
                 this.giftPremiumTextMoreX = (int) this.giftPremiumText.layout.getLineRight(2);
-                i3 = 0;
             } else {
-                i3 = 0;
                 this.giftPremiumTextCollapsed = false;
                 this.giftPremiumTextExpandedAnimated.set(true, true);
                 this.giftPremiumTextCollapsedHeight = 0;
             }
             if (this.giftPremiumTextCollapsed) {
-                this.giftPremiumText.setText(charSequence7.subSequence(i3, this.giftPremiumText.layout.getLineEnd(2) - 1), this.giftTextPaint, dp2);
+                this.giftPremiumText.setText(charSequence7.subSequence(0, this.giftPremiumText.layout.getLineEnd(2) - 1), this.giftTextPaint, dp2);
             }
         }
         if (charSequence5 != null) {
@@ -1289,7 +1307,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r43) {
+    public void onDraw(android.graphics.Canvas r45) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1321,17 +1339,16 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         Canvas canvas2;
         float f;
         TextLayout textLayout;
-        float f2;
         Paint paint5;
         Paint paint6;
         int i3;
-        float f3;
+        float f2;
         int i4;
-        float f4;
+        float f3;
         int i5;
         int i6;
         int i7;
-        float f5;
+        float f4;
         int i8;
         if (this.canDrawInParent) {
             if (hasGradientService() && !z) {
@@ -1370,29 +1387,20 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             int dp = AndroidUtilities.dp(11.0f);
             int dp2 = AndroidUtilities.dp(8.0f);
             int i10 = 0;
-            int i11 = 0;
-            while (true) {
-                f2 = 1.5f;
-                if (i10 >= lineCount) {
-                    break;
+            for (int i11 = 0; i11 < lineCount; i11++) {
+                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i11));
+                if (i11 == 0 || (i8 = i10 - ceil) <= 0 || i8 > (dp * 1.5f) + dp2) {
+                    i10 = ceil;
                 }
-                int ceil = (int) Math.ceil(this.textLayout.getLineWidth(i10));
-                if (i10 == 0 || (i8 = i11 - ceil) <= 0 || i8 > (dp * 1.5f) + dp2) {
-                    i11 = ceil;
-                }
-                this.lineWidths.add(Integer.valueOf(i11));
-                i10++;
+                this.lineWidths.add(Integer.valueOf(i10));
             }
-            int i12 = lineCount - 2;
-            while (i12 >= 0) {
+            for (int i12 = lineCount - 2; i12 >= 0; i12--) {
                 int intValue = ((Integer) this.lineWidths.get(i12)).intValue();
-                int i13 = i11 - intValue;
-                if (i13 <= 0 || i13 > (dp * f2) + dp2) {
-                    i11 = intValue;
+                int i13 = i10 - intValue;
+                if (i13 <= 0 || i13 > (dp * 1.5f) + dp2) {
+                    i10 = intValue;
                 }
-                this.lineWidths.set(i12, Integer.valueOf(i11));
-                i12--;
-                f2 = 1.5f;
+                this.lineWidths.set(i12, Integer.valueOf(i10));
             }
             int dp3 = AndroidUtilities.dp(4.0f);
             int measuredWidth = getMeasuredWidth() / 2;
@@ -1401,8 +1409,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             int i14 = dp - dp4;
             this.lineHeights.clear();
             this.backgroundPath.reset();
-            float f6 = measuredWidth;
-            this.backgroundPath.moveTo(f6, dp3);
+            float f5 = measuredWidth;
+            this.backgroundPath.moveTo(f5, dp3);
             int i15 = 0;
             int i16 = 0;
             while (i15 < lineCount) {
@@ -1420,80 +1428,80 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     i3 = 0;
                 }
                 int i19 = lineBottom - i16;
-                if (i15 == 0 || intValue2 > i11) {
-                    f3 = 3.0f;
+                if (i15 == 0 || intValue2 > i10) {
+                    f2 = 3.0f;
                     i19 += AndroidUtilities.dp(3.0f);
                 } else {
-                    f3 = 3.0f;
+                    f2 = 3.0f;
                 }
                 if (i15 == i18 || intValue2 > i3) {
-                    i19 += AndroidUtilities.dp(f3);
+                    i19 += AndroidUtilities.dp(f2);
                 }
-                float f7 = (intValue2 / 2.0f) + f6;
-                int i20 = (i15 == i18 || intValue2 >= i3 || i15 == 0 || intValue2 >= i11) ? dp2 : i17;
-                if (i15 == 0 || intValue2 > i11) {
+                float f6 = (intValue2 / 2.0f) + f5;
+                int i20 = (i15 == i18 || intValue2 >= i3 || i15 == 0 || intValue2 >= i10) ? dp2 : i17;
+                if (i15 == 0 || intValue2 > i10) {
                     i4 = measuredWidth;
-                    f4 = f6;
+                    f3 = f5;
                     i5 = lineCount;
-                    i6 = i11;
-                    i7 = lineBottom;
-                    this.rect.set((f7 - dp4) - dp, dp3, i14 + f7, (dp * 2) + dp3);
+                    i6 = lineBottom;
+                    i7 = i10;
+                    this.rect.set((f6 - dp4) - dp, dp3, i14 + f6, (dp * 2) + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, -90.0f, 90.0f);
-                } else if (intValue2 < i11) {
-                    i7 = lineBottom;
-                    f4 = f6;
-                    float f8 = i14 + f7;
+                } else if (intValue2 < i10) {
+                    i6 = lineBottom;
+                    f3 = f5;
+                    float f7 = i14 + f6;
                     i4 = measuredWidth;
                     i5 = lineCount;
-                    i6 = i11;
-                    this.rect.set(f8, dp3, (i20 * 2) + f8, r10 + dp3);
+                    i7 = i10;
+                    this.rect.set(f7, dp3, (i20 * 2) + f7, r11 + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, -90.0f, -90.0f);
                 } else {
                     i4 = measuredWidth;
-                    f4 = f6;
+                    f3 = f5;
                     i5 = lineCount;
-                    i6 = i11;
-                    i7 = lineBottom;
+                    i6 = lineBottom;
+                    i7 = i10;
                 }
                 dp3 += i19;
                 if (i15 == i18 || intValue2 >= i3) {
-                    f5 = 3.0f;
+                    f4 = 3.0f;
                 } else {
-                    f5 = 3.0f;
+                    f4 = 3.0f;
                     dp3 -= AndroidUtilities.dp(3.0f);
                     i19 -= AndroidUtilities.dp(3.0f);
                 }
-                if (i15 != 0 && intValue2 < i6) {
-                    dp3 -= AndroidUtilities.dp(f5);
-                    i19 -= AndroidUtilities.dp(f5);
+                if (i15 != 0 && intValue2 < i7) {
+                    dp3 -= AndroidUtilities.dp(f4);
+                    i19 -= AndroidUtilities.dp(f4);
                 }
                 this.lineHeights.add(Integer.valueOf(i19));
                 if (i15 == i18 || intValue2 > i3) {
-                    this.rect.set((f7 - dp4) - dp, dp3 - (dp * 2), f7 + i14, dp3);
+                    this.rect.set((f6 - dp4) - dp, dp3 - (dp * 2), f6 + i14, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 0.0f, 90.0f);
                 } else if (intValue2 < i3) {
-                    float f9 = f7 + i14;
-                    this.rect.set(f9, dp3 - r2, (i20 * 2) + f9, dp3);
+                    float f8 = f6 + i14;
+                    this.rect.set(f8, dp3 - r2, (i20 * 2) + f8, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 180.0f, -90.0f);
                 }
                 i15++;
-                i11 = intValue2;
+                i10 = intValue2;
                 dp5 = i17;
                 themedPaint2 = paint6;
                 themedPaint = paint5;
-                i16 = i7;
-                f6 = f4;
+                i16 = i6;
+                f5 = f3;
                 measuredWidth = i4;
                 lineCount = i5;
             }
             paint = themedPaint;
             paint2 = themedPaint2;
             int i21 = measuredWidth;
-            float f10 = f6;
+            float f9 = f5;
             int i22 = dp5;
             int i23 = lineCount - 1;
             int i24 = i23;
@@ -1502,26 +1510,26 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 int intValue4 = ((Integer) this.lineWidths.get(i24)).intValue();
                 int intValue5 = i24 != i23 ? ((Integer) this.lineWidths.get(i24 + 1)).intValue() : 0;
                 this.textLayout.getLineBottom(i24);
-                float f11 = i21 - (intValue4 / 2);
+                float f10 = i21 - (intValue4 / 2);
                 int i25 = (i24 == i23 || intValue4 >= intValue5 || i24 == 0 || intValue4 >= intValue3) ? dp2 : i22;
                 if (i24 == i23 || intValue4 > intValue5) {
-                    this.rect.set(f11 - i14, dp3 - (dp * 2), dp4 + f11 + dp, dp3);
+                    this.rect.set(f10 - i14, dp3 - (dp * 2), dp4 + f10 + dp, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 90.0f, 90.0f);
                 } else if (intValue4 < intValue5) {
-                    float f12 = f11 - i14;
-                    this.rect.set(f12 - (i25 * 2), dp3 - r12, f12, dp3);
+                    float f11 = f10 - i14;
+                    this.rect.set(f11 - (i25 * 2), dp3 - r13, f11, dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 90.0f, -90.0f);
                 }
                 dp3 -= ((Integer) this.lineHeights.get(i24)).intValue();
                 if (i24 == 0 || intValue4 > intValue3) {
-                    this.rect.set(f11 - i14, dp3, f11 + dp4 + dp, (dp * 2) + dp3);
+                    this.rect.set(f10 - i14, dp3, f10 + dp4 + dp, (dp * 2) + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 180.0f, 90.0f);
                 } else if (intValue4 < intValue3) {
-                    float f13 = f11 - i14;
-                    this.rect.set(f13 - (i25 * 2), dp3, f13, r7 + dp3);
+                    float f12 = f10 - i14;
+                    this.rect.set(f12 - (i25 * 2), dp3, f12, r9 + dp3);
                     checkLeftRightBounds();
                     this.backgroundPath.arcTo(this.rect, 0.0f, -90.0f);
                 }
@@ -1529,10 +1537,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             }
             this.backgroundPath.close();
             if (isMessageActionSuggestedPostApproval() && !isNewStyleButtonLayout()) {
-                this.rect.left = (f10 - (this.textWidth / 2.0f)) - AndroidUtilities.dp(17.0f);
+                this.rect.left = (f9 - (this.textWidth / 2.0f)) - AndroidUtilities.dp(17.0f);
                 RectF rectF = this.rect;
                 rectF.top = dp3;
-                rectF.right = f10 + (this.textWidth / 2.0f) + AndroidUtilities.dp(17.0f);
+                rectF.right = f9 + (this.textWidth / 2.0f) + AndroidUtilities.dp(17.0f);
                 this.rect.bottom = dp3 + this.textHeight + this.titleHeight + AndroidUtilities.dp(28.0f);
                 this.backgroundPath.reset();
                 this.backgroundPath.addRoundRect(this.rect, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Path.Direction.CW);
@@ -1624,15 +1632,15 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 }
             } else if (isButtonLayout(messageObject2)) {
                 float width5 = (getWidth() - this.giftRectSize) / 2.0f;
-                float f14 = this.textY + this.textHeight;
+                float f13 = this.textY + this.textHeight;
                 if (isNewStyleButtonLayout()) {
-                    float dp6 = f14 + AndroidUtilities.dp(4.0f);
+                    float dp6 = f13 + AndroidUtilities.dp(4.0f);
                     AndroidUtilities.rectTmp.set(width5, dp6, this.giftRectSize + width5, this.backgroundRectHeight + dp6);
                 } else {
-                    float dp7 = f14 + AndroidUtilities.dp(12.0f);
+                    float dp7 = f13 + AndroidUtilities.dp(12.0f);
                     RectF rectF3 = AndroidUtilities.rectTmp;
-                    float f15 = this.giftRectSize;
-                    rectF3.set(width5, dp7, width5 + f15, f15 + dp7 + this.giftPremiumAdditionalHeight);
+                    float f14 = this.giftRectSize;
+                    rectF3.set(width5, dp7, width5 + f14, f14 + dp7 + this.giftPremiumAdditionalHeight);
                 }
                 if (messageObject2 != null && messageObject2.type == 18 && !this.giftPremiumTextCollapsed && (textLayout = this.giftPremiumText) != null && this.giftPremiumTextCollapsedHeight > 0) {
                     AndroidUtilities.rectTmp.bottom -= (textLayout.layout.getHeight() - this.giftPremiumTextCollapsedHeight) * (1.0f - this.giftPremiumTextExpandedAnimated.get());
@@ -1641,6 +1649,27 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     this.backgroundRect = new RectF();
                 }
                 this.backgroundRect.set(AndroidUtilities.rectTmp);
+                if (messageObject2 != null && !messageObject2.isOut() && messageObject2.type == 33) {
+                    TLRPC.MessageAction messageAction = messageObject2.messageOwner.action;
+                    if (messageAction instanceof TLRPC.TL_messageActionStarGiftPurchaseOffer) {
+                        TLRPC.TL_messageActionStarGiftPurchaseOffer tL_messageActionStarGiftPurchaseOffer = (TLRPC.TL_messageActionStarGiftPurchaseOffer) messageAction;
+                        if (!tL_messageActionStarGiftPurchaseOffer.accepted && !tL_messageActionStarGiftPurchaseOffer.declined) {
+                            Arrays.fill(this.radii, AndroidUtilities.dp(16.0f));
+                            float[] fArr = this.radii;
+                            float dp8 = AndroidUtilities.dp(6.0f);
+                            fArr[7] = dp8;
+                            fArr[6] = dp8;
+                            fArr[5] = dp8;
+                            fArr[4] = dp8;
+                            this.backgroundPath2.rewind();
+                            this.backgroundPath2.addRoundRect(this.backgroundRect, this.radii, Path.Direction.CW);
+                            canvas2.drawPath(this.backgroundPath2, paint4);
+                            if (hasGradientService()) {
+                                canvas2.drawPath(this.backgroundPath2, paint3);
+                            }
+                        }
+                    }
+                }
                 canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint4);
                 if (hasGradientService()) {
                     canvas2.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint3);
@@ -1650,6 +1679,182 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (i >= 0) {
             paint4.setAlpha(i);
             paint3.setAlpha(i2);
+        }
+    }
+
+    private void drawBotButtons(Canvas canvas, ArrayList arrayList) {
+        if (arrayList == null || arrayList.isEmpty()) {
+            return;
+        }
+        Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
+        float f = 4.0f;
+        if (resourcesProvider != null) {
+            resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
+        } else {
+            Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));
+        }
+        float width = (getWidth() - this.giftRectSize) / 2.0f;
+        float dp = this.textY + this.textHeight + AndroidUtilities.dp(4.0f) + this.backgroundRectHeight + AndroidUtilities.dp(4.0f);
+        float dp2 = (this.giftRectSize - AndroidUtilities.dp(4.0f)) / 2.0f;
+        int i = 0;
+        while (i < arrayList.size()) {
+            BotButton botButton = (BotButton) arrayList.get(i);
+            float pressScale = botButton.getPressScale();
+            float dp3 = ((AndroidUtilities.dp(f) + dp2) * i) + width;
+            float f2 = dp3 + dp2;
+            this.rect.set(dp3, dp, f2, botButton.height + dp);
+            canvas.save();
+            if (pressScale != 1.0f) {
+                canvas.scale(pressScale, pressScale, this.rect.centerX(), this.rect.centerY());
+            }
+            Arrays.fill(this.botButtonRadii, AndroidUtilities.dp(Math.min(6.75f, SharedConfig.bubbleRadius)));
+            if (botButton.hasPositionFlag(9)) {
+                float[] fArr = this.botButtonRadii;
+                float dp4 = AndroidUtilities.dp(SharedConfig.bubbleRadius);
+                fArr[7] = dp4;
+                fArr[6] = dp4;
+            }
+            if (botButton.hasPositionFlag(10)) {
+                float[] fArr2 = this.botButtonRadii;
+                float dp5 = AndroidUtilities.dp(SharedConfig.bubbleRadius);
+                fArr2[5] = dp5;
+                fArr2[4] = dp5;
+            }
+            this.botButtonPath.rewind();
+            this.botButtonPath.addRoundRect(this.rect, this.botButtonRadii, Path.Direction.CW);
+            canvas.drawPath(this.botButtonPath, getThemedPaint("paintChatActionBackground"));
+            if (hasGradientService()) {
+                canvas.drawPath(this.botButtonPath, Theme.chat_actionBackgroundGradientDarkenPaint);
+            }
+            canvas.save();
+            canvas.clipPath(this.botButtonPath);
+            Drawable drawable = botButton.selectorDrawable;
+            if (drawable != null) {
+                int i2 = (int) dp;
+                drawable.setBounds((int) dp3, i2, (int) f2, botButton.height + i2);
+                botButton.selectorDrawable.setAlpha(255);
+                botButton.selectorDrawable.draw(canvas);
+            }
+            canvas.restore();
+            canvas.save();
+            float dp6 = botButton.iconDrawable != null ? AndroidUtilities.dp(26.0f) : 0;
+            float width2 = dp3 + (((dp2 - (botButton.title.getWidth() + (botButton.iconDrawable != null ? AndroidUtilities.dp(f) : 0))) - dp6) / 2.0f);
+            Drawable drawable2 = botButton.iconDrawable;
+            if (drawable2 != null) {
+                int i3 = (int) width2;
+                drawable2.setBounds(i3, (int) (((botButton.height - AndroidUtilities.dp(24.0f)) / 2.0f) + dp), i3 + AndroidUtilities.dp(24.0f), ((int) (((botButton.height - AndroidUtilities.dp(24.0f)) / 2.0f) + dp)) + AndroidUtilities.dp(24.0f));
+                botButton.iconDrawable.setAlpha(botButton.isLocked ? 128 : 255);
+                botButton.iconDrawable.draw(canvas);
+                width2 += dp6;
+            }
+            botButton.title.ellipsize(Math.max(1, (((int) dp2) - AndroidUtilities.dp(15.0f)) - r5));
+            botButton.title.draw(canvas, width2, (AndroidUtilities.dp(40.0f) / 2.0f) + dp, botButton.isLocked ? 0.5f : 1.0f);
+            canvas.restore();
+            canvas.restore();
+            i++;
+            f = 4.0f;
+        }
+    }
+
+    private boolean checkBotButtonMotionEvent(MotionEvent motionEvent) {
+        int i;
+        BotInlineKeyboard.ButtonCustom buttonCustom;
+        if (this.botButtons.isEmpty()) {
+            return false;
+        }
+        int x = (int) motionEvent.getX();
+        int y = (int) motionEvent.getY();
+        float width = (getWidth() - this.giftRectSize) / 2.0f;
+        float dp = this.textY + this.textHeight + AndroidUtilities.dp(4.0f) + this.backgroundRectHeight + AndroidUtilities.dp(4.0f);
+        float dp2 = (this.giftRectSize - AndroidUtilities.dp(4.0f)) / 2.0f;
+        if (motionEvent.getAction() == 0) {
+            this.pressedBotButton = -1;
+            for (int i2 = 0; i2 < this.botButtons.size(); i2++) {
+                BotButton botButton = (BotButton) this.botButtons.get(i2);
+                float dp3 = ((AndroidUtilities.dp(4.0f) + dp2) * i2) + width;
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(dp3, dp, dp3 + dp2, botButton.height + dp);
+                float f = x;
+                float f2 = y;
+                if (rectF.contains(f, f2)) {
+                    this.pressedBotButton = i2;
+                    invalidateOutbounds();
+                    if (botButton.selectorDrawable == null) {
+                        Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(getThemedColor(Theme.key_chat_serviceBackgroundSelector), 6, 6);
+                        botButton.selectorDrawable = createRadSelectorDrawable;
+                        createRadSelectorDrawable.setCallback(this);
+                    }
+                    botButton.selectorDrawable.setHotspot(f, f2);
+                    botButton.selectorDrawable.setState(this.pressedState);
+                    botButton.setPressed(!botButton.isLocked);
+                    return true;
+                }
+            }
+            return false;
+        }
+        if (motionEvent.getAction() == 1) {
+            if (this.pressedBotButton == -1) {
+                return false;
+            }
+            playSoundEffect(0);
+            BotButton botButton2 = (BotButton) this.botButtons.get(this.pressedBotButton);
+            Drawable drawable = botButton2.selectorDrawable;
+            if (drawable != null) {
+                drawable.setState(StateSet.NOTHING);
+            }
+            botButton2.setPressed(false);
+            if (this.delegate != null && !botButton2.isLocked && (buttonCustom = botButton2.buttonCustom) != null) {
+                didPressCustomBotButton(buttonCustom);
+            }
+            this.pressedBotButton = -1;
+            invalidateOutbounds();
+            return false;
+        }
+        if (motionEvent.getAction() != 3 || (i = this.pressedBotButton) == -1) {
+            return false;
+        }
+        BotButton botButton3 = (BotButton) this.botButtons.get(i);
+        Drawable drawable2 = botButton3.selectorDrawable;
+        if (drawable2 != null) {
+            drawable2.setState(StateSet.NOTHING);
+        }
+        botButton3.setPressed(false);
+        this.pressedBotButton = -1;
+        invalidateOutbounds();
+        return false;
+    }
+
+    private void didPressCustomBotButton(BotInlineKeyboard.ButtonCustom buttonCustom) {
+        MessageObject messageObject;
+        TLRPC.Message message;
+        if (getMessageObject() == null) {
+            return;
+        }
+        int i = buttonCustom.id;
+        if (i == 5) {
+            TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+            tL_resolveStarGiftOffer.offer_msg_id = getMessageObject().getId();
+            tL_resolveStarGiftOffer.decline = true;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    ChatActionCell.this.lambda$didPressCustomBotButton$6((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                }
+            });
+            return;
+        }
+        if (i != 6 || (messageObject = this.currentMessageObject) == null || (message = messageObject.messageOwner) == null) {
+            return;
+        }
+        TLRPC.MessageAction messageAction = message.action;
+        if (messageAction instanceof TLRPC.TL_messageActionStarGiftPurchaseOffer) {
+            GiftOfferSheet.openOfferAcceptAlert(LaunchActivity.getLastFragment(), getContext(), this.themeDelegate, this.currentAccount, this.currentMessageObject.getDialogId(), this.currentMessageObject.getId(), (TLRPC.TL_messageActionStarGiftPurchaseOffer) messageAction);
+        }
+    }
+
+    public void lambda$didPressCustomBotButton$6(TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+        if (updates != null) {
+            MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
         }
     }
 
@@ -1884,6 +2089,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             }
             this.topicSeparator.draw(canvas, getWidth(), this.sideMenuWidth, 0.0f, 1.0f, alpha, this.showTopicSeparator);
         }
+        drawBotButtons(canvas, this.botButtons);
     }
 
     private boolean isButtonLayout(MessageObject messageObject) {

@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Jaga:</string>
     <string name="abc_shareactionprovider_share_with_application">Jagamine rakendusega %s</string>
     <string name="abc_toolbar_collapse_description">Ahendamine</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Parool</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Pääsuvõti</string>
     <string name="call_notification_answer_action">Vasta</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Keeldu</string>

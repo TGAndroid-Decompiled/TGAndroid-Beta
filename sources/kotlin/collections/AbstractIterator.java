@@ -5,24 +5,7 @@ import java.util.NoSuchElementException;
 
 public abstract class AbstractIterator implements Iterator {
     private Object nextValue;
-    private State state = State.NotReady;
-
-    public class WhenMappings {
-        public static final int[] $EnumSwitchMapping$0;
-
-        static {
-            int[] iArr = new int[State.values().length];
-            try {
-                iArr[State.Done.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                iArr[State.Ready.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            $EnumSwitchMapping$0 = iArr;
-        }
-    }
+    private int state;
 
     protected abstract void computeNext();
 
@@ -33,41 +16,45 @@ public abstract class AbstractIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        State state = this.state;
-        if (state == State.Failed) {
-            throw new IllegalArgumentException("Failed requirement.");
-        }
-        int i = WhenMappings.$EnumSwitchMapping$0[state.ordinal()];
-        if (i == 1) {
-            return false;
-        }
-        if (i != 2) {
+        int i = this.state;
+        if (i == 0) {
             return tryToComputeNext();
         }
-        return true;
+        if (i == 1) {
+            return true;
+        }
+        if (i == 2) {
+            return false;
+        }
+        throw new IllegalArgumentException("hasNext called when the iterator is in the FAILED state.");
     }
 
     @Override
     public Object next() {
-        if (!hasNext()) {
+        int i = this.state;
+        if (i == 1) {
+            this.state = 0;
+            return this.nextValue;
+        }
+        if (i == 2 || !tryToComputeNext()) {
             throw new NoSuchElementException();
         }
-        this.state = State.NotReady;
+        this.state = 0;
         return this.nextValue;
     }
 
     private final boolean tryToComputeNext() {
-        this.state = State.Failed;
+        this.state = 3;
         computeNext();
-        return this.state == State.Ready;
+        return this.state == 1;
     }
 
     public final void setNext(Object obj) {
         this.nextValue = obj;
-        this.state = State.Ready;
+        this.state = 1;
     }
 
     public final void done() {
-        this.state = State.Done;
+        this.state = 2;
     }
 }

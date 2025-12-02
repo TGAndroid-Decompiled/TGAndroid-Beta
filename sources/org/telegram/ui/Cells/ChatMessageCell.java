@@ -54,7 +54,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
-import android.view.animation.OvershootInterpolator;
 import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
@@ -74,6 +73,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotForumHelper;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.ChatMessageSharedResources;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
@@ -106,7 +106,6 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -1621,114 +1620,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public class BotButton {
-        private int angle;
-        private TLRPC.KeyboardButton button;
-        private BotInlineKeyboard.ButtonCustom buttonCustom;
-        private int height;
-        private Drawable iconDrawable;
-        private boolean isInviteButton;
-        private boolean isLocked;
-        private boolean isSeparator;
-        private long lastUpdateTime;
-        private LoadingDrawable loadingDrawable;
-        private int positionFlags;
-        private ValueAnimator pressAnimator;
-        private float pressT;
-        private boolean pressed;
-        private float progressAlpha;
-        private Drawable selectorDrawable;
-        private Text title;
-        private float width;
-        private float x;
-        private int y;
-
-        private BotButton() {
-        }
-
-        BotButton(ChatMessageCell chatMessageCell, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        static int access$4676(BotButton botButton, int i) {
-            int i2 = i | botButton.positionFlags;
-            botButton.positionFlags = i2;
-            return i2;
-        }
-
-        public void setPressed(boolean z) {
-            ValueAnimator valueAnimator;
-            if (this.pressed != z) {
-                this.pressed = z;
-                ChatMessageCell.this.invalidateOutbounds();
-                if (z && (valueAnimator = this.pressAnimator) != null) {
-                    valueAnimator.removeAllListeners();
-                    this.pressAnimator.cancel();
-                }
-                if (z) {
-                    return;
-                }
-                float f = this.pressT;
-                if (f != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, 0.0f);
-                    this.pressAnimator = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            ChatMessageCell.BotButton.this.lambda$setPressed$0(valueAnimator2);
-                        }
-                    });
-                    this.pressAnimator.addListener(new AnimatorListenerAdapter() {
-                        AnonymousClass1() {
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            super.onAnimationEnd(animator);
-                            BotButton.this.pressAnimator = null;
-                        }
-                    });
-                    this.pressAnimator.setInterpolator(new OvershootInterpolator(2.0f));
-                    this.pressAnimator.setDuration(350L);
-                    this.pressAnimator.start();
-                }
-            }
-        }
-
-        public void lambda$setPressed$0(ValueAnimator valueAnimator) {
-            this.pressT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            ChatMessageCell.this.invalidateOutbounds();
-        }
-
-        public class AnonymousClass1 extends AnimatorListenerAdapter {
-            AnonymousClass1() {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                BotButton.this.pressAnimator = null;
-            }
-        }
-
-        public boolean hasPositionFlag(int i) {
-            return (this.positionFlags & i) == i;
-        }
-
-        public float getPressScale() {
-            if (this.pressed) {
-                float f = this.pressT;
-                if (f != 1.0f) {
-                    float min = f + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f);
-                    this.pressT = min;
-                    this.pressT = Utilities.clamp(min, 1.0f, 0.0f);
-                    ChatMessageCell.this.invalidateOutbounds();
-                }
-            }
-            return ((1.0f - this.pressT) * 0.04f) + 0.96f;
-        }
-    }
-
     public class PollButton {
         public int animateHeight;
         private StaticLayout animateTitle;
@@ -1762,13 +1653,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         public PollButton() {
         }
 
-        static int access$3112(PollButton pollButton, int i) {
+        static int access$2112(PollButton pollButton, int i) {
             int i2 = pollButton.percent + i;
             pollButton.percent = i2;
             return i2;
         }
 
-        static float access$3924(PollButton pollButton, float f) {
+        static float access$2924(PollButton pollButton, float f) {
             float f2 = pollButton.decimal - f;
             pollButton.decimal = f2;
             return f2;
@@ -1814,7 +1705,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this();
         }
 
-        static float access$6024(InstantViewButton instantViewButton, float f) {
+        static float access$4124(InstantViewButton instantViewButton, float f) {
             float f2 = instantViewButton.textX - f;
             instantViewButton.textX = f2;
             return f2;
@@ -1969,7 +1860,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.pressedEffect = false;
         this.overridenDuration = -1L;
         this.hadLongPress = false;
-        this.invalidateOutboundsRunnable = new ChatMessageCell$$ExternalSyntheticLambda9(this);
+        this.invalidateOutboundsRunnable = new ChatMessageCell$$ExternalSyntheticLambda8(this);
         this.showTopicSeparator = true;
         this.radialProgressAlpha = 1.0f;
         this.ANIMATION_OFFSET_X = new Property(Float.class, "animationOffsetX") {
@@ -3610,23 +3501,26 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 int dp2 = (botButton.y + this.layoutHeight) - AndroidUtilities.dp(2.0f);
                 float f = eventX;
                 float f2 = widthForButtons;
-                float f3 = dp;
-                if (f >= (botButton.x * f2) + f3 && f <= (botButton.x * f2) + f3 + (botButton.width * f2) && eventY >= dp2 && eventY <= botButton.height + dp2) {
+                float f3 = (botButton.x * f2) + dp;
+                if (f >= f3 && f <= f3 + (botButton.width * f2) && eventY >= dp2 && eventY <= botButton.height + dp2) {
                     this.pressedBotButton = i2;
                     invalidateOutbounds();
                     if (botButton.selectorDrawable == null) {
-                        botButton.selectorDrawable = Theme.createRadSelectorDrawable(getThemedColor(Theme.key_chat_serviceBackgroundSelector), 6, 6);
-                        botButton.selectorDrawable.setCallback(this);
-                        botButton.selectorDrawable.setBounds(((int) (botButton.x * f2)) + dp, dp2, ((int) (botButton.x * f2)) + dp + ((int) (botButton.width * f2)), botButton.height + dp2);
+                        Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(getThemedColor(Theme.key_chat_serviceBackgroundSelector), 6, 6);
+                        botButton.selectorDrawable = createRadSelectorDrawable;
+                        createRadSelectorDrawable.setCallback(this);
+                        Drawable drawable = botButton.selectorDrawable;
+                        int i3 = ((int) (botButton.x * f2)) + dp;
+                        drawable.setBounds(i3, dp2, ((int) (botButton.width * f2)) + i3, botButton.height + dp2);
                     }
                     botButton.selectorDrawable.setHotspot(f, eventY);
                     botButton.selectorDrawable.setState(this.pressedState);
                     botButton.setPressed(!botButton.isLocked);
-                    final int i3 = this.pressedBotButton;
+                    final int i4 = this.pressedBotButton;
                     postDelayed(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatMessageCell.this.lambda$checkBotButtonMotionEvent$4(i3);
+                            ChatMessageCell.this.lambda$checkBotButtonMotionEvent$4(i4);
                         }
                     }, ViewConfiguration.getLongPressTimeout() - 1);
                     return true;
@@ -3640,17 +3534,25 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
             playSoundEffect(0);
             BotButton botButton2 = (BotButton) this.botButtons.get(this.pressedBotButton);
-            if (botButton2.selectorDrawable != null) {
-                botButton2.selectorDrawable.setState(StateSet.NOTHING);
+            Drawable drawable2 = botButton2.selectorDrawable;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
             }
             botButton2.setPressed(false);
             if (this.currentMessageObject.scheduled) {
                 Toast.makeText(getContext(), LocaleController.getString(R.string.MessageScheduledBotAction), 1).show();
-            } else if (this.delegate != null && !botButton2.isLocked) {
-                if (botButton2.buttonCustom != null) {
-                    this.delegate.didPressCustomBotButton(this, botButton2.buttonCustom);
-                } else if (botButton2.button != null) {
-                    this.delegate.didPressBotButton(this, botButton2.button);
+            } else {
+                ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+                if (chatMessageCellDelegate != null && !botButton2.isLocked) {
+                    BotInlineKeyboard.ButtonCustom buttonCustom = botButton2.buttonCustom;
+                    if (buttonCustom != null) {
+                        chatMessageCellDelegate.didPressCustomBotButton(this, buttonCustom);
+                    } else {
+                        TLRPC.KeyboardButton keyboardButton = botButton2.button;
+                        if (keyboardButton != null) {
+                            chatMessageCellDelegate.didPressBotButton(this, keyboardButton);
+                        }
+                    }
                 }
             }
             this.pressedBotButton = -1;
@@ -3661,8 +3563,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return false;
         }
         BotButton botButton3 = (BotButton) this.botButtons.get(i);
-        if (botButton3.selectorDrawable != null) {
-            botButton3.selectorDrawable.setState(StateSet.NOTHING);
+        Drawable drawable3 = botButton3.selectorDrawable;
+        if (drawable3 != null) {
+            drawable3.setState(StateSet.NOTHING);
         }
         botButton3.setPressed(false);
         this.pressedBotButton = -1;
@@ -3675,24 +3578,23 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (i == i2) {
             BotButton botButton = (BotButton) this.botButtons.get(i2);
             if (botButton != null) {
-                if (botButton.selectorDrawable != null) {
-                    botButton.selectorDrawable.setState(StateSet.NOTHING);
+                Drawable drawable = botButton.selectorDrawable;
+                if (drawable != null) {
+                    drawable.setState(StateSet.NOTHING);
                 }
                 botButton.setPressed(false);
                 if (!this.currentMessageObject.scheduled) {
-                    if (botButton.buttonCustom == null) {
-                        if (botButton.button != null) {
-                            cancelCheckLongPress();
-                            ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
-                            if (chatMessageCellDelegate != null) {
-                                chatMessageCellDelegate.didLongPressBotButton(this, botButton.button);
-                            }
+                    if (botButton.buttonCustom != null) {
+                        cancelCheckLongPress();
+                        ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+                        if (chatMessageCellDelegate != null) {
+                            chatMessageCellDelegate.didLongPressCustomBotButton(this, botButton.buttonCustom);
                         }
-                    } else {
+                    } else if (botButton.button != null) {
                         cancelCheckLongPress();
                         ChatMessageCellDelegate chatMessageCellDelegate2 = this.delegate;
                         if (chatMessageCellDelegate2 != null) {
-                            chatMessageCellDelegate2.didLongPressCustomBotButton(this, botButton.buttonCustom);
+                            chatMessageCellDelegate2.didLongPressBotButton(this, botButton.button);
                         }
                     }
                 }
@@ -4072,13 +3974,15 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 } catch (Exception unused) {
                 }
             }
+            long dialogId = this.currentMessageObject.getDialogId();
+            long sendAsPeerId = ChatObject.getSendAsPeerId(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(dialogId)), MessagesController.getInstance(this.currentAccount).getChatFull(dialogId), true);
             TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) MessageObject.getMedia(this.currentMessageObject);
-            MessageObject.toggleTodo(this.currentAccount, this.currentMessageObject.getDialogId(), tL_messageMediaToDo, pollButton.task.id, !pollButton.chosen, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
+            MessageObject.toggleTodo(this.currentAccount, sendAsPeerId, tL_messageMediaToDo, pollButton.task.id, !pollButton.chosen, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
             if (!pollButton.chosen) {
-                TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-                pollButton.avatarDrawable.setInfo(currentUser);
-                pollButton.avatarImageReceiver.setForUserOrChat(currentUser, pollButton.avatarDrawable);
-                pollButton.author = new Text(DialogObject.getName(currentUser), 12.0f);
+                TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(sendAsPeerId);
+                pollButton.avatarDrawable.setInfo(userOrChat);
+                pollButton.avatarImageReceiver.setForUserOrChat(userOrChat, pollButton.avatarDrawable);
+                pollButton.author = new Text(DialogObject.getName(userOrChat), 12.0f);
             }
             this.pollCheckBox[i].setChecked(!pollButton.chosen, true);
             if (this.animatedInfoLayout != null) {
@@ -5350,7 +5254,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.invalidatesParent = z;
     }
 
-    private boolean invalidateParentForce() {
+    public boolean invalidateParentForce() {
         MessageObject messageObject;
         return (this.links.isEmpty() && this.reactionsLayoutInBubble.isEmpty && ((messageObject = this.currentMessageObject) == null || !messageObject.preview)) ? false : true;
     }
@@ -6321,7 +6225,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private void createInstantViewButton() {
         int measureText;
         CharSequence string;
-        String string2;
+        boolean z;
         if (this.drawInstantView) {
             createSelectorDrawable(0);
         }
@@ -6390,14 +6294,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 } else if (i == 26) {
                     TL_stars.StarGift starGift = this.instantViewTypeIsGiftAuction;
                     if (starGift != null) {
-                        if (starGift.sold_out) {
-                            string2 = LocaleController.getString(R.string.OpenGiftAuctionResults);
+                        if (starGift.auction_start_date > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
+                            charSequence = LocaleController.getString(R.string.OpenGiftAuctionView);
+                            z = false;
                         } else {
-                            string2 = LocaleController.getString(R.string.OpenGiftAuctionActive);
+                            if (this.instantViewTypeIsGiftAuction.sold_out) {
+                                charSequence = LocaleController.getString(R.string.OpenGiftAuctionResults);
+                            } else {
+                                charSequence = LocaleController.getString(R.string.OpenGiftAuctionActive);
+                            }
+                            z = true;
                         }
-                        SpannableString spannableString = new SpannableString("*");
-                        spannableString.setSpan(new ColoredImageSpan(R.drawable.filled_gift_sell_24), 0, spannableString.length(), 33);
-                        string = TextUtils.concat(spannableString, " ", string2);
+                        if (z) {
+                            SpannableString spannableString = new SpannableString("*");
+                            spannableString.setSpan(new ColoredImageSpan(R.drawable.filled_gift_sell_24), 0, spannableString.length(), 33);
+                            string = TextUtils.concat(spannableString, " ", charSequence);
+                        }
                     } else {
                         string = LocaleController.getString(R.string.OpenUniqueGift);
                     }
@@ -6496,7 +6408,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         instantViewButton.buttonWidth = f;
         if (instantViewButton.layout.getLineCount() > 0) {
             instantViewButton.textX = ((float) (instantViewButton.buttonWidth - Math.ceil(instantViewButton.layout.getLineWidth(0)))) / 2.0f;
-            InstantViewButton.access$6024(instantViewButton, (int) instantViewButton.layout.getLineLeft(0));
+            InstantViewButton.access$4124(instantViewButton, (int) instantViewButton.layout.getLineLeft(0));
         }
         return instantViewButton;
     }
@@ -7728,7 +7640,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void drawBotButtons(android.graphics.Canvas r23, java.util.ArrayList r24, int r25) {
+    private void drawBotButtons(android.graphics.Canvas r22, java.util.ArrayList r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawBotButtons(android.graphics.Canvas, java.util.ArrayList, int):void");
     }
 

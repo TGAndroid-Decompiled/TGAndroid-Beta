@@ -16,7 +16,7 @@ public abstract class Lambda implements FunctionBase, Serializable {
 
     public String toString() {
         String renderLambdaToString = Reflection.renderLambdaToString(this);
-        Intrinsics.checkNotNullExpressionValue(renderLambdaToString, "renderLambdaToString(this)");
+        Intrinsics.checkNotNullExpressionValue(renderLambdaToString, "renderLambdaToString(...)");
         return renderLambdaToString;
     }
 }

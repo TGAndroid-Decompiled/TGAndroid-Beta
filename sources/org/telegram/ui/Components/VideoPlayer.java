@@ -79,7 +79,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -1961,48 +1960,6 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                         arrayList2.add(new Quality(videoUri));
                     }
                 }
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                Iterator it3 = arrayList2.iterator();
-                while (it3.hasNext()) {
-                    Quality quality2 = (Quality) it3.next();
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("debug_loading_player: Quality ");
-                    sb.append(quality2.p());
-                    sb.append("p (");
-                    sb.append(quality2.width);
-                    sb.append("x");
-                    sb.append(quality2.height);
-                    sb.append(")");
-                    sb.append(quality2.original ? " (source)" : "");
-                    sb.append(":");
-                    FileLog.d(sb.toString());
-                    Iterator it4 = quality2.uris.iterator();
-                    while (it4.hasNext()) {
-                        VideoUri videoUri2 = (VideoUri) it4.next();
-                        StringBuilder sb2 = new StringBuilder();
-                        sb2.append("debug_loading_player: - video ");
-                        sb2.append(videoUri2.width);
-                        sb2.append("x");
-                        sb2.append(videoUri2.height);
-                        sb2.append(", codec=");
-                        sb2.append(videoUri2.codec);
-                        sb2.append(", bitrate=");
-                        sb2.append((int) (videoUri2.bitrate * 8.0d));
-                        sb2.append(", doc#");
-                        sb2.append(videoUri2.docId);
-                        String str = " (cached)";
-                        sb2.append(videoUri2.isCached() ? " (cached)" : "");
-                        sb2.append(", manifest#");
-                        sb2.append(videoUri2.manifestDocId);
-                        if (!videoUri2.isManifestCached()) {
-                            str = "";
-                        }
-                        sb2.append(str);
-                        FileLog.d(sb2.toString());
-                    }
-                }
-                FileLog.d("debug_loading_player: ");
             }
             return arrayList2;
         }

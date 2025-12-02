@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Dela med</string>
     <string name="abc_shareactionprovider_share_with_application">Dela med %s</string>
     <string name="abc_toolbar_collapse_description">Komprimera</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Lösenord</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Nyckel</string>
     <string name="call_notification_answer_action">Svara</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Avvisa</string>

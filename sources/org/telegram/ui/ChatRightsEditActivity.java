@@ -1467,8 +1467,9 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 this.manageDirectRow = i6;
                 this.addUsersRow = i6 + 1;
                 this.startVoiceChatRow = i6 + 2;
-                this.rowCount = i6 + 4;
                 this.addAdminsRow = i6 + 3;
+                this.rowCount = i6 + 5;
+                this.banUsersRow = i6 + 4;
             } else {
                 if (i3 == 2) {
                     this.rowCount = 4;
@@ -2320,7 +2321,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                             textCheckCell2.setIcon((ChatRightsEditActivity.this.myAdminRights.delete_messages || z2) ? 0 : R.drawable.permission_locked);
                         }
                     } else if (i == ChatRightsEditActivity.this.addAdminsRow) {
-                        textCheckCell2.setTextAndCheck(LocaleController.getString(R.string.EditAdminAddAdmins), z && ChatRightsEditActivity.this.adminRights.add_admins, ChatRightsEditActivity.this.anonymousRow != -1);
+                        textCheckCell2.setTextAndCheck(LocaleController.getString(R.string.EditAdminAddAdmins), z && ChatRightsEditActivity.this.adminRights.add_admins, (ChatRightsEditActivity.this.banUsersRow != -1 && ChatRightsEditActivity.this.isChannel) || ChatRightsEditActivity.this.anonymousRow != -1);
                         if (ChatRightsEditActivity.this.currentType == 2) {
                             textCheckCell2.setIcon((ChatRightsEditActivity.this.myAdminRights.add_admins || z2) ? 0 : R.drawable.permission_locked);
                         }

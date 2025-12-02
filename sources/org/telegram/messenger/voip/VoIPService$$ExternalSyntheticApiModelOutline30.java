@@ -1,10 +1,10 @@
 package org.telegram.messenger.voip;
 
-import android.content.ComponentName;
+import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 
 public abstract class VoIPService$$ExternalSyntheticApiModelOutline30 {
-    public static PhoneAccountHandle m(ComponentName componentName, String str) {
-        return new PhoneAccountHandle(componentName, str);
+    public static PhoneAccount.Builder m(PhoneAccountHandle phoneAccountHandle, CharSequence charSequence) {
+        return new PhoneAccount.Builder(phoneAccountHandle, charSequence);
     }
 }

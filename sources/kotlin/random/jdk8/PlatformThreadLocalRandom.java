@@ -9,7 +9,7 @@ public final class PlatformThreadLocalRandom extends AbstractPlatformRandom {
     @Override
     public Random getImpl() {
         ThreadLocalRandom current = ThreadLocalRandom.current();
-        Intrinsics.checkNotNullExpressionValue(current, "current()");
+        Intrinsics.checkNotNullExpressionValue(current, "current(...)");
         return current;
     }
 }

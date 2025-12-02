@@ -129,6 +129,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.PasskeysController;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SRPHelper;
@@ -160,6 +161,7 @@ import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkPath;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.LoginOrView;
 import org.telegram.ui.Components.OutlineTextContainerView;
@@ -1792,6 +1794,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public class PhoneView extends SlideView implements AdapterView.OnItemSelectedListener, NotificationCenter.NotificationCenterDelegate {
+        private Runnable cancelRequestingPasskey;
         private ImageView chevronRight;
         private View codeDividerView;
         private AnimatedPhoneNumberEditText codeField;
@@ -1815,7 +1818,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         private HashMap phoneFormatMap;
         private OutlineTextContainerView phoneOutlineView;
         private TextView plusTextView;
-        private TextView subtitleView;
+        private boolean requestedPasskey;
+        private boolean requestingPasskey;
+        private LinkSpanDrawable.LinksTextView subtitleView;
         private CheckBoxCell syncContactsBox;
         private CheckBoxCell testBackendCheckBox;
         private int titleClickCount;
@@ -1878,6 +1883,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.titleClickCount = 0;
             this.lastTitleClick = 0L;
             this.wasCountryHintIndex = -1;
+            this.requestedPasskey = false;
+            this.requestingPasskey = false;
             setOrientation(1);
             setGravity(17);
             TextView textView = new TextView(context);
@@ -1894,9 +1901,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     LoginActivity.PhoneView.this.lambda$new$1(context, view);
                 }
             });
-            TextView textView2 = new TextView(context);
-            this.subtitleView = textView2;
-            textView2.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? R.string.ChangePhoneHelp : R.string.StartText));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.subtitleView = linksTextView;
+            linksTextView.setText(LocaleController.getString(LoginActivity.this.activityMode == 2 ? R.string.ChangePhoneHelp : R.string.StartText));
             this.subtitleView.setTextSize(1, 14.0f);
             this.subtitleView.setGravity(17);
             this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
@@ -1952,9 +1959,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int i5 = R.string.PhoneNumber;
             outlineTextContainerView3.setText(LocaleController.getString(i5));
             addView(this.phoneOutlineView, LayoutHelper.createLinear(-1, 58, 16.0f, 8.0f, 16.0f, 8.0f));
-            TextView textView3 = new TextView(context);
-            this.plusTextView = textView3;
-            textView3.setText("+");
+            TextView textView2 = new TextView(context);
+            this.plusTextView = textView2;
+            textView2.setText("+");
             this.plusTextView.setTextSize(1, 16.0f);
             this.plusTextView.setFocusable(false);
             linearLayout2.addView(this.plusTextView, LayoutHelper.createLinear(-2, -2));
@@ -2128,9 +2135,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             });
             this.codeField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView4, int i6, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView3, int i6, KeyEvent keyEvent) {
                     boolean lambda$new$7;
-                    lambda$new$7 = LoginActivity.PhoneView.this.lambda$new$7(textView4, i6, keyEvent);
+                    lambda$new$7 = LoginActivity.PhoneView.this.lambda$new$7(textView3, i6, keyEvent);
                     return lambda$new$7;
                 }
             });
@@ -2275,9 +2282,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             });
             this.phoneField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView4, int i6, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView3, int i6, KeyEvent keyEvent) {
                     boolean lambda$new$8;
-                    lambda$new$8 = LoginActivity.PhoneView.this.lambda$new$8(textView4, i6, keyEvent);
+                    lambda$new$8 = LoginActivity.PhoneView.this.lambda$new$8(textView3, i6, keyEvent);
                     return lambda$new$8;
                 }
             });
@@ -2645,6 +2652,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         public void updateColors() {
             this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             this.subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
+            this.subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
             for (int i = 0; i < this.countryButton.getChildCount(); i++) {
                 TextView textView = (TextView) this.countryButton.getChildAt(i);
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -3029,20 +3037,125 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 if (LoginActivity.this.needRequestPermissions) {
                     this.codeField.clearFocus();
                     this.phoneField.clearFocus();
-                } else {
-                    if (this.codeField.length() != 0) {
-                        this.phoneField.requestFocus();
-                        if (!this.numberFilled) {
-                            AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
-                            animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
-                        }
-                        LoginActivity.this.showKeyboard(this.phoneField);
-                        return;
+                } else if (this.codeField.length() != 0) {
+                    this.phoneField.requestFocus();
+                    if (!this.numberFilled) {
+                        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
+                        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
                     }
+                    LoginActivity.this.showKeyboard(this.phoneField);
+                } else {
                     this.codeField.requestFocus();
                     LoginActivity.this.showKeyboard(this.codeField);
                 }
             }
+            requestPasskey(false);
+        }
+
+        @Override
+        public void onDestroyActivity() {
+            super.onDestroyActivity();
+            Runnable runnable = this.cancelRequestingPasskey;
+            if (runnable != null) {
+                runnable.run();
+                this.cancelRequestingPasskey = null;
+            }
+        }
+
+        private void requestPasskey(boolean z) {
+            if (Build.VERSION.SDK_INT < 28 || !BuildVars.SUPPORTS_PASSKEYS || this.requestingPasskey) {
+                return;
+            }
+            if (z || !this.requestedPasskey) {
+                this.requestingPasskey = true;
+                this.requestedPasskey = true;
+                this.cancelRequestingPasskey = PasskeysController.login(getContext(), ((BaseFragment) LoginActivity.this).currentAccount, z, new Utilities.Callback3() {
+                    @Override
+                    public final void run(Object obj, Object obj2, Object obj3) {
+                        LoginActivity.PhoneView.this.lambda$requestPasskey$29((Long) obj, (TLRPC.auth_Authorization) obj2, (String) obj3);
+                    }
+                });
+            }
+        }
+
+        public void lambda$requestPasskey$29(Long l, TLRPC.auth_Authorization auth_authorization, String str) {
+            this.cancelRequestingPasskey = null;
+            this.requestingPasskey = false;
+            if (str != null && ("EMPTY".equals(str) || "CANCELLED".equals(str))) {
+                LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
+                if (linksTextView != null) {
+                    linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StartTextPasskey), new Runnable() {
+                        @Override
+                        public final void run() {
+                            LoginActivity.PhoneView.this.lambda$requestPasskey$26();
+                        }
+                    }), true));
+                    return;
+                }
+                return;
+            }
+            if (l.longValue() != 0 && (LoginActivity.this.getParentActivity() instanceof LaunchActivity)) {
+                for (int i = 0; i < 4; i++) {
+                    UserConfig userConfig = UserConfig.getInstance(i);
+                    if (userConfig.isClientActivated() && userConfig.getClientUserId() == l.longValue() && ConnectionsManager.getInstance(i).isTestBackend() == LoginActivity.this.testBackend) {
+                        if (UserConfig.selectedAccount != i) {
+                            ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
+                        }
+                        LoginActivity.this.lambda$onBackPressed$340();
+                        LoginActivity.this.needHideProgress(false);
+                        return;
+                    }
+                }
+            }
+            if (str != null && str.contains("SESSION_PASSWORD_NEEDED")) {
+                ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        LoginActivity.PhoneView.this.lambda$requestPasskey$28(tLObject, tL_error);
+                    }
+                }, 10);
+            } else if (str != null) {
+                if (BuildVars.DEBUG_VERSION) {
+                    BulletinFactory.of(LoginActivity.this).showForError(str);
+                    return;
+                }
+                return;
+            }
+            if (auth_authorization instanceof TLRPC.TL_auth_authorization) {
+                LoginActivity.this.onAuthSuccess((TLRPC.TL_auth_authorization) auth_authorization);
+            }
+        }
+
+        public void lambda$requestPasskey$26() {
+            requestPasskey(true);
+        }
+
+        public void lambda$requestPasskey$28(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    LoginActivity.PhoneView.this.lambda$requestPasskey$27(tL_error, tLObject);
+                }
+            });
+        }
+
+        public void lambda$requestPasskey$27(TLRPC.TL_error tL_error, TLObject tLObject) {
+            this.nextPressed = false;
+            LoginActivity.this.showDoneButton(false, true);
+            if (tL_error != null) {
+                LoginActivity.this.needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error.text);
+                return;
+            }
+            TL_account.Password password = (TL_account.Password) tLObject;
+            if (!TwoStepVerificationActivity.canHandleCurrentPassword(password, true)) {
+                AlertsCreator.showUpdateAppAlert(LoginActivity.this.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                return;
+            }
+            Bundle bundle = new Bundle();
+            SerializedData serializedData = new SerializedData(password.getObjectSize());
+            password.serializeToStream(serializedData);
+            bundle.putString("password", Utilities.bytesToHex(serializedData.toByteArray()));
+            LoginActivity.this.setPage(6, true, bundle, false);
         }
 
         @Override
@@ -3183,18 +3296,18 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return true;
         }
 
-        static ProgressView access$10300(LoginActivitySmsView loginActivitySmsView) {
+        static ProgressView access$10500(LoginActivitySmsView loginActivitySmsView) {
             loginActivitySmsView.getClass();
             return null;
         }
 
-        static int access$8626(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8826(LoginActivitySmsView loginActivitySmsView, double d) {
             int i = (int) (loginActivitySmsView.time - d);
             loginActivitySmsView.time = i;
             return i;
         }
 
-        static int access$9626(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$9826(LoginActivitySmsView loginActivitySmsView, double d) {
             int i = (int) (loginActivitySmsView.codeTime - d);
             loginActivitySmsView.codeTime = i;
             return i;
@@ -3850,7 +3963,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double currentTimeMillis = System.currentTimeMillis();
                 double d = currentTimeMillis - LoginActivitySmsView.this.lastCodeTime;
                 LoginActivitySmsView.this.lastCodeTime = currentTimeMillis;
-                LoginActivitySmsView.access$9626(LoginActivitySmsView.this, d);
+                LoginActivitySmsView.access$9826(LoginActivitySmsView.this, d);
                 if (LoginActivitySmsView.this.codeTime <= 1000) {
                     LoginActivitySmsView.this.setProblemTextVisible(true);
                     LoginActivitySmsView.this.timeText.setVisibility(8);
@@ -3913,7 +4026,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double currentTimeMillis = System.currentTimeMillis();
                 double d = currentTimeMillis - LoginActivitySmsView.this.lastCurrentTime;
                 LoginActivitySmsView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivitySmsView.access$8626(LoginActivitySmsView.this, d);
+                LoginActivitySmsView.access$8826(LoginActivitySmsView.this, d);
                 if (LoginActivitySmsView.this.time >= 1000) {
                     int i = (LoginActivitySmsView.this.time / 1000) / 60;
                     int i2 = (LoginActivitySmsView.this.time / 1000) - (i * 60);
@@ -3926,7 +4039,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     } else {
                         LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("ResendSmsAvailableIn", R.string.ResendSmsAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
                     }
-                    LoginActivitySmsView.access$10300(LoginActivitySmsView.this);
+                    LoginActivitySmsView.access$10500(LoginActivitySmsView.this);
                     return;
                 }
                 LoginActivitySmsView.this.destroyTimer();
@@ -5490,6 +5603,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int i = Theme.key_windowBackgroundWhiteBlackText;
             textView.setTextColor(Theme.getColor(i));
             this.subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
+            this.subtitleView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn));
             this.emailField.setTextColor(Theme.getColor(i));
             this.signInWithGoogleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
             this.loginOrView.updateColors();
@@ -8926,7 +9040,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return true;
         }
 
-        static int access$18226(LoginActivityPhraseView loginActivityPhraseView, double d) {
+        static int access$18426(LoginActivityPhraseView loginActivityPhraseView, double d) {
             int i = (int) (loginActivityPhraseView.time - d);
             loginActivityPhraseView.time = i;
             return i;
@@ -9592,7 +9706,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double currentTimeMillis = System.currentTimeMillis();
                 double d = currentTimeMillis - LoginActivityPhraseView.this.lastCurrentTime;
                 LoginActivityPhraseView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivityPhraseView.access$18226(LoginActivityPhraseView.this, d);
+                LoginActivityPhraseView.access$18426(LoginActivityPhraseView.this, d);
                 if (LoginActivityPhraseView.this.time >= 1000) {
                     int i = (LoginActivityPhraseView.this.time / 1000) / 60;
                     int i2 = (LoginActivityPhraseView.this.time / 1000) - (i * 60);
@@ -9774,13 +9888,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             textView.setTypeface(AndroidUtilities.bold());
             textView.setGravity(17);
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 49, 16.0f, 152.0f, 16.0f, 0.0f));
-            this.cells[0] = new ExplainStarsSheet.FeatureCell(context, 1);
+            this.cells[0] = new ExplainStarsSheet.FeatureCell(context, 1, ((BaseFragment) LoginActivity.this).resourceProvider);
             this.cells[0].set(R.drawable.menu_high_price, LocaleController.getString(R.string.SMSFee1Title), LocaleController.getString(R.string.SMSFee1Text));
             addView(this.cells[0], LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 6));
-            this.cells[1] = new ExplainStarsSheet.FeatureCell(context, 1);
+            this.cells[1] = new ExplainStarsSheet.FeatureCell(context, 1, ((BaseFragment) LoginActivity.this).resourceProvider);
             this.cells[1].set(R.drawable.menu_feature_code, LocaleController.getString(R.string.SMSFee2Title), LocaleController.getString(R.string.SMSFee2Text));
             addView(this.cells[1], LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 6));
-            this.cells[2] = new ExplainStarsSheet.FeatureCell(context, 1);
+            this.cells[2] = new ExplainStarsSheet.FeatureCell(context, 1, ((BaseFragment) LoginActivity.this).resourceProvider);
             this.cells[2].set(R.drawable.menu_feature_hands, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SMSFee3Title), new Runnable() {
                 @Override
                 public final void run() {

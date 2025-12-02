@@ -1665,7 +1665,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         });
         NativeInstance nativeInstance = this.tgVoip[1];
         if (nativeInstance != null) {
-            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
         }
         this.mySource[1] = 0;
         this.tgVoip[1] = null;
@@ -4599,7 +4599,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 NativeInstance nativeInstance = this.tgVoip[0];
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 Objects.requireNonNull(nativeInstance);
-                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance));
+                dispatchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance));
                 Iterator<Map.Entry<String, Integer>> it = this.currentStreamRequestTimestamp.entrySet().iterator();
                 while (it.hasNext()) {
                     AccountInstance.getInstance(this.currentAccount).getConnectionsManager().cancelRequest(it.next().getValue().intValue(), true);
@@ -4618,7 +4618,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         destroyConverting();
         NativeInstance nativeInstance2 = this.tgVoip[1];
         if (nativeInstance2 != null) {
-            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda106(nativeInstance2));
+            Utilities.globalQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda105(nativeInstance2));
             this.tgVoip[1] = null;
         }
         int i = 0;
@@ -5769,7 +5769,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 AndroidUtilities.runOnUIThread(this.afterSoundRunnable, 1000L);
             }
             if (USE_CONNECTION_SERVICE && (callConnection = this.systemCallConnection) != null) {
-                callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(1));
+                callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(1));
                 this.systemCallConnection.destroy();
                 this.systemCallConnection = null;
             }
@@ -6041,19 +6041,19 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (callConnection != null) {
             int i = this.callDiscardReason;
             if (i == 1) {
-                VoIPService$$ExternalSyntheticApiModelOutline29.m();
-                callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(this.isOutgoing ? 2 : 6));
+                VoIPService$$ExternalSyntheticApiModelOutline28.m();
+                callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(this.isOutgoing ? 2 : 6));
             } else if (i != 2) {
                 if (i == 3) {
-                    VoIPService$$ExternalSyntheticApiModelOutline29.m();
-                    callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(this.isOutgoing ? 4 : 5));
+                    VoIPService$$ExternalSyntheticApiModelOutline28.m();
+                    callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(this.isOutgoing ? 4 : 5));
                 } else if (i == 4) {
-                    callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(7));
+                    callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(7));
                 } else {
-                    callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(3));
+                    callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(3));
                 }
             } else {
-                callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(1));
+                callConnection.setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(1));
             }
             this.systemCallConnection.destroy();
             this.systemCallConnection = null;
@@ -6126,10 +6126,10 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         PhoneAccount build;
         TelecomManager telecomManager = (TelecomManager) getSystemService("telecom");
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+        VoIPService$$ExternalSyntheticApiModelOutline31.m();
+        PhoneAccountHandle m = VoIPService$$ExternalSyntheticApiModelOutline29.m(new ComponentName(this, (Class<?>) TelegramConnectionService.class), "" + currentUser.id);
         VoIPService$$ExternalSyntheticApiModelOutline32.m();
-        PhoneAccountHandle m = VoIPService$$ExternalSyntheticApiModelOutline30.m(new ComponentName(this, (Class<?>) TelegramConnectionService.class), "" + currentUser.id);
-        VoIPService$$ExternalSyntheticApiModelOutline33.m();
-        capabilities = VoIPService$$ExternalSyntheticApiModelOutline31.m(m, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(2048);
+        capabilities = VoIPService$$ExternalSyntheticApiModelOutline30.m(m, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(2048);
         createWithResource = Icon.createWithResource(this, R.drawable.ic_launcher_dr);
         icon = capabilities.setIcon(createWithResource);
         highlightColor = icon.setHighlightColor(-13851168);
@@ -6161,7 +6161,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("ConnectionService onDisconnect");
             }
-            setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline28.m(2));
+            setDisconnected(VoIPService$$ExternalSyntheticApiModelOutline27.m(2));
             destroy();
             VoIPService.this.systemCallConnection = null;
             VoIPService.this.hangUp();

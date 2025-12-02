@@ -8,6 +8,11 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
+    public static final String getIndentFunction$lambda$8$StringsKt__IndentKt(String line) {
+        Intrinsics.checkNotNullParameter(line, "line");
+        return line;
+    }
+
     public static String trimIndent(String str) {
         Intrinsics.checkNotNullParameter(str, "<this>");
         return replaceIndent(str, "");
@@ -20,7 +25,7 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
         List lines = StringsKt__StringsKt.lines(str);
         ArrayList arrayList = new ArrayList();
         for (Object obj : lines) {
-            if (!StringsKt__StringsJVMKt.isBlank((String) obj)) {
+            if (!StringsKt.isBlank((String) obj)) {
                 arrayList.add(obj);
             }
         }
@@ -42,7 +47,7 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
                 CollectionsKt.throwIndexOverflow();
             }
             String str3 = (String) obj2;
-            if ((i == 0 || i == lastIndex) && StringsKt__StringsJVMKt.isBlank(str3)) {
+            if ((i == 0 || i == lastIndex) && StringsKt.isBlank(str3)) {
                 str3 = null;
             } else {
                 String drop = StringsKt___StringsKt.drop(str3, intValue);
@@ -55,29 +60,30 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
             }
             i = i2;
         }
-        String sb = ((StringBuilder) CollectionsKt.joinTo$default(arrayList3, new StringBuilder(length), "\n", null, null, 0, null, null, 124, null)).toString();
-        Intrinsics.checkNotNullExpressionValue(sb, "mapIndexedNotNull { inde…\"\\n\")\n        .toString()");
-        return sb;
+        return ((StringBuilder) CollectionsKt.joinTo$default(arrayList3, new StringBuilder(length), "\n", null, null, 0, null, null, 124, null)).toString();
     }
 
     private static final Function1 getIndentFunction$StringsKt__IndentKt(final String str) {
         return str.length() == 0 ? new Function1() {
             @Override
-            public final String invoke(String line) {
-                Intrinsics.checkNotNullParameter(line, "line");
-                return line;
+            public final Object invoke(Object obj) {
+                String indentFunction$lambda$8$StringsKt__IndentKt;
+                indentFunction$lambda$8$StringsKt__IndentKt = StringsKt__IndentKt.getIndentFunction$lambda$8$StringsKt__IndentKt((String) obj);
+                return indentFunction$lambda$8$StringsKt__IndentKt;
             }
         } : new Function1() {
-            {
-                super(1);
-            }
-
             @Override
-            public final String invoke(String line) {
-                Intrinsics.checkNotNullParameter(line, "line");
-                return str + line;
+            public final Object invoke(Object obj) {
+                String indentFunction$lambda$9$StringsKt__IndentKt;
+                indentFunction$lambda$9$StringsKt__IndentKt = StringsKt__IndentKt.getIndentFunction$lambda$9$StringsKt__IndentKt(str, (String) obj);
+                return indentFunction$lambda$9$StringsKt__IndentKt;
             }
         };
+    }
+
+    public static final String getIndentFunction$lambda$9$StringsKt__IndentKt(String str, String line) {
+        Intrinsics.checkNotNullParameter(line, "line");
+        return str + line;
     }
 
     private static final int indentWidth$StringsKt__IndentKt(String str) {

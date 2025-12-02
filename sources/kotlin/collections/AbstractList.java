@@ -180,6 +180,14 @@ public abstract class AbstractList extends AbstractCollection implements List {
             this();
         }
 
+        public final int newCapacity$kotlin_stdlib(int i, int i2) {
+            int i3 = i + (i >> 1);
+            if (i3 - i2 < 0) {
+                i3 = i2;
+            }
+            return i3 - 2147483639 > 0 ? i2 > 2147483639 ? Integer.MAX_VALUE : 2147483639 : i3;
+        }
+
         private Companion() {
         }
 

@@ -30,7 +30,7 @@ public abstract class CollectionsKt__CollectionsKt extends CollectionsKt__Collec
         return list.size() - 1;
     }
 
-    public static List optimizeReadOnlyList(List list) {
+    public static final List optimizeReadOnlyList(List list) {
         Intrinsics.checkNotNullParameter(list, "<this>");
         int size = list.size();
         if (size != 0) {

@@ -156,7 +156,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
             spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction.giftDocumentId, Theme.chat_actionTextPaint.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
             spannableStringBuilder.append(' ');
-            spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
+            spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound2, auction.gift.title, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.gift_num), Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
             spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) StarsIntroActivity.replaceStarsWithPlain("⭐️" + LocaleController.formatNumber(tL_StarGiftAuctionAcquiredGift.bid_amount, ','), 0.75f));
@@ -170,7 +170,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
                 }
             });
             tableView.addRowDateTime(LocaleController.getString(R.string.Gift2AuctionsAcquiredDate), tL_StarGiftAuctionAcquiredGift.date);
-            tableView.addRow(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null);
+            tableView.addRow(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, (Runnable) null);
             addView(tableView, LayoutHelper.createFrame(-1, -2.0f));
         }
 

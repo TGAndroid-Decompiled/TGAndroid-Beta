@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Deila með</string>
     <string name="abc_shareactionprovider_share_with_application">Deila með %s</string>
     <string name="abc_toolbar_collapse_description">Minnka</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Aðgangsorð</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Aðgangslykill</string>
     <string name="call_notification_answer_action">Svara</string>
     <string name="call_notification_answer_video_action">Myndsímtal</string>
     <string name="call_notification_decline_action">Hafna</string>

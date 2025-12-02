@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">వీరితో షేర్ చేస్తుంది</string>
     <string name="abc_shareactionprovider_share_with_application">%sతో షేర్ చేస్తుంది</string>
     <string name="abc_toolbar_collapse_description">కుదిస్తుంది</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">పాస్‌వర్డ్</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">పాస్-కీ</string>
     <string name="call_notification_answer_action">పికప్ చేయండి</string>
     <string name="call_notification_answer_video_action">వీడియో కాల్</string>
     <string name="call_notification_decline_action">కట్ చేయండి</string>

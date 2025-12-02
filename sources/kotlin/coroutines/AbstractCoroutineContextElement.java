@@ -7,11 +7,6 @@ import kotlin.jvm.internal.Intrinsics;
 public abstract class AbstractCoroutineContextElement implements CoroutineContext.Element {
     private final CoroutineContext.Key key;
 
-    public AbstractCoroutineContextElement(CoroutineContext.Key key) {
-        Intrinsics.checkNotNullParameter(key, "key");
-        this.key = key;
-    }
-
     @Override
     public Object fold(Object obj, Function2 function2) {
         return CoroutineContext.Element.DefaultImpls.fold(this, obj, function2);
@@ -30,6 +25,11 @@ public abstract class AbstractCoroutineContextElement implements CoroutineContex
     @Override
     public CoroutineContext plus(CoroutineContext coroutineContext) {
         return CoroutineContext.Element.DefaultImpls.plus(this, coroutineContext);
+    }
+
+    public AbstractCoroutineContextElement(CoroutineContext.Key key) {
+        Intrinsics.checkNotNullParameter(key, "key");
+        this.key = key;
     }
 
     @Override

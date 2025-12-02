@@ -3,15 +3,19 @@ package kotlinx.coroutines;
 import kotlin.NoWhenBranchMatchedException;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.ContinuationKt;
+import kotlin.enums.EnumEntries;
+import kotlin.enums.EnumEntriesKt;
 import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.intrinsics.CancellableKt;
 import kotlinx.coroutines.intrinsics.UndispatchedKt;
 
-public enum CoroutineStart {
-    DEFAULT,
-    LAZY,
-    ATOMIC,
-    UNDISPATCHED;
+public final class CoroutineStart {
+    private static final EnumEntries $ENTRIES;
+    private static final CoroutineStart[] $VALUES;
+    public static final CoroutineStart DEFAULT = new CoroutineStart("DEFAULT", 0);
+    public static final CoroutineStart LAZY = new CoroutineStart("LAZY", 1);
+    public static final CoroutineStart ATOMIC = new CoroutineStart("ATOMIC", 2);
+    public static final CoroutineStart UNDISPATCHED = new CoroutineStart("UNDISPATCHED", 3);
 
     public class WhenMappings {
         public static final int[] $EnumSwitchMapping$0;
@@ -36,6 +40,27 @@ public enum CoroutineStart {
             }
             $EnumSwitchMapping$0 = iArr;
         }
+    }
+
+    private static final CoroutineStart[] $values() {
+        return new CoroutineStart[]{DEFAULT, LAZY, ATOMIC, UNDISPATCHED};
+    }
+
+    public static CoroutineStart valueOf(String str) {
+        return (CoroutineStart) Enum.valueOf(CoroutineStart.class, str);
+    }
+
+    public static CoroutineStart[] values() {
+        return (CoroutineStart[]) $VALUES.clone();
+    }
+
+    private CoroutineStart(String str, int i) {
+    }
+
+    static {
+        CoroutineStart[] $values = $values();
+        $VALUES = $values;
+        $ENTRIES = EnumEntriesKt.enumEntries($values);
     }
 
     public final void invoke(Function2 function2, Object obj, Continuation continuation) {

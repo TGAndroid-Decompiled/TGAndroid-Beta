@@ -8,6 +8,10 @@ public final class ChannelSegment extends Segment {
     private final BufferedChannel _channel;
     private final AtomicReferenceArray data;
 
+    private final AtomicReferenceArray getData() {
+        return this.data;
+    }
+
     public ChannelSegment(long j, ChannelSegment channelSegment, BufferedChannel bufferedChannel, int i) {
         super(j, channelSegment, i);
         this._channel = bufferedChannel;
@@ -30,7 +34,7 @@ public final class ChannelSegment extends Segment {
     }
 
     public final Object getElement$kotlinx_coroutines_core(int i) {
-        return this.data.get(i * 2);
+        return getData().get(i * 2);
     }
 
     public final Object retrieveElement$kotlinx_coroutines_core(int i) {
@@ -44,23 +48,23 @@ public final class ChannelSegment extends Segment {
     }
 
     private final void setElementLazy(int i, Object obj) {
-        this.data.lazySet(i * 2, obj);
+        getData().set(i * 2, obj);
     }
 
     public final Object getState$kotlinx_coroutines_core(int i) {
-        return this.data.get((i * 2) + 1);
+        return getData().get((i * 2) + 1);
     }
 
     public final void setState$kotlinx_coroutines_core(int i, Object obj) {
-        this.data.set((i * 2) + 1, obj);
+        getData().set((i * 2) + 1, obj);
     }
 
     public final boolean casState$kotlinx_coroutines_core(int i, Object obj, Object obj2) {
-        return ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(this.data, (i * 2) + 1, obj, obj2);
+        return ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(getData(), (i * 2) + 1, obj, obj2);
     }
 
     public final Object getAndSetState$kotlinx_coroutines_core(int i, Object obj) {
-        return this.data.getAndSet((i * 2) + 1, obj);
+        return getData().getAndSet((i * 2) + 1, obj);
     }
 
     @Override

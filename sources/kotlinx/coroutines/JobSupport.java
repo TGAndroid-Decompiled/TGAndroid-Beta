@@ -21,6 +21,7 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlin.sequences.Sequence;
 import kotlin.sequences.SequencesKt;
+import kotlinx.coroutines.InternalCompletionHandler;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.internal.LockFreeLinkedListKt;
 import kotlinx.coroutines.internal.LockFreeLinkedListNode;
@@ -28,10 +29,10 @@ import kotlinx.coroutines.internal.OpDescriptor;
 import kotlinx.coroutines.internal.Symbol;
 
 public class JobSupport implements Job, ChildJob, ParentJob {
-    private volatile Object _parentHandle;
-    private volatile Object _state;
-    private static final AtomicReferenceFieldUpdater _state$FU = AtomicReferenceFieldUpdater.newUpdater(JobSupport.class, Object.class, "_state");
-    private static final AtomicReferenceFieldUpdater _parentHandle$FU = AtomicReferenceFieldUpdater.newUpdater(JobSupport.class, Object.class, "_parentHandle");
+    private volatile Object _parentHandle$volatile;
+    private volatile Object _state$volatile;
+    private static final AtomicReferenceFieldUpdater _state$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(JobSupport.class, Object.class, "_state$volatile");
+    private static final AtomicReferenceFieldUpdater _parentHandle$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(JobSupport.class, Object.class, "_parentHandle$volatile");
 
     public void afterCompletion(Object obj) {
     }
@@ -62,7 +63,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     public JobSupport(boolean z) {
-        this._state = z ? JobSupportKt.EMPTY_ACTIVE : JobSupportKt.EMPTY_NEW;
+        this._state$volatile = z ? JobSupportKt.EMPTY_ACTIVE : JobSupportKt.EMPTY_NEW;
     }
 
     @Override
@@ -111,11 +112,11 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     public final ChildHandle getParentHandle$kotlinx_coroutines_core() {
-        return (ChildHandle) _parentHandle$FU.get(this);
+        return (ChildHandle) _parentHandle$volatile$FU.get(this);
     }
 
     public final void setParentHandle$kotlinx_coroutines_core(ChildHandle childHandle) {
-        _parentHandle$FU.set(this, childHandle);
+        _parentHandle$volatile$FU.set(this, childHandle);
     }
 
     @Override
@@ -142,7 +143,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     public final Object getState$kotlinx_coroutines_core() {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$FU;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
         while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
             if (!(obj instanceof OpDescriptor)) {
@@ -289,7 +290,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
             if (state$kotlinx_coroutines_core != jobNode) {
                 return;
             }
-            atomicReferenceFieldUpdater = _state$FU;
+            atomicReferenceFieldUpdater = _state$volatile$FU;
             empty = JobSupportKt.EMPTY_ACTIVE;
         } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, state$kotlinx_coroutines_core, empty));
     }
@@ -346,7 +347,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
             onCancelling(finalRootCause);
         }
         onCompletionInternal(obj);
-        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, finishing, JobSupportKt.boxIncomplete(obj));
+        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, finishing, JobSupportKt.boxIncomplete(obj));
         completeStateFinalization(finishing, obj);
         return obj;
     }
@@ -413,7 +414,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     private final boolean tryFinalizeSimpleState(Incomplete incomplete, Object obj) {
-        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, incomplete, JobSupportKt.boxIncomplete(obj))) {
+        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, incomplete, JobSupportKt.boxIncomplete(obj))) {
             return false;
         }
         onCancelling(null);
@@ -448,7 +449,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     private final Object joinSuspend(Continuation continuation) {
         CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(IntrinsicsKt.intercepted(continuation), 1);
         cancellableContinuationImpl.initCancellability();
-        CancellableContinuationKt.disposeOnCancellation(cancellableContinuationImpl, invokeOnCompletion(new ResumeOnCompletion(cancellableContinuationImpl)));
+        CancellableContinuationKt.disposeOnCancellation(cancellableContinuationImpl, JobKt.invokeOnCompletion$default(this, false, false, new ResumeOnCompletion(cancellableContinuationImpl), 3, null));
         Object result = cancellableContinuationImpl.getResult();
         if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
             DebugProbesKt.probeCoroutineSuspended(continuation);
@@ -521,7 +522,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
             if (((Empty) obj).isActive()) {
                 return 0;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$FU;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
             empty = JobSupportKt.EMPTY_ACTIVE;
             if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, obj, empty)) {
                 return -1;
@@ -532,7 +533,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         if (!(obj instanceof InactiveNodeList)) {
             return 0;
         }
-        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, obj, ((InactiveNodeList) obj).getList())) {
+        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, obj, ((InactiveNodeList) obj).getList())) {
             return -1;
         }
         onStart();
@@ -584,18 +585,22 @@ public class JobSupport implements Job, ChildJob, ParentJob {
 
     @Override
     public final DisposableHandle invokeOnCompletion(Function1 function1) {
-        return invokeOnCompletion(false, true, function1);
+        return invokeOnCompletionInternal$kotlinx_coroutines_core(false, true, new InternalCompletionHandler.UserSupplied(function1));
     }
 
     @Override
     public final DisposableHandle invokeOnCompletion(boolean z, boolean z2, Function1 function1) {
-        JobNode makeNode = makeNode(function1, z);
+        return invokeOnCompletionInternal$kotlinx_coroutines_core(z, z2, new InternalCompletionHandler.UserSupplied(function1));
+    }
+
+    public final DisposableHandle invokeOnCompletionInternal$kotlinx_coroutines_core(boolean z, boolean z2, InternalCompletionHandler internalCompletionHandler) {
+        JobNode makeNode = makeNode(internalCompletionHandler, z);
         while (true) {
             Object state$kotlinx_coroutines_core = getState$kotlinx_coroutines_core();
             if (state$kotlinx_coroutines_core instanceof Empty) {
                 Empty empty = (Empty) state$kotlinx_coroutines_core;
                 if (empty.isActive()) {
-                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, state$kotlinx_coroutines_core, makeNode)) {
+                    if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, state$kotlinx_coroutines_core, makeNode)) {
                         return makeNode;
                     }
                 } else {
@@ -614,7 +619,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                 try {
                                     r3 = ((Finishing) state$kotlinx_coroutines_core).getRootCause();
                                     if (r3 != null) {
-                                        if ((function1 instanceof ChildHandleNode) && !((Finishing) state$kotlinx_coroutines_core).isCompleting()) {
+                                        if ((internalCompletionHandler instanceof ChildHandleNode) && !((Finishing) state$kotlinx_coroutines_core).isCompleting()) {
                                         }
                                         Unit unit = Unit.INSTANCE;
                                     }
@@ -632,7 +637,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                         }
                         if (r3 != null) {
                             if (z2) {
-                                function1.invoke(r3);
+                                internalCompletionHandler.invoke(r3);
                             }
                             return disposableHandle;
                         }
@@ -643,7 +648,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                 } else {
                     if (z2) {
                         CompletedExceptionally completedExceptionally = state$kotlinx_coroutines_core instanceof CompletedExceptionally ? (CompletedExceptionally) state$kotlinx_coroutines_core : null;
-                        function1.invoke(completedExceptionally != null ? completedExceptionally.cause : null);
+                        internalCompletionHandler.invoke(completedExceptionally != null ? completedExceptionally.cause : null);
                     }
                     return NonDisposableHandle.INSTANCE;
                 }
@@ -651,17 +656,17 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         }
     }
 
-    private final JobNode makeNode(Function1 function1, boolean z) {
+    private final JobNode makeNode(InternalCompletionHandler internalCompletionHandler, boolean z) {
         JobNode jobNode;
         if (z) {
-            jobNode = function1 instanceof JobCancellingNode ? (JobCancellingNode) function1 : null;
+            jobNode = internalCompletionHandler instanceof JobCancellingNode ? (JobCancellingNode) internalCompletionHandler : null;
             if (jobNode == null) {
-                jobNode = new InvokeOnCancelling(function1);
+                jobNode = new InvokeOnCancelling(internalCompletionHandler);
             }
         } else {
-            jobNode = function1 instanceof JobNode ? (JobNode) function1 : null;
+            jobNode = internalCompletionHandler instanceof JobNode ? (JobNode) internalCompletionHandler : null;
             if (jobNode == null) {
-                jobNode = new InvokeOnCompletion(function1);
+                jobNode = new InvokeOnCompletion(internalCompletionHandler);
             }
         }
         jobNode.setJob(this);
@@ -673,12 +678,12 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         if (!empty.isActive()) {
             nodeList = new InactiveNodeList(nodeList);
         }
-        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, empty, nodeList);
+        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, empty, nodeList);
     }
 
     private final void promoteSingleToNodeList(JobNode jobNode) {
         jobNode.addOneIfEmpty(new NodeList());
-        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, jobNode, jobNode.getNextNode());
+        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, jobNode, jobNode.getNextNode());
     }
 
     @Override
@@ -798,7 +803,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         if (orPromoteCancellingList == null) {
             return false;
         }
-        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, incomplete, new Finishing(orPromoteCancellingList, false, th))) {
+        if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, incomplete, new Finishing(orPromoteCancellingList, false, th))) {
             return false;
         }
         notifyCancelling(orPromoteCancellingList, th);
@@ -842,7 +847,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                 return symbol2;
             }
             finishing.setCompleting(true);
-            if (finishing != incomplete && !AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$FU, this, incomplete, finishing)) {
+            if (finishing != incomplete && !AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, incomplete, finishing)) {
                 symbol = JobSupportKt.COMPLETING_RETRY;
                 return symbol;
             }
@@ -886,7 +891,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     private final boolean tryWaitForChild(Finishing finishing, ChildHandleNode childHandleNode, Object obj) {
-        while (Job.DefaultImpls.invokeOnCompletion$default(childHandleNode.childJob, false, false, new ChildCompletion(this, finishing, childHandleNode, obj), 1, null) == NonDisposableHandle.INSTANCE) {
+        while (JobKt.invokeOnCompletion$default(childHandleNode.childJob, false, false, new ChildCompletion(this, finishing, childHandleNode, obj), 1, null) == NonDisposableHandle.INSTANCE) {
             childHandleNode = nextChild(childHandleNode);
             if (childHandleNode == null) {
                 return false;
@@ -926,7 +931,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
 
     @Override
     public final ChildHandle attachChild(ChildJob childJob) {
-        DisposableHandle invokeOnCompletion$default = Job.DefaultImpls.invokeOnCompletion$default(this, true, false, new ChildHandleNode(childJob), 2, null);
+        DisposableHandle invokeOnCompletion$default = JobKt.invokeOnCompletion$default(this, true, false, new ChildHandleNode(childJob), 2, null);
         Intrinsics.checkNotNull(invokeOnCompletion$default, "null cannot be cast to non-null type kotlinx.coroutines.ChildHandle");
         return (ChildHandle) invokeOnCompletion$default;
     }
@@ -956,13 +961,13 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     public static final class Finishing implements Incomplete {
-        private volatile Object _exceptionsHolder;
-        private volatile int _isCompleting;
-        private volatile Object _rootCause;
+        private volatile Object _exceptionsHolder$volatile;
+        private volatile int _isCompleting$volatile;
+        private volatile Object _rootCause$volatile;
         private final NodeList list;
-        private static final AtomicIntegerFieldUpdater _isCompleting$FU = AtomicIntegerFieldUpdater.newUpdater(Finishing.class, "_isCompleting");
-        private static final AtomicReferenceFieldUpdater _rootCause$FU = AtomicReferenceFieldUpdater.newUpdater(Finishing.class, Object.class, "_rootCause");
-        private static final AtomicReferenceFieldUpdater _exceptionsHolder$FU = AtomicReferenceFieldUpdater.newUpdater(Finishing.class, Object.class, "_exceptionsHolder");
+        private static final AtomicIntegerFieldUpdater _isCompleting$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(Finishing.class, "_isCompleting$volatile");
+        private static final AtomicReferenceFieldUpdater _rootCause$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(Finishing.class, Object.class, "_rootCause$volatile");
+        private static final AtomicReferenceFieldUpdater _exceptionsHolder$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(Finishing.class, Object.class, "_exceptionsHolder$volatile");
 
         @Override
         public NodeList getList() {
@@ -971,32 +976,32 @@ public class JobSupport implements Job, ChildJob, ParentJob {
 
         public Finishing(NodeList nodeList, boolean z, Throwable th) {
             this.list = nodeList;
-            this._isCompleting = z ? 1 : 0;
-            this._rootCause = th;
+            this._isCompleting$volatile = z ? 1 : 0;
+            this._rootCause$volatile = th;
         }
 
         public final boolean isCompleting() {
-            return _isCompleting$FU.get(this) != 0;
+            return _isCompleting$volatile$FU.get(this) != 0;
         }
 
         public final void setCompleting(boolean z) {
-            _isCompleting$FU.set(this, z ? 1 : 0);
+            _isCompleting$volatile$FU.set(this, z ? 1 : 0);
         }
 
         public final Throwable getRootCause() {
-            return (Throwable) _rootCause$FU.get(this);
+            return (Throwable) _rootCause$volatile$FU.get(this);
         }
 
         public final void setRootCause(Throwable th) {
-            _rootCause$FU.set(this, th);
+            _rootCause$volatile$FU.set(this, th);
         }
 
         private final Object getExceptionsHolder() {
-            return _exceptionsHolder$FU.get(this);
+            return _exceptionsHolder$volatile$FU.get(this);
         }
 
         private final void setExceptionsHolder(Object obj) {
-            _exceptionsHolder$FU.set(this, obj);
+            _exceptionsHolder$volatile$FU.set(this, obj);
         }
 
         public final boolean isSealed() {
@@ -1089,12 +1094,6 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         private final Object proposedUpdate;
         private final Finishing state;
 
-        @Override
-        public Object invoke(Object obj) {
-            invoke((Throwable) obj);
-            return Unit.INSTANCE;
-        }
-
         public ChildCompletion(JobSupport jobSupport, Finishing finishing, ChildHandleNode childHandleNode, Object obj) {
             this.parent = jobSupport;
             this.state = finishing;
@@ -1165,7 +1164,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     private final Object awaitSuspend(Continuation continuation) {
         AwaitContinuation awaitContinuation = new AwaitContinuation(IntrinsicsKt.intercepted(continuation), this);
         awaitContinuation.initCancellability();
-        CancellableContinuationKt.disposeOnCancellation(awaitContinuation, invokeOnCompletion(new ResumeAwaitOnCompletion(awaitContinuation)));
+        CancellableContinuationKt.disposeOnCancellation(awaitContinuation, JobKt.invokeOnCompletion$default(this, false, false, new ResumeAwaitOnCompletion(awaitContinuation), 3, null));
         Object result = awaitContinuation.getResult();
         if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
             DebugProbesKt.probeCoroutineSuspended(continuation);

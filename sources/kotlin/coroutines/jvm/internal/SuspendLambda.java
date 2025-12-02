@@ -22,7 +22,7 @@ public abstract class SuspendLambda extends ContinuationImpl implements Function
     public String toString() {
         if (getCompletion() == null) {
             String renderLambdaToString = Reflection.renderLambdaToString(this);
-            Intrinsics.checkNotNullExpressionValue(renderLambdaToString, "renderLambdaToString(this)");
+            Intrinsics.checkNotNullExpressionValue(renderLambdaToString, "renderLambdaToString(...)");
             return renderLambdaToString;
         }
         return super.toString();

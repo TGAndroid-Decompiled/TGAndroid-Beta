@@ -2,7 +2,6 @@ package kotlin;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
-import kotlin.ranges.IntRange;
 
 public final class KotlinVersion implements Comparable {
     private final int major;
@@ -20,7 +19,7 @@ public final class KotlinVersion implements Comparable {
     }
 
     private final int versionOf(int i, int i2, int i3) {
-        if (new IntRange(0, 255).contains(i) && new IntRange(0, 255).contains(i2) && new IntRange(0, 255).contains(i3)) {
+        if (i >= 0 && i < 256 && i2 >= 0 && i2 < 256 && i3 >= 0 && i3 < 256) {
             return (i << 16) + (i2 << 8) + i3;
         }
         throw new IllegalArgumentException(("Version components are out of range: " + i + '.' + i2 + '.' + i3).toString());

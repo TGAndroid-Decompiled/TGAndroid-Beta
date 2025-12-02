@@ -47,7 +47,9 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.ThemePreviewActivity;
+import org.telegram.ui.bots.AffiliateProgramFragment;
 
 public class PremiumFeatureBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     ActionBar actionBar;
@@ -81,8 +83,12 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         return i == 0 || i == 14 || i == 28;
     }
 
+    public PremiumFeatureBottomSheet(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(null, context, UserConfig.selectedAccount, false, i, z, null, resourcesProvider);
+    }
+
     public PremiumFeatureBottomSheet(BaseFragment baseFragment, int i, boolean z) {
-        this(baseFragment, i, z, null);
+        this(baseFragment, i, z, (PremiumPreviewFragment.SubscriptionTier) null);
     }
 
     public PremiumFeatureBottomSheet(BaseFragment baseFragment, int i, boolean z, PremiumPreviewFragment.SubscriptionTier subscriptionTier) {
@@ -93,14 +99,15 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this(baseFragment, context, i, false, i2, z, null);
     }
 
-    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier) {
-        super(context, false, getResourceProvider(baseFragment));
+    public PremiumFeatureBottomSheet(BaseFragment baseFragment, Context context, int i, boolean z, int i2, boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier) {
+        this(baseFragment, context, i, z, i2, z2, subscriptionTier, getResourceProvider(baseFragment));
+    }
+
+    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier, Theme.ResourcesProvider resourcesProvider) {
+        super(context, false, resourcesProvider);
         this.premiumFeatures = new ArrayList();
         this.gradientAlpha = 255;
         this.baseFragment = baseFragment;
-        if (baseFragment == null) {
-            throw new RuntimeException("fragmnet can't be null");
-        }
         this.selectedTier = subscriptionTier;
         fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
         this.startType = i2;
@@ -122,6 +129,10 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             PremiumPreviewFragment.fillBusinessFeaturesList(this.premiumFeatures, i, true);
         } else {
             PremiumPreviewFragment.fillPremiumFeaturesList(this.premiumFeatures, i, false);
+        }
+        if (i2 == 40) {
+            this.premiumFeatures.clear();
+            this.premiumFeatures.add(new PremiumPreviewFragment.PremiumFeatureData(40, R.drawable.gift, LocaleController.getString(R.string.FeaturePreviewGifts), LocaleController.getString(R.string.FeaturePreviewGiftsDescription)));
         }
         int i3 = 0;
         while (true) {
@@ -302,7 +313,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         if (!z2) {
             linearLayout.addView(bottomPagesView, LayoutHelper.createLinear(this.premiumFeatures.size() * 11, 5, 1, 0, 0, 0, 10));
         }
-        PremiumButtonView premiumButtonView = new PremiumButtonView(getContext(), true, this.resourcesProvider);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(getContext(), true, resourcesProvider);
         this.premiumButtonView = premiumButtonView;
         premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,7 +332,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         frameLayout2.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
         this.buttonContainer.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         linearLayout.addView(this.buttonContainer, LayoutHelper.createLinear(-1, 68, 80));
-        if (UserConfig.getInstance(i).isPremium()) {
+        if (i2 == 40) {
+            this.premiumButtonView.setOverlayText(StarGiftSheet.replaceUnderstood(LocaleController.getString(R.string.Understood)), true, false);
+        } else if (UserConfig.getInstance(i).isPremium()) {
             this.premiumButtonView.setOverlayText(LocaleController.getString(R.string.OK), false, false);
         }
         final ScrollView scrollView = new ScrollView(getContext());
@@ -438,6 +451,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             } else if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 14) {
                 PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.UpgradedStories));
                 PremiumFeatureBottomSheet.this.actionBar.requestLayout();
+            } else if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 40) {
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
+                PremiumFeatureBottomSheet.this.actionBar.requestLayout();
             } else if (((PremiumPreviewFragment.PremiumFeatureData) PremiumFeatureBottomSheet.this.premiumFeatures.get(i)).type == 28) {
                 PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
                 PremiumFeatureBottomSheet.this.actionBar.requestLayout();
@@ -475,15 +491,20 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             }
             i++;
         }
-        if ((z || this.forceAbout) && baseFragment != null) {
+        if (z || this.forceAbout) {
             PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(premiumFeatureData.type));
             if (baseFragment instanceof ThemePreviewActivity) {
                 BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
                 bottomSheetParams.transitionFromLeft = true;
                 bottomSheetParams.allowNestedScroll = false;
                 baseFragment.showAsSheet(premiumPreviewFragment, bottomSheetParams);
-            } else {
+            } else if (baseFragment != null) {
                 baseFragment.presentFragment(premiumPreviewFragment);
+            } else {
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment != null) {
+                    safeLastFragment.presentFragment(premiumPreviewFragment);
+                }
             }
         } else {
             PremiumPreviewFragment.buyPremium(baseFragment, this.selectedTier, PremiumPreviewFragment.featureTypeToServerString(premiumFeatureData.type));
@@ -590,6 +611,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         } else if (((PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(this.selectedPosition)).type == 28) {
             this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             this.actionBar.requestLayout();
+        } else if (((PremiumPreviewFragment.PremiumFeatureData) this.premiumFeatures.get(this.selectedPosition)).type == 40) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
+            this.actionBar.requestLayout();
         } else {
             this.actionBar.setTitle(LocaleController.getString(R.string.DoubledLimits));
             this.actionBar.requestLayout();
@@ -620,6 +644,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
 
     public class ViewPage extends LinearLayout {
         LinkSpanDrawable.LinksTextView description;
+        LinearLayout featuresLayout;
         public int position;
         TextView title;
         PagerHeaderView topHeader;
@@ -778,6 +803,28 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 this.topViewOnFullHeight = true;
             }
             requestLayout();
+            boolean z = premiumFeatureData.type == 40;
+            if (z && this.featuresLayout == null) {
+                LinearLayout linearLayout = new LinearLayout(getContext());
+                this.featuresLayout = linearLayout;
+                linearLayout.setOrientation(1);
+                AffiliateProgramFragment.FeatureCell featureCell = new AffiliateProgramFragment.FeatureCell(getContext(), true, ((BottomSheet) PremiumFeatureBottomSheet.this).resourcesProvider);
+                featureCell.set(R.drawable.menu_feature_unique, LocaleController.getString(R.string.GiftsFeature1Title), LocaleController.getString(R.string.GiftsFeature1Text));
+                this.featuresLayout.addView(r0[0], LayoutHelper.createLinear(-1, -2));
+                AffiliateProgramFragment.FeatureCell featureCell2 = new AffiliateProgramFragment.FeatureCell(getContext(), true, ((BottomSheet) PremiumFeatureBottomSheet.this).resourcesProvider);
+                featureCell2.set(R.drawable.menu_feature_tradable, LocaleController.getString(R.string.GiftsFeature2Title), LocaleController.getString(R.string.GiftsFeature2Text));
+                this.featuresLayout.addView(r0[1], LayoutHelper.createLinear(-1, -2));
+                AffiliateProgramFragment.FeatureCell featureCell3 = new AffiliateProgramFragment.FeatureCell(getContext(), true, ((BottomSheet) PremiumFeatureBottomSheet.this).resourcesProvider);
+                AffiliateProgramFragment.FeatureCell[] featureCellArr = {featureCell, featureCell2, featureCell3};
+                featureCell3.set(R.drawable.menu_wear, LocaleController.getString(R.string.GiftsFeature3Title), LocaleController.getString(R.string.GiftsFeature3Text));
+                this.featuresLayout.addView(featureCellArr[2], LayoutHelper.createLinear(-1, -2));
+                addView(this.featuresLayout, LayoutHelper.createLinear(-1, -2, 0.0f, -4.0f, 0.0f, 0.0f));
+            }
+            LinearLayout linearLayout2 = this.featuresLayout;
+            if (linearLayout2 != null) {
+                linearLayout2.setVisibility(z ? 0 : 8);
+            }
+            ((ViewGroup.MarginLayoutParams) this.description.getLayoutParams()).topMargin = AndroidUtilities.dp(z ? 6.0f : 10.0f);
         }
     }
 
@@ -901,7 +948,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             this.content.setTranslationY(this.topCurrentOffset);
             this.closeLayout.setTranslationY(this.topCurrentOffset);
             this.containerView.invalidate();
-            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, this.topCurrentOffset < AndroidUtilities.dp(30.0f), 1.0f, true);
+            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, this.topCurrentOffset < AndroidUtilities.dp(this.startType == 40 ? 5.0f : 30.0f), 1.0f, true);
         }
     }
 

@@ -139,7 +139,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         public final LinearLayout textLayout;
         public final TextView titleView;
 
-        public FeatureCell(Context context, int i) {
+        public FeatureCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             setOrientation(0);
             setPadding(AndroidUtilities.dp(i == 1 ? 11.0f : 32.0f), 0, AndroidUtilities.dp(i == 1 ? 11.0f : 32.0f), AndroidUtilities.dp(i == 1 ? 8.0f : 12.0f));
@@ -156,15 +156,15 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             this.titleView = linksTextView;
             linksTextView.setTypeface(AndroidUtilities.bold());
             linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTextColor(Theme.getColor(i2));
+            linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
             int i3 = Theme.key_chat_messageLinkIn;
-            linksTextView.setLinkTextColor(Theme.getColor(i3));
+            linksTextView.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
             linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 3));
             LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
             this.subtitleView = linksTextView2;
             linksTextView2.setTextSize(1, 14.0f);
-            linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
-            linksTextView2.setLinkTextColor(Theme.getColor(i3));
+            linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+            linksTextView2.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
             linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 7));
             addView(linearLayout, LayoutHelper.createLinear(-1, -2, 1.0f, 55, 0, 0, 0, 0));
         }
@@ -182,7 +182,7 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public FeatureCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new FeatureCell(context, 0);
+                return new FeatureCell(context, 0, resourcesProvider);
             }
 
             @Override

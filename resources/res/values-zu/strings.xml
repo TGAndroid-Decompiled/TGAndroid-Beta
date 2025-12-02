@@ -27,6 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Yabelana no</string>
     <string name="abc_shareactionprovider_share_with_application">Yabelana ne-%s</string>
     <string name="abc_toolbar_collapse_description">Goqa</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Iphasiwedi</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Ukhiye wokudlula</string>
     <string name="call_notification_answer_action">Phendula</string>
     <string name="call_notification_answer_video_action">Ividiyo</string>
     <string name="call_notification_decline_action">Yenqaba</string>

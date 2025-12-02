@@ -10,12 +10,12 @@ import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.DisposableHandle;
 
 public final class LimitedDispatcher extends CoroutineDispatcher implements Delay {
-    private static final AtomicIntegerFieldUpdater runningWorkers$FU = AtomicIntegerFieldUpdater.newUpdater(LimitedDispatcher.class, "runningWorkers");
+    private static final AtomicIntegerFieldUpdater runningWorkers$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(LimitedDispatcher.class, "runningWorkers$volatile");
     private final Delay $$delegate_0;
     private final CoroutineDispatcher dispatcher;
     private final int parallelism;
     private final LockFreeTaskQueue queue;
-    private volatile int runningWorkers;
+    private volatile int runningWorkers$volatile;
     private final Object workerAllocationLock;
 
     @Override
@@ -36,7 +36,7 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
     public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         Runnable obtainTaskOrDeallocateWorker;
         this.queue.addLast(runnable);
-        if (runningWorkers$FU.get(this) >= this.parallelism || !tryAllocateWorker() || (obtainTaskOrDeallocateWorker = obtainTaskOrDeallocateWorker()) == null) {
+        if (runningWorkers$volatile$FU.get(this) >= this.parallelism || !tryAllocateWorker() || (obtainTaskOrDeallocateWorker = obtainTaskOrDeallocateWorker()) == null) {
             return;
         }
         this.dispatcher.dispatch(this, new Worker(obtainTaskOrDeallocateWorker));
@@ -44,11 +44,10 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
 
     private final boolean tryAllocateWorker() {
         synchronized (this.workerAllocationLock) {
-            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = runningWorkers$FU;
-            if (atomicIntegerFieldUpdater.get(this) >= this.parallelism) {
+            if (runningWorkers$volatile$FU.get(this) >= this.parallelism) {
                 return false;
             }
-            atomicIntegerFieldUpdater.incrementAndGet(this);
+            runningWorkers$volatile$FU.incrementAndGet(this);
             return true;
         }
     }
@@ -60,12 +59,11 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
                 return runnable;
             }
             synchronized (this.workerAllocationLock) {
-                AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = runningWorkers$FU;
-                atomicIntegerFieldUpdater.decrementAndGet(this);
+                runningWorkers$volatile$FU.decrementAndGet(this);
                 if (this.queue.getSize() == 0) {
                     return null;
                 }
-                atomicIntegerFieldUpdater.incrementAndGet(this);
+                runningWorkers$volatile$FU.incrementAndGet(this);
             }
         }
     }

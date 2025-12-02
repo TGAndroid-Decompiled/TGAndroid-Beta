@@ -262,6 +262,8 @@
     <string name="abc_shareactionprovider_share_with">Поділитися:</string>
     <string name="abc_shareactionprovider_share_with_application">Поділитися через додаток %s</string>
     <string name="abc_toolbar_collapse_description">Згорнути</string>
+    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Пароль</string>
+    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Ключ доступу</string>
     <string name="call_notification_answer_action">Відповісти</string>
     <string name="call_notification_answer_video_action">Відео</string>
     <string name="call_notification_decline_action">Відхилити</string>
