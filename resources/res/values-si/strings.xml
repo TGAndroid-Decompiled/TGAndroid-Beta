@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">සමග බෙදා ගන්න</string>
     <string name="abc_shareactionprovider_share_with_application">%s සමඟ බෙදා ගන්න</string>
     <string name="abc_toolbar_collapse_description">හකුළන්න</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">මුරපදය</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">මුරයතුර</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">මුරපදය</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">මුරයතුර</string>
     <string name="call_notification_answer_action">පිළිතුරු දෙ.</string>
     <string name="call_notification_answer_video_action">වීඩියෝ</string>
     <string name="call_notification_decline_action">ප්‍රතික්ෂේප ක</string>

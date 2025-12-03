@@ -66,9 +66,11 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -182,6 +184,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private ArrayList lineHeights;
     private ArrayList lineWidths;
     private LoadingDrawable loadingDrawable;
+    private boolean offerExpired;
     private int overriddenMaxWidth;
     private int overrideBackground;
     private Paint overrideBackgroundPaint;
@@ -1653,7 +1656,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     TLRPC.MessageAction messageAction = messageObject2.messageOwner.action;
                     if (messageAction instanceof TLRPC.TL_messageActionStarGiftPurchaseOffer) {
                         TLRPC.TL_messageActionStarGiftPurchaseOffer tL_messageActionStarGiftPurchaseOffer = (TLRPC.TL_messageActionStarGiftPurchaseOffer) messageAction;
-                        if (!tL_messageActionStarGiftPurchaseOffer.accepted && !tL_messageActionStarGiftPurchaseOffer.declined) {
+                        if (!tL_messageActionStarGiftPurchaseOffer.accepted && !tL_messageActionStarGiftPurchaseOffer.declined && !this.offerExpired) {
                             Arrays.fill(this.radii, AndroidUtilities.dp(16.0f));
                             float[] fArr = this.radii;
                             float dp8 = AndroidUtilities.dp(6.0f);
@@ -1832,13 +1835,15 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
         int i = buttonCustom.id;
         if (i == 5) {
-            TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-            tL_resolveStarGiftOffer.offer_msg_id = getMessageObject().getId();
-            tL_resolveStarGiftOffer.decline = true;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
+            ChatActionCellDelegate chatActionCellDelegate = this.delegate;
+            final BaseFragment baseFragment = chatActionCellDelegate != null ? chatActionCellDelegate.getBaseFragment() : null;
+            if (baseFragment == null || this.currentMessageObject == null) {
+                return;
+            }
+            AlertsCreator.showSimpleConfirmAlert(baseFragment, LocaleController.getString(R.string.GiftOfferRejectConfirmTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferRejectConfirmText, DialogObject.getShortName(this.currentMessageObject.getDialogId()))), LocaleController.getString(R.string.GiftOfferRejectConfirmConfirm), true, new Runnable() {
                 @Override
-                public final void run(Object obj, Object obj2) {
-                    ChatActionCell.this.lambda$didPressCustomBotButton$6((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                public final void run() {
+                    ChatActionCell.this.lambda$didPressCustomBotButton$8(baseFragment);
                 }
             });
             return;
@@ -1852,10 +1857,34 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
-    public void lambda$didPressCustomBotButton$6(TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public void lambda$didPressCustomBotButton$8(final BaseFragment baseFragment) {
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = getMessageObject().getId();
+        tL_resolveStarGiftOffer.decline = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                ChatActionCell.this.lambda$didPressCustomBotButton$7(baseFragment, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+            }
+        });
+    }
+
+    public void lambda$didPressCustomBotButton$7(final BaseFragment baseFragment, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
         if (updates != null) {
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
         }
+        if (tL_error != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActionCell.lambda$didPressCustomBotButton$6(BaseFragment.this, tL_error);
+                }
+            });
+        }
+    }
+
+    public static void lambda$didPressCustomBotButton$6(BaseFragment baseFragment, TLRPC.TL_error tL_error) {
+        BulletinFactory.of(baseFragment).showForError(tL_error);
     }
 
     public void drawReactions(Canvas canvas, boolean z, Integer num) {

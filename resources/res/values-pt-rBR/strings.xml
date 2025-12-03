@@ -1235,8 +1235,8 @@
     <string name="abc_shareactionprovider_share_with">Compartilhar com</string>
     <string name="abc_shareactionprovider_share_with_application">Compartilhar com %s</string>
     <string name="abc_toolbar_collapse_description">Recolher</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Senha</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Chave de acesso</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Senha</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Chave de acesso</string>
     <string name="call_notification_answer_action">Atender</string>
     <string name="call_notification_answer_video_action">Vídeo</string>
     <string name="call_notification_decline_action">Recusar</string>

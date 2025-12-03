@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Megosztás a következővel:</string>
     <string name="abc_shareactionprovider_share_with_application">Megosztás a következő alkalmazással: %s</string>
     <string name="abc_toolbar_collapse_description">Összecsukás</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Jelszó</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Azonosítókulcs</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Jelszó</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Azonosítókulcs</string>
     <string name="call_notification_answer_action">Fogadás</string>
     <string name="call_notification_answer_video_action">Videó</string>
     <string name="call_notification_decline_action">Elutasítás</string>

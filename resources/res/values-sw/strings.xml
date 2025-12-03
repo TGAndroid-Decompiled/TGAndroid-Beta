@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Shiriki na</string>
     <string name="abc_shareactionprovider_share_with_application">Shiriki ukitumia %s</string>
     <string name="abc_toolbar_collapse_description">Kunja</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Nenosiri</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Ufunguo wa siri</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Nenosiri</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Ufunguo wa siri</string>
     <string name="call_notification_answer_action">Jibu</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Kataa</string>

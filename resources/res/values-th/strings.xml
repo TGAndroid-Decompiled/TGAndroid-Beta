@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">แชร์กับ</string>
     <string name="abc_shareactionprovider_share_with_application">แชร์ทาง %s</string>
     <string name="abc_toolbar_collapse_description">ยุบ</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">รหัสผ่าน</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">พาสคีย์</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">รหัสผ่าน</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">พาสคีย์</string>
     <string name="call_notification_answer_action">รับสาย</string>
     <string name="call_notification_answer_video_action">วิดีโอ</string>
     <string name="call_notification_decline_action">ปฏิเสธ</string>

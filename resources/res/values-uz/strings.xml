@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Ulashish</string>
     <string name="abc_shareactionprovider_share_with_application">%s orqali ulashish</string>
     <string name="abc_toolbar_collapse_description">Yig‘ish</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Parol</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Kirish kaliti</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Parol</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Kirish kaliti</string>
     <string name="call_notification_answer_action">Javob berish</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Rad etish</string>

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GiftAuctionController;
@@ -97,15 +96,13 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         ArrayList arrayList = new ArrayList(list);
         this.activeAuctions = arrayList;
         if (arrayList.size() == 1) {
-            Iterator it = list.iterator();
-            int i = 0;
-            while (it.hasNext()) {
-                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = ((GiftAuctionController.Auction) it.next()).auctionStateActive;
-                if (tL_starGiftAuctionState != null) {
-                    i = Math.max(i, tL_starGiftAuctionState.next_round_at);
-                }
+            GiftAuctionController.Auction auction = (GiftAuctionController.Auction) this.activeAuctions.get(0);
+            if (auction.isUpcoming()) {
+                this.timerView.start(auction.gift.auction_start_date);
+            } else {
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
+                this.timerView.start(tL_starGiftAuctionState != null ? Math.max(0, tL_starGiftAuctionState.next_round_at) : 0);
             }
-            this.timerView.start(i);
         } else {
             this.timerView.stop();
             this.timerView.textView.setText(LocaleController.getString(R.string.Gift2AuctionPriceView), true);
@@ -153,7 +150,9 @@ public class ActiveGiftAuctionsHintCell extends BlurredFrameLayout implements Gi
         }
         this.titleTextView.setText(spannableStringBuilder, z);
         this.isOutbid = false;
-        if (z3) {
+        if (z2) {
+            this.messageTextView.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusEarly));
+        } else if (z3) {
             this.messageTextView.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusOutbid));
             this.isOutbid = true;
         } else if (size > 1) {

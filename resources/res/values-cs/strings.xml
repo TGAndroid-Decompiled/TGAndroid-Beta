@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Sdílet s</string>
     <string name="abc_shareactionprovider_share_with_application">Sdílet s aplikací %s</string>
     <string name="abc_toolbar_collapse_description">Sbalit</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Heslo</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Přístupový klíč</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Heslo</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Přístupový klíč</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Distribuce byla zakázána</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d MB z %2$d MB</string>
     <string name="appcenter_distribute_downloading_mandatory_update">Stahuje se aktualizace</string>

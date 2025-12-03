@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Κοινοποίηση σε</string>
     <string name="abc_shareactionprovider_share_with_application">Κοινοποίηση στην εφαρμογή %s</string>
     <string name="abc_toolbar_collapse_description">Σύμπτυξη</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Κωδικός πρόσβασης</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Κλειδί πρόσβασης</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Κωδικός πρόσβασης</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Κλειδί πρόσβασης</string>
     <string name="call_notification_answer_action">Απάντηση</string>
     <string name="call_notification_answer_video_action">Βίντεο</string>
     <string name="call_notification_decline_action">Απόρριψη</string>

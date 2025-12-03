@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Şununla paylaş:</string>
     <string name="abc_shareactionprovider_share_with_application">%s ile paylaş</string>
     <string name="abc_toolbar_collapse_description">Daralt</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Şifre</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Geçiş anahtarı</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Şifre</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Geçiş anahtarı</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Dağıtım devre dışı bırakıldı</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d MB / %2$d MB</string>
     <string name="appcenter_distribute_downloading_mandatory_update">Güncelleştirme indiriliyor</string>

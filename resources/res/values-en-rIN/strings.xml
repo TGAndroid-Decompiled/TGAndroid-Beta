@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="res_0x7f0f2776_android_credentials_type_password_credential">Password</string>
-    <string name="res_0x7f0f2777_androidx_credentials_type_public_key_credential">Passkey</string>
+    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Password</string>
+    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Passkey</string>
     <string name="call_notification_answer_action">Answer</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Decline</string>

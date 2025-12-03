@@ -2,6 +2,7 @@ package org.telegram.ui.Stars;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
@@ -9,11 +10,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,11 +73,14 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
     public final Button[] buttons;
     private final LinearLayout buttonsLayout;
     private final int currentAccount;
+    private final TL_stars.StarGift gift;
     private final TextView giftNameTextView;
     private final TextView giftStatusTextView;
     private final BlurredBackgroundDrawableViewFactory glassFactory;
     private final BlurredBackgroundSourceColor glassSourceFallback;
     private final BlurredBackgroundSourceRenderNode glassSourceRenderNode;
+    private final View gradientTop;
+    private boolean gradientVisible;
     private final FrameLayout headerView;
     private final DefaultItemAnimator itemAnimator;
     private int lastBottomInset;
@@ -126,6 +132,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         this.tmpViewRectF = new RectF();
         this.tmpViewPointF = new PointF();
         this.currentAccount = i;
+        this.gift = starGift;
         ArrayList findAllInstances = TlUtils.findAllInstances(arrayList, TL_stars.starGiftAttributeBackdrop.class);
         this.backdrops = findAllInstances;
         BagRandomizer bagRandomizer = new BagRandomizer(findAllInstances);
@@ -141,12 +148,15 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         BagRandomizer bagRandomizer3 = new BagRandomizer(findAllInstances3);
         this.rModels = bagRandomizer3;
         bagRandomizer3.setReshuffleIfEnd(false);
+        ViewParent parent = this.actionBar.getParent();
+        if (parent instanceof ViewGroup) {
+            ((ViewGroup) parent).removeView(this.actionBar);
+        }
         this.ignoreTouchActionBar = false;
         this.headerMoveTop = AndroidUtilities.dp(64.0f);
         this.occupyNavigationBar = true;
         setBackgroundColor(getBackgroundColor());
         fixNavigationBar();
-        setSlidingActionBar();
         BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
         this.glassSourceFallback = blurredBackgroundSourceColor;
         blurredBackgroundSourceColor.setColor(getBackgroundColor());
@@ -214,6 +224,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
         FrameLayout frameLayout = new FrameLayout(context);
         this.headerView = frameLayout;
+        frameLayout.setClipChildren(false);
         StarGiftSheet.TopView topView = new StarGiftSheet.TopView(context, resourcesProvider, new Runnable() {
             @Override
             public final void run() {
@@ -250,6 +261,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 StarGiftPreviewSheet.lambda$new$5(view);
             }
         }) {
+            final float[] hsv = new float[3];
             Path path = new Path();
             float[] r = new float[8];
 
@@ -269,6 +281,14 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 for (Button button : StarGiftPreviewSheet.this.buttons) {
                     if (Theme.setSelectorDrawableColor(button.getBackground(), i2, false)) {
                         button.invalidate();
+                    }
+                    Color.colorToHSV(ColorUtils.blendARGB(i2, -1, 0.33f), this.hsv);
+                    float[] fArr = this.hsv;
+                    fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
+                    float[] fArr2 = this.hsv;
+                    fArr2[2] = Math.min(1.0f, fArr2[2] * 1.1f);
+                    if (Theme.setSelectorDrawableColor(button.percentView.getSizeableBackground(), Color.HSVToColor(this.hsv), false)) {
+                        button.percentView.invalidate();
                     }
                 }
             }
@@ -325,6 +345,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         LinearLayout linearLayout = new LinearLayout(context);
         this.buttonsLayout = linearLayout;
         linearLayout.setOrientation(0);
+        linearLayout.setClipChildren(false);
         this.buttons = new Button[3];
         int i3 = 0;
         while (true) {
@@ -346,6 +367,14 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             } else {
                 this.headerView.addView(this.buttonsLayout, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 18.0f));
                 this.containerView.addView(this.headerView, 0, LayoutHelper.createFrame(-1, 315, 55));
+                int backgroundColor = getBackgroundColor();
+                View view = new View(context);
+                this.gradientTop = view;
+                view.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{ColorUtils.setAlphaComponent(backgroundColor, 160), backgroundColor & 16777215}));
+                view.setAlpha(0.0f);
+                FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 0, 48);
+                createFrame.height = AndroidUtilities.statusBarHeight;
+                this.containerView.addView(view, createFrame);
                 TabsSelectorView tabsSelectorView = new TabsSelectorView(context, resourcesProvider, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
@@ -387,9 +416,10 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
 
     public void updateTranslationHeader() {
         float f;
+        boolean z;
         float y;
         int measuredHeight;
-        boolean z = true;
+        boolean z2 = true;
         int childCount = this.recyclerListView.getChildCount() - 1;
         while (true) {
             if (childCount < 0) {
@@ -416,6 +446,16 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             childCount--;
         }
         f = y - measuredHeight;
+        z = true;
+        float height = this.headerView.getHeight() + f;
+        if (z && height >= 0.0f) {
+            z2 = false;
+        }
+        if (this.gradientVisible != z2) {
+            this.gradientVisible = z2;
+            this.gradientTop.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(200L).start();
+        }
+        this.headerMoveTop = f <= 0.0f ? 0 : AndroidUtilities.dp(64.0f);
         this.headerView.setVisibility(z ? 0 : 8);
         this.headerView.setTranslationY(f);
     }
@@ -425,8 +465,11 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             return;
         }
         this.buttons[0].titleView.setText(this.topView.getUpgradeImageViewAttribute().name, z);
+        this.buttons[0].percentView.setText(AffiliateProgramFragment.percents(this.topView.getUpgradeImageViewAttribute().rarity_permille), z);
         this.buttons[1].titleView.setText(this.topView.getUpgradeBackdropAttribute().name, z);
+        this.buttons[1].percentView.setText(AffiliateProgramFragment.percents(this.topView.getUpgradeBackdropAttribute().rarity_permille), z);
         this.buttons[2].titleView.setText(this.topView.getUpgradePatternAttribute().name, z);
+        this.buttons[2].percentView.setText(AffiliateProgramFragment.percents(this.topView.getUpgradePatternAttribute().rarity_permille), z);
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -511,9 +554,8 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.percentageView = textView2;
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setTextSize(1, 11.0f);
-            textView2.setTextColor(-1);
             textView2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(1.0f));
-            textView2.setText("0.3%");
+            textView2.setBackground(Theme.createRadSelectorDrawable(0, 285212671, 10, 10));
             addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 10.0f, 10.0f, 0.0f));
         }
 
@@ -550,6 +592,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                 GiftAttributeCell giftAttributeCell = (GiftAttributeCell) view;
                 Attributes attributes = (Attributes) uItem.object;
                 int i2 = uItem.intValue;
+                boolean z2 = i2 == 0;
                 if (i2 == 0) {
                     giftAttributeCell.cardBackground.setBackdrop(null);
                     giftAttributeCell.cardBackground.setPattern(null);
@@ -575,8 +618,18 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                     i = 0;
                 }
                 giftAttributeCell.textView.setTextColor(i2 == 0 ? Theme.getColor(Theme.key_dialogTextBlack, giftAttributeCell.resourcesProvider) : -1);
-                giftAttributeCell.percentageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.5f), ColorUtils.blendARGB(ColorUtils.setAlphaComponent(attributes.backdrop.center_color, 255), ColorUtils.setAlphaComponent(attributes.backdrop.pattern_color, 255), 0.5f)));
                 giftAttributeCell.percentageView.setText(AffiliateProgramFragment.percents(i));
+                if (z2) {
+                    TextView textView = giftAttributeCell.percentageView;
+                    int i3 = Theme.key_windowBackgroundWhite;
+                    int color = Theme.getColor(i3);
+                    int i4 = Theme.key_windowBackgroundWhiteBlackText;
+                    textView.setTextColor(ColorUtils.blendARGB(color, Theme.getColor(i4), 0.5f));
+                    Theme.setSelectorDrawableColor(giftAttributeCell.percentageView.getBackground(), ColorUtils.blendARGB(Theme.getColor(i3), Theme.getColor(i4), 0.05f), false);
+                    return;
+                }
+                giftAttributeCell.percentageView.setTextColor(-1);
+                Theme.setSelectorDrawableColor(giftAttributeCell.percentageView.getBackground(), ColorUtils.blendARGB(ColorUtils.setAlphaComponent(attributes.backdrop.center_color, 255), ColorUtils.setAlphaComponent(attributes.backdrop.pattern_color, 255), 0.5f), false);
             }
 
             public static UItem asAttribute(int i, Attributes attributes) {
@@ -713,6 +766,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
     }
 
     public static class Button extends FrameLayout {
+        public AnimatedTextView percentView;
         public TextView textView;
         public AnimatedTextView titleView;
 
@@ -732,6 +786,16 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.textView.setTextColor(-1879048193);
             this.textView.setGravity(17);
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 49, 4.0f, 20.0f, 4.0f, 0.0f));
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
+            this.percentView = animatedTextView2;
+            animatedTextView2.setText("WTF");
+            this.percentView.setTypeface(AndroidUtilities.bold());
+            this.percentView.setTextColor(-1);
+            this.percentView.setGravity(5);
+            this.percentView.setTextSize(AndroidUtilities.dp(11.0f));
+            this.percentView.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(1.0f));
+            this.percentView.setSizeableBackground(Theme.createRadSelectorDrawable(0, 285212671, 10, 10));
+            addView(this.percentView, LayoutHelper.createFrame(-1, 16.0f, 53, 0.0f, -9.0f, -4.0f, 0.0f));
         }
     }
 

@@ -463,11 +463,12 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
     }
 
     public void lambda$new$6(long j, Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable, View view) {
-        GiftAuctionController.Auction auction = this.auction;
-        if (auction != null && !auction.isFinished()) {
-            if (j == 0 || (j == UserConfig.getInstance(this.currentAccount).getClientUserId() && this.auction.previewAttributes != null)) {
-                GiftAuctionController.Auction auction2 = this.auction;
-                new AuctionWearingSheet(context, resourcesProvider, j, auction2.gift, auction2.previewAttributes, runnable, false).show();
+        GiftAuctionController.Auction auction;
+        ArrayList<TL_stars.StarGiftAttribute> arrayList;
+        GiftAuctionController.Auction auction2 = this.auction;
+        if (auction2 != null && !auction2.isFinished()) {
+            if ((j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) && (arrayList = (auction = this.auction).previewAttributes) != null) {
+                new AuctionWearingSheet(context, resourcesProvider, j, auction.gift, arrayList, runnable, false).show();
             } else {
                 new SendGiftSheet(context, this.currentAccount, this.auction.gift, j, runnable, false, false) {
                     @Override

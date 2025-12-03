@@ -505,11 +505,17 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     private void updateTable(boolean z) {
         int i;
         this.minimumBidCell.infoView.setText(StarsIntroActivity.replaceStarsWithPlain("⭐️" + LocaleController.formatNumberWithMillion((int) this.auction.getMinimumBid(), ','), 0.78f, this.refS), z);
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
-        if (tL_starGiftAuctionState != null) {
-            long max = Math.max(0, tL_starGiftAuctionState.next_round_at - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-            this.timer.start(max);
-            updateCountdownCell(max, z);
+        if (this.auction.auctionStateActive != null) {
+            int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+            if (this.auction.isUpcoming(currentTime)) {
+                long max = Math.max(0, this.auction.auctionStateActive.start_date - currentTime);
+                this.timer.start(max);
+                updateCountdownCell(max, z);
+            } else {
+                long max2 = Math.max(0, this.auction.auctionStateActive.next_round_at - currentTime);
+                this.timer.start(max2);
+                updateCountdownCell(max2, z);
+            }
             if (this.animatedEmojiSpan == null && this.auction.gift.sticker != null) {
                 this.animatedEmojiSpan = new AnimatedEmojiSpan(this.auction.gift.sticker.id, this.giftsLeftCell.infoView.getPaint().getFontMetricsInt());
             }
@@ -524,8 +530,8 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             if (this.auction.isUpcoming()) {
                 i = R.string.Gift2AuctionBidInfoUntilStart;
             } else {
-                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.auction.auctionStateActive;
-                i = tL_starGiftAuctionState2.current_round == tL_starGiftAuctionState2.total_rounds ? R.string.Gift2AuctionBidInfoUntilEndRound : R.string.Gift2AuctionBidInfoUntilNextRound;
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
+                i = tL_starGiftAuctionState.current_round == tL_starGiftAuctionState.total_rounds ? R.string.Gift2AuctionBidInfoUntilEndRound : R.string.Gift2AuctionBidInfoUntilNextRound;
             }
             textView.setText(LocaleController.getString(i));
             int min = Math.min(this.topBidderCells.length, this.auction.auctionStateActive.top_bidders.size());
@@ -632,7 +638,6 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     private void updateSelfBidderCell(boolean z) {
-        int i;
         long value = this.slider.getValue();
         int approximatedMyPlace = this.auction.getApproximatedMyPlace();
         int approximatePlaceFromStars = this.auction.approximatePlaceFromStars(value);
@@ -642,10 +647,10 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         }
         this.selfBidderCell.setPlace(approximatePlaceFromStars, false, z);
         GiftAuctionController.Auction auction = this.auction;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
-        if (tL_starGiftAuctionState != null && approximatePlaceFromStars > 0) {
-            TL_stars.StarGift starGift = auction.gift;
-            if (starGift.title != null && (i = tL_starGiftAuctionState.last_gift_num + approximatePlaceFromStars) <= starGift.availability_total) {
+        if (auction.auctionStateActive != null && approximatePlaceFromStars > 0 && auction.gift.title != null && auction.getBidStatus() == GiftAuctionController.Auction.BidStatus.WINNING && !this.auction.isUpcoming()) {
+            GiftAuctionController.Auction auction2 = this.auction;
+            int i = auction2.auctionStateActive.last_gift_num + approximatePlaceFromStars;
+            if (i <= auction2.gift.availability_total) {
                 this.selfBidderFutureGift.setText(this.auction.gift.title + " #" + LocaleController.formatNumber(i, ','));
                 return;
             }
