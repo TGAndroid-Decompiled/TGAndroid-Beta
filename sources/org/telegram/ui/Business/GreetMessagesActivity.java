@@ -68,8 +68,8 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    if (GreetMessagesActivity.this.onBackPressed()) {
-                        GreetMessagesActivity.this.lambda$onBackPressed$340();
+                    if (GreetMessagesActivity.this.onBackPressed(true)) {
+                        GreetMessagesActivity.this.finishFragment();
                     }
                 } else if (i == 1) {
                     GreetMessagesActivity.this.processDone();
@@ -186,7 +186,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$340();
+            finishFragment();
             return;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("hello");
@@ -249,13 +249,16 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (hasChanges()) {
+    public boolean onBackPressed(boolean z) {
+        if (!hasChanges()) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
             if (!this.enabled) {
                 processDone();
                 return false;
@@ -276,9 +279,8 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
                 }
             });
             showDialog(builder.create());
-            return false;
         }
-        return super.onBackPressed();
+        return false;
     }
 
     public void lambda$onBackPressed$3(AlertDialog alertDialog, int i) {
@@ -286,7 +288,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     }
 
     public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {

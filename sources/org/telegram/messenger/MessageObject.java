@@ -1543,6 +1543,7 @@ public class MessageObject {
         public ArrayList<GroupedMessagePosition> posArray = new ArrayList<>();
         public HashMap<MessageObject, GroupedMessagePosition> positions = new HashMap<>();
         public LongSparseArray positionsArray = new LongSparseArray();
+        public int cachedWidthForCaption = -1;
         private int maxSizeWidth = 800;
         public final TransitionParams transitionParams = new TransitionParams();
 

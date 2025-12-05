@@ -294,10 +294,13 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         this.previewDialog = null;
     }
 
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         PreviewDialog previewDialog = this.previewDialog;
         if (previewDialog == null) {
             return true;
+        }
+        if (!z) {
+            return false;
         }
         previewDialog.dismiss();
         return false;

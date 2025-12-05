@@ -275,10 +275,13 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         EditTextEmoji editTextEmoji = this.editText;
         if (editTextEmoji == null || !editTextEmoji.isPopupShowing()) {
-            return true;
+            return super.onBackPressed(z);
+        }
+        if (!z) {
+            return false;
         }
         this.editText.hidePopup(true);
         return false;
@@ -305,7 +308,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    GroupCreateFinalActivity.this.lambda$onBackPressed$340();
+                    GroupCreateFinalActivity.this.finishFragment();
                 }
             }
         });

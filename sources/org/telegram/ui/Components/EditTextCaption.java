@@ -395,10 +395,13 @@ public class EditTextCaption extends EditTextBoldCursor {
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public boolean closeCreationLinkDialog() {
+    public boolean closeCreationLinkDialog(boolean z) {
         AlertDialog alertDialog = this.creationLinkDialog;
         if (alertDialog == null || !alertDialog.isShowing()) {
             return false;
+        }
+        if (!z) {
+            return true;
         }
         this.creationLinkDialog.dismiss();
         return true;

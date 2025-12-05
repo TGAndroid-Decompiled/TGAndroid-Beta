@@ -159,7 +159,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DialogOrContactPickerActivity.this.lambda$onBackPressed$340();
+                    DialogOrContactPickerActivity.this.finishFragment();
                 }
             }
         });
@@ -666,7 +666,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             MessagesController.getInstance(this.currentAccount).blockPeer(user.id);
             AlertsCreator.showSimpleToast(this, LocaleController.getString(R.string.UserBlocked));
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void updateTabs() {

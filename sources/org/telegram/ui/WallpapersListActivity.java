@@ -509,7 +509,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     WallpapersListActivity.this.updateRowsSelection();
                     return;
                 }
-                WallpapersListActivity.this.lambda$onBackPressed$340();
+                WallpapersListActivity.this.finishFragment();
                 return;
             }
             if (i != 4) {
@@ -671,7 +671,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                         SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(sb.toString(), j, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     }
                 }
-                dialogsActivity.lambda$onBackPressed$340();
+                dialogsActivity.finishFragment();
             } else {
                 long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle bundle = new Bundle();

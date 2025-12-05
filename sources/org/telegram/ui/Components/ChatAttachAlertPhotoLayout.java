@@ -1861,7 +1861,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (baseFragment != null) {
             baseFragment.removeSelfFromStack();
         }
-        avatarConstructorFragment.lambda$onBackPressed$340();
+        avatarConstructorFragment.finishFragment();
     }
 
     public boolean checkSendMediaEnabled(MediaController.PhotoEntry photoEntry) {

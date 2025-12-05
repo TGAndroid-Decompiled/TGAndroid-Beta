@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
 import android.graphics.RenderEffect;
@@ -200,6 +202,7 @@ public class ProfileGooeyView extends FrameLayout {
         private int bitmapOrigH;
         private int bitmapOrigW;
         private final Paint bitmapPaint;
+        private final Paint bitmapPaint2;
         private int optimizedH;
         private int optimizedW;
         private final float scaleConst;
@@ -217,9 +220,15 @@ public class ProfileGooeyView extends FrameLayout {
         private CPUImpl() {
             Paint paint = new Paint();
             this.bitmapPaint = paint;
-            this.scaleConst = 3.0f;
+            Paint paint2 = new Paint();
+            this.bitmapPaint2 = paint2;
+            this.scaleConst = 5.0f;
             paint.setFlags(7);
             paint.setFilterBitmap(true);
+            paint2.setFlags(7);
+            paint2.setFilterBitmap(true);
+            paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+            paint.setColorFilter(new ColorMatrixColorFilter(new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 60.0f, -7500.0f}));
         }
 
         @Override
@@ -234,7 +243,7 @@ public class ProfileGooeyView extends FrameLayout {
             this.bitmapOrigW = this.optimizedW;
             int dp = min + AndroidUtilities.dp(32.0f);
             this.bitmapOrigH = dp;
-            this.bitmap = Bitmap.createBitmap((int) (this.bitmapOrigW / 3.0f), (int) (dp / 3.0f), Bitmap.Config.ARGB_8888);
+            this.bitmap = Bitmap.createBitmap((int) (this.bitmapOrigW / 5.0f), (int) (dp / 5.0f), Bitmap.Config.ARGB_8888);
             this.bitmapCanvas = new Canvas(this.bitmap);
         }
 
@@ -281,12 +290,14 @@ public class ProfileGooeyView extends FrameLayout {
                     this.bitmapCanvas.restore();
                 }
                 this.bitmapCanvas.restore();
-                Utilities.stackBlurBitmap(this.bitmap, (int) ((ProfileGooeyView.this.intensity * 2.0f) / 3.0f));
-                Utilities.applyAlphaThreshold(this.bitmap, 125);
+                Utilities.stackBlurBitmap(this.bitmap, (int) ((ProfileGooeyView.this.intensity * 2.0f) / 5.0f));
                 canvas.save();
                 canvas.translate(width, 0.0f);
+                canvas.saveLayer(0.0f, 0.0f, this.bitmapOrigW, this.bitmapOrigH, null);
                 canvas.scale(this.bitmapOrigW / this.bitmap.getWidth(), this.bitmapOrigH / this.bitmap.getHeight());
                 canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, this.bitmapPaint);
+                canvas.drawBitmap(this.bitmap, 0.0f, 0.0f, this.bitmapPaint2);
+                canvas.restore();
                 canvas.restore();
             }
             if (clamp != 0) {

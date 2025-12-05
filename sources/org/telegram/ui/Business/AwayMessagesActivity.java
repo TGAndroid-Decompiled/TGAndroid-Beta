@@ -64,8 +64,8 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    if (AwayMessagesActivity.this.onBackPressed()) {
-                        AwayMessagesActivity.this.lambda$onBackPressed$340();
+                    if (AwayMessagesActivity.this.onBackPressed(true)) {
+                        AwayMessagesActivity.this.finishFragment();
                     }
                 } else if (i == 1) {
                     AwayMessagesActivity.this.processDone();
@@ -228,7 +228,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             return;
         }
         if (!hasChanges()) {
-            lambda$onBackPressed$340();
+            finishFragment();
             return;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
@@ -305,13 +305,16 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (hasChanges()) {
+    public boolean onBackPressed(boolean z) {
+        if (!hasChanges()) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
             if (!this.enabled) {
                 processDone();
                 return false;
@@ -332,9 +335,8 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
                 }
             });
             showDialog(builder.create());
-            return false;
         }
-        return super.onBackPressed();
+        return false;
     }
 
     public void lambda$onBackPressed$3(AlertDialog alertDialog, int i) {
@@ -342,7 +344,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {

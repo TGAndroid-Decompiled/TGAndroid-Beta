@@ -331,7 +331,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$340();
+            PhotoPickerActivity.this.finishFragment();
             return true;
         }
 
@@ -588,7 +588,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public boolean cancelButtonPressed() {
             PhotoPickerActivity.this.delegate.actionButtonPressed(true, true, 0, 0);
-            PhotoPickerActivity.this.lambda$onBackPressed$340();
+            PhotoPickerActivity.this.finishFragment();
             return true;
         }
 
@@ -704,7 +704,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoPickerActivity.this.lambda$onBackPressed$340();
+                    PhotoPickerActivity.this.finishFragment();
                     return;
                 }
                 if (i3 != 1) {
@@ -712,7 +712,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                         if (PhotoPickerActivity.this.delegate != null) {
                             PhotoPickerActivity.this.delegate.onOpenInPressed();
                         }
-                        PhotoPickerActivity.this.lambda$onBackPressed$340();
+                        PhotoPickerActivity.this.finishFragment();
                         return;
                     }
                     return;
@@ -1078,7 +1078,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         @Override
         public void onItemClick(int i3) {
             if (i3 == -1) {
-                PhotoPickerActivity.this.lambda$onBackPressed$340();
+                PhotoPickerActivity.this.finishFragment();
                 return;
             }
             if (i3 != 1) {
@@ -1086,7 +1086,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     if (PhotoPickerActivity.this.delegate != null) {
                         PhotoPickerActivity.this.delegate.onOpenInPressed();
                     }
-                    PhotoPickerActivity.this.lambda$onBackPressed$340();
+                    PhotoPickerActivity.this.finishFragment();
                     return;
                 }
                 return;
@@ -1136,7 +1136,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean canCollapseSearch() {
-            PhotoPickerActivity.this.lambda$onBackPressed$340();
+            PhotoPickerActivity.this.finishFragment();
             return false;
         }
 
@@ -2066,13 +2066,16 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         EditTextEmoji editTextEmoji = this.commentTextView;
-        if (editTextEmoji != null && editTextEmoji.isPopupShowing()) {
-            this.commentTextView.hidePopup(true);
+        if (editTextEmoji == null || !editTextEmoji.isPopupShowing()) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        this.commentTextView.hidePopup(true);
+        return false;
     }
 
     public void updatePhotosButton(int i) {
@@ -2317,7 +2320,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         if (this.selectPhotoType != PhotoAlbumPickerActivity.SELECT_TYPE_WALLPAPER) {
             PhotoPickerActivityDelegate photoPickerActivityDelegate = this.delegate;
             if (photoPickerActivityDelegate == null || photoPickerActivityDelegate.canFinishFragment()) {
-                lambda$onBackPressed$340();
+                finishFragment();
             }
         }
     }

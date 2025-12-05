@@ -211,14 +211,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                         MessagesStorage.getInstance(((BaseFragment) ContactAddActivity.this).currentAccount).updateUserInfo(userFull, true);
                         ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.id), userFull);
                     }
-                    ContactAddActivity.this.lambda$onBackPressed$340();
+                    ContactAddActivity.this.finishFragment();
                     if (ContactAddActivity.this.delegate != null) {
                         ContactAddActivity.this.delegate.didAddToContacts();
                         return;
                     }
                     return;
                 }
-                ContactAddActivity.this.lambda$onBackPressed$340();
+                ContactAddActivity.this.finishFragment();
             }
         });
         this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Done).toUpperCase());
@@ -728,7 +728,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         if (user != null) {
             user.contact = false;
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void showAvatarProgress(final boolean z, boolean z2) {

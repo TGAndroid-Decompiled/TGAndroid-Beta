@@ -1722,8 +1722,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createView$1(View view) {
-        if (onBackPressed()) {
-            lambda$onBackPressed$340();
+        if (onBackPressed(true)) {
+            finishFragment();
         }
     }
 
@@ -1736,12 +1736,15 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (!this.isChannel && hasUnsavedChanged() && getUserConfig().isPremium()) {
-            showUnsavedAlert();
+    public boolean onBackPressed(boolean z) {
+        if (this.isChannel || !hasUnsavedChanged() || !getUserConfig().isPremium()) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        showUnsavedAlert();
+        return false;
     }
 
     @Override
@@ -1772,7 +1775,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$showUnsavedAlert$4(AlertDialog alertDialog, int i) {
@@ -1784,7 +1787,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$340();
+            finishFragment();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
@@ -1807,7 +1810,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             page2.setupValues();
         }
         apply();
-        lambda$onBackPressed$340();
+        finishFragment();
         showBulletin();
     }
 
@@ -1816,7 +1819,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         page.button.setLoading(false);
         if (bool.booleanValue()) {
             apply();
-            lambda$onBackPressed$340();
+            finishFragment();
             showBulletin();
         }
     }

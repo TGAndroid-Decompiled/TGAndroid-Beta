@@ -195,7 +195,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatCustomReactionsEditActivity.this.lambda$onBackPressed$340();
+                ChatCustomReactionsEditActivity.this.finishFragment();
             }
         });
     }
@@ -206,7 +206,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         }
         this.actionButton.setLoading(false);
         if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
-            lambda$onBackPressed$340();
+            finishFragment();
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -412,7 +412,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
 
     @Override
     public boolean canBeginSlide() {
-        if (checkChangesBeforeExit()) {
+        if (checkChangesBeforeExit(true)) {
             return false;
         }
         return super.canBeginSlide();
@@ -558,21 +558,27 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (closeKeyboard() || checkChangesBeforeExit()) {
+    public boolean onBackPressed(boolean z) {
+        if (this.emojiKeyboardVisible) {
+            if (z) {
+                closeKeyboard();
+            }
             return false;
         }
-        return super.onBackPressed();
+        if (checkChangesBeforeExit(z)) {
+            return false;
+        }
+        return super.onBackPressed(z);
     }
 
-    public boolean checkChangesBeforeExit() {
-        boolean z = !this.selectedEmojisMap.keySet().equals(this.initialSelectedEmojis.keySet());
+    public boolean checkChangesBeforeExit(boolean z) {
+        boolean z2 = !this.selectedEmojisMap.keySet().equals(this.initialSelectedEmojis.keySet());
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
         if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < this.selectedCustomReactions) {
-            z = false;
+            z2 = false;
         }
-        boolean z2 = this.initialPaid == this.paid ? z : true;
-        if (z2) {
+        boolean z3 = this.initialPaid == this.paid ? z2 : true;
+        if (z && z3) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
             builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
             builder.setMessage(LocaleController.getString("ReactionApplyChangesDialog", R.string.ReactionApplyChangesDialog));
@@ -590,7 +596,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
             });
             builder.show();
         }
-        return z2;
+        return z3;
     }
 
     public void lambda$checkChangesBeforeExit$14(AlertDialog alertDialog, int i) {
@@ -598,7 +604,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     public void lambda$checkChangesBeforeExit$15(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void checkMaxCustomReactions(boolean z) {
@@ -725,7 +731,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$340();
+                finishFragment();
             } else {
                 removeSelfFromStack();
             }

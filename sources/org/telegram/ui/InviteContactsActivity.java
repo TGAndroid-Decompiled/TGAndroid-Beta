@@ -338,7 +338,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    InviteContactsActivity.this.lambda$onBackPressed$340();
+                    InviteContactsActivity.this.finishFragment();
                 }
             }
         });
@@ -658,7 +658,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         } catch (Exception e) {
             FileLog.e(e);
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     @Override

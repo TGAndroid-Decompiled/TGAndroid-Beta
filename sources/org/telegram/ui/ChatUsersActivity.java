@@ -379,8 +379,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i4) {
                 if (i4 == -1) {
-                    if (ChatUsersActivity.this.checkDiscard()) {
-                        ChatUsersActivity.this.lambda$onBackPressed$340();
+                    if (ChatUsersActivity.this.checkDiscard(true)) {
+                        ChatUsersActivity.this.finishFragment();
                     }
                 } else if (i4 == 1) {
                     ChatUsersActivity.this.processDone();
@@ -1383,11 +1383,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 ChatEditActivity chatEditActivity = new ChatEditActivity(bundle);
                 chatEditActivity.setInfo(ChatUsersActivity.this.info);
                 ((BaseFragment) ChatUsersActivity.this).parentLayout.addFragmentToStack(chatEditActivity, ((BaseFragment) ChatUsersActivity.this).parentLayout.getFragmentStack().size() - 1);
-                ChatUsersActivity.this.lambda$onBackPressed$340();
+                ChatUsersActivity.this.finishFragment();
                 chatEditActivity.showConvertTooltip();
                 return;
             }
-            ChatUsersActivity.this.lambda$onBackPressed$340();
+            ChatUsersActivity.this.finishFragment();
         }
     }
 
@@ -1716,7 +1716,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     @Override
     public boolean canBeginSlide() {
-        return checkDiscard();
+        return checkDiscard(true);
     }
 
     public void openRightsEdit(final long j, final TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, int i, final boolean z2) {
@@ -1758,7 +1758,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (chatUsersActivityDelegate != null) {
                 chatUsersActivityDelegate.didKickParticipant(j);
             }
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 
@@ -2183,7 +2183,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (i == NotificationCenter.dialogDeleted && ((Long) objArr[0]).longValue() == (-this.chatId)) {
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$340();
+                finishFragment();
             } else {
                 removeSelfFromStack();
             }
@@ -2195,8 +2195,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
-    public boolean onBackPressed() {
-        return checkDiscard();
+    public boolean onBackPressed(boolean z) {
+        return checkDiscard(z);
     }
 
     public void setDelegate(ChatUsersActivityDelegate chatUsersActivityDelegate) {
@@ -2240,33 +2240,35 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return LocaleController.formatPluralString("Hours", (i / 60) / 60, new Object[0]);
     }
 
-    public boolean checkDiscard() {
-        boolean z;
-        if (ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights) && this.initialSlowmode == this.selectedSlowmode && !hasNotRestrictBoostersChanges() && (z = this.signatures) == this.initialSignatures) {
-            if ((z && this.profiles) == this.initialProfiles) {
+    public boolean checkDiscard(boolean z) {
+        boolean z2;
+        if (ChatObject.getBannedRightsString(this.defaultBannedRights).equals(this.initialBannedRights) && this.initialSlowmode == this.selectedSlowmode && !hasNotRestrictBoostersChanges() && (z2 = this.signatures) == this.initialSignatures) {
+            if ((z2 && this.profiles) == this.initialProfiles) {
                 return true;
             }
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges));
-        if (this.isChannel) {
-            builder.setMessage(LocaleController.getString("ChannelSettingsChangedAlert", R.string.ChannelSettingsChangedAlert));
-        } else {
-            builder.setMessage(LocaleController.getString("GroupSettingsChangedAlert", R.string.GroupSettingsChangedAlert));
+        if (z) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges));
+            if (this.isChannel) {
+                builder.setMessage(LocaleController.getString("ChannelSettingsChangedAlert", R.string.ChannelSettingsChangedAlert));
+            } else {
+                builder.setMessage(LocaleController.getString("GroupSettingsChangedAlert", R.string.GroupSettingsChangedAlert));
+            }
+            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    ChatUsersActivity.this.lambda$checkDiscard$23(alertDialog, i);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    ChatUsersActivity.this.lambda$checkDiscard$24(alertDialog, i);
+                }
+            });
+            showDialog(builder.create());
         }
-        builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                ChatUsersActivity.this.lambda$checkDiscard$23(alertDialog, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                ChatUsersActivity.this.lambda$checkDiscard$24(alertDialog, i);
-            }
-        });
-        showDialog(builder.create());
         return false;
     }
 
@@ -2275,7 +2277,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public boolean hasSelectType() {

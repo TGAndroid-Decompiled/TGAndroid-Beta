@@ -63,7 +63,7 @@ public class BottomSheetTabsOverlay extends View {
     private GradientClip gradientClip;
     private boolean hitCloseAllButton;
     private boolean horizontallySwiping;
-    private boolean isOpen;
+    public boolean isOpen;
     private float lastY;
     private final int maximumVelocity;
     private final int minimumVelocity;
@@ -722,7 +722,8 @@ public class BottomSheetTabsOverlay extends View {
                 BottomSheetTabsOverlay bottomSheetTabsOverlay = BottomSheetTabsOverlay.this;
                 bottomSheetTabsOverlay.openProgress = bottomSheetTabsOverlay.isOpen ? 1.0f : 0.0f;
                 BottomSheetTabsOverlay.this.invalidate();
-                if (BottomSheetTabsOverlay.this.isOpen || BottomSheetTabsOverlay.this.openingSheet != null) {
+                BottomSheetTabsOverlay bottomSheetTabsOverlay2 = BottomSheetTabsOverlay.this;
+                if (bottomSheetTabsOverlay2.isOpen || bottomSheetTabsOverlay2.openingSheet != null) {
                     return;
                 }
                 BottomSheetTabsOverlay.this.clearTabs();

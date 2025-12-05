@@ -955,7 +955,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     }
                     return;
                 }
-                CacheControlActivity.this.lambda$onBackPressed$340();
+                CacheControlActivity.this.finishFragment();
             }
         });
         this.actionMode = this.actionBar.createActionMode();
@@ -3069,17 +3069,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         CacheModel cacheModel = this.cacheModel;
-        if (cacheModel != null && !cacheModel.selectedFiles.isEmpty()) {
+        if (cacheModel == null || cacheModel.selectedFiles.isEmpty()) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
             this.cacheModel.clearSelection();
             CachedMediaLayout cachedMediaLayout = this.cachedMediaLayout;
             if (cachedMediaLayout != null) {
                 cachedMediaLayout.showActionMode(false);
                 this.cachedMediaLayout.updateVisibleRows();
             }
-            return false;
         }
-        return super.onBackPressed();
+        return false;
     }
 }

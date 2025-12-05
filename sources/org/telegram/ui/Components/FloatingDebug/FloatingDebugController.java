@@ -18,9 +18,9 @@ public abstract class FloatingDebugController {
         return SharedConfig.isFloatingDebugActive;
     }
 
-    public static boolean onBackPressed() {
+    public static boolean onBackPressed(boolean z) {
         FloatingDebugView floatingDebugView = debugView;
-        return floatingDebugView != null && floatingDebugView.onBackPressed();
+        return floatingDebugView != null && floatingDebugView.onBackPressed(z);
     }
 
     public static void onDestroy() {

@@ -119,7 +119,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    SaveToGallerySettingsActivity.this.lambda$onBackPressed$340();
+                    SaveToGallerySettingsActivity.this.finishFragment();
                 }
             }
         });
@@ -340,7 +340,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             saveGalleryExceptions.put(dialogException.dialogId, dialogException);
             getUserConfig().updateSaveGalleryExceptions(this.type, saveGalleryExceptions);
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void updateRows() {

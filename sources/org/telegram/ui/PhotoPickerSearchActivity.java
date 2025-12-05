@@ -108,7 +108,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoPickerSearchActivity.this.lambda$onBackPressed$340();
+                    PhotoPickerSearchActivity.this.finishFragment();
                 }
             }
         });
@@ -123,7 +123,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             public boolean canCollapseSearch() {
-                PhotoPickerSearchActivity.this.lambda$onBackPressed$340();
+                PhotoPickerSearchActivity.this.finishFragment();
                 return false;
             }
 

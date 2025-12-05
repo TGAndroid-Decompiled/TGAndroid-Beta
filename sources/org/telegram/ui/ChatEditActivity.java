@@ -398,13 +398,16 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         EditTextEmoji editTextEmoji = this.nameTextView;
-        if (editTextEmoji != null && editTextEmoji.isPopupShowing()) {
-            this.nameTextView.hidePopup(true);
+        if (editTextEmoji == null || !editTextEmoji.isPopupShowing()) {
+            return checkDiscard(z);
+        }
+        if (!z) {
             return false;
         }
-        return checkDiscard();
+        this.nameTextView.hidePopup(true);
+        return false;
     }
 
     @Override
@@ -989,7 +992,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$340();
+        finishFragment();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -1146,7 +1149,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             }
             INavigationLayout iNavigationLayout = this.parentLayout;
             if (iNavigationLayout != null && iNavigationLayout.getLastFragment() == this) {
-                lambda$onBackPressed$340();
+                finishFragment();
                 return;
             } else {
                 removeSelfFromStack();
@@ -1181,7 +1184,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 if (i == NotificationCenter.dialogDeleted && (-this.chatId) == ((Long) objArr[0]).longValue()) {
                     INavigationLayout iNavigationLayout2 = this.parentLayout;
                     if (iNavigationLayout2 != null && iNavigationLayout2.getLastFragment() == this) {
-                        lambda$onBackPressed$340();
+                        finishFragment();
                         return;
                     } else {
                         removeSelfFromStack();
@@ -1369,7 +1372,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         this.undoView.showWithAction(0L, 76, (Runnable) null);
     }
 
-    public boolean checkDiscard() {
+    public boolean checkDiscard(boolean z) {
         EditTextEmoji editTextEmoji;
         EditTextBoldCursor editTextBoldCursor;
         String str;
@@ -1385,17 +1388,19 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
             if ((editTextEmoji2 == null || this.currentUser.first_name.equals(editTextEmoji2.getText().toString())) && ((editTextBoldCursor2 = this.descriptionTextView) == null || str3.equals(editTextBoldCursor2.getText().toString()))) {
                 return true;
             }
-            showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges)).setMessage(LocaleController.getString(R.string.BotSettingsChangedAlert)).setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    ChatEditActivity.this.lambda$checkDiscard$54(alertDialog, i);
-                }
-            }).setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    ChatEditActivity.this.lambda$checkDiscard$55(alertDialog, i);
-                }
-            }).create());
+            if (z) {
+                showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges)).setMessage(LocaleController.getString(R.string.BotSettingsChangedAlert)).setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i) {
+                        ChatEditActivity.this.lambda$checkDiscard$54(alertDialog, i);
+                    }
+                }).setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i) {
+                        ChatEditActivity.this.lambda$checkDiscard$55(alertDialog, i);
+                    }
+                }).create());
+            }
             return false;
         }
         TLRPC.ChatFull chatFull = this.info;
@@ -1405,26 +1410,28 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         if ((chatFull == null || !ChatObject.isChannel(this.currentChat) || this.info.hidden_prehistory == this.historyHidden) && (((editTextEmoji = this.nameTextView) == null || this.currentChat.title.equals(editTextEmoji.getText().toString())) && (((editTextBoldCursor = this.descriptionTextView) == null || str3.equals(editTextBoldCursor.getText().toString())) && this.forum == this.currentChat.forum))) {
             return true;
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges));
-        if (this.isChannel) {
-            builder.setMessage(LocaleController.getString("ChannelSettingsChangedAlert", R.string.ChannelSettingsChangedAlert));
-        } else {
-            builder.setMessage(LocaleController.getString("GroupSettingsChangedAlert", R.string.GroupSettingsChangedAlert));
+        if (z) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString("UserRestrictionsApplyChanges", R.string.UserRestrictionsApplyChanges));
+            if (this.isChannel) {
+                builder.setMessage(LocaleController.getString("ChannelSettingsChangedAlert", R.string.ChannelSettingsChangedAlert));
+            } else {
+                builder.setMessage(LocaleController.getString("GroupSettingsChangedAlert", R.string.GroupSettingsChangedAlert));
+            }
+            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    ChatEditActivity.this.lambda$checkDiscard$56(alertDialog, i);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    ChatEditActivity.this.lambda$checkDiscard$57(alertDialog, i);
+                }
+            });
+            showDialog(builder.create());
         }
-        builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                ChatEditActivity.this.lambda$checkDiscard$56(alertDialog, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                ChatEditActivity.this.lambda$checkDiscard$57(alertDialog, i);
-            }
-        });
-        showDialog(builder.create());
         return false;
     }
 
@@ -1433,7 +1440,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$55(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$checkDiscard$56(AlertDialog alertDialog, int i) {
@@ -1441,7 +1448,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$57(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private int getAdminCount() {
@@ -1573,7 +1580,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 updatePastFragmentsOnTabs();
             }
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$processDone$59(TL_bots.setBotInfo setbotinfo, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1592,7 +1599,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$processDone$58() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$processDone$60(int i, DialogInterface dialogInterface) {

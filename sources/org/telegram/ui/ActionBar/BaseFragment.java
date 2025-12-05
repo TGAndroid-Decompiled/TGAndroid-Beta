@@ -565,7 +565,7 @@ public abstract class BaseFragment {
         }
     }
 
-    public void lambda$onBackPressed$340() {
+    public void finishFragment() {
         PreviewDelegate previewDelegate;
         Dialog dialog = this.parentDialog;
         if (dialog != null) {
@@ -694,8 +694,15 @@ public abstract class BaseFragment {
         return (iNavigationLayout == null || iNavigationLayout.getFragmentStack().size() <= i + 1) ? this : (BaseFragment) this.parentLayout.getFragmentStack().get((this.parentLayout.getFragmentStack().size() - 2) - i);
     }
 
-    public boolean onBackPressed() {
-        return !closeSheet();
+    public boolean onBackPressed(boolean z) {
+        if (!hasShownSheet()) {
+            return true;
+        }
+        if (!z) {
+            return false;
+        }
+        closeSheet();
+        return false;
     }
 
     public boolean closeSheet() {

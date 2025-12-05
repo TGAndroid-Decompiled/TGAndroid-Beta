@@ -249,8 +249,8 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    if (StickersActivity.this.onBackPressed()) {
-                        StickersActivity.this.lambda$onBackPressed$340();
+                    if (StickersActivity.this.onBackPressed(true)) {
+                        StickersActivity.this.finishFragment();
                     }
                 } else if (i2 == 0 || i2 == 1 || i2 == 2) {
                     if (!StickersActivity.this.needReorder) {
@@ -507,12 +507,15 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (this.listAdapter.hasSelected()) {
-            this.listAdapter.clearSelected();
+    public boolean onBackPressed(boolean z) {
+        if (!this.listAdapter.hasSelected()) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        this.listAdapter.clearSelected();
+        return false;
     }
 
     @Override

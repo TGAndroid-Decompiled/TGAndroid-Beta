@@ -201,7 +201,7 @@ public class CameraScanActivity extends BaseFragment {
                 }
 
                 @Override
-                public void lambda$onBackPressed$340() {
+                public void finishFragment() {
                     setFinishing(true);
                     AnonymousClass1.this.lambda$new$0();
                 }
@@ -240,7 +240,7 @@ public class CameraScanActivity extends BaseFragment {
             }
 
             @Override
-            public void lambda$onBackPressed$340() {
+            public void finishFragment() {
                 setFinishing(true);
                 AnonymousClass1.this.lambda$new$0();
             }
@@ -370,7 +370,7 @@ public class CameraScanActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    CameraScanActivity.this.lambda$onBackPressed$340();
+                    CameraScanActivity.this.finishFragment();
                 }
             }
         });
@@ -786,7 +786,7 @@ public class CameraScanActivity extends BaseFragment {
         @Override
         public void onItemClick(int i) {
             if (i == -1) {
-                CameraScanActivity.this.lambda$onBackPressed$340();
+                CameraScanActivity.this.finishFragment();
             }
         }
     }
@@ -1401,7 +1401,7 @@ public class CameraScanActivity extends BaseFragment {
                 if (cameraScanActivityDelegate != null) {
                     cameraScanActivityDelegate.didFindQr(tryReadQr.text);
                 }
-                lambda$onBackPressed$340();
+                finishFragment();
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -1588,7 +1588,7 @@ public class CameraScanActivity extends BaseFragment {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CameraScanActivity.this.lambda$onBackPressed$340();
+                CameraScanActivity.this.finishFragment();
             }
         }, 1200L);
     }
@@ -1611,7 +1611,7 @@ public class CameraScanActivity extends BaseFragment {
         if (cameraScanActivityDelegate != null) {
             cameraScanActivityDelegate.didFindQr(this.recognizedText);
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$processShot$14(QrResult qrResult) {
@@ -1624,7 +1624,7 @@ public class CameraScanActivity extends BaseFragment {
             cameraScanActivityDelegate.didFindQr(str);
         }
         if (this.currentType != 3) {
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 

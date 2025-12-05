@@ -744,7 +744,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             String str;
             int i2 = 0;
             if (i == -1) {
-                if (ThemePreviewActivity.this.checkDiscard()) {
+                if (ThemePreviewActivity.this.checkDiscard(true)) {
                     ThemePreviewActivity.this.cancelThemeApply(false);
                     return;
                 }
@@ -782,7 +782,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 Theme.saveThemeAccents(ThemePreviewActivity.this.applyingTheme, true, false, false, true);
                 Theme.applyPreviousTheme();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ThemePreviewActivity.this.applyingTheme, Boolean.valueOf(ThemePreviewActivity.this.nightTheme), null, -1);
-                ThemePreviewActivity.this.lambda$onBackPressed$340();
+                ThemePreviewActivity.this.finishFragment();
                 return;
             }
             if (i == 5) {
@@ -1192,7 +1192,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         public void openThemeCreate(boolean z) {
             if (z) {
                 if (ThemePreviewActivity.this.accent.info == null) {
-                    ThemePreviewActivity.this.lambda$onBackPressed$340();
+                    ThemePreviewActivity.this.finishFragment();
                     MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).saveThemeToServer(ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
                     return;
@@ -1232,7 +1232,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             Theme.applyPreviousTheme();
             Theme.refreshThemeColors();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ThemePreviewActivity.this.applyingTheme, Boolean.valueOf(ThemePreviewActivity.this.nightTheme), null, -1);
-            ThemePreviewActivity.this.lambda$onBackPressed$340();
+            ThemePreviewActivity.this.finishFragment();
         }
 
         @Override
@@ -1283,7 +1283,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             edit.commit();
         }
         BaseFragment baseFragment = (BaseFragment) getParentLayout().getFragmentStack().get(Math.max(0, getParentLayout().getFragmentStack().size() - 2));
-        lambda$onBackPressed$340();
+        finishFragment();
         if (this.screenType == 0) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didApplyNewTheme, previousTheme, accent, Boolean.valueOf(this.deleteOnCancel));
         }
@@ -1864,8 +1864,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return false;
     }
 
-    public boolean checkDiscard() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.checkDiscard():boolean");
+    public boolean checkDiscard(boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.checkDiscard(boolean):boolean");
     }
 
     public void lambda$checkDiscard$25(AlertDialog alertDialog, int i) {
@@ -2160,12 +2160,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (!checkDiscard()) {
+    public boolean onBackPressed(boolean z) {
+        if (!checkDiscard(z)) {
             return false;
         }
         cancelThemeApply(true);
-        return true;
+        return super.onBackPressed(z);
     }
 
     @Override
@@ -2281,7 +2281,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (i != NotificationCenter.wallpaperSettedToUser || this.dialogId == 0) {
             return;
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$didReceivedNotification$31(final TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -2385,7 +2385,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             if (z) {
                 return;
             }
-            lambda$onBackPressed$340();
+            finishFragment();
             return;
         }
         Theme.applyPreviousTheme();
@@ -2424,7 +2424,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (z) {
             return;
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public int getButtonsColor(int i) {

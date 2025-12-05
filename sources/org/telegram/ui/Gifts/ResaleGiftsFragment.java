@@ -131,7 +131,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ResaleGiftsFragment.this.lambda$onBackPressed$340();
+                    ResaleGiftsFragment.this.finishFragment();
                 }
             }
         });
@@ -1037,7 +1037,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         };
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
-            lambda$onBackPressed$340();
+            finishFragment();
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment != null) {
                 safeLastFragment.presentFragment(chatActivity);

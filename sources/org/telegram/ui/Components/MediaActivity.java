@@ -167,7 +167,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
                 }
-                MediaActivity.this.lambda$onBackPressed$340();
+                MediaActivity.this.finishFragment();
                 return;
             }
             if (i != 2) {
@@ -372,15 +372,20 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (closeSheet()) {
+    public boolean onBackPressed(boolean z) {
+        if (hasShownSheet()) {
+            if (z) {
+                closeSheet();
+            }
             return false;
         }
-        if (this.sharedMediaLayout.isActionModeShown()) {
+        if (!this.sharedMediaLayout.isActionModeShown()) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
             this.sharedMediaLayout.closeActionMode(false);
-            return false;
         }
-        return super.onBackPressed();
+        return false;
     }
 
     @Override

@@ -339,7 +339,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         CalendarActivity.this.animateSelection();
                         return;
                     }
-                    CalendarActivity.this.lambda$onBackPressed$340();
+                    CalendarActivity.this.finishFragment();
                 }
             }
         });
@@ -437,7 +437,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         AlertsCreator.createClearDaysDialogAlert(this, i, getMessagesController().getUser(Long.valueOf(this.dialogId)), null, false, new MessagesStorage.BooleanCallback() {
             @Override
             public void run(boolean z) {
-                CalendarActivity.this.lambda$onBackPressed$340();
+                CalendarActivity.this.finishFragment();
                 if (((BaseFragment) CalendarActivity.this).parentLayout != null && ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() >= 2) {
                     BaseFragment baseFragment = (BaseFragment) ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() - 2);
                     if (baseFragment instanceof ChatActivity) {
@@ -881,7 +881,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                             orCreateStoryViewer.open(context, messageObject.storyItem, messageObject.getId(), CalendarActivity.this.storiesList, true, CalendarActivity.this.storiesPlaceProvider);
                         } else {
                             CalendarActivity.this.callback.onDateSelected(dayAtCoord.messageObject.getId(), dayAtCoord.startOffset);
-                            CalendarActivity.this.lambda$onBackPressed$340();
+                            CalendarActivity.this.finishFragment();
                         }
                     }
                 }
@@ -932,13 +932,13 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         if (dayAtCoord3 != null && ((BaseFragment) CalendarActivity.this).parentLayout != null && ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() >= 2) {
                             BaseFragment baseFragment = (BaseFragment) ((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().get(((BaseFragment) CalendarActivity.this).parentLayout.getFragmentStack().size() - 2);
                             if (baseFragment instanceof ChatActivity) {
-                                CalendarActivity.this.lambda$onBackPressed$340();
+                                CalendarActivity.this.finishFragment();
                                 ((ChatActivity) baseFragment).jumpToDate(dayAtCoord3.date);
                             }
                         } else if (dayAtCoord3 != null) {
                             CalendarActivity calendarActivity7 = CalendarActivity.this;
                             if (calendarActivity7.chatActivity != null) {
-                                calendarActivity7.lambda$onBackPressed$340();
+                                calendarActivity7.finishFragment();
                                 CalendarActivity.this.chatActivity.jumpToDate(dayAtCoord3.date);
                             }
                         }
@@ -1068,7 +1068,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
 
             public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) {
-                CalendarActivity.this.lambda$onBackPressed$340();
+                CalendarActivity.this.finishFragment();
                 ((ChatActivity) baseFragment).jumpToDate(periodDay.date);
             }
 
@@ -1089,7 +1089,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                         AlertsCreator.createClearDaysDialogAlert(calendarActivity, 1, calendarActivity.getMessagesController().getUser(Long.valueOf(CalendarActivity.this.dialogId)), null, false, new MessagesStorage.BooleanCallback() {
                             @Override
                             public void run(boolean z) {
-                                CalendarActivity.this.lambda$onBackPressed$340();
+                                CalendarActivity.this.finishFragment();
                                 ((ChatActivity) baseFragment).deleteHistory(CalendarActivity.this.dateSelectedStart, CalendarActivity.this.dateSelectedEnd + 86400, z);
                             }
                         }, null);
@@ -1828,16 +1828,18 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (this.inSelectionMode) {
+    public boolean onBackPressed(boolean z) {
+        if (!this.inSelectionMode) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
             this.inSelectionMode = false;
             this.dateSelectedEnd = 0;
             this.dateSelectedStart = 0;
             updateTitle();
             animateSelection();
-            return false;
         }
-        return super.onBackPressed();
+        return false;
     }
 
     @Override

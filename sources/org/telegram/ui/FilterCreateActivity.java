@@ -475,8 +475,8 @@ public class FilterCreateActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    if (FilterCreateActivity.this.checkDiscard()) {
-                        FilterCreateActivity.this.lambda$onBackPressed$340();
+                    if (FilterCreateActivity.this.checkDiscard(true)) {
+                        FilterCreateActivity.this.finishFragment();
                     }
                 } else if (i == 1) {
                     FilterCreateActivity.this.processDone();
@@ -586,8 +586,8 @@ public class FilterCreateActivity extends BaseFragment {
         @Override
         public void onItemClick(int i) {
             if (i == -1) {
-                if (FilterCreateActivity.this.checkDiscard()) {
-                    FilterCreateActivity.this.lambda$onBackPressed$340();
+                if (FilterCreateActivity.this.checkDiscard(true)) {
+                    FilterCreateActivity.this.finishFragment();
                 }
             } else if (i == 1) {
                 FilterCreateActivity.this.processDone();
@@ -957,7 +957,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$deleteFolder$14(Boolean bool) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$deleteFolder$17(AlertDialog alertDialog, int i) {
@@ -998,7 +998,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         getMessagesController().removeFilter(this.filter);
         getMessagesStorage().deleteDialogFilter(this.filter);
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void onUpdate(boolean z, ArrayList arrayList, ArrayList arrayList2) {
@@ -1097,14 +1097,17 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         EditTextEmoji editTextEmoji;
         EditEmojiTextCell editEmojiTextCell = this.nameEditTextCell;
-        if (editEmojiTextCell != null && (editTextEmoji = editEmojiTextCell.editTextEmoji) != null && editTextEmoji.isPopupShowing()) {
-            this.nameEditTextCell.editTextEmoji.hidePopup(true);
+        if (editEmojiTextCell == null || (editTextEmoji = editEmojiTextCell.editTextEmoji) == null || !editTextEmoji.isPopupShowing()) {
+            return checkDiscard(z);
+        }
+        if (!z) {
             return false;
         }
-        return checkDiscard();
+        this.nameEditTextCell.editTextEmoji.hidePopup(true);
+        return false;
     }
 
     private void fillFilterName() {
@@ -1176,9 +1179,12 @@ public class FilterCreateActivity extends BaseFragment {
         }
     }
 
-    public boolean checkDiscard() {
+    public boolean checkDiscard(boolean z) {
         if (this.doneItem.getAlpha() != 1.0f) {
             return true;
+        }
+        if (!z) {
+            return false;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         if (this.creatingNew) {
@@ -1219,7 +1225,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$21(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void showRemoveAlert(final ItemInner itemInner, CharSequence charSequence, Object obj, final boolean z) {
@@ -1293,7 +1299,7 @@ public class FilterCreateActivity extends BaseFragment {
             this.actionBar.setTitleAnimated(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.filter.name, titleFontMetricsInt, false), this.filter.entities, titleFontMetricsInt), true, 220L);
             return;
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void save(boolean z, final Runnable runnable) {
@@ -1518,7 +1524,7 @@ public class FilterCreateActivity extends BaseFragment {
 
     @Override
     public boolean canBeginSlide() {
-        return checkDiscard();
+        return checkDiscard(true);
     }
 
     private boolean hasChanges() {

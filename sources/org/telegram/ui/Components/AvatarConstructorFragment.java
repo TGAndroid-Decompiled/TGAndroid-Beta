@@ -559,11 +559,11 @@ public class AvatarConstructorFragment extends BaseFragment {
             create.redPositive();
             return;
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$discardEditor$2(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void createKeyboardVisibleAnimator(final boolean z) {
@@ -632,7 +632,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             delegate.onDone(previewView.backgroundGradient, previewView.documentId, previewView.document, previewView);
         }
         if (this.finishOnDone) {
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 
@@ -1578,9 +1578,31 @@ public class AvatarConstructorFragment extends BaseFragment {
     }
 
     @Override
-    public boolean onBackPressed() {
-        discardEditor();
+    public boolean onBackPressed(boolean z) {
+        if (!this.wasChanged) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
+            return false;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        builder.setMessage(LocaleController.getString(R.string.PhotoEditorDiscardAlert));
+        builder.setTitle(LocaleController.getString(R.string.DiscardChanges));
+        builder.setPositiveButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) {
+                AvatarConstructorFragment.this.lambda$onBackPressed$8(alertDialog, i);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        AlertDialog create = builder.create();
+        showDialog(create);
+        create.redPositive();
         return false;
+    }
+
+    public void lambda$onBackPressed$8(AlertDialog alertDialog, int i) {
+        finishFragment();
     }
 
     @Override

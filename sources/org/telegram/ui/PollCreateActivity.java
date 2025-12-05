@@ -550,8 +550,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         public void onItemClick(int i) {
             int i2;
             if (i == -1) {
-                if (PollCreateActivity.this.checkDiscard()) {
-                    PollCreateActivity.this.lambda$onBackPressed$340();
+                if (PollCreateActivity.this.checkDiscard(true)) {
+                    PollCreateActivity.this.finishFragment();
                     return;
                 }
                 return;
@@ -640,7 +640,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                         return;
                     } else {
                         PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, hashMap, true, 0);
-                        PollCreateActivity.this.lambda$onBackPressed$340();
+                        PollCreateActivity.this.finishFragment();
                         return;
                     }
                 }
@@ -705,19 +705,19 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     });
                 } else {
                     PollCreateActivity.this.delegate.sendPoll(tL_messageMediaToDo, null, true, 0);
-                    PollCreateActivity.this.lambda$onBackPressed$340();
+                    PollCreateActivity.this.finishFragment();
                 }
             }
         }
 
         public void lambda$onItemClick$0(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaToDo, null, z, i);
-            PollCreateActivity.this.lambda$onBackPressed$340();
+            PollCreateActivity.this.finishFragment();
         }
 
         public void lambda$onItemClick$1(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, HashMap hashMap, boolean z, int i, int i2) {
             PollCreateActivity.this.delegate.sendPoll(tL_messageMediaPoll, hashMap, z, i);
-            PollCreateActivity.this.lambda$onBackPressed$340();
+            PollCreateActivity.this.finishFragment();
         }
     }
 
@@ -1007,17 +1007,20 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (this.emojiViewVisible) {
-            hideEmojiPopup(true);
+    public boolean onBackPressed(boolean z) {
+        if (!this.emojiViewVisible) {
+            return checkDiscard(z);
+        }
+        if (!z) {
             return false;
         }
-        return checkDiscard();
+        hideEmojiPopup(true);
+        return false;
     }
 
-    public boolean checkDiscard() {
+    public boolean checkDiscard(boolean z) {
         TLRPC.MessageMedia messageMedia = this.editing;
-        boolean z = false;
+        boolean z2 = false;
         if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
             TLRPC.TodoList todoList = ((TLRPC.TL_messageMediaToDo) messageMedia).todo;
             int i = 0;
@@ -1026,24 +1029,24 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     i++;
                 }
             }
-            boolean z2 = (this.onlyAdding || TextUtils.equals(todoList.title.text, ChatAttachAlertPollLayout.getFixedString(this.questionString))) && i == todoList.list.size();
-            if (z2) {
+            boolean z3 = (this.onlyAdding || TextUtils.equals(todoList.title.text, ChatAttachAlertPollLayout.getFixedString(this.questionString))) && i == todoList.list.size();
+            if (z3) {
                 for (int i3 = 0; i3 < i; i3++) {
                     if (!TextUtils.equals(this.answers[i3].toString(), todoList.list.get(i3).title.text)) {
                         break;
                     }
                 }
             }
-            z = z2;
+            z2 = z3;
         } else {
             boolean isEmpty = TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(this.questionString));
             if (isEmpty) {
                 for (int i4 = 0; i4 < this.answersCount && (isEmpty = TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(this.answers[i4]))); i4++) {
                 }
             }
-            z = isEmpty;
+            z2 = isEmpty;
         }
-        if (!z) {
+        if (z && !z2) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(this.todo ? R.string.CancelTodoAlertTitle : R.string.CancelPollAlertTitle));
             builder.setMessage(LocaleController.getString(this.todo ? R.string.CancelTodoAlertText : R.string.CancelPollAlertText));
@@ -1056,11 +1059,11 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             showDialog(builder.create());
         }
-        return z;
+        return z2;
     }
 
     public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void setDelegate(PollCreateActivityDelegate pollCreateActivityDelegate) {

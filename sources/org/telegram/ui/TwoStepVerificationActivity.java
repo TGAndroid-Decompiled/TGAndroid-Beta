@@ -365,7 +365,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     public void lambda$resetPassword$11(DialogInterface dialogInterface) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void updateBottomButton() {
@@ -860,7 +860,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             this.currentPasswordHash = new byte[0];
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-            lambda$onBackPressed$340();
+            finishFragment();
             return;
         }
         if (tL_error != null) {
@@ -1263,12 +1263,15 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (this.otherwiseReloginDays >= 0) {
-            showSetForcePasswordAlert();
+    public boolean onBackPressed(boolean z) {
+        if (this.otherwiseReloginDays < 0) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        showSetForcePasswordAlert();
+        return false;
     }
 
     public void showSetForcePasswordAlert() {
@@ -1286,7 +1289,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     public void lambda$showSetForcePasswordAlert$37(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void setBlockingAlert(int i) {
@@ -1294,14 +1297,14 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     @Override
-    public void lambda$onBackPressed$340() {
+    public void finishFragment() {
         if (this.otherwiseReloginDays >= 0) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("afterSignup", true);
             presentFragment(new DialogsActivity(bundle), true);
             return;
         }
-        super.lambda$onBackPressed$340();
+        super.finishFragment();
     }
 
     @Override

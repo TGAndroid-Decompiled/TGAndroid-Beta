@@ -151,8 +151,8 @@ public class FilterChatlistActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    if (FilterChatlistActivity.this.checkDiscard()) {
-                        FilterChatlistActivity.this.lambda$onBackPressed$340();
+                    if (FilterChatlistActivity.this.checkDiscard(true)) {
+                        FilterChatlistActivity.this.finishFragment();
                     }
                 } else if (i == 1) {
                     if (Math.abs(FilterChatlistActivity.this.doneButtonAlpha - 1.0f) < 0.1f) {
@@ -315,13 +315,13 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     @Override
-    public boolean onBackPressed() {
-        return checkDiscard();
+    public boolean onBackPressed(boolean z) {
+        return checkDiscard(z);
     }
 
     @Override
     public boolean canBeginSlide() {
-        return checkDiscard();
+        return checkDiscard(true);
     }
 
     public void save() {
@@ -377,7 +377,7 @@ public class FilterChatlistActivity extends BaseFragment {
         } else if (tL_error != null && "CHATLISTS_TOO_MUCH".equals(tL_error.text)) {
             showDialog(new LimitReachedBottomSheet(this, getContext(), 13, this.currentAccount, null));
         } else {
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 
@@ -581,7 +581,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 if (FilterChatlistActivity.this.onDelete != null) {
                     FilterChatlistActivity.this.onDelete.run(FilterChatlistActivity.this.invite);
                 }
-                FilterChatlistActivity.this.lambda$onBackPressed$340();
+                FilterChatlistActivity.this.finishFragment();
             }
 
             @Override
@@ -992,9 +992,12 @@ public class FilterChatlistActivity extends BaseFragment {
         }
     }
 
-    public boolean checkDiscard() {
+    public boolean checkDiscard(boolean z) {
         if (this.selectedPeers.isEmpty() || !this.peersChanged) {
             return true;
+        }
+        if (!z) {
+            return false;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
@@ -1020,7 +1023,7 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$10(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public static class InviteLinkCell extends FrameLayout {

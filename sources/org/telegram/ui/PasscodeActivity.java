@@ -231,7 +231,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             i2++;
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public static String lambda$createView$3(int i) {
@@ -268,7 +268,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         @Override
         public void onItemClick(int i) {
             if (i == -1) {
-                PasscodeActivity.this.lambda$onBackPressed$340();
+                PasscodeActivity.this.finishFragment();
                 return;
             }
             if (i == 1) {
@@ -855,7 +855,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         if (z) {
             presentFragment(new PasscodeActivity(0), true);
         } else {
-            lambda$onBackPressed$340();
+            finishFragment();
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
     }

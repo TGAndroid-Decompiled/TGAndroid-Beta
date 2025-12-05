@@ -237,8 +237,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    if (BusinessIntroActivity.this.onBackPressed()) {
-                        BusinessIntroActivity.this.lambda$onBackPressed$340();
+                    if (BusinessIntroActivity.this.onBackPressed(true)) {
+                        BusinessIntroActivity.this.finishFragment();
                     }
                 } else if (i2 == 1) {
                     BusinessIntroActivity.this.processDone();
@@ -549,32 +549,35 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             if (this.inputSticker != null) {
                 getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
             }
-            lambda$onBackPressed$340();
+            finishFragment();
         }
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (hasChanges()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
-            builder.setMessage(LocaleController.getString(R.string.BusinessIntroUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    BusinessIntroActivity.this.lambda$onBackPressed$5(alertDialog, i);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
-                    BusinessIntroActivity.this.lambda$onBackPressed$6(alertDialog, i);
-                }
-            });
-            showDialog(builder.create());
+    public boolean onBackPressed(boolean z) {
+        if (!hasChanges()) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+        builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+        builder.setMessage(LocaleController.getString(R.string.BusinessIntroUnsavedChanges));
+        builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) {
+                BusinessIntroActivity.this.lambda$onBackPressed$5(alertDialog, i);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) {
+                BusinessIntroActivity.this.lambda$onBackPressed$6(alertDialog, i);
+            }
+        });
+        showDialog(builder.create());
+        return false;
     }
 
     public void lambda$onBackPressed$5(AlertDialog alertDialog, int i) {
@@ -582,7 +585,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     public void lambda$onBackPressed$6(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void openCustomStickerEditor() {

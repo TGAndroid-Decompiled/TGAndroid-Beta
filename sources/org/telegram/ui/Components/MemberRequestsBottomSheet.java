@@ -73,7 +73,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
 
     @Override
     public void onBackPressed() {
-        if (this.delegate.onBackPressed()) {
+        if (this.delegate.onBackPressed(true)) {
             super.onBackPressed();
         }
     }

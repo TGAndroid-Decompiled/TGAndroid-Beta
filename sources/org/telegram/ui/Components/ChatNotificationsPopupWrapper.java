@@ -21,7 +21,7 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda363;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda270;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatNotificationsPopupWrapper;
 import org.telegram.ui.ProfileNotificationsActivity;
@@ -410,7 +410,7 @@ public class ChatNotificationsPopupWrapper {
             }
         };
         final ItemOptions makeSwipeback = itemOptions.makeSwipeback();
-        makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda363(itemOptions));
+        makeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda270(itemOptions));
         makeSwipeback.add(R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), new Runnable() {
             @Override
             public final void run() {

@@ -345,12 +345,14 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         return super.drawChild(canvas, view, j);
     }
 
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         if (!this.isBigMenuShown) {
-            return false;
+            return true;
         }
-        showBigMenu(false);
-        return true;
+        if (z) {
+            showBigMenu(false);
+        }
+        return false;
     }
 
     public void saveConfig() {

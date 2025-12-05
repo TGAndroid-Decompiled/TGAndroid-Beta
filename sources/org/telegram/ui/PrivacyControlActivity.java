@@ -934,8 +934,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    if (PrivacyControlActivity.this.checkDiscard()) {
-                        PrivacyControlActivity.this.lambda$onBackPressed$340();
+                    if (PrivacyControlActivity.this.checkDiscard(true)) {
+                        PrivacyControlActivity.this.finishFragment();
                     }
                 } else if (i2 == 1) {
                     PrivacyControlActivity.this.processDone();
@@ -1407,7 +1407,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
             }
         }
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void lambda$finished$11(int i, AlertDialog alertDialog, int i2) {
@@ -1415,7 +1415,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$finished$12(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     private void applyCurrentPrivacySettings() {
@@ -2382,8 +2382,8 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public boolean onBackPressed() {
-        return checkDiscard();
+    public boolean onBackPressed(boolean z) {
+        return checkDiscard(z);
     }
 
     public void processDone() {
@@ -2423,9 +2423,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         sharedPreferences.edit().putBoolean("privacyAlertShowed", true).commit();
     }
 
-    public boolean checkDiscard() {
+    public boolean checkDiscard(boolean z) {
         if (this.doneButton.getAlpha() != 1.0f) {
             return true;
+        }
+        if (!z) {
+            return false;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.UserRestrictionsApplyChanges));
@@ -2451,12 +2454,12 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$28(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     @Override
     public boolean canBeginSlide() {
-        return checkDiscard();
+        return checkDiscard(true);
     }
 
     public class ListAdapter extends RecyclerListView.SelectionAdapter {

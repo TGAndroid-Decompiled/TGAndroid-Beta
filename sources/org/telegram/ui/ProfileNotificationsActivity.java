@@ -189,7 +189,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         ProfileNotificationsActivity.this.delegate.didCreateNewException(notificationException);
                     }
                 }
-                ProfileNotificationsActivity.this.lambda$onBackPressed$340();
+                ProfileNotificationsActivity.this.finishFragment();
             }
         });
         ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false, this.resourcesProvider);
@@ -399,7 +399,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     public void lambda$createView$0(String str, AlertDialog alertDialog, int i) {
         this.needReset = true;
         MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean("custom_" + str, false).remove("notify2_" + str).apply();
-        lambda$onBackPressed$340();
+        finishFragment();
         ProfileNotificationsActivityDelegate profileNotificationsActivityDelegate = this.delegate;
         if (profileNotificationsActivityDelegate != null) {
             profileNotificationsActivityDelegate.didRemoveException(this.dialogId);

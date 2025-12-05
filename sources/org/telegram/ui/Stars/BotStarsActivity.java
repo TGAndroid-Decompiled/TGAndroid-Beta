@@ -188,7 +188,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    BotStarsActivity.this.lambda$onBackPressed$340();
+                    BotStarsActivity.this.finishFragment();
                 }
             }
         });
@@ -1241,13 +1241,13 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$340();
+                twoStepVerificationActivity.finishFragment();
             }
             BulletinFactory.showError(tL_error);
             return;
         }
         twoStepVerificationActivity.needHideProgress();
-        twoStepVerificationActivity.lambda$onBackPressed$340();
+        twoStepVerificationActivity.finishFragment();
         if (tLObject instanceof TL_stats.TL_broadcastRevenueWithdrawalUrl) {
             Browser.openUrlInSystemBrowser(getContext(), ((TL_stats.TL_broadcastRevenueWithdrawalUrl) tLObject).url);
         } else if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {

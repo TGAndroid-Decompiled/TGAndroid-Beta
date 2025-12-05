@@ -274,10 +274,13 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static boolean closeRenameAlert() {
+    public static boolean closeRenameAlert(boolean z) {
         AlertDialog alertDialog = currentDialog;
         if (alertDialog == null || !alertDialog.isShowing()) {
             return false;
+        }
+        if (!z) {
+            return true;
         }
         currentDialog.dismiss();
         return true;
@@ -305,11 +308,16 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (closeRenameAlert()) {
+    public boolean onBackPressed(boolean z) {
+        AlertDialog alertDialog = currentDialog;
+        if (alertDialog == null || !alertDialog.isShowing()) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        currentDialog.dismiss();
+        return false;
     }
 
     @Override

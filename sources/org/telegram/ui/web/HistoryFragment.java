@@ -153,7 +153,7 @@ public class HistoryFragment extends UniversalFragment {
                     });
                     return;
                 }
-                HistoryFragment.this.lambda$onBackPressed$340();
+                HistoryFragment.this.finishFragment();
             }
         }
 
@@ -333,7 +333,7 @@ public class HistoryFragment extends UniversalFragment {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
             } else {
-                lambda$onBackPressed$340();
+                finishFragment();
                 this.whenClicked.run((BrowserHistory.Entry) uItem.object2);
             }
         }

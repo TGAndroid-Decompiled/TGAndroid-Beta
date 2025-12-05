@@ -922,7 +922,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$onItemClick$4() {
-            PassportActivity.this.lambda$onBackPressed$340();
+            PassportActivity.this.finishFragment();
         }
 
         public void lambda$onItemClick$6(final Runnable runnable, final ErrorRunnable errorRunnable, final TL_account.verifyEmail verifyemail, TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -2136,7 +2136,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         if (tL_error == null) {
             this.ignoreOnFailure = true;
             callCallback(true);
-            lambda$onBackPressed$340();
+            finishFragment();
         } else {
             showEditDoneProgress(false, false);
             if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
@@ -3352,7 +3352,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
         this.currentDocumentValues.clear();
         this.delegate.deleteValue(this.currentType, this.currentDocumentsType, this.availableDocumentTypes, zArr[0], null, null);
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public static void lambda$createDocumentDeleteAlert$39(boolean[] zArr, View view) {
@@ -6319,26 +6319,30 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed(boolean z) {
         int i = this.currentActivityType;
         int i2 = 0;
         if (i == 7) {
-            this.views[this.currentViewNum].onBackPressed(true);
-            while (true) {
-                SlideView[] slideViewArr = this.views;
-                if (i2 >= slideViewArr.length) {
-                    break;
+            if (z) {
+                this.views[this.currentViewNum].onBackPressed(true);
+                while (true) {
+                    SlideView[] slideViewArr = this.views;
+                    if (i2 >= slideViewArr.length) {
+                        break;
+                    }
+                    SlideView slideView = slideViewArr[i2];
+                    if (slideView != null) {
+                        slideView.onDestroyActivity();
+                    }
+                    i2++;
                 }
-                SlideView slideView = slideViewArr[i2];
-                if (slideView != null) {
-                    slideView.onDestroyActivity();
-                }
-                i2++;
             }
         } else if (i == 0 || i == 5) {
-            callCallback(false);
+            if (z) {
+                callCallback(false);
+            }
         } else if (i == 1 || i == 2) {
-            return !checkDiscard();
+            return !checkDiscard(z);
         }
         return true;
     }
@@ -6676,9 +6680,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         return str == null || str.equals(getCurrentValues());
     }
 
-    public boolean checkDiscard() {
+    public boolean checkDiscard(boolean z) {
         if (isHasNotAnyChanges()) {
             return false;
+        }
+        if (!z) {
+            return true;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setPositiveButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
@@ -6695,7 +6702,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$checkDiscard$69(AlertDialog alertDialog, int i) {
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void processSelectedFiles(final ArrayList arrayList) {
@@ -7263,7 +7270,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
         public void lambda$resendCode$1(AlertDialog alertDialog, int i) {
             onBackPressed(true);
-            PassportActivity.this.lambda$onBackPressed$340();
+            PassportActivity.this.finishFragment();
         }
 
         @Override
@@ -7725,7 +7732,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 passportActivityDelegate.saveValue(tL_secureRequiredType, str, null, null, null, null, null, null, null, null, new Runnable() {
                     @Override
                     public final void run() {
-                        PassportActivity.this.lambda$onBackPressed$340();
+                        PassportActivity.this.finishFragment();
                     }
                 }, null);
                 return;

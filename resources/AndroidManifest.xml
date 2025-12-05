@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="63389"
-    android:versionName="12.2.9"
+    android:versionCode="63409"
+    android:versionName="12.2.10"
     android:installLocation="auto"
     android:compileSdkVersion="35"
     android:compileSdkVersionCodename="15"
@@ -164,7 +164,8 @@
         android:allowAudioPlaybackCapture="true"
         android:requestLegacyExternalStorage="true"
         android:preserveLegacyExternalStorage="true"
-        android:gwpAsanMode="always">
+        android:gwpAsanMode="always"
+        android:enableOnBackInvokedCallback="true">
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyA-t0jLPjUt2FxrA8VPK2EiYHcYcboIR6k"/>

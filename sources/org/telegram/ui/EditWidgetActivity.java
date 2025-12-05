@@ -373,7 +373,7 @@ public class EditWidgetActivity extends BaseFragment {
                         EditWidgetActivity.this.finishActivity();
                         return;
                     } else {
-                        EditWidgetActivity.this.lambda$onBackPressed$340();
+                        EditWidgetActivity.this.finishFragment();
                         return;
                     }
                 }
@@ -651,12 +651,15 @@ public class EditWidgetActivity extends BaseFragment {
     }
 
     @Override
-    public boolean onBackPressed() {
-        if (this.delegate == null) {
-            finishActivity();
+    public boolean onBackPressed(boolean z) {
+        if (this.delegate != null) {
+            return super.onBackPressed(z);
+        }
+        if (!z) {
             return false;
         }
-        return super.onBackPressed();
+        finishActivity();
+        return false;
     }
 
     @Override

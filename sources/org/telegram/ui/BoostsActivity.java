@@ -701,7 +701,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lambda$onBackPressed$340();
+                finishFragment();
                 if (baseFragment3 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(baseFragment3, chat, true);
                 }
@@ -711,7 +711,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 }
                 return;
             }
-            lambda$onBackPressed$340();
+            finishFragment();
             if ((baseFragment2 instanceof ProfileActivity) || (baseFragment2 instanceof ChatActivity)) {
                 BoostDialogs.showBulletin(baseFragment2, chat, false);
                 return;

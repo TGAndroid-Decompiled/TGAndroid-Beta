@@ -384,14 +384,17 @@ public abstract class SearchTagsList extends BlurredFrameLayout implements Notif
         return drawChild;
     }
 
-    public static boolean onBackPressedRenameTagAlert() {
+    public static boolean onBackPressedRenameTagAlert(boolean z) {
         AlertDialog alertDialog = currentDialog;
         if (alertDialog == null) {
+            return true;
+        }
+        if (!z) {
             return false;
         }
         alertDialog.dismiss();
         currentDialog = null;
-        return true;
+        return false;
     }
 
     public static void openRenameTagAlert(Context context, final int i, final TLRPC.Reaction reaction, final Theme.ResourcesProvider resourcesProvider, boolean z) {

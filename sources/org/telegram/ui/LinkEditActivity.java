@@ -223,7 +223,7 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$9(AlertDialog alertDialog, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        lambda$onBackPressed$340();
+        finishFragment();
     }
 
     public void onCreateClicked(android.view.View r11) {
@@ -250,7 +250,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkCreated(tLObject);
             }
-            lambda$onBackPressed$340();
+            finishFragment();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tL_error.text);
@@ -279,7 +279,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkEdited(this.inviteToEdit, tLObject);
             }
-            lambda$onBackPressed$340();
+            finishFragment();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tL_error.text);
@@ -471,10 +471,10 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public void lambda$onBackPressed$340() {
+    public void finishFragment() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
         this.finished = true;
-        super.lambda$onBackPressed$340();
+        super.finishFragment();
     }
 
     @Override

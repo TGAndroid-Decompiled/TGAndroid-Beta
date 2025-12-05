@@ -41,6 +41,8 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
 import androidx.arch.core.util.Function;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
@@ -886,6 +888,54 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.enableEdgeToEdge(this);
         BackupAgent.requestBackup(this);
         RestrictedLanguagesSelectActivity.checkRestrictedLanguages(false);
+        if (i4 >= 34) {
+            LaunchActivity$$ExternalSyntheticApiModelOutline2.m(this).registerOnBackInvokedCallback(0, new OnBackAnimationCallback() {
+                @Override
+                public void onBackInvoked() {
+                    if (AndroidUtilities.isTablet()) {
+                        LaunchActivity.this.onBackPressed();
+                    } else if (LaunchActivity.this.onBackPressed(true)) {
+                        if (LaunchActivity.this.actionBarLayout != null) {
+                            LaunchActivity.this.actionBarLayout.onBackInvoked();
+                        } else {
+                            LaunchActivity.this.onBackPressed();
+                        }
+                    }
+                }
+
+                @Override
+                public void onBackStarted(BackEvent backEvent) {
+                    float touchX;
+                    float touchY;
+                    if (AndroidUtilities.isTablet() || !LaunchActivity.this.onBackPressed(false) || LaunchActivity.this.actionBarLayout == null) {
+                        return;
+                    }
+                    ActionBarLayout actionBarLayout2 = LaunchActivity.this.actionBarLayout;
+                    touchX = backEvent.getTouchX();
+                    touchY = backEvent.getTouchY();
+                    actionBarLayout2.onBackStarted(touchX, touchY);
+                }
+
+                @Override
+                public void onBackProgressed(BackEvent backEvent) {
+                    float progress;
+                    if (AndroidUtilities.isTablet() || LaunchActivity.this.actionBarLayout == null) {
+                        return;
+                    }
+                    ActionBarLayout actionBarLayout2 = LaunchActivity.this.actionBarLayout;
+                    progress = backEvent.getProgress();
+                    actionBarLayout2.onBackProgress(progress);
+                }
+
+                @Override
+                public void onBackCancelled() {
+                    if (AndroidUtilities.isTablet() || LaunchActivity.this.actionBarLayout == null) {
+                        return;
+                    }
+                    LaunchActivity.this.actionBarLayout.onBackCancelled();
+                }
+            });
+        }
     }
 
     public static boolean lambda$onCreate$0() {
@@ -1974,7 +2024,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new AnonymousClass17());
+            this.termsOfServiceView.setDelegate(new AnonymousClass18());
         }
         TLRPC.TL_help_termsOfService tL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tL_help_termsOfService2 != tL_help_termsOfService && (tL_help_termsOfService2 == null || !tL_help_termsOfService2.id.data.equals(tL_help_termsOfService.id.data))) {
@@ -1986,8 +2036,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    public class AnonymousClass17 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        AnonymousClass17() {
+    public class AnonymousClass18 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        AnonymousClass18() {
         }
 
         @Override
@@ -2001,7 +2051,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             LaunchActivity.this.termsOfServiceView.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass17.this.lambda$onAcceptTerms$0();
+                    LaunchActivity.AnonymousClass18.this.lambda$onAcceptTerms$0();
                 }
             }).start();
         }
@@ -2145,12 +2195,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$handleIntent$17(Browser.Progress progress, int[] iArr, Long l) {
-        BaseFragment lastFragment;
         if (progress != null) {
             progress.end();
         }
-        if (MessagesController.getInstance(this.currentAccount).getUserOrChat(l.longValue()) == null && (lastFragment = getLastFragment()) != null && (lastFragment instanceof ChatActivity)) {
+        if (MessagesController.getInstance(this.currentAccount).getUserOrChat(l.longValue()) == null) {
+            BaseFragment lastFragment = getLastFragment();
+            if (lastFragment == null || !(lastFragment instanceof ChatActivity)) {
+                return;
+            }
             ((ChatActivity) lastFragment).shakeContent();
+            return;
         }
         new GiftSheet(this, iArr[0], l.longValue(), null).show();
     }
@@ -3288,7 +3342,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                                         return;
                                     }
                                 }
-                                MessagesController.getInstance(i3).ensureMessagesLoaded(longValue, num == null ? 0 : num.intValue(), new AnonymousClass20(runnable, str3, baseFragment, longValue, num, bundle3));
+                                MessagesController.getInstance(i3).ensureMessagesLoaded(longValue, num == null ? 0 : num.intValue(), new AnonymousClass21(runnable, str3, baseFragment, longValue, num, bundle3));
                                 return;
                             }
                         }
@@ -3622,7 +3676,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public class AnonymousClass20 implements MessagesController.MessagesLoadedCallback {
+    public class AnonymousClass21 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -3630,7 +3684,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        AnonymousClass20(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        AnonymousClass21(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3660,7 +3714,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.AnonymousClass20.this.lambda$onMessagesLoaded$2(str, j, baseFragment2);
+                            LaunchActivity.AnonymousClass21.this.lambda$onMessagesLoaded$2(str, j, baseFragment2);
                         }
                     }, 150L);
                 }
@@ -3689,7 +3743,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass20.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment22);
+                    LaunchActivity.AnonymousClass21.this.lambda$onMessagesLoaded$2(str2, j2, baseFragment22);
                 }
             }, 150L);
         }
@@ -3714,7 +3768,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     accountInstance.getMessagesController().getGroupCall(j2, true, new Runnable() {
                         @Override
                         public final void run() {
-                            LaunchActivity.AnonymousClass20.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
+                            LaunchActivity.AnonymousClass21.this.lambda$onMessagesLoaded$1(accountInstance, j, baseFragment);
                         }
                     });
                 }
@@ -3725,7 +3779,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.AnonymousClass20.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
+                    LaunchActivity.AnonymousClass21.this.lambda$onMessagesLoaded$0(accountInstance, j, baseFragment);
                 }
             });
         }
@@ -6274,36 +6328,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     public void onBackPressed() {
-        if (FloatingDebugController.onBackPressed()) {
-            return;
-        }
-        PasscodeViewDialog passcodeViewDialog = this.passcodeDialog;
-        if (passcodeViewDialog != null && passcodeViewDialog.passcodeView.getVisibility() == 0) {
-            finish();
-            return;
-        }
-        BottomSheetTabsOverlay bottomSheetTabsOverlay = this.bottomSheetTabsOverlay;
-        if ((bottomSheetTabsOverlay == null || !bottomSheetTabsOverlay.onBackPressed()) && !SearchTagsList.onBackPressedRenameTagAlert()) {
-            if (ContentPreviewViewer.hasInstance() && ContentPreviewViewer.getInstance().isVisible()) {
-                ContentPreviewViewer.getInstance().closeWithMenu();
-                return;
-            }
-            if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
-                SecretMediaViewer.getInstance().closePhoto(true, false);
-                return;
-            }
-            if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
-                PhotoViewer.getInstance().closePhoto(true, false);
-                return;
-            }
-            if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
-                ArticleViewer.getInstance().close(true, false);
-                return;
-            }
-            if (this.drawerLayoutContainer.isDrawerOpened()) {
-                this.drawerLayoutContainer.closeDrawer(false);
-                return;
-            }
+        if (onBackPressed(true)) {
             if (AndroidUtilities.isTablet()) {
                 ActionBarLayout actionBarLayout = this.layersActionBarLayout;
                 if (actionBarLayout != null && actionBarLayout.getView().getVisibility() == 0) {
@@ -6313,8 +6338,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 ActionBarLayout actionBarLayout2 = this.rightActionBarLayout;
                 if (actionBarLayout2 != null && actionBarLayout2.getView().getVisibility() == 0 && !this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     BaseFragment baseFragment = this.rightActionBarLayout.getFragmentStack().get(this.rightActionBarLayout.getFragmentStack().size() - 1);
-                    if (baseFragment.onBackPressed()) {
-                        baseFragment.lambda$onBackPressed$340();
+                    if (baseFragment.onBackPressed(true)) {
+                        baseFragment.finishFragment();
                         return;
                     }
                     return;
@@ -6324,6 +6349,60 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
             this.actionBarLayout.onBackPressed();
         }
+    }
+
+    public boolean onBackPressed(boolean z) {
+        if (FloatingDebugController.onBackPressed(z)) {
+            return false;
+        }
+        PasscodeViewDialog passcodeViewDialog = this.passcodeDialog;
+        if (passcodeViewDialog != null && passcodeViewDialog.passcodeView.getVisibility() == 0) {
+            if (z) {
+                finish();
+            }
+            return false;
+        }
+        BottomSheetTabsOverlay bottomSheetTabsOverlay = this.bottomSheetTabsOverlay;
+        if (bottomSheetTabsOverlay != null && bottomSheetTabsOverlay.isOpen) {
+            if (z) {
+                bottomSheetTabsOverlay.onBackPressed();
+            }
+            return false;
+        }
+        if (!SearchTagsList.onBackPressedRenameTagAlert(z)) {
+            return false;
+        }
+        if (ContentPreviewViewer.hasInstance() && ContentPreviewViewer.getInstance().isVisible()) {
+            if (z) {
+                ContentPreviewViewer.getInstance().closeWithMenu();
+            }
+            return false;
+        }
+        if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
+            if (z) {
+                SecretMediaViewer.getInstance().closePhoto(true, false);
+            }
+            return false;
+        }
+        if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
+            if (z) {
+                PhotoViewer.getInstance().closePhoto(true, false);
+            }
+            return false;
+        }
+        if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
+            if (z) {
+                ArticleViewer.getInstance().close(true, false);
+            }
+            return false;
+        }
+        if (!this.drawerLayoutContainer.isDrawerOpened()) {
+            return true;
+        }
+        if (z) {
+            this.drawerLayoutContainer.closeDrawer(false);
+        }
+        return false;
     }
 
     @Override
