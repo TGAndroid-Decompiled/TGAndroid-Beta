@@ -94,6 +94,10 @@ public class SearchEngine {
     }
 
     public static SearchEngine getCurrent() {
-        return (SearchEngine) getSearchEngines().get(Utilities.clamp(SharedConfig.searchEngineType, r0.size() - 1, 0));
+        ArrayList searchEngines2 = getSearchEngines();
+        if (searchEngines2.isEmpty()) {
+            return new SearchEngine("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=", "https://policies.google.com/privacy");
+        }
+        return (SearchEngine) searchEngines2.get(Utilities.clamp(SharedConfig.searchEngineType, searchEngines2.size() - 1, 0));
     }
 }

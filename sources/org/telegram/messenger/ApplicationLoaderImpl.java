@@ -17,6 +17,7 @@ import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.distribute.Distribute;
 import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 import java.io.File;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.UpdateAppAlertDialog;
@@ -78,6 +79,9 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                     if (!TextUtils.isEmpty(publicUsername)) {
                         str5 = "@" + publicUsername;
                     }
+                }
+                if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
+                    str5 = str5 + " [TEST SERVER]";
                 }
                 FirebaseCrashlytics firebaseCrashlytics = FirebaseCrashlytics.getInstance();
                 firebaseCrashlytics.setUserId(str5);

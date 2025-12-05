@@ -22774,6 +22774,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public void lambda$instantiateItem$0(ReactedUsersListView reactedUsersListView, ArrayList arrayList) {
+            if (ChatActivity.this.getParentActivity() == null || ChatActivity.this.getContext() == null) {
+                return;
+            }
             ChatActivity chatActivity = ChatActivity.this;
             AnonymousClass1 anonymousClass1 = new EmojiPacksAlert(chatActivity, chatActivity.getParentActivity(), ChatActivity.this.themeDelegate, arrayList) {
                 AnonymousClass1(BaseFragment chatActivity2, Context context, Theme.ResourcesProvider resourcesProvider, ArrayList arrayList2) {
@@ -22895,6 +22898,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$createMenu$247(ReactedUsersListView reactedUsersListView, ArrayList arrayList) {
+        if (getParentActivity() == null || getContext() == null) {
+            return;
+        }
         AnonymousClass113 anonymousClass113 = new EmojiPacksAlert(this, getParentActivity(), this.themeDelegate, arrayList) {
             AnonymousClass113(BaseFragment this, Context context, Theme.ResourcesProvider resourcesProvider, ArrayList arrayList2) {
                 super(this, context, resourcesProvider, arrayList2);
@@ -30137,7 +30143,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public void lambda$didLongPressUserAvatar$6(ChatMessageCell chatMessageCell, TLRPC.User user, AvatarPreviewer.MenuItem menuItem) {
-            int i = AnonymousClass145.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
+            int i = AnonymousClass144.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
             if (i == 1) {
                 lambda$didLongPressUserAvatar$7(user);
                 return;
@@ -30236,7 +30242,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public void lambda$didLongPressChannelAvatar$13(TLRPC.Chat chat, ChatMessageCell chatMessageCell, AvatarPreviewer.MenuItem menuItem) {
-            int i = AnonymousClass145.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
+            int i = AnonymousClass144.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
             if (i == 1) {
                 lambda$didLongPressChannelAvatar$14(chat);
                 return;
@@ -31600,6 +31606,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
             MediaDataController.getInstance(((BaseFragment) ChatActivity.this).currentAccount).putStickerSet(tL_messages_stickerSet, false);
+            if (ChatActivity.this.getParentActivity() == null || ChatActivity.this.getContext() == null) {
+                return;
+            }
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
             tL_inputStickerSetID.access_hash = stickerSet.access_hash;
@@ -31940,7 +31949,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static class AnonymousClass145 {
+    public static class AnonymousClass144 {
         static final int[] $SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem;
 
         static {
@@ -35739,6 +35748,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$didPressReaction$429(ReactedUsersListView reactedUsersListView, ArrayList arrayList) {
+        if (getParentActivity() == null || getContext() == null) {
+            return;
+        }
         AnonymousClass142 anonymousClass142 = new EmojiPacksAlert(this, getParentActivity(), this.themeDelegate, arrayList) {
             AnonymousClass142(BaseFragment this, Context context, Theme.ResourcesProvider resourcesProvider, ArrayList arrayList2) {
                 super(this, context, resourcesProvider, arrayList2);
@@ -35769,51 +35781,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         closeMenu();
     }
 
-    public class AnonymousClass143 extends BaseFragment {
-        AnonymousClass143() {
-        }
-
-        @Override
-        public int getCurrentAccount() {
-            return this.currentAccount;
-        }
-
-        @Override
-        public Context getContext() {
-            return ChatActivity.this.getContext();
-        }
-
-        @Override
-        public Theme.ResourcesProvider getResourceProvider() {
-            return ChatActivity.this.themeDelegate;
-        }
-    }
-
     public void lambda$didPressReaction$431(ArrayList arrayList, View view) {
-        new EmojiPacksAlert(new BaseFragment() {
-            AnonymousClass143() {
-            }
-
-            @Override
-            public int getCurrentAccount() {
-                return this.currentAccount;
-            }
-
-            @Override
-            public Context getContext() {
-                return ChatActivity.this.getContext();
-            }
-
-            @Override
-            public Theme.ResourcesProvider getResourceProvider() {
-                return ChatActivity.this.themeDelegate;
-            }
-        }, getContext(), this.themeDelegate, arrayList).show();
+        if (getParentActivity() == null || getContext() == null) {
+            return;
+        }
+        new EmojiPacksAlert(this, getContext(), this.themeDelegate, arrayList).show();
         closeMenu();
     }
 
-    public class AnonymousClass144 extends ActionBarPopupWindow {
-        AnonymousClass144(View view, int i, int i2) {
+    public class AnonymousClass143 extends ActionBarPopupWindow {
+        AnonymousClass143(View view, int i, int i2) {
             super(view, i, i2);
         }
 

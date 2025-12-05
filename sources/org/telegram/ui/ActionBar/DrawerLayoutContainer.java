@@ -9,19 +9,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.view.MotionEvent;
-import android.view.RoundedCorner;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowInsets;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -43,7 +39,6 @@ public class DrawerLayoutContainer extends FrameLayout {
     private final Paint backgroundPaint;
     private boolean beginTrackingSent;
     private int behindKeyboardColor;
-    private final Path clipPath;
     private AnimatorSet currentAnimation;
     private boolean drawCurrentPreviewFragmentAbove;
     private FrameLayout drawerLayout;
@@ -59,11 +54,9 @@ public class DrawerLayoutContainer extends FrameLayout {
     private WindowInsetsCompat lastWindowInsetsCompat;
     private boolean maybeStartTracking;
     private final int minDrawerMargin;
-    private final Paint paint;
     private INavigationLayout parentActionBarLayout;
     private BitmapDrawable previewBlurDrawable;
     private PreviewForegroundDrawable previewForegroundDrawable;
-    private final float[] radii;
     private final Rect rect;
     private float scrimOpacity;
     private final Paint scrimPaint;
@@ -88,9 +81,6 @@ public class DrawerLayoutContainer extends FrameLayout {
         this.allowOpenDrawerBySwipe = true;
         this.allowDrawContent = true;
         this.firstLayout = true;
-        this.paint = new Paint(1);
-        this.radii = new float[8];
-        this.clipPath = new Path();
         this.internalNavbarPaint = new Paint(1);
         this.minDrawerMargin = (int) ((AndroidUtilities.density * 64.0f) + 0.5f);
         setDescendantFocusability(262144);
@@ -513,73 +503,7 @@ public class DrawerLayoutContainer extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         INavigationLayout iNavigationLayout;
-        WindowInsets rootWindowInsets;
-        RoundedCorner roundedCorner;
-        RoundedCorner roundedCorner2;
-        RoundedCorner roundedCorner3;
-        RoundedCorner roundedCorner4;
-        int radius;
-        float f;
-        int radius2;
-        float f2;
-        int radius3;
-        float f3;
-        int radius4;
-        canvas.save();
-        if (BuildVars.DEBUG_PRIVATE_VERSION && Build.VERSION.SDK_INT >= 31) {
-            canvas.drawColor(-16777216);
-            rootWindowInsets = getRootWindowInsets();
-            if (rootWindowInsets != null) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f4 = 0.0f;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                roundedCorner = rootWindowInsets.getRoundedCorner(0);
-                roundedCorner2 = rootWindowInsets.getRoundedCorner(1);
-                roundedCorner3 = rootWindowInsets.getRoundedCorner(2);
-                roundedCorner4 = rootWindowInsets.getRoundedCorner(3);
-                float[] fArr = this.radii;
-                if (roundedCorner == null) {
-                    f = 0.0f;
-                } else {
-                    radius = roundedCorner.getRadius();
-                    f = radius;
-                }
-                fArr[1] = f;
-                fArr[0] = f;
-                float[] fArr2 = this.radii;
-                if (roundedCorner2 == null) {
-                    f2 = 0.0f;
-                } else {
-                    radius2 = roundedCorner2.getRadius();
-                    f2 = radius2;
-                }
-                fArr2[3] = f2;
-                fArr2[2] = f2;
-                float[] fArr3 = this.radii;
-                if (roundedCorner3 == null) {
-                    f3 = 0.0f;
-                } else {
-                    radius3 = roundedCorner3.getRadius();
-                    f3 = radius3;
-                }
-                fArr3[5] = f3;
-                fArr3[4] = f3;
-                float[] fArr4 = this.radii;
-                if (roundedCorner4 != null) {
-                    radius4 = roundedCorner4.getRadius();
-                    f4 = radius4;
-                }
-                fArr4[7] = f4;
-                fArr4[6] = f4;
-                this.clipPath.rewind();
-                this.clipPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
-                canvas.clipPath(this.clipPath);
-                this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                canvas.drawRect(0.0f, getHeight() - AndroidUtilities.navigationBarHeight, getWidth(), getHeight(), this.paint);
-            }
-        }
         super.dispatchDraw(canvas);
-        canvas.restore();
         if (!this.drawCurrentPreviewFragmentAbove || (iNavigationLayout = this.parentActionBarLayout) == null) {
             return;
         }

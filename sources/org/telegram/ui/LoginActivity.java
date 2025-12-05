@@ -3049,7 +3049,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     LoginActivity.this.showKeyboard(this.codeField);
                 }
             }
-            requestPasskey(false);
+            if (LoginActivity.this.activityMode == 0) {
+                requestPasskey(false);
+            }
         }
 
         @Override
@@ -3063,18 +3065,17 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private void requestPasskey(boolean z) {
-            if (Build.VERSION.SDK_INT < 28 || !BuildVars.SUPPORTS_PASSKEYS || this.requestingPasskey) {
-                return;
-            }
-            if (z || !this.requestedPasskey) {
-                this.requestingPasskey = true;
-                this.requestedPasskey = true;
-                this.cancelRequestingPasskey = PasskeysController.login(getContext(), ((BaseFragment) LoginActivity.this).currentAccount, z, new Utilities.Callback3() {
-                    @Override
-                    public final void run(Object obj, Object obj2, Object obj3) {
-                        LoginActivity.PhoneView.this.lambda$requestPasskey$29((Long) obj, (TLRPC.auth_Authorization) obj2, (String) obj3);
-                    }
-                });
+            if (LoginActivity.this.activityMode == 0 && Build.VERSION.SDK_INT >= 28 && BuildVars.SUPPORTS_PASSKEYS && !this.requestingPasskey) {
+                if (z || !this.requestedPasskey) {
+                    this.requestingPasskey = true;
+                    this.requestedPasskey = true;
+                    this.cancelRequestingPasskey = PasskeysController.login(getContext(), ((BaseFragment) LoginActivity.this).currentAccount, z, new Utilities.Callback3() {
+                        @Override
+                        public final void run(Object obj, Object obj2, Object obj3) {
+                            LoginActivity.PhoneView.this.lambda$requestPasskey$29((Long) obj, (TLRPC.auth_Authorization) obj2, (String) obj3);
+                        }
+                    });
+                }
             }
         }
 
@@ -3082,16 +3083,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.cancelRequestingPasskey = null;
             this.requestingPasskey = false;
             if (str != null && ("EMPTY".equals(str) || "CANCELLED".equals(str))) {
-                LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView;
-                if (linksTextView != null) {
-                    linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StartTextPasskey), new Runnable() {
-                        @Override
-                        public final void run() {
-                            LoginActivity.PhoneView.this.lambda$requestPasskey$26();
-                        }
-                    }), true));
+                if (this.subtitleView == null || !"CANCELLED".equals(str)) {
                     return;
                 }
+                this.subtitleView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StartTextPasskey), new Runnable() {
+                    @Override
+                    public final void run() {
+                        LoginActivity.PhoneView.this.lambda$requestPasskey$26();
+                    }
+                }), true));
                 return;
             }
             if (l.longValue() != 0 && (LoginActivity.this.getParentActivity() instanceof LaunchActivity)) {

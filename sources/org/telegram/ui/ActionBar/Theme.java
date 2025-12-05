@@ -5898,6 +5898,9 @@ public abstract class Theme {
     }
 
     public static String getBaseThemeKey(TLRPC.ThemeSettings themeSettings) {
+        if (themeSettings == null) {
+            return null;
+        }
         TLRPC.BaseTheme baseTheme = themeSettings.base_theme;
         if (baseTheme instanceof TLRPC.TL_baseThemeClassic) {
             return "Blue";

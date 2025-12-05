@@ -813,21 +813,22 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         this.autoDeleteMesages = 2;
         this.rowCount = 4;
         this.passcodeRow = 3;
-        if (Build.VERSION.SDK_INT >= 28 && BuildVars.SUPPORTS_PASSKEYS) {
-            this.rowCount = 5;
-            this.passkeysRow = 4;
+        if (getMessagesController().config.settingsDisplayPasskeys.get() && Build.VERSION.SDK_INT >= 28 && BuildVars.SUPPORTS_PASSKEYS) {
+            int i = this.rowCount;
+            this.rowCount = i + 1;
+            this.passkeysRow = i;
         }
         TL_account.Password password = this.currentPassword;
         if (password == null ? SharedConfig.hasEmailLogin : password.login_email_pattern != null) {
-            int i = this.rowCount;
-            this.rowCount = i + 1;
-            this.emailLoginRow = i;
+            int i2 = this.rowCount;
+            this.rowCount = i2 + 1;
+            this.emailLoginRow = i2;
         } else {
             this.emailLoginRow = -1;
         }
-        int i2 = this.rowCount;
-        this.rowCount = i2 + 1;
-        this.blockedRow = i2;
+        int i3 = this.rowCount;
+        this.rowCount = i3 + 1;
+        this.blockedRow = i3;
         if (password != null) {
             boolean z2 = password.login_email_pattern != null;
             if (SharedConfig.hasEmailLogin != z2) {
@@ -835,93 +836,93 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 SharedConfig.saveConfig();
             }
         }
-        int i3 = this.rowCount;
-        this.sessionsRow = i3;
-        this.sessionsDetailRow = i3 + 1;
-        this.privacySectionRow = i3 + 2;
-        this.phoneNumberRow = i3 + 3;
-        this.lastSeenRow = i3 + 4;
-        this.profilePhotoRow = i3 + 5;
-        this.forwardsRow = i3 + 6;
-        this.rowCount = i3 + 8;
-        this.callsRow = i3 + 7;
+        int i4 = this.rowCount;
+        this.sessionsRow = i4;
+        this.sessionsDetailRow = i4 + 1;
+        this.privacySectionRow = i4 + 2;
+        this.phoneNumberRow = i4 + 3;
+        this.lastSeenRow = i4 + 4;
+        this.profilePhotoRow = i4 + 5;
+        this.forwardsRow = i4 + 6;
+        this.rowCount = i4 + 8;
+        this.callsRow = i4 + 7;
         this.groupsDetailRow = -1;
         if (!getMessagesController().premiumFeaturesBlocked() || getUserConfig().isPremium()) {
-            int i4 = this.rowCount;
-            this.voicesRow = i4;
-            this.rowCount = i4 + 2;
-            this.noncontactsRow = i4 + 1;
+            int i5 = this.rowCount;
+            this.voicesRow = i5;
+            this.rowCount = i5 + 2;
+            this.noncontactsRow = i5 + 1;
         } else {
             this.voicesRow = -1;
             this.noncontactsRow = -1;
         }
-        int i5 = this.rowCount;
-        this.birthdayRow = i5;
-        this.giftsRow = i5 + 1;
-        this.bioRow = i5 + 2;
-        this.musicRow = i5 + 3;
-        this.groupsRow = i5 + 4;
-        this.rowCount = i5 + 6;
-        this.privacyShadowRow = i5 + 5;
+        int i6 = this.rowCount;
+        this.birthdayRow = i6;
+        this.giftsRow = i6 + 1;
+        this.bioRow = i6 + 2;
+        this.musicRow = i6 + 3;
+        this.groupsRow = i6 + 4;
+        this.rowCount = i6 + 6;
+        this.privacyShadowRow = i6 + 5;
         if (getMessagesController().autoarchiveAvailable || getUserConfig().isPremium()) {
-            int i6 = this.rowCount;
-            this.newChatsHeaderRow = i6;
-            this.newChatsRow = i6 + 1;
-            this.rowCount = i6 + 3;
-            this.newChatsSectionRow = i6 + 2;
+            int i7 = this.rowCount;
+            this.newChatsHeaderRow = i7;
+            this.newChatsRow = i7 + 1;
+            this.rowCount = i7 + 3;
+            this.newChatsSectionRow = i7 + 2;
         } else {
             this.newChatsHeaderRow = -1;
             this.newChatsRow = -1;
             this.newChatsSectionRow = -1;
         }
-        int i7 = this.rowCount;
-        this.advancedSectionRow = i7;
-        this.deleteAccountRow = i7 + 1;
-        this.deleteAccountDetailRow = i7 + 2;
-        this.rowCount = i7 + 4;
-        this.botsSectionRow = i7 + 3;
+        int i8 = this.rowCount;
+        this.advancedSectionRow = i8;
+        this.deleteAccountRow = i8 + 1;
+        this.deleteAccountDetailRow = i8 + 2;
+        this.rowCount = i8 + 4;
+        this.botsSectionRow = i8 + 3;
         if (getUserConfig().hasSecureData) {
-            int i8 = this.rowCount;
-            this.rowCount = i8 + 1;
-            this.passportRow = i8;
+            int i9 = this.rowCount;
+            this.rowCount = i9 + 1;
+            this.passportRow = i9;
         } else {
             this.passportRow = -1;
         }
-        int i9 = this.rowCount;
-        this.rowCount = i9 + 1;
-        this.paymentsClearRow = i9;
+        int i10 = this.rowCount;
+        this.rowCount = i10 + 1;
+        this.paymentsClearRow = i10;
         if (!this.biometryBots.isEmpty()) {
-            int i10 = this.rowCount;
-            this.rowCount = i10 + 1;
-            this.botsBiometryRow = i10;
+            int i11 = this.rowCount;
+            this.rowCount = i11 + 1;
+            this.botsBiometryRow = i11;
         } else {
             this.botsBiometryRow = -1;
         }
         SessionsActivity sessionsActivity = this.webSessionsActivityPreload;
         if (sessionsActivity != null && sessionsActivity.getSessionsCount() > 0) {
-            int i11 = this.rowCount;
-            this.webSessionsRow = i11;
-            this.rowCount = i11 + 2;
-            this.botsDetailRow = i11 + 1;
+            int i12 = this.rowCount;
+            this.webSessionsRow = i12;
+            this.rowCount = i12 + 2;
+            this.botsDetailRow = i12 + 1;
             this.botsAndWebsitesShadowRow = -1;
         } else {
             this.webSessionsRow = -1;
             this.botsDetailRow = -1;
-            int i12 = this.rowCount;
-            this.rowCount = i12 + 1;
-            this.botsAndWebsitesShadowRow = i12;
+            int i13 = this.rowCount;
+            this.rowCount = i13 + 1;
+            this.botsAndWebsitesShadowRow = i13;
         }
-        int i13 = this.rowCount;
-        this.contactsSectionRow = i13;
-        this.contactsDeleteRow = i13 + 1;
-        this.contactsSyncRow = i13 + 2;
-        this.contactsSuggestRow = i13 + 3;
-        this.contactsDetailRow = i13 + 4;
-        this.secretSectionRow = i13 + 5;
-        this.secretMapRow = i13 + 6;
-        this.secretWebpageRow = i13 + 7;
-        this.rowCount = i13 + 9;
-        this.secretDetailRow = i13 + 8;
+        int i14 = this.rowCount;
+        this.contactsSectionRow = i14;
+        this.contactsDeleteRow = i14 + 1;
+        this.contactsSyncRow = i14 + 2;
+        this.contactsSuggestRow = i14 + 3;
+        this.contactsDetailRow = i14 + 4;
+        this.secretSectionRow = i14 + 5;
+        this.secretMapRow = i14 + 6;
+        this.secretWebpageRow = i14 + 7;
+        this.rowCount = i14 + 9;
+        this.secretDetailRow = i14 + 8;
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter == null || !z) {
             return;
