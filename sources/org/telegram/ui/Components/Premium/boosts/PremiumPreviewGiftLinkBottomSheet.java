@@ -97,9 +97,9 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             }
 
             @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
                 boolean lambda$share$0;
-                lambda$share$0 = PremiumPreviewGiftLinkBottomSheet.this.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
+                lambda$share$0 = PremiumPreviewGiftLinkBottomSheet.this.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
                 return lambda$share$0;
             }
 
@@ -112,10 +112,10 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         lambda$new$0();
     }
 
-    public boolean lambda$share$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+    public boolean lambda$share$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         long j = 0;
-        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            j = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
             getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, 0, null, false));
         }
         dialogsActivity.finishFragment();

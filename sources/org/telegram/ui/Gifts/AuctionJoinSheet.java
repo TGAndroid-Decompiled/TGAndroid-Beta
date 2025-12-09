@@ -74,6 +74,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
     private final CharSequence emojiGiftText;
     private final long giftId;
     private final FrameLayout headerContainer;
+    private TextView headerStatus;
     private final LinkSpanDrawable.LinksTextView itemsBought;
     private final LinearLayout linearLayout;
     private final Utilities.Callback2 showHint;
@@ -309,12 +310,12 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
 
                 @Override
                 public float getRealHeight() {
-                    return AndroidUtilities.dp(268.0f);
+                    return AndroidUtilities.dp(288.0f);
                 }
 
                 @Override
                 public int getFinalHeight() {
-                    return AndroidUtilities.dp(268.0f);
+                    return AndroidUtilities.dp(288.0f);
                 }
 
                 @Override
@@ -337,32 +338,58 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
                     super.dispatchDraw(canvas);
                     canvas.restore();
                 }
+
+                @Override
+                public void updateButtonsBackgrounds(int i9) {
+                    super.updateButtonsBackgrounds(i9);
+                    if (AuctionJoinSheet.this.headerStatus == null || !Theme.setSelectorDrawableColor(AuctionJoinSheet.this.headerStatus.getBackground(), i9, false)) {
+                        return;
+                    }
+                    AuctionJoinSheet.this.headerStatus.invalidate();
+                }
             };
             topView.onSwitchPage(new StarGiftSheet.PageTransition(1, 1, 1.0f));
             topView.setPreviewingAttributes(this.auction.previewAttributes);
             topView.hideCloseButton();
-            this.headerContainer.addView(topView, 0, LayoutHelper.createFrame(-1, 268, 48));
+            this.headerContainer.addView(topView, 0, LayoutHelper.createFrame(-1, 288, 48));
             TextView textView2 = new TextView(context);
-            textView2.setTypeface(AndroidUtilities.bold());
-            textView2.setTextSize(1, 21.0f);
-            textView2.setText(str2);
+            this.headerStatus = textView2;
             textView2.setGravity(17);
-            textView2.setTextColor(-1);
-            this.headerContainer.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 40.0f));
+            this.headerStatus.setTypeface(AndroidUtilities.bold());
+            this.headerStatus.setTextColor(-1);
+            this.headerStatus.setTextSize(1, 12.0f);
+            GiftAuctionController.Auction auction3 = this.auction;
+            if (auction3.auctionStateFinished != null) {
+                this.headerStatus.setText(LocaleController.getString(R.string.Gift2AuctionEnded));
+            } else if (auction3.isUpcoming()) {
+                this.headerStatus.setText(LocaleController.getString(R.string.Gift2LinkUpcomingAuction));
+            } else {
+                this.headerStatus.setText(LocaleController.getString(R.string.Gift2LinkGiftAuction));
+            }
+            this.headerStatus.setBackground(Theme.createRadSelectorDrawable(0, 285212671, 13, 13));
+            this.headerStatus.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+            this.headerContainer.addView(this.headerStatus, LayoutHelper.createFrame(-2, 26.0f, 81, 16.0f, 0.0f, 16.0f, 77.0f));
             TextView textView3 = new TextView(context);
-            textView3.setTextSize(1, 13.0f);
-            textView3.setText(AndroidUtilities.replaceArrows(LocaleController.getString(R.string.Gift2AuctionLearnMore2), false, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
-            textView3.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setTextSize(1, 21.0f);
+            textView3.setText(str2);
             textView3.setGravity(17);
-            textView3.setTextColor(-1342177281);
-            textView3.setOnClickListener(new View.OnClickListener() {
+            textView3.setTextColor(-1);
+            this.headerContainer.addView(textView3, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 40.0f));
+            TextView textView4 = new TextView(context);
+            textView4.setTextSize(1, 13.0f);
+            textView4.setText(AndroidUtilities.replaceArrows(LocaleController.getString(R.string.Gift2AuctionLearnMore2), false, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+            textView4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            textView4.setGravity(17);
+            textView4.setTextColor(-1342177281);
+            textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     AuctionJoinSheet.this.lambda$new$13(view);
                 }
             });
-            ScaleStateListAnimator.apply(textView3, 0.02f, 1.5f);
-            this.headerContainer.addView(textView3, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 12.0f));
+            ScaleStateListAnimator.apply(textView4, 0.02f, 1.5f);
+            this.headerContainer.addView(textView4, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 12.0f));
             giftCell.setVisibility(8);
             textView.setVisibility(8);
             this.subtitleTextView.setVisibility(8);

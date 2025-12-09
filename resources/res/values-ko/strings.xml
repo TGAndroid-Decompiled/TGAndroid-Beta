@@ -1121,8 +1121,8 @@
     <string name="abc_shareactionprovider_share_with">공유 대상:</string>
     <string name="abc_shareactionprovider_share_with_application">%s과(와) 공유</string>
     <string name="abc_toolbar_collapse_description">접기</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">비밀번호</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">패스키</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">비밀번호</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">패스키</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">배포를 사용할 수 없음</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$dMB/%2$dMB</string>
     <string name="appcenter_distribute_downloading_mandatory_update">업데이트 다운로드 중</string>

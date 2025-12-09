@@ -1468,7 +1468,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         checkUnsentMessages();
     }
 
-    public void processForwardFromMyName(org.telegram.messenger.MessageObject r35, long r36, long r38, long r40, org.telegram.messenger.MessageSuggestionParams r42) {
+    public void processForwardFromMyName(org.telegram.messenger.MessageObject r36, long r37, long r39, long r41, org.telegram.messenger.MessageSuggestionParams r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.processForwardFromMyName(org.telegram.messenger.MessageObject, long, long, long, org.telegram.messenger.MessageSuggestionParams):void");
     }
 
@@ -1681,15 +1681,15 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public int sendMessage(ArrayList<MessageObject> arrayList, long j, boolean z, boolean z2, boolean z3, int i, MessageObject messageObject, int i2, long j2) {
-        return sendMessage(arrayList, j, z, z2, z3, i, messageObject, i2, j2, 0L, null);
+        return sendMessage(arrayList, j, z, z2, z3, i, 0, messageObject, i2, j2, 0L, null);
     }
 
-    public int sendMessage(final java.util.ArrayList<org.telegram.messenger.MessageObject> r66, final long r67, final boolean r69, final boolean r70, final boolean r71, final int r72, final org.telegram.messenger.MessageObject r73, final int r74, long r75, final long r77, final org.telegram.messenger.MessageSuggestionParams r79) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(java.util.ArrayList, long, boolean, boolean, boolean, int, org.telegram.messenger.MessageObject, int, long, long, org.telegram.messenger.MessageSuggestionParams):int");
+    public int sendMessage(final java.util.ArrayList<org.telegram.messenger.MessageObject> r70, final long r71, final boolean r73, final boolean r74, final boolean r75, final int r76, final int r77, final org.telegram.messenger.MessageObject r78, final int r79, long r80, final long r82, final org.telegram.messenger.MessageSuggestionParams r84) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(java.util.ArrayList, long, boolean, boolean, boolean, int, int, org.telegram.messenger.MessageObject, int, long, long, org.telegram.messenger.MessageSuggestionParams):int");
     }
 
-    public void lambda$sendMessage$7(ArrayList arrayList, long j, boolean z, boolean z2, boolean z3, int i, MessageObject messageObject, int i2, long j2, MessageSuggestionParams messageSuggestionParams, Long l) {
-        sendMessage(arrayList, j, z, z2, z3, i, messageObject, i2, l.longValue(), j2, messageSuggestionParams);
+    public void lambda$sendMessage$7(ArrayList arrayList, long j, boolean z, boolean z2, boolean z3, int i, int i2, MessageObject messageObject, int i3, long j2, MessageSuggestionParams messageSuggestionParams, Long l) {
+        sendMessage(arrayList, j, z, z2, z3, i, i2, messageObject, i3, l.longValue(), j2, messageSuggestionParams);
     }
 
     public void lambda$sendMessage$17(final TLRPC.TL_messages_forwardMessages tL_messages_forwardMessages, final long j, final int i, final boolean z, final boolean z2, final LongSparseArray longSparseArray, final ArrayList arrayList, final ArrayList arrayList2, final MessageObject messageObject, final TLRPC.Peer peer) {

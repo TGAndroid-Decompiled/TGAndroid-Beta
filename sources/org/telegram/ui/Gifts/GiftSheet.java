@@ -2202,6 +2202,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         private final RectF rect;
         private final Theme.ResourcesProvider resourcesProvider;
         private boolean selected;
+        public int selectedColorKey;
         private final Paint selectedPaint;
         private final Path strokeClipPath;
         private int[] strokeColors;
@@ -2241,6 +2242,8 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     GiftSheet.CardBackground.this.invalidate();
                 }
             }, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            int i = Theme.key_windowBackgroundWhite;
+            this.selectedColorKey = i;
             this.view = view;
             this.resourcesProvider = resourcesProvider;
             this.pattern = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(28.0f)) {
@@ -2266,7 +2269,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             if (view.isAttachedToWindow()) {
                 this.pattern.attach();
             }
-            paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
+            paint.setColor(Theme.getColor(i, resourcesProvider));
             if (z) {
                 paint.setShadowLayer(AndroidUtilities.dp(1.66f), 0.0f, AndroidUtilities.dp(0.33f), Theme.getColor(Theme.key_dialogCardShadow, resourcesProvider));
             }
@@ -2375,7 +2378,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 canvas.restore();
             }
             if (f2 > 0.0f) {
-                this.selectedPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                this.selectedPaint.setColor(Theme.getColor(this.selectedColorKey, this.resourcesProvider));
                 this.selectedPaint.setStrokeWidth(AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(1.667f), f2));
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(this.rect);

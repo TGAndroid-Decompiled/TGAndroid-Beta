@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">分享对象</string>
     <string name="abc_shareactionprovider_share_with_application">与%s分享</string>
     <string name="abc_toolbar_collapse_description">收起</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">密码</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">通行密钥</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">密码</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">通行密钥</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">已禁用分发</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d MB，共 %2$d MB</string>
     <string name="appcenter_distribute_downloading_mandatory_update">正在下载更新</string>

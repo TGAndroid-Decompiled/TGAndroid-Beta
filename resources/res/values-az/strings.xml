@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">Paylaşın</string>
     <string name="abc_shareactionprovider_share_with_application">%s ilə paylaşın</string>
     <string name="abc_toolbar_collapse_description">Yığcamlaşdırın</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Parol</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Giriş açarı</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Parol</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Giriş açarı</string>
     <string name="call_notification_answer_action">Cavab verin</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">İmtina edin</string>

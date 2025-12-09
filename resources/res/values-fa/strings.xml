@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">هم‌رسانی با</string>
     <string name="abc_shareactionprovider_share_with_application">هم‌رسانی با %s</string>
     <string name="abc_toolbar_collapse_description">کوچک کردن</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">گذرواژه</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">گذرکلید</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">گذرواژه</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">گذرکلید</string>
     <string name="call_notification_answer_action">پاسخ دادن</string>
     <string name="call_notification_answer_video_action">ویدیو</string>
     <string name="call_notification_decline_action">رد کردن</string>

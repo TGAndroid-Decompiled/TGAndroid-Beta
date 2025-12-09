@@ -1,9 +1,10 @@
 package org.telegram.ui;
 
+import android.window.OnBackInvokedDispatcher;
 import androidx.fragment.app.FragmentActivity;
 
 public abstract class LaunchActivity$$ExternalSyntheticApiModelOutline0 {
-    public static boolean m(FragmentActivity fragmentActivity) {
-        return fragmentActivity.isInMultiWindowMode();
+    public static OnBackInvokedDispatcher m(FragmentActivity fragmentActivity) {
+        return fragmentActivity.getOnBackInvokedDispatcher();
     }
 }

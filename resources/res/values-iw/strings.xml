@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">שיתוף עם</string>
     <string name="abc_shareactionprovider_share_with_application">שיתוף עם %s</string>
     <string name="abc_toolbar_collapse_description">כיווץ</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">סיסמה</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">מפתח גישה</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">סיסמה</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">מפתח גישה</string>
     <string name="call_notification_answer_action">מענה</string>
     <string name="call_notification_answer_video_action">וידאו</string>
     <string name="call_notification_decline_action">דחייה</string>

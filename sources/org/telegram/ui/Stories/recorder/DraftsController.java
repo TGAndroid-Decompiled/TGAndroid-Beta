@@ -582,8 +582,9 @@ public class DraftsController {
             storyEntry.matrix.getValues(fArr);
             this.gradientTopColor = storyEntry.gradientTopColor;
             this.gradientBottomColor = storyEntry.gradientBottomColor;
-            CharSequence charSequence = storyEntry.caption;
-            this.captionEntities = storyEntry.captionEntitiesAllowed ? MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true) : null;
+            CharSequence[] charSequenceArr = {storyEntry.caption};
+            this.captionEntities = storyEntry.captionEntitiesAllowed ? MediaDataController.getInstance(storyEntry.currentAccount).getEntities(charSequenceArr, true) : null;
+            CharSequence charSequence = charSequenceArr[0];
             this.caption = charSequence == null ? "" : charSequence.toString();
             arrayList.addAll(storyEntry.privacyRules);
             File file4 = storyEntry.paintFile;
@@ -668,7 +669,7 @@ public class DraftsController {
                 }
                 CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, Theme.chat_msgTextPaint.getFontMetricsInt(), true);
                 MessageObject.addEntitiesToText(replaceEmoji, this.captionEntities, true, false, true, false);
-                storyEntry.caption = replaceEmoji;
+                storyEntry.caption = MessageObject.replaceAnimatedEmoji(replaceEmoji, this.captionEntities, Theme.chat_msgTextPaint.getFontMetricsInt());
             } else {
                 storyEntry.caption = "";
             }

@@ -4020,6 +4020,7 @@
     <string name="Gift2PrepayUpgradeText">Let %s turn your gift into a unique collectible.</string>
     <string name="Gift2PrepayUpgradeTitle">Make Unique</string>
     <string name="Gift2PreviewRandomTraits">Random Traits</string>
+    <string name="Gift2PreviewSelectedTraits">Selected Traits</string>
     <string name="Gift2PriceUnique">Unique</string>
     <string name="Gift2ProfileInvisible4">This gift is hidden. **Show on Profile &gt;**</string>
     <string name="Gift2ProfileMakeInvisible">Hide from my Page</string>
@@ -10084,8 +10085,8 @@
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Password</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Passkey</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Password</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Passkey</string>
     <string name="androidx_startup">androidx.startup</string>
     <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Distribute was disabled</string>
     <string name="appcenter_distribute_download_progress_number_format">%1$d MB of %2$d MB</string>
@@ -10162,7 +10163,7 @@
     <string name="cast_unmute">Unmute</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="res_0x7f0f27c8_com_google_firebase_crashlytics_mapping_file_id">54c371a00988401cb1088dbd90cde00b</string>
+    <string name="res_0x7f0f27c9_com_google_firebase_crashlytics_mapping_file_id">8ea5fd0f98d5452d818ff68e73652bc3</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

@@ -200,20 +200,6 @@ public class ProfileGalleryBlurView extends View {
     public void setSize(int i) {
         if (this.actionSize != i) {
             invalidate();
-            requestLayout();
-            if (Build.VERSION.SDK_INT >= 29) {
-                RenderNode renderNode = this.blurNode;
-                if (renderNode != null) {
-                    renderNode.discardDisplayList();
-                    this.blurNode = null;
-                }
-                RenderNode renderNode2 = this.actionsBlurNode;
-                if (renderNode2 != null) {
-                    renderNode2.discardDisplayList();
-                    this.actionsBlurNode = null;
-                }
-            }
-            updateContent();
         }
         this.actionSize = i;
         this.size = (int) (AndroidUtilities.dp(64.0f) * 1.5f);

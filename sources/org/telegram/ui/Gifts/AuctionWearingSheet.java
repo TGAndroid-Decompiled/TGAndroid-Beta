@@ -288,7 +288,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
         };
         giftCell.setPriorityAuction();
         giftCell.setStarsGift(starGift, true, false, false, false);
-        giftCell.setImageSize(AndroidUtilities.dp(100.0f));
+        giftCell.setImageSize(AndroidUtilities.dp(84.0f));
         giftCell.setImageLayer(7);
         giftCell.hidePrice();
         giftCell.cardBackground.setStrokeColors(null);

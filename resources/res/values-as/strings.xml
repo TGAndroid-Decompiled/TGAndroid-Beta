@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">ইয়াৰ জৰিয়তে শ্বেয়াৰ কৰক</string>
     <string name="abc_shareactionprovider_share_with_application">%sৰ জৰিয়তে শ্বেয়াৰ কৰক</string>
     <string name="abc_toolbar_collapse_description">সংকোচন কৰক</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">পাছৱৰ্ড</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">পাছকী</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">পাছৱৰ্ড</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">পাছকী</string>
     <string name="call_notification_answer_action">উত্তৰ দিয়ক</string>
     <string name="call_notification_answer_video_action">ভিডিঅ’</string>
     <string name="call_notification_decline_action">প্ৰত্যাখ্যান কৰক</string>

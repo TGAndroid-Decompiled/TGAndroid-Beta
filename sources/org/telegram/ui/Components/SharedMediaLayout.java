@@ -3776,9 +3776,9 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     }
 
                     @Override
-                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i2, TopicsFragment topicsFragment) {
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i2, int i3, TopicsFragment topicsFragment) {
                         boolean lambda$onActionBarItemClick$32;
-                        lambda$onActionBarItemClick$32 = SharedMediaLayout.this.lambda$onActionBarItemClick$32(dialogsActivity2, arrayList, charSequence, z2, z3, i2, topicsFragment);
+                        lambda$onActionBarItemClick$32 = SharedMediaLayout.this.lambda$onActionBarItemClick$32(dialogsActivity2, arrayList, charSequence, z2, z3, i2, i3, topicsFragment);
                         return lambda$onActionBarItemClick$32;
                     }
 
@@ -4020,27 +4020,27 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.cantDeleteMessagesCount = 0;
     }
 
-    public boolean lambda$onActionBarItemClick$32(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+    public boolean lambda$onActionBarItemClick$32(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-        int i2 = 1;
+        int i3 = 1;
         while (true) {
-            if (i2 < 0) {
+            if (i3 < 0) {
                 break;
             }
             ArrayList arrayList3 = new ArrayList();
-            for (int i3 = 0; i3 < this.selectedFiles[i2].size(); i3++) {
-                arrayList3.add(Integer.valueOf(this.selectedFiles[i2].keyAt(i3)));
+            for (int i4 = 0; i4 < this.selectedFiles[i3].size(); i4++) {
+                arrayList3.add(Integer.valueOf(this.selectedFiles[i3].keyAt(i4)));
             }
             Collections.sort(arrayList3);
             Iterator it = arrayList3.iterator();
             while (it.hasNext()) {
                 Integer num = (Integer) it.next();
                 if (num.intValue() > 0) {
-                    arrayList2.add((MessageObject) this.selectedFiles[i2].get(num.intValue()));
+                    arrayList2.add((MessageObject) this.selectedFiles[i3].get(num.intValue()));
                 }
             }
-            this.selectedFiles[i2].clear();
-            i2--;
+            this.selectedFiles[i3].clear();
+            i3--;
         }
         this.cantDeleteMessagesCount = 0;
         showActionMode(false);
@@ -4050,8 +4050,8 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
         if (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == this.profileActivity.getUserConfig().getClientUserId() || charSequence != null) {
             updateRowsSelection(true);
-            for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                long j = ((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId;
+            for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                long j = ((MessagesStorage.TopicKey) arrayList.get(i5)).dialogId;
                 if (charSequence != null) {
                     this.profileActivity.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }

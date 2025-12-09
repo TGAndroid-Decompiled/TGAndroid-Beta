@@ -127,9 +127,9 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
                 }
 
                 @Override
-                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
                     boolean lambda$new$1;
-                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
+                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
                     return lambda$new$1;
                 }
 
@@ -148,14 +148,14 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         baseFragment.presentFragment(cacheChatsExceptionsFragment);
     }
 
-    public boolean lambda$new$1(final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+    public boolean lambda$new$1(final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         final CacheByChatsController.KeepMediaException keepMediaException = null;
-        int i2 = 0;
-        while (i2 < arrayList.size()) {
+        int i3 = 0;
+        while (i3 < arrayList.size()) {
             ArrayList arrayList2 = this.exceptions;
-            CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId, CacheByChatsController.KEEP_MEDIA_ONE_DAY);
+            CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId, CacheByChatsController.KEEP_MEDIA_ONE_DAY);
             arrayList2.add(keepMediaException2);
-            i2++;
+            i3++;
             keepMediaException = keepMediaException2;
         }
         this.cacheByChatsController.saveKeepMediaExceptions(this.currentType, this.exceptions);

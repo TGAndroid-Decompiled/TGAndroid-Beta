@@ -6086,6 +6086,81 @@ public class TLRPC {
         }
     }
 
+    public static class TL_message_old4 extends TL_message {
+        public static final int constructor = -1023016155;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int readInt32 = inputSerializedData.readInt32(z) | 768;
+            this.flags = readInt32;
+            this.unread = (readInt32 & 1) != 0;
+            this.out = (readInt32 & 2) != 0;
+            this.mentioned = (readInt32 & 16) != 0;
+            this.media_unread = (readInt32 & 32) != 0;
+            this.id = inputSerializedData.readInt32(z);
+            TL_peerUser tL_peerUser = new TL_peerUser();
+            this.from_id = tL_peerUser;
+            tL_peerUser.user_id = inputSerializedData.readInt32(z);
+            this.peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if ((this.flags & 4) != 0) {
+                TL_messageFwdHeader tL_messageFwdHeader = new TL_messageFwdHeader();
+                this.fwd_from = tL_messageFwdHeader;
+                tL_messageFwdHeader.from_id = new TL_peerUser();
+                this.fwd_from.from_id.user_id = inputSerializedData.readInt32(z);
+                MessageFwdHeader messageFwdHeader = this.fwd_from;
+                messageFwdHeader.flags |= 1;
+                messageFwdHeader.date = inputSerializedData.readInt32(z);
+            }
+            if ((this.flags & 8) != 0) {
+                TL_messageReplyHeader tL_messageReplyHeader = new TL_messageReplyHeader();
+                this.reply_to = tL_messageReplyHeader;
+                tL_messageReplyHeader.flags |= 16;
+                tL_messageReplyHeader.reply_to_msg_id = inputSerializedData.readInt32(z);
+            }
+            this.date = inputSerializedData.readInt32(z);
+            this.message = inputSerializedData.readString(z);
+            MessageMedia TLdeserialize = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLdeserialize;
+            if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                this.message = this.media.captionLegacy;
+            }
+            if ((this.flags & 64) != 0) {
+                this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1023016155);
+            int i = this.unread ? this.flags | 1 : this.flags & (-2);
+            this.flags = i;
+            int i2 = this.out ? i | 2 : i & (-3);
+            this.flags = i2;
+            int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
+            this.flags = i3;
+            int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
+            this.flags = i4;
+            outputSerializedData.writeInt32(i4);
+            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32((int) this.from_id.user_id);
+            this.peer_id.serializeToStream(outputSerializedData);
+            if ((this.flags & 4) != 0) {
+                outputSerializedData.writeInt32((int) this.fwd_from.from_id.user_id);
+                outputSerializedData.writeInt32(this.fwd_from.date);
+            }
+            if ((this.flags & 8) != 0) {
+                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
+            }
+            outputSerializedData.writeInt32(this.date);
+            outputSerializedData.writeString(this.message);
+            this.media.serializeToStream(outputSerializedData);
+            if ((this.flags & 64) != 0) {
+                this.reply_markup.serializeToStream(outputSerializedData);
+            }
+            writeAttachPath(outputSerializedData);
+        }
+    }
+
     public static class TL_message_secret extends TL_message {
         public static final int constructor = 1431655930;
 
@@ -32870,7 +32945,8 @@ public class TLRPC {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int readInt32 = inputSerializedData.readInt32(z);
             this.flags = readInt32;
-            this.has_my_invites = (readInt32 & 67108864) != 0;
+            this.has_my_invites = (67108864 & readInt32) != 0;
+            this.title_noanimate = TLObject.hasFlag(readInt32, 268435456);
             this.id = inputSerializedData.readInt32(z);
             this.title = TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 33554432) != 0) {
@@ -32888,7 +32964,9 @@ public class TLRPC {
             outputSerializedData.writeInt32(-1772913705);
             int i = this.has_my_invites ? this.flags | 67108864 : this.flags & (-67108865);
             this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(i, 268435456, this.title_noanimate);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt32(this.id);
             this.title.serializeToStream(outputSerializedData);
             if ((this.flags & 33554432) != 0) {
@@ -81755,81 +81833,6 @@ public class TLRPC {
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);
             this.action.serializeToStream(outputSerializedData);
-        }
-    }
-
-    public static class TL_message_old4 extends TL_message {
-        public static final int constructor = -1023016155;
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-1023016155);
-            int i = this.unread ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
-            this.flags = i3;
-            int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
-            outputSerializedData.writeInt32(this.id);
-            outputSerializedData.writeInt32((int) this.from_id.user_id);
-            this.peer_id.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
-                outputSerializedData.writeInt32((int) this.fwd_from.from_id.user_id);
-                outputSerializedData.writeInt32(this.fwd_from.date);
-            }
-            if ((this.flags & 8) != 0) {
-                outputSerializedData.writeInt32(this.reply_to.reply_to_msg_id);
-            }
-            outputSerializedData.writeInt32(this.date);
-            outputSerializedData.writeString(this.message);
-            this.media.serializeToStream(outputSerializedData);
-            if ((this.flags & 64) != 0) {
-                this.reply_markup.serializeToStream(outputSerializedData);
-            }
-            writeAttachPath(outputSerializedData);
-        }
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int readInt32 = inputSerializedData.readInt32(z) | 768;
-            this.flags = readInt32;
-            this.unread = (readInt32 & 1) != 0;
-            this.out = (readInt32 & 2) != 0;
-            this.mentioned = (readInt32 & 16) != 0;
-            this.media_unread = (readInt32 & 32) != 0;
-            this.id = inputSerializedData.readInt32(z);
-            TL_peerUser tL_peerUser = new TL_peerUser();
-            this.from_id = tL_peerUser;
-            tL_peerUser.user_id = inputSerializedData.readInt32(z);
-            this.peer_id = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
-                TL_messageFwdHeader tL_messageFwdHeader = new TL_messageFwdHeader();
-                this.fwd_from = tL_messageFwdHeader;
-                tL_messageFwdHeader.from_id = new TL_peerUser();
-                this.fwd_from.from_id.user_id = inputSerializedData.readInt32(z);
-                MessageFwdHeader messageFwdHeader = this.fwd_from;
-                messageFwdHeader.flags |= 1;
-                messageFwdHeader.date = inputSerializedData.readInt32(z);
-            }
-            if ((this.flags & 8) != 0) {
-                TL_messageReplyHeader tL_messageReplyHeader = new TL_messageReplyHeader();
-                this.reply_to = tL_messageReplyHeader;
-                tL_messageReplyHeader.flags |= 16;
-                tL_messageReplyHeader.reply_to_msg_id = inputSerializedData.readInt32(z);
-            }
-            this.date = inputSerializedData.readInt32(z);
-            this.message = inputSerializedData.readString(z);
-            MessageMedia TLdeserialize = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.media = TLdeserialize;
-            if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
-                this.message = this.media.captionLegacy;
-            }
-            if ((this.flags & 64) != 0) {
-                this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            }
         }
     }
 }

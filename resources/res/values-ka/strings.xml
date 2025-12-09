@@ -27,8 +27,8 @@
     <string name="abc_shareactionprovider_share_with">გაზიარება:</string>
     <string name="abc_shareactionprovider_share_with_application">%s-ით გაზიარება</string>
     <string name="abc_toolbar_collapse_description">ჩაკეცვა</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">პაროლი</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">წვდომის გასაღები</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">პაროლი</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">წვდომის გასაღები</string>
     <string name="call_notification_answer_action">პასუხი</string>
     <string name="call_notification_answer_video_action">ვიდეო</string>
     <string name="call_notification_decline_action">უარყოფა</string>

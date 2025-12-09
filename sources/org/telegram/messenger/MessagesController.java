@@ -26358,7 +26358,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (message.suggested_post == null) {
             messageObject2 = null;
         }
-        sendMessagesHelper.sendMessage(arrayList, dialogId, z, false, true, 0, messageObject2, -1, 0L, DialogObject.getPeerDialogId(message.saved_peer_id), MessageSuggestionParams.of(suggestedPost));
+        sendMessagesHelper.sendMessage(arrayList, dialogId, z, false, true, 0, 0, messageObject2, -1, 0L, DialogObject.getPeerDialogId(message.saved_peer_id), MessageSuggestionParams.of(suggestedPost));
     }
 
     public void approveSuggestedMessage(long j, int i, int i2) {

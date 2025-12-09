@@ -65,9 +65,9 @@ public abstract class BotVerifySheet {
             }
 
             @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
                 boolean lambda$openVerify$1;
-                lambda$openVerify$1 = BotVerifySheet.lambda$openVerify$1(DialogsActivity.this, i, j, botverifiersettings, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
+                lambda$openVerify$1 = BotVerifySheet.lambda$openVerify$1(DialogsActivity.this, i, j, botverifiersettings, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
                 return lambda$openVerify$1;
             }
 
@@ -79,7 +79,7 @@ public abstract class BotVerifySheet {
         safeLastFragment.presentFragment(dialogsActivity);
     }
 
-    public static boolean lambda$openVerify$1(final DialogsActivity dialogsActivity, final int i, long j, TL_bots.botVerifierSettings botverifiersettings, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, final TopicsFragment topicsFragment) {
+    public static boolean lambda$openVerify$1(final DialogsActivity dialogsActivity, final int i, long j, TL_bots.botVerifierSettings botverifiersettings, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, final TopicsFragment topicsFragment) {
         if (arrayList.isEmpty()) {
             return false;
         }

@@ -134,6 +134,7 @@ import org.telegram.ui.Gifts.ResaleGiftsFragment;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Stars.StarGiftPreviewSheet;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -1142,9 +1143,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
                 boolean lambda$openSetAsTheme$7;
-                lambda$openSetAsTheme$7 = StarGiftSheet.this.lambda$openSetAsTheme$7(uniqueGift, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
+                lambda$openSetAsTheme$7 = StarGiftSheet.this.lambda$openSetAsTheme$7(uniqueGift, dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i, i2, topicsFragment);
                 return lambda$openSetAsTheme$7;
             }
 
@@ -1156,7 +1157,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         safeLastFragment.presentFragment(dialogsActivity);
     }
 
-    public boolean lambda$openSetAsTheme$7(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+    public boolean lambda$openSetAsTheme$7(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         if (arrayList.isEmpty()) {
             return false;
         }
@@ -2992,6 +2993,76 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
         }
 
+        public void setPreviewAttributes(StarGiftPreviewSheet.Attributes attributes) {
+            PageTransition pageTransition = this.currentPage;
+            if (pageTransition != null && pageTransition.to == 1 && isAttachedToWindow()) {
+                AndroidUtilities.cancelRunOnUIThread(this.checkToRotateRunnable);
+                ValueAnimator valueAnimator = this.rotationAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.rotationAnimator = null;
+                }
+                int i = 1 - this.toggled;
+                this.toggled = i;
+                RLottieDrawable lottieAnimation = this.imageView[2 - i].getImageReceiver().getLottieAnimation();
+                RLottieDrawable lottieAnimation2 = this.imageView[this.toggled + 1].getImageReceiver().getLottieAnimation();
+                if (lottieAnimation2 != null && lottieAnimation != null) {
+                    lottieAnimation2.setProgress(lottieAnimation.getProgress(), false);
+                }
+                int i2 = this.toggled + 1;
+                TL_stars.starGiftAttributeBackdrop[] stargiftattributebackdropArr = this.backdrop;
+                TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = attributes.backdrop;
+                stargiftattributebackdropArr[i2] = stargiftattributebackdrop;
+                setBackdropPaint(i2, stargiftattributebackdrop);
+                setPattern(1, attributes.pattern, true);
+                TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = this.imageViewAttributes;
+                int i3 = this.toggled + 1;
+                stargiftattributemodelArr[i3] = attributes.model;
+                StarsIntroActivity.setGiftImage(this.imageView[i3].getImageReceiver(), this.imageViewAttributes[this.toggled + 1].document, 160);
+                animateSwitch();
+                float f = this.toggled;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f - f, f);
+                this.rotationAnimator = ofFloat;
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        StarGiftSheet.TopView.this.lambda$setPreviewAttributes$3(valueAnimator2);
+                    }
+                });
+                this.rotationAnimator.addListener(new AnimatorListenerAdapter() {
+                    AnonymousClass4() {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        TopView.this.toggleBackdrop = r2.toggled;
+                        TopView topView = TopView.this;
+                        topView.onSwitchPage(topView.currentPage);
+                    }
+                });
+                this.rotationAnimator.setDuration(320L);
+                this.rotationAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.rotationAnimator.start();
+            }
+        }
+
+        public void lambda$setPreviewAttributes$3(ValueAnimator valueAnimator) {
+            this.toggleBackdrop = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            onSwitchPage(this.currentPage);
+        }
+
+        public class AnonymousClass4 extends AnimatorListenerAdapter {
+            AnonymousClass4() {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                TopView.this.toggleBackdrop = r2.toggled;
+                TopView topView = TopView.this;
+                topView.onSwitchPage(topView.currentPage);
+            }
+        }
+
         private void rotateAttributes() {
             PageTransition pageTransition = this.currentPage;
             if (pageTransition != null && pageTransition.to == 1 && isAttachedToWindow()) {
@@ -3022,11 +3093,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StarGiftSheet.TopView.this.lambda$rotateAttributes$3(valueAnimator2);
+                        StarGiftSheet.TopView.this.lambda$rotateAttributes$4(valueAnimator2);
                     }
                 });
                 this.rotationAnimator.addListener(new AnimatorListenerAdapter() {
-                    AnonymousClass4() {
+                    AnonymousClass5() {
                     }
 
                     @Override
@@ -3048,13 +3119,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
         }
 
-        public void lambda$rotateAttributes$3(ValueAnimator valueAnimator) {
+        public void lambda$rotateAttributes$4(ValueAnimator valueAnimator) {
             this.toggleBackdrop = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             onSwitchPage(this.currentPage);
         }
 
-        public class AnonymousClass4 extends AnimatorListenerAdapter {
-            AnonymousClass4() {
+        public class AnonymousClass5 extends AnimatorListenerAdapter {
+            AnonymousClass5() {
             }
 
             @Override
@@ -3136,11 +3207,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StarGiftSheet.TopView.this.lambda$animateSwitch$4(valueAnimator2);
+                    StarGiftSheet.TopView.this.lambda$animateSwitch$5(valueAnimator2);
                 }
             });
             this.switchAnimator.addListener(new AnimatorListenerAdapter() {
-                AnonymousClass5() {
+                AnonymousClass6() {
                 }
 
                 @Override
@@ -3158,7 +3229,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.switchAnimator.start();
         }
 
-        public void lambda$animateSwitch$4(ValueAnimator valueAnimator) {
+        public void lambda$animateSwitch$5(ValueAnimator valueAnimator) {
             float pow = (((float) Math.pow((r5 * 2.0f) - 2.0f, 2.0d)) * 0.075f * ((Float) valueAnimator.getAnimatedValue()).floatValue()) + 1.0f;
             this.switchScale = pow;
             this.imageLayout.setScaleX(pow);
@@ -3166,8 +3237,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             invalidate();
         }
 
-        public class AnonymousClass5 extends AnimatorListenerAdapter {
-            AnonymousClass5() {
+        public class AnonymousClass6 extends AnimatorListenerAdapter {
+            AnonymousClass6() {
             }
 
             @Override

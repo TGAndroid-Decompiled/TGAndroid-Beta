@@ -4440,9 +4440,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
 
                     @Override
-                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
                         boolean lambda$onItemClick$6;
-                        lambda$onItemClick$6 = ProfileActivity.AnonymousClass6.this.lambda$onItemClick$6(user3, dialogsActivity2, dialogsActivity3, arrayList, charSequence, z, z2, i2, topicsFragment);
+                        lambda$onItemClick$6 = ProfileActivity.AnonymousClass6.this.lambda$onItemClick$6(user3, dialogsActivity2, dialogsActivity3, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
                         return lambda$onItemClick$6;
                     }
 
@@ -4713,7 +4713,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             alertDialog.dismiss();
         }
 
-        public boolean lambda$onItemClick$6(final TLRPC.User user, final DialogsActivity dialogsActivity, final DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        public boolean lambda$onItemClick$6(final TLRPC.User user, final DialogsActivity dialogsActivity, final DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
             TLRPC.TL_chatAdminRights tL_chatAdminRights;
             final long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             TLRPC.Chat chat = MessagesController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).getChat(Long.valueOf(-j));
@@ -4726,14 +4726,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 });
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
-                int i2 = R.string.AddBot;
-                builder.setTitle(LocaleController.getString(i2));
+                int i3 = R.string.AddBot;
+                builder.setTitle(LocaleController.getString(i3));
                 builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(user), chat == null ? "" : chat.title)));
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                builder.setPositiveButton(LocaleController.getString(i2), new AlertDialog.OnButtonClickListener() {
+                builder.setPositiveButton(LocaleController.getString(i3), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
-                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$5(j, dialogsActivity2, user, alertDialog, i3);
+                    public final void onClick(AlertDialog alertDialog, int i4) {
+                        ProfileActivity.AnonymousClass6.this.lambda$onItemClick$5(j, dialogsActivity2, user, alertDialog, i4);
                     }
                 });
                 ProfileActivity.this.showDialog(builder.create());
@@ -13359,7 +13359,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+    public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
@@ -13374,14 +13374,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return false;
         }
         NotificationCenter notificationCenter = getNotificationCenter();
-        int i2 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(this, i2);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
+        int i3 = NotificationCenter.closeChats;
+        notificationCenter.removeObserver(this, i3);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i3, new Object[0]);
         presentFragment(new ChatActivity(bundle), true);
         removeSelfFromStack();
-        getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(getMessagesController().getUser(Long.valueOf(this.userId)), j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z2, i, 0));
+        getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(getMessagesController().getUser(Long.valueOf(this.userId)), j, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z2, i, i2));
         if (!TextUtils.isEmpty(charSequence)) {
-            SendMessagesHelper.prepareSendingText(AccountInstance.getInstance(this.currentAccount), charSequence.toString(), j, z2, i, 0, 0L);
+            SendMessagesHelper.prepareSendingText(AccountInstance.getInstance(this.currentAccount), charSequence.toString(), j, z2, i, i2, 0L);
         }
         return true;
     }

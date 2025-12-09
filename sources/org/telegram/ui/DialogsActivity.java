@@ -409,6 +409,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean rightFragmentTransitionIsOpen;
     public RightSlidingDialogContainer rightSlidingDialogContainer;
     public int scheduleDate;
+    public int scheduleRepeatPeriod;
     private float scrollAdditionalOffset;
     private boolean scrollBarVisible;
     private boolean scrollUpdated;
@@ -496,7 +497,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         boolean canSelectStories();
 
-        boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment);
+        boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment);
 
         boolean didSelectStories(DialogsActivity dialogsActivity);
     }
@@ -3612,7 +3613,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         DialogsActivity.this.removeSelfFromStack();
                     }
                     DialogsActivity dialogsActivity = DialogsActivity.this;
-                    dialogsActivityDelegate.didSelectDialogs(dialogsActivity, arrayList, null, true, dialogsActivity.notify, dialogsActivity.scheduleDate, null);
+                    dialogsActivityDelegate.didSelectDialogs(dialogsActivity, arrayList, null, true, dialogsActivity.notify, dialogsActivity.scheduleDate, dialogsActivity.scheduleRepeatPeriod, null);
                 }
             });
             presentFragment(groupCreateFinalActivity);
@@ -3656,7 +3657,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 DialogsActivity.this.removeSelfFromStack();
             }
             DialogsActivity dialogsActivity = DialogsActivity.this;
-            dialogsActivityDelegate.didSelectDialogs(dialogsActivity, arrayList, null, true, dialogsActivity.notify, dialogsActivity.scheduleDate, null);
+            dialogsActivityDelegate.didSelectDialogs(dialogsActivity, arrayList, null, true, dialogsActivity.notify, dialogsActivity.scheduleDate, dialogsActivity.scheduleRepeatPeriod, null);
         }
     }
 
@@ -3974,7 +3975,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             for (int i = 0; i < this.selectedDialogs.size(); i++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) this.selectedDialogs.get(i)).longValue(), 0L));
             }
-            this.delegate.didSelectDialogs(this, arrayList, null, false, this.notify, this.scheduleDate, null);
+            this.delegate.didSelectDialogs(this, arrayList, null, false, this.notify, this.scheduleDate, this.scheduleRepeatPeriod, null);
             return;
         }
         if (this.floatingButton.getVisibility() != 0) {
@@ -4257,7 +4258,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             for (int i3 = 0; i3 < DialogsActivity.this.selectedDialogs.size(); i3++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) DialogsActivity.this.selectedDialogs.get(i3)).longValue(), 0L));
             }
-            DialogsActivity.this.delegate.didSelectDialogs(DialogsActivity.this, arrayList, charSequence, false, z, i, null);
+            DialogsActivity.this.delegate.didSelectDialogs(DialogsActivity.this, arrayList, charSequence, false, z, i, i2, null);
         }
 
         @Override
@@ -4320,7 +4321,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         for (int i = 0; i < this.selectedDialogs.size(); i++) {
             arrayList.add(MessagesStorage.TopicKey.of(((Long) this.selectedDialogs.get(i)).longValue(), 0L));
         }
-        this.delegate.didSelectDialogs(this, arrayList, this.commentView.getFieldText(), false, this.notify, this.scheduleDate, null);
+        this.delegate.didSelectDialogs(this, arrayList, this.commentView.getFieldText(), false, this.notify, this.scheduleDate, this.scheduleRepeatPeriod, null);
     }
 
     public boolean lambda$createView$16(View view) {
@@ -5929,7 +5930,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
-            dialogsActivityDelegate.didSelectDialogs(this, arrayList, null, false, this.notify, this.scheduleDate, null);
+            dialogsActivityDelegate.didSelectDialogs(this, arrayList, null, false, this.notify, this.scheduleDate, this.scheduleRepeatPeriod, null);
         }
     }
 
@@ -6110,7 +6111,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(-j, 0L));
                 DialogsActivity dialogsActivity = DialogsActivity.this;
-                dialogsActivityDelegate.didSelectDialogs(dialogsActivity, arrayList, null, false, dialogsActivity.notify, dialogsActivity.scheduleDate, null);
+                dialogsActivityDelegate.didSelectDialogs(dialogsActivity, arrayList, null, false, dialogsActivity.notify, dialogsActivity.scheduleDate, dialogsActivity.scheduleRepeatPeriod, null);
             }
         }
     }
@@ -10904,7 +10905,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         setDialogsListFrozen(true);
         ArrayList arrayList = new ArrayList();
         arrayList.add(MessagesStorage.TopicKey.of(j, 0L));
-        this.delegate.didSelectDialogs(this, arrayList, null, z, this.notify, this.scheduleDate, null);
+        this.delegate.didSelectDialogs(this, arrayList, null, z, this.notify, this.scheduleDate, this.scheduleRepeatPeriod, null);
     }
 
     public void lambda$didSelectResult$126(long j, long j2, TopicsFragment topicsFragment, AlertDialog alertDialog, int i) {
@@ -10915,7 +10916,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (this.delegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(j, j2));
-            this.delegate.didSelectDialogs(this, arrayList, null, z, this.notify, this.scheduleDate, topicsFragment);
+            this.delegate.didSelectDialogs(this, arrayList, null, z, this.notify, this.scheduleDate, this.scheduleRepeatPeriod, topicsFragment);
             if (this.resetDelegate) {
                 this.delegate = null;
                 return;
@@ -11142,7 +11143,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         for (int i = 0; i < this.selectedDialogs.size(); i++) {
             arrayList.add(MessagesStorage.TopicKey.of(((Long) this.selectedDialogs.get(i)).longValue(), 0L));
         }
-        this.delegate.didSelectDialogs(this, arrayList, this.commentView.getFieldText(), false, this.notify, this.scheduleDate, null);
+        this.delegate.didSelectDialogs(this, arrayList, this.commentView.getFieldText(), false, this.notify, this.scheduleDate, this.scheduleRepeatPeriod, null);
     }
 
     public void lambda$onSendLongClick$136(Activity activity, boolean z, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -11158,6 +11159,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             public void didSelectDate(boolean z2, int i, int i2) {
                 DialogsActivity dialogsActivity = DialogsActivity.this;
                 dialogsActivity.scheduleDate = i;
+                dialogsActivity.scheduleRepeatPeriod = i2;
                 if (dialogsActivity.delegate == null || DialogsActivity.this.selectedDialogs.isEmpty()) {
                     return;
                 }
@@ -11167,7 +11169,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
                 DialogsActivityDelegate dialogsActivityDelegate = DialogsActivity.this.delegate;
                 DialogsActivity dialogsActivity2 = DialogsActivity.this;
-                dialogsActivityDelegate.didSelectDialogs(dialogsActivity2, arrayList, dialogsActivity2.commentView.getFieldText(), false, z2, i, null);
+                dialogsActivityDelegate.didSelectDialogs(dialogsActivity2, arrayList, dialogsActivity2.commentView.getFieldText(), false, z2, i, i2, null);
             }
         }, resourcesProvider);
     }
@@ -11180,6 +11182,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         public void didSelectDate(boolean z2, int i, int i2) {
             DialogsActivity dialogsActivity = DialogsActivity.this;
             dialogsActivity.scheduleDate = i;
+            dialogsActivity.scheduleRepeatPeriod = i2;
             if (dialogsActivity.delegate == null || DialogsActivity.this.selectedDialogs.isEmpty()) {
                 return;
             }
@@ -11189,7 +11192,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             DialogsActivityDelegate dialogsActivityDelegate = DialogsActivity.this.delegate;
             DialogsActivity dialogsActivity2 = DialogsActivity.this;
-            dialogsActivityDelegate.didSelectDialogs(dialogsActivity2, arrayList, dialogsActivity2.commentView.getFieldText(), false, z2, i, null);
+            dialogsActivityDelegate.didSelectDialogs(dialogsActivity2, arrayList, dialogsActivity2.commentView.getFieldText(), false, z2, i, i2, null);
         }
     }
 

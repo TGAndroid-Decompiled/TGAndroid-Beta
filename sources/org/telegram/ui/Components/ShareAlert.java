@@ -2513,7 +2513,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     of2.monoForumPeer = j6;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
                 }
-                int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j5, !this.showSendersName, false, z, 0, messageObject2, i, l3 == null ? 0L : l3.longValue(), j6, null);
+                int sendMessage = SendMessagesHelper.getInstance(this.currentAccount).sendMessage(this.sendingMessageObjects, j5, !this.showSendersName, false, z, 0, 0, messageObject2, i, l3 == null ? 0L : l3.longValue(), j6, null);
                 if (sendMessage != 0) {
                     arrayList2.add(Long.valueOf(j5));
                 }

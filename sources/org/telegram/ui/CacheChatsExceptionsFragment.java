@@ -121,9 +121,9 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 }
 
                 @Override
-                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i3, TopicsFragment topicsFragment) {
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i3, int i4, TopicsFragment topicsFragment) {
                     boolean lambda$createView$0;
-                    lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i3, topicsFragment);
+                    lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
                     return lambda$createView$0;
                 }
 
@@ -160,56 +160,56 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         }
     }
 
-    public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+    public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         dialogsActivity.finishFragment();
         CacheByChatsController.KeepMediaException keepMediaException = null;
-        int i2 = 0;
         int i3 = 0;
+        int i4 = 0;
         while (true) {
             boolean z3 = true;
-            if (i3 >= arrayList.size()) {
+            if (i4 >= arrayList.size()) {
                 break;
             }
-            int i4 = 0;
+            int i5 = 0;
             while (true) {
-                if (i4 >= this.exceptionsDialogs.size()) {
+                if (i5 >= this.exceptionsDialogs.size()) {
                     z3 = false;
                     break;
                 }
-                if (((CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i4)).dialogId == ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId) {
-                    keepMediaException = (CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i4);
+                if (((CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i5)).dialogId == ((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId) {
+                    keepMediaException = (CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i5);
                     break;
                 }
-                i4++;
+                i5++;
             }
             if (!z3) {
-                int i5 = CacheByChatsController.KEEP_MEDIA_FOREVER;
+                int i6 = CacheByChatsController.KEEP_MEDIA_FOREVER;
                 if (getMessagesController().getCacheByChatsController().getKeepMedia(this.currentType) == CacheByChatsController.KEEP_MEDIA_FOREVER) {
-                    i5 = CacheByChatsController.KEEP_MEDIA_ONE_DAY;
+                    i6 = CacheByChatsController.KEEP_MEDIA_ONE_DAY;
                 }
                 ArrayList arrayList2 = this.exceptionsDialogs;
-                CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId, i5);
+                CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId, i6);
                 arrayList2.add(keepMediaException2);
                 keepMediaException = keepMediaException2;
             }
-            i3++;
+            i4++;
         }
         getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(this.currentType, this.exceptionsDialogs);
         updateRows();
         if (keepMediaException != null) {
-            int i6 = 0;
+            int i7 = 0;
             while (true) {
-                if (i6 < this.items.size()) {
-                    if (((Item) this.items.get(i6)).exception != null && ((Item) this.items.get(i6)).exception.dialogId == keepMediaException.dialogId) {
-                        i2 = i6;
+                if (i7 < this.items.size()) {
+                    if (((Item) this.items.get(i7)).exception != null && ((Item) this.items.get(i7)).exception.dialogId == keepMediaException.dialogId) {
+                        i3 = i7;
                         break;
                     }
-                    i6++;
+                    i7++;
                 } else {
                     break;
                 }
             }
-            this.recyclerListView.scrollToPosition(i2);
+            this.recyclerListView.scrollToPosition(i3);
             showPopupFor(keepMediaException);
         }
         return true;

@@ -1072,8 +1072,8 @@
     <string name="abc_shareactionprovider_share_with">Delen met</string>
     <string name="abc_shareactionprovider_share_with_application">Delen met %s</string>
     <string name="abc_toolbar_collapse_description">Samenvouwen</string>
-    <string name="res_0x7f0f277a_android_credentials_type_password_credential">Wachtwoord</string>
-    <string name="res_0x7f0f277b_androidx_credentials_type_public_key_credential">Toegangssleutel</string>
+    <string name="res_0x7f0f277b_android_credentials_type_password_credential">Wachtwoord</string>
+    <string name="res_0x7f0f277c_androidx_credentials_type_public_key_credential">Toegangssleutel</string>
     <string name="call_notification_answer_action">Beantwoorden</string>
     <string name="call_notification_answer_video_action">Video</string>
     <string name="call_notification_decline_action">Weigeren</string>

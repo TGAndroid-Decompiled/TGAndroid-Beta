@@ -87,6 +87,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     public INavigationLayout.ThemeAnimationSettings.onAnimationProgress animationProgressListener;
     private Runnable animationRunnable;
     private boolean attached;
+    private AnimatorSet backAnimator;
     private View backgroundView;
     private boolean beginTrackingSent;
     private BottomSheetTabs bottomSheetTabs;
@@ -1213,27 +1214,37 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public void onBackStarted(float f, float f2) {
+        if (this.animationInProgress) {
+            AnimatorSet animatorSet = this.backAnimator;
+            if (animatorSet == null) {
+                return;
+            }
+            animatorSet.end();
+            this.backAnimator = null;
+            if (this.animationInProgress) {
+                return;
+            }
+        }
         if (this.predictiveBackInProgress || this.transitionAnimationPreviewMode || this.startedTracking || checkTransitionAnimation()) {
             return;
         }
-        if (this.fragmentsStack.size() <= 1 || isInPreviewMode() || this.animationInProgress) {
-            return;
-        }
-        EmptyBaseFragment emptyBaseFragment = this.sheetFragment;
-        if (emptyBaseFragment == null || !emptyBaseFragment.hasShownSheet()) {
-            List list = this.fragmentsStack;
-            BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
-            if (baseFragment.onBackPressed(false) && !baseFragment.hasShownSheet() && baseFragment.canBeginSlide()) {
-                this.predictiveBackHasProgress = false;
-                this.predictiveBackInProgress = true;
-                this.predictiveBackLeft = f < ((float) AndroidUtilities.displaySize.x) / 2.0f;
-                this.predictiveBackY = f2;
-                prepareForMoving();
-                Activity activity = this.parentActivity;
-                if (activity != null && activity.getCurrentFocus() != null) {
-                    AndroidUtilities.hideKeyboard(this.parentActivity.getCurrentFocus());
+        if (this.fragmentsStack.size() > 1 && !isInPreviewMode()) {
+            EmptyBaseFragment emptyBaseFragment = this.sheetFragment;
+            if (emptyBaseFragment == null || !emptyBaseFragment.hasShownSheet()) {
+                List list = this.fragmentsStack;
+                BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
+                if (baseFragment.onBackPressed(false) && !baseFragment.hasShownSheet() && baseFragment.canBeginSlide()) {
+                    this.predictiveBackHasProgress = false;
+                    this.predictiveBackInProgress = true;
+                    this.predictiveBackLeft = f < ((float) AndroidUtilities.displaySize.x) / 2.0f;
+                    this.predictiveBackY = f2;
+                    prepareForMoving();
+                    Activity activity = this.parentActivity;
+                    if (activity != null && activity.getCurrentFocus() != null) {
+                        AndroidUtilities.hideKeyboard(this.parentActivity.getCurrentFocus());
+                    }
+                    baseFragment.onBeginSlide();
                 }
-                baseFragment.onBeginSlide();
             }
         }
     }
@@ -1282,17 +1293,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         boolean shouldOverrideSlideTransition = baseFragment.shouldOverrideSlideTransition(false, z);
         if (!z) {
             x = Math.abs(this.containerView.getMeasuredWidth() - x);
-            int max = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), 50);
+            int max = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 380 : 50);
             if (!shouldOverrideSlideTransition) {
                 long j = max;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, ((this.predictiveBackLeft || !this.predictiveBackInProgress) ? 1 : -1) * (r6.getMeasuredWidth() + (this.predictiveBackInProgress ? AndroidUtilities.dp(56.0f) : 0))).setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
+                if (newBackTransitions()) {
+                    animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                }
             }
         } else {
-            int max2 = Math.max((int) ((320.0f / this.containerView.getMeasuredWidth()) * x), 120);
+            int max2 = Math.max((int) ((320.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 320 : 120);
             if (!shouldOverrideSlideTransition) {
                 long j2 = max2;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, 0.0f).setDuration(j2), ObjectAnimator.ofFloat(this, "innerTranslationX", 0.0f).setDuration(j2));
-                animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                if (newBackTransitions()) {
+                    animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                }
             }
         }
         Animator customSlideTransition2 = baseFragment.getCustomSlideTransition(false, z, x);
@@ -1308,9 +1324,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             @Override
             public void onAnimationEnd(Animator animator) {
                 ActionBarLayout.this.predictiveBackInProgress = false;
+                ActionBarLayout.this.containerView.setAlpha(1.0f);
                 ActionBarLayout.this.onSlideAnimationEnd(z);
             }
         });
+        this.backAnimator = animatorSet;
         animatorSet.start();
         this.animationInProgress = true;
         this.layoutToIgnore = this.containerViewBack;

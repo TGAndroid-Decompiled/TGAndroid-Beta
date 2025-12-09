@@ -1229,7 +1229,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 FragmentContextView.lambda$openSharingLocation$14(LocationController.SharingLocationInfo.this, dialogId, messageMedia, i, z, i2, j);
             }
         });
-        launchActivity.lambda$runLinkRequest$101(locationActivity);
+        launchActivity.lambda$runLinkRequest$102(locationActivity);
     }
 
     public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j2) {
