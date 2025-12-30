@@ -2252,14 +2252,14 @@ public class ContactsController extends BaseController {
         if (tLObject instanceof Vector) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$reloadContactsStatuses$58(editor, tLObject);
                 }
             });
         }
     }
 
-    public void lambda$reloadContactsStatuses$58(SharedPreferences.Editor editor, TLObject tLObject) throws InterruptedException {
+    public void lambda$reloadContactsStatuses$58(SharedPreferences.Editor editor, TLObject tLObject) {
         editor.remove("needGetStatuses").commit();
         Vector vector = (Vector) tLObject;
         if (!vector.objects.isEmpty()) {

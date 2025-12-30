@@ -1209,10 +1209,12 @@ public class ActionBarMenuItem extends FrameLayout {
             });
             this.searchFilterLayout.addView(searchFilterView, LayoutHelper.createLinear(-2, -1, 0, 0, 0, 6, 0));
         }
-        int i3 = 0;
-        while (i3 < this.searchFilterLayout.getChildCount()) {
-            ((SearchFilterView) this.searchFilterLayout.getChildAt(i3)).setExpanded(i3 == this.selectedFilterIndex);
-            i3++;
+        if (this.searchFilterLayout != null) {
+            int i3 = 0;
+            while (i3 < this.searchFilterLayout.getChildCount()) {
+                ((SearchFilterView) this.searchFilterLayout.getChildAt(i3)).setExpanded(i3 == this.selectedFilterIndex);
+                i3++;
+            }
         }
         this.searchFilterLayout.setTag(!zIsEmpty ? 1 : null);
         final float x = this.searchField.getX();

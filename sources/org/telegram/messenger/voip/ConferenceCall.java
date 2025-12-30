@@ -5,6 +5,7 @@ import android.util.LongSparseArray;
 import j$.util.DesugarArrays;
 import j$.util.function.Function$CC;
 import j$.util.stream.Collectors;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -416,7 +417,7 @@ public class ConferenceCall {
         return call_get_verification_state(this.call_id);
     }
 
-    private void readQueue(int i) {
+    private void readQueue(int i) throws IOException {
         if (this.destroyed) {
             FileLog.d("[tde2e] conference.readQueue(" + i + ") but destroyed!");
             return;

@@ -5406,7 +5406,7 @@ public class AndroidUtilities {
         return bitmapCreateBitmap;
     }
 
-    public static List<View> allGlobalViews() throws IllegalAccessException, NoSuchMethodException, ClassNotFoundException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public static List<View> allGlobalViews() throws IllegalAccessException, NoSuchMethodException, ClassNotFoundException, SecurityException, IOException, IllegalArgumentException, InvocationTargetException {
         try {
             if (Build.VERSION.SDK_INT >= 29) {
                 return WindowInspector.getGlobalWindowViews();

@@ -725,13 +725,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$supportsBulletin(this);
     }
 
-    static int access$11212(ProfileActivity profileActivity, int i) {
+    static int access$11312(ProfileActivity profileActivity, int i) {
         int i2 = profileActivity.listContentHeight + i;
         profileActivity.listContentHeight = i2;
         return i2;
     }
 
-    public static void access$40300(ProfileActivity profileActivity, View view) {
+    public static void access$40400(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -1847,7 +1847,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.indicatorRect.right = getMeasuredWidth() - AndroidUtilities.dp(54.0f);
             RectF rectF = this.indicatorRect;
             rectF.left = rectF.right - (fMeasureText + AndroidUtilities.dpf2(16.0f));
-            this.indicatorRect.top = (((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + AndroidUtilities.dp(15.0f);
+            this.indicatorRect.top = ((((BaseFragment) ProfileActivity.this).actionBar == null || !((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar()) ? 0 : AndroidUtilities.statusBarHeight) + AndroidUtilities.dp(15.0f);
             RectF rectF2 = this.indicatorRect;
             rectF2.bottom = rectF2.top + AndroidUtilities.dp(26.0f);
             setPivotX(this.indicatorRect.centerX());
@@ -8177,7 +8177,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         runnable.run();
     }
 
-    public static void lambda$processOnClickOrPress$74(Runnable runnable, Exception exc) {
+    public static void lambda$processOnClickOrPress$74(Runnable runnable, Exception exc) throws IOException {
         FileLog.e("mlkit: failed to detect language in selection", exc);
         runnable.run();
     }

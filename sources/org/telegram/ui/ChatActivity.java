@@ -1071,6 +1071,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private ActionBarMenuItem.Item timeItem2;
     private HintView timerHintView;
     private boolean toPullingDownTransition;
+    private ChatActivitySideControlsButtonsLayout topButtonsLayout;
     private BlurredFrameLayout topChatPanelView;
     private BlurredFrameLayout topChatPanelView2;
     private AnimatorSet topChatPanelView2Animator;
@@ -9866,7 +9867,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.pendingRequestsDelegate;
         View view = chatActivityMemberRequestsDelegate != null ? chatActivityMemberRequestsDelegate.getView() : null;
         if (view != null) {
-            view.setTranslationY(fMax2 + this.pendingRequestsDelegate.getViewEnterOffset());
+            view.setTranslationY(this.pendingRequestsDelegate.getViewEnterOffset() + fMax2);
+        }
+        ChatActivitySideControlsButtonsLayout chatActivitySideControlsButtonsLayout = this.topButtonsLayout;
+        if (chatActivitySideControlsButtonsLayout != null) {
+            chatActivitySideControlsButtonsLayout.setTranslationY(fMax2);
         }
         float fDp = (this.topicsTabs != null ? (AndroidUtilities.dp(48.0f) * (1.0f - this.topicsTabs.sidemenuT)) + 0.0f : 0.0f) + (this.actionBarSearchTags != null ? r5.getCurrentHeight() : 0.0f) + (this.hashtagSearchTabs != null ? r5.getCurrentHeight() : 0.0f);
         if (this.fragmentContextView != null) {
@@ -17480,7 +17485,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void lambda$updatePinnedMessageView$214(String str, View view) throws InterruptedException {
+    public void lambda$updatePinnedMessageView$214(String str, View view) throws InterruptedException, IOException {
         String str2 = Uri.parse(str).getPathSegments().get(r4.getPathSegments().size() - 1);
         TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
         tL_inputGroupCallSlug.slug = str2;
@@ -24859,13 +24864,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public void lambda$didPressOther$4(final AlertDialog alertDialog, final HashSet hashSet, final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, final MessageObject messageObject, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws InterruptedException, IOException {
                     this.f$0.lambda$didPressOther$3(alertDialog, tLObject, hashSet, tL_inputGroupCallInviteMessage, messageObject, tL_error);
                 }
             });
         }
 
-        public void lambda$didPressOther$3(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$didPressOther$3(AlertDialog alertDialog, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
             alertDialog.dismiss();
             if (tLObject instanceof TL_phone.groupCall) {
                 TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
@@ -29467,7 +29472,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final boolean z5 = z3;
             itemOptionsMakeOptions.add(R.drawable.msg_openin, LocaleController.getString((!z2 || z3) ? R.string.Open : R.string.OpenInTelegramBrowser), new Runnable() {
                 @Override
-                public final void run() throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+                public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
                     this.f$0.lambda$didLongPressLink$382(str, characterStyle, messageObject, chatMessageCell, z4, z5);
                 }
             });
@@ -29531,7 +29536,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions3);
     }
 
-    public void lambda$didLongPressLink$382(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$didLongPressLink$382(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
         } else if (z && !z2) {

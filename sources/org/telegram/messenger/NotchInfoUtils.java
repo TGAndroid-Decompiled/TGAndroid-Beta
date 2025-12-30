@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import androidx.core.graphics.PathParser;
+import java.io.IOException;
 
 public class NotchInfoUtils {
     private static final String BOTTOM_MARKER = "@bottom";
@@ -23,7 +24,7 @@ public class NotchInfoUtils {
         public String rawPath;
     }
 
-    public static NotchInfo getInfo(Context context) {
+    public static NotchInfo getInfo(Context context) throws IOException {
         float f;
         int i;
         if (Build.VERSION.SDK_INT < 28) {

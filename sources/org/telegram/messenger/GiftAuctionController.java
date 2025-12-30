@@ -389,7 +389,7 @@ public class GiftAuctionController extends BaseController {
         callback2.run(getAuction(j), tL_error);
     }
 
-    public void processUpdate(TLRPC.TL_updateStarGiftAuctionState tL_updateStarGiftAuctionState) throws InterruptedException {
+    public void processUpdate(TLRPC.TL_updateStarGiftAuctionState tL_updateStarGiftAuctionState) {
         AuctionInternal auctionInternal = this.auctions.get(tL_updateStarGiftAuctionState.gift_id);
         if (auctionInternal == null || auctionInternal.internalState == null || !auctionInternal.internalState.applyAuctionState(tL_updateStarGiftAuctionState.state)) {
             return;
@@ -398,7 +398,7 @@ public class GiftAuctionController extends BaseController {
         performAuctionUpdate(auctionInternal.giftId);
     }
 
-    public void processUpdate(TLRPC.TL_updateStarGiftAuctionUserState tL_updateStarGiftAuctionUserState) throws InterruptedException {
+    public void processUpdate(TLRPC.TL_updateStarGiftAuctionUserState tL_updateStarGiftAuctionUserState) {
         AuctionInternal auctionInternal = this.auctions.get(tL_updateStarGiftAuctionUserState.gift_id);
         if (auctionInternal == null || auctionInternal.internalState == null || !auctionInternal.internalState.applyUserState(tL_updateStarGiftAuctionUserState.user_state)) {
             return;

@@ -321,12 +321,12 @@ public class FilesMigrationService extends Service {
                 return;
             }
             FilesMigrationService.start();
-            lambda$new$0();
+            dismiss();
         }
 
         @Override
-        public void lambda$new$0() {
-            super.lambda$new$0();
+        public void dismiss() {
+            super.dismiss();
             FilesMigrationService.filesMigrationBottomSheet = null;
         }
     }

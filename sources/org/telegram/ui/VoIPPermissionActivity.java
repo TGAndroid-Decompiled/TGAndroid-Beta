@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPPreNotificationService;
@@ -40,7 +41,7 @@ public class VoIPPermissionActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws InterruptedException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws InterruptedException, IOException {
         if (i == 101 || i == 102) {
             boolean z = false;
             int i2 = 0;

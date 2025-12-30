@@ -4,10 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
+import java.io.IOException;
 
 public class VoIPMediaButtonReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) throws InterruptedException {
+    public void onReceive(Context context, Intent intent) throws InterruptedException, IOException {
         if (!"android.intent.action.MEDIA_BUTTON".equals(intent.getAction()) || VoIPService.getSharedInstance() == null) {
             return;
         }

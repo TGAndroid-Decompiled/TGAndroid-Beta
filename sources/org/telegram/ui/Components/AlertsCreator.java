@@ -51,6 +51,7 @@ import j$.util.Collection;
 import j$.util.Objects;
 import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -2519,7 +2520,7 @@ public abstract class AlertsCreator {
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                bottomSheetShow.lambda$new$0();
+                bottomSheetShow.dismiss();
             }
         });
     }
@@ -2933,7 +2934,7 @@ public abstract class AlertsCreator {
     }
 
     public static void lambda$createTimePickerDialog$86(BottomSheet[] bottomSheetArr, View view) {
-        bottomSheetArr[0].lambda$new$0();
+        bottomSheetArr[0].dismiss();
     }
 
     public static void lambda$createTimePickerDialog$87(Utilities.Callback callback, NumberPicker numberPicker, NumberPicker numberPicker2, DialogInterface dialogInterface) {
@@ -7772,13 +7773,13 @@ public abstract class AlertsCreator {
     public static void lambda$showCallsForbidden$213(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 AlertsCreator.lambda$showCallsForbidden$212(tLObject, i, buttonWithCounterView, bottomSheet, j, tL_error, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$showCallsForbidden$212(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException {
+    public static void lambda$showCallsForbidden$212(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException, IOException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(i).putUsers(updates.users, false);

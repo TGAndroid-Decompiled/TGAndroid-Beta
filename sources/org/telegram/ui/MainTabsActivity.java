@@ -245,14 +245,18 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             }
         });
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
-        itemOptionsMakeOptions.add(R.drawable.msg_addbot, LocaleController.getString(R.string.AddAccount), new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$openAccountSelector$3();
-            }
-        });
+        if (UserConfig.getActivatedAccountsCount() < 4) {
+            itemOptionsMakeOptions.add(R.drawable.msg_addbot, LocaleController.getString(R.string.AddAccount), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$openAccountSelector$3();
+                }
+            });
+        }
         if (arrayList.size() > 0) {
-            itemOptionsMakeOptions.addGap();
+            if (itemOptionsMakeOptions.getItemsCount() > 0) {
+                itemOptionsMakeOptions.addGap();
+            }
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
                 final int iIntValue = ((Integer) it.next()).intValue();

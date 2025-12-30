@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import java.io.File;
+import java.io.IOException;
 import org.json.JSONException;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.web.HttpGetFileTask;
@@ -128,13 +129,13 @@ public class BetaUpdaterController {
     public void lambda$checkForUpdate$2(final Runnable runnable, final String str) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException {
+            public final void run() throws JSONException, IOException {
                 this.f$0.lambda$checkForUpdate$1(str, runnable);
             }
         });
     }
 
-    public void lambda$checkForUpdate$1(java.lang.String r10, java.lang.Runnable r11) throws org.json.JSONException {
+    public void lambda$checkForUpdate$1(java.lang.String r10, java.lang.Runnable r11) throws org.json.JSONException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.BetaUpdaterController.lambda$checkForUpdate$1(java.lang.String, java.lang.Runnable):void");
     }
 

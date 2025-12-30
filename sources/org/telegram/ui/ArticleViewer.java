@@ -1505,7 +1505,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         builder.setTitleMultipleLines(true);
         builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
             @Override
-            public final void onClick(DialogInterface dialogInterface, int i) throws NoSuchFieldException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void onClick(DialogInterface dialogInterface, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
                 this.f$0.lambda$showCopyPopup$0(str, dialogInterface, i);
             }
         });
@@ -1518,7 +1518,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         showDialog(builder.create());
     }
 
-    public void lambda$showCopyPopup$0(String str, DialogInterface dialogInterface, int i) throws NoSuchFieldException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$showCopyPopup$0(String str, DialogInterface dialogInterface, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
         String strDecode;
         if (this.parentActivity != null) {
             if (this.pages[0].adapter.currentPage == null) {
@@ -2006,7 +2006,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return this.pages[0].getWebView();
     }
 
-    private boolean addPageToStack(TLRPC.WebPage webPage, String str, int i) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    private boolean addPageToStack(TLRPC.WebPage webPage, String str, int i) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         saveCurrentPagePosition();
         this.pagesStack.add(webPage);
         this.actionBar.showSearch(false, true);
@@ -2324,7 +2324,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.closeAnimationInProgress = true;
     }
 
-    private boolean scrollToAnchor(String str, boolean z) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+    private boolean scrollToAnchor(String str, boolean z) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException {
         Integer num = 0;
         if (TextUtils.isEmpty(str)) {
             return false;
@@ -3107,7 +3107,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return drawingText;
     }
 
-    public boolean checkLayoutForLinks(WebpageAdapter webpageAdapter, MotionEvent motionEvent, View view, DrawingText drawingText, int i, int i2) throws NoSuchFieldException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+    public boolean checkLayoutForLinks(WebpageAdapter webpageAdapter, MotionEvent motionEvent, View view, DrawingText drawingText, int i, int i2) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
         ActionBarPopupWindow actionBarPopupWindow;
         String strDecode;
         boolean z;
@@ -3381,13 +3381,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void lambda$openWebpageUrl$9(final int i, final Browser.Progress progress, final String str, final Utilities.Callback0Return callback0Return, final TLRPC.TL_messages_getWebPage tL_messages_getWebPage, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
                 this.f$0.lambda$openWebpageUrl$8(i, progress, tLObject, str, callback0Return, tL_messages_getWebPage);
             }
         });
     }
 
-    public void lambda$openWebpageUrl$8(int i, Browser.Progress progress, TLObject tLObject, String str, Utilities.Callback0Return callback0Return, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$openWebpageUrl$8(int i, Browser.Progress progress, TLObject tLObject, String str, Utilities.Callback0Return callback0Return, TLRPC.TL_messages_getWebPage tL_messages_getWebPage) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         if (this.openUrlReqId == 0 || i != this.lastReqId) {
             return;
         }
@@ -4002,7 +4002,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         });
         this.actionBar.setMenuListener(new Utilities.Callback() {
             @Override
-            public final void run(Object obj) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void run(Object obj) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
                 this.f$0.lambda$setParentActivity$39(activity, (Integer) obj);
             }
         });
@@ -4663,7 +4663,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.actionBar.backButtonDrawable.setRotation(f, true);
     }
 
-    public void lambda$setParentActivity$39(Activity activity, Integer num) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$setParentActivity$39(Activity activity, Integer num) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         WebInstantView.Loader loader;
         final String url;
         String openURL;
@@ -5397,11 +5397,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return open(null, null, null, str, null);
     }
 
-    public boolean open(String str, Browser.Progress progress) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public boolean open(String str, Browser.Progress progress) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         return open(null, null, null, str, progress);
     }
 
-    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         final TLRPC.WebPage webPage2;
         int iLastIndexOf;
         String strSubstring;
@@ -5568,13 +5568,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void lambda$open$53(final int i, final TLRPC.WebPage webPage, final MessageObject messageObject, final boolean z, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+            public final void run() throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
                 this.f$0.lambda$open$52(tLObject, i, webPage, messageObject, z, str);
             }
         });
     }
 
-    public void lambda$open$52(TLObject tLObject, int i, TLRPC.WebPage webPage, MessageObject messageObject, boolean z, String str) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public void lambda$open$52(TLObject tLObject, int i, TLRPC.WebPage webPage, MessageObject messageObject, boolean z, String str) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         TLRPC.Page page;
         TLObject tLObject2 = tLObject;
         int i2 = 0;
@@ -9514,7 +9514,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws InterruptedException {
+                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws InterruptedException, Resources.NotFoundException {
                     TLRPC.PageBlock pageBlock = BlockCollageCell.this.currentBlock.items.get((BlockCollageCell.this.currentBlock.items.size() - i) - 1);
                     if (viewHolder.getItemViewType() == 0) {
                         BlockPhotoCell blockPhotoCell = (BlockPhotoCell) viewHolder.itemView;
@@ -9754,7 +9754,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public Object instantiateItem(ViewGroup viewGroup, int i) throws InterruptedException {
+                public Object instantiateItem(ViewGroup viewGroup, int i) throws InterruptedException, Resources.NotFoundException {
                     BlockVideoCell blockVideoCell;
                     TLRPC.PageBlock pageBlock = BlockSlideshowCell.this.currentBlock.items.get(i);
                     if (pageBlock instanceof TLRPC.TL_pageBlockPhoto) {
@@ -11253,7 +11253,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.currentType = i;
         }
 
-        public void setBlock(TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto, boolean z, boolean z2, boolean z3) {
+        public void setBlock(TLRPC.TL_pageBlockPhoto tL_pageBlockPhoto, boolean z, boolean z2, boolean z3) throws Resources.NotFoundException {
             TLRPC.Photo photoWithId;
             this.parentBlock = null;
             this.currentBlock = tL_pageBlockPhoto;
@@ -13737,7 +13737,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws NoSuchFieldException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, SecurityException, UnsupportedEncodingException {
             if (ArticleViewer.this.pressedLinkOwnerLayout == null || ArticleViewer.this.pressedLink != null || ((ArticleViewer.this.popupWindow != null && ArticleViewer.this.popupWindow.isShowing()) || (motionEvent.getAction() != 1 && motionEvent.getAction() != 3))) {
                 if (ArticleViewer.this.pressedLinkOwnerLayout != null && ArticleViewer.this.pressedLink != null && motionEvent.getAction() == 1 && (getAdapter() instanceof WebpageAdapter)) {
                     ArticleViewer.this.checkLayoutForLinks((WebpageAdapter) getAdapter(), motionEvent, ArticleViewer.this.pressedLinkOwnerView, ArticleViewer.this.pressedLinkOwnerLayout, 0, 0);

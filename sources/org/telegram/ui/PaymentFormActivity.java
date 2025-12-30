@@ -1504,14 +1504,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (isReadyToPayRequest.isPresent() && (isReadyToPayRequestFromJson = IsReadyToPayRequest.fromJson(((JSONObject) isReadyToPayRequest.get()).toString())) != null) {
             this.paymentsClient.isReadyToPay(isReadyToPayRequestFromJson).addOnCompleteListener(getParentActivity(), new OnCompleteListener() {
                 @Override
-                public final void onComplete(Task task) {
+                public final void onComplete(Task task) throws IOException {
                     this.f$0.lambda$initGooglePay$37(task);
                 }
             });
         }
     }
 
-    public void lambda$initGooglePay$37(Task task) {
+    public void lambda$initGooglePay$37(Task task) throws IOException {
         if (task.isSuccessful()) {
             FrameLayout frameLayout = this.googlePayContainer;
             if (frameLayout != null) {

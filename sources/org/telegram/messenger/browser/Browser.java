@@ -370,7 +370,7 @@ public abstract class Browser {
         return true;
     }
 
-    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) throws NoSuchFieldException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
+    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) throws NoSuchFieldException, InterruptedException, Resources.NotFoundException, PackageManager.NameNotFoundException, SecurityException, UnsupportedEncodingException {
         BottomSheetTabs bottomSheetTabs;
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null && (bottomSheetTabs = launchActivity.getBottomSheetTabs()) != null && bottomSheetTabs.tryReopenTab(str) != null) {

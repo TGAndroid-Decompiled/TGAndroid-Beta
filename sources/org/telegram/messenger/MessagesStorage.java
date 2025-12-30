@@ -6911,7 +6911,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateUsers$201(ArrayList<TLRPC.User> arrayList, boolean z, boolean z2) throws InterruptedException {
+    public void lambda$updateUsers$201(ArrayList<TLRPC.User> arrayList, boolean z, boolean z2) throws Throwable {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -7020,14 +7020,14 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void updateUsers(final ArrayList<TLRPC.User> arrayList, final boolean z, final boolean z2, boolean z3) throws InterruptedException {
+    public void updateUsers(final ArrayList<TLRPC.User> arrayList, final boolean z, final boolean z2, boolean z3) {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
         if (z3) {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws Throwable {
                     this.f$0.lambda$updateUsers$201(arrayList, z, z2);
                 }
             });

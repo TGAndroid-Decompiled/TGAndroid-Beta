@@ -333,7 +333,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     };
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent) throws InterruptedException {
+        public void onReceive(Context context, Intent intent) throws InterruptedException, IOException {
             if ("android.intent.action.HEADSET_PLUG".equals(intent.getAction())) {
                 VoIPService.this.isHeadsetPlugged = intent.getIntExtra("state", 0) == 1;
                 if (VoIPService.this.isHeadsetPlugged && VoIPService.this.proximityWakelock != null && VoIPService.this.proximityWakelock.isHeld()) {
@@ -427,7 +427,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private HashMap<String, ProxyVideoSink> remoteSinks = new HashMap<>();
     private final Runnable destroyConvertingRunnable = new Runnable() {
         @Override
-        public final void run() throws InterruptedException {
+        public final void run() throws InterruptedException, IOException {
             this.f$0.destroyConverting();
         }
     };
@@ -573,7 +573,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             });
             Utilities.globalQueue.postRunnable(VoIPService.setModeRunnable = new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IOException {
                     VoIPService.AnonymousClass1.lambda$run$1(audioManager);
                 }
             });
@@ -583,7 +583,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             VoIPService.this.soundPool.release();
         }
 
-        public static void lambda$run$1(AudioManager audioManager) {
+        public static void lambda$run$1(AudioManager audioManager) throws IOException {
             synchronized (VoIPService.sync) {
                 try {
                     if (VoIPService.setModeRunnable == null) {
@@ -1027,7 +1027,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 } else {
                     Runnable runnable = new Runnable() {
                         @Override
-                        public final void run() throws InterruptedException {
+                        public final void run() throws InterruptedException, IOException {
                             this.f$0.lambda$onStartCommand$2();
                         }
                     };
@@ -1105,7 +1105,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$onStartCommand$2() throws InterruptedException {
+    public void lambda$onStartCommand$2() throws InterruptedException, IOException {
         this.delayedStartOutgoingCall = null;
         startOutgoingCall();
     }
@@ -1154,7 +1154,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         nativeInstance.setNoiseSuppressionEnabled(z);
     }
 
-    public void setGroupCallHash(String str) throws InterruptedException {
+    public void setGroupCallHash(String str) throws InterruptedException, IOException {
         if (!this.currentGroupModeStreaming || TextUtils.isEmpty(str) || str.equals(this.joinHash)) {
             return;
         }
@@ -1174,7 +1174,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return 0L;
     }
 
-    public void hangUp(int i, Runnable runnable) throws InterruptedException {
+    public void hangUp(int i, Runnable runnable) throws InterruptedException, IOException {
         TLRPC.ChatFull chatFull;
         int i2 = this.currentState;
         declineIncomingCall((i2 == 16 || (i2 == 13 && this.isOutgoing)) ? 3 : 1, runnable);
@@ -1220,7 +1220,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    private void startOutgoingCall() throws InterruptedException {
+    private void startOutgoingCall() throws InterruptedException, IOException {
         CallConnection callConnection;
         if (USE_CONNECTION_SERVICE && (callConnection = this.systemCallConnection) != null) {
             callConnection.setDialing();
@@ -1500,7 +1500,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.switchingCamera;
     }
 
-    public void createCaptureDevice(boolean z) throws InterruptedException {
+    public void createCaptureDevice(boolean z) throws InterruptedException, IOException {
         if (z) {
             this.gotMediaProjection = true;
             updateCurrentForegroundType();
@@ -1821,7 +1821,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return -inputPeer.chat_id;
     }
 
-    public void onGroupCallParticipantsUpdate(TLRPC.TL_updateGroupCallParticipants tL_updateGroupCallParticipants) throws InterruptedException {
+    public void onGroupCallParticipantsUpdate(TLRPC.TL_updateGroupCallParticipants tL_updateGroupCallParticipants) {
         ChatObject.Call call = this.groupCall;
         if (call == null || call.call.id != tL_updateGroupCallParticipants.call.id) {
             return;
@@ -1882,7 +1882,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void onGroupCallUpdated(TLRPC.GroupCall groupCall) throws InterruptedException {
+    public void onGroupCallUpdated(TLRPC.GroupCall groupCall) {
         boolean zOptBoolean;
         TLRPC.TL_dataJSON tL_dataJSON;
         ChatObject.Call call = this.groupCall;
@@ -1939,7 +1939,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.lastGroupCallUpdate = groupCall;
     }
 
-    public void onCallUpdated(org.telegram.tgnet.tl.TL_phone.PhoneCall r8) throws java.lang.Exception {
+    public void onCallUpdated(org.telegram.tgnet.tl.TL_phone.PhoneCall r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.onCallUpdated(org.telegram.tgnet.tl.TL_phone$PhoneCall):void");
     }
 
@@ -1955,12 +1955,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.spPlayId = this.soundPool.play(this.spRingbackID, 1.0f, 1.0f, 0, -1, 1.0f);
     }
 
-    public void lambda$onCallUpdated$18() throws InterruptedException {
+    public void lambda$onCallUpdated$18() throws InterruptedException, IOException {
         this.timeoutRunnable = null;
         declineIncomingCall(3, null);
     }
 
-    private void startRatingActivity() throws PendingIntent.CanceledException {
+    private void startRatingActivity() throws PendingIntent.CanceledException, IOException {
         try {
             PendingIntent.getActivity(this, 0, new Intent(this, (Class<?>) VoIPFeedbackActivity.class).putExtra("call_id", this.privateCall.id).putExtra("call_access_hash", this.privateCall.access_hash).putExtra("call_video", this.privateCall.video).putExtra("account", this.currentAccount).addFlags(805306368), 33554432).send();
         } catch (Exception e) {
@@ -2089,7 +2089,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.chat = chat;
     }
 
-    public void setGroupCallPeer(TLRPC.InputPeer inputPeer) throws InterruptedException {
+    public void setGroupCallPeer(TLRPC.InputPeer inputPeer) throws InterruptedException, IOException {
         ChatObject.Call call = this.groupCall;
         if (call == null) {
             return;
@@ -2118,7 +2118,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    private void startGroupCall(final int i, String str, final boolean z) throws InterruptedException {
+    private void startGroupCall(final int i, String str, final boolean z) throws InterruptedException, IOException {
         if (sharedInstance != this) {
             return;
         }
@@ -2230,7 +2230,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     final TLRPC.TL_updateGroupCall tL_updateGroupCall = (TLRPC.TL_updateGroupCall) update;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() throws InterruptedException {
+                        public final void run() throws InterruptedException, IOException {
                             this.f$0.lambda$startGroupCall$21(tL_updateGroupCall);
                         }
                     });
@@ -2243,13 +2243,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startGroupCall$22(tL_error);
             }
         });
     }
 
-    public void lambda$startGroupCall$21(TLRPC.TL_updateGroupCall tL_updateGroupCall) throws InterruptedException {
+    public void lambda$startGroupCall$21(TLRPC.TL_updateGroupCall tL_updateGroupCall) throws InterruptedException, IOException {
         if (sharedInstance == null) {
             return;
         }
@@ -2263,7 +2263,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         startGroupCall(0, null, false);
     }
 
-    public void lambda$startGroupCall$22(TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$startGroupCall$22(TLRPC.TL_error tL_error) throws InterruptedException, IOException {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 6, tL_error.text);
         hangUp(0);
     }
@@ -2330,7 +2330,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startGroupCall$28(tL_error);
             }
         });
@@ -2344,7 +2344,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.groupCall.loadMembers(z);
     }
 
-    public void lambda$startGroupCall$28(TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$startGroupCall$28(TLRPC.TL_error tL_error) throws InterruptedException, IOException {
         TLRPC.ChatFull chatFull;
         if ("JOIN_AS_PEER_INVALID".equals(tL_error.text)) {
             if (this.chat != null && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chat.id)) != null) {
@@ -2385,17 +2385,17 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$convertToConferenceCall$30();
             }
         });
     }
 
-    public void lambda$convertToConferenceCall$30() throws InterruptedException {
+    public void lambda$convertToConferenceCall$30() throws InterruptedException, IOException {
         startConferenceGroupCall(true, 0, null, false);
     }
 
-    private void startConferenceGroupCall(final boolean z, final int i, final String str, boolean z2) throws InterruptedException {
+    private void startConferenceGroupCall(final boolean z, final int i, final String str, boolean z2) throws InterruptedException, IOException {
         if (sharedInstance != this) {
             return;
         }
@@ -2556,13 +2556,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public void lambda$startConferenceGroupCall$32(final AccountInstance accountInstance, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startConferenceGroupCall$31(tLObject, accountInstance, tL_error);
             }
         });
     }
 
-    public void lambda$startConferenceGroupCall$31(TLObject tLObject, AccountInstance accountInstance, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$startConferenceGroupCall$31(TLObject tLObject, AccountInstance accountInstance, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
@@ -2649,13 +2649,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public void lambda$startConferenceGroupCall$34(final int i, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startConferenceGroupCall$33(tLObject, i, str, tL_error);
             }
         });
     }
 
-    public void lambda$startConferenceGroupCall$33(TLObject tLObject, int i, String str, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$startConferenceGroupCall$33(TLObject tLObject, int i, String str, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
         if (!(tLObject instanceof TL_phone.groupCall)) {
             if (tL_error != null) {
                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 6, tL_error.text);
@@ -2781,7 +2781,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws InterruptedException, IOException {
                     this.f$0.lambda$startConferenceGroupCall$52(arrayListFindUpdatesAndRemove, z);
                 }
             });
@@ -2789,7 +2789,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startConferenceGroupCall$53(tL_error, str);
             }
         });
@@ -2799,7 +2799,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.mySource[0] = groupCallParticipant.source;
     }
 
-    public void lambda$startConferenceGroupCall$52(ArrayList arrayList, boolean z) throws InterruptedException {
+    public void lambda$startConferenceGroupCall$52(ArrayList arrayList, boolean z) throws InterruptedException, IOException {
         final TL_phone.PhoneCall phoneCall;
         ConferenceCall conferenceCall = this.conference;
         if (conferenceCall == null) {
@@ -3110,7 +3110,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         runnable.run();
     }
 
-    public void lambda$startConferenceGroupCall$53(TLRPC.TL_error tL_error, String str) throws InterruptedException {
+    public void lambda$startConferenceGroupCall$53(TLRPC.TL_error tL_error, String str) throws InterruptedException, IOException {
         if ("JOIN_AS_PEER_INVALID".equals(tL_error.text)) {
             hangUp(2);
             return;
@@ -3150,7 +3150,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void destroyConverting() throws InterruptedException {
+    public void destroyConverting() throws InterruptedException, IOException {
         AndroidUtilities.cancelRunOnUIThread(this.destroyConvertingRunnable);
         if (this.convertingVoip == null) {
             return;
@@ -3216,7 +3216,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startScreenCapture$59(tL_error);
             }
         });
@@ -3265,7 +3265,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$startScreenCapture$59(TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$startScreenCapture$59(TLRPC.TL_error tL_error) throws InterruptedException, IOException {
         TLRPC.ChatFull chatFull;
         if ("GROUPCALL_VIDEO_TOO_MUCH".equals(tL_error.text)) {
             this.groupCall.reloadGroupCall();
@@ -3354,13 +3354,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public void lambda$startGroupCheckShortpoll$64(final TL_phone.checkGroupCall checkgroupcall, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$startGroupCheckShortpoll$63(tL_error, tLObject, checkgroupcall);
             }
         });
     }
 
-    public void lambda$startGroupCheckShortpoll$63(TLRPC.TL_error tL_error, TLObject tLObject, TL_phone.checkGroupCall checkgroupcall) throws InterruptedException {
+    public void lambda$startGroupCheckShortpoll$63(TLRPC.TL_error tL_error, TLObject tLObject, TL_phone.checkGroupCall checkgroupcall) throws InterruptedException, IOException {
         boolean z;
         boolean z2;
         TLRPC.GroupCall groupCall;
@@ -3501,7 +3501,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    private void createGroupInstance(final int i, boolean z, boolean z2) throws InterruptedException {
+    private void createGroupInstance(final int i, boolean z, boolean z2) throws InterruptedException, IOException {
         boolean z3;
         String str;
         String logFilePath;
@@ -3539,7 +3539,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             this.tgVoip[i] = NativeInstance.makeGroup(logFilePath, this.captureDevice[i], i == 1, i == 0 && SharedConfig.noiseSupression, new NativeInstance.PayloadCallback() {
                 @Override
-                public final void run(int i2, String str2) throws InterruptedException {
+                public final void run(int i2, String str2) throws InterruptedException, IOException {
                     this.f$0.lambda$createGroupInstance$66(i, zArr, i2, str2);
                 }
             }, new NativeInstance.AudioLevelsCallback() {
@@ -3570,7 +3570,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }, this.conference != null);
             this.tgVoip[i].setOnStateUpdatedListener(new Instance.OnStateUpdatedListener() {
                 @Override
-                public final void onStateUpdated(int i2, boolean z4) throws InterruptedException {
+                public final void onStateUpdated(int i2, boolean z4) throws InterruptedException, IOException {
                     this.f$0.lambda$createGroupInstance$80(i, i2, z4);
                 }
             });
@@ -3591,7 +3591,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$createGroupInstance$66(int i, boolean[] zArr, int i2, String str) throws InterruptedException {
+    public void lambda$createGroupInstance$66(int i, boolean[] zArr, int i2, String str) throws InterruptedException, IOException {
         if (i == 0) {
             if (this.conference != null) {
                 startConferenceGroupCall(false, i2, str, !zArr[0]);
@@ -3728,7 +3728,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_JOIN_MISSING".equals(tL_error.text)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws InterruptedException, IOException {
                     this.f$0.lambda$createGroupInstance$72(i);
                 }
             });
@@ -3737,7 +3737,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$createGroupInstance$72(int i) throws InterruptedException {
+    public void lambda$createGroupInstance$72(int i) throws InterruptedException, IOException {
         createGroupInstance(i, false, true);
     }
 
@@ -3816,7 +3816,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$createGroupInstance$80(final int i, int i2, boolean z) throws InterruptedException {
+    public void lambda$createGroupInstance$80(final int i, int i2, boolean z) throws InterruptedException, IOException {
         if (i != 0) {
             return;
         }
@@ -3824,7 +3824,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (this.switchingStream && (i2 == 0 || (i2 == 1 && z))) {
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws InterruptedException, IOException {
                     this.f$0.lambda$updateConnectionState$81(i);
                 }
             };
@@ -3884,7 +3884,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         setParticipantsVolume();
     }
 
-    public void lambda$updateConnectionState$81(int i) throws InterruptedException {
+    public void lambda$updateConnectionState$81(int i) throws InterruptedException, IOException {
         if (this.switchingStreamTimeoutRunnable == null) {
             return;
         }
@@ -4059,7 +4059,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.isVideoAvailable;
     }
 
-    void onMediaButtonEvent(KeyEvent keyEvent) throws InterruptedException {
+    void onMediaButtonEvent(KeyEvent keyEvent) throws InterruptedException, IOException {
         if (keyEvent == null) {
             return;
         }
@@ -4090,7 +4090,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return EncryptionKeyEmojifier.emojifyForCall(Utilities.computeSHA256(byteArrayOutputStream.toByteArray(), 0, byteArrayOutputStream.size()));
     }
 
-    public boolean hasEarpiece() {
+    public boolean hasEarpiece() throws IOException {
         CallConnection callConnection;
         if (USE_CONNECTION_SERVICE && (callConnection = this.systemCallConnection) != null && callConnection.getCallAudioState() != null) {
             return (this.systemCallConnection.getCallAudioState().getSupportedRouteMask() & 5) != 0;
@@ -4598,7 +4598,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     @Override
-    public void onDestroy() throws InterruptedException {
+    public void onDestroy() throws InterruptedException, IOException {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("=============== VoIPService STOPPING ===============");
         }
@@ -4708,7 +4708,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     DispatchQueue dispatchQueue2 = Utilities.globalQueue;
                     Runnable runnable3 = new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws IOException {
                             VoIPService.lambda$onDestroy$98(audioManager);
                         }
                     };
@@ -4764,7 +4764,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didEndCall, new Object[0]);
     }
 
-    public static void lambda$onDestroy$98(AudioManager audioManager) {
+    public static void lambda$onDestroy$98(AudioManager audioManager) throws IOException {
         synchronized (sync) {
             try {
                 if (setModeRunnable == null) {
@@ -4808,20 +4808,20 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return groupCall.id;
     }
 
-    public void hangUp() throws InterruptedException {
+    public void hangUp() throws InterruptedException, IOException {
         hangUp(0, null);
     }
 
-    public void hangUp(int i) throws InterruptedException {
+    public void hangUp(int i) throws InterruptedException, IOException {
         hangUp(i, null);
     }
 
-    public void hangUp(Runnable runnable) throws InterruptedException {
+    public void hangUp(Runnable runnable) throws InterruptedException, IOException {
         hangUp(0, runnable);
     }
 
     @Override
-    public void acceptIncomingCall() throws InterruptedException {
+    public void acceptIncomingCall() throws InterruptedException, IOException {
         updateCurrentForegroundType();
         MessagesController.getInstance(this.currentAccount).ignoreSetOnline = false;
         stopRinging();
@@ -4941,7 +4941,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         callFailed();
     }
 
-    public void declineIncomingCall(int i, Runnable runnable) throws InterruptedException {
+    public void declineIncomingCall(int i, Runnable runnable) throws InterruptedException, IOException {
         if (this.groupCall != null) {
             stopScreenCapture();
         }
@@ -5036,7 +5036,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     @Override
-    public void declineIncomingCall() throws InterruptedException {
+    public void declineIncomingCall() throws InterruptedException, IOException {
         declineIncomingCall(1, null);
     }
 
@@ -5055,7 +5055,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             if (this.isOutgoing) {
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() throws InterruptedException, IOException {
                         this.f$0.lambda$getConnectionAndStartCall$106();
                     }
                 };
@@ -5070,12 +5070,12 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.systemCallConnection;
     }
 
-    public void lambda$getConnectionAndStartCall$106() throws InterruptedException {
+    public void lambda$getConnectionAndStartCall$106() throws InterruptedException, IOException {
         this.delayedStartOutgoingCall = null;
         startOutgoingCall();
     }
 
-    public void startRinging() throws InterruptedException, PendingIntent.CanceledException {
+    public void startRinging() throws InterruptedException, PendingIntent.CanceledException, IOException {
         CallConnection callConnection;
         if (this.currentState == 15) {
             return;
@@ -5117,18 +5117,18 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.startedRinging = true;
     }
 
-    private void updateServerConfig() {
+    private void updateServerConfig() throws IOException {
         final SharedPreferences mainSettings = MessagesController.getMainSettings(this.currentAccount);
         Instance.setGlobalServerConfig(mainSettings.getString("voip_server_config", "{}"));
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_phone.getCallConfig(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws IOException {
                 VoIPService.lambda$updateServerConfig$107(mainSettings, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$updateServerConfig$107(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$updateServerConfig$107(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC.TL_error tL_error) throws IOException {
         if (tL_error == null) {
             String str = ((TLRPC.TL_dataJSON) tLObject).data;
             Instance.setGlobalServerConfig(str);
@@ -5196,7 +5196,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    private void initializeAccountRelatedThings() {
+    private void initializeAccountRelatedThings() throws IOException {
         updateServerConfig();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.appDidLogout);
         ConnectionsManager.getInstance(this.currentAccount).setAppPaused(false, false);
@@ -5367,7 +5367,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.spStartRecordId = this.soundPool.load(this, R.raw.voip_recordstart, 1);
     }
 
-    private void dispatchStateChanged(int i) throws InterruptedException {
+    private void dispatchStateChanged(int i) throws InterruptedException, IOException {
         CallConnection callConnection;
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("== Call " + getCallID() + " state changed to " + i + " ==");
@@ -5419,7 +5419,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    private void configureDeviceForCall() {
+    private void configureDeviceForCall() throws IOException {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("configureDeviceForCall, route to set = " + this.audioRouteToSet);
         }
@@ -5856,7 +5856,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             this.lastError = str;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws InterruptedException, IOException {
                     this.f$0.lambda$callFailed$114();
                 }
             });
@@ -5892,7 +5892,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$callFailed$114() throws InterruptedException {
+    public void lambda$callFailed$114() throws InterruptedException, IOException {
         dispatchStateChanged(4);
     }
 
@@ -6057,7 +6057,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 this.f$0.lambda$callEnded$122();
             }
         });
@@ -6102,7 +6102,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         stopSelf();
     }
 
-    public void lambda$callEnded$122() throws InterruptedException {
+    public void lambda$callEnded$122() throws InterruptedException, IOException {
         dispatchStateChanged(11);
     }
 
@@ -6167,7 +6167,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.isOutgoing;
     }
 
-    public void handleNotificationAction(Intent intent) throws InterruptedException, PendingIntent.CanceledException {
+    public void handleNotificationAction(Intent intent) throws InterruptedException, PendingIntent.CanceledException, IOException {
         if ((getPackageName() + ".END_CALL").equals(intent.getAction())) {
             stopForeground(true);
             hangUp();
@@ -6183,7 +6183,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void acceptIncomingCallFromNotification() throws InterruptedException, PendingIntent.CanceledException {
+    public void acceptIncomingCallFromNotification() throws InterruptedException, PendingIntent.CanceledException, IOException {
         showNotification();
         if (Build.VERSION.SDK_INT >= 23 && (checkSelfPermission("android.permission.RECORD_AUDIO") != 0 || (this.privateCall.video && checkSelfPermission("android.permission.CAMERA") != 0))) {
             try {
@@ -6267,7 +6267,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
 
         @Override
-        public void onDisconnect() throws InterruptedException {
+        public void onDisconnect() throws InterruptedException, IOException {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("ConnectionService onDisconnect");
             }
@@ -6278,18 +6278,18 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
 
         @Override
-        public void onAnswer() throws InterruptedException, PendingIntent.CanceledException {
+        public void onAnswer() throws InterruptedException, PendingIntent.CanceledException, IOException {
             VoIPService.this.acceptIncomingCallFromNotification();
         }
 
         @Override
-        public void onReject() throws InterruptedException {
+        public void onReject() throws InterruptedException, IOException {
             VoIPService.this.needPlayEndSound = false;
             VoIPService.this.declineIncomingCall(1, null);
         }
 
         @Override
-        public void onShowIncomingCallUi() throws InterruptedException, PendingIntent.CanceledException {
+        public void onShowIncomingCallUi() throws InterruptedException, PendingIntent.CanceledException, IOException {
             VoIPService.this.startRinging();
         }
 

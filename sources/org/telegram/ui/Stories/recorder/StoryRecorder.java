@@ -61,6 +61,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
@@ -667,6 +669,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
             AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
+            setupBackDispatcher();
         }
         this.outputEntry = storyEntry;
         storyEntry.botId = j;
@@ -729,6 +732,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
             AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
+            setupBackDispatcher();
         }
         this.collageLayoutView.setCameraThumb(getCameraThumb());
         if (this.botId == 0 && (storyLimitCheckStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit()) != null && storyLimitCheckStoryLimit.active(this.currentAccount)) {
@@ -783,6 +787,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
             AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
+            setupBackDispatcher();
         }
         this.outputEntry = storyEntry;
         this.mode = (storyEntry == null || !storyEntry.isVideo) ? 0 : 1;
@@ -848,6 +853,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
             AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
+            setupBackDispatcher();
         }
         this.outputEntry = storyEntry;
         StoryPrivacySelector.applySaved(this.currentAccount, storyEntry);
@@ -915,6 +921,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
             AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
+            setupBackDispatcher();
         }
         this.outputEntry = storyEntry;
         StoryPrivacySelector.applySaved(this.currentAccount, storyEntry);
@@ -959,6 +966,18 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.botId = 0L;
         this.botLang = "";
         this.botEdit = null;
+    }
+
+    private void setupBackDispatcher() {
+        OnBackInvokedDispatcher onBackInvokedDispatcherFindOnBackInvokedDispatcher;
+        if (Build.VERSION.SDK_INT >= 33 && (onBackInvokedDispatcherFindOnBackInvokedDispatcher = this.windowView.findOnBackInvokedDispatcher()) != null) {
+            onBackInvokedDispatcherFindOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, new OnBackInvokedCallback() {
+                @Override
+                public final void onBackInvoked() throws Resources.NotFoundException, IOException {
+                    this.f$0.onBackPressed();
+                }
+            });
+        }
     }
 
     public void close(final boolean z) {

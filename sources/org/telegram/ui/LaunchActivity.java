@@ -51,6 +51,7 @@ import androidx.core.graphics.ColorUtils;
 import com.google.common.primitives.Longs;
 import j$.util.function.Consumer$CC;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -325,6 +326,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     protected void onCreate(Bundle bundle) throws Throwable {
         ActionBarLayout actionBarLayout;
+        Bundle bundle2;
         Intent intent;
         Uri data;
         isActive = true;
@@ -422,7 +424,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         anonymousClass4.setClipChildren(false);
         this.drawerLayoutContainer.setClipToPadding(false);
         this.drawerLayoutContainer.setBehindKeyboardColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        char c = 65535;
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         View view = new View(this) {
             @Override
@@ -511,82 +512,58 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 try {
                     String string = bundle.getString("fragment");
                     if (string != null) {
-                        Bundle bundle2 = bundle.getBundle("args");
-                        switch (string.hashCode()) {
-                            case -1529105743:
-                                if (string.equals("wallpapers")) {
-                                    c = 5;
-                                    break;
+                        bundle2 = bundle.getBundle("args");
+                        switch (string) {
+                            case "chat":
+                                if (bundle2 != null) {
+                                    ChatActivity chatActivity = new ChatActivity(bundle2);
+                                    if (this.actionBarLayout.addFragmentToStack(chatActivity)) {
+                                        chatActivity.restoreSelfArgs(bundle);
+                                        break;
+                                    }
                                 }
                                 break;
-                            case -1349522494:
-                                if (string.equals("chat_profile")) {
-                                    c = 4;
-                                    break;
-                                }
-                                break;
-                            case 3052376:
-                                if (string.equals("chat")) {
-                                    c = 0;
-                                    break;
-                                }
-                                break;
-                            case 98629247:
-                                if (string.equals("group")) {
-                                    c = 2;
-                                    break;
-                                }
-                                break;
-                            case 738950403:
-                                if (string.equals("channel")) {
-                                    c = 3;
-                                    break;
-                                }
-                                break;
-                            case 1434631203:
-                                if (string.equals("settings")) {
-                                    c = 1;
-                                    break;
-                                }
-                                break;
-                        }
-                        if (c != 0) {
-                            if (c == 1) {
+                            case "settings":
                                 bundle2.putLong("user_id", UserConfig.getInstance(this.currentAccount).clientUserId);
                                 ProfileActivity profileActivity = new ProfileActivity(bundle2);
                                 this.actionBarLayout.addFragmentToStack(profileActivity);
                                 profileActivity.restoreSelfArgs(bundle);
-                            } else if (c != 2) {
-                                if (c != 3) {
-                                    if (c != 4) {
-                                        if (c == 5) {
-                                            WallpapersListActivity wallpapersListActivity = new WallpapersListActivity(0);
-                                            this.actionBarLayout.addFragmentToStack(wallpapersListActivity);
-                                            wallpapersListActivity.restoreSelfArgs(bundle);
-                                        }
-                                    } else if (bundle2 != null) {
-                                        ProfileActivity profileActivity2 = new ProfileActivity(bundle2);
-                                        if (this.actionBarLayout.addFragmentToStack(profileActivity2)) {
-                                            profileActivity2.restoreSelfArgs(bundle);
-                                        }
+                                break;
+                            case "settings2":
+                                this.actionBarLayout.addFragmentToStack(new SettingsActivity());
+                                break;
+                            case "group":
+                                if (bundle2 != null) {
+                                    GroupCreateFinalActivity groupCreateFinalActivity = new GroupCreateFinalActivity(bundle2);
+                                    if (this.actionBarLayout.addFragmentToStack(groupCreateFinalActivity)) {
+                                        groupCreateFinalActivity.restoreSelfArgs(bundle);
+                                        break;
                                     }
-                                } else if (bundle2 != null) {
+                                }
+                                break;
+                            case "channel":
+                                if (bundle2 != null) {
                                     ChannelCreateActivity channelCreateActivity = new ChannelCreateActivity(bundle2);
                                     if (this.actionBarLayout.addFragmentToStack(channelCreateActivity)) {
                                         channelCreateActivity.restoreSelfArgs(bundle);
+                                        break;
                                     }
                                 }
-                            } else if (bundle2 != null) {
-                                GroupCreateFinalActivity groupCreateFinalActivity = new GroupCreateFinalActivity(bundle2);
-                                if (this.actionBarLayout.addFragmentToStack(groupCreateFinalActivity)) {
-                                    groupCreateFinalActivity.restoreSelfArgs(bundle);
+                                break;
+                            case "chat_profile":
+                                if (bundle2 != null) {
+                                    ProfileActivity profileActivity2 = new ProfileActivity(bundle2);
+                                    if (this.actionBarLayout.addFragmentToStack(profileActivity2)) {
+                                        profileActivity2.restoreSelfArgs(bundle);
+                                        break;
+                                    }
                                 }
-                            }
-                        } else if (bundle2 != null) {
-                            ChatActivity chatActivity = new ChatActivity(bundle2);
-                            if (this.actionBarLayout.addFragmentToStack(chatActivity)) {
-                                chatActivity.restoreSelfArgs(bundle);
-                            }
+                                break;
+                            case "wallpapers":
+                                WallpapersListActivity wallpapersListActivity = new WallpapersListActivity(0);
+                                this.actionBarLayout.addFragmentToStack(wallpapersListActivity);
+                                wallpapersListActivity.restoreSelfArgs(bundle);
+                                break;
                         }
                     }
                 } catch (Exception e) {
@@ -4206,7 +4183,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onActivityResult(int i, int i2, Intent intent) throws InterruptedException {
+    protected void onActivityResult(int i, int i2, Intent intent) throws InterruptedException, IOException {
         VoIPService sharedInstance;
         if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.lastPauseTime != 0) {
             SharedConfig.lastPauseTime = 0;

@@ -7149,7 +7149,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void setSearchAnimationProgress(float f, boolean z) {
         this.searchAnimationProgress = f;
         boolean z2 = true;
-        if (this.whiteActionBar) {
+        if (this.whiteActionBar && this.actionBar != null) {
             int themedColor = getThemedColor(this.folderId != 0 ? Theme.key_actionBarDefaultArchivedIcon : Theme.key_actionBarDefaultIcon);
             ActionBar actionBar = this.actionBar;
             int i = Theme.key_actionBarActionModeDefaultIcon;
@@ -8783,7 +8783,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 String string = sharedPreferences.getString("proxy_ip", "");
                 boolean z4 = sharedPreferences.getBoolean("proxy_enabled", false);
                 if ((!this.downloadsItemVisible && !this.searching && z4 && !TextUtils.isEmpty(string)) || (getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty())) {
-                    if (!this.actionBar.isSearchFieldVisible() && ((actionBarMenuItem = this.doneItem) == null || actionBarMenuItem.getVisibility() != 0)) {
+                    ActionBar actionBar = this.actionBar;
+                    if (actionBar != null && !actionBar.isSearchFieldVisible() && ((actionBarMenuItem = this.doneItem) == null || actionBarMenuItem.getVisibility() != 0)) {
                         this.proxyItem.setVisibility(0);
                     }
                     this.proxyItemVisible = true;

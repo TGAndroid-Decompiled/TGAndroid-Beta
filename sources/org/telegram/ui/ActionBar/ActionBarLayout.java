@@ -1208,7 +1208,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (this.predictiveBackInProgress) {
             float fDp = AndroidUtilities.dp(56.0f) * f;
             this.predictiveBackHasProgress = f > 0.0f;
-            this.containerView.setTranslationX(this.predictiveBackLeft ? fDp : -fDp);
+            this.containerView.setTranslationX(fDp);
             setInnerTranslationX(fDp);
         }
     }
@@ -1251,7 +1251,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             int iMax = Math.max((int) ((200.0f / this.containerView.getMeasuredWidth()) * x), newBackTransitions() ? 380 : 50);
             if (!zShouldOverrideSlideTransition) {
                 long j = iMax;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, ((this.predictiveBackLeft || !this.predictiveBackInProgress) ? 1 : -1) * (r6.getMeasuredWidth() + (this.predictiveBackInProgress ? AndroidUtilities.dp(56.0f) : 0))).setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<LayoutContainer, Float>) View.TRANSLATION_X, r6.getMeasuredWidth() + (this.predictiveBackInProgress ? AndroidUtilities.dp(56.0f) : 0)).setDuration(j), ObjectAnimator.ofFloat(this, "innerTranslationX", this.containerView.getMeasuredWidth()).setDuration(j));
                 if (newBackTransitions()) {
                     animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 }

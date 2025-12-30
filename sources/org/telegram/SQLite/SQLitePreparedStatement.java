@@ -1,6 +1,7 @@
 package org.telegram.SQLite;
 
 import android.os.SystemClock;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
@@ -94,7 +95,7 @@ public class SQLitePreparedStatement {
         }
     }
 
-    public void finalizeQuery() {
+    public void finalizeQuery() throws IOException {
         if (this.isFinalized) {
             return;
         }

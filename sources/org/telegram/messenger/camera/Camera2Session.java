@@ -17,6 +17,7 @@ import android.os.HandlerThread;
 import android.util.Range;
 import android.view.Surface;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -445,21 +446,21 @@ public class Camera2Session {
         }
     }
 
-    public void setScanningBarcode(boolean z) throws CameraAccessException {
+    public void setScanningBarcode(boolean z) throws CameraAccessException, IOException {
         if (this.scanningBarcode != z) {
             this.scanningBarcode = z;
             updateCaptureRequest();
         }
     }
 
-    public void setNightMode(boolean z) throws CameraAccessException {
+    public void setNightMode(boolean z) throws CameraAccessException, IOException {
         if (this.nightMode != z) {
             this.nightMode = z;
             updateCaptureRequest();
         }
     }
 
-    public void updateCaptureRequest() throws CameraAccessException {
+    public void updateCaptureRequest() throws CameraAccessException, IOException {
         int i;
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice == null || this.surface == null || this.captureSession == null) {
@@ -506,7 +507,7 @@ public class Camera2Session {
         }
     }
 
-    public boolean takePicture(File file, Utilities.Callback<Integer> callback) throws CameraAccessException {
+    public boolean takePicture(File file, Utilities.Callback<Integer> callback) throws CameraAccessException, IOException {
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice != null && this.captureSession != null) {
             try {

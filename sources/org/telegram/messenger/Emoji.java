@@ -131,14 +131,14 @@ public class Emoji {
             zArr[s] = true;
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IOException {
                     Emoji.lambda$loadEmoji$1(b, s);
                 }
             });
         }
     }
 
-    public static void lambda$loadEmoji$1(byte b, short s) {
+    public static void lambda$loadEmoji$1(byte b, short s) throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("emoji/");
         Locale locale = Locale.US;
@@ -222,7 +222,7 @@ public class Emoji {
         }
     }
 
-    public static Bitmap loadBitmap(String str) {
+    public static Bitmap loadBitmap(String str) throws IOException {
         Bitmap bitmapDecodeStream;
         try {
             int i = AndroidUtilities.density <= 1.0f ? 2 : 1;

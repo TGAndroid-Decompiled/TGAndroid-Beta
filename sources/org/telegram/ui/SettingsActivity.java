@@ -289,7 +289,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
         });
         this.listView = universalRecyclerView;
-        universalRecyclerView.setPadding(0, 0, 0, AndroidUtilities.dp(15.0f) + AndroidUtilities.navigationBarHeight);
+        universalRecyclerView.setPadding(0, AndroidUtilities.statusBarHeight, 0, AndroidUtilities.dp(15.0f) + AndroidUtilities.navigationBarHeight);
         this.listView.setClipToPadding(false);
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -806,7 +806,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(15.0f) + windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
+        this.listView.setPadding(0, windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top, 0, AndroidUtilities.dp(15.0f) + windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
         return WindowInsetsCompat.CONSUMED;
     }
 

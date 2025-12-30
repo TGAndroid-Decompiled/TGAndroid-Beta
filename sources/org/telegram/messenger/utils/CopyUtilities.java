@@ -12,6 +12,7 @@ import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import org.telegram.messenger.CodeHighlighting;
@@ -28,7 +29,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 public abstract class CopyUtilities {
-    public static Spannable fromHTML(String str) {
+    public static Spannable fromHTML(String str) throws IOException {
         try {
             Spanned spannedFromHtml = Build.VERSION.SDK_INT >= 24 ? Html.fromHtml("<inject>" + str + "</inject>", 63, null, new HTMLTagAttributesHandler(new HTMLTagHandler())) : Html.fromHtml("<inject>" + str + "</inject>", null, new HTMLTagAttributesHandler(new HTMLTagHandler()));
             if (spannedFromHtml == null) {

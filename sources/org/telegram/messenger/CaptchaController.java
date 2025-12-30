@@ -7,6 +7,7 @@ import com.google.android.recaptcha.Recaptcha;
 import com.google.android.recaptcha.RecaptchaAction;
 import com.google.android.recaptcha.RecaptchaTasksClient;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -68,7 +69,7 @@ public class CaptchaController {
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public final void onFailure(Exception exc) {
+                public final void onFailure(Exception exc) throws IOException {
                     CaptchaController.lambda$request$3(request2, exc);
                 }
             });
@@ -83,7 +84,7 @@ public class CaptchaController {
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public final void onFailure(Exception exc) {
+            public final void onFailure(Exception exc) throws IOException {
                 CaptchaController.lambda$request$1(request, exc);
             }
         });
@@ -98,12 +99,12 @@ public class CaptchaController {
         }
     }
 
-    public static void lambda$request$1(Request request, Exception exc) {
+    public static void lambda$request$1(Request request, Exception exc) throws IOException {
         FileLog.e("CaptchaController: executeTask failure", exc);
         request.done("RECAPTCHA_FAILED_TASK_EXCEPTION_" + formatException(exc));
     }
 
-    public static void lambda$request$3(Request request, Exception exc) {
+    public static void lambda$request$3(Request request, Exception exc) throws IOException {
         FileLog.e("CaptchaController: getTasksClient failure", exc);
         request.done("RECAPTCHA_FAILED_GETCLIENT_EXCEPTION_" + formatException(exc));
     }
